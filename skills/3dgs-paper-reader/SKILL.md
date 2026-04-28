@@ -102,7 +102,7 @@ Generate the summary in the following format:
 - ...
 
 ### Relationship to Known Methods
-[Compare to SignGS, NegGS, 2DGS, Scaffold-GS, etc. if applicable]
+[Compare to NegGS, 2DGS, Scaffold-GS, etc. if applicable]
 ```
 
 ## Domain Knowledge Rules
@@ -114,7 +114,6 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 - **3DGS (Kerbl et al., SIGGRAPH 2023)**: Anisotropic 3D Gaussians, tile-based differentiable rasterization, adaptive density control. Baseline metrics on Mip-NeRF 360: ~25.2 dB PSNR.
 - **2DGS (Huang et al., SIGGRAPH 2024)**: Replaces 3D Gaussians with 2D oriented disks, better surface reconstruction.
 - **Scaffold-GS (Lu et al., ICCV 2023)**: Anchor-based structure for large-scale scenes.
-- **SignGS**: Signed opacity mechanism for sharp geometric boundaries, frequency-aware loss.
 - **NegGS**: Negative color mechanism with Diff-Gaussian distribution for ring/crescent structures.
 
 ### Terminology Conventions

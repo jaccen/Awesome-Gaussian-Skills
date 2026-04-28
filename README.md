@@ -1,5 +1,4 @@
 
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -31,7 +30,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 | Pain Point | Frequency |
 |-----------|-----------|
 | Reading and summarizing new papers | Daily |
-| Comparing method designs (GS vs 2DGS vs SignGS vs ...) | Weekly |
+| Comparing method designs (GS vs 2DGS vs NegGS vs ...) | Weekly |
 | Reviewing implementation code for bugs | Per submission |
 | Designing ablation experiments | Per paper |
 | Migrating NeRF methods to 3DGS | Per project |
@@ -234,7 +233,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 | Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS |
 | Editing | GaussianEditor, GeoGaussian, Scaffold-GS (editing) |
 | Dynamics | 4DGS, Dynamic-3DGS, SC-GS, Deformable-3DGS |
-| Signed/Decomposed | SignGS, NegGS, SuGaR |
+| Signed/Decomposed | NegGS, SuGaR |
 | Material/Relighting | GRF, GS-IR, Relightable-3DGS |
 | Large-Scale | CityGaussian, Mega-3DGS, Octree-GS, GeoGaussian |
 | Human/Avatar | GaussianAvatar, GAS, SplattingAvatar, 3DGS-Avatar |

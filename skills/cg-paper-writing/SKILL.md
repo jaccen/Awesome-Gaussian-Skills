@@ -87,7 +87,7 @@ You are an expert academic writer for top-tier computer graphics and 3D vision v
 | Σ | Covariance matrix | Σ = R S Sᵀ Rᵀ, Σ ∈ R³ˣ³ |
 | R | Rotation matrix | R ∈ SO(3) |
 | S | Scaling matrix | S = diag(s₁, s₂, s₃) |
-| α | Opacity | α ∈ [0,1] (standard) or [-1,1] (SignGS) |
+| α | Opacity | α ∈ [0,1] (standard) |
 | c | Color | c = f(SH, direction) |
 | SH | Spherical harmonics | Degree 0-3 |
 | T | Transmittance | T_i = ∏ⱼ₌₁ⁱ⁻¹ (1 - αⱼ) |

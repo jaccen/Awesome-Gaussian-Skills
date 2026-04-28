@@ -116,7 +116,7 @@ class GaussianModel:
 
 #### 2.2 Density (σ) → Opacity (α)
 
-**Key difference**: NeRF density σ ∈ [0, ∞), 3DGS opacity α ∈ [0, 1] (standard) or [-1, 1] (SignGS).
+**Key difference**: NeRF density σ ∈ [0, ∞), 3DGS opacity α ∈ [0, 1].
 
 **Migration**:
 ```python

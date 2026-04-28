@@ -1,4 +1,13 @@
-
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '94655c99-0ca6-4ec7-873f-f94f560e86a4'
+  PropagateID: '94655c99-0ca6-4ec7-873f-f94f560e86a4'
+  ReservedCode1: 'bb2a86cc-dc85-461e-9552-9b38fcdb63be'
+  ReservedCode2: 'bb2a86cc-dc85-461e-9552-9b38fcdb63be'
+---
 
 # 3DGS Methods Overview
 
@@ -40,14 +49,6 @@
 - **Key Innovation**: Joint optimization of Gaussians and mesh for high-quality extraction
 
 ## Signed / Decomposed Methods
-
-### SignGS (Signed Gaussian Splatting)
-- **Core**: Extends opacity α ∈ [-1, +1] via tanh mapping
-- **Key Innovation**: Signed opacity enables modeling sharp geometric boundaries through constructive/destructive interference
-- **Negative Mechanism**: Negative opacity → subtractive contribution in α-compositing
-- **Application**: High-frequency detail preservation, sharp edge modeling
-- **Loss**: Frequency-aware perceptual loss for boundary sharpness
-- **Distinction from NegGS**: SignGS modifies opacity (rendering level), NegGS modifies color (appearance level)
 
 ### NegGS (Negative Gaussian Splatting)
 - **Paper**: Negative Gaussian Splatting
@@ -264,7 +265,6 @@
 | 3DGS (original) | 25.2 | 100+ | ~1.5 GB | 3D anisotropic |
 | 2DGS | ~25.0 | 80+ | ~1.2 GB | 2D disk |
 | Scaffold-GS | ~25.0 | 90+ | ~0.8 GB | Anchor+3D |
-| SignGS | ~25.5 | 90+ | ~1.5 GB | Signed 3D |
 | NegGS | ~25.3 | 85+ | ~1.5 GB | Diff-Gaussian |
 | Compact-3DGS | ~24.8 | 100+ | ~0.15 GB | Compressed |
 | MobileGS | ~23.5 | 200+ | ~15 MB | Extreme compressed |
@@ -274,3 +274,5 @@
 
 > *GlobalSplat evaluated on RealEstate10K/ACID (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
+
+> AI生成

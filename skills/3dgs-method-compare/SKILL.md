@@ -43,8 +43,8 @@ When comparing methods, analyze across the following dimensions:
 
 ### 2. Opacity / Alpha Mechanism
 - Range: [0, 1] / [-1, 1] / unbounded / sigmoid / tanh
-- Signed support: Yes (SignGS) / No (standard GS)
-- Negative mechanism: Negative color (NegGS) / Negative opacity (SignGS) / None
+- Signed support: Yes (signed α) / No (standard GS)
+- Negative mechanism: Negative color (NegGS) / Negative opacity (signed) / None
 
 ### 3. Color Representation
 - Spherical Harmonics order: 0/1/2/3
@@ -105,11 +105,11 @@ When comparing methods, analyze across the following dimensions:
 
 | Method | Opacity Range | Color Range | Mechanism |
 |--------|--------------|-------------|-----------|
-| SignGS | [-1, +1] via tanh | Standard RGB | Signed opacity + frequency-aware loss |
 | NegGS | [0, +∞) (non-negative) | ℝ (negative allowed) | Negative color + Diff-Gaussian |
+| (Standard GS) | [0, 1] via sigmoid | [0, +∞) | Standard α-compositing |
 
-**Critical Distinction**: SignGS and NegGS both use "negative" concepts but in fundamentally different ways:
-- **SignGS**: Opacity α can be negative (signed), rendering formula modified. The Gaussian primitive itself carries a sign. Better for sharp geometric boundaries.
+**Critical Distinction**: Methods using "negative" concepts differ fundamentally:
+- **Signed opacity (α ∈ [-1,1])**: Opacity α can be negative, rendering formula modified. The Gaussian primitive itself carries a sign. Better for sharp geometric boundaries.
 - **NegGS**: Opacity remains non-negative, but color values can be negative. Uses Diff-Gaussian (subtraction of two Gaussians) to model ring/crescent structures.
 
 ### Compression Methods
