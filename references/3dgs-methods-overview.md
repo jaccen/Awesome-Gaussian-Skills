@@ -1,13 +1,4 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '94655c99-0ca6-4ec7-873f-f94f560e86a4'
-  PropagateID: '94655c99-0ca6-4ec7-873f-f94f560e86a4'
-  ReservedCode1: 'bb2a86cc-dc85-461e-9552-9b38fcdb63be'
-  ReservedCode2: 'bb2a86cc-dc85-461e-9552-9b38fcdb63be'
----
+
 
 # 3DGS Methods Overview
 
@@ -275,4 +266,3 @@ AIGC:
 > *GlobalSplat evaluated on RealEstate10K/ACID (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
 
-> AI生成
