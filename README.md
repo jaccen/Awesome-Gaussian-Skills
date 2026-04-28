@@ -8,7 +8,7 @@
 **Plug-and-play AI Agent skills for OpenClaw / Claude Code / Cursor — read papers, compare methods, review code, design experiments, all in natural language.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-6-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-7-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -41,7 +41,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ## Features
 
-- **6 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, and CG paper writing
+- **7 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, and CG paper writing
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
 - **Domain Expert Knowledge**: Built-in knowledge base covering 50+ 3DGS variants, 200+ papers, and domain-specific terminology conventions
@@ -170,7 +170,31 @@ Agent: [Provides migration plan: feature encoding → per-Gaussian
 - Identify incompatibilities and workarounds
 - Performance comparison estimation
 
-### 6. `cg-paper-writing` — CG Paper Writing Assistant
+### 6. `cad-mesh-3dgs` — CAD, Mesh & 3DGS Bridge
+
+**Navigate the mesh↔3DGS pipeline, CAD reverse engineering, and surface extraction.**
+
+```
+You: "我训练了一个3DGS模型，怎么提取高质量的mesh？"
+Agent: [Recommends SuGaR or 2DGS pipeline, provides TSDF extraction
+        steps, Marching Cubes parameters, and quality evaluation code]
+```
+
+```
+You: "如何把CAD模型（STEP格式）转换为3DGS表示？"
+Agent: [Provides mesh→Gaussian conversion pipeline, covariance 
+        initialization from mesh normals, and curvature-aware sampling]
+```
+
+**Capabilities:**
+- Mesh→3DGS conversion (sampling, initialization, optimization)
+- 3DGS→Mesh extraction (SuGaR, 2DGS, TSDF+Marching Cubes)
+- CAD reverse engineering pipeline (mesh→B-rep via primitive fitting)
+- Hybrid representation analysis (MaGS, UniMGS, 2DGS)
+- Geometry quality evaluation (Chamfer Distance, F-Score, Normal Consistency)
+- Debugging common mesh-Gaussian conversion issues
+
+### 7. `cg-paper-writing` — CG Paper Writing Assistant
 
 **Write publication-ready papers for CVPR/ICCV/ECCV/SIGGRAPH/TVCG.**
 
@@ -203,6 +227,8 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-experiment-planner/ # Experiment design assistant
 │   │   └── SKILL.md
 │   ├── nerf-to-3dgs-migrator/  # NeRF-to-3DGS migration guide
+│   │   └── SKILL.md
+│   ├── cad-mesh-3dgs/          # CAD, Mesh & 3DGS bridge
 │   │   └── SKILL.md
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
@@ -239,6 +265,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 | Human/Avatar | GaussianAvatar, GAS, SplattingAvatar, 3DGS-Avatar |
 | Autonomous Driving | Street-GS, ADS-GS |
 | Geometry | 2D-Gaussian, 3D-Gaussian, FlexiCubes+3DGS |
+| CAD / Mesh | SuGaR, MaGS, UniMGS, Vol3DGS, BrepGaussian, 2DGS |
 
 > The full knowledge base covers **50+ methods** with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
@@ -247,6 +274,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 ## Roadmap
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
+- [x] v0.1.1 — Add `cad-mesh-3dgs` skill for CAD/Mesh↔3DGS bridge (Apr 2026)
 - [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v0.4 — Expand knowledge base to 100+ methods

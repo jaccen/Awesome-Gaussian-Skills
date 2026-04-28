@@ -39,6 +39,59 @@
 - **Core**: Regularizes Gaussians to align with learned mesh surface
 - **Key Innovation**: Joint optimization of Gaussians and mesh for high-quality extraction
 
+## CAD / Mesh / Hybrid Methods
+
+### SuGaR
+- **Paper**: SuGaR: Surface-Aligned Gaussian Splatting for Efficient 3D Mesh Reconstruction and High-Quality Rendering
+- **Authors**: Antoine Guédon, Vincent Lepetit
+- **Venue**: CVPR 2024
+- **ArXiv**: 2312.13253
+- **Core**: Regularizes Gaussians to align with learned mesh surface, extracts mesh via TSDF + Marching Cubes
+- **Key Innovation**: Joint optimization of Gaussians and mesh for high-quality surface extraction
+- **Pipeline**: Train 3DGS → Regularize toward surface → Multi-view TSDF fusion → Marching Cubes
+
+### 2D Gaussian Splatting (2DGS)
+- **Paper**: 2D Gaussian Splatting for Geometrically Accurate Radiance Fields
+- **Authors**: Zixiang Zhou, Peng Wang, Yuxing Qiu, Pengfei Wan, Xiaoyang Lyu, Tiejun Huang, Yan Lu
+- **Venue**: SIGGRAPH 2024
+- **ArXiv**: 2403.17888
+- **Core**: Replaces 3D Gaussians with oriented 2D disks constrained to surfaces
+- **Key Innovation**: Best geometry quality among pure Gaussian methods; enables direct mesh extraction via Poisson reconstruction
+- **Trade-off**: Training more expensive, VRAM-hungry
+
+### MaGS (Mesh-adsorbed Gaussian Splatting)
+- **Paper**: MaGS: Unifying 3D Representation Learning and Neural Rendering with Mesh-adsorbed Gaussian Splatting
+- **Authors**: Zhejiang University
+- **Venue**: ICCV 2025
+- **Core**: Gaussians adsorbed onto mesh vertices; mesh provides topology + deformation handle
+- **Key Innovation**: Hybrid mesh-Gaussian representation — deform mesh → Gaussians follow automatically
+- **Best for**: Animated/deformable objects, physical simulation + neural rendering
+
+### UniMGS (Unified Mesh and 3DGS)
+- **Paper**: UniMGS: Unifying Mesh and 3D Gaussian Splatting with Single-Pass Rasterization and Proxy-Based Deformation
+- **Authors**: HKUST(GZ)
+- **Venue**: AAAI 2026
+- **Core**: Single-pass rasterization for both mesh and Gaussians simultaneously
+- **Key Innovation**: Eliminates redundant computation in separate mesh + GS pipelines
+- **Best for**: Real-time applications needing both mesh geometry and Gaussian appearance
+
+### Vol3DGS
+- **Paper**: Volume-consistent 3D Gaussian Splatting for Accurate Surface Rendering
+- **Authors**: UC San Diego
+- **Venue**: CVPR 2025
+- **Core**: Achieves physically accurate volume-consistent rendering in 3D Gaussian rasterization
+- **Key Innovation**: Resolves the fundamental inconsistency between splatting and volume rendering
+
+### BrepGaussian
+- **Paper**: BrepGaussian: CAD Reconstruction from Multi-View Images with Gaussian Splatting
+- **Authors**: Jiaxing Yu, Dongyang Ren, et al.
+- **Venue**: CVPR 2026
+- **ArXiv**: 2602.21105
+- **Core**: Unified framework combining 3DGS with B-rep (Boundary Representation) CAD reconstruction
+- **Key Innovation**: Gaussians provide dense geometric prior for B-rep extraction (trimmed NURBS surfaces, edges, vertices)
+- **Output**: Parametric CAD model (STEP-compatible)
+- **Limitations**: Struggles with textureless regions, thin structures, high specular, heavy occlusion + sparse views
+
 ## Signed / Decomposed Methods
 
 ### NegGS (Negative Gaussian Splatting)
