@@ -1,5 +1,7 @@
 
 
+<div align="center">
+
 # Awesome Gaussian Skills
 
 ### 首个面向三维高斯泼溅 (3DGS) 与计算机图形学研究的 AI Agent 技能包
@@ -202,3 +204,4 @@ Agent: [生成学术引言，包含正确的结构、领域术语和论证逻辑
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
+

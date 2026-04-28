@@ -1,5 +1,4 @@
 
-
 # Contributing to Awesome Gaussian Skills
 
 Thank you for your interest in contributing! This guide explains how to contribute to this project.

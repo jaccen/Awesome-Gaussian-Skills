@@ -58,6 +58,18 @@
 - **Trade-off**: Better at non-convex structures, but opacity still bounded [0, +∞)
 - **Typical Ratio**: ~20% negative Gaussians optimal
 
+## Feed-Forward Methods
+
+### GlobalSplat
+- **Paper**: GlobalSplat: Efficient Feed-Forward 3D Gaussian Splatting via Global Scene Tokens
+- **Authors**: Roni Itkin, Noam Issachar, Yehonatan Keypur, Xingyu Chen, Anpei Chen, Sagie Benaim
+- **ArXiv**: 2604.15284
+- **Core**: Learns a compact global latent scene representation before decoding any explicit 3D geometry
+- **Key Innovation**: "Align first, decode later" — resolves cross-view correspondences in latent space, then decodes to ~16K Gaussians with 4MB footprint
+- **Speed**: Inference under 78ms in a single forward pass
+- **Trade-off**: Far fewer Gaussians (16K vs typical 100K-1M) but competitive quality on RealEstate10K and ACID
+- **Code**: https://r-itk.github.io/globalsplat/
+
 ## Compression Methods
 
 ### Compact-3DGS
@@ -78,6 +90,16 @@
 ### Embedded-3DGS
 - **Core**: Neural architecture search for optimal Gaussian representation
 - **Compression**: ~10x
+
+### OT-UVGS
+- **Paper**: OT-UVGS: Revisiting UV Mapping for Gaussian Splatting as a Capacity Allocation Problem
+- **Author**: Byunghyun Kim
+- **Venue**: Eurographics 2026 Short Papers
+- **ArXiv**: 2604.19127
+- **Core**: Reinterprets UV mapping for Gaussian Splatting as an optimal-transport-based capacity allocation problem
+- **Key Innovation**: Separable 1D OT-inspired mapping with O(N log N) complexity; globally couples Gaussian-to-UV assignments
+- **Result**: Consistently improves PSNR/SSIM/LPIPS under same UV resolution; higher non-empty slot ratio, fewer collisions, higher Gaussian retention
+- **Application**: Drop-in replacement for spherical UVGS
 
 ## Dynamic Scene Methods
 
@@ -141,6 +163,15 @@
 - **Core**: Appearance editing via surface-aligned Gaussians
 - **Method**: Decoupled geometry/appearance editing
 
+### SketchFaceGS
+- **Paper**: SketchFaceGS: Real-Time Sketch-Driven Face Editing and Generation with Gaussian Splatting
+- **Authors**: Bo Li, Jiahao Kang, Yubo Ma, Feng-Lin Liu, Bin Liu, Fang-Lue Zhang, Lin Gao
+- **Venue**: CVPR 2026 (Highlight)
+- **ArXiv**: 2604.19202
+- **Core**: Sketch-driven generation and editing of photorealistic 3D Gaussian head models
+- **Key Innovation**: Feed-forward coarse-to-fine architecture with Transformer-based UV feature prediction + UV Mask Fusion for real-time editing
+- **Code**: https://github.com/gogoneural/SketchFaceGS_jittor
+
 ## Material & Relighting Methods
 
 ### GRF (Gaussian Relighting Field)
@@ -150,6 +181,14 @@
 ### GS-IR
 - **Core**: Inverse rendering from 3D Gaussians
 - **Method**: Decompose Gaussians into geometry + BRDF + lighting
+
+### Instant Colorization
+- **Paper**: Instant Colorization of Gaussian Splats
+- **Authors**: Daniel Lieber, Alexander Mock, Nils Wandel
+- **ArXiv**: 2604.17155
+- **Core**: Maps 2D image information (color, features, segmentation masks) back onto existing Gaussian splat scenes
+- **Key Innovation**: Normal-equation-based visibility-weighted least squares for per-Gaussian colorization; up to 10x faster than gradient descent baselines
+- **Application**: Scene relighting, feature enrichment, 3D semantic segmentation
 
 ## Human & Avatar Methods
 
@@ -165,6 +204,15 @@
 - **Core**: Expressive human avatar using Gaussian splatting
 - **Method**: Expression-conditioned Gaussian deformation
 
+## Robustness & Regularization
+
+### NRGS (Neural Regularization for Gaussian Splatting)
+- **Paper**: NRGS: Neural Regularization for Robust 3D Semantic Gaussian Splatting
+- **Authors**: Zaiyan Yang, Xinpeng Liu, Heng Guo, Jinglei Shi, Zhanyu Ma, Fumio Okura
+- **ArXiv**: 2604.22439
+- **Core**: Neural network-based regularization for semantic 3DGS
+- **Key Innovation**: Improves robustness of 3DGS in semantic segmentation tasks through learnable regularization, addressing a key weakness of standard 3DGS in downstream dense prediction tasks
+
 ## Autonomous Driving
 
 ### Street-GS
@@ -174,6 +222,40 @@
 ### ADS-GS
 - **Core**: Autonomous driving scene with dynamic Gaussians
 - **Method**: Static + dynamic decomposition for driving scenes
+
+### Asset Harvester
+- **Paper**: Asset Harvester: Extracting 3D Assets from Autonomous Driving Logs for Simulation
+- **Authors**: Tianshi Cao, Jiawei Ren, Yuxuan Zhang, Jaewoo Seo, et al. (NVIDIA)
+- **ArXiv**: 2604.18468
+- **Core**: End-to-end pipeline converting sparse AV object observations into simulation-ready 3D assets
+- **Key Innovation**: SparseViewDiT for limited-angle view generation + 3D Gaussian lifting; hybrid data curation with self-distillation
+- **Application**: Closed-loop AV simulation, scalable 3D asset extraction
+- **Code**: https://research.nvidia.com/labs/sil/projects/asset-harvester/
+
+## SLAM & Dynamic (Recent)
+
+### Flow4DGS-SLAM
+- **Paper**: Flow4DGS-SLAM: Optical Flow-Guided 4D Gaussian Splatting SLAM
+- **Authors**: Yunsong Wang, Gim Hee Lee
+- **ArXiv**: 2604.22339
+- **Core**: Combines optical flow guidance with 4D Gaussian Splatting for SLAM
+- **Key Innovation**: Optical flow provides temporal consistency constraints for 4DGS in SLAM scenarios, reducing drift
+
+### EvFlow-GS
+- **Paper**: EvFlow-GS: Event Enhanced Motion Deblurring with Optical Flow for 3D Gaussian Splatting
+- **Authors**: Feiyu An, Yufei Deng, Zihui Zhang, Rong Xiao
+- **ArXiv**: 2604.22183
+- **Venue**: ICME 2026
+- **Core**: Uses event camera data + optical flow to handle motion blur in 3DGS
+- **Key Innovation**: Novel combination of event cameras (high temporal resolution) with 3DGS rendering, enabling high-quality reconstruction in high-speed motion scenarios
+
+## Training Acceleration
+
+### Faster-GS
+- **Paper**: Faster-GS — Systematic Acceleration of 3D Gaussian Splatting Training
+- **Venue**: CVPR 2026
+- **Core**: Systematic benchmark for 3DGS training speed optimization
+- **Key Innovation**: Separates engineering optimizations from algorithmic innovations, enabling fair evaluation of 3DGS acceleration methods
 
 ## Performance Comparison Reference
 
@@ -186,6 +268,9 @@
 | NegGS | ~25.3 | 85+ | ~1.5 GB | Diff-Gaussian |
 | Compact-3DGS | ~24.8 | 100+ | ~0.15 GB | Compressed |
 | MobileGS | ~23.5 | 200+ | ~15 MB | Extreme compressed |
+| GlobalSplat | ~25.0* | ~13 (78ms) | ~4 MB | 16K Gaussians (feed-forward) |
+| SketchFaceGS | N/A (face) | Real-time | N/A | UV-param + 3DGS |
+| OT-UVGS | ↑ vs UVGS | Same as UVGS | UV tensor | UV-mapped |
 
-> Note: Numbers are approximate and may vary across implementations and hardware.
-
+> *GlobalSplat evaluated on RealEstate10K/ACID (not Mip-NeRF 360)
+> Numbers are approximate and may vary across implementations and hardware.

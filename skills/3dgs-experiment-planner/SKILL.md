@@ -66,6 +66,9 @@ Before designing experiments, extract:
 | Material / Relighting | Light Stage / Polyhaven | Material decomposition quality |
 | Autonomous Driving | Waymo / nuScenes / KITTI-360 | Real-world driving scenes |
 | Human / Avatar | THUman2.0 / ZJU-MoCap / PeopleSnapshot | Human-specific metrics |
+| Feed-Forward / Single-pass | RealEstate10K / ACID | Multi-view forward inference |
+| Semantic / Segmentation | LERF / SemanticKITTI | 3D semantic field quality |
+| SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
 
 ### Step 3: Baseline Selection
 

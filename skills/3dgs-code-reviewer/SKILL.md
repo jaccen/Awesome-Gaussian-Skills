@@ -127,6 +127,25 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | 12 | Spherical harmonics for background | Black background | Skip SH for α < ε |
 | 13 | Float precision in accumulation | Banding artifacts | Use float64 for T accumulation |
 | 14 | Incorrect Jacobian | Wide-angle distortion | Use full projective Jacobian |
+| 15 | UV mapping collision | Quality drop in UVGS | Use OT-UVGS or collision-aware assignment |
+| 16 | Deterministic spherical projection | Uneven UV utilization | OT-inspired global assignment (O(N log N)) |
+
+### SLAM-Specific Patterns (4DGS-SLAM, Flow4DGS-SLAM)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 17 | No static/dynamic separation | Ghosting in dynamic scenes | Decompose optical flow into ego-motion + object motion |
+| 18 | Keyframe-only temporal centers | Temporal inconsistency | Propagate centers via 3D scene flow priors |
+| 19 | No adaptive Gaussian insertion | Missing dynamic objects | Adaptive insertion strategy triggered by flow residuals |
+| 20 | Uniform temporal modeling | Insufficient for complex dynamics | GMM-based temporal opacity/rotation modeling |
+
+### Feed-Forward Patterns (GlobalSplat, etc.)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 21 | Pixel-aligned unprojection | Representation bloat | Use global latent scene tokens before decoding |
+| 22 | View-dependent size scaling | Inconsistent cross-view | Coarse-to-fine capacity curriculum |
+| 23 | No Gaussian deduplication | Redundant primitives | Cross-view correspondence resolution in latent space |
 
 ## Output Format
 

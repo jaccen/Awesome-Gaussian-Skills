@@ -121,6 +121,14 @@ When comparing methods, analyze across the following dimensions:
 | LightGS | 15-20x | Slight drop | Much faster |
 | MobileGS | 50-100x | Moderate drop | Real-time mobile |
 | Embedded-3DGS | 10x | Minimal | Comparable |
+| OT-UVGS | UV tensor | ↑ vs spherical UVGS | Same as UVGS |
+
+### Feed-Forward Methods
+
+| Method | Venue | #Gaussians | Inference | Key Feature |
+|--------|-------|------------|-----------|-------------|
+| GlobalSplat | Preprint'26 | ~16K | <78ms | Global scene tokens, 4MB footprint |
+| OT-UVGS | EG'26 | UV tensor | Same as UVGS | OT-based UV mapping, O(N log N) |
 
 ### Editing Methods
 
@@ -129,6 +137,7 @@ When comparing methods, analyze across the following dimensions:
 | GaussianEditor | Text/geometry | Mask + prompt | High |
 | GeoGaussian | Geometry | Mesh guidance | High |
 | Frosting | Appearance | Text prompt | Medium |
+| SketchFaceGS | Sketch-driven | 2D sketch | High (CVPR'26 Highlight) |
 
 ## Output Format
 
