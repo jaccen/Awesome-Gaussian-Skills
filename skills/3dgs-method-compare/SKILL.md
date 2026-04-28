@@ -19,7 +19,6 @@ trigger:
   - "method comparison"
   - "GS vs"
   - "3DGS vs 2DGS"
-  - "SignGS vs NegGS"
 ---
 
 # 3DGS Method Comparison Engine

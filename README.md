@@ -108,7 +108,7 @@ Agent: [Extracts method name, core innovation, architecture,
 **Compare any 3DGS variants across 10+ dimensions.**
 
 ```
-You: "对比 SignGS 和 NegGS 的核心差异"
+You: "对比 ***和 **** 的核心差异"
 Agent: [Generates comparison table across: primitive representation,
         opacity handling, color mechanism, frequency modeling,
         geometric boundary, training strategy, etc.]
@@ -176,7 +176,7 @@ Agent: [Provides migration plan: feature encoding → per-Gaussian
 **Write publication-ready papers for CVPR/ICCV/ECCV/SIGGRAPH/TVCG.**
 
 ```
-You: "帮我写一篇关于 SignGS 的论文引言，要和 NegGS 做对比"
+You: "帮我写一篇关于 3DGS的论文引言，要和 ****GS 做对比"
 Agent: [Generates academic introduction with proper structure,
         domain terminology, and argumentation flow]
 ```
