@@ -1,4 +1,5 @@
 
+
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -266,6 +267,11 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 | Autonomous Driving | Street-GS, ADS-GS |
 | Geometry | 2D-Gaussian, 3D-Gaussian, FlexiCubes+3DGS |
 | CAD / Mesh | SuGaR, MaGS, UniMGS, Vol3DGS, BrepGaussian, 2DGS |
+| Robustness | RobustSplat, NRGS |
+| SLAM/Robotics | MAGICIAN, Flow4DGS-SLAM, EvFlow-GS |
+| Feed-Forward | GlobalSplat, TRiGS, Reliev3R, ARGS |
+| Acceleration | Proxy-GS, Faster-GS |
+| Active Vision | MAGICIAN |
 
 > The full knowledge base covers **50+ methods** with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 

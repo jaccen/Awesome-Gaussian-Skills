@@ -147,6 +147,20 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | 22 | View-dependent size scaling | Inconsistent cross-view | Coarse-to-fine capacity curriculum |
 | 23 | No Gaussian deduplication | Redundant primitives | Cross-view correspondence resolution in latent space |
 
+### Proxy-GS / Occlusion-Aware Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 24 | No occlusion culling in proxy model | Ghosting behind objects | Implement occlusion-aware proxy with depth peeling |
+| 25 | Proxy model capacity too small | Quality drop on complex scenes | Progressive proxy capacity growth |
+
+### TRiGS / Long-Sequence 4DGS Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 26 | Piecewise-linear velocity for rigid motion | Temporal fragmentation, memory explosion | Use SE(3) + Bezier residuals (TRiGS) |
+| 27 | No local anchor for long sequences | Identity loss after 300+ frames | Add learnable local anchors per object |
+
 ## Output Format
 
 ```

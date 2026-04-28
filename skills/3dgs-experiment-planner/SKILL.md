@@ -69,6 +69,10 @@ Before designing experiments, extract:
 | Feed-Forward / Single-pass | RealEstate10K / ACID | Multi-view forward inference |
 | Semantic / Segmentation | LERF / SemanticKITTI | 3D semantic field quality |
 | SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
+| Robustness / Adverse conditions | RealX3D (NTIRE 2026) | Tests reconstruction in adverse environments (low light, fog, sparse views) |
+| Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
+| Active Mapping / Robotics | MAGICIAN benchmarks | Active vision path planning quality |
+| CAD / Parametric | BrepGaussian benchmarks | B-rep reconstruction accuracy |
 
 ### Step 3: Baseline Selection
 
@@ -81,6 +85,8 @@ Before designing experiments, extract:
 **Tier 2 — Should Compare** (Strongly recommended):
 - 2DGS or Scaffold-GS (depending on method category)
 - One NeRF variant (NeRF / Instant-NGP / Mip-NeRF)
+- Proxy-GS (if making acceleration claims)
+- 2DGS (if making geometry quality claims)
 
 **Tier 3 — Nice to Compare** (If directly related):
 - Methods from the same category (e.g., if you do compression → compare LightGS, Compact-3DGS)

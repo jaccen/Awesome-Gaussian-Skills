@@ -2,7 +2,8 @@
 
 # 3DGS Methods Overview
 
-> Built-in knowledge base for Awesome Gaussian Skills. Covers 50+ 3D Gaussian Splatting variants organized by category.
+> Built-in knowledge base for Awesome Gaussian Skills. Covers 70+ 3D Gaussian Splatting variants organized by category.
+> Last updated: 2026-04-28
 
 ## Foundation Methods
 
@@ -114,6 +115,25 @@
 - **Speed**: Inference under 78ms in a single forward pass
 - **Trade-off**: Far fewer Gaussians (16K vs typical 100K-1M) but competitive quality on RealEstate10K and ACID
 - **Code**: https://r-itk.github.io/globalsplat/
+### TRiGS
+- **Paper**: TRiGS: Temporal Rigid-Body Motion for Scalable 4D Gaussian Splatting
+- **Authors**: Suwoong Yeom, Joonsik Nam, Seunggyu Choi, et al.
+- **ArXiv**: 2604.00538
+- **Core**: Unified, continuous geometric transformations for 4DGS using SE(3) + hierarchical Bezier residuals + learnable local anchors
+- **Key Innovation**: Preserves temporal identity of rigid objects, eliminates memory growth; scales to 600-1200 frame sequences without severe bottlenecks
+
+### Reliev3R
+- **Paper**: Reliev3R: Relieving Feed-forward Reconstruction from Multi-View Geometric Annotations
+- **Authors**: Youyu Chen, et al.
+- **ArXiv**: 2604.00548
+- **Venue**: CVPR 2026
+- **Core**: Reduces dependency of feed-forward 3DGS on dense multi-view geometric annotations
+
+### ARGS
+- **Paper**: ARGS: Auto-Regressive Gaussian Splatting via Parallel Progressive Next-Scale Prediction
+- **Authors**: Quanyuan Ruan, et al.
+- **ArXiv**: 2604.00494
+- **Core**: Auto-regressive multi-scale 3D generation with hierarchical tree structure, O(log n) step generation
 
 ## Compression Methods
 
@@ -164,7 +184,15 @@
 ### SC-GS
 - **Core**: Spatial-temporal compression for dynamic Gaussians
 - **Method**: Compact 4D representation with shared deformation
+### RobustSplat
+- **Paper**: RobustSplat: Decoupling Densification and Dynamics for Transient-Free 3DGS
+- **Authors**: Sun Yat-sen University + CUHK-Shenzhen
+- **Venue**: ICCV 2025
+- **Core**: Decouples densification from dynamic object modeling to eliminate transient artifacts
+- **Key Innovation**: Separate static/dynamic Gaussian management prevents transient objects from corrupting scene geometry
 
+### TRiGS (also listed in Feed-Forward)
+- See Feed-Forward Methods section for details
 ## Large-Scale Methods
 
 ### Scaffold-GS
@@ -293,6 +321,15 @@
 - **Venue**: ICME 2026
 - **Core**: Uses event camera data + optical flow to handle motion blur in 3DGS
 - **Key Innovation**: Novel combination of event cameras (high temporal resolution) with 3DGS rendering, enabling high-quality reconstruction in high-speed motion scenarios
+### MAGICIAN
+- **Paper**: MAGICIAN: Active Mapping with Gaussian Splatting via Imagined Gaussians
+- **Authors**: Shiyao Li, Antoine Guedon, Shizhe Chen, Vincent Lepetit
+- **Affiliation**: IP Paris, Inria
+- **Venue**: CVPR 2026 (Oral)
+- **ArXiv**: 2603.22650
+- **Core**: Active mapping agent that imagines unseen regions via imagined Gaussians + beam search for long-horizon planning
+- **Key Innovation**: Occupancy prediction -> Gaussian representation -> efficient gain computation via rendering; global-optimal path planning via beam search
+- **Code**: https://shiyao-li.github.io/magician/
 
 ## Training Acceleration
 
@@ -301,6 +338,12 @@
 - **Venue**: CVPR 2026
 - **Core**: Systematic benchmark for 3DGS training speed optimization
 - **Key Innovation**: Separates engineering optimizations from algorithmic innovations, enabling fair evaluation of 3DGS acceleration methods
+### Proxy-GS
+- **Paper**: Proxy-GS: Occlusion-Aware Gaussian Splatting via Lightweight Proxy Model
+- **Authors**: Zhonghang Zhou (USTC/SJTU), Shanghai AI Lab, NWPU
+- **Venue**: CVPR 2026 (Perfect Score)
+- **Core**: Lightweight proxy model with occlusion prior for training and inference acceleration
+- **Key Innovation**: 2.5x rendering speedup with no accuracy loss; occlusion-aware pruning via proxy model
 
 ## Performance Comparison Reference
 
