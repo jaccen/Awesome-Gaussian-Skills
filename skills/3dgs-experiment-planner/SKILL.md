@@ -73,6 +73,10 @@ Before designing experiments, extract:
 | Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
 | Active Mapping / Robotics | MAGICIAN benchmarks | Active vision path planning quality |
 | CAD / Parametric | BrepGaussian benchmarks | B-rep reconstruction accuracy |
+| Egocentric Video | EgoExo4D | Paired ego-exo recordings for 3DGS evaluation in first-person views |
+| Simulation & Robotics | Habitat-GS (Habitat-Sim upgrade) | 3DGS-based robot simulation environments, navigation & interaction tasks |
+| Cross-Domain / Medical | GS-DOT diffuse optical tomography benchmarks | Tests GS in photon diffusion regime (non-VS application) |
+| Real-Time NVS (Multi-Camera) | 3DTV 3-camera setups | Real-time view synthesis at 40 FPS with multi-camera input |
 
 ### Step 3: Baseline Selection
 
@@ -87,10 +91,14 @@ Before designing experiments, extract:
 - One NeRF variant (NeRF / Instant-NGP / Mip-NeRF)
 - Proxy-GS (if making acceleration claims)
 - 2DGS (if making geometry quality claims)
+- SparseSplat (if making feed-forward efficiency claims)
+- GlobalSplat (if making feed-forward footprint claims)
 
 **Tier 3 — Nice to Compare** (If directly related):
-- Methods from the same category (e.g., if you do compression → compare LightGS, Compact-3DGS)
+- Methods from the same category (e.g., if you do compression → compare LightGS, Compact-3DGS, NanoGS)
 - Recent SOTA in your specific sub-area
+- 3DTV (if making real-time multi-camera NVS claims)
+- GS-DOT (if making cross-domain GS application claims)
 
 #### Minimum Baseline Count
 For top-venue submission: **at least 4 baselines** across different categories.

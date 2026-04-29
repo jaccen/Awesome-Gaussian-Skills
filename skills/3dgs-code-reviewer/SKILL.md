@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 30+ known bug patterns.
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 35+ known bug patterns.
 version: 1.0.0
 author: jaccen
 tags:
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (30+ known patterns)
+- Identify common 3DGS implementation pitfalls (35+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -160,6 +160,22 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 |---|---------|---------|-----|
 | 26 | Piecewise-linear velocity for rigid motion | Temporal fragmentation, memory explosion | Use SE(3) + Bezier residuals (TRiGS) |
 | 27 | No local anchor for long sequences | Identity loss after 300+ frames | Add learnable local anchors per object |
+
+### Compression & Simplification Patterns (NanoGS, etc.)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 28 | Greedy merge order in simplification | Quality degradation on high-curvature regions | KNN graph construction + merge cost prioritization (NanoGS) |
+| 29 | Merge without moment preservation | Color/opacity drift after simplification | Mass-preserving moment matching for merged Gaussians |
+
+### Cross-Domain & Application Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 30 | Using standard ray transport for non-VS domains | Artifacts in medical imaging / DOT | Use diffusion transport function for photon diffusion regime (GS-DOT) |
+| 31 | Uniform Gaussian density in feed-forward models | Redundant primitives, bloated model | Entropy-based probabilistic sampling for adaptive density (SparseSplat) |
+| 32 | No viewpoint diversity metric in capture | Reconstruction artifacts from non-uniform coverage | Spherical grid coverage planning for object capture |
+| 33 | Treating egocentric video as standard multi-view | Static content degrades under ego motion | Dedicated egocentric evaluation with paired ego-exo data (EgoExo4D) |
 
 ## Output Format
 

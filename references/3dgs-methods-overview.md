@@ -1,9 +1,10 @@
+---
 
 
 # 3DGS Methods Overview
 
-> Built-in knowledge base for Awesome Gaussian Skills. Covers 70+ 3D Gaussian Splatting variants organized by category.
-> Last updated: 2026-04-29
+> Built-in knowledge base for Awesome Gaussian Skills. Covers 80+ 3D Gaussian Splatting variants organized by category.
+> Last updated: 2026-04-29 (daily update #2)
 
 ## Foundation Methods
 
@@ -151,6 +152,22 @@
 - **Key Innovation**: Jointly learns 3D Gaussians + appearance embeddings conditioned on input images; <1s reconstruction from sparse views; appearance control under diverse lighting
 - **Code**: https://github.com/yfujimura/WildSplatter
 
+### SparseSplat
+- **Paper**: SparseSplat: Towards Applicable Feed-Forward 3D Gaussian Splatting with Pixel-Unaligned Prediction
+- **Authors**: Zicheng Zhang, Xiangting Meng, Ke Wu, Wenchao Ding (Fudan University + ShanghaiTech)
+- **Venue**: CVPR 2026
+- **Core**: First feed-forward 3DGS model with adaptive Gaussian density via entropy-based probabilistic sampling
+- **Key Innovation**: Pixel-unaligned prediction; entropy-based sampling assigns large sparse Gaussians to textureless areas and small dense Gaussians to rich-info regions; 3D-Local Attribute Predictor addresses receptive field mismatch; achieves SOTA with only 22% of Gaussians (150K vs 688K), maintains quality at 1.5% (10K)
+- **Code**: https://github.com/victkk/SparseSplat-page
+
+### Free Geometry
+- **Paper**: Free Geometry: Refining 3D Reconstruction from Longer Versions of Itself
+- **Authors**: Yuhang Dai, Xingyi Yang (PolyU)
+- **ArXiv**: 2604.14048
+- **Core**: Enables feed-forward 3D reconstruction models (Depth Anything 3, VGGT) to self-evolve at test time without 3D GT
+- **Key Innovation**: Masks subset of frames for self-supervision; enforces cross-view feature consistency between full/partial observations via LoRA updates (<2min per dataset); +3.73% camera pose accuracy, +2.88% point map prediction
+- **Code**: https://github.com/hiteacherIamhumble/Free-Geometry
+
 ## Compression Methods
 
 ### Compact-3DGS
@@ -196,6 +213,14 @@
 - **Core**: Unified end-to-end framework integrating generalizable 3DGS reconstruction with deep semantic coding pipeline
 - **Key Innovation**: Disparity-Guided Parallel Semantic Codec + Lightweight Gaussian Parameter Predictor; eliminates redundant computation in decoupled coding+3DGS paradigms
 - **Application**: 3D telepresence, immersive video communications
+
+### NanoGS
+- **Paper**: NanoGS: Training-Free Gaussian Splat Simplification
+- **Authors**: Butian Xiong, Rong Liu, Tiantian Zhou, Meida Chen, Zhiwen Fan, Andrew Feng
+- **ArXiv**: 2603.16103
+- **Core**: Training-free, lightweight Gaussian Splat simplification via local pairwise merging on sparse spatial graph
+- **Key Innovation**: Mass-preserving moment matching for Gaussian merge; principled merge cost between original mixture and approximation; runs efficiently on CPU; preserves standard 3DGS parameterization for seamless pipeline integration
+- **Code**: https://github.com/saliteta/NanoGS
 
 ## Dynamic Scene Methods
 
@@ -461,6 +486,50 @@
 - **Key Innovation**: Budget controller for resource allocation + availability-registration for multi-sensor fusion; introduces Immersion v1.0 ultra-dense indoor dataset
 - **Code**: https://jjrcn.github.io/yogo-project-home/
 
+## Real-Time View Synthesis (Non-GS but Related)
+
+### 3DTV
+- **Paper**: 3DTV: A Feedforward Interpolation Network for Real-Time View Synthesis
+- **Authors**: Stefan Schulz, Fernando Edelstein, Hannah Dröge, Matthias B. Hullin, Markus Plack (University of Bonn)
+- **ArXiv**: 2604.11211
+- **Core**: Feedforward sparse-view interpolation network for real-time free-viewpoint rendering from only 3 cameras
+- **Key Innovation**: Delaunay-based triplet selection for angular coverage; pose-aware depth module with coarse-to-fine 7-layer depth pyramid; occlusion-aware blending; 25ms per frame at 40 FPS; no scene-specific retraining needed
+- **Application**: Live streaming, esports broadcasting, telepresence, AR/VR
+- **Code**: https://stefanmschulz.github.io/3DTV_webpage/
+
+## Data Acquisition & Capture Guidance
+
+### Mobile Phone 3DGS Acquisition (Object-Centered)
+- **Paper**: An Object-Centered Data Acquisition Method for 3D Gaussian Splatting using Mobile Phones
+- **Authors**: Yuezhe Zhang, Luqian Bai, Mengting Yu, Lei Wei, Shuai Wan, Yifan Zhang
+- **ArXiv**: 2604.19216
+- **Core**: On-device capture guidance for mobile 3DGS acquisition with real-time spherical coverage feedback
+- **Key Innovation**: Maps camera optical axis to object-centered spherical grid; area-weighted spherical coverage for uniform viewpoints; superior to RealityScan and free-capture with fewer images
+
+## Cross-Domain Applications
+
+### GS-DOT
+- **Paper**: GS-DOT: Gaussian Splatting-based Image Reconstruction for Diffuse Optical Tomography
+- **Authors**: Jingjing Jiang
+- **ArXiv**: 2604.23675
+- **Core**: First adaptation of GS algorithms in photon diffusion regime for medical imaging (DOT)
+- **Key Innovation**: Replaces ray transport with diffusion functions; absorption coefficients as sparse anisotropic Gaussian primitives; high noise robustness; huge memory reduction vs traditional DOT methods
+
+### Habitat-GS
+- **Paper**: Habitat-GS (reported by Zhejiang University, Apr 2026)
+- **Core**: Upgrades Habitat-Sim simulator with 3DGS rendering for high-fidelity robot navigation training
+- **Key Innovation**: Replaces mesh-based rendering with 3DGS for photorealistic simulation; introduces interactive virtual human agents for crowd navigation training
+
+## Egocentric & Benchmark Methods
+
+### Egocentric Dynamic 3DGS Evaluation
+- **Paper**: Bringing a Personal Point of View: Evaluating Dynamic 3D Gaussian Splatting for Egocentric Scene Reconstruction
+- **Authors**: Jan Warchocki, Xi Wang, Jonas Kulhanek, Jan van Gemert
+- **Venue**: EgoVis Workshop @ CVPR 2026
+- **ArXiv**: 2604.23803
+- **Core**: First systematic evaluation of dynamic monocular 3DGS models on egocentric video (EgoExo4D)
+- **Key Innovation**: Finds reconstruction quality consistently lower in egocentric views; gap stems from static content reconstruction (not dynamic); motivates egocentric-specific 3DGS approaches
+
 ## Performance Comparison Reference
 
 | Method | Mip-NeRF 360 PSNR | Speed (FPS) | Memory | Primitive |
@@ -479,7 +548,10 @@
 | DualSplat | ↑ vs baseline | Same as 3DGS | Same | Failure-to-Prior |
 | MERID-GS | ↑ (low-light) | Same as 3DGS | Same | Retinex-decoupled |
 | GS-Playground | N/A (sim) | 10^4 FPS | N/A | Batch 3DGS |
+| SparseSplat | ~24.2 (DL3DV) | ~13* | ~150K Gaussians | Adaptive density feed-forward |
+| NanoGS | Same as input 3DGS | CPU-only | Reduced count | Training-free merge |
+| 3DTV | N/A (3-cam) | 40 FPS | N/A | Feedforward depth pyramid |
+| Free Geometry | ↑ vs baseline (DA3/VGGT) | +LoRA (<2min) | Same | Self-supervised refinement |
 
 > *GlobalSplat evaluated on RealEstate10K/ACID (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
-

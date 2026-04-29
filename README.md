@@ -45,8 +45,8 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **7 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, and CG paper writing
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 50+ 3DGS variants, 200+ papers, and domain-specific terminology conventions
-- **Actively Maintained**: Weekly updates to track the latest arXiv papers and community developments
+- **Domain Expert Knowledge**: Built-in knowledge base covering 80+ 3DGS variants across 22 categories, with domain-specific terminology conventions
+- **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
 
@@ -257,23 +257,29 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 | Category | Methods |
 |----------|---------|
 | Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+ |
-| Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS |
-| Editing | GaussianEditor, GeoGaussian, Scaffold-GS (editing) |
-| Dynamics | 4DGS, Dynamic-3DGS, SC-GS, Deformable-3DGS |
+| Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet |
+| Editing | GaussianEditor, GeoGaussian, SketchFaceGS, FluSplat, TransSplat |
+| Dynamics | 4DGS, Dynamic-3DGS, SC-GS, Deformable-3DGS, RobustSplat |
 | Signed/Decomposed | NegGS, SuGaR |
-| Material/Relighting | GRF, GS-IR, Relightable-3DGS |
-| Large-Scale | CityGaussian, Mega-3DGS, Octree-GS, GeoGaussian |
-| Human/Avatar | GaussianAvatar, GAS, SplattingAvatar, 3DGS-Avatar |
-| Autonomous Driving | Street-GS, ADS-GS |
-| Geometry | 2D-Gaussian, 3D-Gaussian, FlexiCubes+3DGS |
-| CAD / Mesh | SuGaR, MaGS, UniMGS, Vol3DGS, BrepGaussian, 2DGS |
-| Robustness | RobustSplat, NRGS |
-| SLAM/Robotics | MAGICIAN, Flow4DGS-SLAM, EvFlow-GS |
-| Feed-Forward | GlobalSplat, TRiGS, Reliev3R, ARGS |
+| Material/Relighting | GRF, GS-IR, Instant Colorization |
+| Large-Scale | CityGaussian, Mega-3DGS, Octree-GS, GeoGaussian, YOGO |
+| Human/Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, High-Fidelity Human GS |
+| Autonomous Driving | Street-GS, ADS-GS, Asset Harvester |
+| Geometry | 2DGS, 2D-Gaussian, FlexiCubes+3DGS, PAGaS, GSCompleter |
+| CAD / Mesh | SuGaR, MaGS, UniMGS, Vol3DGS, BrepGaussian |
+| Robustness | NRGS, DualSplat |
+| SLAM/Robotics | MAGICIAN, Flow4DGS-SLAM, EvFlow-GS, Habitat-GS |
+| Feed-Forward | GlobalSplat, SparseSplat, WildSplatter, TRiGS, Reliev3R, ARGS, Free Geometry |
 | Acceleration | Proxy-GS, Faster-GS |
 | Active Vision | MAGICIAN |
+| Simulation | GS-Playground |
+| Real-Time NVS | 3DTV |
+| Cross-Domain | GS-DOT |
+| Data Acquisition | Mobile Phone 3DGS Acquisition |
+| Degradation-Aware | MERID-GS, MarineSTD-GS |
+| System | YOGO, GS-SCNet |
 
-> The full knowledge base covers **50+ methods** with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **80+ methods** across 22 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
@@ -281,6 +287,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.1.1 — Add `cad-mesh-3dgs` skill for CAD/Mesh↔3DGS bridge (Apr 2026)
+- [x] v0.1.2 — Knowledge base expansion: 50→80+ methods, 22 categories, daily auto-update workflow (Apr 2026)
 - [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v0.4 — Expand knowledge base to 100+ methods

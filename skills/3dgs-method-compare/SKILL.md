@@ -121,6 +121,7 @@ When comparing methods, analyze across the following dimensions:
 | MobileGS | 50-100x | Moderate drop | Real-time mobile |
 | Embedded-3DGS | 10x | Minimal | Comparable |
 | OT-UVGS | UV tensor | ↑ vs spherical UVGS | Same as UVGS |
+| NanoGS | Training-free | Minimal (KNN merge) | CPU-only, instant |
 
 ### Feed-Forward Methods
 
@@ -128,6 +129,14 @@ When comparing methods, analyze across the following dimensions:
 |--------|-------|------------|-----------|-------------|
 | GlobalSplat | Preprint'26 | ~16K | <78ms | Global scene tokens, 4MB footprint |
 | OT-UVGS | EG'26 | UV tensor | Same as UVGS | OT-based UV mapping, O(N log N) |
+| SparseSplat | CVPR'26 | 22% of SOTA | Single-pass | Pixel-unaligned, entropy-based probabilistic sampling, 3D-Local Attribute Predictor |
+| Free Geometry | arXiv'26 | Adaptive | Single-pass + LoRA | Self-evolving feed-forward, +3.73% camera accuracy |
+
+### Real-Time NVS Methods
+
+| Method | Venue | Cameras | FPS | Latency | Key Feature |
+|--------|-------|---------|-----|---------|-------------|
+| 3DTV | arXiv'26 | 3 | 40 | 25ms | Delaunay-based triplet selection, real-time multi-camera synthesis |
 
 ### Editing Methods
 
