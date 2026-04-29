@@ -1,13 +1,4 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd4671fb6-7766-47d1-97e6-655d358f3820'
-  PropagateID: 'd4671fb6-7766-47d1-97e6-655d358f3820'
-  ReservedCode1: 'bb5b8751-4780-474d-84b3-cf0bde4dca87'
-  ReservedCode2: 'bb5b8751-4780-474d-84b3-cf0bde4dca87'
----
+
 
 <div align="center">
 
@@ -356,4 +347,3 @@ If this project saves you time, please give it a star!
 
 </div>
 
-> AI生成

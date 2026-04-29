@@ -1,13 +1,4 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'c59aba98-638e-4e67-9b04-63657e3d215f'
-  PropagateID: 'c59aba98-638e-4e67-9b04-63657e3d215f'
-  ReservedCode1: 'dad714c7-d423-4ce8-9a5e-ecf1678b1226'
-  ReservedCode2: 'dad714c7-d423-4ce8-9a5e-ecf1678b1226'
----
+
 
 <div align="center">
 
@@ -352,4 +343,3 @@ Awesome-Gaussian-Skills/
 
 </div>
 
-> AI生成
