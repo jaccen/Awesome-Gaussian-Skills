@@ -1,4 +1,13 @@
-
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd4671fb6-7766-47d1-97e6-655d358f3820'
+  PropagateID: 'd4671fb6-7766-47d1-97e6-655d358f3820'
+  ReservedCode1: 'bb5b8751-4780-474d-84b3-cf0bde4dca87'
+  ReservedCode2: 'bb5b8751-4780-474d-84b3-cf0bde4dca87'
+---
 
 <div align="center">
 
@@ -118,7 +127,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 50+ methods
+- Built-in knowledge of 80+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -134,7 +143,7 @@ Agent: [Checks: alpha compositing order, tile-based rendering,
 - Review CUDA kernels for correctness and performance
 - Check rendering pipeline (differentiable rasterization, alpha blending)
 - Validate loss function implementations
-- Common bug pattern detection (30+ known patterns)
+- Common bug pattern detection (35+ known patterns)
 
 ### 4. `3dgs-experiment-planner` — Experiment Design Assistant
 
@@ -234,7 +243,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # Built-in knowledge base (50+ methods)
+│   └── 3dgs-methods-overview.md # Built-in knowledge base (80+ methods)
 ├── scripts/
 │   └── setup.sh                 # Quick install script
 ├── README.md
@@ -347,3 +356,4 @@ If this project saves you time, please give it a star!
 
 </div>
 
+> AI生成
