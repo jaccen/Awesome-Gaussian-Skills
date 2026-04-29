@@ -22,7 +22,6 @@
 | FreGS | 2024 | CVPR | 频域正则化 |
 | NegGS | 2025 | Inf. Sciences | 负颜色基元 |
 | 3D-HGS | 2024 | arXiv | 半高斯核 |
-| SignGS | 2025 | — | 符号高斯（本文） |
 | 6DGS | 2025 | ICLR | 方向感知增强 |
 | Spec-Gaussian | 2024 | NeurIPS | 各向异性外观 |
 | Mip-Splatting | 2024 | CVPR | Anti-aliasing, 3D/2D Mip filter |
@@ -106,7 +105,7 @@
 ## 消融实验设计要点
 
 必须逐一验证的模块：
-1. 核心机制（如符号高斯 → 正高斯对比）
+1. 核心机制
 2. 每个损失项的贡献（加 vs 不加）
 3. 关键超参数敏感性（通常1-2个核心超参）
 4. 与最相关工作的组件级对比（如替换合成规则）
