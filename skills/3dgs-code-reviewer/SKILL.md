@@ -1,7 +1,7 @@
----
+﻿---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 35+ known bug patterns.
-version: 1.0.0
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 39+ known bug patterns.
+version: 1.1.0
 author: jaccen
 tags:
   - 3dgs
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (35+ known patterns)
+- Identify common 3DGS implementation pitfalls (39+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -176,6 +176,27 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | 31 | Uniform Gaussian density in feed-forward models | Redundant primitives, bloated model | Entropy-based probabilistic sampling for adaptive density (SparseSplat) |
 | 32 | No viewpoint diversity metric in capture | Reconstruction artifacts from non-uniform coverage | Spherical grid coverage planning for object capture |
 | 33 | Treating egocentric video as standard multi-view | Static content degrades under ego motion | Dedicated egocentric evaluation with paired ego-exo data (EgoExo4D) |
+
+### Antialiasing Patterns (Mip-Splatting)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 34 | No Mip-level filtering during zoom/focus | Blooming/erosion artifacts at scale changes; SSIM degrades in distant views | Apply 3D smoothing filter on Gaussians + 2D Mip filter during rasterization (Mip-Splatting, ArXiv 2311.16493) |
+
+### SLAM Scale & Dynamic Object Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 35 | Scale drift in outdoor monocular SLAM | Cumulative metric scale error growing over trajectory; inconsistent map scale across sessions | Scale-consistent pose optimization with global scale constraint (S3PO-GS, ICCV'25); avoid pure monocular scale ambiguity |
+| 36 | Dynamic object ghosts in SLAM maps | Transient objects leaving persistent Gaussian traces; map quality degrades in scenes with moving people/vehicles | Uncertainty-aware geometric mapping with pretrained 3D priors (WildGS-SLAM, CVPR'25); probabilistic classification of static vs dynamic Gaussians |
+
+### Feature Field & Optimization Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 37 | Feature field quality degradation in downstream tasks | Blurry or noisy 3D features; poor segmentation/detection performance when using 3DGS feature fields for downstream tasks | Distill 2D foundation model features (DINO, SAM) into per-Gaussian 3D features with separate feature Gaussians (Feature 3DGS, CVPR'24) |
+| 38 | Local minima in 3DGS optimization | Reconstruction stuck in suboptimal state; density control creates redundant Gaussians without improving quality | Frame clone/split/prune as MCMC sampling moves (3DGS-as-MCMC, NeurIPS'24); use sampling-based optimization to escape local minima |
+| 39 | Planar surface bulging artifacts | Gaussians overshooting flat surfaces (walls, floors, tables); bumpy appearance on planar regions | Add planar regularizer constraining Gaussians to align with local tangent planes (PGSR, TVCG'24); unbiased depth rendering for surface consistency |
 
 ## Output Format
 

@@ -1,5 +1,4 @@
 
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -45,7 +44,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **7 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, and CG paper writing
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 80+ 3DGS variants across 22 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 100+ 3DGS variants across 31 categories, with domain-specific terminology conventions
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -118,7 +117,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 80+ methods
+- Built-in knowledge of 100+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -234,7 +233,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # Built-in knowledge base (80+ methods)
+│   └── 3dgs-methods-overview.md # Built-in knowledge base (100+ methods)
 ├── scripts/
 │   └── setup.sh                 # Quick install script
 ├── README.md
@@ -256,20 +255,27 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 
 | Category | Methods |
 |----------|---------|
-| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+ |
-| Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet |
+| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting |
+| Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC |
 | Editing | GaussianEditor, GeoGaussian, SketchFaceGS, FluSplat, TransSplat |
 | Dynamics | 4DGS, Dynamic-3DGS, SC-GS, Deformable-3DGS, RobustSplat |
 | Signed/Decomposed | NegGS, SuGaR |
-| Material/Relighting | GRF, GS-IR, Instant Colorization |
-| Large-Scale | CityGaussian, Mega-3DGS, Octree-GS, GeoGaussian, YOGO |
+| Material/Relighting | GRF, GS-IR, Instant Colorization, GaussianShader |
+| Large-Scale | CityGaussian, Mega-3DGS, Octree-GS, GeoGaussian, YOGO, Street Gaussians |
 | Human/Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, High-Fidelity Human GS |
 | Autonomous Driving | Street-GS, ADS-GS, Asset Harvester |
-| Geometry | 2DGS, 2D-Gaussian, FlexiCubes+3DGS, PAGaS, GSCompleter |
+| Geometry | 2DGS, 2D-Gaussian, FlexiCubes+3DGS, PAGaS, GSCompleter, PGSR |
 | CAD / Mesh | SuGaR, MaGS, UniMGS, Vol3DGS, BrepGaussian |
 | Robustness | NRGS, DualSplat |
-| SLAM/Robotics | MAGICIAN, Flow4DGS-SLAM, EvFlow-GS, Habitat-GS |
-| Feed-Forward | GlobalSplat, SparseSplat, WildSplatter, TRiGS, Reliev3R, ARGS, Free Geometry |
+| SLAM | Gaussian Splatting SLAM, CGS-SLAM, WildGS-SLAM, S3PO-GS, Flow4DGS-SLAM, EvFlow-GS, MAGICIAN, Habitat-GS |
+| Feed-Forward | GlobalSplat, SparseSplat, WildSplatter, TRiGS, Reliev3R, ARGS, Free Geometry, MVSplat, GS-LRM, DepthSplat, InstantSplat, AnySplat |
+| Few-Shot / Sparse-View | FSGS |
+| In-the-Wild / Robust | WildGaussians |
+| Language / Semantic | LangSplat, Feature 3DGS |
+| Generation / Text-to-3D | DreamGaussian |
+| Antialiasing | Mip-Splatting, LeanGaussian |
+| Optimization | 3DGS-as-MCMC |
+| Image Representation | GaussianImage |
 | Acceleration | Proxy-GS, Faster-GS |
 | Active Vision | MAGICIAN |
 | Simulation | GS-Playground |
@@ -279,7 +285,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 | Degradation-Aware | MERID-GS, MarineSTD-GS |
 | System | YOGO, GS-SCNet |
 
-> The full knowledge base covers **80+ methods** across 22 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **100+ methods** across 31 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
@@ -287,10 +293,9 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.1.1 — Add `cad-mesh-3dgs` skill for CAD/Mesh↔3DGS bridge (Apr 2026)
-- [x] v0.1.2 — Knowledge base expansion: 50→80+ methods, 22 categories, daily auto-update workflow (Apr 2026)
+- [x] v0.1.2 — Knowledge base expansion: 50→100+ methods, 31 categories, daily auto-update workflow (Apr 2026)
 - [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
-- [ ] v0.4 — Expand knowledge base to 100+ methods
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
 - [ ] v2.0 — Agent-to-Agent collaboration (multi-agent paper discussion)
@@ -346,4 +351,3 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 If this project saves you time, please give it a star!
 
 </div>
-
