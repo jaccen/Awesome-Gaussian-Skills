@@ -1,5 +1,4 @@
 ﻿
-
 <div align="center">
 If you like it, please ⭐️ star this repo! 
         
@@ -323,6 +322,7 @@ If you find this project helpful in your research, please consider citing:
 - [3D Gaussian Splatting](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/) — The foundational work
 - [OpenClaw](https://github.com/openclaw) — The AI Agent framework and Skills ecosystem
 - [awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) — The awesome list that inspired this project
+- [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — Comprehensive paper collection (498+ papers) with authors, arXiv links, and code repositories, organized by conference/year
 - All 3DGS researchers whose papers form our knowledge base
 
 ---

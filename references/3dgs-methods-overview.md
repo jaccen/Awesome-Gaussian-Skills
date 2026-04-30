@@ -1,9 +1,9 @@
 ﻿
-
 # 3DGS Methods Overview
 
 > Built-in knowledge base for Awesome Gaussian Skills. Covers 105+ 3D Gaussian Splatting variants organized by category.
-> Last updated: 2026-04-30 (daily update — 5 new papers + taxonomy optimization)
+> Last updated: 2026-04-30 (multi-source paper collection — 92 new papers in papers-collection.md)
+> Companion file: [papers-collection.md](papers-collection.md) — 92 additional papers from CVPR/ICCV/SIGGRAPH/NeurIPS/ICLR/arXiv
 
 ## Foundation Methods
 
