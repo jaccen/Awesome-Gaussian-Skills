@@ -344,6 +344,60 @@ Awesome-Gaussian-Skills/
 
 **为 3DGS 研究社区用心打造**
 
+</div>
+
+## 一、CV 核心链接
+
+CVF 官方开源库（CVPR/ICCV/ECCV/3DV）：https://openaccess.thecvf.com/
+
+CVPR 2025 全集：https://openaccess.thecvf.com/CVPR2025
+
+ICCV 2025 全集：https://openaccess.thecvf.com/ICCV2025
+
+3DV 2026：https://openaccess.thecvf.com/3DV2026
+
+arXiv CV 最新预印本：https://arxiv.org/list/cs.CV/recent
+
+## 二、CG/渲染核心链接
+
+arXiv CG/图形学专区：https://arxiv.org/list/cs.GR/recent
+
+ACM DL（SIGGRAPH）：https://dl.acm.org/
+
+Eurographics 数字图书馆：https://diglib.eg.org/
+
+RenderHub 渲染论文：https://renderhub.org/
+
+## 三、3DGS/NeRF/三维重建专属
+
+3DGS 官方论文&项目：https://github.com/graphdeco-inria/gaussian-splatting
+
+3DGS 改进论文汇总：https://github.com/limacv/GaussianSplatting-Papers
+
+NerfStudio 论文合集：https://github.com/nerfstudio-project/nerfstudio
+
+CVPR 2025 3D 专题：https://openaccess.thecvf.com/CVPR2025?day=all#3D
+
+SIGGRAPH 2025 预印本：https://arxiv.org/list/cs.GR/2507
+
+Real-Time Rendering 论文库：https://www.realtimerendering.com/
+
+EGSR 渲染顶会：https://diglib.eg.org/handle/10.23730/egsr
+
+## 四、通用检索&国内镜像
+
+谷歌学术：https://scholar.google.com
+
+DBLP 顶会索引：https://dblp.uni-trier.de/
+
+Hugging Face 论文聚合：https://huggingface.co/papers
+
+arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
+
+学术搜素（替代谷歌）：https://xueshuso.com/
+
+论文免费下载神器：https://sci-hub.se
+
 如果这个项目帮你节省了时间，请给一个 Star！
 
-</div>
+
