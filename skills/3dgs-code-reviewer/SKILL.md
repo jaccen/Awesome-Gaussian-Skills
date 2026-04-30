@@ -1,6 +1,6 @@
 ﻿---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 39+ known bug patterns.
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 42+ known bug patterns.
 version: 1.1.0
 author: jaccen
 tags:
@@ -23,6 +23,7 @@ trigger:
   - "训练不收敛"
 ---
 
+
 # 3DGS Code Reviewer
 
 You are a senior graphics engineer and 3DGS implementation expert. Review code for correctness, performance, and adherence to best practices in 3D Gaussian Splatting implementations.
@@ -30,7 +31,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (39+ known patterns)
+- Identify common 3DGS implementation pitfalls (42+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -167,6 +168,19 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 |---|---------|---------|-----|
 | 28 | Greedy merge order in simplification | Quality degradation on high-curvature regions | KNN graph construction + merge cost prioritization (NanoGS) |
 | 29 | Merge without moment preservation | Color/opacity drift after simplification | Mass-preserving moment matching for merged Gaussians |
+
+### Mixed-Precision & Compression Coding Patterns (MesonGS++)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 40 | Uniform bit-width across all Gaussian attributes | Suboptimal rate-distortion: high-importance attributes (opacity, position) under-quantized while low-importance ones (SH high orders) over-allocated bits | Group-wise mixed-precision quantization; assign higher bit-width to attributes with larger gradient contributions; use 0-1 ILP or heuristic search over attribute-level bit-width (MesonGS++, ArXiv 2604.26799) |
+| 41 | Octree coding without neighbor-aware attribute prediction | Redundant bitstream size; sharp attribute discontinuities at octree node boundaries | Predict child node attributes from parent via learned attribute transformation; code residuals instead of raw values; ensure octree depth is rate-distortion optimized jointly with pruning ratio |
+
+### Energy-Based Optimization Patterns (EnerGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 42 | Hard geometric prior constraints (e.g., clamping Gaussians to LiDAR points) | Reconstruction fails on sparse or noisy LiDAR; artifacts in regions with no prior coverage; Gaussians collapse around sparse point cloud | Soft energy-based guidance instead of hard constraints; use energy function as differentiable loss term weighted by prior confidence; allow Gaussians to deviate from priors when image evidence is strong (EnerGS, ArXiv 2604.26238) |
 
 ### Cross-Domain & Application Patterns
 

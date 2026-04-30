@@ -1,6 +1,6 @@
 ﻿---
 name: 3dgs-method-compare
-description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 100+ 3DGS methods.
+description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 104+ 3DGS methods.
 version: 1.1.0
 author: jaccen
 tags:
@@ -21,9 +21,10 @@ trigger:
   - "3DGS vs 2DGS"
 ---
 
+
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 100+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 104+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -124,6 +125,13 @@ When comparing methods, analyze across the following dimensions:
 | HAC | ~100x | Slight drop | Faster after decode |
 | OT-UVGS | UV tensor | ↑ vs spherical UVGS | Same as UVGS |
 | NanoGS | Training-free | Minimal (KNN merge) | CPU-only, instant |
+| MesonGS++ | 34x | Minimal | Faster after decode (0-1 ILP hyperparameter search) |
+
+### Robustness / Regularization Methods
+
+| Method | Venue | Prior Source | Key Feature |
+|--------|-------|-------------|-------------|
+| EnerGS | arXiv'26 | LiDAR (partial geometric) | Energy-based soft guidance instead of hard constraints; improves outdoor large-scale scenes |
 
 ### Geometry / Surface Methods
 
@@ -149,6 +157,7 @@ When comparing methods, analyze across the following dimensions:
 | LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
 | Feature 3DGS | CVPR'24 | DINO/SAM (2D distillation) | Per-Gaussian feature vectors | Downstream task features |
 | NRGS | arXiv'26 | Neural network | Learned regularization | Robust semantic 3DGS |
+| Semantic Foam | CVPR'26 (Highlight) | Volumetric Voronoi mesh | Per-cell semantic feature field | Semantic decomposition; outperforms Gaussian Grouping, SAGA |
 
 ### Feed-Forward Methods
 
@@ -183,6 +192,13 @@ When comparing methods, analyze across the following dimensions:
 | CityGaussian | ECCV'24 | City | Hierarchical LOD |
 | Street Gaussians | ECCV'24 | Street | Static/dynamic decomposition, driving scenes |
 | Octree-GS | Preprint | City | Octree acceleration + LOD |
+
+### Cross-Domain Applications
+
+| Method | Venue | Domain | Key Feature |
+|--------|-------|--------|-------------|
+| GS-DOT | arXiv'26 | Medical (DOT) | Diffusion transport for photon imaging |
+| BiSplat-WRF | IEEE ICC'26 Workshop | Wireless (WRF) | Planar GS + bilinear spatial transformer for EM coupling |
 
 ### Real-Time NVS Methods
 

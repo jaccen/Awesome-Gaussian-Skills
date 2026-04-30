@@ -22,6 +22,7 @@ trigger:
   - "审稿人要求补充实验"
 ---
 
+
 # 3DGS Experiment Planner
 
 You are an experienced 3DGS researcher who has served on program committees of CVPR, ICCV, ECCV, and SIGGRAPH. Design experiments that will satisfy rigorous reviewers.
@@ -68,6 +69,7 @@ Before designing experiments, extract:
 | Human / Avatar | THUman2.0 / ZJU-MoCap / PeopleSnapshot | Human-specific metrics |
 | Feed-Forward / Single-pass | RealEstate10K / ACID | Multi-view forward inference |
 | Semantic / Segmentation | LERF / SemanticKITTI | 3D semantic field quality |
+| Semantic Foam Benchmarks | CVPR'26 Semantic Foam paper | Volumetric Voronoi semantic segmentation |
 | SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
 | Robustness / Adverse conditions | RealX3D (NTIRE 2026) | Tests reconstruction in adverse environments (low light, fog, sparse views) |
 | Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
@@ -77,6 +79,8 @@ Before designing experiments, extract:
 | Simulation & Robotics | Habitat-GS (Habitat-Sim upgrade) | 3DGS-based robot simulation environments, navigation & interaction tasks |
 | Cross-Domain / Medical | GS-DOT diffuse optical tomography benchmarks | Tests GS in photon diffusion regime (non-VS application) |
 | Real-Time NVS (Multi-Camera) | 3DTV 3-camera setups | Real-time view synthesis at 40 FPS with multi-camera input |
+| Outdoor Robust / LiDAR Prior | EnerGS paper benchmarks | Tests energy-based guidance with partial geometric priors |
+| Wireless / Cross-Domain | BiSplat-WRF paper benchmarks | Wireless radiance field (non-VS) reconstruction |
 
 ### Step 3: Baseline Selection
 
@@ -95,10 +99,13 @@ Before designing experiments, extract:
 - GlobalSplat (if making feed-forward footprint claims)
 
 **Tier 3 — Nice to Compare** (If directly related):
-- Methods from the same category (e.g., if you do compression → compare LightGS, Compact-3DGS, NanoGS)
+- Methods from the same category (e.g., if you do compression → compare LightGS, Compact-3DGS, NanoGS, MesonGS++)
 - Recent SOTA in your specific sub-area
 - 3DTV (if making real-time multi-camera NVS claims)
 - GS-DOT (if making cross-domain GS application claims)
+- BiSplat-WRF (if making wireless/non-VS domain claims)
+- Semantic Foam (if making semantic scene decomposition claims)
+- EnerGS (if making outdoor robust reconstruction with partial geometric priors claims)
 
 #### Minimum Baseline Count
 For top-venue submission: **at least 4 baselines** across different categories.

@@ -1,8 +1,9 @@
+﻿
 
 # 3DGS Methods Overview
 
-> Built-in knowledge base for Awesome Gaussian Skills. Covers 100+ 3D Gaussian Splatting variants organized by category.
-> Last updated: 2026-04-29 (major knowledge base expansion)
+> Built-in knowledge base for Awesome Gaussian Skills. Covers 105+ 3D Gaussian Splatting variants organized by category.
+> Last updated: 2026-04-30 (daily update — 5 new papers + taxonomy optimization)
 
 ## Foundation Methods
 
@@ -42,6 +43,7 @@
 
 ### 2D Gaussian Splatting (2DGS)
 - **Paper**: 2D Gaussian Splatting for Geometrically Accurate Radiance Fields
+- **Note**: Also listed in CAD / Mesh / Hybrid Methods (hybrid representation perspective)
 - **Authors**: Zixiang Zhou, Peng Wang, Yuxing Qiu, Pengfei Wan, Xiaoyang Lyu, Tiejun Huang, Yan Lu
 - **Venue**: SIGGRAPH 2024
 - **ArXiv**: 2403.17888
@@ -56,6 +58,7 @@
 - **ArXiv**: 2312.13253
 - **Core**: Regularizes Gaussians to align with learned mesh surface
 - **Key Innovation**: Joint optimization of Gaussians and mesh for high-quality extraction
+- **Note**: Also listed in CAD / Mesh / Hybrid Methods (mesh extraction perspective)
 
 ### PGSR
 - **Paper**: Planar-based Gaussian Splatting for High-Fidelity Surface Reconstruction
@@ -204,6 +207,15 @@
 - **Key Innovation**: Masks subset of frames for self-supervision; enforces cross-view feature consistency between full/partial observations via LoRA updates (<2min per dataset); +3.73% camera pose accuracy, +2.88% point map prediction
 - **Code**: https://github.com/hiteacherIamhumble/Free-Geometry
 
+### IDESplat
+- **Paper**: IDESplat: Iterative Depth Probability Estimation for Generalizable 3D Gaussian Splatting
+- **Authors**: Zizhang Li, et al. (UESTC)
+- **Venue**: CVPR 2026
+- **ArXiv**: 2601.03824
+- **Core**: Iterative depth probability estimation for feed-forward 3DGS with depth probability boosting unit
+- **Key Innovation**: Depth Probability Boosting Unit (DPBU) uses multiple warps with epipolar attention for iterative depth refinement; Gaussian Focus Module (GFM) adaptively focuses Gaussians on high-information regions; progressively narrows depth search range while increasing feature resolution
+- **Code**: https://github.com/CVL-UESTC/IDESplat
+
 ### MVSplat
 - **Paper**: MVSplat: Efficient Feed-Forward 3D Gaussian Splatting from Sparse Multi-View Images
 - **Authors**: Donny Y. Chen, Haofei Xu, Chuanxia Zheng, Andreas Geiger, Xingyu Chen, Shenghua Gao, Yujun Shen
@@ -310,6 +322,15 @@
 - **Key Innovation**: Mass-preserving moment matching for Gaussian merge; principled merge cost between original mixture and approximation; runs efficiently on CPU; preserves standard 3DGS parameterization for seamless pipeline integration
 - **Code**: https://github.com/saliteta/NanoGS
 
+### MesonGS++
+- **Paper**: MesonGS++: Post-training Compression of 3D Gaussian Splatting with Hyperparameter Searching
+- **Authors**: Shuzhao Xie, Junchen Ge, Weixiang Zhang, et al. (Tsinghua / NTU Singapore)
+- **ArXiv**: 2604.26799
+- **Venue**: Under review
+- **Core**: Size-aware post-training codec for 3DGS compression with automatic hyperparameter search under target storage budget
+- **Key Innovation**: Joint importance-based pruning + octree geometry coding + attribute transformation + selective vector quantization + group-wise mixed-precision quantization; treats reserve ratio and bit-width as rate-distortion knobs optimized via 0-1 integer linear programming; linear size estimator + CUDA parallel quantization for fast search; 34x compression while preserving fidelity
+- **Code**: https://github.com/mmlab-sigs/mesongs_plus
+
 ## Dynamic Scene Methods
 
 ### 4D Gaussian Splatting (4DGS)
@@ -361,6 +382,15 @@
 - **Core**: Supercharges 3DGS with distilled feature fields for downstream tasks
 - **Key Innovation**: Distills 2D foundation model features (e.g., DINO, SAM) into 3D feature fields attached to Gaussians; enables high-quality 3D segmentation, detection, and semantic understanding without per-scene fine-tuning
 - **Code**: https://github.com/D Charles2/feature-3dgs
+
+### Semantic Foam
+- **Paper**: Semantic Foam: Unifying Spatial and Semantic Scene Decomposition
+- **Authors**: Amr Sharafeldin, Shrisudhan Govindarajan, Thomas Walker, Aryan Mikaeili, Daniel Rebain, Kwang Moo Yi, Andrea Tagliasacchi
+- **ArXiv**: 2604.26262
+- **Venue**: CVPR 2026 (Highlight)
+- **Core**: Extends Radiant Foam (volumetric Voronoi mesh) to semantic decomposition tasks with explicit semantic feature field at cell level
+- **Key Innovation**: Leverages volumetric Voronoi mesh structure for direct spatial regularization, improving cross-view semantic consistency; outperforms Gaussian Grouping and SAGA on object-level segmentation; addresses occlusion/inconsistent supervision artifacts common in point-based representations
+- **Code**: http://semanticfoam.github.io/
 
 ## Image Representation
 
@@ -550,6 +580,14 @@
 - **Core**: Converts first-pass reconstruction failures into explicit priors for second-pass clean reconstruction
 - **Key Innovation**: Failure-to-Prior framework; exploits transient fragments + photometric residuals + SAM2 boundaries to construct pseudo-masks; lightweight MLP refines masks online
 
+### EnerGS
+- **Paper**: EnerGS: Energy-Based Gaussian Splatting with Partial Geometric Priors
+- **Authors**: Rui Song, Tianhui Cai, Markus Gross, Yun Zhang, et al.
+- **ArXiv**: 2604.26238
+- **Venue**: Under review
+- **Core**: Models partially observable geometry as continuous energy field for soft geometric guidance in 3DGS optimization
+- **Key Innovation**: Instead of hard geometric constraints, provides soft energy-based guidance from LiDAR/depth priors; allows geometry to steer optimization without restricting solution space; mitigates overfitting in large-scale outdoor scenes with incomplete geometric supervision
+
 ## Autonomous Driving
 
 ### Street-GS
@@ -627,6 +665,7 @@
 - **Core**: Active mapping agent that imagines unseen regions via imagined Gaussians + beam search for long-horizon planning
 - **Key Innovation**: Occupancy prediction -> Gaussian representation -> efficient gain computation via rendering; global-optimal path planning via beam search
 - **Code**: https://shiyao-li.github.io/magician/
+- **Note**: Also relevant to Active Vision category
 
 ## Training Acceleration
 
@@ -725,6 +764,14 @@
 - **Core**: Upgrades Habitat-Sim simulator with 3DGS rendering for high-fidelity robot navigation training
 - **Key Innovation**: Replaces mesh-based rendering with 3DGS for photorealistic simulation; introduces interactive virtual human agents for crowd navigation training
 
+### BiSplat-WRF
+- **Paper**: Planar Gaussian Splatting with Bilinear Spatial Transformer for Wireless Radiance Field Reconstruction
+- **Authors**: Jinghan Zhang, Xitao Gong, Qi Wang, Richard A. Stirling-Gallacher, Giuseppe Caire
+- **ArXiv**: 2604.25945
+- **Venue**: IEEE ICC 2026 Workshop
+- **Core**: Adapts Gaussian Splatting to wireless radiance field (WRF) reconstruction for spatial power spectrum prediction
+- **Key Innovation**: Planar 2D Gaussians with 3D coordinates rendered directly on angular domain; bilinear spatial transformer (BST) captures long-range electromagnetic dependencies; surpasses NeRF-based and prior GS-based baselines on SSIM
+
 ## Egocentric & Benchmark Methods
 
 ### Egocentric Dynamic 3DGS Evaluation
@@ -766,6 +813,11 @@
 | NanoGS | Same as input 3DGS | CPU-only | Reduced count | Training-free merge |
 | 3DTV | N/A (3-cam) | 40 FPS | N/A | Feedforward depth pyramid |
 | Free Geometry | ↑ vs baseline (DA3/VGGT) | +LoRA (<2min) | Same | Self-supervised refinement |
+| IDESplat | ~25.5* (RealEstate10K) | Single-pass | N/A | Iterative depth feed-forward |
+| MesonGS++ | ~24.5 (34x compressed) | Faster after decode | ~15 MB (34x) | Post-training codec |
+| Semantic Foam | N/A (segmentation) | N/A | Voronoi mesh | Semantic decomposition |
+| EnerGS | ↑ (outdoor w/ LiDAR) | Same as 3DGS | Same | Energy-based priors |
+| BiSplat-WRF | ↑ vs NeRF-WRF | N/A (WRF) | N/A | Planar GS (wireless) |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.

@@ -461,6 +461,21 @@ def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000)
 | Delaunay-based | Tetrahedralization | Points | Triangle mesh | Slow |
 | Neural Mesh (DMTet) | Differentiable | Features | Triangle mesh | Slow |
 
+### Semantic Scene Decomposition (Alternative to Gaussian-Based)
+
+| Method | Venue | Representation | Key Feature |
+|--------|-------|---------------|-------------|
+| Semantic Foam | CVPR'26 (Highlight) | Volumetric Voronoi mesh | Per-cell semantic feature field; outperforms Gaussian Grouping, SAGA; avoids point-based occlusion/inconsistent-supervision artifacts |
+
+**Note**: Semantic Foam uses volumetric Voronoi mesh instead of point-based Gaussians for semantic decomposition. When CAD/mesh reconstruction needs semantic labels, consider Semantic Foam as an alternative to Gaussian-based semantic methods (LangSplat, Feature 3DGS, NRGS). The mesh-based representation integrates more naturally with B-rep/mesh pipelines.
+
+### Cross-Domain 3DGS Applications
+
+| Method | Venue | Domain | Representation | Key Feature |
+|--------|-------|--------|---------------|-------------|
+| GS-DOT | arXiv'26 | Medical (DOT) | Anisotropic Gaussians | Photon diffusion transport |
+| BiSplat-WRF | IEEE ICC'26 Workshop | Wireless (WRF) | Planar 2D Gaussians | Bilinear spatial transformer for EM coupling; adapts GS rendering to angular domain |
+
 ## Output Format
 
 When responding to user queries, use these templates:
@@ -526,3 +541,4 @@ When responding to user queries, use these templates:
 5. **GPU-aware**: 3DGS methods require specific GPU resources. Mention VRAM requirements for extraction.
 6. **Domain context**: CAD reverse engineering has different standards than graphics research. Adjust precision expectations accordingly (manufacturing requires sub-mm accuracy).
 7. **Cite accurately**: Only cite methods and metrics you are confident about. Mark uncertain information as "[需验证]".
+
