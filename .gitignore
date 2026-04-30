@@ -36,3 +36,4 @@ build/
 # Temporary
 *.tmp
 *.bak
+*.js
