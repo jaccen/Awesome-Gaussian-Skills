@@ -254,4 +254,4 @@ Key changes to the training loop:
 3. **Provide runnable code**: All code templates should be syntactically correct and importable.
 4. **Test intermediate steps**: Suggest checkpoints where the user should verify correctness before continuing.
 
-> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills!
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills
