@@ -1,4 +1,4 @@
-
+﻿
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -44,7 +44,7 @@
 - **7 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 31 个类别的 100+ 3DGS 变体，含领域术语规范
+- **领域专家知识**：内置知识库覆盖 31 个类别的 105+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
 
 ---
@@ -116,7 +116,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 100+ 方法的知识库
+- 内置 105+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -132,7 +132,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（35+ 已知模式）
+- 常见 bug 模式检测（42+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -229,7 +229,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG 论文写作助手
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # 内置知识库（100+ 方法）
+│   └── 3dgs-methods-overview.md # 内置知识库（105+ 方法）
 ├── scripts/
 │   └── setup.sh                 # 快速安装脚本
 ├── README.md
@@ -252,22 +252,9 @@ Awesome-Gaussian-Skills/
 | 类别 | 方法 |
 |------|------|
 | 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting |
-| 压缩 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC |
-| 编辑 | GaussianEditor, GeoGaussian, SketchFaceGS, FluSplat, TransSplat |
-| 动态 | 4DGS, Dynamic-3DGS, SC-GS, Deformable-3DGS, RobustSplat |
-| 符号/分解 | NegGS, SuGaR |
-| 材质/重光照 | GRF, GS-IR, Instant Colorization, GaussianShader |
-| 大规模 | CityGaussian, Mega-3DGS, Octree-GS, GeoGaussian, YOGO, Street Gaussians |
-| 人体/化身 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, High-Fidelity Human GS |
-| 自动驾驶 | Street-GS, ADS-GS, Asset Harvester |
-| 几何 | 2DGS, 2D-Gaussian, FlexiCubes+3DGS, PAGaS, GSCompleter, PGSR |
-| CAD / Mesh | SuGaR, MaGS, UniMGS, Vol3DGS, BrepGaussian |
-| 鲁棒性 | NRGS, DualSplat |
-| SLAM | Gaussian Splatting SLAM, CGS-SLAM, WildGS-SLAM, S3PO-GS, Flow4DGS-SLAM, EvFlow-GS, MAGICIAN, Habitat-GS |
-| 前馈 | GlobalSplat, SparseSplat, WildSplatter, TRiGS, Reliev3R, ARGS, Free Geometry, MVSplat, GS-LRM, DepthSplat, InstantSplat, AnySplat |
-| 少样本/稀疏视角 | FSGS |
-| 野外/鲁棒 | WildGaussians |
-| 语言/语义 | LangSplat, Feature 3DGS |
+| 压缩 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++ |
+| 鲁棒性 | NRGS, DualSplat, EnerGS |
+| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam |
 | 生成/文生3D | DreamGaussian |
 | 抗锯齿 | Mip-Splatting, LeanGaussian |
 | 优化 | 3DGS-as-MCMC |
@@ -281,7 +268,7 @@ Awesome-Gaussian-Skills/
 | 退化感知 | MERID-GS, MarineSTD-GS |
 | 系统 | YOGO, GS-SCNet |
 
-> 完整知识库覆盖 **31 个类别的 100+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **31 个类别的 105+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 ---
 
@@ -399,5 +386,8 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 论文免费下载神器：https://sci-hub.se
 
 如果这个项目帮你节省了时间，请给一个 Star！
+
+
+</div>
 
 
