@@ -1,7 +1,8 @@
 ﻿
 
 <div align="center">
-
+If you like it, please ⭐️ star this repo! 
+        
 # Awesome Gaussian Skills
 
 ### The First Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
