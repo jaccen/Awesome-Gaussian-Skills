@@ -542,3 +542,4 @@ When responding to user queries, use these templates:
 6. **Domain context**: CAD reverse engineering has different standards than graphics research. Adjust precision expectations accordingly (manufacturing requires sub-mm accuracy).
 7. **Cite accurately**: Only cite methods and metrics you are confident about. Mark uncertain information as "[需验证]".
 
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

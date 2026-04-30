@@ -134,3 +134,5 @@ Before outputting, verify:
 - [ ] Comparison to baselines is fair and complete
 - [ ] Limitations are presented objectively
 - [ ] If unsure about a detail, explicitly mark it as "[需要确认]" rather than guessing
+
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

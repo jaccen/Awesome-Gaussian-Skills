@@ -1,4 +1,4 @@
-﻿---
+---
 name: 3dgs-code-reviewer
 description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 42+ known bug patterns.
 version: 1.1.0
@@ -245,3 +245,5 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 3. **Prioritize**: Critical bugs > Performance issues > Style suggestions.
 4. **Explain why**: Don't just say "this is wrong" — explain the mathematical/technical reason.
 5. **Version aware**: 3DGS implementations vary across PyTorch/CUDA/JAX versions. Check which version is being used.
+
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

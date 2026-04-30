@@ -1,6 +1,6 @@
-﻿---
+---
 name: 3dgs-method-compare
-description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 104+ 3DGS methods.
+description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 105+ 3DGS methods.
 version: 1.1.0
 author: jaccen
 tags:
@@ -24,7 +24,7 @@ trigger:
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 104+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 105+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -253,3 +253,5 @@ Generate comparisons using this template:
 3. **Avoid bias**: Present each method's strengths and weaknesses fairly.
 4. **Context matters**: A method that's worse on PSNR might be better for real-time. Always mention the use case.
 5. **Flag uncertainty**: If you don't have reliable data for a comparison dimension, say so explicitly.
+
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

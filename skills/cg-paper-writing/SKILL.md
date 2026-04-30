@@ -1,17 +1,7 @@
 ---
 name: cg-paper-writing
-description: >-
-  Academic paper writing skill for 3D vision, computer graphics, CAD, and 3D understanding.
-  Covers NeRF, 3D Gaussian Splatting, multi-view stereo, SLAM, point cloud processing,
-  3D shape understanding/generation, CAD modeling, reverse engineering, 3D scene understanding.
-  Use when the user asks to write, refine, or polish academic papers in CG/3D vision venues
-  (CVPR, ICCV, ECCV, SIGGRAPH, EG, PG, TVCG, CGF) or doctoral dissertations.
-  Provides domain terminology conventions, reviewer concern analysis, experiment design guidance,
-  and venue-specific writing patterns. Trigger on: paper writing, draft refinement, rebuttal,
-  introduction/related work/methodology/experiment sections, abstract, contribution summary.
-name_cn: 三维视觉与计算机图形学论文写作
-description_cn: 三维视觉/计算机图形学/CAD方向论文写作辅助，涵盖NeRF、3DGS、点云处理、3D形状理解/生成、CAD建模、逆向工程、3D场景理解、SLAM等，支持CVPR/ICCV/SIGGRAPH等顶会及博士论文
-version: 1.1.0
+description: Academic paper writing skill for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud processing, 3D shape understanding/generation, CAD modeling, and reverse engineering. Supports CVPR/ICCV/ECCV/SIGGRAPH/EG/PG/TVCG/CGF and doctoral dissertations.
+version: 1.2.0
 author: jaccen
 tags:
   - paper-writing
@@ -425,3 +415,5 @@ End each section with: how existing work differs from yours.
 4. **Match the venue's tone**：CVPR更精炼；SIGGRAPH更叙事
 5. **Chinese academic writing**：遵循中文学术惯例（本文/我们/由此/表明）
 6. **Never fabricate data**：需要实验数据时，明确标注"设计目标"或"预期值"
+
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

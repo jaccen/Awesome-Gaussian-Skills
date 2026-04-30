@@ -253,3 +253,5 @@ Key changes to the training loop:
 2. **Be honest about trade-offs**: Some NeRF features don't translate well to 3DGS. Say so.
 3. **Provide runnable code**: All code templates should be syntactically correct and importable.
 4. **Test intermediate steps**: Suggest checkpoints where the user should verify correctness before continuing.
+
+> If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills!
