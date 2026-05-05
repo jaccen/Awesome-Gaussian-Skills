@@ -1,4 +1,5 @@
-﻿
+
+
 <div align="center">
 If you like it, please ⭐️ star this repo! 
         
@@ -45,7 +46,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **7 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, and CG paper writing
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 105+ 3DGS variants across 31 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 120+ 3DGS variants across 31 categories, with domain-specific terminology conventions
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -118,7 +119,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 105+ methods
+- Built-in knowledge of 120+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -134,7 +135,7 @@ Agent: [Checks: alpha compositing order, tile-based rendering,
 - Review CUDA kernels for correctness and performance
 - Check rendering pipeline (differentiable rasterization, alpha blending)
 - Validate loss function implementations
-- Common bug pattern detection (42+ known patterns)
+- Common bug pattern detection (45+ known patterns)
 
 ### 4. `3dgs-experiment-planner` — Experiment Design Assistant
 
@@ -234,7 +235,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # Built-in knowledge base (105+ methods)
+│   └── 3dgs-methods-overview.md # Built-in knowledge base (120+ methods)
 ├── scripts/
 │   └── setup.sh                 # Quick install script
 ├── README.md
@@ -273,7 +274,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 | Degradation-Aware | MERID-GS, MarineSTD-GS |
 | System | YOGO, GS-SCNet |
 
-> The full knowledge base covers **105+ methods** across 31 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **120+ methods** across 31 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
@@ -281,7 +282,8 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.1.1 — Add `cad-mesh-3dgs` skill for CAD/Mesh↔3DGS bridge (Apr 2026)
-- [x] v0.1.2 — Knowledge base expansion: 50→100+ methods, 31 categories, daily auto-update workflow (Apr 2026)
+- [x] v0.1.2 — Knowledge base expansion: 50→120+ methods, 31 categories, daily auto-update workflow (Apr-May 2026)
+- [x] v0.1.3 — Knowledge base v2: 120+ methods, 45+ bug patterns, cross-domain expansion (May 2026)
 - [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration

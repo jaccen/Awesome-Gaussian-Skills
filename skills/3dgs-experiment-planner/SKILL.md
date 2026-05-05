@@ -22,7 +22,6 @@ trigger:
   - "审稿人要求补充实验"
 ---
 
-
 # 3DGS Experiment Planner
 
 You are an experienced 3DGS researcher who has served on program committees of CVPR, ICCV, ECCV, and SIGGRAPH. Design experiments that will satisfy rigorous reviewers.
@@ -78,6 +77,12 @@ Before designing experiments, extract:
 | Egocentric Video | EgoExo4D | Paired ego-exo recordings for 3DGS evaluation in first-person views |
 | Simulation & Robotics | Habitat-GS (Habitat-Sim upgrade) | 3DGS-based robot simulation environments, navigation & interaction tasks |
 | Cross-Domain / Medical | GS-DOT diffuse optical tomography benchmarks | Tests GS in photon diffusion regime (non-VS application) |
+| High-Speed Volumetric | Color-Encoded Illumination (CVPR 2026) paper benchmarks | Tests color-coded temporal info for high-speed volumetric reconstruction |
+| Sparse-View NVS | HeroGS (CVPR 2026) / Sparse-View 3DGS Wild paper benchmarks | Hierarchical guidance + diffusion-guided sparse-view enhancement |
+| Physics Simulation | FieryGS (ICLR 2026) paper benchmarks | Physics-integrated fire synthesis evaluation |
+| Medical Bronchoscopy | RESPIRE paper benchmarks | CT-informed dynamic bronchoscopy reconstruction |
+| AD Safety Evaluation | 3DGS AD Safety Eval (SafeComp 2026) paper benchmarks | Industrial fidelity evaluation for autonomous driving perception |
+| Forensics / Security | Fake3DGS (ICPR 2026) paper benchmarks | First benchmark for 3D manipulation detection in neural rendering |
 | Real-Time NVS (Multi-Camera) | 3DTV 3-camera setups | Real-time view synthesis at 40 FPS with multi-camera input |
 | Outdoor Robust / LiDAR Prior | EnerGS paper benchmarks | Tests energy-based guidance with partial geometric priors |
 | Wireless / Cross-Domain | BiSplat-WRF paper benchmarks | Wireless radiance field (non-VS) reconstruction |
@@ -99,13 +104,23 @@ Before designing experiments, extract:
 - GlobalSplat (if making feed-forward footprint claims)
 
 **Tier 3 — Nice to Compare** (If directly related):
-- Methods from the same category (e.g., if you do compression → compare LightGS, Compact-3DGS, NanoGS, MesonGS++)
+- Methods from the same category:
+  - **Compression**: LightGS, Compact-3DGS, NanoGS, MesonGS++, GETA-3DGS (joint prune+quantize), VkSplat (cross-vendor training)
+  - **Surface geometry**: SuGaR, 2DGS, 2D-SuGaR (depth+normal priors enhanced 2DGS)
+  - **Editing**: Instruct-NeRF2NeRF, GOR-IS (intrinsic decomposition editing)
+  - **Training optimization**: Scaffold-GS, Structure-Aware Densification (SIGGRAPH 2026, frequency-aware anisotropic splitting), LeGS (RL density control)
 - Recent SOTA in your specific sub-area
 - 3DTV (if making real-time multi-camera NVS claims)
 - GS-DOT (if making cross-domain GS application claims)
 - BiSplat-WRF (if making wireless/non-VS domain claims)
 - Semantic Foam (if making semantic scene decomposition claims)
 - EnerGS (if making outdoor robust reconstruction with partial geometric priors claims)
+- HeroGS / Sparse-View 3DGS Wild (if making sparse-view NVS claims)
+- FieryGS (if making physics simulation or dynamic scene modeling claims)
+- Color-Encoded Illumination (if making high-speed or temporal reconstruction claims)
+- Fake3DGS (if making robustness/security/forensics claims)
+- 3DGS AD Safety Eval (if making autonomous driving perception fidelity claims)
+- RESPIRE (if making medical dynamic scene reconstruction claims)
 
 #### Minimum Baseline Count
 For top-venue submission: **at least 4 baselines** across different categories.

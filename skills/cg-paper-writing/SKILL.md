@@ -407,6 +407,20 @@ End each section with: how existing work differs from yours.
 - [experiments.md](../../references/experiments.md) — 标准实验设计与常见数据集配置
 - [cad-3d.md](../../references/cad-3d.md) — CAD/3D方向术语、基线与数据集
 
+### 2025-2026 近期重要论文（引用参考）
+
+| Venue | Method | ArXiv | 核心贡献 |
+|-------|--------|-------|----------|
+| SIGGRAPH 2026 | Structure-Aware Densification | 2604.28016 | Frequency-aware anisotropic splitting，替代vanilla 3DGS的均匀split策略 |
+| ICLR 2026 | FieryGS | 2605.00177 | Physics-integrated fire synthesis，将火焰动力学融入Gaussian渲染 |
+| ICML 2026 Spotlight | SplAttN | 2605.01466 | Gaussian soft splatting for point cloud understanding |
+| CVPR 2026 | GLMap | 2605.01736 | Gaussian-Language Map，语言引导的Gaussian场景表示用于导航 |
+| CVPR 2026 Findings | Softmax-GS | 2604.27437 | Softmax competition rendering，替代α-compositing混合机制 |
+| SIGGRAPH 2026 | LeGS | 2605.00408 | RL-based density control，替代heuristic clone/split/prune |
+| CVPR 2026 | 2D-SuGaR | 2605.00569 | Surface-aware 2DGS with depth/normal priors，改进表面提取质量 |
+| arXiv 2026 | GETA-3DGS | 2605.02086 | Joint pruning + quantization for 3DGS compression |
+| arXiv 2026 | GOR-IS | 2605.00498 | Intrinsic decomposition editing for Gaussian scenes |
+
 ## Rules
 
 1. **Write in flowing prose, never bullet points**（贡献声明和itemized lists除外）

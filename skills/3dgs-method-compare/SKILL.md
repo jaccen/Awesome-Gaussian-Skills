@@ -1,7 +1,7 @@
 ---
 name: 3dgs-method-compare
-description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 105+ 3DGS methods.
-version: 1.1.0
+description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 130+ 3DGS methods.
+version: 1.2.0
 author: jaccen
 tags:
   - 3dgs
@@ -21,10 +21,9 @@ trigger:
   - "3DGS vs 2DGS"
 ---
 
-
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 105+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 130+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -102,6 +101,8 @@ When comparing methods, analyze across the following dimensions:
 | 2DGS | SIGGRAPH'24 | 2D disk | [0,1] | Better surface reconstruction |
 | Scaffold-GS | ICCV'23 | Anchor+3D | [0,1] | Anchor-based scalability |
 | Scaffold-GS+ | CVPR'24 | Anchor+3D | [0,1] | Progressive training |
+| Softmax-GS | CVPR'26 (Findings) | 3D anisotropic | Softmax competition | Replaces α-compositing with learnable softmax; blend-vs-bound |
+| LeGS | arXiv'26 | 3D anisotropic | RL-controlled | RL-based learnable density control replacing heuristics; O(N) reward |
 
 ### Signed / Decomposed Methods
 
@@ -126,6 +127,7 @@ When comparing methods, analyze across the following dimensions:
 | OT-UVGS | UV tensor | ↑ vs spherical UVGS | Same as UVGS |
 | NanoGS | Training-free | Minimal (KNN merge) | CPU-only, instant |
 | MesonGS++ | 34x | Minimal | Faster after decode (0-1 ILP hyperparameter search) |
+| GETA-3DGS | 5x | Minimal | First end-to-end automatic joint structured pruning + quantization; QADG; render-aware saliency |
 
 ### Robustness / Regularization Methods
 
@@ -142,6 +144,7 @@ When comparing methods, analyze across the following dimensions:
 | PGSR | TVCG'24 | Highest (SOTA) | Planar regularizer + unbiased depth rendering |
 | PAGaS | arXiv'26 | High (depth) | 1DoF Gaussians for depth refinement |
 | Vol3DGS | CVPR'25 | High | Volume-consistent rendering |
+| 2D-SuGaR | arXiv'26 | Highest (DTU SOTA) | 2DGS + monocular depth/normal priors; depth-guided init; clustering-based pruning |
 
 ### Generation / Text-to-3D
 
@@ -158,6 +161,7 @@ When comparing methods, analyze across the following dimensions:
 | Feature 3DGS | CVPR'24 | DINO/SAM (2D distillation) | Per-Gaussian feature vectors | Downstream task features |
 | NRGS | arXiv'26 | Neural network | Learned regularization | Robust semantic 3DGS |
 | Semantic Foam | CVPR'26 (Highlight) | Volumetric Voronoi mesh | Per-cell semantic feature field | Semantic decomposition; outperforms Gaussian Grouping, SAGA |
+| GLMap | CVPR'26 | Multi-scale semantics | Per-Gaussian language features | Gaussian-Language Map; zero-shot navigation |
 
 ### Feed-Forward Methods
 
@@ -199,6 +203,40 @@ When comparing methods, analyze across the following dimensions:
 |--------|-------|--------|-------------|
 | GS-DOT | arXiv'26 | Medical (DOT) | Diffusion transport for photon imaging |
 | BiSplat-WRF | IEEE ICC'26 Workshop | Wireless (WRF) | Planar GS + bilinear spatial transformer for EM coupling |
+| FieryGS | ICLR'26 | Physics simulation | Physics-integrated fire synthesis |
+| SplAttN | ICML'26 (Spotlight) | Point cloud completion | Gaussian soft splatting for point cloud completion |
+| Fake3DGS | ICPR'26 | Forensics | First benchmark for 3D manipulation detection in neural rendering |
+| SandSim | arXiv'26 | Digital art | Curve-guided Gaussian for sand painting reconstruction |
+| RGS | arXiv'26 | Medical (CBCT) | Residual wavelet-GS for sparse-view CBCT |
+| RESPIRE | arXiv'26 | Medical (bronchoscopy) | CT-informed mesh-anchored GS for dynamic bronchoscopy |
+| Color-Encoded Illumination | CVPR'26 (Highlight) | High-speed imaging | Color-coded temporal info for volumetric reconstruction |
+| 3DGS AD Safety Eval | SafeComp'26 | Autonomous driving | Industrial fidelity evaluation for AD perception |
+| HeroGS | CVPR'26 | Sparse-view NVS | Hierarchical guidance for sparse-view robust 3DGS |
+| Sparse-View 3DGS Wild | arXiv'26 | Sparse-view NVS | Diffusion-guided sparse-view enhancement |
+
+### Human & Avatar Methods
+
+| Method | Venue | Input | Key Feature |
+|--------|-------|-------|-------------|
+| HumanSplatHMR | arXiv'26 | Image | Joint pose-avatar optimization; closes loop between HMR and differentiable rendering |
+
+### Autonomous Driving Methods
+
+| Method | Venue | Input | Key Feature |
+|--------|-------|-------|-------------|
+| GSDrive | arXiv'26 | Multi-camera | 3DGS-based differentiable reward shaping for E2E driving; multi-mode trajectory probing |
+
+### System & Infrastructure Methods
+
+| Method | Venue | Framework | Key Feature |
+|--------|-------|-----------|-------------|
+| VkSplat | Eurographics'26 | Vulkan | Vulkan-based 3DGS training; 3.3x speed; cross-vendor |
+
+### Training Acceleration Methods
+
+| Method | Venue | Strategy | Key Feature |
+|--------|-------|----------|-------------|
+| Structure-Aware Densification | SIGGRAPH'26 | Frequency-aware anisotropic splitting | Frequency-aware anisotropic splitting; multiview consistency; faster convergence |
 
 ### Real-Time NVS Methods
 
@@ -216,6 +254,7 @@ When comparing methods, analyze across the following dimensions:
 | SketchFaceGS | Sketch-driven | 2D sketch | High (CVPR'26 Highlight) |
 | FluSplat | Text-driven | Sparse views | Medium-High |
 | TransSplat | Language-driven | Multi-view + text | High |
+| GOR-IS | Intrinsic-space removal | Image | High (+13% LPIPS) |
 
 ## Output Format
 

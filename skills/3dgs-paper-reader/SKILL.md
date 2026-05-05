@@ -116,6 +116,25 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 - **Scaffold-GS (Lu et al., ICCV 2023)**: Anchor-based structure for large-scale scenes.
 - **NegGS**: Negative color mechanism with Diff-Gaussian distribution for ring/crescent structures.
 
+### Notable 2025-2026 Papers (Quick Reference)
+
+| ArXiv ID | Method | Venue | Key Idea |
+|----------|--------|-------|----------|
+| 2605.00408 | LeGS | arXiv'26 | RL-based density control for 3DGS training |
+| 2605.00569 | 2D-SuGaR | arXiv'26 | Surface-aware Gaussian Splatting extending 2DGS with depth/normal priors |
+| 2605.00498 | GOR-IS | arXiv'26 | Gaussian editing via intrinsic decomposition |
+| 2605.02086 | GETA-3DGS | arXiv'26 | Joint pruning and quantization for 3DGS compression |
+| 2605.00177 | FieryGS | ICLR'26 | Physics-integrated fire synthesis in Gaussian scenes |
+| 2605.00219 | VkSplat | arXiv'26 | Cross-vendor training for portable 3DGS |
+| 2605.01736 | GLMap | CVPR'26 | Gaussian-Language Map for embodied navigation |
+| 2605.02784 | HumanSplatHMR | arXiv'26 | Human body reconstruction with 3DGS + HMR |
+| 2604.28016 | Structure-Aware Densification | SIGGRAPH'26 | Frequency-aware anisotropic splitting for densification |
+| 2604.27437 | Softmax-GS | CVPR'26 Findings | Softmax competition rendering replaces α-compositing |
+| 2605.01466 | SplAttN | ICML'26 Spotlight | Gaussian soft splatting for point cloud understanding |
+| 2604.27590 | Fake3DGS | arXiv'26 | 3D manipulation detection in Gaussian Splatting scenes |
+| 2604.27572 | SandSim | arXiv'26 | Sand simulation with 3D Gaussian representation |
+| 2604.27552 | RGS | arXiv'26 | Relightable Gaussian Splatting |
+
 ### Terminology Conventions
 
 Use standard 3DGS terminology:

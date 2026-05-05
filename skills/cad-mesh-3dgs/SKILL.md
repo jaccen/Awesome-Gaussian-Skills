@@ -435,11 +435,13 @@ def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000)
 |--------|-------|----------|-------------|----------------|------|
 | 3DGS | SIGGRAPH'23 | Pure Gaussian | N/A | Real-time | Open |
 | 2DGS | SIGGRAPH'24 | 2D disks for surface | Very High | Real-time | Open |
+| 2D-SuGaR | arXiv'26 | Surface-aware 2DGS with depth/normal priors | Very High | Real-time | — |
 | SuGaR | CVPR'24 | Regularized GS → TSDF → MC | High | Real-time | Open |
 | MaGS | ICCV'25 | Mesh-adsorbed Gaussians | High | Real-time | Open |
 | UniMGS | AAAI'26 | Unified mesh+GS rasterization | High | Real-time | Open |
 | Vol3DGS | CVPR'25 | Volume-consistent rasterization | High | Real-time | Open |
 | MeshGS | Various | Mesh-guided Gaussian placement | Medium-High | Real-time | Open |
+| Fake3DGS | arXiv'26 | 3D manipulation detection in GS scenes | — | — | — |
 
 ### CAD Reconstruction Methods
 
@@ -475,6 +477,10 @@ def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000)
 |--------|-------|--------|---------------|-------------|
 | GS-DOT | arXiv'26 | Medical (DOT) | Anisotropic Gaussians | Photon diffusion transport |
 | BiSplat-WRF | IEEE ICC'26 Workshop | Wireless (WRF) | Planar 2D Gaussians | Bilinear spatial transformer for EM coupling; adapts GS rendering to angular domain |
+| RESPIRE | arXiv'26 | Medical (bronchoscopy) | Mesh-anchored Gaussians | CT-informed mesh-anchored GS; dynamic bronchoscopy with geometric prior |
+| RGS | arXiv'26 | Medical (CBCT) | Residual wavelet-GS | Spectral decomposition into geometric base + residual detail Gaussians for sparse-view CBCT |
+
+**Note on medical mesh-GS methods**: RESPIRE and RGS both use hybrid mesh-Gaussian representations for medical imaging. RESPIRE anchors Gaussians to a CT-derived mesh for bronchoscopy (topology from prior), while RGS uses spectral decomposition to separate geometric base (mesh-like) from residual detail (Gaussian-like) for CBCT reconstruction.
 
 ## Output Format
 

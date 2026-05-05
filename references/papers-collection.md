@@ -1,4 +1,3 @@
-
 # 3DGS / NeRF / 3D Vision Papers Collection
 
 > Curated paper collection for Awesome-Gaussian-Skills. Supplements the main knowledge base (3dgs-methods-overview.md) with additional important papers organized by research direction.

@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 42+ known bug patterns.
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 47+ known bug patterns.
 version: 1.1.0
 author: jaccen
 tags:
@@ -23,7 +23,6 @@ trigger:
   - "训练不收敛"
 ---
 
-
 # 3DGS Code Reviewer
 
 You are a senior graphics engineer and 3DGS implementation expert. Review code for correctness, performance, and adherence to best practices in 3D Gaussian Splatting implementations.
@@ -31,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (42+ known patterns)
+- Identify common 3DGS implementation pitfalls (47+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -211,6 +210,31 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | 37 | Feature field quality degradation in downstream tasks | Blurry or noisy 3D features; poor segmentation/detection performance when using 3DGS feature fields for downstream tasks | Distill 2D foundation model features (DINO, SAM) into per-Gaussian 3D features with separate feature Gaussians (Feature 3DGS, CVPR'24) |
 | 38 | Local minima in 3DGS optimization | Reconstruction stuck in suboptimal state; density control creates redundant Gaussians without improving quality | Frame clone/split/prune as MCMC sampling moves (3DGS-as-MCMC, NeurIPS'24); use sampling-based optimization to escape local minima |
 | 39 | Planar surface bulging artifacts | Gaussians overshooting flat surfaces (walls, floors, tables); bumpy appearance on planar regions | Add planar regularizer constraining Gaussians to align with local tangent planes (PGSR, TVCG'24); unbiased depth rendering for surface consistency |
+
+### Vulkan Compute Kernel Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 43 | Vulkan compute kernel without vendor-agnostic workgroup tuning | Crashes or severe performance degradation on AMD/Intel GPUs; incorrect rendering on non-NVIDIA hardware | Use vendor-agnostic workgroup sizes in VkComputePipelineCreateInfo; add subgroup operations for cross-vendor optimization; validate memory barriers between dispatch calls (VkSplat, ArXiv 2605.00219) |
+
+### RL-Based Density Control Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 44 | Reward function gradient not detached from rendering graph in LeGS-style methods | Policy network receives wrong gradients; training instability; density control oscillation | Detach rendered images from computation graph before computing reward (`.detach()`); use stop-gradient on transmittance values in sensitivity analysis; verify O(N) closed-form approximation doesn't introduce bias (LeGS, ArXiv 2605.00408) |
+
+### Medical Imaging & Spectral Decomposition Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 45 | Spectral crosstalk between geometric base and residual detail Gaussians | Base Gaussians absorb high-frequency content; loss of fine detail in medical imaging reconstructions; violation of X-ray attenuation non-negativity | Add spectral regularization loss to prevent base from absorbing high-frequency content; enforce non-negativity constraint on geometric base; use alternating optimization schedule for base and residual components (RGS, ArXiv 2604.27552) |
+
+### Softmax-GS Specific Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 46 | Softmax applied over all overlapping Gaussians without proper normalization boundary | Output changes when Gaussian order changes; inconsistent blending at tile edges; NaN from softmax of large negative logits | Ensure softmax is applied over a fixed-size neighborhood (not variable per-pixel); clamp logit range before softmax; verify order-invariance by shuffling Gaussian indices in unit test |
+| 47 | Blend-to-bound transition not differentiable at boundary | Gradient discontinuity at opacity→boundary regime switch; training oscillations near object boundaries | Use smooth sigmoid transition between blend and bound modes; add small epsilon to regime classification threshold; verify gradient flow through transition function numerically |
 
 ## Output Format
 

@@ -193,6 +193,16 @@ class AppearanceGaussians:
 | Multi-resolution features | Explicit per-Gaussian | Store feature vector, interpolate if needed |
 | Ray-based queries | Point-based queries | Restructure query pipeline |
 
+### Recent Densification Alternatives (2026)
+
+When migrating NeRF methods that use custom density/sampling strategies, consider these modern alternatives to vanilla 3DGS ADC:
+
+| Method | ArXiv | What It Replaces | Key Difference |
+|--------|-------|-----------------|----------------|
+| **Softmax-GS** (CVPR'26 Findings) | 2604.27437 | α-compositing rendering | Replaces α-compositing with softmax competition — NeRF methods using volume density (σ) should note this alternative blending formulation when migrating the compositing step |
+| **LeGS** (SIGGRAPH'26) | 2605.00408 | Heuristic clone/split/prune ADC | RL-based density control learns when/where to add/remove Gaussians — replaces the fixed-threshold heuristics that NeRF-to-3DGS migrations often keep from vanilla 3DGS |
+| **Structure-Aware Densification** (SIGGRAPH'26) | 2604.28016 | Vanilla isotropic split | Frequency-aware anisotropic splitting — when NeRF methods use frequency-based sampling or multi-resolution features, this provides a more principled densification strategy |
+
 ### Step 4: Training Adaptation
 
 Key changes to the training loop:
