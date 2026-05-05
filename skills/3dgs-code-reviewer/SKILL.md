@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 47+ known bug patterns.
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 52+ known bug patterns.
 version: 1.1.0
 author: jaccen
 tags:
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (47+ known patterns)
+- Identify common 3DGS implementation pitfalls (52+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -235,6 +235,36 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 |---|---------|---------|-----|
 | 46 | Softmax applied over all overlapping Gaussians without proper normalization boundary | Output changes when Gaussian order changes; inconsistent blending at tile edges; NaN from softmax of large negative logits | Ensure softmax is applied over a fixed-size neighborhood (not variable per-pixel); clamp logit range before softmax; verify order-invariance by shuffling Gaussian indices in unit test |
 | 47 | Blend-to-bound transition not differentiable at boundary | Gradient discontinuity at opacity→boundary regime switch; training oscillations near object boundaries | Use smooth sigmoid transition between blend and bound modes; add small epsilon to regime classification threshold; verify gradient flow through transition function numerically |
+
+### Hardware Acceleration Patterns (Tensor Cores, GEMM)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 48 | Naive GEMM mapping breaks α-compositing order | Incorrect transmittance accumulation; color bleeding artifacts when porting 3DGS to Tensor Cores via GEMM reformulation | Ensure blending accumulation order matches tile-based splatting order; GEMM output layout must respect front-to-back transmittance guarantees; verify with deterministic rendering comparison (GEMM-GS, ArXiv 2505.04658) |
+
+### Event Camera & Neuromorphic Sensor Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 49 | Gaussian initialization on raw event edges without noise suppression | Catastrophic geometry corruption; spurious Gaussians at high-noise event boundaries; degraded reconstruction in event-based 3DGS | Apply temporal coherence analysis to event streams before edge extraction; filter events by temporal consistency (minimum event count over sliding window); suppress isolated events before Gaussian initialization (E2EGS, ArXiv 2504.14556) |
+
+### Articulated Model & Expression-Driven Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 50 | Directly deforming 3D Gaussians instead of operating in FLAME parameter space | Geometric instability in mouth/eye regions; inconsistent deformation across expressions; visible artifacts at expression boundaries | Deform Gaussians in FLAME UV parameter space and map back to 3D; respect FLAME's UV parameterization for consistent facial region deformation; use expression-conditioned Gaussian attributes rather than direct 3D offset (EmoTaG, ArXiv 2505.00969) |
+
+### PBR Material & Physically-Based Rendering Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 51 | Joint GI + anisotropic specular optimization collapses to trivial solution | Specular highlights vanish under low-light or nighttime conditions; all materials converge to Lambertian; loss of reflective/refractive detail | Initialize materials with anisotropic priors (spherical Gaussian lobes); use separate optimization schedules for diffuse and specular components; add specular regularization loss to prevent collapse to pure Lambertian (Nighttime AD GS, ArXiv 2505.01438) |
+
+### HDR & Multi-Exposure Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 52 | Naively mixing alternating-exposure frames in loss function | Model favors overexposed views; loss of highlight detail; blown-out specular reflections; inconsistent tone across views | Weight each frame's loss by inverse exposure duration or use exposure-normalized rendering; apply tone-mapping-aware loss that operates in log domain; separate HDR reconstruction from tone-mapping optimization (HDR-NSFF, ArXiv 2505.01090) |
 
 ## Output Format
 

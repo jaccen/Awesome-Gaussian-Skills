@@ -1,7 +1,7 @@
 ---
 name: 3dgs-method-compare
-description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 130+ 3DGS methods.
-version: 1.2.0
+description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 150+ 3DGS methods.
+version: 1.3.0
 author: jaccen
 tags:
   - 3dgs
@@ -23,7 +23,7 @@ trigger:
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 130+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 150+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -134,6 +134,7 @@ When comparing methods, analyze across the following dimensions:
 | Method | Venue | Prior Source | Key Feature |
 |--------|-------|-------------|-------------|
 | EnerGS | arXiv'26 | LiDAR (partial geometric) | Energy-based soft guidance instead of hard constraints; improves outdoor large-scale scenes |
+| Luminance-GS++ | TPAMI'26 | Illumination prior | Illumination-robust NVS; decouples shading from geometry |
 
 ### Geometry / Surface Methods
 
@@ -145,6 +146,8 @@ When comparing methods, analyze across the following dimensions:
 | PAGaS | arXiv'26 | High (depth) | 1DoF Gaussians for depth refinement |
 | Vol3DGS | CVPR'25 | High | Volume-consistent rendering |
 | 2D-SuGaR | arXiv'26 | Highest (DTU SOTA) | 2DGS + monocular depth/normal priors; depth-guided init; clustering-based pruning |
+| IRIS | arXiv'26 (2603.15368) | Hybrid | GS-proxy neural field with analytical ray intersection; hybrid rendering |
+| DiffSoup | arXiv'26 (2603.27151) | Extreme simplification | Triangle soup as alternative primitive to Gaussians |
 
 ### Generation / Text-to-3D
 
@@ -152,6 +155,7 @@ When comparing methods, analyze across the following dimensions:
 |--------|-------|-------|--------|-------------|
 | DreamGaussian | ICLR'24 (Oral) | Text prompt | 3D mesh + 3DGS | SDS + 3DGS prior, seconds |
 | GaussianEditor | Preprint | Text/geometry mask | Edited 3DGS | CLIP-guided selection + editing |
+| ArtifactWorld | arXiv'26 (2604.12251) | Artifact images | Restored video | Video generation for artifact restoration |
 
 ### Language / Semantic
 
@@ -162,6 +166,7 @@ When comparing methods, analyze across the following dimensions:
 | NRGS | arXiv'26 | Neural network | Learned regularization | Robust semantic 3DGS |
 | Semantic Foam | CVPR'26 (Highlight) | Volumetric Voronoi mesh | Per-cell semantic feature field | Semantic decomposition; outperforms Gaussian Grouping, SAGA |
 | GLMap | CVPR'26 | Multi-scale semantics | Per-Gaussian language features | Gaussian-Language Map; zero-shot navigation |
+| NG-GS | arXiv'26 (2604.14706) | NeRF-guided | Per-Gaussian segmentation | NeRF-guided GS segmentation |
 
 ### Feed-Forward Methods
 
@@ -176,6 +181,7 @@ When comparing methods, analyze across the following dimensions:
 | SparseSplat | CVPR'26 | 22% of SOTA | Single-pass | Pixel-unaligned, entropy-based probabilistic sampling, 3D-Local Attribute Predictor |
 | OT-UVGS | EG'26 | UV tensor | Same as UVGS | OT-based UV mapping, O(N log N) |
 | Free Geometry | arXiv'26 | Adaptive | Single-pass + LoRA | Self-evolving feed-forward, +3.73% camera accuracy |
+| FTSplat | arXiv'26 (2603.05932) | Variable | Single-pass | Feed-forward triangle splatting |
 
 ### SLAM Methods
 
@@ -186,6 +192,7 @@ When comparing methods, analyze across the following dimensions:
 | WildGS-SLAM | CVPR'25 | Monocular video | Room-scale | Dynamic environments, uncertainty-aware mapping via pretrained 3D priors |
 | S3PO-GS | ICCV'25 | Monocular video | Outdoor | Scale-consistent pose optimization, eliminates outdoor scale drift |
 | Flow4DGS-SLAM | arXiv'26 | Monocular video | Room-scale | Optical flow-guided 4DGS for temporal consistency |
+| E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
 
 ### Large-Scale Methods
 
@@ -210,21 +217,27 @@ When comparing methods, analyze across the following dimensions:
 | RGS | arXiv'26 | Medical (CBCT) | Residual wavelet-GS for sparse-view CBCT |
 | RESPIRE | arXiv'26 | Medical (bronchoscopy) | CT-informed mesh-anchored GS for dynamic bronchoscopy |
 | Color-Encoded Illumination | CVPR'26 (Highlight) | High-speed imaging | Color-coded temporal info for volumetric reconstruction |
+| HDR-NSFF | ICLR'26 (2603.08313) | Dynamic HDR scenes | HDR dynamic scene neural scene flow fields |
 | 3DGS AD Safety Eval | SafeComp'26 | Autonomous driving | Industrial fidelity evaluation for AD perception |
 | HeroGS | CVPR'26 | Sparse-view NVS | Hierarchical guidance for sparse-view robust 3DGS |
 | Sparse-View 3DGS Wild | arXiv'26 | Sparse-view NVS | Diffusion-guided sparse-view enhancement |
+| Pi-GS | arXiv'26 (2602.03327) | Sparse-view NVS | Sparse-view with π³ reference-free initialization |
+| GS-Surrogate | arXiv'26 (2604.06358) | Physics simulation | Deformable GS for simulation visualization |
 
 ### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
 | HumanSplatHMR | arXiv'26 | Image | Joint pose-avatar optimization; closes loop between HMR and differentiable rendering |
+| EmoTaG | CVPR'26 (2603.21332) | Image + audio | Emotion-aware talking head on GS |
 
 ### Autonomous Driving Methods
 
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
 | GSDrive | arXiv'26 | Multi-camera | 3DGS-based differentiable reward shaping for E2E driving; multi-mode trajectory probing |
+| GaussianLSS | CVPR'25 | Multi-camera | GS for BEV perception |
+| Nighttime AD GS | ICRA'26 (2602.13549) | Nighttime multi-camera | PBR-based nighttime AD reconstruction |
 
 ### System & Infrastructure Methods
 
@@ -237,6 +250,7 @@ When comparing methods, analyze across the following dimensions:
 | Method | Venue | Strategy | Key Feature |
 |--------|-------|----------|-------------|
 | Structure-Aware Densification | SIGGRAPH'26 | Frequency-aware anisotropic splitting | Frequency-aware anisotropic splitting; multiview consistency; faster convergence |
+| GEMM-GS | DAC'26 (2604.02120) | Tensor Core GEMM | GPU acceleration via Tensor Cores; 1.42x speedup |
 
 ### Real-Time NVS Methods
 
@@ -255,6 +269,10 @@ When comparing methods, analyze across the following dimensions:
 | FluSplat | Text-driven | Sparse views | Medium-High |
 | TransSplat | Language-driven | Multi-view + text | High |
 | GOR-IS | Intrinsic-space removal | Image | High (+13% LPIPS) |
+| SVGS | arXiv'26 (2603.28126) | Text-driven 3D editing | Single view + text prompt | High |
+| VIRGi | TPAMI'26 (2603.02986) | Appearance editing | Image | View-dependent instant recoloring |
+| RDSplat | arXiv'26 (2512.06774) | Watermarking | Watermarked GS | Robust watermarking against diffusion editing |
+| FreeFix | arXiv'26 (2601.20857) | Diffusion guidance | No fine-tuning | Fine-tuning-free diffusion guidance for GS |
 
 ## Output Format
 

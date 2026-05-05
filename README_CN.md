@@ -1,4 +1,3 @@
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -44,7 +43,7 @@
 - **7 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 31 个类别的 120+ 3DGS 变体，含领域术语规范
+- **领域专家知识**：内置知识库覆盖 37 个类别的 150+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
 
 ---
@@ -132,7 +131,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（45+ 已知模式）
+- 常见 bug 模式检测（52+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -229,7 +228,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG 论文写作助手
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # 内置知识库（120+ 方法）
+│   └── 3dgs-methods-overview.md # 内置知识库（150+ 方法）
 ├── scripts/
 │   └── setup.sh                 # 快速安装脚本
 ├── README.md
@@ -253,22 +252,25 @@ Awesome-Gaussian-Skills/
 |------|------|
 | 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting |
 | 压缩 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++ |
-| 鲁棒性 | NRGS, DualSplat, EnerGS |
-| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam |
+| 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
+| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS |
 | 生成/文生3D | DreamGaussian |
 | 抗锯齿 | Mip-Splatting, LeanGaussian |
 | 优化 | 3DGS-as-MCMC |
 | 图像表示 | GaussianImage |
-| 加速 | Proxy-GS, Faster-GS |
+| 加速 | Proxy-GS, Faster-GS, GEMM-GS |
 | 主动视觉 | MAGICIAN |
-| 仿真 | GS-Playground |
+| 仿真 | GS-Playground, GS-Surrogate, FieryGS |
 | 实时新视角合成 | 3DTV |
-| 跨领域 | GS-DOT |
+| 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE |
 | 数据采集 | Mobile Phone 3DGS Acquisition |
-| 退化感知 | MERID-GS, MarineSTD-GS |
+| 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
 | 系统 | YOGO, GS-SCNet |
+| 安全 | RDSplat |
+| HDR/动态 | HDR-NSFF |
+| 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> 完整知识库覆盖 **31 个类别的 120+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **37 个类别的 150+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 ---
 
@@ -277,8 +279,8 @@ Awesome-Gaussian-Skills/
 - [x] v0.1 — 初始版本，6 个核心技能（2026年4月）
 - [x] v0.1.1 — 新增 `cad-mesh-3dgs` 技能，桥接 CAD/Mesh↔3DGS（2026年4月）
 - [x] v0.1.2 — 知识库扩展：50→120+ 方法、31 个类别、每日自动更新工作流（2026年4-5月）
-- [x] v0.1.3 — 知识库 v2：120+ 方法、45+ bug 模式、跨领域扩展（2026年5月）
-- [ ] v0.2 — 新增 `3dgs-visualizer` 技能（Web 端渲染对比）
+- [x] v0.1.3 — 知识库 v2：130→150+ 方法、52+ bug 模式、37 个类别、跨领域扩展（2026年5月）
+- [ ] v0.2 — 新增 `3dgs-visualizer` 技能（Web 端渲染对比，跨基元：GS vs 三角面片 vs 隐式）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）

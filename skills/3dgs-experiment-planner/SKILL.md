@@ -1,7 +1,7 @@
 ---
 name: 3dgs-experiment-planner
 description: Design rigorous experiments for 3D Gaussian Splatting research papers. Recommends datasets, baselines, metrics, ablation matrices, and visualization plans tailored to your method. Targets top venues (CVPR/ICCV/ECCV/SIGGRAPH/TVCG).
-version: 1.0.0
+version: 1.1.0
 author: jaccen
 tags:
   - 3dgs
@@ -74,7 +74,6 @@ Before designing experiments, extract:
 | Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
 | Active Mapping / Robotics | MAGICIAN benchmarks | Active vision path planning quality |
 | CAD / Parametric | BrepGaussian benchmarks | B-rep reconstruction accuracy |
-| Egocentric Video | EgoExo4D | Paired ego-exo recordings for 3DGS evaluation in first-person views |
 | Simulation & Robotics | Habitat-GS (Habitat-Sim upgrade) | 3DGS-based robot simulation environments, navigation & interaction tasks |
 | Cross-Domain / Medical | GS-DOT diffuse optical tomography benchmarks | Tests GS in photon diffusion regime (non-VS application) |
 | High-Speed Volumetric | Color-Encoded Illumination (CVPR 2026) paper benchmarks | Tests color-coded temporal info for high-speed volumetric reconstruction |
@@ -86,6 +85,10 @@ Before designing experiments, extract:
 | Real-Time NVS (Multi-Camera) | 3DTV 3-camera setups | Real-time view synthesis at 40 FPS with multi-camera input |
 | Outdoor Robust / LiDAR Prior | EnerGS paper benchmarks | Tests energy-based guidance with partial geometric priors |
 | Wireless / Cross-Domain | BiSplat-WRF paper benchmarks | Wireless radiance field (non-VS) reconstruction |
+| HDR Dynamic Scenes | HDR-GoPro (HDR-NSFF, ICLR 2026) | First real-world HDR dataset for dynamic HDR scenes, alternating-exposure monocular video |
+| Nighttime AD / Low-Light | Nighttime nuScenes / Waymo (Nighttime AD GS, ICRA 2026) | Nighttime subsets of standard AD benchmarks for low-light reconstruction evaluation |
+| Egocentric Video | EgoExo4D | Paired ego-exo recordings for 3DGS evaluation in first-person views |
+| Cross-Domain Reconstruction | BALTIC benchmark | Controlled cross-domain (air/water) 3D reconstruction benchmark |
 
 ### Step 3: Baseline Selection
 
@@ -121,6 +124,13 @@ Before designing experiments, extract:
 - Fake3DGS (if making robustness/security/forensics claims)
 - 3DGS AD Safety Eval (if making autonomous driving perception fidelity claims)
 - RESPIRE (if making medical dynamic scene reconstruction claims)
+- GEMM-GS (if making GPU-level acceleration / Tensor Core optimization claims)
+- DiffSoup (if making extreme primitive simplification or triangle soup claims)
+- FTSplat (if making feed-forward triangle primitive or alternative-to-GS rendering claims)
+- SVGS (if making single-view editing or text-guided 3D manipulation claims)
+- GS-Surrogate (if making simulation visualization surrogate or rendering approximation claims)
+- Pi-GS (if making reference-free sparse-view novel view synthesis claims)
+- FreeFix (if making diffusion-guided refinement or post-processing enhancement claims)
 
 #### Minimum Baseline Count
 For top-venue submission: **at least 4 baselines** across different categories.

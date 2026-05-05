@@ -1,9 +1,3 @@
-# 3DGS Methods Overview
-
-> Built-in knowledge base for Awesome Gaussian Skills. Covers 110+ 3D Gaussian Splatting variants organized by category.
-> Last updated: 2026-05-05 (daily update — 20 new papers from arXiv/Baidu/Zhihu/GitHub)
-> Companion file: [papers-collection.md](papers-collection.md) — 92 additional papers from CVPR/ICCV/SIGGRAPH/NeurIPS/ICLR/arXiv
-
 ## Foundation Methods
 
 ### 3D Gaussian Splatting (3DGS)
@@ -37,15 +31,6 @@
 - **Core**: Replaces standard α-compositing with learnable softmax-based competition between overlapping Gaussians
 - **Key Innovation**: Enforces softmax competition in overlapping regions; learnable parameters control blend-vs-bound strength (smooth blending → crisp boundaries); preserves order invariance and transmittance consistency; addresses both view-inconsistency and diffuse-boundary problems in a unified formulation
 - **Trade-off**: Higher parameter efficiency with better reconstruction quality on real-world benchmarks
-
-## Antialiasing
-
-### LeanGaussian
-- **Paper**: LeanGaussian: Compressing 3D Gaussian Splatting to the Minimum for Efficient Large-Scale Rendering
-- **Authors**: IDEA Research Institute
-- **Venue**: CVPR 2025
-- **Core**: Directly models 3D Gaussians from single RGB image for novel view synthesis; extreme compression for efficient rendering
-- **Key Innovation**: Breaks pixel/point cloud correspondence constraints; minimal Gaussian representation for efficient large-scale rendering
 
 ## Surface & Geometry Methods
 
@@ -92,6 +77,20 @@
 - **Key Innovation**: Depth-guided initialization strategy for Gaussians; clustering-based technique for pruning degenerate Gaussians; achieves SOTA mesh reconstruction on DTU while preserving high-quality novel view synthesis
 - **Note**: Extension of 2DGS and SuGaR, combining surface-aware regularization with 2D Gaussian primitives
 
+
+
+### LeanGaussian
+- **Paper**: LeanGaussian: Compressing 3D Gaussian Splatting to the Minimum for Efficient Large-Scale Rendering
+- **Authors**: IDEA Research Institute
+- **Venue**: CVPR 2025
+- **Core**: Directly models 3D Gaussians from single RGB image for novel view synthesis; extreme compression for efficient rendering
+- **Key Innovation**: Breaks pixel/point cloud correspondence constraints; minimal Gaussian representation for efficient large-scale rendering
+
+### NegGS (Negative Gaussian Splatting)
+- **Paper**: Negative Gaussian Splatting
+- **ArXiv**: 2405.14786
+- **Core**: Allows negative color values; opacity remains non-negative
+- **Key Innovation**: Diff-Gaussian distribution (subtraction of two Gaussians) for ring/crescent/non-convex structures; negative color values in RGB space (not negative opacity); ~20% negative Gaussians optimal
 ## CAD / Mesh / Hybrid Methods
 
 ### SuGaR
@@ -144,17 +143,6 @@
 - **Key Innovation**: Gaussians provide dense geometric prior for B-rep extraction (trimmed NURBS surfaces, edges, vertices)
 - **Output**: Parametric CAD model (STEP-compatible)
 - **Limitations**: Struggles with textureless regions, thin structures, high specular, heavy occlusion + sparse views
-
-## Signed / Decomposed Methods
-
-### NegGS (Negative Gaussian Splatting)
-- **Paper**: Negative Gaussian Splatting
-- **ArXiv**: 2405.14786
-- **Core**: Allows negative color values; opacity remains non-negative
-- **Key Innovation**: Diff-Gaussian distribution (subtraction of two Gaussians) for ring/crescent/non-convex structures
-- **Negative Mechanism**: Negative color values in RGB space (not negative opacity)
-- **Trade-off**: Better at non-convex structures, but opacity still bounded [0, +∞)
-- **Typical Ratio**: ~20% negative Gaussians optimal
 
 ## Generation / Text-to-3D
 
@@ -395,6 +383,16 @@
 ### TRiGS (also listed in Feed-Forward)
 - See Feed-Forward Methods section for details
 
+
+
+### HDR-NSFF
+- **Paper**: HDR-NSFF: High Dynamic Range Neural Scene Flow Fields
+- **Authors**: Shin Dong-Yeon, Kim Jun-Seong, Kwon Byung-Ki, Tae-Hyun Oh
+- **Venue**: ICLR 2026
+- **ArXiv**: 2603.08313
+- **Core**: Dynamic HDR radiance fields from alternating-exposure monocular video; compatible with both NeRF and 4DGS
+- **Key Innovation**: 4D spatio-temporal modeling paradigm; DINO-based exposure-invariant optical flow; first real-world HDR-GoPro dataset
+- **Code**: https://shin-dong-yeon.github.io/HDR-NSFF/
 ## Language / Semantic
 
 ### LangSplat
@@ -433,6 +431,12 @@
 - **Key Innovation**: Each semantic unit jointly stores natural language description and 3D Gaussian representation; enables fast rendering of task-relevant images via Gaussian splatting; Gaussian Estimator analytically derives Gaussian parameters from dense point clouds without gradient optimization; zero-shot compatible with large-model methods
 - **Code**: https://github.com/sx-zhang/GLMap
 
+### NG-GS
+- **Paper**: NG-GS: NeRF-Guided 3D Gaussian Splatting Segmentation
+- **ArXiv**: 2604.14706
+- **Core**: NeRF-guided segmentation for 3DGS
+- **Key Innovation**: Leverages NeRF's continuous representation to guide Gaussian-level semantic assignment
+
 ## Image Representation
 
 ### GaussianImage
@@ -445,13 +449,22 @@
 
 ## Few-Shot / Sparse-View
 
+### Pi-GS
+- **Paper**: Pi-GS: Sparse-View Gaussian Splatting with Dense π³ Initialization
+- **Authors**: Manuel Hofer, Markus Steinberger, Thomas Köhler
+- **ArXiv**: 2602.03327
+- **Core**: Robust sparse-view 3DGS using reference-free π³ point cloud estimation
+- **Key Innovation**: Dense π³ initialization + uncertainty-guided depth supervision + normal consistency loss; SOTA on Tanks and Temples, LLFF, DTU, MipNeRF360
+
+
+
 ### FSGS
 - **Paper**: FSGS: Real-Time Few-Shot View Synthesis using Gaussian Splatting
 - **Authors**: Zehao Zhu, Zhiwen Fan, Yifan Jiang, Zhangyang Wang
 - **Venue**: ECCV 2024
 - **ArXiv**: 2312.00451
 - **Core**: Real-time few-shot view synthesis combining SRF (Spatial Radiance Fields) with 3DGS
-- **Key Innovation**: Pre-trained SRF provides geometric prior from sparse views, 3DGS handles fine detail; generalizes to novel scenes without per-scene optimization; high-quality novel view synthesis from as few as 3 input views
+- **Key Innovation**: Pre-trained SRF provides geometric prior from sparse views, 3DGS handles fine detail; generalizes to novel scenes without per-scene optimization
 - **Code**: https://github.com/VITA-Group/FSGS
 
 ### HeroGS
@@ -459,15 +472,14 @@
 - **Authors**: Jiashu Li (CAS/UCAS Vision Group)
 - **Venue**: CVPR 2026
 - **Core**: Fusion framework addressing overfitting in sparse-view 3DGS via hierarchical guidance from image-level to pixel-level
-- **Key Innovation**: Multi-scale hierarchical guidance (image→region→pixel) progressively refines 3DGS with limited supervision; alleviates sparse-view reconstruction degradation
+- **Key Innovation**: Multi-scale hierarchical guidance (image to region to pixel) progressively refines 3DGS with limited supervision
 
-### Sparse-View 3DGS Wild
-- **Paper**: Sparse-View 3D Gaussian Splatting in the Wild
-- **Authors**: Wongi Park, Jordan A. James, Myeongseok Nam, Minjae Lee, Soomok Lee, Sang-Hyun Lee, William J. Beksi
-- **ArXiv**: 2604.27422
-- **Core**: Diffusion-guided sparse-view 3DGS enhancement for unconstrained in-the-wild scenes
-- **Key Innovation**: Reference-guided view refinement with transient mask + sparsity-aware Gaussian replication strategy; PSNR +17.2%, SSIM +10.8%, LPIPS +4.0% over existing methods
-
+### GSCompleter
+- **Paper**: GSCompleter: A Distillation-Free Plugin for Metric-Aware 3D Gaussian Splatting Completion in Seconds
+- **Authors**: Ao Gao, Jingyu Gong, Xin Tan, Zhizhong Zhang, Yuan Xie
+- **ArXiv**: 2604.20155
+- **Core**: Distillation-free plugin for sparse-view 3DGS completion using Generate-then-Register workflow
+- **Key Innovation**: Stereo-Anchor mechanism lifts synthesized 2D references into metric-scale 3D primitives; Ray-Constrained Registration integrates into global context
 ## Large-Scale Methods
 
 ### Scaffold-GS
@@ -505,34 +517,6 @@
 - **Core**: Modeling dynamic urban street scenes with Gaussian Splatting via static/dynamic decomposition
 - **Key Innovation**: Static/dynamic decomposition for street scenes; separate Gaussian representations for static background and dynamic objects (cars, pedestrians); real-time rendering of complex urban driving scenarios; handles large-scale driving sequences
 - **Code**: https://github.com/hbb1/Street-Gaussians
-
-## In-the-Wild / Robust
-
-### WildGaussians
-- **Paper**: WildGaussians: 3D Gaussian Splatting in the Wild
-- **Authors**: Jonas Kulhanek, Songyou Peng, Zuzana Kukelova, Marc Pollefeys, Torsten Sattler
-- **Venue**: NeurIPS 2024
-- **ArXiv**: 2407.08447
-- **Core**: 3DGS with unknown camera poses from internet photos; joint pose and 3DGS optimization
-- **Key Innovation**: Robust initialization from COLMAP point clouds + incremental pose refinement; handles in-the-wild image collections with varying lighting, transient objects, and occlusion; first robust 3DGS pipeline for unconstrained internet photo collections
-
-## Optimization
-
-### 3DGS as MCMC
-- **Paper**: 3D Gaussian Splatting as Markov Chain Monte Carlo
-- **Authors**: Shakiba Kheradmand, et al.
-- **Venue**: NeurIPS 2024
-- **ArXiv**: 2404.09591
-- **Core**: Formulates 3DGS optimization as Markov Chain Monte Carlo sampling
-- **Key Innovation**: Reframes Gaussian density control (clone/split/prune) as MCMC sampling moves; provides principled probabilistic foundation for 3DGS optimization; addresses local minima problem; Bayesian perspective on Gaussian placement and parameter estimation
-
-### LeGS (Learnable Density Control)
-- **Paper**: Beyond Heuristics: Learnable Density Control for 3D Gaussian Splatting
-- **Authors**: Zhenhua Ning, Xin Li, Jun Yu, Guangming Lu, Yaowei Wang, Wenjie Pei
-- **ArXiv**: 2605.00408
-- **Core**: Replaces heuristic density control (clone/split/prune) with fully learnable policy via Reinforcement Learning
-- **Key Innovation**: Formulates density control as parameterized policy network optimized via RL; tailored reward function grounded in sensitivity analysis quantifies marginal contribution of individual Gaussians; derives closed-form solution reducing reward computation from O(N²) to O(N); significantly outperforms heuristic-based methods on Mip-NeRF 360, Tanks and Temples, Deep Blending
-- **Code**: https://github.com/AaronNZH/LeGS
 
 ## Editing Methods
 
@@ -579,6 +563,39 @@
 - **Key Innovation**: Decomposes scene into intrinsic components; explicitly models light transport for global lighting consistency; intrinsic-space inpainting module operates in material and lighting domains; handles view-dependent non-Lambertian surfaces; +13% LPIPS and +2dB PSNR over existing methods
 - **Code**: https://applezyh.github.io/GOR-IS-project-page/
 
+### SVGS
+- **Paper**: SVGS: Single-View to 3D Object Editing via Gaussian Splatting
+- **Authors**: Pengcheng Xue, Yan Tian, Qiutao Song, Ziyi Wang, Linyang He, Weiping Ding, Mahmoud Hassaballah, Karen Egiazarian, Wei-Fa Yang, Leszek Rutkowski
+- **ArXiv**: 2603.28126
+- **Core**: Single-view text-driven 3D object editing using sparse 3DGS
+- **Key Innovation**: Single-view editing strategy with multi-view diffusion models; reconstructs 3D from only consistent views; sparse 3DGS for efficiency
+- **Code**: https://amateurc.github.io/svgs.github.io
+
+### DiffSoup
+- **Paper**: DiffSoup: Direct Differentiable Rasterization of Triangle Soup for Extreme Radiance Field Simplification
+- **Authors**: Kenji Tojo, Bernd Bickel, Nobuyuki Umetani
+- **ArXiv**: 2603.27151
+- **Core**: Triangle soup with neural textures + binary opacity as extreme simplification of radiance fields
+- **Key Innovation**: Stochastic opacity masking for differentiability; standard depth testing; orders-of-magnitude simplification; runs on consumer hardware
+- **Code**: https://github.com/kenji-tojo/diffsoup
+
+### FTSplat
+- **Paper**: FTSplat: Feed-forward Triangle Splatting Network
+- **Authors**: Xiong Jinlin, Li Can, Shen Jiawei, Qi Zhigang, Sun Lei, Zhao Dongyang
+- **ArXiv**: 2603.05932
+- **Core**: Feed-forward triangle primitive generation from multi-view images
+- **Key Innovation**: Produces simulation-ready models in single forward pass; no per-scene optimization; compatible with standard graphics/robotic simulators
+
+### IRIS
+- **Paper**: IRIS: Intersection-aware Ray-based Implicit Editable Scenes
+- **Authors**: Grzegorz Wilczyński, Mikołaj Zieliński, Krzysztof Byrski, Joanna Waczyńska, Dominik Belter, Przemysław Spurek
+- **ArXiv**: 2603.15368
+- **Core**: Hybrid Gaussians-as-proxies for neural field evaluation with analytical ray-primitive intersection
+- **Key Innovation**: Eliminates empty space via analytical sampling; continuous feature aggregation along ray; real-time rendering + flexible shape editing
+- **Code**: https://github.com/gwilczynski95/iris
+
+> **Note**: DiffSoup, FTSplat, and IRIS use non-Gaussian primitives (triangle soup, hybrid proxy) but are listed here due to their relevance to 3DGS editing workflows and the trend toward alternative primitives.
+
 ## Material & Relighting Methods
 
 ### GRF (Gaussian Relighting Field)
@@ -605,6 +622,14 @@
 - **Key Innovation**: Normal-equation-based visibility-weighted least squares for per-Gaussian colorization; up to 10x faster than gradient descent baselines
 - **Application**: Scene relighting, feature enrichment, 3D semantic segmentation
 
+
+### VIRGi
+- **Paper**: VIRGi: View-dependent Instant Recoloring of 3D Gaussians Splats
+- **Authors**: Alessio Mazzucchelli, Ivan Ojeda-Martin, Fernando Rivas-Manzaneque, Elena Garces, Adrian Penate-Sanchez, Francesc Moreno-Noguer
+- **Venue**: IEEE TPAMI 2026
+- **ArXiv**: 2603.02986
+- **Core**: Rapid recoloring of 3DGS scenes while preserving view-dependent effects
+- **Key Innovation**: Separates color into diffuse and view-dependent components; only one manually edited image needed; fine-tunes single MLP in two seconds; control over view-dependent effect strength
 ## Human & Avatar Methods
 
 ### GaussianAvatar
@@ -666,6 +691,31 @@
 - **Core**: Models partially observable geometry as continuous energy field for soft geometric guidance in 3DGS optimization
 - **Key Innovation**: Instead of hard geometric constraints, provides soft energy-based guidance from LiDAR/depth priors; allows geometry to steer optimization without restricting solution space; mitigates overfitting in large-scale outdoor scenes with incomplete geometric supervision
 
+
+
+### WildGaussians
+- **Paper**: WildGaussians: 3D Gaussian Splatting in the Wild
+- **Authors**: Jonas Kulhanek, Songyou Peng, Zuzana Kukelova, Marc Pollefeys, Torsten Sattler
+- **Venue**: NeurIPS 2024
+- **ArXiv**: 2407.08447
+- **Core**: 3DGS with unknown camera poses from internet photos; joint pose and 3DGS optimization
+- **Key Innovation**: Robust initialization from COLMAP point clouds + incremental pose refinement; handles in-the-wild image collections with varying lighting, transient objects, and occlusion
+
+### MERID-GS
+- **Paper**: Light 'em Up: Enabling Few-Shot Low-Light 3D Gaussian Splatting with Multi-Scale Explicit Retinex Illumination Decoupling
+- **Authors**: YuHao Yin, Zongji Wang, Yuanben Zhang, Biqing Li, Jiesong Bai, Junyi Liu
+- **ArXiv**: 2604.24053
+- **Core**: Few-shot low-light 360 synthesis via Retinex-based illumination/reflectance decoupling
+- **Key Innovation**: Learnable gain + Illumination-State-Guided Frequency Gating; adapts to new scenes with few shots
+- **Code**: https://github.com/YhuoyuH/MERID-GS
+
+### MarineSTD-GS
+- **Paper**: Spatiotemporal Degradation-Aware 3D Gaussian Splatting for Realistic Underwater Scene Reconstruction
+- **Authors**: Shaohua Liu, Ning Gao, Zuoya Gu, Hongkun Dou, Yue Deng, Hongjue Li
+- **Venue**: ACM MM 2025
+- **ArXiv**: 2604.23551
+- **Core**: Explicitly models temporal + spatial underwater degradations (caustics, flickering, attenuation, backscattering)
+- **Key Innovation**: Paired Intrinsic/Degraded Gaussians; Spatiotemporal Degradation Modeling module; self-supervised disentanglement of realistic appearance
 ## Autonomous Driving
 
 ### Street-GS
@@ -700,6 +750,20 @@
 - **ArXiv**: 2605.01995
 - **Core**: Systematic evaluation framework for 3DGS capabilities and limitations in safety-related AD scene reconstruction
 - **Key Innovation**: First industrial-fidelity evaluation of 3DGS for AD; focuses on vehicle and pedestrian reconstruction quality from multiple novel viewpoints (lateral and longitudinal); analyzes fidelity degradation patterns for integrating 3DGS into real-world AD software pipelines
+
+### Nighttime AD GS
+- **Paper**: Nighttime Autonomous Driving Scene Reconstruction with Physically-Based Gaussian Splatting
+- **Authors**: Tae-Kyeong Kim, Xingxin Chen, Guile Wu, Chengjie Huang, Dongfeng Bai, Bingbing Liu
+- **Venue**: ICRA 2026
+- **ArXiv**: 2602.13549
+- **Core**: Physically based rendering in 3DGS for nighttime driving scene reconstruction
+- **Key Innovation**: BRDF material optimization; global illumination (diffuse) + anisotropic spherical Gaussians (specular); SOTA on nuScenes/Waymo nighttime
+
+### GaussianLSS
+- **Paper**: GaussianLSS: Gaussian Splatting for BEV Perception
+- **Venue**: CVPR 2025
+- **Core**: Reconstructs BEV representation using Gaussian Splatting for AD perception
+- **Key Innovation**: Models depth uncertainty in BEV perception; improves 3D perception without larger Transformers
 
 ## SLAM
 
@@ -761,7 +825,7 @@
 - **Code**: https://shiyao-li.github.io/magician/
 - **Note**: Also relevant to Active Vision category
 
-## Training Acceleration
+## Training & Optimization
 
 ### Faster-GS
 - **Paper**: Faster-GS — Systematic Acceleration of 3D Gaussian Splatting Training
@@ -784,33 +848,77 @@
 - **Core**: Structure-aware densification replacing heuristic screen-space gradient-based split/clone
 - **Key Innovation**: Multi-scale frequency analysis combining structure tensors with Laplacian scale space to estimate dominant frequency; per-Gaussian per-axis frequency violation metric η; anisotropic splitting (vs isotropic); multiview consistency criterion; faster convergence with superior quality especially in high-frequency regions
 
-## Scene Completion
 
-### GSCompleter
-- **Paper**: GSCompleter: A Distillation-Free Plugin for Metric-Aware 3D Gaussian Splatting Completion in Seconds
-- **Authors**: Ao Gao, Jingyu Gong, Xin Tan, Zhizhong Zhang, Yuan Xie
-- **ArXiv**: 2604.20155
-- **Core**: Distillation-free plugin for sparse-view 3DGS completion using Generate-then-Register workflow
-- **Key Innovation**: Stereo-Anchor mechanism lifts synthesized 2D references into metric-scale 3D primitives; Ray-Constrained Registration integrates into global context; SOTA on 3 benchmarks
 
-## Degradation-Aware Methods
+### Faster-GS
+- **Paper**: Faster-GS: Systematic Acceleration of 3D Gaussian Splatting Training
+- **Venue**: CVPR 2026
+- **Core**: Systematic benchmark for 3DGS training speed optimization
+- **Key Innovation**: Separates engineering optimizations from algorithmic innovations, enabling fair evaluation of 3DGS acceleration methods
 
-### MERID-GS
-- **Paper**: Light 'em Up: Enabling Few-Shot Low-Light 3D Gaussian Splatting with Multi-Scale Explicit Retinex Illumination Decoupling
-- **Authors**: YuHao Yin, Zongji Wang, Yuanben Zhang, Biqing Li, Jiesong Bai, Junyi Liu
-- **ArXiv**: 2604.24053
-- **Core**: Few-shot low-light 360° synthesis via Retinex-based illumination/reflectance decoupling
-- **Key Innovation**: Learnable gain + Illumination-State-Guided Frequency Gating; adapts to new scenes with few shots; constructs low-light multi-view dataset
-- **Code**: https://github.com/YhuoyuH/MERID-GS
+### Proxy-GS
+- **Paper**: Proxy-GS: Occlusion-Aware Gaussian Splatting via Lightweight Proxy Model
+- **Authors**: Zhonghang Zhou (USTC/SJTU), Shanghai AI Lab, NWPU
+- **Venue**: CVPR 2026 (Perfect Score)
+- **Core**: Lightweight proxy model with occlusion prior for training and inference acceleration
+- **Key Innovation**: 2.5x rendering speedup with no accuracy loss; occlusion-aware pruning via proxy model
 
-### MarineSTD-GS
-- **Paper**: Spatiotemporal Degradation-Aware 3D Gaussian Splatting for Realistic Underwater Scene Reconstruction
-- **Authors**: Shaohua Liu, Ning Gao, Zuoya Gu, Hongkun Dou, Yue Deng, Hongjue Li
-- **Venue**: ACM MM 2025
-- **ArXiv**: 2604.23551
-- **Core**: Explicitly models temporal + spatial underwater degradations (caustics, flickering, attenuation, backscattering)
-- **Key Innovation**: Paired Intrinsic/Degraded Gaussians; Spatiotemporal Degradation Modeling module; self-supervised disentanglement of realistic appearance
+### Structure-Aware Densification
+- **Paper**: Faster 3D Gaussian Splatting Convergence via Structure-Aware Densification
+- **Authors**: Linjie Lyu, Ayush Tewari, Jianchun Chen, Thomas Leimkuhler, Christian Theobalt
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2604.28016
+- **Core**: Structure-aware densification replacing heuristic screen-space gradient-based split/clone
+- **Key Innovation**: Multi-scale frequency analysis combining structure tensors with Laplacian scale space; per-Gaussian per-axis frequency violation metric; anisotropic splitting; faster convergence with superior high-freq quality
 
+### 3DGS as MCMC
+- **Paper**: 3D Gaussian Splatting as Markov Chain Monte Carlo
+- **Authors**: Shakiba Kheradmand, et al.
+- **Venue**: NeurIPS 2024
+- **ArXiv**: 2404.09591
+- **Core**: Formulates 3DGS optimization as Markov Chain Monte Carlo sampling
+- **Key Innovation**: Reframes Gaussian density control (clone/split/prune) as MCMC sampling moves; provides principled probabilistic foundation for 3DGS optimization
+
+### LeGS (Learnable Density Control)
+- **Paper**: Beyond Heuristics: Learnable Density Control for 3D Gaussian Splatting
+- **Authors**: Zhenhua Ning, Xin Li, Jun Yu, Guangming Lu, Yaowei Wang, Wenjie Pei
+- **ArXiv**: 2605.00408
+- **Core**: Replaces heuristic density control (clone/split/prune) with fully learnable policy via Reinforcement Learning
+- **Key Innovation**: Formulates density control as parameterized policy network optimized via RL; closed-form O(N) reward computation via sensitivity analysis
+- **Code**: https://github.com/AaronNZH/LeGS
+
+### GEMM-GS
+- **Paper**: GEMM-GS: Accelerating 3D Gaussian Splatting on Tensor Cores with GEMM-Compatible Blending
+- **Authors**: Haomin Li, Bowen Zhu, Fangxin Liu, Zongwu Wang, Xinran Liang, Li Jiang, Haibing Guan
+- **Venue**: DAC 2026
+- **ArXiv**: 2604.02120
+- **Core**: Reformulates 3DGS blending into GEMM-compatible form to utilize GPU Tensor Cores
+- **Key Innovation**: First method to exploit Tensor Cores for 3DGS; 1.42x speedup; three-stage double-buffered CUDA pipeline
+- **Code**: https://github.com/shieldforever/GEMM-GS
+
+### Hybrid-Capture Two-View Training
+- **Paper**: Two-View Accumulation as the Primary Training Lever for Hybrid-Capture Gaussian Splatting
+- **Authors**: Sungjun Cho
+- **ArXiv**: 2605.00052
+- **Core**: Training strategy analysis for hybrid-capture 3DGS (aerial drone + ground-level views)
+- **Key Innovation**: Two-view-per-step as dominant lever; variance-decomposition framework; transfers to Scaffold-GS and Pixel-GS
+
+### YOGO (You Only Gaussian Once)
+- **Paper**: You Only Gaussian Once: Controllable 3D Gaussian Splatting for Ultra-Densely Sampled Scenes
+- **Authors**: Jinrang Jia, Zhenjia Li, Yifeng Shi
+- **ArXiv**: 2604.21400
+- **Core**: System-level framework reformulating stochastic Gaussian growth into deterministic budget-aware equilibrium
+- **Key Innovation**: Budget controller for resource allocation + availability-registration for multi-sensor fusion
+- **Code**: https://jjrcn.github.io/yogo-project-home/
+
+### VkSplat
+- **Paper**: VkSplat: High-Performance 3DGS Training in Vulkan Compute
+- **Authors**: Jingxiang Chen, Mohamed Ibrahim, Yang Liu
+- **Venue**: Eurographics 2026 Short Papers
+- **ArXiv**: 2605.00219
+- **Core**: First fully-Vulkan-based 3DGS training pipeline achieving SOTA performance
+- **Key Innovation**: 3.3x speed and 33% VRAM reduction over CUDA+PyTorch baseline; cross-vendor GPU compatibility
+- **Code**: https://github.com/harry7557558/vksplat
 ## Simulation & Robotics
 
 ### GS-Playground
@@ -822,45 +930,28 @@
 - **Key Innovation**: 10^4 FPS throughput at 640x480; automated Real2Sim workflow for photorealistic simulation-ready environments; bridges perceptual and physical gaps
 - **Code**: https://gsplayground.github.io
 
-## System & Production
 
-### YOGO (You Only Gaussian Once)
-- **Paper**: You Only Gaussian Once: Controllable 3D Gaussian Splatting for Ultra-Densely Sampled Scenes
-- **Authors**: Jinrang Jia, Zhenjia Li, Yifeng Shi
-- **ArXiv**: 2604.21400
-- **Core**: System-level framework reformulating stochastic Gaussian growth into deterministic budget-aware equilibrium
-- **Key Innovation**: Budget controller for resource allocation + availability-registration for multi-sensor fusion; introduces Immersion v1.0 ultra-dense indoor dataset
-- **Code**: https://jjrcn.github.io/yogo-project-home/
 
-### VkSplat
-- **Paper**: VkSplat: High-Performance 3DGS Training in Vulkan Compute
-- **Authors**: Jingxiang Chen, Mohamed Ibrahim, Yang Liu
-- **Venue**: Eurographics 2026 Short Papers
-- **ArXiv**: 2605.00219
-- **Core**: First fully-Vulkan-based 3DGS training pipeline achieving SOTA performance
-- **Key Innovation**: 3.3x speed and 33% VRAM reduction over CUDA+PyTorch baseline; cross-vendor GPU compatibility (NVIDIA, AMD, Intel); maintained quality while demonstrating vendor-agnostic training
-- **Code**: https://github.com/harry7557558/vksplat
+### GS-Surrogate
+- **Paper**: GS-Surrogate: Deformable Gaussian Splatting for Parameter Space Exploration of Ensemble Simulations
+- **Authors**: Ziwei Li, Rumali Perera, Angus Forbes, Ken Moreland, Dave Pugmire, Scott Klasky, Wei-Lun Chao, Han-Wei Shen
+- **ArXiv**: 2604.06358
+- **Core**: Deformable GS-based visualization surrogate for parameter-space exploration of ensemble simulations
+- **Key Innovation**: Canonical Gaussian field + sequential parameter-conditioned deformations; real-time exploration; enables isosurface extraction and transfer function editing
 
-## Real-Time View Synthesis (Non-GS but Related)
+### 3DGS Demo Synthesis (IL)
+- **Paper**: A Principled Approach for Creating High-fidelity Synthetic Demonstrations for Imitation Learning
+- **Authors**: Moniruzzaman Akash, Momotaz Begum
+- **ArXiv**: 2605.01232
+- **Core**: Uses 3DGS reconstruction for generating diverse task demonstrations for imitation learning
+- **Key Innovation**: Expert trajectory via DMPs retargeted to new goals within 3DGS scene; obstacle-aware DMP on continuous density field
 
-### 3DTV
-- **Paper**: 3DTV: A Feedforward Interpolation Network for Real-Time View Synthesis
-- **Authors**: Stefan Schulz, Fernando Edelstein, Hannah Dröge, Matthias B. Hullin, Markus Plack (University of Bonn)
-- **ArXiv**: 2604.11211
-- **Core**: Feedforward sparse-view interpolation network for real-time free-viewpoint rendering from only 3 cameras
-- **Key Innovation**: Delaunay-based triplet selection for angular coverage; pose-aware depth module with coarse-to-fine 7-layer depth pyramid; occlusion-aware blending; 25ms per frame at 40 FPS; no scene-specific retraining needed
-- **Application**: Live streaming, esports broadcasting, telepresence, AR/VR
-- **Code**: https://stefanmschulz.github.io/3DTV_webpage/
-
-## Data Acquisition & Capture Guidance
-
-### Mobile Phone 3DGS Acquisition (Object-Centered)
-- **Paper**: An Object-Centered Data Acquisition Method for 3D Gaussian Splatting using Mobile Phones
-- **Authors**: Yuezhe Zhang, Luqian Bai, Mengting Yu, Lei Wei, Shuai Wan, Yifan Zhang
-- **ArXiv**: 2604.19216
-- **Core**: On-device capture guidance for mobile 3DGS acquisition with real-time spherical coverage feedback
-- **Key Innovation**: Maps camera optical axis to object-centered spherical grid; area-weighted spherical coverage for uniform viewpoints; superior to RealityScan and free-capture with fewer images
-
+### TAIL-Safe
+- **Paper**: TAIL-Safe: Task-Agnostic Safety Monitoring for Imitation Learning Policies
+- **Authors**: Riad Ahmed, Momotaz Begum
+- **ArXiv**: 2605.01195
+- **Core**: Safety monitoring for IL policies using Gaussian Splatting digital twin
+- **Key Innovation**: Lipschitz-continuous Q-value function for safety scores; Nagumo-inspired recovery mechanism
 ## Cross-Domain Applications
 
 ### GS-DOT
@@ -934,7 +1025,37 @@
 - **Key Innovation**: Paired inhale-exhale CT scans reduce respiratory motion to single scalar breathing phase; lightweight estimator infers breathing phase from endoscopic RGB; eliminates breath-hold protocols; 1.22mm target localization accuracy (within 3mm clinical tolerance); 20x faster training
 - **Code**: https://asdunnbe.github.io/RESPIRE/
 
-## Egocentric & Benchmark Methods
+### EmoTaG
+- **Paper**: EmoTaG: Emotion-Aware Talking Head Synthesis on Gaussian Splatting with Few-Shot Personalization
+- **Authors**: Haolan Xu, Keli Cheng, Lei Wang, Ning Bi, Xiaoming Liu (Michigan State University)
+- **Venue**: CVPR 2026
+- **ArXiv**: 2603.21332
+- **Core**: Few-shot emotion-aware 3D talking head synthesis on Gaussian Splatting
+- **Key Innovation**: Reformulates motion prediction in structured FLAME parameter space (not direct Gaussian deformation) for geometric stability; Gated Residual Motion Network (GRMN) captures emotional prosody from audio + supplements head pose/upper-face cues; SOTA in emotional expressiveness, lip sync, visual realism
+- **Code**: https://emotag26.github.io/
+
+
+
+### 3DTV
+- **Paper**: 3DTV: A Feedforward Interpolation Network for Real-Time View Synthesis
+- **Authors**: Stefan Schulz, Fernando Edelstein, Hannah Droge, Matthias B. Hullin, Markus Plack (University of Bonn)
+- **ArXiv**: 2604.11211
+- **Core**: Feedforward sparse-view interpolation network for real-time free-viewpoint rendering from only 3 cameras
+- **Key Innovation**: Delaunay-based triplet selection; 25ms per frame at 40 FPS; no scene-specific retraining needed
+- **Code**: https://stefanmschulz.github.io/3DTV_webpage/
+
+### Mobile Phone 3DGS Acquisition (Object-Centered)
+- **Paper**: An Object-Centered Data Acquisition Method for 3D Gaussian Splatting using Mobile Phones
+- **Authors**: Yuezhe Zhang, Luqian Bai, Mengting Yu, Lei Wei, Shuai Wan, Yifan Zhang
+- **ArXiv**: 2604.19216
+- **Core**: On-device capture guidance for mobile 3DGS acquisition with real-time spherical coverage feedback
+- **Key Innovation**: Area-weighted spherical coverage for uniform viewpoints
+
+### RDSplat
+- **Paper**: RDSplat: Robust Watermarking Against Diffusion Editing for 3D Gaussian Splatting
+- **ArXiv**: 2512.06774
+- **Core**: Robust watermarking framework for 3DGS assets resilient against diffusion-based editing
+- **Key Innovation**: First watermarking method designed to withstand diffusion model editing operations on 3DGS scenes
 
 ### Egocentric Dynamic 3DGS Evaluation
 - **Paper**: Bringing a Personal Point of View: Evaluating Dynamic 3D Gaussian Splatting for Egocentric Scene Reconstruction
@@ -942,8 +1063,37 @@
 - **Venue**: EgoVis Workshop @ CVPR 2026
 - **ArXiv**: 2604.23803
 - **Core**: First systematic evaluation of dynamic monocular 3DGS models on egocentric video (EgoExo4D)
-- **Key Innovation**: Finds reconstruction quality consistently lower in egocentric views; gap stems from static content reconstruction (not dynamic); motivates egocentric-specific 3DGS approaches
+- **Key Innovation**: Finds reconstruction quality consistently lower in egocentric views; gap stems from static content reconstruction
+## Robustness & Restoration
 
+### ArtifactWorld
+- **Paper**: ArtifactWorld: Scaling 3D Gaussian Splatting Artifact Restoration via Video Generation Models
+- **ArXiv**: 2604.12251
+- **Core**: Video generation models for 3DGS rendering artifact restoration at scale
+
+### FreeFix
+- **Paper**: FreeFix: Boosting 3D Gaussian Splatting via Fine-Tuning-Free Diffusion Models
+- **Authors**: Hongyu Zhou, Zisen Shao, Sheng Miao, Pan Wang, Dongfeng Bai, Bingbing Liu, Yiyi Liao
+- **ArXiv**: 2601.20857
+- **Core**: Fine-tuning-free diffusion model guidance for improving extrapolated 3DGS rendering
+- **Key Innovation**: Interleaved 2D-3D refinement; per-pixel confidence mask for targeted improvement; comparable to fine-tuning methods while retaining generalization
+
+### Luminance-GS++
+- **Paper**: Unifying Color and Lightness Correction with View-Adaptive Curve Adjustment for Robust 3D Novel View Synthesis
+- **Authors**: Ziteng Cui, Shuhong Liu, Xiaoyu Dong, Xuangeng Chu, Lin Gu, Ming-Hsuan Yang, Tatsuya Harada
+- **ArXiv**: 2602.18322 (TPAMI 2026, journal extension of CVPR 2025)
+- **Core**: 3DGS-based robust NVS under diverse illumination conditions
+- **Key Innovation**: View-adaptive lightness adjustment + pixel-wise residual refinement; handles low-light, overexposure, chromatic variations; preserves real-time rendering
+
+
+
+### E2EGS
+- **Paper**: E2EGS: Event-to-Edge Gaussian Splatting for Pose-Free 3D Reconstruction
+- **Authors**: Yunsoo Kim, Changki Sung, Dasol Hong, Hyun Myung
+- **Venue**: CVPR 2026
+- **ArXiv**: 2603.14684
+- **Core**: Pose-free 3D reconstruction from event camera streams using Gaussian Splatting
+- **Key Innovation**: Patch-based temporal coherence analysis extracts edges from noisy events; edge-weighted losses; fully pose-free event-based 3D reconstruction
 ## Performance Comparison Reference
 
 | Method | Mip-NeRF 360 PSNR | Speed (FPS) | Memory | Primitive |
@@ -999,8 +1149,16 @@
 | Sparse-View 3DGS Wild | ↑ vs baseline (wild) | Same | Same | Diffusion-guided refinement |
 | Color-Encoded Illum. | N/A (high-speed) | Low-speed cam | N/A | Color-coded temporal encoding |
 | 3DGS AD Safety | N/A (eval) | N/A | N/A | AD fidelity evaluation |
+| GEMM-GS | Same as 3DGS | 1.42x faster | Same | GEMM Tensor Core |
+| EmoTaG | N/A (talking head) | Real-time | N/A | FLAME + 3DGS |
+| VIRGi | Same as 3DGS | Same | Same | Diffuse + view-dep. recolor |
+| Pi-GS | ↑ vs baseline (sparse) | Same | Same | π³ ref-free init |
+| E2EGS | ↑ vs baseline (event) | Real-time | N/A | Event-edge guided |
+| Nighttime AD GS | ↑ vs baseline (night) | Real-time | Same | PBR + BRDF 3DGS |
+| HDR-NSFF | ↑ (HDR dynamic) | N/A | N/A | 4D HDR NeRF/4DGS |
+| DiffSoup | ~24.0 (extreme comp.) | Interactive | Minimal | Triangle soup |
+| FreeFix | ↑ vs baseline (extrap.) | Same | Same | Diffusion-guided refine |
+| Luminance-GS++ | ↑ vs baseline (illum.) | Same | Same | View-adaptive correction |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
-
-> AI生成

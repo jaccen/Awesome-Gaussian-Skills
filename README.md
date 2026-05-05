@@ -1,5 +1,3 @@
-
-
 <div align="center">
 If you like it, please ⭐️ star this repo! 
         
@@ -46,7 +44,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **7 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, and CG paper writing
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 120+ 3DGS variants across 31 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 150+ 3DGS variants across 37 categories, with domain-specific terminology conventions
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -135,7 +133,7 @@ Agent: [Checks: alpha compositing order, tile-based rendering,
 - Review CUDA kernels for correctness and performance
 - Check rendering pipeline (differentiable rasterization, alpha blending)
 - Validate loss function implementations
-- Common bug pattern detection (45+ known patterns)
+- Common bug pattern detection (52+ known patterns)
 
 ### 4. `3dgs-experiment-planner` — Experiment Design Assistant
 
@@ -235,7 +233,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # Built-in knowledge base (120+ methods)
+│   └── 3dgs-methods-overview.md # Built-in knowledge base (150+ methods)
 ├── scripts/
 │   └── setup.sh                 # Quick install script
 ├── README.md
@@ -259,22 +257,25 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 |----------|---------|
 | Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting |
 | Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++ |
-| Robustness | NRGS, DualSplat, EnerGS |
-| Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam |
+| Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
+| Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS |
 | Generation / Text-to-3D | DreamGaussian |
 | Antialiasing | Mip-Splatting, LeanGaussian |
 | Optimization | 3DGS-as-MCMC |
 | Image Representation | GaussianImage |
-| Acceleration | Proxy-GS, Faster-GS |
+| Acceleration | Proxy-GS, Faster-GS, GEMM-GS |
 | Active Vision | MAGICIAN |
-| Simulation | GS-Playground |
+| Simulation | GS-Playground, GS-Surrogate, FieryGS |
 | Real-Time NVS | 3DTV |
-| Cross-Domain | GS-DOT |
+| Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE |
 | Data Acquisition | Mobile Phone 3DGS Acquisition |
-| Degradation-Aware | MERID-GS, MarineSTD-GS |
+| Degradation-Aware | MERID-GS, MarineSTD-GS, E2EGS |
 | System | YOGO, GS-SCNet |
+| Security | RDSplat |
+| HDR / Dynamic | HDR-NSFF |
+| Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> The full knowledge base covers **120+ methods** across 31 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **150+ methods** across 37 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
@@ -283,8 +284,8 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.1.1 — Add `cad-mesh-3dgs` skill for CAD/Mesh↔3DGS bridge (Apr 2026)
 - [x] v0.1.2 — Knowledge base expansion: 50→120+ methods, 31 categories, daily auto-update workflow (Apr-May 2026)
-- [x] v0.1.3 — Knowledge base v2: 120+ methods, 45+ bug patterns, cross-domain expansion (May 2026)
-- [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison)
+- [x] v0.1.3 — Knowledge base v2: 130→150+ methods, 52+ bug patterns, 37 categories, cross-domain expansion (May 2026)
+- [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison, cross-primitive: GS vs triangle soup vs implicit)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
