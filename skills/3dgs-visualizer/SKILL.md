@@ -1,6 +1,6 @@
 ---
 name: 3dgs-visualizer
-description: Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Supports both static (PDF/PNG) and interactive (HTML) output.
+description: "Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Supports both static (PDF/PNG) and interactive (HTML) output."
 version: 1.0.0
 author: jaccen
 tags:
