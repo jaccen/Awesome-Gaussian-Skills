@@ -1,3 +1,4 @@
+
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -8,6 +9,7 @@ If you like it, please ⭐️ star this repo!
 
 **即插即用的 AI Agent 技能，适配 OpenClaw / Claude Code / Cursor —— 用自然语言完成论文阅读、方法对比、代码审查、实验设计**
 
+[![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-8-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
