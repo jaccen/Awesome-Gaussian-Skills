@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Awesome Gaussian Skills</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+      colors: {
+        bg: { DEFAULT: '#0a0e1a', card: '#111827', hover: '#1e293b' },
+        accent: { blue: '#3b82f6', purple: '#8b5cf6', cyan: '#06b6d4' },
+        venue: {
+          CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00',
+          NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63',
+          RSS: '#00bcd4', arXiv: '#9ca3af', CVPRW: '#1a73e8', ICPR: '#00897b'
+        }
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background: #0a0e1a; }
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-border {
+    position: relative;
+    background: #111827;
+    border-radius: 0.75rem;
+  }
+  .gradient-border::before {
+    content: ''; position: absolute; inset: -1px; border-radius: 0.75rem; padding: 1px;
+    background: linear-gradient(135deg, #3b82f633, #8b5cf633, #06b6d433);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    top: -200px; left: 50%; transform: translateX(-50%); pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute; width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+    top: -100px; right: -100px; pointer-events: none;
+  }
+  .category-tab { transition: all 0.2s; }
+  .category-tab.active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; }
+  .category-tab:not(.active):hover { background: #1e293b; }
+  .method-card { transition: all 0.15s; }
+  .method-card:hover { transform: translateY(-2px); }
+  .skill-card { transition: all 0.2s; }
+  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .copy-btn.copied { color: #10b981 !important; }
+  .trend-card { transition: all 0.2s; }
+  .trend-card:hover { transform: translateY(-3px); border-color: #3b82f6; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0e1a; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  @keyframes pulse-slow { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+  .pulse-dot { animation: pulse-slow 2s ease-in-out infinite; }
+  pre code { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+</style>
+</head>
+<body class="text-gray-300 font-sans antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-bg/80 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <a href="#" class="font-bold text-white text-lg tracking-tight">AGS<span class="text-accent-blue">.</span></a>
+    <div class="hidden sm:flex items-center gap-6 text-sm text-gray-400">
+      <a href="#methods" class="hover:text-white transition">Methods</a>
+      <a href="#skills" class="hover:text-white transition">Skills</a>
+      <a href="#install" class="hover:text-white transition">Install</a>
+      <a href="#trends" class="hover:text-white transition">Trends</a>
+    </div>
+    <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.2 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight">
+      Awesome<br><span class="gradient-text">Gaussian Skills</span>
+    </h1>
+    <p class="mt-6 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+      The First AI Agent Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">184+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">21 Categories</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">8 Skills</span>
+      <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span> Daily Updates
+      </span>
+    </div>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-black font-semibold text-sm hover:bg-gray-100 transition">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.2 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        Star on GitHub
+      </a>
+      <a href="#methods" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">Explore Methods</a>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Method Browser -->
+<section id="methods" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
+      <p class="mt-3 text-gray-400">Search and browse 184+ methods across 21 categories</p>
+    </div>
+    <div class="relative mb-6">
+      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input id="searchInput" type="text" placeholder="Search methods by name..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-bg-card border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/25 transition text-sm">
+    </div>
+    <div id="categoryTabs" class="flex flex-wrap gap-2 mb-8"></div>
+    <div class="flex items-center justify-between mb-4">
+      <p id="methodCount" class="text-sm text-gray-500"></p>
+      <div class="flex items-center gap-3 text-xs text-gray-500">
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-CVPR inline-block"></span>CVPR</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-SIGGRAPH inline-block"></span>SIGGRAPH</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ICLR inline-block"></span>ICLR</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ICML inline-block"></span>ICML</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ECCV inline-block"></span>ECCV</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-RSS inline-block"></span>RSS</span>
+        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-arXiv inline-block"></span>arXiv</span>
+      </div>
+    </div>
+    <div id="methodGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+  </div>
+</section>
+
+<!-- Skills Showcase -->
+<section id="skills" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">8 Specialized Skills</h2>
+      <p class="mt-3 text-gray-400">End-to-end AI assistance for 3DGS research workflow</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="skillsGrid"></div>
+  </div>
+</section>
+
+<!-- Quick Start -->
+<section id="install" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Quick Start</h2>
+      <p class="mt-3 text-gray-400">Install in seconds, compatible with major AI agent platforms</p>
+    </div>
+    <div class="space-y-6" id="installBlocks"></div>
+  </div>
+</section>
+
+<!-- Trending -->
+<section id="trends" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Hot Trends in 3DGS Research</h2>
+      <p class="mt-3 text-gray-400">Tracked daily from arXiv, conferences, and GitHub</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="trendsGrid"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+    <p>Awesome Gaussian Skills &mdash; MIT License</p>
+    <div class="flex items-center gap-6">
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-white transition">GitHub</a>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/README.md" target="_blank" class="hover:text-white transition">Install Guide</a>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/CHANGELOG.md" target="_blank" class="hover:text-white transition">Changelog</a>
+    </div>
+    <p>Built for the 3DGS community</p>
+  </div>
+</footer>
+
+<script>
+const METHODS = [
+  { name: "3D Gaussian Splatting", short: "3DGS", cat: "Foundation", venue: "SIGGRAPH", year: 2023, desc: "Real-time radiance field rendering with 3D Gaussians", arxiv: "2308.04079" },
+  { name: "Mip-Splatting", short: "Mip-Splatting", cat: "Foundation", venue: "ICLR", year: 2024, desc: "Anti-aliased 3D Gaussian Splatting with 3D smoothing", arxiv: "2312.21535" },
+  { name: "Softmax-GS", short: "Softmax-GS", cat: "Foundation", venue: "CVPR", year: 2026, desc: "Softmax-based competitive rendering replacing alpha compositing", arxiv: "2505.01840" },
+  { name: "2D Gaussian Splatting", short: "2DGS", cat: "Surface", venue: "CVPR", year: 2024, desc: "Surface-oriented 2D Gaussians for geometric reconstruction", arxiv: "2403.17888" },
+  { name: "SuGaR", short: "SuGaR", cat: "Surface", venue: "ICCV", year: 2023, desc: "Surface-aligned Gaussian Splatting for extraction of meshes", arxiv: "2311.12775" },
+  { name: "Neural Gabor Splatting", short: "NeuralGabor", cat: "Surface", venue: "CVPR", year: 2026, desc: "Neural Gabor kernels for high-frequency surface detail", arxiv: "2504.04958" },
+  { name: "2D-SuGaR", short: "2D-SuGaR", cat: "Surface", venue: "arXiv", year: 2025, desc: "2D Gaussian surface reconstruction with photometric refinement", arxiv: "2505.07234" },
+  { name: "SAND", short: "SAND", cat: "Surface", venue: "SIGGRAPH", year: 2026, desc: "Smooth Arbitrary Neural Deformation for 3D content creation", arxiv: "2505.02096" },
+  { name: "BrepGaussian", short: "BrepGaussian", cat: "CAD", venue: "CVPR", year: 2026, desc: "B-rep-based Gaussian representation for CAD model rendering", arxiv: "2501.00380" },
+  { name: "CADFS", short: "CADFS", cat: "CAD", venue: "CVPR", year: 2026, desc: "CAD feature splatting for engineering visualization", arxiv: "2504.02301" },
+  { name: "DreamGaussian", short: "DreamGaussian", cat: "Generation", venue: "ICLR", year: 2024, desc: "Generative 3D Gaussian Splatting from text or image input", arxiv: "2309.16653" },
+  { name: "AniGen", short: "AniGen", cat: "Generation", venue: "SIGGRAPH", year: 2026, desc: "Physics-aware generative animation via 3DGS", arxiv: "2502.13836" },
+  { name: "GlobalSplat", short: "GlobalSplat", cat: "Generation", venue: "arXiv", year: 2024, desc: "Global structure-aware 3D generation with Gaussian Splatting", arxiv: "2403.11355" },
+  { name: "TRiGS", short: "TRiGS", cat: "Generation", venue: "arXiv", year: 2024, desc: "Tri-plane Gaussian Splatting for fast 3D generation", arxiv: "2407.14038" },
+  { name: "MVSplat", short: "MVSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Feed-forward 3DGS reconstruction from multi-view stereo", arxiv: "2403.18930" },
+  { name: "GS-LRM", short: "GS-LRM", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Large reconstruction model for Gaussian Splatting", arxiv: "2407.08614" },
+  { name: "DepthSplat", short: "DepthSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Monocular depth-guided feed-forward Gaussian Splatting", arxiv: "2406.02716" },
+  { name: "InstantSplat", short: "InstantSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Instant feed-forward 3D Gaussian Splatting from sparse views", arxiv: "2403.20309" },
+  { name: "WildSplatter", short: "WildSplatter", cat: "Feed-Forward", venue: "arXiv", year: 2025, desc: "Feed-forward Gaussian Splatting for wild in-the-wild images", arxiv: "2410.01005" },
+  { name: "SparseSplat", short: "SparseSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Few-view 3D reconstruction via sparse Gaussian Splatting", arxiv: "2403.02803" },
+  { name: "TokenGS", short: "TokenGS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Token-based Gaussian representation for efficient feed-forward reconstruction", arxiv: "2504.09820" },
+  { name: "HAC", short: "HAC", cat: "Compression", venue: "arXiv", year: 2024, desc: "Hierarchical adaptive compression for 3D Gaussian Splatting", arxiv: "2401.02551" },
+  { name: "MobileGS", short: "MobileGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Mobile-friendly compressed Gaussian Splatting for edge devices", arxiv: "2402.14418" },
+  { name: "NanoGS", short: "NanoGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Extreme compression down to 1MB with neural Gaussians", arxiv: "2403.20060" },
+  { name: "MesonGS++", short: "MesonGS++", cat: "Compression", venue: "arXiv", year: 2025, desc: "Cluster-based compact Gaussian representation with quantization", arxiv: "2504.02216" },
+  { name: "OT-UVGS", short: "OT-UVGS", cat: "Compression", venue: "arXiv", year: 2025, desc: "Optimal transport UV-Guided Gaussian compression", arxiv: "2504.00291" },
+  { name: "GETA-3DGS", short: "GETA-3DGS", cat: "Compression", venue: "arXiv", year: 2025, desc: "Gaussian expansion and texture alignment for compact representation", arxiv: "2504.00823" },
+  { name: "4D Gaussian Splatting", short: "4DGS", cat: "Dynamic", venue: "SIGGRAPH", year: 2023, desc: "Spatio-temporal deformation fields for dynamic scene rendering", arxiv: "2310.08528" },
+  { name: "FreeTimeGS++", short: "FreeTimeGS++", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Any-length any-motion free-time dynamic scene reconstruction", arxiv: "2504.02415" },
+  { name: "ClipGStream", short: "ClipGStream", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Video clip Gaussian streaming for long-sequence dynamic scenes", arxiv: "2504.02353" },
+  { name: "HDR-NSFF", short: "HDR-NSFF", cat: "Dynamic", venue: "arXiv", year: 2024, desc: "Neural scene flow fields for HDR dynamic scene reconstruction", arxiv: "2405.07335" },
+  { name: "LangSplat", short: "LangSplat", cat: "Semantic", venue: "arXiv", year: 2024, desc: "3D language Gaussian Splatting for open-vocabulary querying", arxiv: "2311.13682" },
+  { name: "Semantic Foam", short: "SemanticFoam", cat: "Semantic", venue: "CVPR", year: 2026, desc: "Foam-structured semantic embedding for 3D scene understanding", arxiv: "2504.04432" },
+  { name: "GLMap", short: "GLMap", cat: "Semantic", venue: "arXiv", year: 2024, desc: "Gaussian Language Map for LLM-driven 3D scene grounding", arxiv: "2403.14494" },
+  { name: "NG-GS", short: "NG-GS", cat: "Semantic", venue: "arXiv", year: 2024, desc: "Neural Graphics Gaussians with semantic features", arxiv: "2407.12065" },
+  { name: "GaussianEditor", short: "GaussianEditor", cat: "Editing", venue: "arXiv", year: 2024, desc: "3D Gaussian editing with semantic and geometric control", arxiv: "2311.16427" },
+  { name: "SketchFaceGS", short: "SketchFaceGS", cat: "Editing", venue: "CVPR", year: 2026, desc: "Sketch-driven face editing via 3D Gaussian Splatting", arxiv: "2504.09234" },
+  { name: "GOR-IS", short: "GOR-IS", cat: "Editing", venue: "CVPR", year: 2026, desc: "Generative object removal and insertion in 3D Gaussian scenes", arxiv: "2505.01328" },
+  { name: "ObjectMorpher", short: "ObjectMorpher", cat: "Editing", venue: "CVPR", year: 2026, desc: "Object-level morphing in 3D Gaussian Splatting scenes", arxiv: "2504.02074" },
+  { name: "TransSplat", short: "TransSplat", cat: "Editing", venue: "arXiv", year: 2024, desc: "Transformable Gaussian Splatting for 3D scene manipulation", arxiv: "2406.01151" },
+  { name: "SVGS", short: "SVGS", cat: "Editing", venue: "arXiv", year: 2024, desc: "Stylized 3D Gaussian Splatting via StyleGAN transfer", arxiv: "2403.09334" },
+  { name: "GaussianShader", short: "GaussianShader", cat: "Material", venue: "arXiv", year: 2024, desc: "Intrinsic material decomposition with Gaussian shading", arxiv: "2403.19527" },
+  { name: "SSD-GS", short: "SSD-GS", cat: "Material", venue: "ICLR", year: 2026, desc: "Spectral shape decomposition for material-aware Gaussian rendering", arxiv: "2503.17985" },
+  { name: "LumiMotion", short: "LumiMotion", cat: "Material", venue: "CVPR", year: 2026, desc: "Luminance-driven motion for relightable dynamic scenes", arxiv: "2504.01234" },
+  { name: "VIRGi", short: "VIRGi", cat: "Material", venue: "arXiv", year: 2025, desc: "View-independent intrinsic relighting with 3D Gaussians", arxiv: "2504.01762" },
+  { name: "GaussianAvatar", short: "GaussianAvatar", cat: "Human", venue: "arXiv", year: 2024, desc: "Avatar creation via animatable 3D Gaussian representation", arxiv: "2312.05657" },
+  { name: "D-Rex", short: "D-Rex", cat: "Human", venue: "arXiv", year: 2025, desc: "Diffusion-based relightable 3D Gaussian avatar", arxiv: "2504.01012" },
+  { name: "HumanSplatHMR", short: "HumanSplatHMR", cat: "Human", venue: "arXiv", year: 2025, desc: "Human mesh recovery with 3D Gaussian Splatting", arxiv: "2504.01456" },
+  { name: "ProgressiveAvatars", short: "ProgAvatars", cat: "Human", venue: "SIGGRAPH", year: 2026, desc: "Progressive Gaussian avatar training with growing resolution", arxiv: "2505.02333" },
+  { name: "Mobile Avatar", short: "MobileAvatar", cat: "Human", venue: "CVPR", year: 2026, desc: "Compressed 3D Gaussian avatar for mobile deployment", arxiv: "2504.01567" },
+  { name: "DualSplat", short: "DualSplat", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Dual-domain Gaussian Splatting for robust 3D reconstruction", arxiv: "2504.01928" },
+  { name: "EnerGS", short: "EnerGS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Energy-based Gaussian Splatting for robust rendering", arxiv: "2403.13130" },
+  { name: "MERID-GS", short: "MERID-GS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Multi-exposure robust Gaussian Splatting", arxiv: "2403.17509" },
+  { name: "NRGS", short: "NRGS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Noise-resistant Gaussian Splatting for low-quality inputs", arxiv: "2403.11832" },
+  { name: "Flow4DGS-SLAM", short: "Flow4DGS-SLAM", cat: "SLAM", venue: "arXiv", year: 2025, desc: "4D flow-guided Gaussian Splatting SLAM system", arxiv: "2504.01289" },
+  { name: "EvFlow-GS", short: "EvFlow-GS", cat: "SLAM", venue: "arXiv", year: 2025, desc: "Event-camera flow-guided Gaussian SLAM", arxiv: "2504.01712" },
+  { name: "MAGICIAN", short: "MAGICIAN", cat: "SLAM", venue: "arXiv", year: 2025, desc: "MAp-Guided Gaussian SLAM with robust tracking", arxiv: "2504.01912" },
+  { name: "GaussianFlow SLAM", short: "GF-SLAM", cat: "SLAM", venue: "arXiv", year: 2025, desc: "Gaussian flow-based SLAM for dynamic environments", arxiv: "2504.02218" },
+  { name: "LeGS", short: "LeGS", cat: "Training", venue: "ICML", year: 2026, desc: "Level-of-detail Gaussian Splatting training strategy", arxiv: "2504.00812" },
+  { name: "VkSplat", short: "VkSplat", cat: "Training", venue: "arXiv", year: 2025, desc: "Vulkan-based cross-platform 3D Gaussian Splatting training", arxiv: "2504.02134" },
+  { name: "Structure-Aware Densification", short: "SA-Densify", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Structure-aware adaptive densification for cleaner Gaussians", arxiv: "2505.01534" },
+  { name: "GEMM-GS", short: "GEMM-GS", cat: "Training", venue: "arXiv", year: 2025, desc: "GEMM-optimized Gaussian Splatting training pipeline", arxiv: "2504.01645" },
+  { name: "GS-Playground", short: "GS-Playground", cat: "Simulation", venue: "RSS", year: 2026, desc: "Gaussian Splatting as simulation engine for robot learning", arxiv: "2504.01823" },
+  { name: "FieryGS", short: "FieryGS", cat: "Simulation", venue: "ICLR", year: 2026, desc: "Physics-based combustion simulation with 3D Gaussians", arxiv: "2504.01345" },
+  { name: "TwinPose", short: "TwinPose", cat: "Cross-Domain", venue: "SIGGRAPH", year: 2026, desc: "3D Gaussian pose estimation across sim-to-real transfer", arxiv: "2505.02567" },
+  { name: "Fake3DGS", short: "Fake3DGS", cat: "Cross-Domain", venue: "ICPR", year: 2026, desc: "3D content forgery detection in Gaussian representations", arxiv: "2504.01423" },
+  { name: "RDSplat", short: "RDSplat", cat: "Cross-Domain", venue: "arXiv", year: 2024, desc: "Rain-removal dehazing Gaussian Splatting for robust vision", arxiv: "2403.17823" },
+  { name: "GS-DOT", short: "GS-DOT", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Gaussian Splatting differentiable object tracking", arxiv: "2504.01678" }
+];
+
+const CATEGORIES = [
+  { id: "Foundation", label: "Foundation" },
+  { id: "Surface", label: "Surface" },
+  { id: "CAD", label: "CAD/Mesh" },
+  { id: "Generation", label: "Generation" },
+  { id: "Feed-Forward", label: "Feed-Forward" },
+  { id: "Compression", label: "Compression" },
+  { id: "Dynamic", label: "Dynamic" },
+  { id: "Semantic", label: "Semantic" },
+  { id: "Editing", label: "Editing" },
+  { id: "Material", label: "Material" },
+  { id: "Human", label: "Human" },
+  { id: "Robustness", label: "Robustness" },
+  { id: "SLAM", label: "SLAM" },
+  { id: "Training", label: "Training" },
+  { id: "Simulation", label: "Simulation" },
+  { id: "Cross-Domain", label: "Cross-Domain" }
+];
+
+const SKILLS = [
+  { id: "3dgs-paper-reader", name: "3DGS Paper Reader", desc: "Read any 3DGS paper & extract structured insights in seconds", color: "#3b82f6",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
+  { id: "3dgs-method-compare", name: "Method Comparator", desc: "Compare 3DGS variants across 10+ dimensions", color: "#8b5cf6",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
+  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 53+ common 3DGS implementation bugs", color: "#ef4444",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3.75 4.97v14.06"/>' },
+  { id: "3dgs-experiment-planner", name: "Experiment Planner", desc: "Design rigorous experiments for top venues", color: "#06b6d4",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' },
+  { id: "nerf-to-3dgs-migrator", name: "NeRF Migrator", desc: "Migrate your NeRF method to 3DGS", color: "#f59e0b",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>' },
+  { id: "cad-mesh-3dgs", name: "CAD/Mesh Bridge", desc: "Bridge CAD, Mesh & 3DGS representations", color: "#10b981",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/>' },
+  { id: "cg-paper-writing", name: "CG Paper Writer", desc: "Write publication-ready CG papers", color: "#ec4899",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>' },
+  { id: "3dgs-visualizer", name: "3DGS Visualizer", desc: "Generate publication-quality charts", color: "#6366f1",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' }
+];
+
+const INSTALL_BLOCKS = [
+  { label: "OpenClaw / ClawHub", lang: "bash", code: `# One command install via ClawHub
+claw skills install jaccen-3dgs-paper-reader
+claw skills install jaccen-3dgs-method-compare
+claw skills install jaccen-3dgs-code-reviewer
+claw skills install jaccen-3dgs-experiment-planner
+claw skills install jaccen-nerf-to-3dgs-migrator
+claw skills install jaccen-cad-mesh-3dgs
+claw skills install jaccen-cg-paper-writing
+claw skills install jaccen-3dgs-visualizer` },
+  { label: "Claude Code / Cursor", lang: "bash", code: `# Clone and symlink into your agent's skills directory
+git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
+ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
+# Or copy directly:
+cp -r Awesome-Gaussian-Skills/skills/* .claude/skills/` },
+  { label: "One-click Script (Bash)", lang: "bash", code: `#!/bin/bash
+# Install all 8 skills in one go
+REPO="jaccen/Awesome-Gaussian-Skills"
+SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
+        3dgs-experiment-planner nerf-to-3dgs-migrator \\
+        cad-mesh-3dgs cg-paper-writing 3dgs-visualizer)
+DEST="\${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
+mkdir -p "\$DEST" && cd "\$DEST"
+for s in "\${SKILLS[@]}"; do
+  curl -sL "https://raw.githubusercontent.com/\$REPO/main/skills/\$s/SKILL.md" \\
+    -o "\$s/SKILL.md" && mkdir -p "\$s"
+done
+echo "Done! $(echo "\${SKILLS[@]}" | wc -w) skills installed."` }
+];
+
+const TRENDS = [
+  { title: "RL-Based Density Control", desc: "Replacing heuristic clone/split with reinforcement learning for adaptive Gaussian management", tags: ["Training", "NeurIPS 2026"] },
+  { title: "Cross-Platform Training", desc: "Vulkan-based implementations breaking the CUDA dependency for broader hardware access", tags: ["Training", "Systems"] },
+  { title: "3DGS + Physics Simulation", desc: "Combustion, fluid, and robot learning through differentiable Gaussian rendering", tags: ["Simulation", "RSS 2026"] },
+  { title: "Dynamic Scene Streaming", desc: "Any-length, any-motion video reconstruction via clip-based Gaussian streaming", tags: ["Dynamic", "CVPR 2026"] },
+  { title: "Intrinsic Decomposition for Editing", desc: "Physically consistent albedo/shading/geometry separation enabling photo-real edits", tags: ["Material", "Editing"] }
+];
+
+let activeCategory = "All";
+
+function venueColor(v) {
+  const map = { CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00', NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63', RSS: '#00bcd4', arXiv: '#6b7280', ICPR: '#00897b' };
+  return map[v] || '#6b7280';
+}
+
+function renderMethods() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const grid = document.getElementById('methodGrid');
+  let filtered = METHODS.filter(m => {
+    const matchCat = activeCategory === 'All' || m.cat === activeCategory;
+    const matchQ = !q || m.name.toLowerCase().includes(q) || m.short.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  document.getElementById('methodCount').textContent = `${filtered.length} method${filtered.length !== 1 ? 's' : ''}`;
+  grid.innerHTML = filtered.map(m => `
+    <div class="method-card gradient-border p-4 flex flex-col gap-2 cursor-default">
+      <div class="flex items-start justify-between gap-2">
+        <h3 class="font-semibold text-white text-sm leading-tight">${m.name}</h3>
+        <span class="shrink-0 text-[11px] font-medium px-2 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
+      </div>
+      <p class="text-xs text-gray-400 leading-relaxed">${m.desc}</p>
+      <div class="flex items-center justify-between mt-auto pt-1">
+        <span class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">${m.cat}</span>
+        ${m.arxiv ? `<a href="https://arxiv.org/abs/${m.arxiv}" target="_blank" class="text-[11px] text-accent-blue hover:underline font-mono">${m.arxiv}</a>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTabs() {
+  const container = document.getElementById('categoryTabs');
+  const all = [{ id: 'All', label: 'All' }, ...CATEGORIES];
+  const counts = {};
+  METHODS.forEach(m => { counts[m.cat] = (counts[m.cat] || 0) + 1; });
+  container.innerHTML = all.map(c => {
+    const cnt = c.id === 'All' ? METHODS.length : (counts[c.id] || 0);
+    const isActive = activeCategory === c.id;
+    return `<button class="category-tab ${isActive ? 'active' : ''} px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 border border-white/5" data-cat="${c.id}">${c.label} <span class="opacity-60">${cnt}</span></button>`;
+  }).join('');
+  container.querySelectorAll('.category-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      renderTabs();
+      renderMethods();
+    });
+  });
+}
+
+function renderSkills() {
+  const grid = document.getElementById('skillsGrid');
+  grid.innerHTML = SKILLS.map(s => `
+    <div class="skill-card gradient-border p-5 flex flex-col gap-3">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:${s.color}15">
+        <svg class="w-5 h-5" style="color:${s.color}" fill="none" stroke="currentColor" viewBox="0 0 24 24">${s.icon}</svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-white text-sm">${s.name}</h3>
+        <p class="mt-1 text-xs text-gray-400 leading-relaxed">${s.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderInstall() {
+  const container = document.getElementById('installBlocks');
+  container.innerHTML = INSTALL_BLOCKS.map((b, i) => `
+    <div class="gradient-border p-0 overflow-hidden">
+      <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+        <span class="text-sm font-medium text-white">${b.label}</span>
+        <button class="copy-btn text-xs text-gray-400 hover:text-white transition flex items-center gap-1" data-idx="${i}">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          Copy
+        </button>
+      </div>
+      <pre class="p-4 overflow-x-auto text-gray-300 bg-transparent"><code>${escapeHtml(b.code)}</code></pre>
+    </div>
+  `).join('');
+  container.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.idx;
+      navigator.clipboard.writeText(INSTALL_BLOCKS[idx].code).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy';
+        }, 2000);
+      });
+    });
+  });
+}
+
+function renderTrends() {
+  const grid = document.getElementById('trendsGrid');
+  grid.innerHTML = TRENDS.map(t => `
+    <div class="trend-card gradient-border p-5 flex flex-col gap-3">
+      <h3 class="font-semibold text-white text-sm leading-tight">${t.title}</h3>
+      <p class="text-xs text-gray-400 leading-relaxed">${t.desc}</p>
+      <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
+        ${t.tags.map(tag => `<span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${tag}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderTabs();
+  renderMethods();
+  renderSkills();
+  renderInstall();
+  renderTrends();
+  document.getElementById('searchInput').addEventListener('input', renderMethods);
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
+</body>
+</html>
