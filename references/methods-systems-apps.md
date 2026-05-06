@@ -407,6 +407,15 @@
 - **Key Innovation**: Finds reconstruction quality consistently lower in egocentric views; gap stems from static content reconstruction
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.23803) | [arXiv:2604.23803](https://arxiv.org/abs/2604.23803) | [Code]
 
+### TwinPose
+- **Paper**: TwinPose: Person-Specific Subspaces for Multi-View 3D Pose Estimation
+- **Authors**: Wenwu Yang et al.
+- **Affiliations**: ZJGSU
+- **Venue**: SIGGRAPH 2026 Journal Track (ACM TOG)
+- **Core**: Multi-view 3D human pose estimation via instance-level twin pose subspaces
+- **Key Innovation**: Learns person-specific pose subspaces from 2D detections; 2D-to-3D lifting principle with instance-level adaptation; handles diverse body shapes and poses across multiple views
+- **Links**: [GitHub](https://github.com/zgspose)
+
 ## Robustness & Restoration
 
 ### ArtifactWorld

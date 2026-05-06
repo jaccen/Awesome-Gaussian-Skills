@@ -48,6 +48,26 @@
   - 视觉效果和demo video很重要
   - 偏好有理论保证的方法（收敛性、复杂度分析）
 
+### SIGGRAPH Asia 2026 (ACM SIGGRAPH Asia)
+
+- **会议时间**：2026年12月1-4日，吉隆坡（KLCC）
+- **Technical Papers Chair**：Ravi Ramamoorthi（UCSD, NVIDIA）
+- **Assistant Chair**：王惠民（Style3D Research）
+- **投稿截稿**：
+  - Abstract（Stage 1）：2026年5月5日（23:59 AoE）
+  - Full Paper（Stage 2）：2026年5月12日（23:59 AoE）
+  - Upload Deadline：2026年5月13日
+- **双轨制**：
+  - **Journal Track**：发表至 ACM TOG（SIGGRAPH Asia 2026 期），无页数上限，需满足TOG卓越标准
+  - **Conference Track**：发表至 SIGGRAPH Asia Conference Proceedings，正文≤7页（不含参考文献和图片页），最多2页图片页
+  - Dual-Track 提交：同时被两个轨道考虑
+- **格式**：ACM double-column，LaTeX 模板 acmart v2.16+（`\documentclass[acmtog,anonymous,review]{acmart}`）
+- **审稿制度**：完全双盲，4篇完整审稿，含 rebuttal（1000词）
+- **涵盖领域**：animation, simulation, imaging, geometry, modeling, rendering, HCI, VR/AR/MR, haptics, fabrication, robotics, visualization, generative AI, ML for graphics
+- **录用率**：历史约20-30%，无固定名额
+- **ACM Open Access**：2026年1月起ACM全面转为OA
+- **提交入口**：https://asia.siggraph.org/2026/submissions/technical-papers/
+
 ### Eurographics (EG)
 
 - **页数限制**：通常10-12页

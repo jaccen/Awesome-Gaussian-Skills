@@ -1,6 +1,6 @@
 ﻿# 3DGS Methods Overview
 
-> This file is the master index for all 180+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 184+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -30,6 +30,7 @@
 - **PointSplat** [arXiv:2604.09903](https://arxiv.org/abs/2604.09903) — Geometry-driven pruning + Transformer refinement for efficient 3DGS
 - **GLINT** [arXiv:2603.26181](https://arxiv.org/abs/2603.26181) — Scene-scale transparency via decomposed Gaussian radiance transport for glass
 - **P2M++** [arXiv:2605.00429](https://arxiv.org/abs/2605.00429) — Enhanced solver for point-to-mesh distance queries
+- **SAND** — Spatially adaptive network depth for efficient neural implicit surface sampling (SIGGRAPH 2026 TOG)
 
 > Full details in [methods-core.md](methods-core.md#surface--geometry-methods)
 
@@ -46,6 +47,7 @@
 
 ## 4. Generation / Text-to-3D
 - **DreamGaussian** [arXiv:2309.16653](https://arxiv.org/abs/2309.16653) — SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup
+- **AniGen** [GitHub](https://github.com/VAST-AI-Research/AniGen) — Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning (SIGGRAPH 2026 TOG)
 
 > Full details in [methods-core.md](methods-core.md#generation--text-to-3d)
 
@@ -162,6 +164,7 @@
 - **D-Rex** [arXiv:2604.27871](https://arxiv.org/abs/2604.27871) — Diffusion post-process relighting for expressive avatars
 - **Large-Scale HQ 3D Gaussian Head** [arXiv:2605.04035](https://arxiv.org/abs/2605.04035) — Multi-view large-scale high-fidelity 3D Gaussian head reconstruction
 - **Mobile Avatar (Pruned Blendshapes)** [arXiv:2605.01854](https://arxiv.org/abs/2605.01854) — High-fidelity mobile avatars with pruned local blendshapes (CVPR 2026)
+- **ProgressiveAvatars** — Progressive animatable 3D Gaussian avatar generation (SIGGRAPH 2026 TOG)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#human--avatar-methods)
 
@@ -233,6 +236,7 @@
 - **Mobile Phone 3DGS Acquisition** [arXiv:2604.19216](https://arxiv.org/abs/2604.19216) — Object-centered on-device capture guidance
 - **RDSplat** [arXiv:2512.06774](https://arxiv.org/abs/2512.06774) — Robust watermarking against diffusion editing
 - **Egocentric Dynamic 3DGS Evaluation** [arXiv:2604.23803](https://arxiv.org/abs/2604.23803) — Egocentric video reconstruction evaluation
+- **TwinPose** [GitHub](https://github.com/zgspose) — Multi-view 3D pose estimation via person-specific subspaces (SIGGRAPH 2026 TOG)
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
@@ -320,6 +324,10 @@
 | CADFS | N/A (CAD dataset) | N/A | N/A | Large-scale CAD + LLM |
 | Mobile Avatar | N/A (avatar) | Real-time | Mobile | Pruned blendshapes |
 | Large-Scale HQ Head | N/A (head) | N/A | N/A | Multi-view 3DGS head |
+| AniGen | N/A (generation) | N/A | N/A | S³ Fields animatable 3D |
+| SAND | N/A (neural surface) | Faster sampling | Same | Spatially adaptive depth |
+| ProgressiveAvatars | N/A (avatar) | N/A | N/A | Progressive 3D Gaussian avatar |
+| TwinPose | N/A (3D pose) | Real-time | N/A | Person-specific subspaces |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.

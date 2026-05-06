@@ -102,6 +102,14 @@
 - **Key Innovation**: Diff-Gaussian distribution (subtraction of two Gaussians) for ring/crescent/non-convex structures; negative color values in RGB space (not negative opacity); ~20% negative Gaussians optimal
 - **Links**: [中英摘要](https://arxiv.org/abs/2405.14786) | [arXiv:2405.14786](https://arxiv.org/abs/2405.14786) | [Code]
 
+### SAND
+- **Paper**: SAND: Spatially Adaptive Network Depth for Fast Sampling of Neural Implicit Surfaces
+- **Authors**: Chuanxiang Yang, Yuanfeng Zhou, Wenping Wang
+- **Affiliations**: SDU, Texas A&M
+- **Venue**: SIGGRAPH 2026 Journal Track (ACM TOG)
+- **Core**: Spatially adaptive network depth for efficient neural implicit surface sampling
+- **Key Innovation**: Voxelized depth mapping assigns per-voxel network depth; branched MLP architecture evaluates only necessary layers per spatial region; faster sampling while maintaining surface quality
+
 ## CAD / Mesh / Hybrid Methods
 
 ### SuGaR
@@ -168,6 +176,15 @@
 - **Core**: SDS-based text-to-3D generation with 3DGS prior; generates 3D assets from text prompts
 - **Key Innovation**: Replaces NeRF prior in SDS with 3DGS for orders-of-magnitude faster text-to-3D; generates high-quality 3D assets in seconds; combines texture mesh extraction with Gaussian refinement
 - **Links**: [中英摘要](https://arxiv.org/abs/2309.16653) | [arXiv:2309.16653](https://arxiv.org/abs/2309.16653) | [Code](https://github.com/dreamgaussian/dreamgaussian)
+
+### AniGen
+- **Paper**: AniGen: Unified S³ Fields for Animatable 3D Asset Generation
+- **Authors**: Yihua Huang, Yanpei Cao, Xiaojuan Qi
+- **Affiliations**: HKU, VAST
+- **Venue**: SIGGRAPH 2026 Journal Track (ACM TOG)
+- **Core**: Single image → animatable 3D asset with skeleton + skinning weights via unified S³ Fields + two-stage flow matching
+- **Key Innovation**: Jointly models geometry, skeleton, and skinning in shared latent space instead of serial generate-then-rig pipeline; produces fully rigged animatable characters from a single image
+- **Links**: [GitHub](https://github.com/VAST-AI-Research/AniGen) | [Project](https://yihua7.github.io/AniGen-web/)
 
 ## Feed-Forward Methods
 

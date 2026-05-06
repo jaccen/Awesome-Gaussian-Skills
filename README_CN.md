@@ -45,7 +45,7 @@ If you like it, please ⭐️ star this repo!
 - **8 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 21 个类别的 171+ 3DGS 变体，含领域术语规范
+- **领域专家知识**：内置知识库覆盖 21 个类别的 184+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
 
 ---
@@ -117,7 +117,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 171+ 方法的知识库
+- 内置 184+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -256,7 +256,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG 论文写作助手
 │       └── SKILL.md
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（21 个类别 171+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 184+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -324,7 +324,7 @@ Awesome-Gaussian-Skills/
 | 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
 | 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> 完整知识库覆盖 **21 个类别的 171+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **21 个类别的 184+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 ---
 

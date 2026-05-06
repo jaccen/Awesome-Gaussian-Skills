@@ -301,3 +301,11 @@
 - **Key Innovation**: Decouples relighting entirely from avatar modeling by treating it as image-space post-process; leverages pre-trained video diffusion relighting model fine-tuned via LoRA on paired flat-lit and relit frames from light stage; flat-lit driving frames from independent expressive avatar framework; directly applicable to any white-light avatar system; enables view- and temporally consistent relighting while preserving expressive motion and fine-grained facial detail
 - **Note**: Bridges Human & Avatar and Material & Relighting categories; first method demonstrating strong facial animation alongside relighting
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.27871) | [arXiv:2604.27871](https://arxiv.org/abs/2604.27871) | [Code]
+
+### ProgressiveAvatars
+- **Paper**: ProgressiveAvatars: Progressive Animatable 3D Gaussian Avatars
+- **Authors**: Juyong Zhang group
+- **Affiliations**: USTC
+- **Venue**: SIGGRAPH 2026 Journal Track (ACM TOG)
+- **Core**: Progressive animatable 3D Gaussian avatar generation
+- **Key Innovation**: Coarse-to-fine progressive generation pipeline for high-quality 3D Gaussian avatars with animation capability

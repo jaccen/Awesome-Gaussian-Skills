@@ -47,7 +47,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **8 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, and research visualization (radar charts, timelines, comparison tables)
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 171+ 3DGS variants across 21 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 184+ 3DGS variants across 21 categories, with domain-specific terminology conventions
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -120,7 +120,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 171+ methods
+- Built-in knowledge of 184+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -262,7 +262,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (171+ methods across 21 categories)
+│   ├── 3dgs-methods-overview.md # Index (184+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -330,7 +330,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 | Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
 | Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> The full knowledge base covers **171+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **184+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
