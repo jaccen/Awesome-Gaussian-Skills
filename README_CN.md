@@ -260,6 +260,12 @@ Awesome-Gaussian-Skills/
 │   └── methods-systems-apps.md # 系统、应用、跨领域
 ├── scripts/
 │   └── setup.sh                 # 快速安装脚本
+├── Test/
+│   ├── radar_comparison.pdf/png/html       # 雷达图：3DGS vs 2DGS vs Mip-Splatting vs Scaffold-GS
+│   ├── metrics_bar_comparison.pdf/png      # PSNR / SSIM / LPIPS 分组柱状图
+│   ├── quality_vs_speed_scatter.pdf/png    # 质量与速度权衡散点图
+│   ├── metrics_heatmap.pdf/png             # 归一化指标热力图
+│   └── metrics_dashboard.html              # 交互式四合一仪表盘 (plotly)
 ├── README.md
 ├── README_CN.md
 ├── CONTRIBUTING.md
@@ -272,6 +278,22 @@ Awesome-Gaussian-Skills/
 - **Claude Code**（`.claude/` 目录）
 - **Cursor**（`.cursor/rules/`）
 - **Windsurf** 及其他 AI Agent 框架
+
+---
+
+## 可视化示例
+
+由 `3dgs-visualizer` 生成的高清样例 —— 完整分辨率文件见 [`Test/`](Test/)。
+
+| 雷达图（方法多维度对比） | 分组柱状图（PSNR/SSIM/LPIPS） |
+|:---:|:---:|
+| <img src="Test/radar_comparison.png" width="320"> | <img src="Test/metrics_bar_comparison.png" width="420"> |
+
+| 质量与速度权衡散点图 | 归一化指标热力图 |
+|:---:|:---:|
+| <img src="Test/quality_vs_speed_scatter.png" width="320"> | <img src="Test/metrics_heatmap.png" width="380"> |
+
+交互式版本（悬停查看详情）：[`radar_comparison.html`](Test/radar_comparison.html) | [`metrics_dashboard.html`](Test/metrics_dashboard.html)
 
 ---
 
