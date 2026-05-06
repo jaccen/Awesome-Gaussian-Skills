@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0d96ae20-64f1-4a6d-ac8b-c67d20434643'
+  PropagateID: '0d96ae20-64f1-4a6d-ac8b-c67d20434643'
+  ReservedCode1: 'e692d0ff-ee06-4d4e-bb98-0bffb4012938'
+  ReservedCode2: 'e692d0ff-ee06-4d4e-bb98-0bffb4012938'
+---
+
 <div align="center">
 If you like it, please ⭐️ star this repo! 
         
@@ -233,7 +244,10 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # Built-in knowledge base (152+ methods)
+│   ├── 3dgs-methods-overview.md # Index (152+ methods across 21 categories)
+│   ├── methods-core.md         # Core methods (Foundation→Dynamic)
+│   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
+│   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
 ├── scripts/
 │   └── setup.sh                 # Quick install script
 ├── README.md
@@ -287,6 +301,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 - [x] v0.1.2 — Knowledge base expansion: 50→120+ methods, 31 categories, daily auto-update workflow (Apr-May 2026)
 - [x] v0.1.3 — Knowledge base v2: 130→150+ methods, 52+ bug patterns, 37 categories, cross-domain expansion (May 2026)
 - [x] v0.1.4 — Knowledge base v3: 150→152+ methods, 53+ bug patterns, 21 categories (optimized), FreeTimeGS++, D-Rex (May 2026)
+- [x] v0.1.5 — Knowledge base restructured: split overview into 3 sub-files for efficient retrieval (May 2026)
 - [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison, cross-primitive: GS vs triangle soup vs implicit)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
@@ -345,3 +360,6 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 If this project saves you time, please give it a star!
 
 </div>
+> AI生成
+
+> AI生成

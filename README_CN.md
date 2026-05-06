@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7e9fbcf0-e4b8-42cc-8d84-f193da19f432'
+  PropagateID: '7e9fbcf0-e4b8-42cc-8d84-f193da19f432'
+  ReservedCode1: 'f85d9a67-6070-4164-bced-8dc35adb5adb'
+  ReservedCode2: 'f85d9a67-6070-4164-bced-8dc35adb5adb'
+---
+
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -228,7 +239,11 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG 论文写作助手
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # 内置知识库（152+ 方法）
+├── references/
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 152+ 方法）
+│   ├── methods-core.md         # 核心方法（基础→动态）
+│   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
+│   └── methods-systems-apps.md # 系统、应用、跨领域
 ├── scripts/
 │   └── setup.sh                 # 快速安装脚本
 ├── README.md
@@ -282,6 +297,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.1.2 — 知识库扩展：50→120+ 方法、31 个类别、每日自动更新工作流（2026年4-5月）
 - [x] v0.1.3 — 知识库 v2：130→150+ 方法、52+ bug 模式、37 个类别、跨领域扩展（2026年5月）
 - [x] v0.1.4 — 知识库 v3：150→152+ 方法、53+ bug 模式、21 个类别（已优化）、FreeTimeGS++、D-Rex（2026年5月）
+- [x] v0.1.5 — 知识库结构升级：拆分为 3 个子文件提升检索效率（2026年5月）
 - [ ] v0.2 — 新增 `3dgs-visualizer` 技能（Web 端渲染对比，跨基元：GS vs 三角面片 vs 隐式）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
@@ -394,3 +410,6 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
+> AI生成
+
+> AI生成
