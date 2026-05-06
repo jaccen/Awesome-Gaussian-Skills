@@ -1,6 +1,6 @@
 ﻿# 3DGS Methods Overview
 
-> This file is the master index for all 150+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 180+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -26,6 +26,10 @@
 - **2D-SuGaR** [arXiv:2605.00569](https://arxiv.org/abs/2605.00569) — 2DGS enhanced with monocular depth/normal priors
 - **LeanGaussian** — Extreme compression from single RGB image for efficient large-scale rendering
 - **NegGS** [arXiv:2405.14786](https://arxiv.org/abs/2405.14786) — Negative color values for ring/crescent/non-convex structures
+- **Neural Gabor Splatting** [arXiv:2604.15941](https://arxiv.org/abs/2604.15941) — Neural Gabor augmentation per Gaussian + frequency-aware densification for high-freq surfaces (CVPR 2026)
+- **PointSplat** [arXiv:2604.09903](https://arxiv.org/abs/2604.09903) — Geometry-driven pruning + Transformer refinement for efficient 3DGS
+- **GLINT** [arXiv:2603.26181](https://arxiv.org/abs/2603.26181) — Scene-scale transparency via decomposed Gaussian radiance transport for glass
+- **P2M++** [arXiv:2605.00429](https://arxiv.org/abs/2605.00429) — Enhanced solver for point-to-mesh distance queries
 
 > Full details in [methods-core.md](methods-core.md#surface--geometry-methods)
 
@@ -36,6 +40,7 @@
 - **UniMGS** — Single-pass rasterization for both mesh and Gaussians simultaneously
 - **Vol3DGS** — Physically accurate volume-consistent rendering resolving splatting/volume inconsistency
 - **BrepGaussian** [arXiv:2602.21105](https://arxiv.org/abs/2602.21105) — 3DGS + B-rep CAD reconstruction to parametric STEP models
+- **CADFS** [arXiv:2605.01925](https://arxiv.org/abs/2605.01925) — Large-scale CAD program dataset + LLM-assisted CAD understanding (CVPR 2026)
 
 > Full details in [methods-core.md](methods-core.md#cad--mesh--hybrid-methods)
 
@@ -85,6 +90,7 @@
 - **TRiGS** [arXiv:2604.00538](https://arxiv.org/abs/2604.00538) — See Feed-Forward for details
 - **HDR-NSFF** [arXiv:2603.08313](https://arxiv.org/abs/2603.08313) — Dynamic HDR radiance fields from alternating-exposure video
 - **FreeTimeGS++** [arXiv:2605.03337](https://arxiv.org/abs/2605.03337) — Principled analysis + gated marginalization for 4DGS stability
+- **ClipGStream** [arXiv:2604.13746](https://arxiv.org/abs/2604.13746) — Clip-stream any-length any-motion multi-view dynamic scene reconstruction (CVPR 2026)
 
 > Full details in [methods-core.md](methods-core.md#dynamic-scene-methods)
 
@@ -131,6 +137,7 @@
 - **DiffSoup** [arXiv:2603.27151](https://arxiv.org/abs/2603.27151) — Triangle soup as extreme radiance field simplification
 - **FTSplat** [arXiv:2603.05932](https://arxiv.org/abs/2603.05932) — Feed-forward triangle primitive generation
 - **IRIS** [arXiv:2603.15368](https://arxiv.org/abs/2603.15368) — Hybrid proxy with analytical ray-primitive intersection
+- **ObjectMorpher** [arXiv:2603.28152](https://arxiv.org/abs/2603.28152) — Deformable 3DGS for 3D-aware interactive image editing (CVPR 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#editing-methods)
 
@@ -140,6 +147,8 @@
 - **GaussianShader** [arXiv:2311.17977](https://arxiv.org/abs/2311.17977) — Shading functions for reflective/refractive surfaces
 - **Instant Colorization** [arXiv:2604.17155](https://arxiv.org/abs/2604.17155) — Visibility-weighted least squares for per-Gaussian colorization
 - **VIRGi** [arXiv:2603.02986](https://arxiv.org/abs/2603.02986) — View-dependent instant recoloring with single edited image
+- **SSD-GS** [arXiv:2604.13333](https://arxiv.org/abs/2604.13333) — Scattering and shadow decomposition for relightable 3DGS (ICLR 2026)
+- **LumiMotion** [arXiv:2604.10994](https://arxiv.org/abs/2604.10994) — Improving Gaussian relighting with scene dynamics (CVPR 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#material--relighting-methods)
 
@@ -151,6 +160,8 @@
 - **High-Fidelity Human GS** [arXiv:2604.21714](https://arxiv.org/abs/2604.21714) — SMPL-X geometric priors + region-aware initialization
 - **HumanSplatHMR** [arXiv:2605.02784](https://arxiv.org/abs/2605.02784) — Joint pose refinement + Gaussian avatar optimization
 - **D-Rex** [arXiv:2604.27871](https://arxiv.org/abs/2604.27871) — Diffusion post-process relighting for expressive avatars
+- **Large-Scale HQ 3D Gaussian Head** [arXiv:2605.04035](https://arxiv.org/abs/2605.04035) — Multi-view large-scale high-fidelity 3D Gaussian head reconstruction
+- **Mobile Avatar (Pruned Blendshapes)** [arXiv:2605.01854](https://arxiv.org/abs/2605.01854) — High-fidelity mobile avatars with pruned local blendshapes (CVPR 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#human--avatar-methods)
 
@@ -302,6 +313,13 @@
 | Luminance-GS++ | ~vs baseline (illum.) | Same | Same | View-adaptive correction |
 | FreeTimeGS++ | ~(dynamic 4DGS) | Same | Same | Gated marginalization + neural velocity |
 | D-Rex | N/A (avatar relight) | Real-time | N/A | Diffusion post-process relighting |
+| ClipGStream | N/A (dynamic) | Real-time streaming | N/A | Clip-stream 4DGS |
+| SSD-GS | ~(relighting) | Same | Same | Scatter+shadow decomposition |
+| LumiMotion | ~(dynamic relight) | Same | Same | Dynamic-aware relighting |
+| ObjectMorpher | N/A (editing) | ~20s + RI | N/A | Deformable 3DGS editing |
+| CADFS | N/A (CAD dataset) | N/A | N/A | Large-scale CAD + LLM |
+| Mobile Avatar | N/A (avatar) | Real-time | Mobile | Pruned blendshapes |
+| Large-Scale HQ Head | N/A (head) | N/A | N/A | Multi-view 3DGS head |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
