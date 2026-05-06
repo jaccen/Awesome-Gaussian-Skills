@@ -18,6 +18,8 @@ If you like it, please ⭐️ star this repo!
 
 </div>
 
+> 📢 This project is maintained with Agent assistance. If you find broken links or incorrect information, please open an Issue.
+
 ---
 
 ## Why This Project?
@@ -45,7 +47,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **8 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, and research visualization (radar charts, timelines, comparison tables)
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 152+ 3DGS variants across 21 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 171+ 3DGS variants across 21 categories, with domain-specific terminology conventions
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -118,7 +120,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 152+ methods
+- Built-in knowledge of 171+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -260,7 +262,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (152+ methods across 21 categories)
+│   ├── 3dgs-methods-overview.md # Index (171+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -328,7 +330,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 | Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
 | Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> The full knowledge base covers **152+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **171+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
@@ -396,5 +398,53 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 **Made with passion for the 3DGS research community**
 
 If this project saves you time, please give it a star!
+
+## I. Core CV Links
+
+CVF Open Access (CVPR/ICCV/ECCV/3DV): https://openaccess.thecvf.com/
+
+CVPR 2025: https://openaccess.thecvf.com/CVPR2025
+
+ICCV 2025: https://openaccess.thecvf.com/ICCV2025
+
+3DV 2026: https://openaccess.thecvf.com/3DV2026
+
+arXiv CV (recent): https://arxiv.org/list/cs.CV/recent
+
+## II. Core CG / Rendering Links
+
+arXiv Graphics (cs.GR): https://arxiv.org/list/cs.GR/recent
+
+ACM DL (SIGGRAPH): https://dl.acm.org/
+
+Eurographics Digital Library: https://diglib.eg.org/
+
+RenderHub (rendering papers): https://renderhub.org/
+
+## III. 3DGS / NeRF / 3D Reconstruction
+
+3DGS official paper & repo: https://github.com/graphdeco-inria/gaussian-splatting
+
+3DGS improvements collection: https://github.com/limacv/GaussianSplatting-Papers
+
+NerfStudio paper collection: https://github.com/nerfstudio-project/nerfstudio
+
+CVPR 2025 3D track: https://openaccess.thecvf.com/CVPR2025?day=all#3D
+
+SIGGRAPH 2025 preprints: https://arxiv.org/list/cs.GR/2507
+
+Real-Time Rendering papers: https://www.realtimerendering.com/
+
+EGSR (rendering symposium): https://diglib.eg.org/handle/10.23730/egsr
+
+## IV. General Search & Chinese Mirrors
+
+Google Scholar: https://scholar.google.com
+
+DBLP (top-venue index): https://dblp.uni-trier.de/
+
+Hugging Face Papers: https://huggingface.co/papers
+
+arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
