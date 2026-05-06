@@ -43,7 +43,7 @@
 - **7 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 37 个类别的 150+ 3DGS 变体，含领域术语规范
+- **领域专家知识**：内置知识库覆盖 21 个类别的 152+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
 
 ---
@@ -115,7 +115,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 120+ 方法的知识库
+- 内置 152+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -131,7 +131,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（52+ 已知模式）
+- 常见 bug 模式检测（53+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -228,7 +228,7 @@ Awesome-Gaussian-Skills/
 │   └── cg-paper-writing/        # CG 论文写作助手
 │       └── SKILL.md
 ├── references/
-│   └── 3dgs-methods-overview.md # 内置知识库（150+ 方法）
+│   └── 3dgs-methods-overview.md # 内置知识库（152+ 方法）
 ├── scripts/
 │   └── setup.sh                 # 快速安装脚本
 ├── README.md
@@ -267,10 +267,11 @@ Awesome-Gaussian-Skills/
 | 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
 | 系统 | YOGO, GS-SCNet |
 | 安全 | RDSplat |
-| HDR/动态 | HDR-NSFF |
+| HDR/动态 | HDR-NSFF, FreeTimeGS++ |
+| 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
 | 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> 完整知识库覆盖 **37 个类别的 150+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **21 个类别的 152+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 ---
 
@@ -280,6 +281,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.1.1 — 新增 `cad-mesh-3dgs` 技能，桥接 CAD/Mesh↔3DGS（2026年4月）
 - [x] v0.1.2 — 知识库扩展：50→120+ 方法、31 个类别、每日自动更新工作流（2026年4-5月）
 - [x] v0.1.3 — 知识库 v2：130→150+ 方法、52+ bug 模式、37 个类别、跨领域扩展（2026年5月）
+- [x] v0.1.4 — 知识库 v3：150→152+ 方法、53+ bug 模式、21 个类别（已优化）、FreeTimeGS++、D-Rex（2026年5月）
 - [ ] v0.2 — 新增 `3dgs-visualizer` 技能（Web 端渲染对比，跨基元：GS vs 三角面片 vs 隐式）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成

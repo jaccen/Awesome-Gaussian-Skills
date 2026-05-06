@@ -1,7 +1,7 @@
 ---
 name: 3dgs-method-compare
-description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 150+ 3DGS methods.
-version: 1.3.0
+description: Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 152+ 3DGS methods.
+version: 1.3.1
 author: jaccen
 tags:
   - 3dgs
@@ -23,7 +23,7 @@ trigger:
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 150+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 152+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -224,12 +224,19 @@ When comparing methods, analyze across the following dimensions:
 | Pi-GS | arXiv'26 (2602.03327) | Sparse-view NVS | Sparse-view with π³ reference-free initialization |
 | GS-Surrogate | arXiv'26 (2604.06358) | Physics simulation | Deformable GS for simulation visualization |
 
+### Dynamic / 4DGS Methods
+
+| Method | Venue | Primitive | Rendering | Key Feature |
+|--------|-------|-----------|-----------|-------------|
+| FreeTimeGS++ | arXiv'26 (2605.03337) | 4D Gaussians + durations | Gated marginalization | Neural velocity fields + emergent temporal partitioning; comprehensive 4DGS analysis |
+
 ### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
 | HumanSplatHMR | arXiv'26 | Image | Joint pose-avatar optimization; closes loop between HMR and differentiable rendering |
 | EmoTaG | CVPR'26 (2603.21332) | Image + audio | Emotion-aware talking head on GS |
+| D-Rex | SIGGRAPH'26 (2604.27871) | White-light avatar + target illumination | Decoupled relighting via LoRA fine-tuned video diffusion post-process; applicable to any white-light avatar system |
 
 ### Autonomous Driving Methods
 

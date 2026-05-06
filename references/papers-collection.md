@@ -408,6 +408,14 @@
 - **Key Innovation**: Extends DyMesh-XL dataset from 60K to 300K identities; variable-length sequence generation
 - **Source**: arXiv
 
+### FreeTimeGS++
+- **Paper**: FreeTimeGS++: Secrets of Dynamic Gaussian Splatting and Their Principles
+- **Authors**: Lucas Yunkyu Lee, Soonho Kim, Youngwook Kim, Sangmin Kim, Jaesik Park (POSTECH)
+- **ArXiv**: 2605.03337
+- **Core**: Comprehensive analysis and principled improvement of 4D Gaussian Splatting
+- **Key Innovation**: Emergent temporal partitioning via Gaussian durations; gated marginalization + neural velocity fields for stable dynamic representations; reduced run-to-run variance
+- **Source**: arXiv
+
 ---
 
 ## 8. Language / Semantic / Segmentation
@@ -537,6 +545,15 @@
 
 ### SketchFaceGS
 - Already in 3dgs-methods-overview.md (Editing Methods)
+
+### D-Rex
+- **Paper**: D-Rex: Diffusion Rendering for Relightable Expressive Avatars
+- **Authors**: Timo Teufel, Xilong Zhou, Umar Iqbal, Jan Kautz, Marc Habermann, Vladislav Golyanik, Christian Theobalt (MPI Informatics / SAIF / NVIDIA)
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2604.27871
+- **Core**: Diffusion rendering for relightable expressive full-body avatars
+- **Key Innovation**: Decouples relighting from avatar modeling as image-space post-process; LoRA fine-tuned video diffusion; first method with strong facial animation + relighting
+- **Source**: arXiv
 
 ---
 

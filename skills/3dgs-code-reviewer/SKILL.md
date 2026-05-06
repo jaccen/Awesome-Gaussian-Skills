@@ -1,7 +1,7 @@
 ---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 52+ known bug patterns.
-version: 1.1.0
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 53+ known bug patterns.
+version: 1.1.1
 author: jaccen
 tags:
   - 3dgs
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (52+ known patterns)
+- Identify common 3DGS implementation pitfalls (53+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -265,6 +265,12 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 52 | Naively mixing alternating-exposure frames in loss function | Model favors overexposed views; loss of highlight detail; blown-out specular reflections; inconsistent tone across views | Weight each frame's loss by inverse exposure duration or use exposure-normalized rendering; apply tone-mapping-aware loss that operates in log domain; separate HDR reconstruction from tone-mapping optimization (HDR-NSFF, ArXiv 2505.01090) |
+
+### 4DGS Temporal Consistency Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 53 | 4DGS temporal partitioning instability | Unstable dynamic representations with high run-to-run variance when naively assigning Gaussian durations without temporal partitioning; discrepancy between photometric fidelity and spatiotemporal consistency | Use principled duration assignment via gated marginalization + neural velocity fields instead of heuristic per-Gaussian lifetime settings (FreeTimeGS++, ArXiv 2605.03337) |
 
 ## Output Format
 

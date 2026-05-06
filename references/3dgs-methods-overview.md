@@ -78,7 +78,6 @@
 - **Note**: Extension of 2DGS and SuGaR, combining surface-aware regularization with 2D Gaussian primitives
 
 
-
 ### LeanGaussian
 - **Paper**: LeanGaussian: Compressing 3D Gaussian Splatting to the Minimum for Efficient Large-Scale Rendering
 - **Authors**: IDEA Research Institute
@@ -384,7 +383,6 @@
 - See Feed-Forward Methods section for details
 
 
-
 ### HDR-NSFF
 - **Paper**: HDR-NSFF: High Dynamic Range Neural Scene Flow Fields
 - **Authors**: Shin Dong-Yeon, Kim Jun-Seong, Kwon Byung-Ki, Tae-Hyun Oh
@@ -393,6 +391,15 @@
 - **Core**: Dynamic HDR radiance fields from alternating-exposure monocular video; compatible with both NeRF and 4DGS
 - **Key Innovation**: 4D spatio-temporal modeling paradigm; DINO-based exposure-invariant optical flow; first real-world HDR-GoPro dataset
 - **Code**: https://shin-dong-yeon.github.io/HDR-NSFF/
+
+### FreeTimeGS++
+- **Paper**: FreeTimeGS++: Secrets of Dynamic Gaussian Splatting and Their Principles
+- **Authors**: Lucas Yunkyu Lee, Soonho Kim, Youngwook Kim, Sangmin Kim, Jaesik Park (POSTECH)
+- **ArXiv**: 2605.03337
+- **Core**: Comprehensive analysis and principled improvement of 4D Gaussian Splatting for dynamic scene reconstruction
+- **Key Innovation**: Establishes controlled baseline (FreeTimeGS_ours) by formalizing SOTA heuristics; uncovers emergent temporal partitioning driven by Gaussian durations and photometric vs spatiotemporal consistency discrepancy; proposes gated marginalization + neural velocity fields for superior stability; reduced run-to-run variance and reproducible results
+- **Note**: Provides systematic understanding and reliable foundation for future 4DGS research
+
 ## Language / Semantic
 
 ### LangSplat
@@ -455,7 +462,6 @@
 - **ArXiv**: 2602.03327
 - **Core**: Robust sparse-view 3DGS using reference-free π³ point cloud estimation
 - **Key Innovation**: Dense π³ initialization + uncertainty-guided depth supervision + normal consistency loss; SOTA on Tanks and Temples, LLFF, DTU, MipNeRF360
-
 
 
 ### FSGS
@@ -666,6 +672,15 @@
 - **Core**: Joint optimization framework that refines 3D human poses while simultaneously learning high-fidelity Gaussian avatar
 - **Key Innovation**: Closes the loop between geometric pose estimation and differentiable rendering; backpropagates photometric, segmentation, and depth losses through differentiable renderer to pose parameters and global position; uses only human mesh estimates from HMR (no motion capture needed); consistent improvements over pose recovery baselines and avatar baselines that decouple pose from reconstruction
 
+### D-Rex
+- **Paper**: D-Rex: Diffusion Rendering for Relightable Expressive Avatars
+- **Authors**: Timo Teufel, Xilong Zhou, Umar Iqbal, Jan Kautz, Marc Habermann, Vladislav Golyanik, Christian Theobalt (MPI Informatics / SAIF / NVIDIA)
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2604.27871
+- **Core**: Person-specific relightable, expressive, and animatable full-body human avatar framework
+- **Key Innovation**: Decouples relighting entirely from avatar modeling by treating it as image-space post-process; leverages pre-trained video diffusion relighting model fine-tuned via LoRA on paired flat-lit and relit frames from light stage; flat-lit driving frames from independent expressive avatar framework; directly applicable to any white-light avatar system; enables view- and temporally consistent relighting while preserving expressive motion and fine-grained facial detail
+- **Note**: Bridges Human & Avatar and Material & Relighting categories; first method demonstrating strong facial animation alongside relighting
+
 ## Robustness & Regularization
 
 ### NRGS (Neural Regularization for Gaussian Splatting)
@@ -690,7 +705,6 @@
 - **Venue**: Under review
 - **Core**: Models partially observable geometry as continuous energy field for soft geometric guidance in 3DGS optimization
 - **Key Innovation**: Instead of hard geometric constraints, provides soft energy-based guidance from LiDAR/depth priors; allows geometry to steer optimization without restricting solution space; mitigates overfitting in large-scale outdoor scenes with incomplete geometric supervision
-
 
 
 ### WildGaussians
@@ -848,29 +862,6 @@
 - **Core**: Structure-aware densification replacing heuristic screen-space gradient-based split/clone
 - **Key Innovation**: Multi-scale frequency analysis combining structure tensors with Laplacian scale space to estimate dominant frequency; per-Gaussian per-axis frequency violation metric η; anisotropic splitting (vs isotropic); multiview consistency criterion; faster convergence with superior quality especially in high-frequency regions
 
-
-
-### Faster-GS
-- **Paper**: Faster-GS: Systematic Acceleration of 3D Gaussian Splatting Training
-- **Venue**: CVPR 2026
-- **Core**: Systematic benchmark for 3DGS training speed optimization
-- **Key Innovation**: Separates engineering optimizations from algorithmic innovations, enabling fair evaluation of 3DGS acceleration methods
-
-### Proxy-GS
-- **Paper**: Proxy-GS: Occlusion-Aware Gaussian Splatting via Lightweight Proxy Model
-- **Authors**: Zhonghang Zhou (USTC/SJTU), Shanghai AI Lab, NWPU
-- **Venue**: CVPR 2026 (Perfect Score)
-- **Core**: Lightweight proxy model with occlusion prior for training and inference acceleration
-- **Key Innovation**: 2.5x rendering speedup with no accuracy loss; occlusion-aware pruning via proxy model
-
-### Structure-Aware Densification
-- **Paper**: Faster 3D Gaussian Splatting Convergence via Structure-Aware Densification
-- **Authors**: Linjie Lyu, Ayush Tewari, Jianchun Chen, Thomas Leimkuhler, Christian Theobalt
-- **Venue**: SIGGRAPH 2026
-- **ArXiv**: 2604.28016
-- **Core**: Structure-aware densification replacing heuristic screen-space gradient-based split/clone
-- **Key Innovation**: Multi-scale frequency analysis combining structure tensors with Laplacian scale space; per-Gaussian per-axis frequency violation metric; anisotropic splitting; faster convergence with superior high-freq quality
-
 ### 3DGS as MCMC
 - **Paper**: 3D Gaussian Splatting as Markov Chain Monte Carlo
 - **Authors**: Shakiba Kheradmand, et al.
@@ -929,7 +920,6 @@
 - **Core**: Multi-modal simulation framework integrating batch 3DGS rendering with parallel physics engine
 - **Key Innovation**: 10^4 FPS throughput at 640x480; automated Real2Sim workflow for photorealistic simulation-ready environments; bridges perceptual and physical gaps
 - **Code**: https://gsplayground.github.io
-
 
 
 ### GS-Surrogate
@@ -1035,7 +1025,6 @@
 - **Code**: https://emotag26.github.io/
 
 
-
 ### 3DTV
 - **Paper**: 3DTV: A Feedforward Interpolation Network for Real-Time View Synthesis
 - **Authors**: Stefan Schulz, Fernando Edelstein, Hannah Droge, Matthias B. Hullin, Markus Plack (University of Bonn)
@@ -1084,7 +1073,6 @@
 - **ArXiv**: 2602.18322 (TPAMI 2026, journal extension of CVPR 2025)
 - **Core**: 3DGS-based robust NVS under diverse illumination conditions
 - **Key Innovation**: View-adaptive lightness adjustment + pixel-wise residual refinement; handles low-light, overexposure, chromatic variations; preserves real-time rendering
-
 
 
 ### E2EGS
@@ -1159,6 +1147,8 @@
 | DiffSoup | ~24.0 (extreme comp.) | Interactive | Minimal | Triangle soup |
 | FreeFix | ↑ vs baseline (extrap.) | Same | Same | Diffusion-guided refine |
 | Luminance-GS++ | ↑ vs baseline (illum.) | Same | Same | View-adaptive correction |
+| FreeTimeGS++ | ↑ (dynamic 4DGS) | Same | Same | Gated marginalization + neural velocity |
+| D-Rex | N/A (avatar relight) | Real-time | N/A | Diffusion post-process relighting |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.

@@ -1,6 +1,6 @@
 ---
 name: cad-mesh-3dgs
-description: Bridge CAD, Mesh, and 3D Gaussian Splatting representations. Covers mesh↔3DGS conversion, surface extraction from Gaussians, CAD reverse engineering with 3DGS, B-rep/parametric reconstruction, and geometry processing pipelines. Analyzes 43+ methods at the intersection of structured geometry and neural rendering.
+description: Bridge CAD, Mesh, and 3D Gaussian Splatting representations. Covers mesh↔3DGS conversion, surface extraction from Gaussians, CAD reverse engineering with 3DGS, B-rep/parametric reconstruction, and geometry processing pipelines. Analyzes 35+ methods at the intersection of structured geometry and neural rendering.
 version: 1.0.0
 author: jaccen
 tags:
@@ -482,6 +482,7 @@ def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000)
 | DiffSoup | arXiv'26 (2603.27151) | Neural Rendering | Triangle soup primitives | Triangle soup as alternative to Gaussians; standard depth testing enables seamless integration with traditional mesh/graphics pipelines |
 | FTSplat | arXiv'26 (2603.05932) | Robotics / Simulation | Predicted triangle surfaces | Feed-forward triangle prediction producing simulation-ready mesh; compatible with robotic simulators (Isaac Sim, MuJoCo) |
 | IRIS | arXiv'26 (2603.15368) | Neural Fields / Editing | Gaussians-as-proxies for INR | Hybrid Gaussians-as-proxies for implicit neural fields; enables shape editing workflows bridging mesh↔GS conversion |
+| D-Rex | SIGGRAPH'26 (2604.27871) | Avatar / Relighting | Decoupled diffusion post-process | Decouples relighting from avatar modeling via LoRA fine-tuned video diffusion; applicable to any white-light avatar system; enables mesh/avatar geometry preservation under novel illumination |
 
 **Note on medical mesh-GS methods**: RESPIRE and RGS both use hybrid mesh-Gaussian representations for medical imaging. RESPIRE anchors Gaussians to a CT-derived mesh for bronchoscopy (topology from prior), while RGS uses spectral decomposition to separate geometric base (mesh-like) from residual detail (Gaussian-like) for CBCT reconstruction.
 
