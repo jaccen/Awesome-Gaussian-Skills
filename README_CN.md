@@ -7,7 +7,7 @@
 **即插即用的 AI Agent 技能，适配 OpenClaw / Claude Code / Cursor —— 用自然语言完成论文阅读、方法对比、代码审查、实验设计**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-7-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-8-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -40,7 +40,7 @@
 
 ## 特性
 
-- **7 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作
+- **8 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
 - **领域专家知识**：内置知识库覆盖 21 个类别的 152+ 3DGS 变体，含领域术语规范
@@ -206,6 +206,30 @@ Agent: [生成学术引言，包含正确的结构、领域术语和论证逻辑
 - 分节写作（摘要→引言→相关工作→方法→实验→结论）
 - 数学符号规范
 
+### 8. `3dgs-visualizer` — 研究可视化
+
+**为 3DGS 研究生成出版级图表：雷达图、对比表和方法时间线。**
+
+```
+你: "画一个雷达图对比 3DGS、2DGS 和 NegGS 在各维度的表现"
+Agent: [生成 7 维雷达图：渲染质量、速度、内存、几何质量、
+        可扩展性、易用性、创新性]
+```
+
+```
+你: "生成3DGS领域的时间线演进图，从2023年到2026年"
+Agent: [创建按类别分道的时间线，展示 40+ 方法，节点大小
+        按引用量加权]
+```
+
+**功能：**
+- 雷达图：多维方法对比（7 个默认维度，可自定义）
+- 可视化性能/效率对比表（最佳/次佳高亮标注）
+- 方法演进时间线（14 个类别分道，引用量加权节点）
+- 双输出：静态图（PDF/PNG，matplotlib/seaborn）+ 交互式 HTML（plotly）
+- 3 个预设模板：领域全景概览、类别深度分析、论文投稿图表包
+- 出版级样式：Okabe-Ito 色盲安全调色板
+
 ---
 
 ## 项目结构
@@ -225,9 +249,10 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   ├── cad-mesh-3dgs/          # CAD、Mesh 与 3DGS 桥接
 │   │   └── SKILL.md
+│   ├── 3dgs-visualizer/        # 研究可视化（雷达图、对比表、时间线）
+│   │   └── SKILL.md
 │   └── cg-paper-writing/        # CG 论文写作助手
 │       └── SKILL.md
-├── references/
 ├── references/
 │   ├── 3dgs-methods-overview.md # 索引（21 个类别 152+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
@@ -287,7 +312,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.1.3 — 知识库 v2：130→150+ 方法、52+ bug 模式、37 个类别、跨领域扩展（2026年5月）
 - [x] v0.1.4 — 知识库 v3：150→152+ 方法、53+ bug 模式、21 个类别（已优化）、FreeTimeGS++、D-Rex（2026年5月）
 - [x] v0.1.5 — 知识库结构升级：拆分为 3 个子文件提升检索效率（2026年5月）
-- [ ] v0.2 — 新增 `3dgs-visualizer` 技能（Web 端渲染对比，跨基元：GS vs 三角面片 vs 隐式）
+- [x] v0.2 — 新增 `3dgs-visualizer` 技能（雷达图、对比表、方法时间线；静态 + 交互式双输出）（2026年5月）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）
@@ -399,3 +424,7 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
+
+> AI生成
+
+> AI生成

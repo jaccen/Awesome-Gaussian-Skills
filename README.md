@@ -1,4 +1,3 @@
-
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -10,7 +9,7 @@ If you like it, please ⭐️ star this repo!
 **Plug-and-play AI Agent skills for OpenClaw / Claude Code / Cursor — read papers, compare methods, review code, design experiments, all in natural language.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-7-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-8-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -43,7 +42,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ## Features
 
-- **7 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, and CG paper writing
+- **8 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, and research visualization (radar charts, timelines, comparison tables)
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
 - **Domain Expert Knowledge**: Built-in knowledge base covering 152+ 3DGS variants across 21 categories, with domain-specific terminology conventions
@@ -213,6 +212,30 @@ Agent: [Generates academic introduction with proper structure,
 - Section-by-section writing (Abstract → Introduction → Related Work → Method → Experiments → Conclusion)
 - Mathematical notation conventions
 
+### 8. `3dgs-visualizer` — Research Visualization
+
+**Generate publication-quality charts for 3DGS research: radar charts, comparison tables, and method timelines.**
+
+```
+You: "画一个雷达图对比 3DGS、2DGS 和 NegGS 在各维度的表现"
+Agent: [Generates radar chart with 7 dimensions: Render Quality,
+        Speed, Memory, Geometry, Scalability, Ease of Use, Novelty]
+```
+
+```
+You: "生成3DGS领域的时间线演进图，从2023年到2026年"
+Agent: [Creates chronological timeline showing 40+ methods across
+        14 categories with citation-weighted node sizing]
+```
+
+**Capabilities:**
+- Radar charts for multi-dimensional method comparison (7 default dimensions, customizable)
+- Visual performance/efficiency comparison tables with color-coded highlighting
+- Method evolution timelines with category lanes and citation-weighted sizing
+- Dual output: static (PDF/PNG via matplotlib/seaborn) and interactive (HTML via plotly)
+- 3 pre-built presets: Landscape Overview, Category Deep Dive, Paper Submission Package
+- Publication-quality styling with Okabe-Ito colorblind-safe palette
+
 ---
 
 ## Architecture
@@ -231,6 +254,8 @@ Awesome-Gaussian-Skills/
 │   ├── nerf-to-3dgs-migrator/  # NeRF-to-3DGS migration guide
 │   │   └── SKILL.md
 │   ├── cad-mesh-3dgs/          # CAD, Mesh & 3DGS bridge
+│   │   └── SKILL.md
+│   ├── 3dgs-visualizer/        # Research visualization (radar, table, timeline)
 │   │   └── SKILL.md
 │   └── cg-paper-writing/        # CG paper writing assistant
 │       └── SKILL.md
@@ -293,7 +318,7 @@ Each skill follows the **SKILL.md standard** (YAML frontmatter + Markdown instru
 - [x] v0.1.3 — Knowledge base v2: 130→150+ methods, 52+ bug patterns, 37 categories, cross-domain expansion (May 2026)
 - [x] v0.1.4 — Knowledge base v3: 150→152+ methods, 53+ bug patterns, 21 categories (optimized), FreeTimeGS++, D-Rex (May 2026)
 - [x] v0.1.5 — Knowledge base restructured: split overview into 3 sub-files for efficient retrieval (May 2026)
-- [ ] v0.2 — Add `3dgs-visualizer` skill (Web-based rendering comparison, cross-primitive: GS vs triangle soup vs implicit)
+- [x] v0.2 — Add `3dgs-visualizer` skill (radar charts, comparison tables, method timelines; static + interactive output) (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
@@ -351,4 +376,3 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 If this project saves you time, please give it a star!
 
 </div>
-
