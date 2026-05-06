@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '25e866e1-8dc0-4133-8ebc-d471380b93f4'
-  PropagateID: '25e866e1-8dc0-4133-8ebc-d471380b93f4'
-  ReservedCode1: 'd5851f9b-9d31-4a67-88de-11de37d9d885'
-  ReservedCode2: 'd5851f9b-9d31-4a67-88de-11de37d9d885'
----
-
 # Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
@@ -420,4 +409,3 @@ AIGC:
 - **Core**: Pose-free 3D reconstruction from event camera streams using Gaussian Splatting
 - **Key Innovation**: Patch-based temporal coherence analysis extracts edges from noisy events; edge-weighted losses; fully pose-free event-based 3D reconstruction
 
-> AI生成

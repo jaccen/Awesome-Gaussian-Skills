@@ -1,15 +1,6 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0d96ae20-64f1-4a6d-ac8b-c67d20434643'
-  PropagateID: '0d96ae20-64f1-4a6d-ac8b-c67d20434643'
-  ReservedCode1: 'e692d0ff-ee06-4d4e-bb98-0bffb4012938'
-  ReservedCode2: 'e692d0ff-ee06-4d4e-bb98-0bffb4012938'
----
 
 <div align="center">
+
 If you like it, please ⭐️ star this repo! 
         
 # Awesome Gaussian Skills
@@ -360,6 +351,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 If this project saves you time, please give it a star!
 
 </div>
-> AI生成
 
-> AI生成

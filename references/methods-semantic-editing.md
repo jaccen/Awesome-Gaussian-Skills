@@ -1,13 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '5648b72f-059c-47ac-abc3-2356c5739581'
-  PropagateID: '5648b72f-059c-47ac-abc3-2356c5739581'
-  ReservedCode1: '3fe12d89-bb2b-445e-b2c3-ec02f56660ce'
-  ReservedCode2: '3fe12d89-bb2b-445e-b2c3-ec02f56660ce'
----
 
 # Semantic, Editing, Material & Avatar Methods
 
@@ -296,5 +286,3 @@ AIGC:
 - **Core**: Person-specific relightable, expressive, and animatable full-body human avatar framework
 - **Key Innovation**: Decouples relighting entirely from avatar modeling by treating it as image-space post-process; leverages pre-trained video diffusion relighting model fine-tuned via LoRA on paired flat-lit and relit frames from light stage; flat-lit driving frames from independent expressive avatar framework; directly applicable to any white-light avatar system; enables view- and temporally consistent relighting while preserving expressive motion and fine-grained facial detail
 - **Note**: Bridges Human & Avatar and Material & Relighting categories; first method demonstrating strong facial animation alongside relighting
-
-> AI生成

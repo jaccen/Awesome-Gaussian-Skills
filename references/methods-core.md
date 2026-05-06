@@ -1,13 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f9e2db36-bf45-48a4-801a-170989e14ccc'
-  PropagateID: 'f9e2db36-bf45-48a4-801a-170989e14ccc'
-  ReservedCode1: '011352ee-fb5d-4533-94bb-d0d02127cf8f'
-  ReservedCode2: '011352ee-fb5d-4533-94bb-d0d02127cf8f'
----
 
 # Core 3DGS Methods
 
@@ -416,5 +406,3 @@ AIGC:
 - **Core**: Comprehensive analysis and principled improvement of 4D Gaussian Splatting for dynamic scene reconstruction
 - **Key Innovation**: Establishes controlled baseline (FreeTimeGS_ours) by formalizing SOTA heuristics; uncovers emergent temporal partitioning driven by Gaussian durations and photometric vs spatiotemporal consistency discrepancy; proposes gated marginalization + neural velocity fields for superior stability; reduced run-to-run variance and reproducible results
 - **Note**: Provides systematic understanding and reliable foundation for future 4DGS research
-
-> AI生成
