@@ -158,6 +158,7 @@
 - **Venue**: ICME 2026
 - **Core**: Uses event camera data + optical flow to handle motion blur in 3DGS
 - **Key Innovation**: Novel combination of event cameras (high temporal resolution) with 3DGS rendering, enabling high-quality reconstruction in high-speed motion scenarios
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.22183) | [arXiv:2604.22183](https://arxiv.org/abs/2604.22183) | [Code]
 
 ### MAGICIAN
@@ -174,7 +175,7 @@
 ## Training & Optimization
 
 ### Faster-GS
-- **Paper**: Faster-GS �?Systematic Acceleration of 3D Gaussian Splatting Training
+- **Paper**: Faster-GS  → Systematic Acceleration of 3D Gaussian Splatting Training
 - **Venue**: CVPR 2026
 - **Core**: Systematic benchmark for 3DGS training speed optimization
 - **Key Innovation**: Separates engineering optimizations from algorithmic innovations, enabling fair evaluation of 3DGS acceleration methods
@@ -304,6 +305,7 @@
 - **Venue**: IEEE ICC 2026 Workshop
 - **Core**: Adapts Gaussian Splatting to wireless radiance field (WRF) reconstruction for spatial power spectrum prediction
 - **Key Innovation**: Planar 2D Gaussians with 3D coordinates rendered directly on angular domain; bilinear spatial transformer (BST) captures long-range electromagnetic dependencies; surpasses NeRF-based and prior GS-based baselines on SSIM
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.25945) | [arXiv:2604.25945](https://arxiv.org/abs/2604.25945) | [Code]
 
 ### FieryGS
@@ -312,7 +314,8 @@
 - **Venue**: ICLR 2026
 - **ArXiv**: 2605.00177
 - **Core**: Physically-based framework integrating combustion simulation and rendering within 3DGS pipeline
-- **Key Innovation**: Three coupled modules �?multimodal LLM-based physical material reasoning, efficient volumetric combustion simulation, unified fire+3DGS renderer; supports flame propagation, smoke dispersion, surface carbonization; user-controllable fire intensity, airflow, ignition location
+- **Key Innovation**: Three coupled modules  → multimodal LLM-based physical material reasoning, efficient volumetric combustion simulation, unified fire+3DGS renderer; supports flame propagation, smoke dispersion, surface carbonization; user-controllable fire intensity, airflow, ignition location
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.00177) | [arXiv:2605.00177](https://arxiv.org/abs/2605.00177) | [Code](https://pku-vcl-geometry.github.io/FieryGS/)
 
 ### SplAttN
@@ -321,7 +324,7 @@
 - **Venue**: ICML 2026 Spotlight
 - **ArXiv**: 2605.01466
 - **Core**: Replaces hard projection with Differentiable Gaussian Splatting for dense, continuous image-plane representation in point cloud completion
-- **Key Innovation**: Identifies "Cross-Modal Entropy Collapse" �?hard projection yields extremely sparse support; Gaussian Splatting as continuous density estimation avoids collapsed sparse support, facilitates gradient flow; robust cross-modal connection on KITTI stress test
+- **Key Innovation**: Identifies "Cross-Modal Entropy Collapse"  → hard projection yields extremely sparse support; Gaussian Splatting as continuous density estimation avoids collapsed sparse support, facilitates gradient flow; robust cross-modal connection on KITTI stress test
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.01466) | [arXiv:2605.01466](https://arxiv.org/abs/2605.01466) | [Code](https://github.com/zay002/SplAttN)
 
 ### Fake3DGS
@@ -347,7 +350,7 @@
 - **Authors**: Jian Lin, Jiancheng Fang, Shaoyu Wang, Changan Lai, Yikun Zhang, Yang Chen, Qiegen Liu
 - **ArXiv**: 2604.27552
 - **Core**: Integrates wavelet multi-resolution analysis with 3DGS for ultra sparse-view cone-beam CT reconstruction
-- **Key Innovation**: Spectrally-decoupled Gaussian representation �?geometric base component + residual detail component; resolves mismatch between X-ray attenuation non-negativity and bipolar wavelet coefficients; spectral-spatial collaborative optimization; superior fidelity in trabecular and vascular structures
+- **Key Innovation**: Spectrally-decoupled Gaussian representation  → geometric base component + residual detail component; resolves mismatch between X-ray attenuation non-negativity and bipolar wavelet coefficients; spectral-spatial collaborative optimization; superior fidelity in trabecular and vascular structures
 - **Application**: Medical imaging (CBCT reconstruction from sparse views)
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.27552) | [arXiv:2604.27552](https://arxiv.org/abs/2604.27552) | [Code]
 
@@ -357,6 +360,7 @@
 - **ArXiv**: 2604.28179
 - **Core**: Mesh-anchored Gaussian splatting framework with respiratory-phase-aware deformation for dynamic bronchoscopy
 - **Key Innovation**: Paired inhale-exhale CT scans reduce respiratory motion to single scalar breathing phase; lightweight estimator infers breathing phase from endoscopic RGB; eliminates breath-hold protocols; 1.22mm target localization accuracy (within 3mm clinical tolerance); 20x faster training
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.28179) | [arXiv:2604.28179](https://arxiv.org/abs/2604.28179) | [Code](https://asdunnbe.github.io/RESPIRE/)
 
 ### EmoTaG
@@ -375,6 +379,7 @@
 - **ArXiv**: 2604.11211
 - **Core**: Feedforward sparse-view interpolation network for real-time free-viewpoint rendering from only 3 cameras
 - **Key Innovation**: Delaunay-based triplet selection; 25ms per frame at 40 FPS; no scene-specific retraining needed
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.11211) | [arXiv:2604.11211](https://arxiv.org/abs/2604.11211) | [Code](https://stefanmschulz.github.io/3DTV_webpage/)
 
 ### Mobile Phone 3DGS Acquisition (Object-Centered)
@@ -383,6 +388,7 @@
 - **ArXiv**: 2604.19216
 - **Core**: On-device capture guidance for mobile 3DGS acquisition with real-time spherical coverage feedback
 - **Key Innovation**: Area-weighted spherical coverage for uniform viewpoints
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.19216) | [arXiv:2604.19216](https://arxiv.org/abs/2604.19216) | [Code]
 
 ### RDSplat
@@ -415,6 +421,7 @@
 - **ArXiv**: 2601.20857
 - **Core**: Fine-tuning-free diffusion model guidance for improving extrapolated 3DGS rendering
 - **Key Innovation**: Interleaved 2D-3D refinement; per-pixel confidence mask for targeted improvement; comparable to fine-tuning methods while retaining generalization
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2601.20857) | [arXiv:2601.20857](https://arxiv.org/abs/2601.20857) | [Code]
 
 ### Luminance-GS++
@@ -423,6 +430,7 @@
 - **ArXiv**: 2602.18322 (TPAMI 2026, journal extension of CVPR 2025)
 - **Core**: 3DGS-based robust NVS under diverse illumination conditions
 - **Key Innovation**: View-adaptive lightness adjustment + pixel-wise residual refinement; handles low-light, overexposure, chromatic variations; preserves real-time rendering
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2602.18322) | [arXiv:2602.18322](https://arxiv.org/abs/2602.18322) | [Code]
 
 
@@ -433,4 +441,5 @@
 - **ArXiv**: 2603.14684
 - **Core**: Pose-free 3D reconstruction from event camera streams using Gaussian Splatting
 - **Key Innovation**: Patch-based temporal coherence analysis extracts edges from noisy events; edge-weighted losses; fully pose-free event-based 3D reconstruction
+
 - **Links**: [中英摘要](https://arxiv.org/abs/2603.14684) | [arXiv:2603.14684](https://arxiv.org/abs/2603.14684) | [Code]

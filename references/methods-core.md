@@ -15,7 +15,7 @@
 - **Key Innovation**: Replaces NeRF's implicit MLP with explicit Gaussians + differentiable rasterization for real-time rendering
 - **Rendering**: Tile-based forward splatting, α-compositing
 - **Training**: Adaptive Density Control (clone + split + prune), 7k-30k iterations
-- **Baseline Performance**: Mip-NeRF 360 �?PSNR ~25.2 dB, SSIM ~0.77, LPIPS ~0.36
+- **Baseline Performance**: Mip-NeRF 360 → PSNR -> ~25.2 dB, SSIM ~0.77, LPIPS ~0.36
 - **Speed**: 100+ FPS at 1080p on RTX 3090
 - **Links**: [中英摘要](https://arxiv.org/abs/2308.04079) | [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) | [Code](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/)
 
@@ -34,7 +34,7 @@
 - **Venue**: CVPR 2026 Findings
 - **ArXiv**: 2604.27437
 - **Core**: Replaces standard α-compositing with learnable softmax-based competition between overlapping Gaussians
-- **Key Innovation**: Enforces softmax competition in overlapping regions; learnable parameters control blend-vs-bound strength (smooth blending �?crisp boundaries); preserves order invariance and transmittance consistency; addresses both view-inconsistency and diffuse-boundary problems in a unified formulation
+- **Key Innovation**: Enforces softmax competition in overlapping regions; learnable parameters control blend-vs-bound strength (smooth blending  → crisp boundaries); preserves order invariance and transmittance consistency; addresses both view-inconsistency and diffuse-boundary problems in a unified formulation
 - **Trade-off**: Higher parameter efficiency with better reconstruction quality on real-world benchmarks
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.27437) | [arXiv:2604.27437](https://arxiv.org/abs/2604.27437) | [Code]
 
@@ -111,7 +111,7 @@
 - **ArXiv**: 2312.13253
 - **Core**: Regularizes Gaussians to align with learned mesh surface, extracts mesh via TSDF + Marching Cubes
 - **Key Innovation**: Joint optimization of Gaussians and mesh for high-quality surface extraction
-- **Pipeline**: Train 3DGS �?Regularize toward surface �?Multi-view TSDF fusion �?Marching Cubes
+- **Pipeline**: Train 3DGS  → Regularize toward surface  → Multi-view TSDF fusion  → Marching Cubes
 - **Links**: [中英摘要](https://arxiv.org/abs/2312.13253) | [arXiv:2312.13253](https://arxiv.org/abs/2312.13253) | [Code](https://github.com/Anttwo/SuGaR)
 
 ### 2D Gaussian Splatting (2DGS)
@@ -129,7 +129,7 @@
 - **Authors**: Zhejiang University
 - **Venue**: ICCV 2025
 - **Core**: Gaussians adsorbed onto mesh vertices; mesh provides topology + deformation handle
-- **Key Innovation**: Hybrid mesh-Gaussian representation �?deform mesh �?Gaussians follow automatically
+- **Key Innovation**: Hybrid mesh-Gaussian representation  → deform mesh  → Gaussians follow automatically
 - **Best for**: Animated/deformable objects, physical simulation + neural rendering
 
 ### UniMGS (Unified Mesh and 3DGS)
@@ -176,7 +176,7 @@
 - **Authors**: Roni Itkin, Noam Issachar, Yehonatan Keypur, Xingyu Chen, Anpei Chen, Sagie Benaim
 - **ArXiv**: 2604.15284
 - **Core**: Learns a compact global latent scene representation before decoding any explicit 3D geometry
-- **Key Innovation**: "Align first, decode later" �?resolves cross-view correspondences in latent space, then decodes to ~16K Gaussians with 4MB footprint
+- **Key Innovation**: "Align first, decode later"  → resolves cross-view correspondences in latent space, then decodes to ~16K Gaussians with 4MB footprint
 - **Speed**: Inference under 78ms in a single forward pass
 - **Trade-off**: Far fewer Gaussians (16K vs typical 100K-1M) but competitive quality on RealEstate10K and ACID
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.15284) | [arXiv:2604.15284](https://arxiv.org/abs/2604.15284) | [Code](https://r-itk.github.io/globalsplat/)
@@ -243,7 +243,7 @@
 - **Venue**: ECCV 2024
 - **ArXiv**: 2403.14627
 - **Core**: Efficient 3DGS reconstruction from sparse multi-view images via cost-volume-based Gaussian prediction
-- **Key Innovation**: Cost volume encodes multi-view geometry �?predicts per-view Gaussian splats �?cross-view aggregation; achieves high-quality reconstruction from as few as 3 views; strong generalization across datasets
+- **Key Innovation**: Cost volume encodes multi-view geometry  → predicts per-view Gaussian splats  → cross-view aggregation; achieves high-quality reconstruction from as few as 3 views; strong generalization across datasets
 - **Links**: [中英摘要](https://arxiv.org/abs/2403.14627) | [arXiv:2403.14627](https://arxiv.org/abs/2403.14627) | [Code](https://github.com/donydchen/mvsplat)
 
 ### GS-LRM
@@ -389,6 +389,7 @@
 ### SC-GS
 - **Core**: Spatial-temporal compression for dynamic Gaussians
 - **Method**: Compact 4D representation with shared deformation
+
 ### RobustSplat
 - **Paper**: RobustSplat: Decoupling Densification and Dynamics for Transient-Free 3DGS
 - **Authors**: Sun Yat-sen University + CUHK-Shenzhen
@@ -426,4 +427,3 @@
 - **Key Innovation**: Establishes controlled baseline (FreeTimeGS_ours) by formalizing SOTA heuristics; uncovers emergent temporal partitioning driven by Gaussian durations and photometric vs spatiotemporal consistency discrepancy; proposes gated marginalization + neural velocity fields for superior stability; reduced run-to-run variance and reproducible results
 - **Note**: Provides systematic understanding and reliable foundation for future 4DGS research
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.03337) | [arXiv:2605.03337](https://arxiv.org/abs/2605.03337) | [Code]
-
