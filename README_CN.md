@@ -1,4 +1,3 @@
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -11,7 +10,7 @@ If you like it, please ⭐️ star this repo!
 
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-8-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-9-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -44,10 +43,10 @@ If you like it, please ⭐️ star this repo!
 
 ## 特性
 
-- **8 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）
+- **9 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）、工程化部署指南
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 21 个类别的 184+ 3DGS 变体，含领域术语规范
+- **领域专家知识**：内置知识库覆盖 21 个类别的 199+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
 
 ---
@@ -119,7 +118,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 184+ 方法的知识库
+- 内置 199+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -234,6 +233,24 @@ Agent: [创建按类别分道的时间线，展示 40+ 方法，节点大小
 - 3 个预设模板：领域全景概览、类别深度分析、论文投稿图表包
 - 出版级样式：Okabe-Ito 色盲安全调色板
 
+### 9. `3dgs-engineering-guide` — 工程化部署指南
+
+**从学术研究到生产部署，桥接3DGS的工程化鸿沟。**
+
+```
+你: "我要把3DGS用在自动驾驶仿真中，应该选什么工具链？"
+Agent: [分析应用场景，推荐 aiSim 6 / CARLA+3DGS 管线，
+        关联相关论文（GSDrive、GS-Playground），
+        提醒传感器仿真保真度要求]
+```
+
+**功能：**
+- 10大行业落地赛道（自动驾驶、数字孪生、文博、影视游戏、电商、工业巡检、AR/VR、BIM、机器人、军事仿真）
+- 5层工程技术栈（采集→重建→后处理→部署→集成）
+- 工具选型决策树（按场景/平台/规模）
+- 跨平台部署指南（CUDA/Vulkan/WebGPU/移动端）
+- 工程化最佳实践与常见避坑
+
 ---
 
 ## 项目结构
@@ -255,10 +272,12 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   ├── 3dgs-visualizer/        # 研究可视化（雷达图、对比表、时间线）
 │   │   └── SKILL.md
-│   └── cg-paper-writing/        # CG 论文写作助手
+│   ├── cg-paper-writing/        # CG 论文写作助手
+│   │   └── SKILL.md
+│   └── 3dgs-engineering-guide/   # 工程化部署指南
 │       └── SKILL.md
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（21 个类别 184+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 199+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -326,7 +345,7 @@ Awesome-Gaussian-Skills/
 | 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
 | 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> 完整知识库覆盖 **21 个类别的 184+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **21 个类别的 199+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 ---
 

@@ -48,6 +48,13 @@
 - **Key Innovation**: Leverages NeRF's continuous representation to guide Gaussian-level semantic assignment
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.14706) | [arXiv:2604.14706](https://arxiv.org/abs/2604.14706) | [Code]
 
+### Ilov3Splat
+- **Paper**: Ilov3Splat: Instance-Level Open-Vocabulary 3D Scene Understanding in Gaussian Splatting
+- **arXiv**: [2605.04506](https://arxiv.org/abs/2605.04506)
+- **Venue**: ICPR 2026
+- **Innovation**: Instance-level open-vocabulary 3D scene understanding using multi-resolution hash embedding for CLIP features + contrastive loss over SAM masks for instance feature field. Two-stage 3D clustering at inference for language-driven object identification without category supervision
+- **Links**: [arXiv:2605.04506](https://arxiv.org/abs/2605.04506)
+
 ## Image Representation
 
 ### GaussianImage
@@ -133,6 +140,28 @@
 - **Core**: Modeling dynamic urban street scenes with Gaussian Splatting via static/dynamic decomposition
 - **Key Innovation**: Static/dynamic decomposition for street scenes; separate Gaussian representations for static background and dynamic objects (cars, pedestrians); real-time rendering of complex urban driving scenarios; handles large-scale driving sequences
 - **Links**: [中英摘要](https://arxiv.org/abs/2401.01339) | [arXiv:2401.01339](https://arxiv.org/abs/2401.01339) | [Code](https://github.com/hbb1/Street-Gaussians)
+
+### GS4City
+- **Paper**: GS4City: Hierarchical Semantic Gaussian Splatting via City-Model Priors
+- **arXiv**: [2604.11401](https://arxiv.org/abs/2604.11401)
+- **Innovation**: Leverages city-scale 3D model priors to guide hierarchical semantic Gaussian Splatting, improving large-scale urban scene reconstruction with semantic consistency
+- **Links**: [arXiv:2604.11401](https://arxiv.org/abs/2604.11401)
+
+## Robustness & Regularization
+
+> Methods for improving 3DGS robustness against challenging conditions (low-light, distractors, etc.).
+
+### PDF-GS
+- **Paper**: Progressive Distractor Filtering for Robust 3D Gaussian Splatting
+- **arXiv**: [2604.12580](https://arxiv.org/abs/2604.12580)
+- **Innovation**: Progressively identifies and filters distractor elements (e.g., transient objects, people) that degrade 3DGS reconstruction quality, improving robustness for in-the-wild scenes
+- **Links**: [arXiv:2604.12580](https://arxiv.org/abs/2604.12580)
+
+### ELoG-GS
+- **Paper**: ELoG-GS: Dual-Branch Gaussian Splatting with Luminance-Guided Enhancement for Extreme Low-Light
+- **arXiv**: [2604.12592](https://arxiv.org/abs/2604.12592)
+- **Innovation**: Dual-branch architecture with luminance-guided enhancement module specifically designed for extreme low-light 3DGS reconstruction, addressing the challenge of insufficient photometric cues
+- **Links**: [arXiv:2604.12592](https://arxiv.org/abs/2604.12592)
 
 ## Editing Methods
 

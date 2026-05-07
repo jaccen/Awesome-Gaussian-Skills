@@ -1,6 +1,17 @@
-﻿# 3DGS Methods Overview
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6b4396f8-e97e-4e51-9ad8-99d0e1b64745'
+  PropagateID: '6b4396f8-e97e-4e51-9ad8-99d0e1b64745'
+  ReservedCode1: '09771b0e-230b-41e6-b5c5-89bde8c2c5c7'
+  ReservedCode2: '09771b0e-230b-41e6-b5c5-89bde8c2c5c7'
+---
 
-> This file is the master index for all 184+ 3D Gaussian Splatting methods tracked in this knowledge base.
+# 3DGS Methods Overview
+
+> This file is the master index for all 199+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -48,6 +59,7 @@
 ## 4. Generation / Text-to-3D
 - **DreamGaussian** [arXiv:2309.16653](https://arxiv.org/abs/2309.16653) — SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup
 - **AniGen** [GitHub](https://github.com/VAST-AI-Research/AniGen) — Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning (SIGGRAPH 2026 TOG)
+- **SIC3D** [arXiv:2604.08760](https://arxiv.org/abs/2604.08760) — Style image conditioned text-to-3D Gaussian Splatting generation
 
 > Full details in [methods-core.md](methods-core.md#generation--text-to-3d)
 
@@ -65,6 +77,7 @@
 - **DepthSplat** [arXiv:2410.13862](https://arxiv.org/abs/2410.13862) — Stereo-guided depth regularization for feed-forward 3DGS
 - **InstantSplat** [arXiv:2403.20309](https://arxiv.org/abs/2403.20309) — Pose-free sparse-view reconstruction in ~40 seconds
 - **AnySplat** [arXiv:2505.23716](https://arxiv.org/abs/2505.23716) — In-the-wild feed-forward with appearance/lighting variation handling
+- **TokenGS** [arXiv:2604.15239](https://arxiv.org/abs/2604.15239) — Learnable tokens decoupling 3D Gaussian prediction from pixels
 
 > Full details in [methods-core.md](methods-core.md#feed-forward-methods)
 
@@ -102,6 +115,7 @@
 - **Semantic Foam** [arXiv:2604.26262](https://arxiv.org/abs/2604.26262) — Volumetric Voronoi mesh for spatial + semantic decomposition
 - **GLMap** [arXiv:2605.01736](https://arxiv.org/abs/2605.01736) — Multi-scale Gaussian-Language map for zero-shot navigation
 - **NG-GS** [arXiv:2604.14706](https://arxiv.org/abs/2604.14706) — NeRF-guided Gaussian-level semantic assignment
+- **Ilov3Splat** [arXiv:2605.04506](https://arxiv.org/abs/2605.04506) — Instance-level open-vocabulary 3D scene understanding with CLIP + SAM instance masks (ICPR 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#language--semantic)
 
@@ -124,6 +138,7 @@
 - **CityGaussian** [arXiv:2401.02379](https://arxiv.org/abs/2401.02379) — Hierarchical LOD for city-scale real-time rendering
 - **Octree-GS** — Octree spatial partitioning + LOD management
 - **Street Gaussians** [arXiv:2401.01339](https://arxiv.org/abs/2401.01339) — Static/dynamic decomposition for urban street scenes
+- **GS4City** [arXiv:2604.11401](https://arxiv.org/abs/2604.11401) — Hierarchical semantic GS via city-model priors
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#large-scale-methods)
 
@@ -175,6 +190,8 @@
 - **WildGaussians** [arXiv:2407.08447](https://arxiv.org/abs/2407.08447) — Joint pose + 3DGS optimization from internet photos
 - **MERID-GS** [arXiv:2604.24053](https://arxiv.org/abs/2604.24053) — Retinex-based illumination/reflectance decoupling for low-light
 - **MarineSTD-GS** [arXiv:2604.23551](https://arxiv.org/abs/2604.23551) — Spatiotemporal underwater degradation modeling
+- **PDF-GS** [arXiv:2604.12580](https://arxiv.org/abs/2604.12580) — Progressive distractor filtering for robust 3DGS
+- **ELoG-GS** [arXiv:2604.12592](https://arxiv.org/abs/2604.12592) — Dual-branch luminance-guided extreme low-light GS enhancement
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#robustness--regularization)
 
@@ -186,6 +203,7 @@
 - **3DGS Safety Evaluation for AD** [arXiv:2605.01995](https://arxiv.org/abs/2605.01995) — Industrial-fidelity AD scene reconstruction evaluation
 - **Nighttime AD GS** [arXiv:2602.13549](https://arxiv.org/abs/2602.13549) — PBR + BRDF for nighttime driving scene reconstruction
 - **GaussianLSS** — BEV perception via Gaussian Splatting
+- **Ground4D** [arXiv:2605.04435](https://arxiv.org/abs/2605.04435) — Spatially-grounded feedforward 4D for off-road reconstruction
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#autonomous-driving)
 
@@ -197,6 +215,8 @@
 - **Flow4DGS-SLAM** [arXiv:2604.22339](https://arxiv.org/abs/2604.22339) — Optical flow-guided 4DGS for SLAM
 - **EvFlow-GS** [arXiv:2604.22183](https://arxiv.org/abs/2604.22183) — Event camera + optical flow for motion blur handling
 - **MAGICIAN** [arXiv:2603.22650](https://arxiv.org/abs/2603.22650) — Active mapping with imagined Gaussians + beam search
+- **MonoEM-GS** [arXiv:2604.10593](https://arxiv.org/abs/2604.10593) — Monocular expectation-maximization GS SLAM
+- **GGD-SLAM** [arXiv:2604.12837](https://arxiv.org/abs/2604.12837) — Monocular 3DGS SLAM with generalizable motion model
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#slam)
 
@@ -210,6 +230,7 @@
 - **Hybrid-Capture Two-View Training** [arXiv:2605.00052](https://arxiv.org/abs/2605.00052) — Two-view-per-step as dominant training lever
 - **YOGO** [arXiv:2604.21400](https://arxiv.org/abs/2604.21400) — Budget-aware equilibrium for ultra-dense scene control
 - **VkSplat** [arXiv:2605.00219](https://arxiv.org/abs/2605.00219) — Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM
+- **QuadBox** [arXiv:2605.04844](https://arxiv.org/abs/2605.04844) — Geometry-aware AABB boxes for 1.85x rendering acceleration (ICIP 2026)
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#training--optimization)
 
@@ -237,6 +258,11 @@
 - **RDSplat** [arXiv:2512.06774](https://arxiv.org/abs/2512.06774) — Robust watermarking against diffusion editing
 - **Egocentric Dynamic 3DGS Evaluation** [arXiv:2604.23803](https://arxiv.org/abs/2604.23803) — Egocentric video reconstruction evaluation
 - **TwinPose** [GitHub](https://github.com/zgspose) — Multi-view 3D pose estimation via person-specific subspaces (SIGGRAPH 2026 TOG)
+- **ULF-Loc** [arXiv:2605.04730](https://arxiv.org/abs/2605.04730) — Unbiased landmark feature for robust visual localization (CVPR 2026 highlight)
+- **CoherentRaster** [arXiv:2605.04509](https://arxiv.org/abs/2605.04509) — Subpixel-level 3DGS rasterization for light field displays
+- **AudioGS** [arXiv:2604.08967](https://arxiv.org/abs/2604.08967) — Spectrogram-based audio Gaussian Splatting for sound field reconstruction
+- **MSGS** [arXiv:2604.13340](https://arxiv.org/abs/2604.13340) — Multispectral 3D Gaussian Splatting
+- **PatchPoison** [arXiv:2604.13153](https://arxiv.org/abs/2604.13153) — Poisoning multi-view datasets to degrade 3D reconstruction (Security)
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
@@ -328,6 +354,23 @@
 | SAND | N/A (neural surface) | Faster sampling | Same | Spatially adaptive depth |
 | ProgressiveAvatars | N/A (avatar) | N/A | N/A | Progressive 3D Gaussian avatar |
 | TwinPose | N/A (3D pose) | Real-time | N/A | Person-specific subspaces |
+| QuadBox | Same as 3DGS | 1.85x faster | Same | Geometry-aware AABB |
+| ULF-Loc | N/A (localization) | 1/10 training time | 1/6 GPU memory | Unbiased landmark feature |
+| CoherentRaster | N/A (light field) | Real-time | N/A | Subpixel 3DGS rasterization |
+| Ilov3Splat | N/A (segmentation) | N/A | N/A | Instance-level CLIP+SAM |
+| Ground4D | ~vs baseline (off-road) | Feed-forward | N/A | Voxel-grounded 4DGS |
+| GS4City | N/A (city) | N/A | N/A | City-model priors + semantic |
+| PDF-GS | ~vs baseline (robust) | Same | Same | Progressive distractor filter |
+| ELoG-GS | ~(extreme low-light) | Same | Same | Dual-branch luminance-guided |
+| MonoEM-GS | N/A (SLAM) | Real-time | N/A | Monocular EM GS |
+| GGD-SLAM | N/A (SLAM) | Real-time | N/A | Generalizable motion model |
+| AudioGS | N/A (audio) | N/A | N/A | Spectrogram audio GS |
+| MSGS | N/A (multispectral) | N/A | N/A | Multispectral GS |
+| PatchPoison | N/A (security) | N/A | N/A | Multi-view data poisoning |
+| SIC3D | N/A (text-to-3D) | N/A | N/A | Style-conditioned 3DGS gen |
+| TokenGS | ~vs baseline (feed-forward) | Single-pass | N/A | Learnable token 3DGS |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
+
+> AI生成

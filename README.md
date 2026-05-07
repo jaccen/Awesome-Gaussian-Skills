@@ -10,7 +10,7 @@ If you like it, please ⭐️ star this repo!
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-8-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-9-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -45,10 +45,10 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ## Features
 
-- **8 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, and research visualization (radar charts, timelines, comparison tables)
+- **9 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, research visualization (radar charts, timelines, comparison tables), and engineering deployment guide
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 184+ 3DGS variants across 21 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 199+ 3DGS variants across 21 categories, with domain-specific terminology conventions
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -121,7 +121,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 184+ methods
+- Built-in knowledge of 199+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -239,6 +239,24 @@ Agent: [Creates chronological timeline showing 40+ methods across
 - 3 pre-built presets: Landscape Overview, Category Deep Dive, Paper Submission Package
 - Publication-quality styling with Okabe-Ito colorblind-safe palette
 
+### 9. `3dgs-engineering-guide` — Engineering Deployment Guide
+
+**Bridge the gap from academic 3DGS research to production deployment.**
+
+```
+You: "How do I deploy 3DGS for autonomous driving simulation?"
+Agent: [Recommends aiSim 6 / CARLA+3DGS pipeline, maps relevant
+        papers (GSDrive, GS-Playground), highlights sensor
+        simulation fidelity requirements]
+```
+
+**Capabilities:**
+- 10 industry application tracks (AD, digital twin, heritage, film/game, e-commerce, inspection, AR/VR, BIM, robotics, military)
+- 5-layer engineering technology stack (acquisition, reconstruction, post-processing, deployment, integration)
+- Tool selection decision trees by use case, platform, and scene scale
+- Cross-platform deployment guide (CUDA, Vulkan, WebGPU, mobile)
+- Engineering best practices and common pitfalls
+
 ---
 
 ## Architecture
@@ -260,10 +278,12 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   ├── 3dgs-visualizer/        # Research visualization (radar, table, timeline)
 │   │   └── SKILL.md
-│   └── cg-paper-writing/        # CG paper writing assistant
+│   ├── cg-paper-writing/        # CG paper writing assistant
+│   │   └── SKILL.md
+│   └── 3dgs-engineering-guide/   # Engineering deployment guide
 │       └── SKILL.md
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (184+ methods across 21 categories)
+│   ├── 3dgs-methods-overview.md # Index (199+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -331,7 +351,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 | Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
 | Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
 
-> The full knowledge base covers **184+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **199+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 

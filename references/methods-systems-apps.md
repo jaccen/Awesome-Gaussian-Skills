@@ -109,6 +109,12 @@
 - **Core**: Reconstructs BEV representation using Gaussian Splatting for AD perception
 - **Key Innovation**: Models depth uncertainty in BEV perception; improves 3D perception without larger Transformers
 
+### Ground4D
+- **Paper**: Ground4D: Spatially-Grounded Feedforward 4D Reconstruction for Unstructured Off-Road Scenes
+- **arXiv**: [2605.04435](https://arxiv.org/abs/2605.04435)
+- **Innovation**: Voxel-grounded temporal Gaussian aggregation for pose-free off-road 4D reconstruction. Partitions canonical Gaussian space into spatial voxels with query-conditioned temporal attention within each voxel, resolving temporal conflicts in unstructured off-road scenes
+- **Links**: [arXiv:2605.04435](https://arxiv.org/abs/2605.04435) | [Code](https://github.com/wsnbws/Ground4D)
+
 ## SLAM
 
 ### Gaussian Splatting SLAM
@@ -171,6 +177,18 @@
 - **Key Innovation**: Occupancy prediction -> Gaussian representation -> efficient gain computation via rendering; global-optimal path planning via beam search
 - **Links**: [中英摘要](https://arxiv.org/abs/2603.22650) | [arXiv:2603.22650](https://arxiv.org/abs/2603.22650) | [Code](https://shiyao-li.github.io/magician/)
 - **Note**: Also relevant to Active Vision category
+
+### MonoEM-GS
+- **Paper**: MonoEM-GS: Monocular Expectation-Maximization Gaussian Splatting SLAM
+- **arXiv**: [2604.10593](https://arxiv.org/abs/2604.10593)
+- **Innovation**: Applies expectation-maximization framework to monocular 3DGS SLAM, jointly optimizing camera poses and Gaussian representations with probabilistic formulation
+- **Links**: [arXiv:2604.10593](https://arxiv.org/abs/2604.10593)
+
+### GGD-SLAM
+- **Paper**: GGD-SLAM: Monocular 3DGS SLAM with Generalizable Motion Model
+- **arXiv**: [2604.12837](https://arxiv.org/abs/2604.12837)
+- **Innovation**: Introduces a generalizable motion model for monocular 3DGS SLAM that can handle diverse dynamic scenes without scene-specific motion modeling, improving robustness in real-world SLAM scenarios
+- **Links**: [arXiv:2604.12837](https://arxiv.org/abs/2604.12837)
 
 ## Training & Optimization
 
@@ -246,6 +264,13 @@
 - **Core**: First fully-Vulkan-based 3DGS training pipeline achieving SOTA performance
 - **Key Innovation**: 3.3x speed and 33% VRAM reduction over CUDA+PyTorch baseline; cross-vendor GPU compatibility
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.00219) | [arXiv:2605.00219](https://arxiv.org/abs/2605.00219) | [Code](https://github.com/harry7557558/vksplat)
+
+### QuadBox
+- **Paper**: QuadBox: Accelerating 3D Gaussian Splatting with Geometry-Aware Boxes
+- **arXiv**: [2605.04844](https://arxiv.org/abs/2605.04844)
+- **Venue**: ICIP 2026
+- **Innovation**: Uses four axis-aligned bounding boxes to tightly encapsulate projected Gaussians with geometry-aware stretching factor. QPass single-pass tile traversal algorithm enables 1.85x rendering speedup over vanilla 3DGS
+- **Links**: [arXiv:2605.04844](https://arxiv.org/abs/2605.04844) | [Code](https://github.com/Powertony102/QuadBox)
 
 ## Simulation & Robotics
 
@@ -415,6 +440,37 @@
 - **Core**: Multi-view 3D human pose estimation via instance-level twin pose subspaces
 - **Key Innovation**: Learns person-specific pose subspaces from 2D detections; 2D-to-3D lifting principle with instance-level adaptation; handles diverse body shapes and poses across multiple views
 - **Links**: [GitHub](https://github.com/zgspose)
+
+### ULF-Loc
+- **Paper**: ULF-Loc: Unbiased Landmark Feature for Robust Visual Localization with 3D Gaussian Splatting
+- **arXiv**: [2605.04730](https://arxiv.org/abs/2605.04730)
+- **Venue**: CVPR 2026 Highlight
+- **Innovation**: Theoretically analyzes α-blending bias in learned Gaussian features, proposes geometry-weighted feature fusion + keypoint-consensus landmark sampling + local geometric consistency verification. Reduces median translation error by 17% with 1/10 training time and 1/6 GPU memory
+- **Links**: [arXiv:2605.04730](https://arxiv.org/abs/2605.04730)
+
+### CoherentRaster
+- **Paper**: CoherentRaster: Efficient 3D Gaussian Splatting for Light Field Displays
+- **arXiv**: [2605.04509](https://arxiv.org/abs/2605.04509)
+- **Innovation**: Subpixel-level 3DGS rasterization for light field displays. Cross-view Coherent Attribute Reuse eliminates redundant computation; View-coherent Remapping restores warp-level memory efficiency under interlaced subpixel layouts. Real-time on consumer hardware
+- **Links**: [arXiv:2605.04509](https://arxiv.org/abs/2605.04509)
+
+### AudioGS
+- **Paper**: Spectrogram-Based Audio Gaussian Splatting for Sound Field Reconstruction
+- **arXiv**: [2604.08967](https://arxiv.org/abs/2604.08967)
+- **Innovation**: Extends Gaussian Splatting to audio domain using spectrogram representations, enabling sound field reconstruction via differentiable Gaussian primitives for spatial audio applications
+- **Links**: [arXiv:2604.08967](https://arxiv.org/abs/2604.08967)
+
+### MSGS
+- **Paper**: Multispectral 3D Gaussian Splatting
+- **arXiv**: [2604.13340](https://arxiv.org/abs/2604.13340)
+- **Innovation**: Extends 3DGS to multispectral imagery, enabling joint reconstruction and novel view synthesis across multiple spectral bands for applications in remote sensing and material identification
+- **Links**: [arXiv:2604.13340](https://arxiv.org/abs/2604.13340)
+
+### PatchPoison
+- **Paper**: PatchPoison: Poisoning Multi-View Datasets to Degrade 3D Reconstruction
+- **arXiv**: [2604.13153](https://arxiv.org/abs/2604.13153)
+- **Innovation**: First study on adversarial data poisoning for 3D reconstruction pipelines. Demonstrates that small patch-level perturbations in multi-view datasets can severely degrade 3DGS and NeRF reconstruction quality, highlighting security vulnerabilities
+- **Links**: [arXiv:2604.13153](https://arxiv.org/abs/2604.13153)
 
 ## Robustness & Restoration
 

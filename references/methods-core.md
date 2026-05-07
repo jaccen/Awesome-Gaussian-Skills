@@ -1,3 +1,4 @@
+
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -186,6 +187,12 @@
 - **Key Innovation**: Jointly models geometry, skeleton, and skinning in shared latent space instead of serial generate-then-rig pipeline; produces fully rigged animatable characters from a single image
 - **Links**: [GitHub](https://github.com/VAST-AI-Research/AniGen) | [Project](https://yihua7.github.io/AniGen-web/)
 
+### SIC3D
+- **Paper**: Style Image Conditioned Text-to-3D Gaussian Splatting Generation
+- **arXiv**: [2604.08760](https://arxiv.org/abs/2604.08760)
+- **Innovation**: Introduces style image conditioning for text-to-3D Gaussian Splatting, enabling controllable style transfer in 3D generation via reference style images
+- **Links**: [arXiv:2604.08760](https://arxiv.org/abs/2604.08760)
+
 ## Feed-Forward Methods
 
 ### GlobalSplat
@@ -297,6 +304,12 @@
 - **Core**: Feed-forward 3DGS from unconstrained/in-the-wild views with appearance and lighting variations
 - **Key Innovation**: Handles arbitrary in-the-wild images with unknown lighting, varying appearance, and unknown camera parameters; robust feed-forward reconstruction without per-scene optimization
 - **Links**: [中英摘要](https://arxiv.org/abs/2505.23716) | [arXiv:2505.23716](https://arxiv.org/abs/2505.23716) | [Code]
+
+### TokenGS
+- **Paper**: TokenGS: Decoupling 3D Gaussian Prediction from Pixels with Learnable Tokens
+- **arXiv**: [2604.15239](https://arxiv.org/abs/2604.15239)
+- **Innovation**: Replaces pixel-to-Gaussian direct prediction with learnable token-based representation, decoupling 3D Gaussian generation from pixel-level features for better generalization in feed-forward novel view synthesis
+- **Links**: [arXiv:2604.15239](https://arxiv.org/abs/2604.15239)
 
 ## Compression Methods
 
