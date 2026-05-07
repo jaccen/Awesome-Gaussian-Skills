@@ -81,6 +81,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
     <a href="#" class="font-bold text-white text-lg tracking-tight">AGS<span class="text-accent-blue">.</span></a>
     <div class="hidden sm:flex items-center gap-6 text-sm text-gray-400">
+      <a href="#showcase" class="hover:text-white transition">Showcase</a>
       <a href="#methods" class="hover:text-white transition">Methods</a>
       <a href="#skills" class="hover:text-white transition">Skills</a>
       <a href="#install" class="hover:text-white transition">Install</a>
@@ -118,6 +119,96 @@ tailwind.config = {
         Star on GitHub
       </a>
       <a href="#methods" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">Explore Methods</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3DGS in Action -->
+<section id="showcase" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">3DGS in Action</h2>
+      <p class="mt-3 text-gray-400">Real-time radiance field rendering — from photos to photorealistic 3D in minutes</p>
+    </div>
+    <!-- Main Teaser -->
+    <div class="gradient-border overflow-hidden mb-4">
+      <div class="p-1">
+        <img src="https://raw.githubusercontent.com/graphdeco-inria/gaussian-splatting/main/assets/teaser.png"
+             alt="3D Gaussian Splatting teaser — bicycle, garden, stump, room scenes"
+             class="w-full rounded-lg" loading="lazy"
+             onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-64 text-gray-500 text-sm\'>Image loading... please refresh if it doesn\'t appear</div>'">
+        <p class="text-center mt-3 mb-2 text-xs text-gray-500">
+          3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) — Real-time novel-view synthesis on bicycle, garden, stump &amp; room scenes
+        </p>
+      </div>
+    </div>
+    <!-- Scene Gallery -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div class="gradient-border overflow-hidden group">
+        <div class="relative p-1">
+          <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_truck.png"
+               alt="Truck scene — Tanks & Temples" class="w-full rounded-lg" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <div>
+              <p class="text-white text-sm font-semibold">Truck</p>
+              <p class="text-gray-300 text-xs">Tanks &amp; Temples</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gradient-border overflow-hidden group">
+        <div class="relative p-1">
+          <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_bicycle.png"
+               alt="Bicycle scene — Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <div>
+              <p class="text-white text-sm font-semibold">Bicycle</p>
+              <p class="text-gray-300 text-xs">Mip-NeRF 360</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gradient-border overflow-hidden group">
+        <div class="relative p-1">
+          <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_garden.png"
+               alt="Garden scene — Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <div>
+              <p class="text-white text-sm font-semibold">Garden</p>
+              <p class="text-gray-300 text-xs">Mip-NeRF 360</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Anti-aliasing Demo -->
+    <div class="gradient-border overflow-hidden mb-8">
+      <div class="p-1 flex flex-col sm:flex-row items-center gap-4">
+        <img src="https://raw.githubusercontent.com/graphdeco-inria/gaussian-splatting/main/assets/aa_onoff.gif"
+             alt="Anti-aliasing on/off comparison" class="max-w-md w-full rounded-lg" loading="lazy">
+        <div class="px-2 py-4 sm:px-4">
+          <h3 class="text-white font-semibold text-sm mb-2">Mip-Splatting Anti-Aliasing</h3>
+          <p class="text-gray-400 text-xs leading-relaxed">Left: 3DGS baseline — zoom artifacts &amp; aliasing. Right: Mip-Splatting — smooth, aliasing-free rendering at any scale.</p>
+          <a href="https://arxiv.org/abs/2312.21535" target="_blank" class="inline-flex items-center gap-1 mt-3 text-xs text-accent-blue hover:underline font-mono">2312.21535</a>
+        </div>
+      </div>
+    </div>
+    <!-- Interactive WebGL Viewer -->
+    <div class="text-center">
+      <button id="toggleViewer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-accent-blue/30 text-accent-blue font-medium text-sm hover:bg-accent-blue/10 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Try Interactive 3DGS Viewer
+      </button>
+      <div id="viewerContainer" class="hidden mt-6 gradient-border overflow-hidden">
+        <div class="p-1">
+          <iframe id="viewerFrame" class="w-full rounded-lg" style="height:500px;border:none;" loading="lazy"
+                  src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+                  title="3DGS Interactive Viewer"></iframe>
+          <p class="text-center mt-2 mb-1 text-xs text-gray-500">
+            Powered by <a href="https://github.com/antimatter15/splat" target="_blank" class="text-accent-blue hover:underline">antimatter15/splat</a> (MIT) — Drag to rotate, scroll to zoom
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -481,6 +572,26 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTrends();
   document.getElementById('searchInput').addEventListener('input', renderMethods);
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Interactive viewer toggle (lazy-load iframe)
+  const toggleBtn = document.getElementById('toggleViewer');
+  const viewerContainer = document.getElementById('viewerContainer');
+  const viewerFrame = document.getElementById('viewerFrame');
+  let viewerLoaded = false;
+  toggleBtn.addEventListener('click', () => {
+    const isHidden = viewerContainer.classList.contains('hidden');
+    if (isHidden) {
+      viewerContainer.classList.remove('hidden');
+      if (!viewerLoaded) {
+        viewerFrame.src = 'https://antimatter15.com/splat/';
+        viewerLoaded = true;
+      }
+      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg> Hide Interactive Viewer';
+    } else {
+      viewerContainer.classList.add('hidden');
+      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Try Interactive 3DGS Viewer';
+    }
+  });
 });
 </script>
 </body>
