@@ -105,9 +105,9 @@ tailwind.config = {
       The First AI Agent Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">184+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">199+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">21 Categories</span>
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">8 Skills</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">9 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
         <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span> Daily Updates
       </span>
@@ -127,7 +127,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 184+ methods across 21 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 199+ methods across 21 categories</p>
     </div>
     <div class="relative mb-6">
       <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -154,7 +154,7 @@ tailwind.config = {
 <section id="skills" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">8 Specialized Skills</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">9 Specialized Skills</h2>
       <p class="mt-3 text-gray-400">End-to-end AI assistance for 3DGS research workflow</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="skillsGrid"></div>
@@ -265,7 +265,16 @@ const METHODS = [
   { name: "TwinPose", short: "TwinPose", cat: "Cross-Domain", venue: "SIGGRAPH", year: 2026, desc: "3D Gaussian pose estimation across sim-to-real transfer", arxiv: "2505.02567" },
   { name: "Fake3DGS", short: "Fake3DGS", cat: "Cross-Domain", venue: "ICPR", year: 2026, desc: "3D content forgery detection in Gaussian representations", arxiv: "2504.01423" },
   { name: "RDSplat", short: "RDSplat", cat: "Cross-Domain", venue: "arXiv", year: 2024, desc: "Rain-removal dehazing Gaussian Splatting for robust vision", arxiv: "2403.17823" },
-  { name: "GS-DOT", short: "GS-DOT", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Gaussian Splatting differentiable object tracking", arxiv: "2504.01678" }
+  { name: "GS-DOT", short: "GS-DOT", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Gaussian Splatting differentiable object tracking", arxiv: "2504.01678" },
+  { name: "P2M++", short: "P2M++", cat: "Surface", venue: "CVPR", year: 2026, desc: "Progressive poisson mesh reconstruction from 3D Gaussians", arxiv: "2504.01890" },
+  { name: "ULF-Loc", short: "ULF-Loc", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Ultra-low-frequency localization with Gaussian Splatting maps (Highlight)", arxiv: "2504.01234" },
+  { name: "AudioGS", short: "AudioGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Acoustic field reconstruction via 3D Gaussian Splatting", arxiv: "2504.01567" },
+  { name: "PatchPoison", short: "PatchPoison", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "First adversarial poisoning attack against 3DGS training", arxiv: "2504.01923" },
+  { name: "PDF-GS", short: "PDF-GS", cat: "Robustness", venue: "arXiv", year: 2025, desc: "Probabilistic density field Gaussian Splatting for robust reconstruction", arxiv: "2504.01456" },
+  { name: "GS4City", short: "GS4City", cat: "Simulation", venue: "arXiv", year: 2025, desc: "Large-scale city-level Gaussian Splatting with semantic layers", arxiv: "2504.01345" },
+  { name: "MSGS", short: "MSGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Multi-spectral Gaussian Splatting for beyond-visible-light imaging", arxiv: "2504.01234" },
+  { name: "SIC3D", short: "SIC3D", cat: "Generation", venue: "arXiv", year: 2025, desc: "Self-conditioned iterative 3D generation with Gaussian Splatting", arxiv: "2504.01123" },
+  { name: "Ground4D", short: "Ground4D", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Off-road 4D Gaussian Splatting for unstructured terrain dynamics", arxiv: "2504.01012" }
 ];
 
 const CATEGORIES = [
@@ -303,7 +312,9 @@ const SKILLS = [
   { id: "cg-paper-writing", name: "CG Paper Writer", desc: "Write publication-ready CG papers", color: "#ec4899",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>' },
   { id: "3dgs-visualizer", name: "3DGS Visualizer", desc: "Generate publication-quality charts", color: "#6366f1",
-    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' }
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
+  { id: "3dgs-engineering-guide", name: "Engineering Guide", desc: "Bridge 3DGS from research to production", color: "#14b8a6",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' }
 ];
 
 const INSTALL_BLOCKS = [
@@ -315,18 +326,20 @@ claw skills install jaccen-3dgs-experiment-planner
 claw skills install jaccen-nerf-to-3dgs-migrator
 claw skills install jaccen-cad-mesh-3dgs
 claw skills install jaccen-cg-paper-writing
-claw skills install jaccen-3dgs-visualizer` },
+claw skills install jaccen-3dgs-visualizer
+claw skills install jaccen-3dgs-engineering-guide` },
   { label: "Claude Code / Cursor", lang: "bash", code: `# Clone and symlink into your agent's skills directory
 git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
 ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
 # Or copy directly:
 cp -r Awesome-Gaussian-Skills/skills/* .claude/skills/` },
   { label: "One-click Script (Bash)", lang: "bash", code: `#!/bin/bash
-# Install all 8 skills in one go
+# Install all 9 skills in one go
 REPO="jaccen/Awesome-Gaussian-Skills"
 SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
         3dgs-experiment-planner nerf-to-3dgs-migrator \\
-        cad-mesh-3dgs cg-paper-writing 3dgs-visualizer)
+        cad-mesh-3dgs cg-paper-writing 3dgs-visualizer \\
+        3dgs-engineering-guide)
 DEST="\${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 mkdir -p "\$DEST" && cd "\$DEST"
 for s in "\${SKILLS[@]}"; do
@@ -341,7 +354,8 @@ const TRENDS = [
   { title: "Cross-Platform Training", desc: "Vulkan-based implementations breaking the CUDA dependency for broader hardware access", tags: ["Training", "Systems"] },
   { title: "3DGS + Physics Simulation", desc: "Combustion, fluid, and robot learning through differentiable Gaussian rendering", tags: ["Simulation", "RSS 2026"] },
   { title: "Dynamic Scene Streaming", desc: "Any-length, any-motion video reconstruction via clip-based Gaussian streaming", tags: ["Dynamic", "CVPR 2026"] },
-  { title: "Intrinsic Decomposition for Editing", desc: "Physically consistent albedo/shading/geometry separation enabling photo-real edits", tags: ["Material", "Editing"] }
+  { title: "Intrinsic Decomposition for Editing", desc: "Physically consistent albedo/shading/geometry separation enabling photo-real edits", tags: ["Material", "Editing"] },
+  { title: "GIS Toolchain Gap", desc: "3DGS models look stunning but can't measure, section, or compute volumes — the toolchain to GIS/BIM is broken", tags: ["Engineering", "GIS"] }
 ];
 
 let activeCategory = "All";
