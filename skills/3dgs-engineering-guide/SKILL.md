@@ -387,20 +387,32 @@ Robot policy learning (sim-to-real) → Real-world deployment
 - **GaussianEditor** — semantic editing via text prompts
 - **ObjectMorpher** — object-level transformation
 - **TransSplat** — transparent object handling
+- **SuperSplat** — free, browser-based 3DGS editor (PlayCanvas, MIT): inspect/edit/compress/publish PLY & SOG files; supports pruning, clipping, 2DGS, animation preview, walk mode, HTML export, PWA install; online at https://superspl.at/editor
 - Editing enables virtual staging (real estate), product customization (e-commerce)
+
+**Engineering toolchain / 工程工具链**:
+- **splat-transform** (PlayCanvas, MIT, CLI) — 3DGS format converter and pipeline tool:
+  - `PLY → SOG`: compressed, streamable format (~20x compression)
+  - `PLY → streamed SOG`: multi-chunk LOD with manifest for progressive loading
+  - `-K / --collision-mesh`: voxelization + seed-position flood-fill → sealed `.collision.glb` for physics
+  - `--voxel-params / --voxel-carve / --seed-pos`: fine-grained voxelization control
+  - Install: `npm install -g @playcanvas/splat-transform`
+  - Source: https://github.com/playcanvas/splat-transform
 
 ### 2.4 Deployment Layer / 部署层
 
 **Rendering engines / 渲染引擎**:
 
-| Engine | Backend | Performance | Platform |
-|---|---|---|---|
-| original 3DGS | CUDA | Baseline | NVIDIA GPU |
-| VkSplat | Vulkan | 3.3x vs CUDA (non-NVIDIA) | Cross-platform |
-| gsplat.js | WebGPU/WebGL2 | Browser | Web |
-| three.js plugin | WebGL2/WebGPU | Browser | Web |
-| UE5 plugin | DirectX 12 | Game engine | Desktop/Console |
-| Unity renderer | Vulkan/DX12 | Game engine | Multi-platform |
+| Engine | Backend | Performance | Platform | 3DGS Native? |
+|---|---|---|---|---|
+| original 3DGS | CUDA | Baseline | NVIDIA GPU | Yes |
+| VkSplat | Vulkan | 3.3x vs CUDA (non-NVIDIA) | Cross-platform | Yes |
+| **PlayCanvas Engine** | **WebGL2/WebGPU** | **Browser-optimized** | **Web** | **Yes (first-class)** |
+| gsplat.js | WebGPU/WebGL2 | Browser | Web | Yes |
+| three.js plugin | WebGL2/WebGPU | Browser | Web | Plugin |
+| **@playcanvas/react** | **WebGL2/WebGPU** | **React-optimized** | **Web** | **Yes (Splats component)** |
+| UE5 plugin | DirectX 12 | Game engine | Desktop/Console | Plugin |
+| Unity renderer | Vulkan/DX12 | Game engine | Multi-platform | Plugin |
 
 **Streaming / 流式传输**:
 - 李飞飞 team: 100M+ Gaussian real-time mobile streaming (adaptive bitrate, view-dependent loading)
@@ -411,6 +423,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 **Compression formats / 压缩格式**:
 - `.ply` — standard point cloud format (uncompressed, large)
 - `.splat` — compact binary format (AntonMihailov spec, web-friendly)
+- **`.sog`** — PlayCanvas SOG format (streaming LOD, ~20x compression vs PLY, chunked with manifest for progressive loading; converted via `splat-transform`)
 - Custom compressed binary — MesonGS++ / HAC proprietary formats
 - Future: 3D Tiles + Gaussian extension (OGC standardization pending)
 
@@ -435,6 +448,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 - UE5: experimental 3DGS plugin (Nanite-compatible mesh fallback)
 - Unity: gsplat renderer package (asset store / open-source)
 - Godot: community Vulkan-based Gaussian renderer (early stage)
+- **PlayCanvas Engine** (MIT): first-class 3DGS rendering + collision mesh generation + navmesh + physics + WebXR; React wrapper via @playcanvas/react; SuperSplat editor for authoring
 
 **Robotics**:
 - ROS2 scene server: serve 3DGS scene as point cloud / depth map / occupancy grid
@@ -614,6 +628,7 @@ What is your target platform? / 您的目标平台是什么？
 ├── Web browser
 │   └── gsplat.js (WebGPU preferred, WebGL2 fallback)
 │   └── three.js Gaussian splatting loader
+│   └── PlayCanvas Engine + @playcanvas/react (first-class 3DGS, collision, navmesh, physics)
 │
 └── VR headset (Quest 3, Vision Pro)
     └── OpenXR + Vulkan (Quest 3) / Metal (Vision Pro)
@@ -707,16 +722,59 @@ This is fundamentally different from the "reconstruction quality" problems discu
 - **Occlusion handling**: Depth-based z-buffering to resolve foreground/background conflicts
 - **Temporal update**: Progressive scene update for changing conditions (traffic flow, construction progress)
 
+#### PlayCanvas Collision/Navigation/Lighting Pipeline / PlayCanvas 碰撞-导航-光照管线
+
+> Production-validated solution from PlayCanvas blog (2026-04): "Turning a Gaussian Splat Into a Videogame". This is the first end-to-end open-source pipeline that makes 3DGS scenes interactable (walkable, shootable, navigable) in the browser.
+
+**Problem solved**: Standard 3DGS has no surface → physics engines ignore it → characters fall through walls, NPCs cannot path-find, PBR objects look out of place.
+
+**Pipeline** (3 CLI commands):
+
+```bash
+# Step 1: Convert PLY → SOG (compressed, streamable)
+splat-transform scene.ply --seed-pos 0,1,0 --voxel-params 0.05,0.1 \
+  --voxel-carve 1.6,0.2 -K scene.sog
+# Outputs: scene.sog (compressed splat) + scene.collision.glb (sealed collision mesh)
+
+# Step 2: Generate navigation mesh from collision mesh
+npx glb-to-navmesh scene.collision.glb navmesh.bin
+
+# Step 3: Bake lightness probes (in-engine script, ~15s, ~40KB JSON)
+#   - Render 6-face cubemap per probe at 1m intervals
+#   - Compute luminance via Rec.601 weights
+#   - Output: lightness.json for runtime lookup
+```
+
+| Component | Input → Output | Tool | Size | Runtime Cost |
+|-----------|---------------|------|------|-------------|
+| Collision mesh | PLY → `.collision.glb` | `splat-transform -K` (voxelization + flood-fill) | ~1 MB | Static rigid body |
+| Navigation mesh | `.collision.glb` → `navmesh.bin` | `recast-navigation` (Recast rasterization) | ~100 KB | Agent pathfinding |
+| Lightness grid | Splat scene → `lightness.json` | Custom probe script (16×16 cubemap per probe, Rec.601 luminance) | ~40 KB | Bilinear texture lookup |
+| Streamed SOG | PLY → multi-chunk `.sog/` + manifest | `splat-transform` (LOD partitioning) | ~5% of PLY | Progressive loading |
+
+**Key insights**:
+1. Voxelization with seed-position flood-fill produces *sealed* collision meshes from unstructured Gaussians — no manual cleanup
+2. Lightness probes as JSON lookup table (no runtime raytracing) — mobile-friendly, 15s bake time
+3. SOG streaming LOD enables mobile deployment of million-Gaussian scenes
+4. Behavior-tree NPCs with personality parameters demonstrate game-ready AI on 3DGS scenes
+
+**References**: [PlayCanvas Blog (2026-04)](https://playcanvas.com/blog/turning-a-gaussian-splat-into-a-videogame) | [splat-transform CLI](https://github.com/playcanvas/splat-transform) | [PlayCanvas Project](https://playcanvas.com/project/1480299) | [Browser Demo (WASD + mouse)](https://playcanv.as/p/qxGSuzYq/)
+
 ### Toolchain Recommendations / 工具链建议
 
 | Task | Open Source Tool | Commercial Tool | Notes |
 |------|-----------------|-----------------|-------|
 | PLY → 3D Tiles | libTileSplat, supermap-3dtiles | SuperMap iDesktop | Cesium-compatible |
+| PLY → collision mesh | `splat-transform -K` (PlayCanvas) | — | Voxelization + flood-fill |
+| PLY → navigation mesh | `splat-transform` + `recast-navigation` | — | Collision GLB → Recast |
+| PLY → compressed SOG | `splat-transform` (PlayCanvas) | — | 20x compression, streaming LOD |
 | Cesium rendering | gsplat.js, cesium-3dgs-plugin | SuperMap WebGL | Three.js limited native support |
 | Mapbox rendering | Custom Mapbox GL plugin | — | Babylon.js has native support |
+| Web 3DGS editor | [SuperSplat](https://superspl.at/editor) (PlayCanvas) | — | Browser-based, PWA installable |
 | Spatial analysis | Custom Python (NumPy + plyfile) | ArcGIS Pro (indirect) | Build custom GIS layer |
 | Semantic labeling | SAGA (Segment Any 3D Gaussians) | — | SAM → 3D projection |
 | Volume calculation | Custom voxelizer + PLY parser | — | Not yet standard |
+| Lightness baking | PlayCanvas probe script (cubemap luminance) | — | ~15s bake, ~40KB JSON |
 
 ### Industry Standards Progress / 行业标准进展
 - **中国测绘学会** has initiated the "三维高斯泼溅建模技术规范" (3DGS Modeling Technical Specification) as a group standard (2026-04)
@@ -900,6 +958,10 @@ python compress_tile.py --input ./city_block/point_cloud \
 | VRAM | 显存 | Video Random Access Memory |
 | LFS | 大文件存储 | Large File Storage (git extension) |
 | DVC | 数据版本控制 | Data Version Control |
+| SOG | 流式高斯格式 | PlayCanvas Streamed Gaussian format — compressed, chunked PLY with manifest for progressive loading |
+| SuperSplat | 超级泼溅编辑器 | PlayCanvas browser-based 3DGS editor (MIT, open-source) |
+| splat-transform | 泼溅转换工具 | PlayCanvas CLI: PLY→SOG conversion, collision mesh generation, streaming LOD |
+| PlayCanvas Engine | PlayCanvas引擎 | Open-source WebGL2+WebGPU game engine with first-class 3DGS support (MIT) |
 
 ---
 

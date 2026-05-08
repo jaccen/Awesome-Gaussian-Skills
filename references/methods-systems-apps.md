@@ -1,3 +1,4 @@
+
 # Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
@@ -352,6 +353,18 @@
 - **Key Innovation**: Three coupled modules  → multimodal LLM-based physical material reasoning, efficient volumetric combustion simulation, unified fire+3DGS renderer; supports flame propagation, smoke dispersion, surface carbonization; user-controllable fire intensity, airflow, ignition location
 
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.00177) | [arXiv:2605.00177](https://arxiv.org/abs/2605.00177) | [Code](https://pku-vcl-geometry.github.io/FieryGS/)
+
+### PlayCanvas Ecosystem (SuperSplat / splat-transform / Engine)
+- **Not a paper**: Open-source toolchain for 3DGS engineering (MIT license)
+- **Core**: End-to-end 3DGS authoring, editing, optimization, and deployment in the browser
+- **Components**:
+  - **SuperSplat** — browser-based 3DGS editor: inspect/edit/clip/compress/publish PLY & SOG files; supports 2DGS, animation preview, walk mode, HTML export, PWA; 5.6k GitHub stars; online at https://superspl.at/editor
+  - **splat-transform** — CLI tool: PLY→SOG conversion (~20x compression); streaming LOD with multi-chunk manifest; collision mesh generation via voxelization + seed-position flood-fill (`-K` flag); navmesh-ready `.collision.glb` output
+  - **PlayCanvas Engine** — WebGL2+WebGPU game engine with first-class 3DGS support; physics (ammo.js), WebXR, animation, glTF streaming; 15.2k GitHub stars
+  - **@playcanvas/react** — React wrapper with built-in Splats component; physics and pointer events out of the box
+- **Key Innovation**: First production-validated open-source pipeline making 3DGS scenes interactable in the browser — collision, navmesh-driven NPCs, baked lightness probes, behavior-tree AI; demonstrated in browser FPS demo (WASD + mouse + shooting)
+- **Relevance**: Directly addresses GIS toolchain gap (§4.5 in engineering-guide SKILL.md); collision mesh + navmesh extraction from unstructured Gaussians enables physical interaction without manual mesh authoring
+- **Links**: [SuperSplat](https://github.com/playcanvas/supersplat) | [Engine](https://github.com/playcanvas/engine) | [React](https://github.com/playcanvas/react) | [splat-transform](https://github.com/playcanvas/splat-transform) | [FPS Demo](https://playcanv.as/p/qxGSuzYq/) | [Blog](https://playcanvas.com/blog/turning-a-gaussian-splat-into-a-videogame)
 
 ### SplAttN
 - **Paper**: SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion
