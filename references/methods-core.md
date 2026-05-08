@@ -1,4 +1,3 @@
-
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -110,6 +109,16 @@
 - **Venue**: SIGGRAPH 2026 Journal Track (ACM TOG)
 - **Core**: Spatially adaptive network depth for efficient neural implicit surface sampling
 - **Key Innovation**: Voxelized depth mapping assigns per-voxel network depth; branched MLP architecture evaluates only necessary layers per spatial region; faster sampling while maintaining surface quality
+
+### 3DSS (3D Surface Splatting)
+- **Paper**: 3DSS: 3D Surface Splatting
+- **Authors**: Mae Younes, Adnane Boukhayma
+- **ArXiv**: 2605.05876
+- **Core**: First differentiable surface splatting renderer for physically-based inverse rendering
+- **Key Innovation**: Coverage-based compositing model derives per-layer opacity from accumulated EWA reconstruction weight, yielding anti-aliased silhouettes and informative visibility gradients; jointly recovers shape + spatially-varying BRDF + HDR illumination via microfacet shading; bridges to mesh workflows via oriented point cloud
+- **Key difference from 3DGS**: Uses oriented surface samples (not volumetric Gaussians), enabling native mesh extraction
+- **Related**: 2DGS, SuGaR, GS-IR
+- **Links**: [arXiv:2605.05876](https://arxiv.org/abs/2605.05876)
 
 ## CAD / Mesh / Hybrid Methods
 
@@ -311,6 +320,25 @@
 - **Innovation**: Replaces pixel-to-Gaussian direct prediction with learnable token-based representation, decoupling 3D Gaussian generation from pixel-level features for better generalization in feed-forward novel view synthesis
 - **Links**: [arXiv:2604.15239](https://arxiv.org/abs/2604.15239)
 
+### Spark3R
+- **Paper**: Spark3R: Training-Free Acceleration for Feed-Forward 3D Reconstruction
+- **Authors**: Zecheng Tang, Jiaye Fu, Qiankun Gao, Haijie Li, Yanmin Wu, Jiaqi Zhang, Siwei Ma, Jian Zhang
+- **ArXiv**: 2605.06270
+- **Core**: Training-free acceleration framework for feed-forward 3D reconstruction models
+- **Key Innovation**: Identifies that query tokens (view-specific geometric requests) are sensitive to compression while KV tokens (shared scene context) tolerate aggressive compression; applies asymmetric reduction: intra-group merging for query tokens, lightweight pruning for KV tokens; up to 28x speedup on 1000-frame inputs; plug-and-play for VGGT, π³, Depth-Anything-3
+- **Category**: Feed-Forward / Acceleration
+- **Links**: [arXiv:2605.06270](https://arxiv.org/abs/2605.06270)
+
+### GenWildSplat
+- **Paper**: GenWildSplat: Generalizable Sparse-View 3D Reconstruction from Unconstrained Images
+- **Authors**: Vinayak Gupta, Chih-Hao Lin, Shenlong Wang, Anand Bhattad, Jia-Bin Huang
+- **Venue**: CVPR 2026
+- **ArXiv**: 2604.28193
+- **Core**: Generalizable sparse-view 3D reconstruction from unconstrained images in wild conditions
+- **Key Innovation**: Handles appearance variations in wild conditions without per-scene optimization
+- **Category**: Feed-Forward / Few-Shot
+- **Links**: [arXiv:2604.28193](https://arxiv.org/abs/2604.28193)
+
 ## Compression Methods
 
 ### Compact-3DGS
@@ -457,3 +485,13 @@
 - **Key Innovation**: Establishes controlled baseline (FreeTimeGS_ours) by formalizing SOTA heuristics; uncovers emergent temporal partitioning driven by Gaussian durations and photometric vs spatiotemporal consistency discrepancy; proposes gated marginalization + neural velocity fields for superior stability; reduced run-to-run variance and reproducible results
 - **Note**: Provides systematic understanding and reliable foundation for future 4DGS research
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.03337) | [arXiv:2605.03337](https://arxiv.org/abs/2605.03337) | [Code]
+
+### GeoRect4D
+- **Paper**: GeoRect4D: Geometry-Compatible Generative Rectification for Dynamic Sparse-View 3D Reconstruction
+- **Authors**: Zhenlong Wu, Zihan Zheng, Xuanxuan Wang, Qianhe Wang, Hua Yang, Xiaoyun Zhang, Qiang Hu, Wenjun Zhang
+- **Affiliation**: Shanghai Jiao Tong University
+- **ArXiv**: 2604.20784
+- **Core**: Geometry-compatible generative rectification for dynamic sparse-view 3D reconstruction
+- **Key Innovation**: Addresses geometry deformation in dynamic scenes via generative rectification
+- **Category**: Dynamic
+- **Links**: [arXiv:2604.20784](https://arxiv.org/abs/2604.20784)

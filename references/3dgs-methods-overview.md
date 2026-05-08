@@ -1,17 +1,6 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '6b4396f8-e97e-4e51-9ad8-99d0e1b64745'
-  PropagateID: '6b4396f8-e97e-4e51-9ad8-99d0e1b64745'
-  ReservedCode1: '09771b0e-230b-41e6-b5c5-89bde8c2c5c7'
-  ReservedCode2: '09771b0e-230b-41e6-b5c5-89bde8c2c5c7'
----
+﻿# 3DGS Methods Overview
 
-# 3DGS Methods Overview
-
-> This file is the master index for all 199+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 208+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -42,6 +31,7 @@ AIGC:
 - **GLINT** [arXiv:2603.26181](https://arxiv.org/abs/2603.26181) — Scene-scale transparency via decomposed Gaussian radiance transport for glass
 - **P2M++** [arXiv:2605.00429](https://arxiv.org/abs/2605.00429) — Enhanced solver for point-to-mesh distance queries
 - **SAND** — Spatially adaptive network depth for efficient neural implicit surface sampling (SIGGRAPH 2026 TOG)
+- **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA
 
 > Full details in [methods-core.md](methods-core.md#surface--geometry-methods)
 
@@ -78,6 +68,8 @@ AIGC:
 - **InstantSplat** [arXiv:2403.20309](https://arxiv.org/abs/2403.20309) — Pose-free sparse-view reconstruction in ~40 seconds
 - **AnySplat** [arXiv:2505.23716](https://arxiv.org/abs/2505.23716) — In-the-wild feed-forward with appearance/lighting variation handling
 - **TokenGS** [arXiv:2604.15239](https://arxiv.org/abs/2604.15239) — Learnable tokens decoupling 3D Gaussian prediction from pixels
+- **Spark3R** [arXiv:2605.06270](https://arxiv.org/abs/2605.06270) — Training-free asymmetric query/KV token compression for 28x speedup on feed-forward 3D reconstruction
+- **GenWildSplat** [arXiv:2604.28193](https://arxiv.org/abs/2604.28193) — Generalizable sparse-view 3D reconstruction from unconstrained images (CVPR 2026)
 
 > Full details in [methods-core.md](methods-core.md#feed-forward-methods)
 
@@ -106,6 +98,7 @@ AIGC:
 - **HDR-NSFF** [arXiv:2603.08313](https://arxiv.org/abs/2603.08313) — Dynamic HDR radiance fields from alternating-exposure video
 - **FreeTimeGS++** [arXiv:2605.03337](https://arxiv.org/abs/2605.03337) — Principled analysis + gated marginalization for 4DGS stability
 - **ClipGStream** [arXiv:2604.13746](https://arxiv.org/abs/2604.13746) — Clip-stream any-length any-motion multi-view dynamic scene reconstruction (CVPR 2026)
+- **GeoRect4D** [arXiv:2604.20784](https://arxiv.org/abs/2604.20784) — Geometry-compatible generative rectification for dynamic sparse-view 3D reconstruction
 
 > Full details in [methods-core.md](methods-core.md#dynamic-scene-methods)
 
@@ -116,6 +109,7 @@ AIGC:
 - **GLMap** [arXiv:2605.01736](https://arxiv.org/abs/2605.01736) — Multi-scale Gaussian-Language map for zero-shot navigation
 - **NG-GS** [arXiv:2604.14706](https://arxiv.org/abs/2604.14706) — NeRF-guided Gaussian-level semantic assignment
 - **Ilov3Splat** [arXiv:2605.04506](https://arxiv.org/abs/2605.04506) — Instance-level open-vocabulary 3D scene understanding with CLIP + SAM instance masks (ICPR 2026)
+- **OpenGaFF** [arXiv:2605.06088](https://arxiv.org/abs/2605.06088) — Open-vocabulary Gaussian feature field with codebook attention for improved spatial coherence and semantic consistency
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#language--semantic)
 
@@ -129,6 +123,7 @@ AIGC:
 - **FSGS** [arXiv:2312.00451](https://arxiv.org/abs/2312.00451) — SRF geometric prior + 3DGS for few-shot view synthesis
 - **HeroGS** — Hierarchical image→region→pixel guidance for sparse-view robustness
 - **GSCompleter** [arXiv:2604.20155](https://arxiv.org/abs/2604.20155) — Distillation-free sparse-view completion via Stereo-Anchor
+- **GenWildSplat** [arXiv:2604.28193](https://arxiv.org/abs/2604.28193) — See Feed-Forward for details (cross-category: also sparse-view)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#few-shot--sparse-view)
 
@@ -166,6 +161,8 @@ AIGC:
 - **VIRGi** [arXiv:2603.02986](https://arxiv.org/abs/2603.02986) — View-dependent instant recoloring with single edited image
 - **SSD-GS** [arXiv:2604.13333](https://arxiv.org/abs/2604.13333) — Scattering and shadow decomposition for relightable 3DGS (ICLR 2026)
 - **LumiMotion** [arXiv:2604.10994](https://arxiv.org/abs/2604.10994) — Improving Gaussian relighting with scene dynamics (CVPR 2026)
+- **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — See Surface & Geometry for details (cross-category: also inverse rendering)
+- **Relit-LiVE** [arXiv:2605.06658](https://arxiv.org/abs/2605.06658) — Relight video by jointly learning environment video (SIGGRAPH 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#material--relighting-methods)
 
@@ -231,6 +228,7 @@ AIGC:
 - **YOGO** [arXiv:2604.21400](https://arxiv.org/abs/2604.21400) — Budget-aware equilibrium for ultra-dense scene control
 - **VkSplat** [arXiv:2605.00219](https://arxiv.org/abs/2605.00219) — Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM
 - **QuadBox** [arXiv:2605.04844](https://arxiv.org/abs/2605.04844) — Geometry-aware AABB boxes for 1.85x rendering acceleration (ICIP 2026)
+- **AdaGScale** [arXiv:2604.18980](https://arxiv.org/abs/2604.18980) — Viewpoint-adaptive Gaussian scaling reducing gaussian-tile pairs for rendering acceleration (DAC 2026)
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#training--optimization)
 
@@ -263,6 +261,8 @@ AIGC:
 - **AudioGS** [arXiv:2604.08967](https://arxiv.org/abs/2604.08967) — Spectrogram-based audio Gaussian Splatting for sound field reconstruction
 - **MSGS** [arXiv:2604.13340](https://arxiv.org/abs/2604.13340) — Multispectral 3D Gaussian Splatting
 - **PatchPoison** [arXiv:2604.13153](https://arxiv.org/abs/2604.13153) — Poisoning multi-view datasets to degrade 3D reconstruction (Security)
+- **Aes3D** [arXiv:2605.05155](https://arxiv.org/abs/2605.05155) — First systematic framework for 3DGS aesthetic assessment with Aesthetic3D dataset + Aes3DGSNet
+- **GS-STVSR** [arXiv:2604.18047](https://arxiv.org/abs/2604.18047) — Ultra-efficient continuous spatio-temporal video super-resolution via 2D Gaussian Splatting
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
@@ -372,5 +372,3 @@ AIGC:
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
-
-> AI生成

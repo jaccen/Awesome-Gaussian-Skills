@@ -272,6 +272,16 @@
 - **Innovation**: Uses four axis-aligned bounding boxes to tightly encapsulate projected Gaussians with geometry-aware stretching factor. QPass single-pass tile traversal algorithm enables 1.85x rendering speedup over vanilla 3DGS
 - **Links**: [arXiv:2605.04844](https://arxiv.org/abs/2605.04844) | [Code](https://github.com/Powertony102/QuadBox)
 
+### AdaGScale
+- **Paper**: AdaGScale: Viewpoint-Adaptive Gaussian Scaling in 3DGS to Reduce Gaussian-Tile Pairs
+- **Authors**: Joongho Jo, Hyerin Lim, Hanjun Choi, Jongsun Park
+- **Affiliation**: Korea University
+- **Venue**: DAC 2026
+- **ArXiv**: 2604.18980
+- **Core**: Viewpoint-adaptive Gaussian scaling that reduces gaussian-tile pairs for rendering acceleration
+- **Key Innovation**: Dynamically adjusts Gaussian scale based on viewpoint to minimize tile overlap; reduces rendering workload without quality degradation
+- **Links**: [中英摘要](https://arxiv.org/abs/2604.18980) | [arXiv:2604.18980](https://arxiv.org/abs/2604.18980) | [Code]
+
 ## Simulation & Robotics
 
 ### GS-Playground
@@ -471,6 +481,23 @@
 - **arXiv**: [2604.13153](https://arxiv.org/abs/2604.13153)
 - **Innovation**: First study on adversarial data poisoning for 3D reconstruction pipelines. Demonstrates that small patch-level perturbations in multi-view datasets can severely degrade 3DGS and NeRF reconstruction quality, highlighting security vulnerabilities
 - **Links**: [arXiv:2604.13153](https://arxiv.org/abs/2604.13153)
+
+### Aes3D
+- **Paper**: Aes3D: Aesthetic Assessment in 3D Gaussian Splatting
+- **Authors**: Chuanzhi Xu, Boyu Wei, Haoxian Zhou, Xuanhua Yin, Zihan Deng, Haodong Chen, Qiang Qu, Weidong Cai
+- **ArXiv**: 2605.05155
+- **Core**: First systematic framework for 3DGS aesthetic assessment
+- **Key Innovation**: Includes Aesthetic3D (first 3D scene aesthetic dataset) + Aes3DGSNet (lightweight model operating directly on Gaussian primitives without rendering multi-view images); captures high-level aesthetic cues (composition, harmony, visual appeal) beyond reconstruction fidelity
+- **Links**: [中英摘要](https://arxiv.org/abs/2605.05155) | [arXiv:2605.05155](https://arxiv.org/abs/2605.05155) | [Code]
+
+### GS-STVSR
+- **Paper**: GS-STVSR: Ultra-Efficient Continuous Spatio-Temporal Video Super-Resolution via 2D Gaussian Splatting
+- **Authors**: Mingyu Shi, Xin Di, Long Peng, et al.
+- **Affiliation**: USTC, Huawei
+- **ArXiv**: 2604.18047
+- **Core**: 2D Gaussian Splatting applied to spatio-temporal video super-resolution
+- **Key Innovation**: Enables ultra-efficient continuous space-time interpolation via 2D Gaussian primitives; bridges Gaussian Splatting with video processing
+- **Links**: [中英摘要](https://arxiv.org/abs/2604.18047) | [arXiv:2604.18047](https://arxiv.org/abs/2604.18047) | [Code]
 
 ## Robustness & Restoration
 

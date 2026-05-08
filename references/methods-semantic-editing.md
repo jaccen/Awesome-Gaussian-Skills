@@ -1,3 +1,4 @@
+
 # Semantic, Editing, Material & Avatar Methods
 
 > Methods covering language/semantic understanding, image representation, editing, material/lighting, and human avatars.
@@ -54,6 +55,14 @@
 - **Venue**: ICPR 2026
 - **Innovation**: Instance-level open-vocabulary 3D scene understanding using multi-resolution hash embedding for CLIP features + contrastive loss over SAM masks for instance feature field. Two-stage 3D clustering at inference for language-driven object identification without category supervision
 - **Links**: [arXiv:2605.04506](https://arxiv.org/abs/2605.04506)
+
+### OpenGaFF
+- **Paper**: OpenGaFF: Open-Vocabulary Gaussian Feature Field with Codebook Attention
+- **Authors**: Kunyi Li, Michael Niemeyer, Sen Wang, Stefano Gasperini, Nassir Navab, Federico Tombari
+- **ArXiv**: 2605.06088
+- **Core**: Gaussian Feature Field modeling semantics as continuous function of Gaussian geometry + appearance
+- **Key Innovation**: Structured codebook as shared semantic primitives + codebook-guided attention for language feature retrieval via similarity matching; strengthens geometry-semantics coupling; reduces intra-object feature variance and improves spatial coherence; outperforms prior open-vocabulary 3D-GS methods on 2D and 3D benchmarks
+- **Links**: [中英摘要](https://arxiv.org/abs/2605.06088) | [arXiv:2605.06088](https://arxiv.org/abs/2605.06088) | [Code]
 
 ## Image Representation
 
@@ -281,6 +290,23 @@
 - **Core**: Rapid recoloring of 3DGS scenes while preserving view-dependent effects
 - **Key Innovation**: Separates color into diffuse and view-dependent components; only one manually edited image needed; fine-tunes single MLP in two seconds; control over view-dependent effect strength
 - **Links**: [中英摘要](https://arxiv.org/abs/2603.02986) | [arXiv:2603.02986](https://arxiv.org/abs/2603.02986) | [Code]
+
+### 3DSS
+- **Paper**: 3DSS: 3D Surface Splatting for Inverse Rendering
+- **ArXiv**: 2605.05876
+- **Core**: Surface-splatting-based inverse rendering with forward microfacet shading
+- **Key Innovation**: Forward microfacet shading under co-optimized HDR environment lighting enables novel-illumination relighting; first surface-splatting-based inverse rendering method
+- **Cross-Reference**: See also Surface & Geometry in methods-core.md
+- **Links**: [中英摘要](https://arxiv.org/abs/2605.05876) | [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) | [Code]
+
+### Relit-LiVE
+- **Paper**: Relit-LiVE: Relight Video by Jointly Learning Environment Video
+- **Authors**: Weiqing Xiao, Hong Li, Xiuyu Yang, et al.
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2605.06658
+- **Core**: Relight video by jointly learning environment video
+- **Key Innovation**: Addresses video relighting with consistent environment lighting estimation; jointly learns environment video for temporally coherent relighting
+- **Links**: [中英摘要](https://arxiv.org/abs/2605.06658) | [arXiv:2605.06658](https://arxiv.org/abs/2605.06658) | [Code](https://github.com/zhuxing0/Relit-LiVE)
 
 ## Human & Avatar Methods
 
