@@ -82,6 +82,7 @@ tailwind.config = {
     <a href="#" class="font-bold text-white text-lg tracking-tight">AGS<span class="text-accent-blue">.</span></a>
     <div class="hidden sm:flex items-center gap-6 text-sm text-gray-400">
       <a href="#showcase" class="hover:text-white transition">Showcase</a>
+      <a href="#text2word" class="hover:text-white transition">Text2Word</a>
       <a href="#methods" class="hover:text-white transition">Methods</a>
       <a href="#skills" class="hover:text-white transition">Skills</a>
       <a href="#install" class="hover:text-white transition">Install</a>
@@ -119,6 +120,94 @@ tailwind.config = {
         Star on GitHub
       </a>
       <a href="#methods" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">Explore Methods</a>
+    </div>
+  </div>
+</section>
+
+<!-- Text2Word: Interactive Demo Entry -->
+<section id="text2word" class="py-16 sm:py-20 fade-in border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Text2Word</h2>
+      <p class="mt-3 text-gray-400 text-base sm:text-lg">Describe a scene in words — get a 3D Gaussian world in return</p>
+      <p class="mt-2 text-gray-500 text-xs sm:text-sm">The creative platform making 3DGS &amp; CAD accessible to everyone</p>
+    </div>
+
+    <!-- Prompt Preview -->
+    <div class="gradient-border p-6 sm:p-8 mb-6">
+      <div class="flex flex-col sm:flex-row gap-4 items-start">
+        <div class="flex-1 w-full">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-accent-green pulse-dot"></div>
+            <span class="text-xs font-medium text-gray-400">Try it now</span>
+          </div>
+          <div id="t2wDemoInput" class="w-full px-4 py-3 rounded-lg bg-bg-surface border border-white/10 text-white text-sm leading-relaxed min-h-[60px] cursor-text" contenteditable="true" spellcheck="false">
+            A medieval castle with two cylindrical towers, a drawbridge, and stone walls
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20 hover:bg-accent-blue/20 transition" data-prompt="A mechanical spur gear with 20 teeth, 50mm diameter, central bore, steel material">Gear</button>
+            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-prompt="A modern living room with leather sofa, glass coffee table, and natural lighting">Room</button>
+            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 hover:bg-accent-cyan/20 transition" data-prompt="A scenic mountain lake with snow-capped peaks reflecting in calm water">Landscape</button>
+            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20 hover:bg-accent-rose/20 transition" data-prompt="A photorealistic human avatar in casual clothing, standing pose">Avatar</button>
+          </div>
+        </div>
+        <div class="shrink-0 flex flex-col gap-2 sm:mt-6">
+          <a href="Text2Word/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm hover:shadow-lg hover:shadow-accent-blue/20 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Create
+          </a>
+          <button id="t2wInlineDemo" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Quick Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Inline demo result (hidden by default) -->
+      <div id="t2wInlineResult" class="hidden mt-6 pt-6 border-t border-white/5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-3 rounded-lg bg-bg-surface border border-accent-blue/20">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
+            <div id="t2wResultMethod" class="text-sm font-semibold text-white">—</div>
+            <div id="t2wResultReason" class="text-[10px] text-gray-400 mt-1">—</div>
+          </div>
+          <div class="p-3 rounded-lg bg-bg-surface border border-accent-green/20">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Scene Type</div>
+            <div id="t2wResultType" class="text-sm font-semibold text-white">—</div>
+            <div id="t2wResultFeatures" class="text-[10px] text-gray-400 mt-1">—</div>
+          </div>
+          <div class="p-3 rounded-lg bg-bg-surface border border-accent-purple/20">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Export</div>
+            <div id="t2wResultExport" class="text-sm font-semibold text-white">—</div>
+            <div id="t2wResultExportSec" class="text-[10px] text-gray-400 mt-1">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature highlight -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="gradient-border p-4 text-center">
+        <div class="w-8 h-8 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-2">
+          <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold text-white">Natural Language In</h4>
+        <p class="text-[10px] text-gray-500 mt-1">Describe your scene in plain words. No JSON, no forms.</p>
+      </div>
+      <div class="gradient-border p-4 text-center">
+        <div class="w-8 h-8 rounded-lg bg-accent-purple/10 flex items-center justify-center mx-auto mb-2">
+          <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
+        <p class="text-[10px] text-gray-500 mt-1">199+ 3DGS methods analyzed — best one auto-picked for you.</p>
+      </div>
+      <div class="gradient-border p-4 text-center">
+        <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
+          <svg class="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375m13.5 0v9.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold text-white">Multi-Format Export</h4>
+        <p class="text-[10px] text-gray-500 mt-1">3DGS, mesh, CAD (STEP), point cloud — from text to any format.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -591,6 +680,61 @@ document.addEventListener('DOMContentLoaded', () => {
       viewerContainer.classList.add('hidden');
       toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Try Interactive 3DGS Viewer';
     }
+  });
+
+  // Text2Word inline demo logic
+  const t2wMethodMap = {
+    outdoor: { method: 'Scaffold-GS+', reason: 'Level-of-detail for large-scale outdoor', color: '#10b981' },
+    indoor: { method: 'Mip-Splatting', reason: 'Anti-aliasing for indoor zoom views', color: '#3b82f6' },
+    product: { method: '2DGS', reason: 'Surface-oriented for clean geometry', color: '#8b5cf6' },
+    avatar: { method: 'GaussianAvatar', reason: 'Animatable Gaussian representation', color: '#f43f5e' },
+    cad: { method: 'BrepGaussian', reason: 'B-rep for CAD fidelity & STEP export', color: '#06b6d4' },
+    dynamic: { method: '4DGS', reason: 'Spatio-temporal deformation', color: '#f59e0b' },
+    general: { method: '3DGS', reason: 'Versatile baseline', color: '#3b82f6' }
+  };
+
+  function t2wParse(text) {
+    const l = text.toLowerCase();
+    let t = 'general';
+    if (/castle|tower|wall|fortress|bridge|moat|mountain|lake|forest|city|street|landscape/.test(l)) t = 'outdoor';
+    else if (/room|interior|sofa|table|lamp|kitchen|bedroom|office/.test(l)) t = 'indoor';
+    else if (/gear|bolt|bracket|shaft|flange|bore|chamfer|mechanical|cad|engin/.test(l)) t = 'cad';
+    else if (/avatar|human|person|face|body|charact/.test(l)) t = 'avatar';
+    else if (/car|vehicle|plane|drone|robot|wheel/.test(l)) t = 'product';
+    else if (/animat|dynamic|mov|flow|deform/.test(l)) t = 'dynamic';
+    const features = [];
+    if (/glass|transparen/.test(l)) features.push('transparent');
+    if (/metal|steel|reflect/.test(l)) features.push('metallic');
+    if (/textur|wood|stone|brick/.test(l)) features.push('textured');
+    return { type: t, features };
+  }
+
+  // Quick demo button
+  const t2wDemoBtn = document.getElementById('t2wInlineDemo');
+  const t2wResult = document.getElementById('t2wInlineResult');
+  if (t2wDemoBtn) {
+    t2wDemoBtn.addEventListener('click', () => {
+      const input = document.getElementById('t2wDemoInput');
+      const text = input ? input.innerText.trim() : '';
+      if (!text) return;
+      const p = t2wParse(text);
+      const m = t2wMethodMap[p.type] || t2wMethodMap.general;
+      t2wResult.classList.remove('hidden');
+      document.getElementById('t2wResultMethod').textContent = m.method;
+      document.getElementById('t2wResultReason').textContent = m.reason;
+      document.getElementById('t2wResultType').textContent = p.type;
+      document.getElementById('t2wResultFeatures').textContent = p.features.length ? p.features.join(', ') : 'general scene';
+      document.getElementById('t2wResultExport').textContent = '.ply (3DGS)';
+      document.getElementById('t2wResultExportSec').textContent = p.type === 'cad' ? '.step, .stl, .obj' : '.obj, .stl, .ply (points)';
+    });
+  }
+
+  // Tag click handlers for Text2Word
+  document.querySelectorAll('.t2w-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const input = document.getElementById('t2wDemoInput');
+      if (input && tag.dataset.prompt) input.innerText = tag.dataset.prompt;
+    });
   });
 });
 </script>

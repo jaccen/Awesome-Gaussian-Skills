@@ -1,3 +1,4 @@
+
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -49,6 +50,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
 - **Domain Expert Knowledge**: Built-in knowledge base covering 199+ 3DGS variants across 21 categories, with domain-specific terminology conventions
+- **Text2Word Demo**: Interactive web experience that turns natural language descriptions into 3D Gaussian scenes — describe a castle, gear, or any scene in words, and get instant method recommendations, generation pipeline visualization, WebGL 3D preview, and multi-format export (3DGS/mesh/CAD)
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
 ---
@@ -282,6 +284,8 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   └── 3dgs-engineering-guide/   # Engineering deployment guide
 │       └── SKILL.md
+├── Text2Word/                # Interactive text-to-3DGS web demo
+│   └── index.html
 ├── references/
 │   ├── 3dgs-methods-overview.md # Index (199+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
@@ -364,6 +368,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.1.4 — Knowledge base v3: 150→152+ methods, 53+ bug patterns, 21 categories (optimized), FreeTimeGS++, D-Rex (May 2026)
 - [x] v0.1.5 — Knowledge base restructured: split overview into 3 sub-files for efficient retrieval (May 2026)
 - [x] v0.2 — Add `3dgs-visualizer` skill (radar charts, comparison tables, method timelines; static + interactive output) (May 2026)
+- [x] v0.2.1 — Add Text2Word interactive demo — text-to-3DGS web creation platform (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)

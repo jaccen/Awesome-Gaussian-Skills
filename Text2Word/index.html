@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text2Word — Natural Language to 3D Gaussian Scenes</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+      colors: {
+        bg: { DEFAULT: '#0a0e1a', card: '#111827', hover: '#1e293b', surface: '#0f172a' },
+        accent: { blue: '#3b82f6', purple: '#8b5cf6', cyan: '#06b6d4', green: '#10b981', amber: '#f59e0b', rose: '#f43f5e' }
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background: #0a0e1a; }
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .gradient-border { position: relative; background: #111827; border-radius: 0.75rem; }
+  .gradient-border::before {
+    content: ''; position: absolute; inset: -1px; border-radius: 0.75rem; padding: 1px;
+    background: linear-gradient(135deg, #3b82f633, #8b5cf633, #06b6d433);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+  }
+  .pipeline-step { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .pipeline-step.active { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+  .pipeline-step.done { border-color: #10b981; }
+  .pipeline-step.done .step-icon { color: #10b981; }
+  .pipeline-connector { transition: background 0.4s; }
+  .pipeline-connector.active { background: linear-gradient(180deg, #10b981, #3b82f6); }
+  .template-card { transition: all 0.2s; cursor: pointer; }
+  .template-card:hover { transform: translateY(-3px); border-color: #3b82f6; }
+  .template-card.selected { border-color: #3b82f6; background: #1e293b; }
+  .tag-chip { transition: all 0.15s; }
+  .tag-chip:hover { transform: scale(1.05); }
+  .generate-btn { transition: all 0.2s; }
+  .generate-btn:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(59,130,246,0.3); }
+  .export-option { transition: all 0.15s; }
+  .export-option:hover { border-color: #3b82f6; background: #1e293b; }
+  .method-recommend { transition: all 0.2s; }
+  .method-recommend:hover { border-color: #8b5cf6; }
+  @keyframes typing { from { width: 0; } to { width: 100%; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+  @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+  .pulse-ring { animation: pulse-ring 1.5s ease-out infinite; }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  .spin-slow { animation: spin-slow 3s linear infinite; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0e1a; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  pre code { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+  .fade-up { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body class="text-gray-300 font-sans antialiased min-h-screen">
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-bg/80 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="../docs/index.html" class="text-gray-400 hover:text-white transition text-sm">&larr; AGS</a>
+      <span class="text-gray-600">|</span>
+      <span class="font-bold text-white text-lg tracking-tight">Text2Word</span>
+    </div>
+    <div class="flex items-center gap-4 text-sm text-gray-400">
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-white transition flex items-center gap-1.5">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.2 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        GitHub
+      </a>
+      <a href="https://superspl.at/editor" target="_blank" class="hover:text-white transition">SuperSplat</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-14">
+  <!-- Hero -->
+  <section class="relative py-12 sm:py-20 overflow-hidden">
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-radial from-accent-blue/10 to-transparent -top-40 left-1/2 -translate-x-1/2 pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        Describe it.<br><span class="gradient-text">Build it in 3D.</span>
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        From natural language to 3D Gaussian Splatting scenes and CAD models.<br>
+        The creative platform that makes 3DGS accessible to everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Interface: Two-column layout -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+      <!-- Left Panel: Input & Controls -->
+      <div class="lg:col-span-2 space-y-5">
+
+        <!-- Prompt Input -->
+        <div class="gradient-border p-5">
+          <label class="block text-sm font-semibold text-white mb-3">Scene Description</label>
+          <textarea id="promptInput" rows="5" placeholder="Describe your 3D scene... e.g. A medieval castle with two cylindrical towers, a drawbridge over a moat, and stone walls with battlements"
+            class="w-full px-4 py-3 rounded-lg bg-bg-surface border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/25 transition text-sm leading-relaxed resize-none"></textarea>
+
+          <!-- Quick Tags -->
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20" data-tag="castle">Castle</button>
+            <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20" data-tag="gear">Gear</button>
+            <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20" data-tag="interior">Interior</button>
+            <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-green/10 text-accent-green border border-accent-green/20" data-tag="character">Character</button>
+            <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-amber/10 text-accent-amber border border-accent-amber/20" data-tag="landscape">Landscape</button>
+            <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20" data-tag="vehicle">Vehicle</button>
+          </div>
+
+          <button id="generateBtn" class="generate-btn mt-4 w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Generate Scene
+          </button>
+        </div>
+
+        <!-- Template Gallery -->
+        <div class="gradient-border p-5">
+          <h3 class="text-sm font-semibold text-white mb-3">Quick Templates</h3>
+          <div class="grid grid-cols-2 gap-2" id="templateGrid"></div>
+        </div>
+
+        <!-- Method Recommendation -->
+        <div id="methodPanel" class="gradient-border p-5 hidden">
+          <h3 class="text-sm font-semibold text-white mb-3">Recommended Method</h3>
+          <div id="methodContent"></div>
+        </div>
+
+        <!-- Export Options -->
+        <div id="exportPanel" class="gradient-border p-5 hidden">
+          <h3 class="text-sm font-semibold text-white mb-3">Export Formats</h3>
+          <div class="space-y-2" id="exportOptions"></div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Pipeline & 3D Viewer -->
+      <div class="lg:col-span-3 space-y-5">
+
+        <!-- Generation Pipeline -->
+        <div class="gradient-border p-5">
+          <h3 class="text-sm font-semibold text-white mb-4">Generation Pipeline</h3>
+          <div id="pipeline" class="space-y-0"></div>
+        </div>
+
+        <!-- 3D Viewer -->
+        <div class="gradient-border overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-3 border-b border-white/5">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-semibold text-white">3D Preview</h3>
+              <span id="viewerStatus" class="text-[10px] text-gray-500 font-mono">Ready</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="toggleViewerBtn" class="text-[11px] text-accent-blue hover:underline transition">Open Viewer</button>
+            </div>
+          </div>
+          <div id="viewerArea" class="relative bg-bg-surface" style="height:420px;">
+            <!-- Placeholder state -->
+            <div id="viewerPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+              <svg class="w-16 h-16 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/></svg>
+              <p class="text-sm">Enter a description and click Generate</p>
+              <p class="text-xs mt-1 text-gray-600">or select a template to get started</p>
+            </div>
+            <!-- Iframe viewer (lazy loaded) -->
+            <iframe id="viewerFrame" class="w-full h-full hidden" style="border:none;" loading="lazy"
+                    src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+                    title="3DGS Interactive Viewer"></iframe>
+          </div>
+        </div>
+
+        <!-- Scene Brief Output -->
+        <div id="briefPanel" class="gradient-border p-5 hidden">
+          <h3 class="text-sm font-semibold text-white mb-3">Scene Brief (Internal)</h3>
+          <pre id="briefContent" class="text-xs text-gray-400 leading-relaxed font-mono bg-bg-surface rounded-lg p-4 overflow-x-auto"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16 border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-white text-center mb-10">How Text2Word Works</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm mb-1">Describe in Words</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">Type your scene in plain English. No JSON, no forms — just describe what you imagine.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-accent-purple/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm mb-1">AI Selects the Best Method</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">From 199+ 3DGS variants, the agent picks the optimal one based on your scene type and priorities.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313"/></svg>
+          </div>
+          <h3 class="font-semibold text-white text-sm mb-1">Preview &amp; Export</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">Preview in real-time WebGL viewer, then export as 3DGS, mesh, CAD, or point cloud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <p>Text2Word — Part of <a href="../docs/index.html" class="text-accent-blue hover:underline">Awesome Gaussian Skills</a></p>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-white transition">GitHub</a>
+        <a href="https://superspl.at/editor" target="_blank" class="hover:text-white transition">SuperSplat</a>
+        <a href="https://github.com/earthtojake/text-to-cad" target="_blank" class="hover:text-white transition">Text-to-CAD</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+// =============================================
+// Data: Templates
+// =============================================
+const TEMPLATES = [
+  { id: 'castle', name: 'Medieval Castle', icon: '🏰',
+    prompt: 'A medieval castle with two cylindrical towers at the front, a central keep, stone walls with battlements, and a drawbridge over a moat',
+    sceneType: 'outdoor', method: '3DGS', methodReason: 'General novel-view synthesis with complex geometry' },
+  { id: 'gear', name: 'Mechanical Gear', icon: '⚙️',
+    prompt: 'A mechanical spur gear with 20 teeth, 50mm pitch diameter, 10mm face width, central bore 12mm, involute tooth profile, steel material',
+    sceneType: 'product', method: 'BrepGaussian', methodReason: 'B-rep structure preservation for CAD fidelity' },
+  { id: 'room', name: 'Living Room', icon: '🏠',
+    prompt: 'A modern living room with a leather sofa, glass coffee table, bookshelf, floor lamp, and large window with natural lighting',
+    sceneType: 'indoor', method: 'Mip-Splatting', methodReason: 'Anti-aliasing for zoomed-in indoor viewing' },
+  { id: 'avatar', name: 'Human Avatar', icon: '🧑',
+    prompt: 'A photorealistic human avatar in casual clothing, standing pose, with detailed facial features and natural skin texture',
+    sceneType: 'avatar', method: 'GaussianAvatar', methodReason: 'Animatable Gaussian representation for avatars' },
+  { id: 'landscape', name: 'Mountain Lake', icon: '🏔️',
+    prompt: 'A scenic mountain lake with snow-capped peaks reflecting in calm water, pine forest along the shore, and golden hour lighting',
+    sceneType: 'outdoor', method: 'Scaffold-GS+', methodReason: 'Level-of-detail management for large-scale outdoor scenes' },
+  { id: 'car', name: 'Sports Car', icon: '🏎️',
+    prompt: 'A red sports car with aerodynamic body, alloy wheels, LED headlights, and reflective paint material, studio lighting',
+    sceneType: 'product', method: '2DGS', methodReason: 'Surface-oriented primitives for vehicle body reconstruction' }
+];
+
+// =============================================
+// Data: Pipeline Steps
+// =============================================
+const PIPELINE_STEPS = [
+  { id: 'parse', name: 'Parse Description', icon: '📋', desc: 'Extract geometry, materials, scale from your text' },
+  { id: 'select', name: 'Select Method', icon: '🎯', desc: 'Choose optimal 3DGS variant from 199+ methods' },
+  { id: 'init', name: 'Initialize Gaussians', icon: '✨', desc: 'Set up point cloud / parametric starting geometry' },
+  { id: 'train', name: 'Train / Generate', icon: '⚡', desc: 'Run the selected 3DGS pipeline' },
+  { id: 'validate', name: 'Validate Output', icon: '✅', desc: 'Check geometry fidelity, visual quality, speed' },
+  { id: 'export', name: 'Export Assets', icon: '📦', desc: 'Generate 3DGS, mesh, CAD, or point cloud files' }
+];
+
+// =============================================
+// Data: Method Recommendation Logic
+// =============================================
+const METHOD_MAP = {
+  outdoor: { method: 'Scaffold-GS+', reason: 'Level-of-detail management for large-scale outdoor scenes', color: '#10b981' },
+  indoor: { method: 'Mip-Splatting', reason: 'Anti-aliasing for zoomed-in indoor viewing', color: '#3b82f6' },
+  product: { method: '2DGS', reason: 'Surface-oriented primitives for clean geometry', color: '#8b5cf6' },
+  avatar: { method: 'GaussianAvatar', reason: 'Animatable Gaussian representation', color: '#f43f5e' },
+  cad: { method: 'BrepGaussian', reason: 'B-rep structure for CAD fidelity and STEP export', color: '#06b6d4' },
+  dynamic: { method: '4DGS', reason: 'Spatio-temporal deformation for dynamic scenes', color: '#f59e0b' },
+  general: { method: '3DGS', reason: 'Baseline, well-supported and versatile', color: '#3b82f6' }
+};
+
+// =============================================
+// Data: Export Formats
+// =============================================
+const EXPORT_FORMATS = [
+  { id: 'ply', name: '3DGS (.ply)', desc: 'Primary Gaussian Splatting representation', icon: '💠', primary: true },
+  { id: 'obj', name: 'Mesh (.obj)', desc: 'Via SuGaR/2DGS surface extraction', icon: '🔺', primary: false },
+  { id: 'stl', name: 'Mesh (.stl)', desc: 'For 3D printing workflows', icon: '🖨️', primary: false },
+  { id: 'step', name: 'CAD (.step)', desc: 'Via BrepGaussian for engineering use', icon: '⚙️', primary: false },
+  { id: 'pcd', name: 'Point Cloud (.ply)', desc: 'Raw Gaussian center extraction', icon: '☁️', primary: false }
+];
+
+// =============================================
+// Scene Keyword Parser
+// =============================================
+function parsePrompt(text) {
+  const lower = text.toLowerCase();
+  let sceneType = 'general';
+
+  // Detect scene type
+  if (/castle|tower|wall|fortress|bridge|moat|mountain|lake|forest|city|street|landscape|outdoor/.test(lower)) sceneType = 'outdoor';
+  else if (/room|interior|sofa|table|lamp|kitchen|bedroom|office|living/.test(lower)) sceneType = 'indoor';
+  else if (/gear|bolt|bracket|shaft|flange|bearing|mechanical|cad|step|bore|chamfer|engin/.test(lower)) sceneType = 'cad';
+  else if (/avatar|human|person|face|body|charact/.test(lower)) sceneType = 'avatar';
+  else if (/car|vehicle|plane|drone|robot|wheel/.test(lower)) sceneType = 'product';
+  else if (/animat|dynamic|mov|flow|deform/.test(lower)) sceneType = 'dynamic';
+
+  // Detect features
+  const features = [];
+  if (/glass|transparen|refract/.test(lower)) features.push('transparent');
+  if (/metal|steel|iron|chrom|reflect/.test(lower)) features.push('metallic');
+  if (/textur|wood|stone|brick|fabric/.test(lower)) features.push('textured');
+  if (/light|sun|shadow|hdr|illumin/.test(lower)) features.push('lighting');
+  if (/water|fluid|liquid|river/.test(lower)) features.push('liquid');
+  if (/fire|flame|smoke|particl/.test(lower)) features.push('volumetric');
+
+  // Detect scale hints
+  let scale = 'medium';
+  if (/mm|centimeter|inch|small|miniature|tiny/.test(lower)) scale = 'small';
+  if (/meter|building|city|landscape|large|huge/.test(lower)) scale = 'large';
+
+  return { sceneType, features, scale, rawText: text };
+}
+
+function generateBrief(parsed, method) {
+  return `Scene Brief:
+  Intent: ${parsed.rawText.substring(0, 120)}${parsed.rawText.length > 120 ? '...' : ''}
+
+  Classification:
+    Scene Type: ${parsed.sceneType}
+    Features: ${parsed.features.length > 0 ? parsed.features.join(', ') : 'none specific'}
+    Scale: ${parsed.scale}
+
+  Generation:
+    Recommended Method: ${method.method}
+    Rationale: ${method.reason}
+    Initialization: ${parsed.sceneType === 'cad' ? 'parametric mesh' : parsed.sceneType === 'avatar' ? 'SMPL template' : 'SfM points / random sphere'}
+    Optimization: default (300-500 iterations recommended)
+
+  Export:
+    Primary: .ply (3DGS Gaussian representation)
+    Secondary: ${parsed.sceneType === 'cad' ? '.step (CAD), .stl (3D print)' : '.obj (mesh), .stl (3D print)'}
+${parsed.features.includes('transparent') ? '    Note: Transparency requires per-Gaussian opacity tuning' : ''}
+${parsed.features.includes('metallic') ? '    Note: Metallic appearance needs SH degree >= 3 or specular model' : ''}
+
+  Validation:
+    - Geometric faithfulness to description
+    - Visual quality at key viewpoints
+    - Training convergence (loss < 0.01)`;
+}
+
+// =============================================
+// UI Rendering
+// =============================================
+function renderTemplates() {
+  const grid = document.getElementById('templateGrid');
+  grid.innerHTML = TEMPLATES.map(t => `
+    <div class="template-card gradient-border p-3 flex flex-col gap-1.5 border border-white/5 rounded-lg" data-tpl="${t.id}">
+      <div class="flex items-center gap-2">
+        <span class="text-lg">${t.icon}</span>
+        <span class="text-xs font-semibold text-white">${t.name}</span>
+      </div>
+      <p class="text-[10px] text-gray-500 leading-tight line-clamp-2">${t.prompt.substring(0, 80)}...</p>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.template-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const tpl = TEMPLATES.find(t => t.id === card.dataset.tpl);
+      if (tpl) {
+        document.getElementById('promptInput').value = tpl.prompt;
+        grid.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      }
+    });
+  });
+}
+
+function renderPipeline(activeIndex = -1) {
+  const container = document.getElementById('pipeline');
+  container.innerHTML = PIPELINE_STEPS.map((step, i) => {
+    const state = i < activeIndex ? 'done' : i === activeIndex ? 'active' : '';
+    const connector = i < PIPELINE_STEPS.length - 1 ?
+      `<div class="pipeline-connector ml-[18px] w-0.5 h-4 ${i < activeIndex ? 'active' : 'bg-white/5'}"></div>` : '';
+    return `
+      <div class="pipeline-step flex items-start gap-3 p-3 rounded-lg border border-white/5 ${state}">
+        <div class="step-icon shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-lg ${state === 'done' ? 'bg-accent-green/10' : state === 'active' ? 'bg-accent-blue/10' : 'bg-white/5'}">
+          ${state === 'done' ? '<svg class="w-4 h-4 text-accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>' : step.icon}
+        </div>
+        <div>
+          <h4 class="text-xs font-semibold ${state === 'done' ? 'text-accent-green' : state === 'active' ? 'text-accent-blue' : 'text-gray-400'}">${step.name}</h4>
+          <p class="text-[10px] text-gray-500 mt-0.5">${step.desc}</p>
+        </div>
+      </div>
+      ${connector}
+    `;
+  }).join('');
+}
+
+function renderMethod(method, parsed) {
+  const panel = document.getElementById('methodPanel');
+  const content = document.getElementById('methodContent');
+  panel.classList.remove('hidden');
+  content.innerHTML = `
+    <div class="method-recommend gradient-border p-4 border border-white/5 rounded-lg">
+      <div class="flex items-center gap-2 mb-2">
+        <div class="w-3 h-3 rounded-full" style="background:${method.color}"></div>
+        <span class="text-sm font-bold text-white">${method.method}</span>
+        <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-gray-400 font-mono">${parsed.sceneType}</span>
+      </div>
+      <p class="text-xs text-gray-400 leading-relaxed">${method.reason}</p>
+      ${parsed.features.length > 0 ? `
+        <div class="mt-3 flex flex-wrap gap-1">
+          ${parsed.features.map(f => `<span class="text-[10px] px-2 py-0.5 rounded-full bg-accent-purple/10 text-accent-purple">${f}</span>`).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderExport(parsed) {
+  const panel = document.getElementById('exportPanel');
+  const options = document.getElementById('exportOptions');
+  panel.classList.remove('hidden');
+
+  const isCAD = parsed.sceneType === 'cad';
+  options.innerHTML = EXPORT_FORMATS.map(f => {
+    // Hide STEP for non-CAD scenes, but still show as "available via conversion"
+    const dimmed = f.id === 'step' && !isCAD;
+    return `
+      <div class="export-option flex items-center gap-3 p-3 rounded-lg border border-white/5 ${dimmed ? 'opacity-50' : ''}">
+        <span class="text-lg">${f.icon}</span>
+        <div class="flex-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-white">${f.name}</span>
+            ${f.primary ? '<span class="text-[9px] px-1.5 py-0.5 rounded bg-accent-green/10 text-accent-green font-medium">PRIMARY</span>' : ''}
+            ${dimmed ? '<span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-gray-500 font-medium">via conversion</span>' : ''}
+          </div>
+          <p class="text-[10px] text-gray-500 mt-0.5">${f.desc}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// =============================================
+// Generation Flow (simulated, with step animation)
+// =============================================
+let isGenerating = false;
+
+async function runGeneration() {
+  const prompt = document.getElementById('promptInput').value.trim();
+  if (!prompt || isGenerating) return;
+
+  isGenerating = true;
+  const btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<svg class="w-4 h-4 spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Generating...';
+
+  // Step 1: Parse
+  renderPipeline(0);
+  await delay(600);
+  const parsed = parsePrompt(prompt);
+  const method = METHOD_MAP[parsed.sceneType] || METHOD_MAP.general;
+
+  // Step 2: Select method
+  renderPipeline(1);
+  await delay(500);
+  renderMethod(method, parsed);
+
+  // Step 3: Initialize
+  renderPipeline(2);
+  await delay(700);
+
+  // Step 4: Train (longest step)
+  renderPipeline(3);
+  await delay(1200);
+
+  // Step 5: Validate
+  renderPipeline(4);
+  await delay(500);
+
+  // Step 6: Export
+  renderPipeline(5);
+  await delay(400);
+  renderExport(parsed);
+
+  // Show scene brief
+  const briefPanel = document.getElementById('briefPanel');
+  briefPanel.classList.remove('hidden');
+  document.getElementById('briefContent').textContent = generateBrief(parsed, method);
+
+  // Open 3D viewer
+  openViewer();
+
+  // Done
+  isGenerating = false;
+  btn.disabled = false;
+  btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Regenerate';
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// =============================================
+// 3D Viewer
+// =============================================
+let viewerLoaded = false;
+function openViewer() {
+  const placeholder = document.getElementById('viewerPlaceholder');
+  const frame = document.getElementById('viewerFrame');
+  const status = document.getElementById('viewerStatus');
+  placeholder.classList.add('hidden');
+  frame.classList.remove('hidden');
+  status.textContent = 'Loading...';
+  if (!viewerLoaded) {
+    frame.src = 'https://antimatter15.com/splat/';
+    viewerLoaded = true;
+    frame.onload = () => { status.textContent = 'Live'; status.style.color = '#10b981'; };
+  }
+}
+
+// =============================================
+// Tag Click Handlers
+// =============================================
+function initTagHandlers() {
+  document.querySelectorAll('.tag-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag;
+      const tpl = TEMPLATES.find(t => t.id === tag);
+      if (tpl) {
+        document.getElementById('promptInput').value = tpl.prompt;
+        document.querySelectorAll('.template-card').forEach(c => {
+          c.classList.toggle('selected', c.dataset.tpl === tag);
+        });
+      }
+    });
+  });
+}
+
+// =============================================
+// Init
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderTemplates();
+  renderPipeline(-1);
+  initTagHandlers();
+
+  document.getElementById('generateBtn').addEventListener('click', runGeneration);
+
+  // Enter key in textarea
+  document.getElementById('promptInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      runGeneration();
+    }
+  });
+
+  // Manual viewer toggle
+  document.getElementById('toggleViewerBtn').addEventListener('click', () => {
+    if (document.getElementById('viewerFrame').classList.contains('hidden')) {
+      openViewer();
+    } else {
+      document.getElementById('viewerFrame').classList.add('hidden');
+      document.getElementById('viewerPlaceholder').classList.remove('hidden');
+      document.getElementById('viewerStatus').textContent = 'Ready';
+      document.getElementById('viewerStatus').style.color = '';
+    }
+  });
+});
+</script>
+</body>
+</html>

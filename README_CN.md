@@ -48,6 +48,7 @@ If you like it, please ⭐️ star this repo!
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
 - **领域专家知识**：内置知识库覆盖 21 个类别的 199+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
+- **Text2Word 演示**：交互式 Web 体验，将自然语言描述转化为三维高斯场景 —— 用文字描述城堡、齿轮或任意场景，即可获得智能方法推荐、生成管线可视化、WebGL 3D 预览与多格式导出（3DGS/mesh/CAD）
 
 ---
 
@@ -276,6 +277,8 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   └── 3dgs-engineering-guide/   # 工程化部署指南
 │       └── SKILL.md
+├── Text2Word/                # 交互式文生3DGS Web演示
+│   └── index.html
 ├── references/
 │   ├── 3dgs-methods-overview.md # 索引（21 个类别 199+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
@@ -358,6 +361,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.1.4 — 知识库 v3：150→152+ 方法、53+ bug 模式、21 个类别（已优化）、FreeTimeGS++、D-Rex（2026年5月）
 - [x] v0.1.5 — 知识库结构升级：拆分为 3 个子文件提升检索效率（2026年5月）
 - [x] v0.2 — 新增 `3dgs-visualizer` 技能（雷达图、对比表、方法时间线；静态 + 交互式双输出）（2026年5月）
+- [x] v0.2.1 — 新增 Text2Word 交互演示——文生3DGS Web创作平台（2026年5月）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）
