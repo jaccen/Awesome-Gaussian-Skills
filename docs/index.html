@@ -133,7 +133,7 @@ tailwind.config = {
       <p class="mt-2 text-gray-500 text-xs sm:text-sm">The creative platform making 3DGS &amp; CAD accessible to everyone</p>
     </div>
 
-    <!-- Prompt Preview -->
+    <!-- Prompt Input -->
     <div class="gradient-border p-6 sm:p-8 mb-6">
       <div class="flex flex-col sm:flex-row gap-4 items-start">
         <div class="flex-1 w-full">
@@ -141,47 +141,65 @@ tailwind.config = {
             <div class="w-2.5 h-2.5 rounded-full bg-accent-green pulse-dot"></div>
             <span class="text-xs font-medium text-gray-400">Try it now</span>
           </div>
-          <div id="t2wDemoInput" class="w-full px-4 py-3 rounded-lg bg-bg-surface border border-white/10 text-white text-sm leading-relaxed min-h-[60px] cursor-text" contenteditable="true" spellcheck="false">
-            A medieval castle with two cylindrical towers, a drawbridge, and stone walls
-          </div>
+          <textarea id="t2wDemoInput" rows="3" placeholder="Describe your 3D scene... e.g. A medieval castle with towers and a moat"
+            class="w-full px-4 py-3 rounded-lg bg-bg-card border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/25 transition text-sm leading-relaxed resize-none">A medieval castle with two cylindrical towers, a drawbridge, and stone walls</textarea>
           <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20 hover:bg-accent-blue/20 transition" data-prompt="A mechanical spur gear with 20 teeth, 50mm diameter, central bore, steel material">Gear</button>
-            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-prompt="A modern living room with leather sofa, glass coffee table, and natural lighting">Room</button>
-            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 hover:bg-accent-cyan/20 transition" data-prompt="A scenic mountain lake with snow-capped peaks reflecting in calm water">Landscape</button>
-            <button class="t2w-tag px-2 py-0.5 rounded-full text-[10px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20 hover:bg-accent-rose/20 transition" data-prompt="A photorealistic human avatar in casual clothing, standing pose">Avatar</button>
+            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20 hover:bg-accent-blue/20 transition" data-prompt="A mechanical spur gear with 20 teeth, 50mm diameter, central bore, steel material">Gear</button>
+            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-prompt="A modern living room with leather sofa, glass coffee table, and natural lighting">Room</button>
+            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 hover:bg-accent-cyan/20 transition" data-prompt="A scenic mountain lake with snow-capped peaks reflecting in calm water">Landscape</button>
+            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20 hover:bg-accent-rose/20 transition" data-prompt="A photorealistic human avatar in casual clothing, standing pose">Avatar</button>
+            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition" data-prompt="A red sports car with aerodynamic body, alloy wheels, and reflective paint">Vehicle</button>
           </div>
         </div>
         <div class="shrink-0 flex flex-col gap-2 sm:mt-6">
-          <a href="Text2Word/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm hover:shadow-lg hover:shadow-accent-blue/20 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            Create
-          </a>
-          <button id="t2wInlineDemo" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Quick Demo
+          <button id="t2wGenBtn" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm hover:shadow-lg hover:shadow-accent-blue/20 transition disabled:opacity-40 disabled:cursor-not-allowed">
+            <svg id="t2wGenIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span id="t2wGenText">Generate</span>
           </button>
+          <a href="../Text2Word/index.html" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Full Editor
+          </a>
         </div>
       </div>
 
-      <!-- Inline demo result (hidden by default) -->
-      <div id="t2wInlineResult" class="hidden mt-6 pt-6 border-t border-white/5">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="p-3 rounded-lg bg-bg-surface border border-accent-blue/20">
+      <!-- Pipeline Steps (animated) -->
+      <div id="t2wPipeline" class="hidden mt-6 pt-6 border-t border-white/5">
+        <div class="flex items-center gap-1 overflow-x-auto pb-2" id="t2wPipelineSteps"></div>
+      </div>
+
+      <!-- Results -->
+      <div id="t2wResult" class="hidden mt-5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+          <div class="p-3 rounded-lg bg-bg-card border border-accent-blue/20">
             <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
-            <div id="t2wResultMethod" class="text-sm font-semibold text-white">—</div>
-            <div id="t2wResultReason" class="text-[10px] text-gray-400 mt-1">—</div>
+            <div id="t2wRMethod" class="text-sm font-bold text-white">—</div>
+            <div id="t2wRReason" class="text-[10px] text-gray-400 mt-0.5 leading-snug">—</div>
           </div>
-          <div class="p-3 rounded-lg bg-bg-surface border border-accent-green/20">
-            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Scene Type</div>
-            <div id="t2wResultType" class="text-sm font-semibold text-white">—</div>
-            <div id="t2wResultFeatures" class="text-[10px] text-gray-400 mt-1">—</div>
+          <div class="p-3 rounded-lg bg-bg-card border border-accent-green/20">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Scene</div>
+            <div id="t2wRType" class="text-sm font-bold text-white">—</div>
+            <div id="t2wRFeatures" class="text-[10px] text-gray-400 mt-0.5">—</div>
           </div>
-          <div class="p-3 rounded-lg bg-bg-surface border border-accent-purple/20">
-            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Export</div>
-            <div id="t2wResultExport" class="text-sm font-semibold text-white">—</div>
-            <div id="t2wResultExportSec" class="text-[10px] text-gray-400 mt-1">—</div>
+          <div class="p-3 rounded-lg bg-bg-card border border-accent-purple/20">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Primary Export</div>
+            <div id="t2wRExport" class="text-sm font-bold text-white">—</div>
+            <div id="t2wRExportNote" class="text-[10px] text-gray-400 mt-0.5">—</div>
+          </div>
+          <div class="p-3 rounded-lg bg-bg-card border border-accent-cyan/20">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Secondary</div>
+            <div id="t2wRExport2" class="text-sm font-bold text-white">—</div>
+            <div id="t2wRExport2Note" class="text-[10px] text-gray-400 mt-0.5">—</div>
           </div>
         </div>
+        <!-- Brief -->
+        <details class="group">
+          <summary class="cursor-pointer text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 transition group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            Scene Brief
+          </summary>
+          <pre id="t2wRBrief" class="mt-2 text-[11px] text-gray-400 leading-relaxed font-mono bg-bg-card rounded-lg p-3 overflow-x-auto border border-white/5"></pre>
+        </details>
       </div>
     </div>
 
@@ -682,58 +700,142 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // =============================================
   // Text2Word inline demo logic
+  // =============================================
   const t2wMethodMap = {
-    outdoor: { method: 'Scaffold-GS+', reason: 'Level-of-detail for large-scale outdoor', color: '#10b981' },
-    indoor: { method: 'Mip-Splatting', reason: 'Anti-aliasing for indoor zoom views', color: '#3b82f6' },
-    product: { method: '2DGS', reason: 'Surface-oriented for clean geometry', color: '#8b5cf6' },
-    avatar: { method: 'GaussianAvatar', reason: 'Animatable Gaussian representation', color: '#f43f5e' },
-    cad: { method: 'BrepGaussian', reason: 'B-rep for CAD fidelity & STEP export', color: '#06b6d4' },
-    dynamic: { method: '4DGS', reason: 'Spatio-temporal deformation', color: '#f59e0b' },
-    general: { method: '3DGS', reason: 'Versatile baseline', color: '#3b82f6' }
+    outdoor: { method: 'Scaffold-GS+', reason: 'Level-of-detail for large-scale outdoor', color: '#10b981', init: 'SfM points' },
+    indoor:  { method: 'Mip-Splatting', reason: 'Anti-aliasing for indoor zoom views', color: '#3b82f6', init: 'Random bbox' },
+    product: { method: '2DGS', reason: 'Surface-oriented for clean geometry', color: '#8b5cf6', init: 'Turntable sphere' },
+    avatar:  { method: 'GaussianAvatar', reason: 'Animatable Gaussian representation', color: '#f43f5e', init: 'SMPL template' },
+    cad:     { method: 'BrepGaussian', reason: 'B-rep for CAD fidelity & STEP export', color: '#06b6d4', init: 'Parametric mesh' },
+    dynamic: { method: '4DGS', reason: 'Spatio-temporal deformation', color: '#f59e0b', init: 'Per-frame points' },
+    general: { method: '3DGS', reason: 'Versatile baseline', color: '#3b82f6', init: 'Random sphere' }
   };
+
+  const t2wSteps = [
+    { name: 'Parse', icon: '📋' },
+    { name: 'Select', icon: '🎯' },
+    { name: 'Init', icon: '✨' },
+    { name: 'Train', icon: '⚡' },
+    { name: 'Validate', icon: '✅' },
+    { name: 'Export', icon: '📦' }
+  ];
 
   function t2wParse(text) {
     const l = text.toLowerCase();
     let t = 'general';
     if (/castle|tower|wall|fortress|bridge|moat|mountain|lake|forest|city|street|landscape/.test(l)) t = 'outdoor';
     else if (/room|interior|sofa|table|lamp|kitchen|bedroom|office/.test(l)) t = 'indoor';
-    else if (/gear|bolt|bracket|shaft|flange|bore|chamfer|mechanical|cad|engin/.test(l)) t = 'cad';
+    else if (/gear|bolt|bracket|shaft|flange|bore|chamfer|mechanical|cad|engin|step|stl/.test(l)) t = 'cad';
     else if (/avatar|human|person|face|body|charact/.test(l)) t = 'avatar';
-    else if (/car|vehicle|plane|drone|robot|wheel/.test(l)) t = 'product';
+    else if (/car|vehicle|plane|drone|robot|wheel|sports/.test(l)) t = 'product';
     else if (/animat|dynamic|mov|flow|deform/.test(l)) t = 'dynamic';
     const features = [];
     if (/glass|transparen/.test(l)) features.push('transparent');
-    if (/metal|steel|reflect/.test(l)) features.push('metallic');
-    if (/textur|wood|stone|brick/.test(l)) features.push('textured');
+    if (/metal|steel|iron|chrom|reflect/.test(l)) features.push('metallic');
+    if (/textur|wood|stone|brick|fabric/.test(l)) features.push('textured');
+    if (/light|sun|shadow|hdr|illumin/.test(l)) features.push('lighting');
     return { type: t, features };
   }
 
-  // Quick demo button
-  const t2wDemoBtn = document.getElementById('t2wInlineDemo');
-  const t2wResult = document.getElementById('t2wInlineResult');
-  if (t2wDemoBtn) {
-    t2wDemoBtn.addEventListener('click', () => {
-      const input = document.getElementById('t2wDemoInput');
-      const text = input ? input.innerText.trim() : '';
-      if (!text) return;
-      const p = t2wParse(text);
-      const m = t2wMethodMap[p.type] || t2wMethodMap.general;
-      t2wResult.classList.remove('hidden');
-      document.getElementById('t2wResultMethod').textContent = m.method;
-      document.getElementById('t2wResultReason').textContent = m.reason;
-      document.getElementById('t2wResultType').textContent = p.type;
-      document.getElementById('t2wResultFeatures').textContent = p.features.length ? p.features.join(', ') : 'general scene';
-      document.getElementById('t2wResultExport').textContent = '.ply (3DGS)';
-      document.getElementById('t2wResultExportSec').textContent = p.type === 'cad' ? '.step, .stl, .obj' : '.obj, .stl, .ply (points)';
-    });
+  function t2wDelay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function t2wRun() {
+    const input = document.getElementById('t2wDemoInput');
+    const text = input ? input.value.trim() : '';
+    if (!text) return;
+
+    const btn = document.getElementById('t2wGenBtn');
+    const icon = document.getElementById('t2wGenIcon');
+    const txt = document.getElementById('t2wGenText');
+    btn.disabled = true;
+    icon.innerHTML = '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>';
+    icon.setAttribute('class', 'w-4 h-4 animate-spin');
+    txt.textContent = 'Generating...';
+
+    // Show pipeline
+    const pipeline = document.getElementById('t2wPipeline');
+    const stepsEl = document.getElementById('t2wPipelineSteps');
+    pipeline.classList.remove('hidden');
+    stepsEl.innerHTML = t2wSteps.map((s, i) => `
+      <div class="flex items-center shrink-0" id="t2wStep${i}">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-white/10 text-gray-500 transition-all duration-300">
+          <span class="step-icon">${s.icon}</span>
+          <span class="step-label">${s.name}</span>
+        </div>
+        ${i < t2wSteps.length - 1 ? '<svg class="w-3 h-3 text-gray-600 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : ''}
+      </div>
+    `).join('');
+
+    // Hide previous result
+    document.getElementById('t2wResult').classList.add('hidden');
+
+    // Animate pipeline steps
+    const parsed = t2wParse(text);
+    const method = t2wMethodMap[parsed.type] || t2wMethodMap.general;
+
+    for (let i = 0; i < t2wSteps.length; i++) {
+      const stepEl = document.getElementById('t2wStep' + i);
+      const inner = stepEl.querySelector('div');
+      inner.classList.remove('border-white/10', 'text-gray-500');
+      inner.classList.add('border-accent-blue', 'text-accent-blue', 'bg-accent-blue/10');
+      const delayMs = i === 3 ? 900 : i === 0 ? 400 : 350;
+      await t2wDelay(delayMs);
+      // Mark done
+      inner.classList.remove('border-accent-blue', 'text-accent-blue', 'bg-accent-blue/10');
+      inner.classList.add('border-accent-green', 'text-accent-green', 'bg-accent-green/10');
+      stepEl.querySelector('.step-icon').textContent = '✓';
+    }
+
+    // Show results
+    const r = document.getElementById('t2wResult');
+    r.classList.remove('hidden');
+    document.getElementById('t2wRMethod').textContent = method.method;
+    document.getElementById('t2wRMethod').style.color = method.color;
+    document.getElementById('t2wRReason').textContent = method.reason;
+    document.getElementById('t2wRType').textContent = parsed.type;
+    document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
+    document.getElementById('t2wRExport').textContent = '.ply (3DGS)';
+    document.getElementById('t2wRExportNote').textContent = 'Primary Gaussian representation';
+    const isCAD = parsed.type === 'cad';
+    document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : '.obj + .stl';
+    document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : 'Mesh & 3D print export';
+
+    // Scene brief
+    const brief = `Scene Brief:
+  Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}
+  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}
+  Method: ${method.method} — ${method.reason}
+  Initialization: ${method.init}
+  Training: 300–500 iterations recommended
+  Export primary: .ply (3DGS)
+  Export secondary: ${isCAD ? '.step (CAD), .stl (3D print)' : '.obj (mesh), .stl (3D print)'}
+  Validation: geometric faithfulness, visual quality, convergence`;
+    document.getElementById('t2wRBrief').textContent = brief;
+
+    // Reset button
+    btn.disabled = false;
+    icon.setAttribute('class', 'w-4 h-4');
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
+    txt.textContent = 'Regenerate';
   }
 
-  // Tag click handlers for Text2Word
+  // Generate button
+  document.getElementById('t2wGenBtn').addEventListener('click', t2wRun);
+
+  // Ctrl+Enter in textarea
+  document.getElementById('t2wDemoInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); t2wRun(); }
+  });
+
+  // Tag click handlers
   document.querySelectorAll('.t2w-tag').forEach(tag => {
     tag.addEventListener('click', () => {
       const input = document.getElementById('t2wDemoInput');
-      if (input && tag.dataset.prompt) input.innerText = tag.dataset.prompt;
+      if (input && tag.dataset.prompt) input.value = tag.dataset.prompt;
+      document.querySelectorAll('.t2w-tag').forEach(t => t.classList.remove('ring-1', 'ring-accent-blue'));
+      tag.classList.add('ring-1', 'ring-accent-blue');
     });
   });
 });
