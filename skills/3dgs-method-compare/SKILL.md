@@ -1,7 +1,7 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 199+ 3DGS methods."
-version: 1.4.0
+description: "Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 212+ 3DGS methods."
+version: 1.4.1
 author: jaccen
 tags:
   - 3dgs
@@ -23,7 +23,7 @@ trigger:
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 199+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 212+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -37,9 +37,9 @@ You are an expert in 3D Gaussian Splatting methods with deep knowledge of 199+ v
 When comparing methods, analyze across the following dimensions:
 
 ### 1. Primitive Representation
-- Shape: Full 3D Gaussian / 2D disk / 1D splat / hybrid
+- Shape: Full 3D Gaussian / 2D disk / 1D splat / hybrid / spatially-varying (SVGS)
 - Anisotropy: Isotropic / Anisotropic / Semi-anisotropic
-- Parameterization: (μ, Σ, opacity, SH) / (center, normal, scale, opacity) / custom
+- Parameterization: (μ, Σ, opacity, SH) / (center, normal, scale, opacity) / custom / (μ, Σ, spatially-varying color+opacity, SH) (SVGS)
 
 ### 2. Opacity / Alpha Mechanism
 - Range: [0, 1] / [-1, 1] / unbounded / sigmoid / tanh
@@ -148,6 +148,8 @@ When comparing methods, analyze across the following dimensions:
 | 2D-SuGaR | arXiv'26 | Highest (DTU SOTA) | 2DGS + monocular depth/normal priors; depth-guided init; clustering-based pruning |
 | IRIS | arXiv'26 (2603.15368) | Hybrid | GS-proxy neural field with analytical ray intersection; hybrid rendering |
 | DiffSoup | arXiv'26 (2603.27151) | Extreme simplification | Triangle soup as alternative primitive to Gaussians |
+| 3DSS | arXiv'26 (2605.05876) | High (inverse rendering) | First differentiable surface splatting; coverage-based compositing from EWA; joint shape+SVBRDF+lighting |
+| SVGS | arXiv'24 (2411.18966) | High (Blender SOTA) | Spatially varying color+opacity within each Gaussian; movable kernels (1.4x params); >30 FPS |
 
 ### Generation / Text-to-3D
 
@@ -156,6 +158,7 @@ When comparing methods, analyze across the following dimensions:
 | DreamGaussian | ICLR'24 (Oral) | Text prompt | 3D mesh + 3DGS | SDS + 3DGS prior, seconds |
 | GaussianEditor | Preprint | Text/geometry mask | Edited 3DGS | CLIP-guided selection + editing |
 | ArtifactWorld | arXiv'26 (2604.12251) | Artifact images | Restored video | Video generation for artifact restoration |
+| SceneGen-LLMRL | arXiv'26 (2605.05711) | Language | Interactive 3D scene | LLM-RL coupling for unified 3D scene generation + immersive interaction |
 
 ### Language / Semantic
 

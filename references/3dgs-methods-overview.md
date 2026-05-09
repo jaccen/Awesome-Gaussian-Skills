@@ -1,6 +1,6 @@
 ﻿# 3DGS Methods Overview
 
-> This file is the master index for all 208+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 212+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -32,6 +32,7 @@
 - **P2M++** [arXiv:2605.00429](https://arxiv.org/abs/2605.00429) — Enhanced solver for point-to-mesh distance queries
 - **SAND** — Spatially adaptive network depth for efficient neural implicit surface sampling (SIGGRAPH 2026 TOG)
 - **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA
+- **SVGS** [arXiv:2411.18966](https://arxiv.org/abs/2411.18966) — Spatially varying colors + opacity within each Gaussian primitive; three designs (bilinear / movable kernels / tiny MLP); Blender SOTA
 
 > Full details in [methods-core.md](methods-core.md#surface--geometry-methods)
 
@@ -50,6 +51,7 @@
 - **DreamGaussian** [arXiv:2309.16653](https://arxiv.org/abs/2309.16653) — SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup
 - **AniGen** [GitHub](https://github.com/VAST-AI-Research/AniGen) — Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning (SIGGRAPH 2026 TOG)
 - **SIC3D** [arXiv:2604.08760](https://arxiv.org/abs/2604.08760) — Style image conditioned text-to-3D Gaussian Splatting generation
+- **SceneGen-LLMRL** [arXiv:2605.05711](https://arxiv.org/abs/2605.05711) — Unified 3D scene generation + immersive interaction via LLM-RL coupling
 
 > Full details in [methods-core.md](methods-core.md#generation--text-to-3d)
 
@@ -145,7 +147,7 @@
 - **FluSplat** [arXiv:2604.20038](https://arxiv.org/abs/2604.20038) — Feed-forward sparse-view editing without per-scene optimization
 - **TransSplat** [arXiv:2604.19571](https://arxiv.org/abs/2604.19571) — Language-driven editing as unbalanced semantic transport
 - **GOR-IS** [arXiv:2605.00498](https://arxiv.org/abs/2605.00498) — Physically consistent object removal via intrinsic decomposition
-- **SVGS** [arXiv:2603.28126](https://arxiv.org/abs/2603.28126) — Single-view text-driven 3D editing with sparse 3DGS
+- **SVGS-Edit** [arXiv:2603.28126](https://arxiv.org/abs/2603.28126) — Single-view text-driven 3D editing with sparse 3DGS (disambiguation: distinct from SVGS Spatially Varying GS)
 - **DiffSoup** [arXiv:2603.27151](https://arxiv.org/abs/2603.27151) — Triangle soup as extreme radiance field simplification
 - **FTSplat** [arXiv:2603.05932](https://arxiv.org/abs/2603.05932) — Feed-forward triangle primitive generation
 - **IRIS** [arXiv:2603.15368](https://arxiv.org/abs/2603.15368) — Hybrid proxy with analytical ray-primitive intersection
@@ -163,6 +165,7 @@
 - **LumiMotion** [arXiv:2604.10994](https://arxiv.org/abs/2604.10994) — Improving Gaussian relighting with scene dynamics (CVPR 2026)
 - **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — See Surface & Geometry for details (cross-category: also inverse rendering)
 - **Relit-LiVE** [arXiv:2605.06658](https://arxiv.org/abs/2605.06658) — Relight video by jointly learning environment video (SIGGRAPH 2026)
+- **DiffAdapt4DSI** [arXiv:2605.06214](https://arxiv.org/abs/2605.06214) — Differentiable adaptive 4D structured illumination for joint capture of shape and reflectance (CVPR 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#material--relighting-methods)
 
@@ -177,6 +180,7 @@
 - **Large-Scale HQ 3D Gaussian Head** [arXiv:2605.04035](https://arxiv.org/abs/2605.04035) — Multi-view large-scale high-fidelity 3D Gaussian head reconstruction
 - **Mobile Avatar (Pruned Blendshapes)** [arXiv:2605.01854](https://arxiv.org/abs/2605.01854) — High-fidelity mobile avatars with pruned local blendshapes (CVPR 2026)
 - **ProgressiveAvatars** — Progressive animatable 3D Gaussian avatar generation (SIGGRAPH 2026 TOG)
+- **DelightingFace** [arXiv:2605.05636](https://arxiv.org/abs/2605.05636) — Dataset Latent Modulation delighting prior for facial appearance capture; 4K relightable NeRSemble-Scan dataset (SIGGRAPH 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#human--avatar-methods)
 
@@ -369,6 +373,10 @@
 | PatchPoison | N/A (security) | N/A | N/A | Multi-view data poisoning |
 | SIC3D | N/A (text-to-3D) | N/A | N/A | Style-conditioned 3DGS gen |
 | TokenGS | ~vs baseline (feed-forward) | Single-pass | N/A | Learnable token 3DGS |
+| SVGS | ~32.5 (Blender, SOTA) | >30 FPS | 1.28-1.88x 2DGS | Spatially varying color+opacity |
+| DelightingFace | N/A (face capture) | N/A | N/A | Delighting prior + DLM |
+| SceneGen-LLMRL | N/A (scene gen) | Interactive | N/A | LLM-RL 3D scene generation |
+| DiffAdapt4DSI | N/A (shape+reflectance) | N/A | N/A | 4D structured illumination capture |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.

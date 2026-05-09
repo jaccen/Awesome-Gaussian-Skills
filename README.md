@@ -49,7 +49,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **9 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, research visualization (radar charts, timelines, comparison tables), and engineering deployment guide
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 199+ 3DGS variants across 21 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 212+ 3DGS variants across 21 categories, with domain-specific terminology conventions
 - **Text2Word Demo**: Interactive web experience that turns natural language descriptions into 3D Gaussian scenes — describe a castle, gear, or any scene in words, and get instant method recommendations, generation pipeline visualization, WebGL 3D preview, and multi-format export (3DGS/mesh/CAD)
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
@@ -338,7 +338,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 | Compression | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++ |
 | Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
 | Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS |
-| Generation / Text-to-3D | DreamGaussian |
+| Generation / Text-to-3D | DreamGaussian, SceneGen-LLMRL |
 | Antialiasing | Mip-Splatting, LeanGaussian |
 | Optimization | 3DGS-as-MCMC |
 | Image Representation | GaussianImage |
@@ -352,10 +352,10 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 | System | YOGO, GS-SCNet |
 | Security | RDSplat |
 | HDR / Dynamic | HDR-NSFF, FreeTimeGS++ |
-| Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex |
-| Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS, VIRGi, GOR-IS |
+| Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace |
+| Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
 
-> The full knowledge base covers **199+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **212+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 

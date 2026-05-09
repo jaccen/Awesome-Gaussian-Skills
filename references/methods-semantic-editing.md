@@ -308,6 +308,16 @@
 - **Key Innovation**: Addresses video relighting with consistent environment lighting estimation; jointly learns environment video for temporally coherent relighting
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.06658) | [arXiv:2605.06658](https://arxiv.org/abs/2605.06658) | [Code](https://github.com/zhuxing0/Relit-LiVE)
 
+### DiffAdapt4DSI
+- **Paper**: Differentiable Adaptive 4D Structured Illumination for Joint Capture of Shape and Reflectance
+- **Authors**: Huakeng Ding, Yaowen Chen, Kun Zhou, Hongzhi Wu
+- **Venue**: CVPR 2026
+- **ArXiv**: 2605.06214
+- **Core**: Differentiable adaptive 4D structured illumination system for joint capture of shape and reflectance
+- **Key Innovation**: End-to-end differentiable pipeline that jointly optimizes structured light patterns and reconstruction; captures both 3D geometry and spatially-varying reflectance from adaptive illumination; 4D temporal dimension enables dynamic scene capture
+- **Related**: 3DSS, SSD-GS, GaussianShader
+- **Links**: [中英摘要](https://arxiv.org/abs/2605.06214) | [arXiv:2605.06214](https://arxiv.org/abs/2605.06214) | [Code]
+
 ## Human & Avatar Methods
 
 ### GaussianAvatar
@@ -364,3 +374,13 @@
 - **Venue**: SIGGRAPH 2026 Journal Track (ACM TOG)
 - **Core**: Progressive animatable 3D Gaussian avatar generation
 - **Key Innovation**: Coarse-to-fine progressive generation pipeline for high-quality 3D Gaussian avatars with animation capability
+
+### DelightingFace
+- **Paper**: Learning a Delighting Prior for Facial Appearance Capture in the Wild
+- **Authors**: Yuxuan Han, Xin Ming, Tianxiao Li, Zhuofan Shen, Qixuan Zhang, Lan Xu, Feng Xu
+- **Venue**: SIGGRAPH 2026 (ACM TOG)
+- **ArXiv**: 2605.05636
+- **Core**: Delighting prior for high-quality facial appearance capture from casual video
+- **Key Innovation**: Trains powerful delighting network as prior using OLAT dataset + rendered Light Stage scans via Dataset Latent Modulation (DLM); decouples dataset-specific styles from physical delighting principles; simple automatic pipeline from casual smartphone video to high-quality reflectance estimation; creates NeRSemble-Scan (4K relightable scan dataset, open-sourced)
+- **Related**: D-Rex, HumanSplatHMR, GaussianShader
+- **Links**: [arXiv:2605.05636](https://arxiv.org/abs/2605.05636) | [Project](https://yuxuanhan.github.io/delight-prior/) | [Code]

@@ -120,6 +120,17 @@
 - **Related**: 2DGS, SuGaR, GS-IR
 - **Links**: [arXiv:2605.05876](https://arxiv.org/abs/2605.05876)
 
+### SVGS (Spatially Varying Gaussian Splatting)
+- **Paper**: SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors
+- **Authors**: Rui Xu, et al. (HKU, NTU, MUST, SDU, Texas A&M)
+- **ArXiv**: 2411.18966
+- **Core**: Spatially varying colors and opacity within each Gaussian primitive
+- **Key Innovation**: Introduces position-dependent color c(p,d) = SH(d) + Fc(p) and opacity alpha(p) = Falpha(p), enabling a single Gaussian to express complex textures (checkerboards, zebra stripes, letter patterns); three spatial variation designs: (1) Bilinear interpolation (4-quadrant, 1.28x params), (2) Movable kernels (k=4 learnable Gaussian kernels, 1.4x params, best trade-off), (3) Tiny MLP (3-layer, 1.88x params, harder to optimize)
+- **Performance**: SOTA on Synthetic Blender (complex textures); on par on Mip-NeRF 360 / T&T; DTU geometry competitive with 2DGS; >30 FPS rendering
+- **Trade-off**: Slightly slower training/inference vs vanilla 2DGS due to per-hit spatial variation computation; movable kernels offer best quality-to-cost ratio
+- **Related**: 2DGS, Neural Gabor Splatting, NegGS
+- **Links**: [arXiv:2411.18966](https://arxiv.org/abs/2411.18966) | [Project](https://ruixu.me/html/SuperGaussians/index.html) | [Code](https://github.com/Xrvitd/SVGS)
+
 ## CAD / Mesh / Hybrid Methods
 
 ### SuGaR
@@ -201,6 +212,15 @@
 - **arXiv**: [2604.08760](https://arxiv.org/abs/2604.08760)
 - **Innovation**: Introduces style image conditioning for text-to-3D Gaussian Splatting, enabling controllable style transfer in 3D generation via reference style images
 - **Links**: [arXiv:2604.08760](https://arxiv.org/abs/2604.08760)
+
+### SceneGen-LLMRL
+- **Paper**: Closing the Loop: Unified 3D Scene Generation and Immersive Interaction via LLM-RL Coupling
+- **Authors**: Anh H. Vo, Sungyo Lee, Phil-Joong Kim, Soo-Mi Choi, Yong-Guk Kim
+- **ArXiv**: 2605.05711
+- **Core**: Unified 3D scene generation + immersive interaction via LLM-RL coupling
+- **Key Innovation**: Closes the loop between LLM-based scene understanding/generation and RL-guided interactive exploration; generates 3D scenes from language descriptions and enables real-time interactive manipulation; bridges scene generation with immersive user experience
+- **Related**: DreamGaussian, AniGen
+- **Links**: [arXiv:2605.05711](https://arxiv.org/abs/2605.05711)
 
 ## Feed-Forward Methods
 
