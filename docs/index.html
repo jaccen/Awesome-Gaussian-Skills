@@ -203,6 +203,60 @@ tailwind.config = {
       </div>
     </div>
 
+    <!-- PlayCanvas 3DGS Interactive Viewer -->
+    <div id="t2wPlayCanvas" class="mt-6">
+      <div class="gradient-border overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-accent-teal pulse-dot"></span>
+            <span class="text-xs font-medium text-gray-300">PlayCanvas 3DGS Viewer</span>
+            <span class="text-[10px] text-gray-500">Interactive — drag to rotate, scroll to zoom</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <select id="t2wSceneSelect" class="text-[11px] bg-bg-card border border-white/10 rounded px-2 py-1 text-gray-300 focus:outline-none focus:border-accent-teal/50">
+              <option value="https://developer.playcanvas.com/assets/toy-cat.sog">Toy Cat (.sog)</option>
+              <option value="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb">Astronaut (glTF)</option>
+            </select>
+          </div>
+        </div>
+        <div id="t2wSplatCanvas" class="relative w-full" style="height:400px;background:#0a0a0f;">
+          <div id="t2wSplatPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+            <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-xs">Click "Generate" to load a 3DGS scene</span>
+          </div>
+        </div>
+        <div class="px-4 py-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-[10px] text-gray-500">Powered by <a href="https://github.com/playcanvas/engine" target="_blank" class="text-accent-teal hover:underline">PlayCanvas Engine</a> (MIT, 15.2k stars) — WebGL2 + WebGPU</span>
+          <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">Open SuperSplat Editor →</a>
+        </div>
+      </div>
+
+      <!-- Preset Demo Scenes -->
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://developer.playcanvas.com/assets/toy-cat.sog" data-label="Toy Cat">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-5 h-5 rounded bg-accent-teal/10 flex items-center justify-center text-accent-teal text-xs">1</span>
+            <span class="text-xs font-semibold text-white">Toy Cat (.sog)</span>
+          </div>
+          <p class="text-[10px] text-gray-500 ml-7">Compressed Gaussian Splat — streaming format</p>
+        </button>
+        <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb" data-label="Astronaut">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-5 h-5 rounded bg-accent-blue/10 flex items-center justify-center text-accent-blue text-xs">2</span>
+            <span class="text-xs font-semibold text-white">Astronaut (glTF)</span>
+          </div>
+          <p class="text-[10px] text-gray-500 ml-7">Standard 3D model — orbit & zoom</p>
+        </button>
+        <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://superspl.at/editor" data-label="SuperSplat Editor" data-iframe="true">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-5 h-5 rounded bg-accent-purple/10 flex items-center justify-center text-accent-purple text-xs">3</span>
+            <span class="text-xs font-semibold text-white">SuperSplat Editor</span>
+          </div>
+          <p class="text-[10px] text-gray-500 ml-7">Full-featured browser 3DGS editor</p>
+        </button>
+      </div>
+    </div>
+
     <!-- Feature highlight -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div class="gradient-border p-4 text-center">
@@ -814,6 +868,21 @@ document.addEventListener('DOMContentLoaded', () => {
   Validation: geometric faithfulness, visual quality, convergence`;
     document.getElementById('t2wRBrief').textContent = brief;
 
+    // Load PlayCanvas 3DGS scene based on scene type
+    var splatMap = {
+      outdoor: 'https://developer.playcanvas.com/assets/toy-cat.sog',
+      indoor:  'https://developer.playcanvas.com/assets/toy-cat.sog',
+      product: 'https://developer.playcanvas.com/assets/toy-cat.sog',
+      avatar:  'https://developer.playcanvas.com/assets/toy-cat.sog',
+      cad:     'https://developer.playcanvas.com/assets/toy-cat.sog',
+      dynamic: 'https://developer.playcanvas.com/assets/toy-cat.sog',
+      general: 'https://developer.playcanvas.com/assets/toy-cat.sog'
+    };
+    var splatUrl = splatMap[parsed.type] || splatMap.general;
+    if (typeof loadGSplat === 'function') {
+      loadGSplat(splatUrl, method.method);
+    }
+
     // Reset button
     btn.disabled = false;
     icon.setAttribute('class', 'w-4 h-4');
@@ -838,7 +907,225 @@ document.addEventListener('DOMContentLoaded', () => {
       tag.classList.add('ring-1', 'ring-accent-blue');
     });
   });
+
+  // PlayCanvas preset scene buttons
+  document.querySelectorAll('.t2w-preset').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.iframe === 'true') {
+        // SuperSplat Editor: open in new tab
+        window.open(btn.dataset.splat, '_blank');
+        return;
+      }
+      if (typeof initPlayCanvas === 'function') {
+        initPlayCanvas();
+        var url = btn.dataset.splat;
+        if (url.endsWith('.glb')) {
+          loadGLTF(url);
+        } else {
+          loadGSplat(url, btn.dataset.label || '');
+        }
+      }
+      // Highlight selected
+      document.querySelectorAll('.t2w-preset').forEach(b => b.style.borderColor = '');
+      btn.style.borderColor = 'rgba(20, 184, 166, 0.5)';
+    });
+  });
+
+  // Scene select dropdown
+  var sceneSelect = document.getElementById('t2wSceneSelect');
+  if (sceneSelect) {
+    sceneSelect.addEventListener('change', function() {
+      if (typeof initPlayCanvas === 'function') {
+        initPlayCanvas();
+        var url = this.value;
+        if (url.endsWith('.glb')) {
+          loadGLTF(url);
+        } else {
+          loadGSplat(url, this.options[this.selectedIndex].text);
+        }
+      }
+    });
+  }
 });
+</script>
+
+<!-- PlayCanvas Engine CDN for 3DGS rendering -->
+<script src="https://cdn.jsdelivr.net/npm/playcanvas@2.18.1/build/playcanvas.min.js"></script>
+<script>
+(function() {
+  let pcApp = null;
+  let pcCameraEntity = null;
+  let isMouseDown = false;
+  let lastMouse = { x: 0, y: 0 };
+  let orbitAngle = 0;
+  let orbitElevation = 0.3;
+  let orbitDistance = 3;
+  let autoRotate = true;
+
+  function initPlayCanvas() {
+    if (pcApp) return;
+    const container = document.getElementById('t2wSplatCanvas');
+    const placeholder = document.getElementById('t2wSplatPlaceholder');
+    if (!container || !placeholder) return;
+
+    placeholder.style.display = 'none';
+    const canvas = document.createElement('canvas');
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    container.appendChild(canvas);
+
+    try {
+      pcApp = new pc.Application(canvas, { graphicsDeviceOptions: { antialias: false } });
+      pcApp.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+      pcApp.setCanvasResolution(pc.RESOLUTION_AUTO);
+      pcApp.start();
+
+      window.addEventListener('resize', function() {
+        if (pcApp) pcApp.resizeCanvas();
+        resizePlayCanvas();
+      });
+      resizePlayCanvas();
+
+      // Camera with orbit
+      pcCameraEntity = new pc.Entity('Camera');
+      pcCameraEntity.addComponent('camera', { clearColor: new pc.Color(0.04, 0.04, 0.06) });
+      pcCameraEntity.setPosition(0, 0.5, orbitDistance);
+      pcCameraEntity.setEulerAngles(orbitElevation * pc.math.RAD2DEG, orbitAngle * pc.math.RAD2DEG, 0);
+      pcApp.root.addChild(pcCameraEntity);
+
+      // Mouse / touch orbit controls
+      canvas.addEventListener('mousedown', function(e) { isMouseDown = true; lastMouse = { x: e.clientX, y: e.clientY }; autoRotate = false; });
+      canvas.addEventListener('mousemove', function(e) {
+        if (!isMouseDown) return;
+        var dx = e.clientX - lastMouse.x;
+        var dy = e.clientY - lastMouse.y;
+        orbitAngle -= dx * 0.005;
+        orbitElevation = Math.max(-1.2, Math.min(1.2, orbitElevation + dy * 0.005));
+        lastMouse = { x: e.clientX, y: e.clientY };
+      });
+      canvas.addEventListener('mouseup', function() { isMouseDown = false; });
+      canvas.addEventListener('mouseleave', function() { isMouseDown = false; });
+      canvas.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        orbitDistance = Math.max(0.5, Math.min(20, orbitDistance + e.deltaY * 0.005));
+      }, { passive: false });
+
+      // Touch support
+      var lastTouchDist = 0;
+      canvas.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 1) { isMouseDown = true; lastMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY }; autoRotate = false; }
+        if (e.touches.length === 2) { lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); }
+      }, { passive: true });
+      canvas.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 1 && isMouseDown) {
+          var dx = e.touches[0].clientX - lastMouse.x;
+          var dy = e.touches[0].clientY - lastMouse.y;
+          orbitAngle -= dx * 0.005;
+          orbitElevation = Math.max(-1.2, Math.min(1.2, orbitElevation + dy * 0.005));
+          lastMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+        if (e.touches.length === 2) {
+          var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          orbitDistance = Math.max(0.5, Math.min(20, orbitDistance - (dist - lastTouchDist) * 0.01));
+          lastTouchDist = dist;
+        }
+      }, { passive: true });
+      canvas.addEventListener('touchend', function() { isMouseDown = false; });
+
+      // Animate orbit
+      pcApp.on('update', function(dt) {
+        if (autoRotate) orbitAngle += dt * 0.15;
+        if (!pcCameraEntity) return;
+        var x = orbitDistance * Math.sin(orbitAngle) * Math.cos(orbitElevation);
+        var y = orbitDistance * Math.sin(orbitElevation) + 0.5;
+        var z = orbitDistance * Math.cos(orbitAngle) * Math.cos(orbitElevation);
+        pcCameraEntity.setPosition(x, y, z);
+        pcCameraEntity.lookAt(0, 0.5, 0);
+      });
+
+    } catch (err) {
+      console.warn('PlayCanvas init failed:', err);
+      placeholder.style.display = 'flex';
+      placeholder.innerHTML = '<span class="text-xs text-gray-500">WebGL not available — try Chrome/Firefox</span>';
+    }
+  }
+
+  function resizePlayCanvas() {
+    var container = document.getElementById('t2wSplatCanvas');
+    if (container && pcApp) {
+      var rect = container.getBoundingClientRect();
+      pcApp.resizeCanvas(rect.width, rect.height);
+    }
+  }
+
+  function loadGSplat(url, label) {
+    if (!pcApp) initPlayCanvas();
+    if (!pcApp) return;
+    // Remove old splat entities
+    var oldSplats = [];
+    pcApp.root.find(function(e) { if (e.name === 'LoadedSplat') oldSplats.push(e); return false; });
+    oldSplats.forEach(function(e) { e.destroy(); });
+
+    var asset = new pc.Asset('loadedSplat', 'gsplat', { url: url });
+    asset.ready(function() {
+      var entity = new pc.Entity('LoadedSplat');
+      entity.addComponent('gsplat', { asset: asset });
+      pcApp.root.addChild(entity);
+      // Auto-fit camera
+      orbitDistance = 3;
+      orbitAngle = 0;
+      orbitElevation = 0.3;
+      autoRotate = true;
+    });
+    asset.on('error', function(err) {
+      console.warn('Splat load error:', err);
+    });
+    pcApp.assets.add(asset);
+    asset.load();
+  }
+
+  function loadGLTF(url) {
+    if (!pcApp) initPlayCanvas();
+    if (!pcApp) return;
+    var old = [];
+    pcApp.root.find(function(e) { if (e.name === 'LoadedSplat') old.push(e); return false; });
+    old.forEach(function(e) { e.destroy(); });
+
+    // Add lights for glTF models
+    if (!pcApp.root.findByName('DirLight')) {
+      var light = new pc.Entity('DirLight');
+      light.addComponent('light', { type: 'directional', color: new pc.Color(1, 0.95, 0.9) });
+      light.setEulerAngles(45, 30, 0);
+      pcApp.root.addChild(light);
+    }
+    if (!pcApp.root.findByName('AmbLight')) {
+      var amb = new pc.Entity('AmbLight');
+      amb.addComponent('light', { type: 'ambient', color: new pc.Color(0.4, 0.4, 0.5), intensity: 0.6 });
+      pcApp.root.addChild(amb);
+    }
+
+    var asset = new pc.Asset('loadedGLTF', 'container', { url: url });
+    asset.ready(function() {
+      var resource = asset.resource;
+      var entity = resource.instantiateRenderEntity();
+      entity.name = 'LoadedSplat';
+      pcApp.root.addChild(entity);
+      orbitDistance = 5;
+      orbitAngle = Math.PI * 0.25;
+      orbitElevation = 0.3;
+      autoRotate = true;
+    });
+    asset.on('error', function(err) { console.warn('glTF load error:', err); });
+    pcApp.assets.add(asset);
+    asset.load();
+  }
+
+  // Expose globally
+  window.initPlayCanvas = initPlayCanvas;
+  window.loadGSplat = loadGSplat;
+  window.loadGLTF = loadGLTF;
+})();
 </script>
 </body>
 </html>
