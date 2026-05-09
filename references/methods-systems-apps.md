@@ -1,3 +1,13 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9cdec31f-092d-4a11-ab4d-f071855f9ea3'
+  PropagateID: '9cdec31f-092d-4a11-ab4d-f071855f9ea3'
+  ReservedCode1: '8c9345f0-47c8-491b-8fdb-3412f8e39ef1'
+  ReservedCode2: '8c9345f0-47c8-491b-8fdb-3412f8e39ef1'
+---
 
 # Systems, Applications & Cross-Domain Methods
 
@@ -319,6 +329,20 @@
 - **Key Innovation**: Lipschitz-continuous Q-value function for safety scores; Nagumo-inspired recovery mechanism
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.01195) | [arXiv:2605.01195](https://arxiv.org/abs/2605.01195) | [Code]
 
+### FreeMoCap (Markerless Motion Capture)
+- **Not a paper**: Open-source markerless motion capture system (AGPL-3.0, 8.3k GitHub stars)
+- **Core**: Free, webcam-based 3D skeletal motion capture for everyone
+- **Pipeline**: Multi-camera ChArUco calibration → 2D keypoint detection (MediaPipe) → 3D triangulation → skeletal output
+- **Output formats**: `.trc` (OpenSim), `.c3d` (biomechanics), `.fbx` (Maya/Blender/UE5), `.csv` (custom)
+- **Install**: `pip install freemocap`; launch: `freemocap` (PyQt6 GUI)
+- **Relevance to 3DGS**:
+  1. **Avatar driver**: FreeMoCap skeletal data → SMPL/FLAME parametric model → drive GaussianAvatar/EmoTaG/ProgressiveAvatars animatable 3DGS avatars
+  2. **Multi-cam dual-use**: Same camera rig provides both motion capture data AND 3DGS training images (shared ChArUco calibration)
+  3. **Dynamic 3DGS**: Time-synchronized multi-view output feeds into 4DGS / dynamic Gaussian Splatting methods
+  4. **Embodied AI**: FreeMoCap data + 3DGS scene = sim-to-real transfer pipeline for robot learning
+- **License note**: AGPL-3.0 (not MIT); derivative works must be open-sourced under AGPL; check compatibility before commercial deployment
+- **Links**: [GitHub](https://github.com/freemocap/freemocap) | [Website](https://freemocap.org) | [Docs](https://freemocap.github.io/documentation) | [Discord](https://discord.gg/SgdnzbHDTG) | [DOI](https://doi.org/10.5281/zenodo.7233714)
+
 ## Cross-Domain Applications
 
 ### GS-DOT
@@ -548,3 +572,5 @@
 - **Key Innovation**: Patch-based temporal coherence analysis extracts edges from noisy events; edge-weighted losses; fully pose-free event-based 3D reconstruction
 
 - **Links**: [中英摘要](https://arxiv.org/abs/2603.14684) | [arXiv:2603.14684](https://arxiv.org/abs/2603.14684) | [Code]
+
+> AI生成

@@ -107,7 +107,7 @@ tailwind.config = {
       The First AI Agent Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">199+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">212+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">21 Categories</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">9 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
@@ -148,6 +148,7 @@ tailwind.config = {
             <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-prompt="A modern living room with leather sofa, glass coffee table, and natural lighting">Room</button>
             <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 hover:bg-accent-cyan/20 transition" data-prompt="A scenic mountain lake with snow-capped peaks reflecting in calm water">Landscape</button>
             <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20 hover:bg-accent-rose/20 transition" data-prompt="A photorealistic human avatar in casual clothing, standing pose">Avatar</button>
+            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition" data-prompt="A dancer performing a spinning motion captured with FreeMoCap, rendered as an animatable 3DGS avatar">MoCap</button>
             <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition" data-prompt="A red sports car with aerodynamic body, alloy wheels, and reflective paint">Vehicle</button>
           </div>
         </div>
@@ -271,7 +272,7 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">199+ 3DGS methods analyzed — best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">212+ 3DGS methods analyzed — best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -379,7 +380,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 199+ methods across 21 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 212+ methods across 21 categories</p>
     </div>
     <div class="relative mb-6">
       <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -761,7 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
     outdoor: { method: 'Scaffold-GS+', reason: 'Level-of-detail for large-scale outdoor', color: '#10b981', init: 'SfM points' },
     indoor:  { method: 'Mip-Splatting', reason: 'Anti-aliasing for indoor zoom views', color: '#3b82f6', init: 'Random bbox' },
     product: { method: '2DGS', reason: 'Surface-oriented for clean geometry', color: '#8b5cf6', init: 'Turntable sphere' },
-    avatar:  { method: 'GaussianAvatar', reason: 'Animatable Gaussian representation', color: '#f43f5e', init: 'SMPL template' },
+    avatar:  { method: 'GaussianAvatar', reason: 'Animatable Gaussian representation', color: '#f43f5e', init: 'SMPL template + FreeMoCap skeletal data' },
     cad:     { method: 'BrepGaussian', reason: 'B-rep for CAD fidelity & STEP export', color: '#06b6d4', init: 'Parametric mesh' },
     dynamic: { method: '4DGS', reason: 'Spatio-temporal deformation', color: '#f59e0b', init: 'Per-frame points' },
     general: { method: '3DGS', reason: 'Versatile baseline', color: '#3b82f6', init: 'Random sphere' }
@@ -782,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (/castle|tower|wall|fortress|bridge|moat|mountain|lake|forest|city|street|landscape/.test(l)) t = 'outdoor';
     else if (/room|interior|sofa|table|lamp|kitchen|bedroom|office/.test(l)) t = 'indoor';
     else if (/gear|bolt|bracket|shaft|flange|bore|chamfer|mechanical|cad|engin|step|stl/.test(l)) t = 'cad';
-    else if (/avatar|human|person|face|body|charact/.test(l)) t = 'avatar';
+    else if (/avatar|human|person|face|body|charact|mocap|motion.?capt|freemocap|dancer|danc|perform|animat.*human/.test(l)) t = 'avatar';
     else if (/car|vehicle|plane|drone|robot|wheel|sports/.test(l)) t = 'product';
     else if (/animat|dynamic|mov|flow|deform/.test(l)) t = 'dynamic';
     const features = [];
@@ -853,10 +854,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('t2wRExport').textContent = '.ply (3DGS)';
     document.getElementById('t2wRExportNote').textContent = 'Primary Gaussian representation';
     const isCAD = parsed.type === 'cad';
-    document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : '.obj + .stl';
-    document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : 'Mesh & 3D print export';
+    const isAvatar = parsed.type === 'avatar';
+    document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
+    document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
 
     // Scene brief
+    const mocapLine = isAvatar ? `\n  Motion Input: FreeMoCap (webcam markerless capture) → SMPL/FLAME parameters\n  MoCap Pipeline: Multi-cam ChArUco calibration → MediaPipe 2D keypoints → 3D triangulation → .fbx\n  Data Dual-Use: Same camera rig produces both motion data + 3DGS training images` : '';
     const brief = `Scene Brief:
   Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}
   Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}
@@ -864,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Initialization: ${method.init}
   Training: 300–500 iterations recommended
   Export primary: .ply (3DGS)
-  Export secondary: ${isCAD ? '.step (CAD), .stl (3D print)' : '.obj (mesh), .stl (3D print)'}
+  Export secondary: ${isCAD ? '.step (CAD), .stl (3D print)' : isAvatar ? '.fbx (animation), .ply (3DGS avatar)' : '.obj (mesh), .stl (3D print)'}${mocapLine}
   Validation: geometric faithfulness, visual quality, convergence`;
     document.getElementById('t2wRBrief').textContent = brief;
 

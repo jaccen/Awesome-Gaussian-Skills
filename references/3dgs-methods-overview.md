@@ -1,4 +1,15 @@
-﻿# 3DGS Methods Overview
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '93d9bf8f-0f67-47ff-ad0c-ff30e0755b79'
+  PropagateID: '93d9bf8f-0f67-47ff-ad0c-ff30e0755b79'
+  ReservedCode1: '0e074b30-c2c4-4b0a-b396-bda7136a4a4e'
+  ReservedCode2: '0e074b30-c2c4-4b0a-b396-bda7136a4a4e'
+---
+
+# 3DGS Methods Overview
 
 > This file is the master index for all 212+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
@@ -241,6 +252,7 @@
 - **GS-Surrogate** [arXiv:2604.06358](https://arxiv.org/abs/2604.06358) — Deformable GS surrogate for ensemble simulation exploration
 - **3DGS Demo Synthesis (IL)** [arXiv:2605.01232](https://arxiv.org/abs/2605.01232) — 3DGS-based demonstration generation for imitation learning
 - **TAIL-Safe** [arXiv:2605.01195](https://arxiv.org/abs/2605.01195) — Safety monitoring for IL policies using 3DGS digital twin
+- **FreeMoCap** — Open-source markerless motion capture from webcams (AGPL-3.0, 8.3k stars); drives 3DGS avatars; dual-use multi-cam for mocap + 3DGS training
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#simulation--robotics)
 
@@ -380,3 +392,5 @@
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
+
+> AI生成

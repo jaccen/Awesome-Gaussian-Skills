@@ -320,6 +320,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 - Visual SLAM — ORB-SLAM3, BLEPS (LSD-SLAM variant), RTAB-Map
 - LiDAR SLAM — LOAM variants, LIO-SAM, FAST-LIO2
 - Camera calibration: OpenCV checkerboard/ChArUCo, COLMAP auto-calibration
+- **FreeMoCap** (AGPL-3.0) — free open-source markerless motion capture from ordinary webcams; outputs .trc/.c3d/.fbx/.csv skeletal data; multi-camera ChArUco calibration; install: `pip install freemocap`; ideal for driving animatable 3DGS avatars (GaussianAvatar, EmoTaG, 4DGS)
 
 **Key considerations / 关键注意事项**:
 - Camera calibration: intrinsic (focal length, distortion) + extrinsic (rig poses) must be consistent across all images
@@ -398,6 +399,16 @@ Robot policy learning (sim-to-real) → Real-world deployment
   - `--voxel-params / --voxel-carve / --seed-pos`: fine-grained voxelization control
   - Install: `npm install -g @playcanvas/splat-transform`
   - Source: https://github.com/playcanvas/splat-transform
+
+**Motion capture input / 动作捕捉输入** (for animatable 3DGS avatars):
+- **FreeMoCap** (AGPL-3.0, 8.3k stars) — markerless motion capture from ordinary webcams:
+  - Pipeline: multi-camera ChArUco calibration → 2D keypoint detection (MediaPipe) → 3D triangulation → skeletal output
+  - Output formats: `.trc` (OpenSim), `.c3d` (biomechanics), `.fbx` (Maya/Blender/UE5), `.csv` (custom)
+  - Install: `pip install freemocap` → `freemocap` to launch GUI
+  - Use with 3DGS: FreeMoCap skeletal data → SMPL/FLAME parametric model → drive GaussianAvatar/EmoTaG/4DGS avatars
+  - Same multi-cam rig can serve dual purpose: motion capture + 3DGS training images (shared calibration)
+  - Source: https://github.com/freemocap/freemocap
+- **Note**: AGPL-3.0 requires derivative works to also be open-sourced under AGPL; not MIT-compatible; check license compatibility before commercial deployment
 
 ### 2.4 Deployment Layer / 部署层
 
@@ -602,6 +613,10 @@ What is your primary use case? / 您的主要应用场景是什么？
 │
 ├── Robotics / Embodied AI / 机器人/具身智能
 │   └── GS-Playground (simulation) + ROS2 (integration)
+│
+├── Avatar / Motion Capture / 虚拟人/动捕
+│   └── FreeMoCap (webcam capture) + GaussianAvatar/EmoTaG (3DGS avatar) + SMPL/FLAME (parametric body)
+│   └── Same multi-cam rig → motion data + 3DGS training images (shared calibration)
 │
 ├── BIM / Architecture / BIM/建筑
 │   └── 其域创新 LCC + IFC alignment + as-built verification
@@ -962,6 +977,8 @@ python compress_tile.py --input ./city_block/point_cloud \
 | SuperSplat | 超级泼溅编辑器 | PlayCanvas browser-based 3DGS editor (MIT, open-source) |
 | splat-transform | 泼溅转换工具 | PlayCanvas CLI: PLY→SOG conversion, collision mesh generation, streaming LOD |
 | PlayCanvas Engine | PlayCanvas引擎 | Open-source WebGL2+WebGPU game engine with first-class 3DGS support (MIT) |
+| FreeMoCap | 免费动作捕捉 | Open-source markerless motion capture from webcams (AGPL-3.0); outputs .trc/.c3d/.fbx; drives 3DGS avatars |
+| Markerless MoCap | 无标记动捕 | Motion capture without physical markers, using computer vision (e.g., FreeMoCap) |
 
 ---
 
