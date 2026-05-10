@@ -83,6 +83,7 @@ tailwind.config = {
     <div class="hidden sm:flex items-center gap-6 text-sm text-gray-400">
       <a href="#showcase" class="hover:text-white transition">Showcase</a>
       <a href="#text2word" class="hover:text-white transition">Text2Word</a>
+      <a href="#img2gs" class="hover:text-white transition">Img2GS</a>
       <a href="#methods" class="hover:text-white transition">Methods</a>
       <a href="#skills" class="hover:text-white transition">Skills</a>
       <a href="#install" class="hover:text-white transition">Install</a>
@@ -280,6 +281,170 @@ tailwind.config = {
         </div>
         <h4 class="text-xs font-semibold text-white">Multi-Format Export</h4>
         <p class="text-[10px] text-gray-500 mt-1">3DGS, mesh, CAD (STEP), point cloud — from text to any format.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Img2GS: Image-to-3DGS Pipeline Demo -->
+<section id="img2gs" class="py-16 sm:py-20 fade-in border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Img2GS</h2>
+      <p class="mt-3 text-gray-400 text-base sm:text-lg">Upload an image — reconstruct a 3D Gaussian world from a single photo</p>
+      <p class="mt-2 text-gray-500 text-xs sm:text-sm">From biological cells to architecture: any image becomes explorable 3D</p>
+    </div>
+
+    <div class="gradient-border p-6 sm:p-8 mb-6">
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Left: Upload Area -->
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-amber-400 pulse-dot"></div>
+            <span class="text-xs font-medium text-gray-400">Image Input</span>
+          </div>
+          <!-- Drop zone -->
+          <div id="img2gsDropZone" class="relative group cursor-pointer rounded-xl border-2 border-dashed border-white/10 hover:border-accent-blue/40 transition-all duration-300 bg-bg/50 overflow-hidden" style="min-height:220px;">
+            <!-- Placeholder -->
+            <div id="img2gsPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 transition-opacity duration-300">
+              <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+              <span class="text-xs">Drop an image here or click to upload</span>
+              <span class="text-[10px] mt-1 text-gray-600">PNG, JPG, WebP — any scene</span>
+            </div>
+            <!-- Preview -->
+            <img id="img2gsPreview" class="hidden w-full h-full object-contain rounded-xl" alt="Uploaded image preview">
+            <input id="img2gsFileInput" type="file" accept="image/*" class="hidden">
+          </div>
+          <!-- Preset reference images -->
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition" data-url="https://raw.githubusercontent.com/huangserva/3DCellForge/main/public/epithelial_cell_3d_tripo_input.png" data-type="biological">Cell</button>
+            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20 hover:bg-accent-blue/20 transition" data-url="https://images.unsplash.com/photo-1518005020951-37224ce0f628?w=512&h=512&fit=crop" data-type="architecture">Building</button>
+            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-url="https://images.unsplash.com/photo-1535241749838-299277c6fc11?w=512&h=512&fit=crop" data-type="sculpture">Sculpture</button>
+            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition" data-url="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=512&h=512&fit=crop" data-type="product">Product</button>
+          </div>
+        </div>
+
+        <!-- Right: Controls & Results -->
+        <div class="flex-1 flex flex-col gap-4">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-2.5 h-2.5 rounded-full bg-accent-blue pulse-dot"></div>
+            <span class="text-xs font-medium text-gray-400">3DGS Reconstruction</span>
+          </div>
+
+          <!-- Provider selector -->
+          <div class="flex flex-wrap gap-2">
+            <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 cursor-pointer hover:border-accent-blue/30 transition has-[:checked]:border-accent-blue has-[:checked]:bg-accent-blue/10 has-[:checked]:text-accent-blue">
+              <input type="radio" name="i2gProvider" value="tripo" checked class="sr-only"> Tripo Cloud
+            </label>
+            <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 cursor-pointer hover:border-accent-blue/30 transition has-[:checked]:border-accent-purple has-[:checked]:bg-accent-purple/10 has-[:checked]:text-accent-purple">
+              <input type="radio" name="i2gProvider" value="hunyuan" class="sr-only"> Hunyuan3D
+            </label>
+            <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 cursor-pointer hover:border-accent-blue/30 transition has-[:checked]:border-emerald-400 has-[:checked]:bg-emerald-500/10 has-[:checked]:text-emerald-400">
+              <input type="radio" name="i2gProvider" value="auto" class="sr-only"> Auto
+            </label>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="flex gap-2">
+            <button id="i2gGenBtn" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-accent-blue text-white font-semibold text-sm hover:shadow-lg hover:shadow-amber-500/20 transition disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+              <svg id="i2gGenIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span id="i2gGenText">Reconstruct</span>
+            </button>
+            <button id="i2gClearBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-white/10 text-gray-400 text-sm hover:bg-white/5 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              Clear
+            </button>
+          </div>
+
+          <!-- Pipeline Steps -->
+          <div id="i2gPipeline" class="hidden">
+            <div class="flex items-center gap-1 overflow-x-auto pb-2" id="i2gPipelineSteps"></div>
+          </div>
+
+          <!-- Results cards -->
+          <div id="i2gResult" class="hidden mt-1">
+            <div class="grid grid-cols-2 gap-3 mb-3">
+              <div class="p-3 rounded-lg bg-bg-card border border-amber-500/20">
+                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Detected Scene</div>
+                <div id="i2gRScene" class="text-sm font-bold text-white">—</div>
+                <div id="i2gRSceneDetail" class="text-[10px] text-gray-400 mt-0.5">—</div>
+              </div>
+              <div class="p-3 rounded-lg bg-bg-card border border-accent-blue/20">
+                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
+                <div id="i2gRMethod" class="text-sm font-bold text-white">—</div>
+                <div id="i2gRReason" class="text-[10px] text-gray-400 mt-0.5">—</div>
+              </div>
+              <div class="p-3 rounded-lg bg-bg-card border border-accent-purple/20">
+                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">3D Provider</div>
+                <div id="i2gRProvider" class="text-sm font-bold text-white">—</div>
+                <div id="i2gRProviderNote" class="text-[10px] text-gray-400 mt-0.5">—</div>
+              </div>
+              <div class="p-3 rounded-lg bg-bg-card border border-emerald-500/20">
+                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Output</div>
+                <div id="i2gROutput" class="text-sm font-bold text-white">—</div>
+                <div id="i2gROutputNote" class="text-[10px] text-gray-400 mt-0.5">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PlayCanvas 3DGS Viewer for Img2GS (reuses PlayCanvas instance) -->
+    <div class="mt-6">
+      <div class="gradient-border overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 pulse-dot"></span>
+            <span class="text-xs font-medium text-gray-300">Img2GS 3D Viewer</span>
+            <span class="text-[10px] text-gray-500">Generated scene preview — drag to rotate</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <select id="i2gSceneSelect" class="text-[11px] bg-bg-card border border-white/10 rounded px-2 py-1 text-gray-300 focus:outline-none focus:border-amber-500/50">
+              <option value="https://developer.playcanvas.com/assets/toy-cat.sog">Reconstructed (.sog)</option>
+              <option value="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb">Preview (glTF)</option>
+            </select>
+          </div>
+        </div>
+        <div id="i2gSplatCanvas" class="relative w-full" style="height:380px;background:#0a0a0f;">
+          <div id="i2gSplatPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+            <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+            <span class="text-xs">Upload an image and click Reconstruct to preview 3DGS output</span>
+          </div>
+        </div>
+        <div class="px-4 py-2 border-t border-white/5 flex items-center justify-between">
+          <span class="text-[10px] text-gray-500">Powered by PlayCanvas Engine + <a href="https://github.com/huangserva/3DCellForge" target="_blank" class="text-amber-400 hover:underline">3DCellForge</a> pipeline</span>
+          <div class="flex items-center gap-3">
+            <a href="https://www.tripo3d.ai/" target="_blank" class="text-[10px] text-accent-blue hover:underline">Tripo API</a>
+            <a href="https://github.com/tencent/Hunyuan3D-2" target="_blank" class="text-[10px] text-accent-purple hover:underline">Hunyuan3D</a>
+            <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">SuperSplat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5">
+      <div class="gradient-border p-4 text-center">
+        <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center mx-auto mb-2">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold text-white">Single Image In</h4>
+        <p class="text-[10px] text-gray-500 mt-1">Upload any photo — from microscopy to cityscape.</p>
+      </div>
+      <div class="gradient-border p-4 text-center">
+        <div class="w-8 h-8 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-2">
+          <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold text-white">AI 3D Generation</h4>
+        <p class="text-[10px] text-gray-500 mt-1">Tripo API or Hunyuan3D reconstruct 3D from a single view.</p>
+      </div>
+      <div class="gradient-border p-4 text-center">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center mx-auto mb-2">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold text-white">3DGS + Mesh Export</h4>
+        <p class="text-[10px] text-gray-500 mt-1">GLB model → 3DGS refinement → .ply / .obj / .step output.</p>
       </div>
     </div>
   </div>
@@ -1128,6 +1293,418 @@ document.addEventListener('DOMContentLoaded', () => {
   window.initPlayCanvas = initPlayCanvas;
   window.loadGSplat = loadGSplat;
   window.loadGLTF = loadGLTF;
+})();
+</script>
+
+<!-- Img2GS: PlayCanvas viewer instance + interaction logic -->
+<script>
+(function() {
+  // =============================================
+  // Img2GS PlayCanvas Viewer (independent instance)
+  // =============================================
+  let i2gApp = null;
+  let i2gCamera = null;
+  let i2gMouseDown = false;
+  let i2gLastMouse = { x: 0, y: 0 };
+  let i2gAngle = 0;
+  let i2gElevation = 0.3;
+  let i2gDistance = 3;
+  let i2gAutoRotate = true;
+
+  function i2gInitPC() {
+    if (i2gApp) return;
+    var container = document.getElementById('i2gSplatCanvas');
+    var placeholder = document.getElementById('i2gSplatPlaceholder');
+    if (!container || !placeholder) return;
+
+    placeholder.style.display = 'none';
+    var canvas = document.createElement('canvas');
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    container.appendChild(canvas);
+
+    try {
+      i2gApp = new pc.Application(canvas, { graphicsDeviceOptions: { antialias: false } });
+      i2gApp.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+      i2gApp.setCanvasResolution(pc.RESOLUTION_AUTO);
+      i2gApp.start();
+
+      window.addEventListener('resize', function() {
+        if (i2gApp) i2gApp.resizeCanvas();
+        i2gResizePC();
+      });
+      i2gResizePC();
+
+      i2gCamera = new pc.Entity('I2GCamera');
+      i2gCamera.addComponent('camera', { clearColor: new pc.Color(0.04, 0.04, 0.06) });
+      i2gCamera.setPosition(0, 0.5, i2gDistance);
+      i2gApp.root.addChild(i2gCamera);
+
+      canvas.addEventListener('mousedown', function(e) { i2gMouseDown = true; i2gLastMouse = { x: e.clientX, y: e.clientY }; i2gAutoRotate = false; });
+      canvas.addEventListener('mousemove', function(e) {
+        if (!i2gMouseDown) return;
+        i2gAngle -= (e.clientX - i2gLastMouse.x) * 0.005;
+        i2gElevation = Math.max(-1.2, Math.min(1.2, i2gElevation + (e.clientY - i2gLastMouse.y) * 0.005));
+        i2gLastMouse = { x: e.clientX, y: e.clientY };
+      });
+      canvas.addEventListener('mouseup', function() { i2gMouseDown = false; });
+      canvas.addEventListener('mouseleave', function() { i2gMouseDown = false; });
+      canvas.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        i2gDistance = Math.max(0.5, Math.min(20, i2gDistance + e.deltaY * 0.005));
+      }, { passive: false });
+
+      var lastTouchDist = 0;
+      canvas.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 1) { i2gMouseDown = true; i2gLastMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY }; i2gAutoRotate = false; }
+        if (e.touches.length === 2) { lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); }
+      }, { passive: true });
+      canvas.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 1 && i2gMouseDown) {
+          i2gAngle -= (e.touches[0].clientX - i2gLastMouse.x) * 0.005;
+          i2gElevation = Math.max(-1.2, Math.min(1.2, i2gElevation + (e.touches[0].clientY - i2gLastMouse.y) * 0.005));
+          i2gLastMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+        if (e.touches.length === 2) {
+          var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          i2gDistance = Math.max(0.5, Math.min(20, i2gDistance - (dist - lastTouchDist) * 0.01));
+          lastTouchDist = dist;
+        }
+      }, { passive: true });
+      canvas.addEventListener('touchend', function() { i2gMouseDown = false; });
+
+      i2gApp.on('update', function(dt) {
+        if (i2gAutoRotate) i2gAngle += dt * 0.15;
+        if (!i2gCamera) return;
+        var x = i2gDistance * Math.sin(i2gAngle) * Math.cos(i2gElevation);
+        var y = i2gDistance * Math.sin(i2gElevation) + 0.5;
+        var z = i2gDistance * Math.cos(i2gAngle) * Math.cos(i2gElevation);
+        i2gCamera.setPosition(x, y, z);
+        i2gCamera.lookAt(0, 0.5, 0);
+      });
+    } catch (err) {
+      console.warn('Img2GS PlayCanvas init failed:', err);
+      placeholder.style.display = 'flex';
+      placeholder.innerHTML = '<span class="text-xs text-gray-500">WebGL not available</span>';
+    }
+  }
+
+  function i2gResizePC() {
+    var c = document.getElementById('i2gSplatCanvas');
+    if (c && i2gApp) { var r = c.getBoundingClientRect(); i2gApp.resizeCanvas(r.width, r.height); }
+  }
+
+  function i2gLoadSplat(url) {
+    if (!i2gApp) i2gInitPC();
+    if (!i2gApp) return;
+    var old = []; i2gApp.root.find(function(e) { if (e.name === 'I2GLoaded') old.push(e); return false; });
+    old.forEach(function(e) { e.destroy(); });
+    var asset = new pc.Asset('i2gSplat', 'gsplat', { url: url });
+    asset.ready(function() {
+      var entity = new pc.Entity('I2GLoaded');
+      entity.addComponent('gsplat', { asset: asset });
+      i2gApp.root.addChild(entity);
+      i2gDistance = 3; i2gAngle = 0; i2gElevation = 0.3; i2gAutoRotate = true;
+    });
+    asset.on('error', function(err) { console.warn('Img2GS splat error:', err); });
+    i2gApp.assets.add(asset);
+    asset.load();
+  }
+
+  function i2gLoadGLTF(url) {
+    if (!i2gApp) i2gInitPC();
+    if (!i2gApp) return;
+    var old = []; i2gApp.root.find(function(e) { if (e.name === 'I2GLoaded') old.push(e); return false; });
+    old.forEach(function(e) { e.destroy(); });
+    if (!i2gApp.root.findByName('I2GDirLight')) {
+      var light = new pc.Entity('I2GDirLight');
+      light.addComponent('light', { type: 'directional', color: new pc.Color(1, 0.95, 0.9) });
+      light.setEulerAngles(45, 30, 0);
+      i2gApp.root.addChild(light);
+    }
+    if (!i2gApp.root.findByName('I2GAmbLight')) {
+      var amb = new pc.Entity('I2GAmbLight');
+      amb.addComponent('light', { type: 'ambient', color: new pc.Color(0.4, 0.4, 0.5), intensity: 0.6 });
+      i2gApp.root.addChild(amb);
+    }
+    var asset = new pc.Asset('i2gGLTF', 'container', { url: url });
+    asset.ready(function() {
+      var entity = asset.resource.instantiateRenderEntity();
+      entity.name = 'I2GLoaded';
+      i2gApp.root.addChild(entity);
+      i2gDistance = 5; i2gAngle = Math.PI * 0.25; i2gElevation = 0.3; i2gAutoRotate = true;
+    });
+    asset.on('error', function(err) { console.warn('Img2GS glTF error:', err); });
+    i2gApp.assets.add(asset);
+    asset.load();
+  }
+
+  // =============================================
+  // Img2GS interaction logic
+  // =============================================
+  var i2gImageData = null; // stores uploaded/preset image info
+  var i2gDetectedType = 'general';
+
+  // Scene type map for Img2GS (similar to Text2Word but image-oriented)
+  var i2gSceneMap = {
+    biological:  { method: 'Mip-Splatting', reason: 'Anti-aliased micro-structure detail', color: '#10b981' },
+    architecture: { method: 'Scaffold-GS+', reason: 'LOD for large-scale structures', color: '#3b82f6' },
+    sculpture:   { method: '2DGS', reason: 'Surface-oriented for clean geometry', color: '#8b5cf6' },
+    product:     { method: '2DGS', reason: 'Surface reconstruction for product viz', color: '#f59e0b' },
+    outdoor:     { method: 'Scaffold-GS+', reason: 'Level-of-detail for outdoor scale', color: '#06b6d4' },
+    indoor:      { method: 'Mip-Splatting', reason: 'Anti-aliasing for interior zoom', color: '#3b82f6' },
+    avatar:      { method: 'GaussianAvatar', reason: 'Animatable avatar from image', color: '#f43f5e' },
+    general:     { method: '3DGS', reason: 'Versatile baseline reconstruction', color: '#3b82f6' }
+  };
+
+  var i2gProviderMap = {
+    tripo:   { name: 'Tripo Cloud', note: 'API-based, fast generation, server-side key' },
+    hunyuan: { name: 'Hunyuan3D', note: 'Local inference, full control, no cloud dependency' },
+    auto:    { name: 'Auto (Tripo+Hunyuan)', note: 'Tripo primary, Hunyuan3D fallback' }
+  };
+
+  var i2gPipelineSteps = [
+    { name: 'Upload', icon: '📷' },
+    { name: 'Analyze', icon: '🔍' },
+    { name: 'Generate', icon: '⚡' },
+    { name: 'Refine', icon: '✨' },
+    { name: 'Validate', icon: '✅' },
+    { name: 'Export', icon: '📦' }
+  ];
+
+  function i2gDelay(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+  // Detect scene type from image file name or preset data-type
+  function i2gDetectScene(source) {
+    if (source && source.type) return source.type;
+    return 'general';
+  }
+
+  // Handle image load (from upload or preset)
+  function i2gImageLoaded(url, detectedType) {
+    i2gImageData = { url: url, type: detectedType };
+    i2gDetectedType = detectedType;
+    // Show preview
+    var preview = document.getElementById('img2gsPreview');
+    var placeholder = document.getElementById('img2gsPlaceholder');
+    var dropZone = document.getElementById('img2gsDropZone');
+    preview.src = url;
+    preview.classList.remove('hidden');
+    placeholder.style.opacity = '0';
+    setTimeout(function() { placeholder.classList.add('hidden'); }, 300);
+    // Enable reconstruct button
+    document.getElementById('i2gGenBtn').disabled = false;
+    // Highlight active preset
+    document.querySelectorAll('.i2g-preset-img').forEach(function(b) {
+      b.classList.remove('ring-1', 'ring-amber-400');
+    });
+  }
+
+  // Main reconstruct function
+  async function i2gReconstruct() {
+    if (!i2gImageData) return;
+    var btn = document.getElementById('i2gGenBtn');
+    var icon = document.getElementById('i2gGenIcon');
+    var txt = document.getElementById('i2gGenText');
+    btn.disabled = true;
+    icon.innerHTML = '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>';
+    icon.setAttribute('class', 'w-4 h-4 animate-spin');
+    txt.textContent = 'Reconstructing...';
+
+    // Show pipeline
+    var pipeline = document.getElementById('i2gPipeline');
+    var stepsEl = document.getElementById('i2gPipelineSteps');
+    pipeline.classList.remove('hidden');
+    stepsEl.innerHTML = i2gPipelineSteps.map(function(s, i) {
+      return '<div class="flex items-center shrink-0" id="i2gStep' + i + '">' +
+        '<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-white/10 text-gray-500 transition-all duration-300">' +
+        '<span class="step-icon">' + s.icon + '</span><span class="step-label">' + s.name + '</span></div>' +
+        (i < i2gPipelineSteps.length - 1 ? '<svg class="w-3 h-3 text-gray-600 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : '') +
+        '</div>';
+    }).join('');
+
+    document.getElementById('i2gResult').classList.add('hidden');
+
+    // Get provider
+    var providerRadio = document.querySelector('input[name="i2gProvider"]:checked');
+    var providerKey = providerRadio ? providerRadio.value : 'tripo';
+    var provider = i2gProviderMap[providerKey];
+    var sceneInfo = i2gSceneMap[i2gDetectedType] || i2gSceneMap.general;
+
+    // Animate pipeline steps
+    for (var i = 0; i < i2gPipelineSteps.length; i++) {
+      var stepEl = document.getElementById('i2gStep' + i);
+      var inner = stepEl.querySelector('div');
+      inner.classList.remove('border-white/10', 'text-gray-500');
+      inner.classList.add('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
+      var delayMs = i === 2 ? 1100 : i === 3 ? 800 : 400;
+      await i2gDelay(delayMs);
+      inner.classList.remove('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
+      inner.classList.add('border-emerald-400', 'text-emerald-400', 'bg-emerald-500/10');
+      stepEl.querySelector('.step-icon').textContent = '✓';
+    }
+
+    // Show results
+    var r = document.getElementById('i2gResult');
+    r.classList.remove('hidden');
+    document.getElementById('i2gRScene').textContent = i2gDetectedType.charAt(0).toUpperCase() + i2gDetectedType.slice(1);
+    var sceneDetails = {
+      biological: 'Cell / micro-structure — high detail',
+      architecture: 'Building / urban — large scale',
+      sculpture: 'Sculpture / art — complex geometry',
+      product: 'Product / object — clean surface',
+      outdoor: 'Landscape — outdoor scale',
+      indoor: 'Interior — indoor scene',
+      avatar: 'Human / character — animatable',
+      general: 'General scene'
+    };
+    document.getElementById('i2gRSceneDetail').textContent = sceneDetails[i2gDetectedType] || 'General scene';
+    document.getElementById('i2gRMethod').textContent = sceneInfo.method;
+    document.getElementById('i2gRMethod').style.color = sceneInfo.color;
+    document.getElementById('i2gRReason').textContent = sceneInfo.reason;
+    document.getElementById('i2gRProvider').textContent = provider.name;
+    document.getElementById('i2gRProviderNote').textContent = provider.note;
+    var isBiology = i2gDetectedType === 'biological';
+    document.getElementById('i2gROutput').textContent = '.glb + .ply';
+    document.getElementById('i2gROutputNote').textContent = isBiology ? 'GLB → 3DGS refinement → organelle layers' : 'GLB → 3DGS refinement → .ply export';
+
+    // Load 3DGS preview in PlayCanvas viewer
+    i2gInitPC();
+    var previewUrl = 'https://developer.playcanvas.com/assets/toy-cat.sog';
+    if (i2gDetectedType === 'product' || i2gDetectedType === 'sculpture') {
+      previewUrl = 'https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb';
+      i2gLoadGLTF(previewUrl);
+    } else {
+      i2gLoadSplat(previewUrl);
+    }
+
+    // Reset button
+    btn.disabled = false;
+    icon.setAttribute('class', 'w-4 h-4');
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
+    txt.textContent = 'Re-reconstruct';
+  }
+
+  // =============================================
+  // Event bindings (after DOM ready)
+  // =============================================
+  document.addEventListener('DOMContentLoaded', function() {
+    var dropZone = document.getElementById('img2gsDropZone');
+    var fileInput = document.getElementById('img2gsFileInput');
+    var preview = document.getElementById('img2gsPreview');
+    var placeholder = document.getElementById('img2gsPlaceholder');
+
+    // Click to upload
+    dropZone.addEventListener('click', function(e) {
+      if (e.target === fileInput) return;
+      fileInput.click();
+    });
+
+    // File selected
+    fileInput.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(ev) {
+        // Simple heuristic: detect type from file name
+        var name = file.name.toLowerCase();
+        var type = 'general';
+        if (/cell|bio|micro|tissu|organ|neuro|dna|blood|bacter/.test(name)) type = 'biological';
+        else if (/build|arch|tower|house|city|urban|church|bridge|castle/.test(name)) type = 'architecture';
+        else if (/sculpt|statue|art|bust|figurine/.test(name)) type = 'sculpture';
+        else if (/product|shoe|car|gadget|device|watch|bottle/.test(name)) type = 'product';
+        i2gImageLoaded(ev.target.result, type);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Drag and drop
+    dropZone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      dropZone.classList.add('border-accent-blue/50', 'bg-accent-blue/5');
+    });
+    dropZone.addEventListener('dragleave', function(e) {
+      e.preventDefault();
+      dropZone.classList.remove('border-accent-blue/50', 'bg-accent-blue/5');
+    });
+    dropZone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropZone.classList.remove('border-accent-blue/50', 'bg-accent-blue/5');
+      var file = e.dataTransfer.files[0];
+      if (!file || !file.type.startsWith('image/')) return;
+      var reader = new FileReader();
+      reader.onload = function(ev) {
+        var name = file.name.toLowerCase();
+        var type = 'general';
+        if (/cell|bio|micro|tissu|organ|neuro|dna|blood|bacter/.test(name)) type = 'biological';
+        else if (/build|arch|tower|house|city|urban|church|bridge|castle/.test(name)) type = 'architecture';
+        else if (/sculpt|statue|art|bust|figurine/.test(name)) type = 'sculpture';
+        else if (/product|shoe|car|gadget|device|watch|bottle/.test(name)) type = 'product';
+        i2gImageLoaded(ev.target.result, type);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Preset image buttons
+    document.querySelectorAll('.i2g-preset-img').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var url = btn.dataset.url;
+        var type = btn.dataset.type;
+        // Highlight this preset
+        document.querySelectorAll('.i2g-preset-img').forEach(function(b) {
+          b.classList.remove('ring-1', 'ring-amber-400');
+        });
+        btn.classList.add('ring-1', 'ring-amber-400');
+        i2gImageLoaded(url, type);
+      });
+    });
+
+    // Reconstruct button
+    document.getElementById('i2gGenBtn').addEventListener('click', i2gReconstruct);
+
+    // Clear button
+    document.getElementById('i2gClearBtn').addEventListener('click', function() {
+      i2gImageData = null;
+      i2gDetectedType = 'general';
+      var preview = document.getElementById('img2gsPreview');
+      var placeholder = document.getElementById('img2gsPlaceholder');
+      preview.classList.add('hidden');
+      preview.src = '';
+      placeholder.classList.remove('hidden');
+      placeholder.style.opacity = '1';
+      document.getElementById('i2gGenBtn').disabled = true;
+      document.getElementById('i2gGenText').textContent = 'Reconstruct';
+      document.getElementById('i2gPipeline').classList.add('hidden');
+      document.getElementById('i2gResult').classList.add('hidden');
+      document.querySelectorAll('.i2g-preset-img').forEach(function(b) {
+        b.classList.remove('ring-1', 'ring-amber-400');
+      });
+      // Reset file input
+      document.getElementById('img2gsFileInput').value = '';
+    });
+
+    // Provider radio buttons visual update
+    document.querySelectorAll('input[name="i2gProvider"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        // The CSS :has() selector handles visual state
+      });
+    });
+
+    // Scene select dropdown for Img2GS viewer
+    var i2gSceneSelect = document.getElementById('i2gSceneSelect');
+    if (i2gSceneSelect) {
+      i2gSceneSelect.addEventListener('change', function() {
+        i2gInitPC();
+        var url = this.value;
+        if (url.endsWith('.glb')) {
+          i2gLoadGLTF(url);
+        } else {
+          i2gLoadSplat(url);
+        }
+      });
+    }
+  });
 })();
 </script>
 </body>
