@@ -1,15 +1,4 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '93d9bf8f-0f67-47ff-ad0c-ff30e0755b79'
-  PropagateID: '93d9bf8f-0f67-47ff-ad0c-ff30e0755b79'
-  ReservedCode1: '0e074b30-c2c4-4b0a-b396-bda7136a4a4e'
-  ReservedCode2: '0e074b30-c2c4-4b0a-b396-bda7136a4a4e'
----
-
-# 3DGS Methods Overview
+﻿# 3DGS Methods Overview
 
 > This file is the master index for all 212+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
@@ -392,5 +381,3 @@ AIGC:
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
-
-> AI生成

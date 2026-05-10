@@ -50,6 +50,16 @@ tailwind.config = {
   .export-option:hover { border-color: #3b82f6; background: #1e293b; }
   .method-recommend { transition: all 0.2s; }
   .method-recommend:hover { border-color: #8b5cf6; }
+  .method-card { transition: all 0.15s; cursor: pointer; }
+  .method-card:hover { border-color: #3b82f6; background: #1e293b; }
+  .method-card.selected { border-color: #3b82f6; background: #1e293b; }
+  .method-card.selected .method-radio { border-color: #3b82f6; background: #3b82f6; }
+  .method-card.selected .method-radio::after { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: #fff; margin: 4px auto; }
+  .method-radio { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #475569; transition: all 0.15s; flex-shrink: 0; }
+  .category-toggle { transition: all 0.15s; }
+  .category-toggle:hover { color: #fff; }
+  .category-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+  .category-content.open { max-height: 1200px; }
   @keyframes typing { from { width: 0; } to { width: 100%; } }
   @keyframes blink { 50% { border-color: transparent; } }
   @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
@@ -122,9 +132,75 @@ tailwind.config = {
             <button class="tag-chip px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20" data-tag="vehicle">Vehicle</button>
           </div>
 
+          <!-- Text-to-3D Method Selector -->
+          <div class="mt-4 border border-white/5 rounded-lg">
+            <button id="methodToggleBtn" class="w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-gray-400 hover:text-white transition">
+              <span class="flex items-center gap-2">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+                Generation Method
+                <span id="selectedMethodBadge" class="text-[10px] px-1.5 py-0.5 rounded bg-accent-blue/10 text-accent-blue font-mono hidden"></span>
+              </span>
+              <svg id="methodChevron" class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+            </button>
+            <div id="methodSelectorContent" class="category-content">
+              <div class="px-4 pb-4 space-y-4">
+
+                <!-- Auto Mode -->
+                <div>
+                  <div class="method-card flex items-center gap-3 p-3 rounded-lg border border-accent-blue/30 bg-accent-blue/5 selected" data-method="auto">
+                    <div class="method-radio" style="border-color:#3b82f6;background:#3b82f6;"><div style="display:block;width:6px;height:6px;border-radius:50%;background:#fff;margin:4px auto;"></div></div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-white">Auto Recommend</span>
+                        <span class="text-[9px] px-1.5 py-0.5 rounded bg-accent-blue/15 text-accent-blue font-medium">DEFAULT</span>
+                      </div>
+                      <p class="text-[10px] text-gray-400 mt-0.5">AI analyzes your description and selects the optimal 3DGS variant from 212+ methods</p>
+                    </div>
+                    <svg class="w-4 h-4 text-accent-blue shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                  </div>
+                </div>
+
+                <!-- Open Source -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Open Source</span>
+                      <span class="text-[9px] px-1.5 py-0.5 rounded bg-accent-green/10 text-accent-green font-mono">FREE</span>
+                    </div>
+                    <button class="category-toggle text-[10px] text-gray-500 flex items-center gap-1" data-cat="opensource">
+                      <span class="cat-label">Expand</span>
+                      <svg class="w-3 h-3 cat-chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                  </div>
+                  <div id="cat-opensource" class="category-content">
+                    <div class="space-y-1.5" id="opensourceMethods"></div>
+                  </div>
+                </div>
+
+                <!-- Commercial -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Commercial</span>
+                      <span class="text-[9px] px-1.5 py-0.5 rounded bg-accent-amber/10 text-accent-amber font-mono">PAID</span>
+                    </div>
+                    <button class="category-toggle text-[10px] text-gray-500 flex items-center gap-1" data-cat="commercial">
+                      <span class="cat-label">Expand</span>
+                      <svg class="w-3 h-3 cat-chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+                    </button>
+                  </div>
+                  <div id="cat-commercial" class="category-content">
+                    <div class="space-y-1.5" id="commercialMethods"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
           <button id="generateBtn" class="generate-btn mt-4 w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            Generate Scene
+            <span id="generateBtnText">Generate Scene</span>
           </button>
         </div>
 
@@ -207,7 +283,7 @@ tailwind.config = {
             <svg class="w-6 h-6 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
           </div>
           <h3 class="font-semibold text-white text-sm mb-1">AI Selects the Best Method</h3>
-          <p class="text-xs text-gray-400 leading-relaxed">From 199+ 3DGS variants, the agent picks the optimal one based on your scene type and priorities.</p>
+          <p class="text-xs text-gray-400 leading-relaxed">From 212+ 3DGS variants and text-to-3D tools, the agent picks the optimal one based on your scene type and priorities.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center mx-auto mb-3">
@@ -259,11 +335,131 @@ const TEMPLATES = [
 ];
 
 // =============================================
+// Data: Text-to-3D Methods (Open Source & Commercial)
+// =============================================
+const T2O3D_METHODS = {
+  auto: {
+    id: 'auto', name: 'Auto Recommend', type: 'auto', color: '#3b82f6',
+    desc: 'AI selects the optimal method from 212+ 3DGS variants',
+    tags: ['3DGS', 'Auto'], url: null, output: ['3DGS', 'Mesh']
+  },
+  // --- Open Source ---
+  dreamgaussian: {
+    id: 'dreamgaussian', name: 'DreamGaussian', type: 'opensource', color: '#10b981',
+    desc: 'SDS-based text-to-3D with 3DGS prior, ICLR 2024 Oral. Fast generation from text/image prompts.',
+    tags: ['3DGS', 'Text-to-3D', 'SDS'], url: 'https://github.com/dreamgaussian/dreamgaussian', output: ['3DGS', 'Mesh']
+  },
+  mvsgs: {
+    id: 'mvsgs', name: 'MVSplat', type: 'opensource', color: '#10b981',
+    desc: 'Cost-volume-based 3DGS from 3 sparse views. Fast feed-forward reconstruction.',
+    tags: ['3DGS', 'Feed-Forward', 'Sparse-View'], url: 'https://github.com/microsoft/MVSplat', output: ['3DGS']
+  },
+  gs_lrm: {
+    id: 'gs_lrm', name: 'GS-LRM', type: 'opensource', color: '#10b981',
+    desc: '1B-parameter transformer for large-scale reconstruction with zero-shot generalization.',
+    tags: ['3DGS', 'Transformer', 'Large-Scale'], url: 'https://github.com/samsunglabs/gs-lrm', output: ['3DGS']
+  },
+  instantsplat: {
+    id: 'instantsplat', name: 'InstantSplat', type: 'opensource', color: '#10b981',
+    desc: 'Pose-free sparse-view 3DGS reconstruction in ~40 seconds from 3-5 images.',
+    tags: ['3DGS', 'Pose-Free', 'Fast'], url: 'https://github.com/baaivision/InstantSplat', output: ['3DGS']
+  },
+  splatfactory: {
+    id: 'splatfactory', name: 'Splatfactory', type: 'opensource', color: '#10b981',
+    desc: 'Efficient 3DGS scene reconstruction with densification control, by ETH CVG.',
+    tags: ['3DGS', 'Dense', 'Efficient'], url: 'https://github.com/uzh-rpg/splatfactory', output: ['3DGS']
+  },
+  gsgen: {
+    id: 'gsgen', name: 'GSgen', type: 'opensource', color: '#10b981',
+    desc: 'Generative 3D Gaussian Splatting from a single image. Text-guided editing support.',
+    tags: ['3DGS', 'Single-Image', 'Generative'], url: 'https://github.com/VITA-Group/GSgen', output: ['3DGS']
+  },
+  globalsplat: {
+    id: 'globalsplat', name: 'GlobalSplat', type: 'opensource', color: '#10b981',
+    desc: 'Global latent tokens to 16K Gaussians in 78ms single forward pass. Extreme speed.',
+    tags: ['3DGS', 'Feed-Forward', 'Real-Time'], url: null, output: ['3DGS']
+  },
+  anysplat: {
+    id: 'anysplat', name: 'AnySplat', type: 'opensource', color: '#10b981',
+    desc: 'In-the-wild feed-forward 3DGS handling appearance and lighting variation.',
+    tags: ['3DGS', 'In-the-Wild', 'Feed-Forward'], url: 'https://github.com/高铁-running/AnySplat', output: ['3DGS']
+  },
+  hexplane: {
+    id: 'hexplane', name: 'HexPlane', type: 'opensource', color: '#10b981',
+    desc: 'Efficient 3D Gaussian representation with hexagonal plane decomposition.',
+    tags: ['3DGS', 'Efficient', 'Novel-View'], url: 'https://github.com/Robert0230/HexPlane', output: ['3DGS']
+  },
+  text_to_cad: {
+    id: 'text_to_cad', name: 'Text-to-CAD', type: 'opensource', color: '#06b6d4',
+    desc: 'Natural language to CAD programs. Multi-format export: STEP, STL, 3MF, DXF, GLB.',
+    tags: ['CAD', 'Text-to-3D', 'Multi-Format'], url: 'https://github.com/earthtojake/text-to-cad', output: ['STEP', 'STL', '3MF', 'DXF', 'GLB']
+  },
+  brepgaussian: {
+    id: 'brepgaussian', name: 'BrepGaussian', type: 'opensource', color: '#06b6d4',
+    desc: '3DGS + B-rep CAD reconstruction to parametric STEP models. Engineering-grade.',
+    tags: ['3DGS', 'CAD', 'B-rep'], url: null, output: ['STEP', '3DGS']
+  },
+  sugr: {
+    id: 'sugr', name: 'SuGaR', type: 'opensource', color: '#10b981',
+    desc: 'Surface-aligned Gaussians for high-quality mesh extraction via TSDF + Marching Cubes.',
+    tags: ['3DGS', 'Mesh', 'Surface'], url: 'https://github.com/Anttwo/SuGaR', output: ['3DGS', 'Mesh']
+  },
+  threestudio: {
+    id: 'threestudio', name: 'ThreeStudio', type: 'opensource', color: '#8b5cf6',
+    desc: 'Unified framework for text-to-3D with NeRF/3DGS/LDM backends. Extensible plugin system.',
+    tags: ['Framework', '3DGS', 'NeRF', 'LDM'], url: 'https://github.com/threestudio-project/threestudio', output: ['3DGS', 'Mesh', 'NeRF']
+  },
+  // --- Commercial ---
+  luma: {
+    id: 'luma', name: 'Luma AI (Genie)', type: 'commercial', color: '#f59e0b',
+    desc: 'Text/image to 3D Gaussian Splatting in browser. Real-time GLB/USDZ export.',
+    tags: ['3DGS', 'Web', 'Real-Time'], url: 'https://lumalabs.ai/genie', output: ['3DGS', 'GLB', 'USDZ']
+  },
+    meshy: {
+    id: 'meshy', name: 'Meshy', type: 'commercial', color: '#f59e0b',
+    desc: 'Text/image to 3D model. High-quality mesh with PBR textures. API available.',
+    tags: ['Mesh', 'Text-to-3D', 'API'], url: 'https://www.meshy.ai/', output: ['Mesh', 'GLB', 'FBX']
+  },
+  csm: {
+    id: 'csm', name: 'Tripo3D (CSM)', type: 'commercial', color: '#f59e0b',
+    desc: 'State-of-the-art text/image to 3D in seconds. Fast, high-quality mesh generation.',
+    tags: ['Mesh', 'Text-to-3D', 'Fast'], url: 'https://www.tripo3d.ai/', output: ['Mesh', 'GLB', 'FBX']
+  },
+  kling: {
+    id: 'kling', name: 'Kuaishou Kling 3D', type: 'commercial', color: '#f59e0b',
+    desc: 'Video-to-3D and text-to-3D by Kuaishou. High-fidelity Chinese commercial solution.',
+    tags: ['3DGS', 'Video-to-3D', 'Text-to-3D'], url: 'https://www.kuaishou.com/', output: ['3DGS', 'Mesh']
+  },
+  opencanvas: {
+    id: 'opencanvas', name: 'OpenCanvas (formerly Canvas)', type: 'commercial', color: '#f59e0b',
+    desc: 'Tencent\'s text-to-3D generation platform. High-quality asset creation for games.',
+    tags: ['Mesh', 'Text-to-3D', 'Game-Asset'], url: null, output: ['Mesh', 'FBX']
+  },
+  nvidia_ace: {
+    id: 'nvidia_ace', name: 'NVIDIA ACE', type: 'commercial', color: '#f59e0b',
+    desc: 'NVIDIA\'s avatar creation and 3D conversational AI platform. Enterprise-grade.',
+    tags: ['Avatar', '3DGS', 'Enterprise'], url: 'https://developer.nvidia.com/ace', output: ['3DGS', 'Mesh']
+  },
+  polycam: {
+    id: 'polycam', name: 'Polycam', type: 'commercial', color: '#f59e0b',
+    desc: 'Photo/video to 3D with NeRF & 3DGS export. Mobile-first capture pipeline.',
+    tags: ['3DGS', 'NeRF', 'Mobile', 'Capture'], url: 'https://poly.cam/', output: ['3DGS', 'Mesh', 'NeRF']
+  },
+  masterpiece_studio: {
+    id: 'masterpiece_studio', name: 'Masterpiece Studio', type: 'commercial', color: '#f59e0b',
+    desc: 'Professional 3D asset generation from text. Optimized for design and VFX workflows.',
+    tags: ['Mesh', 'Text-to-3D', 'VFX'], url: 'https://www.masterpiece-studio.com/', output: ['Mesh', 'GLB', 'USD']
+  }
+};
+
+let selectedMethodId = 'auto';
+
+// =============================================
 // Data: Pipeline Steps
 // =============================================
 const PIPELINE_STEPS = [
   { id: 'parse', name: 'Parse Description', icon: '📋', desc: 'Extract geometry, materials, scale from your text' },
-  { id: 'select', name: 'Select Method', icon: '🎯', desc: 'Choose optimal 3DGS variant from 199+ methods' },
+  { id: 'select', name: 'Select Method', icon: '🎯', desc: 'Choose optimal method from 212+ 3DGS variants & text-to-3D tools' },
   { id: 'init', name: 'Initialize Gaussians', icon: '✨', desc: 'Set up point cloud / parametric starting geometry' },
   { id: 'train', name: 'Train / Generate', icon: '⚡', desc: 'Run the selected 3DGS pipeline' },
   { id: 'validate', name: 'Validate Output', icon: '✅', desc: 'Check geometry fidelity, visual quality, speed' },
@@ -327,6 +523,7 @@ function parsePrompt(text) {
 }
 
 function generateBrief(parsed, method) {
+  const outputFormats = method.output || ['3DGS'];
   return `Scene Brief:
   Intent: ${parsed.rawText.substring(0, 120)}${parsed.rawText.length > 120 ? '...' : ''}
 
@@ -336,14 +533,16 @@ function generateBrief(parsed, method) {
     Scale: ${parsed.scale}
 
   Generation:
-    Recommended Method: ${method.method}
+    Method: ${method.method}
     Rationale: ${method.reason}
+    ${method.url ? `Platform: ${method.url}` : ''}
+    Output: ${outputFormats.join(', ')}
     Initialization: ${parsed.sceneType === 'cad' ? 'parametric mesh' : parsed.sceneType === 'avatar' ? 'SMPL template' : 'SfM points / random sphere'}
     Optimization: default (300-500 iterations recommended)
 
   Export:
-    Primary: .ply (3DGS Gaussian representation)
-    Secondary: ${parsed.sceneType === 'cad' ? '.step (CAD), .stl (3D print)' : '.obj (mesh), .stl (3D print)'}
+    Primary: ${outputFormats[0]}
+    Secondary: ${outputFormats.slice(1).join(', ') || 'none'}
 ${parsed.features.includes('transparent') ? '    Note: Transparency requires per-Gaussian opacity tuning' : ''}
 ${parsed.features.includes('metallic') ? '    Note: Metallic appearance needs SH degree >= 3 or specular model' : ''}
 
@@ -413,6 +612,17 @@ function renderMethod(method, parsed) {
         <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-gray-400 font-mono">${parsed.sceneType}</span>
       </div>
       <p class="text-xs text-gray-400 leading-relaxed">${method.reason}</p>
+      ${method.output ? `
+        <div class="mt-2 flex flex-wrap gap-1">
+          ${method.output.map(f => `<span class="text-[9px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan">${f}</span>`).join('')}
+        </div>
+      ` : ''}
+      ${method.url ? `
+        <a href="${method.url}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-[11px] text-accent-blue hover:underline">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+          Open ${method.method}
+        </a>
+      ` : ''}
       ${parsed.features.length > 0 ? `
         <div class="mt-3 flex flex-wrap gap-1">
           ${parsed.features.map(f => `<span class="text-[10px] px-2 py-0.5 rounded-full bg-accent-purple/10 text-accent-purple">${f}</span>`).join('')}
@@ -470,6 +680,14 @@ async function runGeneration() {
   // Step 2: Select method
   renderPipeline(1);
   await delay(500);
+  // Use user selected method if not auto, otherwise AI recommends
+  let method;
+  if (selectedMethodId !== 'auto') {
+    const m = T2O3D_METHODS[selectedMethodId];
+    method = { method: m.name, reason: m.desc, color: m.color, output: m.output, url: m.url };
+  } else {
+    method = METHOD_MAP[parsed.sceneType] || METHOD_MAP.general;
+  }
   renderMethod(method, parsed);
 
   // Step 3: Initialize
@@ -524,6 +742,75 @@ function openViewer() {
 }
 
 // =============================================
+// Method Selector Rendering & Interaction
+// =============================================
+function renderMethodCards() {
+  const methods = Object.values(T2O3D_METHODS);
+  const openSource = methods.filter(m => m.type === 'opensource');
+  const commercial = methods.filter(m => m.type === 'commercial');
+
+  document.getElementById('opensourceMethods').innerHTML = openSource.map(m => buildMethodCard(m)).join('');
+  document.getElementById('commercialMethods').innerHTML = commercial.map(m => buildMethodCard(m)).join('');
+
+  // Attach click handlers
+  document.querySelectorAll('.method-card[data-method]').forEach(card => {
+    card.addEventListener('click', () => selectMethod(card.dataset.method));
+  });
+}
+
+function buildMethodCard(m) {
+  return `
+    <div class="method-card flex items-start gap-3 p-3 rounded-lg border border-white/5" data-method="${m.id}">
+      <div class="method-radio mt-0.5"></div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-semibold text-white">${m.name}</span>
+          ${m.tags.map(t => `<span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-gray-500 font-mono">${t}</span>`).join('')}
+        </div>
+        <p class="text-[10px] text-gray-400 mt-0.5 leading-relaxed">${m.desc}</p>
+        <div class="mt-1.5 flex items-center gap-2">
+          <span class="text-[9px] text-gray-500">Output: ${m.output.join(', ')}</span>
+          ${m.url ? `<a href="${m.url}" target="_blank" rel="noopener" class="text-[9px] text-accent-blue hover:underline flex items-center gap-0.5" onclick="event.stopPropagation()">
+            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+            ${m.url.replace(/https?:\/\//, '').split('/')[0]}
+          </a>` : ''}
+        </div>
+      </div>
+    </div>`;
+}
+
+function selectMethod(id) {
+  selectedMethodId = id;
+  const method = T2O3D_METHODS[id];
+
+  // Update card styles
+  document.querySelectorAll('.method-card[data-method]').forEach(card => {
+    const isSelected = card.dataset.method === id;
+    card.classList.toggle('selected', isSelected);
+    if (isSelected) {
+      card.style.borderColor = method.color + '66';
+      card.style.background = method.color + '0d';
+    } else {
+      card.style.borderColor = '';
+      card.style.background = '';
+    }
+  });
+
+  // Update badge
+  const badge = document.getElementById('selectedMethodBadge');
+  badge.textContent = method.name;
+  badge.classList.remove('hidden');
+
+  // Update generate button text
+  const btnText = document.getElementById('generateBtnText');
+  if (id === 'auto') {
+    btnText.textContent = 'Generate Scene';
+  } else {
+    btnText.textContent = `Generate with ${method.name}`;
+  }
+}
+
+// =============================================
 // Tag Click Handlers
 // =============================================
 function initTagHandlers() {
@@ -546,8 +833,32 @@ function initTagHandlers() {
 // =============================================
 document.addEventListener('DOMContentLoaded', () => {
   renderTemplates();
+  renderMethodCards();
   renderPipeline(-1);
   initTagHandlers();
+
+  // Method selector toggle
+  const toggleBtn = document.getElementById('methodToggleBtn');
+  const content = document.getElementById('methodSelectorContent');
+  const chevron = document.getElementById('methodChevron');
+  let selectorOpen = false;
+  toggleBtn.addEventListener('click', () => {
+    selectorOpen = !selectorOpen;
+    content.classList.toggle('open', selectorOpen);
+    chevron.style.transform = selectorOpen ? 'rotate(180deg)' : '';
+  });
+
+  // Category expand/collapse
+  document.querySelectorAll('.category-toggle[data-cat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const catId = btn.dataset.cat;
+      const catContent = document.getElementById('cat-' + catId);
+      const isOpen = catContent.classList.contains('open');
+      catContent.classList.toggle('open');
+      btn.querySelector('.cat-label').textContent = isOpen ? 'Expand' : 'Collapse';
+      btn.querySelector('.cat-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
+    });
+  });
 
   document.getElementById('generateBtn').addEventListener('click', runGeneration);
 

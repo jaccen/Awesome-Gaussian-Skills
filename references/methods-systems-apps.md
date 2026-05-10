@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9cdec31f-092d-4a11-ab4d-f071855f9ea3'
-  PropagateID: '9cdec31f-092d-4a11-ab4d-f071855f9ea3'
-  ReservedCode1: '8c9345f0-47c8-491b-8fdb-3412f8e39ef1'
-  ReservedCode2: '8c9345f0-47c8-491b-8fdb-3412f8e39ef1'
----
-
 # Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
@@ -572,5 +561,3 @@ AIGC:
 - **Key Innovation**: Patch-based temporal coherence analysis extracts edges from noisy events; edge-weighted losses; fully pose-free event-based 3D reconstruction
 
 - **Links**: [中英摘要](https://arxiv.org/abs/2603.14684) | [arXiv:2603.14684](https://arxiv.org/abs/2603.14684) | [Code]
-
-> AI生成
