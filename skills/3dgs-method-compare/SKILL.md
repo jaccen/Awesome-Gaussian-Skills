@@ -1,26 +1,3 @@
----
-name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 222+ 3DGS methods."
-version: 1.4.1
-author: jaccen
-tags:
-  - 3dgs
-  - gaussian-splatting
-  - method-comparison
-  - research
-  - nerf
-trigger:
-  - "对比"
-  - "比较"
-  - "compare"
-  - "difference between"
-  - "和...有什么区别"
-  - "哪个方法更好"
-  - "method comparison"
-  - "GS vs"
-  - "3DGS vs 2DGS"
----
-
 # 3DGS Method Comparison Engine
 
 You are an expert in 3D Gaussian Splatting methods with deep knowledge of 222+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.

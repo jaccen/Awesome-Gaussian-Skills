@@ -10,7 +10,7 @@ If you like it, please ⭐️ star this repo!
 
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-9-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -43,7 +43,7 @@ If you like it, please ⭐️ star this repo!
 
 ## 特性
 
-- **9 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）、工程化部署指南
+- **10 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）、工程化部署指南、专利与软著生成
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
 - **领域专家知识**：内置知识库覆盖 21 个类别的 222+ 3DGS 变体，含领域术语规范
@@ -252,6 +252,33 @@ Agent: [分析应用场景，推荐 aiSim 6 / CARLA+3DGS 管线，
 - 跨平台部署指南（CUDA/Vulkan/WebGPU/移动端）
 - 工程化最佳实践与常见避坑
 
+### 10. `patent-software-ip` — 专利与软著生成
+
+**从研究项目代码/设计文档出发，生成专利申请文件与软件著作权登记材料。**
+
+```
+你: "帮我的3DGS大场景重建项目生成专利申请文件"
+Agent: [扫描项目代码与文档，检索现有技术，
+        生成权利要求书、说明书、摘要，
+        含脱敏处理与自检]
+```
+
+```
+你: "我要给这个工具申请软件著作权，帮我准备材料"
+Agent: [生成软件说明书（10-15页含截图占位）
+        和源代码文档（前后各30页），
+        符合CPCC登记格式]
+```
+
+**能力：**
+- 双路径工作流：专利申请（权利要求书+说明书+摘要）与软著登记（说明书+源代码文档）
+- 现有技术检索与差异化分析
+- 权利要求书撰写（独立+从属权利要求结构）
+- 说明书完整实施方式与脱敏处理
+- 软著说明书遵循CPCC格式（10-15页，6+截图）
+- 源代码文档格式化（每页50+行，敏感信息清除）
+- 内部自检：一致性、充分性、合规性
+
 ---
 
 ## 项目结构
@@ -275,7 +302,9 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   ├── cg-paper-writing/        # CG 论文写作助手
 │   │   └── SKILL.md
-│   └── 3dgs-engineering-guide/   # 工程化部署指南
+│   ├── 3dgs-engineering-guide/   # 工程化部署指南
+│   │   └── SKILL.md
+│   └── patent-software-ip/       # 专利与软著生成
 │       └── SKILL.md
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
@@ -367,6 +396,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.1.5 — 知识库结构升级：拆分为 3 个子文件提升检索效率（2026年5月）
 - [x] v0.2 — 新增 `3dgs-visualizer` 技能（雷达图、对比表、方法时间线；静态 + 交互式双输出）（2026年5月）
 - [x] v0.2.1 — 新增 Text2Word 交互演示——文生3DGS Web创作平台（2026年5月）
+- [x] v0.2.2 — 新增 `patent-software-ip` 技能——专利申请文件与软著登记材料生成（2026年5月）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）

@@ -10,7 +10,7 @@ If you like it, please ⭐️ star this repo!
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-9-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -45,7 +45,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ## Features
 
-- **9 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, research visualization (radar charts, timelines, comparison tables), and engineering deployment guide
+- **10 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, research visualization (radar charts, timelines, comparison tables), engineering deployment guide, and patent & software copyright generation
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
 - **Domain Expert Knowledge**: Built-in knowledge base covering 222+ 3DGS variants across 21 categories, with domain-specific terminology conventions
@@ -258,6 +258,33 @@ Agent: [Recommends aiSim 6 / CARLA+3DGS pipeline, maps relevant
 - Cross-platform deployment guide (CUDA, Vulkan, WebGPU, mobile)
 - Engineering best practices and common pitfalls
 
+### 10. `patent-software-ip` — Patent & Software Copyright Generation
+
+**Generate patent application docs and software copyright registration materials from your research project.**
+
+```
+You: "帮我的3DGS大场景重建项目生成专利申请文件"
+Agent: [Scans project code & docs, searches prior art,
+        generates claims, specification, and abstract
+        with desensitization and self-check]
+```
+
+```
+You: "我要给这个工具申请软件著作权，帮我准备材料"
+Agent: [Generates software manual (10-15 pages with screenshots)
+        and source code document (front/back 30 pages each),
+        formatted for CPCC registration]
+```
+
+**Capabilities:**
+- Dual-path workflow: patent application (claims + specification + abstract) and software copyright (manual + source code doc)
+- Prior art search and differentiation analysis
+- Claims drafting with independent + dependent claims structure
+- Specification with full implementation details and desensitization
+- Software copyright manual following CPCC format (10-15 pages, 6+ screenshots)
+- Source code document formatting (50+ lines/page, sensitive data removal)
+- Internal self-check for consistency, adequacy, and compliance
+
 ---
 
 ## Architecture
@@ -281,7 +308,9 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   ├── cg-paper-writing/        # CG paper writing assistant
 │   │   └── SKILL.md
-│   └── 3dgs-engineering-guide/   # Engineering deployment guide
+│   ├── 3dgs-engineering-guide/   # Engineering deployment guide
+│   │   └── SKILL.md
+│   └── patent-software-ip/       # Patent & software copyright generation
 │       └── SKILL.md
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
@@ -373,6 +402,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.1.5 — Knowledge base restructured: split overview into 3 sub-files for efficient retrieval (May 2026)
 - [x] v0.2 — Add `3dgs-visualizer` skill (radar charts, comparison tables, method timelines; static + interactive output) (May 2026)
 - [x] v0.2.1 — Add Text2Word interactive demo — text-to-3DGS web creation platform (May 2026)
+- [x] v0.2.2 — Add `patent-software-ip` skill — patent application docs & software copyright registration materials (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
