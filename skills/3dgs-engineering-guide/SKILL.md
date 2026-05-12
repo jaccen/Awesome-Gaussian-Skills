@@ -418,6 +418,9 @@ Robot policy learning (sim-to-real) → Real-world deployment
 |---|---|---|---|---|
 | original 3DGS | CUDA | Baseline | NVIDIA GPU | Yes |
 | VkSplat | Vulkan | 3.3x vs CUDA (non-NVIDIA) | Cross-platform | Yes |
+| GSeurat | Vulkan (C++23) | Research | Cross-platform | Yes |
+| msplat | Metal | Apple-optimized | macOS/iOS | Yes |
+| tortuise | CPU (Rust) | Offline/low-power | Any CPU | Yes |
 | **PlayCanvas Engine** | **WebGL2/WebGPU** | **Browser-optimized** | **Web** | **Yes (first-class)** |
 | gsplat.js | WebGPU/WebGL2 | Browser | Web | Yes |
 | three.js plugin | WebGL2/WebGPU | Browser | Web | Plugin |
@@ -427,6 +430,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 
 **Streaming / 流式传输**:
 - 李飞飞 team: 100M+ Gaussian real-time mobile streaming (adaptive bitrate, view-dependent loading)
+- **CAGS** — VQ-based compression + Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment (~7x compression); supports chunked streaming with global codebook for cross-LoD consistency
 - Progressive loading: send coarse Gaussians first, refine on demand
 - View-dependent prioritization: prioritize Gaussians in/near camera frustum
 - Network requirement: 20–50 Mbps for smooth 1080p 3DGS streaming
@@ -435,6 +439,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 - `.ply` — standard point cloud format (uncompressed, large)
 - `.splat` — compact binary format (AntonMihailov spec, web-friendly)
 - **`.sog`** — PlayCanvas SOG format (streaming LOD, ~20x compression vs PLY, chunked with manifest for progressive loading; converted via `splat-transform`)
+- **`.spz`** — Niantic SPZ format (~10x compression, optimized for mobile/AR streaming; open-source tooling from Niantic)
 - Custom compressed binary — MesonGS++ / HAC proprietary formats
 - Future: 3D Tiles + Gaussian extension (OGC standardization pending)
 
@@ -524,9 +529,9 @@ Network transfer → Client decompression & rendering
 |---|---|---|---|
 | Research/prototyping | None | 1x | None |
 | Desktop deployment | GETA-3DGS | 5x | Minimal |
-| Mobile/tablet | MobileGS | 10–50x | Moderate |
-| Web browser | MesonGS++ + .splat | 30–50x | Acceptable |
-| Large-scale streaming | HAC + progressive | 50–100x | Significant |
+| Mobile/tablet | MobileGS / CAGS (streaming) | 10–50x | Moderate |
+| Web browser | MesonGS++ + .splat / SPZ | 30–50x | Acceptable |
+| Large-scale streaming | HAC + progressive / CAGS | 50–100x | Significant |
 
 ### 3.3 Cross-Platform Deployment / 跨平台部署
 
@@ -535,7 +540,9 @@ Network transfer → Client decompression & rendering
 | Platform | Primary Backend | Fallback | Max Scene Size | Real-time? |
 |---|---|---|---|---|
 | Desktop (NVIDIA) | CUDA | Vulkan | 10M+ | Yes (60 FPS) |
-| Desktop (AMD/Intel) | VkSplat | — | 5M+ | Yes (30 FPS) |
+| Desktop (AMD/Intel) | VkSplat | GSeurat | 5M+ | Yes (30 FPS) |
+| Desktop (CPU-only) | tortuise (Rust) | — | 500K | No (offline) |
+| macOS (Apple Silicon) | msplat (Metal) | — | 3M | Partial (20 FPS) |
 | iOS | Metal | — | 1M | Partial (15 FPS) |
 | Android | Vulkan | WebGPU | 1M | Partial (15 FPS) |
 | Web (Chrome) | WebGPU | WebGL2 | 500K–2M | Partial (browser-dependent) |
@@ -635,9 +642,10 @@ What is your target platform? / 您的目标平台是什么？
 │
 ├── Desktop (non-NVIDIA: AMD, Intel Arc)
 │   └── VkSplat (Vulkan) — 3.3x speedup over naive implementation
+│   └── GSeurat (Vulkan C++23) — full training without CUDA
 │
 ├── Mobile (iOS / Android)
-│   └── VkSplat (Vulkan) / Metal (iOS native)
+│   └── VkSplat (Vulkan) / Metal (iOS native) / msplat (Metal)
 │   └── WebGPU fallback for progressive web apps
 │
 ├── Web browser
@@ -823,7 +831,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 ### 5.5 CUDA Lock-in / CUDA绑定
 **Symptom**: pipeline only runs on NVIDIA GPUs; cannot deploy to AMD/Intel/Mobile hardware.
 **Cause**: original 3DGS is CUDA-only; custom CUDA kernels for differentiation.
-**Fix**: plan cross-platform from architecture phase; use VkSplat (Vulkan) for non-NVIDIA deployment; isolate CUDA-specific code behind abstraction layer; evaluate WebGPU for universal fallback.
+**Fix**: plan cross-platform from architecture phase; use VkSplat (Vulkan) for non-NVIDIA deployment; GSeurat (Vulkan C++23) for full training without CUDA; msplat (Metal) for Apple ecosystem; tortuise (CPU Rust) for offline/edge deployment; isolate CUDA-specific code behind abstraction layer; evaluate WebGPU for universal fallback.
 
 ### 5.6 No Version Control for 3DGS Assets / 3DGS资产无版本管理
 **Symptom**: cannot reproduce previous reconstruction; cannot track scene changes over time.
@@ -886,7 +894,10 @@ When the user asks about a specific application domain, reference these papers f
 - **GOR-IS** — intrinsic decomposition
 
 ### Cross-platform / 跨平台
-- **VkSplat** — Vulkan rendering backend (3.3x speedup)
+- **VkSplat** — Vulkan rendering backend (3.3x speedup, cross-vendor)
+- **GSeurat** — Vulkan-based 3DGS training in C++23 (cross-platform, no CUDA dependency)
+- **msplat** — Metal-based 3DGS for Apple ecosystem (macOS/iOS native)
+- **tortuise** — CPU-only Rust implementation for offline/low-power deployment
 - **AdaGScale** — adaptive scale for cross-platform
 
 ### BIM/CAD / BIM与CAD
@@ -979,6 +990,11 @@ python compress_tile.py --input ./city_block/point_cloud \
 | PlayCanvas Engine | PlayCanvas引擎 | Open-source WebGL2+WebGPU game engine with first-class 3DGS support (MIT) |
 | FreeMoCap | 免费动作捕捉 | Open-source markerless motion capture from webcams (AGPL-3.0); outputs .trc/.c3d/.fbx; drives 3DGS avatars |
 | Markerless MoCap | 无标记动捕 | Motion capture without physical markers, using computer vision (e.g., FreeMoCap) |
+| GSeurat | Vulkan C++23高斯训练 | Cross-platform Vulkan-based 3DGS training framework (C++23); eliminates CUDA dependency |
+| msplat | Metal高斯渲染 | Metal-based 3DGS for Apple ecosystem (macOS/iOS); native GPU acceleration |
+| tortuise | CPU Rust高斯渲染 | CPU-only Rust implementation; offline/low-power/edge deployment without GPU |
+| CAGS | 压缩自适应流式高斯 | VQ-based compression + LoD streaming for bandwidth-adaptive 3DGS deployment (~7x compression) |
+| SPZ | Niantic压缩格式 | Niantic SPZ format (~10x compression) optimized for mobile/AR streaming |
 
 ---
 

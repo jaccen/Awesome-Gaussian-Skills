@@ -46,7 +46,7 @@ If you like it, please ⭐️ star this repo!
 - **9 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）、工程化部署指南
 - **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
 - **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 21 个类别的 212+ 3DGS 变体，含领域术语规范
+- **领域专家知识**：内置知识库覆盖 21 个类别的 222+ 3DGS 变体，含领域术语规范
 - **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
 - **Text2Word 演示**：交互式 Web 体验，将自然语言描述转化为三维高斯场景 —— 用文字描述城堡、齿轮或任意场景，即可获得智能方法推荐、生成管线可视化、WebGL 3D 预览与多格式导出（3DGS/mesh/CAD）
 
@@ -119,7 +119,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 212+ 方法的知识库
+- 内置 222+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -280,7 +280,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（21 个类别 212+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 222+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -328,9 +328,9 @@ Awesome-Gaussian-Skills/
 | 类别 | 方法 |
 |------|------|
 | 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting |
-| 压缩 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++ |
+| 压缩/流式 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS |
 | 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
-| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS |
+| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat |
 | 生成/文生3D | DreamGaussian, SceneGen-LLMRL |
 | 抗锯齿 | Mip-Splatting, LeanGaussian |
 | 优化 | 3DGS-as-MCMC |
@@ -339,16 +339,21 @@ Awesome-Gaussian-Skills/
 | 主动视觉 | MAGICIAN |
 | 仿真 | GS-Playground, GS-Surrogate, FieryGS |
 | 实时新视角合成 | 3DTV |
-| 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE |
+| 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats |
 | 数据采集 | Mobile Phone 3DGS Acquisition |
 | 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
 | 系统 | YOGO, GS-SCNet |
 | 安全 | RDSplat |
 | HDR/动态 | HDR-NSFF, FreeTimeGS++ |
+| 动态 | ParticleGS |
+| SLAM | 2DGS-SLAM |
+| 稀疏视角 | FrameTwin |
+| CAD | CADFit |
+| 重光照 | Relightable-GS-VP |
 | 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace |
 | 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
 
-> 完整知识库覆盖 **21 个类别的 212+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **21 个类别的 222+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 ---
 
@@ -402,6 +407,7 @@ Awesome-Gaussian-Skills/
 - [OpenClaw](https://github.com/openclaw) — AI Agent 框架与 Skills 生态
 - [awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) — 启发本项目的 awesome 列表
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — 全面论文合集（498+ 篇），含作者、arXiv 链接和代码仓库，按会议/年份分类
+- [longxiang-ai/awesome-gaussians](https://github.com/longxiang-ai/awesome-gaussians) — 每日自动更新的 3DGS 论文追踪器（276 stars）
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
 
 ---
@@ -446,7 +452,7 @@ RenderHub 渲染论文：https://renderhub.org/
 
 3DGS 官方论文&项目：https://github.com/graphdeco-inria/gaussian-splatting
 
-3DGS 改进论文汇总：https://github.com/limacv/GaussianSplatting-Papers
+3DGS 论文追踪器：https://github.com/longxiang-ai/awesome-gaussians
 
 NerfStudio 论文合集：https://github.com/nerfstudio-project/nerfstudio
 

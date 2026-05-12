@@ -1,4 +1,3 @@
-
 # Semantic, Editing, Material & Avatar Methods
 
 > Methods covering language/semantic understanding, image representation, editing, material/lighting, and human avatars.
@@ -64,6 +63,14 @@
 - **Key Innovation**: Structured codebook as shared semantic primitives + codebook-guided attention for language feature retrieval via similarity matching; strengthens geometry-semantics coupling; reduces intra-object feature variance and improves spatial coherence; outperforms prior open-vocabulary 3D-GS methods on 2D and 3D benchmarks
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.06088) | [arXiv:2605.06088](https://arxiv.org/abs/2605.06088) | [Code]
 
+### ReferSplat
+- **Paper**: ReferSplat: Referring Segmentation in 3D Gaussian Splatting
+- **Authors**: Heshuting, et al.
+- **Venue**: ICML 2025 (Oral)
+- **Core**: Referring segmentation in 3D Gaussian Splatting with language-guided instance selection
+- **Key Innovation**: Language-guided 3D instance segmentation within 3DGS framework; enables precise referring and manipulation of specific objects in 3D scenes using natural language descriptions
+- **Links**: [GitHub](https://github.com/heshuting555/ReferSplat)
+
 ## Image Representation
 
 ### GaussianImage
@@ -109,6 +116,14 @@
 - **Core**: Distillation-free plugin for sparse-view 3DGS completion using Generate-then-Register workflow
 - **Key Innovation**: Stereo-Anchor mechanism lifts synthesized 2D references into metric-scale 3D primitives; Ray-Constrained Registration integrates into global context
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.20155) | [arXiv:2604.20155](https://arxiv.org/abs/2604.20155) | [Code]
+
+### FrameTwin
+- **Paper**: FrameTwin: Curve-Anchored Gaussian Alignment from Sparse Views for Adaptive Wireframe 3D Printing
+- **Authors**: Wenting Wang, Zhuo Huang, Kun Qian, Neelotpal Dutta, Yuhu Guo, Yingjun Tian, Yeung Yam, Charlie C.L. Wang
+- **ArXiv**: 2605.09362
+- **Core**: Gaussian kernels anchored to parametric curves for sparse-view deformation alignment
+- **Key Innovation**: Curve-anchored Gaussian representation reduces ambiguity for thin wireframe structures; adaptive alignment from sparse views enables direct 3D printing of wireframe objects; parametric curve priors constrain Gaussian deformation
+- **Links**: [arXiv:2605.09362](https://arxiv.org/abs/2605.09362) | [Code]
 
 ## Large-Scale Methods
 
@@ -317,6 +332,15 @@
 - **Key Innovation**: End-to-end differentiable pipeline that jointly optimizes structured light patterns and reconstruction; captures both 3D geometry and spatially-varying reflectance from adaptive illumination; 4D temporal dimension enables dynamic scene capture
 - **Related**: 3DSS, SSD-GS, GaussianShader
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.06214) | [arXiv:2605.06214](https://arxiv.org/abs/2605.06214) | [Code]
+
+### Relightable-GS-VP (GS-based Relighting for Virtual Production)
+- **Paper**: Relightable Gaussian Splatting for Virtual Production Using Image-Based Illumination
+- **Authors**: Adrian Azzarelli, Nantheera Anantrasirichai, James Pollock, David R. Bull
+- **ArXiv**: 2605.09024
+- **Core**: GS-based relighting for Virtual Production using background imagery directly as illumination source
+- **Key Innovation**: Uses image-based illumination from background plates instead of environment maps; mipmap-based light transport via UV-parameterized primitives sampling image space; enables real-time relighting of foreground objects composited with virtual production backgrounds
+- **Related**: GaussianShader, GS-IR, 3DSS
+- **Links**: [arXiv:2605.09024](https://arxiv.org/abs/2605.09024) | [Code]
 
 ## Human & Avatar Methods
 

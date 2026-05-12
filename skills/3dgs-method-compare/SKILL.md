@@ -1,6 +1,6 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 212+ 3DGS methods."
+description: "Compare 3D Gaussian Splatting variants across multiple dimensions. Generates detailed comparison tables covering primitive representation, rendering formulation, training strategy, and performance. Built-in knowledge of 222+ 3DGS methods."
 version: 1.4.1
 author: jaccen
 tags:
@@ -23,7 +23,7 @@ trigger:
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 212+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 222+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -128,6 +128,7 @@ When comparing methods, analyze across the following dimensions:
 | NanoGS | Training-free | Minimal (KNN merge) | CPU-only, instant |
 | MesonGS++ | 34x | Minimal | Faster after decode (0-1 ILP hyperparameter search) |
 | GETA-3DGS | 5x | Minimal | First end-to-end automatic joint structured pruning + quantization; QADG; render-aware saliency |
+| CAGS | ~7x (streaming) | Minimal | VQ-based compression with Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment |
 
 ### Robustness / Regularization Methods
 
@@ -232,6 +233,7 @@ When comparing methods, analyze across the following dimensions:
 | Method | Venue | Primitive | Rendering | Key Feature |
 |--------|-------|-----------|-----------|-------------|
 | FreeTimeGS++ | arXiv'26 (2605.03337) | 4D Gaussians + durations | Gated marginalization | Neural velocity fields + emergent temporal partitioning; comprehensive 4DGS analysis |
+| ParticleGS | arXiv'26 | 3D anisotropic + physics | Standard α-compositing | Physics-based motion extrapolation for fluid/dynamic scenes; Lagrangian particle dynamics |
 
 ### Human & Avatar Methods
 

@@ -190,6 +190,14 @@
 - **Innovation**: Introduces a generalizable motion model for monocular 3DGS SLAM that can handle diverse dynamic scenes without scene-specific motion modeling, improving robustness in real-world SLAM scenarios
 - **Links**: [arXiv:2604.12837](https://arxiv.org/abs/2604.12837)
 
+### 2DGS-SLAM
+- **Paper**: 2DGS-SLAM: Globally Consistent RGB-D SLAM with 2D Gaussian Splatting
+- **Authors**: PRBonn
+- **Venue**: TRO 2026
+- **Core**: Globally consistent RGB-D SLAM using 2D Gaussian Splatting as map representation
+- **Key Innovation**: Uses surface-aligned 2D Gaussians for SLAM mapping; loop closure detection + global optimization for drift-free trajectories; 2DGS provides better surface geometry than 3DGS for SLAM applications
+- **Links**: [GitHub](https://github.com/PRBonn/2DGS-SLAM)
+
 ## Training & Optimization
 
 ### Faster-GS
@@ -561,3 +569,11 @@
 - **Key Innovation**: Patch-based temporal coherence analysis extracts edges from noisy events; edge-weighted losses; fully pose-free event-based 3D reconstruction
 
 - **Links**: [中英摘要](https://arxiv.org/abs/2603.14684) | [arXiv:2603.14684](https://arxiv.org/abs/2603.14684) | [Code]
+
+### LagrangianSplats
+- **Paper**: LagrangianSplats: Divergence-Free Transport of Gaussian Primitives for Fluid Reconstruction
+- **Authors**: Ningxiao Tao, Baoquan Chen, Mengyu Chu
+- **ArXiv**: 2605.09299
+- **Core**: Structurally enforces divergence-free constraint on 3DGS advection for physically-consistent fluid velocity field reconstruction
+- **Key Innovation**: Divergence-free constraint on Gaussian motion ensures incompressible fluid behavior; sliding window optimization for temporal coherence; renders fluid dynamics from sparse 2D video observations; bridges 3DGS with computational fluid dynamics
+- **Links**: [arXiv:2605.09299](https://arxiv.org/abs/2605.09299) | [Code]

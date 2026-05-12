@@ -131,6 +131,14 @@
 - **Related**: 2DGS, Neural Gabor Splatting, NegGS
 - **Links**: [arXiv:2411.18966](https://arxiv.org/abs/2411.18966) | [Project](https://ruixu.me/html/SuperGaussians/index.html) | [Code](https://github.com/Xrvitd/SVGS)
 
+### HiFi-SurfSplat (High-Fidelity Surface Splatting-Based 3D Reconstruction)
+- **Paper**: High-Fidelity Surface Splatting-Based 3D Reconstruction from Multi-View Images
+- **Authors**: Nandhana Sunil, Abhirami R Iyer, Avirup Mandal
+- **ArXiv**: 2605.07254
+- **Core**: Compact polynomial kernel replacing exponential IMLS kernels for high-fidelity surface splatting reconstruction
+- **Key Innovation**: Compact polynomial approximation of IMLS kernel reduces computation; Laplacian stochastic regularization preserves high-frequency geometry; better surface detail than vanilla surface splatting methods
+- **Links**: [arXiv:2605.07254](https://arxiv.org/abs/2605.07254) | [Code]
+
 ## CAD / Mesh / Hybrid Methods
 
 ### SuGaR
@@ -186,6 +194,15 @@
 - **Output**: Parametric CAD model (STEP-compatible)
 - **Limitations**: Struggles with textureless regions, thin structures, high specular, heavy occlusion + sparse views
 - **Links**: [中英摘要](https://arxiv.org/abs/2602.21105) | [arXiv:2602.21105](https://arxiv.org/abs/2602.21105) | [Code]
+
+### CADFit (Mesh-to-CAD Program Generation)
+- **Paper**: CADFit: Precise Mesh-to-CAD Program Generation with Hybrid Optimization
+- **Authors**: Ghadi Nehme, Eamon Whalen, Faez Ahmed
+- **ArXiv**: 2605.01171
+- **Core**: IoU-driven hybrid optimization over structured CAD programs for mesh-to-CAD conversion
+- **Key Innovation**: Hybrid optimization combining gradient-based and discrete search over CAD programs (extrusions, revolutions, fillets, chamfers); multimodal image-to-CAD pipeline; precise parametric CAD output from mesh input
+- **Related**: BrepGaussian, CADFS
+- **Links**: [arXiv:2605.01171](https://arxiv.org/abs/2605.01171) | [Code]
 
 ## Generation / Text-to-3D
 
@@ -443,6 +460,17 @@
 - **Note**: Complementary to existing codecs (HAC++, CompGS); operates on raw Gaussian primitives
 - **Links**: [中英摘要](https://arxiv.org/abs/2605.02086) | [arXiv:2605.02086](https://arxiv.org/abs/2605.02086) | [Code]
 
+### CAGS (Color-Adaptive Volumetric Video Streaming)
+- **Paper**: CAGS: Color-Adaptive Volumetric Video Streaming with Dynamic 3D Gaussian Splatting
+- **Authors**: Daheng Yin, Yili Jin, Jianxin Shi, Isaac Ding, Miao Zhang, Fangxin Wang, Zhaowu Huang, Cong Zhang, Jiangchuan Liu, Fang Dong
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2605.09279
+- **Core**: VQ-based LoD for adaptive 3DGS volumetric video streaming + low-res reference image color-distortion correction
+- **Key Innovation**: Vector quantization establishes quality LoDs for 3DGS streaming; server-side rendering of low-res reference image corrects attribute compression color distortion at client; +5~20 dB PSNR over baselines under fluctuating bandwidth; representation-agnostic (works with diverse Gaussian types)
+- **Trade-off**: Requires server-side rendering for reference images but avoids heavy client-side computation
+- **Related**: Compact-3DGS, HAC, GS-SCNet
+- **Links**: [arXiv:2605.09279](https://arxiv.org/abs/2605.09279) | [Code](https://github.com/yindaheng98/ColorAdaptiveGaussianSplatting)
+
 ## Dynamic Scene Methods
 
 ### 4D Gaussian Splatting (4DGS)
@@ -515,3 +543,23 @@
 - **Key Innovation**: Addresses geometry deformation in dynamic scenes via generative rectification
 - **Category**: Dynamic
 - **Links**: [arXiv:2604.20784](https://arxiv.org/abs/2604.20784)
+
+### ParticleGS
+- **Paper**: ParticleGS: Learning Neural Gaussian Particle Dynamics from Videos for Prior-free Physical Motion Extrapolation
+- **Authors**: Jinsheng Quan, Qiaowei Miao, Yichao Xu, Zizhuo Lin, Ying Li, Wei Yang, Zhihui Li, Yawei Luo
+- **Venue**: CVPR 2026 (Highlight)
+- **ArXiv**: 2505.20270
+- **Core**: Physics-based framework that reformulates dynamic 3D scenes as physically grounded particle systems with Neural ODE evolution for motion extrapolation
+- **Key Innovation**: MPM-inspired decomposition into static properties + initial dynamic physical fields; Neural ODE evolver learns continuous-time dynamics for future prediction; decoder reconstructs 3D Gaussians from evolved particle states; enables accurate physical motion extrapolation beyond observed timeframe (prior-free)
+- **Related**: 4DGS, Dynamic 3D Gaussians, FreeTimeGS++
+- **Links**: [arXiv:2505.20270](https://arxiv.org/abs/2505.20270) | [Code]
+
+### PaMoSplat
+- **Paper**: PaMoSplat: Part-Aware Motion-Guided Gaussian Splatting for Dynamic Scene Reconstruction
+- **Authors**: Yinan Deng, Jianyu Dou, Jiahui Wang, Jingyu Zhao, Yi Yang, Yufeng Yue
+- **Venue**: TCSVT
+- **ArXiv**: 2605.10307
+- **Core**: Part-aware 3DGS with graph-clustered Gaussian parts and differential evolution for rigid motion estimation
+- **Key Innovation**: Graph-based clustering partitions scene into rigid parts; differential evolution estimates per-part rigid motion from optical flow; enables part-level 4D editing and manipulation; handles articulated/deformable objects as collections of rigid parts
+- **Related**: 4DGS, Dynamic 3D Gaussians
+- **Links**: [arXiv:2605.10307](https://arxiv.org/abs/2605.10307) | [Code]

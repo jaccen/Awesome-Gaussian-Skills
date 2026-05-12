@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 53+ known bug patterns.
+description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 55+ known bug patterns.
 version: 1.1.1
 author: jaccen
 tags:
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (53+ known patterns)
+- Identify common 3DGS implementation pitfalls (55+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -271,6 +271,18 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 53 | 4DGS temporal partitioning instability | Unstable dynamic representations with high run-to-run variance when naively assigning Gaussian durations without temporal partitioning; discrepancy between photometric fidelity and spatiotemporal consistency | Use principled duration assignment via gated marginalization + neural velocity fields instead of heuristic per-Gaussian lifetime settings (FreeTimeGS++, ArXiv 2605.03337) |
+
+### Fluid & Particle GS Patterns (LagrangianSplats, ParticleGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 54 | Missing divergence-free constraint in fluid GS | Unphysical fluid behavior: volume not conserved; fluid appears to compress/expand; particles cluster or disperse non-physically | Enforce divergence-free velocity field constraint (∇·v = 0) as soft loss or projection step; use Helmholtz decomposition to project velocity onto divergence-free subspace; verify incompressibility by checking ∂ρ/∂t ≈ 0 over simulation steps (LagrangianSplats, ParticleGS context) |
+
+### VQ Compression & Streaming Patterns (CAGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 55 | VQ codebook inconsistency across LoD levels in streaming | Visual popping when switching LOD levels; color/opacity discontinuity at chunk boundaries; codebook drift between independently trained LoD tiers | Share a single global codebook across all LoD levels; align quantization boundaries during training with multi-resolution consistency loss; validate cross-LoD decode coherence with PSNR threshold per transition (CAGS context) |
 
 ## Output Format
 

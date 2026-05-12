@@ -1,6 +1,6 @@
 ﻿# 3DGS Methods Overview
 
-> This file is the master index for all 212+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 222+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -33,6 +33,7 @@
 - **SAND** — Spatially adaptive network depth for efficient neural implicit surface sampling (SIGGRAPH 2026 TOG)
 - **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA
 - **SVGS** [arXiv:2411.18966](https://arxiv.org/abs/2411.18966) — Spatially varying colors + opacity within each Gaussian primitive; three designs (bilinear / movable kernels / tiny MLP); Blender SOTA
+- **HiFi-SurfSplat** [arXiv:2605.07254](https://arxiv.org/abs/2605.07254) — Compact polynomial kernel replacing IMLS + Laplacian stochastic regularization for high-freq geometry preservation
 
 > Full details in [methods-core.md](methods-core.md#surface--geometry-methods)
 
@@ -44,6 +45,7 @@
 - **Vol3DGS** — Physically accurate volume-consistent rendering resolving splatting/volume inconsistency
 - **BrepGaussian** [arXiv:2602.21105](https://arxiv.org/abs/2602.21105) — 3DGS + B-rep CAD reconstruction to parametric STEP models
 - **CADFS** [arXiv:2605.01925](https://arxiv.org/abs/2605.01925) — Large-scale CAD program dataset + LLM-assisted CAD understanding (CVPR 2026)
+- **CADFit** [arXiv:2605.01171](https://arxiv.org/abs/2605.01171) — IoU-driven hybrid optimization over structured CAD programs (extrusions, revolutions, fillets, chamfers); multimodal image-to-CAD pipeline
 
 > Full details in [methods-core.md](methods-core.md#cad--mesh--hybrid-methods)
 
@@ -87,6 +89,7 @@
 - **NanoGS** [arXiv:2603.16103](https://arxiv.org/abs/2603.16103) — Training-free simplification via local pairwise merging
 - **MesonGS++** [arXiv:2604.26799](https://arxiv.org/abs/2604.26799) — Post-training codec with 34x compression + ILP hyperparameter search
 - **GETA-3DGS** [arXiv:2605.02086](https://arxiv.org/abs/2605.02086) — End-to-end automatic joint pruning + quantization
+- **CAGS** [arXiv:2605.09279](https://arxiv.org/abs/2605.09279) — VQ-based LoD for 3DGS streaming + low-res reference image color-distortion correction; +5~20 dB PSNR over baselines (SIGGRAPH 2026)
 
 > Full details in [methods-core.md](methods-core.md#compression-methods)
 
@@ -101,6 +104,8 @@
 - **FreeTimeGS++** [arXiv:2605.03337](https://arxiv.org/abs/2605.03337) — Principled analysis + gated marginalization for 4DGS stability
 - **ClipGStream** [arXiv:2604.13746](https://arxiv.org/abs/2604.13746) — Clip-stream any-length any-motion multi-view dynamic scene reconstruction (CVPR 2026)
 - **GeoRect4D** [arXiv:2604.20784](https://arxiv.org/abs/2604.20784) — Geometry-compatible generative rectification for dynamic sparse-view 3D reconstruction
+- **ParticleGS** [arXiv:2505.20270](https://arxiv.org/abs/2505.20270) — Physics-based MPM-inspired 4DGS with Neural ODE evolver for prior-free motion extrapolation (CVPR 2026 Highlight)
+- **PaMoSplat** [arXiv:2605.10307](https://arxiv.org/abs/2605.10307) — Part-aware GS with graph-clustered Gaussian parts + differential evolution for rigid motion; part-level 4D editing (TCSVT)
 
 > Full details in [methods-core.md](methods-core.md#dynamic-scene-methods)
 
@@ -112,6 +117,7 @@
 - **NG-GS** [arXiv:2604.14706](https://arxiv.org/abs/2604.14706) — NeRF-guided Gaussian-level semantic assignment
 - **Ilov3Splat** [arXiv:2605.04506](https://arxiv.org/abs/2605.04506) — Instance-level open-vocabulary 3D scene understanding with CLIP + SAM instance masks (ICPR 2026)
 - **OpenGaFF** [arXiv:2605.06088](https://arxiv.org/abs/2605.06088) — Open-vocabulary Gaussian feature field with codebook attention for improved spatial coherence and semantic consistency
+- **ReferSplat** [GitHub](https://github.com/heshuting555/ReferSplat) — Referring segmentation in 3D Gaussian Splatting with language-guided instance selection (ICML 2025 Oral)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#language--semantic)
 
@@ -126,6 +132,7 @@
 - **HeroGS** — Hierarchical image→region→pixel guidance for sparse-view robustness
 - **GSCompleter** [arXiv:2604.20155](https://arxiv.org/abs/2604.20155) — Distillation-free sparse-view completion via Stereo-Anchor
 - **GenWildSplat** [arXiv:2604.28193](https://arxiv.org/abs/2604.28193) — See Feed-Forward for details (cross-category: also sparse-view)
+- **FrameTwin** [arXiv:2605.09362](https://arxiv.org/abs/2605.09362) — Curve-anchored Gaussian alignment from sparse views for adaptive wireframe 3D printing
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#few-shot--sparse-view)
 
@@ -166,6 +173,7 @@
 - **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — See Surface & Geometry for details (cross-category: also inverse rendering)
 - **Relit-LiVE** [arXiv:2605.06658](https://arxiv.org/abs/2605.06658) — Relight video by jointly learning environment video (SIGGRAPH 2026)
 - **DiffAdapt4DSI** [arXiv:2605.06214](https://arxiv.org/abs/2605.06214) — Differentiable adaptive 4D structured illumination for joint capture of shape and reflectance (CVPR 2026)
+- **Relightable-GS-VP** [arXiv:2605.09024](https://arxiv.org/abs/2605.09024) — GS-based relighting for Virtual Production with image-based illumination; UV-parameterized primitives sampling image space
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#material--relighting-methods)
 
@@ -218,6 +226,7 @@
 - **MAGICIAN** [arXiv:2603.22650](https://arxiv.org/abs/2603.22650) — Active mapping with imagined Gaussians + beam search
 - **MonoEM-GS** [arXiv:2604.10593](https://arxiv.org/abs/2604.10593) — Monocular expectation-maximization GS SLAM
 - **GGD-SLAM** [arXiv:2604.12837](https://arxiv.org/abs/2604.12837) — Monocular 3DGS SLAM with generalizable motion model
+- **2DGS-SLAM** [GitHub](https://github.com/PRBonn/2DGS-SLAM) — Globally consistent RGB-D SLAM with 2DGS; loop closure + global optimization (TRO 2026)
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#slam)
 
@@ -268,6 +277,7 @@
 - **PatchPoison** [arXiv:2604.13153](https://arxiv.org/abs/2604.13153) — Poisoning multi-view datasets to degrade 3D reconstruction (Security)
 - **Aes3D** [arXiv:2605.05155](https://arxiv.org/abs/2605.05155) — First systematic framework for 3DGS aesthetic assessment with Aesthetic3D dataset + Aes3DGSNet
 - **GS-STVSR** [arXiv:2604.18047](https://arxiv.org/abs/2604.18047) — Ultra-efficient continuous spatio-temporal video super-resolution via 2D Gaussian Splatting
+- **LagrangianSplats** [arXiv:2605.09299](https://arxiv.org/abs/2605.09299) — Divergence-free constraint on Gaussian advection for fluid velocity field reconstruction
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
