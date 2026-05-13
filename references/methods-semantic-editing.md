@@ -71,6 +71,15 @@
 - **Key Innovation**: Language-guided 3D instance segmentation within 3DGS framework; enables precise referring and manipulation of specific objects in 3D scenes using natural language descriptions
 - **Links**: [GitHub](https://github.com/heshuting555/ReferSplat)
 
+### PointGS
+- **Paper**: PointGS: Semantic-Consistent Unsupervised 3D Point Cloud Segmentation with Gaussian Splatting
+- **Authors**: Yixiao Song et al.
+- **Venue**: CVPR 2026
+- **ArXiv**: 2605.11520
+- **Core**: Uses 3DGS as unified intermediate representation bridging discrete-continuous domain gap for point cloud segmentation
+- **Key Innovation**: SAM masks distilled to 3D Gaussian primitives via contrastive learning; bridges discrete point cloud domain and continuous 3DGS domain; +0.9% mIoU ScanNet, +2.8% S3DIS over baselines; first to leverage 3DGS representation for unsupervised point cloud segmentation
+- **Links**: [arXiv:2605.11520](https://arxiv.org/abs/2605.11520)
+
 ## Image Representation
 
 ### GaussianImage
@@ -124,6 +133,32 @@
 - **Core**: Gaussian kernels anchored to parametric curves for sparse-view deformation alignment
 - **Key Innovation**: Curve-anchored Gaussian representation reduces ambiguity for thin wireframe structures; adaptive alignment from sparse views enables direct 3D printing of wireframe objects; parametric curve priors constrain Gaussian deformation
 - **Links**: [arXiv:2605.09362](https://arxiv.org/abs/2605.09362) | [Code]
+
+### GeoQuery
+- **Paper**: GeoQuery: Geometry-Query Diffusion for Sparse-View Reconstruction
+- **Authors**: Xiao Cao et al.
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2605.12399
+- **Core**: Geometry-guided cross-view attention replacing corrupted rendering features with geometry-aligned proxy queries for sparse-view 3DGS
+- **Key Innovation**: Geometry-guided Cross-View Attention (GCA) replaces corrupted rendering features with geometry-aligned proxy queries from predicted depth + camera poses; diffusion-guided refinement stages; significantly improves sparse-view reconstruction quality
+- **Links**: [arXiv:2605.12399](https://arxiv.org/abs/2605.12399)
+
+### PairDropGS
+- **Paper**: PairDropGS: Paired Dropout-Induced Consistency Regularization for Sparse-View Gaussian Splatting
+- **Authors**: Hantang Li et al.
+- **ArXiv**: 2605.12072
+- **Core**: Constructs paired dropped Gaussian subsets with low-frequency consistency regularization for sparse-view GS
+- **Key Innovation**: Constructs paired dropped Gaussian subsets from shared field; low-frequency consistency regularization enforces global coherence; progressive consistency scheduling strategy for stable training; addresses overfitting in sparse-view scenarios
+- **Links**: [arXiv:2605.12072](https://arxiv.org/abs/2605.12072)
+
+### VidSplat
+- **Paper**: VidSplat: Gaussian Splatting with Geometry-Guided Video Diffusion Priors
+- **Authors**: Jimin Tang et al.
+- **Venue**: SIGGRAPH 2026
+- **ArXiv**: 2605.11424
+- **Core**: Training-free generative framework leveraging video diffusion priors for sparse-view 3DGS reconstruction
+- **Key Innovation**: Stage-wise denoising guided by rendered RGB/mask from initial 3DGS; iterative confidence-weighted refinement leveraging temporal coherence in video diffusion models; training-free - no additional optimization required; achieves high-quality sparse-view reconstruction via generative priors
+- **Links**: [arXiv:2605.11424](https://arxiv.org/abs/2605.11424)
 
 ## Large-Scale Methods
 
@@ -408,3 +443,22 @@
 - **Key Innovation**: Trains powerful delighting network as prior using OLAT dataset + rendered Light Stage scans via Dataset Latent Modulation (DLM); decouples dataset-specific styles from physical delighting principles; simple automatic pipeline from casual smartphone video to high-quality reflectance estimation; creates NeRSemble-Scan (4K relightable scan dataset, open-sourced)
 - **Related**: D-Rex, HumanSplatHMR, GaussianShader
 - **Links**: [arXiv:2605.05636](https://arxiv.org/abs/2605.05636) | [Project](https://yuxuanhan.github.io/delight-prior/) | [Code]
+
+### SDTalk
+- **Paper**: SDTalk: Structured Facial Priors and Dual-Branch Motion Fields for Gaussian Talking Head
+- **Authors**: Peng Jia et al.
+- **ArXiv**: 2605.09956
+- **Core**: Structured facial priors combined with dual-branch motion fields for generalizable Gaussian-based talking head synthesis
+- **Key Innovation**: Structured facial priors constrain Gaussian deformation to physically plausible facial expressions; dual-branch motion fields decompose facial dynamics into global head motion and local expression details; generalizable across identities without per-person fine-tuning
+- **Related**: EmoTaG, SketchFaceGS
+- **Links**: [arXiv:2605.09956](https://arxiv.org/abs/2605.09956)
+
+### HairGPT
+- **Paper**: HairGPT: Strand-as-Language Autoregressive Modeling for 3D Hairstyle Synthesis
+- **Authors**: Haimin Luo et al.
+- **Venue**: SIGGRAPH 2026 Journal Track
+- **ArXiv**: 2605.08824
+- **Core**: Autoregressive strand-as-language modeling for realistic 3D hairstyle synthesis
+- **Key Innovation**: Treats hair strands as language tokens in autoregressive model; enables controllable 3D hairstyle generation from text or image prompts; generates geometrically and visually realistic hair strands with strand-level detail; bridges language models and 3D hair representation
+- **Related**: GaussianAvatar, DelightingFace
+- **Links**: [arXiv:2605.08824](https://arxiv.org/abs/2605.08824)

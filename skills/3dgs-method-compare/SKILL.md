@@ -1,6 +1,26 @@
+---
+name: 3dgs-method-compare
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 240+ methods across 21 categories"
+version: 1.4.2
+author: jaccen
+tags:
+  - 3dgs
+  - gaussian-splatting
+  - method-comparison
+  - research
+trigger:
+  - "对比方法"
+  - "compare methods"
+  - "方法差异"
+  - "和什么区别"
+  - "3DGS对比"
+  - "method comparison"
+  - "哪个好"
+---
+
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 222+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 240+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -128,6 +148,8 @@ When comparing methods, analyze across the following dimensions:
 | DiffSoup | arXiv'26 (2603.27151) | Extreme simplification | Triangle soup as alternative primitive to Gaussians |
 | 3DSS | arXiv'26 (2605.05876) | High (inverse rendering) | First differentiable surface splatting; coverage-based compositing from EWA; joint shape+SVBRDF+lighting |
 | SVGS | arXiv'24 (2411.18966) | High (Blender SOTA) | Spatially varying color+opacity within each Gaussian; movable kernels (1.4x params); >30 FPS |
+| AmbiSuR | ICML'26 | High (photometric) | Photometric ambiguity disambiguation for accurate GS surface reconstruction |
+| DySurface | arXiv'26 | High (4D surface) | Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction |
 
 ### Generation / Text-to-3D
 
@@ -148,6 +170,7 @@ When comparing methods, analyze across the following dimensions:
 | Semantic Foam | CVPR'26 (Highlight) | Volumetric Voronoi mesh | Per-cell semantic feature field | Semantic decomposition; outperforms Gaussian Grouping, SAGA |
 | GLMap | CVPR'26 | Multi-scale semantics | Per-Gaussian language features | Gaussian-Language Map; zero-shot navigation |
 | NG-GS | arXiv'26 (2604.14706) | NeRF-guided | Per-Gaussian segmentation | NeRF-guided GS segmentation |
+| PointGS | CVPR'26 | SAM masks (contrastive distillation) | Per-Gaussian semantic features | 3DGS as unified intermediate for unsupervised 3D point cloud segmentation; SAM→3D contrastive learning |
 
 ### Feed-Forward Methods
 
@@ -174,6 +197,7 @@ When comparing methods, analyze across the following dimensions:
 | S3PO-GS | ICCV'25 | Monocular video | Outdoor | Scale-consistent pose optimization, eliminates outdoor scale drift |
 | Flow4DGS-SLAM | arXiv'26 | Monocular video | Room-scale | Optical flow-guided 4DGS for temporal consistency |
 | E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
+| MAGS-SLAM | arXiv'26 | RGB (multi-agent) | Multi-room | First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification |
 
 ### Large-Scale Methods
 
@@ -204,6 +228,11 @@ When comparing methods, analyze across the following dimensions:
 | Sparse-View 3DGS Wild | arXiv'26 | Sparse-view NVS | Diffusion-guided sparse-view enhancement |
 | Pi-GS | arXiv'26 (2602.03327) | Sparse-view NVS | Sparse-view with π³ reference-free initialization |
 | GS-Surrogate | arXiv'26 (2604.06358) | Physics simulation | Deformable GS for simulation visualization |
+| 3DGEER | ICLR'26 | Rendering (exact) | Exact ray-Gaussian rendering replacing splatting; fisheye/generic camera support; top 1% |
+| Forecast-GS | arXiv'26 | Robotics | Predictive GS for forecasting task-completed states in robotic manipulation |
+| GeoQuery | SIGGRAPH'26 | Sparse-view NVS | Geometry-guided cross-view attention with geometry-aligned proxy queries from predicted depth |
+| PairDropGS | arXiv'26 | Sparse-view NVS | Paired dropout-induced consistency regularization with progressive scheduling |
+| VidSplat | SIGGRAPH'26 | Sparse-view NVS | Training-free generative framework leveraging video diffusion priors with iterative confidence refinement |
 
 ### Dynamic / 4DGS Methods
 
@@ -211,6 +240,9 @@ When comparing methods, analyze across the following dimensions:
 |--------|-------|-----------|-----------|-------------|
 | FreeTimeGS++ | arXiv'26 (2605.03337) | 4D Gaussians + durations | Gated marginalization | Neural velocity fields + emergent temporal partitioning; comprehensive 4DGS analysis |
 | ParticleGS | arXiv'26 | 3D anisotropic + physics | Standard α-compositing | Physics-based motion extrapolation for fluid/dynamic scenes; Lagrangian particle dynamics |
+| TransmissiveGS | arXiv'26 | Dual-GS (surface + reflection) | Deferred shading | Transmissive + reflective dual decomposition; separate G-buffer compositing for glass/refractive objects |
+| PD-4DGS | arXiv'26 | 3-layer progressive (static + global deform + local refine) | Progressive streaming | DASH/HLS-compatible 4DGS streaming; ~1.7s first-frame latency vs 73-930s monolithic |
+| 3DGS³ | arXiv'26 | 3D anisotropic (super-sampled) | Standard + temporal interpolation | Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for large-scale 3DGS |
 
 ### Human & Avatar Methods
 
@@ -218,6 +250,8 @@ When comparing methods, analyze across the following dimensions:
 |--------|-------|-------|-------------|
 | HumanSplatHMR | arXiv'26 | Image | Joint pose-avatar optimization; closes loop between HMR and differentiable rendering |
 | EmoTaG | CVPR'26 (2603.21332) | Image + audio | Emotion-aware talking head on GS |
+| SDTalk | arXiv'26 | Image + audio | Structured facial priors + dual-branch motion fields for Gaussian talking head |
+| HairGPT | SIGGRAPH'26 | Text/image | Strand-as-Language autoregressive modeling for 3D hairstyle synthesis |
 | D-Rex | SIGGRAPH'26 (2604.27871) | White-light avatar + target illumination | Decoupled relighting via LoRA fine-tuned video diffusion post-process; applicable to any white-light avatar system |
 
 ### Autonomous Driving Methods
@@ -233,6 +267,7 @@ When comparing methods, analyze across the following dimensions:
 | Method | Venue | Framework | Key Feature |
 |--------|-------|-----------|-------------|
 | VkSplat | Eurographics'26 | Vulkan | Vulkan-based 3DGS training; 3.3x speed; cross-vendor |
+| brush | Open-source | Rust/WebGPU/Burn | Cross-platform 3DGS training (Win/Mac/Linux/Android/Web); 4.3k stars; faster than gsplat |
 
 ### Training Acceleration Methods
 

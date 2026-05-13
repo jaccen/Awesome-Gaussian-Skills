@@ -1,3 +1,16 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8fc9df71-434a-45c7-99f8-3168888c0fd1'
+  PropagateID: '8fc9df71-434a-45c7-99f8-3168888c0fd1'
+  ReservedCode1: 'a86471e7-894b-4245-b6c6-1267c805505b'
+  ReservedCode2: 'a86471e7-894b-4245-b6c6-1267c805505b'
+---
+
+---
+
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -37,6 +50,16 @@
 - **Key Innovation**: Enforces softmax competition in overlapping regions; learnable parameters control blend-vs-bound strength (smooth blending  → crisp boundaries); preserves order invariance and transmittance consistency; addresses both view-inconsistency and diffuse-boundary problems in a unified formulation
 - **Trade-off**: Higher parameter efficiency with better reconstruction quality on real-world benchmarks
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.27437) | [arXiv:2604.27437](https://arxiv.org/abs/2604.27437) | [Code]
+
+### 3DGEER (Exact Gaussian Rendering)
+- **Paper**: 3DGEER: Exact Gaussian Rendering for Fisheye and Generic Cameras
+- **Authors**: Bosch Research
+- **Venue**: ICLR 2026 (top 1% score)
+- **GitHub**: [boschresearch/3dgeer](https://github.com/boschresearch/3dgeer)
+- **Core**: Exact ray-Gaussian integration replacing splatting approximation for fisheye and generic camera models
+- **Key Innovation**: Challenges the fundamental splatting approximation in 3DGS by computing exact ray-Gaussian interactions; enables high-fidelity rendering for fisheye, omnidirectional, and other non-pinhole cameras critical for autonomous driving and robotics; extends gsplat with gsplat-geer
+- **Trade-off**: More computationally intensive per-ray but eliminates approximation errors that compound in wide-FOV cameras
+- **Links**: [GitHub](https://github.com/boschresearch/3dgeer)
 
 ## Surface & Geometry Methods
 
@@ -138,6 +161,31 @@
 - **Core**: Compact polynomial kernel replacing exponential IMLS kernels for high-fidelity surface splatting reconstruction
 - **Key Innovation**: Compact polynomial approximation of IMLS kernel reduces computation; Laplacian stochastic regularization preserves high-frequency geometry; better surface detail than vanilla surface splatting methods
 - **Links**: [arXiv:2605.07254](https://arxiv.org/abs/2605.07254) | [Code]
+
+### AmbiSuR
+- **Paper**: AmbiSuR: Revisiting Photometric Ambiguity for Accurate Gaussian Splatting Surface Reconstruction
+- **Authors**: Jiahe Li et al.
+- **Venue**: ICML 2026
+- **ArXiv**: 2605.12494
+- **Core**: Discovers and resolves two built-in primitive-wise ambiguities in GS representation for surface reconstruction
+- **Key Innovation**: Identifies photometric ambiguities intrinsic to Gaussian-based surface representation; introduces photometric disambiguation module + ambiguity self-indication module; corrects underconstrained reconstructions that conventional losses cannot resolve
+- **Links**: [arXiv:2605.12494](https://arxiv.org/abs/2605.12494)
+
+### DySurface
+- **Paper**: DySurface: Consistent 4D Surface Reconstruction via Bridging Explicit Gaussians and Implicit SDFs
+- **Authors**: Minje Kim et al.
+- **ArXiv**: 2605.10360
+- **Core**: Bridges forward-deformation Gaussians with backward-deformation SDF for consistent 4D surface reconstruction
+- **Key Innovation**: VoxGS-DSDF dual branch: deformed Gaussians construct dynamic sparse voxel grid to regularize implicit SDF; combines explicit Gaussian flexibility with implicit SDF's watertight boundary guarantees; achieves temporally consistent 4D surface reconstruction
+- **Links**: [arXiv:2605.10360](https://arxiv.org/abs/2605.10360)
+
+### TransmissiveGS
+- **Paper**: TransmissiveGS: Residual-Guided Disentangled Gaussian Splatting for Transmissive Scene Reconstruction
+- **Authors**: Zhenyu Liang et al.
+- **ArXiv**: 2605.10705
+- **Core**: Dual-Gaussian representation with deferred shading for transmissive and refractive scenes
+- **Key Innovation**: Exploits multi-view inconsistency of reflections as cues for disentangled geometry/appearance; dual-Gaussian (surface + reflection) with deferred shading pipeline; reflection light field for near-field reflections; handles glass, windows, and transparent objects
+- **Links**: [arXiv:2605.10705](https://arxiv.org/abs/2605.10705)
 
 ## CAD / Mesh / Hybrid Methods
 
@@ -376,6 +424,14 @@
 - **Category**: Feed-Forward / Few-Shot
 - **Links**: [arXiv:2604.28193](https://arxiv.org/abs/2604.28193)
 
+### AdaptSplat
+- **Paper**: AdaptSplat: Adapting Vision Foundation Models for Feed-Forward 3D Gaussian Splatting
+- **Authors**: Mingwei Xing et al.
+- **ArXiv**: 2605.10239
+- **Core**: Lightweight Frequency-Preserving Adapter on generic feed-forward 3DGS pipeline
+- **Key Innovation**: Only 1.5M additional parameters; Frequency-Preserving Adapter extracts direction-aware high-frequency structural priors from shallow features; preserves fine details that standard feed-forward methods lose; SOTA on feed-forward benchmarks
+- **Links**: [arXiv:2605.10239](https://arxiv.org/abs/2605.10239)
+
 ## Compression Methods
 
 ### Compact-3DGS
@@ -563,3 +619,23 @@
 - **Key Innovation**: Graph-based clustering partitions scene into rigid parts; differential evolution estimates per-part rigid motion from optical flow; enables part-level 4D editing and manipulation; handles articulated/deformable objects as collections of rigid parts
 - **Related**: 4DGS, Dynamic 3D Gaussians
 - **Links**: [arXiv:2605.10307](https://arxiv.org/abs/2605.10307) | [Code]
+
+### PD-4DGS
+- **Paper**: PD-4DGS: Progressive Decomposition of 4DGS for Bandwidth-Adaptive Dynamic Scene Streaming
+- **Authors**: Jiachen Li et al.
+- **ArXiv**: 2605.11427
+- **Core**: First progressive compression/transmission framework for 4DGS dynamic scenes
+- **Key Innovation**: Hierarchical Deformation Decomposition (HDD) creates 3 independently transmittable layers: static scaffold, global deformation, local refinement; DASH/HLS-compatible bitstream for standard video players; reduces first-frame latency from 73-930s to ~1.7s; enables bandwidth-adaptive streaming of dynamic 3DGS
+- **Related**: CAGS, ClipGStream, FreeTimeGS++
+- **Links**: [arXiv:2605.11427](https://arxiv.org/abs/2605.11427)
+
+### 3DGS³ (Super Sampling + Frame Interpolation)
+- **Paper**: 3DGS³: Joint Super Sampling and Frame Interpolation for Real-Time Large-Scale 3D Gaussian Splatting Rendering
+- **Authors**: Yibo Zhao et al.
+- **ArXiv**: 2605.11489
+- **Core**: Post-rendering framework combining super sampling and temporal frame interpolation for large-scale 3DGS
+- **Key Innovation**: Gradient-Aware Super Sampling (GASS) extracts differentiable image gradients from 3DGS + GRU refinement; Lightweight Temporal Frame Interpolation (LTFI) generates intermediate frames; enables real-time high-quality rendering of large-scale scenes on consumer hardware
+- **Related**: Scaffold-GS, CityGaussian, QuadBox
+- **Links**: [arXiv:2605.11489](https://arxiv.org/abs/2605.11489)
+
+> AI生成

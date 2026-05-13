@@ -1,7 +1,7 @@
 ---
 name: 3dgs-engineering-guide
 description: "Guide for deploying 3D Gaussian Splatting from research to production: industry use cases, engineering pipelines, tool selection, and deployment best practices"
-version: 1.0.0
+version: 1.0.1
 author: jaccen
 tags:
   - 3dgs
@@ -831,7 +831,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 ### 5.5 CUDA Lock-in / CUDA绑定
 **Symptom**: pipeline only runs on NVIDIA GPUs; cannot deploy to AMD/Intel/Mobile hardware.
 **Cause**: original 3DGS is CUDA-only; custom CUDA kernels for differentiation.
-**Fix**: plan cross-platform from architecture phase; use VkSplat (Vulkan) for non-NVIDIA deployment; GSeurat (Vulkan C++23) for full training without CUDA; msplat (Metal) for Apple ecosystem; tortuise (CPU Rust) for offline/edge deployment; isolate CUDA-specific code behind abstraction layer; evaluate WebGPU for universal fallback.
+**Fix**: plan cross-platform from architecture phase; use VkSplat (Vulkan) for non-NVIDIA deployment; GSeurat (Vulkan C++23) for full training without CUDA; msplat (Metal) for Apple ecosystem; tortuise (CPU Rust) for offline/edge deployment; brush (Rust/WebGPU/Burn) for the most complete cross-platform training coverage (Win/Mac/Linux/Android/Web, faster than gsplat); isolate CUDA-specific code behind abstraction layer; evaluate WebGPU for universal fallback.
 
 ### 5.6 No Version Control for 3DGS Assets / 3DGS资产无版本管理
 **Symptom**: cannot reproduce previous reconstruction; cannot track scene changes over time.
@@ -898,6 +898,7 @@ When the user asks about a specific application domain, reference these papers f
 - **GSeurat** — Vulkan-based 3DGS training in C++23 (cross-platform, no CUDA dependency)
 - **msplat** — Metal-based 3DGS for Apple ecosystem (macOS/iOS native)
 - **tortuise** — CPU-only Rust implementation for offline/low-power deployment
+- **brush** (Rust/WebGPU/Burn) — Cross-platform 3DGS training covering Win/Mac/Linux/Android/Web; 4.3k stars; faster than gsplat; most complete cross-platform solution to date
 - **AdaGScale** — adaptive scale for cross-platform
 
 ### BIM/CAD / BIM与CAD
@@ -995,6 +996,10 @@ python compress_tile.py --input ./city_block/point_cloud \
 | tortuise | CPU Rust高斯渲染 | CPU-only Rust implementation; offline/low-power/edge deployment without GPU |
 | CAGS | 压缩自适应流式高斯 | VQ-based compression + LoD streaming for bandwidth-adaptive 3DGS deployment (~7x compression) |
 | SPZ | Niantic压缩格式 | Niantic SPZ format (~10x compression) optimized for mobile/AR streaming |
+| PD-4DGS | 渐进式4DGS流式传输 | Progressive Decomposition of 4DGS for bandwidth-adaptive dynamic scene streaming; DASH/HLS-compatible; ~1.7s first-frame latency |
+| brush | 跨平台Rust/WebGPU高斯训练 | Cross-platform 3DGS training engine (Rust + WebGPU + Burn); runs on Win/Mac/Linux/Android/Web; 4.3k stars; faster than gsplat in benchmarks |
+| 3DGEER | 精确高斯渲染 | Exact ray-Gaussian rendering replacing splatting approximation; for fisheye/generic cameras; ICLR 2026 top 1% |
+| Forecast-GS | 预测式高斯表示 | Predictive 3D Gaussian representation for forecasting task-completed states in robotic manipulation |
 
 ---
 

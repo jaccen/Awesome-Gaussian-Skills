@@ -115,6 +115,14 @@
 - **Innovation**: Voxel-grounded temporal Gaussian aggregation for pose-free off-road 4D reconstruction. Partitions canonical Gaussian space into spatial voxels with query-conditioned temporal attention within each voxel, resolving temporal conflicts in unstructured off-road scenes
 - **Links**: [arXiv:2605.04435](https://arxiv.org/abs/2605.04435) | [Code](https://github.com/wsnbws/Ground4D)
 
+### PointForward
+- **Paper**: PointForward: Feedforward Driving Reconstruction through Point-Aligned Representations
+- **Authors**: Cheng Chi et al.
+- **ArXiv**: 2605.11594
+- **Core**: Sparse 3D queries in world space (vs. pixel-aligned) with spatial-temporal fusion for feedforward driving scene reconstruction
+- **Key Innovation**: Sparse 3D queries operating in world space rather than pixel-aligned; spatial-temporal fusion module for coherent dynamic reconstruction; scene graphs for instance-level motion propagation; SOTA on large-scale driving benchmarks; enables feedforward reconstruction without per-scene optimization
+- **Links**: [arXiv:2605.11594](https://arxiv.org/abs/2605.11594)
+
 ## SLAM
 
 ### Gaussian Splatting SLAM
@@ -197,6 +205,14 @@
 - **Core**: Globally consistent RGB-D SLAM using 2D Gaussian Splatting as map representation
 - **Key Innovation**: Uses surface-aligned 2D Gaussians for SLAM mapping; loop closure detection + global optimization for drift-free trajectories; 2DGS provides better surface geometry than 3DGS for SLAM applications
 - **Links**: [GitHub](https://github.com/PRBonn/2DGS-SLAM)
+
+### MAGS-SLAM
+- **Paper**: MAGS-SLAM: Monocular Multi-Agent Gaussian Splatting SLAM
+- **Authors**: Zhihao Cao et al.
+- **ArXiv**: 2605.10760
+- **Core**: First RGB-only multi-agent 3DGS SLAM system for collaborative mapping
+- **Key Innovation**: Compact submap communication between agents; geometry/appearance-aware loop verification for robust multi-agent loop closure; occupancy-aware Gaussian fusion for consistent map merging; introduces ReplicaMultiagent Plus benchmark for multi-agent SLAM evaluation; RGB-only - no depth sensor required
+- **Links**: [arXiv:2605.10760](https://arxiv.org/abs/2605.10760)
 
 ## Training & Optimization
 
@@ -339,6 +355,14 @@
   4. **Embodied AI**: FreeMoCap data + 3DGS scene = sim-to-real transfer pipeline for robot learning
 - **License note**: AGPL-3.0 (not MIT); derivative works must be open-sourced under AGPL; check compatibility before commercial deployment
 - **Links**: [GitHub](https://github.com/freemocap/freemocap) | [Website](https://freemocap.org) | [Docs](https://freemocap.github.io/documentation) | [Discord](https://discord.gg/SgdnzbHDTG) | [DOI](https://doi.org/10.5281/zenodo.7233714)
+
+### Forecast-GS
+- **Paper**: Forecast-GS: Forecast-aware Gaussian Splatting for Predictive 3D Representation in Manipulation
+- **Authors**: Kaixin Jia, Jiacheng Xu
+- **ArXiv**: 2605.11144
+- **Core**: Predictive 3D Gaussian representation forecasting task-completed states for language-conditioned robotic manipulation
+- **Key Innovation**: Predicts future task-completed 3D states from current observations; language-conditioned forecasting enables goal-directed manipulation planning; achieves 21/25-23/25 success rates vs. ReKep baseline 15/25-19/25; bridges 3DGS representation with predictive manipulation planning
+- **Links**: [arXiv:2605.11144](https://arxiv.org/abs/2605.11144)
 
 ## Cross-Domain Applications
 
@@ -577,3 +601,21 @@
 - **Core**: Structurally enforces divergence-free constraint on 3DGS advection for physically-consistent fluid velocity field reconstruction
 - **Key Innovation**: Divergence-free constraint on Gaussian motion ensures incompressible fluid behavior; sliding window optimization for temporal coherence; renders fluid dynamics from sparse 2D video observations; bridges 3DGS with computational fluid dynamics
 - **Links**: [arXiv:2605.09299](https://arxiv.org/abs/2605.09299) | [Code]
+
+### PG-3DGS
+- **Paper**: PG-3DGS: Physics-Guided 3D Gaussian Splatting
+- **Authors**: Zachary Lee et al.
+- **ArXiv**: 2605.11266
+- **Core**: Couples differentiable physics simulation with 3D Gaussian representations for physically consistent 3D reconstruction
+- **Key Innovation**: Physical objectives from differentiable simulation guide shape optimization alongside visual losses; enables 3DGS to reconstruct objects that satisfy physical constraints; validated with 3D-printed aircraft lift tests confirming physical fidelity; bridges visual reconstruction and physical simulation
+- **Related**: ParticleGS, FieryGS, LagrangianSplats
+- **Links**: [arXiv:2605.11266](https://arxiv.org/abs/2605.11266)
+
+### XFreq-GS
+- **Paper**: XFreq-GS: Cross-Frequency Wireless Radiation Field Reconstruction with 3D Gaussian Splatting
+- **Authors**: Sheng Wang et al.
+- **ArXiv**: 2605.11432
+- **Core**: 3D Gaussians with shared geometry + frequency-adaptive RF attributes for cross-frequency wireless radiation field reconstruction
+- **Key Innovation**: Shared geometric Gaussian structure across frequencies; frequency-adaptive RF attributes capture frequency-dependent propagation; synthesizes power angular spectrum (PAS) maps at unseen frequencies; extends 3DGS from visual to radio-frequency domain
+- **Related**: BiSplat-WRF, AudioGS
+- **Links**: [arXiv:2605.11432](https://arxiv.org/abs/2605.11432)

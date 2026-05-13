@@ -1,3 +1,4 @@
+---
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -48,7 +49,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 - **10 Research-Grade Skills**: Paper reading, method comparison, code review, experiment planning, NeRF-to-3DGS migration, CAD/Mesh-3DGS bridge, CG paper writing, research visualization (radar charts, timelines, comparison tables), engineering deployment guide, and patent & software copyright generation
 - **Zero Setup**: Pure SKILL.md files — no Python packages, no dependencies, no installation. Just drop into your Agent's skill directory
 - **Cross-Platform Compatible**: Works with [OpenClaw](https://github.com/openclaw), Claude Code, Cursor, Windsurf, and any Agent that supports the SKILL.md / CLAUDE.md format
-- **Domain Expert Knowledge**: Built-in knowledge base covering 222+ 3DGS variants across 21 categories, with domain-specific terminology conventions
+- **Domain Expert Knowledge**: Built-in knowledge base covering 240+ 3DGS variants across 21 categories, with domain-specific terminology conventions
 - **Text2Word Demo**: Interactive web experience that turns natural language descriptions into 3D Gaussian scenes — describe a castle, gear, or any scene in words, and get instant method recommendations, generation pipeline visualization, WebGL 3D preview, and multi-format export (3DGS/mesh/CAD)
 - **Actively Maintained**: Daily updates to track the latest arXiv papers and community developments
 
@@ -122,7 +123,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 222+ methods
+- Built-in knowledge of 240+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -315,7 +316,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (222+ methods across 21 categories)
+│   ├── 3dgs-methods-overview.md # Index (240+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -362,8 +363,8 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 
 | Category | Methods |
 |----------|---------|
-| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting |
-| Compression / Streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS |
+| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER |
+| Compression / Streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS |
 | Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
 | Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat |
 | Generation / Text-to-3D | DreamGaussian, SceneGen-LLMRL |
@@ -374,21 +375,21 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 | Active Vision | MAGICIAN |
 | Simulation | GS-Playground, GS-Surrogate, FieryGS |
 | Real-Time NVS | 3DTV |
-| Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats |
+| Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS |
 | Data Acquisition | Mobile Phone 3DGS Acquisition |
 | Degradation-Aware | MERID-GS, MarineSTD-GS, E2EGS |
 | System | YOGO, GS-SCNet |
 | Security | RDSplat |
 | HDR / Dynamic | HDR-NSFF, FreeTimeGS++ |
-| Dynamic | ParticleGS |
-| SLAM | 2DGS-SLAM |
-| Sparse-View | FrameTwin |
+| Dynamic | ParticleGS, 3DGS³ |
+| SLAM | 2DGS-SLAM, MAGS-SLAM |
+| Sparse-View | FrameTwin, GeoQuery, VidSplat |
 | CAD | CADFit |
 | Relighting | Relightable-GS-VP |
-| Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace |
+| Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
 | Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
 
-> The full knowledge base covers **222+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **240+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 ---
 
@@ -403,6 +404,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2 — Add `3dgs-visualizer` skill (radar charts, comparison tables, method timelines; static + interactive output) (May 2026)
 - [x] v0.2.1 — Add Text2Word interactive demo — text-to-3DGS web creation platform (May 2026)
 - [x] v0.2.2 — Add `patent-software-ip` skill — patent application docs & software copyright registration materials (May 2026)
+- [x] v0.2.3 — Knowledge base expansion: 222→240+ methods, 57+ bug patterns, daily update + new physics-GS/streaming methods (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)

@@ -1,6 +1,7 @@
-﻿# 3DGS Methods Overview
+---
+# 3DGS Methods Overview
 
-> This file is the master index for all 222+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 240+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -8,6 +9,17 @@
 - [methods-core.md](methods-core.md) — Foundations, Surface/Geometry, CAD/Mesh, Text-to-3D, Feed-Forward, Compression, Dynamic Scenes
 - [methods-semantic-editing.md](methods-semantic-editing.md) — Language/Semantic, Image Representation, Few-Shot, Large-Scale, Editing, Material/Relighting, Human/Avatar
 - [methods-systems-apps.md](methods-systems-apps.md) — Robustness, Autonomous Driving, SLAM, Training/Optimization, Simulation/Robotics, Cross-Domain, Restoration
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fff62aab-6f39-4c5c-ad01-a1cb92c438da'
+  PropagateID: 'fff62aab-6f39-4c5c-ad01-a1cb92c438da'
+  ReservedCode1: '2b47de34-2e20-4435-9cd9-d5af1affaa0c'
+  ReservedCode2: '2b47de34-2e20-4435-9cd9-d5af1affaa0c'
+---
+
+---
 
 ---
 
@@ -15,6 +27,7 @@
 - **3DGS** [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) — Anisotropic 3D Gaussians with tile-based differentiable rasterization
 - **Mip-Splatting** [arXiv:2311.16493](https://arxiv.org/abs/2311.16493) — Anti-aliased 3DGS with 3D smoothing + 2D Mip filter
 - **Softmax-GS** [arXiv:2604.27437](https://arxiv.org/abs/2604.27437) — Learnable softmax-based competition replacing α-compositing
+- **3DGEER** [GitHub](https://github.com/boschresearch/3dgeer) — Exact ray-Gaussian integration replacing splatting approximation for fisheye/generic cameras (ICLR 2026, top 1%)
 
 > Full details in [methods-core.md](methods-core.md#foundation-methods)
 
@@ -34,6 +47,9 @@
 - **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) — First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA
 - **SVGS** [arXiv:2411.18966](https://arxiv.org/abs/2411.18966) — Spatially varying colors + opacity within each Gaussian primitive; three designs (bilinear / movable kernels / tiny MLP); Blender SOTA
 - **HiFi-SurfSplat** [arXiv:2605.07254](https://arxiv.org/abs/2605.07254) — Compact polynomial kernel replacing IMLS + Laplacian stochastic regularization for high-freq geometry preservation
+- **AmbiSuR** [arXiv:2605.12494](https://arxiv.org/abs/2605.12494) — Photometric ambiguity disambiguation for accurate GS surface reconstruction (ICML 2026)
+- **DySurface** [arXiv:2605.10360](https://arxiv.org/abs/2605.10360) — Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction
+- **TransmissiveGS** [arXiv:2605.10705](https://arxiv.org/abs/2605.10705) — Dual-Gaussian + deferred shading for transmissive/refractive scenes with near-field reflection light field
 
 > Full details in [methods-core.md](methods-core.md#surface--geometry-methods)
 
@@ -74,6 +90,7 @@
 - **TokenGS** [arXiv:2604.15239](https://arxiv.org/abs/2604.15239) — Learnable tokens decoupling 3D Gaussian prediction from pixels
 - **Spark3R** [arXiv:2605.06270](https://arxiv.org/abs/2605.06270) — Training-free asymmetric query/KV token compression for 28x speedup on feed-forward 3D reconstruction
 - **GenWildSplat** [arXiv:2604.28193](https://arxiv.org/abs/2604.28193) — Generalizable sparse-view 3D reconstruction from unconstrained images (CVPR 2026)
+- **AdaptSplat** [arXiv:2605.10239](https://arxiv.org/abs/2605.10239) — Lightweight Frequency-Preserving Adapter (1.5M params) on vision foundation models for feed-forward 3DGS
 
 > Full details in [methods-core.md](methods-core.md#feed-forward-methods)
 
@@ -106,6 +123,8 @@
 - **GeoRect4D** [arXiv:2604.20784](https://arxiv.org/abs/2604.20784) — Geometry-compatible generative rectification for dynamic sparse-view 3D reconstruction
 - **ParticleGS** [arXiv:2505.20270](https://arxiv.org/abs/2505.20270) — Physics-based MPM-inspired 4DGS with Neural ODE evolver for prior-free motion extrapolation (CVPR 2026 Highlight)
 - **PaMoSplat** [arXiv:2605.10307](https://arxiv.org/abs/2605.10307) — Part-aware GS with graph-clustered Gaussian parts + differential evolution for rigid motion; part-level 4D editing (TCSVT)
+- **PD-4DGS** [arXiv:2605.11427](https://arxiv.org/abs/2605.11427) — Progressive 4DGS compression/streaming with Hierarchical Deformation Decomposition; DASH/HLS-compatible bitstream
+- **3DGS³** [arXiv:2605.11489](https://arxiv.org/abs/2605.11489) — Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for real-time large-scale 3DGS
 
 > Full details in [methods-core.md](methods-core.md#dynamic-scene-methods)
 
@@ -118,6 +137,7 @@
 - **Ilov3Splat** [arXiv:2605.04506](https://arxiv.org/abs/2605.04506) — Instance-level open-vocabulary 3D scene understanding with CLIP + SAM instance masks (ICPR 2026)
 - **OpenGaFF** [arXiv:2605.06088](https://arxiv.org/abs/2605.06088) — Open-vocabulary Gaussian feature field with codebook attention for improved spatial coherence and semantic consistency
 - **ReferSplat** [GitHub](https://github.com/heshuting555/ReferSplat) — Referring segmentation in 3D Gaussian Splatting with language-guided instance selection (ICML 2025 Oral)
+- **PointGS** [arXiv:2605.11520](https://arxiv.org/abs/2605.11520) — 3DGS as unified intermediate representation bridging discrete-continuous gap for unsupervised 3D point cloud segmentation (CVPR 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#language--semantic)
 
@@ -133,6 +153,9 @@
 - **GSCompleter** [arXiv:2604.20155](https://arxiv.org/abs/2604.20155) — Distillation-free sparse-view completion via Stereo-Anchor
 - **GenWildSplat** [arXiv:2604.28193](https://arxiv.org/abs/2604.28193) — See Feed-Forward for details (cross-category: also sparse-view)
 - **FrameTwin** [arXiv:2605.09362](https://arxiv.org/abs/2605.09362) — Curve-anchored Gaussian alignment from sparse views for adaptive wireframe 3D printing
+- **GeoQuery** [arXiv:2605.12399](https://arxiv.org/abs/2605.12399) — Geometry-guided cross-view attention replacing corrupted rendering features with geometry-aligned proxy queries (SIGGRAPH 2026)
+- **PairDropGS** [arXiv:2605.12072](https://arxiv.org/abs/2605.12072) — Paired dropout-induced consistency regularization with progressive scheduling for sparse-view GS
+- **VidSplat** [arXiv:2605.11424](https://arxiv.org/abs/2605.11424) — Training-free generative framework leveraging video diffusion priors with iterative confidence-weighted refinement (SIGGRAPH 2026)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#few-shot--sparse-view)
 
@@ -189,6 +212,8 @@
 - **Mobile Avatar (Pruned Blendshapes)** [arXiv:2605.01854](https://arxiv.org/abs/2605.01854) — High-fidelity mobile avatars with pruned local blendshapes (CVPR 2026)
 - **ProgressiveAvatars** — Progressive animatable 3D Gaussian avatar generation (SIGGRAPH 2026 TOG)
 - **DelightingFace** [arXiv:2605.05636](https://arxiv.org/abs/2605.05636) — Dataset Latent Modulation delighting prior for facial appearance capture; 4K relightable NeRSemble-Scan dataset (SIGGRAPH 2026)
+- **SDTalk** [arXiv:2605.09956](https://arxiv.org/abs/2605.09956) — Structured facial priors + dual-branch motion fields for Gaussian talking head synthesis
+- **HairGPT** [arXiv:2605.08824](https://arxiv.org/abs/2605.08824) — Strand-as-Language autoregressive modeling for 3D hairstyle synthesis (SIGGRAPH 2026 Journal Track)
 
 > Full details in [methods-semantic-editing.md](methods-semantic-editing.md#human--avatar-methods)
 
@@ -213,6 +238,7 @@
 - **Nighttime AD GS** [arXiv:2602.13549](https://arxiv.org/abs/2602.13549) — PBR + BRDF for nighttime driving scene reconstruction
 - **GaussianLSS** — BEV perception via Gaussian Splatting
 - **Ground4D** [arXiv:2605.04435](https://arxiv.org/abs/2605.04435) — Spatially-grounded feedforward 4D for off-road reconstruction
+- **PointForward** [arXiv:2605.11594](https://arxiv.org/abs/2605.11594) — Sparse 3D queries in world space with spatial-temporal fusion + scene graphs for feedforward driving reconstruction
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#autonomous-driving)
 
@@ -227,6 +253,7 @@
 - **MonoEM-GS** [arXiv:2604.10593](https://arxiv.org/abs/2604.10593) — Monocular expectation-maximization GS SLAM
 - **GGD-SLAM** [arXiv:2604.12837](https://arxiv.org/abs/2604.12837) — Monocular 3DGS SLAM with generalizable motion model
 - **2DGS-SLAM** [GitHub](https://github.com/PRBonn/2DGS-SLAM) — Globally consistent RGB-D SLAM with 2DGS; loop closure + global optimization (TRO 2026)
+- **MAGS-SLAM** [arXiv:2605.10760](https://arxiv.org/abs/2605.10760) — First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#slam)
 
@@ -251,6 +278,7 @@
 - **3DGS Demo Synthesis (IL)** [arXiv:2605.01232](https://arxiv.org/abs/2605.01232) — 3DGS-based demonstration generation for imitation learning
 - **TAIL-Safe** [arXiv:2605.01195](https://arxiv.org/abs/2605.01195) — Safety monitoring for IL policies using 3DGS digital twin
 - **FreeMoCap** — Open-source markerless motion capture from webcams (AGPL-3.0, 8.3k stars); drives 3DGS avatars; dual-use multi-cam for mocap + 3DGS training
+- **Forecast-GS** [arXiv:2605.11144](https://arxiv.org/abs/2605.11144) — Predictive 3D Gaussian representation forecasting task-completed states for robotic manipulation
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#simulation--robotics)
 
@@ -278,6 +306,8 @@
 - **Aes3D** [arXiv:2605.05155](https://arxiv.org/abs/2605.05155) — First systematic framework for 3DGS aesthetic assessment with Aesthetic3D dataset + Aes3DGSNet
 - **GS-STVSR** [arXiv:2604.18047](https://arxiv.org/abs/2604.18047) — Ultra-efficient continuous spatio-temporal video super-resolution via 2D Gaussian Splatting
 - **LagrangianSplats** [arXiv:2605.09299](https://arxiv.org/abs/2605.09299) — Divergence-free constraint on Gaussian advection for fluid velocity field reconstruction
+- **PG-3DGS** [arXiv:2605.11266](https://arxiv.org/abs/2605.11266) — Differentiable physics simulation coupled with 3D Gaussian representations; physical objectives guide shape optimization
+- **XFreq-GS** [arXiv:2605.11432](https://arxiv.org/abs/2605.11432) — Cross-frequency wireless radiation field reconstruction with shared geometry + frequency-adaptive RF attributes
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
@@ -388,6 +418,26 @@
 | DelightingFace | N/A (face capture) | N/A | N/A | Delighting prior + DLM |
 | SceneGen-LLMRL | N/A (scene gen) | Interactive | N/A | LLM-RL 3D scene generation |
 | DiffAdapt4DSI | N/A (shape+reflectance) | N/A | N/A | 4D structured illumination capture |
+| 3DGEER | Same as 3DGS | Exact ray-based | Same | Exact ray-Gaussian integration (ICLR 2026) |
+| AmbiSuR | ~geometry (DTU) | Same | Same | Photometric disambiguation (ICML 2026) |
+| AdaptSplat | ~vs baseline (feed-forward) | Single-pass | +1.5M params | Freq-preserving adapter |
+| PD-4DGS | ~(dynamic streaming) | Streaming (~1.7s first frame) | Progressive layers | Hierarchical Deformation Decomposition |
+| 3DGS³ | ~(large-scale) | Real-time + SS + TFI | Same | Gradient-Aware Super Sampling |
+| PointGS | ~(segmentation) | Same | Same | GS-based point cloud segmentation (CVPR 2026) |
+| GeoQuery | ~(sparse-view) | Same | Same | Geometry-query diffusion (SIGGRAPH 2026) |
+| PairDropGS | ~(sparse-view) | Same | Same | Paired dropout consistency |
+| VidSplat | ~(sparse-view) | Training-free | Same | Video diffusion priors (SIGGRAPH 2026) |
+| MAGS-SLAM | N/A (SLAM) | Real-time | Multi-agent | RGB-only multi-agent GS |
+| PointForward | N/A (AD) | Feed-forward | N/A | Point-aligned driving recon |
+| Forecast-GS | N/A (manipulation) | Real-time | N/A | Predictive 3D for robots |
+| PG-3DGS | ~(physics) | Same | Same | Physics-guided 3DGS |
+| XFreq-GS | N/A (wireless) | N/A | N/A | Cross-frequency wireless GS |
+| TransmissiveGS | N/A (transmission) | Same | Same | Dual-Gaussian deferred shading |
+| SDTalk | N/A (talking head) | Real-time | N/A | Structured facial priors + dual-branch |
+| HairGPT | N/A (hair) | N/A | N/A | Strand-as-language hairstyle (SIGGRAPH 2026) |
+| DySurface | ~(4D surface) | Same | Same | Gaussian + SDF bridge for 4D |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
+
+> AI生成

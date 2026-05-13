@@ -1,7 +1,7 @@
 ---
 name: 3dgs-code-reviewer
-description: Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 55+ known bug patterns.
-version: 1.1.1
+description: "Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 57+ known bug patterns."
+version: 1.1.2
 author: jaccen
 tags:
   - 3dgs
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (55+ known patterns)
+- Identify common 3DGS implementation pitfalls (57+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -283,6 +283,18 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 55 | VQ codebook inconsistency across LoD levels in streaming | Visual popping when switching LOD levels; color/opacity discontinuity at chunk boundaries; codebook drift between independently trained LoD tiers | Share a single global codebook across all LoD levels; align quantization boundaries during training with multi-resolution consistency loss; validate cross-LoD decode coherence with PSNR threshold per transition (CAGS context) |
+
+### Transmissive & Dual-GS Patterns (TransmissiveGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 56 | Missing deferred shading in transmissive dual-GS implementations | Incorrect blending of reflective and transmissive components; specular reflections bleed through opaque surfaces; glass objects render as solid color | Use deferred shading pipeline: render surface and reflection Gaussians to separate G-buffers; composite transmissive and reflective contributions in screen space; separate light field sampling for near-field vs far-field reflections (TransmissiveGS, ArXiv 2605.10705) |
+
+### Progressive 4DGS Streaming Patterns (PD-4DGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 57 | Serving monolithic 4DGS without progressive layer decomposition | Long first-frame latency (73-930s); cannot start playback until entire dynamic scene is loaded; poor UX in bandwidth-constrained environments | Decompose 4DGS into 3 progressive layers: (1) static scaffold, (2) global deformation, (3) local refinement; encode as DASH/HLS-compatible bitstream; start playback after layer 1; progressively enhance with layers 2-3; reduces first-frame latency to ~1.7s (PD-4DGS, ArXiv 2605.11427) |
 
 ## Output Format
 
