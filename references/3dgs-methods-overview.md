@@ -1,4 +1,4 @@
----
+﻿
 # 3DGS Methods Overview
 
 > This file is the master index for all 240+ 3D Gaussian Splatting methods tracked in this knowledge base.
@@ -9,19 +9,6 @@
 - [methods-core.md](methods-core.md) — Foundations, Surface/Geometry, CAD/Mesh, Text-to-3D, Feed-Forward, Compression, Dynamic Scenes
 - [methods-semantic-editing.md](methods-semantic-editing.md) — Language/Semantic, Image Representation, Few-Shot, Large-Scale, Editing, Material/Relighting, Human/Avatar
 - [methods-systems-apps.md](methods-systems-apps.md) — Robustness, Autonomous Driving, SLAM, Training/Optimization, Simulation/Robotics, Cross-Domain, Restoration
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fff62aab-6f39-4c5c-ad01-a1cb92c438da'
-  PropagateID: 'fff62aab-6f39-4c5c-ad01-a1cb92c438da'
-  ReservedCode1: '2b47de34-2e20-4435-9cd9-d5af1affaa0c'
-  ReservedCode2: '2b47de34-2e20-4435-9cd9-d5af1affaa0c'
----
-
----
-
----
 
 ## 1. Foundation Methods
 - **3DGS** [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) — Anisotropic 3D Gaussians with tile-based differentiable rasterization
@@ -439,5 +426,3 @@ AIGC:
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
-
-> AI生成

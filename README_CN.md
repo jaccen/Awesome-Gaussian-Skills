@@ -1,13 +1,14 @@
 ---
+
 <div align="center">
 
 # Awesome Gaussian Skills
 
-### 首个面向三维高斯泼溅 (3DGS) 与计算机图形学研究的 AI Agent 技能包
+### 最全面的 3DGS 方法知识库与 AI Agent 工具集
 
 If you like it, please ⭐️ star this repo!
 
-**即插即用的 AI Agent 技能，适配 OpenClaw / Claude Code / Cursor —— 用自然语言完成论文阅读、方法对比、代码审查、实验设计**
+**240+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
 
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -19,37 +20,59 @@ If you like it, please ⭐️ star this repo!
 [English](README.md) | [中文](README_CN.md)
 
 </div>
----
 
-## 📢 本项目现由Agent协助维护。如发现链接错误或信息有误，欢迎提交 Issue 勘误。
-## 为什么需要这个项目？
-
-3D Gaussian Splatting (3DGS) 是计算机视觉和图形学最活跃的研究方向之一，**自 2023 年以来已发表 500+ 篇论文**。然而，AI Agent 生态中存在一个明显的空白：
-
-> **ClawHub 已有 13000+ 技能，但几乎没有面向三维重建 / 计算机图形学的。**
-
-与此同时，每个 3DGS 研究者都面临相同的重复性工作：
-
-| 痛点 | 频率 |
-|------|------|
-| 阅读和总结新论文 | 每天 |
-| 对比不同方法设计（GS vs 2DGS vs NegGS vs ...） | 每周 |
-| 审查实现代码中的 bug | 每次投稿 |
-| 设计消融实验 | 每篇论文 |
-| 将 NeRF 方法迁移到 3DGS | 每个项目 |
-
-**Awesome Gaussian Skills** 解决所有这些问题 —— 只需用自然语言描述你的需求，AI Agent 会处理剩下的工作。
-
----
+> 📢 本项目现由Agent协助维护。如发现链接错误或信息有误，欢迎提交 Issue 勘误。
 
 ## 特性
 
-- **10 个科研级技能**：论文阅读、方法对比、代码审查、实验设计、NeRF→3DGS 迁移、CAD/Mesh↔3DGS 桥接、CG 论文写作、研究可视化（雷达图、时间线、对比表）、工程化部署指南、专利与软著生成
-- **零配置**：纯 SKILL.md 文件 —— 不需要安装 Python 包、不需要依赖、不需要配置。直接放入 Agent 的技能目录即可使用
-- **跨平台兼容**：支持 [OpenClaw](https://github.com/openclaw)、Claude Code、Cursor、Windsurf 以及所有支持 SKILL.md / CLAUDE.md 格式的 Agent
-- **领域专家知识**：内置知识库覆盖 21 个类别的 240+ 3DGS 变体，含领域术语规范
-- **持续维护**：每日更新，跟踪最新 arXiv 论文和社区动态
-- **Text2Word 演示**：交互式 Web 体验，将自然语言描述转化为三维高斯场景 —— 用文字描述城堡、齿轮或任意场景，即可获得智能方法推荐、生成管线可视化、WebGL 3D 预览与多格式导出（3DGS/mesh/CAD）
+- **240+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 21 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **交互式浏览器**：在 [jaccen.github.io/Awesome-Gaussian-Skills](https://jaccen.github.io/Awesome-Gaussian-Skills/) 浏览、搜索与对比方法
+- **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
+- **零配置**：纯 Markdown 文件，无需依赖
+- **持续维护**：每日 arXiv 跟踪
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e9a6a86a-b9d5-4797-8452-56d5b755e669'
+  PropagateID: 'e9a6a86a-b9d5-4797-8452-56d5b755e669'
+  ReservedCode1: '0aef5088-648b-4d7a-98f6-0fcc48d980c6'
+  ReservedCode2: '0aef5088-648b-4d7a-98f6-0fcc48d980c6'
+---
+
+## 知识库（240+ 方法）
+
+| 类别 | 方法 |
+|------|------|
+| 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER |
+| 压缩/流式 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS |
+| 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
+| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat |
+| 生成/文生3D | DreamGaussian, SceneGen-LLMRL |
+| 抗锯齿 | Mip-Splatting, LeanGaussian |
+| 优化 | 3DGS-as-MCMC |
+| 图像表示 | GaussianImage |
+| 加速 | Proxy-GS, Faster-GS, GEMM-GS |
+| 主动视觉 | MAGICIAN |
+| 仿真 | GS-Playground, GS-Surrogate, FieryGS |
+| 实时新视角合成 | 3DTV |
+| 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS |
+| 数据采集 | Mobile Phone 3DGS Acquisition |
+| 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
+| 系统 | YOGO, GS-SCNet |
+| 安全 | RDSplat |
+| HDR/动态 | HDR-NSFF, FreeTimeGS++ |
+| 动态 | ParticleGS, 3DGS³ |
+| SLAM | 2DGS-SLAM, MAGS-SLAM |
+| 稀疏视角 | FrameTwin, GeoQuery, VidSplat |
+| CAD | CADFit |
+| 重光照 | Relightable-GS-VP |
+| 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
+| 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
+
+> 完整知识库覆盖 **21 个类别的 240+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+
+下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
 ---
 
@@ -136,7 +159,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（53+ 已知模式）
+- 常见 bug 模式检测（57+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -353,40 +376,6 @@ Awesome-Gaussian-Skills/
 
 ---
 
-## 涵盖的方法（部分）
-
-| 类别 | 方法 |
-|------|------|
-| 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER |
-| 压缩/流式 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS |
-| 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
-| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat |
-| 生成/文生3D | DreamGaussian, SceneGen-LLMRL |
-| 抗锯齿 | Mip-Splatting, LeanGaussian |
-| 优化 | 3DGS-as-MCMC |
-| 图像表示 | GaussianImage |
-| 加速 | Proxy-GS, Faster-GS, GEMM-GS |
-| 主动视觉 | MAGICIAN |
-| 仿真 | GS-Playground, GS-Surrogate, FieryGS |
-| 实时新视角合成 | 3DTV |
-| 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS |
-| 数据采集 | Mobile Phone 3DGS Acquisition |
-| 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
-| 系统 | YOGO, GS-SCNet |
-| 安全 | RDSplat |
-| HDR/动态 | HDR-NSFF, FreeTimeGS++ |
-| 动态 | ParticleGS, 3DGS³ |
-| SLAM | 2DGS-SLAM, MAGS-SLAM |
-| 稀疏视角 | FrameTwin, GeoQuery, VidSplat |
-| CAD | CADFit |
-| 重光照 | Relightable-GS-VP |
-| 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
-
-> 完整知识库覆盖 **21 个类别的 240+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
-
----
-
 ## 路线图
 
 - [x] v0.1 — 初始版本，6 个核心技能（2026年4月）
@@ -456,8 +445,6 @@ Awesome-Gaussian-Skills/
 
 If this project saves you time, please give it a star!
 
-</div>
-
 ## 一、CV 核心链接
 
 CVF 官方开源库（CVPR/ICCV/ECCV/3DV）：https://openaccess.thecvf.com/
@@ -506,10 +493,10 @@ Hugging Face 论文聚合：https://huggingface.co/papers
 
 arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 
-学术搜素（替代谷歌）：https://xueshuso.com/
-
-论文免费下载神器：https://sci-hub.se
+学术搜索（替代谷歌）：https://xueshuso.com/
 
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
+
+> AI生成
