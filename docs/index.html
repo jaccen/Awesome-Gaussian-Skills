@@ -108,9 +108,9 @@ tailwind.config = {
       The First AI Agent Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">212+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">254+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">21 Categories</span>
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">9 Skills</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">10 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
         <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span> Daily Updates
       </span>
@@ -273,7 +273,7 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">212+ 3DGS methods analyzed — best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">254+ 3DGS methods analyzed — best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -545,7 +545,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 212+ methods across 21 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 254+ methods across 21 categories</p>
     </div>
     <div class="relative mb-6">
       <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -572,7 +572,7 @@ tailwind.config = {
 <section id="skills" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">9 Specialized Skills</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">10 Specialized Skills</h2>
       <p class="mt-3 text-gray-400">End-to-end AI assistance for 3DGS research workflow</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="skillsGrid"></div>
@@ -692,7 +692,21 @@ const METHODS = [
   { name: "GS4City", short: "GS4City", cat: "Simulation", venue: "arXiv", year: 2025, desc: "Large-scale city-level Gaussian Splatting with semantic layers", arxiv: "2504.01345" },
   { name: "MSGS", short: "MSGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Multi-spectral Gaussian Splatting for beyond-visible-light imaging", arxiv: "2504.01234" },
   { name: "SIC3D", short: "SIC3D", cat: "Generation", venue: "arXiv", year: 2025, desc: "Self-conditioned iterative 3D generation with Gaussian Splatting", arxiv: "2504.01123" },
-  { name: "Ground4D", short: "Ground4D", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Off-road 4D Gaussian Splatting for unstructured terrain dynamics", arxiv: "2504.01012" }
+  { name: "Ground4D", short: "Ground4D", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Off-road 4D Gaussian Splatting for unstructured terrain dynamics", arxiv: "2504.01012" },
+  { name: "BlitzGS", short: "BlitzGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city-scale scenes", arxiv: "2605.13794" },
+  { name: "Z-Order GS", short: "Z-Order GS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Z-order strategy for spatially coherent Gaussian sequence with sparse attention (Oral)", arxiv: "2605.13465" },
+  { name: "Real2Sim", short: "Real2Sim", cat: "Simulation", venue: "arXiv", year: 2026, desc: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", arxiv: "2605.13591" },
+  { name: "PanoPlane", short: "PanoPlane", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR", arxiv: "2605.14135" },
+  { name: "SparseOIT", short: "SparseOIT", cat: "Surface", venue: "arXiv", year: 2026, desc: "Order-independent transparency via active set method for glass/refractive scenes", arxiv: "2605.13855" },
+  { name: "SCOUP", short: "SCOUP", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", arxiv: "2605.13600" },
+  { name: "AV1-3DGS", short: "AV1-3DGS", cat: "Training", venue: "arXiv", year: 2026, desc: "AV1 motion vectors for dense SfM matching with 63% training time reduction", arxiv: "2605.14629" },
+  { name: "RoSplat", short: "RoSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regularizer", arxiv: "2605.13093" },
+  { name: "HarmoGS", short: "HarmoGS", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Conflict-aware gradient harmonization for in-the-wild 3DGS reconstruction", arxiv: "2605.13073" },
+  { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright protection", arxiv: "2605.12919" },
+  { name: "FaceParts", short: "FaceParts", cat: "Editing", venue: "arXiv", year: 2026, desc: "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer", arxiv: "2605.13853" },
+  { name: "RetroNVS", short: "RetroNVS", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", arxiv: "2605.12437" },
+  { name: "Velox", short: "Velox", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Feed-forward 4D reconstruction learning representations of 4D geometry and appearance", arxiv: "2605.04527" },
+  { name: "3DGS squared", short: "3DGS2", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations", arxiv: "2501.13975" }
 ];
 
 const CATEGORIES = [
@@ -711,15 +725,18 @@ const CATEGORIES = [
   { id: "SLAM", label: "SLAM" },
   { id: "Training", label: "Training" },
   { id: "Simulation", label: "Simulation" },
-  { id: "Cross-Domain", label: "Cross-Domain" }
+  { id: "Cross-Domain", label: "Cross-Domain" },
+  { id: "Large-Scale", label: "Large-Scale" },
+  { id: "Security", label: "Security" },
+  { id: "Sparse-View", label: "Sparse-View" }
 ];
 
 const SKILLS = [
   { id: "3dgs-paper-reader", name: "3DGS Paper Reader", desc: "Read any 3DGS paper & extract structured insights in seconds", color: "#3b82f6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
-  { id: "3dgs-method-compare", name: "Method Comparator", desc: "Compare 3DGS variants across 10+ dimensions", color: "#8b5cf6",
+  { id: "3dgs-method-compare", name: "Method Comparator", desc: "Compare 3DGS variants across 8+ comparison tables", color: "#8b5cf6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
-  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 53+ common 3DGS implementation bugs", color: "#ef4444",
+  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 60+ common 3DGS implementation bugs", color: "#ef4444",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3.75 4.97v14.06"/>' },
   { id: "3dgs-experiment-planner", name: "Experiment Planner", desc: "Design rigorous experiments for top venues", color: "#06b6d4",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' },
@@ -729,10 +746,12 @@ const SKILLS = [
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/>' },
   { id: "cg-paper-writing", name: "CG Paper Writer", desc: "Write publication-ready CG papers", color: "#ec4899",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>' },
-  { id: "3dgs-visualizer", name: "3DGS Visualizer", desc: "Generate publication-quality charts", color: "#6366f1",
+  { id: "3dgs-visualizer", name: "3DGS Visualizer", desc: "Generate publication charts, timelines & comparison tables", color: "#6366f1",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
   { id: "3dgs-engineering-guide", name: "Engineering Guide", desc: "Bridge 3DGS from research to production", color: "#14b8a6",
-    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' }
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' },
+  { id: "patent-software-ip", name: "Patent & IP", desc: "Generate patent docs and software copyright materials", color: "#f97316",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>' }
 ];
 
 const INSTALL_BLOCKS = [
@@ -752,7 +771,7 @@ ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
 # Or copy directly:
 cp -r Awesome-Gaussian-Skills/skills/* .claude/skills/` },
   { label: "One-click Script (Bash)", lang: "bash", code: `#!/bin/bash
-# Install all 9 skills in one go
+# Install all 10 skills in one go
 REPO="jaccen/Awesome-Gaussian-Skills"
 SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
         3dgs-experiment-planner nerf-to-3dgs-migrator \\
@@ -768,12 +787,12 @@ echo "Done! $(echo "\${SKILLS[@]}" | wc -w) skills installed."` }
 ];
 
 const TRENDS = [
-  { title: "RL-Based Density Control", desc: "Replacing heuristic clone/split with reinforcement learning for adaptive Gaussian management", tags: ["Training", "NeurIPS 2026"] },
-  { title: "Cross-Platform Training", desc: "Vulkan-based implementations breaking the CUDA dependency for broader hardware access", tags: ["Training", "Systems"] },
-  { title: "3DGS + Physics Simulation", desc: "Combustion, fluid, and robot learning through differentiable Gaussian rendering", tags: ["Simulation", "RSS 2026"] },
-  { title: "Dynamic Scene Streaming", desc: "Any-length, any-motion video reconstruction via clip-based Gaussian streaming", tags: ["Dynamic", "CVPR 2026"] },
-  { title: "Intrinsic Decomposition for Editing", desc: "Physically consistent albedo/shading/geometry separation enabling photo-real edits", tags: ["Material", "Editing"] },
-  { title: "GIS Toolchain Gap", desc: "3DGS models look stunning but can't measure, section, or compute volumes — the toolchain to GIS/BIM is broken", tags: ["Engineering", "GIS"] }
+  { title: "Distributed City-Scale GS", desc: "BlitzGS achieves order-of-magnitude speedup for city-scale 3DGS via parity-based GPU sharding — approaching practical deployment timelines", tags: ["Large-Scale", "Systems"] },
+  { title: "4DGS + Physics Deep Integration", desc: "Real2Sim (4DGS + differentiable MPM) combines physics-aware simulation with Gaussian rendering for autonomous driving", tags: ["Simulation", "CVPR 2026"] },
+  { title: "3DGS Security & Watermarking", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence — critical as 3DGS assets become commercially valuable", tags: ["Security", "Copyright"] },
+  { title: "Feed-Forward Quality Gap Closing", desc: "Z-Order GS (CVPR Oral) and RoSplat show spatial ordering and robust training strategies closing the gap with per-scene optimization", tags: ["Feed-Forward", "CVPR 2026"] },
+  { title: "Language-3DGS Efficiency", desc: "SCOUP achieves 400x training speedup by decoupling language representation from 3D optimization for open-vocabulary understanding", tags: ["Semantic", "Efficiency"] },
+  { title: "OIT Transparency in 3DGS", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", tags: ["Surface", "Rendering"] }
 ];
 
 let activeCategory = "All";
