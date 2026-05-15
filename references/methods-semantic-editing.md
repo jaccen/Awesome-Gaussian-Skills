@@ -80,6 +80,14 @@
 - **Key Innovation**: SAM masks distilled to 3D Gaussian primitives via contrastive learning; bridges discrete point cloud domain and continuous 3DGS domain; +0.9% mIoU ScanNet, +2.8% S3DIS over baselines; first to leverage 3DGS representation for unsupervised point cloud segmentation
 - **Links**: [arXiv:2605.11520](https://arxiv.org/abs/2605.11520)
 
+### SCOUP
+- **ArXiv**: [2605.13600](https://arxiv.org/abs/2605.13600)
+- **Venue**: Under review
+- **Core**: Sparse Code Uplifting for efficient 3D language Gaussian Splatting
+- **Key Innovation**: Decouples language feature learning from 3D Gaussian optimization; trains language codebook on 2D images then uplifts codes to 3D Gaussians; achieves 400x training speedup over joint language-3D optimization; maintains competitive semantic segmentation quality
+- **Key Results**: 400x training speedup; competitive segmentation quality vs LangSplat
+- **Links**: [arXiv:2605.13600](https://arxiv.org/abs/2605.13600)
+
 ## Image Representation
 
 ### GaussianImage
@@ -160,6 +168,14 @@
 - **Key Innovation**: Stage-wise denoising guided by rendered RGB/mask from initial 3DGS; iterative confidence-weighted refinement leveraging temporal coherence in video diffusion models; training-free - no additional optimization required; achieves high-quality sparse-view reconstruction via generative priors
 - **Links**: [arXiv:2605.11424](https://arxiv.org/abs/2605.11424)
 
+### PanoPlane
+- **ArXiv**: [2605.14135](https://arxiv.org/abs/2605.14135)
+- **Venue**: Under review
+- **Core**: Plane-aware panoramic completion for sparse-view indoor 3DGS
+- **Key Innovation**: Layout Anchored Attention Steering guides Gaussian densification along detected structural planes; plane-aware priors leverage indoor scene geometric regularity; completes unobserved regions with structurally consistent Gaussian primitives; +17.8% PSNR over SOTA on indoor sparse-view benchmarks
+- **Key Results**: +17.8% PSNR over SOTA; plane-aware completion for indoor scenes
+- **Links**: [arXiv:2605.14135](https://arxiv.org/abs/2605.14135)
+
 ## Large-Scale Methods
 
 ### Scaffold-GS
@@ -205,6 +221,14 @@
 - **arXiv**: [2604.11401](https://arxiv.org/abs/2604.11401)
 - **Innovation**: Leverages city-scale 3D model priors to guide hierarchical semantic Gaussian Splatting, improving large-scale urban scene reconstruction with semantic consistency
 - **Links**: [arXiv:2604.11401](https://arxiv.org/abs/2604.11401)
+
+### BlitzGS
+- **ArXiv**: [2605.13794](https://arxiv.org/abs/2605.13794)
+- **Venue**: Under review
+- **Core**: Distributed 3DGS framework for fast city-scale reconstruction
+- **Key Innovation**: Parity-based GPU sharding distributes Gaussian scene representation across multiple GPUs with zero-overhead parity encoding; importance-scoring mechanism prioritizes high-impact Gaussians for each viewpoint; LOD gate culls distant Gaussians early in the pipeline; achieves order-of-magnitude speedup over single-GPU baselines for city-scale scenes
+- **Key Results**: Order-of-magnitude speedup over baselines; efficient multi-GPU city-scale reconstruction
+- **Links**: [arXiv:2605.13794](https://arxiv.org/abs/2605.13794)
 
 ## Robustness & Regularization
 
@@ -462,3 +486,11 @@
 - **Key Innovation**: Treats hair strands as language tokens in autoregressive model; enables controllable 3D hairstyle generation from text or image prompts; generates geometrically and visually realistic hair strands with strand-level detail; bridges language models and 3D hair representation
 - **Related**: GaussianAvatar, DelightingFace
 - **Links**: [arXiv:2605.08824](https://arxiv.org/abs/2605.08824)
+
+### FaceParts
+- **ArXiv**: [2605.13853](https://arxiv.org/abs/2605.13853)
+- **Venue**: Under review
+- **Core**: Unsupervised segmentation and editing of 3D Gaussian Splatting avatars
+- **Key Innovation**: Feature disentanglement decomposes avatar Gaussians into semantically meaningful parts; density-based clustering for unsupervised part discovery without masks; FLAME-anchored part transfer enables cross-identity part swapping; enables fine-grained avatar editing (hairstyle transfer, accessory replacement, expression transfer) without explicit supervision
+- **Key Results**: Unsupervised part segmentation; cross-identity part transfer via FLAME anchoring
+- **Links**: [arXiv:2605.13853](https://arxiv.org/abs/2605.13853)

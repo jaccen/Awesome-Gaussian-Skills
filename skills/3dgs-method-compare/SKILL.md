@@ -1,7 +1,7 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 240+ methods across 21 categories"
-version: 1.4.2
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 254+ methods across 21 categories"
+version: 1.4.3
 author: jaccen
 tags:
   - 3dgs
@@ -20,7 +20,7 @@ trigger:
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 240+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 254+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -243,6 +243,19 @@ When comparing methods, analyze across the following dimensions:
 | TransmissiveGS | arXiv'26 | Dual-GS (surface + reflection) | Deferred shading | Transmissive + reflective dual decomposition; separate G-buffer compositing for glass/refractive objects |
 | PD-4DGS | arXiv'26 | 3-layer progressive (static + global deform + local refine) | Progressive streaming | DASH/HLS-compatible 4DGS streaming; ~1.7s first-frame latency vs 73-930s monolithic |
 | 3DGS³ | arXiv'26 | 3D anisotropic (super-sampled) | Standard + temporal interpolation | Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for large-scale 3DGS |
+| BlitzGS | arXiv'26 | 3D anisotropic (distributed) | Parity-based multi-GPU | Distributed city-scale GS training; parity-based sharding across multi-GPU; eliminates single-GPU memory bottleneck |
+| Z-Order GS | arXiv'26 | 3D anisotropic (Z-ordered) | Z-order curve indexing | Z-order curve spatial indexing for cache-coherent Gaussian traversal; improved rendering throughput |
+| PanoPlane | arXiv'26 | Planar (panoramic) | Plane-based compositing | Panoramic plane-based GS for omnidirectional NVS; efficient panoramic scene representation |
+| SparseOIT | arXiv'26 | 3D anisotropic | Order-independent transparency | Sparse order-independent transparency for correct See-through rendering of overlapping semi-transparent Gaussians |
+| SCOUP | arXiv'26 | Sparse code primitives | Language-conditioned | Sparse code language GS; language-conditioned sparse coding for controllable 3DGS generation |
+| AV1-3DGS | arXiv'26 | 3D anisotropic | AV1 motion-vector SfM | AV1 codec motion vectors for dense SfM; 63% training time reduction; leverages video compression priors |
+| RoSplat | arXiv'26 | 3D anisotropic (feed-forward) | Pixel-wise GS | Feed-forward pixel-wise GS for sparse-view NVS; requires alpha normalization for varying view counts |
+| HarmoGS | arXiv'26 | 3D anisotropic | Harmonized optimization | Gradient harmonization for in-the-wild 3DGS; resolves cross-view gradient conflicts from transient distractors and illumination inconsistencies |
+| GuardMarkGS | arXiv'26 | 3D anisotropic | Watermark + deterrence | First unified watermarking + edit deterrence framework for 3DGS assets; security for 3D content |
+| FaceParts | arXiv'26 | 3D anisotropic (part-based) | Part-compositional | Part-based decomposable Gaussian avatar; modular facial region modeling for expressive avatars |
+| RetroNVS | arXiv'26 | 3D anisotropic | Retro-reflection modeling | Retro-reflection modeling in 3DGS for accurate rendering of retro-reflective surfaces (signs, safety gear) |
+| Velox | arXiv'26 | 3D anisotropic | Velocity-aware 4D | Velocity-aware 4DGS for fast dynamic scene reconstruction with motion-adaptive temporal modeling |
+| 3DGS² | arXiv'26 | 3D anisotropic (super-sampled) | Super-sampling + temporal | Second-generation 3DGS with super-sampling and temporal interpolation for large-scale scenes |
 
 ### Human & Avatar Methods
 
@@ -258,7 +271,7 @@ When comparing methods, analyze across the following dimensions:
 
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
-| GSDrive | arXiv'26 | Multi-camera | 3DGS-based differentiable reward shaping for E2E driving; multi-mode trajectory probing |
+| Real2Sim | arXiv'26 | 3D anisotropic (4D) | 4DGS + differentiable MPM | Physics-aware AD scene simulation with differentiable MPM for collision scenarios; bridges real-to-sim gap |
 | GaussianLSS | CVPR'25 | Multi-camera | GS for BEV perception |
 | Nighttime AD GS | ICRA'26 (2602.13549) | Nighttime multi-camera | PBR-based nighttime AD reconstruction |
 

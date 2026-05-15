@@ -58,6 +58,14 @@
 - **Key Innovation**: Paired Intrinsic/Degraded Gaussians; Spatiotemporal Degradation Modeling module; self-supervised disentanglement of realistic appearance
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.23551) | [arXiv:2604.23551](https://arxiv.org/abs/2604.23551) | [Code]
 
+### HarmoGS
+- **ArXiv**: [2605.13073](https://arxiv.org/abs/2605.13073)
+- **Venue**: Under review
+- **Core**: Conflict-aware gradient harmonization for in-the-wild 3DGS optimization
+- **Key Innovation**: Identifies and resolves gradient conflicts between inconsistent views in wild image collections; semantic consistency-guided masking filters conflicting supervision signals; dual-view gradient harmonization aligns optimization direction across diverse viewpoints; enables robust 3DGS training from uncurated internet photos without pose refinement
+- **Key Results**: Robust reconstruction from in-the-wild image collections; resolves multi-view gradient conflicts
+- **Links**: [arXiv:2605.13073](https://arxiv.org/abs/2605.13073)
+
 ## Autonomous Driving
 
 ### Street-GS
@@ -122,6 +130,14 @@
 - **Core**: Sparse 3D queries in world space (vs. pixel-aligned) with spatial-temporal fusion for feedforward driving scene reconstruction
 - **Key Innovation**: Sparse 3D queries operating in world space rather than pixel-aligned; spatial-temporal fusion module for coherent dynamic reconstruction; scene graphs for instance-level motion propagation; SOTA on large-scale driving benchmarks; enables feedforward reconstruction without per-scene optimization
 - **Links**: [arXiv:2605.11594](https://arxiv.org/abs/2605.11594)
+
+### Real2Sim
+- **ArXiv**: [2605.13591](https://arxiv.org/abs/2605.13591)
+- **Venue**: Under review
+- **Core**: 4DGS combined with differentiable MPM (Material Point Method) solver for physics-aware autonomous driving scene simulation
+- **Key Innovation**: Integrates dynamic 3D Gaussian Splatting with differentiable physics simulation; MPM solver enables realistic object interactions and collisions; supports instance-level editing (add/remove/modify objects) in reconstructed AD scenes; bridges real-world 3DGS reconstruction and physics-based simulation for closed-loop AD testing
+- **Key Results**: Physics-aware AD scene simulation; instance-level editing; collision scenario support
+- **Links**: [arXiv:2605.13591](https://arxiv.org/abs/2605.13591)
 
 ## SLAM
 
@@ -619,3 +635,13 @@
 - **Key Innovation**: Shared geometric Gaussian structure across frequencies; frequency-adaptive RF attributes capture frequency-dependent propagation; synthesizes power angular spectrum (PAS) maps at unseen frequencies; extends 3DGS from visual to radio-frequency domain
 - **Related**: BiSplat-WRF, AudioGS
 - **Links**: [arXiv:2605.11432](https://arxiv.org/abs/2605.11432)
+
+### GuardMarkGS
+- **ArXiv**: [2605.12919](https://arxiv.org/abs/2605.12919)
+- **Venue**: Under review
+- **Core**: Unified ownership tracing (watermarking) and edit deterrence framework for 3D Gaussian Splatting
+- **Key Innovation**: First joint copyright protection framework for 3DGS; embeds imperceptible watermarks into Gaussian attributes for ownership tracing; simultaneously adds edit deterrence mechanism that degrades rendering quality when unauthorized edits are applied; addresses both ownership verification and content protection in a unified formulation
+- **Key Results**: First unified watermarking + edit deterrence for 3DGS; imperceptible watermark embedding; quality degradation upon unauthorized editing
+- **Links**: [arXiv:2605.12919](https://arxiv.org/abs/2605.12919)
+
+> AI生成

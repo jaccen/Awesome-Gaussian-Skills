@@ -1,7 +1,7 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 57+ known bug patterns."
-version: 1.1.2
+description: "Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 60+ known bug patterns."
+version: 1.1.3
 author: jaccen
 tags:
   - 3dgs
@@ -30,7 +30,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (57+ known patterns)
+- Identify common 3DGS implementation pitfalls (60+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -295,6 +295,24 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 57 | Serving monolithic 4DGS without progressive layer decomposition | Long first-frame latency (73-930s); cannot start playback until entire dynamic scene is loaded; poor UX in bandwidth-constrained environments | Decompose 4DGS into 3 progressive layers: (1) static scaffold, (2) global deformation, (3) local refinement; encode as DASH/HLS-compatible bitstream; start playback after layer 1; progressively enhance with layers 2-3; reduces first-frame latency to ~1.7s (PD-4DGS, ArXiv 2605.11427) |
+
+### Feed-Forward Alpha Normalization Patterns (RoSplat)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 58 | Missing alpha normalization in feed-forward pixel-wise GS when input view count varies | Over-brightness with varying number of overlapping Gaussians; rendered image intensity scales non-linearly with view count; inconsistent appearance across different input configurations | Normalize accumulated alpha by the number of input views before final compositing; apply view-count-adaptive scaling factor to per-pixel alpha accumulation; verify brightness consistency with unit test across 1/3/6/9 input views (RoSplat) |
+
+### Monolithic 4DGS Streaming Patterns (BlitzGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 59 | Monolithic 4DGS bitstream without progressive deformation decomposition | Long black-screen waits during initial load; entire 4DGS scene must download before any frame renders; poor UX especially on mobile/constrained networks | Use progressive deformation decomposition: encode static scaffold first, then global deformation, then local refinement as separate streamable layers; see PD-4DGS/BlitzGS for correct approach; target <2s first-frame latency via DASH/HLS chunking |
+
+### In-the-Wild Harmonization Patterns (HarmoGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 60 | Gradient conflict in in-the-wild 3DGS without harmonization | Transient distractors (pedestrians, vehicles, shadows) and illumination inconsistencies create conflicting cross-view gradients; optimization destabilizes; Gaussians oscillate or collapse in problematic regions | Apply gradient harmonization: detect and dampen conflicting gradients from transient objects and lighting variations; use illumination harmonization module to normalize appearance across views; resolve distractor conflicts via attention-based gradient filtering (HarmoGS) |
 
 ## Output Format
 

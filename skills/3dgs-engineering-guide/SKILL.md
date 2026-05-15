@@ -1,7 +1,7 @@
 ---
 name: 3dgs-engineering-guide
 description: "Guide for deploying 3D Gaussian Splatting from research to production: industry use cases, engineering pipelines, tool selection, and deployment best practices"
-version: 1.0.1
+version: 1.0.2
 author: jaccen
 tags:
   - 3dgs
@@ -59,6 +59,7 @@ HIL (Hardware-in-the-Loop) testing / SIL validation
 - **GS-Surrogate** — surrogate model for rapid scenario evaluation
 - **FieryGS** — generative 3DGS for data augmentation in AD
 - **Nighttime AD GS** — nighttime scene reconstruction for AD testing
+- **Real2Sim** — 4DGS + differentiable MPM for physics-aware AD scene simulation with collision scenarios
 - **GS-SCNet** — semantic-aware scene completion for AD
 - **Ground4D** — spatially-grounded feedforward 4D for off-road reconstruction
 - **ULF-Loc** — unbiased landmark feature for visual localization (CVPR 2026 highlight)
@@ -289,6 +290,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 
 **Requirements**:
 - Security compliance: air-gapped deployment, indigenous tools (no foreign cloud dependency)
+- Content security: **GuardMarkGS** — first unified watermarking + edit deterrence framework for 3DGS assets; protects against unauthorized editing and redistribution
 - Real-time: > 60 FPS for tactical decision-making scenarios
 - Terrain fidelity: sub-meter accuracy for GPS-denied navigation training
 - Multi-spectral: visible + IR + SAR rendering
@@ -419,6 +421,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 | original 3DGS | CUDA | Baseline | NVIDIA GPU | Yes |
 | VkSplat | Vulkan | 3.3x vs CUDA (non-NVIDIA) | Cross-platform | Yes |
 | GSeurat | Vulkan (C++23) | Research | Cross-platform | Yes |
+| **BlitzGS** | **Multi-GPU (parity sharding)** | **City-scale distributed** | **Distributed cluster** | **Yes (distributed training)** |
 | msplat | Metal | Apple-optimized | macOS/iOS | Yes |
 | tortuise | CPU (Rust) | Offline/low-power | Any CPU | Yes |
 | **PlayCanvas Engine** | **WebGL2/WebGPU** | **Browser-optimized** | **Web** | **Yes (first-class)** |
@@ -431,6 +434,7 @@ Robot policy learning (sim-to-real) → Real-world deployment
 **Streaming / 流式传输**:
 - 李飞飞 team: 100M+ Gaussian real-time mobile streaming (adaptive bitrate, view-dependent loading)
 - **CAGS** — VQ-based compression + Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment (~7x compression); supports chunked streaming with global codebook for cross-LoD consistency
+- **AV1-3DGS** — AV1 codec motion vectors for dense SfM; 63% training time reduction by leveraging video compression priors for camera pose and depth estimation
 - Progressive loading: send coarse Gaussians first, refine on demand
 - View-dependent prioritization: prioritize Gaussians in/near camera frustum
 - Network requirement: 20–50 Mbps for smooth 1080p 3DGS streaming
@@ -900,6 +904,7 @@ When the user asks about a specific application domain, reference these papers f
 - **tortuise** — CPU-only Rust implementation for offline/low-power deployment
 - **brush** (Rust/WebGPU/Burn) — Cross-platform 3DGS training covering Win/Mac/Linux/Android/Web; 4.3k stars; faster than gsplat; most complete cross-platform solution to date
 - **AdaGScale** — adaptive scale for cross-platform
+- **BlitzGS** — distributed city-scale GS training; parity-based multi-GPU sharding; eliminates single-GPU memory bottleneck for city-level scenes
 
 ### BIM/CAD / BIM与CAD
 - **BrepGaussian** — B-rep aware Gaussian for CAD
@@ -1000,6 +1005,12 @@ python compress_tile.py --input ./city_block/point_cloud \
 | brush | 跨平台Rust/WebGPU高斯训练 | Cross-platform 3DGS training engine (Rust + WebGPU + Burn); runs on Win/Mac/Linux/Android/Web; 4.3k stars; faster than gsplat in benchmarks |
 | 3DGEER | 精确高斯渲染 | Exact ray-Gaussian rendering replacing splatting approximation; for fisheye/generic cameras; ICLR 2026 top 1% |
 | Forecast-GS | 预测式高斯表示 | Predictive 3D Gaussian representation for forecasting task-completed states in robotic manipulation |
+| BlitzGS | 分布式高斯训练 | Distributed city-scale GS training via parity-based multi-GPU sharding; eliminates single-GPU memory bottleneck |
+| SCOUP | 稀疏编码语言高斯 | Sparse code language GS; language-conditioned sparse coding for controllable 3DGS generation |
+| SparseOIT | 稀疏序无关透明 | Sparse order-independent transparency for correct See-through rendering of overlapping semi-transparent Gaussians |
+| AV1-3DGS | AV1视频编码高斯 | AV1 codec motion vectors for dense SfM; 63% training time reduction by leveraging video compression priors |
+| Real2Sim | 真实到仿真 | 4DGS + differentiable MPM for physics-aware AD scene simulation with collision scenarios |
+| GuardMarkGS | 3DGS水印防护 | Unified watermarking + edit deterrence framework for 3DGS assets; first combined security solution |
 
 ---
 

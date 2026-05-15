@@ -1,16 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '8fc9df71-434a-45c7-99f8-3168888c0fd1'
-  PropagateID: '8fc9df71-434a-45c7-99f8-3168888c0fd1'
-  ReservedCode1: 'a86471e7-894b-4245-b6c6-1267c805505b'
-  ReservedCode2: 'a86471e7-894b-4245-b6c6-1267c805505b'
----
-
----
-
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -186,6 +173,13 @@ AIGC:
 - **Core**: Dual-Gaussian representation with deferred shading for transmissive and refractive scenes
 - **Key Innovation**: Exploits multi-view inconsistency of reflections as cues for disentangled geometry/appearance; dual-Gaussian (surface + reflection) with deferred shading pipeline; reflection light field for near-field reflections; handles glass, windows, and transparent objects
 - **Links**: [arXiv:2605.10705](https://arxiv.org/abs/2605.10705)
+
+### SparseOIT
+- **ArXiv**: [2605.13855](https://arxiv.org/abs/2605.13855)
+- **Core**: Order-independent transparency rendering for 3DGS via active set method
+- **Key Innovation**: Exploits sparse variable dependencies in OIT rendering to efficiently solve for correct transparency ordering; active set method iteratively refines opacity assignments without sorting all Gaussians; enables physically correct semi-transparent rendering in 3DGS
+- **Key Results**: Correct transparency rendering without explicit depth sorting; efficient computation via sparsity exploitation
+- **Links**: [arXiv:2605.13855](https://arxiv.org/abs/2605.13855)
 
 ## CAD / Mesh / Hybrid Methods
 
@@ -432,6 +426,21 @@ AIGC:
 - **Key Innovation**: Only 1.5M additional parameters; Frequency-Preserving Adapter extracts direction-aware high-frequency structural priors from shallow features; preserves fine details that standard feed-forward methods lose; SOTA on feed-forward benchmarks
 - **Links**: [arXiv:2605.10239](https://arxiv.org/abs/2605.10239)
 
+### Z-Order GS
+- **ArXiv**: [2605.13465](https://arxiv.org/abs/2605.13465)
+- **Venue**: CVPR 2026 Oral
+- **Core**: Z-order strategy for spatially coherent Gaussian sequence in feed-forward 3DGS
+- **Key Innovation**: Replaces heuristic Gaussian ordering with Z-order (Morton) curve for spatially coherent sequence; enables efficient sparse attention mechanism that focuses on nearby Gaussians in 3D space; reduces computational complexity from O(N²) to O(N log N) for cross-Gaussian attention
+- **Key Results**: CVPR 2026 Oral; achieves state-of-the-art feed-forward quality with more efficient attention
+- **Links**: [arXiv:2605.13465](https://arxiv.org/abs/2605.13465)
+
+### RoSplat
+- **ArXiv**: [2605.13093](https://arxiv.org/abs/2605.13093)
+- **Core**: Robust feed-forward pixel-wise Gaussian Splatting for varying input views and high-resolution rendering
+- **Key Innovation**: Alpha normalization prevents oversaturation from varying view counts; 3D sampling regularizer ensures consistent Gaussian distribution across resolutions; handles arbitrary number of input views with robust performance
+- **Key Results**: Consistent quality across varying input views; supports high-resolution output
+- **Links**: [arXiv:2605.13093](https://arxiv.org/abs/2605.13093)
+
 ## Compression Methods
 
 ### Compact-3DGS
@@ -638,4 +647,31 @@ AIGC:
 - **Related**: Scaffold-GS, CityGaussian, QuadBox
 - **Links**: [arXiv:2605.11489](https://arxiv.org/abs/2605.11489)
 
-> AI生成
+### Velox
+- **ArXiv**: [2605.04527](https://arxiv.org/abs/2605.04527)
+- **Core**: Learning representations of 4D geometry and appearance for feed-forward 4D reconstruction
+- **Key Innovation**: Feed-forward approach to 4D scene reconstruction that jointly learns geometry and appearance representations; enables single-forward-pass 4D Gaussian prediction without per-scene optimization; generalizes across different dynamic scene categories
+- **Key Results**: Feed-forward 4D reconstruction without per-scene optimization
+- **Links**: [arXiv:2605.04527](https://arxiv.org/abs/2605.04527)
+
+### RetroNVS
+- **ArXiv**: [2605.12437](https://arxiv.org/abs/2605.12437)
+- **Venue**: CVPR 2026
+- **Core**: Retrospective dynamic scene novel view synthesis with SfM-initialized Gaussian propagation
+- **Key Innovation**: Propagates Gaussians from SfM-initialized static reconstruction to dynamic frames via optical flow; standardized dynamic multi-view benchmark for dynamic NVS evaluation; addresses temporal consistency in dynamic scene reconstruction
+- **Key Results**: Establishes standardized benchmark for dynamic multi-view novel view synthesis
+- **Links**: [arXiv:2605.12437](https://arxiv.org/abs/2605.12437)
+
+### AV1-3DGS
+- **ArXiv**: [2605.14629](https://arxiv.org/abs/2605.14629)
+- **Core**: Leverages AV1 codec motion vectors for dense feature matching in Structure-from-Motion to improve 3DGS reconstruction
+- **Key Innovation**: Extracts motion vectors from AV1 video compression as dense correspondences for SfM; produces 8x denser point clouds than traditional SfM; reduces 3DGS training time by 63% while achieving 9-point VMAF quality gain
+- **Key Results**: 8x denser point clouds; 9-point VMAF gain; 63% training time reduction
+- **Links**: [arXiv:2605.14629](https://arxiv.org/abs/2605.14629)
+
+### 3DGS²
+- **ArXiv**: [2501.13975](https://arxiv.org/abs/2501.13975)
+- **Core**: Near second-order converging 3DGS training via per-attribute Newton systems
+- **Key Innovation**: Replaces first-order SGD with per-attribute Newton-like optimization; decomposes per-Gaussian Hessian into independent per-attribute systems with sparse cross-attribute coupling; achieves near-quadratic convergence rate; 10x fewer iterations to reach same quality as standard 3DGS
+- **Key Results**: 10x fewer training iterations; near second-order convergence; same final quality as vanilla 3DGS
+- **Links**: [arXiv:2501.13975](https://arxiv.org/abs/2501.13975)

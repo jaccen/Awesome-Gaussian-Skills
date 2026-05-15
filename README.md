@@ -6,7 +6,7 @@ If you like it, please ⭐️ star this repo!
 
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
-**240+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**254+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -43,7 +43,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ## Features
 
-- **240+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 21 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **254+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 21 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: Browse, search, and compare methods at [jaccen.github.io/Awesome-Gaussian-Skills](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
@@ -51,37 +51,41 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ---
 
-## Knowledge Base (240+ Methods)
+## Knowledge Base (254+ Methods)
 
 | Category | Methods |
 |----------|---------|
 | Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER |
 | Compression / Streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS |
-| Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
-| Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat |
+| Large-Scale | BlitzGS |
+| Feed-Forward | Z-Order GS, RoSplat |
+| Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
+| Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
 | Generation / Text-to-3D | DreamGaussian, SceneGen-LLMRL |
 | Antialiasing | Mip-Splatting, LeanGaussian |
-| Optimization | 3DGS-as-MCMC |
+| Optimization | 3DGS-as-MCMC, 3DGS² |
 | Image Representation | GaussianImage |
-| Acceleration | Proxy-GS, Faster-GS, GEMM-GS |
+| Acceleration | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
 | Active Vision | MAGICIAN |
 | Simulation | GS-Playground, GS-Surrogate, FieryGS |
 | Real-Time NVS | 3DTV |
+| Autonomous Driving | Real2Sim |
 | Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS |
 | Data Acquisition | Mobile Phone 3DGS Acquisition |
 | Degradation-Aware | MERID-GS, MarineSTD-GS, E2EGS |
 | System | YOGO, GS-SCNet |
-| Security | RDSplat |
+| Security | RDSplat, GuardMarkGS |
 | HDR / Dynamic | HDR-NSFF, FreeTimeGS++ |
-| Dynamic | ParticleGS, 3DGS³ |
+| Dynamic | ParticleGS, 3DGS³, Velox, RetroNVS |
 | SLAM | 2DGS-SLAM, MAGS-SLAM |
-| Sparse-View | FrameTwin, GeoQuery, VidSplat |
+| Sparse-View | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 | CAD | CADFit |
 | Relighting | Relightable-GS-VP |
 | Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
+| Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
+| Surface / Rendering | SparseOIT |
 
-> The full knowledge base covers **240+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **254+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -155,7 +159,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 240+ methods
+- Built-in knowledge of 254+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -348,7 +352,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (240+ methods across 21 categories)
+│   ├── 3dgs-methods-overview.md # Index (254+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -403,6 +407,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.1 — Add Text2Word interactive demo — text-to-3DGS web creation platform (May 2026)
 - [x] v0.2.2 — Add `patent-software-ip` skill — patent application docs & software copyright registration materials (May 2026)
 - [x] v0.2.3 — Knowledge base expansion: 222→240+ methods, 57+ bug patterns, daily update + new physics-GS/streaming methods (May 2026)
+- [x] v0.2.4 — Knowledge base expansion: 240→254+ methods, 60+ bug patterns, OIT transparency, distributed city-scale GS, 4DGS physics sim for AD (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)

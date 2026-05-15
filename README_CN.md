@@ -1,5 +1,3 @@
----
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -8,7 +6,7 @@
 
 If you like it, please ⭐️ star this repo!
 
-**240+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
+**254+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
 
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -25,52 +23,46 @@ If you like it, please ⭐️ star this repo!
 
 ## 特性
 
-- **240+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 21 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **254+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 21 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：在 [jaccen.github.io/Awesome-Gaussian-Skills](https://jaccen.github.io/Awesome-Gaussian-Skills/) 浏览、搜索与对比方法
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e9a6a86a-b9d5-4797-8452-56d5b755e669'
-  PropagateID: 'e9a6a86a-b9d5-4797-8452-56d5b755e669'
-  ReservedCode1: '0aef5088-648b-4d7a-98f6-0fcc48d980c6'
-  ReservedCode2: '0aef5088-648b-4d7a-98f6-0fcc48d980c6'
----
-
-## 知识库（240+ 方法）
+## 知识库（254+ 方法）
 
 | 类别 | 方法 |
 |------|------|
 | 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER |
 | 压缩/流式 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS |
-| 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++ |
-| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat |
+| 大规模 | BlitzGS |
+| 前馈 | Z-Order GS, RoSplat |
+| 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
+| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
 | 生成/文生3D | DreamGaussian, SceneGen-LLMRL |
 | 抗锯齿 | Mip-Splatting, LeanGaussian |
-| 优化 | 3DGS-as-MCMC |
+| 优化 | 3DGS-as-MCMC, 3DGS² |
 | 图像表示 | GaussianImage |
-| 加速 | Proxy-GS, Faster-GS, GEMM-GS |
+| 加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
 | 主动视觉 | MAGICIAN |
 | 仿真 | GS-Playground, GS-Surrogate, FieryGS |
 | 实时新视角合成 | 3DTV |
+| 自动驾驶 | Real2Sim |
 | 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS |
 | 数据采集 | Mobile Phone 3DGS Acquisition |
 | 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
 | 系统 | YOGO, GS-SCNet |
-| 安全 | RDSplat |
+| 安全 | RDSplat, GuardMarkGS |
 | HDR/动态 | HDR-NSFF, FreeTimeGS++ |
-| 动态 | ParticleGS, 3DGS³ |
+| 动态 | ParticleGS, 3DGS³, Velox, RetroNVS |
 | SLAM | 2DGS-SLAM, MAGS-SLAM |
-| 稀疏视角 | FrameTwin, GeoQuery, VidSplat |
+| 稀疏视角 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 | CAD | CADFit |
 | 重光照 | Relightable-GS-VP |
 | 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS |
+| 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
+| 表面/渲染 | SparseOIT |
 
-> 完整知识库覆盖 **21 个类别的 240+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **21 个类别的 254+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -143,7 +135,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 240+ 方法的知识库
+- 内置 254+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -333,7 +325,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（21 个类别 240+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 254+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -388,6 +380,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.1 — 新增 Text2Word 交互演示——文生3DGS Web创作平台（2026年5月）
 - [x] v0.2.2 — 新增 `patent-software-ip` 技能——专利申请文件与软著登记材料生成（2026年5月）
 - [x] v0.2.3 — 知识库扩展：222→240+ 方法、57+ bug 模式、每日更新 + 物理GS/流式传输新方法（2026年5月）
+- [x] v0.2.4 — 知识库扩展：240→254+ 方法、60+ bug 模式、OIT 透明渲染、分布式城市级 GS、自动驾驶 4DGS 物理仿真（2026年5月）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）
@@ -498,5 +491,3 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
-
-> AI生成
