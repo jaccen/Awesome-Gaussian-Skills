@@ -151,9 +151,9 @@ tailwind.config = {
   <div class="max-w-5xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-8">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Text2Word</h2>
-      <p class="mt-3 text-gray-400 text-base sm:text-lg">Describe a scene in words —?get a 3D Gaussian world in return</p>
+      <p class="mt-3 text-gray-400 text-base sm:text-lg">Describe a scene in words —get a 3D Gaussian world in return</p>
       <p class="mt-2 text-gray-500 text-xs sm:text-sm">The creative platform making 3DGS &amp; CAD accessible to everyone</p>
-      <p class="mt-1 text-[10px] text-gray-600">Powered by Tripo / Meshy / Hunyuan3D —?multi-provider text-to-3D generation</p>
+      <p class="mt-1 text-[10px] text-gray-600">Powered by Tripo / Meshy / Hunyuan3D —multi-provider text-to-3D generation</p>
     </div>
 
     <!-- Prompt Input -->
@@ -175,17 +175,17 @@ tailwind.config = {
     <!-- Tripo config (default) -->
     <div id="t2wConfigTripo" class="flex items-center gap-3">
       <input id="t2wApiKeyTripo" type="password" class="api-key-input flex-1" placeholder="DashScope API Key (sk-xxx)" value="">
-      <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →?/a>
+      <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →/a>
     </div>
     <!-- Meshy config -->
     <div id="t2wConfigMeshy" class="hidden flex items-center gap-3">
       <input id="t2wApiKeyMeshy" type="password" class="api-key-input flex-1" placeholder="Meshy API Key" value="">
-      <a href="https://www.meshy.ai/settings/api" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →?/a>
+      <a href="https://www.meshy.ai/settings/api" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →/a>
     </div>
     <!-- Hunyuan3D config (no direct API - redirect) -->
     <div id="t2wConfigHunyuan3d" class="hidden">
       <p class="text-[11px] text-gray-500 leading-relaxed">Hunyuan3D API uses TC3-HMAC-SHA256 signing (not callable from browser). Click Generate to open Tencent Cloud console, or switch to Tripo/Meshy for in-browser generation.</p>
-      <a href="https://3d.hunyuan.tencent.com/" target="_blank" class="inline-flex items-center gap-1 mt-1.5 text-[11px] text-accent-blue hover:underline">Open Hunyuan3D Console →?/a>
+      <a href="https://3d.hunyuan.tencent.com/" target="_blank" class="inline-flex items-center gap-1 mt-1.5 text-[11px] text-accent-blue hover:underline">Open Hunyuan3D Console →/a>
     </div>
   </div>
 </div>
@@ -228,23 +228,23 @@ tailwind.config = {
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
           <div class="p-3 rounded-lg bg-bg-card border border-accent-blue/20">
             <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
-            <div id="t2wRMethod" class="text-sm font-bold text-white">—?/div>
-            <div id="t2wRReason" class="text-[10px] text-gray-400 mt-0.5 leading-snug">—?/div>
+            <div id="t2wRMethod" class="text-sm font-bold text-white">—/div>
+            <div id="t2wRReason" class="text-[10px] text-gray-400 mt-0.5 leading-snug">—/div>
           </div>
           <div class="p-3 rounded-lg bg-bg-card border border-accent-green/20">
             <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Scene</div>
-            <div id="t2wRType" class="text-sm font-bold text-white">—?/div>
-            <div id="t2wRFeatures" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+            <div id="t2wRType" class="text-sm font-bold text-white">—/div>
+            <div id="t2wRFeatures" class="text-[10px] text-gray-400 mt-0.5">—/div>
           </div>
           <div class="p-3 rounded-lg bg-bg-card border border-accent-purple/20">
             <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Primary Export</div>
-            <div id="t2wRExport" class="text-sm font-bold text-white">—?/div>
-            <div id="t2wRExportNote" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+            <div id="t2wRExport" class="text-sm font-bold text-white">—/div>
+            <div id="t2wRExportNote" class="text-[10px] text-gray-400 mt-0.5">—/div>
           </div>
           <div class="p-3 rounded-lg bg-bg-card border border-accent-cyan/20">
             <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Secondary</div>
-            <div id="t2wRExport2" class="text-sm font-bold text-white">—?/div>
-            <div id="t2wRExport2Note" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+            <div id="t2wRExport2" class="text-sm font-bold text-white">—/div>
+            <div id="t2wRExport2Note" class="text-[10px] text-gray-400 mt-0.5">—/div>
           </div>
         </div>
         <!-- Brief -->
@@ -279,8 +279,8 @@ tailwind.config = {
               style="width:100%;height:300px;background:#0a0a0f;" alt="Generated 3D model">
             </model-viewer>
             <div class="px-3 py-2 border-t border-white/5 flex items-center justify-between">
-              <span class="text-[10px] text-gray-500">Interactive 3D —?drag to rotate, scroll to zoom</span>
-              <a id="t2w3DDownload" href="#" download="model.glb" class="text-[10px] text-emerald-400 hover:underline">Download GLB →?/a>
+              <span class="text-[10px] text-gray-500">Interactive 3D —drag to rotate, scroll to zoom</span>
+              <a id="t2w3DDownload" href="#" download="model.glb" class="text-[10px] text-emerald-400 hover:underline">Download GLB →/a>
             </div>
           </div>
         </div>
@@ -293,7 +293,7 @@ tailwind.config = {
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-accent-teal pulse-dot"></span>
             <span class="text-xs font-medium text-gray-300">PlayCanvas 3DGS Viewer</span>
-            <span class="text-[10px] text-gray-500">Interactive —?drag to rotate, scroll to zoom</span>
+            <span class="text-[10px] text-gray-500">Interactive —drag to rotate, scroll to zoom</span>
           </div>
           <div class="flex items-center gap-1.5">
             <select id="t2wSceneSelect" class="text-[11px] bg-bg-card border border-white/10 rounded px-2 py-1 text-gray-300 focus:outline-none focus:border-accent-teal/50">
@@ -309,8 +309,8 @@ tailwind.config = {
           </div>
         </div>
         <div class="px-4 py-2 border-t border-white/5 flex items-center justify-between">
-          <span class="text-[10px] text-gray-500">Powered by <a href="https://github.com/playcanvas/engine" target="_blank" class="text-accent-teal hover:underline">PlayCanvas Engine</a> (MIT, 15.2k stars) —?WebGL2 + WebGPU</span>
-          <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">Open SuperSplat Editor →?/a>
+          <span class="text-[10px] text-gray-500">Powered by <a href="https://github.com/playcanvas/engine" target="_blank" class="text-accent-teal hover:underline">PlayCanvas Engine</a> (MIT, 15.2k stars) —WebGL2 + WebGPU</span>
+          <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">Open SuperSplat Editor →/a>
         </div>
       </div>
 
@@ -321,14 +321,14 @@ tailwind.config = {
             <span class="w-5 h-5 rounded bg-accent-teal/10 flex items-center justify-center text-accent-teal text-xs">1</span>
             <span class="text-xs font-semibold text-white">Toy Cat (.sog)</span>
           </div>
-          <p class="text-[10px] text-gray-500 ml-7">Compressed Gaussian Splat —?streaming format</p>
+          <p class="text-[10px] text-gray-500 ml-7">Compressed Gaussian Splat —streaming format</p>
         </button>
         <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb" data-label="Astronaut">
           <div class="flex items-center gap-2 mb-1">
             <span class="w-5 h-5 rounded bg-accent-blue/10 flex items-center justify-center text-accent-blue text-xs">2</span>
             <span class="text-xs font-semibold text-white">Astronaut (glTF)</span>
           </div>
-          <p class="text-[10px] text-gray-500 ml-7">Standard 3D model —?orbit & zoom</p>
+          <p class="text-[10px] text-gray-500 ml-7">Standard 3D model —orbit & zoom</p>
         </button>
         <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://superspl.at/editor" data-label="SuperSplat Editor" data-iframe="true">
           <div class="flex items-center gap-2 mb-1">
@@ -354,14 +354,14 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">261+ 3DGS methods analyzed —?best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">261+ 3DGS methods analyzed —best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
           <svg class="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375m13.5 0v9.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Multi-Format Export</h4>
-        <p class="text-[10px] text-gray-500 mt-1">3DGS, mesh, CAD (STEP), point cloud —?from text to any format.</p>
+        <p class="text-[10px] text-gray-500 mt-1">3DGS, mesh, CAD (STEP), point cloud —from text to any format.</p>
       </div>
     </div>
   </div>
@@ -372,7 +372,7 @@ tailwind.config = {
   <div class="max-w-5xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-8">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Img2GS</h2>
-      <p class="mt-3 text-gray-400 text-base sm:text-lg">Upload an image —?reconstruct a 3D Gaussian world from a single photo</p>
+      <p class="mt-3 text-gray-400 text-base sm:text-lg">Upload an image —reconstruct a 3D Gaussian world from a single photo</p>
       <p class="mt-2 text-gray-500 text-xs sm:text-sm">From biological cells to architecture: any image becomes explorable 3D</p>
     </div>
 
@@ -390,7 +390,7 @@ tailwind.config = {
             <div id="img2gsPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 transition-opacity duration-300">
               <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
               <span class="text-xs">Drop an image here or click to upload</span>
-              <span class="text-[10px] mt-1 text-gray-600">PNG, JPG, WebP —?any scene</span>
+              <span class="text-[10px] mt-1 text-gray-600">PNG, JPG, WebP —any scene</span>
             </div>
             <!-- Preview -->
             <img id="img2gsPreview" class="hidden w-full h-full object-contain rounded-xl" alt="Uploaded image preview">
@@ -434,7 +434,7 @@ tailwind.config = {
                 <input id="i2gApiKeyHunyuan3d" type="password" class="api-key-input flex-1" placeholder="Hunyuan3D API Key (sk-xxx)" value="">
                 <a href="https://console.cloud.tencent.com/hunyuan/start" target="_blank" class="text-[10px] text-accent-purple hover:underline shrink-0">Get Key</a>
               </div>
-              <p class="text-[10px] text-gray-500 mt-1">OpenAI-compatible API —?direct browser call, no server-side signing needed.</p>
+              <p class="text-[10px] text-gray-500 mt-1">OpenAI-compatible API —direct browser call, no server-side signing needed.</p>
             </div>
             <div id="i2gConfigRodin" class="hidden flex items-center gap-3">
               <input id="i2gApiKeyRodin" type="password" class="api-key-input flex-1" placeholder="Hyper3D Rodin API Key" value="">
@@ -464,23 +464,23 @@ tailwind.config = {
             <div class="grid grid-cols-2 gap-3 mb-3">
               <div class="p-3 rounded-lg bg-bg-card border border-amber-500/20">
                 <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Detected Scene</div>
-                <div id="i2gRScene" class="text-sm font-bold text-white">—?/div>
-                <div id="i2gRSceneDetail" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+                <div id="i2gRScene" class="text-sm font-bold text-white">—/div>
+                <div id="i2gRSceneDetail" class="text-[10px] text-gray-400 mt-0.5">—/div>
               </div>
               <div class="p-3 rounded-lg bg-bg-card border border-accent-blue/20">
                 <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
-                <div id="i2gRMethod" class="text-sm font-bold text-white">—?/div>
-                <div id="i2gRReason" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+                <div id="i2gRMethod" class="text-sm font-bold text-white">—/div>
+                <div id="i2gRReason" class="text-[10px] text-gray-400 mt-0.5">—/div>
               </div>
               <div class="p-3 rounded-lg bg-bg-card border border-accent-purple/20">
                 <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">3D Provider</div>
-                <div id="i2gRProvider" class="text-sm font-bold text-white">—?/div>
-                <div id="i2gRProviderNote" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+                <div id="i2gRProvider" class="text-sm font-bold text-white">—/div>
+                <div id="i2gRProviderNote" class="text-[10px] text-gray-400 mt-0.5">—/div>
               </div>
               <div class="p-3 rounded-lg bg-bg-card border border-emerald-500/20">
                 <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Output</div>
-                <div id="i2gROutput" class="text-sm font-bold text-white">—?/div>
-                <div id="i2gROutputNote" class="text-[10px] text-gray-400 mt-0.5">—?/div>
+                <div id="i2gROutput" class="text-sm font-bold text-white">—/div>
+                <div id="i2gROutputNote" class="text-[10px] text-gray-400 mt-0.5">—/div>
               </div>
             </div>
           </div>
@@ -508,7 +508,7 @@ tailwind.config = {
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-amber-400 pulse-dot"></span>
             <span class="text-xs font-medium text-gray-300">Img2GS 3D Viewer</span>
-            <span class="text-[10px] text-gray-500">Generated scene preview —?drag to rotate</span>
+            <span class="text-[10px] text-gray-500">Generated scene preview —drag to rotate</span>
           </div>
           <div class="flex items-center gap-2">
             <select id="i2gSceneSelect" class="text-[11px] bg-bg-card border border-white/10 rounded px-2 py-1 text-gray-300 focus:outline-none focus:border-amber-500/50">
@@ -543,21 +543,21 @@ tailwind.config = {
           <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Single Image In</h4>
-        <p class="text-[10px] text-gray-500 mt-1">Upload any photo —?from microscopy to cityscape.</p>
+        <p class="text-[10px] text-gray-500 mt-1">Upload any photo —from microscopy to cityscape.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-2">
           <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">AI 3D Generation</h4>
-        <p class="text-[10px] text-gray-500 mt-1">Tripo / Meshy / Hunyuan3D / Rodin —?multi-provider image-to-3D reconstruction.</p>
+        <p class="text-[10px] text-gray-500 mt-1">Tripo / Meshy / Hunyuan3D / Rodin —multi-provider image-to-3D reconstruction.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center mx-auto mb-2">
           <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">3DGS + Mesh Export</h4>
-        <p class="text-[10px] text-gray-500 mt-1">GLB model →?3DGS refinement →?.ply / .obj / .step output.</p>
+        <p class="text-[10px] text-gray-500 mt-1">GLB model →3DGS refinement →.ply / .obj / .step output.</p>
       </div>
     </div>
   </div>
@@ -568,17 +568,17 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">3DGS in Action</h2>
-      <p class="mt-3 text-gray-400">Real-time radiance field rendering —?from photos to photorealistic 3D in minutes</p>
+      <p class="mt-3 text-gray-400">Real-time radiance field rendering —from photos to photorealistic 3D in minutes</p>
     </div>
     <!-- Main Teaser -->
     <div class="gradient-border overflow-hidden mb-4">
       <div class="p-1">
         <img src="https://raw.githubusercontent.com/graphdeco-inria/gaussian-splatting/main/assets/teaser.png"
-             alt="3D Gaussian Splatting teaser —?bicycle, garden, stump, room scenes"
+             alt="3D Gaussian Splatting teaser —bicycle, garden, stump, room scenes"
              class="w-full rounded-lg" loading="lazy"
              onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-64 text-gray-500 text-sm\'>Image loading... please refresh if it doesn\'t appear</div>'">
         <p class="text-center mt-3 mb-2 text-xs text-gray-500">
-          3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) —?Real-time novel-view synthesis on bicycle, garden, stump &amp; room scenes
+          3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) —Real-time novel-view synthesis on bicycle, garden, stump &amp; room scenes
         </p>
       </div>
     </div>
@@ -587,7 +587,7 @@ tailwind.config = {
       <div class="gradient-border overflow-hidden group">
         <div class="relative p-1">
           <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_truck.png"
-               alt="Truck scene —?Tanks & Temples" class="w-full rounded-lg" loading="lazy">
+               alt="Truck scene —Tanks & Temples" class="w-full rounded-lg" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
             <div>
               <p class="text-white text-sm font-semibold">Truck</p>
@@ -599,7 +599,7 @@ tailwind.config = {
       <div class="gradient-border overflow-hidden group">
         <div class="relative p-1">
           <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_bicycle.png"
-               alt="Bicycle scene —?Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
+               alt="Bicycle scene —Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
             <div>
               <p class="text-white text-sm font-semibold">Bicycle</p>
@@ -611,7 +611,7 @@ tailwind.config = {
       <div class="gradient-border overflow-hidden group">
         <div class="relative p-1">
           <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_garden.png"
-               alt="Garden scene —?Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
+               alt="Garden scene —Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
             <div>
               <p class="text-white text-sm font-semibold">Garden</p>
@@ -628,7 +628,7 @@ tailwind.config = {
              alt="Anti-aliasing on/off comparison" class="max-w-md w-full rounded-lg" loading="lazy">
         <div class="px-2 py-4 sm:px-4">
           <h3 class="text-white font-semibold text-sm mb-2">Mip-Splatting Anti-Aliasing</h3>
-          <p class="text-gray-400 text-xs leading-relaxed">Left: 3DGS baseline —?zoom artifacts &amp; aliasing. Right: Mip-Splatting —?smooth, aliasing-free rendering at any scale.</p>
+          <p class="text-gray-400 text-xs leading-relaxed">Left: 3DGS baseline —zoom artifacts &amp; aliasing. Right: Mip-Splatting —smooth, aliasing-free rendering at any scale.</p>
           <a href="https://arxiv.org/abs/2312.21535" target="_blank" class="inline-flex items-center gap-1 mt-3 text-xs text-accent-blue hover:underline font-mono">2312.21535</a>
         </div>
       </div>
@@ -645,7 +645,7 @@ tailwind.config = {
                   src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                   title="3DGS Interactive Viewer"></iframe>
           <p class="text-center mt-2 mb-1 text-xs text-gray-500">
-            Powered by <a href="https://github.com/antimatter15/splat" target="_blank" class="text-accent-blue hover:underline">antimatter15/splat</a> (MIT) —?Drag to rotate, scroll to zoom
+            Powered by <a href="https://github.com/antimatter15/splat" target="_blank" class="text-accent-blue hover:underline">antimatter15/splat</a> (MIT) —Drag to rotate, scroll to zoom
           </p>
         </div>
       </div>
@@ -681,7 +681,7 @@ tailwind.config = {
     <div class="flex items-center gap-2 mb-5">
       <span class="text-[11px] text-gray-500 font-medium uppercase tracking-wider">Sort:</span>
       <button id="sortDefault" class="sort-btn active px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30 transition" data-sort="default">Default</button>
-      <button id="sortCitations" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition" data-sort="citations">Citations →?/button>
+      <button id="sortCitations" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition" data-sort="citations">Citations ↓</button>
       <button id="sortNewest" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30 transition" data-sort="newest">Newest</button>
       <span id="sortHint" class="text-[10px] text-gray-600 ml-1"></span>
     </div>
@@ -849,7 +849,7 @@ const METHODS = [
   { name: "TransmissiveGS", short: "TransmissiveGS", cat: "Surface", venue: "arXiv", year: 2026, desc: "Dual-Gaussian + deferred shading for transmissive/refractive scenes with near...", arxiv: "2605.10705" , citations: 3 },
   { name: "2DGS", short: "2DGS", cat: "CAD", venue: "SIGGRAPH", year: 2024, desc: "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction", arxiv: "2403.17888" , citations: 250 },
   { name: "CADFit", short: "CADFit", cat: "CAD", venue: "arXiv", year: 2026, desc: "IoU-driven hybrid optimization over structured CAD programs (extrusions, revo...", arxiv: "2605.01171" , citations: 3 },
-  { name: "MaGS", short: "MaGS", cat: "CAD", venue: "ICCV", year: 2025, desc: "Mesh-adsorbed Gaussians; deform mesh →?Gaussians follow", arxiv: "" , citations: 100 },
+  { name: "MaGS", short: "MaGS", cat: "CAD", venue: "ICCV", year: 2025, desc: "Mesh-adsorbed Gaussians; deform mesh →Gaussians follow", arxiv: "" , citations: 100 },
   { name: "Vol3DGS", short: "Vol3DGS", cat: "CAD", venue: "CVPR", year: 2025, desc: "Physically accurate volume-consistent rendering resolving splatting/volume in...", arxiv: "" , citations: 100 },
   { name: "SceneGen-LLMRL", short: "SceneGen-LLMRL", cat: "Generation", venue: "arXiv", year: 2026, desc: "Unified 3D scene generation + immersive interaction via LLM-RL coupling", arxiv: "2605.05711" , citations: 3 },
   { name: "AdaptSplat", short: "AdaptSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Lightweight Frequency-Preserving Adapter (1.5M params) on vision foundation m...", arxiv: "2605.10239" , citations: 3 },
@@ -884,9 +884,9 @@ const METHODS = [
   { name: "FSGS", short: "FSGS", cat: "Sparse-View", venue: "ECCV", year: 2024, desc: "SRF geometric prior + 3DGS for few-shot view synthesis", arxiv: "2312.00451" , citations: 50 },
   { name: "GeoQuery", short: "GeoQuery", cat: "Sparse-View", venue: "SIGGRAPH", year: 2026, desc: "Geometry-guided cross-view attention replacing corrupted rendering features w...", arxiv: "2605.12399" , citations: 15 },
   { name: "GSCompleter", short: "GSCompleter", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Distillation-free sparse-view completion via Stereo-Anchor", arxiv: "2604.20155" , citations: 3 },
-  { name: "HeroGS", short: "HeroGS", cat: "Sparse-View", venue: "CVPR", year: 2026, desc: "Hierarchical image→抮egion→抪ixel guidance for sparse-view robustness", arxiv: "" , citations: 15 },
+  { name: "HeroGS", short: "HeroGS", cat: "Sparse-View", venue: "CVPR", year: 2026, desc: "Hierarchical image→region→pixel guidance for sparse-view robustness", arxiv: "" , citations: 15 },
   { name: "PairDropGS", short: "PairDropGS", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Paired dropout-induced consistency regularization with progressive scheduling...", arxiv: "2605.12072" , citations: 3 },
-  { name: "Pi-GS", short: "Pi-GS", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Reference-free 蟺鲁 initialization for sparse-view 3DGS", arxiv: "2602.03327" , citations: 3 },
+  { name: "Pi-GS", short: "Pi-GS", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Reference-free π initialization for sparse-view 3DGS", arxiv: "2602.03327" , citations: 3 },
   { name: "VidSplat", short: "VidSplat", cat: "Sparse-View", venue: "SIGGRAPH", year: 2026, desc: "Training-free generative framework leveraging video diffusion priors with ite...", arxiv: "2605.11424" , citations: 15 },
   { name: "CityGaussian", short: "CityGaussian", cat: "Large-Scale", venue: "ECCV", year: 2024, desc: "Hierarchical LOD for city-scale real-time rendering", arxiv: "2401.02379" , citations: 50 },
   { name: "Octree-GS", short: "Octree-GS", cat: "Large-Scale", venue: "arXiv", year: 0, desc: "Octree spatial partitioning + LOD management", arxiv: "" , citations: 10 },
@@ -901,7 +901,7 @@ const METHODS = [
   { name: "IRIS", short: "IRIS", cat: "Editing", venue: "arXiv", year: 2026, desc: "Hybrid proxy with analytical ray-primitive intersection", arxiv: "2603.15368" , citations: 3 },
   { name: "DiffAdapt4DSI", short: "DiffAdapt4DSI", cat: "Material", venue: "CVPR", year: 2026, desc: "Differentiable adaptive 4D structured illumination for joint capture of shape...", arxiv: "2605.06214" , citations: 15 },
   { name: "GRF", short: "GRF", cat: "Material", venue: "arXiv", year: 0, desc: "Material decomposition + relighting in Gaussian space", arxiv: "" , citations: 10 },
-  { name: "GS-IR", short: "GS-IR", cat: "Material", venue: "arXiv", year: 0, desc: "Inverse rendering: Gaussians →?geometry + BRDF + lighting", arxiv: "" , citations: 10 },
+  { name: "GS-IR", short: "GS-IR", cat: "Material", venue: "arXiv", year: 0, desc: "Inverse rendering: Gaussians →geometry + BRDF + lighting", arxiv: "" , citations: 10 },
   { name: "Instant Colorization", short: "Instant Colorization", cat: "Material", venue: "arXiv", year: 2026, desc: "Visibility-weighted least squares for per-Gaussian colorization", arxiv: "2604.17155" , citations: 3 },
   { name: "Relightable-GS-VP", short: "Relightable-GS-VP", cat: "Material", venue: "arXiv", year: 2026, desc: "GS-based relighting for Virtual Production with image-based illumination; UV-...", arxiv: "2605.09024" , citations: 3 },
   { name: "Relit-LiVE", short: "Relit-LiVE", cat: "Material", venue: "SIGGRAPH", year: 2026, desc: "Relight video by jointly learning environment video", arxiv: "2605.06658" , citations: 15 },
@@ -918,7 +918,7 @@ const METHODS = [
   { name: "WildGaussians", short: "WildGaussians", cat: "Robustness", venue: "NeurIPS", year: 2024, desc: "Joint pose + 3DGS optimization from internet photos", arxiv: "2407.08447" , citations: 250 },
   { name: "3DGS Safety Evaluation for AD", short: "3DGS-SafeAD", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Industrial-fidelity AD scene reconstruction evaluation", arxiv: "2605.01995" , citations: 3 },
   { name: "ADS-GS", short: "ADS-GS", cat: "Autonomous Driving", venue: "arXiv", year: 0, desc: "Static + dynamic decomposition for driving scenes", arxiv: "" , citations: 10 },
-  { name: "Asset Harvester", short: "Asset Harvester", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "AV log →?simulation-ready 3D assets via SparseViewDiT", arxiv: "2604.18468" , citations: 3 },
+  { name: "Asset Harvester", short: "Asset Harvester", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "AV log →simulation-ready 3D assets via SparseViewDiT", arxiv: "2604.18468" , citations: 3 },
   { name: "GaussianLSS", short: "GaussianLSS", cat: "Autonomous Driving", venue: "CVPR", year: 2025, desc: "BEV perception via Gaussian Splatting", arxiv: "" , citations: 100 },
   { name: "GSDrive", short: "GSDrive", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "3DGS-based RL reward shaping for driving policy improvement", arxiv: "2604.28111" , citations: 3 },
   { name: "Nighttime AD GS", short: "Nighttime AD GS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "PBR + BRDF for nighttime driving scene reconstruction", arxiv: "2602.13549" , citations: 3 },
@@ -992,11 +992,11 @@ const METHOD_DETAILS = {
   "BrepGaussian": { innovation: "3DGS + B-rep CAD reconstruction to parametric STEP models", codeUrl: "" },
   "CADFit": { innovation: "IoU-driven hybrid optimization over structured CAD programs (extrusions, revolutions, fillets, chamfers); multimodal image-to-CAD pipeline", codeUrl: "" },
   "CADFS": { innovation: "Large-scale CAD program dataset + LLM-assisted CAD understanding", codeUrl: "" },
-  "MaGS": { innovation: "Mesh-adsorbed Gaussians; deform mesh →?Gaussians follow", codeUrl: "" },
+  "MaGS": { innovation: "Mesh-adsorbed Gaussians; deform mesh →Gaussians follow", codeUrl: "" },
   "SuGaR_CAD": { innovation: "Joint Gaussians + mesh optimization with TSDF extraction", codeUrl: "https://github.com/Anttwo/SuGaR" },
   "UniMGS": { innovation: "Single-pass rasterization for both mesh and Gaussians simultaneously", codeUrl: "" },
   "Vol3DGS": { innovation: "Physically accurate volume-consistent rendering resolving splatting/volume inconsistency", codeUrl: "" },
-  "AniGen": { innovation: "Unified S鲁 Fields for single-image animatable 3D asset generation with skeleton + skinning", codeUrl: "https://github.com/VAST-AI-Research/AniGen" },
+  "AniGen": { innovation: "Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning", codeUrl: "https://github.com/VAST-AI-Research/AniGen" },
   "DreamGaussian": { innovation: "SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup", codeUrl: "https://github.com/dreamgaussian/dreamgaussian" },
   "SceneGen-LLMRL": { innovation: "Unified 3D scene generation + immersive interaction via LLM-RL coupling", codeUrl: "" },
   "SIC3D": { innovation: "Style image conditioned text-to-3D Gaussian Splatting generation", codeUrl: "" },
@@ -1006,7 +1006,7 @@ const METHOD_DETAILS = {
   "DepthSplat": { innovation: "Stereo-guided depth regularization for feed-forward 3DGS", codeUrl: "https://github.com/yzhq97/depthsplat" },
   "Free Geometry": { innovation: "Self-evolving feed-forward models via LoRA without 3D GT", codeUrl: "https://github.com/hiteacherIamhumble/Free-Geometry" },
   "GenWildSplat": { innovation: "Generalizable sparse-view 3D reconstruction from unconstrained images", codeUrl: "" },
-  "GlobalSplat": { innovation: "Global latent tokens →?16K Gaussians in 78ms single forward pass", codeUrl: "" },
+  "GlobalSplat": { innovation: "Global latent tokens →16K Gaussians in 78ms single forward pass", codeUrl: "" },
   "GS-LRM": { innovation: "1B-parameter transformer with zero-shot generalization", codeUrl: "https://github.com/sunnyuvion/GS-LRM" },
   "IDESplat": { innovation: "Iterative depth probability with epipolar attention", codeUrl: "" },
   "InstantSplat": { innovation: "Pose-free sparse-view reconstruction in ~40 seconds", codeUrl: "https://github.com/NVlabs/InstantSplat" },
@@ -1056,9 +1056,9 @@ const METHOD_DETAILS = {
   "FSGS": { innovation: "SRF geometric prior + 3DGS for few-shot view synthesis", codeUrl: "https://github.com/VITA-Group/FSGS" },
   "GeoQuery": { innovation: "Geometry-guided cross-view attention replacing corrupted rendering features with geometry-aligned proxy queries", codeUrl: "" },
   "GSCompleter": { innovation: "Distillation-free sparse-view completion via Stereo-Anchor", codeUrl: "" },
-  "HeroGS": { innovation: "Hierarchical image→抮egion→抪ixel guidance for sparse-view robustness", codeUrl: "" },
+  "HeroGS": { innovation: "Hierarchical image→region→pixel guidance for sparse-view robustness", codeUrl: "" },
   "PairDropGS": { innovation: "Paired dropout-induced consistency regularization with progressive scheduling for sparse-view GS", codeUrl: "" },
-  "Pi-GS": { innovation: "Reference-free 蟺鲁 initialization for sparse-view 3DGS", codeUrl: "" },
+  "Pi-GS": { innovation: "Reference-free π initialization for sparse-view 3DGS", codeUrl: "" },
   "VidSplat": { innovation: "Training-free generative framework leveraging video diffusion priors with iterative confidence-weighted refinement", codeUrl: "" },
   "CityGaussian": { innovation: "Hierarchical LOD for city-scale real-time rendering", codeUrl: "" },
   "GS4City": { innovation: "Hierarchical semantic GS via city-model priors", codeUrl: "" },
@@ -1081,7 +1081,7 @@ const METHOD_DETAILS = {
   "DiffAdapt4DSI": { innovation: "Differentiable adaptive 4D structured illumination for joint capture of shape and reflectance", codeUrl: "" },
   "GaussianShader": { innovation: "Shading functions for reflective/refractive surfaces", codeUrl: "" },
   "GRF": { innovation: "Material decomposition + relighting in Gaussian space", codeUrl: "" },
-  "GS-IR": { innovation: "Inverse rendering: Gaussians →?geometry + BRDF + lighting", codeUrl: "" },
+  "GS-IR": { innovation: "Inverse rendering: Gaussians →geometry + BRDF + lighting", codeUrl: "" },
   "Instant Colorization": { innovation: "Visibility-weighted least squares for per-Gaussian colorization", codeUrl: "" },
   "LumiMotion": { innovation: "Improving Gaussian relighting with scene dynamics", codeUrl: "" },
   "Relightable-GS-VP": { innovation: "GS-based relighting for Virtual Production with image-based illumination; UV-parameterized primitives sampling image space", codeUrl: "" },
@@ -1111,7 +1111,7 @@ const METHOD_DETAILS = {
   "WildGaussians": { innovation: "Joint pose + 3DGS optimization from internet photos", codeUrl: "https://github.com/jkulhanek/wild-gaussians/" },
   "3DGS Safety Evaluation for AD": { innovation: "Industrial-fidelity AD scene reconstruction evaluation", codeUrl: "" },
   "ADS-GS": { innovation: "Static + dynamic decomposition for driving scenes", codeUrl: "" },
-  "Asset Harvester": { innovation: "AV log →?simulation-ready 3D assets via SparseViewDiT", codeUrl: "https://research.nvidia.com/labs/sil/projects/asset-harvester/" },
+  "Asset Harvester": { innovation: "AV log →simulation-ready 3D assets via SparseViewDiT", codeUrl: "https://research.nvidia.com/labs/sil/projects/asset-harvester/" },
   "GaussianLSS": { innovation: "BEV perception via Gaussian Splatting", codeUrl: "" },
   "Ground4D": { innovation: "Spatially-grounded feedforward 4D for off-road reconstruction", codeUrl: "" },
   "GSDrive": { innovation: "3DGS-based RL reward shaping for driving policy improvement", codeUrl: "" },
@@ -1924,9 +1924,9 @@ echo "Done! $(echo "\${SKILLS[@]}" | wc -w) skills installed."` }
 ];
 
 const TRENDS = [
-  { title: "Distributed City-Scale GS", desc: "BlitzGS achieves order-of-magnitude speedup for city-scale 3DGS via parity-based GPU sharding —?approaching practical deployment timelines", tags: ["Large-Scale", "Systems"] },
+  { title: "Distributed City-Scale GS", desc: "BlitzGS achieves order-of-magnitude speedup for city-scale 3DGS via parity-based GPU sharding —approaching practical deployment timelines", tags: ["Large-Scale", "Systems"] },
   { title: "4DGS + Physics Deep Integration", desc: "Real2Sim (4DGS + differentiable MPM) combines physics-aware simulation with Gaussian rendering for autonomous driving", tags: ["Simulation", "CVPR 2026"] },
-  { title: "3DGS Security & Watermarking", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence —?critical as 3DGS assets become commercially valuable", tags: ["Security", "Copyright"] },
+  { title: "3DGS Security & Watermarking", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence —critical as 3DGS assets become commercially valuable", tags: ["Security", "Copyright"] },
   { title: "Feed-Forward Quality Gap Closing", desc: "Z-Order GS (CVPR Oral) and RoSplat show spatial ordering and robust training strategies closing the gap with per-scene optimization", tags: ["Feed-Forward", "CVPR 2026"] },
   { title: "Language-3DGS Efficiency", desc: "SCOUP achieves 400x training speedup by decoupling language representation from 3D optimization for open-vocabulary understanding", tags: ["Semantic", "Efficiency"] },
   { title: "OIT Transparency in 3DGS", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", tags: ["Surface", "Rendering"] }
@@ -1988,8 +1988,7 @@ function openMethodModal(idx) {
   const d = METHOD_DETAILS[m.name] || {};
   const a = ABSTRACTS[m.name] || {};
   const abstractEn = a.abstractEn || '';
-  const abstractCn = a.abstractCn || '';
-  const hasAbstract = abstractEn || abstractCn;
+  const hasAbstract = !!abstractEn;
   const el = document.getElementById('modalContent');
   el.innerHTML = `
     <button class="modal-close" onclick="closeMethodModal()">&times;</button>
@@ -2010,14 +2009,10 @@ function openMethodModal(idx) {
         ${hasAbstract ? `
         <div>
           <div class="modal-tabs" id="abstractTabs">
-            <div class="modal-tab active" onclick="switchAbstractTab('en')">English</div>
-            
+            <div class="modal-tab active">English</div>
           </div>
           <div id="abstractEn" class="abstract-panel active">
             <p class="text-sm text-gray-300 leading-relaxed">${abstractEn || 'N/A'}</p>
-          </div>
-          <div id="abstractCn" class="abstract-panel">
-            <p class="text-sm text-gray-300 leading-relaxed">${abstractCn || ' 傛棤'}</p>
           </div>
         </div>` : ''}
         <div class="flex flex-wrap gap-3 pt-2 border-t border-white/5">
@@ -2034,14 +2029,6 @@ function openMethodModal(idx) {
     </div>`;
   document.getElementById('methodModal').classList.add('open');
   document.body.style.overflow = 'hidden';
-}
-
-function switchAbstractTab(lang) {
-  document.querySelectorAll('#abstractTabs .modal-tab').forEach((t, i) => {
-    t.classList.toggle('active', (lang === 'en' && i === 0) || (lang === 'cn' && i === 1));
-  });
-  document.getElementById('abstractEn').classList.toggle('active', lang === 'en');
-  document.getElementById('abstractCn').classList.toggle('active', lang === 'cn');
 }
 
 function closeMethodModal() {
@@ -2133,7 +2120,7 @@ function escapeHtml(str) {
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
+}, { threshold: 0.01 });
 
 document.addEventListener('DOMContentLoaded', () => {
   renderTabs();
@@ -2361,7 +2348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('t2wRType').textContent = parsed.type;
     document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
     document.getElementById('t2wRExport').textContent = isRealGen ? '.glb (AI Generated)' : '.ply (3DGS)';
-    document.getElementById('t2wRExportNote').textContent = isRealGen ? 'PBR model with textures —?convert to 3DGS via gsplat' : 'Primary Gaussian representation';
+    document.getElementById('t2wRExportNote').textContent = isRealGen ? 'PBR model with textures —convert to 3DGS via gsplat' : 'Primary Gaussian representation';
     const isCAD = parsed.type === 'cad';
     const isAvatar = parsed.type === 'avatar';
     document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
@@ -2369,8 +2356,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const providerLabel = t2wProvider === 'tripo' ? 'Aliyun Tripo' : t2wProvider === 'meshy' ? 'Meshy AI' : 'Hunyuan3D';
     const brief = isRealGen
-      ? `Scene Brief:\n  Input: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}\n  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}\n  API: ${providerLabel} (text-to-3D)\n  Recommended 3DGS Method: ${method.method} —?${method.reason}\n  Initialization: ${method.init}\n  Generated Asset: PBR GLB model\n  Next Step: Import .glb →?convert to 3DGS .ply via gsplat/SuperSplat\n  Validation: geometric faithfulness, visual quality`
-      : `Scene Brief (Simulation —?enter API Key for real generation):\n  Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}\n  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}\n  Method: ${method.method} —?${method.reason}\n  Initialization: ${method.init}\n  Training: 300—?00 iterations recommended\n  Next Step: Enter API Key above to generate real 3D models`;
+      ? `Scene Brief:\n  Input: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}\n  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}\n  API: ${providerLabel} (text-to-3D)\n  Recommended 3DGS Method: ${method.method} —${method.reason}\n  Initialization: ${method.init}\n  Generated Asset: PBR GLB model\n  Next Step: Import .glb →convert to 3DGS .ply via gsplat/SuperSplat\n  Validation: geometric faithfulness, visual quality`
+      : `Scene Brief (Simulation —enter API Key for real generation):\n  Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}\n  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}\n  Method: ${method.method} —${method.reason}\n  Initialization: ${method.init}\n  Training: 300—00 iterations recommended\n  Next Step: Enter API Key above to generate real 3D models`;
     document.getElementById('t2wRBrief').textContent = brief;
   }
 
@@ -2701,7 +2688,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.warn('PlayCanvas init failed:', err);
       placeholder.style.display = 'flex';
-      placeholder.innerHTML = '<span class="text-xs text-gray-500">WebGL not available —?try Chrome/Firefox</span>';
+      placeholder.innerHTML = '<span class="text-xs text-gray-500">WebGL not available —try Chrome/Firefox</span>';
     }
   }
 
@@ -2954,7 +2941,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   var i2gProviderMap2 = {
     tripo:    { name: 'Tripo (Aliyun)', note: 'Async polling via DashScope, GLB + preview render' },
-    meshy:    { name: 'Meshy AI', note: 'Image→?D with preview+refine two-step generation' },
+    meshy:    { name: 'Meshy AI', note: 'Image→D with preview+refine two-step generation' },
     hunyuan3d:{ name: 'Hunyuan3D (Tencent)', note: 'OpenAI-compatible API, high-precision geometry + texture' },
     rodin:    { name: 'Rodin (Hyper3D)', note: 'Gen-2 Edit model, SOTA quality, 5 generation tiers' }
   };
@@ -3071,13 +3058,13 @@ document.addEventListener('DOMContentLoaded', () => {
         i2gLoadDemoPreview();
       }
     } else {
-      // No API key —?simulation mode
+      // No API key —simulation mode
       for (var k = 2; k < i2gPipelineSteps.length; k++) {
         var delayMs = k === 2 ? 1100 : k === 3 ? 800 : 400;
         await i2gMarkStep(k, delayMs);
       }
       showI2GResults(provider, sceneInfo, '.glb + .ply (sim)', false);
-      document.getElementById('i2gRProviderNote').textContent = provider.note + ' —?no API key, simulation mode';
+      document.getElementById('i2gRProviderNote').textContent = provider.note + ' —no API key, simulation mode';
       i2gLoadDemoPreview();
     }
 
