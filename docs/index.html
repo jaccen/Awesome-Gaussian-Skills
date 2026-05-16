@@ -413,16 +413,33 @@ tailwind.config = {
           </div>
 
           <!-- Provider selector -->
-          <div class="flex flex-wrap gap-2">
-            <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 cursor-pointer hover:border-accent-blue/30 transition has-[:checked]:border-accent-blue has-[:checked]:bg-accent-blue/10 has-[:checked]:text-accent-blue">
-              <input type="radio" name="i2gProvider" value="tripo" checked class="sr-only"> Tripo Cloud
-            </label>
-            <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 cursor-pointer hover:border-accent-blue/30 transition has-[:checked]:border-accent-purple has-[:checked]:bg-accent-purple/10 has-[:checked]:text-accent-purple">
-              <input type="radio" name="i2gProvider" value="hunyuan" class="sr-only"> Hunyuan3D
-            </label>
-            <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-400 cursor-pointer hover:border-accent-blue/30 transition has-[:checked]:border-emerald-400 has-[:checked]:bg-emerald-500/10 has-[:checked]:text-emerald-400">
-              <input type="radio" name="i2gProvider" value="auto" class="sr-only"> Auto
-            </label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium active bg-accent-blue/20 text-accent-blue border border-accent-blue/30" data-provider="tripo">Tripo (Aliyun)</button>
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30" data-provider="meshy">Meshy AI</button>
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-accent-purple/30" data-provider="hunyuan3d">Hunyuan3D (Tencent)</button>
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-rose-500/30" data-provider="rodin">Rodin (Hyper3D)</button>
+          </div>
+          <!-- Provider API key configs -->
+          <div id="i2gProviderConfig" class="mt-1">
+            <div id="i2gConfigTripo" class="flex items-center gap-3">
+              <input id="i2gApiKeyTripo" type="password" class="api-key-input flex-1" placeholder="Aliyun Bailian API Key (DashScope)" value="">
+              <a href="https://bailian.console.aliyun.com/" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key</a>
+            </div>
+            <div id="i2gConfigMeshy" class="hidden flex items-center gap-3">
+              <input id="i2gApiKeyMeshy" type="password" class="api-key-input flex-1" placeholder="Meshy API Key" value="">
+              <a href="https://www.meshy.ai/" target="_blank" class="text-[10px] text-emerald-400 hover:underline shrink-0">Get Key</a>
+            </div>
+            <div id="i2gConfigHunyuan3d" class="hidden">
+              <div class="flex items-center gap-3">
+                <input id="i2gApiKeyHunyuan3d" type="password" class="api-key-input flex-1" placeholder="Hunyuan3D API Key (sk-xxx)" value="">
+                <a href="https://console.cloud.tencent.com/hunyuan/start" target="_blank" class="text-[10px] text-accent-purple hover:underline shrink-0">Get Key</a>
+              </div>
+              <p class="text-[10px] text-gray-500 mt-1">OpenAI-compatible API — direct browser call, no server-side signing needed.</p>
+            </div>
+            <div id="i2gConfigRodin" class="hidden flex items-center gap-3">
+              <input id="i2gApiKeyRodin" type="password" class="api-key-input flex-1" placeholder="Hyper3D Rodin API Key" value="">
+              <a href="https://hyper3d.ai/api-dashboard" target="_blank" class="text-[10px] text-rose-400 hover:underline shrink-0">Get Key</a>
+            </div>
           </div>
 
           <!-- Action buttons -->
@@ -467,6 +484,19 @@ tailwind.config = {
               </div>
             </div>
           </div>
+
+          <!-- 3D Model Result -->
+          <div id="i2g3DResult" class="hidden mt-3">
+            <div class="gradient-border overflow-hidden">
+              <div class="relative w-full" style="height:300px;background:#0a0a0f;">
+                <model-viewer id="i2gModelViewer" class="w-full h-full" camera-controls auto-rotate rotation-per-second="30deg" shadow-intensity="1" exposure="1.1" environment-image="neutral" style="--poster-color: transparent;"></model-viewer>
+              </div>
+              <div class="px-3 py-2 border-t border-white/5 flex items-center justify-between">
+                <span id="i2g3DStatus" class="text-[10px] text-gray-500">Loading model...</span>
+                <a id="i2g3DDownload" href="#" download="img2gs-result.glb" class="hidden text-[10px] text-accent-blue hover:underline">Download GLB</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -496,8 +526,10 @@ tailwind.config = {
         <div class="px-4 py-2 border-t border-white/5 flex items-center justify-between">
           <span class="text-[10px] text-gray-500">Powered by PlayCanvas Engine + <a href="https://github.com/huangserva/3DCellForge" target="_blank" class="text-amber-400 hover:underline">3DCellForge</a> pipeline</span>
           <div class="flex items-center gap-3">
-            <a href="https://www.tripo3d.ai/" target="_blank" class="text-[10px] text-accent-blue hover:underline">Tripo API</a>
+            <a href="https://www.tripo3d.ai/" target="_blank" class="text-[10px] text-accent-blue hover:underline">Tripo</a>
+            <a href="https://www.meshy.ai/" target="_blank" class="text-[10px] text-emerald-400 hover:underline">Meshy</a>
             <a href="https://github.com/tencent/Hunyuan3D-2" target="_blank" class="text-[10px] text-accent-purple hover:underline">Hunyuan3D</a>
+            <a href="https://hyper3d.ai/" target="_blank" class="text-[10px] text-rose-400 hover:underline">Rodin</a>
             <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">SuperSplat</a>
           </div>
         </div>
@@ -518,7 +550,7 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">AI 3D Generation</h4>
-        <p class="text-[10px] text-gray-500 mt-1">Tripo API or Hunyuan3D reconstruct 3D from a single view.</p>
+        <p class="text-[10px] text-gray-500 mt-1">Tripo / Meshy / Hunyuan3D / Rodin — multi-provider image-to-3D reconstruction.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center mx-auto mb-2">
@@ -2953,10 +2985,19 @@ document.addEventListener('DOMContentLoaded', () => {
     general:     { method: '3DGS', reason: 'Versatile baseline reconstruction', color: '#3b82f6' }
   };
 
+  var i2gCurrentProvider = 'tripo';
+
   var i2gProviderMap = {
     tripo:   { name: 'Tripo Cloud', note: 'API-based, fast generation, server-side key' },
     hunyuan: { name: 'Hunyuan3D', note: 'Local inference, full control, no cloud dependency' },
     auto:    { name: 'Auto (Tripo+Hunyuan)', note: 'Tripo primary, Hunyuan3D fallback' }
+  };
+
+  var i2gProviderMap2 = {
+    tripo:    { name: 'Tripo (Aliyun)', note: 'Async polling via DashScope, GLB + preview render' },
+    meshy:    { name: 'Meshy AI', note: 'Image→3D with preview+refine two-step generation' },
+    hunyuan3d:{ name: 'Hunyuan3D (Tencent)', note: 'OpenAI-compatible API, high-precision geometry + texture' },
+    rodin:    { name: 'Rodin (Hyper3D)', note: 'Gen-2 Edit model, SOTA quality, 5 generation tiers' }
   };
 
   var i2gPipelineSteps = [
@@ -3020,38 +3061,102 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
 
     document.getElementById('i2gResult').classList.add('hidden');
+    document.getElementById('i2g3DResult').classList.add('hidden');
 
-    // Get provider
-    var providerRadio = document.querySelector('input[name="i2gProvider"]:checked');
-    var providerKey = providerRadio ? providerRadio.value : 'tripo';
-    var provider = i2gProviderMap[providerKey];
+    var provider = i2gProviderMap2[i2gCurrentProvider];
     var sceneInfo = i2gSceneMap[i2gDetectedType] || i2gSceneMap.general;
 
-    // Animate pipeline steps
-    for (var i = 0; i < i2gPipelineSteps.length; i++) {
+    // Get API key
+    var apiKey = '';
+    if (i2gCurrentProvider === 'tripo') apiKey = document.getElementById('i2gApiKeyTripo').value.trim();
+    else if (i2gCurrentProvider === 'meshy') apiKey = document.getElementById('i2gApiKeyMeshy').value.trim();
+    else if (i2gCurrentProvider === 'hunyuan3d') apiKey = document.getElementById('i2gApiKeyHunyuan3d').value.trim();
+    else if (i2gCurrentProvider === 'rodin') apiKey = document.getElementById('i2gApiKeyRodin').value.trim();
+
+    var hasApiKey = apiKey.length > 0;
+
+    // Animate first two steps (Upload + Analyze)
+    for (var i = 0; i < 2; i++) {
+      await i2gMarkStep(i, 300);
+    }
+
+    if (hasApiKey) {
+      // Real API call
+      try {
+        await i2gMarkStep(2, 200);
+        var result;
+        if (i2gCurrentProvider === 'tripo') {
+          result = await callTripoImg2API(apiKey, i2gImageData.url);
+        } else if (i2gCurrentProvider === 'meshy') {
+          result = await callMeshyImg2API(apiKey, i2gImageData.url);
+        } else if (i2gCurrentProvider === 'hunyuan3d') {
+          result = await callHunyuanImg2API(apiKey, i2gImageData.url);
+        } else if (i2gCurrentProvider === 'rodin') {
+          result = await callRodinImg2API(apiKey, i2gImageData.url);
+        }
+        if (!result) throw new Error('No result returned');
+
+        await i2gMarkStep(3, 100);
+        await i2gMarkStep(4, 200);
+        await i2gMarkStep(5, 200);
+
+        showI2GResults(provider, sceneInfo, '.glb + .ply', true);
+        showI2G3DResult(result);
+      } catch (err) {
+        console.error('Img2GS API error:', err);
+        for (var j = 3; j < i2gPipelineSteps.length; j++) {
+          await i2gMarkStep(j, 200);
+        }
+        showI2GResults(provider, sceneInfo, '.glb + .ply (sim)', false);
+        document.getElementById('i2gROutputNote').textContent = 'API error: ' + (err.message || 'Unknown') + '. Showing demo preview.';
+        i2gLoadDemoPreview();
+      }
+    } else {
+      // No API key — simulation mode
+      for (var k = 2; k < i2gPipelineSteps.length; k++) {
+        var delayMs = k === 2 ? 1100 : k === 3 ? 800 : 400;
+        await i2gMarkStep(k, delayMs);
+      }
+      showI2GResults(provider, sceneInfo, '.glb + .ply (sim)', false);
+      document.getElementById('i2gRProviderNote').textContent = provider.note + ' — no API key, simulation mode';
+      i2gLoadDemoPreview();
+    }
+
+    // Reset button
+    btn.disabled = false;
+    icon.setAttribute('class', 'w-4 h-4');
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
+    txt.textContent = 'Re-reconstruct';
+  }
+
+  function i2gMarkStep(i, delayMs) {
+    return new Promise(function(resolve) {
       var stepEl = document.getElementById('i2gStep' + i);
+      if (!stepEl) { resolve(); return; }
       var inner = stepEl.querySelector('div');
       inner.classList.remove('border-white/10', 'text-gray-500');
       inner.classList.add('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
-      var delayMs = i === 2 ? 1100 : i === 3 ? 800 : 400;
-      await i2gDelay(delayMs);
-      inner.classList.remove('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
-      inner.classList.add('border-emerald-400', 'text-emerald-400', 'bg-emerald-500/10');
-      stepEl.querySelector('.step-icon').textContent = '✓';
-    }
+      setTimeout(function() {
+        inner.classList.remove('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
+        inner.classList.add('border-emerald-400', 'text-emerald-400', 'bg-emerald-500/10');
+        stepEl.querySelector('.step-icon').textContent = '✓';
+        resolve();
+      }, delayMs);
+    });
+  }
 
-    // Show results
+  function showI2GResults(provider, sceneInfo, output, isReal) {
     var r = document.getElementById('i2gResult');
     r.classList.remove('hidden');
     document.getElementById('i2gRScene').textContent = i2gDetectedType.charAt(0).toUpperCase() + i2gDetectedType.slice(1);
     var sceneDetails = {
-      biological: 'Cell / micro-structure — high detail',
-      architecture: 'Building / urban — large scale',
-      sculpture: 'Sculpture / art — complex geometry',
-      product: 'Product / object — clean surface',
-      outdoor: 'Landscape — outdoor scale',
-      indoor: 'Interior — indoor scene',
-      avatar: 'Human / character — animatable',
+      biological: 'Cell / micro-structure - high detail',
+      architecture: 'Building / urban - large scale',
+      sculpture: 'Sculpture / art - complex geometry',
+      product: 'Product / object - clean surface',
+      outdoor: 'Landscape - outdoor scale',
+      indoor: 'Interior - indoor scene',
+      avatar: 'Human / character - animatable',
       general: 'General scene'
     };
     document.getElementById('i2gRSceneDetail').textContent = sceneDetails[i2gDetectedType] || 'General scene';
@@ -3061,10 +3166,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('i2gRProvider').textContent = provider.name;
     document.getElementById('i2gRProviderNote').textContent = provider.note;
     var isBiology = i2gDetectedType === 'biological';
-    document.getElementById('i2gROutput').textContent = '.glb + .ply';
-    document.getElementById('i2gROutputNote').textContent = isBiology ? 'GLB → 3DGS refinement → organelle layers' : 'GLB → 3DGS refinement → .ply export';
+    document.getElementById('i2gROutput').textContent = output;
+    document.getElementById('i2gROutputNote').textContent = isBiology ? 'GLB -> 3DGS refinement -> organelle layers' : 'GLB -> 3DGS refinement -> .ply export';
+  }
 
-    // Load 3DGS preview in PlayCanvas viewer
+  function showI2G3DResult(result) {
+    var container = document.getElementById('i2g3DResult');
+    container.classList.remove('hidden');
+    var viewer = document.getElementById('i2gModelViewer');
+    if (result.thumbnailUrl) {
+      viewer.poster = result.thumbnailUrl;
+    }
+    if (result.modelUrl) {
+      viewer.src = result.modelUrl;
+      var dlLink = document.getElementById('i2g3DDownload');
+      dlLink.href = result.modelUrl;
+      dlLink.classList.remove('hidden');
+    }
+    document.getElementById('i2g3DStatus').textContent = 'Model loaded successfully';
+  }
+
+  function i2gLoadDemoPreview() {
     i2gInitPC();
     var previewUrl = 'https://developer.playcanvas.com/assets/toy-cat.sog';
     if (i2gDetectedType === 'product' || i2gDetectedType === 'sculpture') {
@@ -3073,12 +3195,267 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       i2gLoadSplat(previewUrl);
     }
+  }
 
-    // Reset button
-    btn.disabled = false;
-    icon.setAttribute('class', 'w-4 h-4');
-    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-    txt.textContent = 'Re-reconstruct';
+  // =============================================
+  // Img2GS API Functions
+  // =============================================
+
+  function i2gIsDataURL(url) {
+    return url && url.startsWith('data:');
+  }
+
+  async function callTripoImg2API(apiKey, imageUrl) {
+    var createResp = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/3d-generation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey,
+        'X-DashScope-Async': 'enable'
+      },
+      body: JSON.stringify({
+        model: 'Tripo/Tripo-P1.0',
+        input: { image: imageUrl },
+        parameters: { texture_quality: 'standard' }
+      })
+    });
+    var createData = await createResp.json();
+    if (createData.code) throw new Error(createData.message || createData.code);
+    var taskId = createData.output && createData.output.task_id;
+    if (!taskId) throw new Error('No task_id returned');
+
+    document.getElementById('i2g3DStatus').textContent = 'Tripo generating (1-3 min)...';
+    document.getElementById('i2g3DResult').classList.remove('hidden');
+
+    var pollStart = Date.now();
+    var pollMaxMs = 300000;
+    while (Date.now() - pollStart < pollMaxMs) {
+      await i2gDelay(5000);
+      var pollResp = await fetch('https://dashscope.aliyuncs.com/api/v1/tasks/' + taskId, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      var pollData = await pollResp.json();
+      var status = pollData.output && pollData.output.task_status;
+      if (status === 'SUCCEEDED') {
+        var r = pollData.output.results && pollData.output.results[0];
+        return {
+          modelUrl: r.pbr_model_url || r.base_model_url,
+          thumbnailUrl: r.rendered_image_url || ''
+        };
+      } else if (status === 'FAILED') {
+        throw new Error(pollData.output.message || 'Generation failed');
+      }
+      var elapsed = Math.round((Date.now() - pollStart) / 1000);
+      document.getElementById('i2g3DStatus').textContent = 'Tripo generating... (' + elapsed + 's)';
+    }
+    throw new Error('Generation timed out');
+  }
+
+  async function callMeshyImg2API(apiKey, imageUrl) {
+    var body = {
+      mode: 'preview',
+      image_url: imageUrl,
+      ai_model: 'meshy-6',
+      target_formats: ['glb']
+    };
+    var createResp = await fetch('https://api.meshy.ai/openapi/v2/image-to-3d', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify(body)
+    });
+    var createData = await createResp.json();
+    if (createData.code) throw new Error(createData.message || 'Preview creation failed');
+    var taskId = createData.result;
+    if (!taskId) throw new Error('No task ID returned');
+
+    document.getElementById('i2g3DStatus').textContent = 'Meshy preview generating...';
+    document.getElementById('i2g3DResult').classList.remove('hidden');
+
+    var pollStart = Date.now();
+    var pollMaxMs = 300000;
+    var previewResult = null;
+    while (Date.now() - pollStart < pollMaxMs) {
+      await i2gDelay(3000);
+      var pollResp = await fetch('https://api.meshy.ai/openapi/v2/image-to-3d/' + taskId, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      var pollData = await pollResp.json();
+      if (pollData.status === 'SUCCEEDED') {
+        previewResult = pollData;
+        break;
+      } else if (pollData.status === 'FAILED') {
+        throw new Error(pollData.task_error && pollData.task_error.message || 'Preview failed');
+      }
+      var elapsed = Math.round((Date.now() - pollStart) / 1000);
+      document.getElementById('i2g3DStatus').textContent = 'Meshy preview... (' + elapsed + 's, ' + (pollData.progress || 0) + '%)';
+    }
+    if (!previewResult) throw new Error('Preview timed out');
+
+    document.getElementById('i2g3DStatus').textContent = 'Meshy texturing...';
+    var refineResp = await fetch('https://api.meshy.ai/openapi/v2/image-to-3d', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify({
+        mode: 'refine',
+        preview_task_id: taskId,
+        enable_pbr: true,
+        ai_model: 'meshy-6',
+        target_formats: ['glb']
+      })
+    });
+    var refineData = await refineResp.json();
+    if (refineData.code) throw new Error(refineData.message || 'Refine creation failed');
+    var refineTaskId = refineData.result;
+
+    var refineStart = Date.now();
+    var refineResult = null;
+    while (Date.now() - refineStart < pollMaxMs) {
+      await i2gDelay(3000);
+      var rPollResp = await fetch('https://api.meshy.ai/openapi/v2/image-to-3d/' + refineTaskId, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      var rPollData = await rPollResp.json();
+      if (rPollData.status === 'SUCCEEDED') {
+        refineResult = rPollData;
+        break;
+      } else if (rPollData.status === 'FAILED') {
+        throw new Error(rPollData.task_error && rPollData.task_error.message || 'Refine failed');
+      }
+      var rElapsed = Math.round((Date.now() - refineStart) / 1000);
+      document.getElementById('i2g3DStatus').textContent = 'Meshy texturing... (' + rElapsed + 's, ' + (rPollData.progress || 0) + '%)';
+    }
+    if (!refineResult) throw new Error('Refine timed out');
+
+    return {
+      modelUrl: refineResult.model_urls && refineResult.model_urls.glb || previewResult.model_urls && previewResult.model_urls.glb || '',
+      thumbnailUrl: refineResult.thumbnail_url || previewResult.thumbnail_url || ''
+    };
+  }
+
+  async function callHunyuanImg2API(apiKey, imageUrl) {
+    var submitBody = { ImageUrl: { Url: imageUrl } };
+
+    var submitResp = await fetch('https://api.ai3d.cloud.tencent.com/v1/ai3d/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': apiKey
+      },
+      body: JSON.stringify(submitBody)
+    });
+    var submitData = await submitResp.json();
+    var jobId = submitData.JobId;
+    if (!jobId) throw new Error(submitData.message || 'No JobId returned');
+
+    document.getElementById('i2g3DStatus').textContent = 'Hunyuan3D generating (1-3 min)...';
+    document.getElementById('i2g3DResult').classList.remove('hidden');
+
+    var pollStart = Date.now();
+    var pollMaxMs = 300000;
+    while (Date.now() - pollStart < pollMaxMs) {
+      await i2gDelay(5000);
+      var queryResp = await fetch('https://api.ai3d.cloud.tencent.com/v1/ai3d/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': apiKey
+        },
+        body: JSON.stringify({ JobId: jobId })
+      });
+      var queryData = await queryResp.json();
+      var status = queryData.Status;
+      if (status === 'Succeeded' || status === 'SUCCEEDED') {
+        var output = queryData.Output;
+        var modelUrl = '';
+        var thumbUrl = '';
+        if (output && output.ModelUrl) modelUrl = output.ModelUrl;
+        if (output && output.ThumbnailUrl) thumbUrl = output.ThumbnailUrl;
+        if (output && output.Models && output.Models.length > 0) {
+          modelUrl = output.Models[0].Url || modelUrl;
+        }
+        if (output && output.Images && output.Images.length > 0) {
+          thumbUrl = output.Images[0].Url || thumbUrl;
+        }
+        return { modelUrl: modelUrl, thumbnailUrl: thumbUrl };
+      } else if (status === 'Failed' || status === 'FAILED') {
+        throw new Error(queryData.ErrorMessage || 'Generation failed');
+      }
+      var elapsed = Math.round((Date.now() - pollStart) / 1000);
+      document.getElementById('i2g3DStatus').textContent = 'Hunyuan3D generating... (' + elapsed + 's)';
+    }
+    throw new Error('Generation timed out');
+  }
+
+  async function callRodinImg2API(apiKey, imageUrl) {
+    var submitBody = {
+      images: [imageUrl],
+      tier: 'Smooth',
+      geometry_file_format: 'glb',
+      quality: 'medium',
+      material: 'PBR',
+      mesh_mode: 'Quad'
+    };
+
+    var submitResp = await fetch('https://api.hyper3d.com/api/v2/rodin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify(submitBody)
+    });
+    var submitData = await submitResp.json();
+    if (submitData.code) throw new Error(submitData.message || 'Rodin task creation failed');
+    var taskUuid = submitData.uuid;
+    if (!taskUuid) throw new Error('No task UUID returned');
+
+    document.getElementById('i2g3DStatus').textContent = 'Rodin generating (1-3 min)...';
+    document.getElementById('i2g3DResult').classList.remove('hidden');
+
+    var pollStart = Date.now();
+    var pollMaxMs = 300000;
+    while (Date.now() - pollStart < pollMaxMs) {
+      await i2gDelay(5000);
+      var statusResp = await fetch('https://api.hyper3d.com/api/v2/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + apiKey
+        },
+        body: JSON.stringify({ uuid: taskUuid })
+      });
+      var statusData = await statusResp.json();
+      if (statusData.status === 'Done' || statusData.status === 'done' || statusData.status === 'SUCCEEDED') {
+        var dlResp = await fetch('https://api.hyper3d.com/api/v2/download', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey
+          },
+          body: JSON.stringify({ uuid: taskUuid })
+        });
+        var dlData = await dlResp.json();
+        var modelUrl = '';
+        var thumbUrl = '';
+        if (dlData.model && dlData.model.glb) modelUrl = dlData.model.glb;
+        else if (dlData.urls && dlData.urls.glb) modelUrl = dlData.urls.glb;
+        else if (dlData.download_url) modelUrl = dlData.download_url;
+        if (dlData.thumbnail) thumbUrl = dlData.thumbnail;
+        else if (dlData.preview) thumbUrl = dlData.preview;
+        return { modelUrl: modelUrl, thumbnailUrl: thumbUrl };
+      } else if (statusData.status === 'Failed' || statusData.status === 'failed') {
+        throw new Error(statusData.error || 'Rodin generation failed');
+      }
+      var elapsed = Math.round((Date.now() - pollStart) / 1000);
+      document.getElementById('i2g3DStatus').textContent = 'Rodin generating... (' + elapsed + 's)';
+    }
+    throw new Error('Generation timed out');
   }
 
   // =============================================
@@ -3172,6 +3549,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('i2gGenText').textContent = 'Reconstruct';
       document.getElementById('i2gPipeline').classList.add('hidden');
       document.getElementById('i2gResult').classList.add('hidden');
+      document.getElementById('i2g3DResult').classList.add('hidden');
       document.querySelectorAll('.i2g-preset-img').forEach(function(b) {
         b.classList.remove('ring-1', 'ring-amber-400');
       });
@@ -3179,10 +3557,31 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('img2gsFileInput').value = '';
     });
 
-    // Provider radio buttons visual update
-    document.querySelectorAll('input[name="i2gProvider"]').forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        // The CSS :has() selector handles visual state
+    // Provider selector buttons for Img2GS
+    document.querySelectorAll('.i2g-provider-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        i2gCurrentProvider = btn.dataset.provider;
+        document.querySelectorAll('.i2g-provider-btn').forEach(function(b) {
+          b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30',
+            'bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30',
+            'bg-accent-purple/20', 'text-accent-purple', 'border-accent-purple/30',
+            'bg-rose-500/20', 'text-rose-400', 'border-rose-500/30');
+          b.classList.add('bg-white/5', 'text-gray-400', 'border-white/10');
+        });
+        var activeStyles = {
+          tripo: ['bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30'],
+          meshy: ['bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30'],
+          hunyuan3d: ['bg-accent-purple/20', 'text-accent-purple', 'border-accent-purple/30'],
+          rodin: ['bg-rose-500/20', 'text-rose-400', 'border-rose-500/30']
+        };
+        var styles = activeStyles[i2gCurrentProvider] || activeStyles.tripo;
+        btn.classList.add('active');
+        btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
+        styles.forEach(function(s) { btn.classList.add(s); });
+        document.getElementById('i2gConfigTripo').classList.toggle('hidden', i2gCurrentProvider !== 'tripo');
+        document.getElementById('i2gConfigMeshy').classList.toggle('hidden', i2gCurrentProvider !== 'meshy');
+        document.getElementById('i2gConfigHunyuan3d').classList.toggle('hidden', i2gCurrentProvider !== 'hunyuan3d');
+        document.getElementById('i2gConfigRodin').classList.toggle('hidden', i2gCurrentProvider !== 'rodin');
       });
     });
 
