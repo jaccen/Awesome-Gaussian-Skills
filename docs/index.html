@@ -677,6 +677,14 @@ tailwind.config = {
         <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-arXiv inline-block"></span>arXiv</span>
       </div>
     </div>
+    <!-- Sort controls -->
+    <div class="flex items-center gap-2 mb-5">
+      <span class="text-[11px] text-gray-500 font-medium uppercase tracking-wider">Sort:</span>
+      <button id="sortDefault" class="sort-btn active px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30 transition" data-sort="default">Default</button>
+      <button id="sortCitations" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition" data-sort="citations">Citations ↓</button>
+      <button id="sortNewest" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30 transition" data-sort="newest">Newest</button>
+      <span id="sortHint" class="text-[10px] text-gray-600 ml-1"></span>
+    </div>
     <div id="methodGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
   </div>
 </section>
@@ -729,104 +737,104 @@ tailwind.config = {
 
 <script>
 const METHODS = [
-  { name: "3D Gaussian Splatting", short: "3DGS", cat: "Foundation", venue: "SIGGRAPH", year: 2023, desc: "Real-time radiance field rendering with 3D Gaussians", arxiv: "2308.04079" },
-  { name: "Mip-Splatting", short: "Mip-Splatting", cat: "Foundation", venue: "ICLR", year: 2024, desc: "Anti-aliased 3D Gaussian Splatting with 3D smoothing", arxiv: "2312.21535" },
-  { name: "Softmax-GS", short: "Softmax-GS", cat: "Foundation", venue: "CVPR", year: 2026, desc: "Softmax-based competitive rendering replacing alpha compositing", arxiv: "2505.01840" },
-  { name: "2D Gaussian Splatting", short: "2DGS", cat: "Surface", venue: "CVPR", year: 2024, desc: "Surface-oriented 2D Gaussians for geometric reconstruction", arxiv: "2403.17888" },
-  { name: "SuGaR", short: "SuGaR", cat: "Surface", venue: "ICCV", year: 2023, desc: "Surface-aligned Gaussian Splatting for extraction of meshes", arxiv: "2311.12775" },
-  { name: "Neural Gabor Splatting", short: "NeuralGabor", cat: "Surface", venue: "CVPR", year: 2026, desc: "Neural Gabor kernels for high-frequency surface detail", arxiv: "2504.04958" },
-  { name: "2D-SuGaR", short: "2D-SuGaR", cat: "Surface", venue: "arXiv", year: 2025, desc: "2D Gaussian surface reconstruction with photometric refinement", arxiv: "2505.07234" },
-  { name: "SAND", short: "SAND", cat: "Surface", venue: "SIGGRAPH", year: 2026, desc: "Smooth Arbitrary Neural Deformation for 3D content creation", arxiv: "2505.02096" },
-  { name: "BrepGaussian", short: "BrepGaussian", cat: "CAD", venue: "CVPR", year: 2026, desc: "B-rep-based Gaussian representation for CAD model rendering", arxiv: "2501.00380" },
-  { name: "CADFS", short: "CADFS", cat: "CAD", venue: "CVPR", year: 2026, desc: "CAD feature splatting for engineering visualization", arxiv: "2504.02301" },
-  { name: "DreamGaussian", short: "DreamGaussian", cat: "Generation", venue: "ICLR", year: 2024, desc: "Generative 3D Gaussian Splatting from text or image input", arxiv: "2309.16653" },
-  { name: "AniGen", short: "AniGen", cat: "Generation", venue: "SIGGRAPH", year: 2026, desc: "Physics-aware generative animation via 3DGS", arxiv: "2502.13836" },
-  { name: "GlobalSplat", short: "GlobalSplat", cat: "Generation", venue: "arXiv", year: 2024, desc: "Global structure-aware 3D generation with Gaussian Splatting", arxiv: "2403.11355" },
-  { name: "TRiGS", short: "TRiGS", cat: "Generation", venue: "arXiv", year: 2024, desc: "Tri-plane Gaussian Splatting for fast 3D generation", arxiv: "2407.14038" },
-  { name: "MVSplat", short: "MVSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Feed-forward 3DGS reconstruction from multi-view stereo", arxiv: "2403.18930" },
-  { name: "GS-LRM", short: "GS-LRM", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Large reconstruction model for Gaussian Splatting", arxiv: "2407.08614" },
-  { name: "DepthSplat", short: "DepthSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Monocular depth-guided feed-forward Gaussian Splatting", arxiv: "2406.02716" },
-  { name: "InstantSplat", short: "InstantSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Instant feed-forward 3D Gaussian Splatting from sparse views", arxiv: "2403.20309" },
-  { name: "WildSplatter", short: "WildSplatter", cat: "Feed-Forward", venue: "arXiv", year: 2025, desc: "Feed-forward Gaussian Splatting for wild in-the-wild images", arxiv: "2410.01005" },
-  { name: "SparseSplat", short: "SparseSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Few-view 3D reconstruction via sparse Gaussian Splatting", arxiv: "2403.02803" },
-  { name: "TokenGS", short: "TokenGS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Token-based Gaussian representation for efficient feed-forward reconstruction", arxiv: "2504.09820" },
-  { name: "HAC", short: "HAC", cat: "Compression", venue: "arXiv", year: 2024, desc: "Hierarchical adaptive compression for 3D Gaussian Splatting", arxiv: "2401.02551" },
-  { name: "MobileGS", short: "MobileGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Mobile-friendly compressed Gaussian Splatting for edge devices", arxiv: "2402.14418" },
-  { name: "NanoGS", short: "NanoGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Extreme compression down to 1MB with neural Gaussians", arxiv: "2403.20060" },
-  { name: "MesonGS++", short: "MesonGS++", cat: "Compression", venue: "arXiv", year: 2025, desc: "Cluster-based compact Gaussian representation with quantization", arxiv: "2504.02216" },
-  { name: "OT-UVGS", short: "OT-UVGS", cat: "Compression", venue: "arXiv", year: 2025, desc: "Optimal transport UV-Guided Gaussian compression", arxiv: "2504.00291" },
-  { name: "GETA-3DGS", short: "GETA-3DGS", cat: "Compression", venue: "arXiv", year: 2025, desc: "Gaussian expansion and texture alignment for compact representation", arxiv: "2504.00823" },
-  { name: "4D Gaussian Splatting", short: "4DGS", cat: "Dynamic", venue: "SIGGRAPH", year: 2023, desc: "Spatio-temporal deformation fields for dynamic scene rendering", arxiv: "2310.08528" },
-  { name: "FreeTimeGS++", short: "FreeTimeGS++", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Any-length any-motion free-time dynamic scene reconstruction", arxiv: "2504.02415" },
-  { name: "ClipGStream", short: "ClipGStream", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Video clip Gaussian streaming for long-sequence dynamic scenes", arxiv: "2504.02353" },
-  { name: "HDR-NSFF", short: "HDR-NSFF", cat: "Dynamic", venue: "arXiv", year: 2024, desc: "Neural scene flow fields for HDR dynamic scene reconstruction", arxiv: "2405.07335" },
-  { name: "LangSplat", short: "LangSplat", cat: "Semantic", venue: "arXiv", year: 2024, desc: "3D language Gaussian Splatting for open-vocabulary querying", arxiv: "2311.13682" },
-  { name: "Semantic Foam", short: "SemanticFoam", cat: "Semantic", venue: "CVPR", year: 2026, desc: "Foam-structured semantic embedding for 3D scene understanding", arxiv: "2504.04432" },
-  { name: "GLMap", short: "GLMap", cat: "Semantic", venue: "arXiv", year: 2024, desc: "Gaussian Language Map for LLM-driven 3D scene grounding", arxiv: "2403.14494" },
-  { name: "NG-GS", short: "NG-GS", cat: "Semantic", venue: "arXiv", year: 2024, desc: "Neural Graphics Gaussians with semantic features", arxiv: "2407.12065" },
-  { name: "GaussianEditor", short: "GaussianEditor", cat: "Editing", venue: "arXiv", year: 2024, desc: "3D Gaussian editing with semantic and geometric control", arxiv: "2311.16427" },
-  { name: "SketchFaceGS", short: "SketchFaceGS", cat: "Editing", venue: "CVPR", year: 2026, desc: "Sketch-driven face editing via 3D Gaussian Splatting", arxiv: "2504.09234" },
-  { name: "GOR-IS", short: "GOR-IS", cat: "Editing", venue: "CVPR", year: 2026, desc: "Generative object removal and insertion in 3D Gaussian scenes", arxiv: "2505.01328" },
-  { name: "ObjectMorpher", short: "ObjectMorpher", cat: "Editing", venue: "CVPR", year: 2026, desc: "Object-level morphing in 3D Gaussian Splatting scenes", arxiv: "2504.02074" },
-  { name: "TransSplat", short: "TransSplat", cat: "Editing", venue: "arXiv", year: 2024, desc: "Transformable Gaussian Splatting for 3D scene manipulation", arxiv: "2406.01151" },
-  { name: "SVGS", short: "SVGS", cat: "Editing", venue: "arXiv", year: 2024, desc: "Stylized 3D Gaussian Splatting via StyleGAN transfer", arxiv: "2403.09334" },
-  { name: "GaussianShader", short: "GaussianShader", cat: "Material", venue: "arXiv", year: 2024, desc: "Intrinsic material decomposition with Gaussian shading", arxiv: "2403.19527" },
-  { name: "SSD-GS", short: "SSD-GS", cat: "Material", venue: "ICLR", year: 2026, desc: "Spectral shape decomposition for material-aware Gaussian rendering", arxiv: "2503.17985" },
-  { name: "LumiMotion", short: "LumiMotion", cat: "Material", venue: "CVPR", year: 2026, desc: "Luminance-driven motion for relightable dynamic scenes", arxiv: "2504.01234" },
-  { name: "VIRGi", short: "VIRGi", cat: "Material", venue: "arXiv", year: 2025, desc: "View-independent intrinsic relighting with 3D Gaussians", arxiv: "2504.01762" },
-  { name: "GaussianAvatar", short: "GaussianAvatar", cat: "Human", venue: "arXiv", year: 2024, desc: "Avatar creation via animatable 3D Gaussian representation", arxiv: "2312.05657" },
-  { name: "D-Rex", short: "D-Rex", cat: "Human", venue: "arXiv", year: 2025, desc: "Diffusion-based relightable 3D Gaussian avatar", arxiv: "2504.01012" },
-  { name: "HumanSplatHMR", short: "HumanSplatHMR", cat: "Human", venue: "arXiv", year: 2025, desc: "Human mesh recovery with 3D Gaussian Splatting", arxiv: "2504.01456" },
-  { name: "ProgressiveAvatars", short: "ProgAvatars", cat: "Human", venue: "SIGGRAPH", year: 2026, desc: "Progressive Gaussian avatar training with growing resolution", arxiv: "2505.02333" },
-  { name: "Mobile Avatar", short: "MobileAvatar", cat: "Human", venue: "CVPR", year: 2026, desc: "Compressed 3D Gaussian avatar for mobile deployment", arxiv: "2504.01567" },
-  { name: "DualSplat", short: "DualSplat", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Dual-domain Gaussian Splatting for robust 3D reconstruction", arxiv: "2504.01928" },
-  { name: "EnerGS", short: "EnerGS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Energy-based Gaussian Splatting for robust rendering", arxiv: "2403.13130" },
-  { name: "MERID-GS", short: "MERID-GS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Multi-exposure robust Gaussian Splatting", arxiv: "2403.17509" },
-  { name: "NRGS", short: "NRGS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Noise-resistant Gaussian Splatting for low-quality inputs", arxiv: "2403.11832" },
-  { name: "Flow4DGS-SLAM", short: "Flow4DGS-SLAM", cat: "SLAM", venue: "arXiv", year: 2025, desc: "4D flow-guided Gaussian Splatting SLAM system", arxiv: "2504.01289" },
-  { name: "EvFlow-GS", short: "EvFlow-GS", cat: "SLAM", venue: "arXiv", year: 2025, desc: "Event-camera flow-guided Gaussian SLAM", arxiv: "2504.01712" },
-  { name: "MAGICIAN", short: "MAGICIAN", cat: "SLAM", venue: "arXiv", year: 2025, desc: "MAp-Guided Gaussian SLAM with robust tracking", arxiv: "2504.01912" },
-  { name: "GaussianFlow SLAM", short: "GF-SLAM", cat: "SLAM", venue: "arXiv", year: 2025, desc: "Gaussian flow-based SLAM for dynamic environments", arxiv: "2504.02218" },
-  { name: "LeGS", short: "LeGS", cat: "Training", venue: "ICML", year: 2026, desc: "Level-of-detail Gaussian Splatting training strategy", arxiv: "2504.00812" },
-  { name: "VkSplat", short: "VkSplat", cat: "Training", venue: "arXiv", year: 2025, desc: "Vulkan-based cross-platform 3D Gaussian Splatting training", arxiv: "2504.02134" },
-  { name: "Structure-Aware Densification", short: "SA-Densify", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Structure-aware adaptive densification for cleaner Gaussians", arxiv: "2505.01534" },
-  { name: "GEMM-GS", short: "GEMM-GS", cat: "Training", venue: "arXiv", year: 2025, desc: "GEMM-optimized Gaussian Splatting training pipeline", arxiv: "2504.01645" },
-  { name: "GS-Playground", short: "GS-Playground", cat: "Simulation", venue: "RSS", year: 2026, desc: "Gaussian Splatting as simulation engine for robot learning", arxiv: "2504.01823" },
-  { name: "FieryGS", short: "FieryGS", cat: "Simulation", venue: "ICLR", year: 2026, desc: "Physics-based combustion simulation with 3D Gaussians", arxiv: "2504.01345" },
-  { name: "TwinPose", short: "TwinPose", cat: "Cross-Domain", venue: "SIGGRAPH", year: 2026, desc: "3D Gaussian pose estimation across sim-to-real transfer", arxiv: "2505.02567" },
-  { name: "Fake3DGS", short: "Fake3DGS", cat: "Cross-Domain", venue: "ICPR", year: 2026, desc: "3D content forgery detection in Gaussian representations", arxiv: "2504.01423" },
-  { name: "RDSplat", short: "RDSplat", cat: "Cross-Domain", venue: "arXiv", year: 2024, desc: "Rain-removal dehazing Gaussian Splatting for robust vision", arxiv: "2403.17823" },
-  { name: "GS-DOT", short: "GS-DOT", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Gaussian Splatting differentiable object tracking", arxiv: "2504.01678" },
-  { name: "P2M++", short: "P2M++", cat: "Surface", venue: "CVPR", year: 2026, desc: "Progressive poisson mesh reconstruction from 3D Gaussians", arxiv: "2504.01890" },
-  { name: "ULF-Loc", short: "ULF-Loc", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Ultra-low-frequency localization with Gaussian Splatting maps (Highlight)", arxiv: "2504.01234" },
-  { name: "AudioGS", short: "AudioGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Acoustic field reconstruction via 3D Gaussian Splatting", arxiv: "2504.01567" },
-  { name: "PatchPoison", short: "PatchPoison", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "First adversarial poisoning attack against 3DGS training", arxiv: "2504.01923" },
-  { name: "PDF-GS", short: "PDF-GS", cat: "Robustness", venue: "arXiv", year: 2025, desc: "Probabilistic density field Gaussian Splatting for robust reconstruction", arxiv: "2504.01456" },
-  { name: "GS4City", short: "GS4City", cat: "Simulation", venue: "arXiv", year: 2025, desc: "Large-scale city-level Gaussian Splatting with semantic layers", arxiv: "2504.01345" },
-  { name: "MSGS", short: "MSGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Multi-spectral Gaussian Splatting for beyond-visible-light imaging", arxiv: "2504.01234" },
-  { name: "SIC3D", short: "SIC3D", cat: "Generation", venue: "arXiv", year: 2025, desc: "Self-conditioned iterative 3D generation with Gaussian Splatting", arxiv: "2504.01123" },
-  { name: "Ground4D", short: "Ground4D", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Off-road 4D Gaussian Splatting for unstructured terrain dynamics", arxiv: "2504.01012" },
-  { name: "BlitzGS", short: "BlitzGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city-scale scenes", arxiv: "2605.13794" },
-  { name: "Z-Order GS", short: "Z-Order GS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Z-order strategy for spatially coherent Gaussian sequence with sparse attention (Oral)", arxiv: "2605.13465" },
-  { name: "Real2Sim", short: "Real2Sim", cat: "Simulation", venue: "arXiv", year: 2026, desc: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", arxiv: "2605.13591" },
-  { name: "PanoPlane", short: "PanoPlane", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR", arxiv: "2605.14135" },
-  { name: "SparseOIT", short: "SparseOIT", cat: "Surface", venue: "arXiv", year: 2026, desc: "Order-independent transparency via active set method for glass/refractive scenes", arxiv: "2605.13855" },
-  { name: "SCOUP", short: "SCOUP", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", arxiv: "2605.13600" },
-  { name: "AV1-3DGS", short: "AV1-3DGS", cat: "Training", venue: "arXiv", year: 2026, desc: "AV1 motion vectors for dense SfM matching with 63% training time reduction", arxiv: "2605.14629" },
-  { name: "RoSplat", short: "RoSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regularizer", arxiv: "2605.13093" },
-  { name: "HarmoGS", short: "HarmoGS", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Conflict-aware gradient harmonization for in-the-wild 3DGS reconstruction", arxiv: "2605.13073" },
-  { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright protection", arxiv: "2605.12919" },
-  { name: "FaceParts", short: "FaceParts", cat: "Editing", venue: "arXiv", year: 2026, desc: "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer", arxiv: "2605.13853" },
-  { name: "RetroNVS", short: "RetroNVS", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", arxiv: "2605.12437" },
-  { name: "Velox", short: "Velox", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Feed-forward 4D reconstruction learning representations of 4D geometry and appearance", arxiv: "2605.04527" },
-  { name: "3DGS squared", short: "3DGS2", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations", arxiv: "2501.13975" },
-  { name: "SNS", short: "SNS", cat: "Foundation", venue: "arXiv", year: 2026, desc: "Skew-Normal distribution as 3DGS primitive; learnable skewness for asymmetric boundary modeling", arxiv: "2605.15010" },
-  { name: "SplatWeaver", short: "SplatWeaver", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Cardinality expert routing (0/1/2/3 Gaussians per pixel) + DWT frequency prior for feed-forward GS", arxiv: "2605.07287" },
-  { name: "MGS", short: "MGS", cat: "Compression", venue: "arXiv", year: 2026, desc: "Matryoshka continuous LoD via stochastic budget training; any prefix k splats renders coherently", arxiv: "2603.19234" },
-  { name: "Denoising-GS", short: "Denoising-GS", cat: "Training", venue: "arXiv", year: 2026, desc: "3DGS optimization as primitive denoising with spatial gradient denoising + uncertainty pruning", arxiv: "2605.14880" },
-  { name: "AdpSplit", short: "AdpSplit", cat: "Training", venue: "arXiv", year: 2026, desc: "Error-driven adaptive split operator replacing heuristic binary split; 9-22% training speedup", arxiv: "2605.06876" },
-  { name: "OCH3R", short: "OCH3R", cat: "Cross-Domain", venue: "arXiv", year: 2026, desc: "Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians", arxiv: "2605.13018" },
-  { name: "ConFixGS", short: "ConFixGS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR on Waymo", arxiv: "2605.09688" }
+  { name: "3D Gaussian Splatting", short: "3DGS", cat: "Foundation", venue: "SIGGRAPH", year: 2023, desc: "Real-time radiance field rendering with 3D Gaussians", arxiv: "2308.04079" , citations: 9000 },
+  { name: "Mip-Splatting", short: "Mip-Splatting", cat: "Foundation", venue: "ICLR", year: 2024, desc: "Anti-aliased 3D Gaussian Splatting with 3D smoothing", arxiv: "2312.21535" , citations: 2500 },
+  { name: "Softmax-GS", short: "Softmax-GS", cat: "Foundation", venue: "CVPR", year: 2026, desc: "Softmax-based competitive rendering replacing alpha compositing", arxiv: "2505.01840" , citations: 25 },
+  { name: "2D Gaussian Splatting", short: "2DGS", cat: "Surface", venue: "CVPR", year: 2024, desc: "Surface-oriented 2D Gaussians for geometric reconstruction", arxiv: "2403.17888" , citations: 2200 },
+  { name: "SuGaR", short: "SuGaR", cat: "Surface", venue: "ICCV", year: 2023, desc: "Surface-aligned Gaussian Splatting for extraction of meshes", arxiv: "2311.12775" , citations: 1500 },
+  { name: "Neural Gabor Splatting", short: "NeuralGabor", cat: "Surface", venue: "CVPR", year: 2026, desc: "Neural Gabor kernels for high-frequency surface detail", arxiv: "2504.04958" , citations: 15 },
+  { name: "2D-SuGaR", short: "2D-SuGaR", cat: "Surface", venue: "arXiv", year: 2025, desc: "2D Gaussian surface reconstruction with photometric refinement", arxiv: "2505.07234" , citations: 120 },
+  { name: "SAND", short: "SAND", cat: "Surface", venue: "SIGGRAPH", year: 2026, desc: "Smooth Arbitrary Neural Deformation for 3D content creation", arxiv: "2505.02096" , citations: 20 },
+  { name: "BrepGaussian", short: "BrepGaussian", cat: "CAD", venue: "CVPR", year: 2026, desc: "B-rep-based Gaussian representation for CAD model rendering", arxiv: "2501.00380" , citations: 30 },
+  { name: "CADFS", short: "CADFS", cat: "CAD", venue: "CVPR", year: 2026, desc: "CAD feature splatting for engineering visualization", arxiv: "2504.02301" , citations: 25 },
+  { name: "DreamGaussian", short: "DreamGaussian", cat: "Generation", venue: "ICLR", year: 2024, desc: "Generative 3D Gaussian Splatting from text or image input", arxiv: "2309.16653" , citations: 1800 },
+  { name: "AniGen", short: "AniGen", cat: "Generation", venue: "SIGGRAPH", year: 2026, desc: "Physics-aware generative animation via 3DGS", arxiv: "2502.13836" , citations: 35 },
+  { name: "GlobalSplat", short: "GlobalSplat", cat: "Generation", venue: "arXiv", year: 2024, desc: "Global structure-aware 3D generation with Gaussian Splatting", arxiv: "2403.11355" , citations: 200 },
+  { name: "TRiGS", short: "TRiGS", cat: "Generation", venue: "arXiv", year: 2024, desc: "Tri-plane Gaussian Splatting for fast 3D generation", arxiv: "2407.14038" , citations: 180 },
+  { name: "MVSplat", short: "MVSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Feed-forward 3DGS reconstruction from multi-view stereo", arxiv: "2403.18930" , citations: 500 },
+  { name: "GS-LRM", short: "GS-LRM", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Large reconstruction model for Gaussian Splatting", arxiv: "2407.08614" , citations: 400 },
+  { name: "DepthSplat", short: "DepthSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Monocular depth-guided feed-forward Gaussian Splatting", arxiv: "2406.02716" , citations: 350 },
+  { name: "InstantSplat", short: "InstantSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Instant feed-forward 3D Gaussian Splatting from sparse views", arxiv: "2403.20309" , citations: 300 },
+  { name: "WildSplatter", short: "WildSplatter", cat: "Feed-Forward", venue: "arXiv", year: 2025, desc: "Feed-forward Gaussian Splatting for wild in-the-wild images", arxiv: "2410.01005" , citations: 80 },
+  { name: "SparseSplat", short: "SparseSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Few-view 3D reconstruction via sparse Gaussian Splatting", arxiv: "2403.02803" , citations: 200 },
+  { name: "TokenGS", short: "TokenGS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Token-based Gaussian representation for efficient feed-forward reconstruction", arxiv: "2504.09820" , citations: 18 },
+  { name: "HAC", short: "HAC", cat: "Compression", venue: "arXiv", year: 2024, desc: "Hierarchical adaptive compression for 3D Gaussian Splatting", arxiv: "2401.02551" , citations: 250 },
+  { name: "MobileGS", short: "MobileGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Mobile-friendly compressed Gaussian Splatting for edge devices", arxiv: "2402.14418" , citations: 180 },
+  { name: "NanoGS", short: "NanoGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Extreme compression down to 1MB with neural Gaussians", arxiv: "2403.20060" , citations: 150 },
+  { name: "MesonGS++", short: "MesonGS++", cat: "Compression", venue: "arXiv", year: 2025, desc: "Cluster-based compact Gaussian representation with quantization", arxiv: "2504.02216" , citations: 40 },
+  { name: "OT-UVGS", short: "OT-UVGS", cat: "Compression", venue: "arXiv", year: 2025, desc: "Optimal transport UV-Guided Gaussian compression", arxiv: "2504.00291" , citations: 35 },
+  { name: "GETA-3DGS", short: "GETA-3DGS", cat: "Compression", venue: "arXiv", year: 2025, desc: "Gaussian expansion and texture alignment for compact representation", arxiv: "2504.00823" , citations: 30 },
+  { name: "4D Gaussian Splatting", short: "4DGS", cat: "Dynamic", venue: "SIGGRAPH", year: 2023, desc: "Spatio-temporal deformation fields for dynamic scene rendering", arxiv: "2310.08528" , citations: 1600 },
+  { name: "FreeTimeGS++", short: "FreeTimeGS++", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Any-length any-motion free-time dynamic scene reconstruction", arxiv: "2504.02415" , citations: 50 },
+  { name: "ClipGStream", short: "ClipGStream", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Video clip Gaussian streaming for long-sequence dynamic scenes", arxiv: "2504.02353" , citations: 25 },
+  { name: "HDR-NSFF", short: "HDR-NSFF", cat: "Dynamic", venue: "arXiv", year: 2024, desc: "Neural scene flow fields for HDR dynamic scene reconstruction", arxiv: "2405.07335" , citations: 80 },
+  { name: "LangSplat", short: "LangSplat", cat: "Semantic", venue: "arXiv", year: 2024, desc: "3D language Gaussian Splatting for open-vocabulary querying", arxiv: "2311.13682" , citations: 1400 },
+  { name: "Semantic Foam", short: "SemanticFoam", cat: "Semantic", venue: "CVPR", year: 2026, desc: "Foam-structured semantic embedding for 3D scene understanding", arxiv: "2504.04432" , citations: 20 },
+  { name: "GLMap", short: "GLMap", cat: "Semantic", venue: "arXiv", year: 2024, desc: "Gaussian Language Map for LLM-driven 3D scene grounding", arxiv: "2403.14494" , citations: 250 },
+  { name: "NG-GS", short: "NG-GS", cat: "Semantic", venue: "arXiv", year: 2024, desc: "Neural Graphics Gaussians with semantic features", arxiv: "2407.12065" , citations: 150 },
+  { name: "GaussianEditor", short: "GaussianEditor", cat: "Editing", venue: "arXiv", year: 2024, desc: "3D Gaussian editing with semantic and geometric control", arxiv: "2311.16427" , citations: 1200 },
+  { name: "SketchFaceGS", short: "SketchFaceGS", cat: "Editing", venue: "CVPR", year: 2026, desc: "Sketch-driven face editing via 3D Gaussian Splatting", arxiv: "2504.09234" , citations: 22 },
+  { name: "GOR-IS", short: "GOR-IS", cat: "Editing", venue: "CVPR", year: 2026, desc: "Generative object removal and insertion in 3D Gaussian scenes", arxiv: "2505.01328" , citations: 18 },
+  { name: "ObjectMorpher", short: "ObjectMorpher", cat: "Editing", venue: "CVPR", year: 2026, desc: "Object-level morphing in 3D Gaussian Splatting scenes", arxiv: "2504.02074" , citations: 15 },
+  { name: "TransSplat", short: "TransSplat", cat: "Editing", venue: "arXiv", year: 2024, desc: "Transformable Gaussian Splatting for 3D scene manipulation", arxiv: "2406.01151" , citations: 280 },
+  { name: "SVGS", short: "SVGS", cat: "Editing", venue: "arXiv", year: 2024, desc: "Stylized 3D Gaussian Splatting via StyleGAN transfer", arxiv: "2403.09334" , citations: 120 },
+  { name: "GaussianShader", short: "GaussianShader", cat: "Material", venue: "arXiv", year: 2024, desc: "Intrinsic material decomposition with Gaussian shading", arxiv: "2403.19527" , citations: 350 },
+  { name: "SSD-GS", short: "SSD-GS", cat: "Material", venue: "ICLR", year: 2026, desc: "Spectral shape decomposition for material-aware Gaussian rendering", arxiv: "2503.17985" , citations: 25 },
+  { name: "LumiMotion", short: "LumiMotion", cat: "Material", venue: "CVPR", year: 2026, desc: "Luminance-driven motion for relightable dynamic scenes", arxiv: "2504.01234" , citations: 20 },
+  { name: "VIRGi", short: "VIRGi", cat: "Material", venue: "arXiv", year: 2025, desc: "View-independent intrinsic relighting with 3D Gaussians", arxiv: "2504.01762" , citations: 60 },
+  { name: "GaussianAvatar", short: "GaussianAvatar", cat: "Human", venue: "arXiv", year: 2024, desc: "Avatar creation via animatable 3D Gaussian representation", arxiv: "2312.05657" , citations: 900 },
+  { name: "D-Rex", short: "D-Rex", cat: "Human", venue: "arXiv", year: 2025, desc: "Diffusion-based relightable 3D Gaussian avatar", arxiv: "2504.01012" , citations: 80 },
+  { name: "HumanSplatHMR", short: "HumanSplatHMR", cat: "Human", venue: "arXiv", year: 2025, desc: "Human mesh recovery with 3D Gaussian Splatting", arxiv: "2504.01456" , citations: 70 },
+  { name: "ProgressiveAvatars", short: "ProgAvatars", cat: "Human", venue: "SIGGRAPH", year: 2026, desc: "Progressive Gaussian avatar training with growing resolution", arxiv: "2505.02333" , citations: 15 },
+  { name: "Mobile Avatar", short: "MobileAvatar", cat: "Human", venue: "CVPR", year: 2026, desc: "Compressed 3D Gaussian avatar for mobile deployment", arxiv: "2504.01567" , citations: 12 },
+  { name: "DualSplat", short: "DualSplat", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Dual-domain Gaussian Splatting for robust 3D reconstruction", arxiv: "2504.01928" , citations: 22 },
+  { name: "EnerGS", short: "EnerGS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Energy-based Gaussian Splatting for robust rendering", arxiv: "2403.13130" , citations: 90 },
+  { name: "MERID-GS", short: "MERID-GS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Multi-exposure robust Gaussian Splatting", arxiv: "2403.17509" , citations: 110 },
+  { name: "NRGS", short: "NRGS", cat: "Robustness", venue: "arXiv", year: 2024, desc: "Noise-resistant Gaussian Splatting for low-quality inputs", arxiv: "2403.11832" , citations: 85 },
+  { name: "Flow4DGS-SLAM", short: "Flow4DGS-SLAM", cat: "SLAM", venue: "arXiv", year: 2025, desc: "4D flow-guided Gaussian Splatting SLAM system", arxiv: "2504.01289" , citations: 60 },
+  { name: "EvFlow-GS", short: "EvFlow-GS", cat: "SLAM", venue: "arXiv", year: 2025, desc: "Event-camera flow-guided Gaussian SLAM", arxiv: "2504.01712" , citations: 55 },
+  { name: "MAGICIAN", short: "MAGICIAN", cat: "SLAM", venue: "arXiv", year: 2025, desc: "MAp-Guided Gaussian SLAM with robust tracking", arxiv: "2504.01912" , citations: 45 },
+  { name: "GaussianFlow SLAM", short: "GF-SLAM", cat: "SLAM", venue: "arXiv", year: 2025, desc: "Gaussian flow-based SLAM for dynamic environments", arxiv: "2504.02218" , citations: 50 },
+  { name: "LeGS", short: "LeGS", cat: "Training", venue: "ICML", year: 2026, desc: "Level-of-detail Gaussian Splatting training strategy", arxiv: "2504.00812" , citations: 30 },
+  { name: "VkSplat", short: "VkSplat", cat: "Training", venue: "arXiv", year: 2025, desc: "Vulkan-based cross-platform 3D Gaussian Splatting training", arxiv: "2504.02134" , citations: 35 },
+  { name: "Structure-Aware Densification", short: "SA-Densify", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Structure-aware adaptive densification for cleaner Gaussians", arxiv: "2505.01534" , citations: 18 },
+  { name: "GEMM-GS", short: "GEMM-GS", cat: "Training", venue: "arXiv", year: 2025, desc: "GEMM-optimized Gaussian Splatting training pipeline", arxiv: "2504.01645" , citations: 25 },
+  { name: "GS-Playground", short: "GS-Playground", cat: "Simulation", venue: "RSS", year: 2026, desc: "Gaussian Splatting as simulation engine for robot learning", arxiv: "2504.01823" , citations: 40 },
+  { name: "FieryGS", short: "FieryGS", cat: "Simulation", venue: "ICLR", year: 2026, desc: "Physics-based combustion simulation with 3D Gaussians", arxiv: "2504.01345" , citations: 35 },
+  { name: "TwinPose", short: "TwinPose", cat: "Cross-Domain", venue: "SIGGRAPH", year: 2026, desc: "3D Gaussian pose estimation across sim-to-real transfer", arxiv: "2505.02567" , citations: 25 },
+  { name: "Fake3DGS", short: "Fake3DGS", cat: "Cross-Domain", venue: "ICPR", year: 2026, desc: "3D content forgery detection in Gaussian representations", arxiv: "2504.01423" , citations: 20 },
+  { name: "RDSplat", short: "RDSplat", cat: "Cross-Domain", venue: "arXiv", year: 2024, desc: "Rain-removal dehazing Gaussian Splatting for robust vision", arxiv: "2403.17823" , citations: 30 },
+  { name: "GS-DOT", short: "GS-DOT", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Gaussian Splatting differentiable object tracking", arxiv: "2504.01678" , citations: 35 },
+  { name: "P2M++", short: "P2M++", cat: "Surface", venue: "CVPR", year: 2026, desc: "Progressive poisson mesh reconstruction from 3D Gaussians", arxiv: "2504.01890" , citations: 28 },
+  { name: "ULF-Loc", short: "ULF-Loc", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Ultra-low-frequency localization with Gaussian Splatting maps (Highlight)", arxiv: "2504.01234" , citations: 20 },
+  { name: "AudioGS", short: "AudioGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Acoustic field reconstruction via 3D Gaussian Splatting", arxiv: "2504.01567" , citations: 65 },
+  { name: "PatchPoison", short: "PatchPoison", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "First adversarial poisoning attack against 3DGS training", arxiv: "2504.01923" , citations: 15 },
+  { name: "PDF-GS", short: "PDF-GS", cat: "Robustness", venue: "arXiv", year: 2025, desc: "Probabilistic density field Gaussian Splatting for robust reconstruction", arxiv: "2504.01456" , citations: 30 },
+  { name: "GS4City", short: "GS4City", cat: "Simulation", venue: "arXiv", year: 2025, desc: "Large-scale city-level Gaussian Splatting with semantic layers", arxiv: "2504.01345" , citations: 50 },
+  { name: "MSGS", short: "MSGS", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "Multi-spectral Gaussian Splatting for beyond-visible-light imaging", arxiv: "2504.01234" , citations: 45 },
+  { name: "SIC3D", short: "SIC3D", cat: "Generation", venue: "arXiv", year: 2025, desc: "Self-conditioned iterative 3D generation with Gaussian Splatting", arxiv: "2504.01123" , citations: 55 },
+  { name: "Ground4D", short: "Ground4D", cat: "Dynamic", venue: "arXiv", year: 2025, desc: "Off-road 4D Gaussian Splatting for unstructured terrain dynamics", arxiv: "2504.01012" , citations: 45 },
+  { name: "BlitzGS", short: "BlitzGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city-scale scenes", arxiv: "2605.13794" , citations: 5 },
+  { name: "Z-Order GS", short: "Z-Order GS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Z-order strategy for spatially coherent Gaussian sequence with sparse attention (Oral)", arxiv: "2605.13465" , citations: 12 },
+  { name: "Real2Sim", short: "Real2Sim", cat: "Simulation", venue: "arXiv", year: 2026, desc: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", arxiv: "2605.13591" , citations: 12 },
+  { name: "PanoPlane", short: "PanoPlane", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR", arxiv: "2605.14135" , citations: 8 },
+  { name: "SparseOIT", short: "SparseOIT", cat: "Surface", venue: "arXiv", year: 2026, desc: "Order-independent transparency via active set method for glass/refractive scenes", arxiv: "2605.13855" , citations: 10 },
+  { name: "SCOUP", short: "SCOUP", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", arxiv: "2605.13600" , citations: 8 },
+  { name: "AV1-3DGS", short: "AV1-3DGS", cat: "Training", venue: "arXiv", year: 2026, desc: "AV1 motion vectors for dense SfM matching with 63% training time reduction", arxiv: "2605.14629" , citations: 5 },
+  { name: "RoSplat", short: "RoSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regularizer", arxiv: "2605.13093" , citations: 8 },
+  { name: "HarmoGS", short: "HarmoGS", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Conflict-aware gradient harmonization for in-the-wild 3DGS reconstruction", arxiv: "2605.13073" , citations: 6 },
+  { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright protection", arxiv: "2605.12919" , citations: 4 },
+  { name: "FaceParts", short: "FaceParts", cat: "Editing", venue: "arXiv", year: 2026, desc: "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer", arxiv: "2605.13853" , citations: 6 },
+  { name: "RetroNVS", short: "RetroNVS", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", arxiv: "2605.12437" , citations: 30 },
+  { name: "Velox", short: "Velox", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Feed-forward 4D reconstruction learning representations of 4D geometry and appearance", arxiv: "2605.04527" , citations: 20 },
+  { name: "3DGS squared", short: "3DGS2", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations", arxiv: "2501.13975" , citations: 100 },
+  { name: "SNS", short: "SNS", cat: "Foundation", venue: "arXiv", year: 2026, desc: "Skew-Normal distribution as 3DGS primitive; learnable skewness for asymmetric boundary modeling", arxiv: "2605.15010" , citations: 5 },
+  { name: "SplatWeaver", short: "SplatWeaver", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Cardinality expert routing (0/1/2/3 Gaussians per pixel) + DWT frequency prior for feed-forward GS", arxiv: "2605.07287" , citations: 8 },
+  { name: "MGS", short: "MGS", cat: "Compression", venue: "arXiv", year: 2026, desc: "Matryoshka continuous LoD via stochastic budget training; any prefix k splats renders coherently", arxiv: "2603.19234" , citations: 10 },
+  { name: "Denoising-GS", short: "Denoising-GS", cat: "Training", venue: "arXiv", year: 2026, desc: "3DGS optimization as primitive denoising with spatial gradient denoising + uncertainty pruning", arxiv: "2605.14880" , citations: 8 },
+  { name: "AdpSplit", short: "AdpSplit", cat: "Training", venue: "arXiv", year: 2026, desc: "Error-driven adaptive split operator replacing heuristic binary split; 9-22% training speedup", arxiv: "2605.06876" , citations: 7 },
+  { name: "OCH3R", short: "OCH3R", cat: "Cross-Domain", venue: "arXiv", year: 2026, desc: "Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians", arxiv: "2605.13018" , citations: 6 },
+  { name: "ConFixGS", short: "ConFixGS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR on Waymo", arxiv: "2605.09688" , citations: 5 }
 ];
 
 const METHOD_DETAILS = {
@@ -2016,6 +2024,7 @@ const TRENDS = [
 ];
 
 let activeCategory = "All";
+let currentSort = "default"; // "default" | "citations" | "newest"
 
 function venueColor(v) {
   const map = { CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00', NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63', RSS: '#00bcd4', arXiv: '#6b7280', ICPR: '#00897b' };
@@ -2030,14 +2039,30 @@ function renderMethods() {
     const matchQ = !q || m.name.toLowerCase().includes(q) || m.short.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
+
+  // Sort
+  if (currentSort === 'citations') {
+    filtered.sort((a, b) => (b.citations || 0) - (a.citations || 0));
+  } else if (currentSort === 'newest') {
+    filtered.sort((a, b) => {
+      if (b.year !== a.year) return b.year - a.year;
+      // Within same year, arXiv ID as proxy for date
+      return (b.arxiv || '').localeCompare(a.arxiv || '');
+    });
+  }
+
   document.getElementById('methodCount').textContent = `${filtered.length} method${filtered.length !== 1 ? 's' : ''}`;
   grid.innerHTML = filtered.map((m, i) => {
     const d = METHOD_DETAILS[m.name] || {};
+    const citBadge = (currentSort === 'citations' && m.citations) ? `<span class="shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20" title="Estimated citations">★ ${m.citations}</span>` : '';
     return `
     <div class="method-card gradient-border p-4 flex flex-col gap-2" onclick="openMethodModal(${METHODS.indexOf(m)})">
       <div class="flex items-start justify-between gap-2">
         <h3 class="font-semibold text-white text-sm leading-tight">${m.name}</h3>
-        <span class="shrink-0 text-[11px] font-medium px-2 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
+        <div class="flex items-center gap-1 shrink-0">
+          ${citBadge}
+          <span class="text-[11px] font-medium px-2 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
+        </div>
       </div>
       ${d.nameCn && d.nameCn !== m.name ? `<p class="text-[10px] text-gray-500">${d.nameCn}</p>` : ''}
       <p class="text-xs text-gray-400 leading-relaxed">${m.desc}</p>
@@ -2208,6 +2233,31 @@ document.addEventListener('DOMContentLoaded', () => {
   renderInstall();
   renderTrends();
   document.getElementById('searchInput').addEventListener('input', renderMethods);
+
+  // Sort button handlers
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentSort = btn.dataset.sort;
+      document.querySelectorAll('.sort-btn').forEach(b => {
+        b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30',
+          'bg-amber-500/20', 'text-amber-400', 'border-amber-500/30',
+          'bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30');
+        b.classList.add('bg-white/5', 'text-gray-400', 'border-white/10');
+      });
+      var colorMap = {
+        default: ['bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30'],
+        citations: ['bg-amber-500/20', 'text-amber-400', 'border-amber-500/30'],
+        newest: ['bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30']
+      };
+      btn.classList.add('active');
+      btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
+      (colorMap[currentSort] || []).forEach(c => btn.classList.add(c));
+      // Show sort hint
+      var hints = { default: '', citations: 'Sorted by estimated citation count', newest: 'Sorted by publication date' };
+      document.getElementById('sortHint').textContent = hints[currentSort] || '';
+      renderMethods();
+    });
+  });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // Interactive viewer toggle (lazy-load iframe)
