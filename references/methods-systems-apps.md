@@ -1,3 +1,14 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '576f5a78-dea6-411b-873c-793d750338f7'
+  PropagateID: '576f5a78-dea6-411b-873c-793d750338f7'
+  ReservedCode1: 'c83f2f24-8e64-45a4-828f-3d768fa3ecbe'
+  ReservedCode2: 'c83f2f24-8e64-45a4-828f-3d768fa3ecbe'
+---
+
 # Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
@@ -138,6 +149,16 @@
 - **Key Innovation**: Integrates dynamic 3D Gaussian Splatting with differentiable physics simulation; MPM solver enables realistic object interactions and collisions; supports instance-level editing (add/remove/modify objects) in reconstructed AD scenes; bridges real-world 3DGS reconstruction and physics-based simulation for closed-loop AD testing
 - **Key Results**: Physics-aware AD scene simulation; instance-level editing; collision scenario support
 - **Links**: [arXiv:2605.13591](https://arxiv.org/abs/2605.13591)
+
+### ConFixGS
+- **Paper**: ConFixGS: Confidence-Aware Diffusion Priors for Feedforward 3D Gaussian Splatting in Autonomous Driving
+- **Authors**: Rui Song, Tianhui Cai, Markus Gross, Xingcheng Zhou, Zewei Zhou, Zhiyu Huang, Olaf Wysocki, Jiaqi Ma
+- **ArXiv**: 2605.09688
+- **Venue**: Preprint (May 2026)
+- **Core**: Plug-and-play method for fixing feedforward 3DGS with confidence-aware diffusion priors in trajectory-based sparse-view driving scenes
+- **Key Innovation**: Generates diffusion-enhanced local pseudo-targets, validates via reprojection-based cross-checking against support views; dense confidence maps guide refinement; suppresses hallucinated evidence while enhancing reliable details through confidence-aware fusion
+- **Key Results**: PSNR gains up to +3.68 dB and FID reduced by nearly half on Waymo, nuScenes, and KITTI benchmarks
+- **Links**: [arXiv:2605.09688](https://arxiv.org/abs/2605.09688)
 
 ## SLAM
 
@@ -643,5 +664,15 @@
 - **Key Innovation**: First joint copyright protection framework for 3DGS; embeds imperceptible watermarks into Gaussian attributes for ownership tracing; simultaneously adds edit deterrence mechanism that degrades rendering quality when unauthorized edits are applied; addresses both ownership verification and content protection in a unified formulation
 - **Key Results**: First unified watermarking + edit deterrence for 3DGS; imperceptible watermark embedding; quality degradation upon unauthorized editing
 - **Links**: [arXiv:2605.12919](https://arxiv.org/abs/2605.12919)
+
+### OCH3R
+- **Paper**: OCH3R: Object-Centric Holistic 3D Reconstruction from Single RGB Image
+- **Authors**: Yi Du, Yang You, Xiang Wan, Leonidas Guibas
+- **ArXiv**: 2605.13018
+- **Venue**: Preprint (May 2026)
+- **Core**: Unified framework for Object-Centric Holistic 3D Reconstruction from single RGB image
+- **Key Innovation**: Single forward pass predicts all object instances with 6D poses + detailed 3D reconstructions; per-pixel attributes: CLIP category embeddings + metric depth + NOCS + per-object Gaussians; Transformer architecture predicting Gaussian reconstructions in canonical space aligned with pre-rendered canonical GT; inference scales independently of number of objects, orders-of-magnitude faster than multi-stage pipelines
+- **Key Results**: SOTA on monocular depth estimation, open-vocabulary segmentation, and RGB-only category-level 6D pose estimation on indoor benchmarks
+- **Links**: [arXiv:2605.13018](https://arxiv.org/abs/2605.13018)
 
 > AI生成

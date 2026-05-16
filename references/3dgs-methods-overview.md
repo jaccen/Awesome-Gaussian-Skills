@@ -1,6 +1,17 @@
-﻿# 3DGS Methods Overview
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c99bb3e2-e86c-4660-88d8-5f3f596ba37a'
+  PropagateID: 'c99bb3e2-e86c-4660-88d8-5f3f596ba37a'
+  ReservedCode1: 'd63e7560-2ac2-48ea-8834-51458f75a85f'
+  ReservedCode2: 'd63e7560-2ac2-48ea-8834-51458f75a85f'
+---
 
-> This file is the master index for all 254+ 3D Gaussian Splatting methods tracked in this knowledge base.
+# 3DGS Methods Overview
+
+> This file is the master index for all 261+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -14,6 +25,7 @@
 - **Mip-Splatting** [arXiv:2311.16493](https://arxiv.org/abs/2311.16493) — Anti-aliased 3DGS with 3D smoothing + 2D Mip filter
 - **Softmax-GS** [arXiv:2604.27437](https://arxiv.org/abs/2604.27437) — Learnable softmax-based competition replacing α-compositing
 - **3DGEER** [GitHub](https://github.com/boschresearch/3dgeer) — Exact ray-Gaussian integration replacing splatting approximation for fisheye/generic cameras (ICLR 2026, top 1%)
+- **SNS** [arXiv:2605.15010](https://arxiv.org/abs/2605.15010) — Azzalini Skew-Normal distribution as fundamental primitive for asymmetric boundary modeling; continuously interpolates symmetric Gaussians ↔ Half-Gaussian shapes
 
 > Full details in [methods-core.md](methods-core.md#foundation-methods)
 
@@ -80,6 +92,7 @@
 - **AdaptSplat** [arXiv:2605.10239](https://arxiv.org/abs/2605.10239) — Lightweight Frequency-Preserving Adapter (1.5M params) on vision foundation models for feed-forward 3DGS
 - **Z-Order GS** [arXiv:2605.13465](https://arxiv.org/abs/2605.13465) — Z-order strategy for spatially coherent Gaussian sequence with sparse attention (CVPR 2026 Oral)
 - **RoSplat** [arXiv:2605.13093](https://arxiv.org/abs/2605.13093) — Robust feed-forward pixel-wise GS for varying input views and high-resolution rendering
+- **SplatWeaver** [arXiv:2605.07287](https://arxiv.org/abs/2605.07287) — Cardinality Gaussian Expert Routing for demand-allocated feedforward GS; 30% Gaussian budget with +1.02 dB PSNR over AnySplat (HIT + Huawei Noah's Ark Lab)
 
 > Full details in [methods-core.md](methods-core.md#feed-forward-methods)
 
@@ -96,6 +109,7 @@
 - **MesonGS++** [arXiv:2604.26799](https://arxiv.org/abs/2604.26799) — Post-training codec with 34x compression + ILP hyperparameter search
 - **GETA-3DGS** [arXiv:2605.02086](https://arxiv.org/abs/2605.02086) — End-to-end automatic joint pruning + quantization
 - **CAGS** [arXiv:2605.09279](https://arxiv.org/abs/2605.09279) — VQ-based LoD for 3DGS streaming + low-res reference image color-distortion correction; +5~20 dB PSNR over baselines (SIGGRAPH 2026)
+- **MGS** [arXiv:2603.19234](https://arxiv.org/abs/2603.19234) — Matryoshka Gaussian Splatting: continuous LoD via stochastic budget training; renders any prefix k splats
 
 > Full details in [methods-core.md](methods-core.md#compression-methods)
 
@@ -236,6 +250,7 @@
 - **Ground4D** [arXiv:2605.04435](https://arxiv.org/abs/2605.04435) — Spatially-grounded feedforward 4D for off-road reconstruction
 - **PointForward** [arXiv:2605.11594](https://arxiv.org/abs/2605.11594) — Sparse 3D queries in world space with spatial-temporal fusion + scene graphs for feedforward driving reconstruction
 - **Real2Sim** [arXiv:2605.13591](https://arxiv.org/abs/2605.13591) — 4DGS + differentiable MPM solver for physics-aware AD scene simulation; supports instance-level editing + collision
+- **ConFixGS** [arXiv:2605.09688](https://arxiv.org/abs/2605.09688) — Confidence-aware diffusion priors for fixing feedforward 3DGS in driving scenes; +3.68 dB PSNR on Waymo/nuScenes/KITTI
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#autonomous-driving)
 
@@ -268,6 +283,8 @@
 - **AdaGScale** [arXiv:2604.18980](https://arxiv.org/abs/2604.18980) — Viewpoint-adaptive Gaussian scaling reducing gaussian-tile pairs for rendering acceleration (DAC 2026)
 - **AV1-3DGS** [arXiv:2605.14629](https://arxiv.org/abs/2605.14629) — AV1 motion vectors for dense feature matching in SfM; 8x denser point clouds; 9-point VMAF gain + 63% training time reduction
 - **3DGS²** [arXiv:2501.13975](https://arxiv.org/abs/2501.13975) — Near second-order converging 3DGS training; per-attribute Newton systems + sparse coupling; 10x fewer iterations
+- **AdpSplit** [arXiv:2605.06876](https://arxiv.org/abs/2605.06876) — Error-driven adaptive split operator for faster geometry discovery; 9.2-22.3% training time reduction as drop-in replacement
+- **Denoising-GS** [arXiv:2605.14880](https://arxiv.org/abs/2605.14880) — Spatial-aware denoising framework for Gaussian primitive optimization; spatial gradient denoising + uncertainty-based pruning
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#training--optimization)
 
@@ -308,6 +325,7 @@
 - **PG-3DGS** [arXiv:2605.11266](https://arxiv.org/abs/2605.11266) — Differentiable physics simulation coupled with 3D Gaussian representations; physical objectives guide shape optimization
 - **XFreq-GS** [arXiv:2605.11432](https://arxiv.org/abs/2605.11432) — Cross-frequency wireless radiation field reconstruction with shared geometry + frequency-adaptive RF attributes
 - **GuardMarkGS** [arXiv:2605.12919](https://arxiv.org/abs/2605.12919) — Unified ownership tracing (watermarking) and edit deterrence for 3DGS; first joint copyright protection framework
+- **OCH3R** [arXiv:2605.13018](https://arxiv.org/abs/2605.13018) — Object-Centric Holistic 3D Reconstruction from single RGB image; per-pixel CLIP + 6D pose + per-object Gaussians in one forward pass
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
@@ -450,6 +468,15 @@
 | AV1-3DGS | +9 VMAF, 63% less train | Same | Same | AV1 motion vector SfM |
 | 3DGS² | ~Same quality, 10x fewer iter | 10x faster convergence | Same | Per-attribute Newton systems |
 | GuardMarkGS | N/A (security) | Same | Same | Joint watermarking + edit deterrence |
+| SNS | ~vs 3DGS (sharp boundaries) | Same | Same | Skew-Normal primitives |
+| MGS | ~vs 3DGS (any prefix k) | Variable by budget | Same model | Stochastic budget LoD |
+| Denoising-GS | ~SOTA on 3 benchmarks | Same | Compact representation | Spatial-aware denoising optimizer |
+| AdpSplit | Same quality, 9-22% faster | Faster convergence | Same | Error-driven adaptive split |
+| SplatWeaver | +1.02 dB over AnySplat | 301 FPS | 29.2 MB (30% of AnySplat) | Expert-routed feedforward GS |
+| OCH3R | N/A (single-image) | One forward pass | N/A | Per-pixel object-centric 3DGS |
+| ConFixGS | +3.68 dB (Waymo) | Same | Same | Confidence-aware diffusion repair |
 
 > *Methods marked with asterisk are evaluated on RealEstate10K/ACID or other benchmarks (not Mip-NeRF 360)
 > Numbers are approximate and may vary across implementations and hardware.
+
+> AI生成

@@ -1,3 +1,14 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f9a90592-1db2-488f-8dac-75c57914ad11'
+  PropagateID: 'f9a90592-1db2-488f-8dac-75c57914ad11'
+  ReservedCode1: '24bfbb5a-0d7d-40d9-ada9-9462b1da3d16'
+  ReservedCode2: '24bfbb5a-0d7d-40d9-ada9-9462b1da3d16'
+---
+
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -37,6 +48,16 @@
 - **Key Innovation**: Enforces softmax competition in overlapping regions; learnable parameters control blend-vs-bound strength (smooth blending  → crisp boundaries); preserves order invariance and transmittance consistency; addresses both view-inconsistency and diffuse-boundary problems in a unified formulation
 - **Trade-off**: Higher parameter efficiency with better reconstruction quality on real-world benchmarks
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.27437) | [arXiv:2604.27437](https://arxiv.org/abs/2604.27437) | [Code]
+
+### SNS (3D Skew-Normal Splatting)
+- **Paper**: SNS: 3D Skew-Normal Splatting
+- **Authors**: Xiangru Wu, Ke Fan, Yanwei Fu
+- **ArXiv**: 2605.15010
+- **Core**: Adopts Azzalini Skew-Normal distribution as fundamental primitive, replacing symmetric Gaussian kernels
+- **Key Innovation**: Learnable bounded skewness parameter enables continuous interpolation between symmetric Gaussians and Half-Gaussian-like shapes; decoupled parameterization + block-wise optimization for scale/rotation/skewness coupling; preserves analytical tractability under affine transformations and marginalization, enabling seamless integration into existing 3DGS rasterization pipelines
+- **Performance**: Consistent improvement over Gaussian and recent non-Gaussian kernels on standard NVS benchmarks, especially on sharp boundaries and thin/one-sided structures
+- **Venue**: Preprint (May 2026)
+- **Links**: [arXiv:2605.15010](https://arxiv.org/abs/2605.15010)
 
 ### 3DGEER (Exact Gaussian Rendering)
 - **Paper**: 3DGEER: Exact Gaussian Rendering for Fisheye and Generic Cameras
@@ -441,6 +462,17 @@
 - **Key Results**: Consistent quality across varying input views; supports high-resolution output
 - **Links**: [arXiv:2605.13093](https://arxiv.org/abs/2605.13093)
 
+### SplatWeaver
+- **Paper**: SplatWeaver: Cardinality-Aware Feed-Forward 3D Gaussian Splatting
+- **Authors**: HIT + Huawei Noah's Ark Lab + Shenzhen Technology University
+- **ArXiv**: 2605.07287
+- **Core**: Cardinality Gaussian Expert Routing with 4 experts (Null/1/2/3 Gaussians per pixel) + Frequency Prior Guidance + Neighbor-Conditioned Gaussian Parameter Prediction
+- **Key Innovation**: Hard discrete routing preserves physical meaning of bubble positions; DWT-based high-frequency energy as Frequency Prior Guidance; K=8 neighbor attention for Gaussian parameter prediction; stochastic budget training with ε=0.3 budget control; route regularization loss for warmup; coarse-to-fine neighbor search for GPU acceleration
+- **Performance**: On DL3DV 16-view: PSNR 20.11 (+1.02 over AnySplat), 451K Gaussians (30% of AnySplat), 29.2MB storage, 301 FPS rendering; zero-shot generalization on RealEstate10K and Mip-NeRF 360
+- **Code**: [GitHub](https://github.com/yecongwan/SplatWeaver)
+- **Venue**: Preprint (May 2026)
+- **Links**: [arXiv:2605.07287](https://arxiv.org/abs/2605.07287) | [Code](https://github.com/yecongwan/SplatWeaver)
+
 ## Compression Methods
 
 ### Compact-3DGS
@@ -535,6 +567,15 @@
 - **Trade-off**: Requires server-side rendering for reference images but avoids heavy client-side computation
 - **Related**: Compact-3DGS, HAC, GS-SCNet
 - **Links**: [arXiv:2605.09279](https://arxiv.org/abs/2605.09279) | [Code](https://github.com/yindaheng98/ColorAdaptiveGaussianSplatting)
+
+### MGS (Matryoshka Gaussian Splatting)
+- **Paper**: MGS: Matryoshka Gaussian Splatting
+- **Authors**: Zhilin Guo et al.
+- **ArXiv**: 2603.19234
+- **Core**: Continuous LoD for 3DGS via stochastic budget training - each iteration samples random splat budget and optimizes both prefix-k and full set
+- **Key Innovation**: Learns ordered Gaussian set where any prefix produces coherent reconstruction; requires only two forward passes with no architectural modifications; enables continuous speed-quality trade-off from single model while matching full-capacity performance
+- **Venue**: Preprint (Mar 2026)
+- **Links**: [arXiv:2603.19234](https://arxiv.org/abs/2603.19234)
 
 ## Dynamic Scene Methods
 
@@ -669,9 +710,31 @@
 - **Key Results**: 8x denser point clouds; 9-point VMAF gain; 63% training time reduction
 - **Links**: [arXiv:2605.14629](https://arxiv.org/abs/2605.14629)
 
+### Denoising-GS
+- **Paper**: Denoising-GS: Formulating 3DGS Optimization as Primitive Denoising
+- **Authors**: Qingyuan Zhou et al.
+- **ArXiv**: 2605.14880
+- **Core**: Formulates 3DGS optimization as primitive denoising process with spatial-aware denoising framework
+- **Key Innovation**: Spatial gradient-based denoising strategy + uncertainty-based denoising module + spatial coherence refinement; custom optimizer preserving spatial optimization flow; gradient-consistent updates via spatial supports; uncertainty estimation for pruning redundant primitives
+- **Performance**: SOTA on 3 benchmarks with compact representation
+- **Venue**: Preprint (May 2026)
+- **Links**: [arXiv:2605.14880](https://arxiv.org/abs/2605.14880)
+
 ### 3DGS²
 - **ArXiv**: [2501.13975](https://arxiv.org/abs/2501.13975)
 - **Core**: Near second-order converging 3DGS training via per-attribute Newton systems
 - **Key Innovation**: Replaces first-order SGD with per-attribute Newton-like optimization; decomposes per-Gaussian Hessian into independent per-attribute systems with sparse cross-attribute coupling; achieves near-quadratic convergence rate; 10x fewer iterations to reach same quality as standard 3DGS
 - **Key Results**: 10x fewer training iterations; near second-order convergence; same final quality as vanilla 3DGS
 - **Links**: [arXiv:2501.13975](https://arxiv.org/abs/2501.13975)
+
+### AdpSplit
+- **Paper**: AdpSplit: Adaptive Split Operator for Efficient 3D Gaussian Splatting Training
+- **Authors**: Yongjae Lee, Jingxing Li, Abhay Kumar Yadav, Rama Chellappa, Deliang Fan
+- **ArXiv**: 2605.06876
+- **Core**: Error-driven adaptive split operator that determines number of split children and initializes from L1-pixel-error region statistics
+- **Key Innovation**: Drop-in replacement for standard split operator; enables fewer densification iterations while preserving quality; reduces training time 9.2-22.3% across MipNeRF360, Deep-Blending, Tanks&Temples
+- **Performance**: With FastGS, matches full-schedule PSNR on MipNeRF360 while 16.4% faster training (= 12.6x over vanilla 3DGS)
+- **Venue**: Preprint (May 2026)
+- **Links**: [arXiv:2605.06876](https://arxiv.org/abs/2605.06876)
+
+> AI生成

@@ -1,26 +1,14 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 254+ methods across 21 categories"
-version: 1.4.3
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 261+ methods across 21 categories."
+version: 1.4.5
 author: jaccen
-tags:
-  - 3dgs
-  - gaussian-splatting
-  - method-comparison
-  - research
-trigger:
-  - "对比方法"
-  - "compare methods"
-  - "方法差异"
-  - "和什么区别"
-  - "3DGS对比"
-  - "method comparison"
-  - "哪个好"
+tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 254+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 261+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -87,6 +75,16 @@ When comparing methods, analyze across the following dimensions:
 - Framework: PyTorch / JAX / CUDA / Custom
 - Dependencies
 
+## Rendering Formulation Comparison
+
+| Method | Primitive | Compositing | Key Feature |
+|--------|-----------|-------------|-------------|
+| 3DGS | 3D Anisotropic Gaussian | alpha-compositing (front-to-back) | Tile-based rasterization |
+| Softmax-GS | 3D Anisotropic Gaussian | Softmax competition | Replaces α-compositing with learnable softmax |
+| Mip-Splatting | 3D Anisotropic Gaussian + Mip | alpha-compositing | 3D smoothing + 2D Mip filter |
+| 3DGEER | 3D Anisotropic Gaussian | Exact ray-Gaussian integral | Replaces splatting with exact rendering |
+| SNS | Azzalini Skew-Normal Distribution | alpha-compositing | Learnable skewness for asymmetric boundaries |
+
 ## Known Methods Database
 
 ### Foundation Methods
@@ -100,6 +98,7 @@ When comparing methods, analyze across the following dimensions:
 | Scaffold-GS+ | CVPR'24 | Anchor+3D | [0,1] | Progressive training |
 | Softmax-GS | CVPR'26 (Findings) | 3D anisotropic | Softmax competition | Replaces α-compositing with learnable softmax; blend-vs-bound |
 | LeGS | arXiv'26 | 3D anisotropic | RL-controlled | RL-based learnable density control replacing heuristics; O(N) reward |
+| SNS | arXiv'26 (2605.15010) | Skew-Normal | [0,1] | Skew-Normal primitive replacing symmetric Gaussian kernels; continuous interpolation between symmetric Gaussian ↔ Half-Gaussian via learnable skewness |
 
 ### Signed / Decomposed Methods
 
@@ -126,6 +125,7 @@ When comparing methods, analyze across the following dimensions:
 | MesonGS++ | 34x | Minimal | Faster after decode (0-1 ILP hyperparameter search) |
 | GETA-3DGS | 5x | Minimal | First end-to-end automatic joint structured pruning + quantization; QADG; render-aware saliency |
 | CAGS | ~7x (streaming) | Minimal | VQ-based compression with Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment |
+| MGS | arXiv'26 (2603.19234) | Any LoD prefix | Matryoshka continuous LoD via stochastic budget training; renders any prefix k splats |
 
 ### Robustness / Regularization Methods
 
@@ -186,6 +186,7 @@ When comparing methods, analyze across the following dimensions:
 | OT-UVGS | EG'26 | UV tensor | Same as UVGS | OT-based UV mapping, O(N log N) |
 | Free Geometry | arXiv'26 | Adaptive | Single-pass + LoRA | Self-evolving feed-forward, +3.73% camera accuracy |
 | FTSplat | arXiv'26 (2603.05932) | Variable | Single-pass | Feed-forward triangle splatting |
+| SplatWeaver | arXiv'26 (2605.07287) | Variable | Single-pass | Cardinality Gaussian Expert Routing (Null/1/2/3 experts per pixel) + DWT frequency prior; 30% Gaussian budget with +1.02 dB PSNR over AnySplat |
 
 ### SLAM Methods
 
@@ -233,6 +234,7 @@ When comparing methods, analyze across the following dimensions:
 | GeoQuery | SIGGRAPH'26 | Sparse-view NVS | Geometry-guided cross-view attention with geometry-aligned proxy queries from predicted depth |
 | PairDropGS | arXiv'26 | Sparse-view NVS | Paired dropout-induced consistency regularization with progressive scheduling |
 | VidSplat | SIGGRAPH'26 | Sparse-view NVS | Training-free generative framework leveraging video diffusion priors with iterative confidence refinement |
+| OCH3R | arXiv'26 (2605.13018) | Single RGB | Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians |
 
 ### Dynamic / 4DGS Methods
 
@@ -274,6 +276,7 @@ When comparing methods, analyze across the following dimensions:
 | Real2Sim | arXiv'26 | 3D anisotropic (4D) | 4DGS + differentiable MPM | Physics-aware AD scene simulation with differentiable MPM for collision scenarios; bridges real-to-sim gap |
 | GaussianLSS | CVPR'25 | Multi-camera | GS for BEV perception |
 | Nighttime AD GS | ICRA'26 (2602.13549) | Nighttime multi-camera | PBR-based nighttime AD reconstruction |
+| ConFixGS | arXiv'26 (2605.09688) | Multi-camera | Confidence-aware diffusion for feedforward 3DGS fix; +3.68 dB PSNR on Waymo |
 
 ### System & Infrastructure Methods
 
@@ -282,12 +285,14 @@ When comparing methods, analyze across the following dimensions:
 | VkSplat | Eurographics'26 | Vulkan | Vulkan-based 3DGS training; 3.3x speed; cross-vendor |
 | brush | Open-source | Rust/WebGPU/Burn | Cross-platform 3DGS training (Win/Mac/Linux/Android/Web); 4.3k stars; faster than gsplat |
 
-### Training Acceleration Methods
+### Training Acceleration / Optimization Methods
 
 | Method | Venue | Strategy | Key Feature |
 |--------|-------|----------|-------------|
 | Structure-Aware Densification | SIGGRAPH'26 | Frequency-aware anisotropic splitting | Frequency-aware anisotropic splitting; multiview consistency; faster convergence |
 | GEMM-GS | DAC'26 (2604.02120) | Tensor Core GEMM | GPU acceleration via Tensor Cores; 1.42x speedup |
+| Denoising-GS | arXiv'26 (2605.14880) | Spatial-aware denoising | Spatial-aware denoising formulation for 3DGS optimization; spatial gradient + uncertainty-based pruning |
+| AdpSplit | arXiv'26 (2605.06876) | Error-driven adaptive split | Error-driven adaptive split operator; 9-22% training time reduction as drop-in replacement |
 
 ### Real-Time NVS Methods
 

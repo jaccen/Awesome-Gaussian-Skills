@@ -1,1030 +1,400 @@
 ---
 name: 3dgs-engineering-guide
-description: "Guide for deploying 3D Gaussian Splatting from research to production: industry use cases, engineering pipelines, tool selection, and deployment best practices"
-version: 1.0.2
+description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
+version: 1.0.4
 author: jaccen
-tags:
-  - 3dgs
-  - gaussian-splatting
-  - engineering
-  - deployment
-  - digital-twin
-  - autonomous-driving
-trigger:
-  - "3DGS部署"
-  - "3DGS落地"
-  - "3DGS工程化"
-  - "3DGS实际应用"
-  - "3DGS production"
-  - "3DGS deployment"
-  - "数字孪生3DGS"
-  - "自动驾驶仿真3DGS"
+tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
 
-# 3DGS Engineering Guide / 3DGS 工程化落地指南
+# 3DGS Engineering Guide
 
 Bridging the gap from academic research to production deployment for 3D Gaussian Splatting.
-将三维高斯泼溅从学术研究推向工程落地。
 
-## Agent Instructions / 智能体使用说明
+## Agent Instructions
 
 When invoked, follow this workflow:
-
-1. **Identify use case** — determine the user's specific application domain and constraints (platform, scale, real-time requirements, budget)
-2. **Recommend pipeline** — select appropriate tools and pipeline from the sections below
-3. **Reference papers** — point to relevant methods in `references/3dgs-methods-overview.md` and `references/methods-systems-apps.md`
+1. **Identify use case** — determine application domain and constraints (platform, scale, real-time, budget)
+2. **Recommend pipeline** — select tools and pipeline from sections below
+3. **Reference papers** — point to methods in `references/3dgs-methods-overview.md` and `references/methods-systems-apps.md`
 4. **Provide concrete next steps** — actionable items, not generic advice
 5. **Warn about pitfalls** — highlight domain-specific failure modes from Section 5
 
 ---
 
-## 1. Industry Application Landscape / 行业应用全景
-
-### 1.1 Autonomous Driving Simulation / 自动驾驶仿真
-
-**Maturity**: Engineering phase / 工程化阶段
-
-**Active players**: aiSim (四维图新), Li Auto mindVLA (理想), NVIDIA DRIVE Sim
-
-**Typical pipeline**:
-```
-Real-world scan (LiDAR + multi-camera) → 3DGS reconstruction →
-Sensor simulation (LiDAR point cloud, Radar signal, Camera image) →
-HIL (Hardware-in-the-Loop) testing / SIL validation
-```
-
-**Key papers from knowledge base**:
-- **GSDrive** — LiDAR simulation for AD; see `references/methods-systems-apps.md`
-- **GS-Playground** — 10^4 FPS physics simulation via GS (RSS 2026); see `references/methods-systems-apps.md`
-- **GS-Surrogate** — surrogate model for rapid scenario evaluation
-- **FieryGS** — generative 3DGS for data augmentation in AD
-- **Nighttime AD GS** — nighttime scene reconstruction for AD testing
-- **Real2Sim** — 4DGS + differentiable MPM for physics-aware AD scene simulation with collision scenarios
-- **GS-SCNet** — semantic-aware scene completion for AD
-- **Ground4D** — spatially-grounded feedforward 4D for off-road reconstruction
-- **ULF-Loc** — unbiased landmark feature for visual localization (CVPR 2026 highlight)
-
-**Quality bar / 质量标准**:
-- Sensor simulation error < 0.02 (normalized)
-- Real-time LiDAR rendering (> 30 FPS for 360° sweep)
-- Photorealistic camera output: LPIPS < 0.1 vs real data
-- Radar cross-section fidelity within ±3 dB
-
-**Tool stack**: aiSim 6, CARLA + 3DGS plugin, OpenDRIVE integration, ROS2 sensor stack
-
-**Engineering notes**:
-- LiDAR simulation requires physically-based Gaussian opacity modeling (opaque Gaussians for solid surfaces)
-- Nighttime scenarios demand separate training with IR-adjacent wavelength data
-- OpenDRIVE road network must be co-registered with 3DGS scene coordinates
-
-### 1.2 Digital Twin & Smart City / 数字孪生与智慧城市
-
-**Maturity**: Commercial / 商用阶段
-
-**Active players**: SuperMap (超图), FantoVision/凡拓数创, LCC/其域创新
-
-**Typical pipeline**:
-```
-Aerial photogrammetry + streetview capture → Large-scale 3DGS →
-S3M format conversion → GIS platform integration →
-IoT data fusion (traffic, environment, energy) → Dashboard / analytics
-```
-
-**Key papers**:
-- **DiffSoup** — triangle soup alternative for scalable representation; see `references/methods-core.md`
-- **Street Gaussians** — street-level scene reconstruction with sky modeling
-- **Large-Scale HQ Head** — techniques applicable to large-scale scene management
-- **GlobalSplat** — global scene coordination for city-scale reconstruction
-
-**Standards compliance / 标准对接**:
-- S3M (SuperMap 3D Model) — primary format for Chinese GIS ecosystem
-- OGC 3D Tiles — international interoperability
-- glTF/gLB — web and engine interchange
-- CityGML — semantic enrichment for smart city analytics
-
-**Scale considerations**:
-- City-level: 10^9–10^10 Gaussians
-- Streaming required: progressive level-of-detail (LOD)
-- Spatial indexing: octree or 3D grid partitioning
-- Mobile/browser rendering: compressed 3DGS via MesonGS++ or GETA-3DGS
-
-**Engineering notes**:
-- Coordinate system alignment is critical: WGS84 → local ENU → 3DGS world frame
-- Seasonal/time-of-day updates require modular 3DGS scene composition
-- S3M integration requires custom exporter from Gaussian format
-
-### 1.3 Cultural Heritage & Museum / 文物数字化与博物馆
+## 1. Industry Application Landscape
 
-**Maturity**: Commercial / 商用阶段
-
-**Typical pipeline**:
-```
-Multi-view photography (controlled lighting) → High-fidelity 3DGS →
-Color calibration & metadata annotation → Digital archive →
-VR/AR exhibition / web 3D viewer
-```
-
-**Quality requirements**:
-- Sub-mm geometric detail preservation
-- Color accuracy: ΔE < 2 (CIE76) under calibrated D65 lighting
-- Texture resolution: minimum 2048 × 2048 effective resolution
-- Archival stability: lossless or near-lossless compression
-
-**Tool stack**: Polycam (mobile capture), Luma AI (quick preview), custom COLMAP + 3DGS pipeline (production)
-
-**Engineering notes**:
-- Controlled lighting setup (dome/array) significantly improves reconstruction quality
-- Flash photography problematic — use continuous lighting or multi-exposure HDR merge
-- Metadata: attach DOI, catalog number, conservation history as scene attributes
-- Archive format: store raw images + COLMAP output + trained 3DGS checkpoint + compressed .ply
-
-### 1.4 Film & Game Production / 影视与游戏制作
+### 1.1 Autonomous Driving Simulation
 
-**Maturity**: Exploration / 探索阶段
+**Maturity**: Engineering | **Players**: aiSim, Li Auto mindVLA, NVIDIA DRIVE Sim
 
-**Active players**: Volcengine (火山引擎) 3D video, Unreal Engine team, Tencent
+**Pipeline**: Real-world scan (LiDAR + multi-camera) → 3DGS reconstruction → Sensor simulation → HIL/SIL testing
 
-**Typical pipeline**:
-```
-On-set capture (multi-camera array/video) → 3DGS reconstruction →
-Mesh/texture extraction (SuGaR/2DGS) → UE5 import (FBX/glTF) →
-Virtual production / cinematics
-```
+**Key papers**: GSDrive, GS-Playground (10^4 FPS, RSS 2026), GS-Surrogate, FieryGS, Nighttime AD GS, Real2Sim (4DGS + differentiable MPM), GS-SCNet, Ground4D, ULF-Loc (CVPR 2026 highlight), ConFixGS [2605.09688]
 
-**Tool stack**: UE5 3DGS plugin (experimental), VkSplat for cross-platform preview, SuGaR for mesh extraction
+**Quality bar**: Sensor sim error < 0.02, LiDAR > 30 FPS, LPIPS < 0.1, Radar ±3 dB
 
-**Engineering notes**:
-- 3DGS → mesh conversion required for traditional DCC pipelines (Maya/Blender/UE5)
-- SuGaR (TSDF-based) produces cleaner meshes than naive marching cubes
-- Material separation (albedo/normal/roughness) needed for relighting in game engines — use GOR-IS or SSD-GS
-- Temporal consistency critical for video — use 4DGS variants (e.g., GauFRe, DeformGS)
-- UE5 Nanite + Lumen integration path still experimental; mesh-based fallback recommended
+**Notes**: ConFixGS provides plug-and-play confidence-aware diffusion repair for +3.68 dB PSNR on Waymo, applicable to pretrained feedforward models; LiDAR sim requires opaque surface Gaussians; OpenDRIVE co-registration mandatory; nighttime needs separate IR-adjacent training
 
-### 1.5 E-commerce 3D Display / 电商三维展示
+### 1.2 Digital Twin & Smart City
 
-**Maturity**: Commercial / 商用阶段
+**Maturity**: Commercial | **Players**: SuperMap, FantoVision, LCC
 
-**Typical pipeline**:
-```
-Product photography (turntable + controlled light) → 3DGS reconstruction →
-Compression (MobileGS/GETA-3DGS) → Web AR preview / 3D viewer embed
-```
+**Pipeline**: Aerial + streetview → Large-scale 3DGS → S3M conversion → GIS integration → IoT fusion
 
-**Requirements**:
-- Lightweight: < 50 MB compressed model
-- Browser-renderable: WebGPU or WebGL2 via gsplat.js
-- Fast load: < 5s initial render on 4G connection
-- Standard turntable capture: 36–72 views, uniform lighting
+**Key papers**: DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head
 
-**Tool stack**: gsplat.js (web rendering), three.js Gaussian splatting loader, WebGPU backend
+**Standards**: S3M (Chinese GIS), OGC 3D Tiles, glTF/glb, CityGML
 
-**Engineering notes**:
-- Product photography consistency is key: fixed focal length, fixed exposure, white background
-- Compression ratio > 50x needed for web delivery (GETA-3DGS 5x alone insufficient; combine with pruning)
-- Consider mesh-based fallback for low-end devices
-- AR integration: Quick Look (iOS), Scene Viewer (Android) — requires mesh, not native Gaussian
+**Notes**: City-level = 10^9–10^10 Gaussians; WGS84→ENU→3DGS alignment critical; streaming LOD mandatory; S3M needs custom exporter
 
-### 1.6 Industrial Inspection / 工业检测
+### 1.3 Cultural Heritage & Museum
 
-**Maturity**: Engineering phase / 工程化阶段
+**Maturity**: Commercial
 
-**Typical pipeline**:
-```
-Drone capture (power line / substation / offshore platform) → 3DGS reconstruction →
-Defect detection (AI/ML overlay) → Measurement & comparison → Inspection report
-```
+**Pipeline**: Controlled-lighting photography → High-fidelity 3DGS → Color calibration → Digital archive → VR/AR exhibition
 
-**Key papers**:
-- **EnerGS** — LiDAR-3DGS fusion for energy infrastructure inspection
-- **RGS** — CBCT-based reconstruction for structural inspection
-- **E2EGS** — end-to-end reconstruction for field deployment
+**Quality**: Sub-mm geometry, ΔE < 2 (CIE76), 2048×2048+ texture, lossless compression
 
-**Applications**: power line corridors, substations, offshore wind farms, bridges, tunnels
+**Notes**: Dome/array lighting > flash; attach DOI/catalog metadata; store raw images + COLMAP + checkpoint + compressed .ply
 
-**Tool stack**: DJI drone (Matrice/P4RTK), custom COLMAP pipeline, 3DGS + defect detection model (YOLO/SAM), GIS reporting backend
+### 1.4 Film & Game Production
 
-**Engineering notes**:
-- GPS geotagging critical for correlating defects with asset databases
-- LiDAR + camera fusion (EnerGS) provides both geometric precision and visual fidelity
-- Safety compliance: drones must meet local aviation regulations (CAAC/FAA)
-- Inspection tolerances: detect defects ≥ 5mm at 10m distance
+**Maturity**: Exploration | **Players**: Volcengine, UE team, Tencent
 
-### 1.7 AR/VR/MR / 增强现实与混合现实
+**Pipeline**: Multi-camera capture → 3DGS → Mesh extraction (SuGaR/2DGS) → UE5 import → Virtual production
 
-**Maturity**: Exploration / 探索阶段
+**Notes**: 3DGS→mesh needed for DCC; SuGaR (TSDF) > naive marching cubes; material separation (GOR-IS/SSD-GS) for relighting; 4DGS (GauFRe/DeformGS) for temporal consistency; UE5 Nanite+Lumen experimental
 
-**Typical pipeline**:
-```
-Real-time environment scan (headset cameras/depth sensors) → 3DGS reconstruction →
-6DoF tracking + low-latency rendering → MR content overlay / VR world building
-```
+### 1.5 E-commerce 3D Display
 
-**Challenges**:
-- 6DoF tracking latency < 20ms (motion-to-photon)
-- Edge rendering: limited compute on headsets (Quest 3, Vision Pro)
-- Dynamic scene update: real-time Gaussian insertion/pruning
-- Occlusion handling: real-world vs virtual object depth ordering
+**Maturity**: Commercial
 
-**Key papers**:
-- **Mobile Avatar** — pruned blendshapes for efficient mobile rendering
-- **GS-Playground** — 10^4 FPS rendering enables real-time interaction
-- **CoherentRaster** — subpixel-level 3DGS rasterization for light field displays, real-time on consumer hardware
+**Pipeline**: Turntable photography → 3DGS → Compression (MobileGS/GETA-3DGS) → Web AR preview
 
-**Engineering notes**:
-- VkSplat (Vulkan) is the primary path for cross-VR-headset deployment
-- Mesh fallback necessary for occlusion physics (Gaussian opacity ≠ solid geometry)
-- Consider hybrid: 3DGS for visual quality + simplified mesh for collision/occlusion
-- Apple Vision Pro: ARKit + custom Metal renderer; Meta Quest: OpenXR + Vulkan
+**Requirements**: < 50 MB, browser-renderable (WebGPU/WebGL2 via gsplat.js), < 5s load on 4G
 
-### 1.8 BIM & Architecture / BIM与建筑设计
+**Notes**: 50x+ compression needed for web; mesh fallback for low-end; AR needs mesh (Quick Look/Scene Viewer)
 
-**Maturity**: Engineering phase / 工程化阶段
+### 1.6 Industrial Inspection
 
-**Active players**: LumenBIM × 其域创新 (joint solution)
+**Maturity**: Engineering
 
-**Typical pipeline**:
-```
-Site scan (TLS + drone photogrammetry) → 3DGS reconstruction →
-BIM model integration (IFC alignment) → As-built verification →
-LCC format delivery → Facility management
-```
+**Pipeline**: Drone capture → 3DGS → AI defect detection → Measurement → Report
 
-**Standards**: IFC (BuildingSMART), OpenDRIVE (road infrastructure), LCC (其域创新 proprietary)
+**Key papers**: EnerGS (LiDAR-3DGS fusion), RGS (CBCT inspection), E2EGS (end-to-end field)
 
-**Key papers**:
-- **BrepGaussian** — B-rep aware Gaussian representation for CAD integration
-- **CADFS** — CAD model feature saliency in Gaussian representation
+**Notes**: GPS geotagging for defect correlation; EnerGS for LiDAR+cam fusion; detect ≥ 5mm at 10m; CAAC/FAA compliance
 
-**Engineering notes**:
-- Scan-to-BIM comparison requires point cloud registration (ICP) before 3DGS overlay
-- IFC alignment: map 3DGS coordinate system to BIM global coordinates
-- As-built verification: compare reconstructed 3DGS against design BIM, report deviations
-- LCC format: 其域创新 proprietary streaming format for large-scale architectural scenes
+### 1.7 AR/VR/MR
 
-### 1.9 Robotics & Embodied AI / 机器人与具身智能
+**Maturity**: Exploration
 
-**Maturity**: Early / 早期阶段
+**Pipeline**: Real-time headset scan → 3DGS → 6DoF tracking + low-latency render → MR overlay
 
-**Typical pipeline**:
-```
-Environment reconstruction (3DGS) → Physics simulation (GS-Playground) →
-Robot policy learning (sim-to-real) → Real-world deployment
-```
+**Key papers**: Mobile Avatar, GS-Playground, CoherentRaster (subpixel rasterization for light field)
 
-**Key papers**:
-- **GS-Playground** — 10^4 FPS physics simulation enables massive-scale robot learning (RSS 2026)
-- **FieryGS** — generative scene model for data augmentation
-- **MAGICIAN** — manipulation-centric Gaussian representation
+**Notes**: < 20ms motion-to-photon; VkSplat for cross-VR; hybrid 3DGS+mesh for occlusion physics; Vision Pro = ARKit+Metal, Quest = OpenXR+Vulkan
 
-**Engineering notes**:
-- 10^4 FPS simulation (GS-Playground) is transformative for robot learning sample efficiency
-- Physics fidelity: collision detection via Gaussian opacity thresholding
-- Sim-to-real gap: 3DGS scenes provide photorealistic training data; debias with real-world fine-tuning
-- ROS2 integration: publish 3DGS scene as point cloud / depth map topics
+### 1.8 BIM & Architecture
 
-### 1.10 Military Simulation / 军事仿真
+**Maturity**: Engineering | **Players**: LumenBIM × LCC
 
-**Maturity**: Early, classified / 早期，涉密
+**Pipeline**: TLS + drone → 3DGS → IFC alignment → As-built verification → LCC delivery
 
-**Applications**: battlefield reconstruction, tactical rehearsal, VR training, mission planning
+**Key papers**: BrepGaussian (B-rep aware), CADFS (CAD feature saliency)
 
-**Requirements**:
-- Security compliance: air-gapped deployment, indigenous tools (no foreign cloud dependency)
-- Content security: **GuardMarkGS** — first unified watermarking + edit deterrence framework for 3DGS assets; protects against unauthorized editing and redistribution
-- Real-time: > 60 FPS for tactical decision-making scenarios
-- Terrain fidelity: sub-meter accuracy for GPS-denied navigation training
-- Multi-spectral: visible + IR + SAR rendering
+**Notes**: ICP registration before overlay; IFC coordinate mapping; LCC proprietary streaming format
 
-**Engineering notes**:
-- Indigenous tool chain mandatory: domestic SfM, domestic 3DGS training framework
-- Air-gapped: no external API calls; all computation on-premise
-- Terrain integration: DEM/DSM fusion with 3DGS scene
-- Classification handling: ensure no sensitive scene data leaks through model checkpoints
+### 1.9 Robotics & Embodied AI
+
+**Maturity**: Early
+
+**Pipeline**: 3DGS environment → Physics sim (GS-Playground) → Policy learning (sim-to-real) → Deployment
+
+**Key papers**: GS-Playground (RSS 2026), FieryGS, MAGICIAN
+
+**Notes**: 10^4 FPS sim transforms sample efficiency; ROS2 as point cloud/depth topics; debias with real-world fine-tuning
+
+### 1.10 Military Simulation
+
+**Maturity**: Early, classified | **Security**: GuardMarkGS (unified watermarking + edit deterrence for 3DGS assets)
+
+**Requirements**: Air-gapped deployment, indigenous tools, > 60 FPS, sub-meter terrain, multi-spectral (visible+IR+SAR)
+
+**Notes**: No foreign cloud/API; DEM/DSM fusion; no sensitive data in checkpoints
 
 ---
 
-## 2. Engineering Technology Stack / 工程技术栈
+## 2. Engineering Technology Stack
 
-### 2.1 Data Acquisition Layer / 数据采集层
+### 2.1 Data Acquisition
 
-**Hardware / 硬件**:
+| Device Type | Use Case | Key Requirements |
+|---|---|---|
+| DSLR/Mirrorless | High-fidelity capture | Manual exposure, fixed focal length |
+| Drone (RTK) | Aerial survey | > 80% forward, > 60% side overlap |
+| LiDAR | AD simulation, inspection | Time-synced with cameras |
+| Mobile (LiDAR) | Quick indoor scan | iPad Pro/iPhone for rapid scouting |
+| TLS | Architectural, industrial | Sub-mm accuracy for as-built |
 
-| Device Type | Recommended Models | Use Case | Price Range |
+**Software**: COLMAP (SfM+MVS standard), ORB-SLAM3/BLEPS (visual SLAM), LIO-SAM/FAST-LIO2 (LiDAR SLAM), FreeMoCap (AGPL-3.0, markerless MoCap from webcams, outputs .trc/.c3d/.fbx, `pip install freemocap`)
+
+**Key considerations**: Camera calibration consistency, manual/HDR exposure, > 60% image overlap, GCPs for georeferencing, overcast preferred
+
+### 2.2 Reconstruction
+
+| Framework | Language | Best For |
+|---|---|---|
+| original 3DGS | CUDA/Python | Research, benchmarking |
+| gsplat | PyTorch/CUDA | Custom training, differentiable |
+| 2DGS | CUDA/Python | Mesh-extraction pipelines |
+| Scaffold-GS | CUDA/Python | Large-scale scenes |
+| OpenGaussian | OpenGL | Non-CUDA rendering |
+
+| Scale | Gaussians | Training | GPU |
 |---|---|---|---|
-| DSLR/Mirrorless | Sony A7R V, Canon R5 | High-fidelity capture | ¥20K–40K |
-| Drone | DJI Matrice 350 RTK, Mavic 3E | Aerial survey | ¥10K–200K |
-| LiDAR | Velodyne VLP-16, Hesai XT32 | AD simulation, inspection | ¥30K–300K |
-| Mobile SLAM | iPhone 15 Pro, iPad Pro (LiDAR) | Quick indoor scan | ¥8K–15K |
-| Terrestrial Laser | Leica RTC360, FARO Focus | Architectural, industrial | ¥500K+ |
+| Object/room | 100K–1M | 10–30 min | RTX 4070 |
+| Building | 1M–10M | 1–3 h | RTX 4090 |
+| City block | 10M–100M | 3–7 h | A100 80GB |
+| City district | 100M–1B | 12–24 h | A100/H100 cluster |
 
-**Software / 软件**:
-- COLMAP — SfM + MVS pipeline (industry standard, open-source)
-- Visual SLAM — ORB-SLAM3, BLEPS (LSD-SLAM variant), RTAB-Map
-- LiDAR SLAM — LOAM variants, LIO-SAM, FAST-LIO2
-- Camera calibration: OpenCV checkerboard/ChArUCo, COLMAP auto-calibration
-- **FreeMoCap** (AGPL-3.0) — free open-source markerless motion capture from ordinary webcams; outputs .trc/.c3d/.fbx/.csv skeletal data; multi-camera ChArUco calibration; install: `pip install freemocap`; ideal for driving animatable 3DGS avatars (GaussianAvatar, EmoTaG, 4DGS)
+**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive)
 
-**Key considerations / 关键注意事项**:
-- Camera calibration: intrinsic (focal length, distortion) + extrinsic (rig poses) must be consistent across all images
-- Exposure consistency: use manual exposure or bracketed HDR; avoid auto-exposure variation
-- Overlap requirement: > 60% overlap between consecutive images (both forward and side overlap for aerial)
-- Ground control points (GCPs): use surveyed GCPs for georeferencing at survey-grade accuracy
-- Weather conditions: overcast ideal (diffuse lighting avoids harsh shadows); avoid rain/fog
+**Rule**: No compression for prototyping → add when deployment demands; validate compressed vs original.
 
-### 2.2 Reconstruction Layer / 重建层
+### 2.3 Post-processing
 
-**Open-source frameworks / 开源框架**:
+**Mesh extraction**: SuGaR (TSDF, clean meshes), 2DGS+Poisson, Marching Cubes (baseline, blobby), NeuS2-GS (hybrid SDF+Gaussian)
 
-| Framework | Language | Features | Best For |
+**Material separation**: GOR-IS (albedo/shading/normals), SSD-GS (scatter+shadow) — enables relighting
+
+**Relighting**: GS³ (SH-based), GaRe, LumiMotion — critical for virtual production and e-commerce
+
+**Editing**: GaussianEditor, ObjectMorpher, TransSplat, **SuperSplat** (PlayCanvas, MIT, browser-based: inspect/edit/compress/publish PLY & SOG; https://superspl.at/editor)
+
+**Toolchain**: **splat-transform** (PlayCanvas, MIT, CLI) — PLY→SOG (~20x), PLY→streamed SOG (LOD), `-K` collision mesh (`.collision.glb`); `npm install -g @playcanvas/splat-transform`
+
+**MoCap input**: FreeMoCap (AGPL-3.0) — webcam MoCap → SMPL/FLAME → drive GaussianAvatar/EmoTaG; same rig for MoCap + 3DGS training images; note: AGPL-3.0 not MIT-compatible for commercial use
+
+### 2.4 Deployment
+
+| Engine | Backend | Platform | 3DGS Native? |
 |---|---|---|---|
-| original 3DGS | CUDA/Python | Reference implementation | Research, benchmarking |
-| gsplat | PyTorch/CUDA | Differentiable, extensible | Research, custom training |
-| 2DGS | CUDA/Python | Surfels (oriented disks) | Mesh-extraction pipelines |
-| Scaffold-GS | CUDA/Python | Anchor-based, efficient | Large-scale scenes |
-| OpenGaussian | OpenGL | Cross-platform rendering | Non-CUDA deployment |
-
-**Commercial solutions / 商用方案**:
-- Luma AI — mobile/web capture, cloud processing
-- Polycam — LiDAR + photogrammetry, web sharing
-- 其域创新 LCC — large-scale streaming, GIS integration
-- SuperMap GIS — 3DGS-in-GIS platform
-
-**Performance benchmarks / 性能基准**:
-
-| Scene Scale | Gaussians | Training Time | GPU | Memory |
-|---|---|---|---|---|
-| Object (room) | 100K–1M | 10–30 min | RTX 4070 | 4–8 GB |
-| Building | 1M–10M | 1–3 h | RTX 4090 | 8–16 GB |
-| City block | 10M–100M | 3–7 h | A100 80GB | 24–48 GB |
-| City district | 100M–1B | 12–24 h | A100/H100 cluster | Distributed |
-
-**Compression methods / 压缩方法**:
-- **HAC** — 100x compression, acceptable quality loss
-- **MobileGS** — CPU-runnable, extreme compression
-- **GETA-3DGS** — 5x compression, minimal quality loss
-- **MesonGS++** — 34x compression, state-of-the-art rate-distortion
-- **AdaGScale** — adaptive compression, scale-aware
-
-**Decision rule**: start with no compression for prototyping → add compression only when deployment demands it; always validate compressed quality against original.
-
-### 2.3 Post-processing Layer / 后处理层
-
-**Mesh extraction / 网格提取**:
-- **SuGaR** — TSDF-fused Gaussian extraction, clean meshes for DCC pipelines
-- **2DGS (Poisson)** — oriented disk → Poisson surface reconstruction
-- **Marching Cubes** (from density field) — baseline approach, produces blobby meshes
-- **NeuS2-GS** — hybrid SDF + Gaussian for sharp mesh extraction
-
-**Material separation / 材质分离**:
-- **GOR-IS** — intrinsic decomposition (albedo/shading/normals)
-- **SSD-GS** — scatter + shadow decomposition
-- Material extraction enables relighting in game engines and AR
-
-**Relighting / 重光照**:
-- **GS³** — Gaussian splatting with spherical harmonics for lighting
-- **GaRe** — Gaussian relighting framework
-- **LumiMotion** — dynamic relighting with motion
-- Relighting is critical for virtual production and e-commerce (product shots under custom lighting)
-
-**Editing / 编辑**:
-- **GaussianEditor** — semantic editing via text prompts
-- **ObjectMorpher** — object-level transformation
-- **TransSplat** — transparent object handling
-- **SuperSplat** — free, browser-based 3DGS editor (PlayCanvas, MIT): inspect/edit/compress/publish PLY & SOG files; supports pruning, clipping, 2DGS, animation preview, walk mode, HTML export, PWA install; online at https://superspl.at/editor
-- Editing enables virtual staging (real estate), product customization (e-commerce)
-
-**Engineering toolchain / 工程工具链**:
-- **splat-transform** (PlayCanvas, MIT, CLI) — 3DGS format converter and pipeline tool:
-  - `PLY → SOG`: compressed, streamable format (~20x compression)
-  - `PLY → streamed SOG`: multi-chunk LOD with manifest for progressive loading
-  - `-K / --collision-mesh`: voxelization + seed-position flood-fill → sealed `.collision.glb` for physics
-  - `--voxel-params / --voxel-carve / --seed-pos`: fine-grained voxelization control
-  - Install: `npm install -g @playcanvas/splat-transform`
-  - Source: https://github.com/playcanvas/splat-transform
-
-**Motion capture input / 动作捕捉输入** (for animatable 3DGS avatars):
-- **FreeMoCap** (AGPL-3.0, 8.3k stars) — markerless motion capture from ordinary webcams:
-  - Pipeline: multi-camera ChArUco calibration → 2D keypoint detection (MediaPipe) → 3D triangulation → skeletal output
-  - Output formats: `.trc` (OpenSim), `.c3d` (biomechanics), `.fbx` (Maya/Blender/UE5), `.csv` (custom)
-  - Install: `pip install freemocap` → `freemocap` to launch GUI
-  - Use with 3DGS: FreeMoCap skeletal data → SMPL/FLAME parametric model → drive GaussianAvatar/EmoTaG/4DGS avatars
-  - Same multi-cam rig can serve dual purpose: motion capture + 3DGS training images (shared calibration)
-  - Source: https://github.com/freemocap/freemocap
-- **Note**: AGPL-3.0 requires derivative works to also be open-sourced under AGPL; not MIT-compatible; check license compatibility before commercial deployment
-
-### 2.4 Deployment Layer / 部署层
-
-**Rendering engines / 渲染引擎**:
-
-| Engine | Backend | Performance | Platform | 3DGS Native? |
-|---|---|---|---|---|
-| original 3DGS | CUDA | Baseline | NVIDIA GPU | Yes |
-| VkSplat | Vulkan | 3.3x vs CUDA (non-NVIDIA) | Cross-platform | Yes |
-| GSeurat | Vulkan (C++23) | Research | Cross-platform | Yes |
-| **BlitzGS** | **Multi-GPU (parity sharding)** | **City-scale distributed** | **Distributed cluster** | **Yes (distributed training)** |
-| msplat | Metal | Apple-optimized | macOS/iOS | Yes |
-| tortuise | CPU (Rust) | Offline/low-power | Any CPU | Yes |
-| **PlayCanvas Engine** | **WebGL2/WebGPU** | **Browser-optimized** | **Web** | **Yes (first-class)** |
-| gsplat.js | WebGPU/WebGL2 | Browser | Web | Yes |
-| three.js plugin | WebGL2/WebGPU | Browser | Web | Plugin |
-| **@playcanvas/react** | **WebGL2/WebGPU** | **React-optimized** | **Web** | **Yes (Splats component)** |
-| UE5 plugin | DirectX 12 | Game engine | Desktop/Console | Plugin |
-| Unity renderer | Vulkan/DX12 | Game engine | Multi-platform | Plugin |
-
-**Streaming / 流式传输**:
-- 李飞飞 team: 100M+ Gaussian real-time mobile streaming (adaptive bitrate, view-dependent loading)
-- **CAGS** — VQ-based compression + Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment (~7x compression); supports chunked streaming with global codebook for cross-LoD consistency
-- **AV1-3DGS** — AV1 codec motion vectors for dense SfM; 63% training time reduction by leveraging video compression priors for camera pose and depth estimation
-- Progressive loading: send coarse Gaussians first, refine on demand
-- View-dependent prioritization: prioritize Gaussians in/near camera frustum
-- Network requirement: 20–50 Mbps for smooth 1080p 3DGS streaming
-
-**Compression formats / 压缩格式**:
-- `.ply` — standard point cloud format (uncompressed, large)
-- `.splat` — compact binary format (AntonMihailov spec, web-friendly)
-- **`.sog`** — PlayCanvas SOG format (streaming LOD, ~20x compression vs PLY, chunked with manifest for progressive loading; converted via `splat-transform`)
-- **`.spz`** — Niantic SPZ format (~10x compression, optimized for mobile/AR streaming; open-source tooling from Niantic)
-- Custom compressed binary — MesonGS++ / HAC proprietary formats
-- Future: 3D Tiles + Gaussian extension (OGC standardization pending)
-
-### 2.5 Integration Layer / 集成层
-
-**GIS integration**:
-- SuperMap S3M extension: custom exporter for 3DGS → S3M format
-- Cesium ion: upload compressed 3DGS for web-based globe visualization
-- ArcGIS: experimental 3DGS layer support via custom plugins
-
-**BIM integration**:
-- IFC/STEP import via BrepGaussian: align Gaussian scene with BIM model
-- Navisworks: federated model review with 3DGS overlay
-- Revit plugin: point cloud/Gaussian comparison for as-built verification
-
-**Autonomous driving**:
-- OpenDRIVE road network + 3DGS scene: co-register for simulation
-- aiSim 6: integrated 3DGS rendering for AD sensor simulation
-- ROS2: publish 3DGS as sensor topics for robot perception stacks
-
-**Game engines**:
-- UE5: experimental 3DGS plugin (Nanite-compatible mesh fallback)
-- Unity: gsplat renderer package (asset store / open-source)
-- Godot: community Vulkan-based Gaussian renderer (early stage)
-- **PlayCanvas Engine** (MIT): first-class 3DGS rendering + collision mesh generation + navmesh + physics + WebXR; React wrapper via @playcanvas/react; SuperSplat editor for authoring
-
-**Robotics**:
-- ROS2 scene server: serve 3DGS scene as point cloud / depth map / occupancy grid
-- MuJoCo / Isaac Sim: physics simulation with 3DGS visual rendering
-- GS-Playground: direct 3DGS physics simulation for policy learning
-
----
-
-## 3. Engineering Best Practices / 工程最佳实践
-
-### 3.1 Quality Assurance / 质量保证
-
-**Geometric accuracy / 几何精度**:
-- Chamfer Distance (CD): bidirectional point-to-point distance
-- F-Score: precision-recall at threshold τ ∈ {1mm, 5mm, 10mm}
-- Normal consistency: angular error between reconstructed and ground-truth normals
-
-**Visual fidelity / 视觉保真度**:
-- PSNR / SSIM / LPIPS: standard image metrics
-- **WARNING**: these are NOT sufficient for engineering use cases
-- Human perceptual evaluation still required for final quality sign-off
-
-**Engineering-specific metrics / 工程专用指标**:
-- Sensor simulation fidelity: compare simulated LiDAR/camera output vs real sensor data
-- Real-time FPS: maintain > 30 FPS (60 for VR, 90+ for competitive gaming)
-- Memory footprint: track GPU VRAM and system RAM usage at each pipeline stage
-- Load time: measure time-to-first-render for streaming scenarios
-- Compression quality: rate-distortion curves at multiple bitrates
-
-**Validation pipeline / 验证流程**:
-```
-Ground truth (LiDAR scan / TLS) ←→ 3DGS reconstruction
-         ↓                                    ↓
-    Geometric metrics (CD, F-Score)    Visual metrics (PSNR, SSIM)
-         ↓                                    ↓
-    Sensor simulation comparison (LiDAR, Camera)
-         ↓
-    End-to-end acceptance test (domain-specific)
-```
-
-### 3.2 Scalability Guidelines / 可扩展性指南
-
-**Scene splitting / 场景分割**:
-- Spatial partitioning: octree (adaptive), uniform grid (simple), kd-tree
-- Partition criterion: maximum Gaussians per cell (e.g., 1M per cell)
-- Boundary handling: overlap zone between adjacent cells to avoid seams
-
-**Level of Detail (LOD)**:
-- Multi-resolution Gaussian hierarchy: coarse → fine
-- Distance-based LOD switching: near camera = high detail, far = compressed
-- View-dependent refinement: allocate budget to visible Gaussians
-
-**Streaming architecture / 流式架构**:
-```
-Client request (camera pose) → Server query (spatial index) →
-Gaussian selection (LOD + frustum culling) → Compression & encoding →
-Network transfer → Client decompression & rendering
-```
-
-**Compression strategy selection**:
-| Scenario | Recommended Compression | Ratio | Quality Impact |
-|---|---|---|---|
-| Research/prototyping | None | 1x | None |
-| Desktop deployment | GETA-3DGS | 5x | Minimal |
-| Mobile/tablet | MobileGS / CAGS (streaming) | 10–50x | Moderate |
-| Web browser | MesonGS++ + .splat / SPZ | 30–50x | Acceptable |
-| Large-scale streaming | HAC + progressive / CAGS | 50–100x | Significant |
-
-### 3.3 Cross-Platform Deployment / 跨平台部署
-
-**Platform matrix / 平台矩阵**:
-
-| Platform | Primary Backend | Fallback | Max Scene Size | Real-time? |
-|---|---|---|---|---|
-| Desktop (NVIDIA) | CUDA | Vulkan | 10M+ | Yes (60 FPS) |
-| Desktop (AMD/Intel) | VkSplat | GSeurat | 5M+ | Yes (30 FPS) |
-| Desktop (CPU-only) | tortuise (Rust) | — | 500K | No (offline) |
-| macOS (Apple Silicon) | msplat (Metal) | — | 3M | Partial (20 FPS) |
-| iOS | Metal | — | 1M | Partial (15 FPS) |
-| Android | Vulkan | WebGPU | 1M | Partial (15 FPS) |
-| Web (Chrome) | WebGPU | WebGL2 | 500K–2M | Partial (browser-dependent) |
-| VR (Quest 3) | Vulkan (OpenXR) | — | 2M | Yes (72 Hz) |
-| VR (Vision Pro) | Metal | — | 3M | Yes (90 Hz) |
-
-**Testing checklist / 测试清单**:
-- [ ] Render correctly on target GPU family (NVIDIA/AMD/Intel/Apple)
-- [ ] Handle varying VRAM limits gracefully (fallback to lower LOD)
-- [ ] Verify color space consistency (sRGB vs linear vs HDR)
-- [ ] Test on minimum-spec hardware for target platform
-- [ ] Benchmark memory allocation patterns (no leaks over extended sessions)
-
-### 3.4 Data Pipeline Automation / 数据管线自动化
-
-**CI/CD for 3DGS / 3DGS持续集成**:
-```yaml
-# Conceptual pipeline (adapt to your CI system)
-trigger: new image data uploaded
-steps:
-  1. Data validation: check image count, resolution, overlap, EXIF integrity
-  2. COLMAP: run SfM + MVS (auto-detect if re-training needed)
-  3. 3DGS training: train/retrain with updated data
-  4. Quality check: automated PSNR/F-Score against held-out views
-  5. Compression: apply target compression ratio
-  6. Deploy: upload compressed model to CDN / scene server
-  7. Notification: alert on quality regression or training failure
-```
-
-**Automated quality gates / 自动质量门控**:
-- PSNR threshold: flag if < 28 dB on validation views
-- Geometric drift: detect if new reconstruction deviates > 5mm from previous version
-- Coverage analysis: identify regions with insufficient view coverage
-- Artifact detection: floater Gaussians, needle artifacts, holes
-
-**Version control / 版本管理**:
-- Store raw images and COLMAP outputs (small, versionable)
-- Store 3DGS checkpoints (.ply, compressed binary) with git LFS or DVC
-- Tag releases: `scene-v1.0.0`, `scene-v1.1.0-2026-05`
-- Changelog: document what changed between versions (new data, re-training, compression)
-
-**Monitoring / 监控**:
-- Rendering performance: FPS, frame time percentiles (P50/P95/P99)
-- Model metrics: total Gaussians, file size, memory usage
-- Data freshness: timestamp of latest source imagery
-- User engagement: view duration, interaction patterns (for web viewers)
-
----
-
-## 4. Tool Selection Decision Tree / 工具选择决策树
-
-### 4.1 By Use Case / 按应用场景
-
-```
-What is your primary use case? / 您的主要应用场景是什么？
-
-├── Autonomous driving simulation / 自动驾驶仿真
-│   └── aiSim 6 / CARLA + 3DGS plugin + OpenDRIVE + ROS2
-│
-├── Digital twin / Smart city / 数字孪生/智慧城市
-│   └── SuperMap GIS + LCC streaming / S3M standard
-│
-├── Cultural heritage / Museum / 文物数字化
-│   └── Polycam (capture) + COLMAP + 3DGS (reconstruction)
-│   └── Luma AI (quick preview) + custom pipeline (production)
-│
-├── E-commerce 3D display / 电商三维展示
-│   └── gsplat.js / three.js Gaussian viewer (web delivery)
-│
-├── Film / Game production / 影视/游戏
-│   └── UE5 3DGS plugin + SuGaR (mesh extraction) + material separation
-│
-├── Industrial inspection / 工业检测
-│   └── DJI drone + COLMAP + 3DGS + YOLO/SAM (defect detection)
-│
-├── Robotics / Embodied AI / 机器人/具身智能
-│   └── GS-Playground (simulation) + ROS2 (integration)
-│
-├── Avatar / Motion Capture / 虚拟人/动捕
-│   └── FreeMoCap (webcam capture) + GaussianAvatar/EmoTaG (3DGS avatar) + SMPL/FLAME (parametric body)
-│   └── Same multi-cam rig → motion data + 3DGS training images (shared calibration)
-│
-├── BIM / Architecture / BIM/建筑
-│   └── 其域创新 LCC + IFC alignment + as-built verification
-│
-└── Research / Prototyping / 科研/原型
-    └── original 3DGS + gsplat (PyTorch) + custom extensions
-```
-
-### 4.2 By Target Platform / 按目标平台
-
-```
-What is your target platform? / 您的目标平台是什么？
-
-├── Desktop (NVIDIA GPU)
-│   └── CUDA backend (original 3DGS) — best performance
-│
-├── Desktop (non-NVIDIA: AMD, Intel Arc)
-│   └── VkSplat (Vulkan) — 3.3x speedup over naive implementation
-│   └── GSeurat (Vulkan C++23) — full training without CUDA
-│
-├── Mobile (iOS / Android)
-│   └── VkSplat (Vulkan) / Metal (iOS native) / msplat (Metal)
-│   └── WebGPU fallback for progressive web apps
-│
-├── Web browser
-│   └── gsplat.js (WebGPU preferred, WebGL2 fallback)
-│   └── three.js Gaussian splatting loader
-│   └── PlayCanvas Engine + @playcanvas/react (first-class 3DGS, collision, navmesh, physics)
-│
-└── VR headset (Quest 3, Vision Pro)
-    └── OpenXR + Vulkan (Quest 3) / Metal (Vision Pro)
-    └── 6DoF tracking integration via platform SDK
-```
-
-### 4.3 By Scene Scale / 按场景规模
-
-```
-What is your scene scale? / 您的场景规模多大？
-
-├── Single object (< 100K Gaussians)
-│   └── original 3DGS — no special handling needed
-│   └── Training: 5–15 min on RTX 3070+
-│
-├── Room / Building (< 10M Gaussians)
-│   └── Scaffold-GS (anchor-based) + light compression (GETA-3DGS 5x)
-│   └── Training: 30 min–2 h on RTX 4090
-│
-├── City block / Campus (< 100M Gaussians)
-│   └── Spatial partitioning + streaming + moderate compression (MesonGS++ 34x)
-│   └── Training: 2–7 h on A100 80GB
-│
-└── City level / Region (> 1B Gaussians)
-    └── LCC streaming + S3M standard + heavy compression (HAC 100x)
-    └── Training: distributed, 12–48 h on GPU cluster
-     └── Requires: spatial database, CDN, progressive loading
- ```
-
----
-
-## 4.5 The GIS Toolchain Gap: "3DGS Looks Good but Does Nothing" / GIS工具链断裂：3DGS"好看但没用"
-
-> Based on industry practitioner analysis, particularly from WebGIS engineer xjjdjj (知乎), this is the #1 pain point blocking 3DGS from real production use.
-
-### The Core Problem
-
-After spending millions on drone surveys and 3DGS reconstruction, project managers are handed a PLY file that:
-- **Cannot measure distances** — no click-to-measure tool
-- **Cannot cut cross-sections** — no plane-clipping for geological/architectural inspection
-- **Cannot calculate volumes** — no fill/cut volume for earthworks, stockpiles, reservoirs
-- **Cannot compute surface areas** — no accurate area statistics
-- **Cannot query semantics** — "which building is the hospital?" (xjjdjj, 2026-04-16)
-- **Cannot overlay real-time video** — surveillance cameras cannot be projected onto 3DGS for live monitoring (xjjdjj, 2026-04-29)
-
-As xjjdjj put it: *"3DGS data formats and traditional GIS software are missing an entire parsing layer. It's not that the technology can't do it — it's that the toolchain is broken."*
-
-This is fundamentally different from the "reconstruction quality" problems discussed in academia. The model can be geometrically perfect but still useless in production.
-
-### Root Causes
-
-1. **Format mismatch**: 3DGS stores unstructured Gaussian primitives (position, covariance, SH coefficients). GIS tools expect structured geometry (mesh faces, point clouds with explicit topology). There is no standard "3DGS → GIS" conversion layer.
-
-2. **No spatial reference**: Most 3DGS models live in an arbitrary local coordinate frame. GIS requires georeferenced data (WGS84 / projected CRS). The coordinate transform pipeline (ENU → geographic) is often missing.
-
-3. **No semantic layer**: 3DGS has no notion of "this group of Gaussians is a building," "this surface is a road." GIS queries require semantic attributes attached to geometry.
-
-4. **No analysis primitives**: GIS tools operate on meshes (faces, edges, vertices). 3DGS operates on point-like primitives. Ray-Gaussian intersection is not a standard GIS operation.
-
-5. **No real-time data fusion**: Digital twins require live sensor feeds overlaid on 3D models. 3DGS is typically a static asset; integrating real-time video requires solving camera pose estimation + temporal synchronization + occlusion handling.
-
-### Technical Solutions (from xjjdjj and community)
-
-#### Distance Measurement / 距离测量
-- **Raycasting**: Cast rays through the Gaussian field to find surface points, then compute Euclidean distance
-- **KNN surface estimation**: For each query point, find K nearest Gaussians, estimate surface normal via covariance analysis, project to surface
-- **Avoid "slope measurement"**: Always project to vertical or horizontal plane first — raw 3D Euclidean distance includes elevation error
-
-#### Cross-section Clipping / 剖面切切
-- **Plane-Gaussian intersection**: Define an infinite clipping plane, split Gaussians by checking center position + covariance extent
-- **GPU shader implementation**: Real-time plane clipping in fragment shader, render cross-section as filled Gaussian splats
-- **Use cases**: geological inspection, architectural floor plans, pipeline cross-sections
-
-#### Volume Calculation / 体积计算
-- **Voxelization approach**: Convert 3DGS to occupancy grid, count filled voxels × voxel volume
-- **Gaussian integral approach**: Sum Gaussian probability mass above a reference plane (floor), integrate using SH coefficients
-- **Most complex**: Requires closed-surface assumption; open scenes (vegetation, scaffolding) need boundary estimation first
-
-#### Surface Area Calculation / 表面积计算
-- **Projected area**: Render from multiple viewpoints, sum visible Gaussian areas (Spherical Harmonics degree-0 coefficient)
-- **Full surface area**: Requires mesh extraction first (SuGaR, 2DGS) or Gaussian surfel approximation
-
-#### Semantic Enrichment / 语义增强
-- **Post-hoc labeling**: Use SAM/SAGA to segment 2D images, project labels to 3D Gaussians via multi-view consistency
-- **Embedding-based**: Attach CLIP/Segment-Anything embeddings to Gaussians for semantic queries ("find the hospital")
-- **Standard linkage**: Map to CityGML/OGC standards for GIS interoperability
-
-#### Real-time Video Fusion / 实时视频融合
-- **Camera calibration + pose estimation**: SLAM for moving cameras, global registration for fixed cameras
-- **Frame-to-3D projection**: Warp video frames onto 3DGS surface using estimated camera pose
-- **Occlusion handling**: Depth-based z-buffering to resolve foreground/background conflicts
-- **Temporal update**: Progressive scene update for changing conditions (traffic flow, construction progress)
-
-#### PlayCanvas Collision/Navigation/Lighting Pipeline / PlayCanvas 碰撞-导航-光照管线
-
-> Production-validated solution from PlayCanvas blog (2026-04): "Turning a Gaussian Splat Into a Videogame". This is the first end-to-end open-source pipeline that makes 3DGS scenes interactable (walkable, shootable, navigable) in the browser.
-
-**Problem solved**: Standard 3DGS has no surface → physics engines ignore it → characters fall through walls, NPCs cannot path-find, PBR objects look out of place.
-
-**Pipeline** (3 CLI commands):
+| original 3DGS | CUDA | NVIDIA GPU | Yes |
+| VkSplat | Vulkan | Cross-platform | Yes |
+| GSeurat | Vulkan C++23 | Cross-platform | Yes |
+| BlitzGS | Multi-GPU (parity sharding) | Distributed | Yes |
+| msplat | Metal | macOS/iOS | Yes |
+| tortuise | CPU (Rust) | Any CPU | Yes |
+| PlayCanvas Engine | WebGL2/WebGPU | Web | Yes (first-class) |
+| gsplat.js | WebGPU/WebGL2 | Web | Yes |
+| @playcanvas/react | WebGL2/WebGPU | Web | Yes (Splats component) |
+| UE5 plugin | DX12 | Desktop/Console | Plugin |
+| Unity renderer | Vulkan/DX12 | Multi-platform | Plugin |
+
+**Streaming**: CAGS (VQ + LoD, ~7x, chunked with global codebook), AV1-3DGS (AV1 motion vectors for SfM, 63% training reduction), PD-4DGS (progressive 4D streaming, DASH/HLS-compatible), progressive loading (coarse→fine), view-dependent prioritization, 20–50 Mbps for 1080p
+
+**Formats**: `.ply` (uncompressed), `.splat` (compact binary, web-friendly), **`.sog`** (PlayCanvas, ~20x, streaming LOD, chunked with manifest), **`.spz`** (Niantic, ~10x, mobile/AR), custom (HAC/MesonGS++), future: 3D Tiles + Gaussian extension
+
+### 2.5 Integration
+
+**GIS**: SuperMap S3M extension, Cesium ion, ArcGIS (experimental)
+
+**BIM**: IFC/STEP via BrepGaussian, Navisworks federated review, Revit as-built comparison
+
+**AD**: OpenDRIVE + 3DGS co-registration, aiSim 6, ROS2 sensor topics
+
+**Game engines**: UE5 (experimental Nanite-compatible), Unity (gsplat package), Godot (community, early), **PlayCanvas** (MIT, first-class 3DGS + collision + navmesh + physics + WebXR, @playcanvas/react)
+
+**Robotics**: ROS2 scene server, MuJoCo/Isaac Sim, GS-Playground
+
+### 2.6 The GIS Toolchain Gap: "3DGS Looks Good but Does Nothing"
+
+> The #1 pain point blocking 3DGS from production use (based on industry practitioner analysis, particularly WebGIS engineer xjjdjj).
+
+After expensive drone surveys and 3DGS reconstruction, the resulting PLY file cannot: measure distances, cut cross-sections, calculate volumes, compute surface areas, query semantics, or overlay real-time video.
+
+**5 Root Causes**:
+
+1. **Format mismatch**: 3DGS = unstructured Gaussian primitives; GIS expects structured geometry (mesh faces, point clouds with topology). No standard conversion layer.
+2. **No spatial reference**: 3DGS lives in arbitrary local coordinates; GIS requires WGS84/projected CRS.
+3. **No semantic layer**: No notion of "this group is a building" / "this surface is a road."
+4. **No analysis primitives**: GIS operates on mesh faces/edges/vertices; ray-Gaussian intersection is not a standard GIS operation.
+5. **No real-time data fusion**: 3DGS is static; live video overlay requires camera pose estimation + temporal sync + occlusion handling.
+
+**6 Solution Categories**:
+
+1. **Distance measurement**: Raycasting through Gaussian field → surface point → Euclidean distance; or KNN surface estimation; project to vertical/horizontal plane first
+2. **Cross-section clipping**: Plane-Gaussian intersection; GPU shader real-time clipping; use cases: geological, architectural, pipeline
+3. **Volume calculation**: Voxelization (occupancy grid × voxel volume) or Gaussian integral (probability mass above reference plane); needs closed-surface assumption
+4. **Surface area**: Multi-view projected area (SH degree-0) or mesh extraction first (SuGaR/2DGS)
+5. **Semantic enrichment**: SAM/SAGA segment 2D → project to 3D Gaussians; or CLIP embeddings for semantic queries; map to CityGML/OGC
+6. **Real-time video fusion**: Camera calibration + SLAM pose → frame-to-3D projection → depth z-buffering → temporal progressive update
+
+**PlayCanvas Pipeline** (3 CLI commands — first end-to-end open-source making 3DGS scenes interactable in browser; source: [PlayCanvas Blog 2026-04](https://playcanvas.com/blog/turning-a-gaussian-splat-into-a-videogame)):
 
 ```bash
-# Step 1: Convert PLY → SOG (compressed, streamable)
 splat-transform scene.ply --seed-pos 0,1,0 --voxel-params 0.05,0.1 \
   --voxel-carve 1.6,0.2 -K scene.sog
-# Outputs: scene.sog (compressed splat) + scene.collision.glb (sealed collision mesh)
-
-# Step 2: Generate navigation mesh from collision mesh
 npx glb-to-navmesh scene.collision.glb navmesh.bin
-
-# Step 3: Bake lightness probes (in-engine script, ~15s, ~40KB JSON)
-#   - Render 6-face cubemap per probe at 1m intervals
-#   - Compute luminance via Rec.601 weights
-#   - Output: lightness.json for runtime lookup
+# Step 3: Bake lightness probes (in-engine, ~15s, ~40KB JSON)
 ```
 
-| Component | Input → Output | Tool | Size | Runtime Cost |
-|-----------|---------------|------|------|-------------|
-| Collision mesh | PLY → `.collision.glb` | `splat-transform -K` (voxelization + flood-fill) | ~1 MB | Static rigid body |
-| Navigation mesh | `.collision.glb` → `navmesh.bin` | `recast-navigation` (Recast rasterization) | ~100 KB | Agent pathfinding |
-| Lightness grid | Splat scene → `lightness.json` | Custom probe script (16×16 cubemap per probe, Rec.601 luminance) | ~40 KB | Bilinear texture lookup |
-| Streamed SOG | PLY → multi-chunk `.sog/` + manifest | `splat-transform` (LOD partitioning) | ~5% of PLY | Progressive loading |
+| Component | Tool | Output | Size |
+|---|---|---|---|
+| Collision mesh | `splat-transform -K` (voxelization + flood-fill) | `.collision.glb` | ~1 MB |
+| Nav mesh | `recast-navigation` | `navmesh.bin` | ~100 KB |
+| Lightness grid | Probe script (cubemap luminance, Rec.601) | `lightness.json` | ~40 KB |
+| Streamed SOG | `splat-transform` (LOD partitioning) | Multi-chunk `.sog/` + manifest | ~5% of PLY |
 
-**Key insights**:
-1. Voxelization with seed-position flood-fill produces *sealed* collision meshes from unstructured Gaussians — no manual cleanup
-2. Lightness probes as JSON lookup table (no runtime raytracing) — mobile-friendly, 15s bake time
-3. SOG streaming LOD enables mobile deployment of million-Gaussian scenes
-4. Behavior-tree NPCs with personality parameters demonstrate game-ready AI on 3DGS scenes
+**Key insights**: Voxelization + flood-fill = sealed collision meshes (no manual cleanup); lightness probes as JSON (no runtime raytracing, mobile-friendly); SOG streaming enables mobile deployment of million-Gaussian scenes.
 
-**References**: [PlayCanvas Blog (2026-04)](https://playcanvas.com/blog/turning-a-gaussian-splat-into-a-videogame) | [splat-transform CLI](https://github.com/playcanvas/splat-transform) | [PlayCanvas Project](https://playcanvas.com/project/1480299) | [Browser Demo (WASD + mouse)](https://playcanv.as/p/qxGSuzYq/)
+**GIS Toolchain Solutions**:
 
-### Toolchain Recommendations / 工具链建议
-
-| Task | Open Source Tool | Commercial Tool | Notes |
-|------|-----------------|-----------------|-------|
-| PLY → 3D Tiles | libTileSplat, supermap-3dtiles | SuperMap iDesktop | Cesium-compatible |
-| PLY → collision mesh | `splat-transform -K` (PlayCanvas) | — | Voxelization + flood-fill |
-| PLY → navigation mesh | `splat-transform` + `recast-navigation` | — | Collision GLB → Recast |
-| PLY → compressed SOG | `splat-transform` (PlayCanvas) | — | 20x compression, streaming LOD |
-| Cesium rendering | gsplat.js, cesium-3dgs-plugin | SuperMap WebGL | Three.js limited native support |
-| Mapbox rendering | Custom Mapbox GL plugin | — | Babylon.js has native support |
-| Web 3DGS editor | [SuperSplat](https://superspl.at/editor) (PlayCanvas) | — | Browser-based, PWA installable |
-| Spatial analysis | Custom Python (NumPy + plyfile) | ArcGIS Pro (indirect) | Build custom GIS layer |
-| Semantic labeling | SAGA (Segment Any 3D Gaussians) | — | SAM → 3D projection |
-| Volume calculation | Custom voxelizer + PLY parser | — | Not yet standard |
-| Lightness baking | PlayCanvas probe script (cubemap luminance) | — | ~15s bake, ~40KB JSON |
-
-### Industry Standards Progress / 行业标准进展
-- **中国测绘学会** has initiated the "三维高斯泼溅建模技术规范" (3DGS Modeling Technical Specification) as a group standard (2026-04)
-- **S3M extension**: SuperMap has extended the national standard S3M format to natively support 3DGS data, enabling GIS integration
-- **3D Tiles**: Community efforts to encode 3DGS in 3D Tiles format (b3dm extension proposals)
-
----
-
-## 5. Common Engineering Pitfalls / 常见工程陷阱
-
-### 5.1 Over-fitting to Training Views / 训练视角过拟合
-**Symptom**: reconstruction looks perfect from training cameras but has artifacts (holes, floaters, color bleeding) from novel viewpoints.
-**Cause**: insufficient view coverage — less than 60% overlap, or all views from similar elevation angles.
-**Fix**: add more viewpoints (especially from different elevations); use regularization (depth smoothness, opacity penalty); validate on held-out test views.
-
-### 5.2 Floating Artifacts (Floater Gaussians) / 浮动伪影
-**Symptom**: semi-transparent blobs floating in empty space, especially near object boundaries.
-**Cause**: Gaussians optimize to fill gaps in view coverage with low-opacity primitives.
-**Fix**: depth regularization (penalize Gaussians far from estimated depth); opacity pruning (remove Gaussians with α < threshold); post-processing depth filtering.
-
-### 5.3 Memory Explosion at Scale / 大规模内存爆炸
-**Symptom**: GPU OOM when scene exceeds ~10M Gaussians; system RAM exhausted at > 100M.
-**Cause**: naïve all-in-memory approach; no spatial partitioning.
-**Fix**: implement spatial partitioning (octree/grid) from day one — do not wait until post-processing; use anchor-based representations (Scaffold-GS); streaming architecture for scenes > 10M.
-
-### 5.4 Ignoring Sensor Simulation Fidelity / 忽略传感器仿真保真度
-**Symptom**: high PSNR but sensor simulation output (LiDAR point cloud, Radar) is inaccurate.
-**Cause**: PSNR measures image quality, not sensor fidelity; Gaussian opacity ≠ physical surface reflectance.
-**Fix**: validate sensor outputs directly against real sensor data; use physically-based opacity for LiDAR simulation (fully opaque surface Gaussians); calibrate Radar cross-section model.
-
-### 5.5 CUDA Lock-in / CUDA绑定
-**Symptom**: pipeline only runs on NVIDIA GPUs; cannot deploy to AMD/Intel/Mobile hardware.
-**Cause**: original 3DGS is CUDA-only; custom CUDA kernels for differentiation.
-**Fix**: plan cross-platform from architecture phase; use VkSplat (Vulkan) for non-NVIDIA deployment; GSeurat (Vulkan C++23) for full training without CUDA; msplat (Metal) for Apple ecosystem; tortuise (CPU Rust) for offline/edge deployment; brush (Rust/WebGPU/Burn) for the most complete cross-platform training coverage (Win/Mac/Linux/Android/Web, faster than gsplat); isolate CUDA-specific code behind abstraction layer; evaluate WebGPU for universal fallback.
-
-### 5.6 No Version Control for 3DGS Assets / 3DGS资产无版本管理
-**Symptom**: cannot reproduce previous reconstruction; cannot track scene changes over time.
-**Cause**: .ply files are 10MB–100GB; binary blobs not suitable for plain git.
-**Fix**: use git LFS (Large File Storage) or DVC (Data Version Control); separate versionable metadata (YAML scene descriptor) from binary assets; tag releases with semantic versioning.
-
-### 5.7 Static Lighting Assumption / 静态光照假设
-**Symptom**: scene looks good under capture lighting but breaks under different lighting (e.g., product photo under custom studio light, architectural model at sunset).
-**Cause**: standard 3DGS bakes lighting into learned features; no material/lighting decomposition.
-**Fix**: plan for relighting from architecture phase; use material decomposition methods (GOR-IS, SSD-GS); separate albedo, normal, roughness; enable SH-based relighting (GS³, GaRe).
-
-### 5.8 Neglecting Temporal Consistency / 忽略时序一致性
-**Symptom**: video output flickers; object positions jump between frames.
-**Cause**: frame-by-frame 3DGS training without temporal regularization.
-**Fix**: use 4DGS variants (GauFRe, DeformGS, ScubeGS); add temporal smoothness loss; ensure deformation field is temporally coherent.
-
-### 5.9 Under-estimating Compression Artifacts / 低估压缩伪影
-**Symptom**: compressed scene has visible holes, color shifts, geometric distortion.
-**Cause**: aggressive compression without quality validation at each step.
-**Fix**: establish rate-distortion benchmarks before compression; validate with domain-specific metrics (not just PSNR); use perceptual quality metrics (LPIPS); maintain uncompressed reference for comparison.
-
----
-
-## 6. Reference Papers / 参考论文
-
-When the user asks about a specific application domain, reference these papers from the knowledge base (`references/3dgs-methods-overview.md`):
-
-### Autonomous Driving / 自动驾驶
-- **GSDrive** — LiDAR simulation for AD scenarios
-- **GS-Playground** — 10^4 FPS physics simulation (RSS 2026)
-- **GS-Surrogate** — surrogate model for rapid scenario evaluation
-- **FieryGS** — generative 3DGS for AD data augmentation
-- **GS-SCNet** — semantic-aware scene completion
-- See also: `references/methods-systems-apps.md` (Robust/Driving section)
-- **Ground4D** [arXiv:2605.04435] — spatially-grounded feedforward 4D for off-road reconstruction
-- **ULF-Loc** [arXiv:2605.04730] — unbiased landmark feature for visual localization (CVPR 2026 highlight)
-- **CoherentRaster** [arXiv:2605.04509] — subpixel-level 3DGS rasterization for light field displays
-
-### Digital Twin / 数字孪生
-- **Street Gaussians** — street-level scene with sky model
-- **DiffSoup** — triangle soup for scalable representation
-- **GlobalSplat** — global scene coordination
-- **Large-Scale HQ Head** — large-scale scene management techniques
-
-### Inspection / 检测
-- **EnerGS** — LiDAR-3DGS fusion for energy infrastructure
-- **RGS** — CBCT-based structural inspection
-- **E2EGS** — end-to-end field reconstruction
-
-### Physics / 物理仿真
-- **PhysGaussian** — physical simulation with Gaussians
-- **Gaussian Splashing** — fluid simulation
-- **GS-Playground** — general-purpose physics (RSS 2026)
-
-### Relighting / 重光照
-- **GS³** — spherical harmonics for lighting
-- **GaRe** — Gaussian relighting
-- **SSD-GS** — scatter + shadow decomposition
-- **LumiMotion** — dynamic relighting
-- **GOR-IS** — intrinsic decomposition
-
-### Cross-platform / 跨平台
-- **VkSplat** — Vulkan rendering backend (3.3x speedup, cross-vendor)
-- **GSeurat** — Vulkan-based 3DGS training in C++23 (cross-platform, no CUDA dependency)
-- **msplat** — Metal-based 3DGS for Apple ecosystem (macOS/iOS native)
-- **tortuise** — CPU-only Rust implementation for offline/low-power deployment
-- **brush** (Rust/WebGPU/Burn) — Cross-platform 3DGS training covering Win/Mac/Linux/Android/Web; 4.3k stars; faster than gsplat; most complete cross-platform solution to date
-- **AdaGScale** — adaptive scale for cross-platform
-- **BlitzGS** — distributed city-scale GS training; parity-based multi-GPU sharding; eliminates single-GPU memory bottleneck for city-level scenes
-
-### BIM/CAD / BIM与CAD
-- **BrepGaussian** — B-rep aware Gaussian for CAD
-- **CADFS** — CAD feature saliency in Gaussian representation
-- See also: `references/methods-core.md` (CAD section)
-
-### Editing / 编辑
-- **GaussianEditor** — text-guided semantic editing
-- **ObjectMorpher** — object-level transformation
-- **TransSplat** — transparent object handling
-
----
-
-## 7. Quick Start Templates / 快速启动模板
-
-### 7.1 Minimal AD Simulation Pipeline / 最小自动驾驶仿真管线
-```bash
-# 1. Data collection
-#    Capture: LiDAR (64-beam) + multi-camera (6×) at target intersection
-#    Ensure: GPS timestamps synchronized, > 80% overlap, good weather
-
-# 2. Reconstruction
-colmap automatic_reconstructor --workspace_path ./ad_scene --image_path ./images
-# Train 3DGS with LiDAR-depth supervision
-python train.py -s ./ad_scene --l3ds_bind_path ./lidar_depth --iterations 30000
-
-# 3. Export for simulation
-python export_sim.py --checkpoint ./ad_scene/point_cloud/iteration_30000 \
-    --format carla --output ./ad_sim_scene
-
-# 4. Integrate with CARLA
-#    Copy ad_sim_scene to CARLA content/
-#    Configure OpenDRIVE road network overlay
-#    Run sensor simulation test
-```
-
-### 7.2 Digital Twin Quick Start / 数字孪生快速启动
-```bash
-# 1. Aerial capture
-#    DJI Mavic 3E, 80% forward overlap, 70% side overlap, GSD < 2cm
-#    GCPs: minimum 5 surveyed points for georeferencing
-
-# 2. Reconstruction (large-scale)
-colmap automatic_reconstructor --workspace_path ./city_block --image_path ./aerial_images
-python train_large_scale.py -s ./city_block --scaffold --iterations 50000
-
-# 3. Compression & tiling
-python compress_tile.py --input ./city_block/point_cloud \
-    --tile_size 256 --compression meson --output ./city_tiled
-
-# 4. S3M conversion (SuperMap)
-#    Import city_tiled/ into SuperMap iDesktop
-#    Convert to S3M format
-#    Publish via SuperMap iServer for web access
-```
-
----
-
-## 8. Glossary / 术语表
-
-| Term | 中文 | Definition |
+| Task | Tool | Notes |
 |---|---|---|
-| 3DGS | 三维高斯泼溅 | 3D Gaussian Splatting |
-| Splat | 泼溅/绘制 | Alpha-blended Gaussian primitive rendering |
-| SH | 球谐函数 | Spherical Harmonics — for view-dependent color |
-| Scaffold-GS | 锚点3DGS | Anchor-based efficient 3DGS |
-| VkSplat | Vulkan高斯渲染 | Cross-platform Vulkan-based 3DGS renderer |
-| S3M | 三维地理信息模型 | SuperMap 3D Model standard |
-| LOD | 多层次细节 | Level of Detail |
-| HIL | 硬件在环 | Hardware-in-the-Loop testing |
-| GCP | 地面控制点 | Ground Control Point for georeferencing |
-| IFC | 工业基础类 | Industry Foundation Classes (BIM standard) |
-| CD | 倒角距离 | Chamfer Distance (geometric metric) |
-| DCC | 数字内容创作 | Digital Content Creation tools (Maya, Blender, etc.) |
-| SfM | 运动恢复结构 | Structure from Motion |
-| MVS | 多视角立体视觉 | Multi-View Stereo |
-| TSDF | 截断符号距离场 | Truncated Signed Distance Field |
-| 6DoF | 六自由度 | Six Degrees of Freedom (tracking) |
-| TLS | 地面激光扫描 | Terrestrial Laser Scanning |
-| DEM | 数字高程模型 | Digital Elevation Model |
-| DSM | 数字表面模型 | Digital Surface Model |
-| OOM | 内存溢出 | Out of Memory |
-| VRAM | 显存 | Video Random Access Memory |
-| LFS | 大文件存储 | Large File Storage (git extension) |
-| DVC | 数据版本控制 | Data Version Control |
-| SOG | 流式高斯格式 | PlayCanvas Streamed Gaussian format — compressed, chunked PLY with manifest for progressive loading |
-| SuperSplat | 超级泼溅编辑器 | PlayCanvas browser-based 3DGS editor (MIT, open-source) |
-| splat-transform | 泼溅转换工具 | PlayCanvas CLI: PLY→SOG conversion, collision mesh generation, streaming LOD |
-| PlayCanvas Engine | PlayCanvas引擎 | Open-source WebGL2+WebGPU game engine with first-class 3DGS support (MIT) |
-| FreeMoCap | 免费动作捕捉 | Open-source markerless motion capture from webcams (AGPL-3.0); outputs .trc/.c3d/.fbx; drives 3DGS avatars |
-| Markerless MoCap | 无标记动捕 | Motion capture without physical markers, using computer vision (e.g., FreeMoCap) |
-| GSeurat | Vulkan C++23高斯训练 | Cross-platform Vulkan-based 3DGS training framework (C++23); eliminates CUDA dependency |
-| msplat | Metal高斯渲染 | Metal-based 3DGS for Apple ecosystem (macOS/iOS); native GPU acceleration |
-| tortuise | CPU Rust高斯渲染 | CPU-only Rust implementation; offline/low-power/edge deployment without GPU |
-| CAGS | 压缩自适应流式高斯 | VQ-based compression + LoD streaming for bandwidth-adaptive 3DGS deployment (~7x compression) |
-| SPZ | Niantic压缩格式 | Niantic SPZ format (~10x compression) optimized for mobile/AR streaming |
-| PD-4DGS | 渐进式4DGS流式传输 | Progressive Decomposition of 4DGS for bandwidth-adaptive dynamic scene streaming; DASH/HLS-compatible; ~1.7s first-frame latency |
-| brush | 跨平台Rust/WebGPU高斯训练 | Cross-platform 3DGS training engine (Rust + WebGPU + Burn); runs on Win/Mac/Linux/Android/Web; 4.3k stars; faster than gsplat in benchmarks |
-| 3DGEER | 精确高斯渲染 | Exact ray-Gaussian rendering replacing splatting approximation; for fisheye/generic cameras; ICLR 2026 top 1% |
-| Forecast-GS | 预测式高斯表示 | Predictive 3D Gaussian representation for forecasting task-completed states in robotic manipulation |
-| BlitzGS | 分布式高斯训练 | Distributed city-scale GS training via parity-based multi-GPU sharding; eliminates single-GPU memory bottleneck |
-| SCOUP | 稀疏编码语言高斯 | Sparse code language GS; language-conditioned sparse coding for controllable 3DGS generation |
-| SparseOIT | 稀疏序无关透明 | Sparse order-independent transparency for correct See-through rendering of overlapping semi-transparent Gaussians |
-| AV1-3DGS | AV1视频编码高斯 | AV1 codec motion vectors for dense SfM; 63% training time reduction by leveraging video compression priors |
-| Real2Sim | 真实到仿真 | 4DGS + differentiable MPM for physics-aware AD scene simulation with collision scenarios |
-| GuardMarkGS | 3DGS水印防护 | Unified watermarking + edit deterrence framework for 3DGS assets; first combined security solution |
+| PLY → 3D Tiles | libTileSplat, supermap-3dtiles | Cesium-compatible |
+| PLY → collision mesh | splat-transform -K | Voxelization + flood-fill |
+| PLY → nav mesh | splat-transform + recast-navigation | Collision GLB → Recast |
+| PLY → compressed SOG | splat-transform | 20x, streaming LOD |
+| Web 3DGS editor | SuperSplat | Browser-based, PWA |
+| Spatial analysis | Custom Python (NumPy + plyfile) | Build custom GIS layer |
+| Semantic labeling | SAGA | SAM → 3D projection |
+| Lightness baking | PlayCanvas probe script | ~15s bake, ~40KB |
+| Volume calculation | Custom voxelizer + PLY parser | Not yet standard |
+| Cesium rendering | gsplat.js, cesium-3dgs-plugin | Three.js limited native support |
+
+**Standards progress**: CSM group standard for 3DGS modeling initiated (2026-04); S3M extended for 3DGS; 3D Tiles extension proposals
 
 ---
 
-## Appendix: Knowledge Base References / 附录：知识库引用
+## 3. Best Practices
 
-This skill references the Awesome-Gaussian-Skills knowledge base:
-- `references/3dgs-methods-overview.md` — method index with Performance Comparison Table
-- `references/methods-core.md` — core/geometry/CAD/generation methods
-- `references/methods-semantic-editing.md` — semantic/editing/appearance methods
-- `references/methods-systems-apps.md` — robust/driving/SLAM/inspection methods
+### 3.1 Quality Assurance
 
-To look up a specific method mentioned in this guide, search the overview index and follow the category link to the detailed methods file.
+**Geometric**: Chamfer Distance, F-Score (τ ∈ {1mm, 5mm, 10mm}), normal consistency
+
+**Visual**: PSNR/SSIM/LPIPS — WARNING: insufficient for engineering use; human evaluation required for sign-off
+
+**Engineering metrics**: sensor sim fidelity vs real data, real-time FPS (30/60/90+ by domain), memory footprint, time-to-first-render, rate-distortion curves
+
+### 3.2 Scalability
+
+- **Scene splitting**: octree/voxel grid, ~1M Gaussians/cell, overlap zones for seams
+- **LOD**: multi-resolution hierarchy, distance-based switching, view-dependent refinement
+- **Streaming**: camera pose → spatial index → LOD + frustum culling → compress → transfer → decompress & render
+
+| Scenario | Compression | Ratio | Quality |
+|---|---|---|---|
+| Prototyping | None | 1x | None |
+| Desktop | GETA-3DGS | 5x | Minimal |
+| Mobile | MobileGS / CAGS | 10–50x | Moderate |
+| Web | MesonGS++ + .splat/SPZ | 30–50x | Acceptable |
+| Large-scale | HAC + progressive / CAGS | 50–100x | Significant |
+
+### 3.3 Cross-Platform
+
+| Platform | Backend | Fallback | Max Scene | Real-time? |
+|---|---|---|---|---|
+| Desktop (NVIDIA) | CUDA | Vulkan | 10M+ | 60 FPS |
+| Desktop (AMD/Intel) | VkSplat | GSeurat | 5M+ | 30 FPS |
+| Desktop (CPU) | tortuise (Rust) | — | 500K | No |
+| macOS (Apple) | msplat (Metal) | — | 3M | 20 FPS |
+| iOS | Metal | — | 1M | 15 FPS |
+| Android | Vulkan | WebGPU | 1M | 15 FPS |
+| Web | WebGPU | WebGL2 | 500K–2M | Varies |
+| VR (Quest 3) | Vulkan (OpenXR) | — | 2M | 72 Hz |
+| VR (Vision Pro) | Metal | — | 3M | 90 Hz |
+
+**Checklist**: target GPU family, VRAM fallback to lower LOD, color space (sRGB/linear/HDR), min-spec hardware, memory leak testing over extended sessions
+
+### 3.4 Data Pipeline Automation
+
+**CI/CD**: Data validation → COLMAP SfM+MVS → 3DGS training → quality gate (PSNR/F-Score) → compression → deploy to CDN → alert on regression
+
+**Quality gates**: PSNR < 28 dB = flag; geometric drift > 5mm = flag; coverage gaps; floater/needle artifacts
+
+**Versioning**: Raw images + COLMAP in git; checkpoints (.ply) in git LFS/DVC; semantic versioning; changelog per version
+
+**Monitoring**: FPS P50/P95/P99, Gaussian count, file size, data freshness, user engagement metrics
 
 ---
 
-*Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) — the AI Agent skill pack for 3DGS research.*
-*If you find this skill useful, consider giving the repo a star.*
+## 4. Decision Trees
+
+### 4.1 By Use Case
+
+- **AD simulation** → aiSim 6 / CARLA + 3DGS plugin + OpenDRIVE + ROS2
+- **Digital twin / Smart city** → SuperMap GIS + LCC streaming / S3M
+- **Cultural heritage** → Polycam (capture) + COLMAP + 3DGS; Luma AI (preview)
+- **E-commerce** → gsplat.js / three.js + compression
+- **Film / Game** → UE5 plugin + SuGaR (mesh) + material separation
+- **Industrial inspection** → DJI + COLMAP + 3DGS + YOLO/SAM
+- **Robotics** → GS-Playground (sim) + ROS2
+- **Avatar / MoCap** → FreeMoCap + GaussianAvatar/EmoTaG + SMPL/FLAME
+- **BIM / Architecture** → LCC + IFC alignment + as-built verification
+- **Research** → original 3DGS + gsplat + custom extensions
+
+### 4.2 By Platform
+
+- **Desktop (NVIDIA)** → CUDA backend
+- **Desktop (AMD/Intel)** → VkSplat / GSeurat
+- **Mobile (iOS/Android)** → VkSplat / msplat (Metal) / WebGPU
+- **Web** → gsplat.js / three.js / PlayCanvas Engine + @playcanvas/react
+- **VR headset** → OpenXR+Vulkan (Quest) / Metal (Vision Pro)
+
+### 4.3 By Scene Scale
+
+- **< 100K Gaussians** → original 3DGS, 5–15 min on RTX 3070+
+- **< 10M** → Scaffold-GS + GETA-3DGS (5x), 30 min–2h on RTX 4090
+- **< 100M** → Spatial partitioning + MesonGS++ (34x), 2–7h on A100
+- **> 1B** → LCC + S3M + HAC (100x), distributed 12–48h on GPU cluster
+
+---
+
+## 5. Common Engineering Pitfalls
+
+- **Over-fitting to training views**: Artifacts at novel viewpoints. Fix: more viewpoints at different elevations, depth/opacity regularization, validate on held-out views.
+- **Floating artifacts**: Semi-transparent blobs in empty space. Fix: depth regularization, opacity pruning (α < threshold), post-processing depth filter.
+- **Memory explosion at scale**: GPU OOM > 10M Gaussians. Fix: spatial partitioning from day one, Scaffold-GS anchors, streaming for > 10M.
+- **Sensor sim fidelity ignored**: High PSNR but inaccurate LiDAR/Radar. Fix: validate sensor outputs vs real data; opaque surface Gaussians for LiDAR; calibrate Radar cross-section.
+- **CUDA lock-in**: Cannot deploy to AMD/Intel/Mobile. Fix: VkSplat/GSeurat (Vulkan), msplat (Metal), tortuise (Rust CPU), **brush** (Rust/WebGPU/Burn, most complete cross-platform: Win/Mac/Linux/Android/Web, 4.3k stars, faster than gsplat); abstract CUDA behind interface.
+- **No version control for 3DGS**: Cannot reproduce/track changes. Fix: git LFS or DVC; separate metadata (YAML) from binary; semantic versioning.
+- **Static lighting assumption**: Breaks under different lighting. Fix: plan relighting upfront; GOR-IS/SSD-GS decomposition; GS³/GaRe SH-based relighting.
+- **Temporal inconsistency**: Video flicker, object jumping. Fix: 4DGS (GauFRe, DeformGS, ScubeGS); temporal smoothness loss.
+- **Under-estimated compression artifacts**: Visible holes, color shifts. Fix: rate-distortion benchmarks first; domain-specific metrics (not just PSNR); uncompressed reference for comparison.
+
+---
+
+## 6. Reference Papers
+
+| Domain | Methods |
+|---|---|
+| AD Simulation | GSDrive, GS-Playground (RSS 2026), GS-Surrogate, FieryGS, GS-SCNet, Ground4D, ULF-Loc (CVPR 2026), Nighttime AD, Real2Sim, ConFixGS (+3.68 dB Waymo) |
+| Digital Twin | DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head |
+| Inspection | EnerGS, RGS, E2EGS |
+| Physics | PhysGaussian, Gaussian Splashing, GS-Playground |
+| Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS |
+| Cross-platform | VkSplat, GSeurat (Vulkan C++23), msplat (Metal), tortuise (Rust CPU), brush (Rust/WebGPU, 4.3k stars), AdaGScale, BlitzGS (distributed) |
+| Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 30% budget reduction, 301 FPS, no calibration; code: github.com/yecongwan/SplatWeaver) |
+| BIM/CAD | BrepGaussian, CADFS |
+| Editing | GaussianEditor, ObjectMorpher, TransSplat |
+| Security | GuardMarkGS (watermarking + edit deterrence) |
+| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency) |
+| Streaming | CAGS (~7x VQ+LoD), AV1-3DGS (63% training reduction), PD-4DGS (progressive 4D streaming), MGS [2603.19234] (Matryoshka continuous LoD, single model multi-fidelity) |
+| Acceleration | AdpSplit [2605.06876] (error-driven adaptive split, drop-in for 9-22% training speedup) |
+| Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale |
+
+See knowledge base: `references/3dgs-methods-overview.md`, `references/methods-core.md`, `references/methods-semantic-editing.md`, `references/methods-systems-apps.md`
+
+---
+
+## 7. Terminology
+
+- **Cardinality Gaussian Expert Routing**: Routing mechanism where discrete experts predict different numbers of Gaussians per pixel based on scene complexity (cf. SplatWeaver)
+- **Skew-Normal Splatting**: Using Azzalini skew-normal distribution instead of symmetric Gaussian for asymmetric boundary representation
+- **Stochastic Budget Training**: Training strategy that randomly samples Gaussian budget each iteration to learn ordered, LoD-compatible representations (cf. MGS)
+
+---
+
+*Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)*

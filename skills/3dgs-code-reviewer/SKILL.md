@@ -1,26 +1,9 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3D Gaussian Splatting implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, and common pitfalls. Detects 60+ known bug patterns."
-version: 1.1.3
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 62+ known bug patterns."
+version: 1.1.5
 author: jaccen
-tags:
-  - 3dgs
-  - gaussian-splatting
-  - code-review
-  - cuda
-  - debugging
-  - performance
-trigger:
-  - "审查代码"
-  - "review code"
-  - "代码有没有问题"
-  - "性能优化"
-  - "code review"
-  - "检查代码"
-  - "优化CUDA"
-  - "bug"
-  - "为什么渲染结果不对"
-  - "训练不收敛"
+tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
 
 # 3DGS Code Reviewer
@@ -30,7 +13,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (60+ known patterns)
+- Identify common 3DGS implementation pitfalls (62+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -313,6 +296,18 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 60 | Gradient conflict in in-the-wild 3DGS without harmonization | Transient distractors (pedestrians, vehicles, shadows) and illumination inconsistencies create conflicting cross-view gradients; optimization destabilizes; Gaussians oscillate or collapse in problematic regions | Apply gradient harmonization: detect and dampen conflicting gradients from transient objects and lighting variations; use illumination harmonization module to normalize appearance across views; resolve distractor conflicts via attention-based gradient filtering (HarmoGS) |
+
+### Feed-Forward Cardinality Patterns (SplatWeaver)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 61 | Hardcoded cardinality in feed-forward GS prediction | Cannot adapt to scene complexity; wasting compute on flat regions while under-allocating on complex ones; `num_gaussians_per_pixel = CONSTANT` or `gaussians = self.mlp(x).reshape(B, N, C)` where N is fixed | Use expert routing to dynamically allocate varying numbers of Gaussians per pixel based on local scene complexity; replace fixed N with learned cardinality prediction (SplatWeaver, ArXiv 2605.07287) |
+
+### Asymmetric Kernel Patterns (SNS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 62 | Symmetric-only Gaussian kernel limiting boundary representation | Wasted primitive budget approximating asymmetric geometry; poor quality on sharp boundaries, one-sided surfaces, or thin structures; using `covariance = R @ S @ S^T @ R^T` without skewness parameter | Replace symmetric Gaussian with Skew-Normal distribution that introduces skewness parameter; allows one-sided tails for sharp boundaries and thin structures without increasing Gaussian count (SNS, ArXiv 2605.15010) |
 
 ## Output Format
 

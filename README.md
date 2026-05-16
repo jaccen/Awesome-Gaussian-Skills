@@ -1,3 +1,14 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6a6d7bbc-e69b-47e8-86a5-a2c58708a23d'
+  PropagateID: '6a6d7bbc-e69b-47e8-86a5-a2c58708a23d'
+  ReservedCode1: '4368e4cc-3c30-438c-a7d1-0acc3cefc238'
+  ReservedCode2: '4368e4cc-3c30-438c-a7d1-0acc3cefc238'
+---
+
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -6,7 +17,7 @@ If you like it, please ⭐️ star this repo!
 
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
-**254+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**261+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -43,7 +54,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ## Features
 
-- **254+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 21 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **261+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 21 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: Browse, search, and compare methods at [jaccen.github.io/Awesome-Gaussian-Skills](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
@@ -51,26 +62,26 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 
 ---
 
-## Knowledge Base (254+ Methods)
+## Knowledge Base (261+ Methods)
 
 | Category | Methods |
 |----------|---------|
-| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER |
-| Compression / Streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS |
+| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
+| Compression / Streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
 | Large-Scale | BlitzGS |
-| Feed-Forward | Z-Order GS, RoSplat |
+| Feed-Forward | Z-Order GS, RoSplat, SplatWeaver |
 | Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
 | Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
 | Generation / Text-to-3D | DreamGaussian, SceneGen-LLMRL |
 | Antialiasing | Mip-Splatting, LeanGaussian |
-| Optimization | 3DGS-as-MCMC, 3DGS² |
+| Optimization | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
 | Image Representation | GaussianImage |
 | Acceleration | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
 | Active Vision | MAGICIAN |
 | Simulation | GS-Playground, GS-Surrogate, FieryGS |
 | Real-Time NVS | 3DTV |
-| Autonomous Driving | Real2Sim |
-| Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS |
+| Autonomous Driving | Real2Sim, ConFixGS |
+| Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
 | Data Acquisition | Mobile Phone 3DGS Acquisition |
 | Degradation-Aware | MERID-GS, MarineSTD-GS, E2EGS |
 | System | YOGO, GS-SCNet |
@@ -85,7 +96,7 @@ Meanwhile, every 3DGS researcher faces the same repetitive tasks:
 | Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
 | Surface / Rendering | SparseOIT |
 
-> The full knowledge base covers **254+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **261+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -408,6 +419,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.2 — Add `patent-software-ip` skill — patent application docs & software copyright registration materials (May 2026)
 - [x] v0.2.3 — Knowledge base expansion: 222→240+ methods, 57+ bug patterns, daily update + new physics-GS/streaming methods (May 2026)
 - [x] v0.2.4 — Knowledge base expansion: 240→254+ methods, 60+ bug patterns, OIT transparency, distributed city-scale GS, 4DGS physics sim for AD (May 2026)
+- [x] v0.2.5 — Knowledge base expansion: 254→261+ methods, 62+ bug patterns, Skew-Normal primitive, expert-routing feedforward GS, continuous LoD, adaptive split operator (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
@@ -514,3 +526,5 @@ Hugging Face Papers: https://huggingface.co/papers
 arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
+
+> AI生成
