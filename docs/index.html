@@ -56,8 +56,14 @@ tailwind.config = {
   .category-tab { transition: all 0.2s; }
   .category-tab.active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; }
   .category-tab:not(.active):hover { background: #1e293b; }
-  .method-card { transition: all 0.15s; }
-  .method-card:hover { transform: translateY(-2px); }
+  .method-card { transition: all 0.15s; cursor: pointer; }
+  .method-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.12); }
+  /* Modal */
+  .modal-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal-box { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; max-width: 520px; width: 90vw; max-height: 85vh; overflow-y: auto; position: relative; }
+  .modal-close { position: absolute; top: 1rem; right: 1rem; color: #9ca3af; background: none; border: none; cursor: pointer; font-size: 1.25rem; line-height: 1; transition: color 0.15s; }
+  .modal-close:hover { color: #fff; }
   .skill-card { transition: all 0.2s; }
   .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
@@ -716,6 +722,226 @@ const METHODS = [
   { name: "ConFixGS", short: "ConFixGS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR on Waymo", arxiv: "2605.09688" }
 ];
 
+const METHOD_DETAILS = {
+  "3DGEER": { innovation: "Exact ray-Gaussian integration replacing splatting approximation for fisheye/generic cameras", nameCn: "3DGEER", codeUrl: "https://github.com/boschresearch/3dgeer" },
+  "3DGS": { innovation: "Anisotropic 3D Gaussians with tile-based differentiable rasterization", nameCn: "3D高斯溅射", codeUrl: "https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/" },
+  "Mip-Splatting": { innovation: "Anti-aliased 3DGS with 3D smoothing + 2D Mip filter", nameCn: "Mip溅射", codeUrl: "https://github.com/autonomousvision/mip-splatting" },
+  "Softmax-GS": { innovation: "Learnable softmax-based competition replacing α-compositing", nameCn: "Softmax高斯溅射", codeUrl: "" },
+  "2D-SuGaR": { innovation: "2DGS enhanced with monocular depth/normal priors", nameCn: "2D-SuGaR", codeUrl: "" },
+  "2DGS": { innovation: "Oriented 2D disks for geometrically accurate radiance fields", nameCn: "2D高斯溅射", codeUrl: "" },
+  "3DSS": { innovation: "First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA", nameCn: "3DSS", codeUrl: "" },
+  "AmbiSuR": { innovation: "Photometric ambiguity disambiguation for accurate GS surface reconstruction", nameCn: "AmbiSuR", codeUrl: "" },
+  "DySurface": { innovation: "Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction", nameCn: "DySurface", codeUrl: "" },
+  "GLINT": { innovation: "Scene-scale transparency via decomposed Gaussian radiance transport for glass", nameCn: "GLINT", codeUrl: "" },
+  "HiFi-SurfSplat": { innovation: "Compact polynomial kernel replacing IMLS + Laplacian stochastic regularization for high-freq geometry preservation", nameCn: "HiFi-SurfSplat", codeUrl: "" },
+  "LeanGaussian": { innovation: "Extreme compression from single RGB image for efficient large-scale rendering", nameCn: "LeanGaussian", codeUrl: "" },
+  "NegGS": { innovation: "Negative color values for ring/crescent/non-convex structures", nameCn: "NegGS", codeUrl: "" },
+  "Neural Gabor Splatting": { innovation: "Neural Gabor augmentation per Gaussian + frequency-aware densification for high-freq surfaces", nameCn: "神经Gabor溅射", codeUrl: "" },
+  "P2M++": { innovation: "Enhanced solver for point-to-mesh distance queries", nameCn: "P2M++", codeUrl: "" },
+  "PAGaS": { innovation: "Pixel-aligned 1DoF Gaussians for depth refinement", nameCn: "PAGaS", codeUrl: "https://github.com/UZ-SLAMLab/pagas" },
+  "PGSR": { innovation: "Planar-based regularizer for high-fidelity surface reconstruction", nameCn: "PGSR", codeUrl: "" },
+  "PointSplat": { innovation: "Geometry-driven pruning + Transformer refinement for efficient 3DGS", nameCn: "PointSplat", codeUrl: "" },
+  "SAND": { innovation: "Spatially adaptive network depth for efficient neural implicit surface sampling", nameCn: "SAND", codeUrl: "" },
+  "SuGaR": { innovation: "Surface-aligned Gaussians for mesh extraction via TSDF + Marching Cubes", nameCn: "SuGaR", codeUrl: "https://github.com/Anttwo/SuGaR" },
+  "SVGS": { innovation: "Spatially varying colors + opacity within each Gaussian primitive; three designs (bilinear / movable kernels / tiny MLP); Blender SOTA", nameCn: "SVGS", codeUrl: "https://github.com/Xrvitd/SVGS" },
+  "TransmissiveGS": { innovation: "Dual-Gaussian + deferred shading for transmissive/refractive scenes with near-field reflection light field", nameCn: "TransmissiveGS", codeUrl: "" },
+  "2DGS_CAD": { innovation: "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction", nameCn: "2D高斯溅射", codeUrl: "" },
+  "BrepGaussian": { innovation: "3DGS + B-rep CAD reconstruction to parametric STEP models", nameCn: "BrepGaussian", codeUrl: "" },
+  "CADFit": { innovation: "IoU-driven hybrid optimization over structured CAD programs (extrusions, revolutions, fillets, chamfers); multimodal image-to-CAD pipeline", nameCn: "CADFit", codeUrl: "" },
+  "CADFS": { innovation: "Large-scale CAD program dataset + LLM-assisted CAD understanding", nameCn: "CADFS", codeUrl: "" },
+  "MaGS": { innovation: "Mesh-adsorbed Gaussians; deform mesh → Gaussians follow", nameCn: "MaGS", codeUrl: "" },
+  "SuGaR_CAD": { innovation: "Joint Gaussians + mesh optimization with TSDF extraction", nameCn: "SuGaR", codeUrl: "https://github.com/Anttwo/SuGaR" },
+  "UniMGS": { innovation: "Single-pass rasterization for both mesh and Gaussians simultaneously", nameCn: "UniMGS", codeUrl: "" },
+  "Vol3DGS": { innovation: "Physically accurate volume-consistent rendering resolving splatting/volume inconsistency", nameCn: "Vol3DGS", codeUrl: "" },
+  "AniGen": { innovation: "Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning", nameCn: "AniGen", codeUrl: "https://github.com/VAST-AI-Research/AniGen" },
+  "DreamGaussian": { innovation: "SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup", nameCn: "DreamGaussian", codeUrl: "https://github.com/dreamgaussian/dreamgaussian" },
+  "SceneGen-LLMRL": { innovation: "Unified 3D scene generation + immersive interaction via LLM-RL coupling", nameCn: "SceneGen-LLMRL", codeUrl: "" },
+  "SIC3D": { innovation: "Style image conditioned text-to-3D Gaussian Splatting generation", nameCn: "SIC3D", codeUrl: "" },
+  "AdaptSplat": { innovation: "Lightweight Frequency-Preserving Adapter (1.5M params) on vision foundation models for feed-forward 3DGS", nameCn: "AdaptSplat", codeUrl: "" },
+  "AnySplat": { innovation: "In-the-wild feed-forward with appearance/lighting variation handling", nameCn: "AnySplat", codeUrl: "" },
+  "ARGS": { innovation: "Auto-regressive O(log n) multi-scale 3D generation", nameCn: "ARGS", codeUrl: "" },
+  "DepthSplat": { innovation: "Stereo-guided depth regularization for feed-forward 3DGS", nameCn: "DepthSplat", codeUrl: "https://github.com/yzhq97/depthsplat" },
+  "Free Geometry": { innovation: "Self-evolving feed-forward models via LoRA without 3D GT", nameCn: "Free Geometry", codeUrl: "https://github.com/hiteacherIamhumble/Free-Geometry" },
+  "GenWildSplat": { innovation: "Generalizable sparse-view 3D reconstruction from unconstrained images", nameCn: "GenWildSplat", codeUrl: "" },
+  "GlobalSplat": { innovation: "Global latent tokens → 16K Gaussians in 78ms single forward pass", nameCn: "GlobalSplat", codeUrl: "" },
+  "GS-LRM": { innovation: "1B-parameter transformer with zero-shot generalization", nameCn: "GS-LRM", codeUrl: "https://github.com/sunnyuvion/GS-LRM" },
+  "IDESplat": { innovation: "Iterative depth probability with epipolar attention", nameCn: "IDESplat", codeUrl: "" },
+  "InstantSplat": { innovation: "Pose-free sparse-view reconstruction in ~40 seconds", nameCn: "InstantSplat", codeUrl: "https://github.com/NVlabs/InstantSplat" },
+  "MVSplat": { innovation: "Cost-volume-based 3DGS from 3 sparse views", nameCn: "MVSplat", codeUrl: "https://github.com/donydchen/mvsplat" },
+  "Reliev3R": { innovation: "Reduces dependency on dense multi-view geometric annotations", nameCn: "Reliev3R", codeUrl: "" },
+  "Spark3R": { innovation: "Training-free asymmetric query/KV token compression for 28x speedup on feed-forward 3D reconstruction", nameCn: "Spark3R", codeUrl: "" },
+  "SparseSplat": { innovation: "Entropy-based adaptive density, SOTA with 22% of Gaussians (150K vs 688K)", nameCn: "SparseSplat", codeUrl: "" },
+  "TokenGS": { innovation: "Learnable tokens decoupling 3D Gaussian prediction from pixels", nameCn: "TokenGS", codeUrl: "" },
+  "TRiGS": { innovation: "SE(3) + Bezier residuals for scalable 4DGS", nameCn: "TRiGS", codeUrl: "" },
+  "WildSplatter": { innovation: "Unconstrained images with appearance embeddings, <1s reconstruction", nameCn: "WildSplatter", codeUrl: "" },
+  "CAGS": { innovation: "VQ-based LoD for 3DGS streaming + low-res reference image color-distortion correction; +5~20 dB PSNR over baselines", nameCn: "CAGS", codeUrl: "https://github.com/yindaheng98/ColorAdaptiveGaussianSplatting" },
+  "Compact-3DGS": { innovation: "Vector quantization + pruning, ~10-15x compression", nameCn: "紧凑3D高斯溅射", codeUrl: "" },
+  "Embedded-3DGS": { innovation: "Neural architecture search, ~10x compression", nameCn: "嵌入式3D高斯溅射", codeUrl: "" },
+  "Gaussians on a Diet": { innovation: "Memory-bounded training, 80% lower peak memory", nameCn: "Gaussians on a Diet", codeUrl: "" },
+  "GETA-3DGS": { innovation: "End-to-end automatic joint pruning + quantization", nameCn: "GETA-3DGS", codeUrl: "" },
+  "GS-SCNet": { innovation: "Generalizable 3DGS + semantic coding for immersive video", nameCn: "GS-SCNet", codeUrl: "" },
+  "HAC": { innovation: "Hash-grid context modeling, ~100x compression", nameCn: "HAC", codeUrl: "https://github.com/yihangchen-ee/HAC" },
+  "LightGS": { innovation: "Distillation-based, ~15-20x compression", nameCn: "LightGS", codeUrl: "" },
+  "MesonGS++": { innovation: "Post-training codec with 34x compression + ILP hyperparameter search", nameCn: "MesonGS++", codeUrl: "https://github.com/mmlab-sigs/mesongs_plus" },
+  "MobileGS": { innovation: "Extreme 50-100x compression for mobile deployment", nameCn: "MobileGS", codeUrl: "" },
+  "NanoGS": { innovation: "Training-free simplification via local pairwise merging", nameCn: "NanoGS", codeUrl: "https://github.com/saliteta/NanoGS" },
+  "OT-UVGS": { innovation: "Optimal-transport UV mapping as capacity allocation", nameCn: "OT-UVGS", codeUrl: "" },
+  "3DGS³": { innovation: "Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for real-time large-scale 3DGS", nameCn: "3DGS³", codeUrl: "" },
+  "4DGS": { innovation: "4D anisotropic Gaussians (3D + time) with regularized deformation", nameCn: "4D高斯溅射", codeUrl: "https://github.com/hustvl/4DGaussians" },
+  "ClipGStream": { innovation: "Clip-stream any-length any-motion multi-view dynamic scene reconstruction", nameCn: "ClipGStream", codeUrl: "" },
+  "Color-Encoded Illumination": { innovation: "High-speed volumetric reconstruction via color-coded illumination", nameCn: "颜色编码照明", codeUrl: "" },
+  "Dynamic 3D Gaussians": { innovation: "Per-point deformation network for monocular dynamic scenes", nameCn: "动态3D高斯", codeUrl: "" },
+  "FreeTimeGS++": { innovation: "Principled analysis + gated marginalization for 4DGS stability", nameCn: "FreeTimeGS++", codeUrl: "" },
+  "GeoRect4D": { innovation: "Geometry-compatible generative rectification for dynamic sparse-view 3D reconstruction", nameCn: "GeoRect4D", codeUrl: "" },
+  "HDR-NSFF": { innovation: "Dynamic HDR radiance fields from alternating-exposure video", nameCn: "HDR-NSFF", codeUrl: "" },
+  "PaMoSplat": { innovation: "Part-aware GS with graph-clustered Gaussian parts + differential evolution for rigid motion; part-level 4D editing (TCSVT)", nameCn: "PaMoSplat", codeUrl: "" },
+  "ParticleGS": { innovation: "Physics-based MPM-inspired 4DGS with Neural ODE evolver for prior-free motion extrapolation", nameCn: "ParticleGS", codeUrl: "" },
+  "PD-4DGS": { innovation: "Progressive 4DGS compression/streaming with Hierarchical Deformation Decomposition; DASH/HLS-compatible bitstream", nameCn: "PD-4DGS", codeUrl: "" },
+  "RobustSplat": { innovation: "Decouples densification from dynamics for transient-free 3DGS", nameCn: "RobustSplat", codeUrl: "" },
+  "SC-GS": { innovation: "Spatial-temporal compression for dynamic Gaussians", nameCn: "SC-GS", codeUrl: "" },
+  "Feature 3DGS": { innovation: "Distilled DINO/SAM features for 3D segmentation/detection", nameCn: "Feature 3DGS", codeUrl: "https://github.com/D%20Charles2/feature-3dgs" },
+  "GLMap": { innovation: "Multi-scale Gaussian-Language map for zero-shot navigation", nameCn: "GLMap", codeUrl: "https://github.com/sx-zhang/GLMap" },
+  "Ilov3Splat": { innovation: "Instance-level open-vocabulary 3D scene understanding with CLIP + SAM instance masks", nameCn: "Ilov3Splat", codeUrl: "" },
+  "LangSplat": { innovation: "CLIP features stored per-Gaussian for open-vocabulary 3D queries", nameCn: "LangSplat", codeUrl: "https://github.com/minghanqin/LangSplat" },
+  "NG-GS": { innovation: "NeRF-guided Gaussian-level semantic assignment", nameCn: "NG-GS", codeUrl: "" },
+  "OpenGaFF": { innovation: "Open-vocabulary Gaussian feature field with codebook attention for improved spatial coherence and semantic consistency", nameCn: "OpenGaFF", codeUrl: "" },
+  "PointGS": { innovation: "3DGS as unified intermediate representation bridging discrete-continuous gap for unsupervised 3D point cloud segmentation", nameCn: "PointGS", codeUrl: "" },
+  "ReferSplat": { innovation: "Referring segmentation in 3D Gaussian Splatting with language-guided instance selection", nameCn: "ReferSplat", codeUrl: "https://github.com/heshuting555/ReferSplat" },
+  "Semantic Foam": { innovation: "Volumetric Voronoi mesh for spatial + semantic decomposition", nameCn: "语义泡沫", codeUrl: "" },
+  "GaussianImage": { innovation: "2D Gaussian image codec at 1000+ FPS", nameCn: "高斯图像", codeUrl: "" },
+  "FrameTwin": { innovation: "Curve-anchored Gaussian alignment from sparse views for adaptive wireframe 3D printing", nameCn: "FrameTwin", codeUrl: "" },
+  "FSGS": { innovation: "SRF geometric prior + 3DGS for few-shot view synthesis", nameCn: "FSGS", codeUrl: "https://github.com/VITA-Group/FSGS" },
+  "GeoQuery": { innovation: "Geometry-guided cross-view attention replacing corrupted rendering features with geometry-aligned proxy queries", nameCn: "GeoQuery", codeUrl: "" },
+  "GSCompleter": { innovation: "Distillation-free sparse-view completion via Stereo-Anchor", nameCn: "GSCompleter", codeUrl: "" },
+  "HeroGS": { innovation: "Hierarchical image→region→pixel guidance for sparse-view robustness", nameCn: "HeroGS", codeUrl: "" },
+  "PairDropGS": { innovation: "Paired dropout-induced consistency regularization with progressive scheduling for sparse-view GS", nameCn: "PairDropGS", codeUrl: "" },
+  "Pi-GS": { innovation: "Reference-free π³ initialization for sparse-view 3DGS", nameCn: "Pi-GS", codeUrl: "" },
+  "VidSplat": { innovation: "Training-free generative framework leveraging video diffusion priors with iterative confidence-weighted refinement", nameCn: "VidSplat", codeUrl: "" },
+  "CityGaussian": { innovation: "Hierarchical LOD for city-scale real-time rendering", nameCn: "城市高斯", codeUrl: "" },
+  "GS4City": { innovation: "Hierarchical semantic GS via city-model priors", nameCn: "GS4City", codeUrl: "" },
+  "Octree-GS": { innovation: "Octree spatial partitioning + LOD management", nameCn: "八叉树GS", codeUrl: "" },
+  "Scaffold-GS": { innovation: "Anchor-based structure for efficient large-scale representation", nameCn: "脚手架GS", codeUrl: "" },
+  "Scaffold-GS+": { innovation: "Progressive training for better city-scale quality", nameCn: "脚手架GS+", codeUrl: "" },
+  "Street Gaussians": { innovation: "Static/dynamic decomposition for urban street scenes", nameCn: "街道高斯", codeUrl: "https://github.com/hbb1/Street-Gaussians" },
+  "DiffSoup": { innovation: "Triangle soup as extreme radiance field simplification", nameCn: "DiffSoup", codeUrl: "https://github.com/kenji-tojo/diffsoup" },
+  "FluSplat": { innovation: "Feed-forward sparse-view editing without per-scene optimization", nameCn: "FluSplat", codeUrl: "" },
+  "Frosting": { innovation: "Decoupled geometry/appearance editing", nameCn: "Frosting", codeUrl: "" },
+  "FTSplat": { innovation: "Feed-forward triangle primitive generation", nameCn: "FTSplat", codeUrl: "" },
+  "GaussianEditor": { innovation: "CLIP-guided text/geometry-driven editing", nameCn: "高斯编辑器", codeUrl: "" },
+  "GeoGaussian": { innovation: "Mesh-prior-guided Gaussian manipulation", nameCn: "GeoGaussian", codeUrl: "" },
+  "GOR-IS": { innovation: "Physically consistent object removal via intrinsic decomposition", nameCn: "GOR-IS", codeUrl: "https://applezyh.github.io/GOR-IS-project-page/" },
+  "IRIS": { innovation: "Hybrid proxy with analytical ray-primitive intersection", nameCn: "IRIS", codeUrl: "https://github.com/gwilczynski95/iris" },
+  "ObjectMorpher": { innovation: "Deformable 3DGS for 3D-aware interactive image editing", nameCn: "ObjectMorpher", codeUrl: "" },
+  "SketchFaceGS": { innovation: "Sketch-driven face editing via Transformer UV prediction", nameCn: "SketchFaceGS", codeUrl: "https://github.com/gogoneural/SketchFaceGS_jittor" },
+  "SVGS-Edit": { innovation: "Single-view text-driven 3D editing with sparse 3DGS (disambiguation: distinct from SVGS Spatially Varying GS)", nameCn: "SVGS-Edit", codeUrl: "https://amateurc.github.io/svgs.github.io" },
+  "TransSplat": { innovation: "Language-driven editing as unbalanced semantic transport", nameCn: "TransSplat", codeUrl: "" },
+  "DiffAdapt4DSI": { innovation: "Differentiable adaptive 4D structured illumination for joint capture of shape and reflectance", nameCn: "DiffAdapt4DSI", codeUrl: "" },
+  "GaussianShader": { innovation: "Shading functions for reflective/refractive surfaces", nameCn: "高斯着色器", codeUrl: "" },
+  "GRF": { innovation: "Material decomposition + relighting in Gaussian space", nameCn: "GRF", codeUrl: "" },
+  "GS-IR": { innovation: "Inverse rendering: Gaussians → geometry + BRDF + lighting", nameCn: "GS-IR", codeUrl: "" },
+  "Instant Colorization": { innovation: "Visibility-weighted least squares for per-Gaussian colorization", nameCn: "即时着色", codeUrl: "" },
+  "LumiMotion": { innovation: "Improving Gaussian relighting with scene dynamics", nameCn: "LumiMotion", codeUrl: "" },
+  "Relightable-GS-VP": { innovation: "GS-based relighting for Virtual Production with image-based illumination; UV-parameterized primitives sampling image space", nameCn: "Relightable-GS-VP", codeUrl: "" },
+  "Relit-LiVE": { innovation: "Relight video by jointly learning environment video", nameCn: "Relit-LiVE", codeUrl: "https://github.com/zhuxing0/Relit-LiVE" },
+  "SSD-GS": { innovation: "Scattering and shadow decomposition for relightable 3DGS", nameCn: "SSD-GS", codeUrl: "" },
+  "VIRGi": { innovation: "View-dependent instant recoloring with single edited image", nameCn: "VIRGi", codeUrl: "" },
+  "D-Rex": { innovation: "Diffusion post-process relighting for expressive avatars", nameCn: "D-Rex", codeUrl: "" },
+  "DelightingFace": { innovation: "Dataset Latent Modulation delighting prior for facial appearance capture; 4K relightable NeRSemble-Scan dataset", nameCn: "DelightingFace", codeUrl: "" },
+  "GAS": { innovation: "Compression + caching for real-time avatar rendering", nameCn: "GAS", codeUrl: "" },
+  "GaussianAvatar": { innovation: "Pose-driven human body Gaussian representation", nameCn: "高斯化身", codeUrl: "" },
+  "Generalizable Human GS": { innovation: "Cross-view attention for sparse-view human splatting", nameCn: "可泛化人体GS", codeUrl: "" },
+  "HairGPT": { innovation: "Strand-as-Language autoregressive modeling for 3D hairstyle synthesis", nameCn: "HairGPT", codeUrl: "" },
+  "High-Fidelity Human GS": { innovation: "SMPL-X geometric priors + region-aware initialization", nameCn: "高保真人体GS", codeUrl: "" },
+  "HumanSplatHMR": { innovation: "Joint pose refinement + Gaussian avatar optimization", nameCn: "HumanSplatHMR", codeUrl: "" },
+  "Large-Scale HQ 3D Gaussian Head": { innovation: "Multi-view large-scale high-fidelity 3D Gaussian head reconstruction", nameCn: "大规模高质量3D高斯头部", codeUrl: "" },
+  "Mobile Avatar (Pruned Blendshapes)": { innovation: "High-fidelity mobile avatars with pruned local blendshapes", nameCn: "移动端化身（剪枝混合形状）", codeUrl: "" },
+  "ProgressiveAvatars": { innovation: "Progressive animatable 3D Gaussian avatar generation", nameCn: "ProgressiveAvatars", codeUrl: "" },
+  "SDTalk": { innovation: "Structured facial priors + dual-branch motion fields for Gaussian talking head synthesis", nameCn: "SDTalk", codeUrl: "" },
+  "SplattingAvatar": { innovation: "Expression-conditioned Gaussian deformation", nameCn: "SplattingAvatar", codeUrl: "" },
+  "DualSplat": { innovation: "Failure-to-Prior framework from reconstruction failures", nameCn: "DualSplat", codeUrl: "" },
+  "ELoG-GS": { innovation: "Dual-branch luminance-guided extreme low-light GS enhancement", nameCn: "ELoG-GS", codeUrl: "" },
+  "EnerGS": { innovation: "Energy-based soft geometric guidance from LiDAR/depth priors", nameCn: "EnerGS", codeUrl: "" },
+  "MarineSTD-GS": { innovation: "Spatiotemporal underwater degradation modeling", nameCn: "MarineSTD-GS", codeUrl: "" },
+  "MERID-GS": { innovation: "Retinex-based illumination/reflectance decoupling for low-light", nameCn: "MERID-GS", codeUrl: "https://github.com/YhuoyuH/MERID-GS" },
+  "NRGS": { innovation: "Neural regularization for semantic 3DGS", nameCn: "NRGS", codeUrl: "" },
+  "PDF-GS": { innovation: "Progressive distractor filtering for robust 3DGS", nameCn: "PDF-GS", codeUrl: "" },
+  "WildGaussians": { innovation: "Joint pose + 3DGS optimization from internet photos", nameCn: "WildGaussians", codeUrl: "https://github.com/jkulhanek/wild-gaussians/" },
+  "3DGS Safety Evaluation for AD": { innovation: "Industrial-fidelity AD scene reconstruction evaluation", nameCn: "3DGS自动驾驶安全评估", codeUrl: "" },
+  "ADS-GS": { innovation: "Static + dynamic decomposition for driving scenes", nameCn: "ADS-GS", codeUrl: "" },
+  "Asset Harvester": { innovation: "AV log → simulation-ready 3D assets via SparseViewDiT", nameCn: "Asset Harvester", codeUrl: "https://research.nvidia.com/labs/sil/projects/asset-harvester/" },
+  "GaussianLSS": { innovation: "BEV perception via Gaussian Splatting", nameCn: "GaussianLSS", codeUrl: "" },
+  "Ground4D": { innovation: "Spatially-grounded feedforward 4D for off-road reconstruction", nameCn: "Ground4D", codeUrl: "" },
+  "GSDrive": { innovation: "3DGS-based RL reward shaping for driving policy improvement", nameCn: "GSDrive", codeUrl: "" },
+  "Nighttime AD GS": { innovation: "PBR + BRDF for nighttime driving scene reconstruction", nameCn: "夜间自动驾驶GS", codeUrl: "" },
+  "PointForward": { innovation: "Sparse 3D queries in world space with spatial-temporal fusion + scene graphs for feedforward driving reconstruction", nameCn: "PointForward", codeUrl: "" },
+  "Street-GS": { innovation: "LiDAR-camera fusion + multi-view optimization", nameCn: "Street-GS", codeUrl: "" },
+  "2DGS-SLAM": { innovation: "Globally consistent RGB-D SLAM with 2DGS; loop closure + global optimization", nameCn: "2DGS-SLAM", codeUrl: "https://github.com/PRBonn/2DGS-SLAM" },
+  "CGS-SLAM": { innovation: "Compact voxel-based 3DGS for dense visual SLAM", nameCn: "CGS-SLAM", codeUrl: "" },
+  "EvFlow-GS": { innovation: "Event camera + optical flow for motion blur handling", nameCn: "EvFlow-GS", codeUrl: "" },
+  "Flow4DGS-SLAM": { innovation: "Optical flow-guided 4DGS for SLAM", nameCn: "Flow4DGS-SLAM", codeUrl: "" },
+  "Gaussian Splatting SLAM": { innovation: "First real-time monocular 3DGS SLAM", nameCn: "高斯溅射SLAM", codeUrl: "https://github.com/muskie82/MonoGS" },
+  "GGD-SLAM": { innovation: "Monocular 3DGS SLAM with generalizable motion model", nameCn: "GGD-SLAM", codeUrl: "" },
+  "MAGICIAN": { innovation: "Active mapping with imagined Gaussians + beam search", nameCn: "MAGICIAN", codeUrl: "https://shiyao-li.github.io/magician/" },
+  "MAGS-SLAM": { innovation: "First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification", nameCn: "MAGS-SLAM", codeUrl: "" },
+  "MonoEM-GS": { innovation: "Monocular expectation-maximization GS SLAM", nameCn: "MonoEM-GS", codeUrl: "" },
+  "S3PO-GS": { innovation: "Global scale-consistent outdoor monocular 3DGS SLAM", nameCn: "S3PO-GS", codeUrl: "" },
+  "WildGS-SLAM": { innovation: "Dynamic environment SLAM with uncertainty-aware mapping", nameCn: "WildGS-SLAM", codeUrl: "https://github.com/JokerJohn/WildGS-SLAM" },
+  "3DGS as MCMC": { innovation: "Density control as MCMC sampling moves", nameCn: "3DGS即MCMC", codeUrl: "" },
+  "AdaGScale": { innovation: "Viewpoint-adaptive Gaussian scaling reducing gaussian-tile pairs for rendering acceleration", nameCn: "AdaGScale", codeUrl: "" },
+  "Faster-GS": { innovation: "Systematic benchmark separating engineering from algorithmic acceleration", nameCn: "Faster-GS", codeUrl: "" },
+  "GEMM-GS": { innovation: "GEMM-compatible blending for Tensor Core utilization, 1.42x speedup", nameCn: "GEMM-GS", codeUrl: "https://github.com/shieldforever/GEMM-GS" },
+  "Hybrid-Capture Two-View Training": { innovation: "Two-view-per-step as dominant training lever", nameCn: "混合捕获双视图训练", codeUrl: "" },
+  "LeGS": { innovation: "RL-learnable density control replacing heuristic clone/split/prune", nameCn: "LeGS", codeUrl: "https://github.com/AaronNZH/LeGS" },
+  "Proxy-GS": { innovation: "Lightweight proxy model for 2.5x speedup with no accuracy loss", nameCn: "Proxy-GS", codeUrl: "" },
+  "QuadBox": { innovation: "Geometry-aware AABB boxes for 1.85x rendering acceleration", nameCn: "QuadBox", codeUrl: "https://github.com/Powertony102/QuadBox" },
+  "Structure-Aware Densification": { innovation: "Frequency-aware anisotropic split replacing heuristic clone/split", nameCn: "结构感知致密化", codeUrl: "" },
+  "VkSplat": { innovation: "Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM", nameCn: "VkSplat", codeUrl: "https://github.com/harry7557558/vksplat" },
+  "YOGO": { innovation: "Budget-aware equilibrium for ultra-dense scene control", nameCn: "YOGO", codeUrl: "" },
+  "3DGS Demo Synthesis (IL)": { innovation: "3DGS-based demonstration generation for imitation learning", nameCn: "3DGS演示合成（模仿学习）", codeUrl: "" },
+  "Forecast-GS": { innovation: "Predictive 3D Gaussian representation forecasting task-completed states for robotic manipulation", nameCn: "Forecast-GS", codeUrl: "" },
+  "FreeMoCap": { innovation: "Open-source markerless motion capture from webcams (AGPL-3.0, 8.3k stars); drives 3DGS avatars; dual-use multi-cam for mocap + 3DGS training", nameCn: "FreeMoCap", codeUrl: "https://github.com/freemocap/freemocap" },
+  "GS-Playground": { innovation: "Batch 3DGS + parallel physics at 10^4 FPS for robot learning", nameCn: "GS-Playground", codeUrl: "" },
+  "GS-Surrogate": { innovation: "Deformable GS surrogate for ensemble simulation exploration", nameCn: "GS-Surrogate", codeUrl: "" },
+  "TAIL-Safe": { innovation: "Safety monitoring for IL policies using 3DGS digital twin", nameCn: "TAIL-Safe", codeUrl: "" },
+  "3DTV": { innovation: "Feedforward 3-camera interpolation at 40 FPS", nameCn: "3DTV", codeUrl: "https://stefanmschulz.github.io/3DTV_webpage/" },
+  "Aes3D": { innovation: "First systematic framework for 3DGS aesthetic assessment with Aesthetic3D dataset + Aes3DGSNet", nameCn: "Aes3D", codeUrl: "" },
+  "AudioGS": { innovation: "Spectrogram-based audio Gaussian Splatting for sound field reconstruction", nameCn: "AudioGS", codeUrl: "" },
+  "BiSplat-WRF": { innovation: "Gaussian Splatting for wireless radiance field reconstruction", nameCn: "BiSplat-WRF", codeUrl: "" },
+  "CoherentRaster": { innovation: "Subpixel-level 3DGS rasterization for light field displays", nameCn: "CoherentRaster", codeUrl: "" },
+  "Egocentric Dynamic 3DGS Evaluation": { innovation: "Egocentric video reconstruction evaluation", nameCn: "自中心动态3DGS评估", codeUrl: "" },
+  "EmoTaG": { innovation: "Few-shot emotion-aware talking head on Gaussian Splatting", nameCn: "EmoTaG", codeUrl: "" },
+  "Fake3DGS": { innovation: "Benchmark for 3D manipulation detection in neural rendering", nameCn: "Fake3DGS", codeUrl: "https://github.com/iot-unimore/Fake3DGS" },
+  "FieryGS": { innovation: "Physics-integrated combustion simulation + 3DGS rendering", nameCn: "FieryGS", codeUrl: "" },
+  "GS-DOT": { innovation: "Diffuse optical tomography via Gaussian Splatting", nameCn: "GS-DOT", codeUrl: "" },
+  "GS-STVSR": { innovation: "Ultra-efficient continuous spatio-temporal video super-resolution via 2D Gaussian Splatting", nameCn: "GS-STVSR", codeUrl: "" },
+  "Habitat-GS": { innovation: "3DGS-rendered simulator for robot navigation training", nameCn: "Habitat-GS", codeUrl: "" },
+  "LagrangianSplats": { innovation: "Divergence-free constraint on Gaussian advection for fluid velocity field reconstruction", nameCn: "LagrangianSplats", codeUrl: "" },
+  "Mobile Phone 3DGS Acquisition": { innovation: "Object-centered on-device capture guidance", nameCn: "手机3DGS采集", codeUrl: "" },
+  "MSGS": { innovation: "Multispectral 3D Gaussian Splatting", nameCn: "多光谱GS", codeUrl: "" },
+  "PatchPoison": { innovation: "Poisoning multi-view datasets to degrade 3D reconstruction (Security)", nameCn: "PatchPoison", codeUrl: "" },
+  "PG-3DGS": { innovation: "Differentiable physics simulation coupled with 3D Gaussian representations; physical objectives guide shape optimization", nameCn: "PG-3DGS", codeUrl: "" },
+  "RDSplat": { innovation: "Robust watermarking against diffusion editing", nameCn: "RDSplat", codeUrl: "" },
+  "RESPIRE": { innovation: "CT-informed mesh-anchored GS for dynamic bronchoscopy", nameCn: "RESPIRE", codeUrl: "https://asdunnbe.github.io/RESPIRE/" },
+  "RGS": { innovation: "Residual wavelet-GS for ultra sparse-view CBCT reconstruction", nameCn: "RGS", codeUrl: "" },
+  "SandSim": { innovation: "Curve-guided GS for sand painting process reconstruction", nameCn: "SandSim", codeUrl: "" },
+  "SplAttN": { innovation: "Gaussian soft splatting for point cloud completion", nameCn: "SplAttN", codeUrl: "https://github.com/zay002/SplAttN" },
+  "TwinPose": { innovation: "Multi-view 3D pose estimation via person-specific subspaces", nameCn: "TwinPose", codeUrl: "https://github.com/zgspose" },
+  "ULF-Loc": { innovation: "Unbiased landmark feature for robust visual localization", nameCn: "ULF-Loc", codeUrl: "" },
+  "XFreq-GS": { innovation: "Cross-frequency wireless radiation field reconstruction with shared geometry + frequency-adaptive RF attributes", nameCn: "XFreq-GS", codeUrl: "" },
+  "ArtifactWorld": { innovation: "Video generation models for 3DGS artifact restoration at scale", nameCn: "ArtifactWorld", codeUrl: "" },
+  "E2EGS": { innovation: "Event-to-edge pose-free 3D reconstruction", nameCn: "E2EGS", codeUrl: "" },
+  "FreeFix": { innovation: "Fine-tuning-free diffusion guidance for extrapolated 3DGS", nameCn: "FreeFix", codeUrl: "" },
+  "Luminance-GS++": { innovation: "View-adaptive color/lightness correction for robust NVS", nameCn: "Luminance-GS++", codeUrl: "" },
+  "SNS": { innovation: "Azzalini Skew-Normal distribution as 3DGS primitive; learnable skewness for asymmetric boundary modeling", nameCn: "SNS", codeUrl: "" },
+  "SplatWeaver": { innovation: "Cardinality Gaussian Expert Routing (0/1/2/3 experts) + DWT frequency prior + neighbor-conditioned prediction", nameCn: "SplatWeaver", codeUrl: "" },
+  "MGS": { innovation: "Matryoshka continuous LoD via stochastic budget training; single ordered set renders any prefix k splats", nameCn: "MGS", codeUrl: "" },
+  "Denoising-GS": { innovation: "Formulates 3DGS optimization as primitive denoising; spatial gradient denoising + uncertainty pruning", nameCn: "Denoising-GS", codeUrl: "" },
+  "AdpSplit": { innovation: "Error-driven adaptive split operator replacing heuristic binary split; 9.2-22.3% training time reduction", nameCn: "AdpSplit", codeUrl: "" },
+  "OCH3R": { innovation: "Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians in one forward pass", nameCn: "OCH3R", codeUrl: "" },
+  "ConFixGS": { innovation: "Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR on Waymo", nameCn: "ConFixGS", codeUrl: "" },
+};
+
+
 const CATEGORIES = [
   { id: "Foundation", label: "Foundation" },
   { id: "Surface", label: "Surface" },
@@ -819,20 +1045,71 @@ function renderMethods() {
     return matchCat && matchQ;
   });
   document.getElementById('methodCount').textContent = `${filtered.length} method${filtered.length !== 1 ? 's' : ''}`;
-  grid.innerHTML = filtered.map(m => `
-    <div class="method-card gradient-border p-4 flex flex-col gap-2 cursor-default">
+  grid.innerHTML = filtered.map((m, i) => {
+    const d = METHOD_DETAILS[m.name] || {};
+    return `
+    <div class="method-card gradient-border p-4 flex flex-col gap-2" onclick="openMethodModal(${METHODS.indexOf(m)})">
       <div class="flex items-start justify-between gap-2">
         <h3 class="font-semibold text-white text-sm leading-tight">${m.name}</h3>
         <span class="shrink-0 text-[11px] font-medium px-2 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
       </div>
+      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-[10px] text-gray-500">${d.nameCn}</p>` : ''}
       <p class="text-xs text-gray-400 leading-relaxed">${m.desc}</p>
       <div class="flex items-center justify-between mt-auto pt-1">
         <span class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">${m.cat}</span>
-        ${m.arxiv ? `<a href="https://arxiv.org/abs/${m.arxiv}" target="_blank" class="text-[11px] text-accent-blue hover:underline font-mono">${m.arxiv}</a>` : ''}
+        ${m.arxiv ? `<span class="text-[11px] text-accent-blue font-mono">${m.arxiv}</span>` : ''}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
+
+function openMethodModal(idx) {
+  const m = METHODS[idx];
+  const d = METHOD_DETAILS[m.name] || {};
+  const el = document.getElementById('modalContent');
+  el.innerHTML = `
+    <button class="modal-close" onclick="closeMethodModal()">&times;</button>
+    <div class="pr-6">
+      <div class="flex items-center gap-3 mb-1">
+        <h2 class="text-xl font-bold text-white">${m.name}</h2>
+        <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
+      </div>
+      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-sm text-gray-400 mb-4">${d.nameCn}</p>` : '<div class="mb-3"></div>'}
+      <div class="space-y-3">
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Category</p>
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${m.cat}</span>
+        </div>
+        ${d.innovation ? `<div>
+          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Core Innovation</p>
+          <p class="text-sm text-gray-300 leading-relaxed">${d.innovation}</p>
+        </div>` : ''}
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Description</p>
+          <p class="text-sm text-gray-300 leading-relaxed">${m.desc}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 pt-2 border-t border-white/5">
+          ${m.arxiv ? `<a href="https://arxiv.org/abs/${m.arxiv}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-accent-blue hover:underline font-medium">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            arXiv:${m.arxiv}
+          </a>` : ''}
+          ${d.codeUrl ? `<a href="${d.codeUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-emerald-400 hover:underline font-medium">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            Code
+          </a>` : ''}
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('methodModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMethodModal() {
+  document.getElementById('methodModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMethodModal(); });
 
 function renderTabs() {
   const container = document.getElementById('categoryTabs');
@@ -1734,5 +2011,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 </script>
+
+<!-- Method Detail Modal -->
+<div id="methodModal" class="modal-overlay" onclick="if(event.target===this)closeMethodModal()">
+  <div class="modal-box p-6" id="modalContent"></div>
+</div>
+
 </body>
 </html>
