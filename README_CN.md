@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '58d016bb-1a70-48f5-acab-47682e14bff6'
-  PropagateID: '58d016bb-1a70-48f5-acab-47682e14bff6'
-  ReservedCode1: 'd75c1e55-6672-4129-a9b1-08b937d15bf8'
-  ReservedCode2: 'd75c1e55-6672-4129-a9b1-08b937d15bf8'
----
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -503,5 +492,3 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
-
-> AI生成
