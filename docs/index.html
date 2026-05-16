@@ -153,20 +153,42 @@ tailwind.config = {
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Text2Word</h2>
       <p class="mt-3 text-gray-400 text-base sm:text-lg">Describe a scene in words — get a 3D Gaussian world in return</p>
       <p class="mt-2 text-gray-500 text-xs sm:text-sm">The creative platform making 3DGS &amp; CAD accessible to everyone</p>
-      <p class="mt-1 text-[10px] text-gray-600">Powered by Aliyun Bailian Tripo API — real text-to-3D generation</p>
+      <p class="mt-1 text-[10px] text-gray-600">Powered by Tripo / Meshy / Hunyuan3D — multi-provider text-to-3D generation</p>
     </div>
 
     <!-- Prompt Input -->
     <div class="gradient-border p-6 sm:p-8 mb-6">
-      <!-- API Key Config -->
-      <div class="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
-        <div class="flex items-center gap-1.5 shrink-0">
-          <div class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></div>
-          <span class="text-[11px] font-medium text-gray-400">Aliyun API Key</span>
-        </div>
-        <input id="t2wApiKey" type="password" class="api-key-input flex-1" placeholder="sk-xxx  (Aliyun Bailian DashScope API Key)" value="">
-        <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →</a>
-      </div>
+      <!-- Provider & API Key Config -->
+<div class="mb-5 pb-4 border-b border-white/5">
+  <div class="flex flex-wrap items-center gap-3 mb-3">
+    <div class="flex items-center gap-1.5 shrink-0">
+      <div class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></div>
+      <span class="text-[11px] font-medium text-gray-400">3D Provider</span>
+    </div>
+    <div class="flex gap-1.5 flex-wrap">
+      <button class="t2w-provider-btn active px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30" data-provider="tripo">Tripo (Aliyun)</button>
+      <button class="t2w-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-accent-purple/30" data-provider="meshy">Meshy AI</button>
+      <button class="t2w-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30" data-provider="hunyuan3d">Hunyuan3D (Tencent)</button>
+    </div>
+  </div>
+  <div id="t2wProviderConfig">
+    <!-- Tripo config (default) -->
+    <div id="t2wConfigTripo" class="flex items-center gap-3">
+      <input id="t2wApiKeyTripo" type="password" class="api-key-input flex-1" placeholder="DashScope API Key (sk-xxx)" value="">
+      <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →</a>
+    </div>
+    <!-- Meshy config -->
+    <div id="t2wConfigMeshy" class="hidden flex items-center gap-3">
+      <input id="t2wApiKeyMeshy" type="password" class="api-key-input flex-1" placeholder="Meshy API Key" value="">
+      <a href="https://www.meshy.ai/settings/api" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →</a>
+    </div>
+    <!-- Hunyuan3D config (no direct API - redirect) -->
+    <div id="t2wConfigHunyuan3d" class="hidden">
+      <p class="text-[11px] text-gray-500 leading-relaxed">Hunyuan3D API uses TC3-HMAC-SHA256 signing (not callable from browser). Click Generate to open Tencent Cloud console, or switch to Tripo/Meshy for in-browser generation.</p>
+      <a href="https://3d.hunyuan.tencent.com/" target="_blank" class="inline-flex items-center gap-1 mt-1.5 text-[11px] text-accent-blue hover:underline">Open Hunyuan3D Console →</a>
+    </div>
+  </div>
+</div>
       <div class="flex flex-col sm:flex-row gap-4 items-start">
         <div class="flex-1 w-full">
           <div class="flex items-center gap-2 mb-3">
@@ -2217,13 +2239,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function t2wDelay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
+  let t2wProvider = 'tripo';
+
   async function t2wRun() {
     const input = document.getElementById('t2wDemoInput');
     const text = input ? input.value.trim() : '';
     if (!text) return;
 
-    const apiKey = document.getElementById('t2wApiKey').value.trim();
+    // Get API key based on provider
+    let apiKey = '';
+    if (t2wProvider === 'tripo') apiKey = document.getElementById('t2wApiKeyTripo').value.trim();
+    else if (t2wProvider === 'meshy') apiKey = document.getElementById('t2wApiKeyMeshy').value.trim();
+
     const hasApiKey = apiKey.length > 0;
+
+    // If Hunyuan3D selected, redirect
+    if (t2wProvider === 'hunyuan3d') {
+      window.open('https://3d.hunyuan.tencent.com/', '_blank');
+      return;
+    }
 
     const btn = document.getElementById('t2wGenBtn');
     const icon = document.getElementById('t2wGenIcon');
@@ -2247,14 +2281,12 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    // Hide previous results
     document.getElementById('t2wResult').classList.add('hidden');
     document.getElementById('t2w3DResult').classList.add('hidden');
 
     const parsed = t2wParse(text);
     const method = t2wMethodMap[parsed.type] || t2wMethodMap.general;
 
-    // Animate Step 0: Parse
     async function markStep(i, delayMs) {
       const stepEl = document.getElementById('t2wStep' + i);
       if (!stepEl) return;
@@ -2270,178 +2302,259 @@ document.addEventListener('DOMContentLoaded', () => {
     await markStep(0, 400);
     await markStep(1, 350);
 
-    if (hasApiKey) {
-      // === Real API Call ===
-      await markStep(2, 200);
-      try {
-        // Step 1: Create task
-        const createResp = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/3d-generation', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + apiKey,
-            'X-DashScope-Async': 'enable'
-          },
-          body: JSON.stringify({
-            model: 'Tripo/Tripo-P1.0',
-            input: { prompt: text },
-            parameters: { texture_quality: 'standard' }
-          })
-        });
-        const createData = await createResp.json();
-        if (createData.code) {
-          throw new Error(createData.message || createData.code);
-        }
-        const taskId = createData.output.task_id;
-        if (!taskId) throw new Error('No task_id returned');
-
-        await markStep(3, 200);
-        document.getElementById('t2w3DStatus').textContent = 'Generating (may take 1-2 min)...';
-
-        // Step 2: Poll for result
-        const pollStart = Date.now();
-        const pollMaxMs = 180000; // 3 min timeout
-        let result = null;
-        while (Date.now() - pollStart < pollMaxMs) {
-          await t2wDelay(5000); // poll every 5s
-          const pollResp = await fetch('https://dashscope.aliyuncs.com/api/v1/tasks/' + taskId, {
-            headers: { 'Authorization': 'Bearer ' + apiKey }
-          });
-          const pollData = await pollResp.json();
-          const status = pollData.output && pollData.output.task_status;
-          if (status === 'SUCCEEDED') {
-            result = pollData.output.results && pollData.output.results[0];
-            break;
-          } else if (status === 'FAILED') {
-            throw new Error(pollData.output.message || 'Generation failed');
-          }
-          // Update status
-          const elapsed = Math.round((Date.now() - pollStart) / 1000);
-          document.getElementById('t2w3DStatus').textContent = 'Generating... (' + elapsed + 's)';
-          // Advance Train step animation
-          const trainInner = document.getElementById('t2wStep3');
-          if (trainInner && !trainInner.querySelector('.step-icon').textContent.includes('✓')) {
-            // Still training — show spinner in step
-          }
-        }
-
-        if (!result) throw new Error('Generation timed out');
-
-        // Step 3: Show result
-        await markStep(3, 100);
-        await markStep(4, 200);
-        await markStep(5, 200);
-
-        // Show method recommendation (local)
-        document.getElementById('t2wResult').classList.remove('hidden');
-        document.getElementById('t2wRMethod').textContent = method.method;
-        document.getElementById('t2wRMethod').style.color = method.color;
-        document.getElementById('t2wRReason').textContent = method.reason;
-        document.getElementById('t2wRType').textContent = parsed.type;
-        document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
-        document.getElementById('t2wRExport').textContent = '.glb (PBR Model)';
-        document.getElementById('t2wRExportNote').textContent = 'Tripo-generated with textures';
-        const isCAD = parsed.type === 'cad';
-        const isAvatar = parsed.type === 'avatar';
-        document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
-        document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
-
-        // Show 3D result
-        const res3D = document.getElementById('t2w3DResult');
-        res3D.classList.remove('hidden');
-        document.getElementById('t2w3DStatus').textContent = 'Done! (' + Math.round((Date.now() - pollStart) / 1000) + 's)';
-
-        if (result.rendered_image_url) {
-          document.getElementById('t2w3DPreview').src = result.rendered_image_url;
-        }
-        const modelUrl = result.pbr_model_url || result.base_model_url;
-        if (modelUrl) {
-          const viewer = document.getElementById('t2w3DViewer');
-          viewer.src = modelUrl;
-          const dl = document.getElementById('t2w3DDownload');
-          dl.href = modelUrl;
-          dl.style.display = 'inline';
-        }
-
-        // Scene brief
-        const brief = `Scene Brief:
-  Input: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}
-  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}
-  API: Aliyun Bailian Tripo-P1.0 (text-to-3D)
-  Recommended 3DGS Method: ${method.method} — ${method.reason}
-  Initialization: ${method.init}
-  Generated Asset: PBR GLB model with textures
-  Next Step: Import .glb → convert to 3DGS .ply via gsplat/SuperSplat
-  Validation: geometric faithfulness, visual quality, convergence`;
-        document.getElementById('t2wRBrief').textContent = brief;
-
-      } catch (err) {
-        // Show error in result area
-        document.getElementById('t2wResult').classList.remove('hidden');
-        document.getElementById('t2wRMethod').textContent = 'Error';
-        document.getElementById('t2wRMethod').style.color = '#ef4444';
-        document.getElementById('t2wRReason').textContent = err.message;
-        document.getElementById('t2wRBrief').textContent = 'API Error: ' + err.message + '\n\nPlease check:\n1. API Key is valid (Aliyun Bailian DashScope)\n2. Tripo service is enabled in Bailian Console\n3. Network access to dashscope.aliyuncs.com';
-        // Mark remaining steps as failed
-        for (let i = 2; i < t2wSteps.length; i++) {
-          const stepEl = document.getElementById('t2wStep' + i);
-          if (stepEl) {
-            const inner = stepEl.querySelector('div');
-            const iconEl = stepEl.querySelector('.step-icon');
-            if (iconEl && iconEl.textContent !== '✓') {
-              inner.classList.remove('border-white/10', 'text-gray-500');
-              inner.classList.add('border-red-500/30', 'text-red-400');
-              iconEl.textContent = '✗';
-            }
-          }
-        }
-      }
-    } else {
-      // === Fallback: Local simulation (no API key) ===
+    if (!hasApiKey) {
+      // Fallback: local simulation
       for (let i = 2; i < t2wSteps.length; i++) {
         await markStep(i, i === 3 ? 900 : 350);
       }
-
-      // Show method recommendation
-      document.getElementById('t2wResult').classList.remove('hidden');
-      document.getElementById('t2wRMethod').textContent = method.method;
-      document.getElementById('t2wRMethod').style.color = method.color;
-      document.getElementById('t2wRReason').textContent = method.reason;
-      document.getElementById('t2wRType').textContent = parsed.type;
-      document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
-      document.getElementById('t2wRExport').textContent = '.ply (3DGS)';
-      document.getElementById('t2wRExportNote').textContent = 'Primary Gaussian representation';
-      const isCAD = parsed.type === 'cad';
-      const isAvatar = parsed.type === 'avatar';
-      document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
-      document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
-
-      const brief = `Scene Brief (Simulation — enter API Key for real generation):
-  Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}
-  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}
-  Method: ${method.method} — ${method.reason}
-  Initialization: ${method.init}
-  Training: 300–500 iterations recommended
-  Export primary: .ply (3DGS)
-  Export secondary: ${isCAD ? '.step (CAD), .stl (3D print)' : isAvatar ? '.fbx (animation), .ply (3DGS avatar)' : '.obj (mesh), .stl (3D print)'}
-  Next Step: Enter Aliyun Bailian API Key above to generate real 3D models`;
-      document.getElementById('t2wRBrief').textContent = brief;
-
-      // Load PlayCanvas preset
+      showMethodRecommendation(method, parsed, text, false);
       if (typeof loadGSplat === 'function') {
         loadGSplat('https://developer.playcanvas.com/assets/toy-cat.sog', method.method);
       }
+      btn.disabled = false;
+      icon.setAttribute('class', 'w-4 h-4');
+      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
+      txt.textContent = 'Regenerate';
+      return;
     }
 
-    // Reset button
+    // Real API call
+    await markStep(2, 200);
+    try {
+      let result;
+      if (t2wProvider === 'tripo') {
+        result = await callTripoAPI(apiKey, text);
+      } else if (t2wProvider === 'meshy') {
+        result = await callMeshyAPI(apiKey, text);
+      }
+      if (!result) throw new Error('No result returned');
+
+      await markStep(3, 100);
+      await markStep(4, 200);
+      await markStep(5, 200);
+
+      showMethodRecommendation(method, parsed, text, true);
+      show3DResult(result);
+    } catch (err) {
+      showMethodRecommendation(method, parsed, text, false);
+      document.getElementById('t2wRMethod').textContent = 'Error';
+      document.getElementById('t2wRMethod').style.color = '#ef4444';
+      document.getElementById('t2wRReason').textContent = err.message;
+      document.getElementById('t2wRBrief').textContent = 'API Error: ' + err.message + '\n\nPlease check your API Key and network.';
+      for (let i = 2; i < t2wSteps.length; i++) {
+        const stepEl = document.getElementById('t2wStep' + i);
+        if (stepEl) {
+          const inner = stepEl.querySelector('div');
+          const iconEl = stepEl.querySelector('.step-icon');
+          if (iconEl && iconEl.textContent !== '✓') {
+            inner.classList.remove('border-white/10', 'text-gray-500');
+            inner.classList.add('border-red-500/30', 'text-red-400');
+            iconEl.textContent = '✗';
+          }
+        }
+      }
+    }
+
     btn.disabled = false;
     icon.setAttribute('class', 'w-4 h-4');
     icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
     txt.textContent = 'Regenerate';
   }
 
+  function showMethodRecommendation(method, parsed, text, isRealGen) {
+    const r = document.getElementById('t2wResult');
+    r.classList.remove('hidden');
+    document.getElementById('t2wRMethod').textContent = method.method;
+    document.getElementById('t2wRMethod').style.color = method.color;
+    document.getElementById('t2wRReason').textContent = method.reason;
+    document.getElementById('t2wRType').textContent = parsed.type;
+    document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
+    document.getElementById('t2wRExport').textContent = isRealGen ? '.glb (AI Generated)' : '.ply (3DGS)';
+    document.getElementById('t2wRExportNote').textContent = isRealGen ? 'PBR model with textures — convert to 3DGS via gsplat' : 'Primary Gaussian representation';
+    const isCAD = parsed.type === 'cad';
+    const isAvatar = parsed.type === 'avatar';
+    document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
+    document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
+
+    const providerLabel = t2wProvider === 'tripo' ? 'Aliyun Tripo' : t2wProvider === 'meshy' ? 'Meshy AI' : 'Hunyuan3D';
+    const brief = isRealGen
+      ? `Scene Brief:\n  Input: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}\n  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}\n  API: ${providerLabel} (text-to-3D)\n  Recommended 3DGS Method: ${method.method} — ${method.reason}\n  Initialization: ${method.init}\n  Generated Asset: PBR GLB model\n  Next Step: Import .glb → convert to 3DGS .ply via gsplat/SuperSplat\n  Validation: geometric faithfulness, visual quality`
+      : `Scene Brief (Simulation — enter API Key for real generation):\n  Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}\n  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}\n  Method: ${method.method} — ${method.reason}\n  Initialization: ${method.init}\n  Training: 300–500 iterations recommended\n  Next Step: Enter API Key above to generate real 3D models`;
+    document.getElementById('t2wRBrief').textContent = brief;
+  }
+
+  function show3DResult(result) {
+    const res3D = document.getElementById('t2w3DResult');
+    res3D.classList.remove('hidden');
+    document.getElementById('t2w3DStatus').textContent = 'Done!';
+
+    if (result.thumbnailUrl) {
+      document.getElementById('t2w3DPreview').src = result.thumbnailUrl;
+    }
+    if (result.modelUrl) {
+      const viewer = document.getElementById('t2w3DViewer');
+      viewer.src = result.modelUrl;
+      const dl = document.getElementById('t2w3DDownload');
+      dl.href = result.modelUrl;
+      dl.style.display = 'inline';
+    }
+  }
+
+  async function callTripoAPI(apiKey, text) {
+    // Step 1: Create task
+    const createResp = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/3d-generation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey,
+        'X-DashScope-Async': 'enable'
+      },
+      body: JSON.stringify({
+        model: 'Tripo/Tripo-P1.0',
+        input: { prompt: text },
+        parameters: { texture_quality: 'standard' }
+      })
+    });
+    const createData = await createResp.json();
+    if (createData.code) throw new Error(createData.message || createData.code);
+    const taskId = createData.output.task_id;
+    if (!taskId) throw new Error('No task_id returned');
+
+    document.getElementById('t2w3DStatus').textContent = 'Generating via Tripo (1-2 min)...';
+
+    // Step 2: Poll
+    const pollStart = Date.now();
+    const pollMaxMs = 180000;
+    while (Date.now() - pollStart < pollMaxMs) {
+      await t2wDelay(5000);
+      const pollResp = await fetch('https://dashscope.aliyuncs.com/api/v1/tasks/' + taskId, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      const pollData = await pollResp.json();
+      const status = pollData.output && pollData.output.task_status;
+      if (status === 'SUCCEEDED') {
+        const r = pollData.output.results && pollData.output.results[0];
+        return {
+          modelUrl: r.pbr_model_url || r.base_model_url,
+          thumbnailUrl: r.rendered_image_url || ''
+        };
+      } else if (status === 'FAILED') {
+        throw new Error(pollData.output.message || 'Generation failed');
+      }
+      const elapsed = Math.round((Date.now() - pollStart) / 1000);
+      document.getElementById('t2w3DStatus').textContent = 'Tripo generating... (' + elapsed + 's)';
+    }
+    throw new Error('Generation timed out');
+  }
+
+  async function callMeshyAPI(apiKey, text) {
+    // Step 1: Create preview task
+    const previewResp = await fetch('https://api.meshy.ai/openapi/v2/text-to-3d', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify({
+        mode: 'preview',
+        prompt: text,
+        ai_model: 'meshy-6',
+        target_formats: ['glb']
+      })
+    });
+    const previewData = await previewResp.json();
+    if (previewData.code) throw new Error(previewData.message || 'Preview creation failed');
+    const previewTaskId = previewData.result;
+    if (!previewTaskId) throw new Error('No task ID returned');
+
+    document.getElementById('t2w3DStatus').textContent = 'Meshy preview generating...';
+
+    // Step 2: Poll preview
+    const pollStart = Date.now();
+    const pollMaxMs = 180000;
+    let previewResult = null;
+    while (Date.now() - pollStart < pollMaxMs) {
+      await t2wDelay(3000);
+      const pollResp = await fetch('https://api.meshy.ai/openapi/v2/text-to-3d/' + previewTaskId, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      const pollData = await pollResp.json();
+      if (pollData.status === 'SUCCEEDED') {
+        previewResult = pollData;
+        break;
+      } else if (pollData.status === 'FAILED') {
+        throw new Error(pollData.task_error?.message || 'Preview failed');
+      }
+      const elapsed = Math.round((Date.now() - pollStart) / 1000);
+      document.getElementById('t2w3DStatus').textContent = 'Meshy preview... (' + elapsed + 's, ' + (pollData.progress || 0) + '%)';
+    }
+    if (!previewResult) throw new Error('Preview timed out');
+
+    // Step 3: Create refine task (add texture)
+    document.getElementById('t2w3DStatus').textContent = 'Meshy texturing...';
+    const refineResp = await fetch('https://api.meshy.ai/openapi/v2/text-to-3d', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify({
+        mode: 'refine',
+        preview_task_id: previewTaskId,
+        enable_pbr: true,
+        ai_model: 'meshy-6',
+        target_formats: ['glb']
+      })
+    });
+    const refineData = await refineResp.json();
+    if (refineData.code) throw new Error(refineData.message || 'Refine creation failed');
+    const refineTaskId = refineData.result;
+
+    // Step 4: Poll refine
+    const refineStart = Date.now();
+    let refineResult = null;
+    while (Date.now() - refineStart < pollMaxMs) {
+      await t2wDelay(3000);
+      const pollResp = await fetch('https://api.meshy.ai/openapi/v2/text-to-3d/' + refineTaskId, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      const pollData = await pollResp.json();
+      if (pollData.status === 'SUCCEEDED') {
+        refineResult = pollData;
+        break;
+      } else if (pollData.status === 'FAILED') {
+        throw new Error(pollData.task_error?.message || 'Refine failed');
+      }
+      const elapsed = Math.round((Date.now() - refineStart) / 1000);
+      document.getElementById('t2w3DStatus').textContent = 'Meshy texturing... (' + elapsed + 's, ' + (pollData.progress || 0) + '%)';
+    }
+    if (!refineResult) throw new Error('Refine timed out');
+
+    return {
+      modelUrl: refineResult.model_urls?.glb || previewResult.model_urls?.glb || '',
+      thumbnailUrl: refineResult.thumbnail_url || previewResult.thumbnail_url || ''
+    };
+  }
+
   // Generate button
   document.getElementById('t2wGenBtn').addEventListener('click', t2wRun);
+
+  // Provider selector
+  document.querySelectorAll('.t2w-provider-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      t2wProvider = btn.dataset.provider;
+      document.querySelectorAll('.t2w-provider-btn').forEach(b => {
+        b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30');
+        b.classList.add('bg-white/5', 'text-gray-400', 'border-white/10');
+      });
+      btn.classList.add('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30');
+      btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
+      // Show/hide configs
+      document.getElementById('t2wConfigTripo').classList.toggle('hidden', t2wProvider !== 'tripo');
+      document.getElementById('t2wConfigMeshy').classList.toggle('hidden', t2wProvider !== 'meshy');
+      document.getElementById('t2wConfigHunyuan3d').classList.toggle('hidden', t2wProvider !== 'hunyuan3d');
+    });
+  });
 
   // Ctrl+Enter in textarea
   document.getElementById('t2wDemoInput').addEventListener('keydown', (e) => {
