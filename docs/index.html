@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Awesome Gaussian Skills</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script type="importmap">{"imports":{"@google/model-viewer":"https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"}}</script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
@@ -70,6 +72,13 @@ tailwind.config = {
   .modal-tab:hover { color: #d1d5db; }
   .abstract-panel { display: none; }
   .abstract-panel.active { display: block; }
+  .api-key-input { background: #0f172a; border: 1px solid rgba(255,255,255,0.1); border-radius: 0.5rem; padding: 0.35rem 0.75rem; color: #e2e8f0; font-size: 0.75rem; width: 200px; outline: none; transition: border-color 0.15s; }
+  .api-key-input:focus { border-color: #3b82f6; }
+  .api-key-input::placeholder { color: #475569; }
+  .gen-result-img { border-radius: 0.75rem; max-width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; transition: transform 0.2s; }
+  .gen-result-img:hover { transform: scale(1.03); }
+  .spinner { border: 2px solid rgba(59,130,246,0.2); border-top: 2px solid #3b82f6; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
   .skill-card { transition: all 0.2s; }
   .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
@@ -144,10 +153,20 @@ tailwind.config = {
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Text2Word</h2>
       <p class="mt-3 text-gray-400 text-base sm:text-lg">Describe a scene in words — get a 3D Gaussian world in return</p>
       <p class="mt-2 text-gray-500 text-xs sm:text-sm">The creative platform making 3DGS &amp; CAD accessible to everyone</p>
+      <p class="mt-1 text-[10px] text-gray-600">Powered by Aliyun Bailian Tripo API — real text-to-3D generation</p>
     </div>
 
     <!-- Prompt Input -->
     <div class="gradient-border p-6 sm:p-8 mb-6">
+      <!-- API Key Config -->
+      <div class="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
+        <div class="flex items-center gap-1.5 shrink-0">
+          <div class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></div>
+          <span class="text-[11px] font-medium text-gray-400">Aliyun API Key</span>
+        </div>
+        <input id="t2wApiKey" type="password" class="api-key-input flex-1" placeholder="sk-xxx  (Aliyun Bailian DashScope API Key)" value="">
+        <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →</a>
+      </div>
       <div class="flex flex-col sm:flex-row gap-4 items-start">
         <div class="flex-1 w-full">
           <div class="flex items-center gap-2 mb-3">
@@ -216,6 +235,34 @@ tailwind.config = {
         </details>
       </div>
     </div>
+
+      <!-- 3D Generation Result (Real API Output) -->
+      <div id="t2w3DResult" class="hidden mt-5 pt-5 border-t border-white/5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+          <span class="text-xs font-semibold text-white">Generated 3D Model</span>
+          <span id="t2w3DStatus" class="text-[10px] text-gray-500"></span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Preview Image -->
+          <div class="rounded-xl overflow-hidden border border-white/5 bg-bg-card">
+            <img id="t2w3DPreview" class="gen-result-img w-full" src="" alt="3D preview">
+            <div class="px-3 py-2 border-t border-white/5">
+              <span class="text-[10px] text-gray-500">Preview Render</span>
+            </div>
+          </div>
+          <!-- 3D Viewer -->
+          <div class="rounded-xl overflow-hidden border border-white/5 bg-bg-card" style="min-height:300px;">
+            <model-viewer id="t2w3DViewer" auto-rotate camera-controls shadow-intensity="1" exposure="1.1"
+              style="width:100%;height:300px;background:#0a0a0f;" alt="Generated 3D model">
+            </model-viewer>
+            <div class="px-3 py-2 border-t border-white/5 flex items-center justify-between">
+              <span class="text-[10px] text-gray-500">Interactive 3D — drag to rotate, scroll to zoom</span>
+              <a id="t2w3DDownload" href="#" download="model.glb" class="text-[10px] text-emerald-400 hover:underline">Download GLB →</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!-- PlayCanvas 3DGS Interactive Viewer -->
     <div id="t2wPlayCanvas" class="mt-6">
@@ -2175,6 +2222,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const text = input ? input.value.trim() : '';
     if (!text) return;
 
+    const apiKey = document.getElementById('t2wApiKey').value.trim();
+    const hasApiKey = apiKey.length > 0;
+
     const btn = document.getElementById('t2wGenBtn');
     const icon = document.getElementById('t2wGenIcon');
     const txt = document.getElementById('t2wGenText');
@@ -2197,67 +2247,190 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    // Hide previous result
+    // Hide previous results
     document.getElementById('t2wResult').classList.add('hidden');
+    document.getElementById('t2w3DResult').classList.add('hidden');
 
-    // Animate pipeline steps
     const parsed = t2wParse(text);
     const method = t2wMethodMap[parsed.type] || t2wMethodMap.general;
 
-    for (let i = 0; i < t2wSteps.length; i++) {
+    // Animate Step 0: Parse
+    async function markStep(i, delayMs) {
       const stepEl = document.getElementById('t2wStep' + i);
+      if (!stepEl) return;
       const inner = stepEl.querySelector('div');
       inner.classList.remove('border-white/10', 'text-gray-500');
       inner.classList.add('border-accent-blue', 'text-accent-blue', 'bg-accent-blue/10');
-      const delayMs = i === 3 ? 900 : i === 0 ? 400 : 350;
       await t2wDelay(delayMs);
-      // Mark done
       inner.classList.remove('border-accent-blue', 'text-accent-blue', 'bg-accent-blue/10');
       inner.classList.add('border-accent-green', 'text-accent-green', 'bg-accent-green/10');
       stepEl.querySelector('.step-icon').textContent = '✓';
     }
 
-    // Show results
-    const r = document.getElementById('t2wResult');
-    r.classList.remove('hidden');
-    document.getElementById('t2wRMethod').textContent = method.method;
-    document.getElementById('t2wRMethod').style.color = method.color;
-    document.getElementById('t2wRReason').textContent = method.reason;
-    document.getElementById('t2wRType').textContent = parsed.type;
-    document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
-    document.getElementById('t2wRExport').textContent = '.ply (3DGS)';
-    document.getElementById('t2wRExportNote').textContent = 'Primary Gaussian representation';
-    const isCAD = parsed.type === 'cad';
-    const isAvatar = parsed.type === 'avatar';
-    document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
-    document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
+    await markStep(0, 400);
+    await markStep(1, 350);
 
-    // Scene brief
-    const mocapLine = isAvatar ? `\n  Motion Input: FreeMoCap (webcam markerless capture) → SMPL/FLAME parameters\n  MoCap Pipeline: Multi-cam ChArUco calibration → MediaPipe 2D keypoints → 3D triangulation → .fbx\n  Data Dual-Use: Same camera rig produces both motion data + 3DGS training images` : '';
-    const brief = `Scene Brief:
+    if (hasApiKey) {
+      // === Real API Call ===
+      await markStep(2, 200);
+      try {
+        // Step 1: Create task
+        const createResp = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/3d-generation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey,
+            'X-DashScope-Async': 'enable'
+          },
+          body: JSON.stringify({
+            model: 'Tripo/Tripo-P1.0',
+            input: { prompt: text },
+            parameters: { texture_quality: 'standard' }
+          })
+        });
+        const createData = await createResp.json();
+        if (createData.code) {
+          throw new Error(createData.message || createData.code);
+        }
+        const taskId = createData.output.task_id;
+        if (!taskId) throw new Error('No task_id returned');
+
+        await markStep(3, 200);
+        document.getElementById('t2w3DStatus').textContent = 'Generating (may take 1-2 min)...';
+
+        // Step 2: Poll for result
+        const pollStart = Date.now();
+        const pollMaxMs = 180000; // 3 min timeout
+        let result = null;
+        while (Date.now() - pollStart < pollMaxMs) {
+          await t2wDelay(5000); // poll every 5s
+          const pollResp = await fetch('https://dashscope.aliyuncs.com/api/v1/tasks/' + taskId, {
+            headers: { 'Authorization': 'Bearer ' + apiKey }
+          });
+          const pollData = await pollResp.json();
+          const status = pollData.output && pollData.output.task_status;
+          if (status === 'SUCCEEDED') {
+            result = pollData.output.results && pollData.output.results[0];
+            break;
+          } else if (status === 'FAILED') {
+            throw new Error(pollData.output.message || 'Generation failed');
+          }
+          // Update status
+          const elapsed = Math.round((Date.now() - pollStart) / 1000);
+          document.getElementById('t2w3DStatus').textContent = 'Generating... (' + elapsed + 's)';
+          // Advance Train step animation
+          const trainInner = document.getElementById('t2wStep3');
+          if (trainInner && !trainInner.querySelector('.step-icon').textContent.includes('✓')) {
+            // Still training — show spinner in step
+          }
+        }
+
+        if (!result) throw new Error('Generation timed out');
+
+        // Step 3: Show result
+        await markStep(3, 100);
+        await markStep(4, 200);
+        await markStep(5, 200);
+
+        // Show method recommendation (local)
+        document.getElementById('t2wResult').classList.remove('hidden');
+        document.getElementById('t2wRMethod').textContent = method.method;
+        document.getElementById('t2wRMethod').style.color = method.color;
+        document.getElementById('t2wRReason').textContent = method.reason;
+        document.getElementById('t2wRType').textContent = parsed.type;
+        document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
+        document.getElementById('t2wRExport').textContent = '.glb (PBR Model)';
+        document.getElementById('t2wRExportNote').textContent = 'Tripo-generated with textures';
+        const isCAD = parsed.type === 'cad';
+        const isAvatar = parsed.type === 'avatar';
+        document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
+        document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
+
+        // Show 3D result
+        const res3D = document.getElementById('t2w3DResult');
+        res3D.classList.remove('hidden');
+        document.getElementById('t2w3DStatus').textContent = 'Done! (' + Math.round((Date.now() - pollStart) / 1000) + 's)';
+
+        if (result.rendered_image_url) {
+          document.getElementById('t2w3DPreview').src = result.rendered_image_url;
+        }
+        const modelUrl = result.pbr_model_url || result.base_model_url;
+        if (modelUrl) {
+          const viewer = document.getElementById('t2w3DViewer');
+          viewer.src = modelUrl;
+          const dl = document.getElementById('t2w3DDownload');
+          dl.href = modelUrl;
+          dl.style.display = 'inline';
+        }
+
+        // Scene brief
+        const brief = `Scene Brief:
+  Input: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}
+  Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}
+  API: Aliyun Bailian Tripo-P1.0 (text-to-3D)
+  Recommended 3DGS Method: ${method.method} — ${method.reason}
+  Initialization: ${method.init}
+  Generated Asset: PBR GLB model with textures
+  Next Step: Import .glb → convert to 3DGS .ply via gsplat/SuperSplat
+  Validation: geometric faithfulness, visual quality, convergence`;
+        document.getElementById('t2wRBrief').textContent = brief;
+
+      } catch (err) {
+        // Show error in result area
+        document.getElementById('t2wResult').classList.remove('hidden');
+        document.getElementById('t2wRMethod').textContent = 'Error';
+        document.getElementById('t2wRMethod').style.color = '#ef4444';
+        document.getElementById('t2wRReason').textContent = err.message;
+        document.getElementById('t2wRBrief').textContent = 'API Error: ' + err.message + '\n\nPlease check:\n1. API Key is valid (Aliyun Bailian DashScope)\n2. Tripo service is enabled in Bailian Console\n3. Network access to dashscope.aliyuncs.com';
+        // Mark remaining steps as failed
+        for (let i = 2; i < t2wSteps.length; i++) {
+          const stepEl = document.getElementById('t2wStep' + i);
+          if (stepEl) {
+            const inner = stepEl.querySelector('div');
+            const iconEl = stepEl.querySelector('.step-icon');
+            if (iconEl && iconEl.textContent !== '✓') {
+              inner.classList.remove('border-white/10', 'text-gray-500');
+              inner.classList.add('border-red-500/30', 'text-red-400');
+              iconEl.textContent = '✗';
+            }
+          }
+        }
+      }
+    } else {
+      // === Fallback: Local simulation (no API key) ===
+      for (let i = 2; i < t2wSteps.length; i++) {
+        await markStep(i, i === 3 ? 900 : 350);
+      }
+
+      // Show method recommendation
+      document.getElementById('t2wResult').classList.remove('hidden');
+      document.getElementById('t2wRMethod').textContent = method.method;
+      document.getElementById('t2wRMethod').style.color = method.color;
+      document.getElementById('t2wRReason').textContent = method.reason;
+      document.getElementById('t2wRType').textContent = parsed.type;
+      document.getElementById('t2wRFeatures').textContent = parsed.features.length ? parsed.features.join(', ') : 'general';
+      document.getElementById('t2wRExport').textContent = '.ply (3DGS)';
+      document.getElementById('t2wRExportNote').textContent = 'Primary Gaussian representation';
+      const isCAD = parsed.type === 'cad';
+      const isAvatar = parsed.type === 'avatar';
+      document.getElementById('t2wRExport2').textContent = isCAD ? '.step + .stl' : isAvatar ? '.fbx + .ply' : '.obj + .stl';
+      document.getElementById('t2wRExport2Note').textContent = isCAD ? 'CAD & 3D print export' : isAvatar ? 'Skeletal animation + 3DGS' : 'Mesh & 3D print export';
+
+      const brief = `Scene Brief (Simulation — enter API Key for real generation):
   Intent: ${text.slice(0, 100)}${text.length > 100 ? '...' : ''}
   Classification: ${parsed.type}${parsed.features.length ? ' | ' + parsed.features.join(', ') : ''}
   Method: ${method.method} — ${method.reason}
   Initialization: ${method.init}
   Training: 300–500 iterations recommended
   Export primary: .ply (3DGS)
-  Export secondary: ${isCAD ? '.step (CAD), .stl (3D print)' : isAvatar ? '.fbx (animation), .ply (3DGS avatar)' : '.obj (mesh), .stl (3D print)'}${mocapLine}
-  Validation: geometric faithfulness, visual quality, convergence`;
-    document.getElementById('t2wRBrief').textContent = brief;
+  Export secondary: ${isCAD ? '.step (CAD), .stl (3D print)' : isAvatar ? '.fbx (animation), .ply (3DGS avatar)' : '.obj (mesh), .stl (3D print)'}
+  Next Step: Enter Aliyun Bailian API Key above to generate real 3D models`;
+      document.getElementById('t2wRBrief').textContent = brief;
 
-    // Load PlayCanvas 3DGS scene based on scene type
-    var splatMap = {
-      outdoor: 'https://developer.playcanvas.com/assets/toy-cat.sog',
-      indoor:  'https://developer.playcanvas.com/assets/toy-cat.sog',
-      product: 'https://developer.playcanvas.com/assets/toy-cat.sog',
-      avatar:  'https://developer.playcanvas.com/assets/toy-cat.sog',
-      cad:     'https://developer.playcanvas.com/assets/toy-cat.sog',
-      dynamic: 'https://developer.playcanvas.com/assets/toy-cat.sog',
-      general: 'https://developer.playcanvas.com/assets/toy-cat.sog'
-    };
-    var splatUrl = splatMap[parsed.type] || splatMap.general;
-    if (typeof loadGSplat === 'function') {
-      loadGSplat(splatUrl, method.method);
+      // Load PlayCanvas preset
+      if (typeof loadGSplat === 'function') {
+        loadGSplat('https://developer.playcanvas.com/assets/toy-cat.sog', method.method);
+      }
     }
 
     // Reset button
