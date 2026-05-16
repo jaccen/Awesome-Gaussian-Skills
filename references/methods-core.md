@@ -1,4 +1,4 @@
-# Core 3DGS Methods
+﻿# Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
 > Companion file: [3dgs-methods-overview.md](3dgs-methods-overview.md) (index) | [methods-semantic-editing.md](methods-semantic-editing.md) | [methods-systems-apps.md](methods-systems-apps.md)

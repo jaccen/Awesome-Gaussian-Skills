@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # Awesome Gaussian Skills
 
@@ -66,8 +66,6 @@ If you like it, please ⭐️ star this repo!
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
----
-
 ## 快速开始
 
 ### 方式一：OpenClaw
@@ -100,8 +98,6 @@ cp -r skills/3dgs-code-reviewer/SKILL.md .claude/
 ```bash
 curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/scripts/setup.sh | bash
 ```
-
----
 
 ## 技能概览
 
@@ -295,8 +291,6 @@ Agent: [生成软件说明书（10-15页含截图占位）
 - 源代码文档格式化（每页50+行，敏感信息清除）
 - 内部自检：一致性、充分性、合规性
 
----
-
 ## 项目结构
 
 ```
@@ -350,8 +344,6 @@ Awesome-Gaussian-Skills/
 - **Cursor**（`.cursor/rules/`）
 - **Windsurf** 及其他 AI Agent 框架
 
----
-
 ## 可视化示例
 
 由 `3dgs-visualizer` 生成的高清样例 —— 完整分辨率文件见 [`Test/`](Test/)。
@@ -365,8 +357,6 @@ Awesome-Gaussian-Skills/
 | <img src="Test/quality_vs_speed_scatter.png" width="320"> | <img src="Test/metrics_heatmap.png" width="380"> |
 
 交互式版本（悬停查看详情）：[`radar_comparison.html`](Test/radar_comparison.html) | [`metrics_dashboard.html`](Test/metrics_dashboard.html)
-
----
 
 ## 路线图
 
@@ -387,8 +377,6 @@ Awesome-Gaussian-Skills/
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）
 - [ ] v2.0 — Agent 间协作（多 Agent 论文讨论）
 
----
-
 ## 参与贡献
 
 欢迎贡献！请阅读 [贡献指南](CONTRIBUTING.md) 了解详情。
@@ -398,8 +386,6 @@ Awesome-Gaussian-Skills/
 - 扩展方法知识库
 - 报告问题或提出改进建议
 - 分享你的使用案例和成功故事
-
----
 
 ## 引用
 
@@ -414,8 +400,6 @@ Awesome-Gaussian-Skills/
 }
 ```
 
----
-
 ## 致谢
 
 - [3D Gaussian Splatting](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/) — 奠基性工作
@@ -425,13 +409,9 @@ Awesome-Gaussian-Skills/
 - [longxiang-ai/awesome-gaussians](https://github.com/longxiang-ai/awesome-gaussians) — 每日自动更新的 3DGS 论文追踪器（276 stars）
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
 
----
-
 ## 许可证
 
 本项目基于 MIT 许可证开源 —— 详见 [LICENSE](LICENSE) 文件。
-
----
 
 <div align="center">
 

@@ -1,4 +1,4 @@
-# Systems, Applications & Cross-Domain Methods
+﻿# Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
 > Companion file: [3dgs-methods-overview.md](3dgs-methods-overview.md) (index) | [methods-core.md](methods-core.md) | [methods-semantic-editing.md](methods-semantic-editing.md)

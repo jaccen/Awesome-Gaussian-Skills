@@ -1,4 +1,4 @@
-# 3DGS Methods Overview
+﻿# 3DGS Methods Overview
 
 > This file is the master index for all 261+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
@@ -325,8 +325,6 @@
 - **E2EGS** [arXiv:2603.14684](https://arxiv.org/abs/2603.14684) — Event-to-edge pose-free 3D reconstruction
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#robustness--restoration)
-
----
 
 ## Performance Comparison Reference
 
