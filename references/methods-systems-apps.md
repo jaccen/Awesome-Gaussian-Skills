@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '576f5a78-dea6-411b-873c-793d750338f7'
-  PropagateID: '576f5a78-dea6-411b-873c-793d750338f7'
-  ReservedCode1: 'c83f2f24-8e64-45a4-828f-3d768fa3ecbe'
-  ReservedCode2: 'c83f2f24-8e64-45a4-828f-3d768fa3ecbe'
----
-
 # Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
@@ -674,5 +663,3 @@ AIGC:
 - **Key Innovation**: Single forward pass predicts all object instances with 6D poses + detailed 3D reconstructions; per-pixel attributes: CLIP category embeddings + metric depth + NOCS + per-object Gaussians; Transformer architecture predicting Gaussian reconstructions in canonical space aligned with pre-rendered canonical GT; inference scales independently of number of objects, orders-of-magnitude faster than multi-stage pipelines
 - **Key Results**: SOTA on monocular depth estimation, open-vocabulary segmentation, and RGB-only category-level 6D pose estimation on indoor benchmarks
 - **Links**: [arXiv:2605.13018](https://arxiv.org/abs/2605.13018)
-
-> AI生成

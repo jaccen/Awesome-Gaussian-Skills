@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f9a90592-1db2-488f-8dac-75c57914ad11'
-  PropagateID: 'f9a90592-1db2-488f-8dac-75c57914ad11'
-  ReservedCode1: '24bfbb5a-0d7d-40d9-ada9-9462b1da3d16'
-  ReservedCode2: '24bfbb5a-0d7d-40d9-ada9-9462b1da3d16'
----
-
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -736,5 +725,3 @@ AIGC:
 - **Performance**: With FastGS, matches full-schedule PSNR on MipNeRF360 while 16.4% faster training (= 12.6x over vanilla 3DGS)
 - **Venue**: Preprint (May 2026)
 - **Links**: [arXiv:2605.06876](https://arxiv.org/abs/2605.06876)
-
-> AI生成
