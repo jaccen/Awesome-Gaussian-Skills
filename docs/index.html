@@ -64,6 +64,12 @@ tailwind.config = {
   .modal-box { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; max-width: 520px; width: 90vw; max-height: 85vh; overflow-y: auto; position: relative; }
   .modal-close { position: absolute; top: 1rem; right: 1rem; color: #9ca3af; background: none; border: none; cursor: pointer; font-size: 1.25rem; line-height: 1; transition: color 0.15s; }
   .modal-close:hover { color: #fff; }
+  .modal-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 0.75rem; }
+  .modal-tab { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 500; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
+  .modal-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+  .modal-tab:hover { color: #d1d5db; }
+  .abstract-panel { display: none; }
+  .abstract-panel.active { display: block; }
   .skill-card { transition: all 0.2s; }
   .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
   .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
@@ -942,6 +948,885 @@ const METHOD_DETAILS = {
 };
 
 
+const ABSTRACTS = {
+"3DGS": {
+    abstractEn: "3D Gaussian Splatting introduces anisotropic 3D Gaussians with tile-based differentiable rasterization, replacing NeRF's implicit MLP with explicit Gaussian primitives combined with differentiable rasterization for real-time radiance field rendering at 100+ FPS on consumer GPUs.",
+    abstractCn: "3D高斯溅射提出各向异性3D高斯基元与基于瓦片的可微光栅化，用显式高斯基元替代NeRF的隐式MLP，结合可微光栅化实现消费级GPU上100+ FPS实时辐射场渲染。"
+  },
+  "Mip-Splatting": {
+    abstractEn: "Mip-Splatting integrates a 3D smoothing filter on Gaussians and a 2D Mip-level filter during rendering to eliminate aliasing artifacts in 3D Gaussian Splatting, resolving blooming and erosion when zooming while achieving significant SSIM improvement over vanilla 3DGS on Mip-NeRF 360.",
+    abstractCn: "Mip-Splatting在对高斯基元施加3D平滑滤波器的同时于渲染阶段引入2D Mip层级滤波器，消除3D高斯溅射中的混叠伪影，解决缩放时的膨胀与侵蚀问题，在Mip-NeRF 360上较原始3DGS获得显著SSIM提升。"
+  },
+  "Softmax-GS": {
+    abstractEn: "Softmax-GS replaces standard alpha-compositing with learnable softmax-based competition between overlapping Gaussians, unifying blend-and-bound regimes through learnable parameters that preserve order invariance and transmittance consistency while addressing both view-inconsistency and diffuse-boundary problems.",
+    abstractCn: "Softmax-GS用可学习的基于softmax的重叠高斯间竞争替代标准alpha合成，通过可学习参数统一混合与边界模式，保持顺序不变性和透射一致性，同时解决视角不一致与模糊边界两个问题。"
+  },
+  "SNS": {
+    abstractEn: "SNS adopts the Azzalini Skew-Normal distribution as the fundamental primitive replacing symmetric Gaussian kernels, where a learnable bounded skewness parameter enables continuous interpolation between symmetric Gaussians and Half-Gaussian-like shapes while preserving analytical tractability under affine transformations.",
+    abstractCn: "SNS以Azzalini偏正态分布作为基础基元替代对称高斯核，可学习有界偏度参数实现对称高斯与半高斯形状间的连续插值，同时在仿射变换下保持解析可处理性。"
+  },
+  "3DGEER": {
+    abstractEn: "3DGEER challenges the fundamental splatting approximation in 3DGS by computing exact ray-Gaussian interactions, enabling high-fidelity rendering for fisheye, omnidirectional, and other non-pinhole camera models critical for autonomous driving and robotics applications.",
+    abstractCn: "3DGEER通过计算精确的光线-高斯交互挑战3DGS中基本溅射近似，为鱼眼、全向及其他非针孔相机模型实现高保真渲染，对自动驾驶和机器人应用至关重要。"
+  },
+  "2DGS": {
+    abstractEn: "2D Gaussian Splatting replaces 3D Gaussians with oriented 2D disks constrained to surfaces, achieving the best geometry quality among pure Gaussian methods and enabling direct mesh extraction via Poisson reconstruction at the cost of higher VRAM consumption during training.",
+    abstractCn: "2D高斯溅射以受表面约束的定向2D圆盘替代3D高斯，在纯高斯方法中取得最佳几何质量，支持通过Poisson重建直接提取网格，代价是训练阶段显存消耗更高。"
+  },
+  "SuGaR": {
+    abstractEn: "SuGaR regularizes Gaussians to align with a learned mesh surface and performs joint optimization of Gaussians and mesh for high-quality surface extraction, following a pipeline of training 3DGS, surface alignment regularization, multi-view TSDF fusion, and Marching Cubes mesh extraction.",
+    abstractCn: "SuGaR通过正则化使高斯基元对齐已学习网格表面，联合优化高斯与网格以提取高质量曲面，遵循训练3DGS→表面对齐正则化→多视角TSDF融合→Marching Cubes网格提取的流水线。"
+  },
+  "PGSR": {
+    abstractEn: "PGSR applies a planar regularizer constraining Gaussians to align with local tangent planes combined with unbiased depth rendering, producing cleaner and flatter surfaces than vanilla 3DGS while achieving state-of-the-art geometry metrics on DTU and Tanks and Temples benchmarks.",
+    abstractCn: "PGSR应用平面正则化约束高斯基元对齐局部切平面并结合无偏深度渲染，生成比原始3DGS更干净、更平坦的表面，在DTU与Tanks and Temples基准上达到SOTA几何指标。"
+  },
+  "PAGaS": {
+    abstractEn: "PAGaS adapts Gaussian Splatting from novel view synthesis to multi-view stereo depth tasks using 1-degree-of-freedom Gaussians constrained by back-projected pixel volumes, where depth serves as the sole degree of freedom for highly detailed depth refinement on top of MVS baselines.",
+    abstractCn: "PAGaS将高斯溅射从新视角合成适配至多视角立体深度任务，采用受反向投影像素体积约束的1自由度高斯基元，以深度作为唯一自由度，在MVS基线之上实现高度精细的深度优化。"
+  },
+  "2D-SuGaR": {
+    abstractEn: "2D-SuGaR enhances 2DGS with monocular depth and normal priors through a depth-guided initialization strategy and clustering-based pruning of degenerate Gaussians, achieving state-of-the-art mesh reconstruction on DTU while preserving high-quality novel view synthesis.",
+    abstractCn: "2D-SuGaR通过深度引导初始化策略和基于聚类的退化高斯剪枝，利用单目深度与法线先验增强2DGS，在DTU上达到SOTA网格重建质量，同时保持高质量新视角合成。"
+  },
+  "LeanGaussian": {
+    abstractEn: "LeanGaussian directly models 3D Gaussians from a single RGB image for novel view synthesis, breaking pixel-to-point-cloud correspondence constraints to achieve extreme compression and minimal Gaussian representation for efficient large-scale rendering.",
+    abstractCn: "LeanGaussian直接从单张RGB图像建模3D高斯进行新视角合成，打破像素与点云的对应约束，实现极致压缩的最小高斯表示以支持高效大规模渲染。"
+  },
+  "NegGS": {
+    abstractEn: "NegGS introduces a Diff-Gaussian distribution that allows negative color values while keeping opacity non-negative, enabling representation of ring, crescent, and non-convex structures that symmetric positive Gaussians cannot model, with approximately 20% negative Gaussians being optimal.",
+    abstractCn: "NegGS引入差分高斯分布，允许负颜色值而保持透明度非负，使对称正高斯无法建模的环形、新月形及非凸结构得以表示，约20%负高斯为最优比例。"
+  },
+  "SAND": {
+    abstractEn: "SAND assigns per-voxel network depth through voxelized depth mapping in a branched MLP architecture, evaluating only necessary layers per spatial region to enable faster sampling of neural implicit surfaces while maintaining surface quality.",
+    abstractCn: "SAND通过体素化深度映射在分支MLP架构中为每个体素分配网络深度，仅在每个空间区域评估必要层，在保持表面质量的同时实现神经隐式表面的更快采样。"
+  },
+  "3DSS": {
+    abstractEn: "3DSS presents the first differentiable surface splatting renderer for physically-based inverse rendering, using a coverage-based compositing model that derives per-layer opacity from accumulated EWA reconstruction weight to jointly recover shape, spatially-varying BRDF, and HDR illumination via microfacet shading.",
+    abstractCn: "3DSS提出首个基于物理逆向渲染的可微表面溅射渲染器，使用基于覆盖率的合成模型从累积EWA重建权重推导逐层透明度，通过微面元着色联合恢复形状、空间变化BRDF与HDR光照。"
+  },
+  "SVGS": {
+    abstractEn: "SVGS introduces spatially varying colors and opacity within each Gaussian primitive through position-dependent color and opacity functions, enabling a single Gaussian to express complex textures such as checkerboards and letter patterns via three designs with movable kernels offering the best quality-to-cost ratio.",
+    abstractCn: "SVGS通过位置依赖的颜色与透明度函数在每个高斯基元内引入空间变化颜色与透明度，使单个高斯能表达棋盘格与文字图案等复杂纹理，三种设计中可移动核提供最佳性价比。"
+  },
+  "HiFi-SurfSplat": {
+    abstractEn: "HiFi-SurfSplat replaces exponential IMLS kernels with a compact polynomial approximation for high-fidelity surface splatting reconstruction, combined with Laplacian stochastic regularization that preserves high-frequency geometry better than vanilla surface splatting methods.",
+    abstractCn: "HiFi-SurfSplat以紧致多项式近似替代指数IMLS核进行高保真表面溅射重建，结合拉普拉斯随机正则化更好地保留高频几何细节，优于原始表面溅射方法。"
+  },
+  "AmbiSuR": {
+    abstractEn: "AmbiSuR discovers and resolves two built-in primitive-wise photometric ambiguities in the Gaussian-based surface representation through a photometric disambiguation module and ambiguity self-indication module, correcting underconstrained reconstructions that conventional losses cannot resolve.",
+    abstractCn: "AmbiSuR发现并解决基于高斯的表面表示中固有的两级基元级光度歧义，通过光度消歧模块与歧义自指示模块修正常规损失函数无法纠正的欠约束重建。"
+  },
+  "DySurface": {
+    abstractEn: "DySurface bridges forward-deformation Gaussians with backward-deformation SDF through a VoxGS-DSDF dual branch, where deformed Gaussians construct a dynamic sparse voxel grid to regularize the implicit SDF, combining explicit Gaussian flexibility with implicit SDF watertight boundary guarantees for temporally consistent 4D surface reconstruction.",
+    abstractCn: "DySurface通过VoxGS-DSDF双分支桥接前向变形高斯与后向变形SDF，变形高斯构建动态稀疏体素网格正则化隐式SDF，结合显式高斯灵活性与隐式SDF水密边界保证，实现时间一致的4D表面重建。"
+  },
+  "TransmissiveGS": {
+    abstractEn: "TransmissiveGS employs a dual-Gaussian representation (surface plus reflection) with deferred shading for transmissive and refractive scenes, exploiting multi-view inconsistency of reflections as cues for disentangled geometry and appearance while handling glass, windows, and transparent objects through a reflection light field.",
+    abstractCn: "TransmissiveGS采用双高斯表示（表面+反射）结合延迟着色处理透射与折射场景，利用反射的多视角不一致性作为几何与外观解耦的线索，通过反射光场处理玻璃、窗户及透明物体。"
+  },
+  "SparseOIT": {
+    abstractEn: "SparseOIT enables order-independent transparency rendering for 3DGS via an active set method that exploits sparse variable dependencies, iteratively refining opacity assignments without sorting all Gaussians to achieve physically correct semi-transparent rendering.",
+    abstractCn: "SparseOIT通过活跃集方法实现3DGS的顺序无关透明渲染，利用稀疏变量依赖迭代优化透明度分配而无需对所有高斯排序，实现物理正确的半透明渲染。"
+  },
+  "MaGS": {
+    abstractEn: "MaGS adsorbs Gaussians onto mesh vertices where the mesh provides topology and deformation handles, establishing a hybrid mesh-Gaussian representation where deforming the mesh causes Gaussians to follow automatically, suited for animated and deformable objects with physical simulation.",
+    abstractCn: "MaGS将高斯吸附到网格顶点上，网格提供拓扑与变形控制柄，建立混合网格-高斯表示，变形网格时高斯自动跟随，适用于动画与可变形物体的物理仿真。"
+  },
+  "UniMGS": {
+    abstractEn: "UniMGS unifies mesh and 3D Gaussian Splatting with single-pass rasterization for both representations simultaneously, eliminating redundant computation in separate mesh plus Gaussian pipelines and enabling real-time applications requiring both mesh geometry and Gaussian appearance.",
+    abstractCn: "UniMGS通过单遍光栅化统一网格与3D高斯溅射的渲染，消除分离式网格+高斯流水线中的冗余计算，支持同时需要网格几何与高斯外观的实时应用。"
+  },
+  "Vol3DGS": {
+    abstractEn: "Vol3DGS achieves physically accurate volume-consistent rendering in 3D Gaussian rasterization by resolving the fundamental inconsistency between the splatting approximation and volume rendering formulations.",
+    abstractCn: "Vol3DGS通过解决溅射近似与体渲染公式之间的基本不一致性，在3D高斯光栅化中实现物理正确的体积一致性渲染。"
+  },
+  "BrepGaussian": {
+    abstractEn: "BrepGaussian combines 3DGS with B-rep CAD reconstruction in a unified framework where Gaussians provide dense geometric priors for extracting trimmed NURBS surfaces, edges, and vertices, outputting parametric CAD models compatible with the STEP format.",
+    abstractCn: "BrepGaussian在统一框架中结合3DGS与B-rep CAD重建，高斯提供密集几何先验用于提取裁剪NURBS曲面、边和顶点，输出兼容STEP格式的参数化CAD模型。"
+  },
+  "CADFit": {
+    abstractEn: "CADFit performs IoU-driven hybrid optimization combining gradient-based and discrete search over structured CAD programs including extrusions, revolutions, fillets, and chamfers, with a multimodal image-to-CAD pipeline for precise parametric CAD output from mesh input.",
+    abstractCn: "CADFit执行IoU驱动的混合优化，结合基于梯度与离散搜索在包含拉伸、旋转、倒角和圆角的结构化CAD程序上优化，通过多模态图像到CAD流水线从网格输入生成精确参数化CAD输出。"
+  },
+  "DreamGaussian": {
+    abstractEn: "DreamGaussian replaces the NeRF prior in SDS-based text-to-3D generation with 3D Gaussian Splatting for orders-of-magnitude faster content creation, generating high-quality 3D assets in seconds through texture mesh extraction combined with Gaussian refinement.",
+    abstractCn: "DreamGaussian以3D高斯溅射替代基于SDS的文本到3D生成中的NeRF先验，实现数量级的加速，通过纹理网格提取结合高斯优化在数秒内生成高质量3D资产。"
+  },
+  "AniGen": {
+    abstractEn: "AniGen jointly models geometry, skeleton, and skinning in a shared latent space through unified S-squared Fields and two-stage flow matching, producing fully rigged animatable characters from a single image instead of serial generate-then-rig pipelines.",
+    abstractCn: "AniGen通过统一S²场与两阶段流匹配在共享潜在空间中联合建模几何、骨架与蒙皮，从单张图像生成完整绑定的可动画角色，替代串行的先生成后绑定流水线。"
+  },
+  "SIC3D": {
+    abstractEn: "SIC3D introduces style image conditioning for text-to-3D Gaussian Splatting generation, enabling controllable style transfer in 3D content creation through reference style images that guide the generation process.",
+    abstractCn: "SIC3D为文本到3D高斯溅射生成引入风格图像条件，通过参考风格图像引导生成过程，实现3D内容创作中可控的风格迁移。"
+  },
+  "SceneGen-LLMRL": {
+    abstractEn: "SceneGen-LLMRL closes the loop between LLM-based scene understanding and generation with RL-guided interactive exploration, generating 3D scenes from language descriptions while enabling real-time interactive manipulation that bridges scene generation with immersive user experience.",
+    abstractCn: "SceneGen-LLMRL闭合基于LLM的场景理解/生成与RL引导的交互探索之间的循环，从语言描述生成3D场景并支持实时交互操控，桥接场景生成与沉浸式用户体验。"
+  },
+  "GlobalSplat": {
+    abstractEn: "GlobalSplat learns a compact global latent scene representation before decoding explicit 3D geometry through an align-first-decode-later strategy, resolving cross-view correspondences in latent space and decoding to approximately 16K Gaussians with a 4MB footprint in under 78ms.",
+    abstractCn: "GlobalSplat通过先对齐后解码策略先学习紧凑全局潜在场景表示再解码显式3D几何，在潜在空间解决跨视角对应关系，78ms内解码约16K高斯基元，占用4MB存储。"
+  },
+  "TRiGS": {
+    abstractEn: "TRiGS applies SE(3) transformations with hierarchical Bezier residuals and learnable local anchors for unified continuous geometric transformations in 4DGS, preserving temporal identity of rigid objects and eliminating memory growth to scale to 600-1200 frame sequences.",
+    abstractCn: "TRiGS将SE(3)变换与层次Bezier残差及可学习局部锚点应用于4DGS的统一连续几何变换，保持刚体对象的时间恒等性并消除内存增长，可扩展至600-1200帧序列。"
+  },
+  "Reliev3R": {
+    abstractEn: "Reliev3R reduces the dependency of feed-forward 3D Gaussian Splatting reconstruction on dense multi-view geometric annotations, enabling effective training with sparser supervision signals.",
+    abstractCn: "Reliev3R降低前馈3D高斯溅射重建对密集多视角几何标注的依赖，使更稀疏的监督信号下也能有效训练。"
+  },
+  "ARGS": {
+    abstractEn: "ARGS proposes auto-regressive multi-scale 3D generation with a hierarchical tree structure that achieves O(log n) step generation, progressively predicting Gaussian attributes at increasing scales for efficient 3D content synthesis.",
+    abstractCn: "ARGS提出具有层次树结构的自回归多尺度3D生成，实现O(log n)步生成，在递增尺度上渐进预测高斯属性以实现高效3D内容合成。"
+  },
+  "WildSplatter": {
+    abstractEn: "WildSplatter performs feed-forward 3D Gaussian Splatting from unconstrained images with unknown camera poses and varying lighting by jointly learning 3D Gaussians and appearance embeddings conditioned on input images, achieving sub-second reconstruction from sparse views with appearance control.",
+    abstractCn: "WildSplatter通过联合学习3D高斯与以输入图像为条件的外观嵌入，从未标定位姿和变化光照的无约束图像进行前馈3D高斯溅射重建，实现稀疏视角下亚秒级重建并支持外观控制。"
+  },
+  "SparseSplat": {
+    abstractEn: "SparseSplat introduces pixel-unaligned prediction with entropy-based probabilistic sampling for adaptive Gaussian density in feed-forward 3DGS, assigning large sparse Gaussians to textureless areas and small dense ones to information-rich regions, achieving SOTA quality with only 22% of Gaussians.",
+    abstractCn: "SparseSplat为前馈3DGS引入像素不对齐预测与基于熵的概率采样实现自适应高斯密度，将大而稀疏的高斯分配给弱纹理区域、小而密集的分配给信息丰富区域，仅用22%的高斯基元达到SOTA质量。"
+  },
+  "Free Geometry": {
+    abstractEn: "Free Geometry enables feed-forward 3D reconstruction models such as Depth Anything 3 and VGGT to self-evolve at test time without 3D ground truth, masking subsets of frames for self-supervision and enforcing cross-view feature consistency via LoRA updates in under 2 minutes per dataset.",
+    abstractCn: "Free Geometry使Depth Anything 3和VGGT等前馈3D重建模型在测试时无需3D真值即可自我进化，通过掩码部分帧进行自监督并在每个数据集约2分钟内通过LoRA更新强制跨视角特征一致性。"
+  },
+  "IDESplat": {
+    abstractEn: "IDESplat proposes iterative depth probability estimation for feed-forward 3DGS through a Depth Probability Boosting Unit that uses multiple warps with epipolar attention for iterative refinement, combined with a Gaussian Focus Module that adaptively focuses Gaussians on high-information regions.",
+    abstractCn: "IDESplat通过深度概率提升单元提出前馈3DGS的迭代深度概率估计，该单元以多warp极线注意力实现迭代精化，结合高斯聚焦模块自适应地将高斯集中于高信息区域。"
+  },
+  "MVSplat": {
+    abstractEn: "MVSplat reconstructs 3D Gaussian Splatting from sparse multi-view images via cost-volume-based Gaussian prediction, encoding multi-view geometry into cost volumes that predict per-view Gaussian splats through cross-view aggregation and achieving high-quality reconstruction from as few as 3 views.",
+    abstractCn: "MVSplat通过基于代价体积的高斯预测从稀疏多视角图像重建3D高斯溅射，将多视角几何编码为代价体积并通过跨视角聚合预测逐视角高斯溅射，仅3视角即可实现高质量重建。"
+  },
+  "GS-LRM": {
+    abstractEn: "GS-LRM is a 1B-parameter transformer-based large reconstruction model pretrained on massive multi-view data for feed-forward 3D Gaussian Splatting, predicting 3D Gaussians from arbitrary view combinations with strong zero-shot generalization to unseen scenes and object categories.",
+    abstractCn: "GS-LRM是基于Transformer的10亿参数大规模重建模型，在海量多视角数据上预训练用于前馈3D高斯溅射，从任意视角组合预测3D高斯，对未见场景与物体类别具有强零样本泛化能力。"
+  },
+  "DepthSplat": {
+    abstractEn: "DepthSplat connects Gaussian Splatting and depth estimation for feed-forward multi-view 3D reconstruction through stereo-guided depth regularization and cross-view attention, achieving state-of-the-art results on multiple benchmarks with robust handling of uncalibrated and sparse views.",
+    abstractCn: "DepthSplat通过立体引导的深度正则化与跨视角注意力连接高斯溅射与深度估计，用于前馈多视角3D重建，在多个基准上达到SOTA结果，鲁棒处理未标定与稀疏视角。"
+  },
+  "InstantSplat": {
+    abstractEn: "InstantSplat performs unbounded sparse-view pose-free 3D Gaussian Splatting by jointly estimating camera poses and 3D Gaussians from sparse views in approximately 40 seconds, supporting unbounded scenes with a SILC loss for geometry-aware optimization.",
+    abstractCn: "InstantSplat通过联合估计相机位姿与3D高斯基元实现无界稀疏视角无位姿3D高斯溅射重建，约40秒内完成，支持无界场景并使用SILC损失进行几何感知优化。"
+  },
+  "AnySplat": {
+    abstractEn: "AnySplat performs feed-forward 3D Gaussian Splatting from unconstrained in-the-wild views with unknown lighting, varying appearance, and unknown camera parameters, achieving robust reconstruction without per-scene optimization.",
+    abstractCn: "AnySplat从具有未知光照、变化外观和未知相机参数的无约束实景视角进行前馈3D高斯溅射重建，无需逐场景优化即可实现鲁棒重建。"
+  },
+  "TokenGS": {
+    abstractEn: "TokenGS decouples 3D Gaussian prediction from pixel-level features by replacing direct pixel-to-Gaussian prediction with learnable token-based representation, improving generalization in feed-forward novel view synthesis.",
+    abstractCn: "TokenGS用可学习token表示替代直接的像素到高斯预测，将3D高斯预测与像素级特征解耦，提升前馈新视角合成的泛化能力。"
+  },
+  "Spark3R": {
+    abstractEn: "Spark3R provides training-free acceleration for feed-forward 3D reconstruction models through asymmetric token compression, exploiting the observation that query tokens are sensitive to compression while KV tokens tolerate aggressive pruning, achieving up to 28x speedup on 1000-frame inputs as a plug-and-play module.",
+    abstractCn: "Spark3R通过非对称token压缩为前馈3D重建模型提供免训练加速，利用查询token对压缩敏感而KV token可承受激进剪枝的观察，在1000帧输入上实现最高28倍加速，即插即用。"
+  },
+  "GenWildSplat": {
+    abstractEn: "GenWildSplat performs generalizable sparse-view 3D reconstruction from unconstrained images in wild conditions, handling appearance variations without per-scene optimization for robust cross-domain generalization.",
+    abstractCn: "GenWildSplat在实景条件下从无约束图像进行可泛化的稀疏视角3D重建，无需逐场景优化即可处理外观变化，实现鲁棒的跨域泛化。"
+  },
+  "AdaptSplat": {
+    abstractEn: "AdaptSplat adds a lightweight Frequency-Preserving Adapter with only 1.5M additional parameters on top of vision foundation models for feed-forward 3DGS, extracting direction-aware high-frequency structural priors from shallow features to preserve fine details that standard feed-forward methods lose.",
+    abstractCn: "AdaptSplat在视觉基础模型上仅增加1.5M参数的轻量频率保持适配器用于前馈3DGS，从浅层特征提取方向感知高频结构先验，保留标准前馈方法丢失的精细细节。"
+  },
+  "Z-Order GS": {
+    abstractEn: "Z-Order GS replaces heuristic Gaussian ordering with a Z-order (Morton) curve for spatially coherent Gaussian sequences in feed-forward 3DGS, enabling efficient sparse attention that focuses on nearby Gaussians in 3D space and reducing computational complexity from O(N squared) to O(N log N).",
+    abstractCn: "Z-Order GS以Z序（Morton）曲线替代启发式高斯排序获取空间连贯的高斯序列，使高效稀疏注意力聚焦3D空间中的近邻高斯，将计算复杂度从O(N²)降至O(N log N)。"
+  },
+  "RoSplat": {
+    abstractEn: "RoSplat introduces alpha normalization to prevent oversaturation from varying view counts and a 3D sampling regularizer for consistent Gaussian distribution across resolutions in robust feed-forward pixel-wise Gaussian Splatting, handling arbitrary numbers of input views with consistent quality.",
+    abstractCn: "RoSplat在鲁棒前馈像素级高斯溅射中引入alpha归一化防止视角数量变化导致的过曝光，以及3D采样正则化保证跨分辨率一致的高斯分布，以一致质量处理任意数量的输入视角。"
+  },
+  "SplatWeaver": {
+    abstractEn: "SplatWeaver proposes Cardinality Gaussian Expert Routing with 4 experts assigning 0-3 Gaussians per pixel, DWT-based Frequency Prior Guidance, and neighbor-conditioned prediction via K=8 attention, achieving SOTA on DL3DV with only 30% of Gaussians and zero-shot generalization across benchmarks.",
+    abstractCn: "SplatWeaver提出基数为0-3的4专家高斯路由、基于DWT的频率先验引导和K=8近邻注意力预测，在DL3DV上仅用30%高斯基元达到SOTA，并在多个基准上实现零样本泛化。"
+  },
+  "Compact-3DGS": {
+    abstractEn: "Compact-3DGS compresses 3D Gaussian Splatting models through vector quantization and pruning with codebook-based attribute compression, achieving approximately 10-15x compression with minimal PSNR degradation.",
+    abstractCn: "Compact-3DGS通过向量量化和剪枝压缩3D高斯溅射模型，采用基于码本的属性压缩，实现约10-15倍压缩且PSNR损失极小。"
+  },
+  "LightGS": {
+    abstractEn: "LightGS achieves approximately 15-20x compression of 3D Gaussian Splatting through knowledge distillation from a teacher 3DGS model, producing fewer but larger Gaussians that preserve rendering quality.",
+    abstractCn: "LightGS通过从教师3DGS模型进行知识蒸馏实现约15-20倍压缩3D高斯溅射，生成更少但更大的高斯基元以保持渲染质量。"
+  },
+  "MobileGS": {
+    abstractEn: "MobileGS targets extreme 50-100x compression for mobile deployment through aggressive pruning, quantization, and neural repurposing of 3D Gaussian Splatting representations.",
+    abstractCn: "MobileGS通过激进剪枝、量化和神经重利用对3D高斯溅射表示实现面向移动端部署的50-100倍极致压缩。"
+  },
+  "Embedded-3DGS": {
+    abstractEn: "Embedded-3DGS applies neural architecture search to discover optimal Gaussian representations for 3D Gaussian Splatting, achieving approximately 10x compression through architecture-level optimization.",
+    abstractCn: "Embedded-3DGS应用神经架构搜索发现3D高斯溅射的最优高斯表示，通过架构级优化实现约10倍压缩。"
+  },
+  "HAC": {
+    abstractEn: "HAC introduces hash-grid assisted context modeling for 3D Gaussian Splatting compression, achieving approximately 100x compression ratio with minimal quality loss through learned context modeling via hash grids for compact attribute representation and efficient entropy coding.",
+    abstractCn: "HAC引入哈希网格辅助的上下文建模用于3D高斯溅射压缩，通过哈希网格学习上下文建模实现紧凑属性表示与高效熵编码，在质量损失极小的情况下达到约100倍压缩。"
+  },
+  "OT-UVGS": {
+    abstractEn: "OT-UVGS reinterprets UV mapping for Gaussian Splatting as an optimal-transport-based capacity allocation problem, using separable 1D OT-inspired mapping with O(N log N) complexity that globally couples Gaussian-to-UV assignments as a drop-in replacement for spherical UVGS.",
+    abstractCn: "OT-UVGS将高斯溅射的UV映射重新诠释为最优传输容量分配问题，采用O(N log N)复杂度的可分离1D OT映射全局耦合高斯到UV的分配，可作为球面UVGS的即插即用替换。"
+  },
+  "Gaussians on a Diet": {
+    abstractEn: "Gaussians on a Diet addresses peak memory spikes during 3DGS training rather than post-training pruning, using iterative growth and pruning to maintain near-constant low memory with up to 80% lower peak training memory, enabling training on edge devices like Jetson AGX Xavier.",
+    abstractCn: "Gaussians on a Diet针对3DGS训练中的峰值内存而非训练后剪枝，通过迭代生长与剪枝维持近恒定低内存，峰值训练内存降低高达80%，支持在Jetson AGX Xavier等边缘设备上训练。"
+  },
+  "GS-SCNet": {
+    abstractEn: "GS-SCNet integrates generalizable 3DGS reconstruction with a deep semantic coding pipeline through a Disparity-Guided Parallel Semantic Codec and Lightweight Gaussian Parameter Predictor, eliminating redundant computation in decoupled coding-plus-3DGS paradigms for immersive video communications.",
+    abstractCn: "GS-SCNet通过视差引导并行语义编解码器与轻量高斯参数预测器统一可泛化3DGS重建与深度语义编码流水线，消除解耦编码+3DGS范式中的冗余计算，用于沉浸式视频通信。"
+  },
+  "NanoGS": {
+    abstractEn: "NanoGS performs training-free Gaussian Splat simplification via local pairwise merging on a sparse spatial graph with mass-preserving moment matching, computing a principled merge cost between the original mixture and its approximation while running efficiently on CPU.",
+    abstractCn: "NanoGS通过稀疏空间图上的局部成对合并实现免训练高斯溅射化简，采用质量保持矩匹配计算原始混合与近似间的原则性合并代价，在CPU上高效运行。"
+  },
+  "MesonGS++": {
+    abstractEn: "MesonGS++ is a size-aware post-training codec combining importance-based pruning, octree geometry coding, attribute transformation, selective vector quantization, and group-wise mixed-precision quantization, with rate-distortion knobs optimized via 0-1 integer linear programming achieving 34x compression while preserving fidelity.",
+    abstractCn: "MesonGS++是大小感知的训练后编解码器，结合基于重要性的剪枝、八叉树几何编码、属性变换、选择性向量量化和分组混合精度量化，通过0-1整数线性规划优化率失真参数，在保持保真度的同时实现34倍压缩。"
+  },
+  "GETA-3DGS": {
+    abstractEn: "GETA-3DGS presents the first end-to-end automatic joint structured pruning and quantization framework for 3DGS, using a quantization-aware dependency graph and render-aware saliency that fuses transmittance-weighted contribution with screen-space gradient and pixel coverage for approximately 5x storage reduction without per-scene thresholds.",
+    abstractCn: "GETA-3DGS提出首个端到端自动联合结构化剪枝与量化3DGS框架，使用量化感知依赖图和渲染感知显著性（融合透射加权贡献、屏幕空间梯度与像素覆盖），无需逐场景阈值实现约5倍存储压缩。"
+  },
+  "CAGS": {
+    abstractEn: "CAGS introduces vector-quantization-based quality levels of detail for adaptive 3DGS volumetric video streaming with server-side low-res reference image rendering to correct attribute compression color distortion at the client, achieving 5-20 dB PSNR improvement over baselines under fluctuating bandwidth.",
+    abstractCn: "CAGS引入基于向量量化的质量细节层次用于自适应3DGS体视频流，通过服务器端低分辨率参考图像渲染纠正客户端属性压缩颜色失真，在波动带宽下较基线提升5-20 dB PSNR。"
+  },
+  "MGS": {
+    abstractEn: "MGS enables continuous level of detail for 3DGS through stochastic budget training, learning an ordered Gaussian set where any prefix produces a coherent reconstruction with only two forward passes and no architectural modifications, enabling continuous speed-quality trade-off from a single model.",
+    abstractCn: "MGS通过随机预算训练实现3DGS的连续细节层次，学习有序高斯集合使任意前缀子集产生连贯重建，仅需两次前向传播且无架构修改，从单一模型实现连续速度-质量权衡。"
+  },
+  "4DGS": {
+    abstractEn: "4D Gaussian Splatting extends standard 3DGS to the 4D space-time domain with anisotropic Gaussians and regularized deformation that ensures temporal consistency, enabling real-time rendering of dynamic scenes with complex non-rigid motions at the cost of increased memory consumption.",
+    abstractCn: "4D高斯溅射将标准3DGS扩展至4D时空域，采用各向异性高斯与确保时间一致性的正则化变形，实现复杂非刚性运动动态场景的实时渲染，代价是内存消耗增加。"
+  },
+  "Dynamic 3D Gaussians": {
+    abstractEn: "Dynamic 3D Gaussians applies a per-point deformation network to Gaussian parameters through a learned deformation field with regularized optimization, enabling high-fidelity monocular dynamic scene reconstruction from video input.",
+    abstractCn: "Dynamic 3D Gaussians通过学习的变形场与正则化优化将逐点变形网络应用于高斯基元参数，实现从视频输入的高保真单目动态场景重建。"
+  },
+  "SC-GS": {
+    abstractEn: "SC-GS achieves spatial-temporal compression for dynamic Gaussians through a compact 4D representation with shared deformation, reducing the memory footprint of dynamic scene modeling.",
+    abstractCn: "SC-GS通过具有共享变形的紧凑4D表示实现动态高斯的空间-时间压缩，降低动态场景建模的内存占用。"
+  },
+  "RobustSplat": {
+    abstractEn: "RobustSplat decouples densification from dynamic object modeling by separately managing static and dynamic Gaussians, preventing transient objects from corrupting scene geometry to achieve transient-free 3D Gaussian Splatting reconstruction.",
+    abstractCn: "RobustSplat通过分别管理静态与动态高斯将致密化与动态对象建模解耦，防止瞬态物体破坏场景几何，实现无瞬态干扰的3D高斯溅射重建。"
+  },
+  "Color-Encoded Illumination": {
+    abstractEn: "Color-Encoded Illumination achieves high-speed volumetric scene reconstruction using only unaugmented low-speed cameras by encoding temporal information through rapid sequential color-coded illumination, decoded with a novel dynamic 3DGS approach that extracts multi-frame information from a single captured frame.",
+    abstractCn: "Color-Encoded Illumination通过快速序列化颜色编码照明编码时间信息，以新型动态3DGS方法从单帧捕获中提取多帧信息，仅使用未增强的低速相机实现高速体积场景重建。"
+  },
+  "HDR-NSFF": {
+    abstractEn: "HDR-NSFF reconstructs dynamic HDR radiance fields from alternating-exposure monocular video through a 4D spatio-temporal modeling paradigm with DINO-based exposure-invariant optical flow, introducing the first real-world HDR-GoPro dataset and compatibility with both NeRF and 4DGS backbones.",
+    abstractCn: "HDR-NSFF通过4D时空建模范式与基于DINO的曝光不变光流从交替曝光单目视频重建动态HDR辐射场，引入首个真实HDR-GoPro数据集并兼容NeRF与4DGS骨干。"
+  },
+  "FreeTimeGS++": {
+    abstractEn: "FreeTimeGS++ provides a comprehensive principled analysis of 4D Gaussian Splatting by formalizing state-of-the-art heuristics into a controlled baseline, uncovering emergent temporal partitioning, and proposing gated marginalization with neural velocity fields for reduced run-to-run variance and superior stability.",
+    abstractCn: "FreeTimeGS++对4D高斯溅射进行全面原理性分析，将SOTA启发式形式化为受控基线，揭示涌现时间分区现象，提出门控边际化与神经速度场以减少运行间方差并提升稳定性。"
+  },
+  "GeoRect4D": {
+    abstractEn: "GeoRect4D addresses geometry deformation in dynamic sparse-view 3D reconstruction through geometry-compatible generative rectification, correcting geometric inconsistencies that arise in dynamic scene modeling from limited viewpoints.",
+    abstractCn: "GeoRect4D通过几何兼容的生成式矫正解决动态稀疏视角3D重建中的几何变形问题，修正有限视角下动态场景建模出现的几何不一致性。"
+  },
+  "ParticleGS": {
+    abstractEn: "ParticleGS reformulates dynamic 3D scenes as physically grounded particle systems with MPM-inspired decomposition into static properties and dynamic physical fields, using a Neural ODE evolver for continuous-time dynamics that enables prior-free physical motion extrapolation beyond the observed timeframe.",
+    abstractCn: "ParticleGS将动态3D场景重新表述为物理驱动的粒子系统，采用MPM启发的静态属性与动态物理场分解，利用神经ODE演化器学习连续时间动力学，实现超越观测时间范围的无先验物理运动外推。"
+  },
+  "PaMoSplat": {
+    abstractEn: "PaMoSplat partitions scenes into rigid parts via graph-based clustering and estimates per-part rigid motion from optical flow using differential evolution, enabling part-level 4D editing and manipulation of articulated and deformable objects as collections of rigid parts.",
+    abstractCn: "PaMoSplat通过基于图的聚类将场景划分为刚性部件，利用差分进化从光流估计逐部件刚体运动，支持关节与可变形物体的部件级4D编辑与操控。"
+  },
+  "PD-4DGS": {
+    abstractEn: "PD-4DGS proposes the first progressive compression and transmission framework for 4DGS dynamic scenes through Hierarchical Deformation Decomposition that creates three independently transmittable layers, producing DASH/HLS-compatible bitstreams and reducing first-frame latency from 73-930 seconds to approximately 1.7 seconds.",
+    abstractCn: "PD-4DGS提出首个4DGS动态场景的渐进式压缩与传输框架，通过层次变形分解创建三个独立可传输层，生成DASH/HLS兼容比特流，将首帧延迟从73-930秒降至约1.7秒。"
+  },
+  "3DGS\u00B3": {
+    abstractEn: "3DGS-cube combines Gradient-Aware Super Sampling that extracts differentiable image gradients from 3DGS with GRU refinement and Lightweight Temporal Frame Interpolation, enabling real-time high-quality rendering of large-scale scenes on consumer hardware through post-rendering super-sampling and temporal interpolation.",
+    abstractCn: "3DGS\u00B3结合从3DGS提取可微图像梯度的梯度感知超采样与GRU精化，以及轻量时间帧插值，通过后渲染超采样与时间插值在消费级硬件上实现大规模场景的实时高质量渲染。"
+  },
+  "Velox": {
+    abstractEn: "Velox learns representations of 4D geometry and appearance for feed-forward 4D reconstruction, enabling single-forward-pass 4D Gaussian prediction without per-scene optimization that generalizes across different dynamic scene categories.",
+    abstractCn: "Velox学习4D几何与外观表示用于前馈4D重建，无需逐场景优化即可在单次前向传播中预测4D高斯，跨不同动态场景类别泛化。"
+  },
+  "RetroNVS": {
+    abstractEn: "RetroNVS performs retrospective dynamic scene novel view synthesis by propagating Gaussians from SfM-initialized static reconstruction to dynamic frames via optical flow, establishing a standardized dynamic multi-view benchmark for dynamic NVS evaluation.",
+    abstractCn: "RetroNVS通过光流将SfM初始化的静态重建高斯传播至动态帧，实现回顾式动态场景新视角合成，并建立动态多视角新视角合成评估的标准化基准。"
+  },
+  "AV1-3DGS": {
+    abstractEn: "AV1-3DGS leverages motion vectors extracted from AV1 video compression as dense correspondences for Structure-from-Motion, producing 8x denser point clouds than traditional SfM and reducing 3DGS training time by 63% while achieving a 9-point VMAF quality gain.",
+    abstractCn: "AV1-3DGS利用从AV1视频压缩提取的运动向量作为SfM的密集对应，比传统SfM产生8倍更密的点云，3DGS训练时间减少63%，VMAF质量提升9分。"
+  },
+  "Denoising-GS": {
+    abstractEn: "Denoising-GS formulates 3DGS optimization as a primitive denoising process through a spatial-aware denoising framework combining spatial gradient-based denoising, uncertainty-based denoising, and spatial coherence refinement with a custom optimizer, achieving state-of-the-art results with compact representation.",
+    abstractCn: "Denoising-GS将3DGS优化表述为基元去噪过程，通过空间感知去噪框架结合空间梯度去噪、不确定性去噪与空间一致性精化及自定义优化器，以紧凑表示达到SOTA结果。"
+  },
+  "3DGS\u00B2": {
+    abstractEn: "3DGS-squared replaces first-order SGD with per-attribute Newton-like optimization that decomposes the per-Gaussian Hessian into independent per-attribute systems with sparse cross-attribute coupling, achieving near-quadratic convergence and 10x fewer iterations to reach the same quality as standard 3DGS.",
+    abstractCn: "3DGS\u00B2用逐属性类牛顿优化替代一阶SGD，将逐高斯Hessian分解为具有稀疏跨属性耦合的独立逐属性系统，实现近二次收敛速率，以10倍更少迭代达到与标准3DGS相同质量。"
+  },
+  "AdpSplit": {
+    abstractEn: "AdpSplit replaces the standard binary split operator with an error-driven adaptive split that determines the number of split children and initializes from L1-pixel-error region statistics, reducing training time by 9.2-22.3% across benchmarks as a drop-in replacement while preserving reconstruction quality.",
+    abstractCn: "AdpSplit以误差驱动的自适应分裂替代标准二分裂算子，根据L1像素误差区域统计确定分裂子代数量与初始化，作为即插即用替换在各基准上减少9.2-22.3%训练时间同时保持重建质量。"
+  },
+"LangSplat": {
+    abstractEn: "LangSplat introduces 3D language Gaussian Splatting by distilling 2D CLIP features into per-Gaussian semantic attributes, enabling open-vocabulary 3D queries without per-scene training. Semantic Gaussians with distinct feature and opacity fields support precise 3D bounding box extraction from language prompts, bridging natural language and 3D scene understanding.",
+    abstractCn: "LangSplat提出三维语言高斯泼溅方法，将二维CLIP特征蒸馏至逐高斯语义属性中，无需逐场景训练即可实现开放词汇三维查询。具有独立特征与不透明度场的语义高斯支持从语言提示中精确提取三维包围盒，连接自然语言与三维场景理解。"
+  },
+  "Feature 3DGS": {
+    abstractEn: "Feature 3DGS supercharges 3D Gaussian Splatting by distilling 2D foundation model features (e.g., DINO, SAM) into 3D feature fields attached to Gaussian primitives. This enables high-quality 3D segmentation, detection, and semantic understanding without per-scene fine-tuning, effectively bridging 2D visual foundation models with 3D scene analysis.",
+    abstractCn: "Feature 3DGS通过将二维基础模型特征（如DINO、SAM）蒸馏至附加于高斯基元的三维特征场，增强了三维高斯泼溅的语义能力。该方法无需逐场景微调即可实现高质量三维分割、检测与语义理解，有效连接二维视觉基础模型与三维场景分析。"
+  },
+  "Semantic Foam": {
+    abstractEn: "Semantic Foam extends Radiant Foam's volumetric Voronoi mesh to semantic decomposition by introducing an explicit semantic feature field at the cell level. The volumetric Voronoi mesh structure enables direct spatial regularization that improves cross-view semantic consistency, outperforming Gaussian Grouping and SAGA on object-level segmentation while addressing occlusion and inconsistent supervision artifacts in point-based representations.",
+    abstractCn: "Semantic Foam将Radiant Foam的体素Voronoi网格扩展至语义分解任务，在单元层级引入显式语义特征场。体素Voronoi网格结构实现直接空间正则化，提升跨视角语义一致性，在物体级分割上超越Gaussian Grouping与SAGA，同时解决点表示中常见的遮挡与不一致监督伪影问题。"
+  },
+  "GLmap": {
+    abstractEn: "GLmap presents a multi-scale Gaussian-Language Map that integrates explicit geometry, multi-scale semantics (instance and region levels), and a dual-modality interface for zero-shot embodied navigation and reasoning. Each semantic unit jointly stores natural language descriptions and 3D Gaussian representations, while a Gaussian Estimator analytically derives Gaussian parameters from dense point clouds without gradient optimization, ensuring compatibility with large-model methods.",
+    abstractCn: "GLmap提出多尺度高斯-语言地图，融合显式几何、多尺度语义（实例级与区域级）及双模态接口，用于零样本具身导航与推理。每个语义单元联合存储自然语言描述与三维高斯表示，高斯估计器从稠密点云解析推导高斯参数而无需梯度优化，确保与大规模模型方法的兼容性。"
+  },
+  "NG-GS": {
+    abstractEn: "NG-GS proposes NeRF-guided segmentation for 3D Gaussian Splatting by leveraging NeRF's continuous representation to guide Gaussian-level semantic assignment. The method exploits the complementary strengths of NeRF's implicit continuity and 3DGS's explicit spatial structure to achieve more accurate semantic decomposition.",
+    abstractCn: "NG-GS提出基于NeRF引导的三维高斯泼溅分割方法，利用NeRF的连续表示引导高斯级语义分配。该方法利用NeRF隐式连续性与三维高斯泼溅显式空间结构的互补优势，实现更精准的语义分解。"
+  },
+  "Ilov3Splat": {
+    abstractEn: "Ilov3Splat achieves instance-level open-vocabulary 3D scene understanding in Gaussian Splatting by employing multi-resolution hash embedding for CLIP features and a contrastive loss over SAM masks to construct instance feature fields. A two-stage 3D clustering at inference enables language-driven object identification without category supervision, advancing fine-grained 3D perception.",
+    abstractCn: "Ilov3Splat通过多分辨率哈希嵌入编码CLIP特征并结合SAM掩码对比损失构建实例特征场，实现高斯泼溅中的实例级开放词汇三维场景理解。推理阶段采用两阶段三维聚类，无需类别监督即可实现语言驱动的物体识别，推进细粒度三维感知。"
+  },
+  "OpenGaFF": {
+    abstractEn: "OpenGaFF models semantics as a continuous function of Gaussian geometry and appearance through a structured codebook of shared semantic primitives with codebook-guided attention for language feature retrieval. This strengthens geometry-semantics coupling, reduces intra-object feature variance, and improves spatial coherence, outperforming prior open-vocabulary 3D-GS methods on both 2D and 3D benchmarks.",
+    abstractCn: "OpenGaFF将语义建模为高斯几何与外观的连续函数，通过结构化码本作为共享语义基元，结合码本引导注意力进行语言特征检索。该方法增强几何-语义耦合，降低物体内特征方差并提升空间一致性，在二维与三维基准上均超越先前开放词汇三维高斯泼溅方法。"
+  },
+  "ReferSplat": {
+    abstractEn: "ReferSplat enables referring segmentation within the 3D Gaussian Splatting framework by integrating language-guided instance selection for precise 3D object manipulation. The method allows users to specify and manipulate specific objects in 3D scenes using natural language descriptions, supporting fine-grained referring and editing of targeted scene elements.",
+    abstractCn: "ReferSplat在高斯泼溅框架中集成语言引导实例选择，实现指代表分割。该方法支持用户通过自然语言描述在三维场景中指定并操作特定物体，实现对目标场景元素的细粒度指代与编辑。"
+  },
+  "PointGS": {
+    abstractEn: "PointGS uses 3D Gaussian Splatting as a unified intermediate representation to bridge the discrete-continuous domain gap for unsupervised 3D point cloud segmentation. SAM masks are distilled into 3D Gaussian primitives via contrastive learning, achieving +0.9% mIoU on ScanNet and +2.8% on S3DIS over baselines as the first method to leverage 3DGS for unsupervised point cloud segmentation.",
+    abstractCn: "PointGS将三维高斯泼溅用作统一中间表示，桥接离散-连续域鸿沟，实现无监督三维点云分割。SAM掩码通过对比学习蒸馏至三维高斯基元，在ScanNet上提升+0.9% mIoU、S3DIS上提升+2.8%，是首个利用3DGS表示进行无监督点云分割的方法。"
+  },
+  "SCOUP": {
+    abstractEn: "SCOUP (Sparse Code Uplifting) decouples language feature learning from 3D Gaussian optimization for efficient 3D language Gaussian Splatting. By training a language codebook on 2D images and then uplifting codes to 3D Gaussians, the method achieves 400x training speedup over joint language-3D optimization while maintaining competitive semantic segmentation quality compared to LangSplat.",
+    abstractCn: "SCOUP（稀疏码上提）将语言特征学习与三维高斯优化解耦，实现高效三维语言高斯泼溅。通过在二维图像上训练语言码本再将码上提至三维高斯，相比联合语言-三维优化实现400倍训练加速，同时保持与LangSplat相当的语义分割质量。"
+  },
+  "GaussianImage": {
+    abstractEn: "GaussianImage represents and compresses images using 2D Gaussian primitives, achieving 1000+ FPS decoding and rendering with competitive rate-distortion performance. The novel image codec demonstrates that 2D Gaussian Splatting provides an effective alternative representation for image coding, enabling extreme compression ratios while maintaining visual fidelity.",
+    abstractCn: "GaussianImage使用二维高斯基元表示与压缩图像，实现1000+ FPS解码渲染与有竞争力的率失真性能。该新型图像编解码器表明二维高斯泼溅为图像编码提供了有效替代表示，在保持视觉保真度的同时实现极高压缩比。"
+  },
+  "Pi-GS": {
+    abstractEn: "Pi-GS addresses sparse-view 3D Gaussian Splatting through dense pi-cubed initialization with reference-free point cloud estimation. Combined with uncertainty-guided depth supervision and normal consistency loss, the method achieves state-of-the-art performance on Tanks and Temples, LLFF, DTU, and MipNeRF360 benchmarks for robust sparse-view reconstruction.",
+    abstractCn: "Pi-GS通过基于无参考pi-cubed点云估计的稠密初始化解决稀疏视图三维高斯泼溅问题。结合不确定性引导深度监督与法线一致性损失，该方法在Tanks and Temples、LLFF、DTU和MipNeRF360基准上实现最先进的稀疏视图重建性能。"
+  },
+  "FSGS": {
+    abstractEn: "FSGS achieves real-time few-shot view synthesis by combining pre-trained Spatial Radiance Fields (SRF) with 3D Gaussian Splatting, where SRF provides geometric priors from sparse views and 3DGS handles fine detail rendering. The method generalizes to novel scenes without per-scene optimization, enabling practical few-shot novel view synthesis under limited supervision.",
+    abstractCn: "FSGS通过结合预训练空间辐射场（SRF）与三维高斯泼溅实现实时少样本新视角合成，其中SRF从稀疏视图提供几何先验，三维高斯泼溅负责精细细节渲染。该方法无需逐场景优化即可泛化至新场景，在有限监督下实现实用的少样本新视角合成。"
+  },
+  "HeroGS": {
+    abstractEn: "HeroGS proposes a hierarchical guidance fusion framework to address overfitting in sparse-view 3D Gaussian Splatting through multi-scale supervision from image-level to pixel-level. The progressive refinement strategy from image to region to pixel granularity enables robust 3DGS reconstruction with limited training views, mitigating the degradation common in sparse-view settings.",
+    abstractCn: "HeroGS提出层次化引导融合框架，通过从图像级到像素级的多尺度监督解决稀疏视图三维高斯泼溅中的过拟合问题。从图像到区域再到像素的渐进细化策略在有限训练视图下实现鲁棒的三维高斯泼溅重建，缓解稀疏视图设置中常见的性能退化。"
+  },
+  "GSCompleter": {
+    abstractEn: "GSCompleter presents a distillation-free plugin for metric-aware 3D Gaussian Splatting completion using a Generate-then-Register workflow. A Stereo-Anchor mechanism lifts synthesized 2D references into metric-scale 3D primitives, while Ray-Constrained Registration integrates them into the global context, enabling efficient sparse-view completion in seconds.",
+    abstractCn: "GSCompleter提出无需蒸馏的度量感知三维高斯泼溅补全插件，采用\"先生成再配准\"工作流。立体锚机制将合成的二维参考提升为度量尺度三维基元，光线约束配准将其融入全局上下文，实现秒级高效稀疏视图补全。"
+  },
+  "FrameTwin": {
+    abstractEn: "FrameTwin introduces curve-anchored Gaussian kernels for sparse-view deformation alignment, reducing ambiguity for thin wireframe structures. The parametric curve priors constrain Gaussian deformation, enabling adaptive alignment from sparse views with direct application to 3D printing of wireframe objects.",
+    abstractCn: "FrameTwin引入曲线锚定高斯基元用于稀疏视图变形对齐，降低细线框结构的歧义性。参数曲线先验约束高斯变形，实现稀疏视图的自适应对齐，可直接应用于线框物体的三维打印。"
+  },
+  "GeoQuery": {
+    abstractEn: "GeoQuery proposes geometry-guided cross-view attention that replaces corrupted rendering features with geometry-aligned proxy queries derived from predicted depth and camera poses for sparse-view 3DGS reconstruction. Combined with diffusion-guided refinement stages, the method significantly improves sparse-view reconstruction quality by leveraging geometric structure to compensate for limited observations.",
+    abstractCn: "GeoQuery提出几何引导跨视角注意力机制，用从预测深度与相机位姿推导的几何对齐代理查询替换受损渲染特征，用于稀疏视图三维高斯泼溅重建。结合扩散引导细化阶段，该方法利用几何结构补偿有限观测，显著提升稀疏视图重建质量。"
+  },
+  "PairDropGS": {
+    abstractEn: "PairDropGS constructs paired dropped Gaussian subsets from a shared field and enforces low-frequency consistency regularization to address overfitting in sparse-view Gaussian Splatting. A progressive consistency scheduling strategy stabilizes training, ensuring global coherence across the reconstructed scene while mitigating the degradation from insufficient viewpoints.",
+    abstractCn: "PairDropGS从共享场构建配对丢弃高斯子集，并强制低频一致性正则化以解决稀疏视图高斯泼溅中的过拟合问题。渐进一致性调度策略稳定训练，确保重建场景的全局一致性，缓解视角不足导致的性能退化。"
+  },
+  "VidSplat": {
+    abstractEn: "VidSplat is a training-free generative framework that leverages video diffusion priors for sparse-view 3DGS reconstruction through stage-wise denoising guided by rendered RGB and mask outputs from initial 3DGS. Iterative confidence-weighted refinement exploits temporal coherence in video diffusion models, achieving high-quality sparse-view reconstruction without additional optimization.",
+    abstractCn: "VidSplat是一个免训练生成框架，利用视频扩散先验通过从初始三维高斯泼溅渲染的RGB与掩码输出引导的阶段式去噪实现稀疏视图重建。迭代置信度加权细化利用视频扩散模型中的时间一致性，无需额外优化即可实现高质量稀疏视图重建。"
+  },
+  "PanoPlane": {
+    abstractEn: "PanoPlane introduces plane-aware panoramic completion for sparse-view indoor 3DGS by leveraging geometric regularity of indoor scenes. Layout Anchored Attention Steering guides Gaussian densification along detected structural planes, completing unobserved regions with structurally consistent Gaussian primitives and achieving +17.8% PSNR over state-of-the-art on indoor sparse-view benchmarks.",
+    abstractCn: "PanoPlane利用室内场景几何规律性提出面感知全景补全方法用于稀疏视图室内三维高斯泼溅。布局锚定注意力引导沿检测到的结构平面进行高斯致密化，以结构一致的高斯基元补全未观测区域，在室内稀疏视图基准上较最先进方法提升+17.8% PSNR。"
+  },
+  "Scaffold-GS": {
+    abstractEn: "Scaffold-GS introduces an anchor-based structure for efficient large-scale 3D Gaussian scene representation with view-adaptive rendering. Anchor points organize local Gaussians with selective activation and progressive training, enabling scalable representation of complex scenes while maintaining real-time rendering quality.",
+    abstractCn: "Scaffold-GS引入锚点结构用于高效大规模三维高斯场景表示与视图自适应渲染。锚点通过选择性激活与渐进训练组织局部高斯，在保持实时渲染质量的同时实现复杂场景的可扩展表示。"
+  },
+  "Scaffold-GS+": {
+    abstractEn: "Scaffold-GS+ extends Scaffold-GS with a progressive training strategy that achieves better quality at city scale with reduced memory consumption. The improved training scheme enables scalable scene rendering for large urban environments while preserving the anchor-based organizational benefits of the original Scaffold-GS.",
+    abstractCn: "Scaffold-GS+通过渐进训练策略扩展Scaffold-GS，在城市规模下以更低内存消耗实现更优质量。改进的训练方案在保留原始Scaffold-GS锚点组织优势的同时，实现大型城市场景的可扩展渲染。"
+  },
+  "CityGaussian": {
+    abstractEn: "CityGaussian proposes a hierarchical level-of-detail structure for real-time high-quality city-scale scene rendering with Gaussians. Level-of-detail Gaussian organization combined with level-wise training enables efficient representation and rendering of large urban environments, addressing the scalability challenges of standard 3DGS.",
+    abstractCn: "CityGaussian提出层次化细节层次结构用于基于高斯的实时高质量城市规模场景渲染。细节层次高斯组织结合层级训练实现大型城市环境的高效表示与渲染，解决标准三维高斯泼溅的可扩展性挑战。"
+  },
+  "Octree-GS": {
+    abstractEn: "Octree-GS introduces octree-based spatial partitioning for efficient 3D Gaussian rendering with level-of-detail management. The octree acceleration structure enables rapid culling and organization of Gaussians, supporting consistent real-time rendering across varying view distances in large-scale scenes.",
+    abstractCn: "Octree-GS引入基于八叉树的空间划分用于高效三维高斯渲染与细节层次管理。八叉树加速结构实现高斯的快速剔除与组织，支持大规模场景中不同视距下的一致实时渲染。"
+  },
+  "Street Gaussians": {
+    abstractEn: "Street Gaussians models dynamic urban street scenes through static-dynamic decomposition with separate Gaussian representations for background and dynamic objects such as cars and pedestrians. The method enables real-time rendering of complex urban driving scenarios and handles large-scale driving sequences with temporally coherent dynamic element rendering.",
+    abstractCn: "Street Gaussians通过静态-动态分解建模动态城市街景，为背景和动态物体（如车辆、行人）分别建立高斯表示。该方法实现复杂城市驾驶场景的实时渲染，以时间一致的动态元素渲染处理大规模驾驶序列。"
+  },
+  "GS4City": {
+    abstractEn: "GS4City leverages city-scale 3D model priors to guide hierarchical semantic Gaussian Splatting, improving large-scale urban scene reconstruction with semantic consistency. By incorporating structural and semantic knowledge from existing city models, the method enhances the quality and semantic coherence of urban scene representations.",
+    abstractCn: "GS4City利用城市规模三维模型先验引导层次化语义高斯泼溅，提升大规模城市场景重建的语义一致性。通过整合现有城市模型的结构与语义知识，该方法增强城市场景表示的质量与语义连贯性。"
+  },
+  "BlitzGS": {
+    abstractEn: "BlitzGS presents a distributed 3DGS framework for fast city-scale reconstruction using parity-based GPU sharding that distributes Gaussian scene representation across multiple GPUs with zero-overhead parity encoding. An importance-scoring mechanism and LOD gate together prioritize and cull Gaussians per viewpoint, achieving order-of-magnitude speedup over single-GPU baselines for city-scale scenes.",
+    abstractCn: "BlitzGS提出分布式三维高斯泼溅框架用于快速城市规模重建，采用基于校验的GPU分片将高斯场景表示分布至多GPU，零开销校验编码。重要性评分机制与细节层次门控协同按视点优先排序与剔除高斯，在城市规模场景上实现较单GPU基线一个数量级的加速。"
+  },
+  "PDF-GS": {
+    abstractEn: "PDF-GS (Progressive Distractor Filtering) improves 3D Gaussian Splatting robustness by progressively identifying and filtering distractor elements such as transient objects and people that degrade reconstruction quality. The method enables reliable 3DGS reconstruction in in-the-wild scenes with unconstrained dynamic elements.",
+    abstractCn: "PDF-GS（渐进干扰物过滤）通过逐步识别与过滤降低重建质量的干扰元素（如瞬态物体、行人），提升三维高斯泼溅的鲁棒性。该方法在包含无约束动态元素的自然场景中实现可靠的三维高斯泼溅重建。"
+  },
+  "ELoG-GS": {
+    abstractEn: "ELoG-GS introduces a dual-branch architecture with luminance-guided enhancement for extreme low-light 3DGS reconstruction, addressing the challenge of insufficient photometric cues. The luminance-guided enhancement module specifically targets the recovery of scene appearance and geometry under severely degraded illumination conditions.",
+    abstractCn: "ELoG-GS引入双分支架构与亮度引导增强模块用于极低光照三维高斯泼溅重建，解决光度线索不足的挑战。亮度引导增强模块专门针对严重退化照明条件下场景外观与几何的恢复。"
+  },
+  "GaussianEditor": {
+    abstractEn: "GaussianEditor enables text-driven and geometry-driven editing of 3D Gaussian scenes through CLIP-guided selection and semantic-aware editing. The method supports intuitive manipulation of Gaussian-based scene representations by leveraging language and geometric priors for targeted modification of 3D content.",
+    abstractCn: "GaussianEditor通过CLIP引导选择与语义感知编辑实现文本驱动与几何驱动的三维高斯场景编辑。该方法利用语言与几何先验对三维内容进行定向修改，支持高斯场景表示的直观操控。"
+  },
+  "GeoGaussian": {
+    abstractEn: "GeoGaussian performs geometry-guided Gaussian editing by incorporating mesh priors for mesh-guided manipulation and consistent rendering. The method leverages explicit geometric structure to constrain Gaussian deformation, ensuring editing operations produce spatially coherent and physically plausible results.",
+    abstractCn: "GeoGaussian通过引入网格先验进行几何引导的高斯编辑，实现网格引导操控与一致性渲染。该方法利用显式几何结构约束高斯变形，确保编辑操作产生空间一致且物理合理的结果。"
+  },
+  "Frosting": {
+    abstractEn: "Frosting enables appearance editing via surface-aligned Gaussians through decoupled geometry and appearance manipulation. By separating geometric structure from appearance attributes, the method allows flexible visual modifications without disrupting the underlying 3D scene geometry.",
+    abstractCn: "Frosting通过表面对齐高斯实现外观编辑，采用几何与外观解耦操控方式。通过分离几何结构与外观属性，该方法允许灵活的视觉修改而不破坏底层三维场景几何。"
+  },
+  "SketchFaceGS": {
+    abstractEn: "SketchFaceGS enables real-time sketch-driven generation and editing of photorealistic 3D Gaussian head models through a feed-forward coarse-to-fine architecture. The Transformer-based UV feature prediction combined with UV Mask Fusion supports interactive editing of 3D facial appearance from freehand sketches, bridging intuitive sketch input with high-fidelity 3D face generation.",
+    abstractCn: "SketchFaceGS通过前馈粗到细架构实现基于草图驱动的真实感三维高斯头部模型实时生成与编辑。基于Transformer的UV特征预测结合UV掩码融合支持从手绘草图交互编辑三维面部外观，连接直觉草图输入与高保真三维人脸生成。"
+  },
+  "FluSplat": {
+    abstractEn: "FluSplat achieves feed-forward 3D scene editing from sparse views without per-scene optimization by applying cross-view regularization in the image domain during training and feedforward 3DGS lifting at inference. The method is orders of magnitude faster than optimization-based editing approaches while producing consistent multi-view editing results.",
+    abstractCn: "FluSplat通过训练时在图像域施加跨视角正则化与推理时前馈三维高斯泼溅提升，实现无需逐场景优化的稀疏视图前馈三维场景编辑。该方法比基于优化的编辑方法快数个数量级，同时产生一致的多视角编辑结果。"
+  },
+  "TransSplat": {
+    abstractEn: "TransSplat formulates language-driven 3DGS editing as a multi-view unbalanced semantic transport problem, establishing semantic correspondences between edited 2D evidence and 3D Gaussians. Transport residuals suppress edit leakage in non-target regions, ensuring that language-specified modifications are localized and consistent across views.",
+    abstractCn: "TransSplat将语言驱动的三维高斯泼溅编辑建模为多视角非平衡语义传输问题，在编辑的二维证据与三维高斯之间建立语义对应关系。传输残差抑制非目标区域的编辑泄露，确保语言指定的修改局部化且跨视角一致。"
+  },
+  "GOR-IS": {
+    abstractEn: "GOR-IS achieves physically consistent 3D object removal via intrinsic decomposition into material and lighting components, explicitly modeling light transport for global lighting consistency. The intrinsic-space inpainting module operates in both material and lighting domains to handle view-dependent non-Lambertian surfaces, achieving +13% LPIPS and +2dB PSNR improvements over existing removal methods.",
+    abstractCn: "GOR-IS通过内在分解（材质+光照）实现物理一致的三维物体移除，显式建模光传输以保证全局光照一致性。内在空间修复模块同时在材质与光照域操作，处理视相关非朗伯特表面，较现有移除方法提升+13% LPIPS和+2dB PSNR。"
+  },
+  "SVGS": {
+    abstractEn: "SVGS enables single-view text-driven 3D object editing using sparse 3D Gaussian Splatting with multi-view diffusion models. The method reconstructs 3D structure from only consistent views and employs sparse 3DGS for efficient representation, allowing text-guided editing of 3D objects from a single input image.",
+    abstractCn: "SVGS利用稀疏三维高斯泼溅与多视角扩散模型实现单视图文本驱动三维物体编辑。该方法仅从一致视图重建三维结构，采用稀疏三维高斯泼溅进行高效表示，支持从单张输入图像进行文本引导的三维物体编辑。"
+  },
+  "DiffSoup": {
+    abstractEn: "DiffSoup proposes direct differentiable rasterization of triangle soup with neural textures and binary opacity as an extreme simplification of radiance fields. Stochastic opacity masking ensures differentiability while standard depth testing is retained, achieving orders-of-magnitude simplification that runs on consumer hardware.",
+    abstractCn: "DiffSoup提出带神经纹理与二元不透明度的三角面片Soup的直接可微光栅化，作为辐射场的极简表示。随机不透明度掩码确保可微性同时保留标准深度测试，实现数个数量级的简化，可在消费级硬件上运行。"
+  },
+  "FTSplat": {
+    abstractEn: "FTSplat is a feed-forward triangle primitive generation network that produces simulation-ready 3D models from multi-view images in a single forward pass without per-scene optimization. The generated triangle-based representations are directly compatible with standard graphics and robotic simulators, bridging neural rendering and traditional graphics pipelines.",
+    abstractCn: "FTSplat是前馈三角基元生成网络，从多视图图像在单次前向传播中生成即用型三维模型，无需逐场景优化。生成的基于三角形的表示直接兼容标准图形与机器人模拟器，连接神经渲染与传统图形管线。"
+  },
+  "IRIS": {
+    abstractEn: "IRIS introduces intersection-aware ray-based implicit editable scenes using hybrid Gaussians-as-proxies for neural field evaluation with analytical ray-primitive intersection. The method eliminates empty space via analytical sampling and performs continuous feature aggregation along rays, achieving real-time rendering with flexible shape editing capabilities.",
+    abstractCn: "IRIS引入交叉感知光线隐式可编辑场景，采用混合高斯代理进行神经场评估与解析光线-基元求交。该方法通过解析采样消除空空间并沿光线进行连续特征聚合，实现实时渲染与灵活形状编辑。"
+  },
+  "GRF": {
+    abstractEn: "GRF (Gaussian Relighting Field) decomposes 3D Gaussians into separate attributes for geometry, material, and lighting to enable material decomposition and relighting in Gaussian space. The disentangled representation allows independent manipulation of lighting conditions while preserving scene geometry and material properties.",
+    abstractCn: "GRF（高斯重光照场）将三维高斯分解为几何、材质与光照的独立属性，实现高斯空间中的材质分解与重光照。解耦表示允许独立操控光照条件同时保持场景几何与材质属性。"
+  },
+  "GS-IR": {
+    abstractEn: "GS-IR performs inverse rendering from 3D Gaussians by decomposing them into geometry, BRDF, and lighting components. The method enables physically-based material estimation and relighting from Gaussian-based scene representations, supporting novel view synthesis under arbitrary illumination.",
+    abstractCn: "GS-IR通过将三维高斯分解为几何、BRDF与光照分量实现基于高斯的逆向渲染。该方法支持从高斯场景表示进行基于物理的材质估计与重光照，在任意光照下支持新视角合成。"
+  },
+  "GaussianShader": {
+    abstractEn: "GaussianShader incorporates shading functions into 3D Gaussian Splatting for realistic rendering of reflective and refractive surfaces by decomposing appearance into diffuse, specular, and ambient components stored per-Gaussian. The method overcomes vanilla 3DGS limitations on glossy and metallic materials, enabling physically plausible appearance modeling for reflective surfaces.",
+    abstractCn: "GaussianShader将着色函数引入三维高斯泼溅以实现反射与折射表面的真实感渲染，将外观分解为逐高斯存储的漫反射、镜面反射与环境分量。该方法克服了原始三维高斯泼溅在光泽与金属材质上的局限，实现反射表面的物理合理外观建模。"
+  },
+  "Instant Colorization": {
+    abstractEn: "Instant Colorization maps 2D image information including color, features, and segmentation masks back onto existing Gaussian splat scenes using normal-equation-based visibility-weighted least squares. The method achieves up to 10x speedup over gradient descent baselines, supporting applications in scene relighting, feature enrichment, and 3D semantic segmentation.",
+    abstractCn: "Instant Colorization使用基于正规方程的可见性加权最小二乘法将二维图像信息（颜色、特征、分割掩码）映射回现有高斯泼溅场景。该方法较梯度下降基线实现高达10倍加速，支持场景重光照、特征增强与三维语义分割应用。"
+  },
+  "VIRGi": {
+    abstractEn: "VIRGi enables rapid recoloring of 3DGS scenes while preserving view-dependent effects by separating color into diffuse and view-dependent components. Only one manually edited image is needed, and fine-tuning a single MLP takes two seconds with controllable view-dependent effect strength, supporting efficient artistic recoloring workflows.",
+    abstractCn: "VIRGi通过将颜色分离为漫反射与视相关分量，实现三维高斯泼溅场景的快速重着色同时保持视相关效果。仅需一张手动编辑图像，微调单个MLP仅需两秒，可控制视相关效果强度，支持高效艺术重着色工作流。"
+  },
+  "3DSS": {
+    abstractEn: "3DSS presents surface-splatting-based inverse rendering with forward microfacet shading under co-optimized HDR environment lighting for novel-illumination relighting. As the first surface-splatting-based inverse rendering method, it decomposes surface appearance into physically-based reflectance parameters while enabling high-quality relighting under arbitrary environment illumination.",
+    abstractCn: "3DSS提出基于表面泼溅的逆向渲染方法，在联合优化的HDR环境光照下通过前向微面元着色实现新照明重光照。作为首个基于表面泼溅的逆向渲染方法，它将表面外观分解为基于物理的反射参数，同时支持在任意环境光照下的高质量重光照。"
+  },
+  "Relit-LiVE": {
+    abstractEn: "Relit-LiVE addresses video relighting by jointly learning environment video for temporally coherent relighting, ensuring consistent illumination estimation across frames. The method produces relighted video outputs with stable environment lighting transitions, advancing the fidelity of video-level relighting beyond single-frame approaches.",
+    abstractCn: "Relit-LiVE通过联合学习环境视频实现视频重光照，确保跨帧一致的照明估计与时间相干重光照。该方法产生具有稳定环境光照过渡的重光照视频输出，将视频级重光照保真度推进至超越单帧方法的水平。"
+  },
+  "DiffAdapt4DSI": {
+    abstractEn: "DiffAdapt4DSI presents a differentiable adaptive 4D structured illumination system for joint capture of 3D shape and spatially-varying reflectance. The end-to-end differentiable pipeline jointly optimizes structured light patterns and reconstruction, with the 4D temporal dimension enabling dynamic scene capture of geometry and material properties under adaptive illumination.",
+    abstractCn: "DiffAdapt4DSI提出可微自适应四维结构照明系统，用于联合捕获三维形状与空间变化反射率。端到端可微管线联合优化结构光图案与重建，四维时间维度支持在自适应照明下动态场景的几何与材质属性捕获。"
+  },
+  "Relightable-GS-VP": {
+    abstractEn: "Relightable-GS-VP enables Gaussian Splatting-based relighting for virtual production using image-based illumination from background plates instead of environment maps. Mipmap-based light transport via UV-parameterized primitives sampling image space allows real-time relighting of foreground objects composited with virtual production backgrounds.",
+    abstractCn: "Relightable-GS-VP利用背景画面的基于图像照明代替环境贴图，实现虚拟制作中基于高斯泼溅的重光照。通过UV参数化基元采样图像空间的mipmap光传输，支持前景物体与虚拟制作背景的实时光照合成。"
+  },
+  "GaussianAvatar": {
+    abstractEn: "GaussianAvatar constructs 3D Gaussian-based human avatar representations with pose-driven deformation capability. The method leverages Gaussian primitives to model human body geometry and appearance, enabling animatable avatar rendering through pose-conditioned Gaussian deformation.",
+    abstractCn: "GaussianAvatar构建基于三维高斯的人体虚拟人表示，具有姿态驱动变形能力。该方法利用高斯基元建模人体几何与外观，通过姿态条件高斯变形实现可驱动虚拟人渲染。"
+  },
+  "GAS": {
+    abstractEn: "GAS (Gaussian Avatar Speed-Up) accelerates Gaussian avatar rendering through compression and caching strategies for real-time performance. The method reduces computational overhead of Gaussian-based avatar representations while maintaining visual quality, enabling practical real-time avatar applications.",
+    abstractCn: "GAS（高斯虚拟人加速）通过压缩与缓存策略加速高斯虚拟人渲染以实现实时性能。该方法降低高斯虚拟人表示的计算开销同时保持视觉质量，支持实用的实时虚拟人应用。"
+  },
+  "SplattingAvatar": {
+    abstractEn: "SplattingAvatar creates expressive human avatars using Gaussian Splatting with expression-conditioned Gaussian deformation. The method models detailed facial and body dynamics by conditioning Gaussian transformations on expression parameters, enabling high-fidelity avatar animation with nuanced expression transfer.",
+    abstractCn: "SplattingAvatar使用高斯泼溅与表情条件高斯变形创建富有表现力的人体虚拟人。该方法通过将高斯变换以表情参数为条件建模精细的面部与身体动态，实现具有细腻表情迁移的高保真虚拟人动画。"
+  },
+  "Generalizable Human GS": {
+    abstractEn: "Generalizable Human GS achieves generalizable human Gaussian splatting from sparse-view inputs by unprojecting latent embeddings into shared 3D space via predicted depth and recalibrating per body part using cross-view attention. The cross-view attention mechanism resolves spatial ambiguity across views, enabling high-quality human reconstruction without per-subject optimization.",
+    abstractCn: "Generalizable Human GS通过预测深度将隐嵌入反投影至共享三维空间并使用跨视角注意力逐身体部位重校准，实现从稀疏视图输入的可泛化人体高斯泼溅。跨视角注意力机制解决视角间的空间歧义，无需逐对象优化即可实现高质量人体重建。"
+  },
+  "High-Fidelity Human GS": {
+    abstractEn: "High-Fidelity Human GS reconstructs dynamic human models with high fidelity through region-aware initialization and SMPL-X geometric priors. SMPL-X initializes Gaussian positions and skinning weights, while region-aware density initialization combined with geometry-aware multi-scale hash encoding recovers fine local detail in dynamic human reconstruction.",
+    abstractCn: "High-Fidelity Human GS通过区域感知初始化与SMPL-X几何先验实现高保真动态人体重建。SMPL-X初始化高斯位置与蒙皮权重，区域感知密度初始化结合几何感知多尺度哈希编码恢复动态人体重建中的精细局部细节。"
+  },
+  "HumanSplatHMR": {
+    abstractEn: "HumanSplatHMR closes the loop between human mesh recovery and Gaussian Splatting avatar through a joint optimization framework that refines 3D human poses while simultaneously learning a high-fidelity Gaussian avatar. Photometric, segmentation, and depth losses are backpropagated through the differentiable renderer to pose parameters and global position, using only human mesh estimates from HMR without motion capture, achieving consistent improvements over baselines that decouple pose from reconstruction.",
+    abstractCn: "HumanSplatHMR通过联合优化框架闭合人体网格恢复与高斯泼溅虚拟人之间的回路，在精化三维人体姿态的同时学习高保真高斯虚拟人。光度、分割与深度损失通过可微渲染器反向传播至姿态参数与全局位置，仅使用HMR的人体网格估计而无需动作捕捉，较解耦姿态与重建的基线方法取得一致提升。"
+  },
+  "D-Rex": {
+    abstractEn: "D-Rex presents a diffusion rendering framework for relightable, expressive, and animatable full-body human avatars that decouples relighting entirely from avatar modeling by treating it as an image-space post-process. A pre-trained video diffusion relighting model fine-tuned via LoRA on paired flat-lit and relit frames from a light stage operates on flat-lit driving frames from an independent expressive avatar framework, enabling view- and temporally consistent relighting while preserving expressive motion and fine-grained facial detail.",
+    abstractCn: "D-Rex提出可重光照、可表达、可驱动的全身人体虚拟人扩散渲染框架，将重光照完全解耦为图像空间后处理。通过LoRA在光舞台配对平光与重光照帧上微调的预训练视频扩散重光照模型，对来自独立表情虚拟人框架的平光驱动帧进行处理，实现视点与时间一致的重光照同时保持表现力丰富的运动与精细面部细节。"
+  },
+  "ProgressiveAvatars": {
+    abstractEn: "ProgressiveAvatars introduces a coarse-to-fine progressive generation pipeline for high-quality 3D Gaussian avatars with animation capability. The progressive generation strategy incrementally refines avatar appearance and geometry, enabling the creation of detailed animatable Gaussian avatars through staged quality enhancement.",
+    abstractCn: "ProgressiveAvatars引入粗到细渐进生成管线，用于创建高质量可驱动三维高斯虚拟人。渐进生成策略逐步细化虚拟人外观与几何，通过分阶段质量提升实现精细可驱动高斯虚拟人的创建。"
+  },
+  "DelightingFace": {
+    abstractEn: "DelightingFace learns a delighting prior for high-quality facial appearance capture from casual video by training a powerful delighting network on OLAT dataset and rendered Light Stage scans via Dataset Latent Modulation. The method decouples dataset-specific styles from physical delighting principles, enabling a simple automatic pipeline from smartphone video to high-quality reflectance estimation, and contributes the NeRSemble-Scan 4K relightable scan dataset.",
+    abstractCn: "DelightingFace通过数据集潜在调制（DLM）在OLAT数据集与渲染光舞台扫描上训练去光照先验网络，实现从随意视频高质量面部外观捕获。该方法将数据集特定风格与物理去光照原理解耦，支持从智能手机视频到高质量反射率估计的简单自动管线，并贡献了NeRSemble-Scan 4K重光照扫描数据集。"
+  },
+  "SDTalk": {
+    abstractEn: "SDTalk combines structured facial priors with dual-branch motion fields for generalizable Gaussian-based talking head synthesis. Structured facial priors constrain Gaussian deformation to physically plausible expressions, while dual-branch motion fields decompose facial dynamics into global head motion and local expression details, enabling cross-identity generalization without per-person fine-tuning.",
+    abstractCn: "SDTalk结合结构化面部先验与双分支运动场，实现可泛化的高斯说话人头像合成。结构化面部先验约束高斯变形至物理合理的面部表情，双分支运动场将面部动态分解为全局头部运动与局部表情细节，无需逐人微调即可跨身份泛化。"
+  },
+  "HairGPT": {
+    abstractEn: "HairGPT treats hair strands as language tokens in an autoregressive model, enabling controllable 3D hairstyle synthesis from text or image prompts through strand-as-language modeling. The approach generates geometrically and visually realistic hair strands with strand-level detail, bridging language models and 3D hair representation for intuitive hairstyle generation.",
+    abstractCn: "HairGPT将发丝视为自回归模型中的语言标记，通过发丝即语言建模实现从文本或图像提示可控的三维发型合成。该方法生成具有发丝级细节的几何与视觉真实发丝，连接语言模型与三维头发表示，实现直觉式发型生成。"
+  },
+  "FaceParts": {
+    abstractEn: "FaceParts enables unsupervised segmentation and editing of 3D Gaussian Splatting avatars through feature disentanglement that decomposes avatar Gaussians into semantically meaningful parts. Density-based clustering discovers parts without masks, while FLAME-anchored part transfer enables cross-identity part swapping for fine-grained avatar editing including hairstyle transfer, accessory replacement, and expression transfer without explicit supervision.",
+    abstractCn: "FaceParts通过特征解耦实现三维高斯泼溅虚拟人的无监督分割与编辑，将虚拟人高斯分解为语义有意义的部件。基于密度的聚类无需掩码即发现部件，FLAME锚定部件迁移支持跨身份部件交换，实现无需显式监督的细粒度虚拟人编辑（发型迁移、配饰替换、表情迁移）。"
+  },
+"NRGS": {
+    abstractEn: "NRGS introduces neural network-based regularization to improve the robustness of 3D Gaussian Splatting in semantic segmentation tasks. By incorporating learnable regularization into the 3DGS optimization, the method addresses a key weakness of standard 3DGS in downstream dense prediction tasks, yielding more reliable semantic 3D reconstructions.",
+    abstractCn: "NRGS将基于神经网络的正则化引入3D高斯泼溅，以提升其在语义分割任务中的鲁棒性。该方法通过在3DGS优化中融入可学习正则化，解决了标准3DGS在下游稠密预测任务中的关键缺陷，从而获得更可靠的语义3D重建结果。"
+  },
+  "DualSplat": {
+    abstractEn: "DualSplat proposes a Failure-to-Prior framework that converts first-pass 3DGS reconstruction failures into explicit priors for a second-pass clean reconstruction. By exploiting transient fragments, photometric residuals, and SAM2 boundaries to construct pseudo-masks refined by a lightweight MLP online, the method achieves robust reconstruction from degraded in-the-wild inputs.",
+    abstractCn: "DualSplat提出了一种失败到先验框架，将首轮3DGS重建失败转化为二轮干净重建的显式先验。该方法利用瞬态碎片、光度残差和SAM2边界构建伪掩码，并通过轻量MLP在线精修，从退化的真实场景输入中实现鲁棒重建。"
+  },
+  "EnerGS": {
+    abstractEn: "EnerGS models partially observable geometry as a continuous energy field to provide soft geometric guidance for 3DGS optimization, rather than imposing hard geometric constraints. This energy-based approach allows LiDAR and depth priors to steer optimization without restricting the solution space, effectively mitigating overfitting in large-scale outdoor scenes with incomplete geometric supervision.",
+    abstractCn: "EnerGS将部分可观测几何建模为连续能量场，为3DGS优化提供软几何引导而非硬约束。该基于能量的方法允许LiDAR和深度先验在限制解空间的前提下引导优化，有效缓解大规模室外场景中几何监督不完整导致的过拟合问题。"
+  },
+  "WildGaussians": {
+    abstractEn: "WildGaussians enables 3D Gaussian Splatting from in-the-wild internet photo collections with unknown camera poses through joint pose and 3DGS optimization. The method combines robust COLMAP-based initialization with incremental pose refinement, handling varying lighting, transient objects, and occlusion to produce reliable reconstructions from uncurated image sets.",
+    abstractCn: "WildGaussians通过联合位姿与3DGS优化，实现了从互联网照片集合中未知相机位姿的3D高斯泼溅重建。该方法结合基于COLMAP的鲁棒初始化与增量位姿精修，能够处理变化光照、瞬态物体和遮挡，从非受控图像集中产生可靠重建。"
+  },
+  "MERID-GS": {
+    abstractEn: "MERID-GS addresses few-shot low-light 360-degree novel view synthesis through multi-scale explicit Retinex-based illumination and reflectance decoupling. The method introduces learnable gain and Illumination-State-Guided Frequency Gating, enabling adaptation to new scenes with only a few input views under severely degraded lighting conditions.",
+    abstractCn: "MERID-GS通过多尺度显式Retinex光照与反射率解耦，解决少样本低光照360度新视角合成问题。该方法引入可学习增益与光照状态引导的频率门控机制，使其能够在严重退化光照条件下仅用少量输入视图适应新场景。"
+  },
+  "MarineSTD-GS": {
+    abstractEn: "MarineSTD-GS explicitly models temporal and spatial underwater degradations including caustics, flickering, attenuation, and backscattering for realistic underwater scene reconstruction. The method employs paired Intrinsic and Degraded Gaussians with a Spatiotemporal Degradation Modeling module, achieving self-supervised disentanglement of physically faithful underwater appearance.",
+    abstractCn: "MarineSTD-GS显式建模时域与空域水下退化（焦散、闪烁、衰减、后向散射），实现真实水下场景重建。该方法采用本征与退化高斯对及时空退化建模模块，通过自监督解耦获得物理可信的水下外观。"
+  },
+  "HarmoGS": {
+    abstractEn: "HarmoGS identifies and resolves gradient conflicts between inconsistent views in in-the-wild 3DGS optimization through conflict-aware gradient harmonization. Semantic consistency-guided masking filters conflicting supervision signals while dual-view gradient harmonization aligns optimization direction across diverse viewpoints, enabling robust 3DGS training from uncurated internet photos without pose refinement.",
+    abstractCn: "HarmoGS通过冲突感知梯度协调，识别并解决非受控3DGS优化中不一致视角间的梯度冲突。语义一致性引导的掩码过滤冲突监督信号，双视角梯度协调对齐不同视角的优化方向，无需位姿精修即可从互联网非受控照片中实现鲁棒3DGS训练。"
+  },
+  "Street-GS": {
+    abstractEn: "Street-GS performs street-level scene reconstruction using 3D Gaussian Splatting with LiDAR-camera fusion and multi-view optimization. The method leverages complementary sensor modalities to achieve high-quality reconstruction of urban driving environments.",
+    abstractCn: "Street-GS利用LiDAR-相机融合与多视角优化进行街道级场景的3D高斯泼溅重建。该方法利用互补传感器模态实现城市驾驶环境的高质量重建。"
+  },
+  "ADS-GS": {
+    abstractEn: "ADS-GS reconstructs autonomous driving scenes using 3D Gaussian Splatting with static and dynamic decomposition. By separating the scene into static background and dynamic object components, the method enables faithful reconstruction of complex driving environments with moving entities.",
+    abstractCn: "ADS-GS通过静态与动态分解实现自动驾驶场景的3D高斯泼溅重建。该方法将场景分离为静态背景和动态目标组件，实现对包含运动实体的复杂驾驶环境的忠实重建。"
+  },
+  "Asset Harvester": {
+    abstractEn: "Asset Harvester presents an end-to-end pipeline that converts sparse autonomous vehicle object observations into simulation-ready 3D assets using 3D Gaussian lifting. The method combines SparseViewDiT for limited-angle view generation with hybrid data curation and self-distillation, enabling scalable 3D asset extraction for closed-loop AV simulation.",
+    abstractCn: "Asset Harvester提出端到端流水线，利用3D高斯提升将稀疏自动驾驶目标观测转化为仿真就绪的3D资产。该方法结合SparseViewDiT有限角度视图生成、混合数据策展与自蒸馏，实现可扩展的闭环自动驾驶仿真3D资产提取。"
+  },
+  "GSDrive": {
+    abstractEn: "GSDrive exploits 3D Gaussian Splatting for differentiable, physics-based reward shaping in end-to-end driving policy improvement. The method introduces a flow matching-based trajectory predictor within a 3DGS simulator and multi-mode trajectory probing that rolls out candidate trajectories for prospective reward assessment, establishing bidirectional knowledge exchange between imitation learning and reinforcement learning with dense feedback.",
+    abstractCn: "GSDrive利用3D高斯泼溅实现端到端驾驶策略改进中的可微分物理感知奖励塑造。该方法在3DGS仿真器中引入基于流匹配的轨迹预测器，通过多模态轨迹探测评估候选轨迹的预期奖励，建立模仿学习与强化学习间的双向知识交换，提供稠密反馈。"
+  },
+  "3DGS Safety Evaluation for AD": {
+    abstractEn: "This work presents the first industrial-fidelity systematic evaluation framework for 3D Gaussian Splatting capabilities and limitations in safety-related autonomous driving scene reconstruction. The study focuses on vehicle and pedestrian reconstruction quality from multiple novel viewpoints and analyzes fidelity degradation patterns, providing critical insights for integrating 3DGS into real-world AD software pipelines.",
+    abstractCn: "该工作提出了首个面向自动驾驶安全相关场景重建的3D高斯泼溅能力与局限性的工业级系统评估框架。研究聚焦于多新视角下车辆与行人的重建质量，分析保真度退化模式，为将3DGS集成至真实自动驾驶软件管线提供关键洞察。"
+  },
+  "Nighttime AD GS": {
+    abstractEn: "Nighttime AD GS integrates physically based rendering into 3D Gaussian Splatting for nighttime autonomous driving scene reconstruction. The method employs BRDF material optimization with global diffuse illumination and anisotropic spherical Gaussians for specular reflections, achieving state-of-the-art performance on nuScenes and Waymo nighttime benchmarks.",
+    abstractCn: "Nighttime AD GS将基于物理的渲染集成至3D高斯泼溅中，实现夜间自动驾驶场景重建。该方法采用BRDF材质优化，结合全局漫射光照与各向异性球面高斯处理镜面反射，在nuScenes和Waymo夜间基准上达到最优性能。"
+  },
+  "GaussianLSS": {
+    abstractEn: "GaussianLSS reconstructs bird's-eye-view representations using Gaussian Splatting for autonomous driving perception. By modeling depth uncertainty within the BEV perception framework, the method improves 3D perception accuracy without requiring larger Transformer architectures.",
+    abstractCn: "GaussianLSS利用高斯泼溅重建鸟瞰图表示用于自动驾驶感知。该方法通过在BEV感知框架中建模深度不确定性，无需更大规模Transformer架构即可提升3D感知精度。"
+  },
+  "Ground4D": {
+    abstractEn: "Ground4D introduces voxel-grounded temporal Gaussian aggregation for pose-free 4D reconstruction of unstructured off-road scenes. The method partitions canonical Gaussian space into spatial voxels with query-conditioned temporal attention within each voxel, resolving temporal conflicts that arise in unstructured off-road environments without requiring known camera poses.",
+    abstractCn: "Ground4D引入体素锚定的时序高斯聚合，实现非结构化越野场景的无位姿4D重建。该方法将规范高斯空间划分为空间体素，在每个体素内执行查询条件时序注意力，解决非结构化越野场景中的时序冲突，无需已知相机位姿。"
+  },
+  "PointForward": {
+    abstractEn: "PointForward proposes sparse 3D queries operating in world space rather than pixel-aligned representations for feedforward driving scene reconstruction. The method incorporates a spatial-temporal fusion module for coherent dynamic reconstruction and scene graphs for instance-level motion propagation, achieving state-of-the-art results on large-scale driving benchmarks while eliminating per-scene optimization.",
+    abstractCn: "PointForward提出在三维世界空间中使用稀疏3D查询替代像素对齐表示，实现前馈式驾驶场景重建。该方法结合时空融合模块实现一致的动态重建，以及场景图实现实例级运动传播，在大规模驾驶基准上达到最优，且无需逐场景优化。"
+  },
+  "Real2Sim": {
+    abstractEn: "Real2Sim integrates dynamic 3D Gaussian Splatting with a differentiable Material Point Method solver for physics-aware autonomous driving scene simulation. The framework enables realistic object interactions and collisions, supports instance-level editing of reconstructed AD scenes, and bridges real-world 3DGS reconstruction with physics-based simulation for closed-loop autonomous driving testing.",
+    abstractCn: "Real2Sim将动态3D高斯泼溅与可微分物质点方法求解器集成，实现物理感知的自动驾驶场景仿真。该框架支持真实物体交互与碰撞、重建AD场景的实例级编辑，并连接真实3DGS重建与基于物理的仿真，用于闭环自动驾驶测试。"
+  },
+  "ConFixGS": {
+    abstractEn: "ConFixGS introduces a plug-and-play confidence-aware diffusion prior for fixing feedforward 3D Gaussian Splatting in trajectory-based sparse-view driving scenes. The method generates diffusion-enhanced local pseudo-targets validated through reprojection-based cross-checking against support views, with dense confidence maps suppressing hallucinated evidence while enhancing reliable details, achieving up to 3.68 dB PSNR gains and nearly halving FID on Waymo, nuScenes, and KITTI benchmarks.",
+    abstractCn: "ConFixGS引入即插即用的置信度感知扩散先验，修复轨迹稀疏视角驾驶场景中的前馈3D高斯泼溅。该方法生成扩散增强局部伪目标并通过重投影交叉检查验证，利用稠密置信度图抑制幻觉证据并增强可靠细节，在Waymo、nuScenes和KITTI基准上PSNR提升最高3.68 dB、FID降低近一半。"
+  },
+  "Gaussian Splatting SLAM": {
+    abstractEn: "Gaussian Splatting SLAM presents the first real-time monocular 3DGS SLAM system that jointly optimizes camera poses and a 3D Gaussian map through differentiable rendering. By replacing the implicit map representation in traditional SLAM with explicit 3D Gaussians, the method achieves real-time performance while maintaining high-quality rendering.",
+    abstractCn: "Gaussian Splatting SLAM提出首个实时单目3DGS SLAM系统，通过可微分渲染联合优化相机位姿与3D高斯地图。该方法以显式3D高斯替代传统SLAM中的隐式地图表示，在保持高质量渲染的同时实现实时性能。"
+  },
+  "CGS-SLAM": {
+    abstractEn: "CGS-SLAM proposes a compact Gaussian Splatting SLAM system employing voxel-based representation for efficient memory usage in dense visual SLAM. The method balances reconstruction quality with computational efficiency, enabling real-time dense mapping through a more compact 3DGS representation.",
+    abstractCn: "CGS-SLAM提出紧凑高斯泼溅SLAM系统，采用基于体素的表示实现稠密视觉SLAM中的高效内存使用。该方法在重建质量与计算效率间取得平衡，通过更紧凑的3DGS表示实现实时稠密建图。"
+  },
+  "WildGS-SLAM": {
+    abstractEn: "WildGS-SLAM performs monocular 3D Gaussian Splatting SLAM in dynamic environments using uncertainty-aware geometric mapping via pretrained 3D priors. The method remains robust to dynamic objects in real-world environments and handles moving entities without explicit segmentation, enabling reliable SLAM in challenging real-world conditions.",
+    abstractCn: "WildGS-SLAM利用预训练3D先验的不确定性感知几何建图实现动态环境下的单目3DGS SLAM。该方法对真实环境中的动态目标保持鲁棒，无需显式分割即可处理运动实体，在挑战性真实场景中实现可靠SLAM。"
+  },
+  "S3PO-GS": {
+    abstractEn: "S3PO-GS introduces the first global scale consistency mechanism for monocular outdoor 3D Gaussian Splatting SLAM. The method eliminates metric scale drift in outdoor environments through scale-consistent pose optimization, enabling reliable RGB-only outdoor SLAM with geometrically consistent reconstructions.",
+    abstractCn: "S3PO-GS引入首个面向单目室外3DGS SLAM的全局尺度一致性机制。该方法通过尺度一致位姿优化消除室外环境中的度量尺度漂移，实现几何一致性重建的可靠纯RGB室外SLAM。"
+  },
+  "Flow4DGS-SLAM": {
+    abstractEn: "Flow4DGS-SLAM combines optical flow guidance with 4D Gaussian Splatting for SLAM by providing temporal consistency constraints that reduce tracking drift. The integration of optical flow as a temporal regularization signal enables more stable and accurate 4DGS-based SLAM in dynamic environments.",
+    abstractCn: "Flow4DGS-SLAM将光流引导与4D高斯泼溅结合用于SLAM，通过提供时序一致性约束降低跟踪漂移。将光流作为时序正则化信号，在动态环境中实现更稳定准确的4DGS SLAM。"
+  },
+  "EvFlow-GS": {
+    abstractEn: "EvFlow-GS combines event camera data with optical flow to handle motion blur in 3D Gaussian Splatting reconstruction. By leveraging the high temporal resolution of event cameras alongside 3DGS rendering, the method enables high-quality reconstruction in high-speed motion scenarios where conventional cameras produce severe motion blur.",
+    abstractCn: "EvFlow-GS结合事件相机数据与光流处理3D高斯泼溅重建中的运动模糊。利用事件相机的高时间分辨率与3DGS渲染结合，在传统相机产生严重运动模糊的高速运动场景中实现高质量重建。"
+  },
+  "MAGICIAN": {
+    abstractEn: "MAGICIAN introduces an active mapping agent that imagines unseen regions through predicted Gaussians and employs beam search for long-horizon planning. The method predicts occupancy, converts it to a Gaussian representation for efficient gain computation via rendering, and achieves globally optimal path planning through beam search, enabling efficient and complete scene exploration.",
+    abstractCn: "MAGICIAN引入主动建图智能体，通过想象高斯预测未见区域并采用束搜索进行长程规划。该方法预测占据信息并将其转化为高斯表示，通过渲染高效计算信息增益，利用束搜索实现全局最优路径规划，实现高效完整的场景探索。"
+  },
+  "MonoEM-GS": {
+    abstractEn: "MonoEM-GS applies an expectation-maximization framework to monocular 3DGS SLAM, jointly optimizing camera poses and Gaussian representations through a probabilistic formulation. This principled probabilistic approach enables more robust and consistent monocular SLAM by accounting for uncertainty in both pose estimation and map representation.",
+    abstractCn: "MonoEM-GS将期望最大化框架应用于单目3DGS SLAM，通过概率建模联合优化相机位姿与高斯表示。该概率方法通过考虑位姿估计与地图表示中的不确定性，实现更鲁棒一致的单目SLAM。"
+  },
+  "GGD-SLAM": {
+    abstractEn: "GGD-SLAM introduces a generalizable motion model for monocular 3DGS SLAM that handles diverse dynamic scenes without scene-specific motion modeling. By learning a generalizable motion representation, the method improves robustness in real-world SLAM scenarios where scene dynamics vary significantly.",
+    abstractCn: "GGD-SLAM引入可泛化运动模型，无需场景特定运动建模即可处理单目3DGS SLAM中多样化动态场景。通过学习可泛化的运动表示，该方法在场景动态显著变化的真实SLAM场景中提升鲁棒性。"
+  },
+  "2DGS-SLAM": {
+    abstractEn: "2DGS-SLAM achieves globally consistent RGB-D SLAM using 2D Gaussian Splatting as the map representation. The method employs surface-aligned 2D Gaussians for improved surface geometry, combined with loop closure detection and global optimization for drift-free trajectories, demonstrating that 2DGS provides better surface geometry than 3DGS for SLAM applications.",
+    abstractCn: "2DGS-SLAM利用2D高斯泼溅作为地图表示实现全局一致的RGB-D SLAM。该方法采用面向表面的2D高斯改善表面几何，结合回环检测与全局优化实现无漂移轨迹，表明2DGS比3DGS更适合SLAM应用的表面几何。"
+  },
+  "MAGS-SLAM": {
+    abstractEn: "MAGS-SLAM presents the first RGB-only multi-agent 3DGS SLAM system for collaborative mapping. The method employs compact submap communication between agents, geometry and appearance-aware loop verification for robust multi-agent loop closure, and occupancy-aware Gaussian fusion for consistent map merging, all without requiring depth sensors.",
+    abstractCn: "MAGS-SLAM提出首个纯RGB多智能体3DGS SLAM系统用于协同建图。该方法采用紧凑子图通信、几何与外观感知的回环验证实现鲁棒多智能体回环闭合，以及占据感知高斯融合实现一致地图合并，全部无需深度传感器。"
+  },
+  "Faster-GS": {
+    abstractEn: "Faster-GS presents a systematic benchmark for 3DGS training speed optimization that separates engineering optimizations from algorithmic innovations. This separation enables fair evaluation and comparison of 3DGS acceleration methods, providing a principled framework for understanding and improving 3DGS training efficiency.",
+    abstractCn: "Faster-GS提出3DGS训练速度优化的系统基准，将工程优化与算法创新分离。该分离策略实现了3DGS加速方法的公平评估与比较，为理解和改进3DGS训练效率提供了原则性框架。"
+  },
+  "Proxy-GS": {
+    abstractEn: "Proxy-GS introduces a lightweight proxy model with occlusion priors for 3DGS training and inference acceleration. The method achieves 2.5x rendering speedup with no accuracy loss through occlusion-aware pruning guided by the proxy model, effectively reducing redundant Gaussians that contribute minimally to rendered images.",
+    abstractCn: "Proxy-GS引入带有遮挡先验的轻量代理模型，加速3DGS训练与推理。该方法通过代理模型引导的遮挡感知剪枝实现2.5倍渲染加速且无精度损失，有效减少对渲染图像贡献最小的冗余高斯。"
+  },
+  "Structure-Aware Densification": {
+    abstractEn: "Structure-Aware Densification replaces heuristic screen-space gradient-based split and clone operations with a principled multi-scale frequency analysis approach. By combining structure tensors with Laplacian scale space to estimate dominant frequencies and introducing a per-Gaussian per-axis frequency violation metric, the method enables anisotropic splitting with multiview consistency, achieving faster convergence and superior quality in high-frequency regions.",
+    abstractCn: "结构感知密集化用基于多尺度频率分析的原则性方法替代基于启发式屏幕空间梯度的分裂与克隆操作。通过结合结构张量与拉普拉斯尺度空间估计主频率，并引入逐高斯逐轴频率违反度量，该方法实现各向异性分裂与多视角一致性，在高频区域取得更快收敛与更优质量。"
+  },
+  "3DGS as MCMC": {
+    abstractEn: "3DGS as MCMC reformulates 3D Gaussian Splatting optimization as Markov Chain Monte Carlo sampling, providing a principled probabilistic foundation for Gaussian density control. By reframing clone, split, and prune operations as MCMC sampling moves, the method replaces heuristic density control with theoretically grounded stochastic sampling.",
+    abstractCn: "3DGS as MCMC将3D高斯泼溅优化重新表述为马尔可夫链蒙特卡洛采样，为高斯密度控制提供原则性概率基础。通过将克隆、分裂与剪枝操作重新框架为MCMC采样步，该方法用理论驱动的随机采样替代启发式密度控制。"
+  },
+  "LeGS": {
+    abstractEn: "LeGS replaces heuristic density control operations in 3DGS with a fully learnable policy optimized via reinforcement learning. The method formulates density control as a parameterized policy network with closed-form O(N) reward computation via sensitivity analysis, enabling principled and adaptive Gaussian densification during training.",
+    abstractCn: "LeGS用通过强化学习优化的全可学习策略替代3DGS中的启发式密度控制操作。该方法将密度控制建模为参数化策略网络，通过敏感性分析实现闭式O(N)奖励计算，实现训练过程中原则性的自适应高斯密集化。"
+  },
+  "GEMM-GS": {
+    abstractEn: "GEMM-GS reformulates 3DGS blending into a GEMM-compatible form to exploit GPU Tensor Cores, achieving the first utilization of Tensor Cores for 3DGS rendering. With a three-stage double-buffered CUDA pipeline, the method delivers 1.42x speedup while maintaining rendering quality, bridging the gap between 3DGS rendering and modern GPU compute units.",
+    abstractCn: "GEMM-GS将3DGS混合重新表述为GEMM兼容形式以利用GPU张量核心，首次实现3DGS渲染对张量核心的利用。通过三阶段双缓冲CUDA流水线，该方法在保持渲染质量的同时实现1.42倍加速，弥合3DGS渲染与现代GPU计算单元的差距。"
+  },
+  "Hybrid-Capture Two-View Training": {
+    abstractEn: "Hybrid-Capture Two-View Training analyzes training strategies for hybrid-capture 3DGS combining aerial drone and ground-level views, identifying two-view-per-step accumulation as the dominant training lever. The method presents a variance-decomposition framework and demonstrates transferability to Scaffold-GS and Pixel-GS, providing practical guidelines for multi-modal 3DGS training.",
+    abstractCn: "混合捕获双视图训练分析了结合航拍与地面视角的混合3DGS训练策略，确定每步双视图累积为主导训练杠杆。该方法提出方差分解框架，并验证了向Scaffold-GS和Pixel-GS的可迁移性，为多模态3DGS训练提供实用指南。"
+  },
+  "YOGO": {
+    abstractEn: "YOGO reformulates stochastic Gaussian growth as a deterministic budget-aware equilibrium through a system-level framework. The method introduces a budget controller for resource allocation and availability-registration for multi-sensor fusion, enabling controllable 3D Gaussian Splatting for ultra-densely sampled scenes.",
+    abstractCn: "YOGO通过系统级框架将随机高斯增长重新表述为确定性的预算感知均衡。该方法引入预算控制器进行资源分配与可用性注册以支持多传感器融合，实现超密集采样场景的可控3D高斯泼溅。"
+  },
+  "VkSplat": {
+    abstractEn: "VkSplat presents the first fully Vulkan-based 3DGS training pipeline, achieving state-of-the-art performance with 3.3x speed improvement and 33% VRAM reduction over CUDA and PyTorch baselines. By leveraging the Vulkan compute API, the method enables cross-vendor GPU compatibility, freeing 3DGS from NVIDIA CUDA dependency.",
+    abstractCn: "VkSplat提出首个完全基于Vulkan的3DGS训练管线，相比CUDA+PyTorch基线实现3.3倍速度提升与33%显存降低。通过利用Vulkan计算API，该方法实现跨厂商GPU兼容性，使3DGS摆脱NVIDIA CUDA依赖。"
+  },
+  "QuadBox": {
+    abstractEn: "QuadBox accelerates 3D Gaussian Splatting rendering using four axis-aligned bounding boxes to tightly encapsulate projected Gaussians with a geometry-aware stretching factor. The accompanying QPass single-pass tile traversal algorithm enables 1.85x rendering speedup over vanilla 3DGS by reducing redundant tile-Gaussian intersections.",
+    abstractCn: "QuadBox使用四个轴对齐包围盒配合几何感知拉伸因子紧密封装投影高斯，加速3D高斯泼溅渲染。配套的QPass单遍瓦片遍历算法通过减少冗余瓦片-高斯交叉，实现相对原始3DGS 1.85倍渲染加速。"
+  },
+  "AdaGScale": {
+    abstractEn: "AdaGScale introduces viewpoint-adaptive Gaussian scaling that dynamically adjusts Gaussian scale based on viewpoint to minimize tile overlap, reducing rendering workload without quality degradation. The method reduces the number of Gaussian-tile pairs, enabling more efficient 3DGS rendering across varying camera configurations.",
+    abstractCn: "AdaGScale引入视点自适应高斯缩放，根据视点动态调整高斯尺度以最小化瓦片重叠，在不降低质量的前提下减少渲染负载。该方法减少高斯-瓦片对数量，实现跨不同相机配置的更高效3DGS渲染。"
+  },
+  "GS-Playground": {
+    abstractEn: "GS-Playground presents a multi-modal simulation framework integrating batch 3DGS rendering with a parallel physics engine for vision-informed robot learning. The method achieves 10^4 FPS throughput at 640x480 resolution through an automated Real2Sim workflow, bridging perceptual and physical gaps in photorealistic simulation-ready environments.",
+    abstractCn: "GS-Playground提出多模态仿真框架，将批量3DGS渲染与并行物理引擎集成，用于视觉驱动的机器人学习。该方法通过自动化Real2Sim工作流在640x480分辨率下实现10^4 FPS吞吐量，弥合真实感仿真环境中的感知与物理差距。"
+  },
+  "GS-Surrogate": {
+    abstractEn: "GS-Surrogate introduces deformable Gaussian Splatting as a visualization surrogate for parameter-space exploration of ensemble simulations. Using a canonical Gaussian field with sequential parameter-conditioned deformations, the method enables real-time exploration with isosurface extraction and transfer function editing, accelerating scientific analysis of high-dimensional simulation data.",
+    abstractCn: "GS-Surrogate引入可变形高斯泼溅作为集成仿真参数空间探索的可视化代理。使用规范高斯场与序列参数条件变形，该方法支持实时探索与等值面提取及传递函数编辑，加速高维仿真数据的科学分析。"
+  },
+  "3DGS Demo Synthesis": {
+    abstractEn: "3DGS Demo Synthesis generates diverse task demonstrations for imitation learning using 3DGS scene reconstruction. The method retargets expert trajectories via Dynamic Movement Primitives to new goals within 3DGS scenes, employing obstacle-aware DMP on continuous density fields for collision-free demonstration generation.",
+    abstractCn: "3DGS演示合成利用3DGS场景重建为模仿学习生成多样化任务演示。该方法通过动态运动原语将专家轨迹重定向至3DGS场景中的新目标，在连续密度场上执行障碍感知DMP以生成无碰撞演示。"
+  },
+  "TAIL-Safe": {
+    abstractEn: "TAIL-Safe provides task-agnostic safety monitoring for imitation learning policies using a Gaussian Splatting digital twin. The method employs a Lipschitz-continuous Q-value function for safety scoring and a Nagumo-inspired recovery mechanism, enabling real-time safety assessment and intervention during policy execution.",
+    abstractCn: "TAIL-Safe利用高斯泼挂数字孪生为模仿学习策略提供任务无关的安全监控。该方法采用Lipschitz连续Q值函数进行安全评分，结合Nagumo启发的恢复机制，实现策略执行期间的实时安全评估与干预。"
+  },
+  "FreeMoCap": {
+    abstractEn: "FreeMoCap is an open-source markerless motion capture system providing free, webcam-based 3D skeletal motion capture for everyone. The pipeline performs multi-camera ChArUco calibration, 2D keypoint detection via MediaPipe, and 3D triangulation to output skeletal data in multiple formats, serving as a practical driver for animatable 3DGS avatars and multi-camera 3DGS training.",
+    abstractCn: "FreeMoCap是开源无标记动作捕捉系统，提供基于网络摄像头的免费3D骨骼动作捕捉。其流水线执行多相机ChArUco标定、基于MediaPipe的2D关键点检测与3D三角化，输出多种格式骨骼数据，可作为可驱动3DGS化身与多相机3DGS训练的实用驱动器。"
+  },
+  "Forecast-GS": {
+    abstractEn: "Forecast-GS predicts future task-completed 3D Gaussian states from current observations for language-conditioned robotic manipulation. The method achieves 21/25-23/25 success rates versus the ReKep baseline of 15/25-19/25 by bridging 3DGS representation with predictive manipulation planning, enabling goal-directed robotic actions through forecast-aware Gaussian representations.",
+    abstractCn: "Forecast-GS从当前观测预测未来任务完成的3D高斯状态，用于语言条件机器人操控。该方法通过连接3DGS表示与预测性操控规划，实现21/25-23/25成功率（对比ReKep基线15/25-19/25），通过预测感知高斯表示实现目标导向的机器人动作。"
+  },
+  "GS-DOT": {
+    abstractEn: "GS-DOT presents the first adaptation of Gaussian Splatting algorithms in the photon diffusion regime for medical imaging via Diffuse Optical Tomography. The method replaces ray transport with diffusion functions, modeling absorption coefficients as sparse anisotropic Gaussian primitives, achieving high noise robustness and substantial memory reduction compared to traditional DOT methods.",
+    abstractCn: "GS-DOT首次将高斯泼溅算法适配至光子扩散域，用于弥散光学断层成像。该方法用扩散函数替代光线传输，将吸收系数建模为稀疏各向异性高斯基元，相比传统DOT方法实现高噪声鲁棒性与大幅内存降低。"
+  },
+  "Habitat-GS": {
+    abstractEn: "Habitat-GS upgrades the Habitat-Sim simulator with 3D Gaussian Splatting rendering for high-fidelity robot navigation training. By replacing mesh-based rendering with 3DGS for photorealistic simulation and introducing interactive virtual human agents for crowd navigation, the method enables more realistic and diverse robot training environments.",
+    abstractCn: "Habitat-GS以3D高斯泼溅渲染升级Habitat-Sim仿真器，用于高保真机器人导航训练。通过用3DGS替代基于网格的渲染实现真实感仿真，并引入交互式虚拟人智能体进行人群导航，该方法实现更真实多样的机器人训练环境。"
+  },
+  "BiSplat-WRF": {
+    abstractEn: "BiSplat-WRF adapts Gaussian Splatting to wireless radiance field reconstruction for spatial power spectrum prediction. The method employs planar 2D Gaussians with 3D coordinates rendered directly on the angular domain and a bilinear spatial transformer that captures long-range electromagnetic dependencies, surpassing NeRF-based and prior GS-based baselines on SSIM metrics.",
+    abstractCn: "BiSplat-WRF将高斯泼溅适配至无线辐射场重建用于空间功率谱预测。该方法采用携带3D坐标的平面2D高斯直接在角度域渲染，结合捕获长程电磁依赖的双线性空间变换器，在SSIM指标上超越基于NeRF与先前GS的基线。"
+  },
+  "FieryGS": {
+    abstractEn: "FieryGS presents a physically-based framework integrating combustion simulation and rendering within the 3DGS pipeline for in-the-wild fire synthesis. The method couples multimodal LLM-based physical material reasoning, efficient volumetric combustion simulation, and a unified fire-plus-3DGS renderer, supporting flame propagation, smoke dispersion, surface carbonization, and user-controllable fire intensity and airflow.",
+    abstractCn: "FieryGS提出基于物理的框架，将燃烧仿真与渲染集成至3DGS流水线中实现非受控火焰合成。该方法耦合多模态LLM物理材质推理、高效体积燃烧仿真与统一火焰+3DGS渲染器，支持火焰传播、烟雾扩散、表面碳化及用户可控的火焰强度与气流。"
+  },
+  "PlayCanvas Ecosystem": {
+    abstractEn: "The PlayCanvas Ecosystem provides an end-to-end open-source toolchain for 3DGS authoring, editing, optimization, and deployment in the browser. It comprises SuperSplat for browser-based 3DGS editing, splat-transform for PLY-to-SOG conversion with collision mesh generation, the PlayCanvas Engine with first-class 3DGS and physics support, and a React wrapper, constituting the first production-validated pipeline making 3DGS scenes interactable with collision, navmesh-driven NPCs, and behavior-tree AI.",
+    abstractCn: "PlayCanvas生态提供端到端开源工具链，用于浏览器中3DGS创作、编辑、优化与部署。包括浏览器3DGS编辑器SuperSplat、支持碰撞网格生成的PLY到SOG转换工具splat-transform、提供一级3DGS与物理支持的PlayCanvas引擎，以及React封装器，构成首个经生产验证的可交互3DGS场景管线。"
+  },
+  "SplAttN": {
+    abstractEn: "SplAttN replaces hard projection with differentiable Gaussian Splatting for dense, continuous image-plane representation in point cloud completion. The method identifies Cross-Modal Entropy Collapse caused by hard projection yielding extremely sparse support, and resolves it by using Gaussian Splatting as continuous density estimation that facilitates gradient flow, achieving robust cross-modal connection on KITTI stress test.",
+    abstractCn: "SplAttN用可微分高斯泼溅替代硬投影，实现点云补全中稠密连续的图像平面表示。该方法识别硬投影导致的跨模态熵塌陷问题，通过高斯泼溅作为连续密度估计避免稀疏支撑塌陷并促进梯度流动，在KITTI压力测试中实现鲁棒跨模态连接。"
+  },
+  "Fake3DGS": {
+    abstractEn: "Fake3DGS presents the first benchmark for detecting 3D manipulations including geometry, appearance, and spatial layout alterations in Gaussian Splatting scenes. The work formalizes 3D fake detection, demonstrates that 2D detectors struggle with 3D manipulation, and introduces 3D-aware detection leveraging multi-view coherence and Gaussian features for identifying forged 3D content.",
+    abstractCn: "Fake3DGS提出首个用于检测高斯泼溅场景中3D操纵（几何、外观、空间布局篡改）的基准。该工作形式化3D伪造检测概念，证明2D检测器难以处理3D操纵，并引入利用多视角一致性与高斯特征的3D感知检测以识别伪造3D内容。"
+  },
+  "SandSim": {
+    abstractEn: "SandSim reconstructs sand painting processes from a single image using curve-guided Gaussian representation. The method models strokes as sequences of anisotropic primitives along continuous trajectories with smooth kernels for soft boundaries, employs subtractive compositing for light attenuation during sand accumulation, and uses semantic-guided planning for scene decomposition and drawing order determination.",
+    abstractCn: "SandSim利用曲线引导的高斯表示从单幅图像重建沙画过程。该方法将笔划建模为沿连续轨迹的各向异性基元序列并使用平滑核捕获软边界，采用减法合成模拟沙堆积时的光衰减，并通过语义引导规划进行场景分解与绘制顺序确定。"
+  },
+  "RGS": {
+    abstractEn: "RGS integrates wavelet multi-resolution analysis with 3DGS for ultra sparse-view cone-beam CT reconstruction through a spectrally-decoupled Gaussian representation. By separating the representation into a geometric base component and a residual detail component, the method resolves the mismatch between X-ray attenuation non-negativity and bipolar wavelet coefficients, achieving superior fidelity in trabecular and vascular structures.",
+    abstractCn: "RGS通过频谱解耦高斯表示将小波多分辨率分析与3DGS结合，用于超稀疏视角锥束CT重建。通过将表示分离为几何基分量与残差细节分量，该方法解决X射线衰减非负性与双极小波系数的不匹配问题，在骨小梁与血管结构中实现更优保真度。"
+  },
+  "RESPIRE": {
+    abstractEn: "RESPIRE presents a mesh-anchored Gaussian Splatting framework with respiratory-phase-aware deformation for dynamic bronchoscopy visualization. Using paired inhale-exhale CT scans to reduce respiratory motion to a single scalar breathing phase estimated from endoscopic RGB by a lightweight network, the method eliminates breath-hold protocols, achieves 1.22mm target localization accuracy within the 3mm clinical tolerance, and trains 20x faster.",
+    abstractCn: "RESPIRE提出具有呼吸相位感知变形的网格锚定高斯泼溅框架，用于动态支气管镜可视化。利用配对吸-呼CT扫描将呼吸运动降为单一标量呼吸相位，通过轻量网络从内窥镜RGB估计，消除屏息协议，实现1.22mm目标定位精度（在3mm临床容差内），训练速度提升20倍。"
+  },
+  "EmoTaG": {
+    abstractEn: "EmoTaG achieves few-shot emotion-aware 3D talking head synthesis on Gaussian Splatting by reformulating motion prediction in structured FLAME parameter space for geometric stability. The Gated Residual Motion Network captures emotional prosody from audio while supplementing head pose and upper-face cues, achieving state-of-the-art performance in emotional expressiveness, lip sync, and visual realism.",
+    abstractCn: "EmoTaG通过在结构化FLAME参数空间中重构运动预测以保持几何稳定性，实现少样本情感感知3D说话头高斯泼溅合成。门控残差运动网络从音频捕获情感韵律并补充头部姿态与上面部线索，在情感表现力、唇音同步与视觉真实感上达到最优。"
+  },
+  "3DTV": {
+    abstractEn: "3DTV presents a feedforward sparse-view interpolation network for real-time free-viewpoint rendering from only three cameras. Using Delaunay-based triplet selection, the method achieves 25ms per frame at 40 FPS without scene-specific retraining, enabling practical real-time novel view synthesis from minimal input views.",
+    abstractCn: "3DTV提出前馈稀疏视角插值网络，仅从三个相机实现实时自由视点渲染。该方法采用基于Delaunay的三元组选择，在40 FPS下实现每帧25ms且无需逐场景重新训练，从最少输入视图实现实用的实时新视角合成。"
+  },
+  "Mobile Phone 3DGS Acquisition": {
+    abstractEn: "Mobile Phone 3DGS Acquisition introduces an on-device capture guidance method for mobile 3DGS acquisition with real-time spherical coverage feedback. The method employs area-weighted spherical coverage for uniform viewpoint distribution, ensuring high-quality 3DGS reconstruction from smartphone-captured images without requiring professional equipment.",
+    abstractCn: "手机3DGS采集引入设备端采集引导方法，配合实时球面覆盖反馈进行移动3DGS采集。该方法采用面积加权球面覆盖确保均匀视角分布，无需专业设备即可从智能手机拍摄的图像获得高质量3DGS重建。"
+  },
+  "RDSplat": {
+    abstractEn: "RDSplat proposes a robust watermarking framework for 3D Gaussian Splatting assets resilient against diffusion-based editing operations. As the first watermarking method designed to withstand diffusion model editing on 3DGS scenes, it enables persistent ownership verification even after generative model-based modifications.",
+    abstractCn: "RDSplat提出面向3D高斯泼溅资产的鲁棒水印框架，能够抵抗基于扩散模型的编辑操作。作为首个针对3DGS场景扩散模型编辑设计的水印方法，即使在生成模型修改后仍能实现持久的所有权验证。"
+  },
+  "Egocentric Dynamic 3DGS Evaluation": {
+    abstractEn: "This work presents the first systematic evaluation of dynamic monocular 3DGS models on egocentric video using the EgoExo4D dataset. The study finds that reconstruction quality is consistently lower in egocentric views, with the gap primarily stemming from static content reconstruction challenges, highlighting specific difficulties of applying 3DGS to first-person perspective scenarios.",
+    abstractCn: "该工作利用EgoExO4D数据集首次对自我中心视角视频上的动态单目3DGS模型进行系统评估。研究发现自我中心视角的重建质量一致较低，差距主要源于静态内容重建困难，揭示了3DGS应用于第一人称视角场景的特定挑战。"
+  },
+  "TwinPose": {
+    abstractEn: "TwinPose performs multi-view 3D human pose estimation via instance-level twin pose subspaces learned from 2D detections. The method introduces a principle of 2D-to-3D lifting with instance-level adaptation, handling diverse body shapes and poses across multiple views for accurate and robust multi-view pose estimation.",
+    abstractCn: "TwinPose通过从2D检测学习的实例级双子姿态子空间进行多视角3D人体姿态估计。该方法引入具有实例级自适应的2D到3D提升原理，处理跨多视角的多样体型与姿态，实现准确鲁棒的多视角姿态估计。"
+  },
+  "ULF-Loc": {
+    abstractEn: "ULF-Loc theoretically analyzes alpha-blending bias in learned Gaussian features and proposes geometry-weighted feature fusion with keypoint-consensus landmark sampling and local geometric consistency verification for robust visual localization. The method reduces median translation error by 17% with only 1/10 training time and 1/6 GPU memory consumption compared to prior 3DGS-based localization approaches.",
+    abstractCn: "ULF-Loc从理论上分析学习高斯特征中的alpha混合偏差，提出几何加权特征融合、关键点一致性地标采样与局部几何一致性验证用于鲁棒视觉定位。相比先前基于3DGS的定位方法，该方法平移误差中值降低17%，训练时间仅需1/10，GPU内存消耗仅需1/6。"
+  },
+  "CoherentRaster": {
+    abstractEn: "CoherentRaster introduces subpixel-level 3DGS rasterization for light field displays with cross-view coherent attribute reuse that eliminates redundant computation. The view-coherent remapping technique restores warp-level memory efficiency under interlaced subpixel layouts, enabling real-time rendering on consumer hardware for light field display applications.",
+    abstractCn: "CoherentRaster引入面向光场显示的亚像素级3DGS光栅化，通过跨视角一致性属性复用消除冗余计算。视角一致性重映射技术恢复交错亚像素布局下的warp级内存效率，在消费级硬件上实现光场显示应用的实时渲染。"
+  },
+  "AudioGS": {
+    abstractEn: "AudioGS extends Gaussian Splatting to the audio domain using spectrogram representations, enabling sound field reconstruction via differentiable Gaussian primitives for spatial audio applications. The method applies the 3DGS framework to model and synthesize spatially-varying acoustic fields from sparse microphone measurements.",
+    abstractCn: "AudioGS利用频谱图表示将高斯泼溅扩展至音频域，通过可微分高斯基元实现声场重建用于空间音频应用。该方法将3DGS框架应用于从稀疏麦克风测量建模与合成空间变化声场。"
+  },
+  "MSGS": {
+    abstractEn: "MSGS extends 3D Gaussian Splatting to multispectral imagery, enabling joint reconstruction and novel view synthesis across multiple spectral bands. The method facilitates applications in remote sensing and material identification by unifying multi-band spectral information within the 3DGS framework.",
+    abstractCn: "MSGS将3D高斯泼溅扩展至多光谱图像，实现跨多光谱波段的联合重建与新视角合成。该方法通过在3DGS框架内统一多波段光谱信息，支撑遥感与材料识别等应用。"
+  },
+  "PatchPoison": {
+    abstractEn: "PatchPoison presents the first study on adversarial data poisoning for 3D reconstruction pipelines, demonstrating that small patch-level perturbations in multi-view datasets can severely degrade 3DGS and NeRF reconstruction quality. The work highlights critical security vulnerabilities in 3D reconstruction systems, raising awareness of potential adversarial attacks on training data.",
+    abstractCn: "PatchPoison首次研究3D重建管线的对抗数据投毒，证明多视图数据集中少量补丁级扰动即可严重降低3DGS与NeRF重建质量。该工作揭示了3D重建系统中的关键安全漏洞，提升对训练数据潜在对抗攻击的认识。"
+  },
+  "Aes3D": {
+    abstractEn: "Aes3D presents the first systematic framework for aesthetic assessment in 3D Gaussian Splatting, comprising the Aesthetic3D dataset and Aes3DGSNet lightweight model. Operating directly on Gaussian primitives without requiring multi-view rendering, the model captures high-level aesthetic cues including composition, harmony, and visual appeal that go beyond conventional reconstruction fidelity metrics.",
+    abstractCn: "Aes3D提出首个面向3D高斯泼溅的美学评估系统框架，包含Aesthetic3D数据集与Aes3DGSNet轻量模型。该模型直接作用于高斯基元而无需多视角渲染，捕获超越传统重建保真度指标的高级美学线索，包括构图、和谐与视觉吸引力。"
+  },
+  "GS-STVSR": {
+    abstractEn: "GS-STVSR applies 2D Gaussian Splatting to spatio-temporal video super-resolution, enabling ultra-efficient continuous space-time interpolation via 2D Gaussian primitives. By bridging Gaussian Splatting with video processing, the method achieves efficient and high-quality video super-resolution with continuous temporal interpolation.",
+    abstractCn: "GS-STVSR将2D高斯泼溅应用于时空视频超分辨率，通过2D高斯基元实现超高效连续时空插值。该方法将高斯泼溅与视频处理桥接，实现高效高质量的连续时间插值视频超分辨率。"
+  },
+  "ArtifactWorld": {
+    abstractEn: "ArtifactWorld leverages video generation models for restoring 3DGS rendering artifacts at scale, addressing the common quality degradation issues in 3D Gaussian Splatting outputs. The method applies generative video models to correct and enhance rendered frames, improving the visual quality of 3DGS reconstructions.",
+    abstractCn: "ArtifactWorld利用视频生成模型大规模修复3DGS渲染伪影，解决3D高斯泼溅输出中的质量退化问题。该方法应用生成式视频模型校正与增强渲染帧，改善3DGS重建的视觉质量。"
+  },
+  "FreeFix": {
+    abstractEn: "FreeFix improves extrapolated 3DGS rendering through fine-tuning-free diffusion model guidance using an interleaved 2D-3D refinement approach. With per-pixel confidence masking for targeted improvement, the method achieves quality comparable to fine-tuning methods while retaining generalization capability, enabling practical enhancement of 3DGS novel views without additional training.",
+    abstractCn: "FreeFix通过无需微调的扩散模型引导改善外推3DGS渲染质量，采用交织2D-3D精修方法与逐像素置信度掩码进行定向改进。该方法达到与微调方法相当的质量同时保持泛化能力，无需额外训练即可实用增强3DGS新视角。"
+  },
+  "Luminance-GS++": {
+    abstractEn: "Luminance-GS++ unifies color and lightness correction with view-adaptive curve adjustment for robust 3D novel view synthesis under diverse illumination conditions. The method combines view-adaptive lightness adjustment with pixel-wise residual refinement, handling low-light, overexposure, and chromatic variations while preserving real-time rendering capability.",
+    abstractCn: "Luminance-GS++通过视图自适应曲线调整统一颜色与亮度校正，实现多样光照条件下的鲁棒3D新视角合成。该方法结合视图自适应亮度调整与逐像素残差精修，处理低光照、过曝光与色差变化，同时保持实时渲染能力。"
+  },
+  "E2EGS": {
+    abstractEn: "E2EGS performs pose-free 3D reconstruction from event camera streams using Gaussian Splatting through patch-based temporal coherence analysis. The method extracts edges from noisy event data and employs edge-weighted losses for fully pose-free event-based 3D reconstruction, demonstrating the potential of event cameras for structure-from-motion without explicit pose estimation.",
+    abstractCn: "E2EGS利用基于补丁的时序一致性分析，从事件相机流实现无位姿3D高斯泼溅重建。该方法从噪声事件数据中提取边缘并采用边缘加权损失，实现完全无位姿的事件驱动3D重建，展示事件相机在无需显式位姿估计的运动恢复结构中的潜力。"
+  },
+  "LagrangianSplats": {
+    abstractEn: "LagrangianSplats enforces a divergence-free constraint on 3D Gaussian advection for physically consistent fluid velocity field reconstruction. The method applies sliding window optimization for temporal coherence and renders fluid dynamics from sparse 2D video observations, bridging 3D Gaussian Splatting with computational fluid dynamics for incompressible flow simulation.",
+    abstractCn: "LagrangianSplats对3D高斯平流施加无散度约束，实现物理一致的流体速度场重建。该方法采用滑动窗口优化保证时序一致性，从稀疏2D视频观测渲染流体动力学，将3D高斯泼溅与计算流体力学桥接用于不可压缩流模拟。"
+  },
+  "PG-3DGS": {
+    abstractEn: "PG-3DGS couples differentiable physics simulation with 3D Gaussian representations for physically consistent 3D reconstruction. Physical objectives from differentiable simulation guide shape optimization alongside visual losses, enabling 3DGS to reconstruct objects satisfying physical constraints, validated through 3D-printed aircraft lift tests confirming physical fidelity.",
+    abstractCn: "PG-3DGS将可微分物理仿真与3D高斯表示耦合，实现物理一致的3D重建。来自可微分仿真的物理目标与视觉损失共同引导形状优化，使3DGS重建满足物理约束的物体，通过3D打印飞机升力测试验证物理保真度。"
+  },
+  "XFreq-GS": {
+    abstractEn: "XFreq-GS employs 3D Gaussians with shared geometry and frequency-adaptive RF attributes for cross-frequency wireless radiation field reconstruction. The shared geometric structure across frequencies combined with frequency-adaptive attributes captures frequency-dependent propagation, enabling synthesis of power angular spectrum maps at unseen frequencies and extending 3DGS from visual to radio-frequency domain.",
+    abstractCn: "XFreq-GS采用共享几何与频率自适应RF属性的3D高斯，实现跨频率无线辐射场重建。跨频率共享的几何结构结合频率自适应属性捕获频率相关传播特性，能够合成未见频率的功率角谱图，将3DGS从视觉域扩展至射频域。"
+  },
+  "GuardMarkGS": {
+    abstractEn: "GuardMarkGS presents the first unified ownership tracing and edit deterrence framework for 3D Gaussian Splatting, jointly addressing copyright protection through imperceptible watermark embedding and content protection via edit deterrence. The framework embeds watermarks into Gaussian attributes for ownership verification while simultaneously degrading rendering quality upon unauthorized editing, providing comprehensive copyright protection for 3DGS assets.",
+    abstractCn: "GuardMarkGS提出首个面向3D高斯泼溅的统一所有权追踪与编辑威慑框架，通过不可感知水印嵌入解决版权追踪，通过编辑威慑实现内容保护。该框架将水印嵌入高斯属性用于所有权验证，同时在未授权编辑时降低渲染质量，为3DGS资产提供全面版权保护。"
+  },
+  "OCH3R": {
+    abstractEn: "OCH3R presents a unified framework for object-centric holistic 3D reconstruction from a single RGB image, predicting all object instances with 6D poses and detailed 3D reconstructions in a single forward pass. The method uses per-pixel CLIP embeddings, metric depth, NOCS, and per-object Gaussians, with inference scaling independently of object count for orders-of-magnitude faster performance than multi-stage pipelines.",
+    abstractCn: "OCH3R提出从单幅RGB图像进行以物体为中心的整体3D重建统一框架，单次前向传播预测所有物体实例的6D位姿与详细3D重建。该方法使用逐像素CLIP嵌入、度量深度、NOCS与逐物体高斯，推理复杂度与物体数量无关，比多阶段管线快数个量级。"
+  }
+};
+
 const CATEGORIES = [
   { id: "Foundation", label: "Foundation" },
   { id: "Surface", label: "Surface" },
@@ -1066,6 +1951,10 @@ function renderMethods() {
 function openMethodModal(idx) {
   const m = METHODS[idx];
   const d = METHOD_DETAILS[m.name] || {};
+  const a = ABSTRACTS[m.name] || {};
+  const abstractEn = a.abstractEn || '';
+  const abstractCn = a.abstractCn || '';
+  const hasAbstract = abstractEn || abstractCn;
   const el = document.getElementById('modalContent');
   el.innerHTML = `
     <button class="modal-close" onclick="closeMethodModal()">&times;</button>
@@ -1074,20 +1963,28 @@ function openMethodModal(idx) {
         <h2 class="text-xl font-bold text-white">${m.name}</h2>
         <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
       </div>
-      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-sm text-gray-400 mb-4">${d.nameCn}</p>` : '<div class="mb-3"></div>'}
+      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-sm text-gray-400 mb-3">${d.nameCn}</p>` : '<div class="mb-2"></div>'}
       <div class="space-y-3">
-        <div>
-          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Category</p>
+        <div class="flex items-center gap-2">
           <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${m.cat}</span>
         </div>
         ${d.innovation ? `<div>
           <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Core Innovation</p>
           <p class="text-sm text-gray-300 leading-relaxed">${d.innovation}</p>
         </div>` : ''}
+        ${hasAbstract ? `
         <div>
-          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Description</p>
-          <p class="text-sm text-gray-300 leading-relaxed">${m.desc}</p>
-        </div>
+          <div class="modal-tabs" id="abstractTabs">
+            <div class="modal-tab active" onclick="switchAbstractTab('en')">English</div>
+            <div class="modal-tab" onclick="switchAbstractTab('cn')">中文摘要</div>
+          </div>
+          <div id="abstractEn" class="abstract-panel active">
+            <p class="text-sm text-gray-300 leading-relaxed">${abstractEn || 'N/A'}</p>
+          </div>
+          <div id="abstractCn" class="abstract-panel">
+            <p class="text-sm text-gray-300 leading-relaxed">${abstractCn || '暂无'}</p>
+          </div>
+        </div>` : ''}
         <div class="flex flex-wrap gap-3 pt-2 border-t border-white/5">
           ${m.arxiv ? `<a href="https://arxiv.org/abs/${m.arxiv}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-accent-blue hover:underline font-medium">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -1102,6 +1999,14 @@ function openMethodModal(idx) {
     </div>`;
   document.getElementById('methodModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function switchAbstractTab(lang) {
+  document.querySelectorAll('#abstractTabs .modal-tab').forEach((t, i) => {
+    t.classList.toggle('active', (lang === 'en' && i === 0) || (lang === 'cn' && i === 1));
+  });
+  document.getElementById('abstractEn').classList.toggle('active', lang === 'en');
+  document.getElementById('abstractCn').classList.toggle('active', lang === 'cn');
 }
 
 function closeMethodModal() {
