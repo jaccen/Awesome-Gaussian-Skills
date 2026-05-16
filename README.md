@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '6a6d7bbc-e69b-47e8-86a5-a2c58708a23d'
-  PropagateID: '6a6d7bbc-e69b-47e8-86a5-a2c58708a23d'
-  ReservedCode1: '4368e4cc-3c30-438c-a7d1-0acc3cefc238'
-  ReservedCode2: '4368e4cc-3c30-438c-a7d1-0acc3cefc238'
+  ProduceID: '68857d9c-74f9-4f91-84c0-927cb6a4bff5'
+  PropagateID: '68857d9c-74f9-4f91-84c0-927cb6a4bff5'
+  ReservedCode1: '5694851d-0289-45b3-97d3-7e190fd91db3'
+  ReservedCode2: '5694851d-0289-45b3-97d3-7e190fd91db3'
 ---
 
 <div align="center">
@@ -170,7 +170,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 254+ methods
+- Built-in knowledge of 261+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -186,7 +186,7 @@ Agent: [Checks: alpha compositing order, tile-based rendering,
 - Review CUDA kernels for correctness and performance
 - Check rendering pipeline (differentiable rasterization, alpha blending)
 - Validate loss function implementations
-- Common bug pattern detection (57+ known patterns)
+- Common bug pattern detection (62+ known patterns)
 
 ### 4. `3dgs-experiment-planner` — Experiment Design Assistant
 
@@ -363,7 +363,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (254+ methods across 21 categories)
+│   ├── 3dgs-methods-overview.md # Index (261+ methods across 21 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain

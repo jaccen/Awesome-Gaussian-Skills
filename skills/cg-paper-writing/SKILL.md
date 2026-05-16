@@ -1,35 +1,9 @@
 ---
 name: cg-paper-writing
-description: Academic paper writing skill for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud processing, 3D shape understanding/generation, CAD modeling, and reverse engineering. Supports CVPR/ICCV/ECCV/SIGGRAPH/EG/PG/TVCG/CGF and doctoral dissertations.
-version: 1.2.0
+description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues."
+version: 1.2.1
 author: jaccen
-tags:
-  - paper-writing
-  - academic
-  - computer-graphics
-  - 3dgs
-  - nerf
-  - computer-vision
-  - cvpr
-  - siggraph
-trigger:
-  - "写论文"
-  - "论文写作"
-  - "write paper"
-  - "帮我写引言"
-  - "润色"
-  - "去AI痕迹"
-  - "论文格式"
-  - "abstract"
-  - "introduction"
-  - "related work"
-  - "method"
-  - "贡献声明"
-  - "写摘要"
-  - "rebuttal"
-  - "修改论文"
-  - "投稿"
-  - "实验设计"
+tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph"]
 ---
 
 # 三维视觉与计算机图形学论文写作

@@ -1,28 +1,10 @@
 ---
 name: cad-mesh-3dgs
-description: Bridge CAD, Mesh, and 3D Gaussian Splatting representations. Covers mesh↔3DGS conversion, surface extraction from Gaussians, CAD reverse engineering with 3DGS, B-rep/parametric reconstruction, and geometry processing pipelines. Analyzes 35+ methods at the intersection of structured geometry and neural rendering.
-version: 1.0.0
+description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 35+ methods."
+version: 1.0.1
 author: jaccen
-tags:
-  - cad
-  - mesh
-  - 3dgs
-  - gaussian-splatting
-  - reverse-engineering
-  - surface-reconstruction
-  - b-rep
-  - geometry-processing
-trigger:
-  - "CAD转3DGS"
-  - "mesh转高斯"
-  - "高斯提取mesh"
-  - "surface extraction"
-  - "逆向工程"
-  - "B-rep重建"
-  - "网格提取"
-  - "mesh to gaussian"
-  - "gaussian to mesh"
-  - "CAD reconstruction"
+tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing"]
+---
   - "参数化重建"
   - "三角网格"
   - "mesh吸附高斯"

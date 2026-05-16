@@ -1,26 +1,9 @@
 ---
 name: 3dgs-paper-reader
-description: Read and summarize 3D Gaussian Splatting research papers. Extracts method architecture, core innovations, experimental results, and key findings from arXiv papers or local PDFs. Supports structured output with tables.
-version: 1.0.0
+description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables."
+version: 1.0.1
 author: jaccen
-tags:
-  - 3dgs
-  - gaussian-splatting
-  - paper-reading
-  - research
-  - nerf
-  - 3d-reconstruction
-trigger:
-  - "读一下这篇论文"
-  - "帮我读论文"
-  - "总结这篇论文"
-  - "summarize this paper"
-  - "read this paper"
-  - "paper summary"
-  - "论文分析"
-  - "这篇论文讲了什么"
-  - arxiv.org/abs/
-  - arxiv.org/pdf/
+tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
 ---
 
 # 3DGS Paper Reader

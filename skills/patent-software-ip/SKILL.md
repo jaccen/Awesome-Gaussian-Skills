@@ -1,258 +1,129 @@
 ---
 name: patent-software-ip
-description: "中国专利申请文件与软件著作权登记材料生成：从代码/设计文档出发，生成发明专利权利要求书、说明书、摘要，或软件著作权登记所需的软件说明书与源代码文档。支持脱敏、查新、自检。| Generate Chinese patent application docs (claims, specification, abstract) and software copyright registration materials (manual, source code doc) from code/design docs. Supports desensitization, prior-art search, and self-check."
-name_cn: 专利与软著生成
-description_cn: 从代码/设计文档生成专利申请文件（权利要求书+说明书）及软件著作权登记材料（说明书+源代码文档）
+description: "Generate Chinese patent application docs (claims, specification, abstract) and software copyright registration materials (manual, source code doc) from code/design docs. Supports desensitization, prior-art search, and self-check."
+version: "1.0.0"
+author: jaccen
+tags: ["patent", "software-copyright", "ip", "desensitization", "chinese-patent"]
 ---
 
-# 专利申请文件与软著材料生成
+# Patent Application & Software Copyright Generation
 
-本技能覆盖两大知识产权登记路径：
+Generate CNIPA-format invention patent documents or CPCC software copyright registration materials from AI project code, design docs, and research papers.
 
-- **专利路径**：从项目资料生成符合国知局格式的**发明专利申请文件**（权利要求书、说明书、说明书摘要、附图说明）
-- **软著路径**：从项目资料生成符合CPCC登记要求的**软件著作权登记材料**（软件说明书、源代码文档）
+Two output paths:
+- **Patent**: Claims + Specification + Abstract (with technical disclosure as intermediate deliverable)
+- **Software Copyright**: Software manual + Source code document
 
-两条路径共享需求诊断与资料解读阶段，生成阶段各自独立。
+## Triggers
 
-## 触发条件
+patent / claims / specification / software copyright / disclosure / IP application / paper-to-patent / `/patent-software-ip`
 
-用户提及以下任一场景时启用：
+**Iteration**: When user modifies existing output, enter iterative correction flow directly.
 
-- 专利申请、权利要求书、说明书、专利撰写、申请文件、发明专利、实用新型
-- 软著、软著登记、软件著作权、软件说明书、源代码文档、软件登记
-- IP申请、知识产权申报、知产材料
-- 斜杠指令：`/patent-software-ip`、`/专利软著`
-
-**迭代意图**：当用户在已有产出上继续修改（改权利要求、补实施例、调整说明书、修改软著说明书等），直接进入对应路径的迭代修正流程，无需重新走完整流水线。
-
----
-
-## 总体流程
+## Overall Flow
 
 ```
-Phase A 需求诊断
-  ├─ 确定路径：专利 / 软著 / 两者
-  └─ 收集基本边界信息
-Phase B 资料解读
-  └─ 扫描项目代码/设计文档，提取技术要点
-Phase C 生成（按路径分支）
-  ├─ C1 专利申请文件
-  │   ├─ C1.1 现有技术检索与差异化
-  │   ├─ C1.2 权利要求书
-  │   ├─ C1.3 说明书
-  │   ├─ C1.4 说明书摘要
-  │   └─ C1.5 自检
-  └─ C2 软著登记材料
-      ├─ C2.1 软件说明书
-      ├─ C2.2 源代码文档
-      └─ C2.3 自检
-Phase D 迭代修正
+Phase A  Requirement Diagnosis → path selection + basic info
+Phase B  Project Analysis → extract key technical points
+Phase C  Generation (branch by path)
+  C1 Patent: prior art search → claims → specification → abstract → self-check
+  C2 Software Copyright: manual → source code doc → self-check
+Phase D  Iterative Correction
 ```
 
----
+## Phase A: Requirement Diagnosis
 
-## Phase A 需求诊断
+Confirm: path (patent/copyright/both), tech topic, applicant info, inventor info, existing materials.
 
-向用户确认以下信息（不全时可跳过，后续推断并标注假设）：
+**Gate**: 3-5 line diagnosis summary.
 
-1. **路径选择**：专利申请 / 软著登记 / 两者都要？
-2. **技术主题**：一句话描述所属技术领域（如"基于3DGS的大场景重建"）
-3. **申请人信息**：名称、地址（脱敏处理时可用占位符）
-4. **发明人**：姓名（脱敏时用占位符）
-5. **已有材料**：是否有设计文档、架构图、核心代码、论文等可参考？
+## Phase B: Project Analysis
 
-输出：3-5行诊断摘要，确认路径与边界。
+Priority: design docs/architecture → core code → papers/reports → README.
 
----
+Output: **Key Points List** (core innovations, scheme skeleton, key params, distinctions from prior art, quantifiable effects).
 
-## Phase B 资料解读
+**Gate**: Present key points list for user confirmation.
 
-Read项目目录，按以下优先级提取技术要点：
+## Phase C1: Patent Application
 
-| 优先级 | 来源 | 关注内容 |
-|--------|------|----------|
-| 1 | 设计文档/架构文档 | 系统架构、模块划分、核心流程、技术方案 |
-| 2 | 核心代码 | 算法实现、关键数据结构、创新逻辑 |
-| 3 | 论文/报告 | 方法描述、实验结果、技术对比 |
-| 4 | README/文档 | 功能说明、使用方式 |
+### C1.1 Prior Art Search
 
-提取结果形成**技术要点清单**，包含：核心创新点、技术方案骨架、关键参数/阈值、与现有技术的区别。
+Online search 2-3 rounds: CNIPA patent DB, Google Patents, arXiv. Each result: source ID, scheme summary, limitations.
 
----
+### C1.2 Claims
 
-## Phase C1 专利申请文件生成
+**Structure**: Method (1 independent + 3-8 dependent) + System (1 independent + 3-8 dependent, step-by-step correspondence) + Storage Medium (1 independent).
 
-### C1.1 现有技术检索与差异化
+**Drafting rules**:
+1. Method + System claims in pairs
+2. Independent: preamble (prior art common features) + "characterized by" (essential features)
+3. Dependent: "according to claim X..." with further limitation
+4. Every step must link to system component ("executed via GPU parallel computing unit")
+5. Avoid functional limitation; prefer structural/step-based description
 
-使用联网搜索工具检索相关专利和论文：
-- 搜索关键词从技术要点清单中提炼，分2-3轮搜索
-- 每条现有技术记录：来源标识、技术方案概要、局限性
-- 总结本发明与现有技术的**本质区别**
+**AI-specific requirements**:
+- Training claims must include: data construction, loss function, optimization strategy
+- 3D Vision: must include full 4-stage pipeline (capture→sparse→dense→render); rendering step must expand rendering formula
+- Generative AI: condition injection step must specify method (cross-attention/adapter/ControlNet) to avoid "pure content generation" rejection
+- Embodied AI: every step must bind sensor input + actuator output; include safety constraint dependent claim
+- RAG: must show complete 5-stage pipeline (parse→retrieve→rerank→reconstruct→generate)
 
-### C1.2 权利要求书
+### C1.3 Specification
 
-权利要求书是专利申请的核心法律文书，撰写规范见 `references/patent-claims-guide.md`。
+5-chapter: Tech Field → Background (prior art + defects) → Invention Content (problem + scheme + effects, must be quantified) → Figure Description → Specific Embodiments.
 
-**结构与要求**：
-- **独立权利要求**（1项）：前序部分（现有技术共性）+ 特征部分（"其特征在于"）+ 技术特征组合
-- **从属权利要求**（3-8项）：对独立权利要求的进一步限定，递进式展开
-- 每项权利要求必须**技术特征充分**、**语言确定**、**逻辑自洽**
-- 独立权利要求的保护范围应**适度宽泛但不空洞**
+**Desensitization**: dataset name→"preset dataset", parameter count→"preset-scale model", hardware→"graphics processor", training duration→"preset period", framework→"DL framework", API→"remote interface", company→"institution", specific values→ranges.
 
-**撰写要点**：
-1. 方法权利要求与系统/装置权利要求成对写出
-2. 前序部分引用现有技术共有的技术特征
-3. 特征部分用"所述"回引前序已出现的技术特征
-4. 从属权利要求用"根据权利要求X所述的..."开头
-5. 避免功能性限定，优先用结构性/步骤性描述
+**Figures**: Use fenced mermaid (`flowchart TB`/`LR`). Required: system architecture + method flow + (domain-specific: training pipeline, rendering pipeline, data pipeline, etc.).
 
-### C1.3 说明书
+### C1.4 Abstract
 
-详细撰写规范与章节模板见 `references/patent-spec-template.md`。
+≤300 chars. Covers: tech domain + core scheme + main effect. No commercial terms. Replace algorithm names with generic expressions.
 
-**章节结构**：
+### C1.5 Self-Check
 
-```
-一、技术领域
-二、背景技术
-  2.1 现有技术描述（含检索结果）
-  2.2 现有技术缺陷
-三、发明内容
-  3.1 要解决的技术问题
-  3.2 技术方案（对应权利要求，逐项展开）
-  3.3 有益效果
-四、附图说明
-五、具体实施方式
-  5.1 实施例一（对应独立权利要求）
-  5.2 实施例二（扩展实施方式）
-  ...
-```
+- Independent claim contains all necessary features
+- Dependent claims correctly reference
+- Method + System + Medium triple complete
+- Specification sufficiently disclosed (enabling)
+- Embodiments cover all claim features
+- Beneficial effects quantified (not vague)
+- Terminology consistent throughout
+- Abstract corresponds to claim 1
+- Desensitization complete (no company/person/business name leak)
+- Figure numbering consistent with references
 
-**脱敏规则**：业务术语抽象化（"医疗影像"→"目标图像"）、数值用范围代替具体值、公司名替换为"某机构"。
+## Phase C2: Software Copyright
 
-**附图**：系统框图和流程图使用fenced mermaid（`flowchart TB`/`LR` + `subgraph`），在说明书中用"图X"引用并配文字说明。
+### C2.1 Software Manual (10-15 pages, ≥6 screenshots)
 
-### C1.4 说明书摘要
+**Structure**: Introduction (env + AI capability) → Installation (env + weights + config) → Functions (AI core + data + API + monitoring) → Non-functional → FAQ.
 
-- 300字以内
-- 涵盖：技术领域 + 核心技术方案 + 主要技术效果
-- 不含商业性宣传用语
+Key notes: Target non-technical reviewers; use `[Screenshot: feature name]` placeholders; describe deployment/config/monitoring for HCI requirement; declare open-source pre-trained weights outside protection scope.
 
-### C1.5 专利自检
+### C2.2 Source Code Document (front 30 + back 30 pages, ≥50 lines/page)
 
-生成后内部执行（不写入交付文件），检查项：
+File priority: model.py → train.py → inference.py [all required] → render.py [3D vision] → dataset.py → loss.py → generate.py [Gen-AI] → control.py [Embodied] → retriever.py [RAG] → config.yaml [optional].
 
-- [ ] 独立权利要求是否包含全部必要技术特征
-- [ ] 从属权利要求是否正确回引
-- [ ] 说明书是否充分公开（本领域技术人员可实施）
-- [ ] 说明书实施方式是否覆盖权利要求全部特征
-- [ ] 有益效果是否有技术方案支撑（非空泛断言）
-- [ ] 全文术语是否统一（同义不同名混用检查）
-- [ ] 摘要与权利要求1是否对应
-- [ ] 脱敏是否完整（无泄露公司/业务/人名）
-- [ ] 附图编号与正文引用是否一致
+**Desensitization**: Remove API keys, absolute paths, internal addresses, personal info, hardware models, cloud URLs, DB passwords. Retain algorithm comments.
 
-发现问题则直接修正后交付。
+<3000 lines: submit all; >3000: front 1500+back 1500 by priority.
 
----
+### C2.3 Self-Check
 
-## Phase C2 软著登记材料生成
+Pages ≥15 + Screenshots ≥6 + Feature coverage + Non-tech description + Code pages + Lines per page ≥50 + Name consistency + No secret leaks.
 
-软著登记材料规范与模板见 `references/software-copyright-guide.md`。
+## Phase D: Iterative Correction
 
-### C2.1 软件说明书
+Identify → Locate → Targeted fix → Save as v{N} → Re-run affected self-check items only. Do NOT re-run full pipeline.
 
-**格式要求**（CPCC官网规范）：
-- 10-15页，A4排版
-- 包含截图（至少6张界面截图或功能演示图）
-
-**章节结构**：
+## Output
 
 ```
-1. 引言
-   1.1 编写目的
-   1.2 软件概述（名称、版本、功能定位）
-   1.3 运行环境（硬件、软件、网络）
-2. 软件安装与初始化
-3. 功能说明（核心章节）
-   3.1 功能模块总览
-   3.2 模块A详细说明（含截图、操作步骤、输入输出）
-   3.3 模块B详细说明
-   ...
-4. 非功能需求说明（性能、安全、兼容性）
-5. 常见问题与联系方式
+outputs/{case-id}/
+├── patent/          claims.md + specification.md + abstract.md + full.md
+└── software-copyright/  manual.md + source_code.md
 ```
 
-**撰写要点**：
-- 语言面向审查员，避免开发者行话
-- 截图位置用 `[截图: 功能名称界面]` 占位，用户自行替换实际截图
-- 功能说明需覆盖软件全部主要功能
-- 版本号与登记表保持一致
-
-### C2.2 源代码文档
-
-**格式要求**（CPCC官网规范）：
-- 源代码前30页和后30页（不足60页的全部提交）
-- 每页不少于50行
-- 去除空行、注释可保留
-- 页眉注明软件名称及版本号
-
-**生成步骤**：
-1. Grep/Glob扫描项目源代码目录，识别核心源文件
-2. 按模块逻辑排序，拼接代码
-3. 格式化为每页50行的文档
-4. 若总行数 > 3000行：取前1500行 + 后1500行
-5. 页眉添加软件名称+版本号
-
-### C2.3 软著自检
-
-- [ ] 软件说明书页数10-15页
-- [ ] 软件说明书含截图占位（≥6处）
-- [ ] 软件说明书功能覆盖完整
-- [ ] 源代码文档页数是否符合要求
-- [ ] 源代码文档每页≥50行
-- [ ] 软件名称与版本号在说明书和源代码文档中一致
-- [ ] 无商业秘密泄露（密钥、密码、内部URL等已清除）
-
----
-
-## Phase D 迭代修正
-
-当用户在已有产出上继续修改时：
-
-1. **识别改什么**：权利要求调整 / 说明书补充 / 软著说明书修改 / 源代码范围变更
-2. **定位段落**：Read已交付文件，定位需修改部分
-3. **定向修正**：仅修改指定部分，保持其余内容不变
-4. **另存交付**：新版本以 `{案件名}_v{N}.md` 命名，不覆盖旧版
-
-迭代时禁止：重跑完整流水线（除非用户明确要求）；修改未提及的章节。
-
----
-
-## 输出交付规范
-
-### 文件命名
-
-```
-outputs/{案件标识}/
-├── patent/
-│   ├── {案件名}_claims.md          # 权利要求书
-│   ├── {案件名}_specification.md   # 说明书
-│   ├── {案件名}_abstract.md        # 摘要
-│   └── {案件名}_full.md            # 合并全稿
-└── software-copyright/
-    ├── {软件名}_manual.md          # 软件说明书
-    └── {软件名}_source_code.md     # 源代码文档
-```
-
-### 格式
-
-- 首选Markdown交付；用户需要时用内置docx技能转Word
-- mermaid图保留源码；用户需要PNG时用diagram-drawing技能渲染
-
-### 禁止事项
-
-- 交付文件中不得出现skill名、仓库路径、免责脚注
-- 正文不得包含自检清单章节
-- 不得虚构专利号、链接或检索结果
-- 权利要求书中不得出现"大约""左右"等不确定用语
+**Prohibitions**: No skill name/repo path/disclaimers in deliverables. No self-check section in body. No fabricated patent numbers/links. No "approximately" in claims. No commercial terms in abstract.

@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'b3e26b55-55b7-4ae8-af54-b2cfcee4bc2c'
-  PropagateID: 'b3e26b55-55b7-4ae8-af54-b2cfcee4bc2c'
-  ReservedCode1: 'c34da88b-37a7-4e1c-8a68-bff67c117be9'
-  ReservedCode2: 'c34da88b-37a7-4e1c-8a68-bff67c117be9'
+  ProduceID: '58d016bb-1a70-48f5-acab-47682e14bff6'
+  PropagateID: '58d016bb-1a70-48f5-acab-47682e14bff6'
+  ReservedCode1: 'd75c1e55-6672-4129-a9b1-08b937d15bf8'
+  ReservedCode2: 'd75c1e55-6672-4129-a9b1-08b937d15bf8'
 ---
 
 <div align="center">
@@ -146,7 +146,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 254+ 方法的知识库
+- 内置 261+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -162,7 +162,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（57+ 已知模式）
+- 常见 bug 模式检测（62+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -336,7 +336,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（21 个类别 254+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 261+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域

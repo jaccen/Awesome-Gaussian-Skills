@@ -1,25 +1,9 @@
 ---
 name: 3dgs-experiment-planner
-description: Design rigorous experiments for 3D Gaussian Splatting research papers. Recommends datasets, baselines, metrics, ablation matrices, and visualization plans tailored to your method. Targets top venues (CVPR/ICCV/ECCV/SIGGRAPH/TVCG).
-version: 1.1.0
+description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
+version: 1.1.1
 author: jaccen
-tags:
-  - 3dgs
-  - gaussian-splatting
-  - experiment-design
-  - research
-  - ablation
-  - paper-writing
-trigger:
-  - "帮我设计实验"
-  - "消融实验"
-  - "ablation study"
-  - "实验设计"
-  - "experiment design"
-  - "选什么基线"
-  - "用什么数据集"
-  - "怎么设计对比实验"
-  - "审稿人要求补充实验"
+tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
 ---
 
 # 3DGS Experiment Planner
