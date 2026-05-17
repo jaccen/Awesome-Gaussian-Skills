@@ -108,3 +108,4 @@ When adding a new method to `references/3dgs-methods-overview.md`:
 ## License
 
 By contributing, you agree that your contributions will be licensed under the Apache License 2.0.
+

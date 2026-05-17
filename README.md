@@ -6,7 +6,7 @@ If you like it, please ⭐️ star this repo!
 
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
-**500+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**512+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -26,7 +26,7 @@ If you like it, please ⭐️ star this repo!
 
 ## What's New (May 2026)
 
-Major expansion: 500+ → 500+ methods, 21 → 24 categories. Backfilled from ECCV/NeurIPS/CVPR 2024-2025 + 12 surveys + medical imaging.
+Major expansion: 512+ → 512+ methods, 21 → 23 categories. Backfilled from ECCV/NeurIPS/CVPR 2024-2025 + 12 surveys + medical imaging.
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
@@ -53,9 +53,9 @@ Major expansion: 500+ → 500+ methods, 21 → 24 categories. Backfilled from EC
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 500+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 512+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
-**Awesome Gaussian Skills** is a zero-setup toolkit — copy the skills, and your AI Agent can read papers, compare methods, review code, design experiments, write papers, and generate IP documents, all with built-in knowledge of 500+ methods.
+**Awesome Gaussian Skills** is a zero-setup toolkit — copy the skills, and your AI Agent can read papers, compare methods, review code, design experiments, write papers, and generate IP documents, all with built-in knowledge of 512+ methods.
 
 | What You Do | Without This | With This |
 |-------------|-------------|-----------|
@@ -67,13 +67,13 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 
 ## Features
 
-- **500+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 24 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **512+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 23 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (500+ Methods)
+## Knowledge Base (512+ Methods)
 
 **Core Representations**
 
@@ -130,7 +130,7 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
 | Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS |
 
-> The full knowledge base covers **500+ methods** across 24 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **512+ methods** across 23 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -201,7 +201,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 500+ methods
+- Built-in knowledge of 512+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -308,7 +308,7 @@ Agent: [Generates radar chart with 7 dimensions: Render Quality,
 ```
 You: "生成3DGS领域的时间线演进图，从2023年到2026年"
 Agent: [Creates chronological timeline showing 40+ methods across
-        14 categories with citation-weighted node sizing]
+        23 categories with citation-weighted node sizing]
 ```
 
 **Capabilities:**
@@ -392,7 +392,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (500+ methods across 24 categories)
+│   ├── 3dgs-methods-overview.md # Index (512+ methods across 23 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -435,16 +435,16 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.1.1 — Add `cad-mesh-3dgs` skill for CAD/Mesh↔3DGS bridge (Apr 2026)
-- [x] v0.1.2 — Knowledge base expansion: 50→120+ methods, 31 categories, daily auto-update workflow (Apr-May 2026)
-- [x] v0.1.3 — Knowledge base v2: 130→150+ methods, 52+ bug patterns, 37 categories, cross-domain expansion (May 2026)
-- [x] v0.1.4 — Knowledge base v3: 150→152+ methods, 53+ bug patterns, 24 categories (optimized), FreeTimeGS++, D-Rex (May 2026)
+- [x] v0.1.2 — Knowledge base expansion: 50→120+ methods, 23 categories, daily auto-update workflow (Apr-May 2026)
+- [x] v0.1.3 — Knowledge base v2: 130→150+ methods, 52+ bug patterns, 23 categories, cross-domain expansion (May 2026)
+- [x] v0.1.4 — Knowledge base v3: 150→152+ methods, 53+ bug patterns, 23 categories (optimized), FreeTimeGS++, D-Rex (May 2026)
 - [x] v0.1.5 — Knowledge base restructured: split overview into 3 sub-files for efficient retrieval (May 2026)
 - [x] v0.2 — Add `3dgs-visualizer` skill (radar charts, comparison tables, method timelines; static + interactive output) (May 2026)
 - [x] v0.2.1 — Add Text2Word interactive demo — text-to-3DGS web creation platform (May 2026)
 - [x] v0.2.2 — Add `patent-software-ip` skill — patent application docs & software copyright registration materials (May 2026)
 - [x] v0.2.3 — Knowledge base expansion: 222→240+ methods, 57+ bug patterns, daily update + new physics-GS/streaming methods (May 2026)
 - [x] v0.2.4 — Knowledge base expansion: 240→254+ methods, 60+ bug patterns, OIT transparency, distributed city-scale GS, 4DGS physics sim for AD (May 2026)
-- [x] v0.2.5 — Knowledge base expansion: 254→500+ methods, 62+ bug patterns, Skew-Normal primitive, expert-routing feedforward GS, continuous LoD, adaptive split operator (May 2026)
+- [x] v0.2.5 — Knowledge base expansion: 254→512+ methods, 62+ bug patterns, Skew-Normal primitive, expert-routing feedforward GS, continuous LoD, adaptive split operator (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
@@ -547,3 +547,4 @@ Hugging Face Papers: https://huggingface.co/papers
 arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
+

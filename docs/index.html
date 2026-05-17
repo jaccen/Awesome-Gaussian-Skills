@@ -129,7 +129,7 @@ tailwind.config = {
       The First AI Agent Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">500+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">512+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">23 Categories</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">10 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
@@ -354,7 +354,7 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">500+ 3DGS methods analyzed —best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">512+ 3DGS methods analyzed —best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -658,7 +658,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 498 methods across 23 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 512 methods across 23 categories</p>
       <div class="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm">
         <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue/10 border border-accent-blue/20 text-accent-blue">
           <span class="font-bold">1</span> Search or filter by category
@@ -814,7 +814,7 @@ const METHODS = [
   { name: "3DGS³", short: "3DGS³", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for ...", arxiv: "2605.11489" , citations: 0 },
   { name: "4DGS", short: "4DGS", cat: "Dynamic", venue: "CVPR", year: 2024, desc: "4D anisotropic Gaussians (3D + time) with regularized deformation", arxiv: "2310.08528" , citations: 0 },
   { name: "ClipGStream", short: "ClipGStream", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Clip-stream any-length any-motion multi-view dynamic scene reconstruction", arxiv: "2604.13746" , citations: 0 },
-  { name: "Color-Encoded Illumination", short: "Color-Encoded Illumination", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "High-speed volumetric reconstruction via color-coded illumination", arxiv: "2604.26920" , citations: 0 },
+  { name: "Color-Encoded Illumination", short: "Color-Encoded I", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "High-speed volumetric reconstruction via color-coded illumination", arxiv: "2604.26920" , citations: 0 },
   { name: "Dynamic 3D Gaussians", short: "Dynamic 3D Gaussians", cat: "Dynamic", venue: "ICCV", year: 2023, desc: "Per-point deformation network for monocular dynamic scenes", arxiv: "2309.13114" , citations: 0 },
   { name: "FreeTimeGS++", short: "FreeTimeGS++", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Principled analysis + gated marginalization for 4DGS stability", arxiv: "2605.03337" , citations: 0 },
   { name: "GeoRect4D", short: "GeoRect4D", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Geometry-compatible generative rectification for dynamic sparse-view 3D recon...", arxiv: "2604.20784" , citations: 0 },
@@ -919,7 +919,7 @@ const METHODS = [
   { name: "LeGS", short: "LeGS", cat: "Training", venue: "arXiv", year: 2026, desc: "RL-learnable density control replacing heuristic clone/split/prune", arxiv: "2605.00408" , citations: 0 },
   { name: "Proxy-GS", short: "Proxy-GS", cat: "Training", venue: "CVPR", year: 2026, desc: "Lightweight proxy model for 2.5x speedup with no accuracy loss", arxiv: "" , citations: 0 },
   { name: "QuadBox", short: "QuadBox", cat: "Training", venue: "arXiv", year: 2026, desc: "Geometry-aware AABB boxes for 1.85x rendering acceleration", arxiv: "2605.04844" , citations: 0 },
-  { name: "Structure-Aware Densification", short: "Structure-Aware Densification", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Frequency-aware anisotropic split replacing heuristic clone/split", arxiv: "2604.28016" , citations: 0 },
+  { name: "Structure-Aware Densification", short: "Structure-Aware", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Frequency-aware anisotropic split replacing heuristic clone/split", arxiv: "2604.28016" , citations: 0 },
   { name: "VkSplat", short: "VkSplat", cat: "Training", venue: "arXiv", year: 2026, desc: "Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM", arxiv: "2605.00219" , citations: 0 },
   { name: "YOGO", short: "YOGO", cat: "Training", venue: "arXiv", year: 2026, desc: "Budget-aware equilibrium for ultra-dense scene control", arxiv: "2604.21400" , citations: 0 },
   { name: "3DGS Demo Synthesis (IL)", short: "3DS", cat: "Simulation", venue: "arXiv", year: 2026, desc: "3DGS-based demonstration generation for imitation learning", arxiv: "2605.01232" , citations: 0 },
@@ -985,7 +985,7 @@ const METHODS = [
   { name: "FreeSplat", short: "FreeSplat", cat: "Feed-Forward", venue: "NeurIPS", year: 2024, desc: "Generalizable feed-forward indoor 3DGS with pixel-aligned Gaussian prediction", arxiv: "2405.17958" , citations: 0 },
   { name: "R2-Gaussian", short: "R2-Gaussian", cat: "Medical", venue: "NeurIPS", year: 2024, desc: "GS adapted for Radon transform + X-ray volume rendering for tomographic recon...", arxiv: "2405.20693" , citations: 0 },
   { name: "ContextGS", short: "ContextGS", cat: "Compression", venue: "NeurIPS", year: 2024, desc: "Anchor-level context model for entropy coding replacing uniform quantization ...", arxiv: "2405.20721" , citations: 0 },
-  { name: "Tetrahedron Splatting", short: "Tetrahedron Splatting", cat: "Generation", venue: "NeurIPS", year: 2024, desc: "Novel tetrahedron primitive replacing Gaussian ellipsoid for 3D generation tasks", arxiv: "2406.01579" , citations: 0 },
+  { name: "Tetrahedron Splatting", short: "Tetrahedron Spl", cat: "Generation", venue: "NeurIPS", year: 2024, desc: "Novel tetrahedron primitive replacing Gaussian ellipsoid for 3D generation tasks", arxiv: "2406.01579" , citations: 0 },
   { name: "OpenGaussian", short: "OpenGaussian", cat: "Semantic", venue: "NeurIPS", year: 2024, desc: "Per-Gaussian feature distillation for point-level open-vocabulary 3D understa...", arxiv: "2406.02058" , citations: 0 },
   { name: "DDGS-CT", short: "DDGS-CT", cat: "Medical", venue: "NeurIPS", year: 2024, desc: "Direction-disentangled X-ray volume rendering with Gaussian acceleration for CT", arxiv: "2406.02518" , citations: 0 },
   { name: "GSGAN", short: "GSGAN", cat: "Generation", venue: "NeurIPS", year: 2024, desc: "Hierarchical GAN for direct 3D Gaussian generation", arxiv: "2406.02968" , citations: 0 },
@@ -1002,7 +1002,7 @@ const METHODS = [
   { name: "GIC", short: "GIC", cat: "Simulation", venue: "NeurIPS", year: 2024, desc: "Gaussian-Informed Continuum for physical property identification and differen...", arxiv: "2406.14927" , citations: 0 },
   { name: "GeoLRM", short: "GeoLRM", cat: "Feed-Forward", venue: "NeurIPS", year: 2024, desc: "Geometry-aware attention for large reconstruction model generating high-quali...", arxiv: "2406.15333" , citations: 0 },
   { name: "Director3D", short: "Director3D", cat: "Generation", venue: "NeurIPS", year: 2024, desc: "Text to progressive 3D scene GS generation with camera trajectory planning", arxiv: "2406.17601" , citations: 0 },
-  { name: "ExpressiveGaussianHuman", short: "ExpressiveGaussianHuman", cat: "Human", venue: "NeurIPS", year: 2024, desc: "Expression-coefficient-driven Gaussian deformation fields for expressive huma...", arxiv: "2407.03204" , citations: 0 },
+  { name: "ExpressiveGaussianHuman", short: "ExpressiveGauss", cat: "Human", venue: "NeurIPS", year: 2024, desc: "Expression-coefficient-driven Gaussian deformation fields for expressive huma...", arxiv: "2407.03204" , citations: 0 },
   { name: "StylizedGS", short: "StylizedGS", cat: "Editing", venue: "NeurIPS", year: 2024, desc: "Reference-based controllable scene stylization with Gaussian Splatting", arxiv: "2407.07220" , citations: 0 },
   { name: "DreamMesh4D", short: "DreamMesh4D", cat: "Dynamic", venue: "NeurIPS", year: 2024, desc: "Sparse-controlled Gaussian-Mesh hybrid 4D generation", arxiv: "2410.06756" , citations: 0 },
   { name: "MotionGS", short: "MotionGS", cat: "Dynamic", venue: "NeurIPS", year: 2024, desc: "Explicit motion field guiding deformable 3DGS, decoupling motion from appearance", arxiv: "2410.07707" , citations: 0 },
@@ -1120,7 +1120,7 @@ const METHODS = [
   { name: "ColoredGaussian", short: "ColoredGaussian", cat: "Editing", venue: "CVPR", year: 2024, desc: "Color-controllable Gaussian editing with per-Gaussian color attribute decompo...", arxiv: "2405.10508" , citations: 0 },
   { name: "Splat-GS", short: "Splat-GS", cat: "Editing", venue: "CVPR", year: 2024, desc: "Scalable Gaussian editing with progressive region selection and style transpl...", arxiv: "2406.08488" , citations: 0 },
   { name: "SuperSplat", short: "SuperSplat", cat: "Training", venue: "CVPR", year: 2024, desc: "Super-resolution guided Gaussian densification for detail enhancement in spar...", arxiv: "2409.16504" , citations: 0 },
-  { name: "GaussianOpacityFields", short: "GaussianOpacityFields", cat: "Surface", venue: "CVPR", year: 2025, desc: "Opacity field formulation enabling direct mesh extraction from GS without pos...", arxiv: "2401.15318" , citations: 0 },
+  { name: "GaussianOpacityFields", short: "GaussianOpacity", cat: "Surface", venue: "CVPR", year: 2025, desc: "Opacity field formulation enabling direct mesh extraction from GS without pos...", arxiv: "2401.15318" , citations: 0 },
   { name: "GS-LRM-v2", short: "GS-LRM-v2", cat: "Feed-Forward", venue: "CVPR", year: 2025, desc: "Enhanced large reconstruction model with improved cross-attention for feed-fo...", arxiv: "2405.17351" , citations: 0 },
   { name: "GaussianCross", short: "GaussianCross", cat: "Feed-Forward", venue: "CVPR", year: 2025, desc: "Cross-attention GS with multi-view feature aggregation for generalizable reco...", arxiv: "2405.17811" , citations: 0 },
   { name: "UniGS", short: "UniGS", cat: "Foundation", venue: "CVPR", year: 2025, desc: "Unified Gaussian Splatting: single model supporting multiple rendering modes ...", arxiv: "2406.02720" , citations: 0 },
@@ -1247,7 +1247,21 @@ const METHODS = [
   { name: "GaussCalib", short: "GaussCalib", cat: "Training", venue: "CVPR", year: 2025, desc: "Joint camera calibration and GS optimization for posed/unposed images", arxiv: "2504.09491" , citations: 0 },
   { name: "SplatPose2", short: "SplatPose2", cat: "Human", venue: "CVPR", year: 2025, desc: "Enhanced pose-conditioned GS with part-level deformation", arxiv: "2504.13167" , citations: 0 },
   { name: "GS-Drive", short: "GS-Drive", cat: "Autonomous Driving", venue: "CVPR", year: 2025, desc: "GS-based closed-loop driving simulation with dynamic agent rendering", arxiv: "2504.17810" , citations: 0 },
-  { name: "SplatSim-v2", short: "SplatSim-v2", cat: "Simulation", venue: "CVPR", year: 2025, desc: "Enhanced GS simulation with domain randomization for robotic learning", arxiv: "2504.20378" , citations: 0 }
+  { name: "SplatSim-v2", short: "SplatSim-v2", cat: "Simulation", venue: "CVPR", year: 2025, desc: "Enhanced GS simulation with domain randomization for robotic learning", arxiv: "2504.20378" , citations: 0 },
+  { name: "SparseOIT", short: "SparseOIT", cat: "Surface", venue: "arXiv", year: 2026, desc: "Order-independent transparency via active set method for glass/refractive scenes", arxiv: "2605.13855" , citations: 0 },
+  { name: "Z-Order GS", short: "Z-Order GS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Z-order strategy for spatially coherent Gaussian sequence with sparse attention", arxiv: "2605.13465" , citations: 0 },
+  { name: "RoSplat", short: "RoSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regu...", arxiv: "2605.13093" , citations: 0 },
+  { name: "Velox", short: "Velox", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Feed-forward 4D reconstruction learning representations of 4D geometry and ap...", arxiv: "2605.04527" , citations: 0 },
+  { name: "RetroNVS", short: "RetroNVS", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", arxiv: "2605.12437" , citations: 0 },
+  { name: "SCOUP", short: "SCOUP", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", arxiv: "2605.13600" , citations: 0 },
+  { name: "PanoPlane", short: "PanoPlane", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR", arxiv: "2605.14135" , citations: 0 },
+  { name: "BlitzGS", short: "BlitzGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city...", arxiv: "2605.13794" , citations: 0 },
+  { name: "FaceParts", short: "FaceParts", cat: "Editing", venue: "arXiv", year: 2026, desc: "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer", arxiv: "2605.13853" , citations: 0 },
+  { name: "HarmoGS", short: "HarmoGS", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Conflict-aware gradient harmonization for in-the-wild 3DGS reconstruction", arxiv: "2605.13073" , citations: 0 },
+  { name: "Real2Sim", short: "Real2Sim", cat: "Simulation", venue: "arXiv", year: 2026, desc: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", arxiv: "2605.13591" , citations: 0 },
+  { name: "AV1-3DGS", short: "AV1-3DGS", cat: "Training", venue: "arXiv", year: 2026, desc: "AV1 motion vectors for dense SfM matching with 63% training time reduction", arxiv: "2605.14629" , citations: 0 },
+  { name: "3DGS squared", short: "3DGS squared", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewe...", arxiv: "2501.13975" , citations: 0 },
+  { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright pro...", arxiv: "2605.12919" , citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -1256,7 +1270,7 @@ const METHOD_DETAILS = {
   "Mip-Splatting": { innovation: "Anti-aliased 3DGS with 3D smoothing + 2D Mip filter", codeUrl: "https://github.com/autonomousvision/mip-splatting" },
   "Softmax-GS": { innovation: "Learnable softmax-based competition replacing α-compositing", codeUrl: "" },
   "2D-SuGaR": { innovation: "2DGS enhanced with monocular depth/normal priors", codeUrl: "" },
-  "2DGS": { innovation: "Oriented 2D disks for geometrically accurate radiance fields", codeUrl: "" },
+  "2DGS": { innovation: "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction", codeUrl: "" },
   "3DSS": { innovation: "First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA", codeUrl: "" },
   "AmbiSuR": { innovation: "Photometric ambiguity disambiguation for accurate GS surface reconstruction", codeUrl: "" },
   "DySurface": { innovation: "Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction", codeUrl: "" },
@@ -1270,15 +1284,13 @@ const METHOD_DETAILS = {
   "PGSR": { innovation: "Planar-based regularizer for high-fidelity surface reconstruction", codeUrl: "" },
   "PointSplat": { innovation: "Geometry-driven pruning + Transformer refinement for efficient 3DGS", codeUrl: "" },
   "SAND": { innovation: "Spatially adaptive network depth for efficient neural implicit surface sampling", codeUrl: "" },
-  "SuGaR": { innovation: "Surface-aligned Gaussians for mesh extraction via TSDF + Marching Cubes", codeUrl: "https://github.com/Anttwo/SuGaR" },
+  "SuGaR": { innovation: "Joint Gaussians + mesh optimization with TSDF extraction", codeUrl: "https://github.com/Anttwo/SuGaR" },
   "SVGS": { innovation: "Spatially varying colors + opacity within each Gaussian primitive; three designs (bilinear / movable kernels / tiny MLP); Blender SOTA", codeUrl: "https://github.com/Xrvitd/SVGS" },
   "TransmissiveGS": { innovation: "Dual-Gaussian + deferred shading for transmissive/refractive scenes with near-field reflection light field", codeUrl: "" },
-  "2DGS": { innovation: "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction", codeUrl: "" },
   "BrepGaussian": { innovation: "3DGS + B-rep CAD reconstruction to parametric STEP models", codeUrl: "" },
   "CADFit": { innovation: "IoU-driven hybrid optimization over structured CAD programs (extrusions, revolutions, fillets, chamfers); multimodal image-to-CAD pipeline", codeUrl: "" },
   "CADFS": { innovation: "Large-scale CAD program dataset + LLM-assisted CAD understanding", codeUrl: "" },
   "MaGS": { innovation: "Mesh-adsorbed Gaussians; deform mesh → Gaussians follow", codeUrl: "" },
-  "SuGaR": { innovation: "Joint Gaussians + mesh optimization with TSDF extraction", codeUrl: "https://github.com/Anttwo/SuGaR" },
   "UniMGS": { innovation: "Single-pass rasterization for both mesh and Gaussians simultaneously", codeUrl: "" },
   "Vol3DGS": { innovation: "Physically accurate volume-consistent rendering resolving splatting/volume inconsistency", codeUrl: "" },
   "AniGen": { innovation: "Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning", codeUrl: "https://github.com/VAST-AI-Research/AniGen" },
@@ -1399,7 +1411,7 @@ const METHOD_DETAILS = {
   "Asset Harvester": { innovation: "AV log → simulation-ready 3D assets via SparseViewDiT", codeUrl: "https://research.nvidia.com/labs/sil/projects/asset-harvester/" },
   "GaussianLSS": { innovation: "BEV perception via Gaussian Splatting", codeUrl: "" },
   "Ground4D": { innovation: "Spatially-grounded feedforward 4D for off-road reconstruction", codeUrl: "https://github.com/wsnbws/Ground4D" },
-  "GSDrive": { innovation: "3DGS-based RL reward shaping for driving policy improvement", codeUrl: "https://github.com/ZionGo6/GSDrive" },
+  "GSDrive": { innovation: "Reinforcing driving policies with 3DGS environment for high-fidelity RL training", codeUrl: "" },
   "Nighttime AD GS": { innovation: "PBR + BRDF for nighttime driving scene reconstruction", codeUrl: "" },
   "PointForward": { innovation: "Sparse 3D queries in world space with spatial-temporal fusion + scene graphs for feedforward driving reconstruction", codeUrl: "" },
   "Street-GS": { innovation: "LiDAR-camera fusion + multi-view optimization", codeUrl: "" },
@@ -1473,7 +1485,6 @@ const METHOD_DETAILS = {
   "GSMem": { innovation: "3DGS as persistent spatial memory for zero-shot embodied exploration and reasoning", codeUrl: "" },
   "RoboSplat": { innovation: "3DGS-based diverse and spatially accurate data generation for robotic manipulation; 87.8% avg success rate", codeUrl: "" },
   "VR-Robo": { innovation: "Real-to-Sim-to-Real framework for visual robot navigation and locomotion via 3DGS reconstruction", codeUrl: "https://github.com/zst1406217/VR-Robo" },
-  "GSDrive": { innovation: "Reinforcing driving policies with 3DGS environment for high-fidelity RL training", codeUrl: "" },
   "LightGaussian": { innovation: "Global+local pruning + SVD distillation for 15x compression at 200+ FPS", codeUrl: "https://github.com/VITA-Group/LightGaussian" },
   "Spec-Gaussian": { innovation: "Anisotropic Spherical Gaussians replacing SH for view-dependent specular appearance", codeUrl: "https://github.com/ingra14m/Specular-Gaussians" },
   "GSDF": { innovation: "Dual representation: GS guides SDF geometry, SDF provides normal regularization for GS", codeUrl: "https://github.com/city-super/GSDF" },
@@ -1554,7 +1565,6 @@ const METHOD_DETAILS = {
   "GaussCtrl": { innovation: "Depth-conditioned attention + progressive editing for controllable GS generation from text/depth", codeUrl: "" },
   "GS-Avatar": { innovation: "Animatable 3DGS avatar from monocular video with pose-dependent Gaussian deformation", codeUrl: "https://github.com/mikeqzy/GS-Avatar" },
   "GPSGaussian": { innovation: "Generalizable pixel-aligned stereo GS for real-time novel view synthesis from stereo pairs", codeUrl: "" },
-  "Gaussian Grouping": { innovation: "Identity encoding per Gaussian + SAM + 3D consistency for open-world 3D segmentation (alternative to 2311.12897)", codeUrl: "" },
   "HeadGaS": { innovation: "Dynamic head GS with blendshape-driven Gaussian deformation for real-time reenactment", codeUrl: "" },
   "EAGLES": { innovation: "Quantized embeddings + coarse-to-fine training + pruning for 10-20x memory compression maintaining quality", codeUrl: "https://github.com/Exyro/EAGLES" },
   "EG3DGS": { innovation: "Edge-guided Gaussian splitting replacing heuristic clone/split with edge-aware densification", codeUrl: "" },
@@ -1588,12 +1598,9 @@ const METHOD_DETAILS = {
   "CL-GS": { innovation: "Contrastive learning for GS semantic features: CLIP-guided per-Gaussian feature distillation", codeUrl: "" },
   "SAGD": { innovation: "Self-supervised articulated Gaussian discovery: automatic part segmentation + articulation estimation without supervision", codeUrl: "" },
   "Dynamic3DGaussians": { innovation: "Per-point deformation network for monocular dynamic scene reconstruction with temporal Gaussians", codeUrl: "https://github.com/JonathonLuiten/Dynamic3DGaussians" },
-  "DreamGaussian": { innovation: "SDS loss + 3DGS prior for text/image-to-3D generation with orders-of-magnitude speedup", codeUrl: "https://github.com/dreamgaussian/dreamgaussian" },
   "3DGS-Avatar": { innovation: "Deformable 3DGS for animatable human avatars with pose-conditioned Gaussian deformation", codeUrl: "https://github.com/mikeqzy/3DGS-Avatar" },
-  "GaussianEditor": { innovation: "CLIP-guided text-driven 3DGS editing with tracing-based Gaussian decomposition for precise control", codeUrl: "" },
   "ShapeGS": { innovation: "Shape prior-guided Gaussian Splatting for geometrically accurate surface reconstruction", codeUrl: "" },
   "Deformable-3DGS": { innovation: "Deformation field network for 3DGS enabling high-fidelity dynamic scene rendering", codeUrl: "https://github.com/ingra14m/Deformable-3DGS" },
-  "Scaffold-GS+": { innovation: "Progressive training + coverage-aware anchor growth for better city-scale quality across scales", codeUrl: "" },
   "NeuSG": { innovation: "Neural surface-guided GS: SDF-guided Gaussian anchoring for consistent surface reconstruction", codeUrl: "" },
   "SplatArmor": { innovation: "LBS-based articulated Gaussian Splatting for human body with twist-aware deformation", codeUrl: "" },
   "RelaxingAccurate": { innovation: "Accurate mesh extraction from GS via relaxed surface constraints and multi-resolution TSDF", codeUrl: "" },
@@ -1629,7 +1636,6 @@ const METHOD_DETAILS = {
   "Splat-GS": { innovation: "Scalable Gaussian editing with progressive region selection and style transplantation", codeUrl: "" },
   "SuperSplat": { innovation: "Super-resolution guided Gaussian densification for detail enhancement in sparse-view settings", codeUrl: "" },
   "GaussianOpacityFields": { innovation: "Opacity field formulation enabling direct mesh extraction from GS without post-processing", codeUrl: "" },
-  "PGSR": { innovation: "Planar-based GS regularizer for high-fidelity surface reconstruction with depth-normal consistency", codeUrl: "" },
   "GS-LRM-v2": { innovation: "Enhanced large reconstruction model with improved cross-attention for feed-forward GS", codeUrl: "" },
   "GaussianCross": { innovation: "Cross-attention GS with multi-view feature aggregation for generalizable reconstruction", codeUrl: "" },
   "UniGS": { innovation: "Unified Gaussian Splatting: single model supporting multiple rendering modes (RGB/depth/semantic)", codeUrl: "" },
@@ -1756,7 +1762,21 @@ const METHOD_DETAILS = {
   "GaussCalib": { innovation: "Joint camera calibration and GS optimization for posed/unposed images", codeUrl: "" },
   "SplatPose2": { innovation: "Enhanced pose-conditioned GS with part-level deformation", codeUrl: "" },
   "GS-Drive": { innovation: "GS-based closed-loop driving simulation with dynamic agent rendering", codeUrl: "" },
-  "SplatSim-v2": { innovation: "Enhanced GS simulation with domain randomization for robotic learning", codeUrl: "" }
+  "SplatSim-v2": { innovation: "Enhanced GS simulation with domain randomization for robotic learning", codeUrl: "" },
+  "SparseOIT": { innovation: "Order-independent transparency via active set method for glass/refractive scenes", codeUrl: "" },
+  "Z-Order GS": { innovation: "Z-order strategy for spatially coherent Gaussian sequence with sparse attention", codeUrl: "" },
+  "RoSplat": { innovation: "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regularizer", codeUrl: "" },
+  "Velox": { innovation: "Feed-forward 4D reconstruction learning representations of 4D geometry and appearance", codeUrl: "" },
+  "RetroNVS": { innovation: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", codeUrl: "" },
+  "SCOUP": { innovation: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", codeUrl: "" },
+  "PanoPlane": { innovation: "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR", codeUrl: "" },
+  "BlitzGS": { innovation: "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city-scale scenes", codeUrl: "" },
+  "FaceParts": { innovation: "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer", codeUrl: "" },
+  "HarmoGS": { innovation: "Conflict-aware gradient harmonization for in-the-wild 3DGS reconstruction", codeUrl: "" },
+  "Real2Sim": { innovation: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", codeUrl: "" },
+  "AV1-3DGS": { innovation: "AV1 motion vectors for dense SfM matching with 63% training time reduction", codeUrl: "" },
+  "3DGS squared": { innovation: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations", codeUrl: "" },
+  "GuardMarkGS": { innovation: "First unified watermarking + edit deterrence framework for 3DGS copyright protection", codeUrl: "" }
 };
 
 
@@ -1766,7 +1786,7 @@ const ABSTRACTS = {
   "Mip-Splatting": "Anti-aliased 3DGS with 3D smoothing + 2D Mip filter",
   "Softmax-GS": "Learnable softmax-based competition replacing α-compositing",
   "2D-SuGaR": "2DGS enhanced with monocular depth/normal priors",
-  "2DGS": "Oriented 2D disks for geometrically accurate radiance fields",
+  "2DGS": "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction",
   "3DSS": "First differentiable surface splatting renderer for PBR inverse rendering with coverage-based compositing from EWA",
   "AmbiSuR": "Photometric ambiguity disambiguation for accurate GS surface reconstruction",
   "DySurface": "Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction",
@@ -1780,15 +1800,13 @@ const ABSTRACTS = {
   "PGSR": "Planar-based regularizer for high-fidelity surface reconstruction",
   "PointSplat": "Geometry-driven pruning + Transformer refinement for efficient 3DGS",
   "SAND": "Spatially adaptive network depth for efficient neural implicit surface sampling",
-  "SuGaR": "Surface-aligned Gaussians for mesh extraction via TSDF + Marching Cubes",
+  "SuGaR": "Joint Gaussians + mesh optimization with TSDF extraction",
   "SVGS": "Spatially varying colors + opacity within each Gaussian primitive; three designs (bilinear / movable kernels / tiny MLP); Blender SOTA",
   "TransmissiveGS": "Dual-Gaussian + deferred shading for transmissive/refractive scenes with near-field reflection light field",
-  "2DGS": "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction",
   "BrepGaussian": "3DGS + B-rep CAD reconstruction to parametric STEP models",
   "CADFit": "IoU-driven hybrid optimization over structured CAD programs (extrusions, revolutions, fillets, chamfers); multimodal image-to-CAD pipeline",
   "CADFS": "Large-scale CAD program dataset + LLM-assisted CAD understanding",
   "MaGS": "Mesh-adsorbed Gaussians; deform mesh → Gaussians follow",
-  "SuGaR": "Joint Gaussians + mesh optimization with TSDF extraction",
   "UniMGS": "Single-pass rasterization for both mesh and Gaussians simultaneously",
   "Vol3DGS": "Physically accurate volume-consistent rendering resolving splatting/volume inconsistency",
   "AniGen": "Unified S³ Fields for single-image animatable 3D asset generation with skeleton + skinning",
@@ -1909,7 +1927,7 @@ const ABSTRACTS = {
   "Asset Harvester": "AV log → simulation-ready 3D assets via SparseViewDiT",
   "GaussianLSS": "BEV perception via Gaussian Splatting",
   "Ground4D": "Spatially-grounded feedforward 4D for off-road reconstruction",
-  "GSDrive": "3DGS-based RL reward shaping for driving policy improvement",
+  "GSDrive": "Reinforcing driving policies with 3DGS environment for high-fidelity RL training",
   "Nighttime AD GS": "PBR + BRDF for nighttime driving scene reconstruction",
   "PointForward": "Sparse 3D queries in world space with spatial-temporal fusion + scene graphs for feedforward driving reconstruction",
   "Street-GS": "LiDAR-camera fusion + multi-view optimization",
@@ -1983,7 +2001,6 @@ const ABSTRACTS = {
   "GSMem": "3DGS as persistent spatial memory for zero-shot embodied exploration and reasoning",
   "RoboSplat": "3DGS-based diverse and spatially accurate data generation for robotic manipulation; 87.8% avg success rate",
   "VR-Robo": "Real-to-Sim-to-Real framework for visual robot navigation and locomotion via 3DGS reconstruction",
-  "GSDrive": "Reinforcing driving policies with 3DGS environment for high-fidelity RL training",
   "LightGaussian": "Global+local pruning + SVD distillation for 15x compression at 200+ FPS",
   "Spec-Gaussian": "Anisotropic Spherical Gaussians replacing SH for view-dependent specular appearance",
   "GSDF": "Dual representation: GS guides SDF geometry, SDF provides normal regularization for GS",
@@ -2064,7 +2081,6 @@ const ABSTRACTS = {
   "GaussCtrl": "Depth-conditioned attention + progressive editing for controllable GS generation from text/depth",
   "GS-Avatar": "Animatable 3DGS avatar from monocular video with pose-dependent Gaussian deformation",
   "GPSGaussian": "Generalizable pixel-aligned stereo GS for real-time novel view synthesis from stereo pairs",
-  "Gaussian Grouping": "Identity encoding per Gaussian + SAM + 3D consistency for open-world 3D segmentation (alternative to 2311.12897)",
   "HeadGaS": "Dynamic head GS with blendshape-driven Gaussian deformation for real-time reenactment",
   "EAGLES": "Quantized embeddings + coarse-to-fine training + pruning for 10-20x memory compression maintaining quality",
   "EG3DGS": "Edge-guided Gaussian splitting replacing heuristic clone/split with edge-aware densification",
@@ -2098,12 +2114,9 @@ const ABSTRACTS = {
   "CL-GS": "Contrastive learning for GS semantic features: CLIP-guided per-Gaussian feature distillation",
   "SAGD": "Self-supervised articulated Gaussian discovery: automatic part segmentation + articulation estimation without supervision",
   "Dynamic3DGaussians": "Per-point deformation network for monocular dynamic scene reconstruction with temporal Gaussians",
-  "DreamGaussian": "SDS loss + 3DGS prior for text/image-to-3D generation with orders-of-magnitude speedup",
   "3DGS-Avatar": "Deformable 3DGS for animatable human avatars with pose-conditioned Gaussian deformation",
-  "GaussianEditor": "CLIP-guided text-driven 3DGS editing with tracing-based Gaussian decomposition for precise control",
   "ShapeGS": "Shape prior-guided Gaussian Splatting for geometrically accurate surface reconstruction",
   "Deformable-3DGS": "Deformation field network for 3DGS enabling high-fidelity dynamic scene rendering",
-  "Scaffold-GS+": "Progressive training + coverage-aware anchor growth for better city-scale quality across scales",
   "NeuSG": "Neural surface-guided GS: SDF-guided Gaussian anchoring for consistent surface reconstruction",
   "SplatArmor": "LBS-based articulated Gaussian Splatting for human body with twist-aware deformation",
   "RelaxingAccurate": "Accurate mesh extraction from GS via relaxed surface constraints and multi-resolution TSDF",
@@ -2139,7 +2152,6 @@ const ABSTRACTS = {
   "Splat-GS": "Scalable Gaussian editing with progressive region selection and style transplantation",
   "SuperSplat": "Super-resolution guided Gaussian densification for detail enhancement in sparse-view settings",
   "GaussianOpacityFields": "Opacity field formulation enabling direct mesh extraction from GS without post-processing",
-  "PGSR": "Planar-based GS regularizer for high-fidelity surface reconstruction with depth-normal consistency",
   "GS-LRM-v2": "Enhanced large reconstruction model with improved cross-attention for feed-forward GS",
   "GaussianCross": "Cross-attention GS with multi-view feature aggregation for generalizable reconstruction",
   "UniGS": "Unified Gaussian Splatting: single model supporting multiple rendering modes (RGB/depth/semantic)",
@@ -2266,7 +2278,21 @@ const ABSTRACTS = {
   "GaussCalib": "Joint camera calibration and GS optimization for posed/unposed images",
   "SplatPose2": "Enhanced pose-conditioned GS with part-level deformation",
   "GS-Drive": "GS-based closed-loop driving simulation with dynamic agent rendering",
-  "SplatSim-v2": "Enhanced GS simulation with domain randomization for robotic learning"
+  "SplatSim-v2": "Enhanced GS simulation with domain randomization for robotic learning",
+  "SparseOIT": "Order-independent transparency via active set method for glass/refractive scenes",
+  "Z-Order GS": "Z-order strategy for spatially coherent Gaussian sequence with sparse attention",
+  "RoSplat": "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regularizer",
+  "Velox": "Feed-forward 4D reconstruction learning representations of 4D geometry and appearance",
+  "RetroNVS": "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark",
+  "SCOUP": "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup",
+  "PanoPlane": "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR",
+  "BlitzGS": "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city-scale scenes",
+  "FaceParts": "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer",
+  "HarmoGS": "Conflict-aware gradient harmonization for in-the-wild 3DGS reconstruction",
+  "Real2Sim": "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation",
+  "AV1-3DGS": "AV1 motion vectors for dense SfM matching with 63% training time reduction",
+  "3DGS squared": "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations",
+  "GuardMarkGS": "First unified watermarking + edit deterrence framework for 3DGS copyright protection"
 };
 
 const CATEGORIES = [

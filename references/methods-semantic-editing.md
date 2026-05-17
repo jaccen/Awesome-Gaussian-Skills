@@ -1072,3 +1072,4 @@
 - **Year**: 2025
 - **Category**: Human & Avatar Methods
 - **Core Innovation**: Enhanced pose-conditioned GS with part-level deformation
+

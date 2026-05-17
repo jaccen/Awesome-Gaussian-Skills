@@ -1518,3 +1518,4 @@
 - **Year**: 2025
 - **Category**: Dynamic Scene Methods
 - **Core Innovation**: Second-generation 4DGS with improved temporal deformation
+

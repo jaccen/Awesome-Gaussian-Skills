@@ -325,7 +325,7 @@
 
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#cross-domain-applications)
 
-## 21. Robustness & Restoration
+## 21. Robustness & Regularization
 - **ArtifactWorld** [arXiv:2604.12251](https://arxiv.org/abs/2604.12251) — Video generation models for 3DGS artifact restoration at scale
 - **FreeFix** [arXiv:2601.20857](https://arxiv.org/abs/2601.20857) — Fine-tuning-free diffusion guidance for extrapolated 3DGS
 - **Luminance-GS++** [arXiv:2602.18322](https://arxiv.org/abs/2602.18322) — View-adaptive color/lightness correction for robust NVS
@@ -802,3 +802,4 @@
 - **GaussianPrior** [arXiv:2504.01957](https://arxiv.org/abs/2504.01957) (CVPR 2025) — Gaussian prior transfer from pre-trained models for few-shot GS training
 - **GS-Fed** [arXiv:2504.09097](https://arxiv.org/abs/2504.09097) (CVPR 2025) — Federated GS training across multiple clients for privacy-preserving reconstruction
 - **GaussCalib** [arXiv:2504.09491](https://arxiv.org/abs/2504.09491) (CVPR 2025) — Joint camera calibration and GS optimization for posed/unposed images
+

@@ -650,7 +650,7 @@
 - **Key Innovation**: Enables ultra-efficient continuous space-time interpolation via 2D Gaussian primitives; bridges Gaussian Splatting with video processing
 - **Links**: [中英摘要](https://arxiv.org/abs/2604.18047) | [arXiv:2604.18047](https://arxiv.org/abs/2604.18047) | [Code]
 
-## Robustness & Restoration
+## Robustness & Regularization
 
 ### ArtifactWorld
 - **Paper**: ArtifactWorld: Scaling 3D Gaussian Splatting Artifact Restoration via Video Generation Models
@@ -1425,3 +1425,4 @@
 - **Year**: 2025
 - **Category**: Surveys & Benchmarks
 - **Core Innovation**: Survey on physics-integrated Gaussian Splatting: fluid/solid/cloth simulation + differentiable rendering
+
