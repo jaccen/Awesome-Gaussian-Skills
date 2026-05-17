@@ -117,6 +117,13 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 | 2604.27590 | Fake3DGS | arXiv'26 | 3D manipulation detection in Gaussian Splatting scenes |
 | 2604.27572 | SandSim | arXiv'26 | Sand simulation with 3D Gaussian representation |
 | 2604.27552 | RGS | arXiv'26 | Relightable Gaussian Splatting |
+| 2403.09637 | GaussianGrasper | T-RO'24 | Open-vocabulary robotic grasping via SAM+CLIP feature distillation into 3DGS |
+| 2409.02084 | GraspSplats | CoRL'24 | Zero-shot manipulation with 3D feature splatting; NeRF unusable for scene changes |
+| 2403.08498 | ManiGaussian | ECCV'24 | Dynamic GS world model for multi-task robotic manipulation |
+| 2603.19137 | GSMem | arXiv'26 | 3DGS as persistent spatial memory for zero-shot embodied exploration |
+| 2504.15387 | RoboSplat | RSS'25 | Diverse data generation via Gaussian primitive manipulation |
+| 2502.01536 | VR-Robo | RAL'25 | Real-to-Sim-to-Real for visual robot navigation |
+| 2604.28111 | GSDrive | arXiv'26 | 3DGS environment for reinforcing driving policies |
 
 ### Terminology Conventions
 

@@ -231,6 +231,13 @@ When comparing methods, analyze across the following dimensions:
 | GS-Surrogate | arXiv'26 (2604.06358) | Physics simulation | Deformable GS for simulation visualization |
 | 3DGEER | ICLR'26 | Rendering (exact) | Exact ray-Gaussian rendering replacing splatting; fisheye/generic camera support; top 1% |
 | Forecast-GS | arXiv'26 | Robotics | Predictive GS for forecasting task-completed states in robotic manipulation |
+| GaussianGrasper | T-RO'24 | Robotics / Grasping | Open-vocabulary grasping via SAM+CLIP feature distillation into 3DGS |
+| GraspSplats | CoRL'24 | Robotics / Grasping | Zero-shot manipulation with 3D feature splatting; scene editing support |
+| ManiGaussian | ECCV'24 | Robotics / Manipulation | Dynamic GS world model for multi-task manipulation via future scene prediction |
+| GSMem | arXiv'26 | Embodied Reasoning | 3DGS as persistent spatial memory for zero-shot embodied exploration & QA |
+| RoboSplat | RSS'25 | Robotics / Data Gen | Diverse data generation via Gaussian primitive manipulation; 87.8% success |
+| VR-Robo | RAL'25 | Robotics / Navigation | Real-to-Sim-to-Real for visual robot navigation without depth sensors |
+| GSDrive | arXiv'26 | Driving RL | 3DGS environment for reinforcing driving policies |
 | GeoQuery | SIGGRAPH'26 | Sparse-view NVS | Geometry-guided cross-view attention with geometry-aligned proxy queries from predicted depth |
 | PairDropGS | arXiv'26 | Sparse-view NVS | Paired dropout-induced consistency regularization with progressive scheduling |
 | VidSplat | SIGGRAPH'26 | Sparse-view NVS | Training-free generative framework leveraging video diffusion priors with iterative confidence refinement |

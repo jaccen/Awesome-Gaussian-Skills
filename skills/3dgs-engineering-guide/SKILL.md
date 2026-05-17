@@ -107,13 +107,29 @@ When invoked, follow this workflow:
 
 ### 1.9 Robotics & Embodied AI
 
-**Maturity**: Early
+**Maturity**: Rapidly Growing
 
 **Pipeline**: 3DGS environment → Physics sim (GS-Playground) → Policy learning (sim-to-real) → Deployment
 
-**Key papers**: GS-Playground (RSS 2026), FieryGS, MAGICIAN
+**Key papers**:
+- **GaussianGrasper** (IEEE T-RO 2024) — Open-vocabulary grasping via SAM+CLIP feature distillation into 3DGS
+- **GraspSplats** (CoRL 2024) — Zero-shot manipulation with 3D feature splatting; scene editing support
+- **ManiGaussian** (ECCV 2024) — Dynamic GS world model for multi-task manipulation via future scene prediction
+- **GSMem** (arXiv 2026) — 3DGS as persistent spatial memory for zero-shot embodied exploration & QA
+- **RoboSplat** (RSS 2025) — Diverse data generation via Gaussian primitive manipulation; 87.8% success rate
+- **VR-Robo** (RAL 2025) — Real-to-Sim-to-Real for visual robot navigation without depth sensors
+- **GS-Playground** (RSS 2026) — 10^4 FPS batch 3DGS + parallel physics for robot learning
+- **Forecast-GS** (arXiv 2026) — Predictive 3DGS for goal-directed manipulation planning
 
-**Notes**: 10^4 FPS sim transforms sample efficiency; ROS2 as point cloud/depth topics; debias with real-world fine-tuning
+**Sub-directions**:
+1. **Grasping & Manipulation** — GaussianGrasper, GraspSplats, ManiGaussian, RoboSplat
+2. **Navigation & Locomotion** — VR-Robo, GS-Playground, MAGICIAN
+3. **Embodied Reasoning** — GSMem (spatial memory), Forecast-GS (predictive planning)
+4. **Driving Policy RL** — GSDrive (3DGS environment for reinforcement learning)
+
+**Toolchain**: ROS2 (point cloud/depth topics), MuJoCo/Isaac Sim physics backend, GS-Playground (high-throughput sim)
+
+**Notes**: 10^4 FPS sim transforms sample efficiency; ROS2 as point cloud/depth topics; debias with real-world fine-tuning; GraspSplats demonstrates NeRF unsuitable for scene changes — prefer 3DGS for manipulation tasks requiring scene editing
 
 ### 1.10 Military Simulation
 

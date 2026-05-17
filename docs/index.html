@@ -974,7 +974,13 @@ const METHODS = [
   { name: "ArtifactWorld", short: "ArtifactWorld", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Video generation models for 3DGS artifact restoration at scale", arxiv: "2604.12251" , citations: 3 },
   { name: "E2EGS", short: "E2EGS", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Event-to-edge pose-free 3D reconstruction", arxiv: "2603.14684" , citations: 15 },
   { name: "FreeFix", short: "FreeFix", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Fine-tuning-free diffusion guidance for extrapolated 3DGS", arxiv: "2601.20857" , citations: 3 },
-  { name: "Luminance-GS++", short: "Luminance-GS++", cat: "Robustness", venue: "arXiv", year: 2026, desc: "View-adaptive color/lightness correction for robust NVS", arxiv: "2602.18322" , citations: 3 }
+  { name: "Luminance-GS++", short: "Luminance-GS++", cat: "Robustness", venue: "arXiv", year: 2026, desc: "View-adaptive color/lightness correction for robust NVS", arxiv: "2602.18322" , citations: 3 },
+  { name: "GaussianGrasper", short: "GaussianGrasper", cat: "Embodied AI", venue: "T-RO", year: 2024, desc: "3D language GS for open-vocabulary robotic grasping via SAM+CLIP feature distillation", arxiv: "2403.09637" , citations: 30 },
+  { name: "GraspSplats", short: "GraspSplats", cat: "Embodied AI", venue: "CoRL", year: 2024, desc: "Efficient zero-shot manipulation with 3D feature splatting; demonstrates NeRF unsuitable for scene changes", arxiv: "2409.02084" , citations: 25 },
+  { name: "ManiGaussian", short: "ManiGaussian", cat: "Embodied AI", venue: "ECCV", year: 2024, desc: "Dynamic GS for multi-task robotic manipulation via Gaussian world model", arxiv: "2403.08498" , citations: 35 },
+  { name: "GSMem", short: "GSMem", cat: "Embodied AI", venue: "arXiv", year: 2026, desc: "3DGS as persistent spatial memory for zero-shot embodied exploration and reasoning", arxiv: "2603.19137" , citations: 5 },
+  { name: "RoboSplat", short: "RoboSplat", cat: "Embodied AI", venue: "RSS", year: 2025, desc: "3DGS-based diverse data generation for robotic manipulation; 87.8% success rate", arxiv: "2504.15387" , citations: 15 },
+  { name: "VR-Robo", short: "VR-Robo", cat: "Embodied AI", venue: "RAL", year: 2025, desc: "Real-to-Sim-to-Real framework for visual robot navigation and locomotion", arxiv: "2502.01536" , citations: 20 }
 
 ];
 
@@ -1195,6 +1201,13 @@ const METHOD_DETAILS = {
   "AdpSplit": { innovation: "Error-driven adaptive split operator replacing heuristic binary split; 9.2-22.3% training time reduction", codeUrl: "" },
   "OCH3R": { innovation: "Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians in one forward pass", codeUrl: "" },
   "ConFixGS": { innovation: "Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR on Waymo", codeUrl: "" },
+  "GaussianGrasper": { innovation: "Efficient Feature Distillation (SAM+CLIP) for open-vocabulary robotic grasping; geometry-aware grasp from 3DGS point cloud", codeUrl: "" },
+  "GraspSplats": { innovation: "Splatting CLIP/SAM features into 3DGS for part-level semantic grasping; demonstrates NeRF unsuitable for scene editing", codeUrl: "https://graspsplats.github.io" },
+  "ManiGaussian": { innovation: "Gaussian world model predicting future scenes for language-conditioned manipulation; GS regressor for Gaussian deformation", codeUrl: "https://manigaussian.github.io" },
+  "GSMem": { innovation: "3DGS as reusable persistent spatial memory across tasks; zero-shot embodied QA without task-specific training", codeUrl: "" },
+  "RoboSplat": { innovation: "Direct manipulation of Gaussian primitives for data augmentation; spatially accurate R2S2R pipeline; 87.8% avg success rate", codeUrl: "" },
+  "VR-Robo": { innovation: "3DGS reconstruction for Real-to-Sim-to-Real visual robot navigation; terrain-aware locomotion without depth sensors", codeUrl: "https://github.com/zst1406217/VR-Robo" },
+  "GSDrive": { innovation: "3DGS-based RL reward shaping for driving policy improvement", codeUrl: "" },
 };
 
 
@@ -1855,6 +1868,24 @@ const ABSTRACTS = {
   },
   "OCH3R": {
     abstractEn: "OCH3R presents a unified framework for object-centric holistic 3D reconstruction from a single RGB image, predicting all object instances with 6D poses and detailed 3D reconstructions in a single forward pass. The method uses per-pixel CLIP embeddings, metric depth, NOCS, and per-object Gaussians, with inference scaling independently of object count for orders-of-magnitude faster performance than multi-stage pipelines.",
+  },
+  "GaussianGrasper": {
+    abstractEn: "GaussianGrasper introduces 3D Language Gaussian Splatting for open-vocabulary robotic grasping, using Efficient Feature Distillation (EFD) that combines SAM instance segmentation with CLIP semantic extraction, enabling geometry-aware grasp pose generation directly from the 3DGS point cloud with language-guided target selection.",
+  },
+  "GraspSplats": {
+    abstractEn: "GraspSplats enables efficient zero-shot robotic manipulation by splatting CLIP and SAM features into 3D Gaussian Splatting, providing part-level semantic understanding for grasping. The method demonstrates that NeRFs are fundamentally unsuitable for scene changes due to their implicit nature, while 3DGS supports real-time scene editing and object rearrangement.",
+  },
+  "ManiGaussian": {
+    abstractEn: "ManiGaussian proposes dynamic Gaussian Splatting for multi-task robotic manipulation by constructing a Gaussian world model that predicts future scenes from current observations. The GS regressor generates Gaussian deformations to model scene dynamics, enabling language-conditioned manipulation through future scene reconstruction and object interaction reasoning.",
+  },
+  "GSMem": {
+    abstractEn: "GSMem treats 3D Gaussian Splatting as persistent spatial memory for zero-shot embodied exploration and reasoning. The method supports incremental scene building during exploration and enables embodied question answering across tasks without task-specific training, bridging 3DGS representation with embodied reasoning and planning.",
+  },
+  "RoboSplat": {
+    abstractEn: "RoboSplat generates diverse and spatially accurate robotic manipulation data via direct manipulation of Gaussian primitives for augmentation (rotation, scaling, rearrangement). The spatially accurate Real-to-Sim-to-Real pipeline achieves 87.8% average success rate with only a single real demonstration, avoiding physics simulator geometry reconstruction errors.",
+  },
+  "VR-Robo": {
+    abstractEn: "VR-Robo presents a Real-to-Sim-to-Real framework for visual robot navigation and locomotion using 3DGS scene reconstruction. It creates high-fidelity visual simulations from real environments for RL policy training, combining terrain-aware locomotion with goal-directed navigation using pure visual perception without depth sensors.",
   }
 };
 
@@ -1874,6 +1905,7 @@ const CATEGORIES = [
   { id: "SLAM", label: "SLAM" },
   { id: "Training", label: "Training" },
   { id: "Simulation", label: "Simulation" },
+  { id: "Embodied AI", label: "Embodied AI" },
   { id: "Cross-Domain", label: "Cross-Domain" },
   { id: "Large-Scale", label: "Large-Scale" },
   { id: "Security", label: "Security" },

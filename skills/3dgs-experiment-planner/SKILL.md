@@ -59,6 +59,10 @@ Before designing experiments, extract:
 | Active Mapping / Robotics | MAGICIAN benchmarks | Active vision path planning quality |
 | CAD / Parametric | BrepGaussian benchmarks | B-rep reconstruction accuracy |
 | Simulation & Robotics | Habitat-GS (Habitat-Sim upgrade) | 3DGS-based robot simulation environments, navigation & interaction tasks |
+| Embodied AI / Grasping | GaussianGrasper (T-RO'24) / GraspSplats (CoRL'24) benchmarks | Open-vocabulary grasping & zero-shot manipulation success rates |
+| Embodied AI / Manipulation | ManiGaussian (ECCV'24) / RoboSplat (RSS'25) benchmarks | Multi-task manipulation & data augmentation success rates |
+| Embodied AI / Navigation | VR-Robo (RAL'25) benchmarks | Real-to-Sim-to-Real navigation success rates, terrain-aware locomotion |
+| Embodied AI / Spatial Memory | GSMem (arXiv'26) benchmarks | Zero-shot embodied QA and exploration metrics |
 | Cross-Domain / Medical | GS-DOT diffuse optical tomography benchmarks | Tests GS in photon diffusion regime (non-VS application) |
 | High-Speed Volumetric | Color-Encoded Illumination (CVPR 2026) paper benchmarks | Tests color-coded temporal info for high-speed volumetric reconstruction |
 | Sparse-View NVS | HeroGS (CVPR 2026) / Sparse-View 3DGS Wild paper benchmarks | Hierarchical guidance + diffusion-guided sparse-view enhancement |
