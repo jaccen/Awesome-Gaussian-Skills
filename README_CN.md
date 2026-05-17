@@ -1,47 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '30dacc26-f457-4c90-80ce-052c585581c8'
-  PropagateID: '30dacc26-f457-4c90-80ce-052c585581c8'
-  ReservedCode1: 'ce8e0865-271f-4c08-839a-250fee873ecb'
-  ReservedCode2: 'ce8e0865-271f-4c08-839a-250fee873ecb'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '44aae46f-0eb7-492c-a8d1-052cecee7ae1'
-  PropagateID: '44aae46f-0eb7-492c-a8d1-052cecee7ae1'
-  ReservedCode1: '88490f2b-00e5-44c9-93eb-4fead988d37d'
-  ReservedCode2: '88490f2b-00e5-44c9-93eb-4fead988d37d'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'aa20d375-6e1d-46a1-ab8d-5b167ba57b70'
-  PropagateID: 'aa20d375-6e1d-46a1-ab8d-5b167ba57b70'
-  ReservedCode1: 'b143b8bd-cced-41cf-814b-eb48df3e74ea'
-  ReservedCode2: 'b143b8bd-cced-41cf-814b-eb48df3e74ea'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fcc3374b-2d64-4b76-87ed-b55cf69e3657'
-  PropagateID: 'fcc3374b-2d64-4b76-87ed-b55cf69e3657'
-  ReservedCode1: '5695da48-e587-41c3-80e3-5a42b05a7f28'
-  ReservedCode2: '5695da48-e587-41c3-80e3-5a42b05a7f28'
----
-
 <div align="center">
 
 # Awesome Gaussian Skills
@@ -591,13 +547,3 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
