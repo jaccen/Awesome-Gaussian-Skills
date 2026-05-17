@@ -1,14 +1,3 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'efaaf863-238d-4c8b-92bb-96c2e8218934'
-  PropagateID: 'efaaf863-238d-4c8b-92bb-96c2e8218934'
-  ReservedCode1: '3db52967-84cc-47f9-97a7-6199de8b391b'
-  ReservedCode2: '3db52967-84cc-47f9-97a7-6199de8b391b'
----
-
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -1529,5 +1518,3 @@ AIGC:
 - **Year**: 2025
 - **Category**: Dynamic Scene Methods
 - **Core Innovation**: Second-generation 4DGS with improved temporal deformation
-
-> AI生成
