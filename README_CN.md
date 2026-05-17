@@ -8,6 +8,11 @@ If you like it, please ⭐️ star this repo!
 
 **261+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
 
+[![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
+[![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
+[![Contributors](https://img.shields.io/github/contributors/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=22C55E)](https://github.com/jaccen/Awesome-Gaussian-Skills/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=F97316)]()
+
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
@@ -19,7 +24,46 @@ If you like it, please ⭐️ star this repo!
 
 </div>
 
+## 本月新增 (2026年5月)
+
+过去30天新增21篇方法——240+ → 261+ 方法, 57+ → 62+ bug 模式。
+
+| 方法 | ArXiv | 类别 | 一句话创新 |
+|------|-------|------|-----------|
+| **SNS** | [2605.15010](https://arxiv.org/abs/2605.15010) | 基础 | Skew-Normal 非对称基元，连续插值高斯↔半高斯 |
+| **SplatWeaver** | [2605.07287](https://arxiv.org/abs/2605.07287) | 前馈 | 基数专家路由，-30%高斯预算，+1.02 dB |
+| **MGS** | [2603.19234](https://arxiv.org/abs/2603.19234) | 压缩 | Matryoshka 连续 LoD，单次训练任意精度 |
+| **Denoising-GS** | [2605.14880](https://arxiv.org/abs/2605.14880) | 优化 | 将3DGS优化重构为空间去噪 |
+| **AdpSplit** | [2605.06876](https://arxiv.org/abs/2605.06876) | 优化 | 误差驱动自适应分裂，训练加速9–22% |
+| **OCH3R** | [2605.13018](https://arxiv.org/abs/2605.13018) | 跨领域 | 单RGB全息3D重建，逐物体高斯 |
+| **ConFixGS** | [2605.09688](https://arxiv.org/abs/2605.09688) | 自动驾驶 | 扩散先验修复前馈3DGS，+3.68 dB |
+| **BlitzGS** | [2605.13794](https://arxiv.org/abs/2605.13794) | 大规模 | 分布式GPU分片，城市级3DGS |
+| **Z-Order GS** | [2605.13465](https://arxiv.org/abs/2605.13465) | 前馈 | Z序空间连贯排列 (CVPR 2026 Oral) |
+| **Real2Sim** | [2605.13591](https://arxiv.org/abs/2605.13591) | 仿真 | 4DGS + 可微MPM物理感知AD仿真 |
+| **SparseOIT** | [2605.13855](https://arxiv.org/abs/2605.13855) | 渲染 | 顺序无关透明，解决玻璃/折射场景 |
+| **GuardMarkGS** | [2605.12919](https://arxiv.org/abs/2605.12919) | 安全 | 首个统一水印+编辑阻止框架 |
+| **SCOUP** | [2605.13600](https://arxiv.org/abs/2605.13600) | 语义 | 语言-GS训练加速400倍 |
+| **AV1-3DGS** | [2605.14629](https://arxiv.org/abs/2605.14629) | 加速 | AV1运动向量，训练提速63% |
+
+<sup>完整变更记录: [`changelog/`](changelog/)</sup>
+
 > 📢 本项目现由Agent协助维护。如发现链接错误或信息有误，欢迎提交 Issue 勘误。
+
+## 为什么需要这个项目？
+
+你不应该为每篇新3DGS论文重新搭建相同的RAG管线，或手动在10个维度上对比20个变体，或投稿后才发现CUDA kernel有已知bug。
+
+**2023年以来已有500+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
+
+**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置261+方法的领域知识。
+
+| 你做的事 | 没有本项目 | 有本项目 |
+|----------|-----------|---------|
+| 读新论文 | 30–60分钟手翻 | 几秒出结构化摘要 |
+| 对比GS变体 | 手工搭对比表 | 10+维度自动对比 |
+| 审查3DGS代码 | 漏掉已知bug模式 | 62+模式自动检测 |
+| 设计实验 | 猜基线和消融 | 顶会定制实验方案 |
+| NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
 
 ## 特性
 
@@ -28,6 +72,7 @@ If you like it, please ⭐️ star this repo!
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
+
 ## 知识库（261+ 方法）
 
 | 类别 | 方法 |
@@ -413,6 +458,10 @@ Awesome-Gaussian-Skills/
 
 本项目基于 MIT 许可证开源 —— 详见 [LICENSE](LICENSE) 文件。
 
+## Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jaccen/Awesome-Gaussian-Skills&type=Date)](https://star-history.com/#jaccen/Awesome-Gaussian-Skills&Date)
+
 <div align="center">
 
 **为 3DGS 研究社区用心打造**
@@ -472,3 +521,5 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
+
+> AI生成

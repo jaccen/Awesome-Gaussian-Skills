@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 If you like it, please ⭐️ star this repo! 
         
@@ -7,6 +7,11 @@ If you like it, please ⭐️ star this repo!
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
 **261+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+
+[![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
+[![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
+[![Contributors](https://img.shields.io/github/contributors/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=22C55E)](https://github.com/jaccen/Awesome-Gaussian-Skills/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=F97316)]()
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -19,25 +24,46 @@ If you like it, please ⭐️ star this repo!
 
 </div>
 
+## What's New (May 2026)
+
+21 new methods added in the last 30 days — 240+ → 261+ methods, 57+ → 62+ bug patterns.
+
+| Method | ArXiv | Category | One-Line Innovation |
+|--------|-------|----------|-------------------|
+| **SNS** | [2605.15010](https://arxiv.org/abs/2605.15010) | Foundation | Skew-Normal primitive for asymmetric boundary modeling |
+| **SplatWeaver** | [2605.07287](https://arxiv.org/abs/2605.07287) | Feed-Forward | Cardinality expert routing +30% budget, +1.02 dB |
+| **MGS** | [2603.19234](https://arxiv.org/abs/2603.19234) | Compression | Matryoshka continuous LoD from single training |
+| **Denoising-GS** | [2605.14880](https://arxiv.org/abs/2605.14880) | Optimization | 3DGS optimization reframed as spatial denoising |
+| **AdpSplit** | [2605.06876](https://arxiv.org/abs/2605.06876) | Optimization | Error-driven adaptive split, 9–22% faster |
+| **OCH3R** | [2605.13018](https://arxiv.org/abs/2605.13018) | Cross-Domain | Single-RGB holistic 3D with per-object Gaussians |
+| **ConFixGS** | [2605.09688](https://arxiv.org/abs/2605.09688) | Autonomous Driving | Diffusion priors fix feedforward 3DGS, +3.68 dB |
+| **BlitzGS** | [2605.13794](https://arxiv.org/abs/2605.13794) | Large-Scale | Distributed GPU sharding for city-scale GS |
+| **Z-Order GS** | [2605.13465](https://arxiv.org/abs/2605.13465) | Feed-Forward | Z-order spatial coherence (CVPR 2026 Oral) |
+| **Real2Sim** | [2605.13591](https://arxiv.org/abs/2605.13591) | Simulation | 4DGS + differentiable MPM for physics-aware AD |
+| **SparseOIT** | [2605.13855](https://arxiv.org/abs/2605.13855) | Rendering | Order-independent transparency for glass scenes |
+| **GuardMarkGS** | [2605.12919](https://arxiv.org/abs/2605.12919) | Security | First unified watermarking + edit deterrence |
+| **SCOUP** | [2605.13600](https://arxiv.org/abs/2605.13600) | Semantic | 400x language-GS training speedup |
+| **AV1-3DGS** | [2605.14629](https://arxiv.org/abs/2605.14629) | Acceleration | AV1 motion vectors, 63% training speedup |
+
+<sup>Full changelog: [`changelog/`](changelog/)</sup>
+
 > 📢 This project is maintained with Agent assistance. If you find broken links or incorrect information, please open an Issue.
 
 ## Why This Project?
 
-3D Gaussian Splatting (3DGS) is one of the most active research areas in computer vision and graphics, with **500+ papers published since 2023**. Yet the AI Agent ecosystem has a glaring gap:
+You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-> **ClawHub has 13,000+ skills, but almost ZERO for 3D reconstruction / computer graphics.**
+**With 500+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
-Meanwhile, every 3DGS researcher faces the same repetitive tasks:
+**Awesome Gaussian Skills** is a zero-setup toolkit — copy the skills, and your AI Agent can read papers, compare methods, review code, design experiments, write papers, and generate IP documents, all with built-in knowledge of 261+ methods.
 
-| Pain Point | Frequency |
-|-----------|-----------|
-| Reading and summarizing new papers | Daily |
-| Comparing method designs (GS vs 2DGS vs NegGS vs ...) | Weekly |
-| Reviewing implementation code for bugs | Per submission |
-| Designing ablation experiments | Per paper |
-| Migrating NeRF methods to 3DGS | Per project |
-
-**Awesome Gaussian Skills** solves all of these — just describe what you need in natural language, and the AI Agent handles the rest.
+| What You Do | Without This | With This |
+|-------------|-------------|-----------|
+| Read a new paper | 30–60 min manual skimming | Structured summary in seconds |
+| Compare GS variants | Hand-build comparison tables | 10+ dimension auto-comparison |
+| Review 3DGS code | Miss known bug patterns | 62+ pattern detection |
+| Design experiments | Guess baselines & ablations | Venue-tailored experiment plan |
+| Migrate NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
 
 ## Features
 
@@ -435,6 +461,10 @@ If you find this project helpful in your research, please consider citing:
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jaccen/Awesome-Gaussian-Skills&type=Date)](https://star-history.com/#jaccen/Awesome-Gaussian-Skills&Date)
 
 <div align="center">
 
