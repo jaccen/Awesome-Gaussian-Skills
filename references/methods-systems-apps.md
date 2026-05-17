@@ -1,14 +1,3 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '492dc167-4d4c-4513-9b88-a4183281fdb5'
-  PropagateID: '492dc167-4d4c-4513-9b88-a4183281fdb5'
-  ReservedCode1: 'cb4919d7-c113-4b42-9694-70bcef64be08'
-  ReservedCode2: 'cb4919d7-c113-4b42-9694-70bcef64be08'
----
-
 # Systems, Applications & Cross-Domain Methods
 
 > Methods covering robustness, autonomous driving, SLAM, training, simulation, robotics, and cross-domain applications.
@@ -1436,5 +1425,3 @@ AIGC:
 - **Year**: 2025
 - **Category**: Surveys & Benchmarks
 - **Core Innovation**: Survey on physics-integrated Gaussian Splatting: fluid/solid/cloth simulation + differentiable rendering
-
-> AI生成
