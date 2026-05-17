@@ -1,58 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'afa59809-3657-4abc-900e-289682f05c83'
-  PropagateID: 'afa59809-3657-4abc-900e-289682f05c83'
-  ReservedCode1: 'a0d9c11f-0a08-4bce-8689-fcba2ace40f7'
-  ReservedCode2: 'a0d9c11f-0a08-4bce-8689-fcba2ace40f7'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '95bb486b-f06f-4c3e-84c2-7a4a291f3094'
-  PropagateID: '95bb486b-f06f-4c3e-84c2-7a4a291f3094'
-  ReservedCode1: '91f57502-421f-4772-a43a-3b0c717862c4'
-  ReservedCode2: '91f57502-421f-4772-a43a-3b0c717862c4'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0cf7525d-604b-408d-8430-c0545195ff77'
-  PropagateID: '0cf7525d-604b-408d-8430-c0545195ff77'
-  ReservedCode1: 'bd907f8d-6001-4da1-a742-a97e5d267895'
-  ReservedCode2: 'bd907f8d-6001-4da1-a742-a97e5d267895'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b4a503e7-e338-47ef-a95a-569a5c9cfd48'
-  PropagateID: 'b4a503e7-e338-47ef-a95a-569a5c9cfd48'
-  ReservedCode1: '39417faa-6bc7-47be-885b-61c896a5c091'
-  ReservedCode2: '39417faa-6bc7-47be-885b-61c896a5c091'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '342f11f6-b66f-4848-9820-2472633aff0f'
-  PropagateID: '342f11f6-b66f-4848-9820-2472633aff0f'
-  ReservedCode1: '406f7b6f-f693-4c47-b45e-59964f0076b1'
-  ReservedCode2: '406f7b6f-f693-4c47-b45e-59964f0076b1'
----
-
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -602,17 +547,3 @@ Hugging Face Papers: https://huggingface.co/papers
 arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
