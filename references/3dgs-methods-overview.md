@@ -1,6 +1,6 @@
 ﻿# 3DGS Methods Overview
 
-> This file is the master index for all 261+ 3D Gaussian Splatting methods tracked in this knowledge base.
+> This file is the master index for all 268+ 3D Gaussian Splatting methods tracked in this knowledge base.
 > Detailed entries (full metadata, key innovations, code links) are split across three companion files below.
 > Performance comparison table at the end of this file.
 
@@ -278,6 +278,13 @@
 > Full details in [methods-systems-apps.md](methods-systems-apps.md#training--optimization)
 
 ## 19. Simulation & Robotics
+- **GaussianGrasper** [arXiv:2403.09637](https://arxiv.org/abs/2403.09637) — 3D language GS for open-vocabulary robotic grasping (IEEE T-RO 2024)
+- **GraspSplats** [arXiv:2409.02084](https://arxiv.org/abs/2409.02084) — Efficient zero-shot manipulation with 3D feature splatting (CoRL 2024)
+- **ManiGaussian** [arXiv:2403.08498](https://arxiv.org/abs/2403.08498) — Dynamic GS for multi-task robotic manipulation via future scene reconstruction (ECCV 2024)
+- **GSMem** [arXiv:2603.19137](https://arxiv.org/abs/2603.19137) — 3DGS as persistent spatial memory for zero-shot embodied exploration and reasoning
+- **RoboSplat** [arXiv:2504.15387](https://arxiv.org/abs/2504.15387) — 3DGS-based diverse and spatially accurate data generation for robotic manipulation (RSS 2025)
+- **VR-Robo** [arXiv:2502.01536](https://arxiv.org/abs/2502.01536) — Real-to-Sim-to-Real framework for visual robot navigation and locomotion (RAL 2025)
+- **GSDrive** [arXiv:2604.28111](https://arxiv.org/abs/2604.28111) — Reinforcing driving policies with 3DGS environment
 - **GS-Playground** [arXiv:2604.25459](https://arxiv.org/abs/2604.25459) — Batch 3DGS + parallel physics at 10^4 FPS for robot learning
 - **GS-Surrogate** [arXiv:2604.06358](https://arxiv.org/abs/2604.06358) — Deformable GS surrogate for ensemble simulation exploration
 - **3DGS Demo Synthesis (IL)** [arXiv:2605.01232](https://arxiv.org/abs/2605.01232) — 3DGS-based demonstration generation for imitation learning

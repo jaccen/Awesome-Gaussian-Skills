@@ -334,7 +334,74 @@
 
 ## Simulation & Robotics
 
-### GS-Playground
+### Embodied AI / Robotics (Grasping, Manipulation, Navigation)
+
+> Methods applying 3DGS to embodied perception, robotic grasping, manipulation, navigation, and sim-to-real transfer.
+
+#### GaussianGrasper
+- **Paper**: GaussianGrasper: 3D Language Gaussian Splatting for Open-vocabulary Robotic Grasping
+- **Authors**: Yuhang Zheng, Xiangyu Chen, Yupeng Zheng, Songen Gu, Runyi Yang, Bu Jin, Pengfei Li, Chengliang Zhong, Zengmao Wang, Liao Wu, Bo Du, Rong Xiong, Yiyi Liao, Yue Wang
+- **Venue**: IEEE T-RO 2024
+- **ArXiv**: 2403.09637
+- **Core**: 3D language Gaussian Splatting for open-vocabulary robotic grasping
+- **Key Innovation**: Efficient Feature Distillation (EFD) via SAM instance segmentation + CLIP semantic extraction; geometry-aware grasping from 3DGS point cloud; open-vocabulary language-guided grasp target selection; bridges semantic 3DGS representation with grasp pose generation
+- **Links**: [arXiv:2403.09637](https://arxiv.org/abs/2403.09637) | [IEEE](https://ieeexplore.ieee.org/document/10607869/)
+
+#### GraspSplats
+- **Paper**: GraspSplats: Efficient Manipulation with 3D Feature Splatting
+- **Authors**: Mazeyu Ji, Ri-Zhao Qiu, Xueyan Zou, Xiaolong Wang
+- **Venue**: CoRL 2024
+- **ArXiv**: 2409.02084
+- **Core**: Efficient zero-shot robotic grasping via 3D feature splatting
+- **Key Innovation**: Splatting CLIP/SAM features directly into 3DGS for part-level semantic understanding; demonstrates NeRFs are unsuitable for scene changes due to implicit nature; supports scene editing and object rearrangement; real-time grasp inference from 3D feature field
+- **Links**: [arXiv:2409.02084](https://arxiv.org/abs/2409.02084) | [Project](https://graspsplats.github.io)
+
+#### ManiGaussian
+- **Paper**: ManiGaussian: Dynamic Gaussian Splatting for Multi-task Robotic Manipulation
+- **Authors**: Weixz Zhu, Chuer Yu, Baoxiong Jia, Siyuan Huang, Zhizheng Zhang, Xiaoyi Bao, Song-Chun Zhu, Qing Li
+- **Venue**: ECCV 2024
+- **ArXiv**: 2403.08498
+- **Core**: Dynamic Gaussian Splatting for scene-level spatiotemporal understanding in multi-task robotic manipulation
+- **Key Innovation**: Gaussian world model predicting future scenes from current observations; GS regressor for Gaussian deformation; leverages scene dynamics for language-conditioned manipulation; enables object interaction reasoning through future scene reconstruction
+- **Links**: [arXiv:2403.08498](https://arxiv.org/abs/2403.08498) | [Project](https://manigaussian.github.io)
+
+#### GSMem
+- **Paper**: GSMem: 3D Gaussian Splatting as Persistent Spatial Memory for Zero-Shot Embodied Exploration and Reasoning
+- **Authors**: Yiding Ji, Ruijie Lu, Yubin Miao, Jiazhi Li, Rongjie Huang, Ziyang Zong, Chuyang Xiao, Yizhou Wang, He Wang
+- **ArXiv**: 2603.19137
+- **Core**: 3DGS as persistent spatial memory for zero-shot embodied exploration and reasoning
+- **Key Innovation**: Treats 3DGS as reusable spatial memory across tasks; supports zero-shot embodied question answering without task-specific training; incremental scene building during exploration; bridges 3DGS representation with embodied reasoning and planning
+- **Links**: [arXiv:2603.19137](https://arxiv.org/abs/2603.19137)
+
+#### RoboSplat
+- **Paper**: RoboSplat: 3D Gaussian Splatting-based Diverse and Spatially Accurate Data Generation for Robotic Manipulation
+- **Authors**: Jisoo Park, Seungjae Lee, Yooseung Wang, Inkyu Shin, Jaesik Park, Hyunsoo Chung, Jaeho Lee
+- **Venue**: RSS 2025
+- **ArXiv**: 2504.15387
+- **Core**: 3DGS-based diverse and spatially accurate data generation for robotic manipulation
+- **Key Innovation**: Direct manipulation of Gaussian primitives for data augmentation (rotation, scaling, rearrangement); spatially accurate Real-to-Sim-to-Real pipeline; 87.8% average success rate with only single real demonstration; avoids physics simulator geometry reconstruction errors
+- **Links**: [arXiv:2504.15387](https://arxiv.org/abs/2504.15387)
+
+#### VR-Robo
+- **Paper**: VR-Robo: A Real-to-Sim-to-Real Framework for Visual Robot Navigation and Locomotion
+- **Authors**: Shaoting Zhu, Linzhan Mou, Derun Li, Baijun Ye, Runhan Huang, Hang Zhao
+- **Venue**: IEEE RAL 2025
+- **ArXiv**: 2502.01536
+- **Core**: 3DGS-based Real-to-Sim-to-Real framework for visual robot navigation and locomotion
+- **Key Innovation**: Reconstructs real environments as 3DGS scenes for high-fidelity visual simulation; terrain-aware locomotion + goal-directed navigation in unified pipeline; pure visual perception without depth sensors; open-source code and sim-to-real deployment
+- **Links**: [arXiv:2502.01536](https://arxiv.org/abs/2502.01536) | [Code](https://github.com/zst1406217/VR-Robo) | [Project](https://vr-robo.github.io/)
+
+#### GSDrive
+- **Paper**: GSDrive: Reinforcing Driving Policies with 3D Gaussian Splatting Environment
+- **Authors**: Yining Shi, Jianbiao Mei, Liang Liu, Peng Sun, Hao Liang, Xun Huang, Pengfei Li, Song Li, Jingdong Wang, Yafei Wang, Xiaolin Hu
+- **ArXiv**: 2604.28111
+- **Core**: Reinforcing autonomous driving policies with 3DGS-based environment
+- **Key Innovation**: 3DGS as high-fidelity driving simulation environment for RL policy training; generates diverse traffic scenarios with photo-realistic rendering; bridges driving policy learning with 3DGS scene reconstruction
+- **Links**: [arXiv:2604.28111](https://arxiv.org/abs/2604.28111)
+
+### Simulation & Digital Twins
+
+#### GS-Playground
 - **Paper**: GS-Playground: A High-Throughput Photorealistic Simulator for Vision-Informed Robot Learning
 - **Authors**: Yufei Jia, Heng Zhang, Ziheng Zhang, et al. (42 authors)
 - **Venue**: RSS 2026
