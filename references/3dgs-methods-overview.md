@@ -1,14 +1,3 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'a70c6475-ec3b-452c-93e0-4c17cad4875c'
-  PropagateID: 'a70c6475-ec3b-452c-93e0-4c17cad4875c'
-  ReservedCode1: '92a302b2-1659-4ccc-a862-c3df339cb167'
-  ReservedCode2: '92a302b2-1659-4ccc-a862-c3df339cb167'
----
-
 # 3DGS Methods Overview
 
 > This file is the master index for all 500+ 3D Gaussian Splatting methods tracked in this knowledge base.
@@ -813,5 +802,3 @@ AIGC:
 - **GaussianPrior** [arXiv:2504.01957](https://arxiv.org/abs/2504.01957) (CVPR 2025) — Gaussian prior transfer from pre-trained models for few-shot GS training
 - **GS-Fed** [arXiv:2504.09097](https://arxiv.org/abs/2504.09097) (CVPR 2025) — Federated GS training across multiple clients for privacy-preserving reconstruction
 - **GaussCalib** [arXiv:2504.09491](https://arxiv.org/abs/2504.09491) (CVPR 2025) — Joint camera calibration and GS optimization for posed/unposed images
-
-> AI生成
