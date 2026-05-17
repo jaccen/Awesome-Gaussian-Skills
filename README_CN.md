@@ -47,7 +47,7 @@ If you like it, please ⭐️ star this repo!
 
 <sup>完整变更记录: [`changelog/`](changelog/)</sup>
 
-> 📢 本项目现由Agent协助维护。如发现链接错误或信息有误，欢迎提交 Issue 勘误。
+> 知识库经多源交叉验证维护。发现错误？[提交 Issue](https://github.com/jaccen/Awesome-Gaussian-Skills/issues/new)。
 
 ## 为什么需要这个项目？
 
@@ -68,44 +68,66 @@ If you like it, please ⭐️ star this repo!
 ## 特性
 
 - **261+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 21 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
-- **交互式浏览器**：在 [jaccen.github.io/Awesome-Gaussian-Skills](https://jaccen.github.io/Awesome-Gaussian-Skills/) 浏览、搜索与对比方法
+- **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
 ## 知识库（261+ 方法）
 
-| 类别 | 方法 |
-|------|------|
-| 基础 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
-| 压缩/流式 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
-| 大规模 | BlitzGS |
-| 前馈 | Z-Order GS, RoSplat, SplatWeaver |
-| 鲁棒性 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
-| 语言/语义 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
-| 生成/文生3D | DreamGaussian, SceneGen-LLMRL |
-| 抗锯齿 | Mip-Splatting, LeanGaussian |
-| 优化 | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
-| 图像表示 | GaussianImage |
-| 加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
-| 主动视觉 | MAGICIAN |
-| 仿真 | GS-Playground, GS-Surrogate, FieryGS |
-| 实时新视角合成 | 3DTV |
-| 自动驾驶 | Real2Sim, ConFixGS |
-| 跨领域 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
-| 数据采集 | Mobile Phone 3DGS Acquisition |
-| 退化感知 | MERID-GS, MarineSTD-GS, E2EGS |
-| 系统 | YOGO, GS-SCNet |
-| 安全 | RDSplat, GuardMarkGS |
-| HDR/动态 | HDR-NSFF, FreeTimeGS++ |
-| 动态 | ParticleGS, 3DGS³, Velox, RetroNVS |
-| SLAM | 2DGS-SLAM, MAGS-SLAM |
-| 稀疏视角 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
-| CAD | CADFit |
-| 重光照 | Relightable-GS-VP |
-| 人体/头像 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| 编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
-| 表面/渲染 | SparseOIT |
+**核心表示**
+
+| 类别 | 说明 | 方法 |
+|------|------|------|
+| 基础 | 核心3DGS表示与基本变体 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
+| 抗锯齿 | 抗锯齿与频率感知渲染 | Mip-Splatting, LeanGaussian |
+| 优化 | 训练目标、密度控制与收敛 | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
+| 表面/渲染 | 渲染公式创新（OIT、RBF等） | SparseOIT |
+| 图像表示 | 图像级高斯编码 | GaussianImage |
+
+**效率与规模**
+
+| 类别 | 说明 | 方法 |
+|------|------|------|
+| 压缩/流式 | 轻量化、移动端与渐进式传输 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
+| 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
+| 大规模 | 城市级与分布式场景管理 | BlitzGS |
+| 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver |
+
+**理解与语义**
+
+| 类别 | 说明 | 方法 |
+|------|------|------|
+| 语言/语义 | 开放词汇3D理解与语言场 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
+| 生成/文生3D | 文本/条件驱动的3D生成 | DreamGaussian, SceneGen-LLMRL |
+| 自动驾驶 | 驾驶场景重建与仿真 | Real2Sim, ConFixGS |
+
+**动态与空间**
+
+| 类别 | 说明 | 方法 |
+|------|------|------|
+| 动态 | 4D高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, RetroNVS |
+| HDR/动态 | HDR采集与时变光照 | HDR-NSFF, FreeTimeGS++ |
+| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM |
+| 稀疏视角 | 少视角与稀疏视角重建 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
+
+**应用与跨领域**
+
+| 类别 | 说明 | 方法 |
+|------|------|------|
+| 人体/头像 | 可动画人体与头像重建 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
+| 编辑 | 交互式与文本引导场景编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
+| 重光照 | 可重光照与材质感知高斯 | Relightable-GS-VP |
+| CAD | CAD模型拟合与逆向工程 | CADFit |
+| 跨领域 | 多模态融合与域外迁移 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
+| 仿真 | 物理仿真与代理模型 | GS-Playground, GS-Surrogate, FieryGS |
+| 主动视觉 | 主动视角选择与下一最优视角 | MAGICIAN |
+| 实时新视角合成 | 实时新视角合成系统 | 3DTV |
+| 数据采集 | 采集协议与手机端采集 | Mobile Phone 3DGS Acquisition |
+| 鲁棒性 | 野外与退化鲁棒重建 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
+| 退化感知 | 恶劣天气、水下与低质量输入 | MERID-GS, MarineSTD-GS, E2EGS |
+| 系统 | 全系统设计与硬件协同设计 | YOGO, GS-SCNet |
+| 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS |
 
 > 完整知识库覆盖 **21 个类别的 261+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
@@ -113,29 +135,30 @@ If you like it, please ⭐️ star this repo!
 
 ## 快速开始
 
+每个技能是一个独立的 SKILL.md 文件 — 复制到你的 Agent 技能目录即可使用。无需依赖，无需构建。
+
+**3条命令开启AI驱动的3DGS工作流：**
+
+```bash
+git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
+cp -r Awesome-Gaussian-Skills/skills/* ~/.openclaw/skills/   # 或 .claude/ 用于 Claude Code
+openclaw restart   # 然后问："对比3DGS和2DGS的渲染公式"
+```
+
 ### 方式一：OpenClaw
 
 ```bash
-# 克隆仓库
-git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
-cd Awesome-Gaussian-Skills
-
 # 复制所有技能到 OpenClaw 技能目录
 cp -r skills/* ~/.openclaw/skills/
-
-# 重启 OpenClaw
 openclaw restart
 ```
 
 ### 方式二：Claude Code / Cursor
 
 ```bash
-# 克隆到项目目录
-git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
-
-# 复制所需技能到项目的 CLAUDE.md 目录
-cp -r skills/3dgs-paper-reader/SKILL.md .claude/
-cp -r skills/3dgs-code-reviewer/SKILL.md .claude/
+# 复制所需技能到项目的 .claude/ 目录
+cp skills/3dgs-paper-reader/SKILL.md .claude/
+cp skills/3dgs-code-reviewer/SKILL.md .claude/
 ```
 
 ### 方式三：一键安装脚本
@@ -432,6 +455,8 @@ Awesome-Gaussian-Skills/
 - 报告问题或提出改进建议
 - 分享你的使用案例和成功故事
 
+[![Contributors](https://contrib.rocks/image?repo=jaccen/Awesome-Gaussian-Skills&max=24&columns=8)](https://github.com/jaccen/Awesome-Gaussian-Skills/graphs/contributors)
+
 ## 引用
 
 如果你在研究中使用了本项目，请考虑引用：
@@ -521,5 +546,3 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
-
-> AI生成

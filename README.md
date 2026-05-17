@@ -47,7 +47,7 @@ If you like it, please ⭐️ star this repo!
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
-> 📢 This project is maintained with Agent assistance. If you find broken links or incorrect information, please open an Issue.
+> Knowledge base curated with multi-source verification. Found an error? [Open an Issue](https://github.com/jaccen/Awesome-Gaussian-Skills/issues/new).
 
 ## Why This Project?
 
@@ -68,44 +68,66 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 ## Features
 
 - **261+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 21 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
-- **Interactive Explorer**: Browse, search, and compare methods at [jaccen.github.io/Awesome-Gaussian-Skills](https://jaccen.github.io/Awesome-Gaussian-Skills/)
+- **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
 ## Knowledge Base (261+ Methods)
 
-| Category | Methods |
-|----------|---------|
-| Foundation | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
-| Compression / Streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
-| Large-Scale | BlitzGS |
-| Feed-Forward | Z-Order GS, RoSplat, SplatWeaver |
-| Robustness | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
-| Language / Semantic | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
-| Generation / Text-to-3D | DreamGaussian, SceneGen-LLMRL |
-| Antialiasing | Mip-Splatting, LeanGaussian |
-| Optimization | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
-| Image Representation | GaussianImage |
-| Acceleration | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
-| Active Vision | MAGICIAN |
-| Simulation | GS-Playground, GS-Surrogate, FieryGS |
-| Real-Time NVS | 3DTV |
-| Autonomous Driving | Real2Sim, ConFixGS |
-| Cross-Domain | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
-| Data Acquisition | Mobile Phone 3DGS Acquisition |
-| Degradation-Aware | MERID-GS, MarineSTD-GS, E2EGS |
-| System | YOGO, GS-SCNet |
-| Security | RDSplat, GuardMarkGS |
-| HDR / Dynamic | HDR-NSFF, FreeTimeGS++ |
-| Dynamic | ParticleGS, 3DGS³, Velox, RetroNVS |
-| SLAM | 2DGS-SLAM, MAGS-SLAM |
-| Sparse-View | FrameTwin, GeoQuery, VidSplat, PanoPlane |
-| CAD | CADFit |
-| Relighting | Relightable-GS-VP |
-| Human / Avatar | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| Editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
-| Surface / Rendering | SparseOIT |
+**Core Representations**
+
+| Category | Description | Methods |
+|----------|-------------|---------|
+| Foundation | Core 3DGS representations and basic variants | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
+| Antialiasing | Anti-aliasing and frequency-aware rendering | Mip-Splatting, LeanGaussian |
+| Optimization | Training objectives, density control, and convergence | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
+| Surface / Rendering | Rendering formulation innovation (OIT, RBF, etc.) | SparseOIT |
+| Image Representation | Image-level Gaussian encoding | GaussianImage |
+
+**Efficiency & Scale**
+
+| Category | Description | Methods |
+|----------|-------------|---------|
+| Compression / Streaming | Lightweight, mobile, and progressive streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
+| Acceleration | Training and inference speedup | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
+| Large-Scale | City-scale and distributed scene management | BlitzGS |
+| Feed-Forward | Single-forward-pass generalizable reconstruction | Z-Order GS, RoSplat, SplatWeaver |
+
+**Understanding & Semantics**
+
+| Category | Description | Methods |
+|----------|-------------|---------|
+| Language / Semantic | Open-vocabulary 3D understanding and language fields | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
+| Generation / Text-to-3D | Text/condition-driven 3D generation | DreamGaussian, SceneGen-LLMRL |
+| Autonomous Driving | Driving scene reconstruction and simulation | Real2Sim, ConFixGS |
+
+**Dynamic & Spatial**
+
+| Category | Description | Methods |
+|----------|-------------|---------|
+| Dynamic | 4D Gaussians, temporal deformation, and propagation | ParticleGS, 3DGS³, Velox, RetroNVS |
+| HDR / Dynamic | HDR capture and time-varying illumination | HDR-NSFF, FreeTimeGS++ |
+| SLAM | Simultaneous localization and mapping | 2DGS-SLAM, MAGS-SLAM |
+| Sparse-View | Few-shot and sparse-view reconstruction | FrameTwin, GeoQuery, VidSplat, PanoPlane |
+
+**Applications & Cross-Domain**
+
+| Category | Description | Methods |
+|----------|-------------|---------|
+| Human / Avatar | Animatable human and avatar reconstruction | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
+| Editing | Interactive and text-guided scene editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
+| Relighting | Relightable and material-aware Gaussians | Relightable-GS-VP |
+| CAD | CAD model fitting and reverse engineering | CADFit |
+| Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
+| Simulation | Physics simulation and surrogate models | GS-Playground, GS-Surrogate, FieryGS |
+| Active Vision | Active view selection and next-best-view | MAGICIAN |
+| Real-Time NVS | Real-time novel view synthesis systems | 3DTV |
+| Data Acquisition | Capture protocols and phone-based acquisition | Mobile Phone 3DGS Acquisition |
+| Robustness | In-the-wild and degradation-robust reconstruction | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
+| Degradation-Aware | Weather, underwater, and low-quality input handling | MERID-GS, MarineSTD-GS, E2EGS |
+| System | Full-system design and hardware co-design | YOGO, GS-SCNet |
+| Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS |
 
 > The full knowledge base covers **261+ methods** across 21 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
@@ -113,29 +135,30 @@ Download the full database as CSV: [`3dgs-methods-overview.csv`](3dgs-methods-ov
 
 ## Quick Start
 
+Each skill is a standalone SKILL.md file — copy it to your Agent's skills directory and it works immediately. No dependencies, no build steps.
+
+**3 commands to your first AI-powered 3DGS workflow:**
+
+```bash
+git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
+cp -r Awesome-Gaussian-Skills/skills/* ~/.openclaw/skills/   # or .claude/ for Claude Code
+openclaw restart   # then ask: "Compare 3DGS and 2DGS rendering formulations"
+```
+
 ### Option 1: OpenClaw
 
 ```bash
-# Clone this repo
-git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
-cd Awesome-Gaussian-Skills
-
 # Copy all skills to OpenClaw skills directory
 cp -r skills/* ~/.openclaw/skills/
-
-# Restart OpenClaw
 openclaw restart
 ```
 
 ### Option 2: Claude Code / Cursor
 
 ```bash
-# Clone to your project
-git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
-
-# Copy the skills you need into your project's CLAUDE.md directory
-cp -r skills/3dgs-paper-reader/SKILL.md .claude/
-cp -r skills/3dgs-code-reviewer/SKILL.md .claude/
+# Copy the skills you need into your project's .claude/ directory
+cp skills/3dgs-paper-reader/SKILL.md .claude/
+cp skills/3dgs-code-reviewer/SKILL.md .claude/
 ```
 
 ### Option 3: One-Click Install Script
@@ -435,6 +458,8 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 - Expand the methods knowledge base
 - Report bugs or suggest improvements
 - Share your use cases and success stories
+
+[![Contributors](https://contrib.rocks/image?repo=jaccen/Awesome-Gaussian-Skills&max=24&columns=8)](https://github.com/jaccen/Awesome-Gaussian-Skills/graphs/contributors)
 
 ## Citation
 
