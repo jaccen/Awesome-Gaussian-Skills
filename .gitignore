@@ -37,3 +37,4 @@ build/
 *.tmp
 *.bak
 *.js
+.temp/

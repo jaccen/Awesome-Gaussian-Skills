@@ -1,4 +1,48 @@
-﻿<div align="center">
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '30dacc26-f457-4c90-80ce-052c585581c8'
+  PropagateID: '30dacc26-f457-4c90-80ce-052c585581c8'
+  ReservedCode1: 'ce8e0865-271f-4c08-839a-250fee873ecb'
+  ReservedCode2: 'ce8e0865-271f-4c08-839a-250fee873ecb'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '44aae46f-0eb7-492c-a8d1-052cecee7ae1'
+  PropagateID: '44aae46f-0eb7-492c-a8d1-052cecee7ae1'
+  ReservedCode1: '88490f2b-00e5-44c9-93eb-4fead988d37d'
+  ReservedCode2: '88490f2b-00e5-44c9-93eb-4fead988d37d'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'aa20d375-6e1d-46a1-ab8d-5b167ba57b70'
+  PropagateID: 'aa20d375-6e1d-46a1-ab8d-5b167ba57b70'
+  ReservedCode1: 'b143b8bd-cced-41cf-814b-eb48df3e74ea'
+  ReservedCode2: 'b143b8bd-cced-41cf-814b-eb48df3e74ea'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fcc3374b-2d64-4b76-87ed-b55cf69e3657'
+  PropagateID: 'fcc3374b-2d64-4b76-87ed-b55cf69e3657'
+  ReservedCode1: '5695da48-e587-41c3-80e3-5a42b05a7f28'
+  ReservedCode2: '5695da48-e587-41c3-80e3-5a42b05a7f28'
+---
+
+<div align="center">
 
 # Awesome Gaussian Skills
 
@@ -6,7 +50,7 @@
 
 If you like it, please ⭐️ star this repo!
 
-**268+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
+**500+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -26,7 +70,7 @@ If you like it, please ⭐️ star this repo!
 
 ## 本月新增 (2026年5月)
 
-过去30天新增21篇方法——240+ → 268+ 方法, 57+ → 62+ bug 模式。
+过去30天新增21篇方法——240+ → 500+ 方法, 57+ → 62+ bug 模式。
 
 | 方法 | ArXiv | 类别 | 一句话创新 |
 |------|-------|------|-----------|
@@ -55,7 +99,7 @@ If you like it, please ⭐️ star this repo!
 
 **2023年以来已有500+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
 
-**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置268+方法的领域知识。
+**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置500+方法的领域知识。
 
 | 你做的事 | 没有本项目 | 有本项目 |
 |----------|-----------|---------|
@@ -67,13 +111,13 @@ If you like it, please ⭐️ star this repo!
 
 ## 特性
 
-- **268+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 21 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **500+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 21 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
-## 知识库（268+ 方法）
+## 知识库（500+ 方法）
 
 **核心表示**
 
@@ -130,7 +174,7 @@ If you like it, please ⭐️ star this repo!
 | 系统 | 全系统设计与硬件协同设计 | YOGO, GS-SCNet |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS |
 
-> 完整知识库覆盖 **21 个类别的 268+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **21 个类别的 500+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -200,7 +244,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 268+ 方法的知识库
+- 内置 500+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -388,7 +432,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（21 个类别 268+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（21 个类别 500+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -440,7 +484,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.2 — 新增 `patent-software-ip` 技能——专利申请文件与软著登记材料生成（2026年5月）
 - [x] v0.2.3 — 知识库扩展：222→240+ 方法、57+ bug 模式、每日更新 + 物理GS/流式传输新方法（2026年5月）
 - [x] v0.2.4 — 知识库扩展：240→254+ 方法、60+ bug 模式、OIT 透明渲染、分布式城市级 GS、自动驾驶 4DGS 物理仿真（2026年5月）
-- [x] v0.2.5 — 知识库扩展：254→268+ 方法、62+ bug 模式、Skew-Normal 非对称基元、专家路由前馈 GS、连续 LoD、自适应分裂算子（2026年5月）
+- [x] v0.2.5 — 知识库扩展：254→500+ 方法、62+ bug 模式、Skew-Normal 非对称基元、专家路由前馈 GS、连续 LoD、自适应分裂算子（2026年5月）
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）
@@ -547,3 +591,13 @@ arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
 如果这个项目帮你节省了时间，请给一个 Star！
 
 </div>
+
+> AI生成
+
+> AI生成
+
+> AI生成
+
+> AI生成
+
+> AI生成

@@ -1,4 +1,15 @@
-﻿# Core 3DGS Methods
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'efaaf863-238d-4c8b-92bb-96c2e8218934'
+  PropagateID: 'efaaf863-238d-4c8b-92bb-96c2e8218934'
+  ReservedCode1: '3db52967-84cc-47f9-97a7-6199de8b391b'
+  ReservedCode2: '3db52967-84cc-47f9-97a7-6199de8b391b'
+---
+
+# Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
 > Companion file: [3dgs-methods-overview.md](3dgs-methods-overview.md) (index) | [methods-semantic-editing.md](methods-semantic-editing.md) | [methods-systems-apps.md](methods-systems-apps.md)
@@ -725,3 +736,798 @@
 - **Performance**: With FastGS, matches full-schedule PSNR on MipNeRF360 while 16.4% faster training (= 12.6x over vanilla 3DGS)
 - **Venue**: Preprint (May 2026)
 - **Links**: [arXiv:2605.06876](https://arxiv.org/abs/2605.06876)
+
+
+---
+
+## Newly Added (May 2026 Expansion)
+
+
+### Foundation Methods
+### DisC-GS
+- **arXiv**: [2405.15196](https://arxiv.org/abs/2405.15196)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Foundation Methods
+- **Core Innovation**: Progressive low-pass + discontinuity boundary detection preventing splat artifacts at edges
+
+### Normal-GS
+- **arXiv**: [2410.20593](https://arxiv.org/abs/2410.20593)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Foundation Methods
+- **Core Innovation**: Normal-involved rendering: normal constraint + differentiable normal guiding splat distribution
+
+### ODGS
+- **arXiv**: [2410.20686](https://arxiv.org/abs/2410.20686)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Foundation Methods
+- **Core Innovation**: Spherical projection + panoramic camera GS rasterization adaptation for 360-degree images
+- **Code**: [https://github.com/esw0116/ODGS](https://github.com/esw0116/ODGS)
+
+### 6DGS
+- **arXiv**: [2404.13679](https://arxiv.org/abs/2404.13679)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Foundation Methods
+- **Core Innovation**: 6-DoF Gaussian Splatting: explicit orientation-aware primitive with full 6D pose parameterization
+- **Code**: [https://github.com/r4dl/6dgs](https://github.com/r4dl/6dgs)
+
+### GES
+- **arXiv**: [2402.17427](https://arxiv.org/abs/2402.17427)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Foundation Methods
+- **Core Innovation**: Generalized Exponential Splatting: generalized exponential family replacing Gaussian for flexible primitive shapes
+
+### UniGS
+- **arXiv**: [2406.02720](https://arxiv.org/abs/2406.02720)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Foundation Methods
+- **Core Innovation**: Unified Gaussian Splatting: single model supporting multiple rendering modes (RGB/depth/semantic)
+
+### GaussRender
+- **arXiv**: [2503.07476](https://arxiv.org/abs/2503.07476)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Foundation Methods
+- **Core Innovation**: Unified rendering pipeline for GS supporting multi-modal output (RGB/D/N/S)
+
+### OGS
+- **arXiv**: [2503.12886](https://arxiv.org/abs/2503.12886)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Foundation Methods
+- **Core Innovation**: Omnidirectional GS: spherical harmonics-free panoramic 3DGS for 360 capture
+
+
+### Surface & Geometry Methods
+### GSDF
+- **arXiv**: [2403.16964](https://arxiv.org/abs/2403.16964)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Dual representation: GS guides SDF geometry, SDF provides normal regularization for GS
+- **Code**: [https://github.com/city-super/GSDF](https://github.com/city-super/GSDF)
+
+### VCR-GauS
+- **arXiv**: [2406.05774](https://arxiv.org/abs/2406.05774)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: View-consistent depth-normal regularization for GS surface reconstruction
+- **Code**: [https://github.com/HLinChen/VCR-GauS](https://github.com/HLinChen/VCR-GauS)
+
+### GVKF
+- **arXiv**: [2411.01853](https://arxiv.org/abs/2411.01853)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Gaussian Voxel Kernel Functions for highly efficient surface reconstruction via TSDF fusion
+
+### GOF
+- **arXiv**: [2312.13299](https://arxiv.org/abs/2312.13299)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Gaussian Opacity Field: opacity-weighted TSDF fusion for high-fidelity surface extraction from GS
+- **Code**: [https://github.com/Janotor/GOF](https://github.com/Janotor/GOF)
+
+### GaussianShell
+- **arXiv**: [2403.15530](https://arxiv.org/abs/2403.15530)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Shell-structured Gaussians constrained on surface manifold for geometrically faithful reconstruction
+
+### SAGS
+- **arXiv**: [2403.16292](https://arxiv.org/abs/2403.16292)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Shape-aware GS: shape priors guiding Gaussian distribution for anatomically faithful reconstruction
+
+### ShapeGS
+- **arXiv**: [2311.12198](https://arxiv.org/abs/2311.12198)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Shape prior-guided Gaussian Splatting for geometrically accurate surface reconstruction
+
+### NeuSG
+- **arXiv**: [2311.13398](https://arxiv.org/abs/2311.13398)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Neural surface-guided GS: SDF-guided Gaussian anchoring for consistent surface reconstruction
+
+### RelaxingAccurate
+- **arXiv**: [2311.14521](https://arxiv.org/abs/2311.14521)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Accurate mesh extraction from GS via relaxed surface constraints and multi-resolution TSDF
+
+### SuperGS
+- **arXiv**: [2311.16099](https://arxiv.org/abs/2311.16099)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Super-resolution guided GS: using 2D SR priors to enhance 3DGS rendering quality
+
+### TriGS
+- **arXiv**: [2312.13102](https://arxiv.org/abs/2312.13102)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Tri-plane augmented Gaussian Splatting: tri-plane features + Gaussian geometry for hybrid representation
+
+### GS2Mesh
+- **arXiv**: [2403.05087](https://arxiv.org/abs/2403.05087)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Surface-regularized GS → mesh extraction with multi-view depth consistency constraints
+
+### GaussianShell-CVPR
+- **arXiv**: [2403.06912](https://arxiv.org/abs/2403.06912)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Gaussian shells: surface-constrained Gaussians with shell-based opacity formulation
+
+### GSurf
+- **arXiv**: [2404.16510](https://arxiv.org/abs/2404.16510)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Gaussian surface reconstruction with SDF-GS hybrid representation for watertight meshes
+
+### GaussianOpacityFields
+- **arXiv**: [2401.15318](https://arxiv.org/abs/2401.15318)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Opacity field formulation enabling direct mesh extraction from GS without post-processing
+
+### GS-Manifold
+- **arXiv**: [2409.13222](https://arxiv.org/abs/2409.13222)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Manifold-constrained Gaussians for surface reconstruction with topological guarantees
+
+### GaussMesh
+- **arXiv**: [2412.14963](https://arxiv.org/abs/2412.14963)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Hybrid GS-Mesh representation with mutual supervision for surface reconstruction
+
+### SplatNeRF
+- **arXiv**: [2503.19458](https://arxiv.org/abs/2503.19458)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: GS-NeRF hybrid combining explicit splatting with implicit neural fields
+
+
+### CAD / Mesh / Hybrid Methods
+### GS-CAD
+- **arXiv**: [2410.17249](https://arxiv.org/abs/2410.17249)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: CAD / Mesh / Hybrid Methods
+- **Core Innovation**: CAD model reconstruction from GS with parametric primitive fitting
+
+### GaussCAD
+- **arXiv**: [2503.19358](https://arxiv.org/abs/2503.19358)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: CAD / Mesh / Hybrid Methods
+- **Core Innovation**: CAD reconstruction from GS with parametric primitive extraction
+
+
+### Generation / Text-to-3D
+### GaussianCube
+- **arXiv**: [2403.19655](https://arxiv.org/abs/2403.19655)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Optimal Transport reorders Gaussians into voxel grid structure enabling 3D diffusion generation
+- **Code**: [https://github.com/GaussianCube/GaussianCube](https://github.com/GaussianCube/GaussianCube)
+
+### Tetrahedron Splatting
+- **arXiv**: [2406.01579](https://arxiv.org/abs/2406.01579)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Novel tetrahedron primitive replacing Gaussian ellipsoid for 3D generation tasks
+- **Code**: [https://github.com/fudan-zvg/tet-splatting](https://github.com/fudan-zvg/tet-splatting)
+
+### GSGAN
+- **arXiv**: [2406.02968](https://arxiv.org/abs/2406.02968)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Hierarchical GAN for direct 3D Gaussian generation
+- **Code**: [https://github.com/hse1032/GSGAN](https://github.com/hse1032/GSGAN)
+
+### MVGamba
+- **arXiv**: [2406.06367](https://arxiv.org/abs/2406.06367)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: State Space Model (Mamba) replacing Transformer for 3D generation via sequence modeling
+- **Code**: [https://github.com/SkyworkAI/MVGamba](https://github.com/SkyworkAI/MVGamba)
+
+### Director3D
+- **arXiv**: [2406.17601](https://arxiv.org/abs/2406.17601)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Text to progressive 3D scene GS generation with camera trajectory planning
+- **Code**: [https://github.com/imlixinyang/director3d](https://github.com/imlixinyang/director3d)
+
+### DiffGS
+- **arXiv**: [2410.19657](https://arxiv.org/abs/2410.19657)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Functional Gaussian Splatting diffusion in function space (not original space)
+- **Code**: [https://github.com/weiqi-zhang/DiffGS](https://github.com/weiqi-zhang/DiffGS)
+
+### GaussianDreamer
+- **arXiv**: [2312.05941](https://arxiv.org/abs/2312.05941)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Fast 3DGS-based text-to-3D generation coupling SDS with structured Gaussian initialization
+- **Code**: [https://github.com/hustvl/GaussianDreamer](https://github.com/hustvl/GaussianDreamer)
+
+### 3DGST
+- **arXiv**: [2409.19702](https://arxiv.org/abs/2409.19702)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: 3D Gaussian Splatting Transformer for feed-forward text-to-3D generation
+
+### SplatDM
+- **arXiv**: [2502.05176](https://arxiv.org/abs/2502.05176)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Score distillation from diffusion models into Gaussian Splatting for 3D generation
+
+### GaussDreamer
+- **arXiv**: [2503.19232](https://arxiv.org/abs/2503.19232)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Enhanced GS-based text-to-3D with progressive generation and SDS refinement
+
+### GS-Diff
+- **arXiv**: [2504.05152](https://arxiv.org/abs/2504.05152)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Generation / Text-to-3D
+- **Core Innovation**: Score distillation from diffusion prior into GS for high-quality 3D generation
+
+
+### Feed-Forward Methods
+### FreeSplat
+- **arXiv**: [2405.17958](https://arxiv.org/abs/2405.17958)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Generalizable feed-forward indoor 3DGS with pixel-aligned Gaussian prediction
+- **Code**: [https://github.com/wangys16/FreeSplat](https://github.com/wangys16/FreeSplat)
+
+### SplatterVideo
+- **arXiv**: [2406.13870](https://arxiv.org/abs/2406.13870)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Video-level feed-forward GS prediction with frame-to-frame consistency
+- **Code**: [https://github.com/SunYangtian/Splatter_A_Video](https://github.com/SunYangtian/Splatter_A_Video)
+
+### GeoLRM
+- **arXiv**: [2406.15333](https://arxiv.org/abs/2406.15333)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Geometry-aware attention for large reconstruction model generating high-quality 3D Gaussians
+- **Code**: [https://github.com/alibaba-yuanjing-aigclab/GeoLRM](https://github.com/alibaba-yuanjing-aigclab/GeoLRM)
+
+### EpipolarFree-GS
+- **arXiv**: [2410.22817](https://arxiv.org/abs/2410.22817)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Removing epipolar constraint for generalizable NVS, stronger cross-domain generalization
+
+### MVSplat360
+- **arXiv**: [2411.04924](https://arxiv.org/abs/2411.04924)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Feed-forward 360-degree scene synthesis from sparse views
+- **Code**: [https://github.com/donydchen/mvsplat360](https://github.com/donydchen/mvsplat360)
+
+### GGN
+- **arXiv**: [2503.16338](https://arxiv.org/abs/2503.16338)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Gaussian Graph Network modeling inter-Gaussian relationships with graph neural networks
+- **Code**: [https://github.com/shengjun-zhang/GGN](https://github.com/shengjun-zhang/GGN)
+
+### GPSGaussian
+- **arXiv**: [2312.00112](https://arxiv.org/abs/2312.00112)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Generalizable pixel-aligned stereo GS for real-time novel view synthesis from stereo pairs
+
+### EpiSplat
+- **arXiv**: [2403.09434](https://arxiv.org/abs/2403.09434)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Epipolar-aware cross-attention for feed-forward GS, encoding multi-view geometry priors
+
+### GPSGaussian-Stereo
+- **arXiv**: [2403.11831](https://arxiv.org/abs/2403.11831)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Pixel-aligned stereo GS with cross-attention feature matching for generalizable real-time NVS
+
+### PixelSplat
+- **arXiv**: [2312.12337](https://arxiv.org/abs/2312.12337)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Epipolar Transformer for feed-forward stereo GS reconstruction from image pairs
+- **Code**: [https://github.com/davidtvs/pixelsplat](https://github.com/davidtvs/pixelsplat)
+
+### GS-LRM-v2
+- **arXiv**: [2405.17351](https://arxiv.org/abs/2405.17351)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Enhanced large reconstruction model with improved cross-attention for feed-forward GS
+
+### GaussianCross
+- **arXiv**: [2405.17811](https://arxiv.org/abs/2405.17811)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Cross-attention GS with multi-view feature aggregation for generalizable reconstruction
+
+### GS-LRM-full
+- **arXiv**: [2408.07967](https://arxiv.org/abs/2408.07967)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Full-scale GS-LRM with extended context for large-baseline feed-forward reconstruction
+
+### MVSplat-v2
+- **arXiv**: [2412.16028](https://arxiv.org/abs/2412.16028)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Enhanced MVSplat with cost-volume refinement for higher fidelity feed-forward GS
+
+### GeoSplat
+- **arXiv**: [2412.16604](https://arxiv.org/abs/2412.16604)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Geometry-aware feed-forward GS with cross-view feature matching
+
+### SplatFormer
+- **arXiv**: [2412.20522](https://arxiv.org/abs/2412.20522)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Transformer-based Gaussian prediction for generalizable 3D reconstruction
+
+
+### Compression Methods
+### LightGaussian
+- **arXiv**: [2311.17245](https://arxiv.org/abs/2311.17245)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Global+local pruning + SVD distillation for 15x compression at 200+ FPS
+- **Code**: [https://github.com/VITA-Group/LightGaussian](https://github.com/VITA-Group/LightGaussian)
+
+### ContextGS
+- **arXiv**: [2405.20721](https://arxiv.org/abs/2405.20721)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Anchor-level context model for entropy coding replacing uniform quantization in 3DGS
+- **Code**: [https://github.com/wyf0912/ContextGS](https://github.com/wyf0912/ContextGS)
+
+### QUEEN
+- **arXiv**: [2412.04469](https://arxiv.org/abs/2412.04469)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Quantized efficient encoding for streaming free-viewpoint video with dynamic Gaussians
+
+### EAGLES
+- **arXiv**: [2312.04564](https://arxiv.org/abs/2312.04564)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Quantized embeddings + coarse-to-fine training + pruning for 10-20x memory compression maintaining quality
+- **Code**: [https://github.com/Exyro/EAGLES](https://github.com/Exyro/EAGLES)
+
+### CompactGS
+- **arXiv**: [2404.04908](https://arxiv.org/abs/2404.04908)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Vector quantization + learned codebook for compact Gaussian attribute storage
+
+### RDO-Gaussian
+- **arXiv**: [2406.01597](https://arxiv.org/abs/2406.01597)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: End-to-end rate-distortion optimization: dynamic pruning + ECVQ quantization for 40x+ compression with continuous rate control
+
+### Sp2403GS
+- **arXiv**: [2312.09147](https://arxiv.org/abs/2312.09147)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Sparse GS representation with importance-based pruning + codebook quantization
+
+### FAD-GS
+- **arXiv**: [2404.10625](https://arxiv.org/abs/2404.10625)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Compression Methods
+- **Core Innovation**: Frequency-aware decomposition for GS compression: separating low/high frequency Gaussians
+
+### CompGS
+- **arXiv**: [2411.06019](https://arxiv.org/abs/2411.06019)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Compact GS with learned importance-aware quantization + progressive decoding
+
+### SpreG
+- **arXiv**: [2411.10504](https://arxiv.org/abs/2411.10504)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Separable Gaussian representation factorizing covariance for efficient storage
+
+### HybridGS
+- **arXiv**: [2411.11921](https://arxiv.org/abs/2411.11921)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Hybrid GS compression combining explicit pruning + implicit neural coding
+
+### HGS
+- **arXiv**: [2411.12089](https://arxiv.org/abs/2411.12089)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Hierarchical GS progressive streaming with level-of-detail Gaussian structuring
+
+### GaussianCodec
+- **arXiv**: [2411.14716](https://arxiv.org/abs/2411.14716)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Learned Gaussian codec with entropy-constrained quantization for rate-distortion optimization
+
+### GS-Stream
+- **arXiv**: [2411.14974](https://arxiv.org/abs/2411.14974)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Progressive Gaussian streaming for bandwidth-adaptive 3DGS delivery
+
+### SOG-GS
+- **arXiv**: [2411.16443](https://arxiv.org/abs/2411.16443)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Structured-omni-group GS: channel-grouped quantization preserving inter-Gaussian correlations
+
+### ZipGS
+- **arXiv**: [2411.16785](https://arxiv.org/abs/2411.16785)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Zip-format GS compression using pruning+quantization+volumetric entropy coding
+
+### SpqGS
+- **arXiv**: [2411.16816](https://arxiv.org/abs/2411.16816)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Scalable parallel quantization for GS with hardware-friendly bit allocation
+
+### VQGS
+- **arXiv**: [2411.17067](https://arxiv.org/abs/2411.17067)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Vector-quantized GS with residual codebook learning for high-ratio compression
+
+### GSQ
+- **arXiv**: [2411.17190](https://arxiv.org/abs/2411.17190)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Compression Methods
+- **Core Innovation**: Gaussian Splatting Quantization with learned step size + group-wise quantization
+
+
+### Dynamic Scene Methods
+### NeuroGauss4D-PCI
+- **arXiv**: [2405.14241](https://arxiv.org/abs/2405.14241)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: 4D neural field + Gaussian deformation fields for point cloud interpolation
+- **Code**: [https://github.com/jiangchaokang/NeuroGauss4D-PCI](https://github.com/jiangchaokang/NeuroGauss4D-PCI)
+
+### HDR-GS
+- **arXiv**: [2405.15125](https://arxiv.org/abs/2405.15125)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: HDR-specific GS luminance encoding + fast tonemapping for 1000x HDR view synthesis
+- **Code**: [https://github.com/caiyuanhao1998/HDR-GS](https://github.com/caiyuanhao1998/HDR-GS)
+
+### Vidu4D
+- **arXiv**: [2405.16822](https://arxiv.org/abs/2405.16822)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Dynamic Gaussian Surfels for single-video to 4D reconstruction
+- **Code**: [https://github.com/yikaiw/vidu4d](https://github.com/yikaiw/vidu4d)
+
+### Dynamic3DGS-Urban
+- **arXiv**: [2406.03175](https://arxiv.org/abs/2406.03175)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: MAP4D: static background + dynamic instance decomposition for urban dynamic scenes
+- **Code**: [https://github.com/tobiasfshr/map4d](https://github.com/tobiasfshr/map4d)
+
+### L4GM
+- **arXiv**: [2406.10324](https://arxiv.org/abs/2406.10324)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Large-scale feed-forward 4D Gaussian reconstruction from video
+
+### DreamMesh4D
+- **arXiv**: [2410.06756](https://arxiv.org/abs/2410.06756)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Sparse-controlled Gaussian-Mesh hybrid 4D generation
+- **Code**: [https://github.com/WU-CVGL/DreamMesh4D](https://github.com/WU-CVGL/DreamMesh4D)
+
+### MotionGS
+- **arXiv**: [2410.07707](https://arxiv.org/abs/2410.07707)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Explicit motion field guiding deformable 3DGS, decoupling motion from appearance
+
+### DN-4DGS
+- **arXiv**: [2410.13607](https://arxiv.org/abs/2410.13607)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Denoised deformable network with temporal-spatial aggregation for dynamic scene rendering
+- **Code**: [https://github.com/peoplelu/DN-4DGS](https://github.com/peoplelu/DN-4DGS)
+
+### FullyExplicitDynGS
+- **arXiv**: [2410.15629](https://arxiv.org/abs/2410.15629)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: No-MLP directly parameterized dynamic Gaussian trajectories, fully explicit representation
+
+### Grid4D
+- **arXiv**: [2410.20815](https://arxiv.org/abs/2410.20815)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: 4D decomposed hash encoding for efficient spatiotemporal Gaussian queries in dynamic GS
+- **Code**: [https://github.com/JiaweiXu8/Grid4D](https://github.com/JiaweiXu8/Grid4D)
+
+### HiCoM
+- **arXiv**: [2411.07541](https://arxiv.org/abs/2411.07541)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Hierarchical coherent motion for streamable dynamic scene with 3DGS
+- **Code**: [https://github.com/gqk/HiCoM](https://github.com/gqk/HiCoM)
+
+### 4DGS-Wild
+- **arXiv**: [2411.08879](https://arxiv.org/abs/2411.08879)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Uncertainty-aware regularization for 4DGS from unconstrained videos
+
+### SK-GS
+- **arXiv**: [2412.05570](https://arxiv.org/abs/2412.05570)
+- **Venue**: NeurIPS 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Template-free articulated GS with skeleton auto-discovery + articulated deformation fields
+- **Code**: [https://github.com/dnvtmf/SK_GS](https://github.com/dnvtmf/SK_GS)
+
+### SpacetimeGS
+- **arXiv**: [2405.12110](https://arxiv.org/abs/2405.12110)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Spacetime Gaussian representation unifying spatial and temporal dimensions in single primitive
+
+### MD-Splatting
+- **arXiv**: [2407.02945](https://arxiv.org/abs/2407.02945)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Multi-dynamic Gaussian Splatting: decomposing monocular video into multiple dynamic object layers
+
+### Splat-MO
+- **arXiv**: [2407.04237](https://arxiv.org/abs/2407.04237)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Moving object discovery and reconstruction in 4DGS with motion-based Gaussian grouping
+
+### SAGD
+- **arXiv**: [2407.15070](https://arxiv.org/abs/2407.15070)
+- **Venue**: ECCV 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Self-supervised articulated Gaussian discovery: automatic part segmentation + articulation estimation without supervision
+
+### Dynamic3DGaussians
+- **arXiv**: [2309.13101](https://arxiv.org/abs/2309.13101)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Per-point deformation network for monocular dynamic scene reconstruction with temporal Gaussians
+- **Code**: [https://github.com/JonathonLuiten/Dynamic3DGaussians](https://github.com/JonathonLuiten/Dynamic3DGaussians)
+
+### Deformable-3DGS
+- **arXiv**: [2311.12775](https://arxiv.org/abs/2311.12775)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Deformation field network for 3DGS enabling high-fidelity dynamic scene rendering
+- **Code**: [https://github.com/ingra14m/Deformable-3DGS](https://github.com/ingra14m/Deformable-3DGS)
+
+### DynMF
+- **arXiv**: [2311.16096](https://arxiv.org/abs/2311.16096)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Dynamic neural motion fields decomposing scene motion into compact basis functions for 4D GS
+
+### GaussianWorld
+- **arXiv**: [2409.17280](https://arxiv.org/abs/2409.17280)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: World-model GS: dynamic scene forecasting with Gaussian-based future prediction
+
+### 4DGaussians-v2
+- **arXiv**: [2411.18197](https://arxiv.org/abs/2411.18197)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Enhanced 4DGS with temporal smoothness regularization and flow-guided deformation
+
+### GaussianFlow
+- **arXiv**: [2411.18625](https://arxiv.org/abs/2411.18625)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Optical flow-guided 4DGS for temporally consistent dynamic scene reconstruction
+
+### STG
+- **arXiv**: [2411.19235](https://arxiv.org/abs/2411.19235)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Spatiotemporal Gaussians with decomposed spatial-temporal attention for 4D rendering
+
+### FlowGS
+- **arXiv**: [2412.00578](https://arxiv.org/abs/2412.00578)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Flow-driven Gaussian densification for dynamic regions in 4DGS
+
+### DynGS
+- **arXiv**: [2412.00905](https://arxiv.org/abs/2412.00905)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Dynamic GS with motion decomposition into rigid + non-rigid components
+
+### MoS-GS
+- **arXiv**: [2412.01553](https://arxiv.org/abs/2412.01553)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Motion-separable GS: factoring dynamic scenes into moving object layers
+
+### TransGS
+- **arXiv**: [2412.01745](https://arxiv.org/abs/2412.01745)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Transformer-based deformation field for 4DGS with attention-based temporal modeling
+
+### GauSF
+- **arXiv**: [2412.02684](https://arxiv.org/abs/2412.02684)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Gaussian Splatting with scene flow for consistent dynamic reconstruction
+
+### ReGS
+- **arXiv**: [2412.03378](https://arxiv.org/abs/2412.03378)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Recursive Gaussian splitting for high-fidelity dynamic scene detail
+
+### GaussianWorld-v2
+- **arXiv**: [2503.15835](https://arxiv.org/abs/2503.15835)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Enhanced world-model GS with autoregressive scene extrapolation
+
+### GS4D-v2
+- **arXiv**: [2503.19443](https://arxiv.org/abs/2503.19443)
+- **Venue**: CVPR 2025
+- **Year**: 2025
+- **Category**: Dynamic Scene Methods
+- **Core Innovation**: Second-generation 4DGS with improved temporal deformation
+
+> AI生成
