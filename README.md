@@ -14,7 +14,7 @@ If you like it, please ⭐️ star this repo!
 [![Last Commit](https://img.shields.io/github/last-commit/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=F97316)]()
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
@@ -485,7 +485,7 @@ If you find this project helpful in your research, please consider citing:
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+Apache-2.0. See [LICENSE](LICENSE) for details. Fork, publish, sell — with explicit patent grant for enterprise users.
 
 ## Star History
 

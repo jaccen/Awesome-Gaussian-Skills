@@ -14,7 +14,7 @@ If you like it, please ⭐️ star this repo!
 [![Last Commit](https://img.shields.io/github/last-commit/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=F97316)]()
 
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
@@ -481,7 +481,7 @@ Awesome-Gaussian-Skills/
 
 ## 许可证
 
-本项目基于 MIT 许可证开源 —— 详见 [LICENSE](LICENSE) 文件。
+本项目基于 Apache-2.0 许可证开源 —— 详见 [LICENSE](LICENSE) 文件。可自由 Fork、发布、销售 — 含明确专利授权条款，对企业用户友好。
 
 ## Star 历史
 
