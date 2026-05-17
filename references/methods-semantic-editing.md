@@ -1,14 +1,3 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '36158f19-b955-4472-946e-0262b6bfe619'
-  PropagateID: '36158f19-b955-4472-946e-0262b6bfe619'
-  ReservedCode1: '9331ceaa-bdbd-4e6d-b9be-3adfedebab28'
-  ReservedCode2: '9331ceaa-bdbd-4e6d-b9be-3adfedebab28'
----
-
 # Semantic, Editing, Material & Avatar Methods
 
 > Methods covering language/semantic understanding, image representation, editing, material/lighting, and human avatars.
@@ -1083,5 +1072,3 @@ AIGC:
 - **Year**: 2025
 - **Category**: Human & Avatar Methods
 - **Core Innovation**: Enhanced pose-conditioned GS with part-level deformation
-
-> AI生成
