@@ -1261,7 +1261,11 @@ const METHODS = [
   { name: "Real2Sim", short: "Real2Sim", cat: "Simulation", venue: "arXiv", year: 2026, desc: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", arxiv: "2605.13591" , citations: 0 },
   { name: "AV1-3DGS", short: "AV1-3DGS", cat: "Training", venue: "arXiv", year: 2026, desc: "AV1 motion vectors for dense SfM matching with 63% training time reduction", arxiv: "2605.14629" , citations: 0 },
   { name: "3DGS squared", short: "3DGS squared", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewe...", arxiv: "2501.13975" , citations: 0 },
-  { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright pro...", arxiv: "2605.12919" , citations: 0 }
+  { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright pro...", arxiv: "2605.12919" , citations: 0 },
+  { name: "Learn2Splat", short: "Learn2Splat", cat: "Training & Optimization", venue: "arXiv", year: 2026, desc: "Meta-learned optimizer for 3DGS replacing Adam/SGD with long-horizon stabil...", arxiv: "2605.15760", citations: 0 },
+  { name: "Robust Prior-Guided Seg.", short: "Robust Prior-Guided Seg.", cat: "Editing Methods", venue: "ICIP", year: 2026, desc: "SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...", arxiv: "2605.16065", citations: 0 },
+  { name: "EndoGSim", short: "EndoGSim", cat: "Cross-Domain Applications", venue: "MICCAI", year: 2026, desc: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic si...", arxiv: "2605.16022", citations: 0 },
+  { name: "3DEditSafe", short: "3DEditSafe", cat: "Security", venue: "arXiv", year: 2026, desc: "First safety-regularized 3D editing framework constraining NSFW semant...", arxiv: "2605.15398", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -1776,7 +1780,11 @@ const METHOD_DETAILS = {
   "Real2Sim": { innovation: "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation", codeUrl: "" },
   "AV1-3DGS": { innovation: "AV1 motion vectors for dense SfM matching with 63% training time reduction", codeUrl: "" },
   "3DGS squared": { innovation: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations", codeUrl: "" },
-  "GuardMarkGS": { innovation: "First unified watermarking + edit deterrence framework for 3DGS copyright protection", codeUrl: "" }
+  "GuardMarkGS": { innovation: "First unified watermarking + edit deterrence framework for 3DGS copyright protection", codeUrl: "" },
+  "Learn2Splat": { innovation: "Meta-learned optimizer replacing Adam/SGD for 3DGS; checkpoint buffer + optimizer rollout extends optimization horizon without degradation; zero-shot generalization (Geiger group)", codeUrl: "" },
+  "Robust Prior-Guided Seg.": { innovation: "SAM-HQ + prior-guided label reassignment for multiview-consistent 3DGS segmentation enabling object removal/extraction/recoloring (ICIP 2026)", codeUrl: "" },
+  "EndoGSim": { innovation: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation; object-wise material field initialized by MLLM (MICCAI 2026)", codeUrl: "" },
+  "3DEditSafe": { innovation: "First safety-regularized 3D editing framework; 3D safety regularization + safe semantic projection + residue suppression constraining NSFW propagation", codeUrl: "" }
 };
 
 
@@ -2292,7 +2300,11 @@ const ABSTRACTS = {
   "Real2Sim": "4DGS + differentiable MPM solver for physics-aware autonomous driving simulation",
   "AV1-3DGS": "AV1 motion vectors for dense SfM matching with 63% training time reduction",
   "3DGS squared": "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations",
-  "GuardMarkGS": "First unified watermarking + edit deterrence framework for 3DGS copyright protection"
+  "GuardMarkGS": "First unified watermarking + edit deterrence framework for 3DGS copyright protection",
+  "Learn2Splat": "Meta-learned optimizer for 3DGS replacing Adam/SGD; extends optimization horizon without degradation via checkpoint buffer + optimizer rollout (Geiger group)",
+  "Robust Prior-Guided Seg.": "SAM-HQ + prior-guided label reassignment for multiview-consistent 3DGS segmentation; enables object removal/extraction/recoloring (ICIP 2026)",
+  "EndoGSim": "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation (MICCAI 2026)",
+  "3DEditSafe": "First safety-regularized 3D editing framework constraining NSFW semantic propagation in text-driven 3DGS editing"
 };
 
 const CATEGORIES = [

@@ -514,3 +514,7 @@ Real2Sim,2605.13591,arXiv 2026,2026,Simulation & Robotics,4DGS + differentiable 
 AV1-3DGS,2605.14629,arXiv 2026,2026,Training & Optimization,AV1 motion vectors for dense SfM matching with 63% training time reduction,
 3DGS squared,2501.13975,arXiv 2025,2025,Training & Optimization,"Near second-order converging 3DGS with per-attribute Newton systems, 10x fewer iterations",
 GuardMarkGS,2605.12919,arXiv 2026,2026,Security,First unified watermarking + edit deterrence framework for 3DGS copyright protection,
+Learn2Splat,2605.15760,arXiv 2026,2026,Training & Optimization,"Meta-learned optimizer for 3DGS replacing Adam/SGD; checkpoint buffer + optimizer rollout extends optimization horizon; zero-shot generalization (Geiger group)",
+Robust Prior-Guided Segmentation,2605.16065,ICIP 2026,2026,Editing Methods,"SAM-HQ + prior-guided label reassignment for multiview-consistent 3DGS segmentation; object removal/extraction/recoloring",
+EndoGSim,2605.16022,MICCAI 2026,2026,Cross-Domain Applications,"MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation",
+3DEditSafe,2605.15398,arXiv 2026,2026,Security,"First safety-regularized 3D editing framework; 3D safety regularization + safe semantic projection + residue suppression",

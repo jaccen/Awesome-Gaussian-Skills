@@ -6,7 +6,7 @@ If you like it, please ⭐️ star this repo!
 
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
-**512+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**516+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -26,10 +26,14 @@ If you like it, please ⭐️ star this repo!
 
 ## What's New (May 2026)
 
-Major expansion: 512+ → 512+ methods, 21 → 23 categories. Backfilled from ECCV/NeurIPS/CVPR 2024-2025 + 12 surveys + medical imaging.
+Major expansion: 512+ → 516+ methods, 23 categories. Backfilled from ECCV/NeurIPS/CVPR 2024-2025 + 12 surveys + medical imaging. Daily arXiv tracking active.
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
+| **Learn2Splat** | [2605.15760](https://arxiv.org/abs/2605.15760) | Optimization | Meta-learned optimizer replacing Adam/SGD for 3DGS (Geiger group) |
+| **EndoGSim** | [2605.16022](https://arxiv.org/abs/2605.16022) | Medical | MLLM+4DGS+differentiable MPM for endoscopic simulation (MICCAI 2026) |
+| **3DEditSafe** | [2605.15398](https://arxiv.org/abs/2605.15398) | Security | First 3D editing safety regularization against NSFW propagation |
+| **Robust Prior-Guided Seg.** | [2605.16065](https://arxiv.org/abs/2605.16065) | Editing | SAM-HQ prior-guided 3DGS segmentation (ICIP 2026) |
 | **SNS** | [2605.15010](https://arxiv.org/abs/2605.15010) | Foundation | Skew-Normal primitive for asymmetric boundary modeling |
 | **SplatWeaver** | [2605.07287](https://arxiv.org/abs/2605.07287) | Feed-Forward | Cardinality expert routing +30% budget, +1.02 dB |
 | **MGS** | [2603.19234](https://arxiv.org/abs/2603.19234) | Compression | Matryoshka continuous LoD from single training |
@@ -53,7 +57,7 @@ Major expansion: 512+ → 512+ methods, 21 → 23 categories. Backfilled from EC
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 512+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 516+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
 **Awesome Gaussian Skills** is a zero-setup toolkit — copy the skills, and your AI Agent can read papers, compare methods, review code, design experiments, write papers, and generate IP documents, all with built-in knowledge of 512+ methods.
 
@@ -67,13 +71,13 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 
 ## Features
 
-- **512+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 23 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **516+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 23 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (512+ Methods)
+## Knowledge Base (516+ Methods)
 
 **Core Representations**
 
@@ -116,10 +120,10 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | Category | Description | Methods |
 |----------|-------------|---------|
 | Human / Avatar | Animatable human and avatar reconstruction | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| Editing | Interactive and text-guided scene editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts |
+| Editing | Interactive and text-guided scene editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts, Robust Prior-Guided Seg. |
 | Relighting | Relightable and material-aware Gaussians | Relightable-GS-VP |
 | CAD | CAD model fitting and reverse engineering | CADFit |
-| Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
+| Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R, EndoGSim |
 | Simulation | Physics simulation and surrogate models | GS-Playground, GS-Surrogate, FieryGS |
 | Embodied AI / Robotics | Robotic grasping, manipulation, navigation, and sim-to-real | GaussianGrasper, GraspSplats, ManiGaussian, GSMem, RoboSplat, VR-Robo, GSDrive |
 | Active Vision | Active view selection and next-best-view | MAGICIAN |
@@ -128,9 +132,9 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | Robustness | In-the-wild and degradation-robust reconstruction | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
 | Degradation-Aware | Weather, underwater, and low-quality input handling | MERID-GS, MarineSTD-GS, E2EGS |
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
-| Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS |
+| Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> The full knowledge base covers **512+ methods** across 23 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **516+ methods** across 23 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -392,7 +396,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (512+ methods across 23 categories)
+│   ├── 3dgs-methods-overview.md # Index (516+ methods across 23 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -445,6 +449,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.3 — Knowledge base expansion: 222→240+ methods, 57+ bug patterns, daily update + new physics-GS/streaming methods (May 2026)
 - [x] v0.2.4 — Knowledge base expansion: 240→254+ methods, 60+ bug patterns, OIT transparency, distributed city-scale GS, 4DGS physics sim for AD (May 2026)
 - [x] v0.2.5 — Knowledge base expansion: 254→512+ methods, 62+ bug patterns, Skew-Normal primitive, expert-routing feedforward GS, continuous LoD, adaptive split operator (May 2026)
+- [x] v0.2.6 — Daily update: 512→516+ methods, +4 new (Learn2Splat meta-optimizer, EndoGSim medical 4DGS+MPM, 3DEditSafe editing safety, Robust Prior-Guided Segmentation); Medical imaging expanded (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
@@ -547,4 +552,4 @@ Hugging Face Papers: https://huggingface.co/papers
 arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
-
+> AI生成
