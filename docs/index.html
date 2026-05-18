@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
@@ -1265,7 +1265,16 @@ const METHODS = [
   { name: "Learn2Splat", short: "Learn2Splat", cat: "Training & Optimization", venue: "arXiv", year: 2026, desc: "Meta-learned optimizer for 3DGS replacing Adam/SGD with long-horizon stabil...", arxiv: "2605.15760", citations: 0 },
   { name: "Robust Prior-Guided Seg.", short: "Robust Prior-Guided Seg.", cat: "Editing Methods", venue: "ICIP", year: 2026, desc: "SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...", arxiv: "2605.16065", citations: 0 },
   { name: "EndoGSim", short: "EndoGSim", cat: "Cross-Domain Applications", venue: "MICCAI", year: 2026, desc: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic si...", arxiv: "2605.16022", citations: 0 },
-  { name: "3DEditSafe", short: "3DEditSafe", cat: "Security", venue: "arXiv", year: 2026, desc: "First safety-regularized 3D editing framework constraining NSFW semant...", arxiv: "2605.15398", citations: 0 }
+  { name: "3DEditSafe", short: "3DEditSafe", cat: "Security", venue: "arXiv", year: 2026, desc: "First safety-regularized 3D editing framework constraining NSFW semant...", arxiv: "2605.15398", citations: 0 },
+  { name: "GWM", short: "GWM", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "3DGS as environment dynamics modeling primitive with autoregressive future state prediction", arxiv: "", citations: 0 },
+  { name: "FlashWorld", short: "FlashWorld", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "Feed-forward 3DGS world model: single forward pass generates dynamic 3D scenes", arxiv: "", citations: 0 },
+  { name: "RAD", short: "RAD", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "3DGS twin digital world for closed-loop RL training of end-to-end driving", arxiv: "", citations: 0 },
+  { name: "DLWM", short: "DLWM", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Dual Latent World Model with 3DGS-centric self-supervised pretraining", arxiv: "", citations: 0 },
+  { name: "GS-World", short: "GS-World", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "3DGS as differentiable simulation engine for generative world model", arxiv: "", citations: 0 },
+  { name: "Visionary", short: "Visionary", cat: "Systems & Applications", venue: "arXiv", year: 2026, desc: "First WebGPU + ONNX Runtime 3DGS world model carrier platform", arxiv: "", citations: 0 },
+  { name: "GS-ID", short: "GS-ID", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "3DGS-based real-scene illumination decomposition for embodied intelligence", arxiv: "", citations: 0 },
+  { name: "X-World", short: "X-World", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Controllable multi-view generative world model combining video diffusion and 3DGS", arxiv: "", citations: 0 },
+  { name: "Spark 2.0", short: "Spark 2.0", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "NVIDIA 3DGS-based robotic world simulation platform", arxiv: "", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -1784,7 +1793,16 @@ const METHOD_DETAILS = {
   "Learn2Splat": { innovation: "Meta-learned optimizer replacing Adam/SGD for 3DGS; checkpoint buffer + optimizer rollout extends optimization horizon without degradation; zero-shot generalization (Geiger group)", codeUrl: "" },
   "Robust Prior-Guided Seg.": { innovation: "SAM-HQ + prior-guided label reassignment for multiview-consistent 3DGS segmentation enabling object removal/extraction/recoloring (ICIP 2026)", codeUrl: "" },
   "EndoGSim": { innovation: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation; object-wise material field initialized by MLLM (MICCAI 2026)", codeUrl: "" },
-  "3DEditSafe": { innovation: "First safety-regularized 3D editing framework; 3D safety regularization + safe semantic projection + residue suppression constraining NSFW propagation", codeUrl: "" }
+  "3DEditSafe": { innovation: "First safety-regularized 3D editing framework; 3D safety regularization + safe semantic projection + residue suppression constraining NSFW propagation", codeUrl: "" },
+  "GWM": { innovations: ["3DGS as environment dynamics modeling primitive with autoregressive future state prediction", "Bridges RL world models with 3DGS scene representation", "Enables interactive world simulation with Gaussian-based state transitions"], codeUrl: "" },
+  "FlashWorld": { innovations: ["Feed-forward 3DGS world model: single forward pass generates dynamic 3D scenes", "Real-time interactive 3D world generation bridging video and 3D reconstruction", "Eliminates per-scene optimization for world model scene generation"], codeUrl: "" },
+  "RAD": { innovations: ["3DGS twin digital world for closed-loop RL training of end-to-end driving", "Overcomes imitation learning causal confusion via reinforcement learning in 3DGS simulation", "Large-scale 3DGS environment rendering for sensor-realistic training"], codeUrl: "" },
+  "DLWM": { innovations: ["Dual Latent World Model with 3DGS-centric self-supervised pretraining", "Two-stage Gaussian-based world modeling for autonomous driving representation learning", "Eliminates 3D annotation dependency via Gaussian world model pretraining"], codeUrl: "" },
+  "GS-World": { innovations: ["3DGS as differentiable simulation engine for generative world model", "Engine-driven Sim2Real VLA unified training paradigm", "Physically consistent 3DGS simulation for robot skill learning and policy verification"], codeUrl: "" },
+  "Visionary": { innovations: ["First WebGPU + ONNX Runtime 3DGS world model carrier platform", "Real-time 4DGS, neural avatars, and generative post-processing in browser", "Gaussian Splatting ONNX interface for unified algorithm deployment on Web"], codeUrl: "" },
+  "GS-ID": { innovations: ["3DGS-based real-scene illumination decomposition", "Light field factorization providing high-fidelity light field data for embodied intelligence", "Relighting-capable Gaussian representation for autonomous driving sensor simulation"], codeUrl: "" },
+  "X-World": { innovations: ["Controllable multi-view generative world model combining video diffusion and 3DGS", "Real-time multi-view consistent driving scene generation", "Serves autonomous driving training with synthetic yet realistic sensor data"], codeUrl: "" },
+  "Spark 2.0": { innovations: ["NVIDIA 3DGS-based robotic world simulation platform", "Real-time 3DGS reconstruction for manipulation learning", "Physical AI interaction via Gaussian-based environment modeling"], codeUrl: "" }
 };
 
 
@@ -2305,6 +2323,15 @@ const ABSTRACTS = {
   "Robust Prior-Guided Seg.": { abstractEn: "SAM-HQ + prior-guided label reassignment for multiview-consistent 3DGS segmentation; enables object removal/extraction/recoloring (ICIP 2026) This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "SAM-HQ + prior-guided label reassignment 用于 multiview-consistent 3DGS 分割; enables object removal/extraction/recoloring (ICIP 2026)。 该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
   "EndoGSim": { abstractEn: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation (MICCAI 2026). This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "MLLM-guided 4DGS + 可微 MPM 用于 物理感知 endoscopic scene 重建 and 仿真 (MICCAI 2026)。该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
   "3DEditSafe": { abstractEn: "3DEditSafe is the first safety-regularized 3D editing framework that constrains NSFW semantic propagation in text-driven 3DGS editing. It introduces a safety-aware regularization module that monitors and suppresses inappropriate content generation during the editing process. The approach ensures that user-specified edits remain within safe content boundaries while preserving editing quality and creative freedom.", abstractCn: "3DEditSafe是首个安全正则化3D编辑框架，约束文驱3DGS编辑中的不安全语义传播。它引入安全感知正则化模块，在编辑过程中监控并抑制不当内容生成。该方法确保用户指定的编辑保持在安全内容边界内，同时保留编辑质量和创作自由度。" },
+  "GWM": { abstractEn: "GWM introduces 3D Gaussian Splatting as environment dynamics modeling primitives in a world model framework, enabling autoregressive future state prediction and interactive world simulation through Gaussian-based state transitions.", abstractCn: "GWM将3D高斯泼溅作为环境动力学建模原语引入世界模型框架，实现自回归未来状态预测和基于高斯状态转换的交互式世界模拟。" },
+  "FlashWorld": { abstractEn: "FlashWorld presents a feed-forward 3DGS world model that generates dynamic 3D scenes in a single forward pass, enabling real-time interactive world generation without per-scene optimization.", abstractCn: "FlashWorld提出前馈式3DGS世界模型，单次前向推理生成动态3D场景，实现无需逐场景优化的实时交互式世界生成。" },
+  "RAD": { abstractEn: "RAD trains end-to-end driving policies via large-scale 3DGS-based reinforcement learning, using a 3DGS twin digital world for closed-loop training that overcomes imitation learning causal confusion.", abstractCn: "RAD通过大规模3DGS强化学习训练端到端驾驶策略，使用3DGS孪生数字世界进行闭环训练，克服模仿学习的因果混淆问题。" },
+  "DLWM": { abstractEn: "DLWM proposes a Dual Latent World Model with 3DGS-centric self-supervised pretraining for autonomous driving, eliminating 3D annotation dependency through two-stage Gaussian-based world modeling.", abstractCn: "DLWM提出以3DGS为核心的双重潜在世界模型自监督预训练框架，通过两阶段高斯世界建模消除3D标注依赖。" },
+  "GS-World": { abstractEn: "GS-World unifies world model generative simulation with Engine-driven Sim2Real VLA, using 3DGS as a differentiable and physically consistent simulation engine for robot skill learning.", abstractCn: "GS-World统一世界模型生成式仿真与引擎驱动Sim2Real VLA，将3DGS作为可微且物理一致的仿真引擎用于机器人技能学习。" },
+  "Visionary": { abstractEn: "Visionary is a WebGPU + ONNX Runtime 3DGS world model carrier platform, enabling real-time 4DGS, neural avatars, and generative post-processing directly in the browser for the first time.", abstractCn: "Visionary是基于WebGPU+ONNX Runtime的3DGS世界模型载体平台，首次在浏览器端实现4DGS、神经人像和生成式后处理的实时运行。" },
+  "GS-ID": { abstractEn: "GS-ID performs 3DGS-based real-scene illumination decomposition, providing high-fidelity light field data for embodied intelligence and autonomous driving with relighting-capable Gaussian representations.", abstractCn: "GS-ID实现基于3DGS的真实场景光场分解，为具身智能和自动驾驶提供高保真光场数据和可重光照的高斯表示。" },
+  "X-World": { abstractEn: "X-World is a controllable multi-view generative world model combining video diffusion and 3DGS simulation for autonomous driving, generating real-time multi-view consistent driving scenes.", abstractCn: "X-World是结合视频扩散与3DGS仿真的可控多视角生成式世界模型，为自动驾驶生成实时多视角一致的驾驶场景。" },
+  "Spark 2.0": { abstractEn: "Spark 2.0 is NVIDIA's 3DGS-based robotic world simulation platform, enabling real-time 3DGS reconstruction for manipulation learning and physical AI interaction via Gaussian environment modeling.", abstractCn: "Spark 2.0是英伟达基于3DGS的机器人世界仿真平台，通过高斯环境建模实现实时3DGS重建和物理AI交互。" },
 };
 
 const CATEGORIES = [
@@ -2330,7 +2357,10 @@ const CATEGORIES = [
   { id: "Cross-Domain", label: "Cross-Domain" },
   { id: "Security", label: "Security" },
   { id: "Medical", label: "Medical & Biomedical" },
-  { id: "Surveys", label: "Surveys & Benchmarks" }
+  { id: "Surveys", label: "Surveys & Benchmarks" },
+  { id: "World Models & Spatial Intelligence", label: "World Models & Spatial Intelligence" },
+  { id: "Embodied AI/Robotics", label: "Embodied AI/Robotics" },
+  { id: "Systems & Applications", label: "Systems & Applications" }
 ];
 
 const SKILLS = [
@@ -2470,6 +2500,10 @@ function openMethodModal(idx) {
         ${d.innovation ? `<div>
           <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Core Innovation</p>
           <p class="text-sm text-gray-300 leading-relaxed">${d.innovation}</p>
+        </div>` : ''}
+        ${d.innovations && d.innovations.length ? `<div>
+          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Core Innovations</p>
+          <ul class="list-disc list-inside space-y-1">${d.innovations.map(i => `<li class="text-sm text-gray-300 leading-relaxed">${i}</li>`).join('')}</ul>
         </div>` : ''}
         ${hasAbstract ? `
         <div>

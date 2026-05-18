@@ -1,11 +1,14 @@
+﻿---
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '4589b464-ba14-4b57-a3ce-11e057385484'
-  PropagateID: '4589b464-ba14-4b57-a3ce-11e057385484'
-  ReservedCode1: '1897b3e5-1f3c-4003-ac3f-2b9004926e73'
-  ReservedCode2: '1897b3e5-1f3c-4003-ac3f-2b9004926e73'
+  ProduceID: 'e2f3529a-e6df-4f2f-8132-9d5fa6f1713a'
+  PropagateID: 'e2f3529a-e6df-4f2f-8132-9d5fa6f1713a'
+  ReservedCode1: 'c76cf119-d23a-4cd0-9d10-ef1d00499258'
+  ReservedCode2: 'c76cf119-d23a-4cd0-9d10-ef1d00499258'
+---
+
 ## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
@@ -348,3 +351,5 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **GS-ID** (ICCV 2025) — GS-based illumination decomposition: real-scene light field factorization for embodied intelligence and autonomous driving with high-fidelity light field data
 - **X-World** (2026) — Controllable multi-view generative world model (video diffusion + 3DGS simulation) for autonomous driving (XPeng)
 - **Spark 2.0** (2026) — NVIDIA 3DGS-based robotic world simulation: real-time 3DGS reconstruction for manipulation learning and physical AI interaction
+
+> AI生成

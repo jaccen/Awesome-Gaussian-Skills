@@ -1,6 +1,6 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 500+ methods across 23 categories."
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 500+ methods across 24 categories."
 version: 1.4.5
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
@@ -275,6 +275,19 @@ When comparing methods, analyze across the following dimensions:
 | SDTalk | arXiv'26 | Image + audio | Structured facial priors + dual-branch motion fields for Gaussian talking head |
 | HairGPT | SIGGRAPH'26 | Text/image | Strand-as-Language autoregressive modeling for 3D hairstyle synthesis |
 | D-Rex | SIGGRAPH'26 (2604.27871) | White-light avatar + target illumination | Decoupled relighting via LoRA fine-tuned video diffusion post-process; applicable to any white-light avatar system |
+
+### World Models & Spatial Intelligence
+
+_3DGS as world model primitive, differentiable simulation engine, or spatial intelligence representation_
+
+Key methods:
+- **GWM**: 3DGS as environment dynamics modeling primitive with autoregressive future state prediction
+- **FlashWorld**: Feed-forward 3DGS world model for real-time interactive 3D world generation
+- **GS-World**: 3DGS as differentiable simulation engine for world model + Sim2Real VLA
+- **Visionary**: WebGPU + 3DGS world model carrier platform for browser-native world model rendering
+- **RAD/DLWM**: 3DGS twin digital world for autonomous driving RL training
+
+Comparison key: Does the method use 3DGS as (a) state representation only, (b) dynamics modeling primitive, or (c) differentiable simulation engine? This determines the depth of world model integration.
 
 ### Autonomous Driving Methods
 

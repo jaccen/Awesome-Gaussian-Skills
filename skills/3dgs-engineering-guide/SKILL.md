@@ -1,7 +1,7 @@
 ---
 name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
-version: 1.0.4
+version: 1.0.5
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
@@ -138,6 +138,24 @@ When invoked, follow this workflow:
 **Requirements**: Air-gapped deployment, indigenous tools, > 60 FPS, sub-meter terrain, multi-spectral (visible+IR+SAR)
 
 **Notes**: No foreign cloud/API; DEM/DSM fusion; no sensitive data in checkpoints
+
+### World Model Integration
+
+3DGS is emerging as a core 3D primitive for world models across multiple domains:
+
+| Domain | Method | 3DGS Role | Maturity |
+|--------|--------|-----------|----------|
+| Autonomous Driving Simulation | RAD, DLWM, X-World | Twin digital world for RL/IL training | Production (XPeng, Momenta) |
+| Robot Manipulation | GS-World, Spark 2.0 | Differentiable simulation engine | Research → Early Production |
+| Interactive 3D World Generation | GWM, FlashWorld | Dynamics modeling primitive | Research |
+| Web-Native World Model Rendering | Visionary | WebGPU rendering platform | Open Source (Shanghai AI Lab) |
+
+Engineering considerations:
+- **Sim2Real gap**: 3DGS simulation fidelity directly impacts policy transfer quality (RAD shows closed-loop RL in 3DGS reduces IL causal confusion)
+- **Real-time constraint**: World models require ≥20fps for interactive use; 3DGS rendering speed is often the bottleneck
+- **Physical consistency**: Standard 3DGS lacks physics; GS-World adds differentiable physics as simulation engine layer
+- **Scalability**: Urban-scale world models need distributed 3DGS (BlitzGS pattern) + streaming (PD-4DGS pattern)
+- **Web deployment**: Visionary demonstrates WebGPU + ONNX as viable path for browser-native world models
 
 ---
 
@@ -387,6 +405,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Domain | Methods |
 |---|---|
 | AD Simulation | GSDrive, GS-Playground (RSS 2026), GS-Surrogate, FieryGS, GS-SCNet, Ground4D, ULF-Loc (CVPR 2026), Nighttime AD, Real2Sim, ConFixGS (+3.68 dB Waymo) |
+| World Models | GWM, FlashWorld, GS-World, Visionary, RAD, DLWM, X-World |
 | Digital Twin | DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head |
 | Inspection | EnerGS, RGS, E2EGS |
 | Physics | PhysGaussian, Gaussian Splashing, GS-Playground |
