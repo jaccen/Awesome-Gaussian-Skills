@@ -1,3 +1,14 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'aa07c004-49a8-4e3f-a52d-ba4f3e0b0795'
+  PropagateID: 'aa07c004-49a8-4e3f-a52d-ba4f3e0b0795'
+  ReservedCode1: 'b14a2b72-40e8-41bb-b579-f79bb9816a3f'
+  ReservedCode2: 'b14a2b72-40e8-41bb-b579-f79bb9816a3f'
+---
+
 # World Models & Spatial Intelligence: Research Landscape, Commercial Deployment & Research Directions
 
 > Survey date: 2026-05-18 | Updated with two-round deep research
@@ -509,3 +520,5 @@ World Models和Spatial Intelligence与3DGS的技术交叉日益紧密，建议�
 - 光轮智能(谢晨): 具身智能数据成熟度量化(0.6分 vs LLM 60分)
 - 51WORLD/五一视界: 物理直觉世界模型发布(2026.03) + 港股IPO
 - 智元机器人: GE-Sim 2.0 + AGIBOT WORLD 2026挑战赛
+
+> AI生成

@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'e2f3529a-e6df-4f2f-8132-9d5fa6f1713a'
-  PropagateID: 'e2f3529a-e6df-4f2f-8132-9d5fa6f1713a'
-  ReservedCode1: 'c76cf119-d23a-4cd0-9d10-ef1d00499258'
-  ReservedCode2: 'c76cf119-d23a-4cd0-9d10-ef1d00499258'
+  ProduceID: '3b09505a-4de1-4cd2-944f-2cc0d0a016e7'
+  PropagateID: '3b09505a-4de1-4cd2-944f-2cc0d0a016e7'
+  ReservedCode1: '8fd75249-a2cf-4e60-9aad-57f34327d4e7'
+  ReservedCode2: '8fd75249-a2cf-4e60-9aad-57f34327d4e7'
 ---
 
 ## Newly Added Methods (May 2026 Expansion)
