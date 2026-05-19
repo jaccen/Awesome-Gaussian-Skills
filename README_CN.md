@@ -56,6 +56,14 @@ If you like it, please ⭐️ star this repo!
 | **GuardMarkGS** | [2605.12919](https://arxiv.org/abs/2605.12919) | 安全 | 首个统一水印+编辑阻止框架 |
 | **SCOUP** | [2605.13600](https://arxiv.org/abs/2605.13600) | 语义 | 语言-GS训练加速400倍 |
 | **AV1-3DGS** | [2605.14629](https://arxiv.org/abs/2605.14629) | 加速 | AV1运动向量，训练提速63% |
+| **TensorGS** | [2605.17855](https://arxiv.org/abs/2605.17855) | 加速 | Tensor Core FP16加速3DGS光栅化，1.65x提速 |
+| **DeG** | [2605.16355](https://arxiv.org/abs/2605.16355) | 生成 | 密度采样高斯+八叉树概率密度 (SIGGRAPH 2026) |
+| **P2GS** | [2605.16925](https://arxiv.org/abs/2605.16925) | 自动驾驶 | 物理先验引导光度一致城市3DGS重建 (CVPR 2026) |
+| **ArtMesh** | [2605.16582](https://arxiv.org/abs/2605.16582) | 人体/化身 | 部件感知铰接网格场 + Articulate-100基准 |
+| **DSGS** | [2605.17002](https://arxiv.org/abs/2605.17002) | 压缩 | 解码端从压缩视频比特流重建GS，沉浸式交付 |
+| **GEM** | [2605.17682](https://arxiv.org/abs/2605.17682) | 自动驾驶 | 4D高斯演化模型用于占用预测+运动规划 |
+| **PanoWorld** | [2605.17916](https://arxiv.org/abs/2605.17916) | 生成 | 全屋VR全景合成，3DGS空间世界模型 |
+| **LiteLoc** | [2605.17777](https://arxiv.org/abs/2605.17777) | SLAM | 无色彩3DGS定位，存储减少94% (IEEE/CAA JAS 2026) |
 
 <sup>完整变更记录: [`changelog/`](changelog/)</sup>
 
@@ -101,8 +109,8 @@ If you like it, please ⭐️ star this repo!
 
 | 类别 | 说明 | 方法 |
 |------|------|------|
-| 压缩/流式 | 轻量化、移动端与渐进式传输 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
-| 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS, 3DGS³ |
+| 压缩/流式 | 轻量化、移动端与渐进式传输 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS, DSGS |
+| 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS, 3DGS³, TensorGS |
 | 大规模 | 城市级与分布式场景管理 | BlitzGS |
 | 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, PointForward |
 
@@ -111,8 +119,8 @@ If you like it, please ⭐️ star this repo!
 | 类别 | 说明 | 方法 |
 |------|------|------|
 | 语言/语义 | 开放词汇3D理解与语言场 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
-| 生成/文生3D | 文本/条件驱动的3D生成 | DreamGaussian, SceneGen-LLMRL |
-| 自动驾驶 | 驾驶场景重建与仿真 | Real2Sim, ConFixGS |
+| 生成/文生3D | 文本/条件驱动的3D生成 | DreamGaussian, SceneGen-LLMRL, DeG, PanoWorld |
+| 自动驾驶 | 驾驶场景重建与仿真 | Real2Sim, ConFixGS, P2GS, GEM |
 
 **动态与空间**
 
@@ -120,14 +128,14 @@ If you like it, please ⭐️ star this repo!
 |------|------|------|
 | 动态 | 4D高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, RetroNVS |
 | HDR/动态 | HDR采集与时变光照 | HDR-NSFF, FreeTimeGS++ |
-| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM, ULF-Loc |
+| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, LiteLoc |
 | 稀疏视角 | 少视角与稀疏视角重建 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 
 **应用与跨领域**
 
 | 类别 | 说明 | 方法 |
 |------|------|------|
-| 人体/头像 | 可动画人体与头像重建 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
+| 人体/头像 | 可动画人体与头像重建 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT, ArtMesh |
 | 编辑 | 交互式与文本引导场景编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts, Robust Prior-Guided Seg. |
 | 重光照 | 可重光照与材质感知高斯 | Relightable-GS-VP |
 | CAD | CAD模型拟合与逆向工程 | CADFit |
@@ -456,7 +464,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.4 — 知识库扩展：240→254+ 方法、60+ bug 模式、OIT 透明渲染、分布式城市级 GS、自动驾驶 4DGS 物理仿真（2026年5月）
 - [x] v0.2.5 — 知识库扩展：254→516+ 方法、62+ bug 模式、Skew-Normal 非对称基元、专家路由前馈 GS、连续 LoD、自适应分裂算子（2026年5月）
 - [x] v0.2.6 — 每日更新：512→516+ 方法，+4新方法(Learn2Splat元学习优化器、EndoGSim医学4DGS+MPM、3DEditSafe编辑安全、Robust Prior-Guided分割)；医学影像类别扩充（2026年5月）
-- [x] v0.2.7 — 每日更新: 516→531+方法, +7新(HarmoGS梯度调和, ULF-Loc alpha混合偏差修复CVPR Highlight, AdaptSplat/PointForward前馈, 3DGS³超采样加速, TransmissiveGS, NIRRGB-GS); 63+ bug模式; 25类别 (2026年5月)
+- [x] v0.2.7 — 每日更新: 516→531+方法, +15新(HarmoGS, ULF-Loc, AdaptSplat, PointForward, 3DGS³, TransmissiveGS, NIRRGB-GS, TensorGS, DeG SIGGRAPH''26, P2GS CVPR''26, ArtMesh, DSGS, GEM, PanoWorld, LiteLoc); 63+ bug模式; 25类别 (2026年5月)
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）
