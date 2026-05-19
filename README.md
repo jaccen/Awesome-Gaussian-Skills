@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '08762dfc-d38d-42ae-9ed4-2fb1eced0b70'
-  PropagateID: '08762dfc-d38d-42ae-9ed4-2fb1eced0b70'
-  ReservedCode1: 'f2c4f504-99f8-48bf-b76e-59fe4eda5a90'
-  ReservedCode2: 'f2c4f504-99f8-48bf-b76e-59fe4eda5a90'
----
-
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -582,5 +571,3 @@ Hugging Face Papers: https://huggingface.co/papers
 arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
-
-> AI生成
