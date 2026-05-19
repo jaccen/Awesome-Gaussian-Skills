@@ -1,3 +1,4 @@
+
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -290,6 +291,22 @@
 - **Key Innovation**: Closes the loop between LLM-based scene understanding/generation and RL-guided interactive exploration; generates 3D scenes from language descriptions and enables real-time interactive manipulation; bridges scene generation with immersive user experience
 - **Related**: DreamGaussian, AniGen
 - **Links**: [arXiv:2605.05711](https://arxiv.org/abs/2605.05711)
+
+### DeG
+- **Paper**: DeG
+- **ArXiv**: [2605.16355](https://arxiv.org/abs/2605.16355)
+- **Venue**: SIGGRAPH 2026
+- **Core**: Density-Sampled Gaussians: learnable probability density on octree for adaptive density control
+- **Key Innovation**: Latent diffusion with VecSeq canonical re-indexing for single-image-to-3D; learnable probability density on octree drives adaptive Gaussian sampling
+- **Links**: [arXiv:2605.16355](https://arxiv.org/abs/2605.16355)
+
+### PanoWorld
+- **Paper**: PanoWorld
+- **ArXiv**: [2605.17916](https://arxiv.org/abs/2605.17916)
+- **Venue**: arXiv 2026
+- **Core**: Generative spatial world model for whole-house panorama synthesis
+- **Key Innovation**: Floorplan-derived 3D shell + dynamic 3DGS cache for whole-house panorama synthesis; generative spatial world model bridging layout priors with 3D Gaussian rendering
+- **Links**: [arXiv:2605.17916](https://arxiv.org/abs/2605.17916)
 
 ## Feed-Forward Methods
 

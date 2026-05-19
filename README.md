@@ -6,7 +6,7 @@ If you like it, please ⭐️ star this repo!
 
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
-**523+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**531+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -27,10 +27,18 @@ If you like it, please ⭐️ star this repo!
 
 ## What's New (May 2026)
 
-Major expansion: 516+ → 523+ methods, 25 categories. Backfilled from ECCV/NeurIPS/CVPR 2024-2025 + 12 surveys + medical imaging. Daily arXiv tracking active.
+Major expansion: 516+ → 531+ methods, 25 categories. Backfilled from ECCV/NeurIPS/CVPR 2024-2025 + 12 surveys + medical imaging. Daily arXiv tracking active.
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
+| **TensorGS** | [2605.17855](https://arxiv.org/abs/2605.17855) | Acceleration | Tensor Core FP16 acceleration for 3DGS rasterization, 1.65x speedup |
+| **DeG** | [2605.16355](https://arxiv.org/abs/2605.16355) | Generation | Density-Sampled Gaussians with octree probability density (SIGGRAPH 2026) |
+| **P2GS** | [2605.16925](https://arxiv.org/abs/2605.16925) | Autonomous Driving | Physical prior-guided photometric 3DGS for urban scenes (CVPR 2026) |
+| **ArtMesh** | [2605.16582](https://arxiv.org/abs/2605.16582) | Human / Avatar | Part-aware articulated mesh field + Articulate-100 benchmark |
+| **GEM** | [2605.17682](https://arxiv.org/abs/2605.17682) | Autonomous Driving | 4D Gaussian evolution model for occupancy forecasting + motion planning |
+| **PanoWorld** | [2605.17916](https://arxiv.org/abs/2605.17916) | Generation | Whole-house VR panorama synthesis via 3DGS spatial world model |
+| **LiteLoc** | [2605.17777](https://arxiv.org/abs/2605.17777) | SLAM | Color-free 3DGS localization with 94% storage reduction (IEEE/CAA JAS) |
+| **DSGS** | [2605.17002](https://arxiv.org/abs/2605.17002) | Compression | Decoder-side GS from compressed video bitstreams for immersive delivery |
 | **HarmoGS** | [2605.13073](https://arxiv.org/abs/2605.13073) | Robustness | Conflict-aware gradient harmonization for in-the-wild 3DGS |
 | **ULF-Loc** | — | SLAM | Unbiased landmark feature fixing alpha-compositing bias (CVPR 2026 Highlight) |
 | **AdaptSplat** | — | Feed-Forward | Vision foundation model adaptation for feed-forward 3DGS |
@@ -65,9 +73,9 @@ Major expansion: 516+ → 523+ methods, 25 categories. Backfilled from ECCV/Neur
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 523+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 531+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
-**Awesome Gaussian Skills** is a zero-setup toolkit — copy the skills, and your AI Agent can read papers, compare methods, review code, design experiments, write papers, and generate IP documents, all with built-in knowledge of 523+ methods.
+**Awesome Gaussian Skills** is a zero-setup toolkit — copy the skills, and your AI Agent can read papers, compare methods, review code, design experiments, write papers, and generate IP documents, all with built-in knowledge of 531+ methods.
 
 | What You Do | Without This | With This |
 |-------------|-------------|-----------|
@@ -79,13 +87,13 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 
 ## Features
 
-- **523+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **531+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (523+ Methods)
+## Knowledge Base (531+ Methods)
 
 **Core Representations**
 
@@ -142,11 +150,11 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
 | Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> The full knowledge base covers **523+ methods** across 25 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
+> The full knowledge base covers **531+ methods** across 25 categories with detailed technical analysis. See [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
-> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 523+ methods instantly.
+> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 531+ methods instantly.
 
 ## Quick Start
 
@@ -406,7 +414,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # Index (523+ methods across 25 categories)
+│   ├── 3dgs-methods-overview.md # Index (531+ methods across 25 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -460,7 +468,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.4 — Knowledge base expansion: 240→254+ methods, 60+ bug patterns, OIT transparency, distributed city-scale GS, 4DGS physics sim for AD (May 2026)
 - [x] v0.2.5 — Knowledge base expansion: 254→512+ methods, 62+ bug patterns, Skew-Normal primitive, expert-routing feedforward GS, continuous LoD, adaptive split operator (May 2026)
 - [x] v0.2.6 — Daily update: 512→516+ methods, +4 new (Learn2Splat meta-optimizer, EndoGSim medical 4DGS+MPM, 3DEditSafe editing safety, Robust Prior-Guided Segmentation); Medical imaging expanded (May 2026)
-- [x] v0.2.7 — Daily update: 516→523+ methods, +7 new (HarmoGS gradient harmonization, ULF-Loc alpha-compositing bias fix CVPR Highlight, AdaptSplat/PointForward feed-forward, 3DGS³ super-sampling acceleration, TransmissiveGS, NIRRGB-GS); 63+ bug patterns; 25 categories (May 2026)
+- [x] v0.2.7 — Daily update: 516→531+ methods, +15 new (HarmoGS, ULF-Loc, AdaptSplat, PointForward, 3DGS³, TransmissiveGS, NIRRGB-GS, TensorGS Tensor Core, DeG SIGGRAPH'26, P2GS CVPR'26, ArtMesh, DSGS, GEM, PanoWorld, LiteLoc); 63+ bug patterns; 25 categories (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)

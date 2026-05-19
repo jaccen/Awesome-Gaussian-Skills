@@ -188,6 +188,20 @@
 - **Category**: Autonomous Driving
 - **Core Innovation**: GS-based closed-loop driving simulation with dynamic agent rendering
 
+### P2GS
+- **arXiv**: [2605.16925](https://arxiv.org/abs/2605.16925)
+- **Venue**: CVPR 2026
+- **Year**: 2026
+- **Category**: Autonomous Driving
+- **Core Innovation**: Physical prior-guided GS: joint HDR radiance + per-view exposure decomposition for photometrically consistent urban reconstruction
+
+### GEM
+- **arXiv**: [2605.17682](https://arxiv.org/abs/2605.17682)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Autonomous Driving
+- **Core Innovation**: Gaussian Evolution Model: non-autoregressive occupancy world model with 4D Gaussian dynamics for autonomous driving planning
+
 
 ### SLAM
 ### DG-SLAM
@@ -259,6 +273,13 @@
 - **Year**: 2026
 - **Category**: SLAM
 - **Core Innovation**: Unbiased landmark feature for robust visual localization with 3DGS; identifies alpha-compositing feature bias and replaces with geometry-weighted aggregation + keypoint consensus sampling
+
+### LiteLoc
+- **arXiv**: [2605.17777](https://arxiv.org/abs/2605.17777)
+- **Venue**: IEEE/CAA JAS 2026
+- **Year**: 2026
+- **Category**: SLAM
+- **Core Innovation**: Color-free decoupled 3DGS feature field for efficient visual localization; 94% storage reduction + 19x estimation speedup
 
 
 ### Training & Optimization
@@ -531,6 +552,13 @@
 - **Year**: 2026
 - **Category**: Cross-Domain Applications
 - **Core Innovation**: Near-infrared assisted low-light scene reconstruction and enhancement via Gaussian Splatting; multi-modal NIR+RGB fusion framework for dark scenes (Zhejiang Univ + XIOPM)
+
+### DSGS
+- **arXiv**: [2605.17002](https://arxiv.org/abs/2605.17002)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Cross-Domain Applications
+- **Core Innovation**: Decoder-Side Gaussian Splatting for immersive video delivery from compressed bitstreams; lossy compression stabilizes feed-forward 3DGS prediction
 
 
 ### Security
