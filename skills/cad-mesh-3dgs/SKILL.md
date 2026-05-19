@@ -1,7 +1,7 @@
 ---
 name: cad-mesh-3dgs
 description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 35+ methods."
-version: 1.0.1
+version: 1.0.2
 author: jaccen
 tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing"]
 ---

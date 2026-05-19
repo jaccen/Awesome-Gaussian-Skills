@@ -1,7 +1,7 @@
 ---
 name: 3dgs-paper-reader
 description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables."
-version: 1.0.1
+version: 1.0.2
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
 ---

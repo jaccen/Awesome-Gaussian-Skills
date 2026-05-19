@@ -1,7 +1,7 @@
 ---
 name: cg-paper-writing
 description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues."
-version: 1.2.1
+version: 1.2.2
 author: jaccen
 tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph"]
 ---

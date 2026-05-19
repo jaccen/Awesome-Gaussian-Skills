@@ -1,7 +1,7 @@
 ---
 name: 3dgs-code-reviewer
 description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 63+ known bug patterns."
-version: 1.1.6
+version: 1.1.7
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---

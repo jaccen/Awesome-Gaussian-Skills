@@ -1,7 +1,7 @@
 ---
 name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
-version: 1.1.1
+version: 1.1.2
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
 ---
