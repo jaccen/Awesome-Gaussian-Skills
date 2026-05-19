@@ -6,7 +6,7 @@
 
 If you like it, please ⭐️ star this repo!
 
-**516+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
+**523+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -27,10 +27,17 @@ If you like it, please ⭐️ star this repo!
 
 ## 本月新增 (2026年5月)
 
-过去30天新增25篇方法——516+ → 516+ 方法, 62+ bug 模式。每日arXiv持续追踪。
+过去30天新增25篇方法——516+ → 523+ 方法, 63+ bug 模式。每日arXiv持续追踪。
 
 | 方法 | ArXiv | 类别 | 一句话创新 |
 |------|-------|------|-----------|
+| **HarmoGS** | [2605.13073](https://arxiv.org/abs/2605.13073) | 鲁棒性 | 梯度冲突感知调和解决in-the-wild 3DGS |
+| **ULF-Loc** | — | SLAM | 无偏地标特征修复alpha混合偏差 (CVPR 2026 Highlight) |
+| **AdaptSplat** | — | 前馈 | 视觉基础模型适配用于前馈3DGS |
+| **PointForward** | — | 前馈 | 锚点对齐前馈驾驶场景3DGS重建 |
+| **3DGS³** | — | 加速 | 联合超采样+帧插值实现大规模实时3DGS渲染 |
+| **TransmissiveGS** | — | 跨领域 | 残差引导解耦GS处理透射场景 |
+| **NIRRGB-GS** | — | 退化感知 | 近红外辅助暗光3DGS (AISY 2026) |
 | **Learn2Splat** | [2605.15760](https://arxiv.org/abs/2605.15760) | 优化 | 元学习优化器替代Adam/SGD，长程稳定无退化（Geiger组） |
 | **EndoGSim** | [2605.16022](https://arxiv.org/abs/2605.16022) | 医学 | MLLM+4DGS+可微MPM内窥镜物理仿真 (MICCAI 2026) |
 | **3DEditSafe** | [2605.15398](https://arxiv.org/abs/2605.15398) | 安全 | 首个3D编辑安全正则化，抑制NSFW语义传播 |
@@ -58,27 +65,27 @@ If you like it, please ⭐️ star this repo!
 
 你不应该为每篇新3DGS论文重新搭建相同的RAG管线，或手动在10个维度上对比20个变体，或投稿后才发现CUDA kernel有已知bug。
 
-**2023年以来已有516+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
+**2023年以来已有523+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
 
-**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置516+方法的领域知识。
+**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置523+方法的领域知识。
 
 | 你做的事 | 没有本项目 | 有本项目 |
 |----------|-----------|---------|
 | 读新论文 | 30–60分钟手翻 | 几秒出结构化摘要 |
 | 对比GS变体 | 手工搭对比表 | 10+维度自动对比 |
-| 审查3DGS代码 | 漏掉已知bug模式 | 62+模式自动检测 |
+| 审查3DGS代码 | 漏掉已知bug模式 | 63+模式自动检测 |
 | 设计实验 | 猜基线和消融 | 顶会定制实验方案 |
 | NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
 
 ## 特性
 
-- **516+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 23 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **523+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
-## 知识库（516+ 方法）
+## 知识库（523+ 方法）
 
 **核心表示**
 
@@ -95,9 +102,9 @@ If you like it, please ⭐️ star this repo!
 | 类别 | 说明 | 方法 |
 |------|------|------|
 | 压缩/流式 | 轻量化、移动端与渐进式传输 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
-| 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
+| 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS, 3DGS³ |
 | 大规模 | 城市级与分布式场景管理 | BlitzGS |
-| 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver |
+| 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, PointForward |
 
 **理解与语义**
 
@@ -113,7 +120,7 @@ If you like it, please ⭐️ star this repo!
 |------|------|------|
 | 动态 | 4D高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, RetroNVS |
 | HDR/动态 | HDR采集与时变光照 | HDR-NSFF, FreeTimeGS++ |
-| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM |
+| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM, ULF-Loc |
 | 稀疏视角 | 少视角与稀疏视角重建 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 
 **应用与跨领域**
@@ -124,22 +131,22 @@ If you like it, please ⭐️ star this repo!
 | 编辑 | 交互式与文本引导场景编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts, Robust Prior-Guided Seg. |
 | 重光照 | 可重光照与材质感知高斯 | Relightable-GS-VP |
 | CAD | CAD模型拟合与逆向工程 | CADFit |
-| 跨领域 | 多模态融合与域外迁移 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R |
+| 跨领域 | 多模态融合与域外迁移 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R, TransmissiveGS |
 | 仿真 | 物理仿真与代理模型 | GS-Playground, GS-Surrogate, FieryGS |
 | 具身智能/机器人 | 机器人抓取、操作、导航与Sim2Real | GaussianGrasper, GraspSplats, ManiGaussian, GSMem, RoboSplat, VR-Robo, GSDrive |
 | 主动视觉 | 主动视角选择与下一最优视角 | MAGICIAN |
 | 实时新视角合成 | 实时新视角合成系统 | 3DTV |
 | 数据采集 | 采集协议与手机端采集 | Mobile Phone 3DGS Acquisition |
 | 鲁棒性 | 野外与退化鲁棒重建 | NRGS, DualSplat, EnerGS, FreeFix, Luminance-GS++, HarmoGS |
-| 退化感知 | 恶劣天气、水下与低质量输入 | MERID-GS, MarineSTD-GS, E2EGS |
+| 退化感知 | 恶劣天气、水下与低质量输入 | MERID-GS, MarineSTD-GS, E2EGS, NIRRGB-GS |
 | 系统 | 全系统设计与硬件协同设计 | YOGO, GS-SCNet |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> 完整知识库覆盖 **23 个类别的 516+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **25 个类别的 523+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
-> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 516+ 方法。
+> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 523+ 方法。
 
 ## 快速开始
 
@@ -207,7 +214,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 516+ 方法的知识库
+- 内置 523+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -223,7 +230,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（62+ 已知模式）
+- 常见 bug 模式检测（63+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -317,7 +324,7 @@ Agent: [创建按类别分道的时间线，展示 40+ 方法，节点大小
 **功能：**
 - 雷达图：多维方法对比（7 个默认维度，可自定义）
 - 可视化性能/效率对比表（最佳/次佳高亮标注）
-- 方法演进时间线（23 个类别分道，引用量加权节点）
+- 方法演进时间线（25 个类别分道，引用量加权节点）
 - 双输出：静态图（PDF/PNG，matplotlib/seaborn）+ 交互式 HTML（plotly）
 - 3 个预设模板：领域全景概览、类别深度分析、论文投稿图表包
 - 出版级样式：Okabe-Ito 色盲安全调色板
@@ -395,7 +402,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（23 个类别 516+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（25 个类别 523+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -449,6 +456,7 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.4 — 知识库扩展：240→254+ 方法、60+ bug 模式、OIT 透明渲染、分布式城市级 GS、自动驾驶 4DGS 物理仿真（2026年5月）
 - [x] v0.2.5 — 知识库扩展：254→516+ 方法、62+ bug 模式、Skew-Normal 非对称基元、专家路由前馈 GS、连续 LoD、自适应分裂算子（2026年5月）
 - [x] v0.2.6 — 每日更新：512→516+ 方法，+4新方法(Learn2Splat元学习优化器、EndoGSim医学4DGS+MPM、3DEditSafe编辑安全、Robust Prior-Guided分割)；医学影像类别扩充（2026年5月）
+- [x] v0.2.7 — 每日更新: 516→523+方法, +7新(HarmoGS梯度调和, ULF-Loc alpha混合偏差修复CVPR Highlight, AdaptSplat/PointForward前馈, 3DGS³超采样加速, TransmissiveGS, NIRRGB-GS); 63+ bug模式; 25类别 (2026年5月)
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）

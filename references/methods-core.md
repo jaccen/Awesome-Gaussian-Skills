@@ -1144,6 +1144,19 @@
 - **Category**: Feed-Forward Methods
 - **Core Innovation**: Transformer-based Gaussian prediction for generalizable 3D reconstruction
 
+### AdaptSplat
+- **arXiv**: [2507.xxxxx](https://arxiv.org/abs/2507.xxxxx)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Adapting vision foundation models for feed-forward 3DGS; leverages pretrained ViT/DINO features for cross-scene generalizable Gaussian prediction
+
+### PointForward
+- **arXiv**: [2507.xxxxx](https://arxiv.org/abs/2507.xxxxx)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Point-aligned feed-forward driving scene reconstruction via 3DGS; anchor-aligned representation replacing pixel-alignment for autonomous driving
 
 ### Compression Methods
 ### LightGaussian
@@ -1518,4 +1531,3 @@
 - **Year**: 2025
 - **Category**: Dynamic Scene Methods
 - **Core Innovation**: Second-generation 4DGS with improved temporal deformation
-

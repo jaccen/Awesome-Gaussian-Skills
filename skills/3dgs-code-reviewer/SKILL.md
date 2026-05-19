@@ -1,7 +1,7 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 62+ known bug patterns."
-version: 1.1.5
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 63+ known bug patterns."
+version: 1.1.6
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -13,7 +13,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (62+ known patterns)
+- Identify common 3DGS implementation pitfalls (63+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -308,6 +308,12 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 62 | Symmetric-only Gaussian kernel limiting boundary representation | Wasted primitive budget approximating asymmetric geometry; poor quality on sharp boundaries, one-sided surfaces, or thin structures; using `covariance = R @ S @ S^T @ R^T` without skewness parameter | Replace symmetric Gaussian with Skew-Normal distribution that introduces skewness parameter; allows one-sided tails for sharp boundaries and thin structures without increasing Gaussian count (SNS, ArXiv 2605.15010) |
+
+### Alpha-Compositing Feature Bias Patterns (ULF-Loc)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 63 | Alpha-compositing introduces inherent feature bias in localization tasks | Poor 2D-3D feature matching accuracy; localization precision plateau; feature distinctiveness degrades with more Gaussians in a region | Standard alpha-compositing aggregates per-Gaussian features using visibility weights (T_i * α_i), causing each Gaussian's stored feature to become a weighted average of neighbors' features during training — learned features are never "pure" representations. Replace alpha-compositing with geometry-weighted aggregation (e.g., inverse distance weighting without visibility blending) for feature localization; use keypoint consensus sampling to filter unreliable features (ULF-Loc, CVPR 2026 Highlight) |
 
 ## Output Format
 

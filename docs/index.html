@@ -1274,7 +1274,14 @@ const METHODS = [
   { name: "Visionary", short: "Visionary", cat: "Systems & Applications", venue: "arXiv", year: 2026, desc: "First WebGPU + ONNX Runtime 3DGS world model carrier platform", arxiv: "", citations: 0 },
   { name: "GS-ID", short: "GS-ID", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "3DGS-based real-scene illumination decomposition for embodied intelligence", arxiv: "", citations: 0 },
   { name: "X-World", short: "X-World", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Controllable multi-view generative world model combining video diffusion and 3DGS", arxiv: "", citations: 0 },
-  { name: "Spark 2.0", short: "Spark 2.0", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "NVIDIA 3DGS-based robotic world simulation platform", arxiv: "", citations: 0 }
+  { name: "Spark 2.0", short: "Spark 2.0", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "NVIDIA 3DGS-based robotic world simulation platform", arxiv: "", citations: 0 },
+  { name: "HarmoGS", short: "HarmoGS", cat: "Robustness", venue: "arXiv", year: 2026, desc: "Conflict-aware gradient harmonization for in-the-wild 3DGS", arxiv: "", citations: 0 },
+  { name: "NIRRGB-GS", short: "NIRRGB-GS", cat: "Degradation-Aware", venue: "arXiv", year: 2026, desc: "Near-infrared assisted low-light 3DGS reconstruction", arxiv: "", citations: 0 },
+  { name: "ULF-Loc", short: "ULF-Loc", cat: "SLAM", venue: "CVPR", year: 2026, desc: "Unbiased landmark features for robust visual localization with 3DGS", arxiv: "", citations: 0 },
+  { name: "TransmissiveGS", short: "TransmissiveGS", cat: "Cross-Domain", venue: "arXiv", year: 2026, desc: "Residual-guided disentangled Gaussian Splatting for transmissive scenes", arxiv: "", citations: 0 },
+  { name: "AdaptSplat", short: "AdaptSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Adapting vision foundation models for feed-forward 3DGS", arxiv: "", citations: 0 },
+  { name: "PointForward", short: "PointForward", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Point-aligned feed-forward driving scene reconstruction via 3DGS", arxiv: "", citations: 0 },
+  { name: "3DGS\u00B3", short: "3DGS\u00B3", cat: "Acceleration", venue: "arXiv", year: 2026, desc: "Joint super sampling and frame interpolation for real-time large-scale 3DGS", arxiv: "", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -1802,7 +1809,14 @@ const METHOD_DETAILS = {
   "Visionary": { innovations: ["First WebGPU + ONNX Runtime 3DGS world model carrier platform", "Real-time 4DGS, neural avatars, and generative post-processing in browser", "Gaussian Splatting ONNX interface for unified algorithm deployment on Web"], codeUrl: "" },
   "GS-ID": { innovations: ["3DGS-based real-scene illumination decomposition", "Light field factorization providing high-fidelity light field data for embodied intelligence", "Relighting-capable Gaussian representation for autonomous driving sensor simulation"], codeUrl: "" },
   "X-World": { innovations: ["Controllable multi-view generative world model combining video diffusion and 3DGS", "Real-time multi-view consistent driving scene generation", "Serves autonomous driving training with synthetic yet realistic sensor data"], codeUrl: "" },
-  "Spark 2.0": { innovations: ["NVIDIA 3DGS-based robotic world simulation platform", "Real-time 3DGS reconstruction for manipulation learning", "Physical AI interaction via Gaussian-based environment modeling"], codeUrl: "" }
+  "Spark 2.0": { innovations: ["NVIDIA 3DGS-based robotic world simulation platform", "Real-time 3DGS reconstruction for manipulation learning", "Physical AI interaction via Gaussian-based environment modeling"], codeUrl: "" },
+  "HarmoGS": { innovation: "Conflict-aware gradient harmonization for in-the-wild 3DGS. Introduces semantic consistency-guided masking to refine prior masks, dual-view Conflict-Aware Gradient Harmonization that rotates conflicting gradients into orthogonal configuration, and conflict-aware densification/pruning for stable Gaussian growth.", codeUrl: "" },
+  "NIRRGB-GS": { innovation: "Near-infrared assisted low-light 3DGS. Multi-modal NIR+RGB fusion framework that leverages near-infrared imagery to complement visible-light inputs for robust reconstruction and enhancement in dark environments.", codeUrl: "" },
+  "ULF-Loc": { innovation: "Unbiased Landmark Feature for robust visual localization with 3DGS. Identifies inherent alpha-compositing feature bias and replaces it with geometry-weighted aggregation. CVPR 2026 Highlight.", codeUrl: "" },
+  "TransmissiveGS": { innovation: "Residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction and rendering. Separates reflection and transmission components via residual-guided decomposition in the Gaussian primitive.", codeUrl: "" },
+  "AdaptSplat": { innovation: "Adapting vision foundation models (ViT/DINO) for feed-forward 3DGS. Leverages pretrained visual features for cross-scene generalizable Gaussian prediction without per-scene optimization.", codeUrl: "" },
+  "PointForward": { innovation: "Point-aligned feed-forward driving scene reconstruction via 3DGS. Proposes anchor-aligned representation replacing pixel-alignment for consistent autonomous driving scene reconstruction.", codeUrl: "" },
+  "3DGS\u00B3": { innovation: "Joint Super Sampling and Frame Interpolation for real-time large-scale 3DGS rendering. Unified pipeline combining spatial super-resolution with temporal frame interpolation for scalable high-fidelity rendering.", codeUrl: "" }
 };
 
 
@@ -2332,6 +2346,13 @@ const ABSTRACTS = {
   "GS-ID": { abstractEn: "GS-ID performs 3DGS-based real-scene illumination decomposition, providing high-fidelity light field data for embodied intelligence and autonomous driving with relighting-capable Gaussian representations.", abstractCn: "GS-ID实现基于3DGS的真实场景光场分解，为具身智能和自动驾驶提供高保真光场数据和可重光照的高斯表示。" },
   "X-World": { abstractEn: "X-World is a controllable multi-view generative world model combining video diffusion and 3DGS simulation for autonomous driving, generating real-time multi-view consistent driving scenes.", abstractCn: "X-World是结合视频扩散与3DGS仿真的可控多视角生成式世界模型，为自动驾驶生成实时多视角一致的驾驶场景。" },
   "Spark 2.0": { abstractEn: "Spark 2.0 is NVIDIA's 3DGS-based robotic world simulation platform, enabling real-time 3DGS reconstruction for manipulation learning and physical AI interaction via Gaussian environment modeling.", abstractCn: "Spark 2.0是英伟达基于3DGS的机器人世界仿真平台，通过高斯环境建模实现实时3DGS重建和物理AI交互。" },
+  "HarmoGS": { abstractEn: "HarmoGS addresses in-the-wild 3DGS by proposing conflict-aware gradient harmonization. It combines semantic consistency-guided masking with dual-view gradient rotation into orthogonal configuration, plus conflict-aware densification and pruning to stabilize optimization under transient distractors and illumination inconsistencies.", abstractCn: "HarmoGS提出梯度冲突感知调和机制解决in-the-wild 3DGS问题。结合语义一致性引导掩码、双视图梯度正交旋转以及冲突感知密度控制，有效抑制瞬态干扰和光照不一致导致的重建伪影。" },
+  "NIRRGB-GS": { abstractEn: "NIRRGB-GS proposes a multi-modal fusion 3DGS framework leveraging near-infrared imagery to assist low-light scene reconstruction and enhancement, bridging the modality gap between NIR structural information and RGB appearance details.", abstractCn: "NIRRGB-GS提出近红外辅助3DGS框架，融合NIR结构信息与RGB外观细节，实现暗光场景的高质量三维重建与增强。" },
+  "ULF-Loc": { abstractEn: "ULF-Loc identifies the inherent feature bias in alpha-compositing-based 3DGS and proposes unbiased landmark features via geometry-weighted aggregation, achieving CVPR 2026 Highlight recognition for significantly improved visual localization accuracy.", abstractCn: "ULF-Loc发现alpha混合机制的固有特征偏差，提出基于几何加权聚合的无偏地标特征，显著提升3DGS视觉定位精度，获CVPR 2026 Highlight。" },
+  "TransmissiveGS": { abstractEn: "TransmissiveGS introduces residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction, separating reflection and transmission components to handle challenging see-through surfaces like glass and water.", abstractCn: "TransmissiveGS提出残差引导解耦3DGS框架，分离反射与透射分量，有效重建玻璃、水面等透射场景。" },
+  "AdaptSplat": { abstractEn: "AdaptSplat adapts pretrained vision foundation models (ViT/DINO) for feed-forward 3DGS, enabling cross-scene generalizable Gaussian prediction without per-scene optimization by transferring rich visual priors.", abstractCn: "AdaptSplat适配视觉基础模型用于前馈3DGS，利用ViT/DINO预训练特征实现无需逐场景优化的跨场景泛化高斯预测。" },
+  "PointForward": { abstractEn: "PointForward proposes point-aligned feed-forward driving scene reconstruction via 3DGS, introducing anchor-aligned representations that replace pixel-alignment for consistent autonomous driving scene modeling.", abstractCn: "PointForward提出锚点对齐前馈驾驶场景3DGS重建，用锚点对齐表示替代像素对齐，实现自动驾驶场景的一致性建模。" },
+  "3DGS\u00B3": { abstractEn: "3DGS\u00B3 unifies super sampling and frame interpolation for real-time large-scale 3DGS rendering, providing a joint spatial-temporal enhancement pipeline that scales to city-level scenes while maintaining visual fidelity.", abstractCn: "3DGS\u00B3统一超采样与帧插值实现大规模3DGS实时渲染，联合时空增强流程可扩展至城市级场景并保持视觉保真度。" }
 };
 
 const CATEGORIES = [
@@ -2360,7 +2381,9 @@ const CATEGORIES = [
   { id: "Surveys", label: "Surveys & Benchmarks" },
   { id: "World Models & Spatial Intelligence", label: "World Models & Spatial Intelligence" },
   { id: "Embodied AI/Robotics", label: "Embodied AI/Robotics" },
-  { id: "Systems & Applications", label: "Systems & Applications" }
+  { id: "Systems & Applications", label: "Systems & Applications" },
+  { id: "Acceleration", label: "Acceleration" },
+  { id: "Degradation-Aware", label: "Degradation-Aware" }
 ];
 
 const SKILLS = [

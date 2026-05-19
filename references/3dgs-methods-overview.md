@@ -1,15 +1,4 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '3b09505a-4de1-4cd2-944f-2cc0d0a016e7'
-  PropagateID: '3b09505a-4de1-4cd2-944f-2cc0d0a016e7'
-  ReservedCode1: '8fd75249-a2cf-4e60-9aad-57f34327d4e7'
-  ReservedCode2: '8fd75249-a2cf-4e60-9aad-57f34327d4e7'
----
-
-## Newly Added Methods (May 2026 Expansion)
+﻿## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
 
@@ -57,6 +46,7 @@ AIGC:
 ### Cross-Domain Applications
 - **GaussVis** [arXiv:2503.01610](https://arxiv.org/abs/2503.01610) (CVPR 2025) — GS-based visualization for scientific data with interactive exploration
 - **GS-VQA** [arXiv:2503.23297](https://arxiv.org/abs/2503.23297) (CVPR 2025) — GS quality assessment via view-consistent quality prediction
+- **TransmissiveGS** (arXiv 2026) — Residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction; separates reflection and transmission components via residual-guided decomposition
 
 ### Dynamic Scene Methods
 - **NeuroGauss4D-PCI** [arXiv:2405.14241](https://arxiv.org/abs/2405.14241) (NeurIPS 2024) — 4D neural field + Gaussian deformation fields for point cloud interpolation [Code](https://github.com/jiangchaokang/NeuroGauss4D-PCI)
@@ -136,6 +126,8 @@ AIGC:
 - **MVSplat-v2** [arXiv:2412.16028](https://arxiv.org/abs/2412.16028) (CVPR 2025) — Enhanced MVSplat with cost-volume refinement for higher fidelity feed-forward GS
 - **GeoSplat** [arXiv:2412.16604](https://arxiv.org/abs/2412.16604) (CVPR 2025) — Geometry-aware feed-forward GS with cross-view feature matching
 - **SplatFormer** [arXiv:2412.20522](https://arxiv.org/abs/2412.20522) (CVPR 2025) — Transformer-based Gaussian prediction for generalizable 3D reconstruction
+- **AdaptSplat** (arXiv 2026) — Adapting vision foundation models for feed-forward 3DGS; leverages pretrained ViT/DINO features for cross-scene generalizable Gaussian prediction
+- **PointForward** (arXiv 2026) — Point-aligned feed-forward driving scene reconstruction via 3DGS; anchor-aligned representation replacing pixel-alignment for autonomous driving
 
 ### Few-Shot / Sparse-View
 - **Binocular3DGS** [arXiv:2410.18822](https://arxiv.org/abs/2410.18822) (NeurIPS 2024) — Binocular disparity-guided depth + GS joint optimization for sparse views [Code](https://github.com/hanl2010/Binocular3DGS)
@@ -244,6 +236,10 @@ AIGC:
 - **GaussHDR** [arXiv:2503.18421](https://arxiv.org/abs/2503.18421) (CVPR 2025) — HDR-robust GS with exposure-aware Gaussian decomposition
 - **NoiseGS** [arXiv:2503.18682](https://arxiv.org/abs/2503.18682) (CVPR 2025) — Noise-resilient GS training with uncertainty-guided loss weighting
 - **EventGS** [arXiv:2503.19976](https://arxiv.org/abs/2503.19976) (CVPR 2025) — Event camera-integrated GS for high-speed HDR scene reconstruction
+- **HarmoGS** [arXiv:2605.13073](https://arxiv.org/abs/2605.13073) (arXiv 2026) — Conflict-aware gradient harmonization for in-the-wild 3DGS: semantic consistency-guided masking + dual-view gradient rotation + conflict-aware densification/pruning
+
+### Degradation-Aware
+- **NIRRGB-GS** (AISY 2026) — Near-infrared assisted low-light scene reconstruction and enhancement via Gaussian Splatting; multi-modal NIR+RGB fusion framework for dark场景 (Zhejiang Univ + XIOPM)
 
 ### SLAM
 - **DG-SLAM** [arXiv:2411.08373](https://arxiv.org/abs/2411.08373) (NeurIPS 2024) — Dynamic Gaussian SLAM with hybrid pose optimization for dynamic environments [Code](https://github.com/fudan-zvg/DG-SLAM)
@@ -255,6 +251,7 @@ AIGC:
 - **GaussFusion** [arXiv:2503.20998](https://arxiv.org/abs/2503.20998) (CVPR 2025) — Gaussian Splatting fusion for multi-session SLAM with submap alignment
 - **GausLoc** [arXiv:2504.00219](https://arxiv.org/abs/2504.00219) (CVPR 2025) — GS-based hierarchical localization with Gaussian map representation
 - **GaussianLoc** [arXiv:2504.06210](https://arxiv.org/abs/2504.06210) (CVPR 2025) — GS-based visual localization with dense Gaussian map
+- **ULF-Loc** (CVPR 2026 Highlight) — Unbiased landmark feature for robust visual localization with 3DGS; identifies alpha-compositing feature bias and replaces with geometry-weighted aggregation + keypoint consensus sampling
 
 ### Security
 - **GS-Hider** [arXiv:2405.15118](https://arxiv.org/abs/2405.15118) (NeurIPS 2024) — Steganography embedding into Gaussian parameters for 3D message hiding, visually lossless
@@ -340,6 +337,9 @@ AIGC:
 - **GaussCalib** [arXiv:2504.09491](https://arxiv.org/abs/2504.09491) (CVPR 2025) — Joint camera calibration and GS optimization for posed/unposed images
 - **Learn2Splat** [arXiv:2605.15760](https://arxiv.org/abs/2605.15760) — Meta-learned optimizer for 3DGS via checkpoint buffer + optimizer rollout; extends optimization horizon without degradation; zero-shot generalization (Geiger group)
 
+### Acceleration
+- **3DGS³** (arXiv 2026) — Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale
+
 ### World Models & Spatial Intelligence
 _3DGS as world model primitive, differentiable simulation engine, or spatial intelligence representation_
 - **GWM** [arXiv:2508.17600](https://arxiv.org/abs/2508.17600) (2025) — Gaussian World Model: 3DGS as environment dynamics modeling primitive with autoregressive future state prediction for interactive world simulation
@@ -351,5 +351,3 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **GS-ID** (ICCV 2025) — GS-based illumination decomposition: real-scene light field factorization for embodied intelligence and autonomous driving with high-fidelity light field data
 - **X-World** (2026) — Controllable multi-view generative world model (video diffusion + 3DGS simulation) for autonomous driving (XPeng)
 - **Spark 2.0** (2026) — NVIDIA 3DGS-based robotic world simulation: real-time 3DGS reconstruction for manipulation learning and physical AI interaction
-
-> AI生成

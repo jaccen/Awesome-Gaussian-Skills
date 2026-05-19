@@ -88,6 +88,13 @@
 - **Category**: Robustness & Regularization
 - **Core Innovation**: Event camera-integrated GS for high-speed HDR scene reconstruction
 
+### HarmoGS
+- **arXiv**: [2605.13073](https://arxiv.org/abs/2605.13073)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Robustness & Regularization
+- **Core Innovation**: Conflict-aware gradient harmonization for in-the-wild 3DGS: semantic consistency-guided masking + dual-view gradient rotation + conflict-aware densification/pruning
+
 
 ### Autonomous Driving
 ### GaussianBeV
@@ -246,6 +253,12 @@
 - **Year**: 2025
 - **Category**: SLAM
 - **Core Innovation**: GS-based visual localization with dense Gaussian map
+
+### ULF-Loc
+- **Venue**: CVPR 2026 Highlight
+- **Year**: 2026
+- **Category**: SLAM
+- **Core Innovation**: Unbiased landmark feature for robust visual localization with 3DGS; identifies alpha-compositing feature bias and replaces with geometry-weighted aggregation + keypoint consensus sampling
 
 
 ### Training & Optimization
@@ -507,6 +520,18 @@
 - **Category**: Cross-Domain Applications
 - **Core Innovation**: GS quality assessment via view-consistent quality prediction
 
+### TransmissiveGS
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Cross-Domain Applications
+- **Core Innovation**: Residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction; separates reflection and transmission components via residual-guided decomposition
+
+### NIRRGB-GS
+- **Venue**: AISY 2026
+- **Year**: 2026
+- **Category**: Cross-Domain Applications
+- **Core Innovation**: Near-infrared assisted low-light scene reconstruction and enhancement via Gaussian Splatting; multi-modal NIR+RGB fusion framework for dark scenes (Zhejiang Univ + XIOPM)
+
 
 ### Security
 ### GS-Hider
@@ -710,4 +735,10 @@
 - **Year**: 2025
 - **Category**: Surveys & Benchmarks
 - **Core Innovation**: Survey on physics-integrated Gaussian Splatting: fluid/solid/cloth simulation + differentiable rendering
-> AI生成
+
+### Acceleration
+### 3DGS³
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Acceleration
+- **Core Innovation**: Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale
