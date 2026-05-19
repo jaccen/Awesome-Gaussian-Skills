@@ -1,4 +1,4 @@
----
+﻿---
 name: patent-software-ip
 description: "Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization, prior-art search, and self-check."
 version: "2.0.0"
@@ -215,6 +215,15 @@ Templates by domain:
 - [ ] Name consistency
 - [ ] No secret leaks
 
+## Knowledge Index
+
+Deep-dive reference files for domain-specific patent writing rules, claim templates, and software copyright guides.
+
+| File | Sections | Key Content |
+|------|----------|-------------|
+| eferences/ai-patent-claims-guide.md | 11 claim templates (T1-T14) | Full legal claim text per template: method/system/medium triples with dependent claims; Big Data T10-T14 included |
+| eferences/ai-patent-special.md | Patentability framework, 8 risk domains, CPC codes, desensitization rules | AI+Big Data patentability risk assessment; domain mapping; figure requirements; industry desensitization; CPC classification (7.1-7.7); 9-domain quick reference |
+| eferences/ai-software-copyright-guide.md | Type detection, source file priority, 5 domain templates, FAQ | Decision tree for 10+ project types; source code priority by domain; Big Data dedicated template (section 3.5); desensitization checklist; common pitfalls |
 ## Phase D: Iterative Correction
 
 Identify -> Locate -> Targeted fix -> Save as v{N} -> Re-run affected self-check items only. Do NOT re-run full pipeline.
