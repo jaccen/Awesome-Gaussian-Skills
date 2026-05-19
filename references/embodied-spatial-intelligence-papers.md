@@ -223,5 +223,3 @@
 6. **Benchmark Explosion**: SpatialScore, SpatialMQA, MMSI-Bench, PanoSpace-Bench, InfiniBench, NavSpace — the rapid emergence of spatial intelligence benchmarks reveals that spatial reasoning is now recognized as a distinct evaluation dimension.
 
 7. **Safety in Multi-Robot Systems**: InfectBot (IJCAI 2026) demonstrates dangerous attack propagation in LLM-controlled multi-robot collaboration, highlighting the urgent need for safety alignment in embodied multi-agent systems.
-
-> AI生成

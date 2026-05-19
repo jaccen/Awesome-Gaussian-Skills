@@ -449,6 +449,131 @@ Awesome-Gaussian-Skills/
 
 交互式版本（悬停查看详情）：[`radar_comparison.html`](Test/radar_comparison.html) | [`metrics_dashboard.html`](Test/metrics_dashboard.html)
 
+## 核心论文创新点汇总
+
+> 基于知识库531+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
+> 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition / 计算机学报 / 软件学报
+
+<details>
+<summary><strong>I-01. 部件感知Alpha混合：铰接物体抗锯齿透明度</strong></summary>
+
+**问题：** 标准alpha混合在铰接物体的部件边界处产生颜色渗透。ULF-Loc (CVPR 2026 Highlight) 暴露了特征偏差问题，但尚无渲染方程层面的修复方案。
+
+**思路：** 扩展alpha混合方程引入部件感知不透明度调制项 omega_{p(i)}(theta)，当发生穿透或关节违规时自动降低不透明度，使物理不一致区域在渲染时透明化——物理一致性是渲染的byproduct而非训练目标。
+
+**路径：** 1) 基于gsplat光栅器。 2) 添加FK层处理铰接物体(URDF)。 3) SDF计算穿透/关节违规。 4) 在Articulate-100基准(ArtMesh, CVPR 2026)上训练。 5) 评估：NVPSNR + 物理一致性指标。
+
+**目标：** SIGGRAPH / ACM TOG / TVCG / 计算机学报
+</details>
+
+<details>
+<summary><strong>I-02. 几何一致流世界模型：面向具身操作的3D流预测</strong></summary>
+
+**问题：** 现有基于流的世界模型(RoboFlow4D, 2026)预测稠密3D流但缺乏几何一致性约束——预测的流可能违反物体刚性和物理约束。
+
+**思路：** 将3D流预测与场景图约束耦合：刚性物体施加刚体损失、铰接部件施加关节损失、叠放关系施加支撑约束。快慢协作：快速流预测用于实时引导 + 慢速场景图更新用于规划。
+
+**路径：** 1) 扩展RoboFlow4D架构。 2) 场景图解析器(OpenMask3D)。 3) 几何正则化(刚性/铰接损失)。 4) LIBERO + RoboCasa训练。 5) 基线：RoboFlow4D, RISE, DreamerV3。
+
+**目标：** IJCV / T-RO / RSS / 机器人学报
+</details>
+
+<details>
+<summary><strong>I-03. 双曲空间跨模态蒸馏：3D目标检测</strong></summary>
+
+**问题：** 跨模态蒸馏在将图像特征迁移到点云时存在表示坍缩。欧氏空间本质上难以建模多尺度层次化物体关系。
+
+**思路：** 在双曲空间(Poincare球模型)中进行蒸馏。利用双曲几何体积指数增长特性，更好地保存跨模态融合中的语义层次。三个模块：语义引导体素优化(SGVO) + 双曲特征迁移(HFT) + 特征聚合几何优化(FAGO)。
+
+**路径：** 1) 双曲嵌入层(PoincareBall算子)。 2) 双分支：Swin-B + VoxelNet。 3) 双曲对比损失。 4) 数据集：SUN RGB-D, nuScenes。 5) 指标：mAP, NDS。
+
+**目标：** IEEE T-MM / T-IP / Pattern Recognition / 计算机学报
+</details>
+
+<details>
+<summary><strong>I-04. 立体几何神经-符号推理：带形式化验证</strong></summary>
+
+**问题：** VLM在立体几何(3D体积、截面)上表现极差。Hilbert-Geo (CVPR 2026)引入形式化语言但缺乏验证保证。
+
+**思路：** 神经解析器 + Z3/SMT形式化验证器的迭代精炼循环：VLM提出推理步骤，形式系统验证每步，错误步骤触发重新生成。扩展CDL谓词库(体积、展开等)。
+
+**路径：** 1) 扩展CDL谓词库。 2) 在SolidFGeo2k + 合成数据上训练解析器。 3) 集成Z3 Python API。 4) 评估：准确率 + 形式正确率。 5) 基线：Hilbert-Geo, GPT-4o。
+
+**目标：** Pattern Recognition / AAAI / ICLR / 软件学报
+</details>
+
+<details>
+<summary><strong>I-05. 具身空间记忆：长时程语义持久化</strong></summary>
+
+**问题：** GSMem用3DGS作为空间记忆但缺乏语义持久性——随智能体探索新区域，已观测物体的语义逐渐退化。
+
+**思路：** 海马体启发的记忆系统：短期3DGS场景图 + 周期性语义整合至紧凑嵌入(Perceiver压缩器) + 重要性加权遗忘 + 检索增强的长期规划。
+
+**路径：** 1) 基座：GSMem + SceneGPT。 2) 记忆整合：Perceiver压缩器。 3) 已遗忘区域的情景回放。 4) 任务：HM3D导航、物体搜索。 5) 指标：SPL、随时间语义召回率。
+
+**目标：** T-RO / IJCV / ECCV / 机器人学报
+</details>
+
+<details>
+<summary><strong>I-06. 可微物理引擎：含接触建模的策略优化</strong></summary>
+
+**问题：** OrbiSim (2026)展示了可微物理潜力但缺乏真实接触建模——当前实现假设简化接触力，限制了抓取、推动、堆叠等操作任务。
+
+**思路：** 扩展OrbiSim引入SDF接触检测(任意mesh) + 可微KKT接触求解器 + 库仑摩擦锥投影。实现稀疏奖励接触丰富任务的梯度策略优化。
+
+**路径：** 1) 扩展OrbiSim代码。 2) 神经SDF接触几何(DMTet)。 3) 可微KKT接触层。 4) 任务：MimicGen, LIBERO。 5) 基线：OrbiSim, DreamerV3, PPO。
+
+**目标：** ACM TOG / SIGGRAPH / TVCG / RSS
+</details>
+
+<details>
+<summary><strong>I-07. 统一触觉-视觉空间融合：精细操作</strong></summary>
+
+**问题：** 当前VLA模型(RT-2, GR00T, Pi-0)几乎完全依赖视觉。触觉综述(2026)指出接触几何对精细操作至关重要但整合不足。
+
+**思路：** 统一触觉-视觉空间表示：触觉图像 -> 接触几何图(法线/深度/剪切力) -> 投影至3D场景 -> 跨注意力融合Transformer -> 共享动作解码器。
+
+**路径：** 1) 触觉仿真：GelSight in IsaacSim。 2) 视觉主干：DINOv2。 3) 可微触觉-3D投影。 4) 训练：插入、装配任务。 5) 数据集：MIT Touch、滑移操作基准。
+
+**目标：** T-RO / IJCV / ICRA / 机器人学报
+</details>
+
+<details>
+<summary><strong>I-08. 全景空间世界模型：面向具身导航</strong></summary>
+
+**问题：** PanoWorld将全景视频视为纯视觉合成问题，忽略了导航可供性。NavSpace测试空间指令但缺乏生成式预测。
+
+**思路：** 联合全景世界模型：球形视觉全景 + 自上而下语义BEV + 可遍历性分割 + 空间关系图。实现"先想象再导航"规划闭环。
+
+**路径：** 1) 适配PanoWorld球形扩散模型。 2) 添加并行BEV语义解码器。 3) 可供性头(可遍历性+交互)。 4) 训练：Matterport3D, HM3D。 5) 集成：接入NavSpace闭环导航。
+
+**目标：** ECCV / IJCV / CVPR
+</details>
+
+<details>
+<summary><strong>I-09. 代码即空间词汇：可执行3D场景表示</strong></summary>
+
+**问题：** SpatialBabel (2026)揭示VLM能生成正确的3D代码但在简单空间问题上失败——代码作为外部记忆却无法被模型内部访问。
+
+**思路：** 自监督管线：VLM生成Three.js代码 -> 无头渲染器执行 -> 提取空间标注(深度/法线/关系) -> 用自动提取的QA对微调VLM -> 推理时不再需要代码生成。
+
+**路径：** 1) 扩展S3-FT(SpatialBabel)。 2) 自动化：提示 -> 代码 -> 渲染 -> 标注。 3) 10K+程序化3D场景。 4) 微调Qwen3-VL。 5) 评估：SpatialBabel, CV-Bench-2D/3D。
+
+**目标：** CVPR / NeurIPS / AAAI
+</details>
+
+<details>
+<summary><strong>I-10. 多尺度占用-高斯双向桥接：驾驶世界模型</strong></summary>
+
+**问题：** 占用预测(SparseWorld, DOV)是驾驶世界模型标准；3DGS提供更优渲染质量。两者之间无可微分桥接。
+
+**思路：** 双向转换：Occ->3DGS(不同采样器从占用+语义特征到高斯参数)和3DGS->Occ(学习体素池化)。共享主干实现统一预测+渲染。
+
+**路径：** 1) 主干：SparseWorld-TC或DOV。 2) Occ->3DGS：学习位置+尺度预测器。 3) 3DGS->Occ：可微稀疏卷积池化。 4) 训练：nuScenes, Waymo。 5) 指标：mIoU, PSNR, 延迟。
+
+**目标：** TVCG / T-ITS / CVPR / ICCV
+</details>
+
 ## 路线图
 
 - [x] v0.1 — 初始版本，6 个核心技能（2026年4月）
