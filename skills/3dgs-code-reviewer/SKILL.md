@@ -1,7 +1,7 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 63+ known bug patterns."
-version: 1.1.7
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 66+ known bug patterns."
+version: 1.1.8
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -13,7 +13,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (63+ known patterns)
+- Identify common 3DGS implementation pitfalls (66+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -314,6 +314,24 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 63 | Alpha-compositing introduces inherent feature bias in localization tasks | Poor 2D-3D feature matching accuracy; localization precision plateau; feature distinctiveness degrades with more Gaussians in a region | Standard alpha-compositing aggregates per-Gaussian features using visibility weights (T_i * α_i), causing each Gaussian's stored feature to become a weighted average of neighbors' features during training — learned features are never "pure" representations. Replace alpha-compositing with geometry-weighted aggregation (e.g., inverse distance weighting without visibility blending) for feature localization; use keypoint consensus sampling to filter unreliable features (ULF-Loc, CVPR 2026 Highlight) |
+
+### Feed-Forward Multi-View Scalability Patterns (ZPressor)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 64 | Uncompressed multi-view token aggregation in feed-forward 3DGS | Memory/time grows rapidly with input view count; attention or cost-volume fusion becomes impractical beyond dozens of views; adding views does not improve output because redundant tokens dominate | Add bottleneck-aware latent compression before Gaussian prediction; compress redundant multi-view tokens while preserving geometric cues; test scaling at 2/8/32/100+ views and report memory vs quality (ZPressor, ArXiv 2505.23734) |
+
+### Voxel-Aligned Feed-Forward Patterns (VolSplat)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 65 | Independent pixel-aligned Gaussian prediction for each input view | Duplicate Gaussians, inconsistent geometry across views, view-dependent floaters near occlusions, and poor fusion when camera baselines grow | Use a shared voxel-aligned prediction space so multi-view evidence lands in a common 3D reference frame before Gaussian decoding; validate cross-view consistency and duplicate-pruning rates (VolSplat, ArXiv 2509.19297) |
+
+### Feed-Forward Depth Representation Patterns (PM-Loss)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 66 | Pixel-wise depth loss only for feed-forward 3DGS geometry | Jagged depth discontinuities, over-smoothed object boundaries, and inconsistent point positions after unprojection even when depth error is numerically low | Add pointmap loss that supervises depth-derived 3D coordinates in point space; evaluate boundary-region PSNR/LPIPS and geometry metrics to verify smoother depth transitions without inference-time cost (PM-Loss, ArXiv 2506.05327) |
 
 ## Output Format
 

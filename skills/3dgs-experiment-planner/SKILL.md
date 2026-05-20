@@ -1,7 +1,7 @@
 ---
 name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
-version: 1.1.2
+version: 1.1.3
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
 ---
@@ -93,6 +93,9 @@ Before designing experiments, extract:
 - 2DGS (if making geometry quality claims)
 - SparseSplat (if making feed-forward efficiency claims)
 - GlobalSplat (if making feed-forward footprint claims)
+- ZPressor (if making many-input-view feed-forward scalability claims)
+- VolSplat (if making voxel-aligned or multi-view consistency claims)
+- PM-Loss (if making feed-forward depth representation or boundary smoothness claims)
 
 **Tier 3 — Nice to Compare** (If directly related):
 - Methods from the same category:

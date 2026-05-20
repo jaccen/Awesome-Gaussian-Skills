@@ -58,6 +58,9 @@
 - **DepthSplat**: [中英摘要](https://arxiv.org/abs/2410.13862) | [arXiv:2410.13862](https://arxiv.org/abs/2410.13862) →2410.13862
 - **InstantSplat**: [中英摘要](https://arxiv.org/abs/2403.20309) | [arXiv:2403.20309](https://arxiv.org/abs/2403.20309) →2403.20309
 - **AnySplat**: [中英摘要](https://arxiv.org/abs/2505.23716) | [arXiv:2505.23716](https://arxiv.org/abs/2505.23716) →2505.23716
+- **ZPressor**: [中英摘要](https://arxiv.org/abs/2505.23734) | [arXiv:2505.23734](https://arxiv.org/abs/2505.23734) →2505.23734
+- **PM-Loss**: [中英摘要](https://arxiv.org/abs/2506.05327) | [arXiv:2506.05327](https://arxiv.org/abs/2506.05327) →2506.05327
+- **VolSplat**: [中英摘要](https://arxiv.org/abs/2509.19297) | [arXiv:2509.19297](https://arxiv.org/abs/2509.19297) →2509.19297
 
 > →?Full details in [methods-core.md](methods-core.md#feed-forward-methods)
 
@@ -267,6 +270,9 @@
 | 3DTV | N/A (3-cam) | 40 FPS | N/A | Feedforward depth pyramid |
 | Free Geometry | →?vs baseline (DA3/VGGT) | +LoRA (<2min) | Same | Self-supervised refinement |
 | IDESplat | ~25.5* (RealEstate10K) | Single-pass | N/A | Iterative depth feed-forward |
+| ZPressor | N/A (multi-view scaling) | Single-pass, 100+ views | Compressed latent tokens | Bottleneck-aware scalable multi-view feed-forward 3DGS |
+| VolSplat | N/A (multi-view) | Single-pass | Voxel-aligned grid | Voxel-aligned Gaussian prediction |
+| PM-Loss | N/A (loss regularizer) | Training loss only | No inference cost | Pointmap-supervised depth regularization |
 | MesonGS++ | ~24.5 (34x compressed) | Faster after decode | ~15 MB (34x) | Post-training codec |
 | Semantic Foam | N/A (segmentation) | N/A | Voronoi mesh | Semantic decomposition |
 | EnerGS | →?(outdoor w/ LiDAR) | Same as 3DGS | Same | Energy-based priors |
