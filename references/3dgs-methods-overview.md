@@ -1,14 +1,3 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fed56e39-2d85-4ed3-a604-9c1e09da31e9'
-  PropagateID: 'fed56e39-2d85-4ed3-a604-9c1e09da31e9'
-  ReservedCode1: '08197572-758f-4f23-8e4c-57bc7a7186c6'
-  ReservedCode2: '08197572-758f-4f23-8e4c-57bc7a7186c6'
----
-
 ## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
