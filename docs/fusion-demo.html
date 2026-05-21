@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fusion Roadmap — Awesome Gaussian Skills</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+      colors: {
+        bg: { DEFAULT:'#0a0e1a', card:'#111827', hover:'#1e293b' },
+        accent: { blue:'#3b82f6', purple:'#8b5cf6', cyan:'#06b6d4', green:'#10b981', orange:'#f59e0b', red:'#ef4444', pink:'#ec4899' }
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background:#0a0e1a; }
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:#0a0e1a; }
+  ::-webkit-scrollbar-thumb { background:#334155; border-radius:3px; }
+  .fade-in { opacity:0; transform:translateY(20px); transition:opacity .6s, transform .6s; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+  .layer-card { transition:all .3s; cursor:pointer; }
+  .layer-card:hover { transform:translateY(-6px); }
+  .layer-card.active { ring:2px; }
+  .project-card { transition:all .3s; }
+  .project-card:hover { transform:translateY(-4px); border-color:#3b82f6; }
+  .flow-line { stroke-dasharray:8 4; animation:dash 1.5s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset:-24; } }
+  @keyframes glow { 0%,100%{filter:drop-shadow(0 0 6px rgba(59,130,246,.4))} 50%{filter:drop-shadow(0 0 14px rgba(59,130,246,.8))} }
+  .glow-pulse { animation:glow 2s ease-in-out infinite; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:500; }
+  .skill-node { transition:all .25s; cursor:pointer; }
+  .skill-node:hover { transform:scale(1.08); filter:brightness(1.2); }
+  .detail-panel { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+  .detail-panel.open { max-height:600px; }
+  .arch-flow-arrow { animation:flowRight 2s ease-in-out infinite; }
+  @keyframes flowRight { 0%{opacity:.3;transform:translateX(-4px)} 50%{opacity:1;transform:translateX(4px)} 100%{opacity:.3;transform:translateX(-4px)} }
+  /* ---- Static color classes for JS-rendered content ---- */
+  .tag-pink   { background:rgba(236,72,153,.15); color:#f9a8d4; border:1px solid rgba(236,72,153,.25); }
+  .tag-cyan   { background:rgba(6,182,212,.15);  color:#67e8f9; border:1px solid rgba(6,182,212,.25); }
+  .tag-blue   { background:rgba(59,130,246,.15); color:#93c5fd; border:1px solid rgba(59,130,246,.25); }
+  .tag-green  { background:rgba(16,185,129,.15); color:#6ee7b7; border:1px solid rgba(16,185,129,.25); }
+  .tag-purple { background:rgba(139,92,246,.15); color:#c4b5fd; border:1px solid rgba(139,92,246,.25); }
+  .tag-orange { background:rgba(245,158,11,.15); color:#fcd34d; border:1px solid rgba(245,158,11,.25); }
+  .icon-box-pink   { background:rgba(236,72,153,.15); border:1px solid rgba(236,72,153,.25); }
+  .icon-box-cyan   { background:rgba(6,182,212,.15);  border:1px solid rgba(6,182,212,.25); }
+  .icon-box-blue   { background:rgba(59,130,246,.15); border:1px solid rgba(59,130,246,.25); }
+  .icon-box-green  { background:rgba(16,185,129,.15); border:1px solid rgba(16,185,129,.25); }
+  .icon-box-purple { background:rgba(139,92,246,.15); border:1px solid rgba(139,92,246,.25); }
+  .icon-box-orange { background:rgba(245,158,11,.15); border:1px solid rgba(245,158,11,.25); }
+  .text-pink-custom   { color:#f9a8d4; }
+  .text-cyan-custom   { color:#67e8f9; }
+  .text-blue-custom   { color:#93c5fd; }
+  .text-green-custom  { color:#6ee7b7; }
+  .text-purple-custom { color:#c4b5fd; }
+  .text-orange-custom { color:#fcd34d; }
+  .accent-pink   { color:#f9a8d4; }
+  .accent-cyan   { color:#67e8f9; }
+  .accent-blue   { color:#93c5fd; }
+  .accent-green  { color:#6ee7b7; }
+  .accent-purple { color:#c4b5fd; }
+  .accent-orange { color:#fcd34d; }
+  .dot-pink   { background:rgba(236,72,153,.2); border:2px solid rgba(236,72,153,.5); }
+  .dot-cyan   { background:rgba(6,182,212,.2);  border:2px solid rgba(6,182,212,.5); }
+  .dot-blue   { background:rgba(59,130,246,.2); border:2px solid rgba(59,130,246,.5); }
+  .dot-green  { background:rgba(16,185,129,.2); border:2px solid rgba(16,185,129,.5); }
+  .dot-purple { background:rgba(139,92,246,.2); border:2px solid rgba(139,92,246,.5); }
+  .dot-orange { background:rgba(245,158,11,.2); border:2px solid rgba(245,158,11,.5); }
+  .dot-gray   { background:rgba(107,114,128,.2); border:2px solid rgba(107,114,128,.5); }
+  .dot-inner-pink   { background:#ec4899; }
+  .dot-inner-cyan   { background:#06b6d4; }
+  .dot-inner-blue   { background:#3b82f6; }
+  .dot-inner-green  { background:#10b981; }
+  .dot-inner-purple { background:#8b5cf6; }
+  .dot-inner-orange { background:#f59e0b; }
+  .dot-inner-gray   { background:#6b7280; }
+</style>
+</head>
+<body class="text-gray-300 font-sans antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-bg/80 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 text-white font-bold text-lg">
+      <svg class="w-6 h-6 text-accent-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      AGS Fusion
+    </a>
+    <div class="flex items-center gap-5 text-sm text-gray-400">
+      <a href="#architecture" class="hover:text-white transition">Architecture</a>
+      <a href="#layers" class="hover:text-white transition">Layers</a>
+      <a href="#projects" class="hover:text-white transition">Projects</a>
+      <a href="#roadmap" class="hover:text-white transition">Roadmap</a>
+      <a href="index.html" class="px-3 py-1.5 rounded-lg bg-accent-blue text-white text-xs font-medium hover:bg-blue-600 transition">Back to Demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="pt-28 pb-16 sm:pt-36 sm:pb-24 text-center relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl"></div>
+  </div>
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-blue/10 text-accent-blue text-xs font-medium mb-6 border border-accent-blue/20">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent-blue glow-pulse"></span>
+      10 Projects × 10 Skills = Full-Chain Fusion
+    </div>
+    <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-6">
+      Knowledge → Generation → Deployment
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+      Awesome Gaussian Skills 从"知识层"升级为全链路融合框架：<br>
+      516+ 方法知识库 × 10 开源项目 = 生成→编辑→交互→仿真→部署 闭环
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 text-xs">
+      <span class="px-3 py-1.5 rounded-lg bg-pink-500/10 text-pink-300 border border-pink-500/20">生成 Generation</span>
+      <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">训练 Training</span>
+      <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 border border-blue-500/20">编辑 Editing</span>
+      <span class="px-3 py-1.5 rounded-lg bg-green-500/10 text-green-300 border border-green-500/20">交互 Interaction</span>
+      <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/20">仿真 Simulation</span>
+      <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-300 border border-orange-500/20">部署 Deployment</span>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture Flow -->
+<section id="architecture" class="py-16 sm:py-20 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Fusion Architecture</h2>
+      <p class="mt-3 text-gray-400">Six-layer pipeline: each layer driven by an AGS Skill + Open-source Platform</p>
+    </div>
+    <!-- Flow Diagram -->
+    <div class="relative overflow-x-auto pb-4">
+      <div class="flex items-center justify-center gap-2 sm:gap-3 min-w-[800px] mx-auto">
+        <!-- Generate -->
+        <div class="flex-1 max-w-[180px] text-center">
+          <div class="rounded-xl bg-pink-500/10 border border-pink-500/30 p-4 mb-2 hover:border-pink-400/60 transition">
+            <div class="text-2xl mb-1">🎨</div>
+            <div class="text-sm font-bold text-pink-300">Generation</div>
+            <div class="text-xs text-gray-500 mt-1">HunyuanWorld</div>
+          </div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-world-generator</div>
+        </div>
+        <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- Train -->
+        <div class="flex-1 max-w-[180px] text-center">
+          <div class="rounded-xl bg-cyan-500/10 border border-cyan-500/30 p-4 mb-2 hover:border-cyan-400/60 transition">
+            <div class="text-2xl mb-1">⚡</div>
+            <div class="text-sm font-bold text-cyan-300">Training</div>
+            <div class="text-xs text-gray-500 mt-1">Brush</div>
+          </div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-train-anywhere</div>
+        </div>
+        <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- Edit -->
+        <div class="flex-1 max-w-[180px] text-center">
+          <div class="rounded-xl bg-blue-500/10 border border-blue-500/30 p-4 mb-2 hover:border-blue-400/60 transition">
+            <div class="text-2xl mb-1">✂️</div>
+            <div class="text-sm font-bold text-blue-300">Editing</div>
+            <div class="text-xs text-gray-500 mt-1">SuperSplat + Chili3D</div>
+          </div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-splat-editor / cad-mesh-3dgs</div>
+        </div>
+        <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- Interact -->
+        <div class="flex-1 max-w-[180px] text-center">
+          <div class="rounded-xl bg-green-500/10 border border-green-500/30 p-4 mb-2 hover:border-green-400/60 transition">
+            <div class="text-2xl mb-1">🎮</div>
+            <div class="text-sm font-bold text-green-300">Interaction</div>
+            <div class="text-xs text-gray-500 mt-1">Bevy + GS</div>
+          </div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-game-prototyper</div>
+        </div>
+        <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- Simulate -->
+        <div class="flex-1 max-w-[180px] text-center">
+          <div class="rounded-xl bg-purple-500/10 border border-purple-500/30 p-4 mb-2 hover:border-purple-400/60 transition">
+            <div class="text-2xl mb-1">🤖</div>
+            <div class="text-sm font-bold text-purple-300">Simulation</div>
+            <div class="text-xs text-gray-500 mt-1">ManiSkill + OpenLoong</div>
+          </div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-embodied-sim</div>
+        </div>
+        <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- Deploy -->
+        <div class="flex-1 max-w-[180px] text-center">
+          <div class="rounded-xl bg-orange-500/10 border border-orange-500/30 p-4 mb-2 hover:border-orange-400/60 transition">
+            <div class="text-2xl mb-1">🌍</div>
+            <div class="text-sm font-bold text-orange-300">Deployment</div>
+            <div class="text-xs text-gray-500 mt-1">CesiumJS + Osiris + TvT.js</div>
+          </div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-gis-pipeline / 3dgs-osint-layer</div>
+        </div>
+      </div>
+    </div>
+    <!-- Core insight -->
+    <div class="mt-12 rounded-2xl border border-white/10 bg-bg-card/80 p-6 sm:p-8 max-w-3xl mx-auto text-center">
+      <p class="text-sm text-gray-400 leading-relaxed">
+        <span class="text-white font-semibold">核心逻辑</span>：Awesome Gaussian Skills 目前是"知识层"（读论文、比方法、审代码），融合 10 个开源项目后形成
+        <span class="text-accent-blue font-semibold">"知识→生成→编辑→交互→仿真→部署"</span>全链路。每个环节由一个 Skill 驱动一个开源平台完成。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Project Cards -->
+<section id="projects" class="py-16 sm:py-20 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">10 Fusion Projects</h2>
+      <p class="mt-3 text-gray-400">Click any card to see fusion details</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="projectGrid"></div>
+  </div>
+</section>
+
+<!-- Layer Detail -->
+<section id="layers" class="py-16 sm:py-20 fade-in border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Six Fusion Layers</h2>
+      <p class="mt-3 text-gray-400">Each layer connects AGS knowledge base → Skill → Open-source platform</p>
+    </div>
+    <div class="space-y-4" id="layerAccordion"></div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section id="roadmap" class="py-16 sm:py-20 fade-in border-t border-white/5">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Fusion Roadmap</h2>
+      <p class="mt-3 text-gray-400">Phased rollout — big plan, small cuts</p>
+    </div>
+    <div class="relative">
+      <div class="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent-blue via-accent-purple to-accent-cyan"></div>
+      <div class="space-y-6" id="roadmapTimeline"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+    <p>Awesome Gaussian Skills Fusion Framework — Apache-2.0</p>
+    <a href="index.html" class="text-accent-blue hover:text-blue-400 transition">Back to Main Demo</a>
+  </div>
+</footer>
+
+<script>
+// ===== DATA =====
+const PROJECTS = [
+  {
+    id: "hunyuanworld",
+    name: "HunyuanWorld",
+    org: "Tencent-Hunyuan",
+    stars: "2k",
+    license: "Apache-2.0",
+    layer: "Generation",
+    layerColor: "pink",
+    url: "https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0",
+    demo: "https://3d-world.hunyuan.tencent.com",
+    tags: ["Text→3DGS", "World Model", "Tencent"],
+    skill: "3dgs-world-generator",
+    desc: "腾讯开源的3D世界生成模型。唯一同时输出3DGS+Mesh+点云的开源世界模型——一句话生成可漫游3DGS场景。",
+    fusion: `当前516+方法都是"照片→3DGS"，缺"文本→3DGS"。融合后：用户说"赛博朋克城市街道"→ Skill调HunyuanWorld API → 3DGS场景 → SuperSplat编辑 → 社区分享。与Tripo/Meshy API对接形成"文本→3DGS→编辑→部署"全链路。`,
+    kbRef: "前馈式3DGS、4DGS动态生成方向"
+  },
+  {
+    id: "brush",
+    name: "Brush",
+    org: "ArthurBrussee",
+    stars: "4.4k",
+    license: "MIT",
+    layer: "Training",
+    layerColor: "cyan",
+    url: "https://github.com/ArthurBrussee/brush",
+    demo: null,
+    tags: ["Rust", "WebGPU", "No CUDA", "WASM"],
+    skill: "3dgs-train-anywhere",
+    desc: "去CUDA依赖的跨平台3DGS训练引擎。Rust+WebGPU，浏览器(Chrome 134+)、桌面、Android均可训练+渲染。",
+    fusion: "解决3DGS最大工程瓶颈——CUDA依赖。新增 3dgs-train-anywhere Skill：用户在任意设备执行 brush train → Agent实时读取训练日志 → 3dgs-code-reviewer Skill诊断loss异常。浏览器内训练+Agent实时指导 = 人人可用的3D重建。",
+    kbRef: "去CUDA依赖方向、Vulkan/Metal/通用/Rust-WebGPU跨平台训练"
+  },
+  {
+    id: "supersplat",
+    name: "SuperSplat",
+    org: "playcanvas",
+    stars: "7.9k",
+    license: "MIT",
+    layer: "Editing",
+    layerColor: "blue",
+    url: "https://github.com/playcanvas/supersplat",
+    demo: "https://supersplat.playcanvas.com",
+    tags: ["PLY Editor", "SOG Compression", "PlayCanvas"],
+    skill: "3dgs-splat-editor",
+    desc: "唯一开源浏览器端3DGS编辑器。拖入PLY即可检查、裁剪、变换、优化，一键SOG压缩(~20x)并发布社区。",
+    fusion: `Agent驱动的创作→编辑→发布闭环。Skill调用SuperSplat API自动剪裁噪声/压缩SOG。Skill从"知识顾问"变为"3DGS修图师"——与Brush训练管线衔接形成 train → auto-clean → compress → share。`,
+    kbRef: "SOG格式压缩、SplatTransform CLI工具链"
+  },
+  {
+    id: "chili3d",
+    name: "Chili3D",
+    org: "xiangechen",
+    stars: "4.5k",
+    license: "MIT",
+    layer: "Editing",
+    layerColor: "blue",
+    url: "https://github.com/xiangechen/chili3d",
+    demo: "https://chili3d.com",
+    tags: ["Web CAD", "OpenCascade WASM", "Boolean Ops"],
+    skill: "cad-mesh-3dgs (extended)",
+    desc: "浏览器端3D CAD应用。OpenCascade编译为WASM，支持布尔运算/草图/挤出/扫掠等专业建模，无需安装。",
+    fusion: "与 cad-mesh-3dgs Skill天然互补。Chili3D构建几何 → Skill转为3DGS渲染 → 用户在3DGS场景中放置CAD精确模型 → 3dgs-surface Skill提取mesh回Chili3D编辑。精确建模+照片级渲染双模工作流。",
+    kbRef: "CADFit/CADFS方法、mesh↔3DGS双向转换"
+  },
+  {
+    id: "bevy-gs",
+    name: "Bevy + GS Plugin",
+    org: "bevyengine / mosure",
+    stars: "46k / 300+",
+    license: "MIT / Apache-2.0",
+    layer: "Interaction",
+    layerColor: "green",
+    url: "https://github.com/mosure/bevy_gaussian_splatting",
+    demo: null,
+    tags: ["Rust Game Engine", "ECS", "WebGPU"],
+    skill: "3dgs-game-prototyper",
+    desc: "Rust数据驱动游戏引擎Bevy + 3DGS一等渲染管线插件。3DGS进入游戏引擎的最早实践，支持碰撞、物理、游戏状态。",
+    fusion: "3DGS从展示品变交互品。Skill输出3DGS场景 → bevy_gaussian_splatting加载 → Bevy ECS挂载碰撞体/Trigger/NPC AI → Skill生成Rust游戏代码。与3dgs-experiment-planner结合，自动生成可运行的3DGS游戏原型。",
+    kbRef: "Rendering formulation创新(softmax竞争/OIT)、密度控制在游戏中的应用"
+  },
+  {
+    id: "maniskill",
+    name: "ManiSkill",
+    org: "haosulab",
+    stars: "2.9k",
+    license: "MIT",
+    layer: "Simulation",
+    layerColor: "purple",
+    url: "https://github.com/haosulab/ManiSkill",
+    demo: null,
+    tags: ["GPU Parallel Sim", "Robot Manipulation", "RL"],
+    skill: "3dgs-embodied-sim",
+    desc: "开源GPU并行机器人操作仿真器。数千环境并行训练，抓取/推动/堆叠，RL+模仿学习统一接口。",
+    fusion: `解决"3DGS逼真但不可交互"瓶颈。3DGS重建→表面提取为碰撞Mesh→注入ManiSkill→GPU并行训练→Skill评估sim-to-real gap。与RoboSplat/GSMem方法结合，Real2Sim2Real闭环。`,
+    kbRef: "GSMem(3DGS空间记忆)、RoboSplat(3DGS→机器人数据)、GraspSplats"
+  },
+  {
+    id: "openloong",
+    name: "OpenLoong",
+    org: "loongOpen",
+    stars: "500+",
+    license: "Apache-2.0",
+    layer: "Simulation",
+    layerColor: "purple",
+    url: "https://github.com/loongOpen/openloong",
+    demo: null,
+    tags: ["Humanoid Robot", "Full-Stack", "National Lab"],
+    skill: "3dgs-embodied-sim (extended)",
+    desc: "国家地方共建人形机器人创新中心出品。云端大脑→具身小脑→实体→数据全栈开源，国内首个全链路人形机器人项目。",
+    fusion: `3DGS+人形机器人"国家线"落地。3DGS重建→碰撞体→Unity-RL-Playground仿真→OpenLoong策略训练→实体部署。Skill提供3DGS环境建模→仿真→评估自动化。`,
+    kbRef: "具身AI/Robotics子分类7篇方法、ManiGaussian(动态GS世界模型)"
+  },
+  {
+    id: "cesium",
+    name: "CesiumJS",
+    org: "CesiumGS",
+    stars: "15k",
+    license: "Apache-2.0",
+    layer: "Deployment",
+    layerColor: "orange",
+    url: "https://github.com/CesiumGS/cesium",
+    demo: "https://cesium.com/platform/cesiumjs/",
+    tags: ["3D Globe", "3D Tiles", "glTF+GS Extension"],
+    skill: "3dgs-gis-pipeline",
+    desc: "开源3D地球JS库。已实验性支持3DGS通过3D Tiles加载，正推动KHR_gaussian_splatting glTF扩展标准化。",
+    fusion: "解决GIS工具链断裂5大根因。3dgs-gis-pipeline Skill：训练城市级3DGS → libTileSplat转3D Tiles → 添加空间参考 → CesiumJS加载为地球实景层。与3dgs-engineering-guide结合，3DGS+GIS+实时遥感的城市级数字孪生方案。",
+    kbRef: "GIS工具链断裂5大根因、libTileSplat、分布式城市GS"
+  },
+  {
+    id: "tvtjs",
+    name: "TvT.js",
+    org: "hawk86104",
+    stars: "6.6k+",
+    license: "MIT",
+    layer: "Deployment",
+    layerColor: "orange",
+    url: "https://github.com/hawk86104/three-vue-tres",
+    demo: "http://icegl.cn/tvt",
+    tags: ["Vue3", "Three.js", "AI Skills Arch", "Gitee 4.3k"],
+    skill: "10 Skills as Vue3 Plugins",
+    desc: "国产Vue3+Three.js三维可视化框架，已扩展AI Skills/OpenSpec能力槽，含在线3D场景编辑器。GitHub 2.3k + Gitee 4.3k。",
+    fusion: "融合成本最低——已有AI Skills架构，3DGS Skill即插即用。gsplat.js/GaussianSplats3D封装为TvT.js 3DGS组件 → 10个Skill以插件形式发布 → Vue开发者拖拽式创建3DGS交互场景。3DGS Skill体系进入国内Vue生态最快路径。",
+    kbRef: "PlayCanvas生态(SuperSplat+splat-transform)、gsplat.js"
+  },
+  {
+    id: "osiris",
+    name: "Osiris",
+    org: "simplifaisoul",
+    stars: "1.3k",
+    license: "MIT",
+    layer: "Deployment",
+    layerColor: "orange",
+    url: "https://github.com/simplifaisoul/osiris",
+    demo: "https://osirisai.live",
+    tags: ["OSINT", "MapLibre GL", "Palantir Alt"],
+    skill: "3dgs-osint-layer",
+    desc: `开源全球情报平台——实时航迹/2000+CCTV/地震/冲突区/25+新闻直播/RECON网络侦察。被称为"开源Palantir"。`,
+    fusion: "3DGS+OSINT = 战术级态势感知。Osiris地图层缺3D地面真实。3dgs-osint-layer Skill：对冲突区/港口/机场3DGS重建 → 叠加到MapLibre → 点击情报标记直接进入3DGS地面漫游。RECON工具+3DGS物理空间形成虚拟-现实双向侦察。",
+    kbRef: "自主驾驶仿真(最热赛道)、3DGS安全与水印"
+  }
+];
+
+const LAYERS = [
+  { name:"Generation", color:"pink", icon:"🎨", desc:"文本→3DGS场景，补上知识库到生成的缺口", projects:["hunyuanworld"], skillTarget:"3dgs-world-generator", phase:"v0.3" },
+  { name:"Training", color:"cyan", icon:"⚡", desc:"去CUDA跨平台训练，人人可用", projects:["brush"], skillTarget:"3dgs-train-anywhere", phase:"v0.3" },
+  { name:"Editing", color:"blue", icon:"✂️", desc:"3DGS修图师：剪裁/压缩/CAD精确建模双模", projects:["supersplat","chili3d"], skillTarget:"3dgs-splat-editor / cad-mesh-3dgs", phase:"v0.4" },
+  { name:"Interaction", color:"green", icon:"🎮", desc:"3DGS从展示品变交互品：碰撞/物理/游戏逻辑", projects:["bevy-gs"], skillTarget:"3dgs-game-prototyper", phase:"v0.5" },
+  { name:"Simulation", color:"purple", icon:"🤖", desc:"3DGS场景→机器人仿真→策略训练→Real部署", projects:["maniskill","openloong"], skillTarget:"3dgs-embodied-sim", phase:"v0.6" },
+  { name:"Deployment", color:"orange", icon:"🌍", desc:"GIS地球/OSINT态势/Vue前端，3DGS走向生产", projects:["cesium","tvtjs","osiris"], skillTarget:"3dgs-gis-pipeline / 3dgs-osint-layer", phase:"v1.0" }
+];
+
+const ROADMAP = [
+  { phase:"v0.3", title:"Generation + Training Layer", color:"pink", items:["3dgs-world-generator Skill: HunyuanWorld API封装，Text→3DGS", "3dgs-train-anywhere Skill: Brush CLI封装，去CUDA训练", "Skill自动推荐最优训练方法（基于516+方法知识库）"], status:"planned" },
+  { phase:"v0.4", title:"Editing Layer", color:"blue", items:["3dgs-splat-editor Skill: SuperSplat API自动化剪裁/压缩/发布", "cad-mesh-3dgs扩展: Chili3D+3DGS双模工作流", "train→auto-clean→compress→share 闭环验证"], status:"planned" },
+  { phase:"v0.5", title:"Interaction Layer", color:"green", items:["3dgs-game-prototyper Skill: Bevy+3DGS交互原型生成", "碰撞体/Trigger Zone自动提取", "自然语言→Rust游戏代码生成"], status:"planned" },
+  { phase:"v0.6", title:"Simulation Layer", color:"purple", items:["3dgs-embodied-sim Skill: ManiSkill+OpenLoong融合", "3DGS表面→碰撞Mesh自动转换", "Real2Sim2Real闭环验证（工业场景）"], status:"planned" },
+  { phase:"v1.0", title:"Deployment Layer + Official Release", color:"orange", items:["3dgs-gis-pipeline Skill: CesiumJS 3D Tiles全链路", "3dgs-osint-layer Skill: Osiris+3DGS态势感知", "10 Skills as TvT.js Vue3插件", "ClawHub正式收录 + CI/CD集成"], status:"planned" },
+  { phase:"v2.0", title:"Agent-to-Agent Collaboration", color:"cyan", items:["多Agent论文讨论（3DGS研究者虚拟圆桌）", "跨Skill编排：一键端到端 3DGS工作流", "社区贡献插件市场"], status:"vision" }
+];
+
+// ===== RENDER =====
+function renderProjects() {
+  const grid = document.getElementById('projectGrid');
+  grid.innerHTML = PROJECTS.map(p => {
+    const c = p.layerColor;
+    return `
+    <div class="project-card rounded-2xl border border-white/10 bg-bg-card/80 overflow-hidden" onclick="toggleDetail('${p.id}')">
+      <div class="p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="tag tag-${c}">${p.layer}</span>
+          <span class="tag bg-yellow-500/15 text-yellow-300 border border-yellow-500/25">${p.stars}★</span>
+          <span class="tag bg-green-500/15 text-green-300 border border-green-500/25">${p.license}</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-1">${p.name}</h3>
+        <p class="text-xs text-gray-500 mb-3">${p.org}</p>
+        <p class="text-sm text-gray-400 mb-3 leading-relaxed">${p.desc}</p>
+        <div class="flex flex-wrap gap-1 mb-3">
+          ${p.tags.map(t => `<span class="px-2 py-0.5 rounded text-[10px] bg-white/5 text-gray-400">${t}</span>`).join('')}
+        </div>
+        <div class="text-xs text-gray-500"><span class="text-gray-400 font-medium">Skill:</span> ${p.skill}</div>
+      </div>
+      <div class="detail-panel border-t border-white/5" id="detail-${p.id}">
+        <div class="p-5 bg-white/[0.02]">
+          <h4 class="text-sm font-semibold accent-${c} mb-2">Fusion Plan</h4>
+          <p class="text-sm text-gray-400 leading-relaxed mb-3">${p.fusion}</p>
+          <div class="text-xs text-gray-600 mb-3"><span class="text-gray-400">KB Reference:</span> ${p.kbRef}</div>
+          <div class="flex gap-2">
+            <a href="${p.url}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-white text-gray-900 text-xs font-medium hover:bg-gray-200 transition">GitHub</a>
+            ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg border border-white/20 text-white text-xs font-medium hover:bg-white/10 transition">Demo</a>` : ''}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleDetail(id) {
+  const el = document.getElementById('detail-' + id);
+  el.classList.toggle('open');
+}
+
+function renderLayers() {
+  const acc = document.getElementById('layerAccordion');
+  acc.innerHTML = LAYERS.map((l, i) => {
+    const projs = l.projects.map(pid => PROJECTS.find(p => p.id === pid));
+    return `
+    <div class="rounded-2xl border border-white/10 bg-bg-card/80 overflow-hidden">
+      <div class="p-5 flex items-center gap-4 cursor-pointer hover:bg-white/[0.02] transition" onclick="this.nextElementSibling.classList.toggle('open')">
+        <div class="w-12 h-12 rounded-xl icon-box-${l.color} flex items-center justify-center text-2xl flex-shrink-0">${l.icon}</div>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-lg font-bold text-${l.color}-custom">${l.name}</h3>
+          <p class="text-sm text-gray-500">${l.desc}</p>
+        </div>
+        <div class="text-xs text-gray-600 flex-shrink-0">${l.phase}</div>
+        <svg class="w-5 h-5 text-gray-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="detail-panel">
+        <div class="px-5 pb-5 pt-2 border-t border-white/5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+            ${projs.map(p => `
+            <div class="rounded-lg bg-white/5 p-3">
+              <div class="font-semibold text-white text-sm mb-1">${p.name}</div>
+              <div class="text-xs text-gray-500 mb-2">${p.org} · ${p.stars}★</div>
+              <div class="text-xs text-gray-400 leading-relaxed">${p.desc.slice(0,80)}...</div>
+            </div>`).join('')}
+          </div>
+          <div class="text-xs text-gray-500">
+            <span class="text-gray-400 font-medium">Target Skill:</span>             <span class="text-${l.color}-custom">${l.skillTarget}</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderRoadmap() {
+  const el = document.getElementById('roadmapTimeline');
+  el.innerHTML = ROADMAP.map(r => {
+    const statusColor = r.status === 'vision' ? 'gray' : r.color;
+    const statusText = r.status === 'vision' ? 'Vision' : 'Planned';
+    return `
+    <div class="relative pl-14">
+      <div class="absolute left-4 top-1 w-5 h-5 rounded-full dot-${statusColor} flex items-center justify-center">
+        <div class="w-2 h-2 rounded-full dot-inner-${statusColor}"></div>
+      </div>
+      <div class="rounded-xl border border-white/10 bg-bg-card/80 p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="px-2 py-0.5 rounded text-xs font-bold tag-${r.color}">${r.phase}</span>
+          <h3 class="text-base font-bold text-white">${r.title}</h3>
+          <span class="tag bg-white/5 text-gray-500 ml-auto">${statusText}</span>
+        </div>
+        <ul class="space-y-1.5">
+          ${r.items.map(item => `<li class="text-sm text-gray-400 flex items-start gap-2"><span class="text-gray-600 mt-1">•</span>${item}</li>`).join('')}
+        </ul>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Intersection observer
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.05 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Init
+renderProjects();
+renderLayers();
+renderRoadmap();
+</script>
+</body>
+</html>
