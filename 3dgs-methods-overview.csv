@@ -44,12 +44,15 @@ GS-LRM,2404.19702,ECCV 2024,2024,Feed-Forward Methods,1B-parameter transformer w
 IDESplat,2601.03824,CVPR 2026,2026,Feed-Forward Methods,Iterative depth probability with epipolar attention,https://github.com/CVL-UESTC/IDESplat
 InstantSplat,2403.20309,,2024,Feed-Forward Methods,Pose-free sparse-view reconstruction in ~40 seconds,https://github.com/NVlabs/InstantSplat
 MVSplat,2403.14627,ECCV 2024,2024,Feed-Forward Methods,Cost-volume-based 3DGS from 3 sparse views,https://github.com/donydchen/mvsplat
+PM-Loss,2506.05327,3DV 2026,2026,Feed-Forward Methods,Pointmap-supervised depth regularization for smoother feed-forward 3DGS boundaries,https://github.com/aim-uofa/PM-Loss
 Reliev3R,2604.00548,CVPR 2026,2026,Feed-Forward Methods,Reduces dependency on dense multi-view geometric annotations,
 Spark3R,2605.06270,,2026,Feed-Forward Methods,Training-free asymmetric query/KV token compression for 28x speedup on feed-forward 3D reconstruction,
 SparseSplat,,CVPR 2026,2026,Feed-Forward Methods,"Entropy-based adaptive density, SOTA with 22% of Gaussians (150K vs 688K)",https://github.com/victkk/SparseSplat-page
 TokenGS,2604.15239,,2026,Feed-Forward Methods,Learnable tokens decoupling 3D Gaussian prediction from pixels,
 TRiGS,2604.00538,,2026,Feed-Forward Methods,SE(3) + Bezier residuals for scalable 4DGS,
 WildSplatter,2604.21182,,2026,Feed-Forward Methods,"Unconstrained images with appearance embeddings, <1s reconstruction",https://github.com/yfujimura/WildSplatter
+ZPressor,2505.23734,NeurIPS 2025,2025,Feed-Forward Methods,Bottleneck-aware latent compression enabling scalable feed-forward 3DGS from 100+ input views,https://github.com/ziplab/ZPressor
+VolSplat,2509.19297,arXiv 2025,2025,Feed-Forward Methods,Voxel-aligned Gaussian prediction replacing pixel-aligned splats for multi-view consistency,https://github.com/ziplab/VolSplat
 CAGS,2605.09279,SIGGRAPH 2026,2026,Compression Methods,VQ-based LoD for 3DGS streaming + low-res reference image color-distortion correction; +5~20 dB PSNR over baselines,https://github.com/yindaheng98/ColorAdaptiveGaussianSplatting
 Compact-3DGS,,,,Compression Methods,"Vector quantization + pruning, ~10-15x compression",
 Embedded-3DGS,,,,Compression Methods,"Neural architecture search, ~10x compression",

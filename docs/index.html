@@ -129,8 +129,8 @@ tailwind.config = {
       The First AI Agent Skill Pack for 3D Gaussian Splatting & Computer Graphics Research
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">512+ Methods</span>
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">23 Categories</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">534+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">25 Categories</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">10 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
         <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span> Daily Updates
@@ -354,7 +354,7 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">512+ 3DGS methods analyzed —best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">534+ 3DGS methods analyzed —best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -658,7 +658,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 512 methods across 23 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 534 methods across 25 categories</p>
       <div class="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm">
         <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue/10 border border-accent-blue/20 text-accent-blue">
           <span class="font-bold">1</span> Search or filter by category
@@ -793,12 +793,15 @@ const METHODS = [
   { name: "IDESplat", short: "IDESplat", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Iterative depth probability with epipolar attention", arxiv: "2601.03824" , citations: 0 },
   { name: "InstantSplat", short: "InstantSplat", cat: "Feed-Forward", venue: "arXiv", year: 2024, desc: "Pose-free sparse-view reconstruction in ~40 seconds", arxiv: "2403.20309" , citations: 0 },
   { name: "MVSplat", short: "MVSplat", cat: "Feed-Forward", venue: "ECCV", year: 2024, desc: "Cost-volume-based 3DGS from 3 sparse views", arxiv: "2403.14627" , citations: 0 },
+  { name: "PM-Loss", short: "PM-Loss", cat: "Feed-Forward", venue: "3DV", year: 2026, desc: "Pointmap-supervised depth regularization for feed-forward 3DGS", arxiv: "2506.05327" , citations: 0 },
   { name: "Reliev3R", short: "Reliev3R", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Reduces dependency on dense multi-view geometric annotations", arxiv: "2604.00548" , citations: 0 },
   { name: "Spark3R", short: "Spark3R", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Training-free asymmetric query/KV token compression for 28x speedup on feed-f...", arxiv: "2605.06270" , citations: 0 },
   { name: "SparseSplat", short: "SparseSplat", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Entropy-based adaptive density, SOTA with 22% of Gaussians (150K vs 688K)", arxiv: "" , citations: 0 },
   { name: "TokenGS", short: "TokenGS", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Learnable tokens decoupling 3D Gaussian prediction from pixels", arxiv: "2604.15239" , citations: 0 },
   { name: "TRiGS", short: "TRiGS", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "SE(3) + Bezier residuals for scalable 4DGS", arxiv: "2604.00538" , citations: 0 },
+  { name: "VolSplat", short: "VolSplat", cat: "Feed-Forward", venue: "arXiv", year: 2025, desc: "Voxel-aligned Gaussian prediction for multi-view feed-forward 3DGS", arxiv: "2509.19297" , citations: 0 },
   { name: "WildSplatter", short: "WildSplatter", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Unconstrained images with appearance embeddings, <1s reconstruction", arxiv: "2604.21182" , citations: 0 },
+  { name: "ZPressor", short: "ZPressor", cat: "Feed-Forward", venue: "NeurIPS", year: 2025, desc: "Bottleneck-aware compression for 100+ input-view feed-forward 3DGS", arxiv: "2505.23734" , citations: 0 },
   { name: "CAGS", short: "CAGS", cat: "Compression", venue: "SIGGRAPH", year: 2026, desc: "VQ-based LoD for 3DGS streaming + low-res reference image color-distortion co...", arxiv: "2605.09279" , citations: 0 },
   { name: "Compact-3DGS", short: "Compact-3DGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Vector quantization + pruning, ~10-15x compression", arxiv: "" , citations: 0 },
   { name: "Embedded-3DGS", short: "Embedded-3DGS", cat: "Compression", venue: "arXiv", year: 2024, desc: "Neural architecture search, ~10x compression", arxiv: "" , citations: 0 },
@@ -1502,6 +1505,9 @@ const METHOD_DETAILS = {
   "Luminance-GS++": { innovation: "View-adaptive color/lightness correction for robust NVS", codeUrl: "" },
   "SNS": { innovation: "Azzalini Skew-Normal distribution as 3DGS primitive; learnable skewness for asymmetric boundary modeling", codeUrl: "" },
   "SplatWeaver": { innovation: "Cardinality Gaussian Expert Routing (0/1/2/3 experts) + DWT frequency prior + neighbor-conditioned prediction", codeUrl: "" },
+  "ZPressor": { innovation: "Bottleneck-aware latent compression for scalable multi-view feed-forward 3DGS, including 100+ input-view settings", codeUrl: "https://github.com/ziplab/ZPressor" },
+  "VolSplat": { innovation: "Voxel-aligned Gaussian prediction replacing pixel-aligned splats for stronger multi-view consistency", codeUrl: "https://github.com/ziplab/VolSplat" },
+  "PM-Loss": { innovation: "Pointmap-supervised depth regularization for feed-forward 3DGS; improves boundary smoothness without inference overhead", codeUrl: "https://github.com/aim-uofa/PM-Loss" },
   "MGS": { innovation: "Matryoshka continuous LoD via stochastic budget training; single ordered set renders any prefix k splats", codeUrl: "" },
   "Denoising-GS": { innovation: "Formulates 3DGS optimization as primitive denoising; spatial gradient denoising + uncertainty pruning", codeUrl: "" },
   "AdpSplit": { innovation: "Error-driven adaptive split operator replacing heuristic binary split; 9.2-22.3% training time reduction", codeUrl: "" },
@@ -2046,6 +2052,9 @@ const ABSTRACTS = {
   "Luminance-GS++": { abstractEn: "View-adaptive color/lightness correction for robust NVS This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "View-自适应 color/lightness correction 用于 鲁棒 NVS。 该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
   "SNS": { abstractEn: "Azzalini Skew-Normal distribution as 3DGS primitive; learnable skewness for asymmetric boundary modeling This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "Azzalini Skew-法线 distribution as 3DGS primitive; 可学习 skewness 用于 asymmetric boundary modeling。 该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
   "SplatWeaver": { abstractEn: "Cardinality Gaussian Expert Routing (0/1/2/3 experts) + DWT frequency prior + neighbor-conditioned prediction This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "Cardinality Gaussian Expert Routing (0/1/2/3 experts) + DWT frequency prior + neighbor-conditioned prediction。 该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
+  "ZPressor": { abstractEn: "ZPressor introduces bottleneck-aware compression for scalable feed-forward 3D Gaussian Splatting from dense multi-view inputs. Instead of letting tokens grow with every added view, it compresses redundant multi-view latent evidence before Gaussian prediction. This keeps memory and computation tractable for large input sets, including 100+ view settings, while retaining the geometry and appearance cues needed for reconstruction.", abstractCn: "ZPressor提出面向多视图前馈3D高斯泼溅的瓶颈感知压缩。它不让token数量随输入视图线性膨胀，而是在高斯预测前压缩冗余的多视图潜在证据。该设计让100+输入视图场景中的内存和计算保持可控，同时保留重建所需的几何与外观线索。" },
+  "VolSplat": { abstractEn: "VolSplat rethinks feed-forward 3DGS prediction by moving Gaussian prediction into a voxel-aligned representation. A shared voxel-space reference frame lets multi-view evidence fuse before splat decoding, reducing duplicate and inconsistent Gaussians caused by independent pixel-aligned predictions. The method targets stronger multi-view consistency for generalizable novel view synthesis.", abstractCn: "VolSplat通过体素对齐表示重新设计前馈3DGS预测。共享的体素空间参考系让多视图证据在高斯解码前完成融合，减少独立像素对齐预测造成的重复和不一致高斯。该方法面向更强的多视图一致性与泛化新视角合成。" },
+  "PM-Loss": { abstractEn: "PM-Loss revisits depth representations for feed-forward 3DGS and adds pointmap-supervised geometry regularization. By supervising depth-derived 3D coordinates rather than only per-pixel depth values, it improves boundary smoothness and geometric consistency. The loss affects training only, so it adds no inference-time overhead.", abstractCn: "PM-Loss重新审视前馈3DGS中的深度表示，并引入pointmap监督的几何正则化。相比只监督逐像素深度值，它直接约束由深度反投影得到的3D坐标，从而改善边界平滑性和几何一致性。该损失只用于训练阶段，不增加推理开销。" },
   "MGS": { abstractEn: "Matryoshka continuous LoD via stochastic budget training; single ordered set renders any prefix k splats This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "Matryoshka continuous LoD 通过 stochastic budget 训练; single ordered set renders any prefix k splats。 该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
   "Denoising-GS": { abstractEn: "Formulates 3DGS optimization as primitive denoising; spatial gradient denoising + uncertainty pruning This approach addresses specific limitations in prior 3DGS methods and demonstrates improved results on standard benchmarks.", abstractCn: "Formulates 3DGS 优化 as primitive denoising; spatial gradient denoising + uncertainty 剪枝。 该方法对3D高斯溅射进行了针对性改进，在标准基准上取得了更好的结果。" },
   "AdpSplit": { abstractEn: "Error-driven adaptive split operator replacing heuristic binary split; 9.2-22.3% training time reduction.", abstractCn: "Error-driven adaptive split operator replacing heuristic binary split; 9.2-22.3% training time reduction。该方法对3D高斯溅射框架进行了技术改进。 该方法解决了先前3DGS方法的特定局限性，在标准基准上取得了改进的结果。" },

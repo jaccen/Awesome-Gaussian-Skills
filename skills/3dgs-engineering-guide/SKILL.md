@@ -1,7 +1,7 @@
 ---
 name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
-version: 1.0.6
+version: 1.0.7
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
@@ -411,7 +411,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Physics | PhysGaussian, Gaussian Splashing, GS-Playground |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS |
 | Cross-platform | VkSplat, GSeurat (Vulkan C++23), msplat (Metal), tortuise (Rust CPU), brush (Rust/WebGPU, 4.3k stars), AdaGScale, BlitzGS (distributed) |
-| Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 30% budget reduction, 301 FPS, no calibration; code: github.com/yecongwan/SplatWeaver) |
+| Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 30% budget reduction, 301 FPS, no calibration; code: github.com/yecongwan/SplatWeaver), ZPressor [2505.23734] (100+ input-view scalability via bottleneck-aware compression), VolSplat [2509.19297] (voxel-aligned prediction for multi-view consistency), PM-Loss [2506.05327] (pointmap loss for feed-forward depth quality) |
 | BIM/CAD | BrepGaussian, CADFS |
 | Editing | GaussianEditor, ObjectMorpher, TransSplat |
 | Security | GuardMarkGS (watermarking + edit deterrence) |
@@ -427,6 +427,9 @@ See knowledge base: `references/3dgs-methods-overview.md`, `references/methods-c
 ## 7. Terminology
 
 - **Cardinality Gaussian Expert Routing**: Routing mechanism where discrete experts predict different numbers of Gaussians per pixel based on scene complexity (cf. SplatWeaver)
+- **Bottleneck-Aware Multi-View Compression**: Compressing redundant multi-view latent tokens before Gaussian prediction to keep feed-forward 3DGS tractable as input view count grows (cf. ZPressor)
+- **Voxel-Aligned Prediction**: Predicting Gaussians in a shared voxel-space reference frame instead of independently from pixels, reducing duplicate or inconsistent splats across views (cf. VolSplat)
+- **Pointmap Loss**: Supervising depth-derived geometry in 3D point coordinates rather than only pixel-wise depth values, improving boundary smoothness without inference overhead (cf. PM-Loss)
 - **Skew-Normal Splatting**: Using Azzalini skew-normal distribution instead of symmetric Gaussian for asymmetric boundary representation
 - **Stochastic Budget Training**: Training strategy that randomly samples Gaussian budget each iteration to learn ordered, LoD-compatible representations (cf. MGS)
 

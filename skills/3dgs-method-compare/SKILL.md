@@ -1,14 +1,14 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 523+ methods across 24 categories."
-version: 1.4.7
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 534+ methods across 25 categories."
+version: 1.4.8
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 523+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 534+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -186,6 +186,9 @@ When comparing methods, analyze across the following dimensions:
 | OT-UVGS | EG'26 | UV tensor | Same as UVGS | OT-based UV mapping, O(N log N) |
 | Free Geometry | arXiv'26 | Adaptive | Single-pass + LoRA | Self-evolving feed-forward, +3.73% camera accuracy |
 | FTSplat | arXiv'26 (2603.05932) | Variable | Single-pass | Feed-forward triangle splatting |
+| ZPressor | NeurIPS'25 (2505.23734) | Compressed latent tokens | Single-pass, 100+ views | Bottleneck-aware compression for scalable multi-view feed-forward 3DGS |
+| PM-Loss | 3DV'26 (2506.05327) | Variable | Training loss only | Pointmap-supervised depth regularization; smoother boundaries with no inference overhead |
+| VolSplat | arXiv'25 (2509.19297) | Voxel-aligned | Single-pass | Shared voxel-space Gaussian prediction for multi-view consistency |
 | SplatWeaver | arXiv'26 (2605.07287) | Variable | Single-pass | Cardinality Gaussian Expert Routing (Null/1/2/3 experts per pixel) + DWT frequency prior; 30% Gaussian budget with +1.02 dB PSNR over AnySplat |
 
 ### SLAM Methods

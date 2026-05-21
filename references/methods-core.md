@@ -420,6 +420,30 @@
 - **Key Innovation**: Handles arbitrary in-the-wild images with unknown lighting, varying appearance, and unknown camera parameters; robust feed-forward reconstruction without per-scene optimization
 - **Links**: [中英摘要](https://arxiv.org/abs/2505.23716) | [arXiv:2505.23716](https://arxiv.org/abs/2505.23716) | [Code]
 
+### ZPressor
+- **Paper**: ZPressor: Bottleneck-Aware Compression for Scalable Feed-Forward 3DGS
+- **ArXiv**: 2505.23734
+- **Venue**: NeurIPS 2025
+- **Core**: Scales feed-forward 3DGS to many input views by compressing redundant multi-view latent tokens before Gaussian prediction
+- **Key Innovation**: Bottleneck-aware latent compression reduces token growth from dense multi-view inputs while preserving geometry/appearance cues; enables feed-forward reconstruction from 100+ views where quadratic attention or uncompressed token pipelines become impractical
+- **Links**: [arXiv:2505.23734](https://arxiv.org/abs/2505.23734) | [Code](https://github.com/ziplab/ZPressor)
+
+### PM-Loss
+- **Paper**: Revisiting Depth Representations for Feed-Forward 3D Gaussian Splatting
+- **ArXiv**: 2506.05327
+- **Venue**: 3DV 2026
+- **Core**: Re-examines depth-map supervision in feed-forward 3DGS and regularizes predicted depth through 3D pointmap consistency
+- **Key Innovation**: Pointmap loss supervises geometry in 3D coordinates instead of only pixel-wise depth values, smoothing discontinuities at object boundaries and improving geometry without adding inference-time cost
+- **Links**: [arXiv:2506.05327](https://arxiv.org/abs/2506.05327) | [Code](https://github.com/aim-uofa/PM-Loss)
+
+### VolSplat
+- **Paper**: VolSplat: Rethinking Feed-Forward 3D Gaussian Splatting with Voxel-Aligned Prediction
+- **ArXiv**: 2509.19297
+- **Venue**: arXiv 2025
+- **Core**: Feed-forward 3DGS architecture that predicts Gaussians from a voxel-aligned representation rather than pixel-aligned per-view splats
+- **Key Innovation**: Voxel-space alignment gives the network a shared 3D reference frame for aggregating multi-view evidence, reducing duplicate/inconsistent Gaussians caused by independent pixel-aligned predictions
+- **Links**: [arXiv:2509.19297](https://arxiv.org/abs/2509.19297) | [Code](https://github.com/ziplab/VolSplat)
+
 ### TokenGS
 - **Paper**: TokenGS: Decoupling 3D Gaussian Prediction from Pixels with Learnable Tokens
 - **arXiv**: [2604.15239](https://arxiv.org/abs/2604.15239)
@@ -1160,6 +1184,30 @@
 - **Year**: 2025
 - **Category**: Feed-Forward Methods
 - **Core Innovation**: Transformer-based Gaussian prediction for generalizable 3D reconstruction
+
+### ZPressor
+- **arXiv**: [2505.23734](https://arxiv.org/abs/2505.23734)
+- **Venue**: NeurIPS 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Bottleneck-aware latent compression enabling scalable feed-forward 3DGS from dense multi-view inputs, including 100+ view settings
+- **Code**: [https://github.com/ziplab/ZPressor](https://github.com/ziplab/ZPressor)
+
+### PM-Loss
+- **arXiv**: [2506.05327](https://arxiv.org/abs/2506.05327)
+- **Venue**: 3DV 2026
+- **Year**: 2026
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Pointmap-supervised depth regularization for feed-forward 3DGS; improves geometric smoothness at depth discontinuities without inference overhead
+- **Code**: [https://github.com/aim-uofa/PM-Loss](https://github.com/aim-uofa/PM-Loss)
+
+### VolSplat
+- **arXiv**: [2509.19297](https://arxiv.org/abs/2509.19297)
+- **Venue**: arXiv 2025
+- **Year**: 2025
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Voxel-aligned Gaussian prediction replacing pixel-aligned splat prediction for better multi-view fusion and consistency
+- **Code**: [https://github.com/ziplab/VolSplat](https://github.com/ziplab/VolSplat)
 
 ### AdaptSplat
 - **arXiv**: [2507.xxxxx](https://arxiv.org/abs/2507.xxxxx)
