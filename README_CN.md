@@ -303,9 +303,9 @@ Agent: [提供 mesh→Gaussian 转换管线、基于网格法线的协方差初�
 - 几何质量评估（Chamfer Distance、F-Score、法线一致性）
 - 调试常见 mesh-Gaussian 转换问题
 
-### 7. `cg-paper-writing` — CG 论文写作助手
+### 7. `cg-paper-writing` — CG 论文写作助手 v2.0
 
-**为 CVPR/ICCV/ECCV/SIGGRAPH/TVCG 撰写可投稿的论文。**
+**为 CVPR/ICCV/ECCV/SIGGRAPH/TVCG 撰写可投稿的论文，含多Agent对抗审稿和引用完整性门控。**
 
 ```
 你: "帮我写一篇关于 3DGS的论文引言，要和 NegGS 做对比"
@@ -318,6 +318,11 @@ Agent: [生成学术引言，包含正确的结构、领域术语和论证逻辑
 - 去 AI 痕迹处理（移除 AI 写作模式）
 - 分节写作（摘要→引言→相关工作→方法→实验→结论）
 - 数学符号规范
+- **v2.0**：多Agent对抗审稿 + 让步阈值协议（防AI讨好倾向）
+- **v2.0**：引用三层验证（存在性、声明-引用对齐、时效与venue）
+- **v2.0**：Integrity Gate不可跳过门控（写作完成门控 + 终稿提交门控）
+- **v2.0**：风格校准（从用户过往写作样本学习语气和表达习惯）
+- **v2.0**：写作上下文跨session持久化（符号表、引用登记簿、门控状态）
 
 ### 8. `3dgs-visualizer` — 研究可视化
 

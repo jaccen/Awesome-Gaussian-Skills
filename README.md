@@ -316,9 +316,9 @@ Agent: [Provides mesh→Gaussian conversion pipeline, covariance
 - Geometry quality evaluation (Chamfer Distance, F-Score, Normal Consistency)
 - Debugging common mesh-Gaussian conversion issues
 
-### 7. `cg-paper-writing` — CG Paper Writing Assistant
+### 7. `cg-paper-writing` — CG Paper Writing Assistant v2.0
 
-**Write publication-ready papers for CVPR/ICCV/ECCV/SIGGRAPH/TVCG.**
+**Write publication-ready papers for CVPR/ICCV/ECCV/SIGGRAPH/TVCG, with multi-agent adversarial review and citation integrity gates.**
 
 ```
 You: "帮我写一篇关于 3DGS的论文引言，要和 ****GS 做对比"
@@ -332,6 +332,11 @@ Agent: [Generates academic introduction with proper structure,
 - De-AI-ification (remove AI writing patterns)
 - Section-by-section writing (Abstract → Introduction → Related Work → Method → Experiments → Conclusion)
 - Mathematical notation conventions
+- **v2.0**: Multi-agent adversarial review with Concession Threshold Protocol (anti-sycophancy)
+- **v2.0**: Citation three-layer verification (existence, claim-faithfulness, venue currency)
+- **v2.0**: Integrity Gates (Post-Draft Gate + Pre-Submission Gate, non-skippable)
+- **v2.0**: Style Calibration (learn from user's past writing samples)
+- **v2.0**: Persistent writing context across sessions (symbol table, ref registry, gate status)
 
 ### 8. `3dgs-visualizer` — Research Visualization
 
