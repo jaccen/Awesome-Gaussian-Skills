@@ -1,6 +1,6 @@
 ---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 534+ methods across 25 categories."
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 548+ methods across 25 categories."
 version: 1.4.8
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
@@ -8,7 +8,7 @@ tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 534+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 548+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 

@@ -1,3 +1,14 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '32c06ae8-11b9-4951-8a82-7d2dde543d0f'
+  PropagateID: '32c06ae8-11b9-4951-8a82-7d2dde543d0f'
+  ReservedCode1: 'debd32b3-7ebd-43c2-99c0-4864f141b59e'
+  ReservedCode2: 'debd32b3-7ebd-43c2-99c0-4864f141b59e'
+---
+
 ## Newly Added (May 2026 Expansion)
 
 
@@ -560,6 +571,20 @@
 - **Category**: Cross-Domain Applications
 - **Core Innovation**: Decoder-Side Gaussian Splatting for immersive video delivery from compressed bitstreams; lossy compression stabilizes feed-forward 3DGS prediction
 
+### RT-Splatting
+- **arXiv**: [2605.18263](https://arxiv.org/abs/2605.18263)
+- **Venue**: CVPR 2026 Highlight
+- **Year**: 2026
+- **Category**: Cross-Domain Applications
+- **Core Innovation**: Joint reflection-transmission modeling with GS; disentangles geometric occupancy from optical opacity per Gaussian; Specular-Aware Gradient Gating reduces floaters
+
+### AsyncEvGS
+- **arXiv**: [2605.07192](https://arxiv.org/abs/2605.07192)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Cross-Domain Applications
+- **Core Innovation**: Asynchronous event camera + RGB dual-system for motion-blurred 3DGS; high-resolution async RGB-Event cross-domain pose estimation via VGGT
+
 
 ### Security
 ### GS-Hider
@@ -770,3 +795,80 @@
 - **Year**: 2026
 - **Category**: Acceleration
 - **Core Innovation**: Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale
+
+### TideGS
+- **arXiv**: [2605.20150](https://arxiv.org/abs/2605.20150)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Large-Scale / Acceleration
+- **Core Innovation**: Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy; block-virtualized geometry + trajectory-adaptive differential streaming on single 24GB GPU
+
+### MMGS
+- **arXiv**: [2605.19304](https://arxiv.org/abs/2605.19304)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Compression / Acceleration
+- **Core Innovation**: 10x compressed 3DGS via multi-view ranking + Optimal Transport aggregation; 10% primitives + 10x training speedup
+
+### AmbiSuR
+- **arXiv**: [2605.12494](https://arxiv.org/abs/2605.12494)
+- **Venue**: ICML 2026
+- **Year**: 2026
+- **Category**: Surface / Rendering
+- **Core Innovation**: Photometric ambiguity self-indication via SH in 3DGS; primitive truncation + ray-color consistency for intrinsic disambiguation (Beihang + NUS)
+
+### RT-Splatting
+- **arXiv**: [2605.18263](https://arxiv.org/abs/2605.18263)
+- **Venue**: CVPR 2026 Highlight
+- **Year**: 2026
+- **Category**: Cross-Domain / Rendering
+- **Core Innovation**: Joint reflection-transmission modeling; geometric occupancy disentangled from optical opacity per Gaussian; Specular-Aware Gradient Gating
+
+### AsyncEvGS
+- **arXiv**: [2605.07192](https://arxiv.org/abs/2605.07192)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Cross-Domain
+- **Core Innovation**: Asynchronous event camera + RGB dual-system for motion-blurred 3DGS; cross-domain pose estimation via VGGT
+
+### FLUIDSPLAT
+- **arXiv**: [2605.18866](https://arxiv.org/abs/2605.18866)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Simulation
+- **Core Innovation**: Physical flow field reconstruction via anisotropic GS partition-of-unity; proven O(K^{-s/d}) Sobolev approximation rate
+
+### GS-DIFF
+- **arXiv**: [2605.07203](https://arxiv.org/abs/2605.07203)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Editing / Understanding
+- **Core Innovation**: Scene change detection directly on Gaussian primitives; separates geometric vs. appearance changes; +17% mIoU
+
+### SplitGS-Loc
+- **arXiv**: [2605.07351](https://arxiv.org/abs/2605.07351)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: SLAM
+- **Core Innovation**: Mixture-of-Gaussians splitting to disambiguate 2D-3D correspondences in GS feature fields; no per-scene training needed
+
+### GaussianZoom
+- **arXiv**: [2605.18252](https://arxiv.org/abs/2605.18252)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Generation
+- **Core Innovation**: Progressive zoom-in generative 3D reconstruction with multi-scale semantic reasoning + expandable continuous LoD hierarchy
+
+### Cross-View Splatter
+- **arXiv**: [2605.19656](https://arxiv.org/abs/2605.19656)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Feed-Forward
+- **Core Innovation**: Ground+satellite cross-view feature fusion for outdoor 3DGS reconstruction; unified GPS-tagged 3D coordinate frame
+
+### AnyCity
+- **arXiv**: [2605.19949](https://arxiv.org/abs/2605.19949)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Feed-Forward / Large-Scale
+- **Core Innovation**: Observation-grounded generative reconstruction for sparse aerial urban scenes; observation-supported geometry latent + gated diffusion residual; second-level inference

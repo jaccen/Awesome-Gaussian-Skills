@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 66+ known bug patterns."
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 67+ known bug patterns."
 version: 1.1.8
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
@@ -13,7 +13,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (66+ known patterns)
+- Identify common 3DGS implementation pitfalls (67+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -315,7 +315,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 |---|---------|---------|-----|
 | 63 | Alpha-compositing introduces inherent feature bias in localization tasks | Poor 2D-3D feature matching accuracy; localization precision plateau; feature distinctiveness degrades with more Gaussians in a region | Standard alpha-compositing aggregates per-Gaussian features using visibility weights (T_i * α_i), causing each Gaussian's stored feature to become a weighted average of neighbors' features during training — learned features are never "pure" representations. Replace alpha-compositing with geometry-weighted aggregation (e.g., inverse distance weighting without visibility blending) for feature localization; use keypoint consensus sampling to filter unreliable features (ULF-Loc, CVPR 2026 Highlight) |
 
-### Feed-Forward Multi-View Scalability Patterns (ZPressor)
+### Uncompressed Multi-View Token Aggregation Patterns (ZPressor)
 
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
@@ -332,6 +332,12 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 66 | Pixel-wise depth loss only for feed-forward 3DGS geometry | Jagged depth discontinuities, over-smoothed object boundaries, and inconsistent point positions after unprojection even when depth error is numerically low | Add pointmap loss that supervises depth-derived 3D coordinates in point space; evaluate boundary-region PSNR/LPIPS and geometry metrics to verify smoother depth transitions without inference-time cost (PM-Loss, ArXiv 2506.05327) |
+
+### Photometric Ambiguity Patterns (AmbiSuR)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 67 | Standard density control amplifies photometric ambiguity causing surface degradation | Over-reconstructed floaters and malignant geometric overlap; poor surface extraction quality; excessive Gaussians in ambiguous regions | Alpha-compositing lacks constraints against over-reconstruction; SH coefficients serve as ambiguity self-indicator but signal is not leveraged during training. Add primitive truncation + ray-color consistency constraints; monitor SH coefficient magnitudes as ambiguity indicators (AmbiSuR, ICML 2026) |
 
 ## Output Format
 
