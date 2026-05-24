@@ -558,3 +558,8 @@ AnyCity,2605.19949,arXiv 2026,2026,Feed-Forward,Observation-grounded generative 
 OP2GS,2605.20044,arXiv 2026,2026,Language / Semantic,Dual-opacity primitives decoupling visual existence from instance occupancy for object-aware 3DGS,
 TideGS,2605.20150,arXiv 2026,2026,Large-Scale,Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy on single 24GB GPU,
 FLUIDSPLAT,2605.18866,arXiv 2026,2026,Simulation,Physical flow field reconstruction via anisotropic GS partition-of-unity; proven Sobolev approximation rate,
+GaussianPile,2603.20611,CVPR 2026,2026,Medical & Biomedical Imaging,Slice-based volumetric reconstruction via sparse 3DGS + imaging system-aware focus model; 11x faster than NeRF; 16x compression,
+Flow4DGS-SLAM,2604.22339,CVPR 2026,2026,SLAM,Optical flow-guided 4D Gaussian SLAM for dynamic scenes; category-agnostic motion mask; GMM temporal opacity/rotation,
+Ilov3Splat,2605.04506,ICPR 2026,2026,Language / Semantic,Instance-level open-vocabulary 3DGS via multi-resolution hash embedding + SAM contrastive instance field,
+LeGS,2605.04081,arXiv 2026,2026,Optimization,Beyond heuristics: learnable density control replacing hand-crafted clone/split/prune rules for 3DGS,
+PhysX-Omni,2605.21572,arXiv 2026,2026,Generation / Text-to-3D,Unified simulation-ready physical 3D generation for rigid + deformable + articulated objects; PhysXVerse dataset,

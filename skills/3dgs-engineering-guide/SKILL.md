@@ -1,5 +1,4 @@
----
-name: 3dgs-engineering-guide
+﻿name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
 version: 1.0.7
 author: jaccen
@@ -407,6 +406,8 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | AD Simulation | GSDrive, GS-Playground (RSS 2026), GS-Surrogate, FieryGS, GS-SCNet, Ground4D, ULF-Loc (CVPR 2026), Nighttime AD, Real2Sim, ConFixGS (+3.68 dB Waymo) |
 | World Models | GWM, FlashWorld, GS-World, Visionary, RAD, DLWM, X-World |
 | Digital Twin | DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head |
+| Volumetric Medical | GaussianPile (slice-aware PSF projection for CT/cBCT) |
+| Dynamic SLAM | Flow4DGS-SLAM (optical flow-guided 4DGS temporal consistency) |
 | Inspection | EnerGS, RGS, E2EGS |
 | Physics | PhysGaussian, Gaussian Splashing, GS-Playground |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS |

@@ -1,14 +1,13 @@
----
-name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 548+ methods across 25 categories."
-version: 1.4.8
+﻿name: 3dgs-method-compare
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 553+ methods across 25 categories."
+version: 1.4.9
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 548+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 553+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -200,6 +199,9 @@ When comparing methods, analyze across the following dimensions:
 | WildGS-SLAM | CVPR'25 | Monocular video | Room-scale | Dynamic environments, uncertainty-aware mapping via pretrained 3D priors |
 | S3PO-GS | ICCV'25 | Monocular video | Outdoor | Scale-consistent pose optimization, eliminates outdoor scale drift |
 | Flow4DGS-SLAM | arXiv'26 | Monocular video | Room-scale | Optical flow-guided 4DGS for temporal consistency |
+| GaussianPile | arXiv'26 | CT/volumetric scans | Organ-scale | Volumetric medical GS with slice-aware PSF projection |
+| Ilov3Splat | arXiv'26 | Multi-view video | Room-scale | Interpretable love-based 3DGS with region-aware decomposition |
+| PhysX-Omni | arXiv'26 | Multi-modal (vision+physics) | Scene-scale | Omni-physics integrated 3DGS for unified simulation & rendering |
 | E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
 | MAGS-SLAM | arXiv'26 | RGB (multi-agent) | Multi-room | First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification |
 

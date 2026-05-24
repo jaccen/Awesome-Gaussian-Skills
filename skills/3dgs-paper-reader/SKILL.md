@@ -1,6 +1,5 @@
----
-name: 3dgs-paper-reader
-description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables."
+﻿name: 3dgs-paper-reader
+description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 553+ methods across 25 categories."
 version: 1.0.2
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
@@ -124,6 +123,10 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 | 2504.15387 | RoboSplat | RSS'25 | Diverse data generation via Gaussian primitive manipulation |
 | 2502.01536 | VR-Robo | RAL'25 | Real-to-Sim-to-Real for visual robot navigation |
 | 2604.28111 | GSDrive | arXiv'26 | 3DGS environment for reinforcing driving policies |
+| — | GaussianPile | arXiv'26 | Volumetric medical GS with slice-aware PSF projection for CT/cBCT |
+| — | Flow4DGS-SLAM | arXiv'26 | Optical flow-guided 4DGS for temporal consistency in SLAM |
+| — | Ilov3Splat | arXiv'26 | Interpretable region-aware 3DGS decomposition |
+| — | PhysX-Omni | arXiv'26 | Omni-physics integrated 3DGS for unified simulation & rendering |
 
 ### Terminology Conventions
 

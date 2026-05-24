@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # Awesome Gaussian Skills
 
@@ -6,7 +6,7 @@
 
 If you like it, please ⭐️ star this repo!
 
-**548+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
+**553+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -27,7 +27,9 @@ If you like it, please ⭐️ star this repo!
 
 ## 本月新增 (2026年5月)
 
-过去30天新增42篇方法——516+ → 548+ 方法, 67+ bug 模式。每日arXiv持续追踪。
+过去30天新增47篇方法——516+ → 553+ 方法, 67+ bug 模式。每日arXiv持续追踪。
+
+**最新更新（5月23日）：548+ → 553+ 方法，25个类别。+5新方法：GaussianPile（CVPR 2026，面向医学影像的体积3DGS）、Flow4DGS-SLAM（CVPR 2026，光流引导动态GS SLAM）、Ilov3Splat（ICPR 2026，实例级开放词汇3DGS）、LeGS（可学习密度控制）、PhysX-Omni（统一物理3D生成）。**
 
 | 方法 | ArXiv | 类别 | 一句话创新 |
 |------|-------|------|-----------|
@@ -79,9 +81,9 @@ If you like it, please ⭐️ star this repo!
 
 你不应该为每篇新3DGS论文重新搭建相同的RAG管线，或手动在10个维度上对比20个变体，或投稿后才发现CUDA kernel有已知bug。
 
-**2023年以来已有548+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
+**2023年以来已有553+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
 
-**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置548+方法的领域知识。
+**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置553+方法的领域知识。
 
 | 你做的事 | 没有本项目 | 有本项目 |
 |----------|-----------|---------|
@@ -93,13 +95,13 @@ If you like it, please ⭐️ star this repo!
 
 ## 特性
 
-- **548+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **553+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
-## 知识库（548+ 方法）
+## 知识库（553+ 方法）
 
 **核心表示**
 
@@ -134,7 +136,7 @@ If you like it, please ⭐️ star this repo!
 |------|------|------|
 | 动态 | 4D高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, RetroNVS |
 | HDR/动态 | HDR采集与时变光照 | HDR-NSFF, FreeTimeGS++ |
-| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, LiteLoc |
+| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, LiteLoc, Flow4DGS-SLAM |
 | 稀疏视角 | 少视角与稀疏视角重建 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 
 **应用与跨领域**
@@ -156,11 +158,11 @@ If you like it, please ⭐️ star this repo!
 | 系统 | 全系统设计与硬件协同设计 | YOGO, GS-SCNet |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> 完整知识库覆盖 **25 个类别的 548+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **25 个类别的 553+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
-> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 548+ 方法。
+> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 553+ 方法。
 
 ## 快速开始
 
@@ -228,7 +230,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 548+ 方法的知识库
+- 内置 553+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -421,7 +423,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（25 个类别 548+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（25 个类别 553+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -462,7 +464,7 @@ Awesome-Gaussian-Skills/
 
 ## 核心论文创新点汇总
 
-> 基于知识库548+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
+> 基于知识库553+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition / 计算机学报 / 软件学报
 
 <details>
@@ -602,6 +604,8 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.6 — 每日更新：512→516+ 方法，+4新方法(Learn2Splat元学习优化器、EndoGSim医学4DGS+MPM、3DEditSafe编辑安全、Robust Prior-Guided分割)；医学影像类别扩充（2026年5月）
 - [x] v0.2.7 — 每日更新: 516→531+方法, +15新(HarmoGS, ULF-Loc, AdaptSplat, PointForward, 3DGS³, TransmissiveGS, NIRRGB-GS, TensorGS, DeG SIGGRAPH''26, P2GS CVPR''26, ArtMesh, DSGS, GEM, PanoWorld, LiteLoc); 63+ bug模式; 25类别 (2026年5月)
 - [x] v0.2.8 — 每日更新: 531→548+方法, +17新(ZPressor NeurIPS'25, VolSplat, PM-Loss 3DV'26, AmbiSuR ICML'26, RT-Splatting CVPR'26 Highlight, TideGS 1B+高斯, OP2GS双不透明度, MMGS OT压缩, 3DSGS偏度高斯, GaussianZoom放大生成, AnyCity航拍, Cross-View Splatter跨视角, FLUIDSPLAT, GS-DIFF, ReorgGS, AsyncEvGS, SplitGS-Loc); 67+ bug模式; 25类别 (2026年5月)
+- [x] v0.2.9 — CAD融合: `cad-mesh-3dgs`技能 + build123d管线 (STEP→GLB→3DGS), cad2gs_pipeline.py, Part-Aware实验场景构建器, Sidecar动画系统用于3DGS可视化（2026年5月）
+- [x] v0.2.10 — 每日更新: 548→553+方法, +5新(GaussianPile CVPR'26体积医学3DGS, Flow4DGS-SLAM CVPR'26光流引导动态SLAM, Ilov3Splat ICPR'26实例级开放词汇, LeGS可学习密度控制, PhysX-Omni统一物理3D生成); 69+ bug模式; 25类别 (2026年5月)
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）

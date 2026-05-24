@@ -1,5 +1,4 @@
----
-name: 3dgs-experiment-planner
+﻿name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
 version: 1.1.3
 author: jaccen
@@ -54,6 +53,8 @@ Before designing experiments, extract:
 | Semantic / Segmentation | LERF / SemanticKITTI | 3D semantic field quality |
 | Semantic Foam Benchmarks | CVPR'26 Semantic Foam paper | Volumetric Voronoi semantic segmentation |
 | SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
+| SLAM (Dynamic) | Flow4DGS-SLAM benchmarks | Optical flow-guided dynamic SLAM consistency |
+| Medical (Volumetric) | GaussianPile benchmarks | Slice-aware PSF projection for volumetric medical GS |
 | Robustness / Adverse conditions | RealX3D (NTIRE 2026) | Tests reconstruction in adverse environments (low light, fog, sparse views) |
 | Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
 | Active Mapping / Robotics | MAGICIAN benchmarks | Active vision path planning quality |
@@ -122,6 +123,8 @@ Before designing experiments, extract:
 - GS-Surrogate (if making simulation visualization surrogate or rendering approximation claims)
 - Pi-GS (if making reference-free sparse-view novel view synthesis claims)
 - FreeFix (if making diffusion-guided refinement or post-processing enhancement claims)
+- Flow4DGS-SLAM (if making dynamic SLAM or temporal consistency claims)
+- GaussianPile (if making volumetric medical GS or CT reconstruction claims)
 
 #### Minimum Baseline Count
 For top-venue submission: **at least 4 baselines** across different categories.
