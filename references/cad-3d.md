@@ -1,3 +1,4 @@
+
 # CAD/3D 方向术语、基线与数据集
 
 ## CAD建模与逆向工程
@@ -99,6 +100,49 @@
 | 场景流 | FlowNet3D, RAFT-3D, HexPlane | 2020-2024 | EPE↓、Acc3DS |
 | 深度估计 | MiDaS, DepthAnything, Metric3Dv2 | 2022-2024 | Abs Rel↓、δ<1.25↑ |
 
+## 参数化CAD建模工具链（CAD → 3DGS）
+
+### build123d 概述
+
+[build123d](https://github.com/gumyr/build123d) 是 Python 参数化 CAD 库，支持 CSG 布尔运算、螺旋体、草图拉伸等。
+
+### CAD → 3DGS 转换工具链
+
+| 步骤 | 工具 | 输入 → 输出 | 说明 |
+|---|---|---|---|
+| 参数化建模 | build123d | Python → STEP | 生成带部件标签的 Compound 装配体 |
+| STEP → GLB | OCP + trimesh | STEP → GLB | 保留 STEP_topology (o1.N 部件层级) |
+| GLB → Gaussian | cad2gs_pipeline.py | GLB → PLY | 曲率自适应采样、法线初始化、部件ID |
+| 多视角渲染 | Blender (bpy) | STEP → PNG + cameras.json | COLMAP 兼容格式 |
+| 训练 | 3DGS/gsplat | images + init → 模型 | 用 CAD 初始化加速收敛 |
+
+### 参数化 CAD 评测场景
+
+| 场景 | 生成脚本 | 部件数 | 关键特征 | 推荐评测方向 |
+|---|---|---|---|---|
+| Planetary Gearbox | build_part_aware_scenes.py | 5 | 齿轮紧密啮合边界 | Part-Aware 渲染、薄特征重建 |
+| Robot Arm | build_part_aware_scenes.py | 6+ | 5-DOF 关节、自遮挡 | 关节姿态渲染、穿透检测 |
+| Geneva Drive | build_part_aware_scenes.py | 4 | 间歇接触面 | 接触/非接触边界渲染 |
+
+### STEP_topology 部件层级保留
+
+cad-power-animations 的创新点：在 GLB 中通过自定义扩展 `STEP_topology` 保留 o1.N occurrence 层级：
+
+```
+GLB Scene Graph:
+  ├── o1.1 (sun_gear)    →  wrapper_group_1  →  可独立控制变换/样式
+  ├── o1.2 (planet_1)    →  wrapper_group_2
+  ├── o1.3 (planet_2)    →  wrapper_group_3
+  └── ...
+
+Sidecar 动画系统：
+  manifest.js → 定义参数、特征、动画元数据
+  update(ctx) → 每帧调用，驱动 effects.transform() / effects.style()
+  effects     → 抽象层：变换、样式、清除
+```
+
+此架构可直接迁移到 3DGS 可视化：将 Gaussian 部件组映射到 occurrence，用 Sidecar 驱动渲染过程动画。
+
 ## 各方向评估指标详细说明
 
 ### 点云指标
@@ -120,3 +164,5 @@
 | MMD-CD | Maximum Mean Discrepancy (CD) | ↓ | 分布距离，适合少样本 |
 | COV | Coverage | ↑ | 生成多样性 |
 | PPL | Perplexity of prompt distribution | — | 文本条件生成的多样性 |
+
+> AI生成

@@ -1,3 +1,5 @@
+
+
 <div align="center">
 
 If you like it, please ⭐️ star this repo! 
@@ -422,7 +424,7 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   ├── nerf-to-3dgs-migrator/  # NeRF-to-3DGS migration guide
 │   │   └── SKILL.md
-│   ├── cad-mesh-3dgs/          # CAD, Mesh & 3DGS bridge
+│   ├── cad-mesh-3dgs/          # CAD, Mesh & 3DGS bridge (+ build123d pipeline)
 │   │   └── SKILL.md
 │   ├── 3dgs-visualizer/        # Research visualization (radar, table, timeline)
 │   │   └── SKILL.md
@@ -432,15 +434,28 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   └── patent-software-ip/       # Patent & software copyright generation
 │       └── SKILL.md
+├── scripts/
+│   ├── setup.sh                 # Quick install script
+│   ├── cad2gs_pipeline.py       # CAD → 3DGS conversion (STEP/GLB → Gaussian init)
+│   └── build_part_aware_scenes.py # Part-Aware experiment scene builder
+├── docs/
+│   ├── index.html               # Interactive method explorer
+│   ├── 3dgs-viewer.js           # Sidecar-powered 3DGS visualization viewer
+│   ├── sidecars/                # Animation sidecar modules
+│   │   ├── 3dgs-render-process.step.js  # Rendering process animation
+│   │   └── 3dgs-method-compare.step.js  # Method comparison animation
+│   ├── fusion-framework.md      # Fusion design principles & roadmap
+│   └── fusion-demo.html         # Fusion roadmap visualization
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
 |   ├── 3dgs-methods-overview.md # Index (548+ methods across 25 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
-│   └── methods-systems-apps.md # Systems, Applications, Cross-Domain
-├── scripts/
-│   └── setup.sh                 # Quick install script
+│   ├── methods-systems-apps.md # Systems, Applications, Cross-Domain
+│   ├── cad-3d.md               # CAD/3D terminology, baselines, build123d pipeline
+│   ├── experiments.md          # Experiment design, CAD benchmark scenes
+│   └── baselines.md            # Baseline methods & datasets
 ├── Test/
 │   ├── radar_comparison.pdf/png/html       # Radar chart: 3DGS vs 2DGS vs Mip-Splatting vs Scaffold-GS
 │   ├── metrics_bar_comparison.pdf/png      # PSNR / SSIM / LPIPS grouped bar chart
@@ -616,6 +631,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.6 — Daily update: 512→516+ methods, +4 new (Learn2Splat meta-optimizer, EndoGSim medical 4DGS+MPM, 3DEditSafe editing safety, Robust Prior-Guided Segmentation); Medical imaging expanded (May 2026)
 - [x] v0.2.7 — Daily update: 516→531+ methods, +15 new (HarmoGS, ULF-Loc, AdaptSplat, PointForward, 3DGS³, TransmissiveGS, NIRRGB-GS, TensorGS Tensor Core, DeG SIGGRAPH'26, P2GS CVPR'26, ArtMesh, DSGS, GEM, PanoWorld, LiteLoc); 63+ bug patterns; 25 categories (May 2026)
 - [x] v0.2.8 — Daily update: 531→548+ methods, +17 new (ZPressor NeurIPS'25, VolSplat, PM-Loss 3DV'26, AmbiSuR ICML'26, RT-Splatting CVPR'26 Highlight, TideGS 1B+ Gaussians, OP2GS dual-opacity, MMGS OT compression, 3DSGS skew Gaussian, GaussianZoom zoom-in gen, AnyCity aerial, Cross-View Splatter, FLUIDSPLAT, GS-DIFF, ReorgGS, AsyncEvGS, SplitGS-Loc); 67+ bug patterns; 25 categories (May 2026)
+- [x] v0.2.9 — CAD fusion: `cad-mesh-3dgs` skill + build123d pipeline (STEP→GLB→3DGS), cad2gs_pipeline.py, Part-Aware experiment scene builder, Sidecar animation system for 3DGS visualization (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
@@ -718,3 +734,4 @@ Hugging Face Papers: https://huggingface.co/papers
 arXiv CN mirror: https://arxiv.tmmu.edu.cn/
 
 </div>
+

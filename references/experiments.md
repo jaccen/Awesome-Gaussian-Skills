@@ -1,3 +1,4 @@
+
 # 标准实验设计与常见数据集配置
 
 ## 评估指标使用规范
@@ -118,6 +119,25 @@
 | Waymo Open | 户外自动驾驶 | — | mAP | 真实大场景 |
 | KITTI-360 | 户外全景 | — | PSNR/SSIM | 大运动 |
 
+### CAD 机械场景基准（Part-Aware 3DGS 评测）
+
+来源：[cad-power-animations](https://github.com/gordensun/cad-power-animations) 参数化 CAD 模型
+
+| 场景 | 部件数 | 核心挑战 | 推荐对比方法 | 适合实验 |
+|---|---|---|---|---|
+| Planetary Gearbox | 5 | 齿轮齿紧密边界 (<0.5mm间隙)、薄齿特征 | 3DGS, 2DGS, Scaffold-GS, SparseOIT | Part-Aware alpha compositing、高细节几何重建 |
+| Robot Arm | 6+ | 关节边界随姿态变化、自遮挡 | 3DGS, MaGS, GaussianAvatar, ArtMesh | Articulated 部件渲染、关节穿透检测 |
+| Geneva Drive | 4 | 间歇接触边界、pin-slot 区域 | 3DGS, 2DGS, SparseOIT, RT-Splatting | 接触区域渲染、OIT vs Part-Aware 对比 |
+| Bicycle | 13 | 辐条、链条、薄管 | 3DGS, Mip-Splatting, 3DSGS | 高频细节恢复、反锯齿 |
+| Drone | 8 | 旋转薄叶片、透明体 | 3DGS, RT-Splatting, SparseOIT | 透明度+运动模糊 |
+
+**评测协议**：
+1. 用 Blender 从 STEP 渲染 100 张训练图 + 20 张测试图（COLMAP 格式相机参数）
+2. 用 `scripts/cad2gs_pipeline.py` 从 GLB 初始化部件标注 Gaussian
+3. 训练标准 3DGS baseline vs Part-Aware compositing
+4. 评测：PSNR/SSIM/LPIPS + Chamfer Distance/F-Score（CAD mesh 为 ground truth）
+5. 重点对比：部件边界区域的渲染质量（手动标注的 penetration zone masks）
+
 ### 效率表格新增参考值
 
 | 方法 | 场景 | 基元数 | 内存 | FPS | PSNR |
@@ -129,3 +149,4 @@
 | Gaussians on a Diet | Mip-360 | — | 80%↓peak | same | ~24.5 |
 | GlobalSplat | RealEstate | 16K | ~4MB | ~13 (78ms) | ~25.0 |
 | SparseSplat (22%) | DL3DV | 150K | — | ~13 | 24.20 |
+
