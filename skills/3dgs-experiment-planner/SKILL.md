@@ -1,6 +1,6 @@
 ﻿name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
-version: 1.1.3
+version: 1.2.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
 ---
@@ -54,6 +54,7 @@ Before designing experiments, extract:
 | Semantic Foam Benchmarks | CVPR'26 Semantic Foam paper | Volumetric Voronoi semantic segmentation |
 | SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
 | SLAM (Dynamic) | Flow4DGS-SLAM benchmarks | Optical flow-guided dynamic SLAM consistency |
+| SLAM (Generalizable Dynamic) | GGD-SLAM (ICRA 2026) benchmarks | Generalizable motion model for dynamic SLAM |
 | Medical (Volumetric) | GaussianPile benchmarks | Slice-aware PSF projection for volumetric medical GS |
 | Robustness / Adverse conditions | RealX3D (NTIRE 2026) | Tests reconstruction in adverse environments (low light, fog, sparse views) |
 | Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
@@ -103,7 +104,7 @@ Before designing experiments, extract:
   - **Compression**: LightGS, Compact-3DGS, NanoGS, MesonGS++, GETA-3DGS (joint prune+quantize), VkSplat (cross-vendor training)
   - **Surface geometry**: SuGaR, 2DGS, 2D-SuGaR (depth+normal priors enhanced 2DGS)
   - **Editing**: Instruct-NeRF2NeRF, GOR-IS (intrinsic decomposition editing)
-  - **Training optimization**: Scaffold-GS, Structure-Aware Densification (SIGGRAPH 2026, frequency-aware anisotropic splitting), LeGS (RL density control)
+  - **Training optimization**: Scaffold-GS, Structure-Aware Densification (SIGGRAPH 2026, frequency-aware anisotropic splitting), LeGS (RL density control), CAdam (SIGGRAPH 2026, context-adaptive densification for generative distillation)
 - Recent SOTA in your specific sub-area
 - 3DTV (if making real-time multi-camera NVS claims)
 - GS-DOT (if making cross-domain GS application claims)
@@ -124,7 +125,9 @@ Before designing experiments, extract:
 - Pi-GS (if making reference-free sparse-view novel view synthesis claims)
 - FreeFix (if making diffusion-guided refinement or post-processing enhancement claims)
 - Flow4DGS-SLAM (if making dynamic SLAM or temporal consistency claims)
+- GGD-SLAM (if making generalizable dynamic SLAM or factor graph optimization claims)
 - GaussianPile (if making volumetric medical GS or CT reconstruction claims)
+- CAdam (if making generative distillation or context-adaptive densification claims)
 
 #### Minimum Baseline Count
 For top-venue submission: **at least 4 baselines** across different categories.
@@ -267,6 +270,6 @@ Generate a complete experiment plan:
 1. **Be practical**: Consider the actual computational budget. Don't suggest 100 scenes if the author has 1 GPU.
 2. **Be realistic**: Don't claim "state-of-the-art" unless metrics clearly support it.
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
-4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly.
+4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
 
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

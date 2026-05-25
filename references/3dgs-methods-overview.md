@@ -159,6 +159,7 @@
 - **GaussRender** [arXiv:2503.07476](https://arxiv.org/abs/2503.07476) (CVPR 2025) — Unified rendering pipeline for GS supporting multi-modal output (RGB/D/N/S)
 - **OGS** [arXiv:2503.12886](https://arxiv.org/abs/2503.12886) (CVPR 2025) — Omnidirectional GS: spherical harmonics-free panoramic 3DGS for 360 capture
 - **3DSGS** [arXiv:2605.18334](https://arxiv.org/abs/2605.18334) (arXiv 2026) — General 3D Skew Gaussian primitives with re-derived CUDA rasterization for asymmetric shape modeling
+- **Topo-GS** [arXiv:2605.17011](https://arxiv.org/abs/2605.17011) (arXiv 2026) — Topological GS for high-dimensional data embedding; ARAP prior + tangent space alignment via orthogonal Procrustes; topology-aware loss for 1D/2D intrinsic dimensionality
 
 ### Generation / Text-to-3D
 - **GaussianCube** [arXiv:2403.19655](https://arxiv.org/abs/2403.19655) (NeurIPS 2024) — Optimal Transport reorders Gaussians into voxel grid structure enabling 3D diffusion generation [Code](https://github.com/GaussianCube/GaussianCube)
@@ -176,6 +177,7 @@
 - **PanoWorld** [arXiv:2605.17916](https://arxiv.org/abs/2605.17916) (arXiv 2026) — Generative spatial world model for whole-house panorama synthesis: floorplan-derived 3D shell + dynamic 3DGS cache as renderable spatial memory
 - **GaussianZoom** [arXiv:2605.18252](https://arxiv.org/abs/2605.18252) (arXiv 2026) — Progressive zoom-in generative 3D reconstruction with multi-scale semantic reasoning + expandable continuous LoD hierarchy
 - **PhysX-Omni** [arXiv:2605.21572](https://arxiv.org/abs/2605.21572) (arXiv 2026) — Unified simulation-ready physical 3D generation across rigid, deformable, and articulated objects; VLM-tailored geometry encoding without compression; PhysXVerse dataset + PhysX-Bench (NTU/Ziwei Liu)
+- **ROAR-3D** [arXiv:2605.21121](https://arxiv.org/abs/2605.21121) (arXiv 2026) — Routing arbitrary views for multi-view 3D generation; token-wise view router establishes 2D-to-3D correspondences without explicit pose input; dual-stream attention preserves pretrained single-view behavior
 
 ### Human & Avatar Methods
 - **Human3Diffusion** [arXiv:2406.08475](https://arxiv.org/abs/2406.08475) (NeurIPS 2024) — Diffusion + GS dual-driven 3D human avatar reconstruction [Code](https://github.com/YuxuanSnow/Human3Diffusion/)
@@ -196,6 +198,8 @@
 - **GaussianTalker** [arXiv:2412.09982](https://arxiv.org/abs/2412.09982) (CVPR 2025) — Audio-driven Gaussian talking head with facial prior and emotion control
 - **SplatFace** [arXiv:2412.10209](https://arxiv.org/abs/2412.10209) (CVPR 2025) — Face-specific GS with identity-preserving Gaussian anchoring from single image
 - **GaussianBody** [arXiv:2412.10972](https://arxiv.org/abs/2412.10972) (CVPR 2025) — SMPL-X aligned Gaussian body with part-aware densification
+- **PiG-Avatar** [arXiv:2605.20185](https://arxiv.org/abs/2605.20185) (arXiv 2026) — Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space decoupled from template topology; 3D barycentric anchor transport for kinematic coherence; emergent self-organization of anchor density
+- **Latent Dynamics** [arXiv:2605.21478](https://arxiv.org/abs/2605.21478) (arXiv 2026) — Pose-driven 3DGS avatar with transformer decoder + dynamics residual latent; learned force decomposition (driving/restoring/dissipative) for temporally coherent clothing animation
 - **GauHuman-v2** [arXiv:2503.24210](https://arxiv.org/abs/2503.24210) (CVPR 2025) — Second-generation human GS with improved SMPL-guided Gaussian binding
 - **SplatTalk** [arXiv:2503.24382](https://arxiv.org/abs/2503.24382) (CVPR 2025) — Audio-driven 3D talking face GS with emotion and style control
 - **SplatPose2** [arXiv:2504.13167](https://arxiv.org/abs/2504.13167) (CVPR 2025) — Enhanced pose-conditioned GS with part-level deformation
@@ -235,6 +239,7 @@
 - **GS-Skin** [arXiv:2412.15215](https://arxiv.org/abs/2412.15215) (CVPR 2025) — Skin reflectance model in GS for physically accurate human material estimation
 - **LightGS-v2** [arXiv:2412.15867](https://arxiv.org/abs/2412.15867) (CVPR 2025) — Light-stage GS with spherical harmonics decomposition for full relighting
 - **BRDF-GS** [arXiv:2503.18794](https://arxiv.org/abs/2503.18794) (CVPR 2025) — BRDF decomposition in GS with deferred rendering for relightable scenes
+- **GLUT** [arXiv:2605.19889](https://arxiv.org/abs/2605.19889) (arXiv 2026) — 3D Gaussian Lookup Table for continuous color transformation; replaces grid-based 3D LUT with learnable Gaussian primitives; compact conditional generator CGLUT for multi-style LUT blending; supports localized editing without global retraining
 
 ### Medical & Biomedical Imaging
 - **R2-Gaussian** [arXiv:2405.20693](https://arxiv.org/abs/2405.20693) (NeurIPS 2024) — GS adapted for Radon transform + X-ray volume rendering for tomographic reconstruction [Code](https://github.com/Ruyi-Zha/r2_gaussian)
@@ -277,6 +282,7 @@
 - **LiteLoc** [arXiv:2605.17777](https://arxiv.org/abs/2605.17777) (IEEE/CAA JAS 2026) — Color-free decoupled feature field for compact 3DGS localization: eliminates 94% redundant storage; condensing strategy distills matches to 5% for 19x speedup
 - **SplitGS-Loc** [arXiv:2605.07351](https://arxiv.org/abs/2605.07351) (arXiv 2026) — Mixture-of-Gaussians splitting to disambiguate 2D-3D correspondences in GS feature fields; no per-scene training needed
 - **Flow4DGS-SLAM** [arXiv:2604.22339](https://arxiv.org/abs/2604.22339) (CVPR 2026) — Optical flow-guided 4D Gaussian SLAM for dynamic scenes; category-agnostic motion mask via ego-motion decomposition; GMM temporal opacity/rotation; flow-guided camera pose initialization (NUS)
+- **GGD-SLAM** [arXiv:2604.12837](https://arxiv.org/abs/2604.12837) (ICRA 2026) — Generalizable motion model for monocular 3DGS SLAM in dynamic environments; FIFO queue + sequential attention for dynamic semantic extraction; no semantic labels or depth input required; anti-interference SSIM loss
 
 ### Security
 - **GS-Hider** [arXiv:2405.15118](https://arxiv.org/abs/2405.15118) (NeurIPS 2024) — Steganography embedding into Gaussian parameters for 3D message hiding, visually lossless
@@ -365,6 +371,7 @@
 - **Learn2Splat** [arXiv:2605.15760](https://arxiv.org/abs/2605.15760) — Meta-learned optimizer for 3DGS via checkpoint buffer + optimizer rollout; extends optimization horizon without degradation; zero-shot generalization (Geiger group)
 - **ReorgGS** [arXiv:2605.08739](https://arxiv.org/abs/2605.08739) (arXiv 2026) — Equivalent distribution reorganization fixing parameterization degeneration in converged 3DGS; kNN anisotropic covariance re-estimation
 - **LeGS** [arXiv:2605.04081](https://arxiv.org/abs/2605.04081) (arXiv 2026) — Beyond heuristics: learnable density control replacing hand-crafted clone/split/prune rules for 3DGS; RL-based adaptive densification
+- **CAdam** [arXiv:2605.20872](https://arxiv.org/abs/2605.20872) (SIGGRAPH 2026) — Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; first moment interference principle separates signal from noise; 85-97% Gaussian reduction (Chung et al.)
 
 ### Acceleration
 - **3DGS³** (arXiv 2026) — Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale

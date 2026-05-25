@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 69+ known bug patterns."
-version: 1.1.9
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 71+ known bug patterns."
+version: 1.2.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -12,7 +12,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (69+ known patterns)
+- Identify common 3DGS implementation pitfalls (71+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -339,6 +339,8 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | 67 | Standard density control amplifies photometric ambiguity causing surface degradation | Over-reconstructed floaters and malignant geometric overlap; poor surface extraction quality; excessive Gaussians in ambiguous regions | Alpha-compositing lacks constraints against over-reconstruction; SH coefficients serve as ambiguity self-indicator but signal is not leveraged during training. Add primitive truncation + ray-color consistency constraints; monitor SH coefficient magnitudes as ambiguity indicators (AmbiSuR, ICML 2026) |
 | 68 | GMM temporal opacity training converges slowly without flow prior warmup | Slow convergence of temporal opacity modeling in 4DGS SLAM; inconsistent dynamic object rendering; training takes 2-3x longer to stabilize | Pre-train optical flow estimation before enabling GMM temporal opacity; use flow prior warmup schedule for first N iterations with frozen temporal parameters (Flow4DGS-SLAM) |
 | 69 | Slice-aware PSF projection operator requires float64 precision for diagnostic fidelity | Banding artifacts in volumetric medical GS when using float16; diagnostic quality degradation in CT/cBCT reconstruction; false contours appear in soft tissue regions | Use float64 accumulation for slice-aware PSF projection kernel; cast to float32 only after final accumulation; verify with DICOM-grade PSNR comparison against float32 baseline (GaussianPile) |
+| 70 | CAdam densification dilemma in generative distillation | Standard magnitude-based gradient accumulation aggregates transient noise alongside geometric signals; Gaussians over-densify in stochastic regions or under-fit geometric structure | Use context-adaptive densification that distinguishes transient generative noise from geometric signals; apply signal-to-noise ratio gating before densification decisions; decouple generative gradient accumulation from geometric gradient paths (CAdam, ArXiv 2605.20872) |
+| 71 | GGD-SLAM dynamic interference in factor graph | Dynamic object residuals contaminate static factor graph; tracking drift accumulates as moving objects inject incorrect constraints | Mask dynamic region residuals before factor graph construction; detect and exclude dynamic Gaussians from tracking optimization; use motion model to separate static/dynamic contributions (GGD-SLAM, ICRA 2026, ArXiv 2604.12837) |
 
 
 ## Output Format

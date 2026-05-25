@@ -1,6 +1,6 @@
 ﻿name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
-version: 1.0.7
+version: 1.1.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
@@ -407,7 +407,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | World Models | GWM, FlashWorld, GS-World, Visionary, RAD, DLWM, X-World |
 | Digital Twin | DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head |
 | Volumetric Medical | GaussianPile (slice-aware PSF projection for CT/cBCT) |
-| Dynamic SLAM | Flow4DGS-SLAM (optical flow-guided 4DGS temporal consistency) |
+| Dynamic SLAM | Flow4DGS-SLAM (optical flow-guided 4DGS temporal consistency), GGD-SLAM (ICRA 2026, generalizable motion model for dynamic SLAM) |
 | Inspection | EnerGS, RGS, E2EGS |
 | Physics | PhysGaussian, Gaussian Splashing, GS-Playground |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS |
@@ -419,6 +419,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency) |
 | Streaming | CAGS (~7x VQ+LoD), AV1-3DGS (63% training reduction), PD-4DGS (progressive 4D streaming), MGS [2603.19234] (Matryoshka continuous LoD, single model multi-fidelity) |
 | Acceleration | AdpSplit [2605.06876] (error-driven adaptive split, drop-in for 9-22% training speedup) |
+| Generative Optimization | CAdam (SIGGRAPH 2026, context-adaptive densification for generative distillation pipelines) |
 | Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale |
 
 See knowledge base: `references/3dgs-methods-overview.md`, `references/methods-core.md`, `references/methods-semantic-editing.md`, `references/methods-systems-apps.md`

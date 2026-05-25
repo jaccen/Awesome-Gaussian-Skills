@@ -1,6 +1,6 @@
 ﻿name: 3dgs-paper-reader
-description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 553+ methods across 25 categories."
-version: 1.0.2
+description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 559+ methods across 25 categories."
+version: 1.1.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
 ---
@@ -127,6 +127,12 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 | — | Flow4DGS-SLAM | arXiv'26 | Optical flow-guided 4DGS for temporal consistency in SLAM |
 | — | Ilov3Splat | arXiv'26 | Interpretable region-aware 3DGS decomposition |
 | — | PhysX-Omni | arXiv'26 | Omni-physics integrated 3DGS for unified simulation & rendering |
+| 2605.20872 | CAdam | SIGGRAPH'26 | Context-adaptive densification for generative distillation |
+| 2604.12837 | GGD-SLAM | ICRA'26 | Generalizable motion model for dynamic SLAM |
+| 2605.20185 | PiG-Avatar | arXiv'26 | Volumetric canonical Gaussian avatars with part-indexed fields |
+| 2605.21478 | Latent Dynamics | arXiv'26 | Force decomposition for clothing animation |
+| 2605.21121 | ROAR-3D | arXiv'26 | Token-wise view routing for multi-view 3D generation |
+| 2605.19889 | GLUT | arXiv'26 | 3D Gaussian Lookup Table for color transformation |
 
 ### Terminology Conventions
 

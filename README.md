@@ -1,4 +1,5 @@
-﻿<div align="center">
+﻿
+<div align="center">
 
 If you like it, please ⭐️ star this repo! 
         
@@ -6,7 +7,7 @@ If you like it, please ⭐️ star this repo!
 
 ### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
 
-**553+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**559+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -27,15 +28,16 @@ If you like it, please ⭐️ star this repo!
 
 ## What's New (May 2026)
 
-Latest update (May 23): 548+ → 553+ methods, 25 categories. +5 new methods including GaussianPile (CVPR 2026, volumetric 3DGS for medical imaging), Flow4DGS-SLAM (CVPR 2026, optical flow-guided dynamic GS SLAM), Ilov3Splat (ICPR 2026, instance-level open-vocabulary 3DGS), LeGS (learnable density control replacing heuristics), PhysX-Omni (unified physical 3D generation for rigid/deformable/articulated). Daily arXiv tracking active.
+Latest update (May 25): 553+ → 559+ methods, 25 categories. +6 new methods including CAdam (SIGGRAPH 2026, context-adaptive densification for generative distillation, 85-97% Gaussian reduction), GGD-SLAM (ICRA 2026, generalizable motion model for monocular dynamic 3DGS SLAM), PiG-Avatar (volumetric canonical Gaussian avatars decoupled from template topology), Latent Dynamics (force decomposition for clothing animation), ROAR-3D (token-wise view routing for multi-view 3D generation), GLUT (3D Gaussian Lookup Table for continuous color transformation). Daily arXiv tracking active.
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
-| **GaussianPile** | [2603.20611](https://arxiv.org/abs/2603.20611) | Medical | Slice-based volumetric 3DGS + imaging PSF model; 11x faster than NeRF, 16x compression (CVPR 2026) |
-| **Flow4DGS-SLAM** | [2604.22339](https://arxiv.org/abs/2604.22339) | SLAM | Optical flow-guided 4DGS SLAM for dynamic scenes; category-agnostic motion mask (CVPR 2026) |
-| **Ilov3Splat** | [2605.04506](https://arxiv.org/abs/2605.04506) | Language / Semantic | Instance-level open-vocabulary 3DGS via hash embedding + SAM contrastive instance field (ICPR 2026) |
-| **LeGS** | [2605.04081](https://arxiv.org/abs/2605.04081) | Optimization | Learnable density control replacing heuristic clone/split/prune rules for 3DGS |
-| **PhysX-Omni** | [2605.21572](https://arxiv.org/abs/2605.21572) | Generation | Unified physical 3D generation for rigid + deformable + articulated objects; VLM geometry encoding |
+| **CAdam** | [2605.20872](https://arxiv.org/abs/2605.20872) | Optimization | Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; 85-97% Gaussian reduction (SIGGRAPH 2026) |
+| **GGD-SLAM** | [2604.12837](https://arxiv.org/abs/2604.12837) | SLAM | Generalizable motion model for monocular dynamic 3DGS SLAM; no semantic labels or depth input required (ICRA 2026) |
+| **PiG-Avatar** | [2605.20185](https://arxiv.org/abs/2605.20185) | Human / Avatar | Volumetric canonical Gaussian avatars decoupled from template topology; 3D barycentric anchor transport |
+| **Latent Dynamics** | [2605.21478](https://arxiv.org/abs/2605.21478) | Human / Avatar | Pose-driven 3DGS avatar with dynamics residual latent; force decomposition for clothing animation |
+| **ROAR-3D** | [2605.21121](https://arxiv.org/abs/2605.21121) | Generation | Token-wise view router for multi-view 3D generation; no explicit pose input |
+| **GLUT** | [2605.19889](https://arxiv.org/abs/2605.19889) | Relighting | 3D Gaussian Lookup Table for continuous color transformation; localized editing |
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
@@ -98,7 +100,7 @@ Latest update (May 23): 548+ → 553+ methods, 25 categories. +5 new methods inc
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 553+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 559+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
 | What You Do | Without This | With This |
 |-------------|-------------|-----------|
@@ -110,13 +112,13 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 
 ## Features
 
-- **553+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **559+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (553+ Methods)
+## Knowledge Base (559+ Methods)
 
 **Core Representations**
 
@@ -151,7 +153,7 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 |----------|-------------|---------|
 | Dynamic | 4D Gaussians, temporal deformation, and propagation | ParticleGS, 3DGS³, Velox, RetroNVS |
 | HDR / Dynamic | HDR capture and time-varying illumination | HDR-NSFF, FreeTimeGS++ |
-| SLAM | Simultaneous localization and mapping | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, Flow4DGS-SLAM |
+| SLAM | Simultaneous localization and mapping | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, Flow4DGS-SLAM, GGD-SLAM |
 | Sparse-View | Few-shot and sparse-view reconstruction | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 
 **Applications & Cross-Domain**
@@ -173,12 +175,12 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
 | Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> The full knowledge base covers **553+ methods** across 25 categories with detailed technical analysis. See [
+> The full knowledge base covers **559+ methods** across 25 categories with detailed technical analysis. See [
 eferences/3dgs-methods-overview.md](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [3dgs-methods-overview.csv](3dgs-methods-overview.csv)
 
-> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 553+ methods instantly.
+> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 559+ methods instantly.
 
 ## Quick Start
 
@@ -638,7 +640,8 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.7 — Daily update: 516→531+ methods, +15 new (HarmoGS, ULF-Loc, AdaptSplat, PointForward, 3DGS³, TransmissiveGS, NIRRGB-GS, TensorGS Tensor Core, DeG SIGGRAPH'26, P2GS CVPR'26, ArtMesh, DSGS, GEM, PanoWorld, LiteLoc); 63+ bug patterns; 25 categories (May 2026)
 - [x] v0.2.8 — Daily update: 531→548+ methods, +17 new (ZPressor NeurIPS'25, VolSplat, PM-Loss 3DV'26, AmbiSuR ICML'26, RT-Splatting CVPR'26 Highlight, TideGS 1B+ Gaussians, OP2GS dual-opacity, MMGS OT compression, 3DSGS skew Gaussian, GaussianZoom zoom-in gen, AnyCity aerial, Cross-View Splatter, FLUIDSPLAT, GS-DIFF, ReorgGS, AsyncEvGS, SplitGS-Loc); 67+ bug patterns; 25 categories (May 2026)
 - [x] v0.2.9 — CAD fusion: `cad-mesh-3dgs` skill + build123d pipeline (STEP→GLB→3DGS), cad2gs_pipeline.py, Part-Aware experiment scene builder, Sidecar animation system for 3DGS visualization (May 2026)
-- [x] v0.2.10 — Daily update: 548→553+ methods, +5 new (GaussianPile CVPR'26 volumetric medical 3DGS, Flow4DGS-SLAM CVPR'26 flow-guided dynamic SLAM, Ilov3Splat ICPR'26 instance-level open-vocab, LeGS learnable density control, PhysX-Omni unified physical 3D gen); 69+ bug patterns; 25 categories (May 2026)
+- [x] v0.2.10 — Daily update: 548→559+ methods, +5 new (GaussianPile CVPR'26 volumetric medical 3DGS, Flow4DGS-SLAM CVPR'26 flow-guided dynamic SLAM, Ilov3Splat ICPR'26 instance-level open-vocab, LeGS learnable density control, PhysX-Omni unified physical 3D gen); 69+ bug patterns; 25 categories (May 2026)
+- [x] v0.2.11 — Daily update: 553→559+ methods, +6 new (CAdam SIGGRAPH'26 generative densification, GGD-SLAM ICRA'26 dynamic SLAM, PiG-Avatar volumetric canonical avatars, Latent Dynamics clothing animation, ROAR-3D multi-view generation, GLUT color transformation) (May 2026)
 - [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)

@@ -1,13 +1,13 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 553+ methods across 25 categories."
-version: 1.4.9
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 559+ methods across 25 categories."
+version: 1.5.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 553+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 559+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -97,6 +97,7 @@ When comparing methods, analyze across the following dimensions:
 | Scaffold-GS+ | CVPR'24 | Anchor+3D | [0,1] | Progressive training |
 | Softmax-GS | CVPR'26 (Findings) | 3D anisotropic | Softmax competition | Replaces α-compositing with learnable softmax; blend-vs-bound |
 | LeGS | arXiv'26 | 3D anisotropic | RL-controlled | RL-based learnable density control replacing heuristics; O(N) reward |
+| CAdam | SIGGRAPH'26 | 3D anisotropic | Context-adaptive | Context-adaptive densification for generative distillation; avoids over-densification from transient noise |
 | SNS | arXiv'26 (2605.15010) | Skew-Normal | [0,1] | Skew-Normal primitive replacing symmetric Gaussian kernels; continuous interpolation between symmetric Gaussian ↔ Half-Gaussian via learnable skewness |
 
 ### Signed / Decomposed Methods
@@ -158,6 +159,7 @@ When comparing methods, analyze across the following dimensions:
 | GaussianEditor | Preprint | Text/geometry mask | Edited 3DGS | CLIP-guided selection + editing |
 | ArtifactWorld | arXiv'26 (2604.12251) | Artifact images | Restored video | Video generation for artifact restoration |
 | SceneGen-LLMRL | arXiv'26 (2605.05711) | Language | Interactive 3D scene | LLM-RL coupling for unified 3D scene generation + immersive interaction |
+| ROAR-3D | arXiv'26 (2605.21121) | Text/image | Multi-view 3D | Token-wise view routing for multi-view 3D generation |
 
 ### Language / Semantic
 
@@ -204,6 +206,7 @@ When comparing methods, analyze across the following dimensions:
 | PhysX-Omni | arXiv'26 | Multi-modal (vision+physics) | Scene-scale | Omni-physics integrated 3DGS for unified simulation & rendering |
 | E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
 | MAGS-SLAM | arXiv'26 | RGB (multi-agent) | Multi-room | First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification |
+| GGD-SLAM | ICRA'26 | Monocular video | Room-scale | Generalizable motion model for dynamic SLAM; masks dynamic region residuals for correct factor graph |
 
 ### Large-Scale Methods
 
@@ -280,6 +283,8 @@ When comparing methods, analyze across the following dimensions:
 | SDTalk | arXiv'26 | Image + audio | Structured facial priors + dual-branch motion fields for Gaussian talking head |
 | HairGPT | SIGGRAPH'26 | Text/image | Strand-as-Language autoregressive modeling for 3D hairstyle synthesis |
 | D-Rex | SIGGRAPH'26 (2604.27871) | White-light avatar + target illumination | Decoupled relighting via LoRA fine-tuned video diffusion post-process; applicable to any white-light avatar system |
+| PiG-Avatar | arXiv'26 (2605.20185) | Image + pose | Volumetric canonical Gaussian avatars with part-indexed Gaussian fields |
+| Latent Dynamics | arXiv'26 (2605.21478) | Image + motion | Force decomposition for clothing animation; latent dynamics prediction |
 
 ### World Models & Spatial Intelligence
 
