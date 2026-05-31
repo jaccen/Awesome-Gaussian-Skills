@@ -2,11 +2,11 @@
 
 # Awesome Gaussian Skills
 
-### 最全面的"3D空间智能开源工具箱"与 AI Agent 工具集
+### 3D空间智能开源工具箱
 
 If you like it, please ⭐️ star this repo!
 
-**574+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的研究工具**
+**591+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的空间智能研究工具**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -27,7 +27,7 @@ If you like it, please ⭐️ star this repo!
 
 ## 本月新增 (2026年5月)
 
-过去30天新增47篇方法——516+ → 574+ 方法, 67+ bug 模式。每日arXiv持续追踪。
+过去30天新增47篇方法——516+ → 591+ 方法, 79+ bug 模式。每日arXiv持续追踪。
 
 **最新更新（5月25日）：553+ → 574+ 方法，25个类别。+6新方法：CAdam（SIGGRAPH 2026，上下文自适应矩估计驱动生成式3DGS致密化，减少85-97%高斯）、GGD-SLAM（ICRA 2026，通用运动模型驱动单目动态3DGS SLAM）、PiG-Avatar（体素规范空间GS化身解耦模板拓扑）、Latent Dynamics（姿态驱动3DGS+动力学残差潜变量实现服装动画）、ROAR-3D（令牌级视角路由多视角3D生成）、GLUT（3D高斯查找表连续色彩变换）。**
 
@@ -50,7 +50,7 @@ If you like it, please ⭐️ star this repo!
 
 **2023年以来已有574+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
 
-**Awesome Gaussian Skills** 是一套零配置工具——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置574+方法的领域知识。
+**Awesome Gaussian Skills** 是一套3D空间智能开源工具箱——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置591+方法的领域知识。
 
 | 你做的事 | 没有本项目 | 有本项目 |
 |----------|-----------|---------|
@@ -62,13 +62,13 @@ If you like it, please ⭐️ star this repo!
 
 ## 特性
 
-- **574+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **591+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
 - **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
-## 知识库（574+ 方法）
+## 知识库（591+ 方法）
 
 **核心表示**
 
@@ -125,7 +125,7 @@ If you like it, please ⭐️ star this repo!
 | 系统 | 全系统设计与硬件协同设计 | YOGO, GS-SCNet |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> 完整知识库覆盖 **25 个类别的 574+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **25 个类别的 591+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
@@ -197,7 +197,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 574+ 方法的知识库
+- 内置 591+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -431,7 +431,7 @@ Awesome-Gaussian-Skills/
 
 ## 核心论文创新点汇总
 
-> 基于知识库574+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
+> 基于知识库591+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition / 计算机学报 / 软件学报
 
 <details>
@@ -598,7 +598,7 @@ Awesome-Gaussian-Skills/
 ```bibtex
 @misc{awesome-gaussian-skills,
   author = {jaccen},
-  title = {Awesome Gaussian Skills: AI Agent Skill Pack for 3D Gaussian Splatting Research},
+  title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills}
 }

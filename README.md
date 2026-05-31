@@ -4,9 +4,9 @@ If you like it, please ⭐️ star this repo!
         
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3DGS Methods Knowledge Base & AI Agent Toolkit
+### 3D Spatial Intelligence Open-Source Toolbox
 
-**591+ 3DGS methods cataloged with interactive explorer, code review, and AI-powered research tools**
+**591+ 3DGS methods cataloged with interactive explorer, code review, spatial intelligence, and AI-powered research tools**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -110,25 +110,25 @@ Latest update (May 31): 574+ → 591+ methods, 25 categories. +17 new methods in
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 574+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 591+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
 | What You Do | Without This | With This |
 |-------------|-------------|-----------|
 | Read a new paper | 30–60 min manual skimming | Structured summary in seconds |
 | Compare GS variants | Hand-build comparison tables | 10+ dimension auto-comparison |
-| Review 3DGS code | Miss known bug patterns | 67+ pattern detection |
+| Review 3DGS code | Miss known bug patterns | 79+ pattern detection |
 | Design experiments | Guess baselines & ablations | Venue-tailored experiment plan |
 | Migrate NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
 
 ## Features
 
-- **574+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **591+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
-- **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review — works with OpenClaw, Claude Code, Cursor
+- **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review, spatial intelligence — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (574+ Methods)
+## Knowledge Base (591+ Methods)
 
 **Core Representations**
 
@@ -185,12 +185,12 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
 | Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> The full knowledge base covers **574+ methods** across 25 categories with detailed technical analysis. See [
+> The full knowledge base covers **591+ methods** across 25 categories with detailed technical analysis. See [
 eferences/3dgs-methods-overview.md](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [3dgs-methods-overview.csv](3dgs-methods-overview.csv)
 
-> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 574+ methods instantly.
+> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 591+ methods instantly.
 
 ## Quick Start
 
@@ -259,7 +259,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 548+ methods
+- Built-in knowledge of 591+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -467,7 +467,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-|   ├── 3dgs-methods-overview.md # Index (548+ methods across 25 categories)
+|   ├── 3dgs-methods-overview.md # Index (591+ methods across 25 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   ├── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -509,7 +509,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 548+ methods. Each idea identifies a concrete problem, a methodological approach, and an implementation path.
+> Derived from systematic gap analysis across 591+ methods. Each idea identifies a concrete problem, a methodological approach, and an implementation path.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition.
 
 <details>
@@ -678,7 +678,7 @@ If you find this project helpful in your research, please consider citing:
 ```bibtex
 @misc{awesome-gaussian-skills,
   author = {jaccen},
-  title = {Awesome Gaussian Skills: AI Agent Skill Pack for 3D Gaussian Splatting Research},
+  title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills}
 }
