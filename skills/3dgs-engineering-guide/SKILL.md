@@ -123,8 +123,8 @@ When invoked, follow this workflow:
 **Sub-directions**:
 1. **Grasping & Manipulation** — GaussianGrasper, GraspSplats, ManiGaussian, RoboSplat
 2. **Navigation & Locomotion** — VR-Robo, GS-Playground, MAGICIAN
-3. **Embodied Reasoning** — GSMem (spatial memory), Forecast-GS (predictive planning)
-4. **Driving Policy RL** — GSDrive (3DGS environment for reinforcement learning)
+3. **Embodied Reasoning** — GSMem (spatial memory), Forecast-GS (predictive planning), ESI-Bench (spatial intelligence evaluation)
+4. **Driving Policy RL** — GSDrive (3DGS environment for reinforcement learning), SpaceDrive (VLM spatial awareness for AD)
 
 **Toolchain**: ROS2 (point cloud/depth topics), MuJoCo/Isaac Sim physics backend, GS-Playground (high-throughput sim)
 

@@ -94,6 +94,15 @@
 | **Hilbert-Geo** | - | **CVPR 2026** | First unified formal language framework for solid geometry; 77.3% on SolidFGeo2k (GPT-5: 54.2%) |
 | **Distilling 3D Spatial Reasoning into Lightweight VLM** | KU Leuven | arXiv 2026.05 | CoT distillation for spatial reasoning; enables smaller VLMs to handle 3D tasks |
 | **SenseNova-SI** | SenseTime | 2026 | Scaling spatial intelligence with multimodal foundation models |
+| **ESI-Bench** | Fei-Fei Li / Stanford / World Labs | arXiv 2605.18746 (2026.05) | 首个具身空间智能基准；强制"感知-行动回路"闭合；覆盖4大空间认知维度(object navigation, spatial description, spatial reasoning, embodied interaction)；被称"具身智能的ImageNet"；揭示GPT-4o/Gemini等模型空间交互短板 |
+| **HiSpatial** | - | arXiv 2603.25411, CVPR 2026 | 层级3D空间认知VLM调控(taming hierarchical 3D spatial understanding)；从2D观测推理3D结构→识别物体属性与空间关系→执行空间推理任务 |
+| **SpatialStack** | - | arXiv 2603.27437 (2026.03) | 分层几何-语言融合(layered geometry-language fusion)；解决VLM连续3D空间推理可靠性问题 |
+| **Loc3R-VLM** | Microsoft Spatial AI Lab + ETH + EPFL | arXiv 2603.18002, CVPR 2026 | 首个让VLM获得类人空间认知能力的框架；3D定位(3D grounding)与语言理解深度融合 |
+| **Embodied3DBench** | - | arXiv 2605.29074 (2026.05) | 低层具身空间智能基准；21K QA对；关注细粒度空间交互(size/distance/pose/occlusion)能力评测 |
+| **SpaceDrive** | Mercedes-Benz / Univ. Tübingen | CVPR 2026 | 向VLM注入空间感知能力(infusing spatial awareness)用于自动驾驶；空间感知与驾驶决策联合优化 |
+| **TerraScope** | - | CVPR 2026 | 首个像素级地理空间推理VLM；Terra-CoT 100万样本训练；超越GPT-4o |
+| **SceneVerse++** | BIGAI / PKU / THU | CVPR 2026 | 互联网视频替代3D标注；最大规模真实3D场景数据；解决3D标注数据稀缺问题 |
+| **SuperVoxelGPT** | - | arXiv 2605.29655 (2026.05) | 自回归3D形状生成；超体素(super-voxel)作为3D生成的离散化基元 |
 
 ### 3.2 3D Scene Understanding & Generation
 
@@ -170,6 +179,9 @@
 | **I2-World: Generating Interactive Worlds via LLM-Guided Agents** | - | Agent-based 3D scene generation |
 | **中国信通院: 具身智能发展报告(2025)** | 2026.01 | China policy + industry landscape; first government-level embodied AI inclusion |
 | **人形机器人与具身智能标准体系(2026版)** | 2026.02 | China's first humanoid robot + embodied intelligence standards |
+| **ESI-Bench** | arXiv 2605.18746 (2026.05) | First embodied spatial intelligence benchmark closing perception-action loop; 4 spatial cognition dimensions; "ImageNet for embodied intelligence" |
+| **Embodied3DBench** | arXiv 2605.29074 (2026.05) | Low-level embodied spatial intelligence benchmark; 21K QA pairs; size/distance/pose/occlusion |
+| **CVPR 2026 3D空间智能七项前沿** | 雷锋网 2026.05 | HiSpatial/CoD/紧凑隐表示/区域自适应采样等前沿突破梳理 |
 
 ## 8. Industry Landscape (2025-2026)
 
@@ -205,7 +217,7 @@
 |-----------|-------------------|---------------------|---------|
 | Embodied AI / Robotics | ReconVLA, Goal-VLA, Pelican-Unified, RoboFlow4D, SCAR, BISON | GaussianGrasper, GraspSplats, ManiGaussian, GSMem, RoboSplat, VR-Robo, GSDrive | ManiGaussian shared |
 | World Models | DreamerV3, OrbiSim, RISE, MTPR-WM, LingBot-World | GWM, FlashWorld, RAD, DLWM, GS-World, Visionary, GS-ID, X-World, Spark2.0 | GS-World, X-World shared |
-| Spatial Intelligence | HERMES, IVGT, GTA, Hilbert-Geo, GeoWorld-VLM, SpatialBabel | ULF-Loc (alpha-compositing feature bias) | ULF-Loc shared |
+| Spatial Intelligence | HERMES, IVGT, GTA, Hilbert-Geo, GeoWorld-VLM, SpatialBabel, **ESI-Bench**, **HiSpatial**, **SpatialStack**, **Loc3R-VLM**, **Embodied3DBench** | ULF-Loc (alpha-compositing feature bias) | ULF-Loc shared |
 | Physical AI | OrbiSim, PhysWorld, ParticleGS, Newton | PhysGaussian, EndoGSim, LagrangianSplats, Real2Sim | PhysGaussian, EndoGSim, LagrangianSplats, Real2Sim shared |
 
 ## 10. Research Trend Observations (2026)
@@ -220,6 +232,10 @@
 
 5. **Tactile Fusion**: The comprehensive survey on tactile-based multimodal fusion (arXiv 2026.05) indicates that contact-driven sensing is becoming essential for fine manipulation, complementing vision-language approaches.
 
-6. **Benchmark Explosion**: SpatialScore, SpatialMQA, MMSI-Bench, PanoSpace-Bench, InfiniBench, NavSpace — the rapid emergence of spatial intelligence benchmarks reveals that spatial reasoning is now recognized as a distinct evaluation dimension.
+6. **Benchmark Explosion**: SpatialScore, SpatialMQA, MMSI-Bench, PanoSpace-Bench, InfiniBench, NavSpace, **ESI-Bench**, **Embodied3DBench** — the rapid emergence of spatial intelligence benchmarks reveals that spatial reasoning is now recognized as a distinct evaluation dimension. ESI-Bench specifically closes the perception-action loop, marking a shift from passive observation to active interaction evaluation.
 
 7. **Safety in Multi-Robot Systems**: InfectBot (IJCAI 2026) demonstrates dangerous attack propagation in LLM-controlled multi-robot collaboration, highlighting the urgent need for safety alignment in embodied multi-agent systems.
+
+8. **Perception-Action Loop Closure**: ESI-Bench (Fei-Fei Li team) represents a paradigm shift in spatial intelligence evaluation — from passive "observation-based" QA to active "embodied perception-action" loops. This reveals that current top models (GPT-4o, Gemini) excel at visual recognition but fail at spatial interaction, echoing the reconstruction-guided approach of ReconVLA.
+
+9. **Hierarchical Spatial Cognition**: HiSpatial (CVPR 2026) and SpatialStack demonstrate that 3D spatial understanding in VLMs benefits from hierarchical decomposition — from low-level 3D structure inference to high-level spatial relation reasoning — rather than treating spatial understanding as a monolithic capability.

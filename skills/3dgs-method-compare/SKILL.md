@@ -7,7 +7,7 @@ tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 574+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 591+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -315,6 +315,13 @@ Key methods:
 - **GS-World**: 3DGS as differentiable simulation engine for world model + Sim2Real VLA
 - **Visionary**: WebGPU + 3DGS world model carrier platform for browser-native world model rendering
 - **RAD/DLWM**: 3DGS twin digital world for autonomous driving RL training
+- **GSMem**: 3DGS as persistent spatial memory for zero-shot embodied exploration & QA
+
+Spatial intelligence benchmarks intersecting 3DGS:
+- **ESI-Bench** (arXiv 2605.18746, Fei-Fei Li team): First embodied spatial intelligence benchmark closing perception-action loop; reveals that VLM models fail at spatial interaction despite strong visual recognition — directly relevant to 3DGS-based embodied reasoning (GSMem, RoboSplat)
+- **HiSpatial** (arXiv 2603.25411, CVPR 2026): Hierarchical 3D spatial cognition in VLMs; from 2D→3D structure→object properties→spatial relations — suggests 3DGS scene graphs as structured intermediate representations
+- **Embodied3DBench** (arXiv 2605.29074): 21K QA pairs for low-level embodied spatial intelligence; size/distance/pose/occlusion reasoning — evaluation targets overlap with 3DGS spatial understanding
+- **SpaceDrive** (CVPR 2026, Mercedes-Benz): Infusing spatial awareness into VLM for autonomous driving — 3DGS-based driving world models (SplatAD, GS-Drive) are the natural spatial representation backend
 
 Comparison key: Does the method use 3DGS as (a) state representation only, (b) dynamics modeling primitive, or (c) differentiable simulation engine? This determines the depth of world model integration.
 

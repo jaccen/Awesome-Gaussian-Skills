@@ -117,6 +117,14 @@ NVIDIA对Physical AI的技术定位：
 | **MMSI-Bench** | 上海AI Lab | 2025.06 | 多图像空间智能基准；揭示AI与人类空间认知的巨大差距 |
 | **VRU (视点旋转理解)** | UIUC | ACL 2026 | 无视觉输入下语言模型的空间认知测试；反直觉发现 |
 | **UrbanLLaVA** | | ICCV 2025 | 城市智能多模态LLM；空间推理与理解 |
+| **ESI-Bench** | Fei-Fei Li / Stanford / World Labs | arXiv 2605.18746 (2026.05) | 首个具身空间智能基准；强制"感知-行动回路"闭合；覆盖4大空间认知维度；被称"具身智能的ImageNet" |
+| **HiSpatial** | - | arXiv 2603.25411, CVPR 2026 | 层级3D空间认知VLM调控；从2D观测推理3D结构、物体属性与空间关系 |
+| **SpatialStack** | - | arXiv 2603.27437 (2026.03) | 分层几何-语言融合空间推理；解决VLM连续3D空间推理可靠性问题 |
+| **Loc3R-VLM** | Microsoft Spatial AI Lab + ETH/EPFL | arXiv 2603.18002, CVPR 2026 | 首个让VLM获得类人空间认知能力的框架；3D定位+语言理解融合 |
+| **Embodied3DBench** | - | arXiv 2605.29074 (2026.05) | 低层具身空间智能基准；21K QA对；关注细粒度空间交互能力评测 |
+| **SpaceDrive** | Mercedes-Benz / Univ. Tübingen | CVPR 2026 | 向VLM注入空间感知能力用于自动驾驶；空间感知与驾驶决策联合优化 |
+| **TerraScope** | - | CVPR 2026 | 首个像素级地理空间推理VLM；Terra-CoT 100万样本训练；超越GPT-4o |
+| **SceneVerse++** | BIGAI / PKU / THU | CVPR 2026 | 互联网视频替代3D标注；最大规模真实3D场景数据；解决3D标注数据稀缺问题 |
 | **SpatialLM** | 群核科技 | 2026 | 空间理解大模型；HuggingFace趋势榜与DeepSeek/千问同场竞技 |
 
 ### 2.3 关键综述论文
@@ -130,6 +138,8 @@ NVIDIA对Physical AI的技术定位：
 | **从Masks到Worlds** | arXiv 2025 | 遮蔽技术主导世界模型的技术路线梳理；BERT→Genie路线图 |
 | **生成式世界模型综述** | 极佳视界+中科院+新国立等 | 全球首篇自动驾驶世界模型综述 |
 | **CVPR 2026世界模型论文全景** | 机器之心梳理 | 从生成到建模的关键转变；视频生成→3D→4D→可控物理世界 |
+| **CVPR 2026 3D空间智能七项前沿** | 雷锋网梳理 | HiSpatial/CoD/紧凑隐表示/区域自适应采样等7项前沿突破 |
+| **ESI-Bench: Closing the Perception-Action Loop** | Hong et al., arXiv 2605.18746 | 首个强制感知-行动回路闭合的具身空间智能基准；揭示大模型空间交互短板 |
 
 ## 3. Commercial Deployment: Verified Cases
 
@@ -480,7 +490,7 @@ ArtiSplat（Articulation-Aware Rendering Formulation）的ω_p(θ)物理调制�
 World Models和Spatial Intelligence与3DGS的技术交叉日益紧密，建议在Awesome-Gaussian-Skills知识库中持续追踪：
 
 1. **World Model × 3DGS交叉方法**：追踪GS-World/Street Gaussians/StreetForward等3DGS作为世界模型3D原语的方法
-2. **空间智能评测**：关注SpatialGenEval/MMSI-Bench/NavSpace等基准对3D空间理解方法的评测
+2. **空间智能评测**：关注ESI-Bench(感知-行动回路闭合)/HiSpatial(层级3D认知)/SpatialGenEval/MMSI-Bench/NavSpace/Embodied3DBench等基准对3D空间理解方法的评测
 3. **4DGS → 可交互世界**：4DGS方法族向世界模型方向演进的趋势
 4. **具身智能3DGS**：已有Embodied AI子分类，持续扩展与世界模型交叉的方法(GS-World/ManiGaussian/RoboSimGS)
 5. **自动驾驶3DGS仿真**：SplatAD/GS-Drive/GausCtrl-AD/Street Gaussians等世界模型驱动的仿真中3DGS应用
@@ -509,3 +519,10 @@ World Models和Spatial Intelligence与3DGS的技术交叉日益紧密，建议�
 - 光轮智能(谢晨): 具身智能数据成熟度量化(0.6分 vs LLM 60分)
 - 51WORLD/五一视界: 物理直觉世界模型发布(2026.03) + 港股IPO
 - 智元机器人: GE-Sim 2.0 + AGIBOT WORLD 2026挑战赛
+- Hong et al.: "ESI-Bench: Towards Embodied Spatial Intelligence that Closes the Perception-Action Loop" (arXiv 2605.18746, 2026.05) — 李飞飞团队具身空间智能基准
+- HiSpatial: "Taming Hierarchical 3D Spatial Understanding in Vision-Language Models" (arXiv 2603.25411, CVPR 2026) — 层级3D空间认知VLM
+- SpatialStack: "Layered Geometry-Language Fusion" (arXiv 2603.27437, 2026.03) — 分层几何-语言融合空间推理
+- Loc3R-VLM: "Loc3R-VLM" (arXiv 2603.18002, CVPR 2026) — 微软空间AI实验室VLM空间认知框架
+- Embodied3DBench: (arXiv 2605.29074, 2026.05) — 低层具身空间智能基准21K QA
+- SpaceDrive: "Infusing Spatial Awareness into VLM-based Autonomous Driving" (CVPR 2026) — 奔驰VLM空间感知
+- 雷锋网: "CVPR 2026从生成式压缩到3D空间智能七项前沿突破" (2026.05.27)
