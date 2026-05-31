@@ -1,4 +1,4 @@
-## Newly Added (May 2026 Expansion)
+﻿## Newly Added (May 2026 Expansion)
 
 
 ### Language / Semantic
@@ -579,4 +579,3 @@
 - **Year**: 2025
 - **Category**: Human & Avatar Methods
 - **Core Innovation**: Enhanced pose-conditioned GS with part-level deformation
-> AI生成

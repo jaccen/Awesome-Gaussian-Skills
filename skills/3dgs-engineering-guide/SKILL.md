@@ -28,11 +28,11 @@ When invoked, follow this workflow:
 
 **Pipeline**: Real-world scan (LiDAR + multi-camera) → 3DGS reconstruction → Sensor simulation → HIL/SIL testing
 
-**Key papers**: GSDrive, GS-Playground (10^4 FPS, RSS 2026), GS-Surrogate, FieryGS, Nighttime AD GS, Real2Sim (4DGS + differentiable MPM), GS-SCNet, Ground4D, ULF-Loc (CVPR 2026 highlight), ConFixGS [2605.09688]
+**Key papers**: GSDrive, GS-Playground (10^4 FPS, RSS 2026), GS-Surrogate, FieryGS, Nighttime AD GS, Real2Sim (4DGS + differentiable MPM), GS-SCNet, Ground4D, ULF-Loc (CVPR 2026 highlight), ConFixGS [2605.09688], FRUC [2605.29997] (feed-forward cooperative driving), DeGO [2605.28587] (deformable Gaussian occupancy, CVPR 2026)
 
 **Quality bar**: Sensor sim error < 0.02, LiDAR > 30 FPS, LPIPS < 0.1, Radar ±3 dB
 
-**Notes**: ConFixGS provides plug-and-play confidence-aware diffusion repair for +3.68 dB PSNR on Waymo, applicable to pretrained feedforward models; LiDAR sim requires opaque surface Gaussians; OpenDRIVE co-registration mandatory; nighttime needs separate IR-adjacent training
+**Notes**: ConFixGS provides plug-and-play confidence-aware diffusion repair for +3.68 dB PSNR on Waymo, applicable to pretrained feedforward models; FRUC enables calibration-free multi-agent reconstruction; DeGO decouples rigid/non-rigid motion for human-centric occupancy; LiDAR sim requires opaque surface Gaussians; OpenDRIVE co-registration mandatory; nighttime needs separate IR-adjacent training
 
 ### 1.2 Digital Twin & Smart City
 
@@ -191,7 +191,7 @@ Engineering considerations:
 | City block | 10M–100M | 3–7 h | A100 80GB |
 | City district | 100M–1B | 12–24 h | A100/H100 cluster |
 
-**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive)
+**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive), **CodecSplat** (ultra-compact feed-forward, 20–108 KiB/scene, ArXiv 2605.25563)
 
 **Rule**: No compression for prototyping → add when deployment demands; validate compressed vs original.
 
@@ -202,6 +202,8 @@ Engineering considerations:
 **Material separation**: GOR-IS (albedo/shading/normals), SSD-GS (scatter+shadow) — enables relighting
 
 **Relighting**: GS³ (SH-based), GaRe, LumiMotion — critical for virtual production and e-commerce
+
+**Relighting (feed-forward)**: **F-RNG** (ArXiv 2605.25975) — feed-forward relightable 3DGS, ~25× faster than optimization-based relighting; recommended for production relighting pipelines where iterative optimization is prohibitive
 
 **Editing**: GaussianEditor, ObjectMorpher, TransSplat, **SuperSplat** (PlayCanvas, MIT, browser-based: inspect/edit/compress/publish PLY & SOG; https://superspl.at/editor)
 
@@ -392,8 +394,9 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 - **Memory explosion at scale**: GPU OOM > 10M Gaussians. Fix: spatial partitioning from day one, Scaffold-GS anchors, streaming for > 10M.
 - **Sensor sim fidelity ignored**: High PSNR but inaccurate LiDAR/Radar. Fix: validate sensor outputs vs real data; opaque surface Gaussians for LiDAR; calibrate Radar cross-section.
 - **CUDA lock-in**: Cannot deploy to AMD/Intel/Mobile. Fix: VkSplat/GSeurat (Vulkan), msplat (Metal), tortuise (Rust CPU), **brush** (Rust/WebGPU/Burn, most complete cross-platform: Win/Mac/Linux/Android/Web, 4.3k stars, faster than gsplat); abstract CUDA behind interface.
+- **Sorting bottleneck for semi-transparent scenes**: Alpha-compositing requires depth sort, which becomes the bottleneck for scenes with many overlapping semi-transparent Gaussians. Fix: **DP-GES** (Depth Peeling for sort-free surfel rendering) eliminates sorting entirely by using layered depth peeling; applicable when surfel representation is acceptable.
 - **No version control for 3DGS**: Cannot reproduce/track changes. Fix: git LFS or DVC; separate metadata (YAML) from binary; semantic versioning.
-- **Static lighting assumption**: Breaks under different lighting. Fix: plan relighting upfront; GOR-IS/SSD-GS decomposition; GS³/GaRe SH-based relighting.
+- **Static lighting assumption**: Breaks under different lighting. Fix: plan relighting upfront; GOR-IS/SSD-GS decomposition; GS³/GaRe SH-based relighting; **F-RNG** for feed-forward relighting at ~25× the speed of optimization-based approaches.
 - **Temporal inconsistency**: Video flicker, object jumping. Fix: 4DGS (GauFRe, DeformGS, ScubeGS); temporal smoothness loss.
 - **Under-estimated compression artifacts**: Visible holes, color shifts. Fix: rate-distortion benchmarks first; domain-specific metrics (not just PSNR); uncompressed reference for comparison.
 
@@ -416,11 +419,12 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | BIM/CAD | BrepGaussian, CADFS |
 | Editing | GaussianEditor, ObjectMorpher, TransSplat |
 | Security | GuardMarkGS (watermarking + edit deterrence) |
-| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency) |
+| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency), **DP-GES** (sort-free surfel rendering via depth peeling, ArXiv 2605.25345) |
 | Streaming | CAGS (~7x VQ+LoD), AV1-3DGS (63% training reduction), PD-4DGS (progressive 4D streaming), MGS [2603.19234] (Matryoshka continuous LoD, single model multi-fidelity) |
 | Acceleration | AdpSplit [2605.06876] (error-driven adaptive split, drop-in for 9-22% training speedup) |
 | Generative Optimization | CAdam (SIGGRAPH 2026, context-adaptive densification for generative distillation pipelines) |
-| Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale |
+| Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale, **CodecSplat** (ultra-compact latent coding, 20–108 KiB/scene, ArXiv 2605.25563) |
+| Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS, **F-RNG** (feed-forward, ~25× faster, ArXiv 2605.25975) |
 
 See knowledge base: `references/3dgs-methods-overview.md`, `references/methods-core.md`, `references/methods-semantic-editing.md`, `references/methods-systems-apps.md`
 

@@ -1,13 +1,13 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 559+ methods across 25 categories."
-version: 1.5.0
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 591+ methods across 25 categories."
+version: 1.6.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 559+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 574+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -83,6 +83,8 @@ When comparing methods, analyze across the following dimensions:
 | Mip-Splatting | 3D Anisotropic Gaussian + Mip | alpha-compositing | 3D smoothing + 2D Mip filter |
 | 3DGEER | 3D Anisotropic Gaussian | Exact ray-Gaussian integral | Replaces splatting with exact rendering |
 | SNS | Azzalini Skew-Normal Distribution | alpha-compositing | Learnable skewness for asymmetric boundaries |
+| DP-GES | Surfel (sort-free) | Depth Peeling transparency | Eliminates sorting via depth peeling; correct transmittance for semi-transparent boundaries |
+| TriSplat | Triangle primitive | Triangle rasterization | Triangle primitives replacing Gaussians; deterministic visibility |
 
 ## Known Methods Database
 
@@ -133,6 +135,9 @@ When comparing methods, analyze across the following dimensions:
 |--------|-------|-------------|-------------|
 | EnerGS | arXiv'26 | LiDAR (partial geometric) | Energy-based soft guidance instead of hard constraints; improves outdoor large-scale scenes |
 | Luminance-GS++ | TPAMI'26 | Illumination prior | Illumination-robust NVS; decouples shading from geometry |
+| Underwater360 | arXiv'26 | Degradation-aware | 3DGS for underwater 360° scenes; attenuation+scattering correction |
+| GlowGS | arXiv'26 | Low-light prior | 3DGS for low-light/glowing scenes; radiance-aware decomposition |
+| DelowlightSplat | arXiv'26 | Degradation-specific | Depth+low-light joint 3DGS; degradation-specific restoration |
 
 ### Geometry / Surface Methods
 
@@ -150,6 +155,7 @@ When comparing methods, analyze across the following dimensions:
 | SVGS | arXiv'24 (2411.18966) | High (Blender SOTA) | Spatially varying color+opacity within each Gaussian; movable kernels (1.4x params); >30 FPS |
 | AmbiSuR | ICML'26 | High (photometric) | Photometric ambiguity disambiguation for accurate GS surface reconstruction |
 | DySurface | arXiv'26 | High (4D surface) | Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction |
+| TriSplat | arXiv'26 (2605.26115) | High (triangle) | Triangle primitives replacing Gaussians; deterministic visibility, mesh-compatible output |
 
 ### Generation / Text-to-3D
 
@@ -191,6 +197,16 @@ When comparing methods, analyze across the following dimensions:
 | PM-Loss | 3DV'26 (2506.05327) | Variable | Training loss only | Pointmap-supervised depth regularization; smoother boundaries with no inference overhead |
 | VolSplat | arXiv'25 (2509.19297) | Voxel-aligned | Single-pass | Shared voxel-space Gaussian prediction for multi-view consistency |
 | SplatWeaver | arXiv'26 (2605.07287) | Variable | Single-pass | Cardinality Gaussian Expert Routing (Null/1/2/3 experts per pixel) + DWT frequency prior; 30% Gaussian budget with +1.02 dB PSNR over AnySplat |
+| ArtSplat | arXiv'26 (2605.24304) | Per-part Gaussians | Single-pass | First feed-forward articulated 3DGS; predicts per-part Gaussians + joint parameters from monocular video; enables zero-shot articulated reconstruction |
+| NoPo4D | arXiv'26 (2605.22190) | 4D Gaussians | Single-pass | Pose-free feed-forward 4DGS; eliminates camera pose dependency for dynamic scene reconstruction |
+| BEA-GS | CVPR'26 (Highlight, 2605.09662) | Object Gaussians | Single-pass | Object extraction from complex 3DGS scenes; CVPR 2026 Highlight |
+| TokenGS | arXiv'26 (2604.15239) | Learnable tokens | Single-pass | Learnable Gaussian tokens replacing fixed MLP decoding; resolution-adaptive primitive allocation |
+| CodecSplat | arXiv'26 (2605.25563) | Latent-coded Gaussians | Single-pass | Ultra-compact latent coding; 20-108 KiB/scene feed-forward 3DGS |
+| F-RNG | arXiv'26 (2605.25975) | 3D anisotropic | Single-pass | Feed-forward relightable 3DGS; ~25x faster than optimization-based relighting |
+| VoxelGS | arXiv'26 (2605.26616) | Voxel-anchored Gaussians | Hybrid | Scaffold-anchored Gaussians + voxel SDF for geometry-aware reconstruction |
+| COSY | arXiv'26 (2605.24114) | Compositional Gaussians | Optimized | Compositional head editing via part-based Gaussian decomposition |
+| R5DGS | arXiv'26 (2605.25909) | 4D Gaussians (semantic) | Hybrid | Semantic-aware 4DGS with rigid body constraints for dynamic scene editing |
+| RiGS | arXiv'26 (2605.23672) | 4D Gaussians (rigid-aware) | Hybrid | Rigid-aware monocular 4DGS; leverages rigid body priors for temporal consistency |
 
 ### SLAM Methods
 
@@ -273,6 +289,9 @@ When comparing methods, analyze across the following dimensions:
 | RetroNVS | arXiv'26 | 3D anisotropic | Retro-reflection modeling | Retro-reflection modeling in 3DGS for accurate rendering of retro-reflective surfaces (signs, safety gear) |
 | Velox | arXiv'26 | 3D anisotropic | Velocity-aware 4D | Velocity-aware 4DGS for fast dynamic scene reconstruction with motion-adaptive temporal modeling |
 | 3DGS² | arXiv'26 | 3D anisotropic (super-sampled) | Super-sampling + temporal | Second-generation 3DGS with super-sampling and temporal interpolation for large-scale scenes |
+| DP-GES | arXiv'26 (2605.25345) | Surfel | Depth Peeling (sort-free) | Sort-free surfel rendering via depth peeling; eliminates sorting bottleneck for semi-transparent surfaces |
+| 4D-GSW | arXiv'26 (2605.22342) | 4D anisotropic | Kinematic-aware watermarking | Kinematic-aware 4DGS watermarking; embeds identity into dynamic Gaussian trajectories |
+| RoVES | arXiv'26 (2605.25373) | 3D anisotropic (physics-aware) | Physics-conditioned editing | Physics-aware driving scene editing; enforces physical constraints during scene manipulation |
 
 ### Human & Avatar Methods
 

@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 71+ known bug patterns."
-version: 1.2.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 79+ known bug patterns."
+version: 1.3.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -12,7 +12,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (71+ known patterns)
+- Identify common 3DGS implementation pitfalls (75+ known patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -341,6 +341,34 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | 69 | Slice-aware PSF projection operator requires float64 precision for diagnostic fidelity | Banding artifacts in volumetric medical GS when using float16; diagnostic quality degradation in CT/cBCT reconstruction; false contours appear in soft tissue regions | Use float64 accumulation for slice-aware PSF projection kernel; cast to float32 only after final accumulation; verify with DICOM-grade PSNR comparison against float32 baseline (GaussianPile) |
 | 70 | CAdam densification dilemma in generative distillation | Standard magnitude-based gradient accumulation aggregates transient noise alongside geometric signals; Gaussians over-densify in stochastic regions or under-fit geometric structure | Use context-adaptive densification that distinguishes transient generative noise from geometric signals; apply signal-to-noise ratio gating before densification decisions; decouple generative gradient accumulation from geometric gradient paths (CAdam, ArXiv 2605.20872) |
 | 71 | GGD-SLAM dynamic interference in factor graph | Dynamic object residuals contaminate static factor graph; tracking drift accumulates as moving objects inject incorrect constraints | Mask dynamic region residuals before factor graph construction; detect and exclude dynamic Gaussians from tracking optimization; use motion model to separate static/dynamic contributions (GGD-SLAM, ICRA 2026, ArXiv 2604.12837) |
+| 72 | Depth Peeling transmittance error | Incorrect depth peeling order causes transmittance accumulation errors when implementing sort-free rendering with semi-transparent boundaries; visual artifacts at overlap boundaries | Enforce strict front-to-back peeling order per layer; validate transmittance accumulation matches alpha-compositing baseline; add layer continuity constraint to prevent depth reversal (DP-GES, ArXiv 2605.25345) |
+| 73 | Token count-resolution coupling | When learnable token count is hardcoded to input resolution, scaling to higher resolution silently drops primitives; quality degrades without warning | Decouple token count from input resolution via adaptive pooling or learned cardinality; validate primitive count consistency across resolution scales; add budget-aware token allocation (TokenGS, ArXiv 2604.15239) |
+| 74 | Articulation joint map consistency | Per-pixel joint prediction in feed-forward articulated GS produces inconsistent joint assignments across neighboring pixels; visible seams at part boundaries | Add spatial consistency loss on joint maps; enforce part-level joint smoothness via bilateral filtering or CRF; validate across viewpoints that joint assignments are topologically consistent (ArtSplat, ArXiv 2605.24304) |
+| 75 | Voxel-Gaussian tethering gradient starvation | When Gaussians are tethered to voxel SDF anchors, gradient from SDF loss may starve Gaussian position updates; convergence stalls as positions cannot escape anchor pull | Use gradient scaling or stop-gradient on SDF anchor pull when Gaussian position gradient magnitude falls below threshold; alternate SDF and position optimization steps; monitor position gradient norms for starvation detection (VoxelGS, ArXiv 2605.26616) |
+
+### Probability-Based Densification Patterns (EulerianGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 76 | Heuristic ADC densification is brittle and hyperparameter-sensitive | Heuristic clone/split/prune decisions (gradient threshold, scale threshold, opacity threshold) require per-scene tuning; different scenes need different thresholds; densification priors can interfere with optimization | Replace heuristic densification with gradient-based probability density optimization; treat Gaussian locations as samples from a learnable density field; use multi-scale hierarchical grids and unbiased gradient estimators with control variates; allows probability mass to flow to where loss demands (EulerianGS, ArXiv 2605.29136, CVPR 2026) |
+
+### TPS Initialization Patterns (TWINGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 77 | Sparse-view 3DGS initialization from SfM points is insufficient | Under sparse-view conditioning, SfM produces too few points for good 3DGS initialization; resulting reconstructions have missing structure and poor color fidelity | Use Thin Plate Splines (TPS) warp to align backprojected depth points with triangulated 3D control points; sample calibrated points near control points for geometrically accurate initialization (TWINGS, ArXiv 2605.22069, CVPR 2026) |
+
+### Uncertainty-Aware Active Mapping Patterns (GAVIS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 78 | No principled uncertainty quantification for 3DGS | Existing 3DGS provides no per-pixel uncertainty; active mapping relies on heuristics; regions unseen from training views produce unreliable predictions without warning | Compute anisotropic visibility field per Gaussian using spherical harmonics; integrate into Bayesian Network rasterizer for real-time (200 FPS) uncertainty quantification; use maximum information gain for active viewpoint selection (GAVIS, ArXiv 2605.30342, CVPR 2026) |
+
+### High-Capacity Watermarking Patterns (BitC-3DGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 79 | 3DGS watermarking limited to 77-bit messages by CLIP token context | Existing token-based watermarking methods are capped at 77 bits due to CLIP's fixed context length; insufficient for rich ownership/provenance/authentication information in large-scale 3D asset pipelines | Use bit-compressed tokenization that encodes multiple message bits per semantic token; dual-branch architecture for joint chunk decompression and bit decoding; hard-message sampling strategy for combinatorial coverage (BitC-3DGS, ArXiv 2605.29583) |
 
 
 ## Output Format

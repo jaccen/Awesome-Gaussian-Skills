@@ -1,4 +1,4 @@
-
+﻿
 # CAD/3D 方向术语、基线与数据集
 
 ## CAD建模与逆向工程
@@ -164,5 +164,3 @@ Sidecar 动画系统：
 | MMD-CD | Maximum Mean Discrepancy (CD) | ↓ | 分布距离，适合少样本 |
 | COV | Coverage | ↑ | 生成多样性 |
 | PPL | Perplexity of prompt distribution | — | 文本条件生成的多样性 |
-
-> AI生成

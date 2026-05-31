@@ -46,6 +46,7 @@
 - **GSQ** [arXiv:2411.17190](https://arxiv.org/abs/2411.17190) (CVPR 2025) — Gaussian Splatting Quantization with learned step size + group-wise quantization
 - **DSGS** [arXiv:2605.17002](https://arxiv.org/abs/2605.17002) (arXiv 2026) — Decoder-Side Gaussian Splatting: replaces DSDE depth estimation with feed-forward 3DGS from compressed textures; lossy compression as implicit low-pass filter stabilizing prediction; +5.79 dB BD-PSNR
 - **MMGS** [arXiv:2605.19304](https://arxiv.org/abs/2605.19304) (arXiv 2026) — 10x compressed 3DGS via multi-view ranking + Optimal Transport aggregation; global OT-based merging preserving geometry + OT-based densification operator; 10% primitives + 10x training speedup
+- **CodecSplat** [arXiv:2605.25563](https://arxiv.org/abs/2605.25563) (arXiv 2026) — Ultra-compact entropy-coded latent features for feed-forward 3DGS; 20-108 KiB per scene, ~10x smaller than post-hoc compression of raw primitives (Pengpeng Yu et al.)
 
 ### Cross-Domain Applications
 - **GaussVis** [arXiv:2503.01610](https://arxiv.org/abs/2503.01610) (CVPR 2025) — GS-based visualization for scientific data with interactive exploration
@@ -372,11 +373,133 @@
 - **ReorgGS** [arXiv:2605.08739](https://arxiv.org/abs/2605.08739) (arXiv 2026) — Equivalent distribution reorganization fixing parameterization degeneration in converged 3DGS; kNN anisotropic covariance re-estimation
 - **LeGS** [arXiv:2605.04081](https://arxiv.org/abs/2605.04081) (arXiv 2026) — Beyond heuristics: learnable density control replacing hand-crafted clone/split/prune rules for 3DGS; RL-based adaptive densification
 - **CAdam** [arXiv:2605.20872](https://arxiv.org/abs/2605.20872) (SIGGRAPH 2026) — Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; first moment interference principle separates signal from noise; 85-97% Gaussian reduction (Chung et al.)
+- **ConFi-GS** [arXiv:2605.24964](https://arxiv.org/abs/2605.24964) (arXiv 2026) — Confidence-guided high-frequency injection + reliability-aware densification for 3DGS super-resolution from low-res inputs (Jiaxiang Li et al.)
 
 ### Acceleration
 - **3DGS³** (arXiv 2026) — Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale
 - **TensorGS** [arXiv:2605.17855](https://arxiv.org/abs/2605.17855) (arXiv 2026) — Tensor Core acceleration for 3DGS: tensorizes rasterization into FP16 matrix operations with cross-tile grouping; 1.65x end-to-end speedup with negligible quality loss
 - **TideGS** [arXiv:2605.20150](https://arxiv.org/abs/2605.20150) (arXiv 2026) — Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy; block-virtualized geometry + trajectory-adaptive differential streaming on 24GB GPU
+
+
+### New Papers Added May 27, 2026
+
+#### Compression
+- **CodecSplat** [arXiv:2605.25563](https://arxiv.org/abs/2605.25563) (arXiv 2026) — Ultra-compact entropy-coded latent features for feed-forward 3DGS; 20-108 KiB per scene, ~10x smaller than post-hoc compression (Pengpeng Yu et al.)
+
+#### Cross-Domain
+- **Sensor2Sensor** [arXiv:2605.22809](https://arxiv.org/abs/2605.22809) (CVPR 2026) — Cross-embodiment sensor conversion via 4DGS; translates dashcam to AV sensor suite using diffusion (Jiahao Wang et al.)
+
+#### Dynamic
+- **R5DGS** [arXiv:2605.25909](https://arxiv.org/abs/2605.25909) (arXiv 2026) — Identity Encoding + rigid-body centroid constraint for semantic-aware 4DGS; CLIP-based object lookup; 11 FPS speedup (Denis Gridusov et al.)
+- **RiGS** [arXiv:2605.23672](https://arxiv.org/abs/2605.23672) (arXiv 2026) — Static/rigid/transient Gaussian decomposition + scene flow guidance for monocular 4DGS (Chenyu Wu et al.)
+
+#### Editing
+- **BEA-GS** [arXiv:2605.09662](https://arxiv.org/abs/2605.09662) (CVPR 2026 Highlight) — Visible boundary + non-visible extraction losses for near-perfect object extraction from 3DGS (Alessio Mazzucchelli et al.)
+- **RoVES** [arXiv:2605.25373](https://arxiv.org/abs/2605.25373) (arXiv 2026) — Physics-aware road geometry insertion + 4-DOF vehicle dynamics for driving scene editing; 6.24s pipeline (Feng Zhou et al.)
+
+#### Feed-Forward
+- **ArtSplat** [arXiv:2605.24304](https://arxiv.org/abs/2605.24304) (arXiv 2026) — First feed-forward articulated 3DGS; per-pixel joint map + Cross-State Attention; 400x faster than optimization (Inseo Lee et al.)
+- **TriSplat** [arXiv:2605.26115](https://arxiv.org/abs/2605.26115) (arXiv 2026) — Triangle primitives replace Gaussians; simulation-ready mesh export from single forward pass (Weijie Wang et al.)
+- **LangFlash** [arXiv:2605.23287](https://arxiv.org/abs/2605.23287) (CVPR Findings 2026) — Sparse semantic encoding (global dict + local weights) for feed-forward 3D language GS from unposed images (Yilong Liu et al.)
+- **NoPo4D** [arXiv:2605.22190](https://arxiv.org/abs/2605.22190) (arXiv 2026) — Feed-forward dynamic Gaussians from unposed multi-view videos; velocity decomposition + bidirectional motion (Matteo Balice et al.)
+- **ForeSplat** [arXiv:2605.22020](https://arxiv.org/abs/2605.22020) (arXiv 2026) — MetaGrad meta-gradient training makes feed-forward 3DGS output optimizer-friendly initializations (Yuke Li et al.)
+- **TokenGS** [arXiv:2604.15239](https://arxiv.org/abs/2604.15239) (arXiv 2026) — Encoder-decoder with learnable Gaussian tokens unbinds primitive count from input resolution (Jiawei Ren et al.)
+
+#### Human / Avatar
+- **COSY** [arXiv:2605.24114](https://arxiv.org/abs/2605.24114) (arXiv 2026) — Compositional GAN generates hair/skin/glasses/torso independently for disentangled head editing (Florian Barthel et al.)
+- **SplitAvatar** [arXiv:2605.25751](https://arxiv.org/abs/2605.25751) (arXiv 2026) — Autoregressive Gaussian splitting via GNN for one-shot head avatar with progressive detail (Hongzhe Liao et al.)
+
+#### Material / Relighting
+- **F-RNG** [arXiv:2605.25975](https://arxiv.org/abs/2605.25975) (arXiv 2026) — Feed-forward relightable 3DGS via LRM + IDM priors; ~25x faster than SOTA relighting (Guangming Fu et al.)
+
+#### Geometry / Surface
+- **VoxelGS** [arXiv:2605.26616](https://arxiv.org/abs/2605.26616) (arXiv 2026) — Scaffold-anchored Gaussians tethered to voxelized SDF for fast monocular surface reconstruction (Zhenhua Du et al.)
+
+#### Rendering
+- **DP-GES** [arXiv:2605.25345](https://arxiv.org/abs/2605.25345) (arXiv 2026) — Depth Peeling enables sort-free Gaussian-Enhanced Surfel rendering with correct transmittance (Keyang Ye et al.)
+
+#### Language / Semantic
+- **TrackRef3D** [arXiv:2605.26576](https://arxiv.org/abs/2605.26576) (arXiv 2026) — Track-then-label paradigm with TSCM for open-world referring segmentation in 3DGS (Yuyang Tan et al.)
+
+#### Security
+- **4D-GSW** [arXiv:2605.22342](https://arxiv.org/abs/2605.22342) (arXiv 2026) — Kinematic-aware watermarking via STC metric + HMM-MRF energy for spatio-temporal consistency in 4DGS (Sifan Zhou et al.)
+
+#### Degradation-Aware
+- **DelowlightSplat** [arXiv:2605.26629](https://arxiv.org/abs/2605.26629) (arXiv 2026) — Lowlight Adapter + cost-volume inference predicts clean Gaussians from degraded inputs (Fuzhen Jiang et al.)
+- **Underwater360** [arXiv:2605.26447](https://arxiv.org/abs/2605.26447) (arXiv 2026) — Omnidirectional GS + physics-based appearance-medium decoupling for underwater panoramic scenes (Jiangbei Hu et al.)
+- **GlowGS** [arXiv:2605.23602](https://arxiv.org/abs/2605.23602) (CVPR Findings 2026) — Diffusion + VFM semantic feature bank for nighttime glow scene reconstruction (Beibei Lin et al.)
+
+#### Training / Optimization
+- **ConFi-GS** [arXiv:2605.24964](https://arxiv.org/abs/2605.24964) (arXiv 2026) — Confidence-guided high-frequency injection + reliability-aware densification for 3DGS super-resolution (Jiaxiang Li et al.)
+- **EulerianGS** [arXiv:2605.29136](https://arxiv.org/abs/2605.29136) (CVPR 2026) — Replaces heuristic ADC densification with gradient-based optimization of volumetric probability density via hashed probability pyramids; unbiased gradient estimator with control variates; SOTA on mip-NeRF 360 (Mia Gaia Polansky, George Kopanas, Stephan Garbin, Todd Zickler, Dor Verbin)
+- **TWINGS** [arXiv:2605.22069](https://arxiv.org/abs/2605.22069) (CVPR 2026) — Thin Plate Splines warp-aligned initialization for sparse-view 3DGS; TPS aligns backprojected points with triangulated 3D control points (Hyeseong Kim et al.)
+- **PocketGS** [arXiv:2601.17354](https://arxiv.org/abs/2601.17354) (arXiv 2026) — On-device 3DGS training for mobile; geometry-faithful priors + anisotropic seeding + cached alpha compositing for stable mobile backprop (Wenzhi Guo et al.)
+
+#### Feed-Forward
+- **ArtSplat** [arXiv:2605.24304](https://arxiv.org/abs/2605.24304) (arXiv 2026) — First feed-forward articulated 3DGS; per-pixel joint map + Cross-State Attention; 400x faster than optimization (Inseo Lee et al.)
+- **TriSplat** [arXiv:2605.26115](https://arxiv.org/abs/2605.26115) (arXiv 2026) — Triangle primitives replace Gaussians; simulation-ready mesh export from single forward pass (Weijie Wang et al.)
+- **LangFlash** [arXiv:2605.23287](https://arxiv.org/abs/2605.23287) (CVPR Findings 2026) — Sparse semantic encoding (global dict + local weights) for feed-forward 3D language GS from unposed images (Yilong Liu et al.)
+- **NoPo4D** [arXiv:2605.22190](https://arxiv.org/abs/2605.22190) (arXiv 2026) — Feed-forward dynamic Gaussians from unposed multi-view videos; velocity decomposition + bidirectional motion (Matteo Balice et al.)
+- **ForeSplat** [arXiv:2605.22020](https://arxiv.org/abs/2605.22020) (arXiv 2026) — MetaGrad meta-gradient training makes feed-forward 3DGS output optimizer-friendly initializations (Yuke Li et al.)
+- **TokenGS** [arXiv:2604.15239](https://arxiv.org/abs/2604.15239) (arXiv 2026) — Encoder-decoder with learnable Gaussian tokens unbinds primitive count from input resolution (Jiawei Ren et al.)
+- **IDESplat** [arXiv:2601.03824](https://arxiv.org/abs/2601.03824) (CVPR 2026) — Iterative depth probability estimation for generalizable 3DGS; refines depth via multi-iteration probability updates (Wei Cao et al.)
+
+#### Dynamic
+- **R5DGS** [arXiv:2605.25909](https://arxiv.org/abs/2605.25909) (arXiv 2026) — Identity Encoding + rigid-body centroid constraint for semantic-aware 4DGS; 11 FPS speedup (Denis Gridusov et al.)
+- **RiGS** [arXiv:2605.23672](https://arxiv.org/abs/2605.23672) (arXiv 2026) — Static/rigid/transient Gaussian decomposition + scene flow guidance for monocular 4DGS (Chenyu Wu et al.)
+
+#### Autonomous Driving
+- **FRUC** [arXiv:2605.29997](https://arxiv.org/abs/2605.29997) (arXiv 2026) — Feed-forward 3DGS for dynamic scene reconstruction from uncalibrated collaborative driving views; ego-centric causal occlusion field + zero-initialized injection (Yihang Tao et al.)
+- **DeGO** [arXiv:2605.28587](https://arxiv.org/abs/2605.28587) (CVPR 2026) — Deformable Gaussian occupancy decoupling rigid and non-rigid motion with factorized 4D VGGT distillation; 13.5% gains on human-centric instances (Yang Gao et al.)
+
+#### Language / Semantic
+- **TrackRef3D** [arXiv:2605.26576](https://arxiv.org/abs/2605.26576) (arXiv 2026) — Track-then-label paradigm with TSCM for open-world referring segmentation in 3DGS (Yuyang Tan et al.)
+- **DGSG-Mind** [arXiv:2605.29879](https://arxiv.org/abs/2605.29879) (arXiv 2026) — Dynamic 3D Gaussian scene graphs with probabilistic voxel grid + 3D Gaussian Mind for embodied multimodal reasoning; best zero-shot 3DVG on self-reconstructed maps (Luzhou Ge et al.)
+- **X-GS** [arXiv:2603.09632](https://arxiv.org/abs/2603.09632) (arXiv 2026) — Extensible GS framework: X-GS-Perceiver for online SLAM + semantic distillation, X-GS-Thinker for multimodal downstream tasks (Yueen Ma et al.)
+
+#### Security
+- **4D-GSW** [arXiv:2605.22342](https://arxiv.org/abs/2605.22342) (arXiv 2026) — Kinematic-aware watermarking via STC metric + HMM-MRF energy for spatio-temporal consistency in 4DGS (Sifan Zhou et al.)
+- **BitC-3DGS** [arXiv:2605.29583](https://arxiv.org/abs/2605.29583) (arXiv 2026) — High-capacity 3DGS watermarking via bit compression; 128-bit messages with dual-branch chunk decompression + hard-message sampling (Yuquan Bi et al.)
+
+#### Material / Relighting
+- **F-RNG** [arXiv:2605.25975](https://arxiv.org/abs/2605.25975) (arXiv 2026) — Feed-forward relightable 3DGS via LRM + IDM priors; ~25x faster than SOTA relighting (Guangming Fu et al.)
+- **SRUG** [arXiv:2605.24700](https://arxiv.org/abs/2605.24700) (arXiv 2026) — Shadow-guided relightable urban scene with generation model; shadow-guided 3D completion + iterative material decomposition via LMM (Yonghao Zhao et al.)
+
+#### Degradation-Aware
+- **DelowlightSplat** [arXiv:2605.26629](https://arxiv.org/abs/2605.26629) (arXiv 2026) — Lowlight Adapter + cost-volume inference predicts clean Gaussians from degraded inputs (Fuzhen Jiang et al.)
+- **Underwater360** [arXiv:2605.26447](https://arxiv.org/abs/2605.26447) (arXiv 2026) — Omnidirectional GS + physics-based appearance-medium decoupling for underwater panoramic scenes (Jiangbei Hu et al.)
+- **GlowGS** [arXiv:2605.23602](https://arxiv.org/abs/2605.23602) (CVPR Findings 2026) — Diffusion + VFM semantic feature bank for nighttime glow scene reconstruction (Beibei Lin et al.)
+- **TDg** [arXiv:2605.30328](https://arxiv.org/abs/2605.30328) (ISPRS 2026) — Thermal-to-Depth GS using only thermal images + depth estimation; removes RGB reliance; 55% training time reduction (Manoj Biswanath et al.)
+
+#### Scene Understanding / Assessment
+- **Aes3D** [arXiv:2605.05155](https://arxiv.org/abs/2605.05155) (arXiv 2026) — First aesthetic assessment framework for 3DGS scenes; Aesthetic3D dataset + Aes3DGSNet that predicts scores directly from Gaussian primitives (Chuanzhi Xu et al.)
+- **GSRep** [arXiv:2605.29549](https://arxiv.org/abs/2605.29549) (arXiv 2026) — Comparative evaluation of point-based and graph-based architectures for learning representations from 3D Gaussian Splats (Julia Farganus et al.)
+
+#### Simulation / Physics
+- **FreeForm** [arXiv:2605.29318](https://arxiv.org/abs/2605.29318) (CVPR 2026) — Reduced-order deformable simulation from particle-based skinning eigenmodes; supports Gaussian splats as input; 40x faster than neural fields (Donglai Xiang et al.)
+- **PhyGenHOI** [arXiv:2605.30268](https://arxiv.org/abs/2605.30268) (arXiv 2026) — Physically-aware 4D HOI generation; MDM + MPM + 3DGS unified representation; windowed attraction + contact-driven re-simulation (Omer Benishu et al.)
+- **MonoPhysics** [arXiv:2605.30320](https://arxiv.org/abs/2605.30320) (arXiv 2026) — Monocular inverse physics using differentiable MPM + 3DGS; three visual-physical bridges for joint geometry/appearance/physics (Daniel Rho et al.)
+
+#### Active Mapping / SLAM
+- **GAVIS** [arXiv:2605.30342](https://arxiv.org/abs/2605.30342) (CVPR 2026) — Uncertainty-driven 3DGS active mapping via anisotropic visibility field (spherical harmonics); Bayesian Network rasterizer at 200 FPS (Shangjie Xue et al.)
+
+#### Style Transfer
+- **DS-StyleGaussian** [arXiv:2605.30065](https://arxiv.org/abs/2605.30065) (IEEE IVMSP 2026) — Data-sufficient zero-shot 3D style transfer via feature Gaussian splatting + deferred stylization with 2D pre-trained decoder (Xin Dong et al.)
+
+#### Medical / Cross-Domain
+- **NAB-GS** [arXiv:2508.15151](https://arxiv.org/abs/2508.15151) (MICCAI 2026) — Negative Alpha Blending for zero-shot CT super-resolution; models positive/negative Gaussian densities for signed residuals (Jeonghyun Noh et al.)
+
+#### Weather / Environment Editing
+- **WeatherCity** [arXiv:2602.22096](https://arxiv.org/abs/2602.22096) (arXiv 2026) — Weather Gaussian representation for 4D urban scene weather editing; shared scene features + weather-specific decoders + physics-driven particle simulation (Wenhua Wu et al.)
+
+#### 4D Object Dynamics
+- **NeuROK** [arXiv:2605.30347](https://arxiv.org/abs/2605.30347) (CVPR 2026) — Generative 4D Neural Object Kinematics; learns latent kinematic state parameterization + decoder for simulative dynamics from Lagrangian mechanics (Chen Geng et al.)
+
+#### Large-Scale / City-Scale
+- **City-Mesh3R** [arXiv:2605.30310](https://arxiv.org/abs/2605.30310) (CVPR 2026 USM3D Workshop, Oral) — End-to-end images-to-mesh city-scale reconstruction with divide-and-conquer; produces watertight simulation-ready meshes (Sayan Paul et al.)
+
+#### Novel View Synthesis (Non-GS Baseline)
+- **DVSM** [arXiv:2605.29891](https://arxiv.org/abs/2605.29891) (arXiv 2026) — Decoder-only view synthesis model; shared reconstruction/rendering weights; SOTA on NVS, in some cases outperforms per-scene-optimized 3DGS under dense views (Cheng Sun et al.)
 
 ### World Models & Spatial Intelligence
 _3DGS as world model primitive, differentiable simulation engine, or spatial intelligence representation_
