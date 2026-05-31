@@ -2,7 +2,7 @@
 
 # Awesome Gaussian Skills
 
-### 最全面的 3DGS 方法知识库与 AI Agent 工具集
+### 最全面的"3D空间智能开源工具箱"与 AI Agent 工具集
 
 If you like it, please ⭐️ star this repo!
 
