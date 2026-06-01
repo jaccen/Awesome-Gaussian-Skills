@@ -501,6 +501,38 @@
 #### Novel View Synthesis (Non-GS Baseline)
 - **DVSM** [arXiv:2605.29891](https://arxiv.org/abs/2605.29891) (arXiv 2026) — Decoder-only view synthesis model; shared reconstruction/rendering weights; SOTA on NVS, in some cases outperforms per-scene-optimized 3DGS under dense views (Cheng Sun et al.)
 
+### Feed-Forward / Generalizable (New)
+- **DéjàView** [arXiv:2605.30215](https://arxiv.org/abs/2605.30215) (arXiv 2026) — Looped transformer block applied recurrently for K steps; exposes K as inference-time compute knob; matches larger baselines with fraction of parameters on 5 reconstruction benchmarks (Alessandro Burzio et al.)
+- **HeadsUp** [arXiv:2605.04035](https://arxiv.org/abs/2605.04035) (Apple, arXiv 2026) — UV-parameterized 3D Gaussian representation decoupling Gaussian count from input resolution; trained on 10,000+ subjects for feed-forward 3D Gaussian head reconstruction (Evangelos Ntavelis, Sean Wu et al.)
+
+### Human / Avatar (New)
+- **Multi-view Consistent 3D Gaussian Head Avatars** [arXiv:2605.25220](https://arxiv.org/abs/2605.25220) (CVPR 2026) — Achieves multi-view consistent 3D Gaussian head avatars without requiring multi-view generation; single-view input to 3D Gaussian head (Aviral Chharia, Fernando De la Torre)
+- **CapTalk** [arXiv:2605.29316](https://arxiv.org/abs/2605.29316) (arXiv 2026) — Text-guided stylization and speech-driven 3D head animation; separate control over style and emotion; dynamic emotion during inference (Xuangeng Chu et al.)
+
+### Rendering (New)
+- **View-Dependent Splatting Kernels** [arXiv:2605.25426](https://arxiv.org/abs/2605.25426) (SIGGRAPH 2026) — Learns view-dependent splatting kernels replacing fixed Gaussian kernels; improves rendering quality for Gaussian/surfel-based representations (Huakeng Ding et al.)
+- **Gaussian-Enhanced Surfel Rendering with Depth Peeling** [arXiv:2605.25345](https://arxiv.org/abs/2605.25345) (arXiv 2026) — Depth peeling technique for high-fidelity Gaussian-enhanced surfel rendering; resolves transparency ordering for glass/transmissive scenes (Keyang Ye et al.)
+
+### Simulation (New)
+- **SAM3D-Phys** [arXiv:2605.30239](https://arxiv.org/abs/2605.30239) (arXiv 2026) — Integrates SAM3D generative 3D priors with physics-constrained spatial optimization to recover simulatable objects from reconstructed scenes; mask-guided appearance distillation (Xin Dong et al.)
+
+### Surface / Reconstruction (New)
+- **CLEAR-NeRF** [arXiv:2605.28394](https://arxiv.org/abs/2605.28394) (arXiv 2026) — Collinearity and local-region enhanced accurate 3D reconstruction in unbounded scenes via geometric regularization (Vladislav Polianskii et al.)
+- **DinoComplete** [arXiv:2605.26949](https://arxiv.org/abs/2605.26949) (arXiv 2026) — 3D Shape Completion with distilled semantic priors and state space models; DINOv2 distillation for partial shape completion (Furkan Mert Algan, Eckehard Steinbach)
+
+### Semantic / Segmentation (New)
+- **Gaga** (TMLR 2026) — Group Any Gaussians via 3D-aware Memory Bank; leverages inconsistent 2D masks from zero-shot segmentation models; 3D-aware memory bank for robust cross-pose mask association (Weijie Lyu et al.)
+
+### Cross-Domain / Large-Scale (New)
+- **SurfFill** [arXiv:2512.03010](https://arxiv.org/abs/2512.03010) (arXiv 2026) — LiDAR point cloud completion via Gaussian surfel splatting; ambiguity heuristic for LiDAR beam divergence artifacts; divide-and-conquer for building-sized completion (Svenja Strobel et al.)
+
+### Material / Relighting (New)
+- **Ambient-Robust Inverse Rendering** [arXiv:2605.30250](https://arxiv.org/abs/2605.30250) (arXiv 2026) — Active RGB-NIR imaging for ambient-robust inverse rendering; near-infrared assistance for material decomposition under varying illumination (Hoon-Gyu Chung et al.)
+
+### Generation / CAD (New)
+- **AnySurf** [arXiv:2605.26149](https://arxiv.org/abs/2605.26149) (arXiv 2026) — Any surface generation with directed edge; learns to generate diverse 3D surfaces from conditions (Wenda Shi et al.)
+- **AssetGen** [arXiv:2605.26137](https://arxiv.org/abs/2605.26137) (arXiv 2026) — Deployable 3D asset generation at interactive speed; feed-forward texture+geometry generation for real-time 3D asset creation (Dilin Wang et al.)
+
 ### World Models & Spatial Intelligence
 _3DGS as world model primitive, differentiable simulation engine, or spatial intelligence representation_
 - **GWM** [arXiv:2508.17600](https://arxiv.org/abs/2508.17600) (2025) — Gaussian World Model: 3DGS as environment dynamics modeling primitive with autoregressive future state prediction for interactive world simulation

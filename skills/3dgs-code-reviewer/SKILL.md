@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 79+ known bug patterns."
-version: 1.3.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 82+ known bug patterns."
+version: 1.4.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -369,6 +369,24 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 79 | 3DGS watermarking limited to 77-bit messages by CLIP token context | Existing token-based watermarking methods are capped at 77 bits due to CLIP's fixed context length; insufficient for rich ownership/provenance/authentication information in large-scale 3D asset pipelines | Use bit-compressed tokenization that encodes multiple message bits per semantic token; dual-branch architecture for joint chunk decompression and bit decoding; hard-message sampling strategy for combinatorial coverage (BitC-3DGS, ArXiv 2605.29583) |
+
+### View-Dependent Splatting Kernel Patterns
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 80 | Fixed Gaussian kernel shape ignores view-dependent effects | Standard 3DGS uses fixed covariance per Gaussian regardless of viewing angle; specular highlights and view-dependent reflections require excessive Gaussians to approximate, leading to bloat | Learn view-dependent splatting kernels that adapt covariance based on ray direction; replace static 2D projection with learned kernel function; validate by measuring Gaussian count reduction and specular fidelity (View-Dependent Splatting Kernels, ArXiv 2605.25426, SIGGRAPH 2026) |
+
+### UV-Parameterized Head Reconstruction Patterns (HeadsUp)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 81 | Per-pixel Gaussian count coupled to input resolution | Feed-forward 3DGS head methods produce Gaussian count proportional to input image count × resolution; scaling to more cameras or higher resolution causes OOM or quadratic compute growth | Decouple Gaussian count from input via UV-parameterized representation; predict Gaussians on a fixed UV grid regardless of input size; enables training on 10K+ subjects with arbitrary camera counts (HeadsUp, ArXiv 2605.04035, Apple) |
+
+### 3D-Aware Memory Bank Segmentation Patterns (Gaga)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 82 | Video-tracking-dependent 3DGS segmentation fails on sparse views | Existing 3DGS segmentation relies on continuous video tracking or contrastive learning; fails when camera poses are sparse or non-sequential; mask label inconsistency across views | Use 3D-aware memory bank that leverages spatial information to associate masks across diverse camera poses without requiring temporal continuity; eliminates continuous-view-change assumption (Gaga, TMLR 2026) |
 
 
 ## Output Format
