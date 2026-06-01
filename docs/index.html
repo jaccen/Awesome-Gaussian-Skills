@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
@@ -131,9 +131,9 @@ tailwind.config = {
       3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting & Computer Graphics
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">591+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">607+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">25 Categories</span>
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">10 Skills</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">12 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
         <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span> Daily Updates
       </span>
@@ -356,7 +356,7 @@ tailwind.config = {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">591+ 3DGS methods analyzed —best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">607+ 3DGS methods analyzed —best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -660,7 +660,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 591 methods across 25 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 607 methods across 25 categories</p>
       <div class="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm">
         <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue/10 border border-accent-blue/20 text-accent-blue">
           <span class="font-bold">1</span> Search or filter by category
@@ -708,7 +708,7 @@ tailwind.config = {
 <section id="skills" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">10 Specialized Skills</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">12 Specialized Skills</h2>
       <p class="mt-3 text-gray-400">End-to-end AI assistance for 3DGS research workflow</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="skillsGrid"></div>
@@ -1300,7 +1300,19 @@ const METHODS = [
   { name: "PiG-Avatar", short: "PiG-Avatar", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space...", arxiv: "2605.20185", citations: 0 },
   { name: "Latent Dynamics", short: "Latent Dynamics", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Pose-driven 3DGS avatar with dynamics residual latent; learned force decomp...", arxiv: "2605.21478", citations: 0 },
   { name: "ROAR-3D", short: "ROAR-3D", cat: "Generation", venue: "arXiv", year: 2026, desc: "Token-wise view router for multi-view 3D generation; dual-stream attention...", arxiv: "2605.21121", citations: 0 },
-  { name: "GLUT", short: "GLUT", cat: "Material", venue: "arXiv", year: 2026, desc: "3D Gaussian Lookup Table for continuous color transformation; compact cond...", arxiv: "2605.19889", citations: 0 }
+  { name: "GLUT", short: "GLUT", cat: "Material", venue: "arXiv", year: 2026, desc: "3D Gaussian Lookup Table for continuous color transformation; compact cond...", arxiv: "2605.19889", citations: 0 },
+  { name: "DéjàView", short: "DéjàView", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Looped transformer with inference-time compute knob K; matches larger baseline...", arxiv: "2605.30215", citations: 0 },
+  { name: "View-Dependent Splatting", short: "VD-Splatting", cat: "Surface", venue: "SIGGRAPH", year: 2026, desc: "Learned view-dependent splatting kernels replacing fixed covariance; first fund...", arxiv: "2605.25426", citations: 0 },
+  { name: "SAM3D-Phys", short: "SAM3D-Phys", cat: "Simulation", venue: "arXiv", year: 2026, desc: "SAM3D generative priors + physics-constrained spatial optimization for simulata...", arxiv: "2605.30239", citations: 0 },
+  { name: "Gaga", short: "Gaga", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Group Any Gaussians via 3D-aware memory bank; robust sparse-view segmentation", arxiv: "", citations: 0 },
+  { name: "CapTalk", short: "CapTalk", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Text-guided stylization + speech-driven 3D head animation; separate style/emo...", arxiv: "2605.29316", citations: 0 },
+  { name: "SurfFill", short: "SurfFill", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "LiDAR point cloud completion via Gaussian surfel splatting; building-scale div...", arxiv: "2512.03010", citations: 0 },
+  { name: "CLEAR-NeRF", short: "CLEAR-NeRF", cat: "Surface", venue: "arXiv", year: 2026, desc: "Collinearity + local-region enhanced accurate 3D reconstruction in unbounded sc...", arxiv: "2605.28394", citations: 0 },
+  { name: "AnySurf", short: "AnySurf", cat: "Generation", venue: "arXiv", year: 2026, desc: "Any surface generation with directed edge representation", arxiv: "2605.26149", citations: 0 },
+  { name: "AssetGen", short: "AssetGen", cat: "Generation", venue: "arXiv", year: 2026, desc: "Deployable 3D asset generation at interactive speed", arxiv: "2605.26137", citations: 0 },
+  { name: "DinoComplete", short: "DinoComplete", cat: "Surface", venue: "arXiv", year: 2026, desc: "3D shape completion with DINOv2-distilled semantic priors + state space model", arxiv: "2605.26949", citations: 0 },
+  { name: "Ambient-Robust IR", short: "Ambient-IR", cat: "Material", venue: "arXiv", year: 2026, desc: "Active RGB-NIR imaging for ambient-robust inverse rendering", arxiv: "2605.30250", citations: 0 },
+  { name: "Gaussian-Enhanced Surfel", short: "GE-Surfel", cat: "Surface", venue: "arXiv", year: 2026, desc: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", arxiv: "2605.25345", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -1852,7 +1864,19 @@ const METHOD_DETAILS = {
   "PiG-Avatar": { innovation: "Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space decoupled from template topology", codeUrl: "" },
   "Latent Dynamics": { innovation: "Pose-driven 3DGS avatar with dynamics residual latent; learned force decomposition for clothing animation", codeUrl: "" },
   "ROAR-3D": { innovation: "Token-wise view router for multi-view 3D generation; dual-stream attention; no explicit pose input", codeUrl: "" },
-  "GLUT": { innovation: "3D Gaussian Lookup Table for continuous color transformation; compact conditional generator for multi-style blending", codeUrl: "" }
+  "GLUT": { innovation: "3D Gaussian Lookup Table for continuous color transformation; compact conditional generator for multi-style blending", codeUrl: "" },
+  "DéjàView": { innovation: "Looped transformer with inference-time compute knob K; matches larger baselines with fraction of parameters", codeUrl: "" },
+  "View-Dependent Splatting": { innovation: "Learned view-dependent splatting kernels replacing fixed covariance; first fundamental rethink of 3DGS rendering primitive (SIGGRAPH 2026)", codeUrl: "" },
+  "SAM3D-Phys": { innovation: "SAM3D generative priors + physics-constrained spatial optimization for simulatable objects", codeUrl: "" },
+  "Gaga": { innovation: "Group Any Gaussians via 3D-aware memory bank; robust sparse-view segmentation without supervision", codeUrl: "" },
+  "CapTalk": { innovation: "Text-guided stylization + speech-driven 3D head animation; separate style/emotion control channels", codeUrl: "" },
+  "SurfFill": { innovation: "LiDAR point cloud completion via Gaussian surfel splatting; building-scale divide-and-conquer", codeUrl: "" },
+  "CLEAR-NeRF": { innovation: "Collinearity + local-region enhanced accurate 3D reconstruction in unbounded scenes", codeUrl: "" },
+  "AnySurf": { innovation: "Any surface generation with directed edge representation", codeUrl: "" },
+  "AssetGen": { innovation: "Deployable 3D asset generation at interactive speed", codeUrl: "" },
+  "DinoComplete": { innovation: "3D shape completion with DINOv2-distilled semantic priors + state space model", codeUrl: "" },
+  "Ambient-Robust IR": { innovation: "Active RGB-NIR imaging for ambient-robust inverse rendering", codeUrl: "" },
+  "Gaussian-Enhanced Surfel": { innovation: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", codeUrl: "" }
 };
 
 
@@ -2405,7 +2429,19 @@ const ABSTRACTS = {
   "PiG-Avatar": { abstractEn: "PiG-Avatar constructs hierarchical neural-field-guided Gaussian avatars in a volumetric canonical space that is decoupled from template topology, enabling high-fidelity avatar reconstruction and animation.", abstractCn: "PiG-Avatar在体素规范空间中构建层次化神经场引导的高斯头像，与模板拓扑解耦，实现高保真头像重建与动画。" },
   "Latent Dynamics": { abstractEn: "Latent Dynamics introduces a pose-driven 3DGS avatar with dynamics residual latent space, using learned force decomposition for physics-based clothing animation that generalizes across poses.", abstractCn: "Latent Dynamics提出姿态驱动的3DGS头像配合动力学残差隐空间，利用学习力分解实现物理服装动画，可泛化至不同姿态。" },
   "ROAR-3D": { abstractEn: "ROAR-3D proposes a token-wise view router for multi-view 3D generation using dual-stream attention without explicit pose input, enabling flexible and scalable multi-view synthesis from text or image prompts.", abstractCn: "ROAR-3D提出基于token级视角路由器的多视角3D生成方法，采用双流注意力机制无需显式位姿输入，实现灵活可扩展的多视角合成。" },
-  "GLUT": { abstractEn: "GLUT presents a 3D Gaussian Lookup Table for continuous color transformation, using a compact conditional generator that enables multi-style appearance blending and relighting through efficient table lookups.", abstractCn: "GLUT提出3D高斯查找表实现连续颜色变换，通过紧凑条件生成器支持多风格外观混合和重光照，基于高效查表操作。" }
+  "GLUT": { abstractEn: "GLUT presents a 3D Gaussian Lookup Table for continuous color transformation, using a compact conditional generator that enables multi-style appearance blending and relighting through efficient table lookups.", abstractCn: "GLUT提出3D高斯查找表实现连续颜色变换，通过紧凑条件生成器支持多风格外观混合和重光照，基于高效查表操作。" },
+  "DéjàView": { abstractEn: "DéjàView introduces a looped transformer architecture with inference-time compute knob K, matching larger baselines with a fraction of parameters through iterative refinement at test time.", abstractCn: "DéjàView引入循环Transformer架构配合推理时计算旋钮K，通过推理时迭代精炼，以极少参数匹配更大基线模型。" },
+  "View-Dependent Splatting": { abstractEn: "View-Dependent Splatting replaces fixed covariance with learned view-dependent splatting kernels, the first fundamental rethink of the 3DGS rendering primitive. SIGGRAPH 2026.", abstractCn: "View-Dependent Splatting用学习型视角相关Splatting核替代固定协方差，是对3DGS渲染基元首次根本性重新设计。SIGGRAPH 2026。" },
+  "SAM3D-Phys": { abstractEn: "SAM3D-Phys combines SAM3D generative priors with physics-constrained spatial optimization to produce simulatable 3D objects from single images.", abstractCn: "SAM3D-Phys结合SAM3D生成先验与物理约束空间优化，从单张图像生成可仿真的3D物体。" },
+  "Gaga": { abstractEn: "Gaga groups any Gaussians via a 3D-aware memory bank, achieving robust sparse-view 3D segmentation without supervision.", abstractCn: "Gaga通过3D感知记忆库分组任意高斯，实现无监督鲁棒稀疏视角3D分割。" },
+  "CapTalk": { abstractEn: "CapTalk enables text-guided stylization + speech-driven 3D head animation with separate style and emotion control channels.", abstractCn: "CapTalk实现文本风格化+语音驱动3D头像动画，具备独立风格和情感控制通道。" },
+  "SurfFill": { abstractEn: "SurfFill completes LiDAR point clouds via Gaussian surfel splatting with building-scale divide-and-conquer strategy.", abstractCn: "SurfFill通过高斯面元Splatting补全LiDAR点云，采用建筑级分治策略。" },
+  "CLEAR-NeRF": { abstractEn: "CLEAR-NeRF achieves accurate 3D reconstruction in unbounded scenes via collinearity and local-region enhancement.", abstractCn: "CLEAR-NeRF通过共线性和局部区域增强实现无界场景精确3D重建。" },
+  "AnySurf": { abstractEn: "AnySurf generates any surface with directed edge representation for versatile 3D asset creation.", abstractCn: "AnySurf利用有向边缘表示生成任意曲面，实现多样化3D资产创建。" },
+  "AssetGen": { abstractEn: "AssetGen produces deployable 3D assets at interactive speed from text or image inputs.", abstractCn: "AssetGen从文本或图像输入以交互速度生成可部署3D资产。" },
+  "DinoComplete": { abstractEn: "DinoComplete performs 3D shape completion using DINOv2-distilled semantic priors combined with a state space model.", abstractCn: "DinoComplete利用DINOv2蒸馏语义先导配合状态空间模型实现3D形状补全。" },
+  "Ambient-Robust IR": { abstractEn: "Ambient-Robust Inverse Rendering uses active RGB-NIR imaging for ambient-robust material and geometry recovery.", abstractCn: "Ambient-Robust逆渲染使用主动RGB-NIR成像实现环境鲁棒的材质和几何恢复。" },
+  "Gaussian-Enhanced Surfel": { abstractEn: "Gaussian-Enhanced Surfel Rendering uses depth peeling for high-fidelity Gaussian-enhanced surfel rendering with correct transparency ordering.", abstractCn: "高斯增强面元渲染使用深度剥离实现高保真高斯增强面元渲染，正确处理透明度排序。" }
 };
 
 const CATEGORIES = [
@@ -2444,7 +2480,7 @@ const SKILLS = [
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
   { id: "3dgs-method-compare", name: "Method Comparator", desc: "Compare 3DGS variants across 8+ comparison tables", color: "#8b5cf6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
-  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 62+ common 3DGS implementation bugs", color: "#ef4444",
+  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 82+ common 3DGS implementation bugs", color: "#ef4444",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3.75 4.97v14.06"/>' },
   { id: "3dgs-experiment-planner", name: "Experiment Planner", desc: "Design rigorous experiments for top venues", color: "#06b6d4",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' },
@@ -2459,7 +2495,11 @@ const SKILLS = [
   { id: "3dgs-engineering-guide", name: "Engineering Guide", desc: "Bridge 3DGS from research to production", color: "#14b8a6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' },
   { id: "patent-software-ip", name: "Patent & IP", desc: "Generate patent docs and software copyright materials", color: "#f97316",
-    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>' }
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>' },
+  { id: "3dgs-spatial-agent", name: "Spatial Agent", desc: "3DGS/CAD/Mesh domain Agent for spatial intelligence & CAD extraction", color: "#a855f7",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>' },
+  { id: "3dgs-mcp-renderer", name: "MCP Renderer", desc: "Agent-controlled Three.js/3DGS rendering via MCP protocol", color: "#22d3ee",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/>' }
 ];
 
 const INSTALL_BLOCKS = [
@@ -2479,12 +2519,12 @@ ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
 # Or copy directly:
 cp -r Awesome-Gaussian-Skills/skills/* .claude/skills/` },
   { label: "One-click Script (Bash)", lang: "bash", code: `#!/bin/bash
-# Install all 10 skills in one go
+# Install all 12 skills in one go
 REPO="jaccen/Awesome-Gaussian-Skills"
 SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
         3dgs-experiment-planner nerf-to-3dgs-migrator \\
         cad-mesh-3dgs cg-paper-writing 3dgs-visualizer \\
-        3dgs-engineering-guide)
+        3dgs-engineering-guide patent-software-ip 3dgs-spatial-agent 3dgs-mcp-renderer)
 DEST="\${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 mkdir -p "\$DEST" && cd "\$DEST"
 for s in "\${SKILLS[@]}"; do
@@ -2500,7 +2540,10 @@ const TRENDS = [
   { title: "3DGS Security & Watermarking", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence —critical as 3DGS assets become commercially valuable", tags: ["Security", "Copyright"] },
   { title: "Feed-Forward Quality Gap Closing", desc: "Z-Order GS (CVPR Oral) and RoSplat show spatial ordering and robust training strategies closing the gap with per-scene optimization", tags: ["Feed-Forward", "CVPR 2026"] },
   { title: "Language-3DGS Efficiency", desc: "SCOUP achieves 400x training speedup by decoupling language representation from 3D optimization for open-vocabulary understanding", tags: ["Semantic", "Efficiency"] },
-  { title: "OIT Transparency in 3DGS", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", tags: ["Surface", "Rendering"] }
+  { title: "OIT Transparency in 3DGS", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", tags: ["Surface", "Rendering"] },
+  { title: "View-Dependent Splatting Kernels", desc: "SIGGRAPH 2026: learned view-dependent kernels replace fixed covariance —first fundamental rethink of the 3DGS rendering primitive since 2023", tags: ["Rendering", "SIGGRAPH 2026"] },
+  { title: "Apple HeadsUp: Scale Meets Quality", desc: "UV-parameterized 3DGS head deployed over 10K+ subjects —largest-scale 3DGS avatar to date, Gaussian count decoupled from mesh resolution", tags: ["Human", "Feed-Forward"] },
+  { title: "Inference-Time Compute Scaling", desc: "DejaView introduces compute knob K for looped transformer inference —matches larger baselines with fraction of params", tags: ["Feed-Forward", "Trend"] }
 ];
 
 let activeCategory = "All";

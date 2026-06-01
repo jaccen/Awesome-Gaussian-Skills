@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # Awesome Gaussian Skills
 
@@ -6,7 +6,7 @@
 
 If you like it, please ⭐️ star this repo!
 
-**591+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的空间智能研究工具**
+**607+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的空间智能研究工具**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -16,7 +16,7 @@ If you like it, please ⭐️ star this repo!
 [![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Try Demo Now](https://img.shields.io/badge/立即体验-Now-2196F3.svg?logo=github)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-12-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -25,20 +25,26 @@ If you like it, please ⭐️ star this repo!
 
 </div>
 
-## 本月新增 (2026年5月)
+## 本月新增 (2026年6月)
 
-过去30天新增47篇方法——516+ → 591+ 方法, 79+ bug 模式。每日arXiv持续追踪。
-
-**最新更新（5月25日）：553+ → 574+ 方法，25个类别。+6新方法：CAdam（SIGGRAPH 2026，上下文自适应矩估计驱动生成式3DGS致密化，减少85-97%高斯）、GGD-SLAM（ICRA 2026，通用运动模型驱动单目动态3DGS SLAM）、PiG-Avatar（体素规范空间GS化身解耦模板拓扑）、Latent Dynamics（姿态驱动3DGS+动力学残差潜变量实现服装动画）、ROAR-3D（令牌级视角路由多视角3D生成）、GLUT（3D高斯查找表连续色彩变换）。**
+最新更新（6月1日）：591+ → 607+ 方法，25个类别，82+ bug 模式。+16新方法：**HeadsUp**（Apple，UV参数化3DGS头部，万级规模）、**DéjàView**（循环Transformer推理时计算扩展）、**View-Dependent Splatting Kernels**（SIGGRAPH 2026，学习型视角相关核）、**SAM3D-Phys**（生成先验+物理约束可仿真物体）、**Gaga**（3D感知记忆库分割）、**CapTalk**（文语驱动3D头像）、**SurfFill**（LiDAR高斯面元补全）、**CLEAR-NeRF**（无界场景重建）、**AnySurf/AssetGen/DinoComplete**（生成+补全）、**Ambient-Robust IR**（主动RGB-NIR逆渲染）、**Multi-view Consistent 3DGS Head**（CVPR 2026）、**Gaussian-Enhanced Surfel**（深度剥离渲染）。每日arXiv追踪。
 
 | 方法 | ArXiv | 类别 | 一句话创新 |
 |------|-------|------|-----------|
-| **CAdam** | [2605.20872](https://arxiv.org/abs/2605.20872) | 优化 | 上下文自适应矩估计驱动生成式3DGS致密化，减少85-97%高斯 (SIGGRAPH 2026) |
-| **GGD-SLAM** | [2604.12837](https://arxiv.org/abs/2604.12837) | SLAM | 通用运动模型驱动单目动态3DGS SLAM，无需语义标签或深度 (ICRA 2026) |
-| **PiG-Avatar** | [2605.20185](https://arxiv.org/abs/2605.20185) | 人体/化身 | 体素规范空间GS化身解耦模板拓扑，3D重心锚点传输 |
-| **Latent Dynamics** | [2605.21478](https://arxiv.org/abs/2605.21478) | 人体/化身 | 姿态驱动3DGS+动力学残差潜变量，力分解实现服装动画 |
-| **ROAR-3D** | [2605.21121](https://arxiv.org/abs/2605.21121) | 生成 | 令牌级视角路由多视角3D生成，无需显式位姿输入 |
-| **GLUT** | [2605.19889](https://arxiv.org/abs/2605.19889) | 重光照 | 3D高斯查找表连续色彩变换，支持局部编辑 |
+| **HeadsUp** | [2605.04035](https://arxiv.org/abs/2605.04035) | 人体 / 前馈 | UV参数化3DGS头部；高斯数与输入解耦；10K+受试者 (Apple) |
+| **DéjàView** | [2605.30215](https://arxiv.org/abs/2605.30215) | 前馈 | 循环Transformer；推理时计算旋钮K；极少参数匹配大基线 |
+| **View-Dependent Splatting** | [2605.25426](https://arxiv.org/abs/2605.25426) | 渲染 | 学习型视角相关Splatting核替代固定协方差 (SIGGRAPH 2026) |
+| **SAM3D-Phys** | [2605.30239](https://arxiv.org/abs/2605.30239) | 仿真 | SAM3D生成先验+物理约束空间优化，生成可仿真物体 |
+| **Gaga** | — | 语义 | 3D感知记忆库分组任意高斯；鲁棒稀疏视角分割 |
+| **CapTalk** | [2605.29316](https://arxiv.org/abs/2605.29316) | 人体 | 文本风格化+语音驱动3D头像动画；独立风格/情感控制 |
+| **SurfFill** | [2512.03010](https://arxiv.org/abs/2512.03010) | 跨领域 | LiDAR点云高斯面元Splatting补全；建筑级分治策略 |
+| **CLEAR-NeRF** | [2605.28394](https://arxiv.org/abs/2605.28394) | 表面 | 共线性+局部区域增强无界场景精确3D重建 |
+| **AnySurf** | [2605.26149](https://arxiv.org/abs/2605.26149) | 生成 | 有向边缘表示的任意曲面生成 |
+| **AssetGen** | [2605.26137](https://arxiv.org/abs/2605.26137) | 生成 | 交互速度可部署3D资产生成 |
+| **Ambient-Robust IR** | [2605.30250](https://arxiv.org/abs/2605.30250) | 材质 | 主动RGB-NIR成像环境鲁棒逆渲染 |
+| **DinoComplete** | [2605.26949](https://arxiv.org/abs/2605.26949) | 表面 | DINOv2语义先导+SSM的3D形状补全 |
+| **3DGS Head Avatars** | [2605.25220](https://arxiv.org/abs/2605.25220) | 人体 | 无需多视图生成的多视角一致3DGS头像 (CVPR 2026) |
+| **Gaussian Surfel Rendering** | [2605.25345](https://arxiv.org/abs/2605.25345) | 渲染 | 深度剥离高保真高斯增强面元渲染 |
 
 <sup>完整变更记录: [`changelog/`](changelog/)</sup>
 
@@ -48,27 +54,27 @@ If you like it, please ⭐️ star this repo!
 
 你不应该为每篇新3DGS论文重新搭建相同的RAG管线，或手动在10个维度上对比20个变体，或投稿后才发现CUDA kernel有已知bug。
 
-**2023年以来已有574+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
+**2023年以来已有607+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
 
-**Awesome Gaussian Skills** 是一套3D空间智能开源工具箱——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置591+方法的领域知识。
+**Awesome Gaussian Skills** 是一套3D空间智能开源工具箱——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置607+方法的领域知识。
 
 | 你做的事 | 没有本项目 | 有本项目 |
 |----------|-----------|---------|
 | 读新论文 | 30–60分钟手翻 | 几秒出结构化摘要 |
 | 对比GS变体 | 手工搭对比表 | 10+维度自动对比 |
-| 审查3DGS代码 | 漏掉已知bug模式 | 67+模式自动检测 |
+| 审查3DGS代码 | 漏掉已知bug模式 | 82+模式自动检测 |
 | 设计实验 | 猜基线和消融 | 顶会定制实验方案 |
 | NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
 
 ## 特性
 
-- **591+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **607+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
-- **10 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
+- **12 个科研级技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
-## 知识库（591+ 方法）
+## 知识库（607+ 方法）
 
 **核心表示**
 
@@ -77,7 +83,7 @@ If you like it, please ⭐️ star this repo!
 | 基础 | 核心3DGS表示与基本变体 | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
 | 抗锯齿 | 抗锯齿与频率感知渲染 | Mip-Splatting, LeanGaussian |
 | 优化 | 训练目标、密度控制与收敛 | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
-| 表面/渲染 | 渲染公式创新（OIT、RBF等） | SparseOIT |
+| 表面/渲染 | 渲染公式创新（OIT、RBF等） | SparseOIT, View-Dependent Splatting, Gaussian Surfel Rendering |
 | 图像表示 | 图像级高斯编码 | GaussianImage |
 
 **效率与规模**
@@ -87,14 +93,14 @@ If you like it, please ⭐️ star this repo!
 | 压缩/流式 | 轻量化、移动端与渐进式传输 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS, DSGS |
 | 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS, 3DGS³, TensorGS |
 | 大规模 | 城市级与分布式场景管理 | BlitzGS |
-| 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, PointForward, ZPressor, VolSplat, PM-Loss |
+| 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, PointForward, ZPressor, VolSplat, PM-Loss, DéjàView |
 
 **理解与语义**
 
 | 类别 | 说明 | 方法 |
 |------|------|------|
-| 语言/语义 | 开放词汇3D理解与语言场 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
-| 生成/文生3D | 文本/条件驱动的3D生成 | DreamGaussian, SceneGen-LLMRL, DeG, PanoWorld |
+| 语言/语义 | 开放词汇3D理解与语言场 | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP, Gaga |
+| 生成/文生3D | 文本/条件驱动的3D生成 | DreamGaussian, SceneGen-LLMRL, DeG, PanoWorld, AnySurf, AssetGen |
 | 自动驾驶 | 驾驶场景重建与仿真 | Real2Sim, ConFixGS, P2GS, GEM |
 
 **动态与空间**
@@ -110,12 +116,12 @@ If you like it, please ⭐️ star this repo!
 
 | 类别 | 说明 | 方法 |
 |------|------|------|
-| 人体/头像 | 可动画人体与头像重建 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT, ArtMesh |
+| 人体/头像 | 可动画人体与头像重建 | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT, ArtMesh, HeadsUp, CapTalk, 3DGS Head Avatars |
 | 编辑 | 交互式与文本引导场景编辑 | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts, Robust Prior-Guided Seg. |
-| 重光照 | 可重光照与材质感知高斯 | Relightable-GS-VP |
+| 重光照 | 可重光照与材质感知高斯 | Relightable-GS-VP, Ambient-Robust IR |
 | CAD | CAD模型拟合与逆向工程 | CADFit |
-| 跨领域 | 多模态融合与域外迁移 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R, TransmissiveGS |
-| 仿真 | 物理仿真与代理模型 | GS-Playground, GS-Surrogate, FieryGS |
+| 跨领域 | 多模态融合与域外迁移 | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R, TransmissiveGS, SurfFill |
+| 仿真 | 物理仿真与代理模型 | GS-Playground, GS-Surrogate, FieryGS, SAM3D-Phys |
 | 具身智能/机器人 | 机器人抓取、操作、导航与Sim2Real | GaussianGrasper, GraspSplats, ManiGaussian, GSMem, RoboSplat, VR-Robo, GSDrive |
 | 主动视觉 | 主动视角选择与下一最优视角 | MAGICIAN |
 | 实时新视角合成 | 实时新视角合成系统 | 3DTV |
@@ -125,11 +131,11 @@ If you like it, please ⭐️ star this repo!
 | 系统 | 全系统设计与硬件协同设计 | YOGO, GS-SCNet |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> 完整知识库覆盖 **25 个类别的 591+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
+> 完整知识库覆盖 **25 个类别的 607+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
 
 下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
 
-> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 574+ 方法。
+> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 607+ 方法。
 
 ## 快速开始
 
@@ -197,7 +203,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 591+ 方法的知识库
+- 内置 607+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -213,7 +219,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（66+ 已知模式）
+- 常见 bug 模式检测（82+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -390,7 +396,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（25 个类别 574+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（25 个类别 607+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   └── methods-systems-apps.md # 系统、应用、跨领域
@@ -431,7 +437,7 @@ Awesome-Gaussian-Skills/
 
 ## 核心论文创新点汇总
 
-> 基于知识库591+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
+> 基于知识库607+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition / 计算机学报 / 软件学报
 
 <details>
@@ -572,8 +578,8 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.7 — 每日更新: 516→531+方法, +15新(HarmoGS, ULF-Loc, AdaptSplat, PointForward, 3DGS³, TransmissiveGS, NIRRGB-GS, TensorGS, DeG SIGGRAPH''26, P2GS CVPR''26, ArtMesh, DSGS, GEM, PanoWorld, LiteLoc); 63+ bug模式; 25类别 (2026年5月)
 - [x] v0.2.8 — 每日更新: 531→548+方法, +17新(ZPressor NeurIPS'25, VolSplat, PM-Loss 3DV'26, AmbiSuR ICML'26, RT-Splatting CVPR'26 Highlight, TideGS 1B+高斯, OP2GS双不透明度, MMGS OT压缩, 3DSGS偏度高斯, GaussianZoom放大生成, AnyCity航拍, Cross-View Splatter跨视角, FLUIDSPLAT, GS-DIFF, ReorgGS, AsyncEvGS, SplitGS-Loc); 67+ bug模式; 25类别 (2026年5月)
 - [x] v0.2.9 — CAD融合: `cad-mesh-3dgs`技能 + build123d管线 (STEP→GLB→3DGS), cad2gs_pipeline.py, Part-Aware实验场景构建器, Sidecar动画系统用于3DGS可视化（2026年5月）
-- [x] v0.2.10 — 每日更新: 548→574+方法, +5新(GaussianPile CVPR'26体积医学3DGS, Flow4DGS-SLAM CVPR'26光流引导动态SLAM, Ilov3Splat ICPR'26实例级开放词汇, LeGS可学习密度控制, PhysX-Omni统一物理3D生成); 69+ bug模式; 25类别 (2026年5月)
-- [x] v0.2.11 — 每日更新: 553→574+方法, +6新(CAdam SIGGRAPH'26生成式致密化, GGD-SLAM ICRA'26动态SLAM, PiG-Avatar体素规范化身, Latent Dynamics服装动画, ROAR-3D多视角生成, GLUT色彩变换) (2026年5月)
+- [x] v0.2.10 — 每日更新: 548→607+方法, +5新(GaussianPile CVPR'26体积医学3DGS, Flow4DGS-SLAM CVPR'26光流引导动态SLAM, Ilov3Splat ICPR'26实例级开放词汇, LeGS可学习密度控制, PhysX-Omni统一物理3D生成); 69+ bug模式; 25类别 (2026年5月)
+- [x] v0.2.11 — 每日更新: 553→607+方法, +6新(CAdam SIGGRAPH'26生成式致密化, GGD-SLAM ICRA'26动态SLAM, PiG-Avatar体素规范化身, Latent Dynamics服装动画, ROAR-3D多视角生成, GLUT色彩变换) (2026年5月)
 - [ ] v0.3 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成
 - [ ] v1.1 — 多语言支持（中文、日文、韩文）

@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 If you like it, please ⭐️ star this repo! 
         
@@ -6,7 +6,7 @@ If you like it, please ⭐️ star this repo!
 
 ### 3D Spatial Intelligence Open-Source Toolbox
 
-**591+ 3DGS methods cataloged with interactive explorer, code review, spatial intelligence, and AI-powered research tools**
+**607+ 3DGS methods cataloged with interactive explorer, code review, spatial intelligence, and AI-powered research tools**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
@@ -16,7 +16,7 @@ If you like it, please ⭐️ star this repo!
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Try Demo Now](https://img.shields.io/badge/Try_Demo-Now-2196F3.svg?logo=github)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-10-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/Skills-12-green.svg)](skills/)
 [![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
 [![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -25,82 +25,26 @@ If you like it, please ⭐️ star this repo!
 
 </div>
 
-## What's New (May 2026)
+## What's New (June 2026)
 
-Latest update (May 31): 574+ → 591+ methods, 25 categories. +17 new methods including EulerianGS (CVPR 2026, replaces ADC with probability density optimization), GAVIS (CVPR 2026, 200 FPS uncertainty-aware 3DGS), DGSG-Mind (3D Gaussian scene graphs + embodied reasoning), DeGO (CVPR 2026, deformable Gaussian occupancy), TWINGS (CVPR 2026, TPS initialization for sparse-view GS), BitC-3DGS (128-bit 3DGS watermarking), FRUC (feed-forward cooperative driving 3DGS), IDESplat (CVPR 2026, iterative depth probability), PhyGenHOI (4D human-object interaction via MPM+3DGS), MonoPhysics (monocular inverse physics), FreeForm (CVPR 2026, particle-based simulation on GS), TDg (thermal-only GS), SRUG (shadow-guided relightable urban), NeuROK (CVPR 2026, 4D neural kinematics), PocketGS (on-device mobile 3DGS training), X-GS (extensible SLAM+reasoning framework), WeatherCity (weather-editable 4D urban GS). Daily arXiv tracking active.
-
-| Method | ArXiv | Category | One-Line Innovation |
-|--------|-------|----------|-------------------|
-| **EulerianGS** | [2605.29136](https://arxiv.org/abs/2605.29136) | Optimization | Replaces heuristic ADC with gradient-based probability density; SOTA on mip-NeRF 360 (CVPR 2026) |
-| **GAVIS** | [2605.30342](https://arxiv.org/abs/2605.30342) | SLAM / Active | 200 FPS uncertainty-aware GS active mapping via anisotropic visibility field (CVPR 2026) |
-| **DGSG-Mind** | [2605.29879](https://arxiv.org/abs/2605.29879) | Semantic | Dynamic 3D Gaussian scene graphs with embodied multimodal reasoning |
-| **DeGO** | [2605.28587](https://arxiv.org/abs/2605.28587) | AD / Dynamic | Deformable Gaussian occupancy decoupling rigid/non-rigid motion (CVPR 2026) |
-| **TWINGS** | [2605.22069](https://arxiv.org/abs/2605.22069) | Optimization | TPS warp-aligned initialization for sparse-view 3DGS (CVPR 2026) |
-| **BitC-3DGS** | [2605.29583](https://arxiv.org/abs/2605.29583) | Security | 128-bit high-capacity 3DGS watermarking via bit compression |
-| **FRUC** | [2605.29997](https://arxiv.org/abs/2605.29997) | AD / Feed-Forward | Feed-forward cooperative driving 3DGS from uncalibrated views |
-| **IDESplat** | [2601.03824](https://arxiv.org/abs/2601.03824) | Feed-Forward | Iterative depth probability estimation for generalizable 3DGS (CVPR 2026) |
-| **PhyGenHOI** | [2605.30268](https://arxiv.org/abs/2605.30268) | Simulation | 4D human-object interaction via MDM + MPM + 3DGS |
-| **MonoPhysics** | [2605.30320](https://arxiv.org/abs/2605.30320) | Simulation | Monocular inverse physics with differentiable MPM + 3DGS |
-| **FreeForm** | [2605.29318](https://arxiv.org/abs/2605.29318) | Simulation | Particle-based deformable simulation supporting Gaussian splats (CVPR 2026) |
-| **TDg** | [2605.30328](https://arxiv.org/abs/2605.30328) | Degradation-Aware | Thermal-to-Depth GS removing RGB reliance (ISPRS 2026) |
-| **SRUG** | [2605.24700](https://arxiv.org/abs/2605.24700) | Relighting | Shadow-guided relightable urban scene with generation model |
-| **NeuROK** | [2605.30347](https://arxiv.org/abs/2605.30347) | 4D Dynamics | Generative 4D neural object kinematics from Lagrangian mechanics (CVPR 2026) |
-| **PocketGS** | [2601.17354](https://arxiv.org/abs/2601.17354) | Optimization | On-device 3DGS training for mobile capture-to-rendering |
-| **X-GS** | [2603.09632](https://arxiv.org/abs/2603.09632) | SLAM / Semantic | Extensible framework: Perceiver (SLAM+semantics) + Thinker (multimodal tasks) |
-| **WeatherCity** | [2602.22096](https://arxiv.org/abs/2602.22096) | AD / Editing | Weather Gaussian representation for controllable 4D urban weather editing |
+Latest update (Jun 1): 607+ → 607+ methods, 25 categories. +16 new methods including: **HeadsUp** (Apple, UV-parameterized 3DGS head, 10K+ subjects), **DéjàView** (looped transformer, inference-time compute scaling), **View-Dependent Splatting Kernels** (SIGGRAPH 2026, learned kernels), **SAM3D-Phys** (generative priors + physics for simulatable objects), **Gaga** (3D-aware memory bank segmentation), **CapTalk** (text+speech-driven 3D head), **SurfFill** (LiDAR completion via Gaussian surfel), **CLEAR-NeRF** (unbounded reconstruction), **AnySurf/AssetGen/DinoComplete** (generation+completion), **Ambient-Robust Inverse Rendering** (active RGB-NIR), **Multi-view Consistent 3DGS Head** (CVPR 2026), **Gaussian-Enhanced Surfel Rendering** (depth peeling). Daily arXiv tracking active.
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
-| **ZPressor** | [2505.23734](https://arxiv.org/abs/2505.23734) | Feed-Forward | Bottleneck-aware latent compression scales feed-forward 3DGS beyond 100 input views (NeurIPS 2025) |
-| **VolSplat** | [2509.19297](https://arxiv.org/abs/2509.19297) | Feed-Forward | Voxel-aligned Gaussian prediction improves multi-view consistency over pixel alignment |
-| **PM-Loss** | [2506.05327](https://arxiv.org/abs/2506.05327) | Feed-Forward | Pointmap regularization smooths depth boundaries for feed-forward 3DGS (3DV 2026) |
-| **AmbiSuR** | [2605.12494](https://arxiv.org/abs/2605.12494) | Surface / Rendering | Photometric ambiguity self-indication via SH for GS surface reconstruction (ICML 2026) |
-| **RT-Splatting** | [2605.18263](https://arxiv.org/abs/2605.18263) | Rendering | Reflection-transmission joint modeling, dual occupancy-opacity (CVPR 2026 Highlight) |
-| **TideGS** | [2605.20150](https://arxiv.org/abs/2605.20150) | Large-Scale | Out-of-core 1B+ Gaussians training via SSD-CPU-GPU hierarchy on 24GB GPU |
-| **OP2GS** | [2605.20044](https://arxiv.org/abs/2605.20044) | Semantic | Dual-opacity primitives decoupling visual existence from instance occupancy |
-| **MMGS** | [2605.19304](https://arxiv.org/abs/2605.19304) | Compression | 10x compressed 3DGS via Optimal Transport, 10% primitives + 10x speedup |
-| **3DSGS** | [2605.18334](https://arxiv.org/abs/2605.18334) | Foundation | General 3D Skew Gaussian primitives with re-derived CUDA rasterization |
-| **GaussianZoom** | [2605.18252](https://arxiv.org/abs/2605.18252) | Generation | Progressive zoom-in generative 3D with expandable continuous LoD |
-| **AnyCity** | [2605.19949](https://arxiv.org/abs/2605.19949) | Feed-Forward | Observation-grounded generative reconstruction for sparse aerial scenes |
-| **Cross-View Splatter** | [2605.19656](https://arxiv.org/abs/2605.19656) | Feed-Forward | Ground+satellite cross-view fusion for outdoor 3DGS |
-| **FLUIDSPLAT** | [2605.18866](https://arxiv.org/abs/2605.18866) | Simulation | Physical flow field via anisotropic GS partition-of-unity |
-| **GS-DIFF** | [2605.07203](https://arxiv.org/abs/2605.07203) | Editing | Scene change detection on Gaussian primitives; +17% mIoU |
-| **ReorgGS** | [2605.08739](https://arxiv.org/abs/2605.08739) | Optimization | Equivalent distribution reorganization fixing parameterization degeneration |
-| **AsyncEvGS** | [2605.07192](https://arxiv.org/abs/2605.07192) | Cross-Domain | Async event+RGB dual-system for motion-blurred 3DGS |
-| **SplitGS-Loc** | [2605.07351](https://arxiv.org/abs/2605.07351) | SLAM | Mixture-of-Gaussians disambiguating 2D-3D correspondences |
-| **TensorGS** | [2605.17855](https://arxiv.org/abs/2605.17855) | Acceleration | Tensor Core FP16 acceleration for 3DGS rasterization, 1.65x speedup |
-| **DeG** | [2605.16355](https://arxiv.org/abs/2605.16355) | Generation | Density-Sampled Gaussians with octree probability density (SIGGRAPH 2026) |
-| **P2GS** | [2605.16925](https://arxiv.org/abs/2605.16925) | Autonomous Driving | Physical prior-guided photometric 3DGS for urban scenes (CVPR 2026) |
-| **ArtMesh** | [2605.16582](https://arxiv.org/abs/2605.16582) | Human / Avatar | Part-aware articulated mesh field + Articulate-100 benchmark |
-| **GEM** | [2605.17682](https://arxiv.org/abs/2605.17682) | Autonomous Driving | 4D Gaussian evolution model for occupancy forecasting + motion planning |
-| **PanoWorld** | [2605.17916](https://arxiv.org/abs/2605.17916) | Generation | Whole-house VR panorama synthesis via 3DGS spatial world model |
-| **LiteLoc** | [2605.17777](https://arxiv.org/abs/2605.17777) | SLAM | Color-free 3DGS localization with 94% storage reduction (IEEE/CAA JAS) |
-| **DSGS** | [2605.17002](https://arxiv.org/abs/2605.17002) | Compression | Decoder-side GS from compressed video bitstreams for immersive delivery |
-| **HarmoGS** | [2605.13073](https://arxiv.org/abs/2605.13073) | Robustness | Conflict-aware gradient harmonization for in-the-wild 3DGS |
-| **ULF-Loc** | — | SLAM | Unbiased landmark feature fixing alpha-compositing bias (CVPR 2026 Highlight) |
-| **AdaptSplat** | — | Feed-Forward | Vision foundation model adaptation for feed-forward 3DGS |
-| **PointForward** | — | Feed-Forward | Anchor-aligned feed-forward driving reconstruction via 3DGS |
-| **3DGS³** | — | Acceleration | Joint super sampling + frame interpolation for real-time large-scale GS |
-| **TransmissiveGS** | — | Cross-Domain | Residual-guided disentangled GS for transmissive scenes |
-| **NIRRGB-GS** | — | Degradation-Aware | Near-infrared assisted low-light 3DGS (AISY 2026) |
-| **Learn2Splat** | [2605.15760](https://arxiv.org/abs/2605.15760) | Optimization | Meta-learned optimizer replacing Adam/SGD for 3DGS (Geiger group) |
-| **EndoGSim** | [2605.16022](https://arxiv.org/abs/2605.16022) | Medical | MLLM+4DGS+differentiable MPM for endoscopic simulation (MICCAI 2026) |
-| **3DEditSafe** | [2605.15398](https://arxiv.org/abs/2605.15398) | Security | First 3D editing safety regularization against NSFW propagation |
-| **Robust Prior-Guided Seg.** | [2605.16065](https://arxiv.org/abs/2605.16065) | Editing | SAM-HQ prior-guided 3DGS segmentation (ICIP 2026) |
-| **SNS** | [2605.15010](https://arxiv.org/abs/2605.15010) | Foundation | Skew-Normal primitive for asymmetric boundary modeling |
-| **SplatWeaver** | [2605.07287](https://arxiv.org/abs/2605.07287) | Feed-Forward | Cardinality expert routing +30% budget, +1.02 dB |
-| **MGS** | [2603.19234](https://arxiv.org/abs/2603.19234) | Compression | Matryoshka continuous LoD from single training |
-| **Denoising-GS** | [2605.14880](https://arxiv.org/abs/2605.14880) | Optimization | 3DGS optimization reframed as spatial denoising |
-| **AdpSplit** | [2605.06876](https://arxiv.org/abs/2605.06876) | Optimization | Error-driven adaptive split, 9–22% faster |
-| **OCH3R** | [2605.13018](https://arxiv.org/abs/2605.13018) | Cross-Domain | Single-RGB holistic 3D with per-object Gaussians |
-| **ConFixGS** | [2605.09688](https://arxiv.org/abs/2605.09688) | Autonomous Driving | Diffusion priors fix feedforward 3DGS, +3.68 dB |
-| **BlitzGS** | [2605.13794](https://arxiv.org/abs/2605.13794) | Large-Scale | Distributed GPU sharding for city-scale GS |
-| **Z-Order GS** | [2605.13465](https://arxiv.org/abs/2605.13465) | Feed-Forward | Z-order spatial coherence (CVPR 2026 Oral) |
-| **Real2Sim** | [2605.13591](https://arxiv.org/abs/2605.13591) | Simulation | 4DGS + differentiable MPM for physics-aware AD |
-| **SparseOIT** | [2605.13855](https://arxiv.org/abs/2605.13855) | Rendering | Order-independent transparency for glass scenes |
-| **GuardMarkGS** | [2605.12919](https://arxiv.org/abs/2605.12919) | Security | First unified watermarking + edit deterrence |
-| **SCOUP** | [2605.13600](https://arxiv.org/abs/2605.13600) | Semantic | 400x language-GS training speedup |
-| **AV1-3DGS** | [2605.14629](https://arxiv.org/abs/2605.14629) | Acceleration | AV1 motion vectors, 63% training speedup |
+| **HeadsUp** | [2605.04035](https://arxiv.org/abs/2605.04035) | Human / Feed-Forward | UV-parameterized 3DGS head; Gaussian count decoupled from input; 10K+ subjects (Apple) |
+| **DéjàView** | [2605.30215](https://arxiv.org/abs/2605.30215) | Feed-Forward | Looped transformer; inference-time compute knob K; matches larger baselines with fraction of params |
+| **View-Dependent Splatting** | [2605.25426](https://arxiv.org/abs/2605.25426) | Rendering | Learned view-dependent splatting kernels replacing fixed covariance (SIGGRAPH 2026) |
+| **SAM3D-Phys** | [2605.30239](https://arxiv.org/abs/2605.30239) | Simulation | SAM3D generative priors + physics-constrained spatial optimization for simulatable objects |
+| **Gaga** | — | Semantic | Group Any Gaussians via 3D-aware memory bank; robust sparse-view segmentation |
+| **CapTalk** | [2605.29316](https://arxiv.org/abs/2605.29316) | Human | Text-guided stylization + speech-driven 3D head animation; separate style/emotion control |
+| **SurfFill** | [2512.03010](https://arxiv.org/abs/2512.03010) | Cross-Domain | LiDAR point cloud completion via Gaussian surfel splatting; building-scale divide-and-conquer |
+| **CLEAR-NeRF** | [2605.28394](https://arxiv.org/abs/2605.28394) | Surface | Collinearity + local-region enhanced accurate 3D reconstruction in unbounded scenes |
+| **AnySurf** | [2605.26149](https://arxiv.org/abs/2605.26149) | Generation | Any surface generation with directed edge representation |
+| **AssetGen** | [2605.26137](https://arxiv.org/abs/2605.26137) | Generation | Deployable 3D asset generation at interactive speed |
+| **Ambient-Robust IR** | [2605.30250](https://arxiv.org/abs/2605.30250) | Material | Active RGB-NIR imaging for ambient-robust inverse rendering |
+| **DinoComplete** | [2605.26949](https://arxiv.org/abs/2605.26949) | Surface | 3D shape completion with DINOv2-distilled semantic priors + SSM |
+| **3DGS Head Avatars** | [2605.25220](https://arxiv.org/abs/2605.25220) | Human | Multi-view consistent 3DGS heads without multi-view generation (CVPR 2026) |
+| **Gaussian Surfel Rendering** | [2605.25345](https://arxiv.org/abs/2605.25345) | Rendering | Depth peeling for high-fidelity Gaussian-enhanced surfel rendering |
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
@@ -110,7 +54,7 @@ Latest update (May 31): 574+ → 591+ methods, 25 categories. +17 new methods in
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 591+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 607+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
 | What You Do | Without This | With This |
 |-------------|-------------|-----------|
@@ -122,13 +66,13 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 
 ## Features
 
-- **591+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **607+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
 - **10 Research-Grade Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review, spatial intelligence — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (591+ Methods)
+## Knowledge Base (607+ Methods)
 
 **Core Representations**
 
@@ -185,12 +129,12 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
 | Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
 
-> The full knowledge base covers **591+ methods** across 25 categories with detailed technical analysis. See [
+> The full knowledge base covers **607+ methods** across 25 categories with detailed technical analysis. See [
 eferences/3dgs-methods-overview.md](references/3dgs-methods-overview.md).
 
 Download the full database as CSV: [3dgs-methods-overview.csv](3dgs-methods-overview.csv)
 
-> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 591+ methods instantly.
+> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 607+ methods instantly.
 
 ## Quick Start
 
@@ -259,7 +203,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 591+ methods
+- Built-in knowledge of 607+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -427,6 +371,38 @@ Agent: [Generates software manual (10-15 pages with screenshots)
 - Source code document formatting (50+ lines/page, sensitive data removal)
 - Internal self-check for consistency, adequacy, and compliance
 
+### 11. `3dgs-spatial-agent` — 3DGS/CAD/Mesh Spatial Intelligence Agent
+
+**Agent-driven 3D scene reasoning, CAD extraction, and interactive editing.**
+
+```
+You: "帮我从3DGS模型中提取椅子的CAD参数化模型"
+Agent: [Segments chair Gaussians via OP2GS, extracts mesh via SuGaR,
+        fits parametric primitives via GS-CAD, exports STEP file]
+```
+
+**Capabilities:**
+- Scene-level reasoning: segment → extract geometry → infer materials → build scene graph
+- CAD-in-the-loop: build123d/Open Cascade for parametric model extraction from 3DGS
+- Multi-modal I/O: text/prompt → parameterized CAD model or 3DGS scene edits
+- Articulation discovery: identify articulated structure from Gaussian grouping
+- Material inference: PBR properties from SH coefficients and Gaussian density
+
+### 12. `3dgs-mcp-renderer` — MCP Protocol + 3DGS Rendering Bridge
+
+**Agent-controlled Three.js/WebGPU rendering via MCP protocol.**
+
+```
+You: "从上方看这个场景"
+Agent: [Calls MCP set_camera(0,10,0), render_frame(), returns image]
+```
+
+**Capabilities:**
+- MCP tools: import_scene, set_camera, modify_gaussians, render_frame, query_scene
+- Voice-driven reconstruction: Whisper → Agent → MCP → rendering
+- Real-time parameter manipulation: opacity, color, position, scale
+- Semantic querying: label-based Gaussian selection (OP2GS, Gaga integration)
+
 ## Architecture
 
 ```
@@ -452,6 +428,10 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   └── patent-software-ip/       # Patent & software copyright generation
 │       └── SKILL.md
+│   ├── 3dgs-spatial-agent/       # 3DGS/CAD/Mesh spatial intelligence agent
+│   │   └── SKILL.md
+│   └── 3dgs-mcp-renderer/        # MCP protocol + Three.js/3DGS rendering bridge
+│       └── SKILL.md
 ├── scripts/
 │   ├── setup.sh                 # Quick install script
 │   ├── cad2gs_pipeline.py       # CAD → 3DGS conversion (STEP/GLB → Gaussian init)
@@ -467,7 +447,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-|   ├── 3dgs-methods-overview.md # Index (591+ methods across 25 categories)
+|   ├── 3dgs-methods-overview.md # Index (607+ methods across 25 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   ├── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -509,7 +489,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 591+ methods. Each idea identifies a concrete problem, a methodological approach, and an implementation path.
+> Derived from systematic gap analysis across 607+ methods. Each idea identifies a concrete problem, a methodological approach, and an implementation path.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition.
 
 <details>
@@ -653,8 +633,11 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.2.10 — Daily update: 548→559+ methods, +5 new (GaussianPile CVPR'26 volumetric medical 3DGS, Flow4DGS-SLAM CVPR'26 flow-guided dynamic SLAM, Ilov3Splat ICPR'26 instance-level open-vocab, LeGS learnable density control, PhysX-Omni unified physical 3D gen); 69+ bug patterns; 25 categories (May 2026)
 - [x] v0.2.11 — Daily update: 553→559+ methods, +6 new (CAdam SIGGRAPH'26 generative densification, GGD-SLAM ICRA'26 dynamic SLAM, PiG-Avatar volumetric canonical avatars, Latent Dynamics clothing animation, ROAR-3D multi-view generation, GLUT color transformation) (May 2026)
 - [x] v0.2.12 — Daily update: 559→574+ methods, +15 new (ArtSplat first feed-forward articulated 3DGS 400x faster, BEA-GS CVPR'26 Highlight object extraction, F-RNG feed-forward relightable 25x faster, CodecSplat 20-108 KiB/scene, TriSplat triangle primitives mesh export, VoxelGS scaffold-anchored Gaussian+voxel SDF, TokenGS learnable tokens, NoPo4D pose-free feed-forward 4DGS, COSY compositional head editing, R5DGS semantic 4DGS rigid constraints, RiGS rigid-aware monocular 4DGS, Underwater360/GlowGS/DelowlightSplat degradation-specific 3DGS, RoVES physics-aware driving editing, 4D-GSW 4DGS watermarking, DP-GES depth peeling surfel rendering); 71+ bug patterns; 25 categories (May 2026)
-- [x] v0.2.13 — Daily update: 574→591+ methods, +17 new (EulerianGS CVPR'26 probability density replaces ADC, GAVIS CVPR'26 200 FPS uncertainty-aware GS, DGSG-Mind 3D Gaussian scene graphs + embodied reasoning, DeGO CVPR'26 deformable Gaussian occupancy, TWINGS CVPR'26 TPS sparse-view GS, BitC-3DGS 128-bit watermarking, FRUC feed-forward cooperative driving, IDESplat CVPR'26 iterative depth probability, PhyGenHOI MPM+3DGS 4D HOI, MonoPhysics monocular inverse physics, FreeForm CVPR'26 particle-sim on GS, TDg thermal-only GS, SRUG shadow-guided relightable urban, NeuROK CVPR'26 4D neural kinematics, PocketGS on-device mobile 3DGS, X-GS extensible SLAM+reasoning, WeatherCity weather-editable 4D urban); 79+ bug patterns; 25 categories (May 2026)
-- [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution)
+- [x] v0.2.13 — Daily update: 574→591+ methods, +17 new (EulerianGS CVPR'26, GAVIS CVPR'26, DGSG-Mind, DeGO CVPR'26, TWINGS CVPR'26, BitC-3DGS, FRUC, IDESplat CVPR'26, PhyGenHOI, MonoPhysics, FreeForm CVPR'26, TDg, SRUG, NeuROK CVPR'26, PocketGS, X-GS, WeatherCity); 79+ bug patterns; 25 categories (May 2026)
+- [x] v0.2.14 — Daily update: 591→607+ methods, +16 new (HeadsUp Apple UV-parameterized head, DéjàView looped transformer, View-Dependent Splatting Kernels SIGGRAPH'26, SAM3D-Phys generative priors+physics, Gaga 3D-aware memory bank, CapTalk text+speech head, SurfFill LiDAR+surfel, CLEAR-NeRF unbounded, AnySurf/AssetGen/DinoComplete generation+completion, Ambient-Robust IR RGB-NIR, Multi-view Consistent 3DGS Head CVPR'26, Gaussian-Enhanced Surfel depth-peeling); 82+ bug patterns; 25 categories (Jun 2026)
+- [ ] v0.3 — Add `3dgs-benchmark-runner` skill (automated benchmark execution) + Skills standard alignment (Anthropic Claude Code / OpenClaw)
+- [ ] v0.4 — Add `3dgs-spatial-agent` skill (3DGS/CAD/Mesh domain Agent for scientific 3D vision)
+- [ ] v0.5 — MCP protocol integration: Agent-controlled Three.js/3DGS rendering pipeline
 - [ ] v1.0 — ClawHub official listing + CI/CD integration
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)
 - [ ] v2.0 — Agent-to-Agent collaboration (multi-agent paper discussion)
