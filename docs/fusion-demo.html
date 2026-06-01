@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
@@ -112,14 +112,14 @@ tailwind.config = {
   <div class="relative max-w-4xl mx-auto px-4 sm:px-6">
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-blue/10 text-accent-blue text-xs font-medium mb-6 border border-accent-blue/20">
       <span class="w-1.5 h-1.5 rounded-full bg-accent-blue glow-pulse"></span>
-      10 Projects × 10 Skills = Full-Chain Fusion
+      10 Projects × 12 Skills = Full-Chain Fusion
     </div>
     <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-6">
       Knowledge → Generation → Deployment
     </h1>
     <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
       Awesome Gaussian Skills — 3D空间智能开源工具箱，从知识层到全链路融合框架：<br>
-      591+ 方法知识库 × 10 开源项目 = 生成→编辑→交互→仿真→部署 闭环
+      607+ 方法知识库 × 10 开源项目 = 生成→编辑→交互→仿真→部署 闭环
     </p>
     <div class="flex flex-wrap justify-center gap-3 text-xs">
       <span class="px-3 py-1.5 rounded-lg bg-pink-500/10 text-pink-300 border border-pink-500/20">生成 Generation</span>
@@ -179,7 +179,7 @@ tailwind.config = {
             <div class="text-sm font-bold text-green-300">Interaction</div>
             <div class="text-xs text-gray-500 mt-1">Bevy + GS</div>
           </div>
-          <div class="text-[10px] text-gray-600">Skill: 3dgs-game-prototyper</div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-game-prototyper / 3dgs-spatial-agent</div
         </div>
         <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         <!-- Simulate -->
@@ -189,7 +189,7 @@ tailwind.config = {
             <div class="text-sm font-bold text-purple-300">Simulation</div>
             <div class="text-xs text-gray-500 mt-1">ManiSkill + OpenLoong</div>
           </div>
-          <div class="text-[10px] text-gray-600">Skill: 3dgs-embodied-sim</div>
+          <div class="text-[10px] text-gray-600">Skill: 3dgs-embodied-sim / 3dgs-mcp-renderer</div
         </div>
         <svg class="w-8 h-8 text-gray-600 flex-shrink-0 arch-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         <!-- Deploy -->
@@ -273,7 +273,7 @@ const PROJECTS = [
     tags: ["Text→3DGS", "World Model", "Tencent"],
     skill: "3dgs-world-generator",
     desc: "腾讯开源的3D世界生成模型。唯一同时输出3DGS+Mesh+点云的开源世界模型——一句话生成可漫游3DGS场景。",
-    fusion: `当前591+方法都是"照片→3DGS"，缺"文本→3DGS"。融合后：用户说"赛博朋克城市街道"→ Skill调HunyuanWorld API → 3DGS场景 → SuperSplat编辑 → 社区分享。与Tripo/Meshy API对接形成"文本→3DGS→编辑→部署"全链路。`,
+    fusion: `当前607+方法都是"照片→3DGS"，缺"文本→3DGS"。融合后：用户说"赛博朋克城市街道"→ Skill调HunyuanWorld API → 3DGS场景 → SuperSplat编辑 → 社区分享。与Tripo/Meshy API对接形成"文本→3DGS→编辑→部署"全链路。`,
     kbRef: "前馈式3DGS、4DGS动态生成方向"
   },
   {
@@ -399,7 +399,7 @@ const PROJECTS = [
     url: "https://github.com/hawk86104/three-vue-tres",
     demo: "http://icegl.cn/tvt",
     tags: ["Vue3", "Three.js", "AI Skills Arch", "Gitee 4.3k"],
-    skill: "10 Skills as Vue3 Plugins",
+    skill: "12 Skills as Vue3 Plugins",
     desc: "国产Vue3+Three.js三维可视化框架，已扩展AI Skills/OpenSpec能力槽，含在线3D场景编辑器。GitHub 2.3k + Gitee 4.3k。",
     fusion: "融合成本最低——已有AI Skills架构，3DGS Skill即插即用。gsplat.js/GaussianSplats3D封装为TvT.js 3DGS组件 → 10个Skill以插件形式发布 → Vue开发者拖拽式创建3DGS交互场景。3DGS Skill体系进入国内Vue生态最快路径。",
     kbRef: "PlayCanvas生态(SuperSplat+splat-transform)、gsplat.js"
@@ -432,11 +432,12 @@ const LAYERS = [
 ];
 
 const ROADMAP = [
-  { phase:"v0.3", title:"Generation + Training Layer", color:"pink", items:["3dgs-world-generator Skill: HunyuanWorld API封装，Text→3DGS", "3dgs-train-anywhere Skill: Brush CLI封装，去CUDA训练", "Skill自动推荐最优训练方法（基于591+方法知识库）"], status:"planned" },
+  { phase:"v0.3", title:"Spatial Agent + Standard Alignment", color:"teal", items:["3dgs-spatial-agent Skill: Agent驱动的3DGS/CAD/Mesh空间智能", "3dgs-mcp-renderer Skill: MCP协议+Three.js/3DGS渲染桥接", "Skills标准对齐（Anthropic Claude Code / OpenClaw兼容）", "v0.2.14: 607+方法, 82+ bug模式, 25类别"], status:"active" },
+    { phase:"v0.3b", title:"Generation + Training Layer", color:"pink", items:["3dgs-world-generator Skill: HunyuanWorld API封装，Text→3DGS", "3dgs-train-anywhere Skill: Brush CLI封装，去CUDA训练", "Skill自动推荐最优训练方法（基于607+方法知识库）"], status:"planned" },
   { phase:"v0.4", title:"Editing Layer", color:"blue", items:["3dgs-splat-editor Skill: SuperSplat API自动化剪裁/压缩/发布", "cad-mesh-3dgs扩展: Chili3D+3DGS双模工作流", "train→auto-clean→compress→share 闭环验证"], status:"planned" },
   { phase:"v0.5", title:"Interaction Layer", color:"green", items:["3dgs-game-prototyper Skill: Bevy+3DGS交互原型生成", "碰撞体/Trigger Zone自动提取", "自然语言→Rust游戏代码生成"], status:"planned" },
   { phase:"v0.6", title:"Simulation Layer", color:"purple", items:["3dgs-embodied-sim Skill: ManiSkill+OpenLoong融合", "3DGS表面→碰撞Mesh自动转换", "Real2Sim2Real闭环验证（工业场景）"], status:"planned" },
-  { phase:"v1.0", title:"Deployment Layer + Official Release", color:"orange", items:["3dgs-gis-pipeline Skill: CesiumJS 3D Tiles全链路", "3dgs-osint-layer Skill: Osiris+3DGS态势感知", "10 Skills as TvT.js Vue3插件", "ClawHub正式收录 + CI/CD集成"], status:"planned" },
+  { phase:"v1.0", title:"Deployment Layer + Official Release", color:"orange", items:["3dgs-gis-pipeline Skill: CesiumJS 3D Tiles全链路", "3dgs-osint-layer Skill: Osiris+3DGS态势感知", "12 Skills as TvT.js Vue3插件", "ClawHub正式收录 + CI/CD集成"], status:"planned" },
   { phase:"v2.0", title:"Agent-to-Agent Collaboration", color:"cyan", items:["多Agent论文讨论（3DGS研究者虚拟圆桌）", "跨Skill编排：一键端到端 3DGS工作流", "社区贡献插件市场"], status:"vision" }
 ];
 
