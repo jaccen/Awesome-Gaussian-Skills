@@ -156,7 +156,7 @@ if ('IntersectionObserver' in window) {
       3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting & Computer Graphics
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">607+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">630+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">25 Categories</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">12 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
@@ -381,7 +381,7 @@ if ('IntersectionObserver' in window) {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">607+ 3DGS methods analyzed —best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">630+ 3DGS methods analyzed —best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -685,7 +685,7 @@ if ('IntersectionObserver' in window) {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 607 methods across 25 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 630+ methods across 25 categories</p>
       <div class="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm">
         <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue/10 border border-accent-blue/20 text-accent-blue">
           <span class="font-bold">1</span> Search or filter by category
@@ -1292,9 +1292,9 @@ const METHODS = [
   { name: "AV1-3DGS", short: "AV1-3DGS", cat: "Training", venue: "arXiv", year: 2026, desc: "AV1 motion vectors for dense SfM matching with 63% training time reduction", arxiv: "2605.14629" , citations: 0 },
   { name: "3DGS squared", short: "3DGS squared", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewe...", arxiv: "2501.13975" , citations: 0 },
   { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright pro...", arxiv: "2605.12919" , citations: 0 },
-  { name: "Learn2Splat", short: "Learn2Splat", cat: "Training & Optimization", venue: "arXiv", year: 2026, desc: "Meta-learned optimizer for 3DGS replacing Adam/SGD with long-horizon stabil...", arxiv: "2605.15760", citations: 0 },
-  { name: "Robust Prior-Guided Seg.", short: "Robust Prior-Guided Seg.", cat: "Editing Methods", venue: "ICIP", year: 2026, desc: "SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...", arxiv: "2605.16065", citations: 0 },
-  { name: "EndoGSim", short: "EndoGSim", cat: "Cross-Domain Applications", venue: "MICCAI", year: 2026, desc: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic si...", arxiv: "2605.16022", citations: 0 },
+  { name: "Learn2Splat", short: "Learn2Splat", cat: "Training", venue: "arXiv", year: 2026, desc: "Meta-learned optimizer for 3DGS replacing Adam/SGD with long-horizon stabil...", arxiv: "2605.15760", citations: 0 },
+  { name: "Robust Prior-Guided Seg.", short: "Robust Prior-Guided Seg.", cat: "Editing", venue: "ICIP", year: 2026, desc: "SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...", arxiv: "2605.16065", citations: 0 },
+  { name: "EndoGSim", short: "EndoGSim", cat: "Cross-Domain", venue: "MICCAI", year: 2026, desc: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic si...", arxiv: "2605.16022", citations: 0 },
   { name: "3DEditSafe", short: "3DEditSafe", cat: "Security", venue: "arXiv", year: 2026, desc: "First safety-regularized 3D editing framework constraining NSFW semant...", arxiv: "2605.15398", citations: 0 },
   { name: "GWM", short: "GWM", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "3DGS as environment dynamics modeling primitive with autoregressive future state prediction", arxiv: "", citations: 0 },
   { name: "FlashWorld", short: "FlashWorld", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "Feed-forward 3DGS world model: single forward pass generates dynamic 3D scenes", arxiv: "", citations: 0 },
@@ -1315,29 +1315,43 @@ const METHODS = [
   { name: "TensorGS", short: "TensorGS", cat: "Acceleration", venue: "arXiv", year: 2026, desc: "Tensor Core acceleration for 3DGS rendering via FP16 matrix operations", arxiv: "", citations: 0 },
   { name: "DeG", short: "DeG", cat: "Generation", venue: "SIGGRAPH", year: 2026, desc: "Density-Sampled Gaussians with learnable probability density on octree", arxiv: "", citations: 0 },
   { name: "P2GS", short: "P2GS", cat: "Autonomous Driving", venue: "CVPR", year: 2026, desc: "Physical prior-guided GS for photometrically consistent urban reconstruction", arxiv: "", citations: 0 },
-  { name: "ArtMesh", short: "ArtMesh", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Part-aware articulated mesh field with restricted Delaunay remeshing", arxiv: "", citations: 0 },
+  { name: "ArtMesh", short: "ArtMesh", cat: "Human", venue: "arXiv", year: 2026, desc: "Part-aware articulated mesh field with restricted Delaunay remeshing", arxiv: "", citations: 0 },
   { name: "DSGS", short: "DSGS", cat: "Compression", venue: "arXiv", year: 2026, desc: "Decoder-Side Gaussian Splatting for immersive video delivery", arxiv: "", citations: 0 },
   { name: "GEM", short: "GEM", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Gaussian Evolution Model for non-autoregressive occupancy world modeling", arxiv: "", citations: 0 },
   { name: "PanoWorld", short: "PanoWorld", cat: "Generation", venue: "arXiv", year: 2026, desc: "Generative spatial world model for whole-house panorama synthesis", arxiv: "", citations: 0 },
   { name: "LiteLoc", short: "LiteLoc", cat: "SLAM", venue: "IEEE/CAA JAS", year: 2026, desc: "Lightweight 3DGS localizer with color-free decoupled feature field", arxiv: "", citations: 0 },
   { name: "CAdam", short: "CAdam", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Context-Adaptive Moment Estimation for 3DGS densification in generative distill...", arxiv: "2605.20872", citations: 0 },
   { name: "GGD-SLAM-ICRA", short: "GGD-SLAM-ICRA", cat: "SLAM", venue: "ICRA", year: 2026, desc: "Generalizable motion model for monocular dynamic 3DGS SLAM; no semantic labels...", arxiv: "2604.12837", citations: 0 },
-  { name: "PiG-Avatar", short: "PiG-Avatar", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space...", arxiv: "2605.20185", citations: 0 },
-  { name: "Latent Dynamics", short: "Latent Dynamics", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Pose-driven 3DGS avatar with dynamics residual latent; learned force decomp...", arxiv: "2605.21478", citations: 0 },
+  { name: "PiG-Avatar", short: "PiG-Avatar", cat: "Human", venue: "arXiv", year: 2026, desc: "Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space...", arxiv: "2605.20185", citations: 0 },
+  { name: "Latent Dynamics", short: "Latent Dynamics", cat: "Human", venue: "arXiv", year: 2026, desc: "Pose-driven 3DGS avatar with dynamics residual latent; learned force decomp...", arxiv: "2605.21478", citations: 0 },
   { name: "ROAR-3D", short: "ROAR-3D", cat: "Generation", venue: "arXiv", year: 2026, desc: "Token-wise view router for multi-view 3D generation; dual-stream attention...", arxiv: "2605.21121", citations: 0 },
   { name: "GLUT", short: "GLUT", cat: "Material", venue: "arXiv", year: 2026, desc: "3D Gaussian Lookup Table for continuous color transformation; compact cond...", arxiv: "2605.19889", citations: 0 },
   { name: "DéjàView", short: "DéjàView", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Looped transformer with inference-time compute knob K; matches larger baseline...", arxiv: "2605.30215", citations: 0 },
   { name: "View-Dependent Splatting", short: "VD-Splatting", cat: "Surface", venue: "SIGGRAPH", year: 2026, desc: "Learned view-dependent splatting kernels replacing fixed covariance; first fund...", arxiv: "2605.25426", citations: 0 },
   { name: "SAM3D-Phys", short: "SAM3D-Phys", cat: "Simulation", venue: "arXiv", year: 2026, desc: "SAM3D generative priors + physics-constrained spatial optimization for simulata...", arxiv: "2605.30239", citations: 0 },
   { name: "Gaga", short: "Gaga", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Group Any Gaussians via 3D-aware memory bank; robust sparse-view segmentation", arxiv: "", citations: 0 },
-  { name: "CapTalk", short: "CapTalk", cat: "Human / Avatar", venue: "arXiv", year: 2026, desc: "Text-guided stylization + speech-driven 3D head animation; separate style/emo...", arxiv: "2605.29316", citations: 0 },
+  { name: "CapTalk", short: "CapTalk", cat: "Human", venue: "arXiv", year: 2026, desc: "Text-guided stylization + speech-driven 3D head animation; separate style/emo...", arxiv: "2605.29316", citations: 0 },
   { name: "SurfFill", short: "SurfFill", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "LiDAR point cloud completion via Gaussian surfel splatting; building-scale div...", arxiv: "2512.03010", citations: 0 },
   { name: "CLEAR-NeRF", short: "CLEAR-NeRF", cat: "Surface", venue: "arXiv", year: 2026, desc: "Collinearity + local-region enhanced accurate 3D reconstruction in unbounded sc...", arxiv: "2605.28394", citations: 0 },
   { name: "AnySurf", short: "AnySurf", cat: "Generation", venue: "arXiv", year: 2026, desc: "Any surface generation with directed edge representation", arxiv: "2605.26149", citations: 0 },
   { name: "AssetGen", short: "AssetGen", cat: "Generation", venue: "arXiv", year: 2026, desc: "Deployable 3D asset generation at interactive speed", arxiv: "2605.26137", citations: 0 },
   { name: "DinoComplete", short: "DinoComplete", cat: "Surface", venue: "arXiv", year: 2026, desc: "3D shape completion with DINOv2-distilled semantic priors + state space model", arxiv: "2605.26949", citations: 0 },
   { name: "Ambient-Robust IR", short: "Ambient-IR", cat: "Material", venue: "arXiv", year: 2026, desc: "Active RGB-NIR imaging for ambient-robust inverse rendering", arxiv: "2605.30250", citations: 0 },
-  { name: "Gaussian-Enhanced Surfel", short: "GE-Surfel", cat: "Surface", venue: "arXiv", year: 2026, desc: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", arxiv: "2605.25345", citations: 0 }
+  { name: "Gaussian-Enhanced Surfel", short: "GE-Surfel", cat: "Surface", venue: "arXiv", year: 2026, desc: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", arxiv: "2605.25345", citations: 0 },
+  { name: "HiGS", short: "HiGS", cat: "Acceleration", venue: "arXiv 2026", year: 2026, desc: "Hierarchically tiled GS decoupling partitioning/rasterization; 15.8x faster (NVIDIA)", arxiv: "2606.00352", citations: 0 },
+  { name: "DDF-GS", short: "DDF-GS", cat: "Foundation", venue: "arXiv 2026", year: 2026, desc: "Directed Distance Fields for constant-time ray queries on 3DGS; GI without mesh", arxiv: "2606.00817", citations: 0 },
+  { name: "VEDAL", short: "VEDAL", cat: "Compression", venue: "CGI 2026", year: 2026, desc: "Variational free energy pruning; 5.2x compression @ 0.31 dB loss; 185 FPS", arxiv: "2606.02346", citations: 0 },
+  { name: "StreetNVS", short: "StreetNVS", cat: "Autonomous Driving", venue: "arXiv 2026", year: 2026, desc: "Multi-sensor NVs (LiDAR+camera+ego-motion); matches 100x denser methods", arxiv: "2606.01590", citations: 0 },
+  { name: "LEGS", short: "LEGS", cat: "Simulation", venue: "arXiv 2026", year: 2026, desc: "Embodied GS simulation; mesh+3DGS; procedural VLA training; 15x cost reduction", arxiv: "2606.01458", citations: 0 },
+  { name: "KDH-CAD", short: "KDH-CAD", cat: "CAD", venue: "arXiv 2026", year: 2026, desc: "Knowledge-data hybrid CAD; 92.6% accuracy with 250 training samples", arxiv: "2606.01702", citations: 0 },
+  { name: "SEIG", short: "SEIG", cat: "Generation", venue: "arXiv 2026", year: 2026, desc: "VLM generates executable Blender programs from single image", arxiv: "2606.02580", citations: 0 },
+  { name: "MORPHOS", short: "MORPHOS", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Autoregressive 4D generation; T-SLAT unifies mesh/Gaussian/NeRF", arxiv: "2606.02491", citations: 0 },
+  { name: "WebSpline", short: "WebSpline", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Learnable Hermite spline trajectories + Structural Proxy Graph; 10x faster than WorldTree", arxiv: "2606.02096", citations: 0 },
+  { name: "AlbedoEdit", short: "AlbedoEdit", cat: "Editing", venue: "arXiv 2026", year: 2026, desc: "Unified video editing via intrinsic albedo map guidance (MPI)", arxiv: "2606.01362", citations: 0 },
+  { name: "MRO-GWM", short: "MRO-GWM", cat: "World Models & Spatial Intelligence", venue: "arXiv 2026", year: 2026, desc: "Object-centric Gaussian world model for rigid body MPC", arxiv: "2606.01950", citations: 0 },
+  { name: "DSD-GS", short: "DSD-GS", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Feed-forward dynamic-static decomposition; 700+ FPS RTX 5090; no COLMAP", arxiv: "2605.30863", citations: 0 },
+  { name: "VG2GT", short: "VG2GT", cat: "Feed-Forward", venue: "arXiv 2026", year: 2026, desc: "Voxel-Gaussian Transformer; frozen VFM + stochastic solid volume rendering", arxiv: "2606.01573", citations: 0 },
+  { name: "TIDES", short: "TIDES", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Continuous-time event camera simulator from dynamic Gaussian Splatting", arxiv: "2606.02058", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -1901,7 +1915,21 @@ const METHOD_DETAILS = {
   "AssetGen": { innovation: "Deployable 3D asset generation at interactive speed", codeUrl: "" },
   "DinoComplete": { innovation: "3D shape completion with DINOv2-distilled semantic priors + state space model", codeUrl: "" },
   "Ambient-Robust IR": { innovation: "Active RGB-NIR imaging for ambient-robust inverse rendering", codeUrl: "" },
-  "Gaussian-Enhanced Surfel": { innovation: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", codeUrl: "" }
+  "Gaussian-Enhanced Surfel": { innovation: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", codeUrl: "" },
+  "HiGS": { innovation: "Hierarchically tiled GS decoupling partitioning/rasterization; 15.8x faster (NVIDIA)", codeUrl: "" },
+  "DDF-GS": { innovation: "Directed Distance Fields for constant-time ray queries on 3DGS; GI without mesh", codeUrl: "https://github.com/smlab-niser/ddf-gs" },
+  "VEDAL": { innovation: "Variational free energy pruning; 5.2x compression @ 0.31 dB loss; 185 FPS", codeUrl: "" },
+  "StreetNVS": { innovation: "Multi-sensor NVs (LiDAR+camera+ego-motion); matches 100x denser methods", codeUrl: "" },
+  "LEGS": { innovation: "Embodied GS simulation; mesh+3DGS; procedural VLA training; 15x cost reduction", codeUrl: "" },
+  "KDH-CAD": { innovation: "Knowledge-data hybrid CAD; 92.6% accuracy with 250 training samples", codeUrl: "" },
+  "SEIG": { innovation: "VLM generates executable Blender programs from single image", codeUrl: "" },
+  "MORPHOS": { innovation: "Autoregressive 4D generation; T-SLAT unifies mesh/Gaussian/NeRF", codeUrl: "" },
+  "WebSpline": { innovation: "Learnable Hermite spline trajectories + Structural Proxy Graph; 10x faster than WorldTree", codeUrl: "" },
+  "AlbedoEdit": { innovation: "Unified video editing via intrinsic albedo map guidance (MPI)", codeUrl: "" },
+  "MRO-GWM": { innovation: "Object-centric Gaussian world model for rigid body MPC", codeUrl: "" },
+  "DSD-GS": { innovation: "Feed-forward dynamic-static decomposition; 700+ FPS RTX 5090; no COLMAP", codeUrl: "" },
+  "VG2GT": { innovation: "Voxel-Gaussian Transformer; frozen VFM + stochastic solid volume rendering", codeUrl: "" },
+  "TIDES": { innovation: "Continuous-time event camera simulator from dynamic Gaussian Splatting", codeUrl: "" }
 };
 
 
@@ -1969,7 +1997,7 @@ const SKILLS = [
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
   { id: "3dgs-method-compare", name: "Method Comparator", desc: "Compare 3DGS variants across 8+ comparison tables", color: "#8b5cf6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
-  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 82+ common 3DGS implementation bugs", color: "#ef4444",
+  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 88+ common 3DGS implementation bugs", color: "#ef4444",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3.75 4.97v14.06"/>' },
   { id: "3dgs-experiment-planner", name: "Experiment Planner", desc: "Design rigorous experiments for top venues", color: "#06b6d4",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' },
@@ -2001,7 +2029,10 @@ claw skills install jaccen-nerf-to-3dgs-migrator
 claw skills install jaccen-cad-mesh-3dgs
 claw skills install jaccen-cg-paper-writing
 claw skills install jaccen-3dgs-visualizer
-claw skills install jaccen-3dgs-engineering-guide` },
+claw skills install jaccen-3dgs-engineering-guide
+claw skills install jaccen-patent-software-ip
+claw skills install jaccen-3dgs-spatial-agent
+claw skills install jaccen-3dgs-mcp-renderer` },
   { label: "Claude Code / Cursor", lang: "bash", code: `# Clone and symlink into your agent's skills directory
 git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
 ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/

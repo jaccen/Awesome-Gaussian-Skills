@@ -1,13 +1,13 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 607+ methods across 25 categories."
-version: 1.7.0
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 630+ methods across 25 categories."
+version: 1.8.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 607+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 630+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -21,7 +21,7 @@ You are an expert in 3D Gaussian Splatting methods with deep knowledge of 607+ v
 When comparing methods, analyze across the following dimensions:
 
 ### 1. Primitive Representation
-- Shape: Full 3D Gaussian / 2D disk / 1D splat / hybrid / spatially-varying (SVGS)
+- Shape: Full 3D Gaussian / 2D disk / 1D splat / hybrid / spatially-varying (SVGS) / Spline-based (WebSpline) / Triangle primitive in SLAM (Triangle Splatting SLAM)
 - Anisotropy: Isotropic / Anisotropic / Semi-anisotropic
 - Parameterization: (μ, Σ, opacity, SH) / (center, normal, scale, opacity) / custom / (μ, Σ, spatially-varying color+opacity, SH) (SVGS)
 
@@ -32,7 +32,7 @@ When comparing methods, analyze across the following dimensions:
 
 ### 3. Color Representation
 - Spherical Harmonics order: 0/1/2/3
-- Color space: RGB / HDR / Feature vectors
+- Color space: RGB / HDR / Feature vectors / Albedo-decomposed (AlbedoEdit)
 - Negative color support: Yes (NegGS) / No
 
 ### 4. Rendering Formulation
@@ -46,7 +46,7 @@ When comparing methods, analyze across the following dimensions:
 - Geometric constraints: Depth normal / ESDF / Mesh prior
 
 ### 6. Density Control
-- Strategy: Clone + Split + Prune / Progressive / Anchor-based
+- Strategy: Clone + Split + Prune / Progressive / Anchor-based / Variational pruning (VEDAL)
 - Adaptivity: Gradient-based / Loss-based / Statistics-based
 - Compression: Pruning / Quantization / Distillation
 
@@ -371,6 +371,21 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | VIRGi | TPAMI'26 (2603.02986) | Appearance editing | Image | View-dependent instant recoloring |
 | RDSplat | arXiv'26 (2512.06774) | Watermarking | Watermarked GS | Robust watermarking against diffusion editing |
 | FreeFix | arXiv'26 (2601.20857) | Diffusion guidance | No fine-tuning | Fine-tuning-free diffusion guidance for GS |
+
+### Recent Additions (June 2026)
+
+| Method | arXiv | Category | Key Feature |
+|--------|-------|----------|-------------|
+| HiGS | 2606.00352 | Acceleration | 15.8x rendering speedup |
+| DDF-GS | 2606.00817 | Ray-query GI | 26-72x faster than SDF sphere tracing |
+| VEDAL | 2606.02346 | Compression | 5.2x via variational free energy pruning |
+| WebSpline | 2606.02096 | Dynamic | Learnable Hermite spline trajectories |
+| MRO-GWM | 2606.01950 | World Model | Object-centric Gaussian for rigid bodies |
+| StreetNVS | 2606.01590 | AD NVS | Multi-sensor fusion |
+| LEGS | 2606.01458 | Robotics | Mesh+3DGS embodied simulation |
+| KDH-CAD | 2606.01702 | CAD | Knowledge-data hybrid |
+| SEIG | 2606.02580 | Procedural 3D | VLM→Blender |
+| AlbedoEdit | 2606.01362 | Editing | Video-level albedo editing |
 
 ## Output Format
 

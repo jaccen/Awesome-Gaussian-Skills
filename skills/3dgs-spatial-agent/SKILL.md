@@ -2,7 +2,7 @@
 name: 3dgs-spatial-agent
 description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
 when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives"
-version: 0.1.0
+version: 0.2.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
 allowed-tools: Read Grep Bash Glob
@@ -25,7 +25,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (607+ methods)
+3DGS Scene (611+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind
   │     │
@@ -45,11 +45,31 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
   │     │
   │     └── Environment lighting ──── Spherical harmonics decomposition
   │
-  └── Articulation ──── ArtSplat, SK-GS, ArtMesh, SAGD
+  ├── Articulation ──── ArtSplat, SK-GS, ArtMesh, SAGD
+  │     │
+  │     ├── Joint discovery ──── Skeleton auto-discovery
+  │     │
+  │     └── Motion fields ──── Deformation fields per part
+  │
+  ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702]
+  │     │
+  │     └── Domain-constrained parametric fitting ──── Foundation model + textbook knowledge + 250 samples → 92.6% accuracy
+  │
+  ├── Mid-Surface Extraction ──── MidSurfNet [2606.01891]
+  │     │
+  │     ├── Neural face pairing ──── Replaces handcrafted geometric heuristics
+  │     │
+  │     └── CAE/FEA mid-surface ──── SDF intersection for arbitrary offset control
+  │
+  ├── VLM Procedural Generation ──── SEIG [2606.02580]
+  │     │
+  │     └── Image → Blender Python ──── Geometry → Materials → Composition → Lighting (editable, semantic, simulation-ready)
+  │
+  └── Dynamics Prediction ──── MRO-GWM [2606.01950]
         │
-        ├── Joint discovery ──── Skeleton auto-discovery
+        ├── Canonical Gaussian per object ──── Spatio-temporal transformer predicts rigid body motion
         │
-        └── Motion fields ──── Deformation fields per part
+        └── Model-predictive control ──── Non-prehensile manipulation
 ```
 
 ### Structured Understanding → 3DGS Editing Pipeline
@@ -105,10 +125,13 @@ When given a 3DGS scene and a target object for CAD extraction:
 
 1. **Isolate**: Segment target object Gaussians (OP2GS + SAM2)
 2. **Extract mesh**: SuGaR or 2DGS with quality settings
-3. **Simplify**: Quadric error decimation to reduce mesh complexity
-4. **Fit primitives**: GS-CAD/GaussCAD for parametric primitive fitting
-5. **Assemble**: build123d/Open Cascade for B-rep construction
-6. **Export**: STEP/IGES with full parametric history
+3. **Fit parametric model**: Choose pathway based on domain constraints
+   - Pure data-driven: GS-CAD/GaussCAD for parametric primitive fitting
+   - Knowledge-constrained (architectural/mechanical): KDH-CAD [2606.01702] for domain-guided fitting with textbook knowledge
+4. **Simplify**: Quadric error decimation to reduce mesh complexity
+5. **Mid-surface (if CAE/FEA)**: For thin-walled parts, apply MidSurfNet [2606.01891] neural face pairing → mid-surface abstraction
+6. **Assemble**: build123d/Open Cascade for B-rep construction
+7. **Export**: STEP/IGES with full parametric history
 
 Key quality metrics:
 - Chamfer Distance < 1mm for manufacturing
@@ -128,6 +151,18 @@ When given an editing command (text or structured):
    - Object insertion: Sample new Gaussians from prior
 4. **Validate**: Check rendering consistency across views
 
+## Decision Flow
+
+When processing a 3DGS scene, select the appropriate pathway based on scenario:
+
+| Scenario | Condition | Pathway |
+|----------|-----------|---------|
+| Knowledge-sparse | Few CAD training samples available, scene has known CAD constraints (architectural, mechanical) | KDH-CAD [2606.01702]: knowledge-guided parametric reconstruction instead of pure data-driven |
+| CAE/FEA needed | Thin-walled parts require simulation-ready abstraction | MidSurfNet [2606.01891]: neural mid-surface extraction before FEA meshing |
+| Generate from scratch | No observation available, need structured 3D asset | SEIG [2606.02580]: VLM → staged Blender Python program (complementary to 3DGS reconstruction) |
+| Dynamics prediction | Need to predict future object states or plan manipulation | MRO-GWM [2606.01950]: Gaussian grouping (OP2GS/Gaga) → canonical representation → spatio-temporal transformer |
+| Reconstruction from views | Observations available, standard 3DGS pipeline | Standard pipeline: Segmentation → Geometry → Material → Articulation |
+
 ## Key Method Cross-References
 
 | Agent Capability | Primary Method | Backup Method | Key Metric |
@@ -139,6 +174,10 @@ When given an editing command (text or structured):
 | Scene graph construction | DGSG-Mind [2605.29879] | — | 3DVG accuracy |
 | Feed-forward head/avatar | HeadsUp [2605.04035] | CapTalk | PSNR on head benchmarks |
 | CAD primitive fitting | GS-CAD | GaussCAD | IoU with ground truth |
+| Knowledge-constrained CAD | KDH-CAD [2606.01702] | — | 92.6% accuracy (250 samples) |
+| Mid-surface extraction | MidSurfNet [2606.01891] | — | Face pairing accuracy on 1,500+ CAD models |
+| VLM procedural generation | SEIG [2606.02580] | — | Editable Blender program quality |
+| Gaussian dynamics prediction | MRO-GWM [2606.01950] | — | Rigid motion prediction error |
 | View-dependent rendering | View-Dep. Kernels [2605.25426] | DP-GES | PSNR/LPIPS on specular |
 
 ## Bug Patterns Specific to Spatial Agent

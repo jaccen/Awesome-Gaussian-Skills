@@ -2,7 +2,7 @@
 name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation. Prototype for Agent↔3DGS interaction."
 when_to_use: "MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D"
-version: 0.1.0
+version: 0.2.0
 author: jaccen
 tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive"]
 disable-model-invocation: true
@@ -16,15 +16,15 @@ Prototype specification for integrating MCP (Model Context Protocol) with 3DGS r
 ## Architecture
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌──────────────────┐     ┌────────────┐
-│ Voice/Text  │────▶│   Agent     │────▶│  MCP Server      │────▶│  3DGS      │
-│ (Whisper/   │     │ (Claude/    │     │  (Node.js/       │     │  Renderer  │
-│  Prompt)    │     │  TeleClaw)  │     │   Python)        │     │  (Three.js │
-│             │◀────│             │◀────│                  │◀────│   /WebGPU) │
-└─────────────┘     └─────────────┘     └──────────────────┘     └────────────┘
+┌─────────────┐     ┌─────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│ Voice/Text  │────▶│   Agent     │────▶│  MCP Server      │────▶│  3DGS Renderer   │
+│ (Whisper/   │     │ (Claude/    │     │  (Node.js/       │     │  (Three.js/      │
+│  Prompt)    │     │  TeleClaw)  │     │   Python)        │     │   WebGPU/HiGS/   │
+│             │◀────│             │◀────│                  │◀────│   DDF-GS)        │
+└─────────────┘     └─────────────┘     └──────────────────┘     └──────────────────┘
                         │                      │                       │
-                        │  Tool calls          │  WebSocket/HTTP       │  WebGL
-                        │  (MCP protocol)       │  transport            │  Rendering
+                        │  Tool calls          │  WebSocket/HTTP       │  WebGL/WebGPU/
+                        │  (MCP protocol)       │  transport            │  HiGS/DDF-GS
 ```
 
 ## MCP Tools Specification
@@ -136,6 +136,28 @@ Prototype specification for integrating MCP (Model Context Protocol) with 3DGS r
 }
 ```
 
+### Tool 6: `cast_ray`
+
+```json
+{
+  "name": "cast_ray",
+  "description": "Cast a ray from origin in direction and return distance to first surface hit. Leverages DDF-GS (arXiv:2606.00817) neural field distilled from trained 3DGS.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "origin": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] ray origin" },
+      "direction": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] ray direction (normalized)" }
+    },
+    "required": ["origin", "direction"]
+  },
+  "output": { "type": "object", "properties": { "distance": "number", "hit": "boolean", "normal": "array [x,y,z]" } }
+}
+```
+
+**Use cases**: Shadow rendering, ambient occlusion, reflection rays, global illumination
+
+**Limitation**: Requires DDF distillation step after 3DGS training (adds ~10 min for 52MB model)
+
 ## Voice-Driven Reconstruction Flow
 
 ```
@@ -176,6 +198,8 @@ Agent:
 | MCP Server | Node.js + @modelcontextprotocol/sdk | Prototype |
 | 3DGS Renderer | Three.js + gaussian-splat-3d / gsplat.js | Available |
 | WebGPU backend | WebGPU + WGSL compute shaders | Experimental |
+| HiGS backend | Dual-scale tile rasterization (arXiv:2606.00352) | Planned |
+| DDF-GS backend | Neural distance field for ray queries (arXiv:2606.00817) | Planned |
 | Transport | WebSocket (localhost) | Working |
 | Voice STT | Whisper API / Web Speech API | Available |
 | Agent integration | Claude Code / TeleClaw MCP client | Pending |
@@ -189,6 +213,25 @@ Agent:
 | viser/nerfstudio | .ply | WebGL | Partial | — |
 | PlayCanvas | .ply | Yes | Needs adapter | — |
 | brush (Rust/WebGPU) | .ply | Yes | Closest | 4.3k |
+| HiGS | .ply | Yes | Planned | — |
+| DDF-GS | .ply + .ddf | Yes | Planned | — |
+
+## DDF-GS Distillation Pipeline
+
+1. Train 3DGS scene normally
+2. Distill into Directed Distance Function (DDF) neural field
+   - Input: trained 3DGS model (.ply)
+   - Output: DDF model (~52MB, size independent of Gaussian count)
+   - Training time: ~10 minutes
+   - Quality: shadow at 30.3 dB PSNR, AO at 21.3 dB PSNR
+3. DDF enables: shadow maps, AO, reflections, global illumination
+
+## HiGS Hierarchical Rendering Integration
+
+- HiGS (arXiv:2606.00352) achieves 15.8x rendering speedup via dual-scale tile architecture
+- MCP integration: `render_frame()` can leverage HiGS backend for real-time rendering
+- Architecture: Agent → MCP → HiGS Renderer (macro-tile partitioning + micro-tile rasterization)
+- Performance target: 950+ FPS on NVIDIA GPU for interactive scene exploration
 
 ## Known Limitations
 
@@ -199,11 +242,13 @@ Agent:
 
 ## Roadmap
 
-- [ ] v0.1: MCP tool specification (this document)
-- [ ] v0.2: Node.js MCP server + gsplat.js adapter
+- [x] v0.1: MCP tool specification (this document)
+- [ ] v0.2: Node.js MCP server + gsplat.js adapter + DDF-GS cast_ray tool + HiGS backend
 - [ ] v0.3: Voice-to-MCP pipeline (Whisper → Agent → MCP → render)
 - [ ] v0.4: Semantic querying (integrate OP2GS/Gaga for label-based selection)
 - [ ] v0.5: Real-time streaming (WebSocket-based progressive rendering)
+- [ ] v0.6: DDF-GS distillation integration (shadow/AO/reflection rendering)
+- [ ] v0.7: HiGS hierarchical rendering backend (950+ FPS target)
 
 ## Rules
 

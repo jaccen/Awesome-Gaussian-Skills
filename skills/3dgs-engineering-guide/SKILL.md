@@ -1,6 +1,6 @@
 ﻿name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
-version: 1.2.0
+version: 1.3.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
@@ -125,6 +125,7 @@ When invoked, follow this workflow:
 2. **Navigation & Locomotion** — VR-Robo, GS-Playground, MAGICIAN
 3. **Embodied Reasoning** — GSMem (spatial memory), Forecast-GS (predictive planning), ESI-Bench (spatial intelligence evaluation)
 4. **Driving Policy RL** — GSDrive (3DGS environment for reinforcement learning), SpaceDrive (VLM spatial awareness for AD)
+5. **Embodied Simulation** — LEGS (embodied GS simulation, arXiv:2606.01458)
 
 **Toolchain**: ROS2 (point cloud/depth topics), MuJoCo/Isaac Sim physics backend, GS-Playground (high-throughput sim)
 
@@ -399,6 +400,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 - **Static lighting assumption**: Breaks under different lighting. Fix: plan relighting upfront; GOR-IS/SSD-GS decomposition; GS³/GaRe SH-based relighting; **F-RNG** for feed-forward relighting at ~25× the speed of optimization-based approaches.
 - **Temporal inconsistency**: Video flicker, object jumping. Fix: 4DGS (GauFRe, DeformGS, ScubeGS); temporal smoothness loss.
 - **Under-estimated compression artifacts**: Visible holes, color shifts. Fix: rate-distortion benchmarks first; domain-specific metrics (not just PSNR); uncompressed reference for comparison.
+- **Hierarchical tile partitioning/rasterization scale mismatch**: Can break exact alpha compositing. Fix: use HiGS-style dual-scale architecture with conservative coverage test.
 
 ---
 
@@ -406,7 +408,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 
 | Domain | Methods |
 |---|---|
-| AD Simulation | GSDrive, GS-Playground (RSS 2026), GS-Surrogate, FieryGS, GS-SCNet, Ground4D, ULF-Loc (CVPR 2026), Nighttime AD, Real2Sim, ConFixGS (+3.68 dB Waymo) |
+| AD Simulation | GSDrive, GS-Playground (RSS 2026), GS-Surrogate, FieryGS, GS-SCNet, Ground4D, ULF-Loc (CVPR 2026), Nighttime AD, Real2Sim, ConFixGS (+3.68 dB Waymo), StreetNVS (multi-sensor NVS, arXiv:2606.01590) |
 | World Models | GWM, FlashWorld, GS-World, Visionary, RAD, DLWM, X-World |
 | Digital Twin | DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head |
 | Volumetric Medical | GaussianPile (slice-aware PSF projection for CT/cBCT) |
@@ -416,12 +418,12 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS, **Ambient-Robust Inverse Rendering** [2605.30250] (active RGB-NIR for material decomposition) |
 | Cross-platform | VkSplat, GSeurat (Vulkan C++23), msplat (Metal), tortuise (Rust CPU), brush (Rust/WebGPU, 4.3k stars), AdaGScale, BlitzGS (distributed) |
 | Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 30% budget reduction, 301 FPS, no calibration; code: github.com/yecongwan/SplatWeaver), ZPressor [2505.23734] (100+ input-view scalability via bottleneck-aware compression), VolSplat [2509.19297] (voxel-aligned prediction for multi-view consistency), PM-Loss [2506.05327] (pointmap loss for feed-forward depth quality), **DéjàView** [2605.30215] (looped transformer, inference-time compute knob K), **HeadsUp** [2605.04035] (UV-parameterized head, 10K+ subjects, Apple) |
-| BIM/CAD | BrepGaussian, CADFS, GS-CAD, GaussCAD |
-| Editing | GaussianEditor, ObjectMorpher, TransSplat |
+| BIM/CAD | BrepGaussian, CADFS, GS-CAD, GaussCAD, KDH-CAD (knowledge-data hybrid, arXiv:2606.01702) |
+| Editing | GaussianEditor, ObjectMorpher, TransSplat, AlbedoEdit (video-level albedo editing, arXiv:2606.01362) |
 | Security | GuardMarkGS (watermarking + edit deterrence) |
-| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency), DP-GES (sort-free surfel rendering via depth peeling, ArXiv 2605.25345), **View-Dependent Splatting Kernels** [2605.25426] (learned view-dependent kernels, SIGGRAPH 2026) |
+| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency), DP-GES (sort-free surfel rendering via depth peeling, ArXiv 2605.25345), **View-Dependent Splatting Kernels** [2605.25426] (learned view-dependent kernels, SIGGRAPH 2026), DDF-GS (ray-query GI via Gaussian field, arXiv:2606.00817) |
 | Streaming | CAGS (~7x VQ+LoD), AV1-3DGS (63% training reduction), PD-4DGS (progressive 4D streaming), MGS [2603.19234] (Matryoshka continuous LoD, single model multi-fidelity) |
-| Acceleration | AdpSplit [2605.06876] (error-driven adaptive split, drop-in for 9-22% training speedup) |
+| Acceleration | AdpSplit [2605.06876] (error-driven adaptive split, drop-in for 9-22% training speedup), HiGS (NVIDIA, 15.8x rendering speedup, arXiv:2606.00352) |
 | Generative Optimization | CAdam (SIGGRAPH 2026, context-adaptive densification for generative distillation pipelines) |
 | Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale, **CodecSplat** (ultra-compact latent coding, 20–108 KiB/scene, ArXiv 2605.25563) |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS, **F-RNG** (feed-forward, ~25× faster, ArXiv 2605.25975) |

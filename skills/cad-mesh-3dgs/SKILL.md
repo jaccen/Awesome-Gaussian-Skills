@@ -1,7 +1,7 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 35+ methods."
-version: 1.0.2
+description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 38+ methods."
+version: 1.0.3
 author: jaccen
 tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing"]
 ---
@@ -645,6 +645,17 @@ def render_cad_multiview.step_file, output_dir, n_views=100):
 | MeshGS | Various | Mesh-guided Gaussian placement | Medium-High | Real-time | Open |
 | Fake3DGS | arXiv'26 | 3D manipulation detection in GS scenes | — | — | — |
 
+### Generation Methods
+
+| Method | Venue | Input | Output | Key Feature |
+|--------|-------|-------|--------|-------------|
+| SEIG | arXiv'26 (2606.02580) | Single image | Executable Blender Python program | Staged decomposition (geometry→materials→composition→lighting); inherently editable and simulation-ready (Guangzhao He et al.) |
+| 3DCodeBench | arXiv'26 (2606.01057) | VLM agents | Procedural 3D generation | Systematic benchmark; 12 VLMs evaluated; API mismatches cause most failures; disconnected floating geometry in successful renders (Yipeng Gao et al.) |
+
+**SEIG** — VLM generates executable Blender Python programs via staged decomposition (geometry→materials→composition→lighting). Output is inherently editable and simulation-ready, bridging the gap between neural rendering and CAD/manufacturing pipelines.
+
+**3DCodeBench** — Systematic benchmark for evaluating VLM agents on procedural 3D generation. Key findings: API mismatches are the primary failure mode; even successful renders exhibit disconnected floating geometry, indicating that current VLMs lack robust spatial reasoning for CAD-quality output.
+
 ### CAD Reconstruction Methods
 
 | Method | Venue | Input | Output | Automation |
@@ -654,6 +665,9 @@ def render_cad_multiview.step_file, output_dir, n_views=100):
 | BrepNet | CVPR'22 | Point cloud | B-rep edges | Auto |
 | Primitive fitting (RANSAC) | Classic | Point cloud | Primitives | Semi-auto |
 | DeepCAD | CVPR'21 | Point cloud | Sketch-extrusion | Auto |
+| KDH-CAD | arXiv'26 (2606.01702) | Small labeled data + domain knowledge | CAD classification/reconstruction | Auto |
+
+**KDH-CAD** — Knowledge-data hybrid framework combining pretrained foundation models with structured domain knowledge from CAD textbooks and small labeled data. Achieves 92.6% accuracy with only 250 training samples (Ziqin Gao et al.). Key insight: when CAD training data is scarce, domain knowledge (geometric constraints, design rules) supplements data-driven approaches. Pipeline: Foundation model features → Domain knowledge completion → Labeled data calibration → CAD classification/reconstruction.
 
 ### Surface Extraction Methods
 
@@ -664,6 +678,14 @@ def render_cad_multiview.step_file, output_dir, n_views=100):
 | Ball-Pivoting | Growing algorithm | Oriented points | Triangle mesh | Medium |
 | Delaunay-based | Tetrahedralization | Points | Triangle mesh | Slow |
 | Neural Mesh (DMTet) | Differentiable | Features | Triangle mesh | Slow |
+
+### Mesh Processing Methods
+
+| Method | Venue | Key Idea | Key Metric | Code |
+|--------|-------|----------|------------|------|
+| MidSurfNet | arXiv'26 (2606.01891) | Learning-augmented mid-surface abstraction for thin-walled CAD | 87.32% face pairing accuracy | — |
+
+**MidSurfNet** — Learning-augmented mid-surface abstraction for thin-walled CAD models (Li Ye et al.). Neural face pairing module + interference implicit field (SDF intersection) for arbitrary offset control. 1,500+ annotated CAD model dataset. Critical for CAE: thin-walled structural FEA requires mid-surface abstraction before mesh generation.
 
 ### Semantic Scene Decomposition (Alternative to Gaussian-Based)
 

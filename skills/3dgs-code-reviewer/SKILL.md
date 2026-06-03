@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 82+ known bug patterns."
-version: 1.4.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 88+ known bug patterns."
+version: 1.5.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -12,7 +12,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (75+ known patterns)
+- Identify common 3DGS implementation pitfalls (88+ known bug patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -387,6 +387,42 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 82 | Video-tracking-dependent 3DGS segmentation fails on sparse views | Existing 3DGS segmentation relies on continuous video tracking or contrastive learning; fails when camera poses are sparse or non-sequential; mask label inconsistency across views | Use 3D-aware memory bank that leverages spatial information to associate masks across diverse camera poses without requiring temporal continuity; eliminates continuous-view-change assumption (Gaga, TMLR 2026) |
+
+### Hierarchical Tile Rendering Patterns (HiGS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 83 | Partitioning/Rasterization scale conflict in hierarchical tile rendering | In hierarchical tile rendering, partitioning bins Gaussians at coarse macro-tile granularity while rasterization executes alpha compositing at fine render-tile granularity. Gaussians deemed "non-covering" at coarse level may still contribute at fine level, breaking exact alpha compositing and producing small holes and color shifts | Partitioning coverage test must execute at fine sub-tile granularity, or add conservative relaxation factor to coarse-grain test. Verification: compare hierarchical vs flat tile-based rendering per-pixel; PSNR difference should be <0.01 dB. (HiGS, arXiv:2606.00352) |
+
+### Neural Field Distillation Patterns (DDF-GS)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 84 | Depth supervision noise propagation in neural field distillation | In DDF-style distillation, teacher network depth maps contain blur noise (especially at edges/occlusions); using them directly as 3DGS depth loss propagates noise into Gaussian position/scale parameters, causing geometric degradation. Clean distance supervision (from SfM sparse points or LiDAR) avoids this but has incomplete coverage | Apply edge-aware confidence weighting to depth loss: reduce weight at depth discontinuities (gradient magnitude threshold); or use depth certainty map for confidence gating. Verify: compare Chamfer Distance of distilled depth vs clean distance supervision. (DDF-GS, arXiv:2606.00817) |
+
+### Variational Pruning Patterns (VEDAL)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 85 | Prediction-error gating boundary condition in variational pruning | In variational pruning, Gaussian retention/pruning is gated by prediction error; at threshold boundary, hard switching causes gradient vanishing (gradient=0) or explosion (discontinuous jump), training oscillates near boundary, pruning ratio fluctuates wildly across iterations | Replace hard gating with smooth sigmoid or Gumbel-Softmax; add temperature annealing at threshold boundary for gradual soft→hard transition. Verify: monitor consecutive iteration pruning ratio change rate, should be <5%/iter. (VEDAL, arXiv:2606.02346) |
+
+### Mesh-Gaussian Conversion Patterns (Dynamic Mesh-Gaussian)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 86 | Geometric degeneration in fixed/changing topology mesh-to-Gaussian conversion | Fixed-topology mesh→Gaussian conversion initializes Gaussians from local face normals without global geometric consistency check; topology change points cause severe Gaussian overlap; 65-80% of converted Gaussians exhibit degeneration (flattening, inconsistent normals, scale degenerating to near-zero) | Add geometric verification pass after conversion: detect degenerate Gaussians (min/max eigenvalue ratio < ε) and trigger re-initialization; resample at topology change regions instead of direct attribute inheritance. Degeneration rate should be <5%. (Dynamic Mesh-Gaussian, arXiv:2606.00444) |
+
+### Spline Trajectory Patterns (WebSpline)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 87 | Hermite spline initial tangent estimation in continuous trajectory modeling | When using Hermite splines for Gaussian motion trajectories, initial tangent estimated from endpoint displacement difference deviates from true motion direction when sampling rate is insufficient or endpoints are noisy, causing loop-back artifacts or non-physical oscillation at trajectory start/end frames | Use Catmull-Rom or B-spline instead of Hermite to avoid explicit tangent estimation; if Hermite is required, use multi-frame weighted tangent estimation (central difference + forward/backward weighting) instead of simple differencing. Verify: check trajectory curvature continuity and velocity direction consistency. (WebSpline, arXiv:2606.02096) |
+
+### Event Simulation Patterns (TIDES)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 88 | Self-excited oscillation in adaptive time-stepping for event simulation | In event camera simulation, adaptive time-stepping adjusts step size based on event density; dense-event regions trigger shorter steps, which generate more events, further shortening steps in positive feedback; step size approaches zero, simulation stalls or produces massive numerical error; sparse regions miss fast changes | Add step size bounds (Δt_min, Δt_max); apply damping factor to step size adjustment rate (Δt_{n+1} = η·Δt_new + (1-η)·Δt_n, η < 1); or use event-count triggering instead of density-driven. Verify: monitor Δt sequence, confirm no monotonic decrease toward zero. (TIDES, arXiv:2606.02058) |
 
 
 ## Output Format

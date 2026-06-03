@@ -543,4 +543,67 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **Visionary** [arXiv:2512.08478](https://arxiv.org/abs/2512.08478) (2025) — WebGPU + 3DGS world model carrier: first Web-native platform supporting 4DGS, neural avatars, and generative post-processing in real-time via WebGPU + ONNX Runtime
 - **GS-ID** (ICCV 2025) — GS-based illumination decomposition: real-scene light field factorization for embodied intelligence and autonomous driving with high-fidelity light field data
 - **X-World** (2026) — Controllable multi-view generative world model (video diffusion + 3DGS simulation) for autonomous driving (XPeng)
+
+### New Papers Added June 2, 2026
+
+#### Acceleration / Rendering Architecture
+- **HiGS** [arXiv:2606.00352](https://arxiv.org/abs/2606.00352) (NVIDIA, arXiv 2026) — Hierarchically Tiled Gaussian Splatting: decouples partitioning (coarse macro-tiles) from rasterization (fine render tiles); up to 15.8x faster than original 3DGS while preserving exact front-to-back alpha compositing (Dawid Pająk, Martin Bisson, Rodolfo Lima)
+- **DDF-GS** [arXiv:2606.00817](https://arxiv.org/abs/2606.00817) (arXiv 2026) — Directed Distance Fields for constant-time ray queries on 3DGS scenes; 52MB neural field distilled from trained 3DGS; 26-72x faster than SDF sphere tracing; supports global illumination secondary rays at 30.3 dB shadow / 21.3 dB AO fidelity [Code](https://github.com/smlab-niser/ddf-gs) (Subhankar Mishra)
+
+#### Compression / Pruning
+- **VEDAL** [arXiv:2606.02346](https://arxiv.org/abs/2606.02346) (CGI 2026) — Variational free energy minimization for 3DGS pruning; prediction-error gating triggers asynchronous pruning + variational uncertainty head models pruning as latent variable with learnable prior; 5.2x compression with only 0.31 dB PSNR drop; 185 FPS (Aoduo Li et al.)
+- **DSD-GS** [arXiv:2605.30863](https://arxiv.org/abs/2605.30863) (arXiv 2026) — Dynamic-Static Decomposition via feed-forward GS encoder + optical flow; static regions skip redundant computation; 10 min training on Neural 3D; 700+ FPS on RTX 5090@1352x1014; no COLMAP required
+
+#### Feed-Forward / Reconstruction
+- **VG²GT** [arXiv:2606.01573](https://arxiv.org/abs/2606.01573) (arXiv 2026) — Voxel-Gaussian Visual Geometry Grounded Transformer; frozen VFM + multi-scale differentiable voxel module + stochastic solid volume rendering for depth supervision; outperforms SOTA on DTU/Replica/TAT/ScanNet (Yibin Zhao et al.)
+- **DeblurNVS** [arXiv:2606.01315](https://arxiv.org/abs/2606.01315) (arXiv 2026) — First feed-forward NVS from sparse motion-blurred images without per-scene optimization; recovers intermediate geometry for multi-view reasoning; constructs DL3DV-10K-based motion blur NVS dataset [Code](https://github.com/PKU-YuanGroup/DeblurNVS) (Changyue Shi et al.)
+
+#### SLAM
+- **Triangle Splatting SLAM** [arXiv:2605.31419](https://arxiv.org/abs/2605.31419) (arXiv 2026) — First dense RGB-D SLAM with differentiable triangles as 3D map representation; Delaunay triangulation converts triangle soup to connected mesh online; supports mesh deformation and collision detection; outperforms baselines on Replica/TUM-RGBD
+
+#### Dynamic / 4DGS
+- **WebSpline** [arXiv:2606.02096](https://arxiv.org/abs/2606.02096) (arXiv 2026) — Structure-Informed Spline (learnable Hermite spline) models Gaussian trajectories + Structural Proxy Graph organizes motion; SOTA on iPhone dataset, 10x faster than WorldTree (Jongmin Park et al.)
+- **TIDES** [arXiv:2606.02058](https://arxiv.org/abs/2606.02058) (arXiv 2026) — Continuous-time event camera simulator from dynamic Gaussian Splatting; derives per-pixel intensity dynamics from scene model (not frame differencing); multi-threshold crossing + adaptive time-stepping + tile-level bandwidth modeling (Christopher Thirgood et al.)
+- **MORPHOS** [arXiv:2606.02491](https://arxiv.org/abs/2606.02491) (arXiv 2026) — Autoregressive 4D generation with Temporal Structured Latents (T-SLAT) unifying mesh/Gaussian/radiance field; causal attention ensures temporal consistency + handles topology changes (Minkyung Kwon et al.)
+- **MRO-GWM** [arXiv:2606.01950](https://arxiv.org/abs/2606.01950) (arXiv 2026) — Object-centric Gaussian world model for rigid bodies; canonical Gaussian + spatio-temporal transformer predicts rigid body motion; supports model-predictive control for non-prehensile manipulation (Jens U. Kreber et al.)
+
+#### Autonomous Driving / NVS
+- **StreetNVS** [arXiv:2606.01590](https://arxiv.org/abs/2606.01590) (arXiv 2026) — Multi-sensor NVS framework (LiDAR + multi-camera + ego-motion) via Reference-Enhanced Camera Attention + relative ray-level positional encoding; matches methods with 10-100x denser point clouds on Waymo; supports extreme out-of-trajectory synthesis (Zhengfei Kuang, Gordon Wetzstein et al.)
+- **LEGS** [arXiv:2606.01458](https://arxiv.org/abs/2606.01458) (arXiv 2026) — Loco-manipulation via Embodied Gaussian Splatting; mesh foreground (robot/objects) + 3DGS background; procedural motion primitive generator synthesizes demonstrations; 2-stage color calibration aligns 3DGS renders with deploy cameras; VLA policy trained purely in LEGS matches human teleoperation (15x cost reduction)
+- **DENSER** [arXiv:2606.01419](https://arxiv.org/abs/2606.01419) (CVPR 2026 SoccerNet NVS Challenge Rank 1) — EFA-GS based football NVS: camera-height loss weighting + Depth-Anything-V2 depth supervision + 3-model pixel-average ensemble (Parthsarthi Rawat)
+
+#### Semantic / Segmentation
+- **GeoSAM-3D** [arXiv:2606.00447](https://arxiv.org/abs/2606.00447) (arXiv 2026) — Open-vocabulary 3D scene segmentation on monocular video: 3DGS reconstruction + differentiable graph-geodesic propagation kernel (SAM prompt propagates along heat-kernel distance on Gaussian scene graph) (Arun Sharma)
+
+#### Editing / Appearance
+- **AlbedoEdit** [arXiv:2606.01362](https://arxiv.org/abs/2606.01362) (arXiv 2026) — Unified generative video editing (insertion/removal/texture) via intrinsic albedo map guidance; single-frame albedo edit auto-generates harmonized RGB video with specular/shadow/mirror effects (Xilong Zhou, Christian Theobalt et al., MPI)
+- **SplatShot** [arXiv:2606.01493](https://arxiv.org/abs/2606.01493) (arXiv 2026) — Training-free 3D face avatar from single in-the-wild photo; per-step 3D feedback loop: predict clean image → refit 3DGS → photometric difference backpropagated to noise estimate; guides sampling trajectory toward 3D consistency (Hao Liang et al.)
+- **GSDeformer** [arXiv:2405.15491](https://arxiv.org/abs/2405.15491) (arXiv 2024, updated 2026) — Cage-based deformation for 3DGS: proxy point cloud bridges cage deformation to Gaussian transform; splitting handles bending; works with any vanilla 3DGS variant in real-time without retraining
+
+#### Simulation / Physics
+- **Dynamic Mesh-Gaussian** [arXiv:2606.00444](https://arxiv.org/abs/2606.00444) (JCVIS 2025) — Dual-representation framework: fixed-topology mesh for physics + Gaussian splatting for rendering; 4.65x speedup over varying-topology baseline; benchmark reveals 65-80% geometric degradation from topology conversion (Adrian Ramlal et al.)
+
+#### Training / Optimization
+- **Point Cloud Upsampling for 3DGS** [arXiv:2606.00450](https://arxiv.org/abs/2606.00450) (JCVIS 2024) — Systematic evaluation of 5 point cloud upsampling methods + depth-guided point lifting for 3DGS initialization; surface reconstruction excels for organic scenes, interpolation for piecewise-smooth geometries (Adrian Ramlal et al.)
+
+#### Dynamic 3DGS Survey
+- **Dynamic 3DGS Paradigms** [arXiv:2606.00452](https://arxiv.org/abs/2606.00452) (JCVIS 2025) — Categorizes dynamic 3DGS into structure-guided (deformation fields, canonical spaces, grids) vs. gaussian-centric (continuous functions, 4D representations); reveals quality/compactness vs. speed trade-off (Adrian Ramlal et al.)
+
+#### CAD / Procedural 3D
+- **KDH-CAD** [arXiv:2606.01702](https://arxiv.org/abs/2606.01702) (arXiv 2026) — Knowledge-data hybrid CAD learning: pretrained foundation model + structured domain knowledge from textbooks + small labeled CAD data; 92.6% accuracy with only 250 samples, 95.8% with 1,000 (Ziqin Gao et al.)
+- **MidSurfNet** [arXiv:2606.01891](https://arxiv.org/abs/2606.01891) (arXiv 2026) — Learning-augmented mid-surface abstraction: neural face pairing module + interference implicit field (SDF intersection) for arbitrary offset control; 87.32% pairing accuracy; 1,500+ annotated CAD model dataset (Li Ye et al.)
+- **3DCodeBench** [arXiv:2606.01057](https://arxiv.org/abs/2606.01057) (arXiv 2026) — Systematic benchmark for VLM agents on procedural 3D generation (text/image → code → 3D); evaluates 12 VLMs; includes 3DCodeArena human preference ranking platform (Yipeng Gao et al.)
+- **SEIG** [arXiv:2606.02580](https://arxiv.org/abs/2606.02580) (arXiv 2026) — VLM generates executable Blender programs from single image via staged decomposition (geometry→materials→composition→lighting); no differentiable rendering or multi-view supervision needed (Guangzhao He et al.)
+
+#### Skeleton Animation / 4D Asset
+- **MotionDreamer** [arXiv:2606.01518](https://arxiv.org/abs/2606.01518) (arXiv 2026) — Category-agnostic skeletal animation from 2D video; structural-semantic injection maps visual dynamics to heterogeneous joint hierarchies; 20,000+ 3D model dataset with rigging and animation (Ye Tao et al.)
+
+#### Mesh / Texture Survey
+- **Neural 3D Mesh Texturing Survey** [arXiv:2606.00137](https://arxiv.org/abs/2606.00137) (Eurographics STAR, CGF 2026) — Comprehensive survey on neural 3D mesh texturing (synthesis/transfer/completion); from GAN-based to diffusion-based pipelines; datasets, evaluation protocols, open challenges [Project Page](https://sairajk.github.io/neural-mesh-texturing/) (Sai Raj Kishore Perla et al.)
+
+#### Inverse Graphics
+- **Dual Contouring of SDF** [arXiv:2604.00157](https://arxiv.org/abs/2604.00157) (arXiv 2026, updated) — Quadratic optimization for optimal vertex placement in dual contouring from discretely sampled SDF; no gradient information or training required; state-of-the-art surface reconstruction from SDFs (Xiana Carrera et al.)
+
+#### AGILE (Hand-Object Interaction)
+- **AGILE** [arXiv:2602.04672](https://arxiv.org/abs/2602.04672) (SIGGRAPH 2026) — Agentic generation for hand-object interaction reconstruction from video; VLM guides generative model for complete watertight mesh; anchor-and-track strategy bypasses SfM; contact-aware optimization for physical plausibility (Jin-Chuan Shi et al.)
 - **Spark 2.0** (2026) — NVIDIA 3DGS-based robotic world simulation: real-time 3DGS reconstruction for manipulation learning and physical AI interaction

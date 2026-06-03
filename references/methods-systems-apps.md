@@ -1,15 +1,4 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '32c06ae8-11b9-4951-8a82-7d2dde543d0f'
-  PropagateID: '32c06ae8-11b9-4951-8a82-7d2dde543d0f'
-  ReservedCode1: 'debd32b3-7ebd-43c2-99c0-4864f141b59e'
-  ReservedCode2: 'debd32b3-7ebd-43c2-99c0-4864f141b59e'
----
-
-## Newly Added (May 2026 Expansion)
+﻿## Newly Added (May 2026 Expansion)
 
 
 ### Robustness & Regularization
