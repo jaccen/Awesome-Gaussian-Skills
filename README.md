@@ -1,24 +1,17 @@
 <div align="center">
-
-If you like it, please ⭐️ star this repo! 
         
 # Awesome Gaussian Skills
 
-### 3D Spatial Intelligence Open-Source Toolbox
+### The Most Comprehensive 3DGS Paper Catalog — 630+ Methods, 25 Categories, Interactive Explorer
 
-**630+ 3DGS methods cataloged with interactive explorer, code review, spatial intelligence, and AI-powered research tools**
+**You shouldn't search 20 different repos for 3DGS papers. This is the only one you need — plus AI-powered tools that no other list has.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
-[![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
-[![Contributors](https://img.shields.io/github/contributors/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=22C55E)](https://github.com/jaccen/Awesome-Gaussian-Skills/graphs/contributors)
-[![Last Commit](https://img.shields.io/github/last-commit/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=F97316)]()
-
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Try Demo Now](https://img.shields.io/badge/Try_Demo-Now-2196F3.svg?logo=github)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
+[![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
+[![Methods](https://img.shields.io/badge/Methods-630+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI_Skills-12-green.svg)](skills/)
+[![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-88+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-12-green.svg)](skills/)
-[![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
-[![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 [English](README.md) | [中文](README_CN.md)
@@ -64,15 +57,44 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | Design experiments | Guess baselines & ablations | Venue-tailored experiment plan |
 | Migrate NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
 
+## How We Compare
+
+| What You Need | Typical Paper List | Awesome Gaussian Skills |
+|---------------|-------------------|----------------------|
+| Browse papers | Static markdown table | Interactive explorer: search, filter, sort |
+| Compare methods | Open 2 papers side by side | 10+ dimension auto-comparison |
+| Avoid code bugs | Discover after submission | 88+ known bug pattern detection |
+| Design experiments | Guess baselines & ablations | Venue-tailored experiment plan |
+| NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
+| CAD ↔ 3DGS | No coverage | 35+ method conversion pipeline |
+| Patent filing | Manual from scratch | Auto-generated claims & specs |
+
+> **Bottom line:** Other lists give you paper titles. We give you paper titles + an AI toolkit that actually helps you do research faster.
+
 ## Features
 
-- **630+ Methods Knowledge Base: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **630+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
-- **12 Specialized Skills** (Advanced): AI Agent skills for paper reading, method comparison, code review, spatial intelligence, MCP rendering — works with OpenClaw, Claude Code, Cursor
+- **12 AI-Powered Skills** (Advanced): Paper reading, method comparison, code review, spatial intelligence, MCP rendering — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (607+ Methods)
+## Knowledge Base (630+ Methods)
+
+| Group | Categories | Key Topics |
+|-------|-----------|------------|
+| **Core Representations** | Foundation, Antialiasing, Optimization, Surface/Rendering, Image Rep. | 3DGS, 2DGS, Scaffold-GS, Mip-Splatting, GaussianImage... |
+| **Efficiency & Scale** | Compression, Acceleration, Large-Scale, Feed-Forward | Compact-3DGS, BlitzGS, HiGS, VEDAL, VG²GT... |
+| **Understanding & Semantics** | Language/Semantic, Generation, Autonomous Driving | LangSplat, DreamGaussian, StreetNVS... |
+| **Dynamic & Spatial** | Dynamic, HDR, SLAM, Sparse-View | DSD-GS, WebSpline, GGD-SLAM, PanoPlane... |
+| **Applications** | Human/Avatar, Editing, Relighting, CAD, Cross-Domain, Simulation, Robotics, and 14 more categories | AlbedoEdit, KDH-CAD, LEGS, TIDES, 3DEditSafe... |
+
+> [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) — search 630+ methods instantly, filter by category, sort by citations.
+>
+> Download full database: [3dgs-methods-overview.csv](3dgs-methods-overview.csv) | Full analysis: [references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
+
+<details>
+<summary><strong>Full Category Table (25 categories, 630+ methods)</strong></summary>
 
 **Core Representations**
 
@@ -81,46 +103,46 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | Foundation | Core 3DGS representations and basic variants | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
 | Antialiasing | Anti-aliasing and frequency-aware rendering | Mip-Splatting, LeanGaussian |
 | Optimization | Training objectives, density control, and convergence | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
-| Surface / Rendering | Rendering formulation innovation (OIT, RBF, etc.) | SparseOIT |
+| Surface / Rendering | Rendering formulation innovation (OIT, RBF, etc.) | SparseOIT, View-Dependent Splatting, Gaussian Surfel Rendering |
 | Image Representation | Image-level Gaussian encoding | GaussianImage |
 
 **Efficiency & Scale**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Compression / Streaming | Lightweight, mobile, and progressive streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVGS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS |
-| Acceleration | Training and inference speedup | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS, 3DGS³ |
+| Compression / Streaming | Lightweight, mobile, and progressive streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS, OT-UVVS, Gaussians on a Diet, HAC, MesonGS++, CAGS, PD-4DGS, MGS, DSGS, VEDAL |
+| Acceleration | Training and inference speedup | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS, 3DGS³, TensorGS, HiGS, DSD-GS |
 | Large-Scale | City-scale and distributed scene management | BlitzGS |
-| Feed-Forward | Single-forward-pass generalizable reconstruction | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, PointForward, ZPressor, VolSplat, PM-Loss |
+| Feed-Forward | Single-forward-pass generalizable reconstruction | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, PointForward, ZPressor, VolSplat, PM-Loss, DéjàView, VG²GT |
 
 **Understanding & Semantics**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Language / Semantic | Open-vocabulary 3D understanding and language fields | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP |
-| Generation / Text-to-3D | Text/condition-driven 3D generation | DreamGaussian, SceneGen-LLMRL |
-| Autonomous Driving | Driving scene reconstruction and simulation | Real2Sim, ConFixGS |
+| Language / Semantic | Open-vocabulary 3D understanding and language fields | LangSplat, Feature 3DGS, Semantic Foam, NG-GS, ReferSplat, SCOUP, Gaga |
+| Generation / Text-to-3D | Text/condition-driven 3D generation | DreamGaussian, SceneGen-LLMRL, DeG, PanoWorld, AnySurf, AssetGen, SEIG, MORPHOS |
+| Autonomous Driving | Driving scene reconstruction and simulation | Real2Sim, ConFixGS, P2GS, GEM, StreetNVS |
 
 **Dynamic & Spatial**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Dynamic | 4D Gaussians, temporal deformation, and propagation | ParticleGS, 3DGS³, Velox, RetroNVS |
+| Dynamic | 4D Gaussians, temporal deformation, and propagation | ParticleGS, 3DGS³, Velox, RetroNVS, WebSpline |
 | HDR / Dynamic | HDR capture and time-varying illumination | HDR-NSFF, FreeTimeGS++ |
-| SLAM | Simultaneous localization and mapping | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, Flow4DGS-SLAM, GGD-SLAM |
+| SLAM | Simultaneous localization and mapping | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, LiteLoc, Flow4DGS-SLAM, GGD-SLAM |
 | Sparse-View | Few-shot and sparse-view reconstruction | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 
 **Applications & Cross-Domain**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Human / Avatar | Animatable human and avatar reconstruction | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT |
-| Editing | Interactive and text-guided scene editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts, Robust Prior-Guided Seg. |
-| Relighting | Relightable and material-aware Gaussians | Relightable-GS-VP |
-| CAD | CAD model fitting and reverse engineering | CADFit |
-| Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R, EndoGSim |
-| Simulation | Physics simulation and surrogate models | GS-Playground, GS-Surrogate, FieryGS |
-| Embodied AI / Robotics | Robotic grasping, manipulation, navigation, and sim-to-real | GaussianGrasper, GraspSplats, ManiGaussian, GSMem, RoboSplat, VR-Robo, GSDrive |
+| Human / Avatar | Animatable human and avatar reconstruction | GaussianAvatar, GAS, SplattingAvatar, Generalizable Human GS, HumanSplatHMR, D-Rex, DelightingFace, HairGPT, ArtMesh, HeadsUp, CapTalk, 3DGS Head Avatars |
+| Editing | Interactive and text-guided scene editing | GaussianEditor, GeoGaussian, Frosting, SketchFaceGS, FluSplat, TransSplat, SVGS (Edit), VIRGi, GOR-IS, FaceParts, Robust Prior-Guided Seg., AlbedoEdit |
+| Relighting | Relightable and material-aware Gaussians | Relightable-GS-VP, Ambient-Robust IR |
+| CAD | CAD model fitting and reverse engineering | CADFit, KDH-CAD |
+| Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, FTSplat, IRIS, SplAttN, Fake3DGS, RGS, RESPIRE, LagrangianSplats, PG-3DGS, OCH3R, TransmissiveGS, SurfFill |
+| Simulation | Physics simulation and surrogate models | GS-Playground, GS-Surrogate, FieryGS, SAM3D-Phys |
+| Embodied AI / Robotics | Robotic grasping, manipulation, navigation, and sim-to-real | GaussianGrasper, GraspSplats, ManiGaussian, GSMem, RoboSplat, VR-Robo, GSDrive, LEGS |
 | Active Vision | Active view selection and next-best-view | MAGICIAN |
 | Real-Time NVS | Real-time novel view synthesis systems | 3DTV |
 | Data Acquisition | Capture protocols and phone-based acquisition | Mobile Phone 3DGS Acquisition |
@@ -128,13 +150,10 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | Degradation-Aware | Weather, underwater, and low-quality input handling | MERID-GS, MarineSTD-GS, E2EGS, NIRRGB-GS |
 | System | Full-system design and hardware co-design | YOGO, GS-SCNet |
 | Security | Watermarking, copyright protection, and forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
+| World Model | 3DGS world models and scene prediction | MRO-GWM |
+| Event Camera | Event camera-driven 3DGS | TIDES |
 
-> The full knowledge base covers **607+ methods** across 25 categories with detailed technical analysis. See [
-eferences/3dgs-methods-overview.md](references/3dgs-methods-overview.md).
-
-Download the full database as CSV: [3dgs-methods-overview.csv](3dgs-methods-overview.csv)
-
-> **No installation needed** — [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) to search 607+ methods instantly.
+</details>
 
 ## Quick Start
 
@@ -687,56 +706,4 @@ Apache-2.0. See [LICENSE](LICENSE) for details. Fork, publish, sell — with exp
 
 <div align="center">
 
-**Made with passion for the 3DGS research community**
-
-If this project saves you time, please give it a star!
-
-## I. Core CV Links
-
-CVF Open Access (CVPR/ICCV/ECCV/3DV): https://openaccess.thecvf.com/
-
-CVPR 2025: https://openaccess.thecvf.com/CVPR2025
-
-ICCV 2025: https://openaccess.thecvf.com/ICCV2025
-
-3DV 2026: https://openaccess.thecvf.com/3DV2026
-
-arXiv CV (recent): https://arxiv.org/list/cs.CV/recent
-
-## II. Core CG / Rendering Links
-
-arXiv Graphics (cs.GR): https://arxiv.org/list/cs.GR/recent
-
-ACM DL (SIGGRAPH): https://dl.acm.org/
-
-Eurographics Digital Library: https://diglib.eg.org/
-
-RenderHub (rendering papers): https://renderhub.org/
-
-## III. 3DGS / NeRF / 3D Reconstruction
-
-3DGS official paper & repo: https://github.com/graphdeco-inria/gaussian-splatting
-
-3DGS paper tracker: https://github.com/longxiang-ai/awesome-gaussians
-
-NerfStudio paper collection: https://github.com/nerfstudio-project/nerfstudio
-
-CVPR 2025 3D track: https://openaccess.thecvf.com/CVPR2025?day=all#3D
-
-SIGGRAPH 2025 preprints: https://arxiv.org/list/cs.GR/2507
-
-Real-Time Rendering papers: https://www.realtimerendering.com/
-
-EGSR (rendering symposium): https://diglib.eg.org/handle/10.23730/egsr
-
-## IV. General Search & Chinese Mirrors
-
-Google Scholar: https://scholar.google.com
-
-DBLP (top-venue index): https://dblp.uni-trier.de/
-
-Hugging Face Papers: https://huggingface.co/papers
-
-arXiv CN mirror: https://arxiv.tmmu.edu.cn/
-
-</div>
+**If this project saves you time, please give it a star!**</div>

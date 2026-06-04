@@ -1,24 +1,17 @@
-﻿<div align="center">
-
+<div align="center">
+        
 # Awesome Gaussian Skills
 
-### 3D空间智能开源工具箱
+### 最全的3DGS论文目录 — 630+方法，25类别，交互式浏览器
 
-If you like it, please ⭐️ star this repo!
-
-**630+ 3DGS 方法编目，含交互式浏览器、代码审查与 AI 驱动的空间智能研究工具**
+**你不需要翻20个仓库找3DGS论文。这是你唯一需要的那个——而且还有其他列表没有的AI工具。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
-[![Forks](https://img.shields.io/github/forks/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=4FC3F7)](https://github.com/jaccen/Awesome-Gaussian-Skills/network/members)
-[![Contributors](https://img.shields.io/github/contributors/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=22C55E)](https://github.com/jaccen/Awesome-Gaussian-Skills/graphs/contributors)
-[![Last Commit](https://img.shields.io/github/last-commit/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&color=F97316)]()
-
-[![Live Demo](https://img.shields.io/badge/在线演示-Live_Demo-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Try Demo Now](https://img.shields.io/badge/立即体验-Now-2196F3.svg?logo=github)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
+[![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
+[![Methods](https://img.shields.io/badge/方法-630+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI技能-12-green.svg)](skills/)
+[![Bug Patterns](https://img.shields.io/badge/Bug模式-88+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-12-green.svg)](skills/)
-[![OpenClaw Compatible](https://img.shields.io/badge/OpenClaw-Compatible-red.svg)]()
-[![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-orange.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 [English](README.md) | [中文](README_CN.md)
@@ -66,15 +59,44 @@ If you like it, please ⭐️ star this repo!
 | 设计实验 | 猜基线和消融 | 顶会定制实验方案 |
 | NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
 
+## 与其他列表的对比
+
+| 你的需求 | 一般论文列表 | Awesome Gaussian Skills |
+|----------|-------------|----------------------|
+| 浏览论文 | 静态Markdown表格 | 交互式浏览器：搜索、筛选、排序 |
+| 对比方法 | 同时打开2篇论文对照 | 10+维度自动对比 |
+| 避免代码bug | 提交后才发现 | 88+已知bug模式自动检测 |
+| 设计实验 | 猜基线和消融方案 | 顶会定制实验方案 |
+| NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
+| CAD↔3DGS转换 | 无覆盖 | 35+方法转换管线 |
+| 专利申请 | 从零手写 | 自动生成权利要求与说明书 |
+
+> **一句话总结：** 其他列表只给你论文名称，我们给你论文名+真正帮你加速研究的AI工具。
+
 ## 特性
 
 - **630+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
-- **12 个专业技能**（进阶）：AI Agent 技能——论文阅读、方法对比、代码审查、空间智能、MCP渲染，适配 OpenClaw、Claude Code、Cursor
+- **12 个AI技能**（进阶）：论文阅读、方法对比、代码审查、空间智能、MCP渲染，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
 ## 知识库（630+ 方法）
+
+| 分组 | 类别数 | 关键方向 |
+|------|--------|---------|
+| **核心表示** | 基础、抗锯齿、优化、表面/渲染、图像表示 | 3DGS, 2DGS, Scaffold-GS, Mip-Splatting, GaussianImage... |
+| **效率与规模** | 压缩、加速、大规模、前馈 | Compact-3DGS, BlitzGS, HiGS, VEDAL, VG²GT... |
+| **理解与语义** | 语言/语义、生成、自动驾驶 | LangSplat, DreamGaussian, StreetNVS... |
+| **动态与空间** | 动态、HDR、SLAM、稀疏视角 | DSD-GS, WebSpline, GGD-SLAM, PanoPlane... |
+| **应用** | 人体/头像、编辑、重光照、CAD、跨领域、仿真、机器人等14类 | AlbedoEdit, KDH-CAD, LEGS, TIDES, 3DEditSafe... |
+
+> [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 秒搜630+方法，按类别筛选、按引用排序。
+>
+> 下载完整数据库：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv) | 完整分析：[`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)
+
+<details>
+<summary><strong>完整类别表（25类别，630+方法）</strong></summary>
 
 **核心表示**
 
@@ -133,9 +155,7 @@ If you like it, please ⭐️ star this repo!
 | 世界模型 | 3DGS世界模型与场景预测 | MRO-GWM |
 | 事件相机 | 事件相机驱动的3DGS | TIDES |
 
-> 完整知识库覆盖 **25 个类别的 630+ 方法**的详细技术分析。详见 [`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)。
-
-下载完整数据库 CSV：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv)
+</details>
 
 > **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 630+ 方法。
 
@@ -686,60 +706,6 @@ Awesome-Gaussian-Skills/
 
 <div align="center">
 
-**为 3DGS 研究社区用心打造**
-
-If this project saves you time, please give it a star!
-
-## 一、CV 核心链接
-
-CVF 官方开源库（CVPR/ICCV/ECCV/3DV）：https://openaccess.thecvf.com/
-
-CVPR 2025 全集：https://openaccess.thecvf.com/CVPR2025
-
-ICCV 2025 全集：https://openaccess.thecvf.com/ICCV2025
-
-3DV 2026：https://openaccess.thecvf.com/3DV2026
-
-arXiv CV 最新预印本：https://arxiv.org/list/cs.CV/recent
-
-## 二、CG/渲染核心链接
-
-arXiv CG/图形学专区：https://arxiv.org/list/cs.GR/recent
-
-ACM DL（SIGGRAPH）：https://dl.acm.org/
-
-Eurographics 数字图书馆：https://diglib.eg.org/
-
-RenderHub 渲染论文：https://renderhub.org/
-
-## 三、3DGS/NeRF/三维重建专属
-
-3DGS 官方论文&项目：https://github.com/graphdeco-inria/gaussian-splatting
-
-3DGS 论文追踪器：https://github.com/longxiang-ai/awesome-gaussians
-
-NerfStudio 论文合集：https://github.com/nerfstudio-project/nerfstudio
-
-CVPR 2025 3D 专题：https://openaccess.thecvf.com/CVPR2025?day=all#3D
-
-SIGGRAPH 2025 预印本：https://arxiv.org/list/cs.GR/2507
-
-Real-Time Rendering 论文库：https://www.realtimerendering.com/
-
-EGSR 渲染顶会：https://diglib.eg.org/handle/10.23730/egsr
-
-## 四、通用检索&国内镜像
-
-谷歌学术：https://scholar.google.com
-
-DBLP 顶会索引：https://dblp.uni-trier.de/
-
-Hugging Face 论文聚合：https://huggingface.co/papers
-
-arXiv 国内镜像：https://arxiv.tmmu.edu.cn/
-
-学术搜索（替代谷歌）：https://xueshuso.com/
-
-如果这个项目帮你节省了时间，请给一个 Star！
+**如果这个项目帮你节省了时间，请给一个 Star！**</div>
 
 </div>
