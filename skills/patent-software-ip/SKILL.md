@@ -221,9 +221,9 @@ Deep-dive reference files for domain-specific patent writing rules, claim templa
 
 | File | Sections | Key Content |
 |------|----------|-------------|
-| eferences/ai-patent-claims-guide.md | 11 claim templates (T1-T14) | Full legal claim text per template: method/system/medium triples with dependent claims; Big Data T10-T14 included |
-| eferences/ai-patent-special.md | Patentability framework, 8 risk domains, CPC codes, desensitization rules | AI+Big Data patentability risk assessment; domain mapping; figure requirements; industry desensitization; CPC classification (7.1-7.7); 9-domain quick reference |
-| eferences/ai-software-copyright-guide.md | Type detection, source file priority, 5 domain templates, FAQ | Decision tree for 10+ project types; source code priority by domain; Big Data dedicated template (section 3.5); desensitization checklist; common pitfalls |
+| references/ai-patent-claims-guide.md | 11 claim templates (T1-T14) | Full legal claim text per template: method/system/medium triples with dependent claims; Big Data T10-T14 included |
+| references/ai-patent-special.md | Patentability framework, 8 risk domains, CPC codes, desensitization rules | AI+Big Data patentability risk assessment; domain mapping; figure requirements; industry desensitization; CPC classification (7.1-7.7); 9-domain quick reference |
+| references/ai-software-copyright-guide.md | Type detection, source file priority, 5 domain templates, FAQ | Decision tree for 10+ project types; source code priority by domain; Big Data dedicated template (section 3.5); desensitization checklist; common pitfalls |
 ## Phase D: Iterative Correction
 
 Identify -> Locate -> Targeted fix -> Save as v{N} -> Re-run affected self-check items only. Do NOT re-run full pipeline.

@@ -1,21 +1,9 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 38+ methods."
-version: 1.0.3
+description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 48+ methods."
+version: 1.1.0
 author: jaccen
 tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing"]
----
-  - "参数化重建"
-  - "三角网格"
-  - "mesh吸附高斯"
-  - "MaGS"
-  - "BrepGaussian"
-  - "SuGaR"
-  - "2DGS"
-  - "UniMGS"
-  - "CAD模型重建"
-  - "曲面重建"
-  - "几何精度"
 ---
 
 # CAD & Mesh × 3DGS Bridge
@@ -651,10 +639,25 @@ def render_cad_multiview.step_file, output_dir, n_views=100):
 |--------|-------|-------|--------|-------------|
 | SEIG | arXiv'26 (2606.02580) | Single image | Executable Blender Python program | Staged decomposition (geometry→materials→composition→lighting); inherently editable and simulation-ready (Guangzhao He et al.) |
 | 3DCodeBench | arXiv'26 (2606.01057) | VLM agents | Procedural 3D generation | Systematic benchmark; 12 VLMs evaluated; API mismatches cause most failures; disconnected floating geometry in successful renders (Yipeng Gao et al.) |
+| UniCAD | arXiv'26 (2606.05058) | Multi-view images / sketches / point clouds | Parametric CAD | Multi-modal multi-task CAD benchmark + universal model; parametric CAD reconstruction from multi-view images, sketches, and point clouds |
+| MeshFlow | CVPR'26 Highlight (2606.04621) | Latent code | Triangle mesh | MeshVAE + Flow-based Diffusion Transformer; autoregressive mesh generation with flow-based prior |
+| MeshWeaver | CVPR'26 (2606.04688) | Latent code | Triangle mesh | Autoregressive next-vertex mesh generation; sequential attention for vertex-by-vertex triangle mesh synthesis |
+| SymTRELLIS | arXiv'26 (2606.04108) | Single image / text | 3D mesh | Symmetry-aware 3D generation; exploits symmetry priors in 3D structure for improved mesh quality |
+| HSP | arXiv'26 (2606.04891) | Images / point clouds | Hybrid mesh + neural field | Hybrid Structured Primitives; combines structured geometric primitives with neural fields for 3D reconstruction |
 
 **SEIG** — VLM generates executable Blender Python programs via staged decomposition (geometry→materials→composition→lighting). Output is inherently editable and simulation-ready, bridging the gap between neural rendering and CAD/manufacturing pipelines.
 
 **3DCodeBench** — Systematic benchmark for evaluating VLM agents on procedural 3D generation. Key findings: API mismatches are the primary failure mode; even successful renders exhibit disconnected floating geometry, indicating that current VLMs lack robust spatial reasoning for CAD-quality output.
+
+**UniCAD** — Multi-modal multi-task CAD benchmark and universal model covering parametric CAD reconstruction from multi-view images, sketches, and point clouds. Provides a unified framework for evaluating and training CAD reconstruction methods across diverse input modalities.
+
+**MeshFlow** — MeshVAE encodes meshes into a structured latent space; a Flow-based Diffusion Transformer generates meshes autoregressively with a flow-based prior. CVPR 2026 Highlight — achieves state-of-the-art mesh generation quality by combining the expressiveness of normalizing flows with the scalability of diffusion transformers.
+
+**MeshWeaver** — Autoregressive next-vertex mesh generation that produces triangle meshes vertex-by-vertex using sequential attention. Eliminates the need for intermediate representations (voxels, SDFs, or point clouds) by directly generating mesh topology and geometry in a single autoregressive pass.
+
+**SymTRELLIS** — Symmetry-aware 3D generation that exploits inherent symmetry priors in 3D structures to improve mesh quality. By constraining generation to respect symmetry, reduces artifacts and improves geometric fidelity, particularly for man-made objects with dominant symmetry axes.
+
+**HSP** — Hybrid Structured Primitives combine explicit structured geometric primitives (planes, cylinders, etc.) with neural fields for 3D reconstruction. The structured primitives provide CAD-like geometric parsimony while neural fields capture fine details, bridging the gap between parametric and implicit representations.
 
 ### CAD Reconstruction Methods
 

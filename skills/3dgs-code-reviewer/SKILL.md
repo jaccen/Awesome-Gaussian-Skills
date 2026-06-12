@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 88+ known bug patterns."
-version: 1.5.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 93+ known bug patterns."
+version: 1.6.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -12,7 +12,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (88+ known bug patterns)
+- Identify common 3DGS implementation pitfalls (93+ known bug patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -423,6 +423,36 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 88 | Self-excited oscillation in adaptive time-stepping for event simulation | In event camera simulation, adaptive time-stepping adjusts step size based on event density; dense-event regions trigger shorter steps, which generate more events, further shortening steps in positive feedback; step size approaches zero, simulation stalls or produces massive numerical error; sparse regions miss fast changes | Add step size bounds (Δt_min, Δt_max); apply damping factor to step size adjustment rate (Δt_{n+1} = η·Δt_new + (1-η)·Δt_n, η < 1); or use event-count triggering instead of density-driven. Verify: monitor Δt sequence, confirm no monotonic decrease toward zero. (TIDES, arXiv:2606.02058) |
+
+### Token-Based Feed-Forward Patterns (ZipSplat)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 89 | Token-based feed-forward cardinality mismatch | K-means token clustering produces N_tokens Gaussian clusters, but downstream rasterizer expects pixel-resolution Gaussian count; token count vs pixel grid resolution mismatch causes ghost Gaussians at tile boundaries where cluster assignments overlap adjacent tiles | Ensure token count is explicitly managed: (1) add tile-boundary-aware k-means that expands tokens near tile edges; (2) validate token→Gaussian expansion produces consistent counts per tile; (3) add ghost Gaussian detection via render-then-compare. Verify: compare rendered output with and without tile-boundary expansion. (ZipSplat, arXiv:2606.05102) |
+
+### Geometry Opacity Decoupling Patterns (Geometry Gaussians)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 90 | Geometry opacity and appearance opacity gradient conflict | When per-splat geometry opacity (α_geo) and appearance opacity (α_app) are simultaneously optimized, gradients from α_geo try to make thin surfaces opaque (pull α_geo→1) while α_app gradients may reduce appearance opacity for transparent objects (pull α_app→0); these opposing signals cause oscillation or converge to suboptimal local minimum where both are ~0.5 | Option 1: Staggered optimization — freeze α_geo for first N iterations, then jointly optimize with reduced lr. Option 2: Geometry-first loss — supervise α_geo via depth/normal consistency, supervise α_app via photometric loss with α_geo detached. Option 3: Regularize α_geo via Laplacian smoothness. Verify: plot α_geo and α_app histograms; check for bimodal distributions. (Geometry Gaussians, arXiv:2606.05124) |
+
+### Reflective Material Patterns (3DReflecNet)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 91 | Reflective/transparent material reconstruction collapse | 3DGS/NeRF methods suffer catastrophic PSNR collapse (>10 dB drop) on reflective, transparent, and low-texture surfaces; three failure modes: (a) view-dependent color SH coefficients oscillate for specular reflections, (b) alpha compositing cannot resolve transparent surface ordering ambiguity, (c) sparse point cloud initialization fails on featureless glass surfaces | Per-mode fixes: (a) Specular mode: constrain SH high-order coefficients via learned smoothness prior or separate specular/reflection lobes (RT-Splatting approach). (b) Transparency mode: use geometry-aware opacity (Geometry Gaussians) or signed opacity to disambiguate surface ordering. (c) Featureless mode: use depth prior (Depth-Anything-V2) or normal prior for initialization. Verify: test on 3DReflecNet benchmark (48 material combos). (3DReflecNet, arXiv:2605.10204, CVPR 2026) |
+
+### Streaming Reconstruction Patterns (Anchor3R)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 92 | Streaming reconstruction transient anchor drift | In streaming 3D reconstruction, current-centric transient anchors for local chunks drift without explicit loop closure; accumulated pose error grows linearly with sequence length; revisit of previously seen areas fails to register correctly | Integrate global pose optimization: (1) keyframe-based loop closure detection via feature matching; (2) motion averaging for drift correction across chunks; (3) anchor position refinement via bundle adjustment on overlapping regions. Verify: measure absolute trajectory error (ATE) on long sequences with loop closures. (Anchor3R, arXiv:2606.05035) |
+
+### Mesh Generation Patterns (MeshWeaver)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 93 | Autoregressive mesh vertex count drift | During autoregressive mesh generation, predicted vertex count diverges from target face count; no explicit termination condition causes over-generation (degenerate tiny faces) or under-generation (missing details); quality degrades significantly when count error >10% | (1) Add explicit face count token in sequence header as generation budget; (2) Apply count-aware stopping criterion: if remaining budget <5% and next vertex confidence < threshold, terminate. (3) Post-process: face merging for over-generation, subdivision for under-generation. Verify: measure face count accuracy on held-out test set. (MeshWeaver, arXiv:2606.04688, CVPR 2026) |
 
 
 ## Output Format

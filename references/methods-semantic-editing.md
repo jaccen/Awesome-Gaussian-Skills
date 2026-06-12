@@ -1,4 +1,6 @@
-﻿## Newly Added (May 2026 Expansion)
+﻿
+
+## Newly Added (May 2026 Expansion)
 
 
 ### Language / Semantic
@@ -579,3 +581,12 @@
 - **Year**: 2025
 - **Category**: Human & Avatar Methods
 - **Core Innovation**: Enhanced pose-conditioned GS with part-level deformation
+
+
+### Cross-Domain / Benchmark
+### 3DReflecNet
+- **arXiv**: [2605.10204](https://arxiv.org/abs/2605.10204)
+- **Venue**: CVPR 2026
+- **Year**: 2026
+- **Category**: Cross-Domain / Benchmark
+- **Core Innovation**: Systematic benchmark for reflective/transparent 3D reconstruction; identifies 3 catastrophic failure modes in NeRF/3DGS for specular and transparent objects

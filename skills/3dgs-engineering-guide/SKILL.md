@@ -1,6 +1,6 @@
 ﻿name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
-version: 1.3.0
+version: 1.4.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---

@@ -1,8 +1,8 @@
 ---
 name: 3dgs-spatial-agent
-description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
-when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives"
-version: 0.2.0
+description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
+when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS"
+version: 0.3.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
 allowed-tools: Read Grep Bash Glob
@@ -25,7 +25,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (611+ methods)
+3DGS Scene (648+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind
   │     │
@@ -187,6 +187,8 @@ When processing a 3DGS scene, select the appropriate pathway based on scenario:
 | SA-1 | Part boundary bleeding in segmentation | Color/feature mixing at object boundaries; Gaussians assigned to wrong part | Use part-aware opacity modulation; apply bilateral filtering on part assignments near boundaries |
 | SA-2 | Geometry-mesh topology mismatch | Extracted mesh has non-manifold edges or self-intersections; CAD operations fail | Pre-filter with meshcleaning; validate manifoldness before B-rep construction; use PyMeshLab for repair |
 | SA-3 | SH coefficient misinterpretation as material | Confusing view-dependent color (SH coefficients) with intrinsic material properties | Decompose SH into intrinsic (degree 0) and view-dependent (degree 1-3) components; only use degree 0 for material inference |
+| SA-4 | Spatial Query Mutex Deadlock in Multi-Agent Scene Editing | Agent hangs indefinitely when two concurrent spatial queries target overlapping Gaussian groups | Replace std::mutex with std::recursive_mutex in SceneGraph::query(); or adopt readers-writer lock where read-only queries share access |
+| SA-5 | Stale Gaussian Indices After Densification in CAD-in-the-Loop Pipeline | CAD extraction produces distorted geometry (mirrored faces, collapsed edges) after 3DGS densification step | Register CAD module as densification observer; on density control step, invalidate cached index maps and trigger re-extraction of Gaussian→mesh attribute mapping |
 
 ## Rules
 

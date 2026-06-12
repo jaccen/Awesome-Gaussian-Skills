@@ -963,6 +963,13 @@
 - **Category**: Surface & Geometry Methods
 - **Core Innovation**: GS-NeRF hybrid combining explicit splatting with implicit neural fields
 
+### Geometry Gaussians
+- **ArXiv**: [2606.05124](https://arxiv.org/abs/2606.05124)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Surface & Geometry Methods
+- **Core Innovation**: Per-splat geometry opacity decoupling; separates geometry opacity from appearance opacity, directly relevant to signed opacity and TPSC compositing direction
+
 
 ### CAD / Mesh / Hybrid Methods
 ### GS-CAD
@@ -1222,6 +1229,22 @@
 - **Year**: 2026
 - **Category**: Feed-Forward Methods
 - **Core Innovation**: Point-aligned feed-forward driving scene reconstruction via 3DGS; anchor-aligned representation replacing pixel-alignment for autonomous driving
+
+### ZipSplat
+- **ArXiv**: [2606.05102](https://arxiv.org/abs/2606.05102)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Token-based feed-forward 3DGS; ~6x fewer Gaussians; +2.1dB PSNR over pixel-grid methods; breaks pixel-grid coupling via learnable tokens
+- **Links**: [arXiv:2606.05102](https://arxiv.org/abs/2606.05102)
+
+### Anchor3R
+- **ArXiv**: [2606.05035](https://arxiv.org/abs/2606.05035)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Feed-Forward Methods
+- **Core Innovation**: Streaming 3D reconstruction with transient anchors; processes long sequences with constant memory via anchor caching
+- **Links**: [arXiv:2606.05035](https://arxiv.org/abs/2606.05035)
 
 ### Compression Methods
 ### LightGaussian

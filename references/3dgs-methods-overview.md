@@ -607,3 +607,55 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 #### AGILE (Hand-Object Interaction)
 - **AGILE** [arXiv:2602.04672](https://arxiv.org/abs/2602.04672) (SIGGRAPH 2026) — Agentic generation for hand-object interaction reconstruction from video; VLM guides generative model for complete watertight mesh; anchor-and-track strategy bypasses SfM; contact-aware optimization for physical plausibility (Jin-Chuan Shi et al.)
 - **Spark 2.0** (2026) — NVIDIA 3DGS-based robotic world simulation: real-time 3DGS reconstruction for manipulation learning and physical AI interaction
+
+---
+
+## Newly Added Methods (June 5, 2026 — Daily Update)
+
+> 18 methods added from arXiv cs.CV/cs.GR (Jun 2-5, 2026), CVPR 2026 highlights
+
+### Feed-Forward / Compression
+- **ZipSplat** [arXiv:2606.05102](https://arxiv.org/abs/2606.05102) (arXiv 2026) — Token-based feed-forward 3DGS decoupling Gaussian count from pixel grid via k-means clustering; ~6× fewer Gaussians, +2.1 dB PSNR SOTA on DL3DV/RealEstate10K; pose-free inference (Alexander Veicht, Sunghwan Hong, Daniel Barath, Marc Pollefeys)
+
+### Surface / Geometry
+- **Geometry Gaussians** [arXiv:2606.05124](https://arxiv.org/abs/2606.05124) (arXiv 2026, cs.GR) — Adds geometry opacity parameter per splat to decouple appearance and geometry in 3DGS; improves both rendering quality and geometry extraction, especially for transparent/thin objects (Hongyu Zhou, Zorah Lähner)
+
+### Robustness / Degradation-Aware
+- **3DReflecNet** [arXiv:2605.10204](https://arxiv.org/abs/2605.10204) (CVPR 2026) — Large-scale dataset for 3D reconstruction of reflective, transparent, and low-texture objects; systematically tests 48 material parameter combinations; reveals 3 failure modes in 3DGS/NeRF (Fangxin Wang et al., CUHK-Shenzhen)
+
+### SLAM / Visual Mapping
+- **Anchor3R** [arXiv:2606.05035](https://arxiv.org/abs/2606.05035) (arXiv 2026) — Streaming 3D reconstruction with current-centric local measurement prediction (not fixed-gauge); transient anchor mechanism + loop closure + motion averaging for long-horizon mapping (Peilin Tao et al.)
+
+### Surface Reconstruction
+- **HSP** [arXiv:2606.04891](https://arxiv.org/abs/2606.04891) (3DV 2026) — Hierarchical Space Partition for surface reconstruction; priority-based plane assembling + min-cut optimization for watertight mesh from incomplete point clouds (Minjie Tang, Xiangfei Li)
+
+### CAD / Multi-Modal
+- **UniCAD** [arXiv:2606.05058](https://arxiv.org/abs/2606.05058) (arXiv 2026) — Unified multi-modal multi-task CAD benchmark + UniCAD-MLLM universal model for point/text/image→CAD reconstruction, generation, and QA (Jingyuan Chen et al.)
+
+### Mesh Generation
+- **MeshWeaver** [arXiv:2606.04688](https://arxiv.org/abs/2606.04688) (CVPR 2026) — Autoregressive next-vertex prediction guided by multi-level sparse-voxel encoder; 18% compression ratio, generates up to 16K-face meshes (Jiale Xu, Wang Zhao, Ying Shan)
+- **MeshFlow** [arXiv:2606.04621](https://arxiv.org/abs/2606.04621) (CVPR 2026 Highlight) — Efficient artistic mesh generation via MeshVAE + flow-based Diffusion Transformer; compact latent space for high-quality mesh creation (Weiyu Li et al.)
+- **SymTRELLIS** [arXiv:2606.04108](https://arxiv.org/abs/2606.04108) (arXiv 2026, cs.GR) — Symmetry-enforced voxel latents for 3D generation; velocity symmetrization at each ODE step enforces arbitrary finite point group symmetries; no VAE/flow retraining (Guangda Ji et al.)
+
+### Editing / Nonrigid
+- **GeM-NR** [arXiv:2606.05142](https://arxiv.org/abs/2606.05142) (arXiv 2026) — Geometry-aware multi-view editing for nonrigid scene changes; training-free depth alignment + query refinement for consistent nonrigid editing (Josef Bengtson, Yaroslava Lochman, Fredrik Kahl)
+
+### Dynamic / 4D
+- **T2Mo** [arXiv:2606.05162](https://arxiv.org/abs/2606.05162) (arXiv 2026) — Controllable dynamic 3D shape generation via 3D trajectories + text; shape-grounded trajectory embedding for feed-forward dynamic generation (Jaeyeong Kim et al.)
+- **LetCamsGo** [arXiv:2606.04593](https://arxiv.org/abs/2606.04593) (CVPR 2026 Workshop 4DV) — 4D reconstruction from sparse dynamic cameras; inter-camera feature matching + intra-camera point tracking + depth-ordering regularization (Kazuki Ozeki et al.)
+
+### Embodied AI / VLA
+- **3DThinkVLA** [arXiv:2606.04436](https://arxiv.org/abs/2606.04436) (arXiv 2026) — Endowing VLA models with latent 3D priors via 3D-thinking-guided co-training; geometry perception module + reasoning distillation anchor token; SOTA on LIBERO (Jiaxin Shi et al.)
+
+### 3D Scene / Physics-Aware
+- **SimuScene** [arXiv:2606.03994](https://arxiv.org/abs/2606.03994) (arXiv 2026) — Physics-in-the-loop compositional 3D scene reconstruction from single image; physics engine as diagnostic tool for gravity-axis stretching + amodal resampling (Inhee Lee et al.)
+
+### Spatial Control
+- **MetaPoint** [arXiv:2606.05031](https://arxiv.org/abs/2606.05031) (arXiv 2026) — Unlocking precise spatial control in agentic visual generation; represents continuous 2D coordinate as single special token via model's positional encoding; compositional agentic generation (Dewei Zhou et al.)
+
+### Rendering / Light Tracing
+- **PureLight** [arXiv:2606.04319](https://arxiv.org/abs/2606.04319) (arXiv 2026, cs.GR) — Learning complex luminaires with light tracing; forward light tracing for efficient sampling of difficult light paths (Pedro Figueiredo et al.)
+
+### Survey
+- **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (CVPR 2026 Workshop OpenSUN3D) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; dataset design and learning paradigms (Hongyang Du et al.)
+- **3D Representation Survey** [arXiv:2606.04871](https://arxiv.org/abs/2606.04871) (arXiv 2026) — Recent advances and trends in learning-based 3D representations; paradigm shift from explicit to implicit/splatting representations (Adrien Schockaert et al.)

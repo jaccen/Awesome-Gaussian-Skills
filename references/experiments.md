@@ -138,6 +138,17 @@
 4. 评测：PSNR/SSIM/LPIPS + Chamfer Distance/F-Score（CAD mesh 为 ground truth）
 5. 重点对比：部件边界区域的渲染质量（手动标注的 penetration zone masks）
 
+### 反射/透明物体重建基准（3DReflecNet）
+
+来源：3DReflecNet [arXiv: 2605.10204, CVPR 2026]
+
+- 定位：系统性反射/透明3D重建基准，揭示NeRF/3DGS在镜面与透明物体上的3种灾难性失败模式
+- 数据集：反射/透明物体场景，含ground truth几何标注
+- 标准指标：PSNR / SSIM / LPIPS + 反射专属指标（specular consistency, transparency accuracy）
+- 3种失败模式：(1) 镜面高光误固化为几何伪影 (2) 透明体透射路径歧义导致深度崩溃 (3) 环境映射与物体反照率混淆
+- 推荐对比方法：3DGS, Mip-Splatting, Spec-Gaussian, NegGS, RT-Splatting, SparseOIT
+- 评测协议：在标准NVS指标基础上，额外报告specular consistency和transparency accuracy，量化反射/透明区域的重建保真度
+
 ### 效率表格新增参考值
 
 | 方法 | 场景 | 基元数 | 内存 | FPS | PSNR |
@@ -149,4 +160,3 @@
 | Gaussians on a Diet | Mip-360 | — | 80%↓peak | same | ~24.5 |
 | GlobalSplat | RealEstate | 16K | ~4MB | ~13 (78ms) | ~25.0 |
 | SparseSplat (22%) | DL3DV | 150K | — | ~13 | 24.20 |
-

@@ -1,4 +1,5 @@
-﻿## Newly Added (May 2026 Expansion)
+
+## Newly Added (May 2026 Expansion)
 
 
 ### Robustness & Regularization
@@ -861,3 +862,115 @@
 - **Year**: 2026
 - **Category**: Feed-Forward / Large-Scale
 - **Core Innovation**: Observation-grounded generative reconstruction for sparse aerial urban scenes; observation-supported geometry latent + gated diffusion residual; second-level inference
+
+### UniCAD
+- **ArXiv**: [2606.05058](https://arxiv.org/abs/2606.05058)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: CAD
+- **Core Innovation**: Multi-modal multi-task CAD benchmark + universal model; parametric CAD reconstruction from multi-view images, sketches, and point clouds
+- **Links**: [arXiv:2606.05058](https://arxiv.org/abs/2606.05058)
+
+### MeshFlow
+- **ArXiv**: [2606.04621](https://arxiv.org/abs/2606.04621)
+- **Venue**: CVPR 2026 Highlight
+- **Year**: 2026
+- **Category**: CAD / Generation
+- **Core Innovation**: MeshVAE + Flow-based Diffusion Transformer for mesh generation
+- **Links**: [arXiv:2606.04621](https://arxiv.org/abs/2606.04621)
+
+### MeshWeaver
+- **ArXiv**: [2606.04688](https://arxiv.org/abs/2606.04688)
+- **Venue**: CVPR 2026
+- **Year**: 2026
+- **Category**: CAD / Generation
+- **Core Innovation**: Autoregressive next-vertex mesh generation
+- **Links**: [arXiv:2606.04688](https://arxiv.org/abs/2606.04688)
+
+### SymTRELLIS
+- **ArXiv**: [2606.04108](https://arxiv.org/abs/2606.04108)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Generation
+- **Core Innovation**: Symmetry-aware 3D generation; exploits symmetry priors in 3D structure for improved mesh quality
+- **Links**: [arXiv:2606.04108](https://arxiv.org/abs/2606.04108)
+
+### T2Mo
+- **ArXiv**: [2606.05162](https://arxiv.org/abs/2606.05162)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Generation
+- **Core Innovation**: Text-to-Motion generation with 3D Gaussian Splatting rendering
+- **Links**: [arXiv:2606.05162](https://arxiv.org/abs/2606.05162)
+
+### SimuScene
+- **ArXiv**: [2606.03994](https://arxiv.org/abs/2606.03994)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Simulation
+- **Core Innovation**: Physics-in-the-loop compositional 3D reconstruction; integrates physics simulation into 3DGS optimization loop
+- **Links**: [arXiv:2606.03994](https://arxiv.org/abs/2606.03994)
+
+### 3DThinkVLA
+- **ArXiv**: [2606.04436](https://arxiv.org/abs/2606.04436)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Robotics
+- **Core Innovation**: VLA (Vision-Language-Action) with latent 3D priors via co-training; injects 3D spatial understanding into robotic manipulation
+- **Links**: [arXiv:2606.04436](https://arxiv.org/abs/2606.04436)
+
+### LetCamsGo
+- **ArXiv**: [2606.04593](https://arxiv.org/abs/2606.04593)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Autonomous Driving
+- **Core Innovation**: Free-camera placement for autonomous driving simulation via 3DGS
+- **Links**: [arXiv:2606.04593](https://arxiv.org/abs/2606.04593)
+
+### PureLight
+- **ArXiv**: [2606.04319](https://arxiv.org/abs/2606.04319)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Relighting
+- **Core Innovation**: Pure illumination decomposition for relightable 3DGS
+- **Links**: [arXiv:2606.04319](https://arxiv.org/abs/2606.04319)
+
+### HSP
+- **ArXiv**: [2606.04891](https://arxiv.org/abs/2606.04891)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Surface / Hybrid
+- **Core Innovation**: Hybrid Structured Primitives; combines structured geometric primitives with neural fields for 3D reconstruction
+- **Links**: [arXiv:2606.04891](https://arxiv.org/abs/2606.04891)
+
+### MetaPoint
+- **ArXiv**: [2606.05031](https://arxiv.org/abs/2606.05031)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Optimization
+- **Core Innovation**: Meta-learned point initialization for faster 3DGS convergence
+- **Links**: [arXiv:2606.05031](https://arxiv.org/abs/2606.05031)
+
+### Survey on 3DGS Compression
+- **ArXiv**: [2606.04291](https://arxiv.org/abs/2606.04291)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Survey
+- **Core Innovation**: Comprehensive survey on 3D Gaussian Splatting compression and streaming
+- **Links**: [arXiv:2606.04291](https://arxiv.org/abs/2606.04291)
+
+### Survey on Neural Rendering
+- **ArXiv**: [2606.04871](https://arxiv.org/abs/2606.04871)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Survey
+- **Core Innovation**: Survey comparing NeRF, 3DGS, and hybrid neural rendering approaches
+- **Links**: [arXiv:2606.04871](https://arxiv.org/abs/2606.04871)
+
+### GeM-NR
+- **ArXiv**: [2606.05142](https://arxiv.org/abs/2606.05142)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Rendering
+- **Core Innovation**: Generalizable Neural Rendering with geometry-aware feature matching
+- **Links**: [arXiv:2606.05142](https://arxiv.org/abs/2606.05142)

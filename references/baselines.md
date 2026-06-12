@@ -8,9 +8,9 @@
 |---|---|---|---|---|
 | NeRF | 2020 | ECCV 2020 | ~31 dB (B) / ~25 dB (360) | 体渲染基线 |
 | Mip-NeRF 360 | 2022 | NeurIPS 2022 | ~33 dB (B) / ~27.5 dB (360) | 反锯齿基线 |
-| 3DGS | 2023 | ACM TOG | ~33 dB (B) / ~27.2 dB (360) | 实时基线 |
+| 3DGS | 2023 | ACM TOG | ~33 dB (B) / 27.21 dB (360) [30K] | 实时基线；详见 benchmark-data.md |
 | Instant-NGP | 2022 | ACM TOG | ~31 dB (B) / ~25 dB (360) | 速度基线 |
-| Mip-Splatting | 2024 | CVPR Best Student | ~28.5 dB (360) | Anti-aliasing |
+| Mip-Splatting | 2024 | CVPR Best Student | ~28.5 dB (360) | Anti-aliasing；无T&T数据 |
 | 2DGS | 2024 | SIGGRAPH | ~28.0 dB (360) | Geometry quality |
 | Scaffold-GS | 2023 | ICCV | ~25.0 dB (360) | Anchor-based |
 
@@ -54,6 +54,16 @@
 | WildGS-SLAM | 2025 | CVPR | Dynamic environment SLAM | 53 citations |
 | S3PO-GS | 2025 | ICCV | Outdoor SLAM | Scale consistency |
 | Flow4DGS-SLAM | 2026 | arXiv | 4DGS + optical flow SLAM | — |
+
+### 反射/透明场景重建方法
+
+| 方法 | 年份 | 发表 | 方向 |
+|---|---|---|---|
+| 3DReflecNet | 2026 | CVPR 2026 | 反射/透明3D重建基准，揭示3种NeRF/3DGS灾难性失败模式 |
+| Spec-Gaussian | 2024 | NeurIPS | 各向异性外观建模 |
+| NegGS | 2025 | Inf. Sciences | 负颜色基元 |
+| RT-Splatting | 2024 | — | 透明体渲染 |
+| SparseOIT | 2024 | — | Order-independent透明度合成 |
 
 ## 常用数据集
 
