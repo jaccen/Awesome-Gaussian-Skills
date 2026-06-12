@@ -1,5 +1,4 @@
-
-## Newly Added (May 2026 Expansion)
+﻿## Newly Added (May 2026 Expansion)
 
 
 ### Robustness & Regularization
@@ -974,3 +973,55 @@
 - **Category**: Rendering
 - **Core Innovation**: Generalizable Neural Rendering with geometry-aware feature matching
 - **Links**: [arXiv:2606.05142](https://arxiv.org/abs/2606.05142)
+
+### RAF
+- **ArXiv**: [2605.25980](https://arxiv.org/abs/2605.25980)
+- **Venue**: CVPR 2026 Findings
+- **Year**: 2026
+- **Category**: Simulation / Physics
+- **Core Innovation**: Representation Abstraction Framework: bridges 3DGS and physics engines (MPM/SPH/PBD); UE5 rendering integration; scene-level heterogeneous physics simulation
+- **Links**: [arXiv:2605.25980](https://arxiv.org/abs/2605.25980)
+
+### FreeForm
+- **ArXiv**: [2605.29318](https://arxiv.org/abs/2605.29318)
+- **Venue**: CVPR 2026
+- **Year**: 2026
+- **Category**: Elastic Deformation
+- **Core Innovation**: Particle-skinned eigenmodes for elastic deformation on 3DGS without mesh; modal analysis on Gaussian particles enables real-time elastic response
+- **Links**: [arXiv:2605.29318](https://arxiv.org/abs/2605.29318)
+
+### TRELLIS.2
+- **Venue**: CVPR 2026 (Best Student Paper)
+- **Year**: 2026
+- **Category**: Generation / Foundation
+- **Core Innovation**: 4B-parameter native 3D generation model; 17s PBR generation; structured latent representation for high-quality 3D asset creation
+- **Links**: [Project Page](https://microsoft.github.io/TRELLIS/)
+
+### SAM 3D
+- **Venue**: CVPR 2026 (Honorable Mention, Meta)
+- **Year**: 2026
+- **Category**: Foundation / Reconstruction
+- **Core Innovation**: Single-image 3D reconstruction foundation model; extends SAM paradigm to 3D; zero-shot 3D understanding and reconstruction
+- **Links**: [Meta AI](https://ai.meta.com/)
+
+### FreeArtGS
+- **ArXiv**: [2603.22102](https://arxiv.org/abs/2603.22102)
+- **Venue**: arXiv 2026
+- **Year**: 2026
+- **Category**: Articulated / Dynamic
+- **Core Innovation**: Articulated GS under free-moving scenario; handles unconstrained articulated object motion without controlled capture
+- **Links**: [arXiv:2603.22102](https://arxiv.org/abs/2603.22102)
+
+### ArtGS
+- **Venue**: IEEE 2026
+- **Year**: 2026
+- **Category**: Articulated / Interactive
+- **Core Innovation**: Interactive visual-physical modeling with 3DGS for articulated objects; physics-aware rendering + interaction
+- **Links**: [IEEE](https://ieeexplore.ieee.org/)
+
+### PARTICULATE
+- **Venue**: CVPR 2026
+- **Year**: 2026
+- **Category**: Articulated / Feed-Forward
+- **Core Innovation**: Feed-forward 3D object articulation from static mesh input; predicts articulation structure and parameters without per-object optimization
+- **Links**: [CVPR 2026](https://cvpr.thecvf.com/)

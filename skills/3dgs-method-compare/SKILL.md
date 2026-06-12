@@ -1,13 +1,13 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 648+ methods across 25 categories."
-version: 1.9.0
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 660+ methods across 25 categories."
+version: 2.0.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 648+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 660+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -29,6 +29,7 @@ When comparing methods, analyze across the following dimensions:
 - Range: [0, 1] / [-1, 1] / unbounded / sigmoid / tanh
 - Signed support: Yes (signed α) / No (standard GS)
 - Negative mechanism: Negative color (NegGS) / Negative opacity (signed) / None
+- Representation Abstraction (RAF): Direct 3DGS / Physics engine abstraction (MPM/SPH/PBD multi-solver bridge)
 
 ### 3. Color Representation
 - Spherical Harmonics order: 0/1/2/3
@@ -101,6 +102,7 @@ When comparing methods, analyze across the following dimensions:
 | LeGS | arXiv'26 | 3D anisotropic | RL-controlled | RL-based learnable density control replacing heuristics; O(N) reward |
 | CAdam | SIGGRAPH'26 | 3D anisotropic | Context-adaptive | Context-adaptive densification for generative distillation; avoids over-densification from transient noise |
 | SNS | arXiv'26 (2605.15010) | Skew-Normal | [0,1] | Skew-Normal primitive replacing symmetric Gaussian kernels; continuous interpolation between symmetric Gaussian ↔ Half-Gaussian via learnable skewness |
+| RAF | CVPR'26 (Findings) | 3D anisotropic + physics | Engine-abstracted | 3DGS→physics engine abstraction; MPM/SPH/PBD multi-solver bridge for simulation-aware rendering |
 
 ### Signed / Decomposed Methods
 
@@ -166,6 +168,7 @@ When comparing methods, analyze across the following dimensions:
 | ArtifactWorld | arXiv'26 (2604.12251) | Artifact images | Restored video | Video generation for artifact restoration |
 | SceneGen-LLMRL | arXiv'26 (2605.05711) | Language | Interactive 3D scene | LLM-RL coupling for unified 3D scene generation + immersive interaction |
 | ROAR-3D | arXiv'26 (2605.21121) | Text/image | Multi-view 3D | Token-wise view routing for multi-view 3D generation |
+| TRELLIS.2 | CVPR'26 (Best Student Paper) | Text/image | 4B native 3D model | 17s PBR generation; 4B parameter native 3D generation model |
 
 ### Language / Semantic
 
@@ -178,6 +181,7 @@ When comparing methods, analyze across the following dimensions:
 | GLMap | CVPR'26 | Multi-scale semantics | Per-Gaussian language features | Gaussian-Language Map; zero-shot navigation |
 | NG-GS | arXiv'26 (2604.14706) | NeRF-guided | Per-Gaussian segmentation | NeRF-guided GS segmentation |
 | PointGS | CVPR'26 | SAM masks (contrastive distillation) | Per-Gaussian semantic features | 3DGS as unified intermediate for unsupervised 3D point cloud segmentation; SAM→3D contrastive learning |
+| ReLaGS | CVPR'26 (2603.17605) | Language model | Per-Gaussian language features | Open-vocabulary 3D reasoning without per-scene training; language-guided GS |
 
 ### Feed-Forward Methods
 
@@ -198,6 +202,7 @@ When comparing methods, analyze across the following dimensions:
 | VolSplat | arXiv'25 (2509.19297) | Voxel-aligned | Single-pass | Shared voxel-space Gaussian prediction for multi-view consistency |
 | SplatWeaver | arXiv'26 (2605.07287) | Variable | Single-pass | Cardinality Gaussian Expert Routing (Null/1/2/3 experts per pixel) + DWT frequency prior; 30% Gaussian budget with +1.02 dB PSNR over AnySplat |
 | ArtSplat | arXiv'26 (2605.24304) | Per-part Gaussians | Single-pass | First feed-forward articulated 3DGS; predicts per-part Gaussians + joint parameters from monocular video; enables zero-shot articulated reconstruction |
+| SR3R | CVPR'26 | Variable | Single-pass | Super-resolution + feed-forward GS; joint SR and 3DGS reconstruction |
 | NoPo4D | arXiv'26 (2605.22190) | 4D Gaussians | Single-pass | Pose-free feed-forward 4DGS; eliminates camera pose dependency for dynamic scene reconstruction |
 | BEA-GS | CVPR'26 (Highlight, 2605.09662) | Object Gaussians | Single-pass | Object extraction from complex 3DGS scenes; CVPR 2026 Highlight |
 | TokenGS | arXiv'26 (2604.15239) | Learnable tokens | Single-pass | Learnable Gaussian tokens replacing fixed MLP decoding; resolution-adaptive primitive allocation |
@@ -264,10 +269,17 @@ When comparing methods, analyze across the following dimensions:
 | GSDrive | arXiv'26 | Driving RL | 3DGS environment for reinforcing driving policies |
 | GeoQuery | SIGGRAPH'26 | Sparse-view NVS | Geometry-guided cross-view attention with geometry-aligned proxy queries from predicted depth |
 | PairDropGS | arXiv'26 | Sparse-view NVS | Paired dropout-induced consistency regularization with progressive scheduling |
+| DropAnSH-GS | CVPR'26 | Sparse-view NVS | Anchor dropout + SH regularization for robust sparse-view reconstruction |
 | VidSplat | SIGGRAPH'26 | Sparse-view NVS | Training-free generative framework leveraging video diffusion priors with iterative confidence refinement |
 | OCH3R | arXiv'26 (2605.13018) | Single RGB | Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians |
+| SAM 3D | CVPR'26 (Honorable Mention) | Single image | Single-image 3D foundation model by Meta; general-purpose 3D reconstruction |
 
 ### Dynamic / 4DGS Methods
+
+_Multi-solver comparison sub-dimension for dynamic methods:_
+- **Unified Query Mechanism** (D4RT): Single unified query architecture for 4D reconstruction, eliminating separate static/dynamic pipelines; 200+ FPS inference
+- **Separate Deformation Fields**: Traditional approach with independent static + deformation modules
+- **Physics-Based**: MPM/SPH solvers grounding dynamics in physical simulation (RAF, ParticleGS)
 
 | Method | Venue | Primitive | Rendering | Key Feature |
 |--------|-------|-----------|-----------|-------------|
@@ -292,6 +304,8 @@ When comparing methods, analyze across the following dimensions:
 | DP-GES | arXiv'26 (2605.25345) | Surfel | Depth Peeling (sort-free) | Sort-free surfel rendering via depth peeling; eliminates sorting bottleneck for semi-transparent surfaces |
 | 4D-GSW | arXiv'26 (2605.22342) | 4D anisotropic | Kinematic-aware watermarking | Kinematic-aware 4DGS watermarking; embeds identity into dynamic Gaussian trajectories |
 | RoVES | arXiv'26 (2605.25373) | 3D anisotropic (physics-aware) | Physics-conditioned editing | Physics-aware driving scene editing; enforces physical constraints during scene manipulation |
+| D4RT | CVPR'26 (Best Paper, 2512.08924) | 4D anisotropic (unified query) | Unified query 4D reconstruction | Unified query mechanism for 4D reconstruction; 200+ FPS; CVPR 2026 Best Paper |
+| FreeForm | CVPR'26 (2605.29318) | 3D anisotropic + eigenmodes | Physics/elastic deformation | Particle-skinned eigenmodes for 3DGS elastic deformation; physics-driven articulation |
 
 ### Human & Avatar Methods
 
@@ -304,6 +318,14 @@ When comparing methods, analyze across the following dimensions:
 | D-Rex | SIGGRAPH'26 (2604.27871) | White-light avatar + target illumination | Decoupled relighting via LoRA fine-tuned video diffusion post-process; applicable to any white-light avatar system |
 | PiG-Avatar | arXiv'26 (2605.20185) | Image + pose | Volumetric canonical Gaussian avatars with part-indexed Gaussian fields |
 | Latent Dynamics | arXiv'26 (2605.21478) | Image + motion | Force decomposition for clothing animation; latent dynamics prediction |
+
+### Articulated Object Methods
+
+| Method | Venue | Input | Key Feature |
+|--------|-------|-------|-------------|
+| FreeArtGS | arXiv'26 (2603.22102) | Multi-view video | Free-moving articulated GS; unconstrained articulation modeling |
+| ArtGS | IEEE'26 | Multi-view video | Visual-physical modeling with 3DGS; joint visual appearance + physical constraints |
+| PARTICULATE | CVPR'26 | Monocular video | Feed-forward 3D object articulation; single-pass articulated reconstruction |
 
 ### World Models & Spatial Intelligence
 
@@ -349,6 +371,7 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | GEMM-GS | DAC'26 (2604.02120) | Tensor Core GEMM | GPU acceleration via Tensor Cores; 1.42x speedup |
 | Denoising-GS | arXiv'26 (2605.14880) | Spatial-aware denoising | Spatial-aware denoising formulation for 3DGS optimization; spatial gradient + uncertainty-based pruning |
 | AdpSplit | arXiv'26 (2605.06876) | Error-driven adaptive split | Error-driven adaptive split operator; 9-22% training time reduction as drop-in replacement |
+| BA-GS | CVPR'26 | Bayesian Adaptive | Bayesian Adaptive GS for SfM-free reconstruction; probabilistic camera-GS joint optimization |
 
 ### Real-Time NVS Methods
 

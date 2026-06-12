@@ -1,7 +1,7 @@
----
+﻿---
 name: nerf-to-3dgs-migrator
 description: "Migrate NeRF-based methods to 3DGS with step-by-step guidance. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry."
-version: 1.0.2
+version: 1.2.0
 author: jaccen
 tags: ["nerf", "3dgs", "gaussian-splatting", "migration", "code-template", "research"]
 ---
@@ -187,6 +187,8 @@ When migrating NeRF methods that use custom density/sampling strategies, conside
 | **Softmax-GS** (CVPR'26 Findings) | 2604.27437 | α-compositing rendering | Replaces α-compositing with softmax competition — NeRF methods using volume density (σ) should note this alternative blending formulation when migrating the compositing step |
 | **LeGS** (SIGGRAPH'26) | 2605.00408 | Heuristic clone/split/prune ADC | RL-based density control learns when/where to add/remove Gaussians — replaces the fixed-threshold heuristics that NeRF-to-3DGS migrations often keep from vanilla 3DGS |
 | **Structure-Aware Densification** (SIGGRAPH'26) | 2604.28016 | Vanilla isotropic split | Frequency-aware anisotropic splitting — when NeRF methods use frequency-based sampling or multi-resolution features, this provides a more principled densification strategy |
+| **BA-GS** (CVPR'26 Best Paper) | — | COLMAP/SfM initialization | SfM-free 3DGS — eliminates COLMAP dependency by jointly optimizing camera poses and Gaussian parameters; critical for NeRF methods where custom camera estimation must be preserved in migration |
+| **D4RT** (CVPR'26 Best Paper) | — | Static 3DGS + per-frame deformation | 4D dynamic reconstruction in Gaussian framework — provides the migration path for NeRF methods with temporal/deformation components (D-NeRF, HyperNeRF, etc.) |
 
 ### Step 4: Training Adaptation
 
@@ -241,6 +243,10 @@ Key changes to the training loop:
 ### Code Skeleton
 [Minimal working code structure]
 ```
+
+## Knowledge Base
+
+This skill references a knowledge base of 660+ methods across 25 categories (updated for v0.3.2 cycle).
 
 ## Rules
 

@@ -113,6 +113,7 @@ Before designing experiments, extract:
 - EnerGS (if making outdoor robust reconstruction with partial geometric priors claims)
 - HeroGS / Sparse-View 3DGS Wild (if making sparse-view NVS claims)
 - FieryGS (if making physics simulation or dynamic scene modeling claims)
+- D4RT (if making 4D dynamic reconstruction or temporal-consistent rendering claims)
 - Color-Encoded Illumination (if making high-speed or temporal reconstruction claims)
 - Fake3DGS (if making robustness/security/forensics claims)
 - 3DGS AD Safety Eval (if making autonomous driving perception fidelity claims)
@@ -123,9 +124,11 @@ Before designing experiments, extract:
 - SVGS (if making single-view editing or text-guided 3D manipulation claims)
 - GS-Surrogate (if making simulation visualization surrogate or rendering approximation claims)
 - Pi-GS (if making reference-free sparse-view novel view synthesis claims)
+- DropAnSH-GS (if making sparse-view reconstruction with anchor-guided hashing claims)
 - FreeFix (if making diffusion-guided refinement or post-processing enhancement claims)
 - Flow4DGS-SLAM (if making dynamic SLAM or temporal consistency claims)
 - GGD-SLAM (if making generalizable dynamic SLAM or factor graph optimization claims)
+- BA-GS (if making SfM-free or COLMAP-free reconstruction claims)
 - GaussianPile (if making volumetric medical GS or CT reconstruction claims)
 - CAdam (if making generative distillation or context-adaptive densification claims)
 
@@ -271,5 +274,6 @@ Generate a complete experiment plan:
 2. **Be realistic**: Don't claim "state-of-the-art" unless metrics clearly support it.
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
 4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
+5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 660+ methods across 25 categories.
 
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

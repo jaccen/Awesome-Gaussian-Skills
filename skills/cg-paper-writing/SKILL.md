@@ -1,7 +1,7 @@
----
+﻿---
 name: cg-paper-writing
 description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues. Multi-agent adversarial review, citation integrity gates, style calibration."
-version: 2.0.0
+version: 2.1.0
 author: jaccen
 tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
 ---
@@ -394,6 +394,28 @@ End each section with: how existing work differs from yours.
 | CVPR 2026 | 2D-SuGaR | 2605.00569 | Surface-aware 2DGS with depth/normal priors，改进表面提取质量 |
 | arXiv 2026 | GETA-3DGS | 2605.02086 | Joint pruning + quantization for 3DGS compression |
 | arXiv 2026 | GOR-IS | 2605.00498 | Intrinsic decomposition editing for Gaussian scenes |
+| CVPR 2026 | ReLaGS | — | Language-guided 3D reasoning with Gaussian representation, LLM-driven 3D scene understanding |
+| CVPR 2026 Best Paper | D4RT | — | 4D dynamic reconstruction, temporal-consistent Gaussian representation |
+| CVPR 2026 Best Student Paper | TRELLIS.2 | — | Structured 3D generation combining generative modeling with 3DGS |
+
+## CVPR 2026 趋势与写作指导
+
+CVPR 2026接受了116篇3DGS相关论文，为历史最高。以下趋势对论文写作有直接影响：
+
+**Award Papers**:
+- Best Paper: D4RT -- 4D动态重建，核心创新在于时序一致性的高斯表示
+- Best Student Paper: TRELLIS.2 -- 结构化3D生成，将生成式建模与3DGS结合
+
+**三大新兴方向**（投稿时可重点凸显差异化）：
+1. **4D Reconstruction**: 从静态3D到动态4D，时序一致性与动态高斯表示
+2. **Physics-for-3DGS**: 物理仿真与渲染融合，包括流体、弹性体、刚体动力学
+3. **Articulated 3DGS**: 铰接式物体重建与交互，可驱动的3D资产表示
+
+**写作建议**：若论文属于上述方向，在Introduction和Related Work中需明确与CVPR 2026同类工作的差异；若不属于，需说明本文为何在116篇洪流中仍有独特价值。
+
+**ReLaGS**范例：ReLaGS (Language-guided 3D Reasoning with Gaussian Scene)展示了语言驱动3D推理论文的结构范式 -- 引言从LLM+3D感知融合动机切入，方法部分先定义Gaussian-Language对齐模块再展开推理链，实验需包含零样本3D QA与开放词汇分割双重验证。
+
+Knowledge base: 660+ methods across 25 categories (updated for v0.3.2 cycle).
 
 ## 多Agent协同与对抗审稿机制
 

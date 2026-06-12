@@ -1,7 +1,7 @@
 ﻿---
 name: patent-software-ip
 description: "Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization, prior-art search, and self-check."
-version: "2.0.0"
+version: "1.1.0"
 author: jaccen
 tags: ["patent", "software-copyright", "ip", "ai", "big-data", "3d-vision", "generative-ai", "embodied-ai", "nlp", "rag", "ai-engineering", "ai-safety"]
 ---
@@ -224,6 +224,21 @@ Deep-dive reference files for domain-specific patent writing rules, claim templa
 | references/ai-patent-claims-guide.md | 11 claim templates (T1-T14) | Full legal claim text per template: method/system/medium triples with dependent claims; Big Data T10-T14 included |
 | references/ai-patent-special.md | Patentability framework, 8 risk domains, CPC codes, desensitization rules | AI+Big Data patentability risk assessment; domain mapping; figure requirements; industry desensitization; CPC classification (7.1-7.7); 9-domain quick reference |
 | references/ai-software-copyright-guide.md | Type detection, source file priority, 5 domain templates, FAQ | Decision tree for 10+ project types; source code priority by domain; Big Data dedicated template (section 3.5); desensitization checklist; common pitfalls |
+## 3DGS Patentable Innovation Examples (CVPR 2026)
+
+| Innovation | Method | Patentable Aspect | Claim Template |
+|-----------|--------|------------------|---------------|
+| 3DGS-Physics Engine Bridge | RAF (Representation Abstraction Framework) | Bidirectional mapping between Gaussian primitives and physics simulation state; claim the abstraction layer + synchronization protocol | T2 (3D Vision) + T8 (Embodied) |
+| Elastic Eigenmode Deformation | FreeForm | Eigenmode-based elastic deformation for Gaussians; claim the modal analysis pipeline + real-time deformation update | T2 (3D Vision) |
+
+CVPR 2026 accepted 116 3DGS-related papers, creating a surge of patentable innovations. When filing patents for 3DGS methods:
+1. The 4D reconstruction wave (D4RT and followers) creates IP opportunities in temporal Gaussian representations
+2. Physics-integrated rendering (FieryGS, RAF) opens claims for simulation-rendering bridges
+3. Articulated 3DGS methods generate IP around interaction primitives and joint representations
+4. File early -- the dense publication cohort means similar innovations may appear concurrently
+
+Knowledge base: 660+ methods across 25 categories (updated for v0.3.2 cycle).
+
 ## Phase D: Iterative Correction
 
 Identify -> Locate -> Targeted fix -> Save as v{N} -> Re-run affected self-check items only. Do NOT re-run full pipeline.

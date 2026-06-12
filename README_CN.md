@@ -1,16 +1,16 @@
-<div align="center">
+﻿<div align="center">
         
 # Awesome Gaussian Skills
 
-### 最全的3DGS论文目录 — 630+方法，25类别，交互式浏览器
+### 最全的3DGS论文目录 — 660+方法，25类别，交互式浏览器
 
 **你不需要翻20个仓库找3DGS论文。这是你唯一需要的那个——而且还有其他列表没有的AI工具。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-630+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-660+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-12-green.svg)](skills/)
-[![Bug Patterns](https://img.shields.io/badge/Bug模式-88+-red.svg)](skills/3dgs-code-reviewer/)
+[![Bug Patterns](https://img.shields.io/badge/Bug模式-97+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -20,7 +20,7 @@
 
 ## 本月新增 (2026年6月)
 
-最新更新（6月2日）：607+ → 630+ 方法，25个类别，88+ bug模式。+23新方法：**HiGS**（NVIDIA，15.8x层次化Tile渲染）、**DDF-GS**（3DGS常量时间射线查询，无需mesh即可全局光照）、**VEDAL**（变分剪枝，5.2x压缩）、**StreetNVS**（多传感器NVS）、**LEGS**（3DGS+机器人仿真）、**KDH-CAD**（知识-数据混合CAD，250样本92.6%）、**SEIG**（VLM→Blender程序）、**MORPHOS**（4D生成统一mesh/GS/NeRF）、**WebSpline**（样条轨迹）、**AlbedoEdit**（视频级反照率编辑）。Skills v0.3.0：Anthropic标准对齐 + 6个新bug模式。
+最新更新（6月12日）：648→660+ 方法，25个类别，97+ bug模式，13个AI技能。CVPR 2026大爆发：**D4RT**（最佳论文，统一4D重建+跟踪，200+ FPS）、**TRELLIS.2**（最佳学生论文，4B参数原生3D模型，17s PBR生成）、**SAM 3D**（荣誉提名，Meta单图3D重建基础模型）、**RAF**（表示抽象框架，3DGS↔物理引擎桥接）、**FreeForm**（粒子蒙皮本征模弹性变形）、**ReLaGS**（关系语言GS，无需逐场景训练的开放3D推理）、**FreeArtGS/ArtGS/PARTICULATE**（铰接式3DGS三连发）。Skills v0.3.2：8个技能更新 + MCP工具+3 + 4个新bug模式。
 
 | 方法 | ArXiv | 类别 | 核心创新 |
 |------|-------|------|----------|
@@ -47,15 +47,15 @@
 
 你不应该为每篇新3DGS论文重新搭建相同的RAG管线，或手动在10个维度上对比20个变体，或投稿后才发现CUDA kernel有已知bug。
 
-**2023年以来已有630+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
+**2023年以来已有660+篇3DGS论文，研究人员在AI Agent几秒就能完成的任务上浪费数小时。** 然而ClawHub 13,000+技能中几乎为零覆盖3D重建/计算机图形学。
 
-**Awesome Gaussian Skills** 是一套3D空间智能开源工具箱——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置630+方法的领域知识。
+**Awesome Gaussian Skills** 是一套3D空间智能开源工具箱——复制技能文件，你的AI Agent就能读论文、比方法、审代码、设计实验、写论文、生成知识产权文档，且内置660+方法的领域知识。
 
 | 你做的事 | 没有本项目 | 有本项目 |
 |----------|-----------|---------|
 | 读新论文 | 30–60分钟手翻 | 几秒出结构化摘要 |
 | 对比GS变体 | 手工搭对比表 | 10+维度自动对比 |
-| 审查3DGS代码 | 漏掉已知bug模式 | 88+模式自动检测 |
+| 审查3DGS代码 | 漏掉已知bug模式 | 97+模式自动检测 |
 | 设计实验 | 猜基线和消融 | 顶会定制实验方案 |
 | NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
 
@@ -65,23 +65,23 @@
 |----------|-------------|----------------------|
 | 浏览论文 | 静态Markdown表格 | 交互式浏览器：搜索、筛选、排序 |
 | 对比方法 | 同时打开2篇论文对照 | 10+维度自动对比 |
-| 避免代码bug | 提交后才发现 | 88+已知bug模式自动检测 |
+| 避免代码bug | 提交后才发现 | 97+已知bug模式自动检测 |
 | 设计实验 | 猜基线和消融方案 | 顶会定制实验方案 |
 | NeRF→3DGS迁移 | 试错式移植 | 逐步迁移指南 |
-| CAD↔3DGS转换 | 无覆盖 | 35+方法转换管线 |
+| CAD↔3DGS转换 | 无覆盖 | 52+方法转换管线 |
 | 专利申请 | 从零手写 | 自动生成权利要求与说明书 |
 
 > **一句话总结：** 其他列表只给你论文名称，我们给你论文名+真正帮你加速研究的AI工具。
 
 ## 特性
 
-- **630+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
+- **660+ 方法知识库**：最全面的 3DGS 变体编目，涵盖 25 个类别，含 arXiv ID、发表 venue、核心创新与代码链接。每日更新。
 - **交互式浏览器**：[立即体验](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 按类别筛选、按引用排序、点击卡片查看详情
 - **12 个AI技能**（进阶）：论文阅读、方法对比、代码审查、空间智能、MCP渲染，适配 OpenClaw、Claude Code、Cursor
 - **零配置**：纯 Markdown 文件，无需依赖
 - **持续维护**：每日 arXiv 跟踪
 
-## 知识库（630+ 方法）
+## 知识库（660+ 方法）
 
 | 分组 | 类别数 | 关键方向 |
 |------|--------|---------|
@@ -91,12 +91,12 @@
 | **动态与空间** | 动态、HDR、SLAM、稀疏视角 | DSD-GS, WebSpline, GGD-SLAM, PanoPlane... |
 | **应用** | 人体/头像、编辑、重光照、CAD、跨领域、仿真、机器人等14类 | AlbedoEdit, KDH-CAD, LEGS, TIDES, 3DEditSafe... |
 
-> [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 秒搜630+方法，按类别筛选、按引用排序。
+> [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/) — 秒搜660+方法，按类别筛选、按引用排序。
 >
 > 下载完整数据库：[`3dgs-methods-overview.csv`](3dgs-methods-overview.csv) | 完整分析：[`references/3dgs-methods-overview.md`](references/3dgs-methods-overview.md)
 
 <details>
-<summary><strong>完整类别表（25类别，630+方法）</strong></summary>
+<summary><strong>完整类别表（25类别，660+方法）</strong></summary>
 
 **核心表示**
 
@@ -157,7 +157,7 @@
 
 </details>
 
-> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 630+ 方法。
+> **无需安装** — [立即体验交互式方法浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)，秒搜 660+ 方法。
 
 ## 快速开始
 
@@ -225,7 +225,7 @@ Agent: [从基元表示、不透明度处理、颜色机制、频率建模、
 - 多方法并排对比
 - 10+ 对比维度（渲染公式、基元、损失、速度等）
 - 识别设计权衡
-- 内置 630+ 方法的知识库
+- 内置 660+ 方法的知识库
 
 ### 3. `3dgs-code-reviewer` — 代码审查
 
@@ -241,7 +241,7 @@ Agent: [检查 alpha 混合顺序、tile 渲染、CUDA 显存合并、
 - 审查 CUDA kernel 的正确性和性能
 - 检查渲染管线（可微光栅化、alpha 混合）
 - 验证损失函数实现
-- 常见 bug 模式检测（88+ 已知模式）
+- 常见 bug 模式检测（97+ 已知模式）
 
 ### 4. `3dgs-experiment-planner` — 实验设计助手
 
@@ -466,7 +466,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # 交互式文生3DGS Web演示
 │   └── index.html
 ├── references/
-│   ├── 3dgs-methods-overview.md # 索引（25 个类别 630+ 方法）
+│   ├── 3dgs-methods-overview.md # 索引（25 个类别 660+ 方法）
 │   ├── methods-core.md         # 核心方法（基础→动态）
 │   ├── methods-semantic-editing.md # 语义、编辑、材质、头像
 │   ├── methods-systems-apps.md # 系统、应用、跨领域
@@ -508,7 +508,7 @@ Awesome-Gaussian-Skills/
 
 ## 核心论文创新点汇总
 
-> 基于知识库630+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
+> 基于知识库660+方法的系统性空白分析生成。每个创新点含具体问题、方法思路与实现路径。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition / 计算机学报 / 软件学报
 
 <details>
@@ -654,8 +654,9 @@ Awesome-Gaussian-Skills/
 - [x] v0.2.12 — 每日更新: 559→574+方法, +15新(ArtSplat首个前馈铰接3DGS 400x加速, BEA-GS CVPR'26 Highlight物体提取, F-RNG前馈可重光照25x加速, CodecSplat 20-108 KiB/场景, TriSplat三角基元mesh导出, VoxelGS scaffold锚定高斯+体素SDF, TokenGS可学习令牌, NoPo4D无位姿前馈4DGS, COSY组合头部编辑, R5DGS语义4DGS刚性约束, RiGS刚性感知单目4DGS, Underwater360/GlowGS/DelowlightSplat退化特定3DGS, RoVES物理感知驾驶编辑, 4D-GSW 4DGS水印, DP-GES深度剥离面元渲染); 71+ bug模式; 25类别 (2026年5月)
 - [x] v0.2.13 — 每日更新: 574→591+方法, +17新(EulerianGS CVPR'26, GAVIS CVPR'26, DGSG-Mind, DeGO CVPR'26, TWINGS CVPR'26, BitC-3DGS, FRUC, IDESplat CVPR'26, PhyGenHOI, MonoPhysics, FreeForm CVPR'26, TDg, SRUG, NeuROK CVPR'26, PocketGS, X-GS, WeatherCity); 79+ bug模式; 25类别 (2026年5月)
 - [x] v0.2.14 — 每日更新: 591→607+方法, +16新(HeadsUp Apple UV参数化头部, DéjàView循环Transformer, View-Dependent Splatting Kernels SIGGRAPH'26, SAM3D-Phys生成先验+物理, Gaga 3D感知记忆库, CapTalk文语驱动头像, SurfFill LiDAR+面元, CLEAR-NeRF无界场景, AnySurf/AssetGen/DinoComplete生成+补全, Ambient-Robust IR RGB-NIR, Multi-view Consistent 3DGS Head CVPR'26, Gaussian-Enhanced Surfel深度剥离); 82+ bug模式; 25类别 (2026年6月)
-- [x] v0.3.0 — 技能标准对齐(Anthropic Claude Code / OpenClaw) + 每日更新: 607→630+方法, +23新(HiGS NVIDIA 15.8x渲染, DDF-GS射线查询, VEDAL变分剪枝, StreetNVS多传感器NVS, LEGS具身GS仿真, KDH-CAD知识-数据混合, SEIG VLM→Blender, MORPHOS 4D生成, WebSpline样条轨迹, AlbedoEdit视频编辑, MRO-GWM世界模型, DSD-GS 700FPS, VG²GT体素-高斯, TIDES事件仿真, Triangle Splatting SLAM, DeblurNVS, GeoSAM-3D, SplatShot头像, GSDeformer变形, MidSurfNet中面, 3DCodeBench基准, Dynamic Mesh-Gaussian物理); 88+ bug模式; 25类别 (2026年6月)
-- [ ] v0.3.1 — 新增 `3dgs-benchmark-runner` 技能（自动化基准测试）
+- [x] v0.3.0 — 技能标准对齐(Anthropic Claude Code / OpenClaw) + 每日更新: 607→660+方法, +23新(HiGS NVIDIA 15.8x渲染, DDF-GS射线查询, VEDAL变分剪枝, StreetNVS多传感器NVS, LEGS具身GS仿真, KDH-CAD知识-数据混合, SEIG VLM→Blender, MORPHOS 4D生成, WebSpline样条轨迹, AlbedoEdit视频编辑, MRO-GWM世界模型, DSD-GS 700FPS, VG²GT体素-高斯, TIDES事件仿真, Triangle Splatting SLAM, DeblurNVS, GeoSAM-3D, SplatShot头像, GSDeformer变形, MidSurfNet中面, 3DCodeBench基准, Dynamic Mesh-Gaussian物理); 97+ bug模式; 25类别 (2026年6月)
+- [x] v0.3.1 — 每日更新: 630→660+方法, +18新(ZipSplat, Geometry Gaussians, 3DReflecNet CVPR'26, MeshFlow CVPR'26 Highlight, MeshWeaver CVPR'26, UniCAD, Anchor3R, SimuScene, 3DThinkVLA, SymTRELLIS, HSP/GemNR/T2Mo/LetCamsGo/MetaPoint/PureLight + 2综述); 97+ bug模式(#89-#93); 6个技能更新; Token-based分类加入方法对比 (2026年6月
+- [x] v0.3.2 — 每日更新: 648→660+方法, +12新(RAF, FreeForm, D4RT CVPR Best Paper, TRELLIS.2 Best Student Paper, SAM 3D Honorable Mention, ReLaGS, FreeArtGS, ArtGS, PARTICULATE, DropAnSH-GS, BA-GS, SR3R); 97+ bug模式(#94-#97); 8个技能更新; MCP工具+3 (simulate_physics, query_4d_scene, deform_elastic) (2026年6月))
 - [ ] v0.4 — 高级 `3dgs-spatial-agent` 技能增强（知识约束CAD via KDH-CAD, DDF-GS射线查询, SEIG程序化生成）
 - [ ] v0.5 — MCP协议集成：Agent控制的Three.js/3DGS渲染管线 + DDF-GS射线查询MCP工具
 - [ ] v1.0 — ClawHub 正式收录 + CI/CD 集成 + anthropics/skills PR

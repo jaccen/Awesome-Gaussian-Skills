@@ -1,6 +1,6 @@
 ﻿name: 3dgs-engineering-guide
-description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls"
-version: 1.4.0
+description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 660+ methods."
+version: 1.5.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
@@ -414,14 +414,14 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Volumetric Medical | GaussianPile (slice-aware PSF projection for CT/cBCT) |
 | Dynamic SLAM | Flow4DGS-SLAM (optical flow-guided 4DGS temporal consistency), GGD-SLAM (ICRA 2026, generalizable motion model for dynamic SLAM) |
 | Inspection | EnerGS, RGS, E2EGS |
-| Simulation | PhysGaussian, Gaussian Splashing, GS-Playground, **SAM3D-Phys** [2605.30239] (generative 3D priors + physics for simulatable objects) |
+| Simulation | PhysGaussian, Gaussian Splashing, GS-Playground, **SAM3D-Phys** [2605.30239] (generative 3D priors + physics for simulatable objects), **RAF** (CVPR 2026 Findings, representation abstraction framework bridging 3DGS and physics engines; MPM/SPH/PBD multi-solver coupling; UE5 rendering; recommended for production-grade 3DGS physics interaction), **FreeForm** (CVPR 2026, particle-skinned eigenmodes for elastic deformation on 3DGS; enables soft-body simulation without mesh proxies) |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS, **Ambient-Robust Inverse Rendering** [2605.30250] (active RGB-NIR for material decomposition) |
 | Cross-platform | VkSplat, GSeurat (Vulkan C++23), msplat (Metal), tortuise (Rust CPU), brush (Rust/WebGPU, 4.3k stars), AdaGScale, BlitzGS (distributed) |
 | Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 30% budget reduction, 301 FPS, no calibration; code: github.com/yecongwan/SplatWeaver), ZPressor [2505.23734] (100+ input-view scalability via bottleneck-aware compression), VolSplat [2509.19297] (voxel-aligned prediction for multi-view consistency), PM-Loss [2506.05327] (pointmap loss for feed-forward depth quality), **DéjàView** [2605.30215] (looped transformer, inference-time compute knob K), **HeadsUp** [2605.04035] (UV-parameterized head, 10K+ subjects, Apple) |
 | BIM/CAD | BrepGaussian, CADFS, GS-CAD, GaussCAD, KDH-CAD (knowledge-data hybrid, arXiv:2606.01702) |
 | Editing | GaussianEditor, ObjectMorpher, TransSplat, AlbedoEdit (video-level albedo editing, arXiv:2606.01362) |
 | Security | GuardMarkGS (watermarking + edit deterrence) |
-| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency), DP-GES (sort-free surfel rendering via depth peeling, ArXiv 2605.25345), **View-Dependent Splatting Kernels** [2605.25426] (learned view-dependent kernels, SIGGRAPH 2026), DDF-GS (ray-query GI via Gaussian field, arXiv:2606.00817) |
+| Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency), DP-GES (sort-free surfel rendering via depth peeling, ArXiv 2605.25345), **View-Dependent Splatting Kernels** [2605.25426] (learned view-dependent kernels, SIGGRAPH 2026), DDF-GS (ray-query GI via Gaussian field, arXiv:2606.00817), **D4RT** (CVPR 2026 Best Paper, differentiable rasterization milestone for 3DGS rendering pipeline) |
 | Streaming | CAGS (~7x VQ+LoD), AV1-3DGS (63% training reduction), PD-4DGS (progressive 4D streaming), MGS [2603.19234] (Matryoshka continuous LoD, single model multi-fidelity) |
 | Acceleration | AdpSplit [2605.06876] (error-driven adaptive split, drop-in for 9-22% training speedup), HiGS (NVIDIA, 15.8x rendering speedup, arXiv:2606.00352) |
 | Generative Optimization | CAdam (SIGGRAPH 2026, context-adaptive densification for generative distillation pipelines) |

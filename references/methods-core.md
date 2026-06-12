@@ -1,5 +1,4 @@
-
-# Core 3DGS Methods
+﻿# Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
 > Companion file: [3dgs-methods-overview.md](3dgs-methods-overview.md) (index) | [methods-semantic-editing.md](methods-semantic-editing.md) | [methods-systems-apps.md](methods-systems-apps.md)
@@ -1619,3 +1618,36 @@
 - **Year**: 2025
 - **Category**: Dynamic Scene Methods
 - **Core Innovation**: Second-generation 4DGS with improved temporal deformation
+
+### D4RT
+- **Paper**: D4RT: Unified Query-Based 4D Reconstruction and Tracking
+- **Venue**: CVPR 2026 (Best Paper)
+- **ArXiv**: 2512.08924
+- **Core**: Unified query-based framework for simultaneous 4D reconstruction and tracking from monocular video
+- **Key Innovation**: Single architecture handles both 4D reconstruction and tracking; query-based design enables flexible output specification; 200+ FPS rendering; temporal coherence via learned query propagation
+- **Related**: 4DGS, Dynamic 3D Gaussians, Deformable-3DGS
+- **Links**: [arXiv:2512.08924](https://arxiv.org/abs/2512.08924)
+
+### DropAnSH-GS
+- **Paper**: DropAnSH-GS: Anchor Dropout with Spherical Harmonics Regularization for Sparse-View 3DGS
+- **Venue**: CVPR 2026
+- **Core**: Sparse-view 3DGS reconstruction with anchor dropout and SH regularization
+- **Key Innovation**: Anchor dropout prevents overfitting to sparse viewpoints; SH regularization constrains high-frequency color artifacts; achieves robust reconstruction from as few as 3 views
+- **Related**: Sparse-View, Scaffold-GS, 3DGS
+- **Links**: [arXiv](https://arxiv.org/)
+
+### BA-GS
+- **Paper**: BA-GS: Bayesian Adaptive Gaussian Splatting for SfM-Free Reconstruction
+- **Venue**: CVPR 2026
+- **Core**: Structure-from-Motion-free 3DGS reconstruction via Bayesian adaptive optimization
+- **Key Innovation**: Eliminates prerequisite SfM point cloud initialization; Bayesian uncertainty drives Gaussian densification and pruning; jointly optimizes camera poses and Gaussian parameters
+- **Related**: 3DGS, COLMAP-free, Sparse-View
+- **Links**: [arXiv](https://arxiv.org/)
+
+### SR3R
+- **Paper**: SR3R: Super-Resolution and Feed-Forward 3DGS Reconstruction
+- **Venue**: CVPR 2026
+- **Core**: Joint super-resolution and feed-forward 3D Gaussian Splatting reconstruction
+- **Key Innovation**: Unified pipeline combining single-image super-resolution with feed-forward 3DGS; SR enhances detail recovery before GS prediction; feed-forward architecture generalizes across scenes without per-scene optimization
+- **Related**: Feed-Forward Methods, ZipSplat, Anchor3R
+- **Links**: [arXiv](https://arxiv.org/)

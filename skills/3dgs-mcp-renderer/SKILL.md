@@ -2,7 +2,7 @@
 name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Prototype for Agent↔3DGS interaction."
 when_to_use: "MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering"
-version: 0.2.1
+version: 0.3.0
 author: jaccen
 tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive"]
 disable-model-invocation: true
@@ -158,6 +158,79 @@ Prototype specification for integrating MCP (Model Context Protocol) with 3DGS r
 
 **Limitation**: Requires DDF distillation step after 3DGS training (adds ~10 min for 52MB model)
 
+### Tool 7: `simulate_physics`
+
+MCP Tool: simulate_physics — Invoke external physics engine (MPM/SPH/PBD) on 3DGS scene via RAF-style representation abstraction; parameters: object_ids, force, solver_type; returns: updated Gaussian positions/covariances
+
+```json
+{
+  "name": "simulate_physics",
+  "description": "Invoke external physics engine (MPM/SPH/PBD) on 3DGS scene via RAF-style representation abstraction",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "object_ids": { "type": "array", "items": {"type": "integer"}, "description": "IDs of objects to simulate" },
+      "force": { "type": "object", "properties": {"linear": "array", "angular": "array"}, "description": "Applied force/torque" },
+      "solver_type": { "enum": ["mpm", "sph", "pbd", "rigid_body"], "description": "Physics solver backend" },
+      "dt": { "type": "number", "description": "Time step in seconds", "default": 0.016 },
+      "steps": { "type": "integer", "description": "Number of simulation steps", "default": 1 }
+    },
+    "required": ["object_ids", "solver_type"]
+  },
+  "output": { "type": "object", "properties": { "updated_positions": "array", "updated_covariances": "array", "energy": "number" } }
+}
+```
+
+**Use cases**: Physics-driven scene editing, collapse/fall simulation, fluid interaction with Gaussian objects
+
+### Tool 8: `query_4d_scene`
+
+MCP Tool: query_4d_scene — Query dynamic 3D scene at arbitrary (x,y,t) coordinates; returns: 3D position, flow vector, segmentation label; enables voice-driven temporal navigation
+
+```json
+{
+  "name": "query_4d_scene",
+  "description": "Query dynamic 3D scene at arbitrary (x,y,t) coordinates; enables voice-driven temporal navigation via D4RT unified query mechanism",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "x": { "type": "number", "description": "X coordinate in scene space" },
+      "y": { "type": "number", "description": "Y coordinate in scene space" },
+      "t": { "type": "number", "description": "Time index in dynamic sequence" },
+      "query_fields": { "type": "array", "items": {"enum": ["position_3d", "flow_vector", "segmentation_label", "depth"]}, "description": "Fields to return" }
+    },
+    "required": ["x", "y", "t"]
+  },
+  "output": { "type": "object", "properties": { "position_3d": "array [x,y,z]", "flow_vector": "array [dx,dy,dz]", "segmentation_label": "string", "depth": "number" } }
+}
+```
+
+**Use cases**: "What was here at time t=5?", temporal object tracking, voice-driven time scrubbing
+
+### Tool 9: `deform_elastic`
+
+MCP Tool: deform_elastic — Apply particle-skinned eigenmode deformation to 3DGS object; parameters: object_id, mode_indices, amplitudes; returns: deformed Gaussian positions
+
+```json
+{
+  "name": "deform_elastic",
+  "description": "Apply particle-skinned eigenmode deformation to 3DGS object (FreeForm-style elastic deformation)",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "object_id": { "type": "integer", "description": "ID of object to deform" },
+      "mode_indices": { "type": "array", "items": {"type": "integer"}, "description": "Eigenmode indices to activate" },
+      "amplitudes": { "type": "array", "items": {"type": "number"}, "description": "Amplitude per eigenmode" },
+      "interpolation": { "enum": ["linear", "smoothstep"], "description": "Interpolation method for deformation", "default": "smoothstep" }
+    },
+    "required": ["object_id", "mode_indices", "amplitudes"]
+  },
+  "output": { "type": "object", "properties": { "deformed_positions": "array", "eigenmode_energies": "array" } }
+}
+```
+
+**Use cases**: Elastic soft-body deformation, eigenmode-based shape editing, physically plausible object bending
+
 ## Voice-Driven Reconstruction Flow
 
 ```
@@ -243,8 +316,8 @@ Agent:
 ## Roadmap
 
 - [x] v0.1: MCP tool specification (this document)
-- [ ] v0.2: Node.js MCP server + gsplat.js adapter + DDF-GS cast_ray tool + HiGS backend
-- [ ] v0.3: Voice-to-MCP pipeline (Whisper → Agent → MCP → render)
+- [x] v0.2: Node.js MCP server + gsplat.js adapter + DDF-GS cast_ray tool + HiGS backend
+- [ ] v0.3: Voice-to-MCP pipeline (Whisper → Agent → MCP → render) + simulate_physics (RAF) + query_4d_scene (D4RT) + deform_elastic (FreeForm)
 - [ ] v0.4: Semantic querying (integrate OP2GS/Gaga for label-based selection)
 - [ ] v0.5: Real-time streaming (WebSocket-based progressive rendering)
 - [ ] v0.6: DDF-GS distillation integration (shadow/AO/reflection rendering)

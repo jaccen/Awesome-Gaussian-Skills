@@ -2,7 +2,7 @@
 name: 3dgs-spatial-agent
 description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
 when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS"
-version: 0.3.0
+version: 0.4.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
 allowed-tools: Read Grep Bash Glob
@@ -25,7 +25,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (648+ methods)
+3DGS Scene (660+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind
   │     │
@@ -50,6 +50,12 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
   │     ├── Joint discovery ──── Skeleton auto-discovery
   │     │
   │     └── Motion fields ──── Deformation fields per part
+  │
+  ├── Spatial Reasoning ──── RAF, FreeArtGS
+  │     │
+  │     ├── Visual→Physics abstraction ──── RAF (representation-aware forward mapping)
+  │     │
+  │     └── Free-motion articulation ──── FreeArtGS (ground-plane-free articulation reconstruction)
   │
   ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702]
   │     │
@@ -189,6 +195,9 @@ When processing a 3DGS scene, select the appropriate pathway based on scenario:
 | SA-3 | SH coefficient misinterpretation as material | Confusing view-dependent color (SH coefficients) with intrinsic material properties | Decompose SH into intrinsic (degree 0) and view-dependent (degree 1-3) components; only use degree 0 for material inference |
 | SA-4 | Spatial Query Mutex Deadlock in Multi-Agent Scene Editing | Agent hangs indefinitely when two concurrent spatial queries target overlapping Gaussian groups | Replace std::mutex with std::recursive_mutex in SceneGraph::query(); or adopt readers-writer lock where read-only queries share access |
 | SA-5 | Stale Gaussian Indices After Densification in CAD-in-the-Loop Pipeline | CAD extraction produces distorted geometry (mirrored faces, collapsed edges) after 3DGS densification step | Register CAD module as densification observer; on density control step, invalidate cached index maps and trigger re-extraction of Gaussian→mesh attribute mapping |
+| SA-6 | RAF Representation Round-Trip Drift | When using RAF-style visual→physics→visual round-trip, accumulated quantization error in geometry causes rendered images to shift progressively after each simulation step; no re-projection correction in place | Add re-projection correction after each physics step; quantize at physics resolution then upsample with error feedback; track drift metric per round-trip |
+| SA-7 | FreeArtGS Free-Motion Drift | Under free-moving articulated object reconstruction, Gaussian positions drift without ground-plane constraint; articulation joints accumulate position error over long sequences | Enforce ground-plane constraint as regularization loss; add joint-anchor drift penalty; periodic re-alignment via reference frame tracking |
+| SA-8 | PARTICULATE Mesh-to-Articulation Inconsistency | Feed-forward articulation prediction from mesh yields inconsistent joint axes when mesh has non-manifold edges; no topological validation before articulation fitting | Validate mesh manifoldness before articulation fitting; reject non-manifold edge regions from joint estimation; use topological cleanup (PyMeshLab) as preprocessing step |
 
 ## Rules
 

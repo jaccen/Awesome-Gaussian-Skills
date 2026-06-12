@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 93+ known bug patterns."
-version: 1.6.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 97+ known bug patterns."
+version: 1.7.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -12,7 +12,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (93+ known bug patterns)
+- Identify common 3DGS implementation pitfalls (97+ known bug patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -453,6 +453,30 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 93 | Autoregressive mesh vertex count drift | During autoregressive mesh generation, predicted vertex count diverges from target face count; no explicit termination condition causes over-generation (degenerate tiny faces) or under-generation (missing details); quality degrades significantly when count error >10% | (1) Add explicit face count token in sequence header as generation budget; (2) Apply count-aware stopping criterion: if remaining budget <5% and next vertex confidence < threshold, terminate. (3) Post-process: face merging for over-generation, subdivision for under-generation. Verify: measure face count accuracy on held-out test set. (MeshWeaver, arXiv:2606.04688, CVPR 2026) |
+
+### Physics Simulation Gradient Patterns (RAF)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 94 | Physics Abstraction Layer Gradient Disconnection | Simulation | RAF | When 3DGS particles pass through representation abstraction layer (visual→physics→visual), gradient backpropagation is severed at the physics kernel boundary, making end-to-end training impossible | Use differentiable physics bridge with custom autograd; ensure gradient continuity across abstraction layer boundaries; add surrogate gradient or straight-through estimator at physics kernel interface |
+
+### Eigenmode Deformation Patterns (FreeForm)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 95 | Eigenmode Basis Singularities in Particle Skinning | Physics | FreeForm | Particle-skinned eigenmode deformation fails when eigenvalues are degenerate (repeated eigenvalues), causing undefined deformation directions and mesh self-intersection | Add perturbation to degenerate eigenvalues (ε-nudge); use eigenvalue gap threshold to detect singularity; fall back to PCA-based deformation when eigenvalue ratio < threshold |
+
+### Bayesian Pose-Gaussian Optimization Patterns (BA-GS)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 96 | Bayesian Pose-Gaussian Coupling Collapse | Optimization | BA-GS | Joint Bayesian optimization of camera poses + Gaussians without SfM initialization can collapse to trivial solutions where all Gaussians cluster at origin | Initialize camera poses from SfM/ColMAP before joint optimization; add pose prior term to prevent degenerate solutions; use progressive coupling strategy that freezes poses for first N iterations |
+
+### Query-Based 4D Reconstruction Patterns (D4RT)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 97 | Query-Based Temporal Consistency Drift | Dynamic/4D | D4RT | Unified query mechanism for 4D reconstruction produces temporally inconsistent geometry when query points are processed independently across frames without temporal regularization | Add temporal regularization loss on query point trajectories; enforce cross-frame query correspondence via contrastive or cycle consistency; use shared latent temporal code across frames |
 
 
 ## Output Format

@@ -1,7 +1,7 @@
----
+﻿---
 name: 3dgs-visualizer
 description: "Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Static (PDF/PNG) and interactive (HTML) output."
-version: 1.0.2
+version: 1.2.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "visualization", "radar-chart", "timeline", "research"]
 ---
@@ -178,6 +178,19 @@ def plot_interactive_table(data, methods, datasets, metric="PSNR (dB)",
 - **Node size**: Significance (citation count)
 - **Node color**: Category (use CATEGORY_COLORS, consistent with other charts)
 - **Connections**: Show lineage (e.g., 3DGS → Scaffold-GS, 3DGS → 2DGS)
+- **Award markers**: Add ★ for best paper (D4RT, CVPR 2026) and ☆ for best student paper (TRELLIS.2, CVPR 2026) when annotating timeline nodes
+
+### CVPR 2026 Key Methods for Timeline Annotation
+
+When generating timelines that include 2026 methods, highlight these as landmark entries:
+
+| Method | Venue | Significance | Timeline Annotation |
+|--------|-------|-------------|-------------------|
+| D4RT | CVPR 2026 Best Paper | 4D dynamic reconstruction | Best Paper marker |
+| TRELLIS.2 | CVPR 2026 Best Student Paper | Structured 3D generation | Best Student Paper marker |
+| SAM 3D | CVPR 2026 | 3D segmentation foundation | Highlighted method |
+
+Knowledge base: 660+ methods across 25 categories (updated for v0.3.2 cycle).
 
 ### API — Static Timeline
 

@@ -1,6 +1,4 @@
-﻿
-
-## Newly Added (May 2026 Expansion)
+﻿## Newly Added (May 2026 Expansion)
 
 
 ### Language / Semantic
@@ -61,6 +59,14 @@
 - **Core Innovation**: LLM-guided GS for reasoning-driven 3D scene understanding and manipulation
 
 
+
+### ReLaGS
+- **ArXiv**: [2603.17605](https://arxiv.org/abs/2603.17605)
+- **Venue**: CVPR 2026
+- **Year**: 2026
+- **Category**: Language / Semantic
+- **Core Innovation**: Relational Language GS: open-vocabulary 3D reasoning without per-scene training; relational graph construction on Gaussian primitives; language-guided scene understanding
+- **Links**: [arXiv:2603.17605](https://arxiv.org/abs/2603.17605)
 ### Few-Shot / Sparse-View
 ### Binocular3DGS
 - **arXiv**: [2410.18822](https://arxiv.org/abs/2410.18822)

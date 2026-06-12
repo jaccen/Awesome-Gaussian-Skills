@@ -1,7 +1,7 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 48+ methods."
-version: 1.1.0
+description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction. Analyzes 52+ methods."
+version: 1.2.0
 author: jaccen
 tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing"]
 ---
@@ -644,6 +644,7 @@ def render_cad_multiview.step_file, output_dir, n_views=100):
 | MeshWeaver | CVPR'26 (2606.04688) | Latent code | Triangle mesh | Autoregressive next-vertex mesh generation; sequential attention for vertex-by-vertex triangle mesh synthesis |
 | SymTRELLIS | arXiv'26 (2606.04108) | Single image / text | 3D mesh | Symmetry-aware 3D generation; exploits symmetry priors in 3D structure for improved mesh quality |
 | HSP | arXiv'26 (2606.04891) | Images / point clouds | Hybrid mesh + neural field | Hybrid Structured Primitives; combines structured geometric primitives with neural fields for 3D reconstruction |
+| TRELLIS.2 | CVPR'26 Best Student Paper | Single image / text | PBR 3D asset (mesh+GS) | 4B-parameter native 3D generation model; 17s PBR asset generation; handles open surfaces, nested geometry, transparent materials; Microsoft+Tsinghua |
 
 **SEIG** — VLM generates executable Blender Python programs via staged decomposition (geometry→materials→composition→lighting). Output is inherently editable and simulation-ready, bridging the gap between neural rendering and CAD/manufacturing pipelines.
 
@@ -658,6 +659,22 @@ def render_cad_multiview.step_file, output_dir, n_views=100):
 **SymTRELLIS** — Symmetry-aware 3D generation that exploits inherent symmetry priors in 3D structures to improve mesh quality. By constraining generation to respect symmetry, reduces artifacts and improves geometric fidelity, particularly for man-made objects with dominant symmetry axes.
 
 **HSP** — Hybrid Structured Primitives combine explicit structured geometric primitives (planes, cylinders, etc.) with neural fields for 3D reconstruction. The structured primitives provide CAD-like geometric parsimony while neural fields capture fine details, bridging the gap between parametric and implicit representations.
+
+**TRELLIS.2** — 4B-parameter native 3D generation model (CVPR 2026 Best Student Paper, Microsoft+Tsinghua). Generates PBR-equipped 3D assets in 17 seconds from a single image or text prompt. Key advance: handles open surfaces, nested geometry, and transparent materials — structural categories that previously required manual CAD intervention. Output includes mesh and Gaussian representations, making it directly compatible with CAD↔3DGS hybrid pipelines.
+
+### Articulated Object & Interaction Methods
+
+| Method | Venue | Input | Output | Key Feature |
+|--------|-------|-------|--------|-------------|
+| FreeArtGS | arXiv'26 (2603.22102) | Multi-view video | Articulated 3DGS | Articulated GS under free-moving scenario; scalable for AR/robotics |
+| ArtGS | IEEE'26 | Multi-view images | Interactive 3DGS | Interactive visual-physical modeling with 3DGS for articulated objects |
+| PARTICULATE | CVPR'26 | Static mesh | Articulated structure | Feed-forward 3D object articulation from static mesh; auto-infer movable structure |
+
+**FreeArtGS** — Articulated Gaussian Splatting under free-moving scenarios (arXiv:2603.22102). Extends articulated object reconstruction beyond controlled environments to free-moving, in-the-wild captures. Scalable representation suitable for AR and robotics applications where objects undergo unconstrained articulation during capture.
+
+**ArtGS** — Interactive visual-physical modeling with 3DGS for articulated objects (IEEE 2026). Combines visual appearance (via 3DGS) with physical interaction constraints, enabling users to interactively manipulate reconstructed articulated objects while maintaining physical plausibility.
+
+**PARTICULATE** — Feed-forward 3D object articulation from static mesh (CVPR 2026). Given a single static mesh, automatically infers the movable structure (joints, hinges, sliders) and generates an articulated model. Eliminates the need for multi-state observation or manual articulation specification, directly producing CAD-compatible articulated output from static geometry.
 
 ### CAD Reconstruction Methods
 

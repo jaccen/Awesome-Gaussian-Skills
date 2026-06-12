@@ -1,6 +1,6 @@
 ﻿name: 3dgs-paper-reader
-description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 648+ methods across 25 categories."
-version: 1.1.0
+description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 660+ methods across 25 categories."
+version: 1.2.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
 ---
@@ -133,6 +133,11 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 | 2605.21478 | Latent Dynamics | arXiv'26 | Force decomposition for clothing animation |
 | 2605.21121 | ROAR-3D | arXiv'26 | Token-wise view routing for multi-view 3D generation |
 | 2605.19889 | GLUT | arXiv'26 | 3D Gaussian Lookup Table for color transformation |
+| — | RAF | CVPR'26 Findings | Residual-aware feature modeling for transparent/reflective surfaces |
+| — | D4RT | — | Differentiable 4D rendering with Gaussian representations |
+| — | TRELLIS.2 | — | Scalable 3D asset generation with structured Gaussians |
+| — | ReLaGS | — | Relightable and articulated Gaussian splatting |
+| — | FreeForm | — | Free-form deformation for editable 3DGS |
 
 ### Terminology Conventions
 

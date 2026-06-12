@@ -1,4 +1,6 @@
-﻿## Newly Added Methods (May 2026 Expansion)
+
+
+## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
 
@@ -659,3 +661,35 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 ### Survey
 - **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (CVPR 2026 Workshop OpenSUN3D) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; dataset design and learning paradigms (Hongyang Du et al.)
 - **3D Representation Survey** [arXiv:2606.04871](https://arxiv.org/abs/2606.04871) (arXiv 2026) — Recent advances and trends in learning-based 3D representations; paradigm shift from explicit to implicit/splatting representations (Adrien Schockaert et al.)
+
+---
+
+## Newly Added Methods (June 12, 2026 — Daily Update)
+
+> 12 methods added from CVPR 2026 proceedings, arXiv cs.CV/cs.GR (Jun 5-12, 2026), CVPR 2026 award announcements
+
+### Physics / Simulation
+- **RAF** (CVPR 2026 Findings) — Representation Abstraction Framework: bridging 3DGS and physics engines via unified abstraction layer; MPM/SPH/PBD multi-solver coupling; 3DGS-mesh-fluid-cloth-rigid bidirectional interaction; UE5 rendering with Lumen GI [Project](https://visual-ai.github.io/raf/) (Ruiyang Huang et al.)
+- **FreeForm** [arXiv:2605.29318](https://arxiv.org/abs/2605.29318) (CVPR 2026) — Particle-skinned eigenmodes for elastic deformation simulation on 3DGS/mesh; low-DOF physics-driven deformation without mesh requirement; NVIDIA + U Toronto (Chenfanfu Jiang Lab et al.)
+
+### Language / Semantic
+- **ReLaGS** [arXiv:2603.17605](https://arxiv.org/abs/2603.17605) (CVPR 2026) — Relational Language Gaussian Splatting: open-vocabulary 3D semantic reasoning without per-scene training; hierarchical relational language field for segmentation/retrieval/relation understanding
+
+### Dynamic / 4D Reconstruction
+- **D4RT** [arXiv:2512.08924](https://arxiv.org/abs/2512.08924) (CVPR 2026 Best Paper) — Efficiently Reconstructing Dynamic Scenes One at a Time; unified query mechanism for 4D reconstruction + tracking from monocular video; 200+ FPS; Google DeepMind / UCL / Oxford (Jianyuan Wang et al.)
+
+### 3D Generation
+- **TRELLIS.2** (CVPR 2026 Best Student Paper) — 4B-parameter native 3D large model; 17s PBR asset generation with interior geometry; handles open surfaces, nested layers, transparent materials; Microsoft Research + Tsinghua
+- **SAM 3D** (Meta, CVPR 2026 Honorable Mention) — Foundation model for single-image 3D reconstruction; generalizable 3D understanding from 2D priors
+
+### Articulated / Manipulation
+- **FreeArtGS** [arXiv:2603.22102](https://arxiv.org/abs/2603.22102) (arXiv 2026) — Articulated Gaussian Splatting under free-moving scenario; scalable articulated object reconstruction for AR and robotics
+- **ArtGS** (IEEE 2026) — 3D Gaussian Splatting for interactive visual-physical modeling and manipulation of articulated objects; bone-driven deformation + contact-aware rendering [IEEE Xplore](https://ieeexplore.ieee.org/document/11246522/)
+- **PARTICULATE** (CVPR 2026) — Feed-forward 3D object articulation from static mesh; auto-infer movable structure including parts, connections, and motion axes; Oxford / Cambridge / NTU
+
+### Sparse-View / Optimization
+- **DropAnSH-GS** (CVPR 2026) — Dropping Anchor and Spherical Harmonics for sparse-view Gaussian Splatting; anchor-based dropout strategy + SH regularization to mitigate overfitting
+- **BA-GS** (CVPR 2026) — Bayesian Adaptive Gaussian Splatting for SfM-free 3D reconstruction; joint camera pose + Gaussian optimization from scratch via Bayesian uncertainty modeling
+
+### Feed-Forward / Reconstruction
+- **SR3R** (CVPR 2026) — Rethinking Super-Resolution 3D Reconstruction with Feed-Forward Gaussian Splatting; multi-resolution feature fusion + progressive optimization for high-fidelity 3D from low-res input
