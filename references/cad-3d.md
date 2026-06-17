@@ -1,4 +1,5 @@
-﻿
+
+
 # CAD/3D 方向术语、基线与数据集
 
 ## CAD建模与逆向工程
@@ -33,6 +34,25 @@
 | 草图→3D | DeepCAD, UR2D, SketchGen | 2022-2024 | IoU、CD |
 | 部件分割 | PartNet, PointGroup, BRS-Net | 2020-2023 | mIoU |
 | 特征提取 | UV-Net, FUSION360 | 2022-2024 | IoU、Accuracy |
+
+### CADDreamer
+- **Venue**: CVPR 2025 Highlight
+- **Category**: CAD / Generation
+- **Core Innovation**: Text/sketch→CAD B-rep generation; diffusion-based parametric CAD program synthesis; generates editable STEP-level CAD models from natural language or sketch input
+
+### BrepGiff
+- **Category**: CAD / B-rep Generation
+- **Core Innovation**: B-rep generative inference; feed-forward B-rep reconstruction from point clouds/meshes; topological face graph neural network
+
+### Zero-to-CAD
+- **Venue**: arXiv 2026
+- **Category**: CAD / Zero-shot
+- **Core Innovation**: Zero-shot CAD reconstruction; no training data required for target CAD domain; leverages foundation model priors for parametric CAD fitting
+
+### BRepCLIP
+- **Venue**: arXiv 2026
+- **Category**: CAD / Semantic
+- **Core Innovation**: CLIP-guided B-rep understanding; language-conditioned B-rep feature extraction; enables open-vocabulary CAD part queries
 
 ## 3D形状理解
 

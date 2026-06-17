@@ -1,4 +1,5 @@
-﻿## Newly Added (May 2026 Expansion)
+
+## Newly Added (May 2026 Expansion)
 
 
 ### Language / Semantic
@@ -359,6 +360,12 @@
 - **Year**: 2026
 - **Category**: Editing Methods / Segmentation
 - **Core Innovation**: SAM-HQ + prior-guided label reassignment for multiview-consistent 3DGS segmentation; enables interactive real-time object removal, extraction, and recoloring with superior boundary preservation
+
+
+### DeSplat
+- **Category**: Editing / Decomposition
+- **Core Innovation**: Decomposition of splatting for transparent and reflective object reconstruction; separates transmissive and opaque Gaussians; dual-layer rendering
+- **Trade-off**: Better transparency handling at cost of additional Gaussian layers
 
 
 ### Material & Relighting Methods

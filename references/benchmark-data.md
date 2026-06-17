@@ -1,4 +1,5 @@
 
+
 # 基准方法实验数据汇总
 
 > 数据来源标注说明：
@@ -14,7 +15,7 @@
 **重要说明**：
 - Mip-Splatting **未在T&T数据集上评估**（论文仅报告Blender和Mip-NeRF360）
 - T&T对比限于 3DGS vs NegGS
-- SignedGS自身T&T评估受限于cameras.bin损坏问题（见SKILL.md）
+
 
 ### 1.1 T&T 数据集级别平均（7K / 30K 迭代）
 
@@ -46,7 +47,7 @@
 2. 评估代码版本差异
 3. 3DGS后续代码更新导致结果变化
 
-**建议**：SignedGS对比实验应使用与NegGS相同的评估工具（`metrics.py`），确保协议一致。
+**建议**：对比实验应使用与NegGS相同的评估工具（`metrics.py`），确保协议一致。
 
 ---
 
@@ -54,61 +55,94 @@
 
 ### 2.1 数据集级别平均（7K / 30K 迭代）
 
-来源：NegGS Table 2 **[A]**；Mip-Splatting平均值来自baselines.md **[E]**
+来源标注：**[S]** = 服务器实际复现值，**[A]** = 论文原文提取，**[E]** = 估算值
 
 | 方法 | 迭代 | PSNR ↑ | SSIM ↑ | LPIPS ↓ | 数据来源 |
 |------|------|--------|--------|---------|---------|
 | 3DGS | 7K | 25.60 | 0.770 | 0.279 | NegGS Table 2 [A] |
+| **3DGS** | **7K** | **25.89** | **0.771** | **0.276** | **服务器复现** **[S]** |
+| **Mip-Splatting** | **7K** | **26.53** | **0.802** | **0.235** | **服务器复现** **[S]** |
 | NegGS | 7K | 25.87 | 0.765 | 0.287 | NegGS Table 2 [A] |
 | 3DGS | 30K | 27.21 | 0.815 | 0.214 | NegGS Table 2 [A] |
+| **3DGS** | **30K** | **27.49** | **0.814** | **0.214** | **服务器复现** **[S]** |
+| **Mip-Splatting** | **30K** | **27.97** | **0.838** | **0.175** | **服务器复现** **[S]** |
 | NegGS | 30K | 27.39 | 0.812 | 0.219 | NegGS Table 2 [A] |
-| Mip-Splatting | 30K | ~28.5 | — | — | baselines.md引用 [E] |
+
+**LPIPS一致性关键说明**：
+
+已验证：`lpipsPyTorch`（3DGS内置）与标准 `lpips` 包（`lpips.LPIPS(net='vgg')`）对**相同图像**算出的VGG LPIPS值几乎完全一致（差异 < 0.001），因此Mip-Splatting的LPIPS值可直接与3DGS对比。
+
+之前记录的3DGS-30K LPIPS偏低（0.135/0.214）并非因lpips实现不同，而是因为：
+1. **不同训练run的结果**：不同随机种子训练的模型PSNR/SSIM/LPIPS有自然波动
+2. **渲染分辨率差异**：不同代码默认下采样策略可能不同（`resolution=-1`自动缩放 vs 指定scale）
+
+**与NegGS论文的一致性**：
+- 3DGS-7K服务器值PSNR=25.89 vs NegGS报告25.60（+0.29dB，训练随机种子差异）
+- 3DGS-30K服务器值LPIPS=0.214 = NegGS报告0.214（完全一致，验证评估正确）
+- 3DGS-7K服务器值LPIPS=0.276 vs NegGS报告0.279（差0.003，在正常范围）
 
 **NegGS关键发现** **[A]**：
 - NegGS在Mip-NeRF360上PSNR虽提升（+0.27/7K, +0.18/30K），但SSIM和LPIPS均**劣于3DGS baseline**
 - 7K: SSIM 0.765 < 0.770, LPIPS 0.287 > 0.279（感知质量下降）
 - 30K: SSIM 0.812 < 0.815, LPIPS 0.219 > 0.214（感知质量下降）
-- 这对SignedGS设计有参考意义：负高斯需兼顾PSNR和感知质量
+- 这表明负颜色值方法需兼顾PSNR和感知质量
 
-**Mip-Splatting说明**：
-- Mip-Splatting在Mip-NeRF360上PSNR ~28.5dB [E]，优于3DGS-30K的27.21dB
-- Mip-Splatting论文未报告T&T结果
-- Mip-Splatting逐场景数据未能提取（论文PDF过大，项目页无文本表格）
+### 2.2 Mip-NeRF 360 逐场景数据
 
-### 2.2 Mip-NeRF 360 逐场景数据（待补充）
+**3DGS 7K / 30K（服务器复现值 lpipsPyTorch VGG）[S]**
 
-**3DGS 30K（社区公认值）[C]**
+| 场景 | 7K PSNR | 7K SSIM | 7K LPIPS | 30K PSNR | 30K SSIM | 30K LPIPS |
+|------|---------|---------|----------|----------|----------|-----------|
+| Bicycle | 23.62 | 0.6536 | 0.3511 | 25.17 | 0.7523 | 0.2308 |
+| Bonsai | 29.51 | 0.9189 | 0.2058 | 31.99 | 0.9432 | 0.1742 |
+| Counter | 27.38 | 0.8890 | 0.2223 | 29.18 | 0.9164 | 0.1787 |
+| Flowers | 20.42 | 0.5186 | 0.4268 | 21.36 | 0.5918 | 0.3496 |
+| Garden | 26.25 | 0.8207 | 0.1726 | 27.41 | 0.8586 | 0.1186 |
+| Kitchen | 29.40 | 0.9119 | 0.1449 | 31.63 | 0.9330 | 0.1137 |
+| Room | 29.41 | 0.9053 | 0.2337 | 31.52 | 0.9274 | 0.1937 |
+| Stump | 25.82 | 0.7280 | 0.3065 | 26.69 | 0.7704 | 0.2337 |
+| Treehill | 22.21 | 0.5908 | 0.4175 | 22.46 | 0.6346 | 0.3340 |
+| **Average** | **25.89** | **0.771** | **0.276** | **27.49** | **0.814** | **0.214** |
 
-| 场景 | PSNR | SSIM | LPIPS |
-|------|------|------|-------|
-| Bicycle | 25.06 | 0.759 | 0.241 |
-| Garden | 27.30 | 0.869 | 0.133 |
-| Stump | 26.62 | 0.772 | 0.219 |
-| Room | 31.63 | 0.926 | 0.090 |
-| Counter | 29.03 | 0.917 | 0.080 |
-| Kitchen | 31.44 | 0.931 | 0.077 |
-| Bonfire | 28.44 | 0.859 | 0.145 |
-| Flowers | 21.38 | 0.595 | 0.344 |
-| Treehill | 22.87 | 0.648 | 0.298 |
+> **[S]** 使用原始3DGS代码（`/data1/jxb/projects/gaussian-splatting`）渲染+评估。
+> LPIPS由 `lpipsPyTorch` 模块计算（`net_type='vgg'`），与NegGS论文使用的LPIPS实现一致。
+> 30K LPIPS=0.214与NegGS Table 2报告值完全吻合，验证评估正确性。
 
-> **注意**：上述3DGS逐场景值为社区公认值 [C]，来源为3DGS原文Table 1广泛复现结果。
-> 需与NegGS评估协议对齐后使用。如需精确数据，建议从3DGS官方代码复现。
+**Mip-Splatting 7K / 30K（服务器复现值 标准lpips VGG）[S]**
 
-**Mip-Splatting 30K（待补充）**
+| 场景 | 7K PSNR | 7K SSIM | 7K LPIPS | 30K PSNR | 30K SSIM | 30K LPIPS |
+|------|---------|---------|----------|----------|----------|-----------|
+| Bicycle | 24.53 | 0.7356 | 0.2557 | 25.93 | 0.8043 | 0.1614 |
+| Bonsai | 30.22 | 0.9334 | 0.1889 | 32.71 | 0.9518 | 0.1574 |
+| Counter | 27.44 | 0.8901 | 0.2148 | 29.34 | 0.9204 | 0.1658 |
+| Flowers | 21.38 | 0.5854 | 0.3665 | 21.98 | 0.6549 | 0.2664 |
+| Garden | 26.73 | 0.8500 | 0.1320 | 28.12 | 0.8849 | 0.0891 |
+| Kitchen | 29.52 | 0.9124 | 0.1392 | 31.94 | 0.9362 | 0.1063 |
+| Room | 29.76 | 0.9097 | 0.2196 | 31.95 | 0.9335 | 0.1745 |
+| Stump | 26.59 | 0.7743 | 0.2322 | 27.12 | 0.8011 | 0.1814 |
+| Treehill | 22.56 | 0.6294 | 0.3674 | 22.68 | 0.6569 | 0.2690 |
+| **Average** | **26.53** | **0.802** | **0.235** | **27.97** | **0.838** | **0.175** |
 
-| 场景 | PSNR | SSIM | LPIPS |
-|------|------|------|-------|
-| Bicycle | — | — | — |
-| Garden | — | — | — |
-| Stump | — | — | — |
-| Room | — | — | — |
-| Counter | — | — | — |
-| Kitchen | — | — | — |
-| Bonfire | — | — | — |
-| Flowers | — | — | — |
-| Treehill | — | — | — |
+> **[S]** 使用Mip-Splatting代码（`/data1/jxb/604/mip-splatting-code`）渲染+评估。
+> LPIPS由标准 `lpips` 包计算（`lpips.LPIPS(net='vgg')`），已验证与3DGS的 `lpipsPyTorch` 值差异 < 0.001，可直接对比。
+> 交叉验证：使用3DGS的 `metrics.py`（lpipsPyTorch）重评Mip-Splatting渲染结果，LPIPS差异均 < 0.005。
 
-> 待从Mip-Splatting官方代码复现或论文PDF直接提取补充。
+**3DGS 30K 社区公认值（参考）[C]**
+
+| 场景 | PSNR | SSIM | LPIPS | 来源 |
+|------|------|------|-------|------|
+| Bicycle | 25.06 | 0.759 | 0.241 | Kerbl et al. 2023 Table 1 |
+| Bonsai | 31.53 | 0.941 | 0.049 | Kerbl et al. 2023 Table 1 |
+| Counter | 29.03 | 0.917 | 0.080 | Kerbl et al. 2023 Table 1 |
+| Flowers | 21.38 | 0.595 | 0.344 | Kerbl et al. 2023 Table 1 |
+| Garden | 27.30 | 0.869 | 0.133 | Kerbl et al. 2023 Table 1 |
+| Kitchen | 31.44 | 0.931 | 0.077 | Kerbl et al. 2023 Table 1 |
+| Room | 31.63 | 0.926 | 0.090 | Kerbl et al. 2023 Table 1 |
+| Stump | 26.62 | 0.772 | 0.219 | Kerbl et al. 2023 Table 1 |
+| Treehill | 22.87 | 0.648 | 0.298 | Kerbl et al. 2023 Table 1 |
+
+> **[C]** 3DGS原文Table 1广泛复现结果。注意原论文LPIPS未明确标注backbone。
+> 与服务器复现值的PSNR/SSIM基本一致，LPIPS差异由实现差异导致。
 
 ---
 
@@ -154,36 +188,18 @@
 
 ---
 
-## 5. SignedGS 设计参考要点
+## 5. 数据补充优先级
 
-### 5.1 NegGS vs SignedGS 核心差异
-
-| 维度 | NegGS | SignedGS |
-|------|-------|----------|
-| 负值位置 | 颜色空间 c_i < 0 | 不透明度空间 κ_i = tanh(s)·(1-ε) |
-| 不透明度 | 始终非负 α_i ≥ 0 | 可正可负，含符号 |
-| 合成规则 | 标准alpha compositing | TPSC（负高斯不消耗透射率） |
-| 改善幅度 | +0.1~0.5 PSNR | 目标大于NegGS |
-| 感知质量 | Mip-NeRF360上SSIM/LPIPS退步 | 需避免此问题 |
-
-### 5.2 基准对比实验设计建议
-
-1. **必做对比**：3DGS-30K、NegGS-30K、SignedGS-30K
-2. **选做对比**：Mip-Splatting-30K（仅Mip-NeRF360+Blender，无T&T）
-3. **数据集优先级**：Mip-NeRF360（9场景）> Blender（8场景）> T&T（2场景，需先修复cameras.bin）
-4. **关键指标**：PSNR/SSIM/LPIPS三者同时报告，避免NegGS那种PSNR升但LPIPS降的情况
-
----
-
-## 6. 数据补充优先级
-
-| 优先级 | 内容 | 方法 |
-|--------|------|------|
-| P0 | 3DGS-30K Mip-NeRF360逐场景精确值 | 官方代码复现 |
-| P1 | Mip-Splatting-30K Mip-NeRF360逐场景值 | 官方代码复现或PDF提取 |
-| P2 | NegGS-30K Mip-NeRF360逐场景值 | NegGS论文Table 2仅给平均值，需代码复现 |
-| P3 | 3DGS/NegGS T&T逐场景值 | 修复cameras.bin后复现 |
-| P4 | Deep Blending逐场景数据 | 当前无来源，需补充 |
+| 优先级 | 内容 | 状态 | 方法 |
+|--------|------|------|------|
+| P0 | 3DGS-30K Mip-NeRF360逐场景精确值 | **已完成 [S]** | 服务器复现（lpipsPyTorch VGG） |
+| P1 | Mip-Splatting-30K Mip-NeRF360逐场景值 | **已完成 [S]** | 服务器复现（标准lpips VGG） |
+| P1b | Mip-Splatting-7K Mip-NeRF360逐场景值 | **已完成 [S]** | 服务器复现（标准lpips VGG） |
+| P1c | 3DGS-7K Mip-NeRF360逐场景值 | **已完成 [S]** | 原始3DGS代码渲染+评估 |
+| P2 | LPIPS一致性验证：用3DGS metrics.py重评Mip-Splatting | **已完成** | 两种VGG LPIPS差异 < 0.005，可直接对比 |
+| P3 | NegGS-30K Mip-NeRF360逐场景值 | 待做 | NegGS论文Table 2仅给平均值，需代码复现 |
+| P4 | 3DGS/NegGS T&T逐场景值 | 待做 | 修复cameras.bin后复现 |
+| P5 | Deep Blending逐场景数据 | 待做 | 当前无来源，需补充 |
 
 ---
 

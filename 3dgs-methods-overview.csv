@@ -172,7 +172,7 @@ GEMM-GS,2604.02120,DAC 2026,2026,Training & Optimization,"GEMM-compatible blendi
 Hybrid-Capture Two-View Training,2605.00052,,2026,Training & Optimization,Two-view-per-step as dominant training lever,
 LeGS,2605.00408,,2026,Training & Optimization,RL-learnable density control replacing heuristic clone/split/prune,https://github.com/AaronNZH/LeGS
 Proxy-GS,,CVPR 2026,2026,Training & Optimization,Lightweight proxy model for 2.5x speedup with no accuracy loss,
-QuadBox,2605.04844,ICIP 2026,2026,Training & Optimization,Geometry-aware AABB boxes for 1.85x rendering acceleration,https://github.com/Powertony102/QuadBox
+QuadBox,2605.04844,arXiv 2026,2026,Training & Optimization,Geometry-aware AABB boxes for 1.85x rendering acceleration,https://github.com/Powertony102/QuadBox
 Structure-Aware Densification,2604.28016,SIGGRAPH 2026,2026,Training & Optimization,Frequency-aware anisotropic split replacing heuristic clone/split,
 VkSplat,2605.00219,Eurographics 2026 Short Papers,2026,Training & Optimization,"Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM",https://github.com/harry7557558/vksplat
 YOGO,2604.21400,,2026,Training & Optimization,Budget-aware equilibrium for ultra-dense scene control,https://jjrcn.github.io/yogo-project-home/
@@ -605,3 +605,13 @@ SAM 3D,,CVPR 2026 Honorable Mention,2026,Foundation,Single-image 3D reconstructi
 FreeArtGS,2603.22102,arXiv 2026,2026,Articulated,Articulated GS under free-moving scenario,
 ArtGS,,IEEE 2026,2026,Articulated,Interactive visual-physical modeling with 3DGS for articulated objects,
 PARTICULATE,,CVPR 2026,2026,Articulated,Feed-forward 3D object articulation from static mesh,
+Prune Wisely,,arXiv 2026,2026,Training & Optimization,90% Gaussian pruning via importance-aware Difference-of-Gaussians criterion,
+StreamLoD-GS,,arXiv 2026,2026,Compression / Streaming,LoD-based progressive streaming for 3DGS with view-dependent quality,
+DeSplat,,arXiv 2026,2026,Editing / Decomposition,Decomposition of splatting for transparent object reconstruction,
+Sparse2DGS,,arXiv 2026,2026,Few-Shot / Sparse-View,Sparse-view 2D Gaussian Splatting,
+CADDreamer,,CVPR 2025 Highlight,2025,CAD / Mesh / Hybrid,Text/sketch→CAD B-rep generation via diffusion-based parametric CAD program synthesis,
+BrepGiff,,arXiv 2026,2026,CAD / Mesh / Hybrid,Feed-forward B-rep reconstruction from point clouds; topological face graph neural network,
+Zero-to-CAD,,arXiv 2026,2026,CAD / Mesh / Hybrid,Zero-shot CAD reconstruction using foundation model priors,
+BRepCLIP,,arXiv 2026,2026,CAD / Mesh / Hybrid,CLIP-guided B-rep understanding for open-vocabulary CAD part queries,
+SatSurfGS,,arXiv 2026,2026,Surface & Geometry,Satellite-driven surface Gaussian Splatting for large-scale outdoor reconstruction,
+Cookbook of 3D Vision,,arXiv 2026,2026,Surveys & Benchmarks,Comprehensive survey and cookbook for 3D vision methods,

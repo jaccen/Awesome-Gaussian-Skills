@@ -1,4 +1,6 @@
-﻿## Newly Added (May 2026 Expansion)
+
+
+## Newly Added (May 2026 Expansion)
 
 
 ### Robustness & Regularization
@@ -1025,3 +1027,15 @@
 - **Category**: Articulated / Feed-Forward
 - **Core Innovation**: Feed-forward 3D object articulation from static mesh input; predicts articulation structure and parameters without per-object optimization
 - **Links**: [CVPR 2026](https://cvpr.thecvf.com/)
+
+### SatSurfGS
+- **Venue**: arXiv 2026
+- **Category**: Surface / Remote Sensing
+- **Core Innovation**: Satellite-driven surface Gaussian Splatting; multi-view satellite imagery → 3DGS surface reconstruction; large-scale outdoor scene reconstruction from orbital data
+
+### QuadBox
+- **arXiv**: [2605.04844](https://arxiv.org/abs/2605.04844)
+- **Venue**: arXiv 2026
+- **Category**: Training & Optimization / Acceleration
+- **Core Innovation**: Geometry-aware AABB boxes replacing axis-aligned bounding boxes; tighter Gaussian bounds reduce tile-Gaussian pair checks; 1.85x rendering acceleration
+- **Code**: [https://github.com/Powertony102/QuadBox](https://github.com/Powertony102/QuadBox)

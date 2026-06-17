@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 97+ known bug patterns."
-version: 1.7.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 99+ known bug patterns."
+version: 1.8.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -477,6 +477,18 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Category | Method | Symptom | Fix |
 |---|---------|----------|--------|---------|-----|
 | 97 | Query-Based Temporal Consistency Drift | Dynamic/4D | D4RT | Unified query mechanism for 4D reconstruction produces temporally inconsistent geometry when query points are processed independently across frames without temporal regularization | Add temporal regularization loss on query point trajectories; enforce cross-frame query correspondence via contrastive or cycle consistency; use shared latent temporal code across frames |
+
+### Adaptive Pruning Patterns (Prune Wisely)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 98 | Difference-of-Gaussian Pruning False Positive | Optimization | Prune Wisely | DoG primitives incorrectly flag high-frequency detail Gaussians as redundant when adjacent Gaussians have similar but not identical positions; aggressive DoG threshold merges fine detail into coarse reconstruction | Use spatially adaptive DoG threshold proportional to local Gaussian density; preserve Gaussians where DoG response exceeds detail-preservation threshold; validate with PSNR on held-out views after each pruning step. (Prune Wisely, arXiv:2602.24136, CVPR 2026) |
+
+### Proxy Mesh Occlusion Patterns (Proxy-GS)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 99 | Proxy Mesh Occlusion Over-Culling | Acceleration | Proxy-GS | Lightweight proxy mesh for occlusion culling incorrectly culls visible Gaussians when proxy mesh tessellation is too coarse; thin structures (wires, poles) pass between proxy triangles and are culled despite being visible | Ensure proxy mesh minimum tessellation density matches scene thin-structure distribution; add conservative offset (ε-inflation) to proxy triangles when culling; fall back to full rendering for tiles containing thin-structure Gaussians detected by aspect-ratio filter. (Proxy-GS, arXiv:2509.24421, CVPR 2026 Full Score Oral) |
 
 
 ## Output Format

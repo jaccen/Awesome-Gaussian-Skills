@@ -1,13 +1,13 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 660+ methods across 25 categories."
-version: 2.0.0
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 675+ methods across 25 categories."
+version: 2.1.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 660+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 675+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -130,6 +130,7 @@ When comparing methods, analyze across the following dimensions:
 | GETA-3DGS | 5x | Minimal | First end-to-end automatic joint structured pruning + quantization; QADG; render-aware saliency |
 | CAGS | ~7x (streaming) | Minimal | VQ-based compression with Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment |
 | MGS | arXiv'26 (2603.19234) | Any LoD prefix | Matryoshka continuous LoD via stochastic budget training; renders any prefix k splats |
+| Prune Wisely | CVPR'26 (2602.24136) | Up to 90% reduction | Adaptive pruning + Difference-of-Gaussian (DoG) primitives; quality-preserving extreme compression |
 
 ### Robustness / Regularization Methods
 
@@ -157,6 +158,8 @@ When comparing methods, analyze across the following dimensions:
 | SVGS | arXiv'24 (2411.18966) | High (Blender SOTA) | Spatially varying color+opacity within each Gaussian; movable kernels (1.4x params); >30 FPS |
 | AmbiSuR | ICML'26 | High (photometric) | Photometric ambiguity disambiguation for accurate GS surface reconstruction |
 | DySurface | arXiv'26 | High (4D surface) | Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction |
+| Sparse2DGS | TVCG'26 (2505.19854) | High (sparse-view) | Dense point cloud + 2DGS for sparse-view surface reconstruction |
+| DeSplat | CVPR'26 | High (distractor-free) | Decomposed compositing separating transient objects from static background |
 | TriSplat | arXiv'26 (2605.26115) | High (triangle) | Triangle primitives replacing Gaussians; deterministic visibility, mesh-compatible output |
 
 ### Generation / Text-to-3D
@@ -203,6 +206,7 @@ When comparing methods, analyze across the following dimensions:
 | SplatWeaver | arXiv'26 (2605.07287) | Variable | Single-pass | Cardinality Gaussian Expert Routing (Null/1/2/3 experts per pixel) + DWT frequency prior; 30% Gaussian budget with +1.02 dB PSNR over AnySplat |
 | ArtSplat | arXiv'26 (2605.24304) | Per-part Gaussians | Single-pass | First feed-forward articulated 3DGS; predicts per-part Gaussians + joint parameters from monocular video; enables zero-shot articulated reconstruction |
 | SR3R | CVPR'26 | Variable | Single-pass | Super-resolution + feed-forward GS; joint SR and 3DGS reconstruction |
+| StreamLoD-GS | arXiv'26 (2601.18475) | LoD-structured | Streaming | Level-of-Detail structured 3DGS for streaming free-viewpoint video |
 | NoPo4D | arXiv'26 (2605.22190) | 4D Gaussians | Single-pass | Pose-free feed-forward 4DGS; eliminates camera pose dependency for dynamic scene reconstruction |
 | BEA-GS | CVPR'26 (Highlight, 2605.09662) | Object Gaussians | Single-pass | Object extraction from complex 3DGS scenes; CVPR 2026 Highlight |
 | TokenGS | arXiv'26 (2604.15239) | Learnable tokens | Single-pass | Learnable Gaussian tokens replacing fixed MLP decoding; resolution-adaptive primitive allocation |

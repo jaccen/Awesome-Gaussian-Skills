@@ -659,7 +659,7 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **PureLight** [arXiv:2606.04319](https://arxiv.org/abs/2606.04319) (arXiv 2026, cs.GR) — Learning complex luminaires with light tracing; forward light tracing for efficient sampling of difficult light paths (Pedro Figueiredo et al.)
 
 ### Survey
-- **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (CVPR 2026 Workshop OpenSUN3D) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; dataset design and learning paradigms (Hongyang Du et al.)
+- **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (arXiv 2026) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; dataset design and learning paradigms (Hongyang Du et al.)
 - **3D Representation Survey** [arXiv:2606.04871](https://arxiv.org/abs/2606.04871) (arXiv 2026) — Recent advances and trends in learning-based 3D representations; paradigm shift from explicit to implicit/splatting representations (Adrien Schockaert et al.)
 
 ---
@@ -693,3 +693,38 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Feed-Forward / Reconstruction
 - **SR3R** (CVPR 2026) — Rethinking Super-Resolution 3D Reconstruction with Feed-Forward Gaussian Splatting; multi-resolution feature fusion + progressive optimization for high-fidelity 3D from low-res input
+
+---
+
+## Newly Added Methods (June 17, 2026 — Daily Update)
+
+> 14 methods added from arXiv cs.CV/cs.GR (Jun 12-17, 2026), CVPR 2026 additional highlights, CAD/B-rep updates
+
+### Acceleration / Rendering
+- **QuadBox** [arXiv:2605.04844](https://arxiv.org/abs/2605.04844) (arXiv 2026) — Quad-tree-based accelerated rasterization for 3DGS with geometry-aware bounding boxes; reduces tile-based blank area (Xinze Li et al.)
+- **Proxy-GS** [arXiv:2509.24421](https://arxiv.org/abs/2509.24421) (CVPR 2026, Full Score Oral) — Unified occlusion priors for structured 3DGS via lightweight proxy mesh; 3× rendering speedup for anchor-based methods; train+inference dual acceleration (Yuanyuan Gao et al., SJTU / Shanghai AI Lab)
+
+### Optimization / Pruning
+- **Prune Wisely** [arXiv:2602.24136](https://arxiv.org/abs/2602.24136) (CVPR 2026) — Adaptive pruning + Difference-of-Gaussian (DoG) primitives for compact 3DGS; up to 90% Gaussian reduction with quality preservation (Haoran Wang et al.)
+
+### Streaming / LoD
+- **StreamLoD-GS** [arXiv:2601.18475](https://arxiv.org/abs/2601.18475) (arXiv 2026) — Level-of-Detail structured 3DGS for streaming free-viewpoint video; progressive LoD delivery for bandwidth-adaptive FVV (Xinhui Liu et al.)
+
+### Distractor-Free / Decomposition
+- **DeSplat** (CVPR 2026) — Decomposed Gaussian Splatting for distractor-free rendering; separates transient objects from static background via decomposed compositing; IEEE Xplore
+
+### Sparse-View / Surface
+- **Sparse2DGS** [arXiv:2505.19854](https://arxiv.org/abs/2505.19854) (TVCG 2026) — Sparse-view surface reconstruction using 2D Gaussian Splatting with dense point cloud initialization; confidence-aware depth regularization (Natsuki Takama et al.)
+- **SatSurfGS** [arXiv:2605.07181](https://arxiv.org/abs/2605.07181) (arXiv 2026) — Generalizable 2D Gaussian Splatting for sparse-view satellite surface reconstruction; confidence-aware multi-view feature aggregation for orbital imagery (Min Chen et al.)
+
+### CAD / B-rep
+- **BRepCLIP** [arXiv:2606.05515](https://arxiv.org/abs/2606.05515) (arXiv 2026) — Contrastive multi-modal pre-training with BRep primitives for CAD understanding; BRep-graph CLIP for cross-modal retrieval and QA (Muhammad Usama et al., DFKI / RPTU)
+- **CADDreamer** (CVPR 2025 Highlight) — CAD object generation from single-view images; parametric primitive sequence generation from 2D input (Yuan Li et al., Cheng Lin group)
+- **BrepGiff** (CVPR 2025) — Lightweight generation of complex B-rep with 3D GAT Diffusion; graph attention network diffusion for B-rep topology+geometry (IEEE Xplore)
+- **Zero-to-CAD** [arXiv:2604.24479](https://arxiv.org/abs/2604.24479) (arXiv 2026) — Agentic synthesis of parametric CAD programs; 2B VLM trained on 1M+ synthetic CAD programs outperforms GPT-5.2 on CAD generation (Mohammadmehdi Ataei et al., Autodesk)
+
+### Skeletal Animation
+- **MotionDreamer** [arXiv:2606.01518](https://arxiv.org/abs/2606.01518) (arXiv 2026) — Universal skeletal motion generation for 3D rigged shapes; category-agnostic skeletal animation from 2D video; 20K+ rigged 3D model dataset (Ye Tao et al.)
+
+### 3D Vision Survey
+- **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (arXiv 2026) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; Brown / UMaryland / UPenn / USC / NYU / Sydney / Stability AI (Hongyang Du et al.)

@@ -1,7 +1,7 @@
 ﻿---
 name: patent-software-ip
 description: "Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization, prior-art search, and self-check."
-version: "1.1.0"
+version: "1.2.0"
 author: jaccen
 tags: ["patent", "software-copyright", "ip", "ai", "big-data", "3d-vision", "generative-ai", "embodied-ai", "nlp", "rag", "ai-engineering", "ai-safety"]
 ---
@@ -237,7 +237,7 @@ CVPR 2026 accepted 116 3DGS-related papers, creating a surge of patentable innov
 3. Articulated 3DGS methods generate IP around interaction primitives and joint representations
 4. File early -- the dense publication cohort means similar innovations may appear concurrently
 
-Knowledge base: 660+ methods across 25 categories (updated for v0.3.2 cycle).
+Knowledge base: 675+ methods across 25 categories (updated for v0.3.3 cycle).
 
 ## Phase D: Iterative Correction
 

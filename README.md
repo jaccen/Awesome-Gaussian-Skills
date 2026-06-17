@@ -1,16 +1,18 @@
-﻿<div align="center">
+
+
+<div align="center">
         
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3DGS Paper Catalog — 660+ Methods, 25 Categories, Interactive Explorer
+### The Most Comprehensive 3DGS Paper Catalog — 675+ Methods, 25 Categories, Interactive Explorer
 
 **You shouldn't search 20 different repos for 3DGS papers. This is the only one you need — plus AI-powered tools that no other list has.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-660+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-675+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-12-green.svg)](skills/)
-[![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-97+-red.svg)](skills/3dgs-code-reviewer/)
+[![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-99+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -20,34 +22,23 @@
 
 ## What's New (June 2026)
 
-Latest update (Jun 5): 630+ → 660+ methods, 25 categories, 97+ bug patterns. +18 new methods including: **ZipSplat** (token-based feed-forward 3DGS, ~6x fewer Gaussians, +2.1dB PSNR), **Geometry Gaussians** (per-splat geometry opacity decoupling), **3DReflecNet** (CVPR 2026, systematic benchmark for reflective/transparent 3D reconstruction), **MeshFlow** (CVPR 2026 Highlight, MeshVAE + Flow-based Diffusion Transformer), **MeshWeaver** (CVPR 2026, autoregressive next-vertex mesh generation), **UniCAD** (multi-modal multi-task CAD benchmark), **Anchor3R** (streaming 3D reconstruction with transient anchors), **SimuScene** (physics-in-the-loop compositional 3D reconstruction). Skills v0.3.1: 5 new bug patterns (#89-#93) + Token-based cluster in method comparison.
+Latest update (Jun 17): 660→675+ methods, 25 categories, 99+ bug patterns. +14 new methods including: **Proxy-GS** (CVPR 2026 Full Score Oral, lightweight proxy model 2.5x speedup), **Prune Wisely** (90% Gaussian pruning via importance-aware DoG criterion), **StreamLoD-GS** (LoD-based progressive streaming for 3DGS), **DeSplat** (decomposition of splatting for transparency), **Sparse2DGS** (sparse-view 2D Gaussian), **CADDreamer** (CVPR 2025 Highlight, text/sketch→CAD B-rep), **BrepGiff** (B-rep generative inference), **Zero-to-CAD** (zero-shot CAD reconstruction), **BRepCLIP** (CLIP-guided B-rep), **SatSurfGS** (satellite surface GS), **QuadBox** (geometry-aware AABB 1.85x acceleration), **MotionDreamer** (category-agnostic skeletal animation), **Cookbook of 3D Vision** (comprehensive survey). Skills v0.3.3: +2 bug patterns (#98-#99), 5 Skills updated, MCP integration roadmap + writing skills enhancement docs.
 
 | Method | ArXiv | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
-| **D4RT** | [2512.08924](https://arxiv.org/abs/2512.08924) | Dynamic / 4D | CVPR 2026 Best Paper; unified query 4D reconstruction + tracking; 200+ FPS |
-| **TRELLIS.2** | — | Generation | CVPR 2026 Best Student Paper; 4B-param native 3D; 17s PBR generation |
-| **SAM 3D** | — | Generation / Foundation | CVPR 2026 Honorable Mention; single-image 3D foundation model (Meta) |
-| **RAF** | — | Physics / Simulation | CVPR 2026 Findings; bridges 3DGS and physics engines (MPM/SPH/PBD) |
-| **ReLaGS** | [2603.17605](https://arxiv.org/abs/2603.17605) | Language / Semantic | Open-vocab 3D reasoning without per-scene training |
-| **FreeForm** | [2605.29318](https://arxiv.org/abs/2605.29318) | Dynamic / Elastic | Particle-skinned eigenmodes for elastic deformation on 3DGS |
-| **FreeArtGS** | [2603.22102](https://arxiv.org/abs/2603.22102) | Articulated | Articulated GS under free-moving scenario |
-| **PARTICULATE** | — | Articulated / Feed-Forward | Feed-forward 3D object articulation from static mesh |
-| **DropAnSH-GS** | — | Sparse-View | Anchor dropout + SH regularization for sparse-view 3DGS |
-| **BA-GS** | — | SfM-Free | Bayesian Adaptive GS for SfM-free reconstruction |
-| **SR3R** | — | Feed-Forward / SR | Super-resolution + feed-forward GS reconstruction |
-| **ZipSplat** | [2606.05102](https://arxiv.org/abs/2606.05102) | Feed-Forward | Token-based 3DGS; ~6x fewer Gaussians; +2.1dB PSNR over pixel-grid methods |
-| **Geometry Gaussians** | [2606.05124](https://arxiv.org/abs/2606.05124) | Surface / Rendering | Per-splat geometry opacity decoupling; signed-opacity direction |
-| **3DReflecNet** | [2605.10204](https://arxiv.org/abs/2605.10204) | Cross-Domain | CVPR 2026; systematic benchmark for reflective/transparent 3D reconstruction |
-| **MeshFlow** | [2606.04621](https://arxiv.org/abs/2606.04621) | CAD / Generation | CVPR 2026 Highlight; MeshVAE + Flow-based Diffusion Transformer |
-| **MeshWeaver** | [2606.04688](https://arxiv.org/abs/2606.04688) | CAD / Generation | CVPR 2026; autoregressive next-vertex mesh generation |
-| **UniCAD** | [2606.05058](https://arxiv.org/abs/2606.05058) | CAD | Multi-modal multi-task CAD benchmark + universal model |
-| **Anchor3R** | [2606.05035](https://arxiv.org/abs/2606.05035) | Feed-Forward | Streaming 3D reconstruction with transient anchors |
-| **SimuScene** | [2606.03994](https://arxiv.org/abs/2606.03994) | Simulation | Physics-in-the-loop compositional 3D reconstruction |
-| **HiGS** | [2606.00352](https://arxiv.org/abs/2606.00352) | Acceleration | Hierarchical tiles decouple partitioning/rasterization; 15.8x faster (NVIDIA) |
-| **DDF-GS** | [2606.00817](https://arxiv.org/abs/2606.00817) | Rendering / GI | Directed Distance Field for ray queries on 3DGS; GI without mesh proxy |
-| **VEDAL** | [2606.02346](https://arxiv.org/abs/2606.02346) | Compression | Variational free energy pruning; 5.2x compression @ 0.31 dB loss |
-| **3DThinkVLA** | [2606.04436](https://arxiv.org/abs/2606.04436) | Robotics | VLA with latent 3D priors via co-training |
-| **SymTRELLIS** | [2606.04108](https://arxiv.org/abs/2606.04108) | Generation | Symmetry-aware 3D generation |
+| **Proxy-GS** | — | Acceleration | CVPR 2026 Full Score Oral; lightweight proxy model for 2.5x speedup with no accuracy loss |
+| **Prune Wisely** | — | Optimization | 90% Gaussian pruning via importance-aware Difference-of-Gaussians criterion |
+| **StreamLoD-GS** | — | Streaming | LoD-based progressive streaming for 3DGS with view-dependent quality |
+| **DeSplat** | — | Decomposition | Decomposition of splatting for transparent object reconstruction |
+| **CADDreamer** | — | CAD | CVPR 2025 Highlight; text/sketch→CAD B-rep generation |
+| **BrepGiff** | — | CAD | B-rep generative inference for parametric CAD reconstruction |
+| **Zero-to-CAD** | — | CAD | Zero-shot CAD reconstruction from point clouds |
+| **BRepCLIP** | — | CAD | CLIP-guided B-rep for semantic CAD understanding |
+| **Sparse2DGS** | — | Sparse-View | Sparse-view 2D Gaussian Splatting |
+| **SatSurfGS** | — | Surface | Satellite-driven surface Gaussian Splatting |
+| **QuadBox** | [2605.04844](https://arxiv.org/abs/2605.04844) | Acceleration | Geometry-aware AABB boxes for 1.85x rendering acceleration |
+| **MotionDreamer** | [2606.01518](https://arxiv.org/abs/2606.01518) | Animation | Category-agnostic skeletal animation from 2D video |
+| **Cookbook of 3D Vision** | — | Survey | Comprehensive survey and cookbook for 3D vision methods |
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
@@ -57,7 +48,7 @@ Latest update (Jun 5): 630+ → 660+ methods, 25 categories, 97+ bug patterns. +
 
 You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or manually compare 20 variants across 10 dimensions, or discover after submission that your CUDA kernel has a known bug.
 
-**With 660+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
+**With 675+ 3DGS papers since 2023 and growing, researchers waste hours on tasks that AI Agents can handle in seconds.** Yet ClawHub's 13,000+ skills cover almost zero for 3D reconstruction or computer graphics.
 
 | What You Do | Without This | With This |
 |-------------|-------------|-----------|
@@ -76,20 +67,20 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | Avoid code bugs | Discover after submission | 97+ known bug pattern detection |
 | Design experiments | Guess baselines & ablations | Venue-tailored experiment plan |
 | NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
-| CAD ↔ 3DGS | No coverage | 52+ method conversion pipeline |
+| CAD ↔ 3DGS | No coverage | 55+ method conversion pipeline |
 | Patent filing | Manual from scratch | Auto-generated claims & specs |
 
 > **Bottom line:** Other lists give you paper titles. We give you paper titles + an AI toolkit that actually helps you do research faster.
 
 ## Features
 
-- **660+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
+- **675+ Methods Knowledge Base**: The most comprehensive catalog of 3D Gaussian Splatting variants across 25 categories, with arXiv IDs, venues, innovations, and code links. Updated daily.
 - **Interactive Explorer**: [Try it now](https://jaccen.github.io/Awesome-Gaussian-Skills/) — Search, filter by category, sort by citations, click any method card for details
-- **12 AI-Powered Skills** (Advanced): Paper reading, method comparison, code review, spatial intelligence, MCP rendering, signed Gaussian splatting — works with OpenClaw, Claude Code, Cursor
+- **12 AI-Powered Skills** (Advanced): Paper reading, method comparison, code review, spatial intelligence, MCP rendering — works with OpenClaw, Claude Code, Cursor
 - **Zero Setup**: Pure Markdown files, no dependencies
 - **Actively Maintained**: Daily arXiv tracking
 
-## Knowledge Base (660+ Methods)
+## Knowledge Base (675+ Methods)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -99,12 +90,12 @@ You shouldn't have to rebuild the same RAG pipeline for every new 3DGS paper, or
 | **Dynamic & Spatial** | Dynamic, HDR, SLAM, Sparse-View | DSD-GS, WebSpline, GGD-SLAM, PanoPlane... |
 | **Applications** | Human/Avatar, Editing, Relighting, CAD, Cross-Domain, Simulation, Robotics, and 14 more categories | AlbedoEdit, KDH-CAD, LEGS, TIDES, 3DEditSafe... |
 
-> [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) — search 660+ methods instantly, filter by category, sort by citations.
+> [Try the interactive method explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/) — search 675+ methods instantly, filter by category, sort by citations.
 >
 > Download full database: [3dgs-methods-overview.csv](3dgs-methods-overview.csv) | Full analysis: [references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
 
 <details>
-<summary><strong>Full Category Table (25 categories, 660+ methods)</strong></summary>
+<summary><strong>Full Category Table (25 categories, 675+ methods)</strong></summary>
 
 **Core Representations**
 
@@ -232,7 +223,7 @@ Agent: [Generates comparison table across: primitive representation,
 - Multi-method side-by-side comparison
 - 10+ comparison dimensions (rendering formula, primitive, loss, speed, ...)
 - Identify design trade-offs
-- Built-in knowledge of 660+ methods
+- Built-in knowledge of 675+ methods
 
 ### 3. `3dgs-code-reviewer` — Implementation Code Review
 
@@ -461,7 +452,6 @@ Awesome-Gaussian-Skills/
 │   │   └── SKILL.md
 │   └── 3dgs-mcp-renderer/        # MCP protocol + Three.js/3DGS rendering bridge
 │       └── SKILL.md
-│   │   └── SKILL.md
 ├── scripts/
 │   ├── setup.sh                 # Quick install script
 │   ├── cad2gs_pipeline.py       # CAD → 3DGS conversion (STEP/GLB → Gaussian init)
@@ -477,7 +467,7 @@ Awesome-Gaussian-Skills/
 ├── Text2Word/                # Interactive text-to-3DGS web demo
 │   └── index.html
 ├── references/
-|   ├── 3dgs-methods-overview.md # Index (660+ methods across 25 categories)
+|   ├── 3dgs-methods-overview.md # Index (675+ methods across 25 categories)
 │   ├── methods-core.md         # Core methods (Foundation→Dynamic)
 │   ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 │   ├── methods-systems-apps.md # Systems, Applications, Cross-Domain
@@ -519,7 +509,7 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 660+ methods. Each idea identifies a concrete problem, a methodological approach, and an implementation path.
+> Derived from systematic gap analysis across 675+ methods. Each idea identifies a concrete problem, a methodological approach, and an implementation path.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG / Pattern Recognition.
 
 <details>
@@ -668,7 +658,8 @@ Interactive versions (hover for details): [`radar_comparison.html`](Test/radar_c
 - [x] v0.3.0 — Skills standard alignment (Anthropic Claude Code / OpenClaw) + Daily update: 607→630+ methods, +23 new (HiGS NVIDIA 15.8x rendering, DDF-GS ray queries, VEDAL variational pruning, StreetNVS multi-sensor NVS, LEGS embodied GS sim, KDH-CAD knowledge-hybrid, SEIG VLM→Blender, MORPHOS 4D gen, WebSpline spline trajectories, AlbedoEdit video editing, MRO-GWM world model, DSD-GS 700FPS, VG²GT voxel-gaussian, TIDES event sim, Triangle Splatting SLAM, DeblurNVS, GeoSAM-3D, SplatShot avatar, GSDeformer deformation, MidSurfNet mid-surface, 3DCodeBench benchmark, Dynamic Mesh-Gaussian physics); 88+ bug patterns; 25 categories (Jun 2026)
 - [x] v0.3.1 — Daily update: 630→660+ methods, +18 new (ZipSplat token-based feed-forward, Geometry Gaussians per-splat geometry opacity, 3DReflecNet CVPR'26 reflective benchmark, MeshFlow CVPR'26 Highlight MeshVAE+Diffusion, MeshWeaver CVPR'26 autoregressive mesh, UniCAD multi-task CAD benchmark, Anchor3R streaming reconstruction, SimuScene physics-in-the-loop, 3DThinkVLA latent 3D priors, SymTRELLIS symmetry-aware generation, HSP/GemNR/T2Mo/LetCamsGo/MetaPoint/PureLight + 2 surveys); 97+ bug patterns (#89-#93); Skills v1.6-1.9 across 6 updated skills; Token-based cluster in method comparison (Jun 2026)
 - [x] v0.3.2 — Daily update: 648→660+ methods, +12 new (RAF, FreeForm, D4RT CVPR Best Paper, TRELLIS.2 Best Student Paper, SAM 3D Honorable Mention, ReLaGS, FreeArtGS, ArtGS, PARTICULATE, DropAnSH-GS, BA-GS, SR3R); 97+ bug patterns (#94-#97); 8 Skills updated; MCP tools +3 (simulate_physics, query_4d_scene, deform_elastic) (Jun 2026)
-- [ ] v0.4 — Advanced `3dgs-spatial-agent` skill enhancements (knowledge-constrained CAD via KDH-CAD, DDF-GS ray query, SEIG procedural generation) + SignedGS/TPSC domain skill
+- [x] v0.3.3 — Daily update: 660→675+ methods, +14 new (Proxy-GS CVPR'26 Full Score Oral, Prune Wisely 90% pruning, StreamLoD-GS LoD streaming, DeSplat decomposition, CADDreamer CVPR'25 Highlight, BrepGiff, Zero-to-CAD, BRepCLIP, Sparse2DGS, SatSurfGS, QuadBox, MotionDreamer, Cookbook of 3D Vision survey); 99+ bug patterns (#98-#99: DoG Pruning False Positive, Proxy Mesh Occlusion Over-Culling); 5 Skills updated (3dgs-method-compare v2.1.0, 3dgs-code-reviewer v1.8.0, cad-mesh-3dgs v1.3.0, 3dgs-engineering-guide v1.6.0, 3dgs-paper-reader v1.3.0); MCP integration roadmap + writing skills enhancement docs (Jun 2026)
+- [ ] v0.4 — Advanced `3dgs-spatial-agent` skill enhancements (knowledge-constrained CAD via KDH-CAD, DDF-GS ray query, SEIG procedural generation)
 - [ ] v0.5 — MCP protocol integration: Agent-controlled Three.js/3DGS rendering pipeline + DDF-GS ray query MCP tool
 - [ ] v1.0 — ClawHub official listing + CI/CD integration + anthropics/skills PR
 - [ ] v1.1 — Multi-language support (Chinese, Japanese, Korean)

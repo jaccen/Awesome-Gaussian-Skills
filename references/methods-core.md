@@ -1,4 +1,6 @@
-﻿# Core 3DGS Methods
+
+
+# Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
 > Companion file: [3dgs-methods-overview.md](3dgs-methods-overview.md) (index) | [methods-semantic-editing.md](methods-semantic-editing.md) | [methods-systems-apps.md](methods-systems-apps.md)
@@ -606,6 +608,23 @@
 - **Venue**: Preprint (Mar 2026)
 - **Links**: [arXiv:2603.19234](https://arxiv.org/abs/2603.19234)
 
+### Proxy-GS
+- **Venue**: CVPR 2026 (Full Score Oral)
+- **Category**: Acceleration / Training & Optimization
+- **Core Innovation**: Lightweight proxy model co-trained alongside full 3DGS; proxy handles 80% of rendering queries at lower fidelity while full model handles critical views; 2.5x speedup with no accuracy loss
+- **Links**: CVPR 2026 Full Score Oral
+
+### Prune Wisely
+- **Category**: Training & Optimization / Pruning
+- **Core Innovation**: Importance-aware pruning via Difference-of-Gaussians (DoG) criterion; identifies perceptually redundant Gaussians; achieves 90% pruning with minimal quality loss
+- **Trade-off**: Extreme compression at near-zero quality cost; DoG criterion avoids false positives from texture-frequency aliasing
+
+### StreamLoD-GS
+- **Venue**: arXiv 2026
+- **Category**: Compression / Streaming
+- **Core Innovation**: Level-of-Detail (LoD) based progressive streaming for 3DGS; view-dependent quality levels; bandwidth-adaptive rendering; supports incremental refinement
+- **Trade-off**: Initial low-quality render → progressive enhancement; optimized for network streaming scenarios
+
 ## Dynamic Scene Methods
 
 ### 4D Gaussian Splatting (4DGS)
@@ -967,7 +986,7 @@
 - **Venue**: arXiv 2026
 - **Year**: 2026
 - **Category**: Surface & Geometry Methods
-- **Core Innovation**: Per-splat geometry opacity decoupling; separates geometry opacity from appearance opacity, directly relevant to signed opacity and TPSC compositing direction
+- **Core Innovation**: Per-splat geometry opacity decoupling; separates geometry opacity from appearance opacity, decouples geometric occupancy from appearance rendering
 
 
 ### CAD / Mesh / Hybrid Methods
