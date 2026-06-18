@@ -33,8 +33,14 @@ build/
 # Logs
 *.log
 
-# Temporary
-*.tmp
-*.bak
+# JS (except docs)
 *.js
+!docs/*.js
+
+# Temporary and personal files
 .temp/
+新建文件夹/
+.ruff_cache/
+.watermark_tmp/
+*.xlsx
+*.bak

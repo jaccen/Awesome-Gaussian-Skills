@@ -1,6 +1,6 @@
 ﻿name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
-version: 1.3.0
+version: 1.4.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
 ---
@@ -55,9 +55,10 @@ Before designing experiments, extract:
 | SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
 | SLAM (Dynamic) | Flow4DGS-SLAM benchmarks | Optical flow-guided dynamic SLAM consistency |
 | SLAM (Generalizable Dynamic) | GGD-SLAM (ICRA 2026) benchmarks | Generalizable motion model for dynamic SLAM |
-| Medical (Volumetric) | GaussianPile benchmarks | Slice-aware PSF projection for volumetric medical GS |
+| Medical (Volumetric) | GaussianPile (CVPR 2026) benchmarks | Focus-aware PSF projection + additive rasterization for CT/ABUS/LSM/MRI; 16-26× compression, 11× faster than NeRF |
 | Robustness / Adverse conditions | RealX3D (NTIRE 2026) | Tests reconstruction in adverse environments (low light, fog, sparse views) |
-| Reflection / Transparency | 3DReflecNet (CVPR 2026) | Transparent and reflective object reconstruction |
+| Reflection / Transparency | 3DReflecNet (CVPR 2026 Best Paper Candidate) | 120K+ synthetic + 1000+ real objects; 48 material combos; 3 failure modes (specular SH oscillation, transparency ordering, featureless init); 5 tasks |
+| Physics Interaction | RAF (CVPR 2026 Findings) scenarios | 5 heterogeneous demos: SPH+3DGS, SPH-MPM+soft body, PBD+statue, robot+rigid, rigid+3DGS container; UE5 rendering |
 | Active Mapping / Robotics | MAGICIAN benchmarks | Active vision path planning quality |
 | CAD / Parametric | BrepGaussian benchmarks | B-rep reconstruction accuracy |
 | Simulation & Robotics | Habitat-GS (Habitat-Sim upgrade) | 3DGS-based robot simulation environments, navigation & interaction tasks |

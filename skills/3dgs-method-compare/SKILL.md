@@ -1,6 +1,6 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 675+ methods across 25 categories."
-version: 2.1.0
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 680+ methods across 25 categories."
+version: 2.2.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
@@ -102,7 +102,7 @@ When comparing methods, analyze across the following dimensions:
 | LeGS | arXiv'26 | 3D anisotropic | RL-controlled | RL-based learnable density control replacing heuristics; O(N) reward |
 | CAdam | SIGGRAPH'26 | 3D anisotropic | Context-adaptive | Context-adaptive densification for generative distillation; avoids over-densification from transient noise |
 | SNS | arXiv'26 (2605.15010) | Skew-Normal | [0,1] | Skew-Normal primitive replacing symmetric Gaussian kernels; continuous interpolation between symmetric Gaussian ↔ Half-Gaussian via learnable skewness |
-| RAF | CVPR'26 (Findings) | 3D anisotropic + physics | Engine-abstracted | 3DGS→physics engine abstraction; MPM/SPH/PBD multi-solver bridge for simulation-aware rendering |
+| RAF | CVPR'26 (Findings) | 3D anisotropic + physics | Engine-abstracted | 3DGS→physics engine abstraction; 3-stage pipeline (asset abstraction→unified simulation kernel→visual recoupling); MPM/SPH/PBD/rigid-body/articulated-body multi-solver bridge; static collision mesh from Gaussian segmentation; opacity field→physics particle sampling; UE5 Lumen GI rendering; 5 heterogeneous interaction demos (fluid+3DGS, cloth+statue, robot+rigid) |
 
 ### Signed / Decomposed Methods
 
@@ -211,6 +211,8 @@ When comparing methods, analyze across the following dimensions:
 | BEA-GS | CVPR'26 (Highlight, 2605.09662) | Object Gaussians | Single-pass | Object extraction from complex 3DGS scenes; CVPR 2026 Highlight |
 | TokenGS | arXiv'26 (2604.15239) | Learnable tokens | Single-pass | Learnable Gaussian tokens replacing fixed MLP decoding; resolution-adaptive primitive allocation |
 | CodecSplat | arXiv'26 (2605.25563) | Latent-coded Gaussians | Single-pass | Ultra-compact latent coding; 20-108 KiB/scene feed-forward 3DGS |
+| ZipSplat | arXiv'26 (2606.05102) | Token-clustered (~62K) | 0.8s (24 views) | Token-based ff-3DGS via k-means clustering; decouples Gaussian count from pixel grid; ~6× fewer Gaussians +2.1 dB PSNR; DA3-Giant backbone; pose-free; single-directional Chamfer + coupling init + progressive view training |
+| Z-Order GS | CVPR'26 Oral (2605.13465) | Z-ordered (~1/3 of DepthSplat) | 1000× faster than opt | Z-order (Morton) curve spatial indexing; sparse grouped+top-k attention O(N²)→O(N log N); 2-3× fewer Gaussians; cross-dataset generalization (RE10K/DL3DV→ACID) |
 | F-RNG | arXiv'26 (2605.25975) | 3D anisotropic | Single-pass | Feed-forward relightable 3DGS; ~25x faster than optimization-based relighting |
 | VoxelGS | arXiv'26 (2605.26616) | Voxel-anchored Gaussians | Hybrid | Scaffold-anchored Gaussians + voxel SDF for geometry-aware reconstruction |
 | COSY | arXiv'26 (2605.24114) | Compositional Gaussians | Optimized | Compositional head editing via part-based Gaussian decomposition |
@@ -226,7 +228,7 @@ When comparing methods, analyze across the following dimensions:
 | WildGS-SLAM | CVPR'25 | Monocular video | Room-scale | Dynamic environments, uncertainty-aware mapping via pretrained 3D priors |
 | S3PO-GS | ICCV'25 | Monocular video | Outdoor | Scale-consistent pose optimization, eliminates outdoor scale drift |
 | Flow4DGS-SLAM | arXiv'26 | Monocular video | Room-scale | Optical flow-guided 4DGS for temporal consistency |
-| GaussianPile | arXiv'26 | CT/volumetric scans | Organ-scale | Volumetric medical GS with slice-aware PSF projection |
+| GaussianPile | CVPR'26 | CT/volumetric scans | Organ-scale | Volumetric medical GS with focus-aware PSF projection + additive rasterization (not alpha-blending); 16-26× compression; 11× faster than NeRF; supports ultrasound/microscopy/MRI |
 | Ilov3Splat | arXiv'26 | Multi-view video | Room-scale | Interpretable love-based 3DGS with region-aware decomposition |
 | PhysX-Omni | arXiv'26 | Multi-modal (vision+physics) | Scene-scale | Omni-physics integrated 3DGS for unified simulation & rendering |
 | E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
@@ -293,7 +295,7 @@ _Multi-solver comparison sub-dimension for dynamic methods:_
 | PD-4DGS | arXiv'26 | 3-layer progressive (static + global deform + local refine) | Progressive streaming | DASH/HLS-compatible 4DGS streaming; ~1.7s first-frame latency vs 73-930s monolithic |
 | 3DGS³ | arXiv'26 | 3D anisotropic (super-sampled) | Standard + temporal interpolation | Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for large-scale 3DGS |
 | BlitzGS | arXiv'26 | 3D anisotropic (distributed) | Parity-based multi-GPU | Distributed city-scale GS training; parity-based sharding across multi-GPU; eliminates single-GPU memory bottleneck |
-| Z-Order GS | arXiv'26 | 3D anisotropic (Z-ordered) | Z-order curve indexing | Z-order curve spatial indexing for cache-coherent Gaussian traversal; improved rendering throughput |
+| Z-Order GS | CVPR'26 (Oral) | 3D anisotropic (Z-ordered) | Z-order curve indexing | Z-order (Morton) curve spatial indexing for cache-coherent Gaussian traversal; sparse attention (grouped+top-k) reduces O(N²)→O(N log N); 1000× faster than per-scene optimization; 2-3× fewer Gaussians vs DepthSplat/AnySplat; handles 2-12 variable input views; cross-dataset generalization (RE10K→ACID, DL3DV→ACID) |
 | PanoPlane | arXiv'26 | Planar (panoramic) | Plane-based compositing | Panoramic plane-based GS for omnidirectional NVS; efficient panoramic scene representation |
 | SparseOIT | arXiv'26 | 3D anisotropic | Order-independent transparency | Sparse order-independent transparency for correct See-through rendering of overlapping semi-transparent Gaussians |
 | SCOUP | arXiv'26 | Sparse code primitives | Language-conditioned | Sparse code language GS; language-conditioned sparse coding for controllable 3DGS generation |

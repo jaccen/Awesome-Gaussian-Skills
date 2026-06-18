@@ -1,6 +1,6 @@
 ﻿name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 99+ known bug patterns."
-version: 1.8.0
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 101+ known bug patterns."
+version: 1.9.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -429,6 +429,13 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | # | Pattern | Symptom | Fix |
 |---|---------|---------|-----|
 | 89 | Token-based feed-forward cardinality mismatch | K-means token clustering produces N_tokens Gaussian clusters, but downstream rasterizer expects pixel-resolution Gaussian count; token count vs pixel grid resolution mismatch causes ghost Gaussians at tile boundaries where cluster assignments overlap adjacent tiles | Ensure token count is explicitly managed: (1) add tile-boundary-aware k-means that expands tokens near tile edges; (2) validate token→Gaussian expansion produces consistent counts per tile; (3) add ghost Gaussian detection via render-then-compare. Verify: compare rendered output with and without tile-boundary expansion. (ZipSplat, arXiv:2606.05102) |
+| 100 | Free-positioned Gaussian gradient starvation | When Gaussian positions are not constrained to observation rays (e.g., token-decoded via anti-log activation), Gaussians may drift to regions invisible to camera; rendering loss gradients cannot reach them, causing gradient starvation and training instability/divergence | (1) Single-directional Chamfer geometry loss: penalize Gaussian-to-nearest-real-point distance only (not bidirectional, which destroys adaptive allocation); (2) Coupled initialization: all 32 Gaussians per token start with identical parameters, forcing gradual differentiation; (3) Low initial opacity (~0.18) so photometric gradients penetrate to deep Gaussians; (4) Progressive view scheduling: start 2-view → 24-view. Verify: monitor fraction of zero-gradient Gaussians per iteration; should be <5%. (ZipSplat, arXiv:2606.05102) |
+
+### Volumetric Medical Patterns (GaussianPile)
+
+| # | Pattern | Symptom | Fix |
+|---|---------|---------|-----|
+| 101 | Alpha-blending applied to volumetric data | Standard 3DGS alpha-blending compositing assumes opaque surface occlusion, but volumetric medical imaging (CT/ultrasound/MRI) pixel intensity is additive integration along imaging direction; alpha-blending incorrectly models occlusion for transparent volumetric structures, producing floating artifacts and 3D structural inconsistency | Replace alpha-blending with additive rasterization: pixel intensity = Σ(κ_i · T_{i-1} · c_i) where T is not consumed by individual Gaussians in volumetric mode; add focus-aware PSF projection modeling slice thickness and focal depth; optionally constrain SH coefficients to view-independent (remove view-dependent color for volumetric intensity). Verify: compare 2D slice PSNR + 3D volumetric PSNR; ensure 3D consistency improves. (GaussianPile, arXiv:2603.20611, CVPR 2026) |
 
 ### Geometry Opacity Decoupling Patterns (Geometry Gaussians)
 

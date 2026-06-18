@@ -504,7 +504,7 @@ SplatPose2,2504.13167,CVPR 2025,2025,Human & Avatar Methods,Enhanced pose-condit
 GS-Drive,2504.17810,CVPR 2025,2025,Autonomous Driving,GS-based closed-loop driving simulation with dynamic agent rendering,
 SplatSim-v2,2504.20378,CVPR 2025,2025,Simulation & Robotics,Enhanced GS simulation with domain randomization for robotic learning,
 SparseOIT,2605.13855,arXiv 2026,2026,Surface & Geometry Methods,Order-independent transparency via active set method for glass/refractive scenes,
-Z-Order GS,2605.13465,CVPR 2026,2026,Feed-Forward Methods,Z-order strategy for spatially coherent Gaussian sequence with sparse attention,
+Z-Order GS,2605.13465,CVPR 2026 Oral,2026,Feed-Forward Methods,Z-order strategy for spatially coherent Gaussian sequence with sparse attention,
 RoSplat,2605.13093,arXiv 2026,2026,Feed-Forward Methods,Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regularizer,
 Velox,2605.04527,arXiv 2026,2026,Dynamic Scene Methods,Feed-forward 4D reconstruction learning representations of 4D geometry and appearance,
 RetroNVS,2605.12437,CVPR 2026,2026,Dynamic Scene Methods,Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark,
