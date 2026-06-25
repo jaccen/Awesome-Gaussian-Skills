@@ -255,4 +255,24 @@ This skill references a knowledge base of 690+ methods across 25 categories (upd
 3. **Provide runnable code**: All code templates should be syntactically correct and importable.
 4. **Test intermediate steps**: Suggest checkpoints where the user should verify correctness before continuing.
 
+
+
+
+
+
+
+
+## Related Skills
+
+- **3dgs-method-compare** — Method comparison (use for comparing NeRF vs 3DGS approaches)
+- **3dgs-paper-reader** — Paper analysis (use for understanding NeRF and 3DGS papers)
+- **3dgs-code-reviewer** — Code review (use for verifying migration implementation)
+- **cad-mesh-3dgs** — CAD/Mesh integration (use for surface extraction post-migration)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.
+
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

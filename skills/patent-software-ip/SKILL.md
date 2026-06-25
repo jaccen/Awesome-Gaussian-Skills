@@ -265,3 +265,21 @@ outputs/{case-id}/
 | RL without reward function | "Insufficient disclosure" | Include reward computation formula |
 | AI watermark without robustness test | "Insufficient technical effect" | Add adversarial/noise/compression robustness claim |
 | Medical AI without clinical validation | "Insufficient enablement" | Add evaluation on specific dataset with clinical metrics |
+
+
+
+
+
+
+## Related Skills
+
+- **3dgs-method-compare** — Method comparison (use for prior art analysis and novelty assessment)
+- **3dgs-paper-reader** — Paper analysis (use for extracting patentable contributions)
+- **3dgs-code-reviewer** — Code review (use for identifying technical innovations in code)
+- **3dgs-engineering-guide** — Deployment guidance (use for documenting industrial applications)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.

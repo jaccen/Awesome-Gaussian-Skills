@@ -1,0 +1,47 @@
+axes:
+  category:
+    description: "Method category to focus comparison on"
+    values:
+      - core
+      - geometry
+      - semantic
+      - slam
+      - dynamic
+      - application
+      - all
+    default: all
+  depth:
+    description: "Comparison depth and detail level"
+    values:
+      - quick
+      - standard
+      - comprehensive
+    default: standard
+
+routing:
+  always_load:
+    - static/core-stance.md
+  on_demand:
+    category:
+      core:
+        - static/methods-core.md
+      geometry:
+        - static/methods-geometry.md
+      semantic:
+        - static/methods-semantic.md
+      slam:
+        - static/methods-slam.md
+      dynamic:
+        - static/methods-dynamic.md
+      application:
+        - static/methods-application.md
+      all:
+        - static/methods-core.md
+        - static/methods-geometry.md
+        - static/methods-semantic.md
+        - static/methods-slam.md
+        - static/methods-dynamic.md
+        - static/methods-application.md
+  references:
+    on_demand:
+      - static/output-rules.md

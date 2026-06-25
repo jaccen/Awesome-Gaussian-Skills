@@ -1,9 +1,6 @@
 
-
----
----
 name: awesome-gaussian-skills
-version: "0.3.5"
+version: "0.3.6"
 description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 690+ methods knowledge base, 13 research-grade skills, interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin"
 arguments: [task]
@@ -22,7 +19,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 | Skill | Command | Description |
 |-------|---------|-------------|
 | `3dgs-paper-reader` | `/3dgs-paper-reader [arxiv-id]` | Read and summarize any 3DGS paper |
-| `3dgs-method-compare` | `/3dgs-method-compare [method-a] [method-b]` | Compare methods across 10+ dimensions |
+| `3dgs-method-compare` | `/3dgs-method-compare [method-a] [method-b]` | Compare methods across 11 dimensions (Router architecture) |
 | `3dgs-code-reviewer` | `/3dgs-code-reviewer [file]` | Review 3DGS code for 101+ bug patterns |
 | `3dgs-experiment-planner` | `/3dgs-experiment-planner [topic]` | Design experiments for top venues |
 | `cad-mesh-3dgs` | `/cad-mesh-3dgs [query]` | Bridge CAD/Mesh and 3DGS representations |

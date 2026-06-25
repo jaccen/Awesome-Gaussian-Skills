@@ -1,4 +1,4 @@
-﻿name: 3dgs-engineering-guide
+name: 3dgs-engineering-guide
 description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 690+ methods."
 version: 1.8.0
 author: jaccen
@@ -444,3 +444,16 @@ See knowledge base: `references/3dgs-methods-overview.md`, `references/methods-c
 ---
 
 *Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)*
+
+## Related Skills
+
+- **3dgs-method-compare** — Method comparison (use for selecting methods for deployment)
+- **3dgs-code-reviewer** — Code review (use for detecting deployment-critical bugs)
+- **3dgs-mcp-renderer** — MCP rendering protocol (use for real-time rendering integration)
+- **3dgs-spatial-agent** — Spatial intelligence (use for agent-driven deployment scenarios)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.

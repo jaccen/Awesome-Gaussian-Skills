@@ -278,3 +278,28 @@ def plot_timeline_interactive(events, output_path="3dgs_timeline.html"):
 5. **Proper labeling**: All axes with units; clear legends
 6. **Citation awareness**: Include venue/year for method context
 7. **Interactive bonus**: Always offer interactive HTML alongside static figures
+
+
+
+
+## Red Lines
+
+The following are categorical prohibitions. Violating any of these invalidates the output:
+
+- **No invented data**: Never fabricate visualization comparison data, rendering performance numbers, or method capability claims. If a value is not found in the loaded files, write "data not available" or "N/A".
+- **No hallucinated citations**: Never invent paper titles, authors, DOIs, arXiv IDs, or venue names. Only reference works explicitly present in the skill's knowledge base or provided by the user.
+- **No silent speculation**: If you are uncertain about a technical detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
+- **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
+- **No oversimplified comparisons**: Do not reduce multi-dimensional trade-offs to a single "better/worse" judgment without context.
+
+## Related Skills
+
+- **3dgs-method-compare** — Method comparison (use comparison data to generate radar charts)
+- **3dgs-experiment-planner** — Experiment design (use experiment results for comparison plots)
+- **cg-paper-writing** — Paper writing (use visualizations in manuscript figures)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.

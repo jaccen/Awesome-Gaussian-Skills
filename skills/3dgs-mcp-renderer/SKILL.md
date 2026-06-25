@@ -360,3 +360,17 @@ Agent:
 5. **Safety gate**: Operations affecting >10% of Gaussians require explicit user confirmation
 
 > Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)
+
+
+## Related Skills
+
+- **3dgs-engineering-guide** — Production deployment (use for end-to-end deployment workflows)
+- **3dgs-spatial-agent** — Spatial intelligence agent (use for agent-driven 3D interaction)
+- **3dgs-articulated-reasoner** — Articulated object reasoning (use for interactive object manipulation)
+- **3dgs-visualizer** — Visualization (use for rendering pipeline output quality assessment)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.

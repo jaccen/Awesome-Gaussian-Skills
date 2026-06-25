@@ -1,4 +1,4 @@
-﻿name: 3dgs-experiment-planner
+name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
 version: 1.5.0
 author: jaccen
@@ -291,5 +291,33 @@ Generate a complete experiment plan:
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
 4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
 5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 675+ methods across 25 categories.
+
+
+
+
+
+## Red Lines
+
+The following are categorical prohibitions. Violating any of these invalidates the output:
+
+- **No invented data**: Never fabricate benchmark results, dataset statistics, or baseline metrics not in the loaded reference files. If a value is not found in the loaded files, write "data not available" or "N/A".
+- **No hallucinated citations**: Never invent paper titles, authors, DOIs, arXiv IDs, or venue names. Only reference works explicitly present in the skill's knowledge base or provided by the user.
+- **No silent speculation**: If you are uncertain about a technical detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
+- **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
+- **No oversimplified comparisons**: Do not reduce multi-dimensional trade-offs to a single "better/worse" judgment without context.
+
+## Related Skills
+
+- **3dgs-method-compare** — Method comparison (use for selecting baselines and positioning)
+- **3dgs-paper-reader** — Paper analysis (use for understanding baseline implementations)
+- **3dgs-visualizer** — Result visualization (use for plotting experiment results)
+- **cg-paper-writing** — Paper writing (use when experiments feed into manuscript)
+- **3dgs-code-reviewer** — Code review (use to ensure implementation correctness before experiments)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.
 
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

@@ -158,3 +158,15 @@ Before delivering articulated reasoning results, verify:
 - [ ] Part-aware compositing reduces boundary artifacts vs standard compositing
 - [ ] Digital twin responds to at least 3 natural-language commands
 - [ ] No self-intersection at joint limit extremes
+## Related Skills
+
+- **3dgs-spatial-agent** — Spatial intelligence agent (use for embodied reasoning with articulated objects)
+- **3dgs-mcp-renderer** — MCP rendering (use for rendering articulated interactions)
+- **cad-mesh-3dgs** — CAD/Mesh integration (use for URDF/mesh export of articulated structures)
+- **3dgs-method-compare** — Method comparison (use for comparing articulated 3DGS methods)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.

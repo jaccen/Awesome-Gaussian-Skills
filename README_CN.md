@@ -239,7 +239,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.1 — 初始版本，6 个核心技能（2026 年 4 月）
 - [x] v0.2 — `3dgs-visualizer` + Text2Word 演示（2026 年 5 月）
 - [x] v0.3 — 知识库 675→680+ 方法，25 类别，101+ bug 模式，12 个技能（2026 年 6 月）
-- [x] v0.3.5 — 空间智能浪潮：680→690+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
+- [x] v0.3.6 — 空间智能浪潮：680→690+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
 - [ ] v0.5 — MCP 协议集成：Agent 控制的 Three.js/3DGS 渲染管线
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录

@@ -228,3 +228,18 @@ When processing a 3DGS scene, select the appropriate pathway based on scenario:
 5. **Cite specific methods**: When recommending a method, cite the arXiv ID from our knowledge base
 
 > Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)
+
+
+
+## Related Skills
+
+- **3dgs-mcp-renderer** — MCP rendering protocol (use for real-time spatial rendering)
+- **3dgs-articulated-reasoner** — Articulated object reasoning (use for part-level interaction)
+- **3dgs-engineering-guide** — Deployment guidance (use for spatial agent deployment)
+- **3dgs-method-compare** — Method comparison (use for selecting spatial representation methods)
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the logic, method data, bug patterns, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.

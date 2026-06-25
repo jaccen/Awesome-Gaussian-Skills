@@ -1,462 +1,95 @@
-﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 690+ methods across 25 categories."
-version: 2.3.0
+name: 3dgs-method-compare
+description: "Compare 3D Gaussian Splatting variants across 11 dimensions. Built-in knowledge of 690+ methods across 25 categories. Supports axis-driven fragment loading for efficient context usage."
+version: 3.0.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
+when_to_use:
+  - "Compare 3DGS methods or variants"
+  - "Analyze trade-offs between Gaussian Splatting approaches"
+  - "Generate comparison tables for 3DGS papers"
+  - "Find the best 3DGS method for a specific scenario"
+  - "检索3DGS方法对比、3D高斯泼溅方法比较"
 ---
 
-# 3DGS Method Comparison Engine
-
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 690+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
-
-## Capabilities
-
-- Compare any combination of 3DGS variants across 10+ technical dimensions
-- Generate publication-quality comparison tables
-- Analyze design trade-offs and identify positioning
-- Provide recommendation based on specific use cases
-
-## Comparison Dimensions
-
-When comparing methods, analyze across the following dimensions:
-
-### 1. Primitive Representation
-- Shape: Full 3D Gaussian / 2D disk / 1D splat / hybrid / spatially-varying (SVGS) / Spline-based (WebSpline) / Triangle primitive in SLAM (Triangle Splatting SLAM) / Token-based cluster (ZipSplat)
-- Anisotropy: Isotropic / Anisotropic / Semi-anisotropic
-- Parameterization: (μ, Σ, opacity, SH) / (center, normal, scale, opacity) / custom / (μ, Σ, spatially-varying color+opacity, SH) (SVGS) / (μ, Σ, geometry_opacity, appearance_opacity, SH) (Geometry Gaussians)
-
-### 2. Opacity / Alpha Mechanism
-- Range: [0, 1] / [-1, 1] / unbounded / sigmoid / tanh
-- Signed support: Yes (signed α) / No (standard GS)
-- Negative mechanism: Negative color (NegGS) / Negative opacity (signed) / None
-- Representation Abstraction (RAF): Direct 3DGS / Physics engine abstraction (MPM/SPH/PBD multi-solver bridge)
-
-### 3. Color Representation
-- Spherical Harmonics order: 0/1/2/3
-- Color space: RGB / HDR / Feature vectors / Albedo-decomposed (AlbedoEdit)
-- Negative color support: Yes (NegGS) / No
-
-### 4. Rendering Formulation
-- Rasterization: Tile-based / Forward / Deferred
-- Blending: Front-to-back / Back-to-front
-- Anti-aliasing: EWA splatting / Mip-aware / None
-
-### 5. Frequency & Geometry Modeling
-- High-frequency boundary: Explicit / Implicit / None
-- Surface quality: Point-based / Surfels / Hybrid
-- Geometric constraints: Depth normal / ESDF / Mesh prior
-
-### 6. Density Control
-- Strategy: Clone + Split + Prune / Progressive / Anchor-based / Variational pruning (VEDAL)
-- Adaptivity: Gradient-based / Loss-based / Statistics-based
-- Compression: Pruning / Quantization / Distillation
-
-### 7. Training Strategy
-- Resolution schedule: Coarse-to-fine / Fixed
-- Iterations: 7k / 30k / custom
-- Regularization: Depth / Normal / Smoothness / Sparsity
-- **FastGS** (CVPR 2026 Highlight): Multi-view consistency replaces Gaussian budget; 3.32× train acceleration; applicable to dynamic/surface/sparse-view/SLAM tasks. Key insight: per-Gaussian multi-view importance screening eliminates redundant densification.
-
-### 8. Performance Characteristics
-- Speed (FPS): Real-time (>30) / Interactive (10-30) / Offline (<10)
-- Memory: VRAM requirement
-- Storage: Model size (MB)
-- Scalability: Small object / Room-scale / City-scale
-
-### 9. Applicable Scenarios
-- Novel view synthesis
-- Surface reconstruction
-- 3D editing
-- Dynamic scenes
-- Large-scale scenes
-- Autonomous driving
-
-### 10. Code & Reproducibility
-- Official implementation available
-- Framework: PyTorch / JAX / CUDA / Custom
-- Dependencies
-
-### 11. Spatial Intelligence & World Model
-- **Holi-Spatial** (ICML 2026 Oral): 4M+ auto-generated spatial samples from video; 7 task types
-- **Spatial-TTT** (ECCV 2026): Test-time training for streaming spatial memory; 2B params > GPT-5
-- **APEIRIA** (ICML 2026): Neuro-symbolic 3D spatial reasoning; bridges MLLM + symbolic verification
-
-## Rendering Formulation Comparison
-
-| Method | Primitive | Compositing | Key Feature |
-|--------|-----------|-------------|-------------|
-| 3DGS | 3D Anisotropic Gaussian | alpha-compositing (front-to-back) | Tile-based rasterization |
-| Softmax-GS | 3D Anisotropic Gaussian | Softmax competition | Replaces α-compositing with learnable softmax |
-| Mip-Splatting | 3D Anisotropic Gaussian + Mip | alpha-compositing | 3D smoothing + 2D Mip filter |
-| 3DGEER | 3D Anisotropic Gaussian | Exact ray-Gaussian integral | Replaces splatting with exact rendering |
-| SNS | Azzalini Skew-Normal Distribution | alpha-compositing | Learnable skewness for asymmetric boundaries |
-| DP-GES | Surfel (sort-free) | Depth Peeling transparency | Eliminates sorting via depth peeling; correct transmittance for semi-transparent boundaries |
-| TriSplat | Triangle primitive | Triangle rasterization | Triangle primitives replacing Gaussians; deterministic visibility |
-
-## Known Methods Database
-
-### Foundation Methods
-
-| Method | Venue | Primitive | Opacity | Key Feature |
-|--------|-------|-----------|---------|-------------|
-| 3DGS | SIGGRAPH'23 | 3D anisotropic | [0,1] sigmoid | Tile-based rasterization |
-| Mip-Splatting | CVPR'24 (Best Student Paper) | 3D anisotropic + Mip | [0,1] | 3D smoothing + 2D Mip filter, alias-free |
-| 2DGS | SIGGRAPH'24 | 2D disk | [0,1] | Better surface reconstruction |
-| Scaffold-GS | ICCV'23 | Anchor+3D | [0,1] | Anchor-based scalability |
-| Scaffold-GS+ | CVPR'24 | Anchor+3D | [0,1] | Progressive training |
-| Softmax-GS | CVPR'26 (Findings) | 3D anisotropic | Softmax competition | Replaces α-compositing with learnable softmax; blend-vs-bound |
-| LeGS | arXiv'26 | 3D anisotropic | RL-controlled | RL-based learnable density control replacing heuristics; O(N) reward |
-| CAdam | SIGGRAPH'26 | 3D anisotropic | Context-adaptive | Context-adaptive densification for generative distillation; avoids over-densification from transient noise |
-| SNS | arXiv'26 (2605.15010) | Skew-Normal | [0,1] | Skew-Normal primitive replacing symmetric Gaussian kernels; continuous interpolation between symmetric Gaussian ↔ Half-Gaussian via learnable skewness |
-| RAF | CVPR'26 (Findings) | 3D anisotropic + physics | Engine-abstracted | 3DGS→physics engine abstraction; 3-stage pipeline (asset abstraction→unified simulation kernel→visual recoupling); MPM/SPH/PBD/rigid-body/articulated-body multi-solver bridge; static collision mesh from Gaussian segmentation; opacity field→physics particle sampling; UE5 Lumen GI rendering; 5 heterogeneous interaction demos (fluid+3DGS, cloth+statue, robot+rigid) |
-
-### Signed / Decomposed Methods
-
-| Method | Opacity Range | Color Range | Mechanism |
-|--------|--------------|-------------|-----------|
-| NegGS | [0, +∞) (non-negative) | ℝ (negative allowed) | Negative color + Diff-Gaussian |
-| (Standard GS) | [0, 1] via sigmoid | [0, +∞) | Standard α-compositing |
-
-**Critical Distinction**: Methods using "negative" concepts differ fundamentally:
-- **Signed opacity (α ∈ [-1,1])**: Opacity α can be negative, rendering formula modified. The Gaussian primitive itself carries a sign. Better for sharp geometric boundaries.
-- **NegGS**: Opacity remains non-negative, but color values can be negative. Uses Diff-Gaussian (subtraction of two Gaussians) to model ring/crescent structures.
-
-### Compression Methods
-
-| Method | Compression Ratio | Quality Impact | Speed |
-|--------|-------------------|----------------|-------|
-| Compact-3DGS | 10-15x | Minimal PSNR drop | Faster |
-| LightGS | 15-20x | Slight drop | Much faster |
-| MobileGS | 50-100x | Moderate drop | Real-time mobile |
-| Embedded-3DGS | 10x | Minimal | Comparable |
-| HAC | ~100x | Slight drop | Faster after decode |
-| OT-UVGS | UV tensor | ↑ vs spherical UVGS | Same as UVGS |
-| NanoGS | Training-free | Minimal (KNN merge) | CPU-only, instant |
-| MesonGS++ | 34x | Minimal | Faster after decode (0-1 ILP hyperparameter search) |
-| GETA-3DGS | 5x | Minimal | First end-to-end automatic joint structured pruning + quantization; QADG; render-aware saliency |
-| CAGS | ~7x (streaming) | Minimal | VQ-based compression with Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment |
-| MGS | arXiv'26 (2603.19234) | Any LoD prefix | Matryoshka continuous LoD via stochastic budget training; renders any prefix k splats |
-| Prune Wisely | CVPR'26 (2602.24136) | Up to 90% reduction | Adaptive pruning + Difference-of-Gaussian (DoG) primitives; quality-preserving extreme compression |
-
-### Robustness / Regularization Methods
-
-| Method | Venue | Prior Source | Key Feature |
-|--------|-------|-------------|-------------|
-| EnerGS | arXiv'26 | LiDAR (partial geometric) | Energy-based soft guidance instead of hard constraints; improves outdoor large-scale scenes |
-| Luminance-GS++ | TPAMI'26 | Illumination prior | Illumination-robust NVS; decouples shading from geometry |
-| Underwater360 | arXiv'26 | Degradation-aware | 3DGS for underwater 360° scenes; attenuation+scattering correction |
-| GlowGS | arXiv'26 | Low-light prior | 3DGS for low-light/glowing scenes; radiance-aware decomposition |
-| DelowlightSplat | arXiv'26 | Degradation-specific | Depth+low-light joint 3DGS; degradation-specific restoration |
-
-### Geometry / Surface Methods
-
-| Method | Venue | Surface Quality | Key Feature |
-|--------|-------|----------------|-------------|
-| 2DGS | SIGGRAPH'24 | High | Oriented 2D disks for geometry |
-| SuGaR | CVPR'24 | High | Surface-aligned regularization |
-| PGSR | TVCG'24 | Highest (SOTA) | Planar regularizer + unbiased depth rendering |
-| PAGaS | arXiv'26 | High (depth) | 1DoF Gaussians for depth refinement |
-| Vol3DGS | CVPR'25 | High | Volume-consistent rendering |
-| 2D-SuGaR | arXiv'26 | Highest (DTU SOTA) | 2DGS + monocular depth/normal priors; depth-guided init; clustering-based pruning |
-| IRIS | arXiv'26 (2603.15368) | Hybrid | GS-proxy neural field with analytical ray intersection; hybrid rendering |
-| DiffSoup | arXiv'26 (2603.27151) | Extreme simplification | Triangle soup as alternative primitive to Gaussians |
-| 3DSS | arXiv'26 (2605.05876) | High (inverse rendering) | First differentiable surface splatting; coverage-based compositing from EWA; joint shape+SVBRDF+lighting |
-| SVGS | arXiv'24 (2411.18966) | High (Blender SOTA) | Spatially varying color+opacity within each Gaussian; movable kernels (1.4x params); >30 FPS |
-| AmbiSuR | ICML'26 | High (photometric) | Photometric ambiguity disambiguation for accurate GS surface reconstruction |
-| DySurface | arXiv'26 | High (4D surface) | Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconstruction |
-| Sparse2DGS | TVCG'26 (2505.19854) | High (sparse-view) | Dense point cloud + 2DGS for sparse-view surface reconstruction |
-| DeSplat | CVPR'26 | High (distractor-free) | Decomposed compositing separating transient objects from static background |
-| TriSplat | arXiv'26 (2605.26115) | High (triangle) | Triangle primitives replacing Gaussians; deterministic visibility, mesh-compatible output |
-
-### Generation / Text-to-3D
-
-| Method | Venue | Input | Output | Key Feature |
-|--------|-------|-------|--------|-------------|
-| DreamGaussian | ICLR'24 (Oral) | Text prompt | 3D mesh + 3DGS | SDS + 3DGS prior, seconds |
-| GaussianEditor | Preprint | Text/geometry mask | Edited 3DGS | CLIP-guided selection + editing |
-| ArtifactWorld | arXiv'26 (2604.12251) | Artifact images | Restored video | Video generation for artifact restoration |
-| SceneGen-LLMRL | arXiv'26 (2605.05711) | Language | Interactive 3D scene | LLM-RL coupling for unified 3D scene generation + immersive interaction |
-| ROAR-3D | arXiv'26 (2605.21121) | Text/image | Multi-view 3D | Token-wise view routing for multi-view 3D generation |
-| TRELLIS.2 | CVPR'26 (Best Student Paper) | Text/image | 4B native 3D model | 17s PBR generation; 4B parameter native 3D generation model |
-
-### Language / Semantic
-
-| Method | Venue | Feature Source | 3D Storage | Key Feature |
-|--------|-------|---------------|------------|-------------|
-| LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
-| Feature 3DGS | CVPR'24 | DINO/SAM (2D distillation) | Per-Gaussian feature vectors | Downstream task features |
-| NRGS | arXiv'26 | Neural network | Learned regularization | Robust semantic 3DGS |
-| Semantic Foam | CVPR'26 (Highlight) | Volumetric Voronoi mesh | Per-cell semantic feature field | Semantic decomposition; outperforms Gaussian Grouping, SAGA |
-| GLMap | CVPR'26 | Multi-scale semantics | Per-Gaussian language features | Gaussian-Language Map; zero-shot navigation |
-| NG-GS | arXiv'26 (2604.14706) | NeRF-guided | Per-Gaussian segmentation | NeRF-guided GS segmentation |
-| PointGS | CVPR'26 | SAM masks (contrastive distillation) | Per-Gaussian semantic features | 3DGS as unified intermediate for unsupervised 3D point cloud segmentation; SAM→3D contrastive learning |
-| ReLaGS | CVPR'26 (2603.17605) | Language model | Per-Gaussian language features | Open-vocabulary 3D reasoning without per-scene training; language-guided GS |
-
-### Feed-Forward Methods
-
-| Method | Venue | #Gaussians | Inference | Key Feature |
-|--------|-------|------------|-----------|-------------|
-| GlobalSplat | Preprint'26 | ~16K | <78ms | Global scene tokens, 4MB footprint |
-| MVSplat | ECCV'24 | Variable | Single-pass | Cost-volume-based prediction |
-| GS-LRM | ECCV'24 | Variable | Single-pass | 1B transformer, zero-shot generalization |
-| DepthSplat | CVPR'25 | Variable | Single-pass | Stereo-guided depth regularization |
-| InstantSplat | arXiv'24 | Variable | ~40s total | Pose-free sparse-view |
-| AnySplat | SIGGRAPH'25 | Variable | Single-pass | In-the-wild unconstrained views |
-| SparseSplat | CVPR'26 | 22% of SOTA | Single-pass | Pixel-unaligned, entropy-based probabilistic sampling, 3D-Local Attribute Predictor |
-| OT-UVGS | EG'26 | UV tensor | Same as UVGS | OT-based UV mapping, O(N log N) |
-| Free Geometry | arXiv'26 | Adaptive | Single-pass + LoRA | Self-evolving feed-forward, +3.73% camera accuracy |
-| FTSplat | arXiv'26 (2603.05932) | Variable | Single-pass | Feed-forward triangle splatting |
-| ZPressor | NeurIPS'25 (2505.23734) | Compressed latent tokens | Single-pass, 100+ views | Bottleneck-aware compression for scalable multi-view feed-forward 3DGS |
-| PM-Loss | 3DV'26 (2506.05327) | Variable | Training loss only | Pointmap-supervised depth regularization; smoother boundaries with no inference overhead |
-| VolSplat | arXiv'25 (2509.19297) | Voxel-aligned | Single-pass | Shared voxel-space Gaussian prediction for multi-view consistency |
-| SplatWeaver | arXiv'26 (2605.07287) | Variable | Single-pass | Cardinality Gaussian Expert Routing (Null/1/2/3 experts per pixel) + DWT frequency prior; 30% Gaussian budget with +1.02 dB PSNR over AnySplat |
-| ArtSplat | arXiv'26 (2605.24304) | Per-part Gaussians | Single-pass | First feed-forward articulated 3DGS; predicts per-part Gaussians + joint parameters from monocular video; enables zero-shot articulated reconstruction |
-| SR3R | CVPR'26 | Variable | Single-pass | Super-resolution + feed-forward GS; joint SR and 3DGS reconstruction |
-| StreamLoD-GS | arXiv'26 (2601.18475) | LoD-structured | Streaming | Level-of-Detail structured 3DGS for streaming free-viewpoint video |
-| NoPo4D | arXiv'26 (2605.22190) | 4D Gaussians | Single-pass | Pose-free feed-forward 4DGS; eliminates camera pose dependency for dynamic scene reconstruction |
-| BEA-GS | CVPR'26 (Highlight, 2605.09662) | Object Gaussians | Single-pass | Object extraction from complex 3DGS scenes; CVPR 2026 Highlight |
-| TokenGS | arXiv'26 (2604.15239) | Learnable tokens | Single-pass | Learnable Gaussian tokens replacing fixed MLP decoding; resolution-adaptive primitive allocation |
-| CodecSplat | arXiv'26 (2605.25563) | Latent-coded Gaussians | Single-pass | Ultra-compact latent coding; 20-108 KiB/scene feed-forward 3DGS |
-| ZipSplat | arXiv'26 (2606.05102) | Token-clustered (~62K) | 0.8s (24 views) | Token-based ff-3DGS via k-means clustering; decouples Gaussian count from pixel grid; ~6× fewer Gaussians +2.1 dB PSNR; DA3-Giant backbone; pose-free; single-directional Chamfer + coupling init + progressive view training |
-| Z-Order GS | CVPR'26 Oral (2605.13465) | Z-ordered (~1/3 of DepthSplat) | 1000× faster than opt | Z-order (Morton) curve spatial indexing; sparse grouped+top-k attention O(N²)→O(N log N); 2-3× fewer Gaussians; cross-dataset generalization (RE10K/DL3DV→ACID) |
-| F-RNG | arXiv'26 (2605.25975) | 3D anisotropic | Single-pass | Feed-forward relightable 3DGS; ~25x faster than optimization-based relighting |
-| VoxelGS | arXiv'26 (2605.26616) | Voxel-anchored Gaussians | Hybrid | Scaffold-anchored Gaussians + voxel SDF for geometry-aware reconstruction |
-| COSY | arXiv'26 (2605.24114) | Compositional Gaussians | Optimized | Compositional head editing via part-based Gaussian decomposition |
-| R5DGS | arXiv'26 (2605.25909) | 4D Gaussians (semantic) | Hybrid | Semantic-aware 4DGS with rigid body constraints for dynamic scene editing |
-| RiGS | arXiv'26 (2605.23672) | 4D Gaussians (rigid-aware) | Hybrid | Rigid-aware monocular 4DGS; leverages rigid body priors for temporal consistency |
-
-### SLAM Methods
-
-| Method | Venue | Input | Scale | Key Feature |
-|--------|-------|-------|-------|-------------|
-| Gaussian Splatting SLAM | CVPR'24 (Highlight) | Monocular video | Room-scale | First real-time monocular 3DGS SLAM, differentiable rendering for joint pose+map |
-| CGS-SLAM | IROS'25 | Monocular video | Room-scale | Voxel-based compact representation for efficiency |
-| WildGS-SLAM | CVPR'25 | Monocular video | Room-scale | Dynamic environments, uncertainty-aware mapping via pretrained 3D priors |
-| S3PO-GS | ICCV'25 | Monocular video | Outdoor | Scale-consistent pose optimization, eliminates outdoor scale drift |
-| Flow4DGS-SLAM | arXiv'26 | Monocular video | Room-scale | Optical flow-guided 4DGS for temporal consistency |
-| GaussianPile | CVPR'26 | CT/volumetric scans | Organ-scale | Volumetric medical GS with focus-aware PSF projection + additive rasterization (not alpha-blending); 16-26× compression; 11× faster than NeRF; supports ultrasound/microscopy/MRI |
-| Ilov3Splat | arXiv'26 | Multi-view video | Room-scale | Interpretable love-based 3DGS with region-aware decomposition |
-| PhysX-Omni | arXiv'26 | Multi-modal (vision+physics) | Scene-scale | Omni-physics integrated 3DGS for unified simulation & rendering |
-| E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
-| MAGS-SLAM | arXiv'26 | RGB (multi-agent) | Multi-room | First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification |
-| GGD-SLAM | ICRA'26 | Monocular video | Room-scale | Generalizable motion model for dynamic SLAM; masks dynamic region residuals for correct factor graph |
-
-### Large-Scale Methods
-
-| Method | Venue | Scale | Key Feature |
-|--------|-------|-------|-------------|
-| Scaffold-GS | ICCV'23 | Building | Anchor-based efficiency |
-| Scaffold-GS+ | CVPR'24 | City | Progressive training |
-| CityGaussian | ECCV'24 | City | Hierarchical LOD |
-| Street Gaussians | ECCV'24 | Street | Static/dynamic decomposition, driving scenes |
-| Octree-GS | Preprint | City | Octree acceleration + LOD |
-
-### Cross-Domain Applications
-
-| Method | Venue | Domain | Key Feature |
-|--------|-------|--------|-------------|
-| GS-DOT | arXiv'26 | Medical (DOT) | Diffusion transport for photon imaging |
-| BiSplat-WRF | IEEE ICC'26 Workshop | Wireless (WRF) | Planar GS + bilinear spatial transformer for EM coupling |
-| FieryGS | ICLR'26 | Physics simulation | Physics-integrated fire synthesis |
-| SplAttN | ICML'26 (Spotlight) | Point cloud completion | Gaussian soft splatting for point cloud completion |
-| Fake3DGS | ICPR'26 | Forensics | First benchmark for 3D manipulation detection in neural rendering |
-| SandSim | arXiv'26 | Digital art | Curve-guided Gaussian for sand painting reconstruction |
-| RGS | arXiv'26 | Medical (CBCT) | Residual wavelet-GS for sparse-view CBCT |
-| RESPIRE | arXiv'26 | Medical (bronchoscopy) | CT-informed mesh-anchored GS for dynamic bronchoscopy |
-| Color-Encoded Illumination | CVPR'26 (Highlight) | High-speed imaging | Color-coded temporal info for volumetric reconstruction |
-| HDR-NSFF | ICLR'26 (2603.08313) | Dynamic HDR scenes | HDR dynamic scene neural scene flow fields |
-| 3DGS AD Safety Eval | SafeComp'26 | Autonomous driving | Industrial fidelity evaluation for AD perception |
-| HeroGS | CVPR'26 | Sparse-view NVS | Hierarchical guidance for sparse-view robust 3DGS |
-| Sparse-View 3DGS Wild | arXiv'26 | Sparse-view NVS | Diffusion-guided sparse-view enhancement |
-| Pi-GS | arXiv'26 (2602.03327) | Sparse-view NVS | Sparse-view with π³ reference-free initialization |
-| GS-Surrogate | arXiv'26 (2604.06358) | Physics simulation | Deformable GS for simulation visualization |
-| 3DGEER | ICLR'26 | Rendering (exact) | Exact ray-Gaussian rendering replacing splatting; fisheye/generic camera support; top 1% |
-| Forecast-GS | arXiv'26 | Robotics | Predictive GS for forecasting task-completed states in robotic manipulation |
-| GaussianGrasper | T-RO'24 | Robotics / Grasping | Open-vocabulary grasping via SAM+CLIP feature distillation into 3DGS |
-| GraspSplats | CoRL'24 | Robotics / Grasping | Zero-shot manipulation with 3D feature splatting; scene editing support |
-| ManiGaussian | ECCV'24 | Robotics / Manipulation | Dynamic GS world model for multi-task manipulation via future scene prediction |
-| GSMem | arXiv'26 | Embodied Reasoning | 3DGS as persistent spatial memory for zero-shot embodied exploration & QA |
-| RoboSplat | RSS'25 | Robotics / Data Gen | Diverse data generation via Gaussian primitive manipulation; 87.8% success |
-| VR-Robo | RAL'25 | Robotics / Navigation | Real-to-Sim-to-Real for visual robot navigation without depth sensors |
-| GSDrive | arXiv'26 | Driving RL | 3DGS environment for reinforcing driving policies |
-| GeoQuery | SIGGRAPH'26 | Sparse-view NVS | Geometry-guided cross-view attention with geometry-aligned proxy queries from predicted depth |
-| PairDropGS | arXiv'26 | Sparse-view NVS | Paired dropout-induced consistency regularization with progressive scheduling |
-| DropAnSH-GS | CVPR'26 | Sparse-view NVS | Anchor dropout + SH regularization for robust sparse-view reconstruction |
-| VidSplat | SIGGRAPH'26 | Sparse-view NVS | Training-free generative framework leveraging video diffusion priors with iterative confidence refinement |
-| OCH3R | arXiv'26 (2605.13018) | Single RGB | Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-object Gaussians |
-| SAM 3D | CVPR'26 (Honorable Mention) | Single image | Single-image 3D foundation model by Meta; general-purpose 3D reconstruction |
-
-### Dynamic / 4DGS Methods
-
-_Multi-solver comparison sub-dimension for dynamic methods:_
-- **Unified Query Mechanism** (D4RT): Single unified query architecture for 4D reconstruction, eliminating separate static/dynamic pipelines; 200+ FPS inference
-- **Separate Deformation Fields**: Traditional approach with independent static + deformation modules
-- **Physics-Based**: MPM/SPH solvers grounding dynamics in physical simulation (RAF, ParticleGS)
-
-| Method | Venue | Primitive | Rendering | Key Feature |
-|--------|-------|-----------|-----------|-------------|
-| FreeTimeGS++ | arXiv'26 (2605.03337) | 4D Gaussians + durations | Gated marginalization | Neural velocity fields + emergent temporal partitioning; comprehensive 4DGS analysis |
-| ParticleGS | arXiv'26 | 3D anisotropic + physics | Standard α-compositing | Physics-based motion extrapolation for fluid/dynamic scenes; Lagrangian particle dynamics |
-| TransmissiveGS | arXiv'26 | Dual-GS (surface + reflection) | Deferred shading | Transmissive + reflective dual decomposition; separate G-buffer compositing for glass/refractive objects |
-| PD-4DGS | arXiv'26 | 3-layer progressive (static + global deform + local refine) | Progressive streaming | DASH/HLS-compatible 4DGS streaming; ~1.7s first-frame latency vs 73-930s monolithic |
-| 3DGS³ | arXiv'26 | 3D anisotropic (super-sampled) | Standard + temporal interpolation | Gradient-Aware Super Sampling + Lightweight Temporal Frame Interpolation for large-scale 3DGS |
-| BlitzGS | arXiv'26 | 3D anisotropic (distributed) | Parity-based multi-GPU | Distributed city-scale GS training; parity-based sharding across multi-GPU; eliminates single-GPU memory bottleneck |
-| Z-Order GS | CVPR'26 (Oral) | 3D anisotropic (Z-ordered) | Z-order curve indexing | Z-order (Morton) curve spatial indexing for cache-coherent Gaussian traversal; sparse attention (grouped+top-k) reduces O(N²)→O(N log N); 1000× faster than per-scene optimization; 2-3× fewer Gaussians vs DepthSplat/AnySplat; handles 2-12 variable input views; cross-dataset generalization (RE10K→ACID, DL3DV→ACID) |
-| PanoPlane | arXiv'26 | Planar (panoramic) | Plane-based compositing | Panoramic plane-based GS for omnidirectional NVS; efficient panoramic scene representation |
-| SparseOIT | arXiv'26 | 3D anisotropic | Order-independent transparency | Sparse order-independent transparency for correct See-through rendering of overlapping semi-transparent Gaussians |
-| SCOUP | arXiv'26 | Sparse code primitives | Language-conditioned | Sparse code language GS; language-conditioned sparse coding for controllable 3DGS generation |
-| AV1-3DGS | arXiv'26 | 3D anisotropic | AV1 motion-vector SfM | AV1 codec motion vectors for dense SfM; 63% training time reduction; leverages video compression priors |
-| RoSplat | arXiv'26 | 3D anisotropic (feed-forward) | Pixel-wise GS | Feed-forward pixel-wise GS for sparse-view NVS; requires alpha normalization for varying view counts |
-| HarmoGS | arXiv'26 | 3D anisotropic | Harmonized optimization | Gradient harmonization for in-the-wild 3DGS; resolves cross-view gradient conflicts from transient distractors and illumination inconsistencies |
-| GuardMarkGS | arXiv'26 | 3D anisotropic | Watermark + deterrence | First unified watermarking + edit deterrence framework for 3DGS assets; security for 3D content |
-| FaceParts | arXiv'26 | 3D anisotropic (part-based) | Part-compositional | Part-based decomposable Gaussian avatar; modular facial region modeling for expressive avatars |
-| RetroNVS | arXiv'26 | 3D anisotropic | Retro-reflection modeling | Retro-reflection modeling in 3DGS for accurate rendering of retro-reflective surfaces (signs, safety gear) |
-| Velox | arXiv'26 | 3D anisotropic | Velocity-aware 4D | Velocity-aware 4DGS for fast dynamic scene reconstruction with motion-adaptive temporal modeling |
-| 3DGS² | arXiv'26 | 3D anisotropic (super-sampled) | Super-sampling + temporal | Second-generation 3DGS with super-sampling and temporal interpolation for large-scale scenes |
-| DP-GES | arXiv'26 (2605.25345) | Surfel | Depth Peeling (sort-free) | Sort-free surfel rendering via depth peeling; eliminates sorting bottleneck for semi-transparent surfaces |
-| 4D-GSW | arXiv'26 (2605.22342) | 4D anisotropic | Kinematic-aware watermarking | Kinematic-aware 4DGS watermarking; embeds identity into dynamic Gaussian trajectories |
-| RoVES | arXiv'26 (2605.25373) | 3D anisotropic (physics-aware) | Physics-conditioned editing | Physics-aware driving scene editing; enforces physical constraints during scene manipulation |
-| D4RT | CVPR'26 (Best Paper, 2512.08924) | 4D anisotropic (unified query) | Unified query 4D reconstruction | Unified query mechanism for 4D reconstruction; 200+ FPS; CVPR 2026 Best Paper |
-| FreeForm | CVPR'26 (2605.29318) | 3D anisotropic + eigenmodes | Physics/elastic deformation | Particle-skinned eigenmodes for 3DGS elastic deformation; physics-driven articulation |
-
-### Human & Avatar Methods
-
-| Method | Venue | Input | Key Feature |
-|--------|-------|-------|-------------|
-| HumanSplatHMR | arXiv'26 | Image | Joint pose-avatar optimization; closes loop between HMR and differentiable rendering |
-| EmoTaG | CVPR'26 (2603.21332) | Image + audio | Emotion-aware talking head on GS |
-| SDTalk | arXiv'26 | Image + audio | Structured facial priors + dual-branch motion fields for Gaussian talking head |
-| HairGPT | SIGGRAPH'26 | Text/image | Strand-as-Language autoregressive modeling for 3D hairstyle synthesis |
-| D-Rex | SIGGRAPH'26 (2604.27871) | White-light avatar + target illumination | Decoupled relighting via LoRA fine-tuned video diffusion post-process; applicable to any white-light avatar system |
-| PiG-Avatar | arXiv'26 (2605.20185) | Image + pose | Volumetric canonical Gaussian avatars with part-indexed Gaussian fields |
-| Latent Dynamics | arXiv'26 (2605.21478) | Image + motion | Force decomposition for clothing animation; latent dynamics prediction |
-
-### Articulated Object Methods
-
-| Method | Venue | Input | Key Feature |
-|--------|-------|-------|-------------|
-| FreeArtGS | arXiv'26 (2603.22102) | Multi-view video | Free-moving articulated GS; unconstrained articulation modeling |
-| ArtGS | IEEE'26 | Multi-view video | Visual-physical modeling with 3DGS; joint visual appearance + physical constraints |
-| PARTICULATE | CVPR'26 | Monocular video | Feed-forward 3D object articulation; single-pass articulated reconstruction |
-
-### World Models & Spatial Intelligence
-
-_3DGS as world model primitive, differentiable simulation engine, or spatial intelligence representation_
-
-Key methods:
-- **GWM**: 3DGS as environment dynamics modeling primitive with autoregressive future state prediction
-- **FlashWorld**: Feed-forward 3DGS world model for real-time interactive 3D world generation
-- **GS-World**: 3DGS as differentiable simulation engine for world model + Sim2Real VLA
-- **Visionary**: WebGPU + 3DGS world model carrier platform for browser-native world model rendering
-- **RAD/DLWM**: 3DGS twin digital world for autonomous driving RL training
-- **GSMem**: 3DGS as persistent spatial memory for zero-shot embodied exploration & QA
-
-Spatial intelligence benchmarks intersecting 3DGS:
-- **ESI-Bench** (arXiv 2605.18746, Fei-Fei Li team): First embodied spatial intelligence benchmark closing perception-action loop; reveals that VLM models fail at spatial interaction despite strong visual recognition — directly relevant to 3DGS-based embodied reasoning (GSMem, RoboSplat)
-- **HiSpatial** (arXiv 2603.25411, CVPR 2026): Hierarchical 3D spatial cognition in VLMs; from 2D→3D structure→object properties→spatial relations — suggests 3DGS scene graphs as structured intermediate representations
-- **Embodied3DBench** (arXiv 2605.29074): 21K QA pairs for low-level embodied spatial intelligence; size/distance/pose/occlusion reasoning — evaluation targets overlap with 3DGS spatial understanding
-- **SpaceDrive** (CVPR 2026, Mercedes-Benz): Infusing spatial awareness into VLM for autonomous driving — 3DGS-based driving world models (SplatAD, GS-Drive) are the natural spatial representation backend
-
-Comparison key: Does the method use 3DGS as (a) state representation only, (b) dynamics modeling primitive, or (c) differentiable simulation engine? This determines the depth of world model integration.
-
-### Autonomous Driving Methods
-
-| Method | Venue | Input | Key Feature |
-|--------|-------|-------|-------------|
-| Real2Sim | arXiv'26 | 3D anisotropic (4D) | 4DGS + differentiable MPM | Physics-aware AD scene simulation with differentiable MPM for collision scenarios; bridges real-to-sim gap |
-| GaussianLSS | CVPR'25 | Multi-camera | GS for BEV perception |
-| Nighttime AD GS | ICRA'26 (2602.13549) | Nighttime multi-camera | PBR-based nighttime AD reconstruction |
-| ConFixGS | arXiv'26 (2605.09688) | Multi-camera | Confidence-aware diffusion for feedforward 3DGS fix; +3.68 dB PSNR on Waymo |
-
-### System & Infrastructure Methods
-
-| Method | Venue | Framework | Key Feature |
-|--------|-------|-----------|-------------|
-| VkSplat | Eurographics'26 | Vulkan | Vulkan-based 3DGS training; 3.3x speed; cross-vendor |
-| brush | Open-source | Rust/WebGPU/Burn | Cross-platform 3DGS training (Win/Mac/Linux/Android/Web); 4.3k stars; faster than gsplat |
-
-### Training Acceleration / Optimization Methods
-
-| Method | Venue | Strategy | Key Feature |
-|--------|-------|----------|-------------|
-| Structure-Aware Densification | SIGGRAPH'26 | Frequency-aware anisotropic splitting | Frequency-aware anisotropic splitting; multiview consistency; faster convergence |
-| GEMM-GS | DAC'26 (2604.02120) | Tensor Core GEMM | GPU acceleration via Tensor Cores; 1.42x speedup |
-| Denoising-GS | arXiv'26 (2605.14880) | Spatial-aware denoising | Spatial-aware denoising formulation for 3DGS optimization; spatial gradient + uncertainty-based pruning |
-| AdpSplit | arXiv'26 (2605.06876) | Error-driven adaptive split | Error-driven adaptive split operator; 9-22% training time reduction as drop-in replacement |
-| BA-GS | CVPR'26 | Bayesian Adaptive | Bayesian Adaptive GS for SfM-free reconstruction; probabilistic camera-GS joint optimization |
-
-### Real-Time NVS Methods
-
-| Method | Venue | Cameras | FPS | Latency | Key Feature |
-|--------|-------|---------|-----|---------|-------------|
-| 3DTV | arXiv'26 | 3 | 40 | 25ms | Delaunay-based triplet selection, real-time multi-camera synthesis |
-
-### Editing Methods
-
-| Method | Editing Type | Input | Quality |
-|--------|-------------|-------|---------|
-| GaussianEditor | Text/geometry | Mask + prompt | High |
-| GeoGaussian | Geometry | Mesh guidance | High |
-| Frosting | Appearance | Text prompt | Medium |
-| SketchFaceGS | Sketch-driven | 2D sketch | High (CVPR'26 Highlight) |
-| FluSplat | Text-driven | Sparse views | Medium-High |
-| TransSplat | Language-driven | Multi-view + text | High |
-| GOR-IS | Intrinsic-space removal | Image | High (+13% LPIPS) |
-| SVGS | arXiv'26 (2603.28126) | Text-driven 3D editing | Single view + text prompt | High |
-| VIRGi | TPAMI'26 (2603.02986) | Appearance editing | Image | View-dependent instant recoloring |
-| RDSplat | arXiv'26 (2512.06774) | Watermarking | Watermarked GS | Robust watermarking against diffusion editing |
-| FreeFix | arXiv'26 (2601.20857) | Diffusion guidance | No fine-tuning | Fine-tuning-free diffusion guidance for GS |
-
-### Recent Additions (June 2026)
-
-| Method | arXiv | Category | Key Feature |
-|--------|-------|----------|-------------|
-| HiGS | 2606.00352 | Acceleration | 15.8x rendering speedup |
-| DDF-GS | 2606.00817 | Ray-query GI | 26-72x faster than SDF sphere tracing |
-| VEDAL | 2606.02346 | Compression | 5.2x via variational free energy pruning |
-| WebSpline | 2606.02096 | Dynamic | Learnable Hermite spline trajectories |
-| MRO-GWM | 2606.01950 | World Model | Object-centric Gaussian for rigid bodies |
-| StreetNVS | 2606.01590 | AD NVS | Multi-sensor fusion |
-| LEGS | 2606.01458 | Robotics | Mesh+3DGS embodied simulation |
-| KDH-CAD | 2606.01702 | CAD | Knowledge-data hybrid |
-| SEIG | 2606.02580 | Procedural 3D | VLM→Blender |
-| AlbedoEdit | 2606.01362 | Editing | Video-level albedo editing |
-
-## Output Format
-
-Generate comparisons using this template:
-
-```
-## [Method A] vs [Method B] vs [Method C]
-
-### Overview Table
-| Dimension | Method A | Method B | Method C |
-|-----------|----------|----------|----------|
-| Primitive | ... | ... | ... |
-| Opacity | ... | ... | ... |
-| Rendering | ... | ... | ... |
-| ... | ... | ... | ... |
-
-### Detailed Analysis
-
-#### Primitive Representation
-[Paragraph comparing the fundamental representational differences]
-
-#### Design Trade-offs
-[Analysis of what each method gains and sacrifices]
-
-#### Recommendation
-- For novel view synthesis: [Best choice] because ...
-- For surface reconstruction: [Best choice] because ...
-- For real-time rendering: [Best choice] because ...
-```
-
-## Rules
-
-1. **Be technically precise**: Never oversimplify differences. If two methods differ in their opacity parameterization, explain exactly how.
-2. **Quote metrics when available**: Use actual numbers from papers, not estimates.
-3. **Avoid bias**: Present each method's strengths and weaknesses fairly.
-4. **Context matters**: A method that's worse on PSNR might be better for real-time. Always mention the use case.
-5. **Flag uncertainty**: If you don't have reliable data for a comparison dimension, say so explicitly.
+# 3DGS Method Comparison Engine (Router)
+
+> **Architecture**: Axis-driven static/dynamic router. Do NOT try to apply the comparison logic from memory or from this router alone. Always load fragments from disk as described below.
+
+## Step 1 — Detect Request Axes
+
+Analyze the user's request to determine axis values:
+
+### Axis: category
+| User Intent | category value |
+|-------------|---------------|
+| Foundation/baseline methods, opacity, compression | core |
+| Surface reconstruction, geometry, text-to-3D generation | geometry |
+| Language features, semantic, feed-forward inference | semantic |
+| SLAM, large-scale scene, urban reconstruction | slam |
+| Dynamic scenes, 4DGS, human/avatar, articulated objects | dynamic |
+| Cross-domain, autonomous driving, spatial intelligence, editing, systems | pplication |
+| Broad/unspecified comparison across many categories | ll |
+
+### Axis: depth
+| User Intent | depth value |
+|-------------|-------------|
+| Quick lookup, single method info | quick |
+| Standard comparison (2-5 methods, focused analysis) | standard |
+| Comprehensive survey, full-category scan | comprehensive |
+
+If the user does not specify, defaults are: category=all, depth=standard.
+
+## Step 2 — Load Required Fragments
+
+### Always Load (every invocation)
+Read these files from static/:
+- static/core-stance.md — Role, capabilities, comparison dimensions, rendering comparison table, guardrails
+
+### On-Demand Load (by detected category)
+Read the corresponding fragment(s) from static/:
+
+| category | Fragment to Load |
+|----------|-----------------|
+| core | static/methods-core.md |
+| geometry | static/methods-geometry.md |
+| semantic | static/methods-semantic.md |
+| slam | static/methods-slam.md |
+| dynamic | static/methods-dynamic.md |
+| pplication | static/methods-application.md |
+| ll | ALL method fragments (methods-core.md through methods-application.md) |
+
+### Reference Load (when producing structured output)
+- static/output-rules.md — Output format template and comparison rules
+
+**Optimization**: For depth=quick, load only the relevant category fragment + core-stance. For depth=comprehensive, load all fragments plus output-rules.
+
+## Step 3 — Execute Comparison
+
+After loading the required fragments:
+
+1. Apply the comparison dimensions from core-stance.md
+2. Use method data from the loaded category fragment(s)
+3. Follow output format from output-rules.md if producing tables/reports
+4. Observe all guardrails (no fabrication, flag uncertainty, load from disk not memory)
+
+## Cross-Skill Routing
+
+This skill focuses on method-level comparison. For related workflows:
+- **Paper reading/analysis** → 3dgs-paper-reader
+- **Code review/bug detection** → 3dgs-code-reviewer
+- **Experiment design** → 3dgs-experiment-planner
+- **Engineering deployment** → 3dgs-engineering-guide
+- **Visualization/radar charts** → 3dgs-visualizer
+- **CAD/Mesh integration** → cad-mesh-3dgs
+- **Spatial intelligence/agent** → 3dgs-spatial-agent
+
+## Related Skills
+
+- **3dgs-paper-reader** — Deep reading and analysis of 3DGS papers (use when you need detailed paper understanding, not just method comparison)
+- **3dgs-code-reviewer** — Bug detection and code review for 3DGS implementations (use when comparing implementation quality)
+- **3dgs-experiment-planner** — Experiment design for 3DGS research (use when comparison informs experiment design)
+- **3dgs-engineering-guide** — Production deployment of 3DGS (use when comparison targets deployment scenarios)
+- **3dgs-visualizer** — Publication-quality comparison visualizations (use when comparison needs radar charts or timeline plots)
+- **3dgs-spatial-agent** — Spatial intelligence and embodied reasoning with 3DGS
 
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills
