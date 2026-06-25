@@ -728,3 +728,28 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### 3D Vision Survey
 - **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (arXiv 2026) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; Brown / UMaryland / UPenn / USC / NYU / Sydney / Stability AI (Hongyang Du et al.)
+
+---
+
+## Newly Added Methods (June 25, 2026 — Daily Update)
+
+> 10 methods added from multi-source search (arXiv, Zhihu CVPR 2026 coverage, Baijiahao, CSDN, Leiphone); spanning acceleration, SLAM, spatial intelligence, digital twin, 3D understanding, and CAD/mesh
+
+### Acceleration / Training
+- **FastGS** [arXiv:2511.04283](https://arxiv.org/abs/2511.04283) (CVPR 2026 Highlight) — Multi-view consistency-based densification and pruning replacing Gaussian budget mechanism; 3.32× training acceleration on Mip-NeRF 360, 15.45× on Deep Blending; 100-second training with comparable quality to SOTA; generalizes across dynamic/surface/sparse-view/large-scale/SLAM tasks (Shiwei Ren, Tianci Wen, Yongchun Fang, Biao Lu, Nankai University)
+
+### SLAM
+- **GaussianSplatting-SLAM-v2** (CVPR 2026) — Enhanced 3DGS-SLAM with improved tracking and mapping for RGBD SLAM; addresses the gap between 3DGS rendering quality and SLAM real-time constraints
+- **GS-Map-SLAM** (CVPR 2026) — Gaussian-based dense mapping for SLAM with view-dependent quality; real-time dense mapping via GS optimization
+
+### Digital Twin / Interaction
+- **ArtiTwinSplat** (arXiv 2026) — Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos; enables interaction with reconstructed digital twins; agent-system integration for articulated object manipulation (Pranjal Mishra, René Zurbrügg, Max Wilder-Smith)
+
+### Spatial Intelligence / World Model
+- **Holi-Spatial** (ICML 2026 Oral) — Evolving Video Streams into Holistic 3D Spatial Intelligence; fully automated spatial data construction framework from raw video; 4M+ spatial multimodal samples; covers 3D reconstruction, depth, 2D mask, 3D bbox, instance description, 3D grounding, spatial QA (Shanghai AI Lab, NWPU, SJTU)
+- **Spatial-TTT** (ECCV 2026) — Test-time training for streaming spatial intelligence; 2B-parameter model surpasses GPT-5 and Gemini-3-pro on spatial benchmarks; continuous spatial memory update from long-form video streams; 40%+ savings in VRAM and compute (Fangfu Liu et al., Tsinghua University)
+- **APEIRIA** (ICML 2026) — Neuro-symbolic 3D spatial reasoning framework combining 3D MLLM open-vocabulary understanding with programmatic verification; bridges black-box neural reasoning and interpretable symbolic spatial reasoning (Wentao Mo, Yang Liu, Peking University)
+- **S²AM3D** (CVPR 2026 Oral) — Scale-controllable 3D point cloud arbitrary part segmentation; first model with continuous scale granularity control; 28.5% performance improvement; SAM-based 2D-3D cross-modal alignment (HIT)
+
+### Spatial Data / 3D Vision Infrastructure
+- **OpenSpatial** [arXiv:2604.07296](https://arxiv.org/abs/2604.07296) (arXiv 2026) — Principled open-source data engine for spatial intelligence; 3M-sample dataset; 5 foundational task hierarchy (Spatial Measurement, Spatial Relationship, Camera Perception, Multi-view Consistency, Scene-Aware Reasoning); 19% relative improvement on spatial benchmarks (Jianhui Liu et al., HKU / Xiaomi)

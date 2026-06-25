@@ -2,7 +2,7 @@
 name: 3dgs-spatial-agent
 description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
 when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS"
-version: 0.5.0
+version: 0.6.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
 allowed-tools: Read Grep Bash Glob
@@ -27,9 +27,11 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ```
 3DGS Scene (675+ methods)
   │
-  ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind
+  ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │
   │     ├── Per-object Gaussians ──── Part-level representation
+  │     │
+  │     ├── Part-level segmentation ──── S²AM3D (scale-controllable 3D point cloud part segmentation; continuous granularity slider)
   │     │
   │     └── Scene Graph ──── DGSG-Mind (spatial relations, object attributes)
   │
@@ -45,11 +47,13 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
   │     │
   │     └── Environment lighting ──── Spherical harmonics decomposition
   │
-  ├── Articulation ──── ArtSplat, SK-GS, ArtMesh, SAGD
+  ├── Articulation ──── ArtSplat, SK-GS, ArtMesh, SAGD, ArtiTwinSplat
   │     │
   │     ├── Joint discovery ──── Skeleton auto-discovery
   │     │
-  │     └── Motion fields ──── Deformation fields per part
+  │     ├── Motion fields ──── Deformation fields per part
+  │     │
+  │     └── Digital twin interaction ──── ArtiTwinSplat (RGB-D digital twin; agent-driven articulated manipulation)
   │
   ├── Spatial Reasoning ──── RAF, FreeArtGS
   │     │
@@ -57,9 +61,25 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
   │     │
   │     └── Free-motion articulation ──── FreeArtGS (ground-plane-free articulation reconstruction)
   │
-  ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702]
+  ├── Spatial Data Engine ──── Holi-Spatial (ICML 2026 Oral), OpenSpatial (arXiv 2026)
   │     │
-  │     └── Domain-constrained parametric fitting ──── Foundation model + textbook knowledge + 250 samples → 92.6% accuracy
+  │     ├── Auto data flywheel ──── Holi-Spatial (4M+ samples, 7 task types from video)
+  │     │
+  │     └── Principled data hierarchy ──── OpenSpatial (3M samples, 5 foundational tasks)
+  │
+  ├── Streaming Spatial Memory ──── Spatial-TTT (ECCV 2026)
+  │     │
+  │     └── Test-time training ──── 2B params > GPT-5 on spatial benchmarks
+  │
+  ├── Neuro-Symbolic Reasoning ──── APEIRIA (ICML 2026)
+        │
+        └── MLLM + Z3/SMT verification ──── Open-vocabulary + interpretable spatial proof
+  │
+  ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702], ArtiTwinSplat
+  │     │
+  │     ├── Domain-constrained parametric fitting ──── Foundation model + textbook knowledge + 250 samples → 92.6% accuracy
+  │     │
+  │     └── Interactable digital twin ──── ArtiTwinSplat (RGB-D reconstruction; agent-driven articulated object manipulation)
   │
   ├── Mid-Surface Extraction ──── MidSurfNet [2606.01891]
   │     │

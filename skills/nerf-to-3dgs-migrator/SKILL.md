@@ -1,7 +1,7 @@
-﻿---
+---
 name: nerf-to-3dgs-migrator
 description: "Migrate NeRF-based methods to 3DGS with step-by-step guidance. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry."
-version: 1.3.0
+version: 1.4.0
 author: jaccen
 tags: ["nerf", "3dgs", "gaussian-splatting", "migration", "code-template", "research"]
 ---
@@ -246,7 +246,7 @@ Key changes to the training loop:
 
 ## Knowledge Base
 
-This skill references a knowledge base of 675+ methods across 25 categories (updated for v0.3.3 cycle).
+This skill references a knowledge base of 690+ methods across 25 categories (updated for v0.3.3 cycle).
 
 ## Rules
 

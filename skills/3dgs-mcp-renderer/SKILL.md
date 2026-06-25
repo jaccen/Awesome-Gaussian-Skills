@@ -2,7 +2,7 @@
 name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Prototype for Agent↔3DGS interaction."
 when_to_use: "MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering"
-version: 0.4.0
+version: 0.5.0
 author: jaccen
 tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive"]
 disable-model-invocation: true
@@ -230,6 +230,34 @@ MCP Tool: deform_elastic — Apply particle-skinned eigenmode deformation to 3DG
 ```
 
 **Use cases**: Elastic soft-body deformation, eigenmode-based shape editing, physically plausible object bending
+
+### Tool 10: `query_spatial_context`
+
+```json
+{
+  "name": "query_spatial_context",
+  "description": "Query spatial understanding of the current 3DGS scene using spatial intelligence models (Spatial-TTT/Holi-Spatial pipeline). Returns spatial relations, grounding, and scene graph.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string", "description": "Scene identifier from import_scene" },
+      "query": { "type": "string", "description": "Natural language spatial query about the scene" },
+      "mode": { "enum": ["grounding", "relation", "measurement", "scene_graph"], "description": "Type of spatial query" }
+    },
+    "required": ["scene_id", "query", "mode"]
+  },
+  "output": { "type": "object", "properties": { "answer": "string", "spatial_data": "object", "confidence": "number" } }
+}
+```
+
+Integrates Holi-Spatial (ICML 2026 Oral) data pipeline for automated spatial annotation and Spatial-TTT (ECCV 2026) for streaming spatial memory updates.
+
+## Voice Intent Mapping
+
+| Voice Intent Example | Intent Type | MCP Tool Call |
+|----------------------|-------------|---------------|
+| "What is to the left of the chair?" | Spatial grounding query | `query_spatial_context` (mode="grounding") |
+| "How far is the table from the door?" | Spatial measurement | `query_spatial_context` (mode="measurement") |
 
 ## Voice-Driven Reconstruction Flow
 

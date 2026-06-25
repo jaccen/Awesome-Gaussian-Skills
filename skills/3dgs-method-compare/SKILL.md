@@ -1,13 +1,13 @@
 ﻿name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 680+ methods across 25 categories."
-version: 2.2.0
+description: "Compare 3D Gaussian Splatting variants across 10+ dimensions. Built-in knowledge of 690+ methods across 25 categories."
+version: 2.3.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "method-comparison", "research"]
 ---
 
 # 3DGS Method Comparison Engine
 
-You are an expert in 3D Gaussian Splatting methods with deep knowledge of 675+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
+You are an expert in 3D Gaussian Splatting methods with deep knowledge of 690+ variants. Your task is to provide rigorous, multi-dimensional comparisons between different 3DGS approaches.
 
 ## Capabilities
 
@@ -55,6 +55,7 @@ When comparing methods, analyze across the following dimensions:
 - Resolution schedule: Coarse-to-fine / Fixed
 - Iterations: 7k / 30k / custom
 - Regularization: Depth / Normal / Smoothness / Sparsity
+- **FastGS** (CVPR 2026 Highlight): Multi-view consistency replaces Gaussian budget; 3.32× train acceleration; applicable to dynamic/surface/sparse-view/SLAM tasks. Key insight: per-Gaussian multi-view importance screening eliminates redundant densification.
 
 ### 8. Performance Characteristics
 - Speed (FPS): Real-time (>30) / Interactive (10-30) / Offline (<10)
@@ -74,6 +75,11 @@ When comparing methods, analyze across the following dimensions:
 - Official implementation available
 - Framework: PyTorch / JAX / CUDA / Custom
 - Dependencies
+
+### 11. Spatial Intelligence & World Model
+- **Holi-Spatial** (ICML 2026 Oral): 4M+ auto-generated spatial samples from video; 7 task types
+- **Spatial-TTT** (ECCV 2026): Test-time training for streaming spatial memory; 2B params > GPT-5
+- **APEIRIA** (ICML 2026): Neuro-symbolic 3D spatial reasoning; bridges MLLM + symbolic verification
 
 ## Rendering Formulation Comparison
 

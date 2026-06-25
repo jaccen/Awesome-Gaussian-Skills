@@ -1,18 +1,18 @@
-﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 680+ 方法，25 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 690+ 方法，25 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-680+-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI技能-12-green.svg)](skills/)
+[![Methods](https://img.shields.io/badge/方法-690+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI技能-13-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-101+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -39,11 +39,11 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 680+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 690+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 本月新增（2026 年 6 月）
 
-最新更新（6 月 18 日）：675→680+ 方法，25 类别，101+ bug 模式。知识深化：补充 **RAF**（CVPR'26 Findings，3 阶段物理抽象管线）、**Z-Order GS**（CVPR'26 Oral，Z-order Morton 曲线 + 稀疏注意力 O(N log N)）、**3DReflecNet**（CVPR'26 最佳论文候选，120K+ 物体，48 材质组合）、**GaussianPile**（CVPR'26，聚焦感知 PSF + 加性光栅化）技术细节。Skills v0.3.4：+2 bug 模式（#100-#101），4 个技能更新。
+最新更新（6 月 18 日）：675→690+ 方法，25 类别，101+ bug 模式。知识深化：补充 **RAF**（CVPR'26 Findings，3 阶段物理抽象管线）、**Z-Order GS**（CVPR'26 Oral，Z-order Morton 曲线 + 稀疏注意力 O(N log N)）、**3DReflecNet**（CVPR'26 最佳论文候选，120K+ 物体，48 材质组合）、**GaussianPile**（CVPR'26，聚焦感知 PSF + 加性光栅化）技术细节。Skills v0.3.4：+2 bug 模式（#100-#101），4 个技能更新。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -77,7 +77,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（680+ 方法，25 类别）
+## 知识库（690+ 方法，25 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -107,7 +107,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 类别 | 说明 | 方法 |
 |------|------|------|
 | 压缩/流式 | 轻量化、移动端与渐进式传输 | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS |
-| 加速 | 训练与推理加速 | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
+| 加速 | 训练与推理加速 | FastGS, Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
 | 大规模 | 城市级与分布式场景管理 | BlitzGS |
 | 前馈 | 单次前向传播泛化重建 | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, VolSplat, VG²GT |
 
@@ -125,8 +125,9 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 |------|------|------|
 | 动态 | 4D 高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, WebSpline |
 | HDR/动态 | HDR 采集与时变光照 | HDR-NSFF, FreeTimeGS++ |
-| SLAM | 同步定位与建图 | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, GGD-SLAM |
+| SLAM | 同步定位与建图 | GaussianSplatting-SLAM-v2, GS-Map-SLAM, 2DGS-SLAM, MAGS-SLAM, ULF-Loc, GGD-SLAM |
 | 稀疏视角 | 少视角与稀疏视角重建 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
+| 空间智能与世界模型 | 3D 空间推理、世界建模、神经符号 | Holi-Spatial, Spatial-TTT, OpenSpatial, APEIRIA, S2AM3D |
 
 **应用与跨领域**
 
@@ -139,6 +140,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 跨领域 | 多模态融合与域外迁移 | GS-DOT, DiffSoup, LagrangianSplats, SurfFill |
 | 仿真 | 物理仿真与代理模型 | GS-Playground, GS-Surrogate, FieryGS |
 | 具身智能/机器人 | 抓取、操作、导航与 Sim2Real | GaussianGrasper, GraspSplats, LEGS, RoboSplat |
+| 铰接/数字孪生 | 铰接物体交互与数字孪生 | ArtiTwinSplat |
 | 鲁棒性 | 野外与退化鲁棒重建 | NRGS, DualSplat, HarmoGS |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS, 3DEditSafe |
 | 世界模型 | 3DGS 世界模型与场景预测 | MRO-GWM |
@@ -146,7 +148,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 </details>
 
-## 12 AI 驱动技能
+## 13 AI 驱动技能
 
 | # | 技能 | 功能 | 示例 |
 |---|------|------|------|
@@ -162,6 +164,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | 生成专利申请文件与软著登记材料 | "生成专利申请文件" |
 | 11 | [`3dgs-spatial-agent`](skills/3dgs-spatial-agent/) | Agent 驱动的 3D 场景推理、CAD 提取与编辑 | "从3DGS中提取椅子的CAD模型" |
 | 12 | [`3dgs-mcp-renderer`](skills/3dgs-mcp-renderer/) | MCP 控制的 Three.js/3DGS 渲染桥接 | "从上方看这个场景" |
+| 13 | [`3dgs-articulated-reasoner`](skills/3dgs-articulated-reasoner/) | 铰接物体推理与数字孪生 | "打开抽屉" |
 
 兼容 **Claude Code**、**Cursor**、**Windsurf** 及其他 AI Agent 框架。
 
@@ -179,7 +182,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 680+ 方法的系统性空白分析生成。
+> 基于知识库 690+ 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -236,6 +239,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.1 — 初始版本，6 个核心技能（2026 年 4 月）
 - [x] v0.2 — `3dgs-visualizer` + Text2Word 演示（2026 年 5 月）
 - [x] v0.3 — 知识库 675→680+ 方法，25 类别，101+ bug 模式，12 个技能（2026 年 6 月）
+- [x] v0.3.5 — 空间智能浪潮：680→690+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
 - [ ] v0.5 — MCP 协议集成：Agent 控制的 Three.js/3DGS 渲染管线
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
@@ -247,7 +251,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ```
 Awesome-Gaussian-Skills/
-├── skills/                    # 12 个 AI Agent 技能（SKILL.md 格式）
+├── skills/                    # 13 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
 │   ├── 3dgs-code-reviewer/    # 代码审查（101+ bug 模式）
@@ -259,9 +263,10 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-engineering-guide/ # 工程化部署
 │   ├── patent-software-ip/    # 专利与软著生成
 │   ├── 3dgs-spatial-agent/    # 空间智能 Agent
-│   └── 3dgs-mcp-renderer/     # MCP 渲染桥接
+│   ├── 3dgs-mcp-renderer/     # MCP 渲染桥接
+│   └── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（680+ 方法，25 类别）
+├── references/                # 知识库（690+ 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

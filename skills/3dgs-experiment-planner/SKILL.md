@@ -1,6 +1,6 @@
 ﻿name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG."
-version: 1.4.0
+version: 1.5.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
 ---
@@ -120,6 +120,7 @@ Before designing experiments, extract:
 - 3DGS AD Safety Eval (if making autonomous driving perception fidelity claims)
 - RESPIRE (if making medical dynamic scene reconstruction claims)
 - GEMM-GS (if making GPU-level acceleration / Tensor Core optimization claims)
+- FastGS (CVPR 2026 Highlight): 100-second 3DGS training baseline; multi-view consistency screening; 3.32× Mip-NeRF 360 acceleration, 15.45× Deep Blending; applicable ablation: consistency threshold, pruning ratio
 - DiffSoup (if making extreme primitive simplification or triangle soup claims)
 - FTSplat (if making feed-forward triangle primitive or alternative-to-GS rendering claims)
 - SVGS (if making single-view editing or text-guided 3D manipulation claims)
@@ -225,6 +226,20 @@ When making efficiency claims, include:
 | Scaling behavior | Time vs #images / resolution | Plot or table |
 
 **Always report GPU model** — reviewers compare across papers.
+
+### Spatial Intelligence Experiments
+
+**Target venues**: ICML, ECCV, CVPR, NeurIPS
+
+**Baselines**:
+- Holi-Spatial (ICML 2026 Oral): Automated 4M+ spatial data pipeline from video
+- Spatial-TTT (ECCV 2026): Streaming spatial memory with test-time training
+- APEIRIA (ICML 2026): Neuro-symbolic 3D spatial reasoning
+- OpenSpatial (arXiv 2026): Principled 3M-sample spatial data engine
+
+**Ablation dimensions**: data scale (100K→4M), streaming update frequency, symbolic verification depth, multi-task transfer
+
+**Metrics**: Spatial QA accuracy, 3D grounding IoU, spatial relation F1, measurement error (m)
 
 ## Output Format
 

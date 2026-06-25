@@ -1,7 +1,7 @@
-﻿---
+---
 name: cg-paper-writing
 description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues. Multi-agent adversarial review, citation integrity gates, style calibration."
-version: 2.2.0
+version: 2.3.0
 author: jaccen
 tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
 ---
@@ -415,7 +415,7 @@ CVPR 2026接受了116篇3DGS相关论文，为历史最高。以下趋势对论�
 
 **ReLaGS**范例：ReLaGS (Language-guided 3D Reasoning with Gaussian Scene)展示了语言驱动3D推理论文的结构范式 -- 引言从LLM+3D感知融合动机切入，方法部分先定义Gaussian-Language对齐模块再展开推理链，实验需包含零样本3D QA与开放词汇分割双重验证。
 
-Knowledge base: 675+ methods across 25 categories (updated for v0.3.3 cycle).
+Knowledge base: 690+ methods across 25 categories (updated for v0.3.3 cycle).
 
 ## 多Agent协同与对抗审稿机制
 

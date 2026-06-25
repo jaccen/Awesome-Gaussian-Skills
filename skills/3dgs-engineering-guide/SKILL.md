@@ -1,6 +1,6 @@
 ﻿name: 3dgs-engineering-guide
-description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 675+ methods."
-version: 1.7.0
+description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 690+ methods."
+version: 1.8.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
 ---
@@ -32,7 +32,7 @@ When invoked, follow this workflow:
 
 **Quality bar**: Sensor sim error < 0.02, LiDAR > 30 FPS, LPIPS < 0.1, Radar ±3 dB
 
-**Notes**: ConFixGS provides plug-and-play confidence-aware diffusion repair for +3.68 dB PSNR on Waymo, applicable to pretrained feedforward models; FRUC enables calibration-free multi-agent reconstruction; DeGO decouples rigid/non-rigid motion for human-centric occupancy; LiDAR sim requires opaque surface Gaussians; OpenDRIVE co-registration mandatory; nighttime needs separate IR-adjacent training
+**Notes**: ConFixGS provides plug-and-play confidence-aware diffusion repair for +3.68 dB PSNR on Waymo, applicable to pretrained feedforward models; FRUC enables calibration-free multi-agent reconstruction; DeGO decouples rigid/non-rigid motion for human-centric occupancy; LiDAR sim requires opaque surface Gaussians; OpenDRIVE co-registration mandatory; nighttime needs separate IR-adjacent training; FastGS enables 100-second training with comparable quality — applicable for rapid iteration in AD sensor sim pipeline
 
 ### 1.2 Digital Twin & Smart City
 
@@ -40,7 +40,7 @@ When invoked, follow this workflow:
 
 **Pipeline**: Aerial + streetview → Large-scale 3DGS → S3M conversion → GIS integration → IoT fusion
 
-**Key papers**: DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head
+**Key papers**: DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head, ArtiTwinSplat (interactable digital twin from RGB-D)
 
 **Standards**: S3M (Chinese GIS), OGC 3D Tiles, glTF/glb, CityGML
 
@@ -300,7 +300,7 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Volume calculation | Custom voxelizer + PLY parser | Not yet standard |
 | Cesium rendering | gsplat.js, cesium-3dgs-plugin | Three.js limited native support |
 
-**Standards progress**: CSM group standard for 3DGS modeling initiated (2026-04); S3M extended for 3DGS; 3D Tiles extension proposals
+**Standards progress**: CSM group standard for 3DGS modeling initiated (2026-04); S3M extended for 3DGS; 3D Tiles extension proposals; Spatial-TTT (ECCV 2026): streaming spatial memory for continuous city-scale understanding; Holi-Spatial (ICML 2026 Oral): automated 4M+ spatial data from video streams
 
 ---
 

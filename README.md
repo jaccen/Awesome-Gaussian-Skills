@@ -5,14 +5,14 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 680+ Methods, 25 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 690+ Methods, 25 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-680+-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI_Skills-12-green.svg)](skills/)
+[![Methods](https://img.shields.io/badge/Methods-690+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI_Skills-13-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-101+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -39,11 +39,11 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 680+ methods instantly, filter by category, sort by citations, click any method card for details.
+Search 690+ methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## What's New (June 2026)
 
-Latest update (Jun 18): 675→680+ methods, 25 categories, 101+ bug patterns. Knowledge deepening: enriched technical detail for **RAF** (CVPR'26 Findings, 3-stage physics abstraction pipeline), **Z-Order GS** (CVPR'26 Oral, Z-order Morton curve + sparse attention O(N log N)), **3DReflecNet** (CVPR'26 Best Paper Candidate, 120K+ objects, 48 material combos), **GaussianPile** (CVPR'26, focus-aware PSF + additive rasterization). Skills v0.3.4: +2 bug patterns (#100-#101), 4 Skills updated.
+Latest update (Jun 25): 680->690+ methods, 25 categories, 101+ bug patterns. **Spatial intelligence wave**: +**FastGS** (CVPR 2026 Highlight, 100s training), +**Holi-Spatial** (ICML 2026 Oral, 4M+ spatial samples), +**Spatial-TTT** (ECCV 2026, 2B params), +**OpenSpatial** (3M spatial data engine), +**S2AM3D** (CVPR 2026 Oral), +**ArtiTwinSplat** (articulated digital twin), +**APEIRIA** (ICML 2026), +**GaussianSplatting-SLAM-v2**, +**GS-Map-SLAM**. New dimension: Spatial Intelligence and World Model (Dimension 11). Skills v0.3.5: 5 Skills updated, Anthropic standard alignment.
 
 | Method | Venue | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
@@ -77,14 +77,14 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (680+ Methods, 25 Categories)
+## Knowledge Base (690+ Methods, 25 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
 | **Core Representations** | Foundation, Antialiasing, Optimization, Surface/Rendering, Image Rep. | 3DGS, 2DGS, Scaffold-GS, Mip-Splatting, GaussianImage |
 | **Efficiency & Scale** | Compression, Acceleration, Large-Scale, Feed-Forward | Compact-3DGS, BlitzGS, HiGS, VEDAL, VG²GT |
 | **Understanding & Semantics** | Language/Semantic, Generation, Autonomous Driving | LangSplat, DreamGaussian, StreetNVS |
-| **Dynamic & Spatial** | Dynamic, HDR, SLAM, Sparse-View | DSD-GS, WebSpline, GGD-SLAM, PanoPlane |
+| **Dynamic & Spatial** | Dynamic, HDR, SLAM, Sparse-View, Spatial Intelligence | DSD-GS, WebSpline, GGD-SLAM, Holi-Spatial, Spatial-TTT |
 | **Applications** | Human/Avatar, Editing, Relighting, CAD, Cross-Domain, Simulation, Robotics, +14 more | AlbedoEdit, KDH-CAD, LEGS, TIDES, 3DEditSafe |
 
 > Download full database: [CSV](3dgs-methods-overview.csv) | Full analysis: [references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
@@ -107,7 +107,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 | Category | Description | Methods |
 |----------|-------------|---------|
 | Compression / Streaming | Lightweight, mobile, and progressive streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS |
-| Acceleration | Training and inference speedup | Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
+| Acceleration | Training and inference speedup | FastGS, Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
 | Large-Scale | City-scale and distributed scene management | BlitzGS |
 | Feed-Forward | Single-forward-pass generalizable reconstruction | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, VolSplat, VG²GT |
 
@@ -125,8 +125,9 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 |----------|-------------|---------|
 | Dynamic | 4D Gaussians, temporal deformation, and propagation | ParticleGS, 3DGS³, Velox, WebSpline |
 | HDR / Dynamic | HDR capture and time-varying illumination | HDR-NSFF, FreeTimeGS++ |
-| SLAM | Simultaneous localization and mapping | 2DGS-SLAM, MAGS-SLAM, ULF-Loc, GGD-SLAM |
+| SLAM | Simultaneous localization and mapping | GaussianSplatting-SLAM-v2, GS-Map-SLAM, 2DGS-SLAM, MAGS-SLAM, ULF-Loc, GGD-SLAM |
 | Sparse-View | Few-shot and sparse-view reconstruction | FrameTwin, GeoQuery, VidSplat, PanoPlane |
+| Spatial Intelligence & World Model | 3D spatial reasoning, world modeling, neuro-symbolic | Holi-Spatial, Spatial-TTT, OpenSpatial, APEIRIA, S2AM3D |
 
 **Applications & Cross-Domain**
 
@@ -139,6 +140,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 | Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, LagrangianSplats, SurfFill |
 | Simulation | Physics simulation and surrogate models | GS-Playground, GS-Surrogate, FieryGS |
 | Embodied AI / Robotics | Grasping, manipulation, navigation, sim-to-real | GaussianGrasper, GraspSplats, LEGS, RoboSplat |
+| Articulated / Digital Twin | Articulated object interaction and digital twin | ArtiTwinSplat |
 | Robustness | In-the-wild and degradation-robust reconstruction | NRGS, DualSplat, HarmoGS |
 | Security | Watermarking, copyright, forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
 | World Model | 3DGS world models and scene prediction | MRO-GWM |
@@ -146,7 +148,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
 </details>
 
-## 12 AI-Powered Skills
+## 13 AI-Powered Skills
 
 | # | Skill | What It Does | Example |
 |---|-------|-------------|---------|
@@ -162,6 +164,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | Generate patent applications & software copyrights | "生成专利申请文件" |
 | 11 | [`3dgs-spatial-agent`](skills/3dgs-spatial-agent/) | Agent-driven 3D scene reasoning, CAD extraction, editing | "从3DGS中提取椅子的CAD模型" |
 | 12 | [`3dgs-mcp-renderer`](skills/3dgs-mcp-renderer/) | MCP-controlled Three.js/3DGS rendering bridge | "从上方看这个场景" |
+| 13 | [`3dgs-articulated-reasoner`](skills/3dgs-articulated-reasoner/) | Articulated object reasoning and digital twin | "打开抽屉" | "从上方看这个场景" |
 
 Works with **Claude Code**, **Cursor**, **Windsurf**, and other AI Agent frameworks.
 
@@ -179,7 +182,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 680+ methods.
+> Derived from systematic gap analysis across 690+ methods.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -235,7 +238,8 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.2 — `3dgs-visualizer` + Text2Word demo (May 2026)
-- [x] v0.3 — Knowledge base 675→680+ methods, 25 categories, 101+ bug patterns, 12 skills (Jun 2026)
+- [x] v0.3 — Knowledge base 675->690+ methods, 25 categories, 101+ bug patterns, 12 skills (Jun 2026)
+- [x] v0.3.5 — Spatial intelligence wave: 680->690+ methods, +10 new methods (FastGS, Holi-Spatial, Spatial-TTT, etc.), Dimension 11, Anthropic standard alignment (Jun 25, 2026)
 - [ ] v0.4 — `3dgs-spatial-agent` enhancements (knowledge-constrained CAD, DDF-GS ray query)
 - [ ] v0.5 — MCP protocol integration: Agent-controlled Three.js/3DGS rendering pipeline
 - [ ] v1.0 — CI/CD integration + multi-framework official listings
@@ -247,7 +251,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 ```
 Awesome-Gaussian-Skills/
-├── skills/                    # 12 AI Agent skills (SKILL.md format)
+├── skills/                    # 13 AI Agent skills (SKILL.md format)
 │   ├── 3dgs-paper-reader/     # Paper reading & summarization
 │   ├── 3dgs-method-compare/   # Method comparison engine
 │   ├── 3dgs-code-reviewer/    # Code review (101+ bug patterns)
@@ -259,9 +263,10 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-engineering-guide/ # Engineering deployment
 │   ├── patent-software-ip/    # Patent & copyright generation
 │   ├── 3dgs-spatial-agent/    # Spatial intelligence agent
-│   └── 3dgs-mcp-renderer/     # MCP rendering bridge
+│   ├── 3dgs-mcp-renderer/     # MCP rendering bridge
+│   └── 3dgs-articulated-reasoner/ # Articulated reasoning & digital twin
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (680+ methods, 25 categories)
+├── references/                # Knowledge base (690+ methods, 25 categories)
 ├── scripts/                   # Install scripts & pipelines
 ├── Test/                      # Visualization samples
 └── assets/                    # Project images

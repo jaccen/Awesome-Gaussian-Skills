@@ -1,15 +1,21 @@
+
+
+---
 ---
 name: awesome-gaussian-skills
-version: "0.3.4"
-description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 680+ methods knowledge base, 12 research-grade skills, interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering."
-when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion"
+version: "0.3.5"
+description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 690+ methods knowledge base, 13 research-grade skills, interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering."
+when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin"
 arguments: [task]
-
----
-
+author: jaccen
+license: Apache-2.0
+repository: https://github.com/jaccen/Awesome-Gaussian-Skills
+keywords: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "nerf", "3d-reconstruction", "differentiable-rendering", "agent-skills", "mcp"]
 # Awesome Gaussian Skills — Project Context
 
-This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 680+ methods across 25 categories with 101+ known bug patterns.
+This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 690+ methods across 25 categories with 101+ known bug patterns.
+
+> **Anthropic Skills Standard Alignment**: This project follows the SKILL.md standard format compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`), and other AI Agent frameworks. Each skill includes YAML frontmatter (name, description, version, when_to_use, tags) and structured Markdown body with capabilities, instructions, and reference data. Target: `anthropics/skills` official repository listing.
 
 ## Available Skills
 
@@ -27,12 +33,13 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 | `patent-software-ip` | `/patent-software-ip [project]` | Generate patent/copyright docs |
 | `3dgs-spatial-agent` | `/3dgs-spatial-agent [query]` | 3DGS/CAD/Mesh spatial intelligence agent |
 | `3dgs-mcp-renderer` | `/3dgs-mcp-renderer [action]` | MCP-controlled Three.js/3DGS rendering |
+| `3dgs-articulated-reasoner` | `/3dgs-articulated-reasoner [task]` | Articulated object reasoning & digital twin |
 
 ## Knowledge Base Structure
 
 ```
 references/
-├── 3dgs-methods-overview.md   # 680+ methods index (25 categories)
+├── 3dgs-methods-overview.md   # 690+ methods index (25 categories)
 ├── methods-core.md            # Core methods (Foundation→Dynamic)
 ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 ├── methods-systems-apps.md    # Systems, Applications, Cross-Domain
@@ -50,4 +57,15 @@ references/
 - Version tracking: see `changelog/` for daily updates; current version in README roadmap
 - All skills follow SKILL.md standard (compatible with Claude Code, OpenClaw, Cursor)
 - Bug patterns: 101+ known patterns (all in `skills/3dgs-code-reviewer/SKILL.md`)
-- New method categories include: Spline-based primitives (WebSpline), Triangle primitives in SLAM, Albedo-decomposed editing, Variational pruning, Ray-query GI (DDF-GS), Token-based feed-forward (ZipSplat), Geometry opacity decoupling (Geometry Gaussians), Reflective material reconstruction (3DReflecNet), Autoregressive mesh generation (MeshWeaver/MeshFlow), DoG pruning primitives (Prune Wisely), Proxy mesh occlusion (Proxy-GS)
+- Method categories span 25 groups: Foundation, Compression, Dynamic/Large-scale, Editing/Material, Avatar/Human, Autonomous Driving, Geometry, Signed Decomposition, SLAM, Procedural/4D, Spatial Intelligence & World Model, and more
+- Latest additions (2026-06): FastGS (CVPR 2026 Highlight, 100s training), GaussianSplatting-SLAM-v2, GS-Map-SLAM, ArtiTwinSplat (articulated digital twin), Holi-Spatial (ICML 2026 Oral, 4M+ spatial samples), Spatial-TTT (ECCV 2026, 2B params), APEIRIA (ICML 2026), S2AM3D (CVPR 2026 Oral), OpenSpatial (3M spatial data engine)
+
+## Anthropic Skills Standard Compliance
+
+- [x] YAML frontmatter with `name`, `description`, `version`, `when_to_use`, `tags`
+- [x] Structured Markdown body (Capabilities, Instructions, Reference Data)
+- [x] Each skill in own directory with `SKILL.md`
+- [x] `arguments` field for parameter specification
+- [x] `author`, `license`, `repository` fields for provenance
+- [x] Compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`) layouts
+- [ ] Submit PR to `anthropics/skills` official repository

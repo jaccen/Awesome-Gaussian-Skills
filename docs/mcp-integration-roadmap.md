@@ -1,8 +1,7 @@
-
-
+---
 # MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
 
-> Version: 0.1.0 | Date: 2026-06-17 | Status: Design Phase
+> Version: 0.2.0 | Date: 2026-06-25 | Status: Design Phase
 
 ## Overview
 
@@ -10,10 +9,11 @@ This document outlines the technical roadmap for integrating MCP (Model Context 
 
 ## Current State
 
-The `skills/3dgs-mcp-renderer/SKILL.md` (v0.3.0) defines a prototype architecture:
+The `skills/3dgs-mcp-renderer/SKILL.md` (v0.5.0) defines a prototype architecture:
 - Voice/Text → Agent → MCP Server → 3DGS Renderer (Three.js/WebGPU)
 - 6 MCP tools: `import_scene`, `set_camera`, `render_view`, `adjust_gaussian`, `query_scene`, `export_result`
 - 3 additional tools from v0.3.2: `simulate_physics`, `query_4d_scene`, `deform_elastic`
+- 1 tool from v0.5.0: `query_spatial_context` (Holi-Spatial/Spatial-TTT integration)
 - Transport: WebSocket/HTTP between MCP Server and Renderer
 
 ## Phase 1: 3DGS-Specific MCP Tools (v0.4.0 target)
@@ -49,6 +49,75 @@ The `skills/3dgs-mcp-renderer/SKILL.md` (v0.3.0) defines a prototype architectur
 }
 ```
 
+
+## Phase 1.5: Spatial Intelligence & Articulated Integration (v0.4.5 target)
+
+### New Spatial Intelligence Tools
+
+| Tool | Description | Source Method | Priority |
+|------|-------------|---------------|----------|
+| `query_spatial_context` | Query spatial relations between objects (on, inside, next-to) using Holi-Spatial representations | Holi-Spatial (ICML 2026) | High |
+| `test_time_adapt` | Apply test-time spatial training to adapt to new viewpoints/scenes at inference | Spatial-TTT (ECCV 2026) | High |
+| `spatial_data_lookup` | Access OpenSpatial 3M+ spatial data engine for reference scenes and layouts | OpenSpatial (arXiv 2026) | Medium |
+
+### Articulated Reasoning Tools
+
+| Tool | Description | Integration | Priority |
+|------|-------------|-------------|----------|
+| `segment_parts` | Segment Gaussians into articulated/fixed parts via semantic + motion cues | 3dgs-articulated-reasoner skill | High |
+| `estimate_kinematics` | Infer joint type, axis, and limits from multi-view observation | URDF output | High |
+| `manipulate_part` | Apply joint offset to deform articulated part in real-time | Part-aware compositing | Medium |
+| `check_collision` | SDF-based self-collision checking at joint limit extremes | MuJoCo integration | Medium |
+
+### Tool Specification: `query_spatial_context`
+
+```json
+{
+  "name": "query_spatial_context",
+  "description": "Query spatial relationships between objects in a 3DGS scene using learned spatial representations",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "query_type": { "enum": ["relation", "affordance", "navigation", "layout"], "description": "Type of spatial query" },
+      "target_objects": { "type": "array", "items": { "type": "string" }, "description": "Object names or IDs to query about" },
+      "relation_filter": { "type": "string", "description": "Optional: specific relation to filter (on, inside, next-to, supports, blocks)" }
+    },
+    "required": ["scene_id", "query_type"]
+  }
+}
+```
+
+### Tool Specification: `manipulate_part`
+
+```json
+{
+  "name": "manipulate_part",
+  "description": "Manipulate an articulated part in a 3DGS scene by applying joint offsets",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "part_name": { "type": "string", "description": "Name of the articulated part (e.g. door, drawer, arm)" },
+      "joint_type": { "enum": ["revolute", "prismatic", "fixed"] },
+      "offset": { "type": "number", "description": "Joint offset in degrees (revolute) or meters (prismatic)" },
+      "animate": { "type": "boolean", "default": false, "description": "Whether to animate the transition" },
+      "collision_check": { "type": "boolean", "default": true, "description": "Whether to check for self-collision before applying" }
+    },
+    "required": ["scene_id", "part_name", "joint_type", "offset"]
+  }
+}
+```
+
+### Voice Intent Map (Extended)
+
+| Voice Pattern | Intent | MCP Tool Call |
+|---------------|--------|---------------|
+| "What is on the table?" | Spatial relation query | `query_spatial_context` (query_type=relation) |
+| "Can I open this drawer?" | Affordance query + manipulation | `query_spatial_context` (query_type=affordance) → `manipulate_part` |
+| "Move the robot arm 45 degrees" | Articulated manipulation | `manipulate_part` (part=arm, offset=45) |
+| "Show me the scene from a new angle" | Test-time spatial adaptation | `test_time_adapt` → `render_view` |
+| "Find similar room layouts" | Spatial data lookup | `spatial_data_lookup` (query_type=layout) |
 ## Phase 2: Voice-Driven Closed-Loop Architecture (v0.5.0 target)
 
 ```
@@ -107,5 +176,6 @@ Agents communicate via shared MCP Server state, coordinating through semantic sc
 ## Timeline
 
 - **v0.4.0** (Jul 2026): Phase 1 — 4 new MCP tools, `prune_by_importance` spec integrated
+- **v0.4.5** (Jul 2026): Phase 1.5 — Spatial intelligence + articulated reasoning tools, `3dgs-articulated-reasoner` skill integration
 - **v0.5.0** (Aug 2026): Phase 2 — Voice-driven closed-loop demo
 - **v1.0** (Sep 2026): Phase 3 prototype — Multi-agent orchestration + CI/CD
