@@ -42,6 +42,10 @@
 | CAGS | ~7x (streaming) | Minimal | VQ-based compression with Level-of-Detail streaming; progressive decode for bandwidth-adaptive deployment |
 | MGS | arXiv'26 (2603.19234) | Any LoD prefix | Matryoshka continuous LoD via stochastic budget training; renders any prefix k splats |
 | Prune Wisely | CVPR'26 (2602.24136) | Up to 90% reduction | Adaptive pruning + Difference-of-Gaussian (DoG) primitives; quality-preserving extreme compression |
+| ProGS | arXiv'26 (2603.09703) | 45× storage | Octree-based progressive encoding + streaming delivery; +10% visual quality |
+| GS-NFS | arXiv'26 (2606.05650) | Dynamic codec | GPU-parallelized dynamic 3DGS encode/decode; 1-2 OOM speedup; full frame-rate |
+| FCGS | arXiv'26 | Minutes→seconds | Optimization-free single feed-forward compression |
+| EvoGS | arXiv'26 (2606.07179) | 2.4× payload ↓ | Continuous-layering via Evolution Tree; child nodes correct ancestral errors; redundancy 65%→25% |
 
 ### Robustness / Regularization Methods
 
@@ -52,3 +56,13 @@
 | Underwater360 | arXiv'26 | Degradation-aware | 3DGS for underwater 360° scenes; attenuation+scattering correction |
 | GlowGS | arXiv'26 | Low-light prior | 3DGS for low-light/glowing scenes; radiance-aware decomposition |
 | DelowlightSplat | arXiv'26 | Degradation-specific | Depth+low-light joint 3DGS; degradation-specific restoration |
+
+### Foundation / Optimization Methods (New 2026 Additions)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| Eulerian GS | CVPR'26 (2605.29136) | Hash probabilistic pyramid replacing heuristic densification; gradient-optimized; mip-NeRF 360 SOTA |
+| PDEO | CVPR'26 | Plug-and-play PDE-based optimizer; reduces floaters/artifacts via physical constraints |
+| Energy-GS | CVPR'26 Oral | Joint camera pose + 3DGS optimization from RGB only; no depth/bone priors |
+| Geometry Gaussians | arXiv'26 (2606.05124) | Decouples appearance & geometry opacity per splat; proves default 3DGS unsuited for joint texture+geometry |
+| DropAnSH-GS | CVPR'26 | Anchor dropout + SH regularization; eliminates neighbor compensation for sparse-view 3DGS |

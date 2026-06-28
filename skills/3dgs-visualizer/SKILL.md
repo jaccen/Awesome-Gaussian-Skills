@@ -1,7 +1,7 @@
 ---
 name: 3dgs-visualizer
 description: "Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Static (PDF/PNG) and interactive (HTML) output."
-version: 1.4.0
+version: 1.5.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "visualization", "radar-chart", "timeline", "research"]
 ---

@@ -1,5 +1,3 @@
-
-
 # Writing Skills Enhancement: Best Paper Paradigm Extraction
 
 > Version: 0.1.0 | Date: 2026-06-17

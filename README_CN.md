@@ -1,17 +1,16 @@
-
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 690+ 方法，25 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 713+ 方法，25 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-690+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-713+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-13-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-101+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,11 +38,11 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 690+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 713+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
-## 本月新增（2026 年 6 月）
+## 最新动态（2026 年 6 月）
 
-最新更新（6 月 18 日）：675→690+ 方法，25 类别，101+ bug 模式。知识深化：补充 **RAF**（CVPR'26 Findings，3 阶段物理抽象管线）、**Z-Order GS**（CVPR'26 Oral，Z-order Morton 曲线 + 稀疏注意力 O(N log N)）、**3DReflecNet**（CVPR'26 最佳论文候选，120K+ 物体，48 材质组合）、**GaussianPile**（CVPR'26，聚焦感知 PSF + 加性光栅化）技术细节。Skills v0.3.4：+2 bug 模式（#100-#101），4 个技能更新。
+最新更新（6 月 28 日）：690→713+ 方法，25 类别，101+ bug 模式。**CVPR 2026 代表性论文浪潮**：+**Eulerian GS**（CVPR 2026，梯度优化密化）、+**Energy-GS**（CVPR 2026 Oral，仅 RGB 联合优化）、+**NG-GS**（CVPR 2026 Highlight，NeRF 引导分割）、+**UniSHARP**（CVPR 2026，统一全向 3DGS）、+**RAF**（CVPR 2026 Findings，物理引擎桥接）、+**PDEO**（CVPR 2026，PDE 优化器）、+**Liquid Neural Fields**（连续时间动态）、+**MaterialClusterGS**（调色板 BRDF）、+**Hand-4DGS**（第一人称 4D 手部）、+**GaussianPile**（体积 3DGS 用于 MRI）、+**ProGS**（45× 压缩）、+**BlitzGS**（分布式城市尺度）。23 篇新增。Skills v0.3.7：全部 13 技能已更新。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -77,7 +76,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（690+ 方法，25 类别）
+## 知识库（713+ 方法，25 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -182,7 +181,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 690+ 方法的系统性空白分析生成。
+> 基于知识库 713+ 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -240,6 +239,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.2 — `3dgs-visualizer` + Text2Word 演示（2026 年 5 月）
 - [x] v0.3 — 知识库 675→680+ 方法，25 类别，101+ bug 模式，12 个技能（2026 年 6 月）
 - [x] v0.3.6 — 空间智能浪潮：680→690+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
+- [x] v0.3.7 — CVPR 2026 代表性论文：690→713+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 13 技能更新（2026 年 6 月 28 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
 - [ ] v0.5 — MCP 协议集成：Agent 控制的 Three.js/3DGS 渲染管线
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
@@ -266,7 +266,7 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-mcp-renderer/     # MCP 渲染桥接
 │   └── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（690+ 方法，25 类别）
+├── references/                # 知识库（713+ 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

@@ -2,7 +2,7 @@
 name: 3dgs-spatial-agent
 description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
 when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS"
-version: 0.6.0
+version: 0.7.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
 allowed-tools: Read Grep Bash Glob

@@ -100,3 +100,18 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | KDH-CAD | 2606.01702 | CAD | Knowledge-data hybrid |
 | SEIG | 2606.02580 | Procedural 3D | VLM→Blender |
 | AlbedoEdit | 2606.01362 | Editing | Video-level albedo editing |
+
+### New Additions (June 28, 2026 — CVPR 2026 Representative Papers)
+
+| Method | arXiv / Venue | Category | Key Feature |
+|--------|--------------|----------|-------------|
+| LR-SGS | 2603.12647 | AD | LiDAR reflectance-guided salient Gaussians; +1.18 dB PSNR vs OmniRe under illumination variation |
+| GaussianDWM | 2512.23180 / CVPR'26 | AD | Unified scene understanding + multi-modal generation in Gaussian driving world model |
+| NG-GS | 2604.14706 / CVPR'26 Highlight | Segmentation | NeRF-guided 3DGS segmentation; RBF-interpolated continuous feature field; boundary mIoU SOTA |
+| ReLaGS | CVPR'26 | Semantic | No per-scene training; hierarchical language-described Gaussian scene models + 3D semantic scene graphs |
+| MaterialClusterGS | 2606.09018 | Material | Palette-based material decomposition; shared BRDF prototypes; physical relighting & editing |
+| Hand-4DGS | 2606.19156 | Avatar / Dynamic | First feed-forward 4D hand from egocentric video; mesh-guided GS; ~60 FPS |
+| ViewSplat | 2603.25265 | Feed-Forward | View-adaptive dynamic splatting; 17 FPS inference / 154 FPS rendering |
+| UniSHARP | 2606.07514 / CVPR'26 | Feed-Forward | First single-image 3DGS unifying perspective/fisheye/360° via omnidirectional latent alignment |
+| BlitzGS | 2605.13794 | Large-Scale / Distributed | Index odd-even partition + importance scoring + distance LOD; city-scale in tens of minutes |
+| GaussianPile | CVPR'26 | Medical | Extends 3DGS to volumetric/slice imaging (MRI, ultrasound, microscopy) |
