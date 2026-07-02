@@ -1,3 +1,5 @@
+
+
 | Method | Venue | Feature Source | 3D Storage | Key Feature |
 |--------|-------|---------------|------------|-------------|
 | LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
@@ -41,3 +43,8 @@
 | COSY | arXiv'26 (2605.24114) | Compositional Gaussians | Optimized | Compositional head editing via part-based Gaussian decomposition |
 | R5DGS | arXiv'26 (2605.25909) | 4D Gaussians (semantic) | Hybrid | Semantic-aware 4DGS with rigid body constraints for dynamic scene editing |
 | RiGS | arXiv'26 (2605.23672) | 4D Gaussians (rigid-aware) | Hybrid | Rigid-aware monocular 4DGS; leverages rigid body priors for temporal consistency |
+### Universal Camera Feed-Forward Methods
+
+| Method | Venue | #Gaussians | Inference | Key Feature |
+|--------|-------|------------|-----------|-------------|
+| UniSHARP | CVPR'26 (Insta360) | Variable | Single-pass, seconds | First unified monocular 3DGS across pinhole/fisheye/360° cameras; single image input; universal geometric representation for heterogeneous camera models |

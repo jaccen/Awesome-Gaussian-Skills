@@ -1,3 +1,10 @@
+---
+---
+---
+---
+---
+---
+---
 ## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
@@ -19,10 +26,25 @@
 - **GS-Drive** [arXiv:2504.17810](https://arxiv.org/abs/2504.17810) (CVPR 2025) — GS-based closed-loop driving simulation with dynamic agent rendering
 - **P2GS** [arXiv:2605.16925](https://arxiv.org/abs/2605.16925) (CVPR 2026) — Physical prior-guided GS for photometrically consistent urban reconstruction: joint decomposition of HDR radiance + per-view exposure scales from LDR images
 - **GEM** [arXiv:2605.17682](https://arxiv.org/abs/2605.17682) (arXiv 2026) — Gaussian Evolution Model for non-autoregressive occupancy forecasting: continuous 4D Gaussian primitives with learned dynamics for motion planning
+- **3DGS Safety Evaluation for AD** [arXiv:2605.01995](https://arxiv.org/abs/2605.01995) (arXiv 2026) -- Industrial-fidelity AD scene reconstruction evaluation
+- **Asset Harvester** [arXiv:2604.18468](https://arxiv.org/abs/2604.18468) (arXiv 2026) -- AV log → simulation-ready 3D assets via SparseViewDiT
+- **Street-GS** (arXiv 2024) -- LiDAR-camera fusion + multi-view optimization
+- **Nighttime AD GS** [arXiv:2602.13549](https://arxiv.org/abs/2602.13549) (arXiv 2026) -- PBR + BRDF for nighttime driving scene reconstruction
+- **ConFixGS** [arXiv:2605.09688](https://arxiv.org/abs/2605.09688) (arXiv 2026) -- Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR ...
+- **GaussianLSS** (CVPR 2025) -- BEV perception via Gaussian Splatting
+- **Ground4D** [arXiv:2605.04435](https://arxiv.org/abs/2605.04435) (arXiv 2026) -- Spatially-grounded feedforward 4D for off-road reconstruction
+- **GSDrive** [arXiv:2604.28111](https://arxiv.org/abs/2604.28111) (arXiv 2026) -- 3DGS-based RL reward shaping for driving policy improvement
+- **ADS-GS** (arXiv 2024) -- Static + dynamic decomposition for driving scenes
 
 ### CAD / Mesh / Hybrid Methods
 - **GS-CAD** [arXiv:2410.17249](https://arxiv.org/abs/2410.17249) (CVPR 2025) — CAD model reconstruction from GS with parametric primitive fitting
 - **GaussCAD** [arXiv:2503.19358](https://arxiv.org/abs/2503.19358) (CVPR 2025) — CAD reconstruction from GS with parametric primitive extraction
+- **BrepGaussian** [arXiv:2602.21105](https://arxiv.org/abs/2602.21105) (CVPR 2026) -- 3DGS + B-rep CAD reconstruction to parametric STEP models
+- **Vol3DGS** (CVPR 2025) -- Physically accurate volume-consistent rendering resolving splatting/volume in...
+- **CADFit** [arXiv:2605.01171](https://arxiv.org/abs/2605.01171) (arXiv 2026) -- IoU-driven hybrid optimization over structured CAD programs (extrusions, revo...
+- **UniMGS** (AAAI 2026) -- Single-pass rasterization for both mesh and Gaussians simultaneously
+- **CADFS** [arXiv:2605.01925](https://arxiv.org/abs/2605.01925) (CVPR 2026) -- Large-scale CAD program dataset + LLM-assisted CAD understanding
+- **MaGS** (ICCV 2025) -- Mesh-adsorbed Gaussians; deform mesh → Gaussians follow
 
 ### Compression Methods
 - **LightGaussian** [arXiv:2311.17245](https://arxiv.org/abs/2311.17245) (NeurIPS 2024) — Global+local pruning + SVD distillation for 15x compression at 200+ FPS [Code](https://github.com/VITA-Group/LightGaussian)
@@ -47,6 +69,19 @@
 - **DSGS** [arXiv:2605.17002](https://arxiv.org/abs/2605.17002) (arXiv 2026) — Decoder-Side Gaussian Splatting: replaces DSDE depth estimation with feed-forward 3DGS from compressed textures; lossy compression as implicit low-pass filter stabilizing prediction; +5.79 dB BD-PSNR
 - **MMGS** [arXiv:2605.19304](https://arxiv.org/abs/2605.19304) (arXiv 2026) — 10x compressed 3DGS via multi-view ranking + Optimal Transport aggregation; global OT-based merging preserving geometry + OT-based densification operator; 10% primitives + 10x training speedup
 - **CodecSplat** [arXiv:2605.25563](https://arxiv.org/abs/2605.25563) (arXiv 2026) — Ultra-compact entropy-coded latent features for feed-forward 3DGS; 20-108 KiB per scene, ~10x smaller than post-hoc compression of raw primitives (Pengpeng Yu et al.)
+- **Gaussians on a Diet** [arXiv:2604.20046](https://arxiv.org/abs/2604.20046) (arXiv 2026) -- Memory-bounded training, 80% lower peak memory
+- **CAGS** [arXiv:2605.09279](https://arxiv.org/abs/2605.09279) (SIGGRAPH 2026) -- VQ-based LoD for 3DGS streaming + low-res reference image color-distortion co...
+- **OT-UVGS** [arXiv:2604.19127](https://arxiv.org/abs/2604.19127) (arXiv 2026) -- Optimal-transport UV mapping as capacity allocation
+- **HAC** [arXiv:2403.14530](https://arxiv.org/abs/2403.14530) (ECCV 2024) -- Hash-grid context modeling, ~100x compression
+- **GETA-3DGS** [arXiv:2605.02086](https://arxiv.org/abs/2605.02086) (arXiv 2026) -- End-to-end automatic joint pruning + quantization
+- **LightGS** (arXiv 2024) -- Distillation-based, ~15-20x compression
+- **MesonGS++** [arXiv:2604.26799](https://arxiv.org/abs/2604.26799) (arXiv 2026) -- Post-training codec with 34x compression + ILP hyperparameter search
+- **Compact-3DGS** (arXiv 2024) -- Vector quantization + pruning, ~10-15x compression
+- **MobileGS** (arXiv 2024) -- Extreme 50-100x compression for mobile deployment
+- **Embedded-3DGS** (arXiv 2024) -- Neural architecture search, ~10x compression
+- **GS-SCNet** [arXiv:2604.25330](https://arxiv.org/abs/2604.25330) (arXiv 2026) -- Generalizable 3DGS + semantic coding for immersive video
+- **MGS** [arXiv:2603.19234](https://arxiv.org/abs/2603.19234) (arXiv 2026) -- Matryoshka continuous LoD via stochastic budget training; single ordered set ...
+- **NanoGS** [arXiv:2603.16103](https://arxiv.org/abs/2603.16103) (arXiv 2026) -- Training-free simplification via local pairwise merging
 
 ### Cross-Domain Applications
 - **GaussVis** [arXiv:2503.01610](https://arxiv.org/abs/2503.01610) (CVPR 2025) — GS-based visualization for scientific data with interactive exploration
@@ -54,6 +89,30 @@
 - **TransmissiveGS** (arXiv 2026) — Residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction; separates reflection and transmission components via residual-guided decomposition
 - **RT-Splatting** [arXiv:2605.18263](https://arxiv.org/abs/2605.18263) (CVPR 2026 Highlight) — Joint reflection-transmission modeling with GS; disentangles geometric occupancy from optical opacity per Gaussian; Specular-Aware Gradient Gating reduces floaters
 - **AsyncEvGS** [arXiv:2605.07192](https://arxiv.org/abs/2605.07192) (arXiv 2026) — Asynchronous event camera + RGB dual-system for motion-blurred 3DGS; high-resolution async RGB-Event cross-domain pose estimation via VGGT
+- **RGS** [arXiv:2604.27552](https://arxiv.org/abs/2604.27552) (arXiv 2026) -- Residual wavelet-GS for ultra sparse-view CBCT reconstruction
+- **FieryGS** [arXiv:2605.00177](https://arxiv.org/abs/2605.00177) (ICLR 2026) -- Physics-integrated combustion simulation + 3DGS rendering
+- **BiSplat-WRF** [arXiv:2604.25945](https://arxiv.org/abs/2604.25945) (arXiv 2026) -- Gaussian Splatting for wireless radiance field reconstruction
+- **MSGS** [arXiv:2604.13340](https://arxiv.org/abs/2604.13340) (arXiv 2026) -- Multispectral 3D Gaussian Splatting
+- **RDSplat** [arXiv:2512.06774](https://arxiv.org/abs/2512.06774) (arXiv 2025) -- Robust watermarking against diffusion editing
+- **RESPIRE** [arXiv:2604.28179](https://arxiv.org/abs/2604.28179) (arXiv 2026) -- CT-informed mesh-anchored GS for dynamic bronchoscopy
+- **XFreq-GS** [arXiv:2605.11432](https://arxiv.org/abs/2605.11432) (arXiv 2026) -- Cross-frequency wireless radiation field reconstruction with shared geometry ...
+- **PatchPoison** [arXiv:2604.13153](https://arxiv.org/abs/2604.13153) (arXiv 2026) -- Poisoning multi-view datasets to degrade 3D reconstruction (Security)
+- **3DTV** [arXiv:2604.11211](https://arxiv.org/abs/2604.11211) (arXiv 2026) -- Feedforward 3-camera interpolation at 40 FPS
+- **Fake3DGS** [arXiv:2604.27590](https://arxiv.org/abs/2604.27590) (ICPR 2026) -- Benchmark for 3D manipulation detection in neural rendering
+- **SplAttN** [arXiv:2605.01466](https://arxiv.org/abs/2605.01466) (ICML 2026) -- Gaussian soft splatting for point cloud completion
+- **Habitat-GS** (arXiv 2024) -- 3DGS-rendered simulator for robot navigation training
+- **GS-DOT** [arXiv:2604.23675](https://arxiv.org/abs/2604.23675) (arXiv 2026) -- Diffuse optical tomography via Gaussian Splatting
+- **OCH3R** [arXiv:2605.13018](https://arxiv.org/abs/2605.13018) (arXiv 2026) -- Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-ob...
+- **EmoTaG** [arXiv:2603.21332](https://arxiv.org/abs/2603.21332) (CVPR 2026) -- Few-shot emotion-aware talking head on Gaussian Splatting
+- **TwinPose** (SIGGRAPH 2026) -- Multi-view 3D pose estimation via person-specific subspaces
+- **LagrangianSplats** [arXiv:2605.09299](https://arxiv.org/abs/2605.09299) (arXiv 2026) -- Divergence-free constraint on Gaussian advection for fluid velocity field rec...
+- **AudioGS** [arXiv:2604.08967](https://arxiv.org/abs/2604.08967) (arXiv 2026) -- Spectrogram-based audio Gaussian Splatting for sound field reconstruction
+- **PG-3DGS** [arXiv:2605.11266](https://arxiv.org/abs/2605.11266) (arXiv 2026) -- Differentiable physics simulation coupled with 3D Gaussian representations; p...
+- **Mobile Phone 3DGS Acquisition** [arXiv:2604.19216](https://arxiv.org/abs/2604.19216) (arXiv 2026) -- Object-centered on-device capture guidance
+- **Egocentric Dynamic 3DGS Evaluation** [arXiv:2604.23803](https://arxiv.org/abs/2604.23803) (CVPR 2026) -- Egocentric video reconstruction evaluation
+- **SandSim** [arXiv:2604.27572](https://arxiv.org/abs/2604.27572) (arXiv 2026) -- Curve-guided GS for sand painting process reconstruction
+- **CoherentRaster** [arXiv:2605.04509](https://arxiv.org/abs/2605.04509) (arXiv 2026) -- Subpixel-level 3DGS rasterization for light field displays
+- **GS-STVSR** [arXiv:2604.18047](https://arxiv.org/abs/2604.18047) (arXiv 2026) -- Ultra-efficient continuous spatio-temporal video super-resolution via 2D Gaus...
 
 ### Dynamic Scene Methods
 - **NeuroGauss4D-PCI** [arXiv:2405.14241](https://arxiv.org/abs/2405.14241) (NeurIPS 2024) — 4D neural field + Gaussian deformation fields for point cloud interpolation [Code](https://github.com/jiangchaokang/NeuroGauss4D-PCI)
@@ -88,6 +147,20 @@
 - **ReGS** [arXiv:2412.03378](https://arxiv.org/abs/2412.03378) (CVPR 2025) — Recursive Gaussian splitting for high-fidelity dynamic scene detail
 - **GaussianWorld-v2** [arXiv:2503.15835](https://arxiv.org/abs/2503.15835) (CVPR 2025) — Enhanced world-model GS with autoregressive scene extrapolation
 - **GS4D-v2** [arXiv:2503.19443](https://arxiv.org/abs/2503.19443) (CVPR 2025) — Second-generation 4DGS with improved temporal deformation
+- **RobustSplat** (ICCV 2025) -- Decouples densification from dynamics for transient-free 3DGS
+- **GeoRect4D** [arXiv:2604.20784](https://arxiv.org/abs/2604.20784) (arXiv 2026) -- Geometry-compatible generative rectification for dynamic sparse-view 3D recon...
+- **HDR-NSFF** [arXiv:2603.08313](https://arxiv.org/abs/2603.08313) (ICLR 2026) -- Dynamic HDR radiance fields from alternating-exposure video
+- **Velox** [arXiv:2605.04527](https://arxiv.org/abs/2605.04527) (arXiv 2026) -- Feed-forward 4D reconstruction learning representations of 4D geometry and ap...
+- **PD-4DGS** [arXiv:2605.11427](https://arxiv.org/abs/2605.11427) (arXiv 2026) -- Progressive 4DGS compression/streaming with Hierarchical Deformation Decompos...
+- **Color-Encoded Illumination** [arXiv:2604.26920](https://arxiv.org/abs/2604.26920) (CVPR 2026) -- High-speed volumetric reconstruction via color-coded illumination
+- **4DGS** [arXiv:2310.08528](https://arxiv.org/abs/2310.08528) (CVPR 2024) -- 4D anisotropic Gaussians (3D + time) with regularized deformation
+- **Dynamic 3D Gaussians** [arXiv:2309.13114](https://arxiv.org/abs/2309.13114) (ICCV 2023) -- Per-point deformation network for monocular dynamic scenes
+- **SC-GS** (arXiv 2024) -- Spatial-temporal compression for dynamic Gaussians
+- **ClipGStream** [arXiv:2604.13746](https://arxiv.org/abs/2604.13746) (CVPR 2026) -- Clip-stream any-length any-motion multi-view dynamic scene reconstruction
+- **PaMoSplat** [arXiv:2605.10307](https://arxiv.org/abs/2605.10307) (TCSVT 2026) -- 部分感知 GS with graph-clustered Gaussian parts + differential evolution fo...
+- **ParticleGS** [arXiv:2505.20270](https://arxiv.org/abs/2505.20270) (CVPR 2026) -- Physics-based MPM-inspired 4DGS with Neural ODE evolver for prior-free motion...
+- **FreeTimeGS++** [arXiv:2605.03337](https://arxiv.org/abs/2605.03337) (arXiv 2026) -- Principled analysis + gated marginalization for 4DGS stability
+- **RetroNVS** [arXiv:2605.12437](https://arxiv.org/abs/2605.12437) (CVPR 2026) -- Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark
 
 ### Editing Methods
 - **D-MiSo** [arXiv:2405.14276](https://arxiv.org/abs/2405.14276) (NeurIPS 2024) — Multi-Gaussians Soup representation for editing dynamic 3D scenes
@@ -116,6 +189,20 @@
 - **InstructGS** [arXiv:2503.20779](https://arxiv.org/abs/2503.20779) (CVPR 2025) — Instruction-driven GS editing with LLM-guided editing plan generation
 - **GS-Mosaic** [arXiv:2504.00773](https://arxiv.org/abs/2504.00773) (CVPR 2025) — Mosaic-style GS editing for large-scale scene layout modification
 - **GS-DIFF** [arXiv:2605.07203](https://arxiv.org/abs/2605.07203) (arXiv 2026) — Scene change detection directly on Gaussian primitives; separates geometric vs. appearance changes; +17% mIoU
+- **SVGS-Edit** [arXiv:2603.28126](https://arxiv.org/abs/2603.28126) (arXiv 2026) -- Single-view text-driven 3D editing with sparse 3DGS (disambiguation: distinct...
+- **GaussianEditor** (arXiv 2024) -- CLIP-guided text/geometry-driven editing
+- **FluSplat** [arXiv:2604.20038](https://arxiv.org/abs/2604.20038) (arXiv 2026) -- Feed-forward sparse-view editing without per-scene optimization
+- **GOR-IS** [arXiv:2605.00498](https://arxiv.org/abs/2605.00498) (arXiv 2026) -- Physically consistent object removal via intrinsic decomposition
+- **FTSplat** [arXiv:2603.05932](https://arxiv.org/abs/2603.05932) (arXiv 2026) -- Feed-forward triangle primitive generation
+- **SketchFaceGS** [arXiv:2604.19202](https://arxiv.org/abs/2604.19202) (CVPR 2026) -- Sketch-driven face editing via Transformer UV prediction
+- **FaceParts** [arXiv:2605.13853](https://arxiv.org/abs/2605.13853) (arXiv 2026) -- Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer
+- **GeoGaussian** (arXiv 2024) -- Mesh-prior-guided Gaussian manipulation
+- **IRIS** [arXiv:2603.15368](https://arxiv.org/abs/2603.15368) (arXiv 2026) -- Hybrid proxy with analytical ray-primitive intersection
+- **Frosting** (arXiv 2024) -- Decoupled geometry/appearance editing
+- **ObjectMorpher** [arXiv:2603.28152](https://arxiv.org/abs/2603.28152) (CVPR 2026) -- Deformable 3DGS for 3D-aware interactive image editing
+- **TransSplat** [arXiv:2604.19571](https://arxiv.org/abs/2604.19571) (arXiv 2026) -- Language-driven editing as unbalanced semantic transport
+- **DiffSoup** [arXiv:2603.27151](https://arxiv.org/abs/2603.27151) (arXiv 2026) -- Triangle soup as extreme radiance field simplification
+- **Robust Prior-Guided Seg.** [arXiv:2605.16065](https://arxiv.org/abs/2605.16065) (ICIP 2026) -- SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...
 
 ### Feed-Forward Methods
 - **FreeSplat** [arXiv:2405.17958](https://arxiv.org/abs/2405.17958) (NeurIPS 2024) — Generalizable feed-forward indoor 3DGS with pixel-aligned Gaussian prediction [Code](https://github.com/wangys16/FreeSplat)
@@ -140,6 +227,23 @@
 - **AdaptSplat** (arXiv 2026) — Adapting vision foundation models for feed-forward 3DGS; leverages pretrained ViT/DINO features for cross-scene generalizable Gaussian prediction
 - **PointForward** (arXiv 2026) — Point-aligned feed-forward driving scene reconstruction via 3DGS; anchor-aligned representation replacing pixel-alignment for autonomous driving
 - **Cross-View Splatter** [arXiv:2605.19656](https://arxiv.org/abs/2605.19656) (arXiv 2026) — Ground+satellite cross-view feature fusion for outdoor 3DGS reconstruction; unified GPS-tagged 3D coordinate frame
+- **GenWildSplat** [arXiv:2604.28193](https://arxiv.org/abs/2604.28193) (CVPR 2026) -- Generalizable sparse-view 3D reconstruction from unconstrained images
+- **AnySplat** [arXiv:2505.23716](https://arxiv.org/abs/2505.23716) (SIGGRAPH 2025) -- In-the-wild feed-forward with appearance/lighting variation handling
+- **InstantSplat** [arXiv:2403.20309](https://arxiv.org/abs/2403.20309) (arXiv 2024) -- Pose-free sparse-view reconstruction in ~40 seconds
+- **ARGS** [arXiv:2604.00494](https://arxiv.org/abs/2604.00494) (arXiv 2026) -- Auto-regressive O(log n) multi-scale 3D generation
+- **Free Geometry** [arXiv:2604.14048](https://arxiv.org/abs/2604.14048) (arXiv 2026) -- Self-evolving feed-forward models via LoRA without 3D GT
+- **Z-Order GS** [arXiv:2605.13465](https://arxiv.org/abs/2605.13465) (CVPR 2026) -- Z-order strategy for spatially coherent Gaussian sequence with sparse attention
+- **VG2GT** [arXiv:2606.01573](https://arxiv.org/abs/2606.01573) (arXiv 2026 2026) -- Voxel-Gaussian Transformer; frozen VFM + stochastic solid volume rendering
+- **Spark3R** [arXiv:2605.06270](https://arxiv.org/abs/2605.06270) (arXiv 2026) -- Training-free asymmetric query/KV token compression for 28x speedup on feed-f...
+- **SparseSplat** (CVPR 2026) -- Entropy-based adaptive density, SOTA with 22% of Gaussians (150K vs 688K)
+- **MVSplat** [arXiv:2403.14627](https://arxiv.org/abs/2403.14627) (ECCV 2024) -- Cost-volume-based 3DGS from 3 sparse views
+- **GS-LRM** [arXiv:2404.19702](https://arxiv.org/abs/2404.19702) (ECCV 2024) -- 1B-parameter transformer with zero-shot generalization
+- **DepthSplat** [arXiv:2410.13862](https://arxiv.org/abs/2410.13862) (CVPR 2025) -- Stereo-guided depth regularization for feed-forward 3DGS
+- **Reliev3R** [arXiv:2604.00548](https://arxiv.org/abs/2604.00548) (CVPR 2026) -- Reduces dependency on dense multi-view geometric annotations
+- **RoSplat** [arXiv:2605.13093](https://arxiv.org/abs/2605.13093) (arXiv 2026) -- Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regu...
+- **GlobalSplat** [arXiv:2604.15284](https://arxiv.org/abs/2604.15284) (arXiv 2026) -- Global latent tokens → 16K Gaussians in 78ms single forward pass
+- **SplatWeaver** [arXiv:2605.07287](https://arxiv.org/abs/2605.07287) (arXiv 2026) -- Cardinality Gaussian Expert Routing (0/1/2/3 experts) + DWT frequency prior +...
+- **WildSplatter** [arXiv:2604.21182](https://arxiv.org/abs/2604.21182) (arXiv 2026) -- Unconstrained images with appearance embeddings, <1s reconstruction
 
 ### Few-Shot / Sparse-View
 - **Binocular3DGS** [arXiv:2410.18822](https://arxiv.org/abs/2410.18822) (NeurIPS 2024) — Binocular disparity-guided depth + GS joint optimization for sparse views [Code](https://github.com/hanl2010/Binocular3DGS)
@@ -149,6 +253,15 @@
 - **GaussianObject** [arXiv:2312.11461](https://arxiv.org/abs/2312.11461) (CVPR 2024) — Object-centric GS from sparse views with depth-regularized Gaussian initialization [Code](https://github.com/Chenyu-Yang-GOAT/GaussianObject)
 - **CoR-GS-CVPR** [arXiv:2402.10128](https://arxiv.org/abs/2402.10128) (CVPR 2024) — Consistency regularization for sparse-view GS with depth-conditional diffusion priors
 - **FewSplat** [arXiv:2412.21206](https://arxiv.org/abs/2412.21206) (CVPR 2025) — Few-shot GS with diffusion-guided depth completion and feature propagation
+- **GSCompleter** [arXiv:2604.20155](https://arxiv.org/abs/2604.20155) (arXiv 2026) -- Distillation-free sparse-view completion via Stereo-Anchor
+- **Pi-GS** [arXiv:2602.03327](https://arxiv.org/abs/2602.03327) (arXiv 2026) -- Reference-free π³ initialization for sparse-view 3DGS
+- **PairDropGS** [arXiv:2605.12072](https://arxiv.org/abs/2605.12072) (arXiv 2026) -- Paired dropout-induced consistency regularization with progressive scheduling...
+- **FSGS** [arXiv:2312.00451](https://arxiv.org/abs/2312.00451) (ECCV 2024) -- SRF geometric prior + 3DGS for few-shot view synthesis
+- **HeroGS** (CVPR 2026) -- Hierarchical image→region→pixel guidance for sparse-view robustness
+- **GeoQuery** [arXiv:2605.12399](https://arxiv.org/abs/2605.12399) (SIGGRAPH 2026) -- Geometry-guided cross-view attention replacing corrupted rendering features w...
+- **VidSplat** [arXiv:2605.11424](https://arxiv.org/abs/2605.11424) (SIGGRAPH 2026) -- Training-free generative framework leveraging video diffusion priors with ite...
+- **FrameTwin** [arXiv:2605.09362](https://arxiv.org/abs/2605.09362) (arXiv 2026) -- Curve-anchored Gaussian alignment from sparse views for adaptive wireframe 3D...
+- **PanoPlane** [arXiv:2605.14135](https://arxiv.org/abs/2605.14135) (arXiv 2026) -- Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR
 
 ### Foundation Methods
 - **DisC-GS** [arXiv:2405.15196](https://arxiv.org/abs/2405.15196) (NeurIPS 2024) — Progressive low-pass + discontinuity boundary detection preventing splat artifacts at edges
@@ -161,6 +274,11 @@
 - **OGS** [arXiv:2503.12886](https://arxiv.org/abs/2503.12886) (CVPR 2025) — Omnidirectional GS: spherical harmonics-free panoramic 3DGS for 360 capture
 - **3DSGS** [arXiv:2605.18334](https://arxiv.org/abs/2605.18334) (arXiv 2026) — General 3D Skew Gaussian primitives with re-derived CUDA rasterization for asymmetric shape modeling
 - **Topo-GS** [arXiv:2605.17011](https://arxiv.org/abs/2605.17011) (arXiv 2026) — Topological GS for high-dimensional data embedding; ARAP prior + tangent space alignment via orthogonal Procrustes; topology-aware loss for 1D/2D intrinsic dimensionality
+- **Softmax-GS** [arXiv:2604.27437](https://arxiv.org/abs/2604.27437) (CVPR 2026) -- Learnable softmax-based competition replacing α-compositing
+- **Mip-Splatting** [arXiv:2311.16493](https://arxiv.org/abs/2311.16493) (CVPR 2024) -- Anti-aliased 3DGS with 3D smoothing + 2D Mip filter
+- **SNS** [arXiv:2605.15010](https://arxiv.org/abs/2605.15010) (arXiv 2026) -- Azzalini Skew-Normal distribution as 3DGS primitive; learnable skewness for a...
+- **3DGS** [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) (SIGGRAPH 2023) -- Anisotropic 3D Gaussians with tile-based differentiable rasterization
+- **3DGEER** (ICLR 2026) -- Exact ray-Gaussian integration replacing splatting approximation for fisheye/...
 
 ### Generation / Text-to-3D
 - **GaussianCube** [arXiv:2403.19655](https://arxiv.org/abs/2403.19655) (NeurIPS 2024) — Optimal Transport reorders Gaussians into voxel grid structure enabling 3D diffusion generation [Code](https://github.com/GaussianCube/GaussianCube)
@@ -179,6 +297,10 @@
 - **GaussianZoom** [arXiv:2605.18252](https://arxiv.org/abs/2605.18252) (arXiv 2026) — Progressive zoom-in generative 3D reconstruction with multi-scale semantic reasoning + expandable continuous LoD hierarchy
 - **PhysX-Omni** [arXiv:2605.21572](https://arxiv.org/abs/2605.21572) (arXiv 2026) — Unified simulation-ready physical 3D generation across rigid, deformable, and articulated objects; VLM-tailored geometry encoding without compression; PhysXVerse dataset + PhysX-Bench (NTU/Ziwei Liu)
 - **ROAR-3D** [arXiv:2605.21121](https://arxiv.org/abs/2605.21121) (arXiv 2026) — Routing arbitrary views for multi-view 3D generation; token-wise view router establishes 2D-to-3D correspondences without explicit pose input; dual-stream attention preserves pretrained single-view behavior
+- **SIC3D** [arXiv:2604.08760](https://arxiv.org/abs/2604.08760) (arXiv 2026) -- Style image conditioned text-to-3D Gaussian Splatting generation
+- **DreamGaussian** [arXiv:2309.16653](https://arxiv.org/abs/2309.16653) (ICLR 2024) -- SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup
+- **AniGen** (SIGGRAPH 2026) -- Unified S³ Fields for single-image animatable 3D asset generation with skelet...
+- **SceneGen-LLMRL** [arXiv:2605.05711](https://arxiv.org/abs/2605.05711) (arXiv 2026) -- Unified 3D scene generation + immersive interaction via LLM-RL coupling
 
 ### Human & Avatar Methods
 - **Human3Diffusion** [arXiv:2406.08475](https://arxiv.org/abs/2406.08475) (NeurIPS 2024) — Diffusion + GS dual-driven 3D human avatar reconstruction [Code](https://github.com/YuxuanSnow/Human3Diffusion/)
@@ -205,6 +327,19 @@
 - **SplatTalk** [arXiv:2503.24382](https://arxiv.org/abs/2503.24382) (CVPR 2025) — Audio-driven 3D talking face GS with emotion and style control
 - **SplatPose2** [arXiv:2504.13167](https://arxiv.org/abs/2504.13167) (CVPR 2025) — Enhanced pose-conditioned GS with part-level deformation
 - **ArtMesh** [arXiv:2605.16582](https://arxiv.org/abs/2605.16582) (arXiv 2026) — Part-aware articulated mesh field: restricted Delaunay remeshing + bidirectional vertex-wise motion consistency for connected triangle mesh reconstruction; Articulate-100 benchmark
+- **SDTalk** [arXiv:2605.09956](https://arxiv.org/abs/2605.09956) (arXiv 2026) -- Structured facial priors + dual-branch motion fields for Gaussian talking hea...
+- **Large-Scale HQ 3D Gaussian Head** [arXiv:2605.04035](https://arxiv.org/abs/2605.04035) (arXiv 2026) -- Multi-view large-scale high-fidelity 3D Gaussian head reconstruction
+- **GaussianAvatar** (arXiv 2024) -- Pose-driven human body Gaussian representation
+- **SplattingAvatar** (arXiv 2024) -- Expression-conditioned Gaussian deformation
+- **ProgressiveAvatars** (SIGGRAPH 2026) -- Progressive animatable 3D Gaussian avatar generation
+- **HairGPT** [arXiv:2605.08824](https://arxiv.org/abs/2605.08824) (SIGGRAPH 2026) -- Strand-as-Language autoregressive modeling for 3D hairstyle synthesis
+- **D-Rex** [arXiv:2604.27871](https://arxiv.org/abs/2604.27871) (SIGGRAPH 2026) -- Diffusion post-process relighting for expressive avatars
+- **HumanSplatHMR** [arXiv:2605.02784](https://arxiv.org/abs/2605.02784) (arXiv 2026) -- Joint pose refinement + Gaussian avatar optimization
+- **DelightingFace** [arXiv:2605.05636](https://arxiv.org/abs/2605.05636) (SIGGRAPH 2026) -- Dataset Latent Modulation delighting prior for facial appearance capture; 4K ...
+- **Mobile Avatar (Pruned Blendshapes)** [arXiv:2605.01854](https://arxiv.org/abs/2605.01854) (CVPR 2026) -- High-fidelity mobile avatars with pruned local blendshapes
+- **Generalizable Human GS** [arXiv:2604.25466](https://arxiv.org/abs/2604.25466) (CVPR 2026) -- Cross-view attention for sparse-view human splatting
+- **High-Fidelity Human GS** [arXiv:2604.21714](https://arxiv.org/abs/2604.21714) (arXiv 2026) -- SMPL-X geometric priors + region-aware initialization
+- **GAS** (arXiv 2024) -- Compression + caching for real-time avatar rendering
 
 ### Language / Semantic
 - **OpenGaussian** [arXiv:2406.02058](https://arxiv.org/abs/2406.02058) (NeurIPS 2024) — Per-Gaussian feature distillation for point-level open-vocabulary 3D understanding
@@ -228,6 +363,13 @@
 - **LRG** [arXiv:2504.00387](https://arxiv.org/abs/2504.00387) (CVPR 2025) — Locally-reconstructible GS for scalable large scene rendering
 - **TideGS** [arXiv:2605.20150](https://arxiv.org/abs/2605.20150) (arXiv 2026) — Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy on single 24GB GPU
 - **AnyCity** [arXiv:2605.19949](https://arxiv.org/abs/2605.19949) (arXiv 2026) — Observation-grounded generative reconstruction for sparse aerial urban scenes; observation-supported geometry latent + gated residual from diffusion prior
+- **Octree-GS** (arXiv 2024) -- Octree spatial partitioning + LOD management
+- **CityGaussian** [arXiv:2401.02379](https://arxiv.org/abs/2401.02379) (ECCV 2024) -- Hierarchical LOD for city-scale real-time rendering
+- **BlitzGS** [arXiv:2605.13794](https://arxiv.org/abs/2605.13794) (arXiv 2026) -- Distributed 3DGS with parity-based GPU sharding + importance-scoring for city...
+- **Scaffold-GS** [arXiv:2312.13209](https://arxiv.org/abs/2312.13209) (ICCV 2023) -- Anchor-based structure for efficient large-scale representation
+- **Scaffold-GS+** (CVPR 2024) -- Progressive training for better city-scale quality
+- **Street Gaussians** [arXiv:2401.01339](https://arxiv.org/abs/2401.01339) (ECCV 2024) -- Static/dynamic decomposition for urban street scenes
+- **GS4City** [arXiv:2604.11401](https://arxiv.org/abs/2604.11401) (arXiv 2026) -- Hierarchical semantic GS via city-model priors
 
 ### Material & Relighting Methods
 - **Spec-Gaussian** [arXiv:2402.15870](https://arxiv.org/abs/2402.15870) (NeurIPS 2024) — Anisotropic Spherical Gaussians replacing SH for view-dependent specular appearance [Code](https://github.com/ingra14m/Specular-Gaussians)
@@ -241,6 +383,17 @@
 - **LightGS-v2** [arXiv:2412.15867](https://arxiv.org/abs/2412.15867) (CVPR 2025) — Light-stage GS with spherical harmonics decomposition for full relighting
 - **BRDF-GS** [arXiv:2503.18794](https://arxiv.org/abs/2503.18794) (CVPR 2025) — BRDF decomposition in GS with deferred rendering for relightable scenes
 - **GLUT** [arXiv:2605.19889](https://arxiv.org/abs/2605.19889) (arXiv 2026) — 3D Gaussian Lookup Table for continuous color transformation; replaces grid-based 3D LUT with learnable Gaussian primitives; compact conditional generator CGLUT for multi-style LUT blending; supports localized editing without global retraining
+- **DiffAdapt4DSI** [arXiv:2605.06214](https://arxiv.org/abs/2605.06214) (CVPR 2026) -- Differentiable adaptive 4D structured illumination for joint capture of shape...
+- **GaussianShader** [arXiv:2311.17977](https://arxiv.org/abs/2311.17977) (arXiv 2023) -- Shading functions for reflective/refractive surfaces
+- **GRF** (arXiv 2024) -- Material decomposition + relighting in Gaussian space
+- **SSD-GS** [arXiv:2604.13333](https://arxiv.org/abs/2604.13333) (ICLR 2026) -- Scattering and shadow decomposition for relightable 3DGS
+- **Ambient-Robust IR** [arXiv:2605.30250](https://arxiv.org/abs/2605.30250) (arXiv 2026) -- Active RGB-NIR imaging for ambient-robust inverse rendering
+- **Relit-LiVE** [arXiv:2605.06658](https://arxiv.org/abs/2605.06658) (SIGGRAPH 2026) -- Relight video by jointly learning environment video
+- **VIRGi** [arXiv:2603.02986](https://arxiv.org/abs/2603.02986) (arXiv 2026) -- View-dependent instant recoloring with single edited image
+- **Relightable-GS-VP** [arXiv:2605.09024](https://arxiv.org/abs/2605.09024) (arXiv 2026) -- GS-based relighting for Virtual Production with image-based illumination; UV-...
+- **Instant Colorization** [arXiv:2604.17155](https://arxiv.org/abs/2604.17155) (arXiv 2026) -- Visibility-weighted least squares for per-Gaussian colorization
+- **GS-IR** (arXiv 2024) -- Inverse rendering: Gaussians → geometry + BRDF + lighting
+- **LumiMotion** [arXiv:2604.10994](https://arxiv.org/abs/2604.10994) (CVPR 2026) -- Improving Gaussian relighting with scene dynamics
 
 ### Medical & Biomedical Imaging
 - **R2-Gaussian** [arXiv:2405.20693](https://arxiv.org/abs/2405.20693) (NeurIPS 2024) — GS adapted for Radon transform + X-ray volume rendering for tomographic reconstruction [Code](https://github.com/Ruyi-Zha/r2_gaussian)
@@ -265,6 +418,18 @@
 - **NoiseGS** [arXiv:2503.18682](https://arxiv.org/abs/2503.18682) (CVPR 2025) — Noise-resilient GS training with uncertainty-guided loss weighting
 - **EventGS** [arXiv:2503.19976](https://arxiv.org/abs/2503.19976) (CVPR 2025) — Event camera-integrated GS for high-speed HDR scene reconstruction
 - **HarmoGS** [arXiv:2605.13073](https://arxiv.org/abs/2605.13073) (arXiv 2026) — Conflict-aware gradient harmonization for in-the-wild 3DGS: semantic consistency-guided masking + dual-view gradient rotation + conflict-aware densification/pruning
+- **FreeFix** [arXiv:2601.20857](https://arxiv.org/abs/2601.20857) (arXiv 2026) -- Fine-tuning-free diffusion guidance for extrapolated 3DGS
+- **MarineSTD-GS** [arXiv:2604.23551](https://arxiv.org/abs/2604.23551) (arXiv 2025) -- Spatiotemporal underwater degradation modeling
+- **PDF-GS** [arXiv:2604.12580](https://arxiv.org/abs/2604.12580) (arXiv 2026) -- Progressive distractor filtering for robust 3DGS
+- **EnerGS** [arXiv:2604.26238](https://arxiv.org/abs/2604.26238) (arXiv 2026) -- Energy-based soft geometric guidance from LiDAR/depth priors
+- **MERID-GS** [arXiv:2604.24053](https://arxiv.org/abs/2604.24053) (arXiv 2026) -- Retinex-based illumination/reflectance decoupling for low-light
+- **ELoG-GS** [arXiv:2604.12592](https://arxiv.org/abs/2604.12592) (arXiv 2026) -- Dual-branch luminance-guided extreme low-light GS enhancement
+- **ArtifactWorld** [arXiv:2604.12251](https://arxiv.org/abs/2604.12251) (arXiv 2026) -- Video generation models for 3DGS artifact restoration at scale
+- **NRGS** [arXiv:2604.22439](https://arxiv.org/abs/2604.22439) (arXiv 2026) -- Neural regularization for semantic 3DGS
+- **E2EGS** [arXiv:2603.14684](https://arxiv.org/abs/2603.14684) (CVPR 2026) -- Event-to-edge pose-free 3D reconstruction
+- **Luminance-GS++** [arXiv:2602.18322](https://arxiv.org/abs/2602.18322) (arXiv 2026) -- View-adaptive color/lightness correction for robust NVS
+- **DualSplat** [arXiv:2604.21631](https://arxiv.org/abs/2604.21631) (CVPR 2026) -- Failure-to-Prior framework from reconstruction failures
+- **WildGaussians** [arXiv:2407.08447](https://arxiv.org/abs/2407.08447) (NeurIPS 2024) -- Joint pose + 3DGS optimization from internet photos
 
 ### Degradation-Aware
 - **NIRRGB-GS** (AISY 2026) — Near-infrared assisted low-light scene reconstruction and enhancement via Gaussian Splatting; multi-modal NIR+RGB fusion framework for dark场景 (Zhejiang Univ + XIOPM)
@@ -296,6 +461,7 @@
 - **IP-GS** [arXiv:2501.10283](https://arxiv.org/abs/2501.10283) (CVPR 2025) — Intellectual property protection for GS models via ownership verification
 - **FenceGS** [arXiv:2501.14277](https://arxiv.org/abs/2501.14277) (CVPR 2025) — Fence-protected GS: access control layer preventing unauthorized GS extraction
 - **3DEditSafe** [arXiv:2605.15398](https://arxiv.org/abs/2605.15398) — First safety-regularized 3D editing framework constraining NSFW semantic propagation; 3D safety regularization + safe semantic projection + residue suppression
+- **GuardMarkGS** [arXiv:2605.12919](https://arxiv.org/abs/2605.12919) (arXiv 2026) -- First unified watermarking + edit deterrence framework for 3DGS copyright pro...
 
 ### Simulation & Robotics
 - **GIC** [arXiv:2406.14927](https://arxiv.org/abs/2406.14927) (NeurIPS 2024) — Gaussian-Informed Continuum for physical property identification and differentiable simulation [Code](https://github.com/Jukgei/gic)
@@ -307,6 +473,19 @@
 - **Splat-Nav** [arXiv:2504.06978](https://arxiv.org/abs/2504.06978) (CVPR 2025) — GS-based navigation with Gaussian-anchored topological maps
 - **SplatSim-v2** [arXiv:2504.20378](https://arxiv.org/abs/2504.20378) (CVPR 2025) — Enhanced GS simulation with domain randomization for robotic learning
 - **FLUIDSPLAT** [arXiv:2605.18866](https://arxiv.org/abs/2605.18866) (arXiv 2026) — Physical flow field reconstruction via anisotropic GS partition-of-unity; proven O(K^{-s/d}) Sobolev approximation rate
+- **FreeMoCap** (arXiv 2024) -- Open-source markerless motion capture from webcams (AGPL-3.0, 8.3k stars); dr...
+- **GSMem** [arXiv:2603.19137](https://arxiv.org/abs/2603.19137) (arXiv 2026) -- 3DGS as persistent spatial memory for zero-shot embodied exploration and reas...
+- **GS-Playground** [arXiv:2604.25459](https://arxiv.org/abs/2604.25459) (RSS 2026) -- Batch 3DGS + parallel physics at 10^4 FPS for robot learning
+- **GaussianGrasper** [arXiv:2403.09637](https://arxiv.org/abs/2403.09637) (T-RO 2024) -- 3D language GS for open-vocabulary robotic grasping via efficient feature dis...
+- **Forecast-GS** [arXiv:2605.11144](https://arxiv.org/abs/2605.11144) (arXiv 2026) -- Predictive 3D Gaussian representation forecasting task-completed states for r...
+- **GraspSplats** [arXiv:2409.02084](https://arxiv.org/abs/2409.02084) (CoRL 2024) -- Efficient zero-shot manipulation with 3D feature splatting; demonstrates NeRF...
+- **RoboSplat** [arXiv:2504.15387](https://arxiv.org/abs/2504.15387) (RSS 2025) -- 3DGS-based diverse and spatially accurate data generation for robotic manipul...
+- **Real2Sim** [arXiv:2605.13591](https://arxiv.org/abs/2605.13591) (arXiv 2026) -- 4DGS + differentiable MPM solver for physics-aware autonomous driving simulation
+- **TAIL-Safe** [arXiv:2605.01195](https://arxiv.org/abs/2605.01195) (arXiv 2026) -- Safety monitoring for IL policies using 3DGS digital twin
+- **GS-Surrogate** [arXiv:2604.06358](https://arxiv.org/abs/2604.06358) (arXiv 2026) -- Deformable GS surrogate for ensemble simulation exploration
+- **ManiGaussian** [arXiv:2403.08498](https://arxiv.org/abs/2403.08498) (ECCV 2024) -- Dynamic GS for multi-task robotic manipulation via Gaussian world model predi...
+- **VR-Robo** [arXiv:2502.01536](https://arxiv.org/abs/2502.01536) (RAL 2025) -- Real-to-Sim-to-Real framework for visual robot navigation and locomotion via ...
+- **3DGS Demo Synthesis (IL)** [arXiv:2605.01232](https://arxiv.org/abs/2605.01232) (arXiv 2026) -- 3DGS-based demonstration generation for imitation learning
 
 ### Surface & Geometry Methods
 - **GSDF** [arXiv:2403.16964](https://arxiv.org/abs/2403.16964) (NeurIPS 2024) — Dual representation: GS guides SDF geometry, SDF provides normal regularization for GS [Code](https://github.com/city-super/GSDF)
@@ -328,6 +507,25 @@
 - **GaussMesh** [arXiv:2412.14963](https://arxiv.org/abs/2412.14963) (CVPR 2025) — Hybrid GS-Mesh representation with mutual supervision for surface reconstruction
 - **SplatNeRF** [arXiv:2503.19458](https://arxiv.org/abs/2503.19458) (CVPR 2025) — GS-NeRF hybrid combining explicit splatting with implicit neural fields
 - **AmbiSuR** [arXiv:2605.12494](https://arxiv.org/abs/2605.12494) (ICML 2026) — Photometric ambiguity self-indication via SH in 3DGS; primitive truncation + ray-color consistency for intrinsic disambiguation (Beihang + NUS)
+- **PAGaS** [arXiv:2604.22129](https://arxiv.org/abs/2604.22129) (arXiv 2026) -- Pixel-aligned 1DoF Gaussians for depth refinement
+- **SVGS** [arXiv:2411.18966](https://arxiv.org/abs/2411.18966) (arXiv 2024) -- Spatially varying colors + opacity within each Gaussian primitive; three desi...
+- **NegGS** [arXiv:2405.14786](https://arxiv.org/abs/2405.14786) (arXiv 2024) -- Negative color values for ring/crescent/non-convex structures
+- **2DGS** [arXiv:2403.17888](https://arxiv.org/abs/2403.17888) (SIGGRAPH 2024) -- Oriented 2D disks for geometrically accurate radiance fields
+- **HiFi-SurfSplat** [arXiv:2605.07254](https://arxiv.org/abs/2605.07254) (arXiv 2026) -- Compact polynomial kernel replacing IMLS + Laplacian stochastic regularizatio...
+- **P2M++** [arXiv:2605.00429](https://arxiv.org/abs/2605.00429) (arXiv 2026) -- Enhanced solver for point-to-mesh distance queries
+- **SparseOIT** [arXiv:2605.13855](https://arxiv.org/abs/2605.13855) (arXiv 2026) -- Order-independent transparency via active set method for glass/refractive scenes
+- **Gaussian-Enhanced Surfel** [arXiv:2605.25345](https://arxiv.org/abs/2605.25345) (arXiv 2026) -- Depth peeling for high-fidelity Gaussian-enhanced surfel rendering
+- **DySurface** [arXiv:2605.10360](https://arxiv.org/abs/2605.10360) (arXiv 2026) -- Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconst...
+- **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) (arXiv 2026) -- First differentiable surface splatting renderer for PBR inverse rendering wit...
+- **PointSplat** [arXiv:2604.09903](https://arxiv.org/abs/2604.09903) (arXiv 2026) -- Geometry-driven pruning + Transformer refinement for efficient 3DGS
+- **2D-SuGaR** [arXiv:2605.00569](https://arxiv.org/abs/2605.00569) (arXiv 2026) -- 2DGS enhanced with monocular depth/normal priors
+- **SuGaR** [arXiv:2312.13253](https://arxiv.org/abs/2312.13253) (CVPR 2024) -- Surface-aligned Gaussians for mesh extraction via TSDF + Marching Cubes
+- **SAND** (SIGGRAPH 2026) -- Spatially adaptive network depth for efficient neural implicit surface sampling
+- **PGSR** [arXiv:2406.06521](https://arxiv.org/abs/2406.06521) (TVCG 2024) -- Planar-based regularizer for high-fidelity surface reconstruction
+- **GLINT** [arXiv:2603.26181](https://arxiv.org/abs/2603.26181) (arXiv 2026) -- Scene-scale transparency via decomposed Gaussian radiance transport for glass
+- **View-Dependent Splatting** [arXiv:2605.25426](https://arxiv.org/abs/2605.25426) (SIGGRAPH 2026) -- Learned view-dependent splatting kernels replacing fixed covariance; first fund...
+- **Neural Gabor Splatting** [arXiv:2604.15941](https://arxiv.org/abs/2604.15941) (CVPR 2026) -- Neural Gabor augmentation per Gaussian + frequency-aware densification for hi...
+- **LeanGaussian** (CVPR 2025) -- Extreme compression from single RGB image for efficient large-scale rendering
 
 ### Surveys & Benchmarks
 - **Survey-GS-ZJU** [arXiv:2401.03890](https://arxiv.org/abs/2401.03890) (arXiv 2024) — First comprehensive survey on 3D Gaussian Splatting covering representation/rendering/optimization/applications
@@ -374,11 +572,24 @@
 - **LeGS** [arXiv:2605.04081](https://arxiv.org/abs/2605.04081) (arXiv 2026) — Beyond heuristics: learnable density control replacing hand-crafted clone/split/prune rules for 3DGS; RL-based adaptive densification
 - **CAdam** [arXiv:2605.20872](https://arxiv.org/abs/2605.20872) (SIGGRAPH 2026) — Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; first moment interference principle separates signal from noise; 85-97% Gaussian reduction (Chung et al.)
 - **ConFi-GS** [arXiv:2605.24964](https://arxiv.org/abs/2605.24964) (arXiv 2026) — Confidence-guided high-frequency injection + reliability-aware densification for 3DGS super-resolution from low-res inputs (Jiaxiang Li et al.)
+- **Denoising-GS** [arXiv:2605.14880](https://arxiv.org/abs/2605.14880) (arXiv 2026) -- Formulates 3DGS optimization as primitive denoising; spatial gradient denoisi...
+- **GEMM-GS** [arXiv:2604.02120](https://arxiv.org/abs/2604.02120) (arXiv 2026) -- GEMM-compatible blending for Tensor Core utilization, 1.42x speedup
+- **Hybrid-Capture Two-View Training** [arXiv:2605.00052](https://arxiv.org/abs/2605.00052) (arXiv 2026) -- Two-view-per-step as dominant training lever
+- **YOGO** [arXiv:2604.21400](https://arxiv.org/abs/2604.21400) (arXiv 2026) -- Budget-aware equilibrium for ultra-dense scene control
+- **AV1-3DGS** [arXiv:2605.14629](https://arxiv.org/abs/2605.14629) (arXiv 2026) -- AV1 motion vectors for dense SfM matching with 63% training time reduction
+- **Structure-Aware Densification** [arXiv:2604.28016](https://arxiv.org/abs/2604.28016) (SIGGRAPH 2026) -- Frequency-aware anisotropic split replacing heuristic clone/split
+- **Faster-GS** (CVPR 2026) -- Systematic benchmark separating engineering from algorithmic acceleration
+- **3DGS as MCMC** [arXiv:2404.09591](https://arxiv.org/abs/2404.09591) (NeurIPS 2024) -- Density control as MCMC sampling moves
+- **VkSplat** [arXiv:2605.00219](https://arxiv.org/abs/2605.00219) (arXiv 2026) -- Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM
+- **3DGS squared** [arXiv:2501.13975](https://arxiv.org/abs/2501.13975) (arXiv 2025) -- Near second-order converging 3DGS with per-attribute Newton systems, 10x fewe...
+- **AdpSplit** [arXiv:2605.06876](https://arxiv.org/abs/2605.06876) (arXiv 2026) -- Error-driven adaptive split operator replacing heuristic binary split; 9.2-22...
+- **AdaGScale** [arXiv:2604.18980](https://arxiv.org/abs/2604.18980) (arXiv 2026) -- Viewpoint-adaptive Gaussian scaling reducing gaussian-tile pairs for renderin...
 
 ### Acceleration
 - **3DGS³** (arXiv 2026) — Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale
 - **TensorGS** [arXiv:2605.17855](https://arxiv.org/abs/2605.17855) (arXiv 2026) — Tensor Core acceleration for 3DGS: tensorizes rasterization into FP16 matrix operations with cross-tile grouping; 1.65x end-to-end speedup with negligible quality loss
 - **TideGS** [arXiv:2605.20150](https://arxiv.org/abs/2605.20150) (arXiv 2026) — Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy; block-virtualized geometry + trajectory-adaptive differential streaming on 24GB GPU
+- **3DGS\u00B3** (arXiv 2026) -- Joint super sampling and frame interpolation for real-time large-scale 3DGS
 
 
 ### New Papers Added May 27, 2026
@@ -608,7 +819,6 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **AGILE** [arXiv:2602.04672](https://arxiv.org/abs/2602.04672) (SIGGRAPH 2026) — Agentic generation for hand-object interaction reconstruction from video; VLM guides generative model for complete watertight mesh; anchor-and-track strategy bypasses SfM; contact-aware optimization for physical plausibility (Jin-Chuan Shi et al.)
 - **Spark 2.0** (2026) — NVIDIA 3DGS-based robotic world simulation: real-time 3DGS reconstruction for manipulation learning and physical AI interaction
 
----
 
 ## Newly Added Methods (June 5, 2026 — Daily Update)
 
@@ -660,7 +870,6 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (arXiv 2026) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; dataset design and learning paradigms (Hongyang Du et al.)
 - **3D Representation Survey** [arXiv:2606.04871](https://arxiv.org/abs/2606.04871) (arXiv 2026) — Recent advances and trends in learning-based 3D representations; paradigm shift from explicit to implicit/splatting representations (Adrien Schockaert et al.)
 
----
 
 ## Newly Added Methods (June 12, 2026 — Daily Update)
 
@@ -672,6 +881,15 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Language / Semantic
 - **ReLaGS** [arXiv:2603.17605](https://arxiv.org/abs/2603.17605) (CVPR 2026) — Relational Language Gaussian Splatting: open-vocabulary 3D semantic reasoning without per-scene training; hierarchical relational language field for segmentation/retrieval/relation understanding
+- **OpenGaFF** [arXiv:2605.06088](https://arxiv.org/abs/2605.06088) (arXiv 2026) -- Open-vocabulary Gaussian feature field with codebook attention for improved s...
+- **Semantic Foam** [arXiv:2604.26262](https://arxiv.org/abs/2604.26262) (CVPR 2026) -- Volumetric Voronoi mesh for spatial + semantic decomposition
+- **NG-GS** [arXiv:2604.14706](https://arxiv.org/abs/2604.14706) (arXiv 2026) -- NeRF-guided Gaussian-level semantic assignment
+- **SCOUP** [arXiv:2605.13600](https://arxiv.org/abs/2605.13600) (arXiv 2026) -- Sparse Code Uplifting for efficient 3D language GS with 400x training speedup
+- **GLMap** [arXiv:2605.01736](https://arxiv.org/abs/2605.01736) (CVPR 2026) -- Multi-scale Gaussian-Language map for zero-shot navigation
+- **ReferSplat** (ICML 2025) -- Referring segmentation in 3D Gaussian Splatting with language-guided instance...
+- **PointGS** [arXiv:2605.11520](https://arxiv.org/abs/2605.11520) (CVPR 2026) -- 3DGS as unified intermediate representation bridging discrete-continuous gap ...
+- **LangSplat** [arXiv:2312.16084](https://arxiv.org/abs/2312.16084) (CVPR 2024) -- CLIP features stored per-Gaussian for open-vocabulary 3D queries
+- **Feature 3DGS** [arXiv:2312.03203](https://arxiv.org/abs/2312.03203) (CVPR 2024) -- Distilled DINO/SAM features for 3D segmentation/detection
 
 ### Dynamic / 4D Reconstruction
 - **D4RT** [arXiv:2512.08924](https://arxiv.org/abs/2512.08924) (CVPR 2026 Best Paper) — Efficiently Reconstructing Dynamic Scenes One at a Time; unified query mechanism for 4D reconstruction + tracking from monocular video; 200+ FPS; Google DeepMind / UCL / Oxford (Jianyuan Wang et al.)
@@ -692,7 +910,6 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 ### Feed-Forward / Reconstruction
 - **SR3R** (CVPR 2026) — Rethinking Super-Resolution 3D Reconstruction with Feed-Forward Gaussian Splatting; multi-resolution feature fusion + progressive optimization for high-fidelity 3D from low-res input
 
----
 
 ## Newly Added Methods (June 17, 2026 — Daily Update)
 
@@ -727,7 +944,6 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 ### 3D Vision Survey
 - **Cookbook of 3D Vision** [arXiv:2606.04291](https://arxiv.org/abs/2606.04291) (arXiv 2026) — Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; Brown / UMaryland / UPenn / USC / NYU / Sydney / Stability AI (Hongyang Du et al.)
 
----
 
 ## Newly Added Methods (June 25, 2026 — Daily Update)
 
@@ -739,6 +955,16 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 ### SLAM
 - **GaussianSplatting-SLAM-v2** (CVPR 2026) — Enhanced 3DGS-SLAM with improved tracking and mapping for RGBD SLAM; addresses the gap between 3DGS rendering quality and SLAM real-time constraints
 - **GS-Map-SLAM** (CVPR 2026) — Gaussian-based dense mapping for SLAM with view-dependent quality; real-time dense mapping via GS optimization
+- **MonoEM-GS** [arXiv:2604.10593](https://arxiv.org/abs/2604.10593) (arXiv 2026) -- Monocular expectation-maximization GS SLAM
+- **2DGS-SLAM** (arXiv 2026) -- Globally consistent RGB-D SLAM with 2DGS; loop closure + global optimization
+- **WildGS-SLAM** [arXiv:2504.03886](https://arxiv.org/abs/2504.03886) (CVPR 2025) -- Dynamic environment SLAM with uncertainty-aware mapping
+- **S3PO-GS** (ICCV 2025) -- Global scale-consistent outdoor monocular 3DGS SLAM
+- **EvFlow-GS** [arXiv:2604.22183](https://arxiv.org/abs/2604.22183) (arXiv 2026) -- Event camera + optical flow for motion blur handling
+- **CGS-SLAM** (arXiv 2025) -- Compact voxel-based 3DGS for dense visual SLAM
+- **MAGICIAN** [arXiv:2603.22650](https://arxiv.org/abs/2603.22650) (CVPR 2026) -- Active mapping with imagined Gaussians + beam search
+- **Gaussian Splatting SLAM** [arXiv:2312.06741](https://arxiv.org/abs/2312.06741) (CVPR 2024) -- First real-time monocular 3DGS SLAM
+- **GGD-SLAM-ICRA** [arXiv:2604.12837](https://arxiv.org/abs/2604.12837) (ICRA 2026) -- Generalizable motion model for monocular dynamic 3DGS SLAM; no semantic labels...
+- **MAGS-SLAM** [arXiv:2605.10760](https://arxiv.org/abs/2605.10760) (arXiv 2026) -- First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry...
 
 ### Digital Twin / Interaction
 - **ArtiTwinSplat** (arXiv 2026) — Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos; enables interaction with reconstructed digital twins; agent-system integration for articulated object manipulation (Pranjal Mishra, René Zurbrügg, Max Wilder-Smith)
@@ -751,3 +977,32 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Spatial Data / 3D Vision Infrastructure
 - **OpenSpatial** [arXiv:2604.07296](https://arxiv.org/abs/2604.07296) (arXiv 2026) — Principled open-source data engine for spatial intelligence; 3M-sample dataset; 5 foundational task hierarchy (Spatial Measurement, Spatial Relationship, Camera Perception, Multi-view Consistency, Scene-Aware Reasoning); 19% relative improvement on spatial benchmarks (Jianhui Liu et al., HKU / Xiaomi)
+
+## July 2, 2026 — Daily Update
+
+### Large-Scale / Streaming
+- **EvoGS** [arXiv:2606.07179](https://arxiv.org/abs/2606.07179) (arXiv 2026) — First continuous-layering 3DGS representation via Evolution Tree; wavelet-inspired parent-child refinement structurally corrects ancestral errors; splat redundancy reduced from 65% to <25%; 2.4x transmission payload reduction; 5.5x GPU VRAM footprint reduction; smooth quality transitions for adaptive streaming (Yuang Shi et al., IRIT/UPVD/NUS)
+
+### Autonomous Driving / Sensor Calibration
+- **GP-3DGS** [arXiv:2606.20103](https://arxiv.org/abs/2606.20103) (ECCV 2026) — Geometry-Preserving 3DGS for LiDAR-Camera extrinsic calibration; blocks photometric gradients from updating Gaussian spatial parameters to prevent geometry drift; dense depth supervision from multi-view LiDAR aggregation; outperforms targetless methods on public driving datasets (Kyoleen Kwak et al., AU/ETRI)
+
+### Pose Optimization / SfM-Free
+- **Energy-GS** (CVPR 2026 Oral) — RGB-only pose-free 3DGS joint optimization; no depth/geometry priors required; energy-based pose correction function; resolves NeRF-vs-3DGS pose optimization asymmetry (Beijing Institute of Technology)
+
+### Feed-Forward / Single-Image
+- **UniSHARP** (CVPR 2026, Insta360) — First unified monocular 3DGS across pinhole/fisheye/360 cameras; single image → Gaussian point cloud in seconds via single-pass inference; universal geometric representation bridging heterogeneous camera models (Insta360 Research)
+
+### Robotics / Simulation
+- **DISCOVERSE** (RAL 2026) — 3DGS + MuJoCo unified Real2Sim2Real robot learning framework; scene-level + object-level dual-channel Real2Sim generation; multi-modal sensor native support (RGB/depth/LiDAR/tactile); open-source scalable modular architecture (Digua Robot / Tsinghua AIR / Qiuzhi Tech)
+
+### System / Infrastructure
+- **gsplat** (UC Berkeley / NVIDIA, open-source) — CUDA-accelerated 3DGS rasterization library; 4x VRAM savings; 10% training speedup; production-grade real-time rendering; part of nerfstudio project (Viktor Ye et al., UC Berkeley / NVIDIA)
+
+### Editing / Stylization
+- **Capacity-Controlled Stylization** (ECCV 2026) — Capacity-controlled multi-view stylization of 3DGS; style-structure disentanglement with capacity budget (Zhihao Wen et al., Shenzhen University / Tencent / Hebrew University / Tel Aviv University)
+
+### Geometry / Regularization
+- **PDE-Constrained 3DGS** (CVPR 2026) — PDE physical constraints for 3DGS artifact removal; geometry occupy supervision for boundary precision; eliminates floating artifacts and sharpens geometric boundaries
+
+### Image
+- **GaussianImage** [arXiv:2403.08551](https://arxiv.org/abs/2403.08551) (ECCV 2024) -- 2D Gaussian image codec at 1000+ FPS

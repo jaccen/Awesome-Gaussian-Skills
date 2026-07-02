@@ -1,3 +1,5 @@
+
+
 ### SLAM Methods
 
 | Method | Venue | Input | Scale | Key Feature |
@@ -23,3 +25,8 @@
 | CityGaussian | ECCV'24 | City | Hierarchical LOD |
 | Street Gaussians | ECCV'24 | Street | Static/dynamic decomposition, driving scenes |
 | Octree-GS | Preprint | City | Octree acceleration + LOD |
+### Sensor Calibration Methods
+
+| Method | Venue | Input | Calibration Target | Key Feature |
+|--------|-------|-------|--------------------|-------------|
+| GP-3DGS | ECCV'26 (2606.20103) | LiDAR + Camera | LiDAR-Camera extrinsic | Geometry-preserving 3DGS; blocks photometric gradient from spatial params; dense depth supervision from multi-view LiDAR; outperforms targetless methods |

@@ -1,6 +1,6 @@
 name: 3dgs-code-reviewer
 description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 101+ known bug patterns."
-version: 1.9.2
+version: 2.0.0
 author: jaccen
 tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
 ---
@@ -532,8 +532,31 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 4. **Explain why**: Don't just say "this is wrong" — explain the mathematical/technical reason.
 5. **Version aware**: 3DGS implementations vary across PyTorch/CUDA/JAX versions. Check which version is being used.
 
+## Self-Check Loop (Mandatory After Each Review)
 
+After completing a code review, execute this self-check loop before presenting results:
 
+### SC-1: Pattern Catalog Verification
+- [ ] Every bug pattern ID referenced (e.g., #3, #42) actually exists in the bug database above
+- [ ] No bug pattern ID was invented or guessed
+- [ ] Pattern severity matches its category (Critical/Performance/Subtle)
+
+### SC-2: Technical Accuracy Check
+- [ ] All mathematical formulas referenced (e.g., α-compositing, covariance projection) are correctly stated
+- [ ] CUDA kernel behavior descriptions match documented behavior (not speculation)
+- [ ] Performance impact estimates are grounded (cite benchmark or note as approximate)
+
+### SC-3: Completeness Check
+- [ ] The reviewed code's domain was identified (e.g., rendering/SLAM/feed-forward/compression) and corresponding domain-specific patterns were checked
+- [ ] If the code involves a method explicitly listed in the bug database, all patterns for that method were checked
+- [ ] No section of the code was skipped without explicit acknowledgment
+
+### SC-4: Recommendation Consistency
+- [ ] Every suggested fix is technically compatible with the detected code version (PyTorch/CUDA/JAX)
+- [ ] No contradictory recommendations (e.g., "add shared memory" and "reduce register pressure" simultaneously without reconciliation)
+- [ ] Fix complexity is proportional to bug severity (no major refactoring suggestions for style issues)
+
+**If any SC check fails**: Do NOT present the review output. Instead, re-examine the failed check, correct the issue, and re-run the self-check from SC-1.
 
 ## Red Lines
 

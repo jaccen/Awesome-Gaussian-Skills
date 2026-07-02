@@ -1,3 +1,4 @@
+
 ### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
@@ -115,3 +116,11 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | UniSHARP | 2606.07514 / CVPR'26 | Feed-Forward | First single-image 3DGS unifying perspective/fisheye/360° via omnidirectional latent alignment |
 | BlitzGS | 2605.13794 | Large-Scale / Distributed | Index odd-even partition + importance scoring + distance LOD; city-scale in tens of minutes |
 | GaussianPile | CVPR'26 | Medical | Extends 3DGS to volumetric/slice imaging (MRI, ultrasound, microscopy) |
+### Recent Additions (July 2026)
+
+| Method | Venue | Category | Key Feature |
+|--------|-------|----------|-------------|
+| DISCOVERSE | RAL'26 | Robotics / Simulation | 3DGS+MuJoCo unified Real2Sim2Real; multi-modal sensor support; open-source |
+| gsplat | Open-source (Berkeley/NVIDIA) | System / Infrastructure | CUDA-accelerated 3DGS; 4x VRAM savings; 10% training speedup; production-grade |
+| Capacity-Controlled Stylization | ECCV'26 | Editing / Stylization | Capacity-controlled multi-view 3DGS stylization; style-structure disentanglement |
+| PDE-Constrained 3DGS | CVPR'26 | Geometry / Regularization | PDE physical constraints for artifact removal; geometry occupy supervision for boundary precision |

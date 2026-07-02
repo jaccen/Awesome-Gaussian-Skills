@@ -1,0 +1,80 @@
+axes:
+  domain:
+    description: "Industry application domain"
+    values:
+      - autonomous-driving
+      - digital-twin
+      - culture
+      - film-games
+      - ecommerce
+      - industrial
+      - ar-vr
+      - bim
+      - robotics
+      - military
+      - world-model
+      - all
+    default: all
+  focus:
+    description: "Engineering focus area"
+    values:
+      - pipeline
+      - best-practices
+      - pitfalls
+      - decision-tree
+      - tech-stack
+      - gis-toolchain
+      - all
+    default: all
+
+routing:
+  always_load:
+    - static/core-stance.md
+  on_demand:
+    domain:
+      autonomous-driving:
+        - static/industry-landscape.md
+      digital-twin:
+        - static/industry-landscape.md
+      culture:
+        - static/industry-landscape.md
+      film-games:
+        - static/industry-landscape.md
+      ecommerce:
+        - static/industry-landscape.md
+      industrial:
+        - static/industry-landscape.md
+      ar-vr:
+        - static/industry-landscape.md
+      bim:
+        - static/industry-landscape.md
+      robotics:
+        - static/industry-landscape.md
+      military:
+        - static/industry-landscape.md
+      world-model:
+        - static/industry-landscape.md
+      all:
+        - static/industry-landscape.md
+    focus:
+      pipeline:
+        - static/tech-stack.md
+      best-practices:
+        - static/best-practices.md
+      pitfalls:
+        - static/pitfalls.md
+      decision-tree:
+        - static/decision-trees.md
+      tech-stack:
+        - static/tech-stack.md
+      gis-toolchain:
+        - static/gis-toolchain.md
+      all:
+        - static/tech-stack.md
+        - static/best-practices.md
+        - static/pitfalls.md
+        - static/decision-trees.md
+        - static/gis-toolchain.md
+  references:
+    on_demand:
+      - static/reference-papers.md

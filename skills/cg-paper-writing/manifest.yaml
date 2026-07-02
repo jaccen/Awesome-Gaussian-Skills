@@ -1,0 +1,62 @@
+axes:
+  section:
+    description: "Paper section the user is writing"
+    values:
+      - abstract
+      - intro
+      - related-work
+      - method
+      - experiments
+      - contribution
+      - all
+    default: all
+  venue:
+    description: "Target publication venue"
+    values:
+      - cvpr
+      - siggraph
+      - neurips
+      - tvcg
+      - thesis
+      - all
+    default: all
+
+routing:
+  always_load:
+    - static/core-stance.md
+  on_demand:
+    section:
+      abstract:
+        - static/writing-abstract-intro.md
+      intro:
+        - static/writing-abstract-intro.md
+      related-work:
+        - static/writing-related-method.md
+      method:
+        - static/writing-related-method.md
+      experiments:
+        - static/writing-experiments.md
+      contribution:
+        - static/writing-experiments.md
+      all:
+        - static/writing-abstract-intro.md
+        - static/writing-related-method.md
+        - static/writing-experiments.md
+    venue:
+      cvpr:
+        - static/venue-formats.md
+      siggraph:
+        - static/venue-formats.md
+      neurips:
+        - static/venue-formats.md
+      tvcg:
+        - static/venue-formats.md
+      thesis:
+        - static/venue-formats.md
+      all:
+        - static/venue-formats.md
+  references:
+    always_load:
+      - static/symbols-terminology.md
+    on_demand:
+      - static/review-integrity.md

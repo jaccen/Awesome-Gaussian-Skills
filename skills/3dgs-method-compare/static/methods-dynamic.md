@@ -1,3 +1,5 @@
+
+
 ### Cross-Domain Applications
 
 | Method | Venue | Domain | Key Feature |
@@ -73,3 +75,14 @@ _Multi-solver comparison sub-dimension for dynamic methods:_
 | Beyond Static Gaussians | JCVIS'25 (2606.00452) | Systematic comparison of structure-guided vs Gaussian-centric dynamic paradigms; reveals quality/compactness vs speed tradeoff |
 | Liquid Neural Fields | arXiv'26 (2606.07670) | CfC (closed-form continuous-time) units replacing MLP deformation fields; explicit continuous-time modeling; high-frequency motion gains |
 | Retrospective Dynamic NVS | CVPR'26 WS (2605.12437) | Synchronized multi-view efficient dynamic NVS without temporal coupling; Blender dynamic MV benchmark |
+### Streaming / Scalable Methods
+
+| Method | Venue | Primitive | Rendering | Key Feature |
+|--------|-------|-----------|-----------|-------------|
+| EvoGS | arXiv'26 (2606.07179) | Continuous-layered (Evolution Tree) | Wavelet-inspired refinement | First continuous-layering 3DGS; parent-child refinement corrects ancestral errors; redundancy 65%→<25%; 2.4x transmission reduction; 5.5x VRAM reduction |
+
+### Pose Optimization Methods
+
+| Method | Venue | Input | Key Feature |
+|--------|-------|-------|-------------|
+| Energy-GS | CVPR'26 Oral | RGB only (pose-free) | RGB-only joint camera pose + 3DGS optimization; no depth/geometry priors; energy-based pose correction; resolves NeRF-vs-3DGS optimization asymmetry |
