@@ -1,10 +1,9 @@
-
-
+﻿
 ---
 
 name: awesome-gaussian-skills
-version: "0.4.0"
-description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 700+ methods knowledge base, 13 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering."
+version: "0.4.1"
+description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 739+ methods knowledge base, 14 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering, articulated reasoning, compression & deployment."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin"
 arguments: [task]
 author: jaccen
@@ -13,7 +12,7 @@ repository: https://github.com/jaccen/Awesome-Gaussian-Skills
 keywords: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "nerf", "3d-reconstruction", "differentiable-rendering", "agent-skills", "mcp"]
 # Awesome Gaussian Skills — Project Context
 
-This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 700+ methods across 25 categories with 101+ known bug patterns.
+This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 739+ methods across 25 categories with 101+ known bug patterns.
 
 > **Anthropic Skills Standard Alignment**: This project follows the SKILL.md standard format compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`), and other AI Agent frameworks. Each skill includes YAML frontmatter (name, description, version, when_to_use, tags) and structured Markdown body with capabilities, instructions, and reference data. Target: `anthropics/skills` official repository listing.
 
@@ -34,12 +33,13 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 | `3dgs-spatial-agent` | `/3dgs-spatial-agent [query]` | 3DGS/CAD/Mesh spatial intelligence agent |
 | `3dgs-mcp-renderer` | `/3dgs-mcp-renderer [action]` | MCP-controlled Three.js/3DGS rendering |
 | `3dgs-articulated-reasoner` | `/3dgs-articulated-reasoner [task]` | Articulated object reasoning & digital twin |
+| `3dgs-compression-deploy` | `/3dgs-compression-deploy [target]` | Compress & deploy 3DGS models (quantize, prune, VQ, stream, Web/Mobile) |
 
 ## Knowledge Base Structure
 
 ```
 references/
-├── 3dgs-methods-overview.md   # 700+ methods index (25 categories)
+├── 3dgs-methods-overview.md   # 739+ methods index (25 categories)
 ├── methods-core.md            # Core methods (Foundation→Dynamic)
 ├── methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 ├── methods-systems-apps.md    # Systems, Applications, Cross-Domain
@@ -61,19 +61,19 @@ references/
 - **Router Architecture**: 3 skills (3dgs-method-compare, cg-paper-writing, 3dgs-engineering-guide) use axis-driven Router + manifest.yaml + static/ fragments for efficient context usage
 - **Self-Check Loop**: 3dgs-code-reviewer v2.0.0 includes mandatory SC-1~SC-4 verification after each review
 - **Stage Gates**: cg-paper-writing includes SG-1/SG-2/SG-3 non-skippable gates
-- Latest additions (2026-06/07): FastGS, GaussianSplatting-SLAM-v2, GS-Map-SLAM, ArtiTwinSplat, Holi-Spatial, Spatial-TTT, Eulerian GS, Energy-GS, NG-GS, RAF, PDEO, UniSHARP, EvoGS, GP-3DGS, DISCOVERSE, gsplat, PDE-Constrained 3DGS, Capacity-Controlled Stylization
+- Latest additions (2026-06/07): FastGS, GaussianSplatting-SLAM-v2, GS-Map-SLAM, ArtiTwinSplat, Holi-Spatial, Spatial-TTT, Eulerian GS, Energy-GS, NG-GS, RAF, PDEO, UniSHARP, EvoGS, GP-3DGS, DISCOVERSE, gsplat, PDE-Constrained 3DGS, Capacity-Controlled Stylization, Flux-GS, Provable Pruning via Coresets, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R, Argus, World from Motion
 
 ## Anthropic Skills Standard Compliance
 
-- [x] YAML frontmatter with `name`, `description`, `version`, `when_to_use`, `tags`
+- [x] YAML frontmatter with `name`, `description`, `license`, `metadata` (version, author, tags, when_to_use)
 - [x] Structured Markdown body (Capabilities, Instructions, Reference Data)
 - [x] Each skill in own directory with `SKILL.md`
-- [x] `arguments` field for parameter specification
-- [x] `author`, `license`, `repository` fields for provenance
+- [x] Progressive disclosure: SKILL.md < 500 lines, large content in `references/`
+- [x] `allowed-tools` field for pre-approved tool access
 - [x] Compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`) layouts
 - [x] Router architecture for efficient context usage (3 skills)
-- [x] Anti-hallucination guardrails (all 13 skills)
-- [x] Red Lines categorical prohibitions (6 research skills)
+- [x] Anti-hallucination guardrails (all 14 skills)
+- [x] Red Lines categorical prohibitions (7 research skills)
 - [x] Self-Check loops for code review (1 skill)
 - [x] Stage Gates for paper writing (1 skill)
 - [ ] Submit PR to `anthropics/skills` official repository

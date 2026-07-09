@@ -1,9 +1,4 @@
----
----
----
----
----
----
+﻿
 ---
 ## Newly Added Methods (May 2026 Expansion)
 
@@ -1006,3 +1001,72 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Image
 - **GaussianImage** [arXiv:2403.08551](https://arxiv.org/abs/2403.08551) (ECCV 2024) -- 2D Gaussian image codec at 1000+ FPS
+
+
+## July 2026 Weekly Update (Week of Jul 1-9)
+
+> 39 new papers identified across arXiv cs.CV/cs.GR + ICML/ECCV 2026 proceedings
+
+### Acceleration / Optimization
+- **Flux-GS** [arXiv:2606.30017](https://arxiv.org/abs/2606.30017) (ECCV 2026) — Monte Carlo Specular Energy Aggregator for mobile 3DGS: samples 3rd-order radiance residuals into compact latent space + Attribute-Conditioned SH Enhancement + Multi-view Alpha-based Densification/Pruning; real-time mobile rendering with significant parameter reduction (UTS/Baidu/U Adelaide)
+- **TemporalGS** [arXiv:2607.03390](https://arxiv.org/abs/2607.03390) (arXiv 2026) — Training-free plug-and-play 3DGS rendering acceleration via temporal priors; dynamic culling + selective rendering; up to 1.48x speedup
+- **Provable Pruning via Coresets** [arXiv:2607.02721](https://arxiv.org/abs/2607.02721) (arXiv 2026) — First provable coreset construction theorem for 3DGS pruning; sensitivity-based sampling with multiplicative approximation guarantees; SOTA under aggressive compression + minimal finetuning [Code](https://github.com/waseem-m/3dgs_provable_coresets)
+- **Fast 3D Foundation Model Initialized GS** [arXiv:2607.03209](https://arxiv.org/abs/2607.03209) (ICECET 2026) — 3D foundation model replacing SfM for pose/point cloud initialization; joint pose-Gaussian optimization; ~3 min/scene training
+
+### Compression / Mobile
+- **Clustered Codebook VQ** [arXiv:2607.05667](https://arxiv.org/abs/2607.05667) (SIGGRAPH 2026 Poster) — CGVQ for 2D Gaussian image compression; cluster-guided grouping before quantization; 20% bpp reduction with preserved visual quality
+
+### SLAM
+- **GeoGS-SLAM** [arXiv:2607.07452](https://arxiv.org/abs/2607.07452) (arXiv 2026) — Geometry-Only Gaussian Splatting for dense monocular SLAM; removes appearance modeling reducing per-primitive params 80%+; SOTA online mapping + geometry quality
+- **Real-Time LiDAR GS-SLAM** [arXiv:2607.04127](https://arxiv.org/abs/2607.04127) (arXiv 2026) — First real-time LiDAR Gaussian Splatting SLAM; tight G-ICP + spherical rasterization dense mapping; Newer College F-score 86.78%@>20FPS
+- **DL-SLAM** [arXiv:2607.01860](https://arxiv.org/abs/2607.01860) (arXiv 2026) — Dual-level probability framework for dynamic environment GS-SLAM; semantic+geometric pixel/object-level dynamic probability; artifact-free static map + semantic map
+
+### Feed-Forward / Generalizable
+- **WildSplat** [arXiv:2607.05347](https://arxiv.org/abs/2607.05347) (ECCV 2026) — First feed-forward 3DGS from unposed in-the-wild images; dual-branch architecture decoupling geometry and appearance for appearance-conditioned NVS
+- **NoDrift3R** [arXiv:2607.07168](https://arxiv.org/abs/2607.07168) (ECCV 2026) — Raymap-Guided Coupling for drift-robust unposed feed-forward 3DGS; explicit geometry-appearance coupling module for long-sequence reconstruction
+- **PixGS** [arXiv:2607.01803](https://arxiv.org/abs/2607.01803) (ECCV 2026) — Single-stage pixel-space diffusion directly generating 3D Gaussians; bypasses lossy latent compression; denoise Gaussian attributes per timestep; inference ~1s/A100
+- **AnchorSplat** [arXiv:2607.01290](https://arxiv.org/abs/2607.01290) (ECCV 2026) — 3D-native end-to-end depth network via Point Anchor Mechanism for GS detail enhancement; 10^5x faster than optimization methods; zero-shot generalization to generated models
+- **Argus** (ECCV 2026) — Image-derived LiDAR-level pose constraints for 3DGS without LiDAR; consumer-grade 3DGS applications (如视)
+- **VLRC** [arXiv:2607.02707](https://arxiv.org/abs/2607.02707) (arXiv 2026) — Vision-Language Reprojection Consistency as scalable signal for better feed-forward 3D pretraining
+
+### Dynamic / 4D
+- **World from Motion** [arXiv:2607.01202](https://arxiv.org/abs/2607.01202) (arXiv 2026) — Generative dynamic GS from monocular video; conditions video model to fix rendering artifacts + fill missing regions; distills back to consistent 4D Gaussians
+- **MVFusion-GS** [arXiv:2607.01578](https://arxiv.org/abs/2607.01578) (arXiv 2026) — Motion-variance guided refinement + MotionFormer temporal attention for dynamic 3DGS; explicit motion awareness improves foreground motion + static background
+- **GUSH3R** [arXiv:2607.05243](https://arxiv.org/abs/2607.05243) (arXiv 2026) — Single-forward-pass reconstruction of dynamic humans + static scenes as 3DGS primitives from monocular video; geometry-consistent online NVS
+- **DeGenseGS** [arXiv:2607.04761](https://arxiv.org/abs/2607.04761) (arXiv 2026) — Geometrically and semantically decoupled 4DGS for surgical scene understanding; HexPlane spatiotemporal entanglement module synchronizes semantic changes with scene dynamics
+
+### Sparse-View / Surface Reconstruction
+- **Sparse-View Surface via GS** [arXiv:2607.03765](https://arxiv.org/abs/2607.03765) (ECCV 2026) — Normal-guided depth propagation from high- to low-confidence regions + outlier depth edge-aware regularization; resolves Gaussian discreteness-induced depth discontinuities
+- **PRISM3D** [arXiv:2607.03855](https://arxiv.org/abs/2607.03855) (ECCV 2026) — First framework bootstrapping 3DGS from extreme motion blur; MCMC probabilistic densification + continuous Bezier trajectory physics modeling
+
+### Large-Scale / Urban
+- **City-Level 3D Surface** [arXiv:2607.03771](https://arxiv.org/abs/2607.03771) (ECCV 2026) — Viewpoint orientation partitioning for 3DGS scene division; similar-orientation views joint depth estimation; multi-GPU parallel city-scale surface reconstruction
+- **SharpSplat** [arXiv:2607.03872](https://arxiv.org/abs/2607.03872) (IGARSS 2026) — SAM3-based building edge extraction + rendered gradient-edge alignment; sharp building boundary reconstruction in UAV 3DGS scenes
+
+### Antialiasing / Rendering Quality
+- **SSA-3DGS** [arXiv:2607.05598](https://arxiv.org/abs/2607.05598) (arXiv 2026) — Unsupervised screen-space artifact removal for 3DGS; joint optimization of 3D scene + learnable 2D overlay; cross-view geometric consistency decouples artifacts from geometry; up to +9 dB PSNR
+
+### Uncertainty / Bayesian
+- **Rendering-Aware Bayesian 3DGS** [arXiv:2607.05522](https://arxiv.org/abs/2607.05522) (arXiv 2026) — Normal-Inverse-Wishart posterior tracking for Gaussian geometry; native predictive uncertainty for interval calibration + active view selection; ~17x coverage error reduction
+
+### Evaluation / Benchmark
+- **Mind the Gap** [arXiv:2607.01556](https://arxiv.org/abs/2607.01556) (arXiv 2026) — Reveals 3-12 dB interpolation-extrapolation gap in standard 3DGS evaluation; proposes fair match count protocol + spatial preservation benchmark toolkit (16 scenes)
+
+### Editing / Segmentation
+- **Semantic-Guided Progressive Object Removal** [arXiv:2607.04144](https://arxiv.org/abs/2607.04144) (arXiv 2026) — DINOv2 semantic-guided block matching + region-wise progressive refinement for high-quality 3D object removal in 3DGS scenes
+- **SAGO** [arXiv:2607.01628](https://arxiv.org/abs/2607.01628) (arXiv 2026) — Online segment 3D Gaussians via virtual drones; reframes interactive 3DGS segmentation as Next-Best-View planning; 50x faster than prior methods
+- **Consistent Scene Understanding in 3DGS** [arXiv:2607.01708](https://arxiv.org/abs/2607.01708) (ICPR 2026) — Multi-cue mask refinement with semantic/depth/edge fusion + cross-view mask matching for consistent 3DGS instance segmentation
+
+### Generation / Text-to-3D
+- **CGGS** [arXiv:2607.03819](https://arxiv.org/abs/2607.03819) (IEEE TIP 2026) — Consistency-Augmented Geometric GS for ego-centric 3D scene generation; consistency-augmented loss + mutual information depth loss (MID) for hierarchical geometry-visual optimization
+
+### CAD / Assembly
+- **ASSEMCAD** [arXiv:2607.05123](https://arxiv.org/abs/2607.05123) (arXiv 2026) — Axiom-driven framework for production-ready CAD assembly generation from natural language; port-and-mate-based library with executable mate relations + engineering axioms; outperforms code-centric CAD baselines on AssemBench
+
+### 3DGS Hardware Acceleration
+- **Axis-Shared Rasterization Accelerator** (ISCA 2026) — 3DGS hardware accelerator with axis-shared rasterization + order-independent transmittance; optimized for efficient on-chip rendering (SJTU)
+
+### Cross-Domain / Application
+- **GaussFusion** [arXiv:2607.05906](https://arxiv.org/abs/2607.05906) (arXiv 2026) — First multimodal 3D Gaussian pretraining framework; cross-modal semantic alignment in masked Gaussian modeling; Gaussian Saliency-guided Hierarchical Masking (GSHM)
+- **MACRO** [arXiv:2607.03875](https://arxiv.org/abs/2607.03875) (arXiv 2026) — Training-free multi-plane attention for closeup render optimization; depth-plane decomposition + scale-matching reference; first standardized closeup NVS benchmark
+- **SceneFrom3D** [arXiv:2607.04540](https://arxiv.org/abs/2607.04540) (arXiv 2026) — Geometry-conditioned outdoor 3D scene generation via view scheduling with object-level control; directed generation graph with anchor views + interpolation trajectories

@@ -1,3 +1,4 @@
+﻿
 ---
 # Engineering Technology Stack
 
@@ -25,7 +26,9 @@
 | Scaffold-GS | CUDA/Python | Large-scale scenes |
 | OpenGaussian | OpenGL | Non-CUDA rendering |
 
-**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive), **CodecSplat** (ultra-compact feed-forward, 20–108 KiB/scene, ArXiv 2605.25563)
+**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive), **CodecSplat** (ultra-compact feed-forward, 20–108 KiB/scene, ArXiv 2605.25563), **Flux-GS** (ECCV 2026, Monte Carlo Energy Aggregation, mobile-optimized densification)
+
+**Acceleration**: **Axis-Shared Rasterization Accelerator** (ISCA 2026, first 3DGS hardware accelerator, 10-100× energy efficiency vs GPU, targets edge/mobile), **AnchorSplat** (ECCV 2026, Point Anchor Mechanism, 10^5× faster detail enhancement)
 
 **Rule**: No compression for prototyping → add when deployment demands; validate compressed vs original.
 
@@ -76,3 +79,5 @@
 **Game engines**: UE5 (experimental Nanite-compatible), Unity (gsplat package), Godot (community, early), **PlayCanvas** (MIT, first-class 3DGS + collision + navmesh + physics + WebXR, @playcanvas/react)
 
 **Robotics**: ROS2 scene server, MuJoCo/Isaac Sim, GS-Playground
+
+**CAD/Assembly**: **ASSEMCAD** (ECCV 2026, natural language → production-ready CAD assembly; LLM-driven assembly graph), BrepGaussian (B-rep GS bridge), KDH-CAD (knowledge-data hybrid)

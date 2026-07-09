@@ -1,15 +1,17 @@
 ---
 name: cg-paper-writing
-description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues. Multi-agent adversarial review, citation integrity gates, style calibration."
-version: 3.0.0
-author: jaccen
-tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
-when_to_use:
-  - "Write or revise a CG/3D vision academic paper"
-  - "Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper"
-  - "Run adversarial review or citation integrity check on a draft"
-  - "Calibrate writing style to a target venue"
-  - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
+description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues. Multi-agent adversarial review, citation integrity gates, style calibration. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, 写论文/写paper/论文写作/CG论文/三维视觉论文."
+license: Apache-2.0
+metadata:
+  version: "3.0.0"
+  author: jaccen
+  tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
+  when_to_use:
+    - "Write or revise a CG/3D vision academic paper"
+    - "Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper"
+    - "Run adversarial review or citation integrity check on a draft"
+    - "Calibrate writing style to a target venue"
+    - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
 ---
 
 # CG Paper Writing Engine (Router)

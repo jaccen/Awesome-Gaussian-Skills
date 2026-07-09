@@ -1,5 +1,4 @@
-
-
+﻿
 ### SLAM Methods
 
 | Method | Venue | Input | Scale | Key Feature |
@@ -15,6 +14,9 @@
 | E2EGS | CVPR'26 (2603.14684) | Event camera | Room-scale | Event-camera pose-free 3D reconstruction |
 | MAGS-SLAM | arXiv'26 | RGB (multi-agent) | Multi-room | First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification |
 | GGD-SLAM | ICRA'26 | Monocular video | Room-scale | Generalizable motion model for dynamic SLAM; masks dynamic region residuals for correct factor graph |
+| GeoGS-SLAM | arXiv'26 (2607.07452) | Monocular video | Room-scale | Geometry-Only GS removing appearance; 80%+ param reduction; SOTA online mapping |
+| Real-Time LiDAR GS-SLAM | arXiv'26 (2607.04127) | LiDAR point cloud | Outdoor | First real-time LiDAR GS-SLAM; G-ICP + spherical rasterization; F-score 86.78%@>20FPS |
+| DL-SLAM | arXiv'26 (2607.01860) | RGB video | Dynamic | Dual-level probability (semantic+geometric) for dynamic environment GS-SLAM; artifact-free static map |
 
 ### Large-Scale Methods
 

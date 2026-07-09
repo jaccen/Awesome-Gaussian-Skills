@@ -1,15 +1,17 @@
 ---
 name: 3dgs-engineering-guide
-description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 700+ methods."
-version: 2.0.0
-author: jaccen
-tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
-when_to_use:
-  - "Deploy 3DGS to production or an industry application"
-  - "Select tools, pipeline, or platform for a 3DGS deployment scenario"
-  - "Troubleshoot engineering problems with 3DGS (OOM, artifacts, platform lock-in)"
-  - "Integrate 3DGS with GIS, BIM, ROS2, or game engines"
-  - "3DGS部署 / 高斯泼溅工程化 / 3DGS生产环境 / 工程指南"
+description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 739+ methods. Use when: deploying 3DGS to production or industry, selecting tools/pipeline/platform, troubleshooting engineering problems (OOM, artifacts, platform lock-in), integrating 3DGS with GIS/BIM/ROS2/game engines, 3DGS部署/高斯泼溅工程化/3DGS生产环境/工程指南."
+license: Apache-2.0
+metadata:
+  version: "2.0.0"
+  author: jaccen
+  tags: ["3dgs", "gaussian-splatting", "engineering", "deployment", "digital-twin", "autonomous-driving"]
+  when_to_use:
+    - "Deploy 3DGS to production or an industry application"
+    - "Select tools, pipeline, or platform for a 3DGS deployment scenario"
+    - "Troubleshoot engineering problems with 3DGS (OOM, artifacts, platform lock-in)"
+    - "Integrate 3DGS with GIS, BIM, ROS2, or game engines"
+    - "3DGS部署 / 高斯泼溅工程化 / 3DGS生产环境 / 工程指南"
 ---
 
 # 3DGS Engineering Guide (Router)

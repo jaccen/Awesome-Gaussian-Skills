@@ -1,8 +1,11 @@
+---
 name: 3dgs-paper-reader
-description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 700+ methods across 25 categories."
-version: 1.5.0
-author: jaccen
-tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
+description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 739+ methods across 25 categories. Use when: reading or analyzing a 3DGS/NeRF paper, extracting method details from arXiv PDF, summarizing 3D reconstruction research, 读论文/3DGS论文分析/文献总结."
+license: Apache-2.0
+metadata:
+  version: "1.5.0"
+  author: jaccen
+  tags: ["3dgs", "gaussian-splatting", "paper-reading", "research", "nerf", "3d-reconstruction"]
 ---
 
 # 3DGS Paper Reader

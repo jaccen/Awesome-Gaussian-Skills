@@ -1,5 +1,4 @@
-
-
+﻿
 | Method | Venue | Feature Source | 3D Storage | Key Feature |
 |--------|-------|---------------|------------|-------------|
 | LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
@@ -10,6 +9,13 @@
 | NG-GS | arXiv'26 (2604.14706) | NeRF-guided | Per-Gaussian segmentation | NeRF-guided GS segmentation |
 | PointGS | CVPR'26 | SAM masks (contrastive distillation) | Per-Gaussian semantic features | 3DGS as unified intermediate for unsupervised 3D point cloud segmentation; SAM→3D contrastive learning |
 | ReLaGS | CVPR'26 (2603.17605) | Language model | Per-Gaussian language features | Open-vocabulary 3D reasoning without per-scene training; language-guided GS |
+
+### Semantic / Understanding New Additions (July 9, 2026)
+
+| Method | Venue | Feature Source | 3D Storage | Key Feature |
+|--------|-------|---------------|------------|-------------|
+| SAGO | arXiv'26 | SAM + Graph optimization | Per-Gaussian semantic labels | Structure-Aware Gaussian Optimization; SAM-guided segmentation with graph-based label propagation; consistent scene understanding across views |
+| Argus | ECCV'26 (如视) | Image-derived LiDAR | Per-Gaussian pose constraints | Image-derived LiDAR-level pose constraints for feed-forward 3DGS; novel pose regularization from RGB-only inputs |
 
 ### Feed-Forward Methods
 
@@ -48,3 +54,11 @@
 | Method | Venue | #Gaussians | Inference | Key Feature |
 |--------|-------|------------|-----------|-------------|
 | UniSHARP | CVPR'26 (Insta360) | Variable | Single-pass, seconds | First unified monocular 3DGS across pinhole/fisheye/360° cameras; single image input; universal geometric representation for heterogeneous camera models |
+
+### Feed-Forward New Additions (July 9, 2026)
+
+| Method | Venue | #Gaussians | Inference | Key Feature |
+|--------|-------|------------|-----------|-------------|
+| WildSplat | ECCV'26 | Variable | Single-pass | First feed-forward 3DGS from unposed in-the-wild images; handles transient objects and illumination variation |
+| NoDrift3R | ECCV'26 | Variable | Single-pass | Raymap-Guided drift-robust unposed feed-forward 3DGS; eliminates camera drift in long sequences |
+| AnchorSplat | ECCV'26 | Anchor-based | Single-pass | Point Anchor Mechanism for feed-forward 3DGS; 10^5× faster detail enhancement via anchor-based refinement |

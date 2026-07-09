@@ -1,3 +1,4 @@
+﻿
 ## Known Methods Database
 
 ### Foundation Methods
@@ -46,6 +47,7 @@
 | GS-NFS | arXiv'26 (2606.05650) | Dynamic codec | GPU-parallelized dynamic 3DGS encode/decode; 1-2 OOM speedup; full frame-rate |
 | FCGS | arXiv'26 | Minutes→seconds | Optimization-free single feed-forward compression |
 | EvoGS | arXiv'26 (2606.07179) | 2.4× payload ↓ | Continuous-layering via Evolution Tree; child nodes correct ancestral errors; redundancy 65%→25% |
+| Flux-GS | ECCV'26 (2606.30017) | Mobile-optimized | Monte Carlo Energy Aggregation; energy-based densification enabling mobile 3DGS rendering |
 
 ### Robustness / Regularization Methods
 
@@ -66,3 +68,19 @@
 | Energy-GS | CVPR'26 Oral | Joint camera pose + 3DGS optimization from RGB only; no depth/bone priors |
 | Geometry Gaussians | arXiv'26 (2606.05124) | Decouples appearance & geometry opacity per splat; proves default 3DGS unsuited for joint texture+geometry |
 | DropAnSH-GS | CVPR'26 | Anchor dropout + SH regularization; eliminates neighbor compensation for sparse-view 3DGS |
+
+### Acceleration / Optimization Methods (New July 2026)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| Flux-GS | ECCV'26 (arXiv:2606.30017) | Monte Carlo Energy Aggregation for mobile 3DGS; energy-based sampling replaces heuristic densification; mobile-optimized rendering |
+| Provable Pruning via Coresets | arXiv'26 (2607.02721) | First provable coreset construction for 3DGS; theoretical guarantee on quality preservation; extends DoG pruning with approximation bounds |
+| AnchorSplat | ECCV'26 | Point Anchor Mechanism for 10^5× faster detail enhancement; anchor-based progressive refinement; sparse-to-dense density scheduling |
+| SSA-3DGS | arXiv'26 | Sparse Structure-Aware acceleration; exploits spatial sparsity for skip-rendering; 2-3× speedup on sparse scenes |
+| Bayesian 3DGS | arXiv'26 | Bayesian uncertainty quantification for 3DGS; per-Gaussian epistemic uncertainty enables confidence-aware pruning; connects to Prune Wisely DoG strategy |
+
+### Hardware Acceleration (New July 2026)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| Axis-Shared Rasterization Accelerator | ISCA'26 | First 3DGS hardware accelerator; axis-shared tile rasterization; 10-100× energy efficiency vs GPU; targets edge/mobile deployment |

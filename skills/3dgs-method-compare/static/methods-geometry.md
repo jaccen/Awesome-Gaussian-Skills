@@ -1,3 +1,4 @@
+﻿
 ### Geometry / Surface Methods
 
 | Method | Venue | Surface Quality | Key Feature |
@@ -18,6 +19,13 @@
 | DeSplat | CVPR'26 | High (distractor-free) | Decomposed compositing separating transient objects from static background |
 | TriSplat | arXiv'26 (2605.26115) | High (triangle) | Triangle primitives replacing Gaussians; deterministic visibility, mesh-compatible output |
 
+### Geometry / Surface New Additions (July 9, 2026)
+
+| Method | Venue | Surface Quality | Key Feature |
+|--------|-------|----------------|-------------|
+| PRISM3D | ECCV'26 | High (sparse-view) | Prior-guided sparse-view surface reconstruction via multi-scale depth/normal priors; 2DGS backbone with geometry regularization |
+| TemporalGS | arXiv'26 | High (temporal surface) | Temporal-coherent surface extraction from dynamic 3DGS; frame-to-frame mesh consistency via Gaussian trajectory tracking |
+
 ### Generation / Text-to-3D
 
 | Method | Venue | Input | Output | Key Feature |
@@ -28,3 +36,4 @@
 | SceneGen-LLMRL | arXiv'26 (2605.05711) | Language | Interactive 3D scene | LLM-RL coupling for unified 3D scene generation + immersive interaction |
 | ROAR-3D | arXiv'26 (2605.21121) | Text/image | Multi-view 3D | Token-wise view routing for multi-view 3D generation |
 | TRELLIS.2 | CVPR'26 (Best Student Paper) | Text/image | 4B native 3D model | 17s PBR generation; 4B parameter native 3D generation model |
+| PixGS | ECCV'26 | Text/image | Pixel-space 3DGS | Pixel-space diffusion directly generating 3D Gaussians; bypasses SDS optimization; one-shot generation |

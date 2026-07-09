@@ -1,3 +1,4 @@
+﻿
 ---
 # Reference Papers by Domain
 
@@ -7,20 +8,20 @@
 | World Models | GWM, FlashWorld, GS-World, Visionary, RAD, DLWM, X-World |
 | Digital Twin | DiffSoup, Street Gaussians, GlobalSplat, Large-Scale HQ Head |
 | Volumetric Medical | GaussianPile (CVPR 2026, slice-aware PSF projection for CT/cBCT/ABUS/LSM; additive rasterization for volumetric intensity; ~16-26× compression over voxel grids; 11× faster than NeRF; 8min avg convergence) |
-| Dynamic SLAM | Flow4DGS-SLAM (optical flow-guided 4DGS temporal consistency), GGD-SLAM (ICRA 2026, generalizable motion model) |
+| Dynamic SLAM | Flow4DGS-SLAM (optical flow-guided 4DGS temporal consistency), GGD-SLAM (ICRA 2026, generalizable motion model), **GeoGS-SLAM** (geometry-only, 80%+ param reduction), **Real-Time LiDAR GS-SLAM** (first real-time LiDAR-only), **DL-SLAM** (dual-level probability dynamic) |
 | Inspection | EnerGS, RGS, E2EGS |
 | Simulation | PhysGaussian, Gaussian Splashing, GS-Playground, **SAM3D-Phys** [2605.30239], **RAF** (CVPR 2026 Findings, representation abstraction framework), **FreeForm** (CVPR 2026, particle-skinned eigenmodes) |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS, **Ambient-Robust Inverse Rendering** [2605.30250] |
 | Cross-platform | VkSplat, GSeurat (Vulkan C++23), msplat (Metal), tortuise (Rust CPU), brush (Rust/WebGPU, 4.3k stars), AdaGScale, BlitzGS (distributed) |
-| Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 301 FPS), ZPressor [2505.23734] (100+ view scalability), VolSplat [2509.19297] (voxel-aligned), PM-Loss [2506.05327] (pointmap loss), **DéjàView** [2605.30215] (looped transformer), **HeadsUp** [2605.04035] (UV-parameterized head, Apple), **Z-Order GS** [2605.13465] (CVPR 2026 Oral, Morton curve indexing; 1000× faster; 2-3× fewer Gaussians), **ZipSplat** [2606.05102] (token-based; ~6× fewer Gaussians, +2.1 dB PSNR SOTA) |
-| BIM/CAD | BrepGaussian, CADFS, GS-CAD, GaussCAD, KDH-CAD (knowledge-data hybrid, arXiv:2606.01702) |
+| Feed-Forward | SplatWeaver [2605.07287] (expert-routing, 301 FPS), ZPressor [2505.23734] (100+ view scalability), VolSplat [2509.19297] (voxel-aligned), PM-Loss [2506.05327] (pointmap loss), **DéjàView** [2605.30215] (looped transformer), **HeadsUp** [2605.04035] (UV-parameterized head, Apple), **Z-Order GS** [2605.13465] (CVPR 2026 Oral, Morton curve indexing; 1000× faster; 2-3× fewer Gaussians), **ZipSplat** [2606.05102] (token-based; ~6× fewer Gaussians, +2.1 dB PSNR SOTA), **WildSplat** (ECCV 2026, unposed in-the-wild), **NoDrift3R** (ECCV 2026, drift-robust unposed), **AnchorSplat** (ECCV 2026, 10^5× detail) |
+| BIM/CAD | BrepGaussian, CADFS, GS-CAD, GaussCAD, KDH-CAD (knowledge-data hybrid, arXiv:2606.01702), **ASSEMCAD** (ECCV 2026, NL→CAD assembly) |
 | Editing | GaussianEditor, ObjectMorpher, TransSplat, AlbedoEdit (video-level albedo editing, arXiv:2606.01362) |
 | Security | GuardMarkGS (watermarking + edit deterrence) |
 | Rendering | CoherentRaster (subpixel, light field), 3DGEER (exact ray, ICLR 2026), SparseOIT (order-independent transparency), DP-GES (sort-free surfel, ArXiv 2605.25345), **View-Dependent Splatting Kernels** [2605.25426] (SIGGRAPH 2026), DDF-GS (ray-query GI, arXiv:2606.00817), **D4RT** (CVPR 2026 Best Paper) |
 | Streaming | CAGS (~7x VQ+LoD), AV1-3DGS (63% training reduction), PD-4DGS (progressive 4D streaming), MGS [2603.19234] (Matryoshka continuous LoD) |
-| Acceleration | AdpSplit [2605.06876] (9-22% training speedup), HiGS (NVIDIA, 15.8x rendering, arXiv:2606.00352) |
+| Acceleration | AdpSplit [2605.06876] (9-22% training speedup), HiGS (NVIDIA, 15.8x rendering, arXiv:2606.00352), **Flux-GS** (ECCV 2026, Monte Carlo Energy Aggregation, mobile), **Provable Pruning via Coresets** (arXiv:2607.02721, first provable coreset), **SSA-3DGS** (sparse structure-aware, 2-3× speedup) |
 | Generative Optimization | CAdam (SIGGRAPH 2026, context-adaptive densification) |
-| Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale, **CodecSplat** (20–108 KiB/scene, ArXiv 2605.25563) |
+| Compression | HAC (100x), MobileGS (CPU), GETA-3DGS (5x), MesonGS++ (34x), AdaGScale, **CodecSplat** (20–108 KiB/scene, ArXiv 2605.25563), **Flux-GS** (ECCV 2026, mobile densification) |
 | Relighting | GS³, GaRe, SSD-GS, LumiMotion, GOR-IS, **F-RNG** (feed-forward, ~25× faster, ArXiv 2605.25975) |
 
 See knowledge base: `references/3dgs-methods-overview.md`, `references/methods-core.md`, `references/methods-semantic-editing.md`, `references/methods-systems-apps.md`

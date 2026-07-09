@@ -1,10 +1,12 @@
 ---
 name: 3dgs-articulated-reasoner
-version: 0.2.0
-description: "3DGS Articulated Object Reasoning & Digital Twin Agent. Reason about articulated objects in 3DGS scenes: extract part structure, infer kinematic constraints, generate interactive digital twins. Bridges 3DGS rendering with URDF kinematics, part-aware compositing, and agent-driven interaction."
-when_to_use: "articulated object, digital twin, part structure, kinematic chain, URDF, interactive 3DGS, part-aware rendering, articulated manipulation, joint estimation, part segmentation 3DGS, ArtiSplat, ArtiTwinSplat, articulated reconstruction"
-tags: ["3dgs", "articulated-object", "digital-twin", "kinematics", "part-aware", "urdf", "interactive-3d"]
-arguments: [task]
+description: "3DGS Articulated Object Reasoning & Digital Twin Agent. Reason about articulated objects in 3DGS scenes: extract part structure, infer kinematic constraints, generate interactive digital twins. Use when: articulated object, digital twin, part structure, kinematic chain, URDF, interactive 3DGS, part-aware rendering, articulated manipulation, joint estimation, part segmentation 3DGS, ArtiSplat, ArtiTwinSplat, articulated reconstruction."
+license: Apache-2.0
+metadata:
+  version: "0.2.0"
+  author: jaccen
+  tags: ["3dgs", "articulated-object", "digital-twin", "kinematics", "part-aware", "urdf", "interactive-3d"]
+  arguments: [task]
 ---
 
 # 3DGS Articulated Reasoner

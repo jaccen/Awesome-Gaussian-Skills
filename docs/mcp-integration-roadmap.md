@@ -1,7 +1,7 @@
----
+﻿
 # MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
 
-> Version: 0.2.0 | Date: 2026-06-25 | Status: Design Phase
+> Version: 0.2.1 | Date: 2026-07-09 | Status: Phase 1 In Progress
 
 ## Overview
 
@@ -35,12 +35,12 @@ The `skills/3dgs-mcp-renderer/SKILL.md` (v0.5.0) defines a prototype architectur
 ```json
 {
   "name": "prune_by_importance",
-  "description": "Agent-controlled importance-based pruning of Gaussians using DoG or gradient-based strategy",
+  "description": "Agent-controlled importance-based pruning of Gaussians using DoG, coreset, or gradient-based strategy",
   "inputSchema": {
     "type": "object",
     "properties": {
       "scene_id": { "type": "string" },
-      "strategy": { "enum": ["dog", "gradient", "sparsity", "variational"], "description": "Pruning strategy" },
+      "strategy": { "enum": ["dog", "coreset", "gradient", "sparsity", "variational"], "description": "Pruning strategy. 'coreset' uses Provable Pruning via Coresets (arXiv:2607.02721) with theoretical quality guarantees" },
       "target_ratio": { "type": "number", "minimum": 0.1, "maximum": 0.9, "description": "Target Gaussian retention ratio" },
       "preserve_regions": { "type": "array", "items": { "type": "object" }, "description": "Bounding boxes of regions to protect from pruning" }
     },

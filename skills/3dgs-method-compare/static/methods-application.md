@@ -1,4 +1,4 @@
-
+﻿
 ### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
@@ -124,3 +124,15 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | gsplat | Open-source (Berkeley/NVIDIA) | System / Infrastructure | CUDA-accelerated 3DGS; 4x VRAM savings; 10% training speedup; production-grade |
 | Capacity-Controlled Stylization | ECCV'26 | Editing / Stylization | Capacity-controlled multi-view 3DGS stylization; style-structure disentanglement |
 | PDE-Constrained 3DGS | CVPR'26 | Geometry / Regularization | PDE physical constraints for artifact removal; geometry occupy supervision for boundary precision |
+
+### New Additions (July 9, 2026)
+
+| Method | Venue | Category | Key Feature |
+|--------|-------|----------|-------------|
+| ASSEMCAD | ECCV'26 | CAD / Assembly | Production-ready CAD assembly from natural language; LLM-driven assembly graph generation; parametric CAD output |
+| CGGS | arXiv'26 | Cross-Domain / CG | Computer Graphics-meets-Gaussian Splatting; bridges traditional CG pipeline with 3DGS for hybrid rendering |
+| SceneFrom3D | arXiv'26 | Cross-Domain / Scene | In-the-wild scene generation from 3DGS; layout-aware scene completion |
+| GaussFusion | arXiv'26 | Cross-Domain / Fusion | Multi-modal Gaussian fusion; LiDAR-camera-IMU 3DGS for sensor-rich environments |
+| GeoGS-SLAM | arXiv'26 | SLAM / Geometry | Geometry-Only GS for monocular SLAM; 80%+ parameter reduction vs standard GS-SLAM; geometry-first pipeline |
+| Real-Time LiDAR GS-SLAM | arXiv'26 | SLAM / LiDAR | First real-time LiDAR-only GS-SLAM; LiDAR point cloud as Gaussian primitives; direct LiDAR rendering |
+| DL-SLAM | arXiv'26 | SLAM / Dynamic | Dual-level probability dynamic GS-SLAM; probability-based static/dynamic decomposition for robust dynamic SLAM |

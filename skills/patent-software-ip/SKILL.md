@@ -1,9 +1,11 @@
 ---
 name: patent-software-ip
-description: "Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization, prior-art search, and self-check."
-version: "1.4.0"
-author: jaccen
-tags: ["patent", "software-copyright", "ip", "ai", "big-data", "3d-vision", "generative-ai", "embodied-ai", "nlp", "rag", "ai-engineering", "ai-safety"]
+description: "Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization, prior-art search, and self-check. Use when: drafting CN patents from AI code/docs, generating software copyright materials, prior-art search for AI inventions, 专利撰写/软件著作权/AI知识产权/脱敏处理."
+license: Apache-2.0
+metadata:
+  version: "1.4.0"
+  author: jaccen
+  tags: ["patent", "software-copyright", "ip", "ai", "big-data", "3d-vision", "generative-ai", "embodied-ai", "nlp", "rag", "ai-engineering", "ai-safety"]
 ---
 
 # Patent & Software Copyright Generation (AI + Big Data)

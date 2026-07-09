@@ -1,3 +1,4 @@
+﻿
 # 3DGS Methods Overview
 
 > **This file has moved.** The authoritative knowledge base is now at:

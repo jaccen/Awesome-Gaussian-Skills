@@ -1,5 +1,4 @@
-
-
+﻿
 ### Cross-Domain Applications
 
 | Method | Venue | Domain | Key Feature |
@@ -75,6 +74,14 @@ _Multi-solver comparison sub-dimension for dynamic methods:_
 | Beyond Static Gaussians | JCVIS'25 (2606.00452) | Systematic comparison of structure-guided vs Gaussian-centric dynamic paradigms; reveals quality/compactness vs speed tradeoff |
 | Liquid Neural Fields | arXiv'26 (2606.07670) | CfC (closed-form continuous-time) units replacing MLP deformation fields; explicit continuous-time modeling; high-frequency motion gains |
 | Retrospective Dynamic NVS | CVPR'26 WS (2605.12437) | Synchronized multi-view efficient dynamic NVS without temporal coupling; Blender dynamic MV benchmark |
+
+### Dynamic / 4DGS New Additions (July 9, 2026)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| World from Motion | arXiv'26 | Generative dynamic 4DGS from monocular video; generative prior fills unobserved regions; motion-conditioned 4D Gaussian generation |
+| MVFusion-GS | arXiv'26 | Multi-view fusion for dynamic 3DGS; cross-view temporal consistency via fusion attention; extends feed-forward to dynamic scenes |
+| DeGenseGS | arXiv'26 | Dense-to-sparse dynamic 3DGS; progressive densification pruning for temporal coherence; reduces 4DGS memory by 40%+ |
 ### Streaming / Scalable Methods
 
 | Method | Venue | Primitive | Rendering | Key Feature |

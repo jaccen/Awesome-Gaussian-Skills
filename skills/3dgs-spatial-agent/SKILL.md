@@ -1,11 +1,12 @@
 ---
 name: 3dgs-spatial-agent
-description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Bridges 3DGS reconstruction with structured geometric understanding and Agent-driven generation."
-when_to_use: "3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference from Gaussian primitives, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS"
-version: 0.7.0
-author: jaccen
-tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
+description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Use when: 3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS."
+license: Apache-2.0
 allowed-tools: Read Grep Bash Glob
+metadata:
+  version: "0.7.0"
+  author: jaccen
+  tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
 ---
 
 # 3DGS Spatial Intelligence Agent
@@ -25,7 +26,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (675+ methods)
+3DGS Scene (739+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │
@@ -55,9 +56,11 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
   │     │
   │     └── Digital twin interaction ──── ArtiTwinSplat (RGB-D digital twin; agent-driven articulated manipulation)
   │
-  ├── Spatial Reasoning ──── RAF, FreeArtGS
+  ├── Spatial Reasoning ──── RAF, FreeArtGS, Argus (ECCV 2026)
   │     │
   │     ├── Visual→Physics abstraction ──── RAF (representation-aware forward mapping)
+  │     │
+  │     ├── LiDAR-level pose from RGB ──── Argus (如视): image-derived LiDAR-level pose constraints for feed-forward 3DGS
   │     │
   │     └── Free-motion articulation ──── FreeArtGS (ground-plane-free articulation reconstruction)
   │
@@ -75,9 +78,11 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
         │
         └── MLLM + Z3/SMT verification ──── Open-vocabulary + interpretable spatial proof
   │
-  ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702], ArtiTwinSplat
+  ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702], ASSEMCAD (ECCV 2026), ArtiTwinSplat
   │     │
   │     ├── Domain-constrained parametric fitting ──── Foundation model + textbook knowledge + 250 samples → 92.6% accuracy
+  │     │
+  │     ├── NL-driven CAD assembly ──── ASSEMCAD (ECCV 2026): natural language → production-ready assembly graph; LLM-driven part selection + constraint generation
   │     │
   │     └── Interactable digital twin ──── ArtiTwinSplat (RGB-D reconstruction; agent-driven articulated object manipulation)
   │
