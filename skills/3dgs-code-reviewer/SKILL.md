@@ -92,7 +92,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 
 ### 4. Known Bug Patterns
 
-> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 101+ known bug patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, etc.). The following summary lists pattern categories:
+> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 105+ known bug patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, etc.). The following summary lists pattern categories:
 
 | Category | Count | Key Patterns |
 |----------|-------|-------------|

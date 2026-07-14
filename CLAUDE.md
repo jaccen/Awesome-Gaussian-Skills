@@ -25,7 +25,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 | `3dgs-experiment-planner` | `/3dgs-experiment-planner [topic]` | Design experiments for top venues |
 | `cad-mesh-3dgs` | `/cad-mesh-3dgs [query]` | Bridge CAD/Mesh and 3DGS representations (61+ methods) |
 | `3dgs-visualizer` | `/3dgs-visualizer [chart-type]` | Generate publication-quality charts |
-| `cg-paper-writing` | `/cg-paper-writing [section]` | Write CG/3D vision papers `-` CVPR/SIGGRAPH (Router architecture) |
+| `cg-paper-writing` | `/cg-paper-writing [section]` | Write CG/3D vision papers — CVPR/SIGGRAPH (Router architecture) |
 | `3dgs-engineering-guide` | `/3dgs-engineering-guide [use-case]` | Deploy 3DGS from research to production (Router architecture) |
 | `nerf-to-3dgs-migrator` | `/nerf-to-3dgs-migrator [method]` | Migrate NeRF methods to 3DGS |
 | `patent-software-ip` | `/patent-software-ip [project]` | Generate patent/copyright docs |

@@ -79,11 +79,11 @@
 
 ### README.md Improvements
 - Apply Proxy-GS pattern: add one-figure motivation showing "time wasted on manual RAG/comparison" vs. "seconds with this toolkit"
-- Quantify the value proposition precisely: "97+ known bug patterns detected" > "comprehensive bug detection"
+- Quantify the value proposition precisely: "105+ known bug patterns detected" > "comprehensive bug detection"
 
 ### SKILL.md Improvements
 - Each skill should state its **single bottleneck resolution** in the description
-- Example: `3dgs-code-reviewer` — "97+ bug patterns including 2 newly discovered from CVPR 2026 (DoG pruning false positive, proxy mesh over-culling)"
+- Example: `3dgs-code-reviewer` — "105+ bug patterns including 2 newly discovered from CVPR 2026 (DoG pruning false positive, proxy mesh over-culling)"
 - Use per-method performance numbers in comparison tables (not just "faster" but "3× speedup, PSNR preserved")
 
 ## Revision Log

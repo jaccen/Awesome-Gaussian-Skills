@@ -1,19 +1,18 @@
-﻿
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 739+ 方法，25 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 760+ 方法，25 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-739+-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI技能-13-green.svg)](skills/)
-[![Bug Patterns](https://img.shields.io/badge/Bug模式-101+-red.svg)](skills/3dgs-code-reviewer/)
+[![Methods](https://img.shields.io/badge/方法-760+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI技能-14-green.svg)](skills/)
+[![Bug Patterns](https://img.shields.io/badge/Bug模式-105+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -29,21 +28,21 @@
 |----------|----------|--------|
 | 浏览论文 | 静态 Markdown 表格 | [交互式浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)：搜索、筛选、排序 |
 | 对比方法 | 同时打开 2 篇论文对照 | 10+ 维度自动对比 |
-| 避免代码 bug | 提交后才发现 | 101+ 已知 bug 模式检测 |
+| 避免代码 bug | 提交后才发现 | 105+ 已知 bug 模式检测 |
 | 设计实验 | 猜基线和消融方案 | 顶会定制实验方案 |
 | NeRF → 3DGS | 试错式移植 | 逐步迁移指南 |
-| CAD ↔ 3DGS | 无覆盖 | 35+ 方法转换管线 |
+| CAD ↔ 3DGS | 无覆盖 | 61+ 方法转换管线 |
 | 专利申请 | 从零手写 | 自动生成权利要求与说明书 |
 
 ## 在线体验
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 739+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 760+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 最新动态（2026 年 7 月）
 
-最新更新（7 月 9 日）：739+ 方法，25 类别。**v0.4.1 — ECCV & ISCA 2026 浪潮**：+**Flux-GS**（ECCV 2026，加速）、+**AnchorSplat**（ECCV 2026，优化）、+**ASSEMCAD**（ECCV 2026，CAD）、+**WildSplat**（ECCV 2026，鲁棒性）、+**NoDrift3R**（ECCV 2026，SLAM）、+**Axis-Shared Rasterization Accelerator**（ISCA 2026，硬件加速）、+**Provable Pruning via Coresets**（优化）。前次更新（6 月 28 日）：CVPR 2026 代表性论文浪潮，23 篇新增。Skills v0.4.1：全部 13 技能已更新。
+最新更新（7 月 14 日）：**v0.4.2 — SIGGRAPH & MICCAI 2026 浪潮**，760+ 方法。新增：**DP-Splat**（贝叶斯密度控制）、**MoE-GS/MoDE**（TPAMI 2026）、**HyperGS**（10^4-10^5x 前馈）、**MAC-Splat**（ECCV 2026）、**Track2Map**（MICCAI 2026）、**PEAR**（SIGGRAPH 2026）、**CoSAG**（免训练语义压缩）、**HoloTetSphere**（ECCV 2026）。前次更新（7 月 9 日）：v0.4.1 ECCV & ISCA 2026 浪潮。3 个 Router 技能，全部 14 技能含反幻觉护栏。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -84,7 +83,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（739+ 方法，25 类别）
+## 知识库（760+ 方法，25 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -155,23 +154,24 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 </details>
 
-## 13 AI 驱动技能
+## 14 AI 驱动技能
 
 | # | 技能 | 功能 | 示例 |
 |---|------|------|------|
 | 1 | [`3dgs-paper-reader`](skills/3dgs-paper-reader/) | 读取任意 3DGS 论文，提取结构化洞见 | "帮我读一下 2401.01345" |
 | 2 | [`3dgs-method-compare`](skills/3dgs-method-compare/) | 从 10+ 维度对比变体 | "对比 3DGS 和 2DGS 的渲染公式差异" |
-| 3 | [`3dgs-code-reviewer`](skills/3dgs-code-reviewer/) | 检测 101+ 已知 3DGS 实现 bug | "审查我的 CUDA 渲染 kernel" |
+| 3 | [`3dgs-code-reviewer`](skills/3dgs-code-reviewer/) | 检测 105+ 已知 3DGS 实现 bug | "审查我的 CUDA 渲染 kernel" |
 | 4 | [`3dgs-experiment-planner`](skills/3dgs-experiment-planner/) | 为 CVPR/SIGGRAPH/TVCG 设计实验 | "帮我设计消融实验" |
 | 5 | [`nerf-to-3dgs-migrator`](skills/nerf-to-3dgs-migrator/) | 逐步将 NeRF 方法迁移到 3DGS | "hash encoding 怎么迁移到 3DGS？" |
-| 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | 桥接 CAD/Mesh/3DGS — 35+ 转换方法 | "3DGS模型怎么提取高质量mesh？" |
+| 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | 桥接 CAD/Mesh/3DGS — 61+ 转换方法 | "3DGS模型怎么提取高质量mesh？" |
 | 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | 为 CVPR/SIGGRAPH/TVCG 写论文，含对抗审稿 | "帮我写论文引言" |
 | 8 | [`3dgs-visualizer`](skills/3dgs-visualizer/) | 出版级雷达图、时间线、热力图 | "画一个3DGS方法对比雷达图" |
 | 9 | [`3dgs-engineering-guide`](skills/3dgs-engineering-guide/) | 从研究到生产部署 3DGS（10 条行业赛道） | "怎么部署3DGS做自动驾驶仿真？" |
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | 生成专利申请文件与软著登记材料 | "生成专利申请文件" |
 | 11 | [`3dgs-spatial-agent`](skills/3dgs-spatial-agent/) | Agent 驱动的 3D 场景推理、CAD 提取与编辑 | "从3DGS中提取椅子的CAD模型" |
 | 12 | [`3dgs-mcp-renderer`](skills/3dgs-mcp-renderer/) | MCP 控制的 Three.js/3DGS 渲染桥接 | "从上方看这个场景" |
-| 13 | [`3dgs-articulated-reasoner`](skills/3dgs-articulated-reasoner/) | 铰接物体推理与数字孪生 | "打开抽屉" |
+| 13 | [3dgs-articulated-reasoner](skills/3dgs-articulated-reasoner/) | 铰接物体推理与数字孪生 | "打开抽屉" |
+| 14 | [3dgs-compression-deploy](skills/3dgs-compression-deploy/) | 压缩与部署 3DGS（量化、剪枝、VQ、流式、Web/移动端） | "3DGS模型怎么压缩到10MB？" |
 
 兼容 **Claude Code**、**Cursor**、**Windsurf** 及其他 AI Agent 框架。
 
@@ -189,7 +189,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 739+ 方法的系统性空白分析生成。
+> 基于知识库 760+ 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -247,7 +247,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.2 — `3dgs-visualizer` + Text2Word 演示（2026 年 5 月）
 - [x] v0.3 — 知识库 675→739+ 方法，25 类别，101+ bug 模式，12 个技能（2026 年 6 月）
 - [x] v0.3.7 — 空间智能浪潮：680→739+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
-- [x] v0.3.7 — CVPR 2026 代表性论文：690→739+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 13 技能更新（2026 年 6 月 28 日）
+- [x] v0.3.7 — CVPR 2026 代表性论文：690→739+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 14 技能更新（2026 年 6 月 28 日）
 - [x] v0.4.0 — Router 架构扩展：cg-paper-writing + 3dgs-engineering-guide → Router + manifest.yaml + static/；3dgs-code-reviewer 自检循环；3 个 Router 技能（2026 年 7 月 2 日）
 - [x] v0.4.1 — ECCV & ISCA 2026 浪潮：+Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R（ECCV 2026）, Axis-Shared Rasterization Accelerator（ISCA 2026）, Provable Pruning via Coresets；739+ 方法（2026 年 7 月 9 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
@@ -261,10 +261,10 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ```
 Awesome-Gaussian-Skills/
-├── skills/                    # 13 个 AI Agent 技能（SKILL.md 格式）
+├── skills/                    # 14 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
-│   ├── 3dgs-code-reviewer/    # 代码审查（101+ bug 模式）
+│   ├── 3dgs-code-reviewer/    # 代码审查（105+ bug 模式）
 │   ├── 3dgs-experiment-planner/ # 实验设计
 │   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS 迁移
 │   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS 桥接
@@ -274,9 +274,10 @@ Awesome-Gaussian-Skills/
 │   ├── patent-software-ip/    # 专利与软著生成
 │   ├── 3dgs-spatial-agent/    # 空间智能 Agent
 │   ├── 3dgs-mcp-renderer/     # MCP 渲染桥接
-│   └── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
+│   ├── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
+│   └── 3dgs-compression-deploy/  # 压缩与部署（量化、剪枝、VQ、流式）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（739+ 方法，25 类别）
+├── references/                # 知识库（760+ 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

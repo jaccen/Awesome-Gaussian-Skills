@@ -44,3 +44,6 @@ build/
 .watermark_tmp/
 *.xlsx
 *.bak
+
+~$*
+*.docx
