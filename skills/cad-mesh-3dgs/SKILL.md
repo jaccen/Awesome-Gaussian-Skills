@@ -1,11 +1,20 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly. Analyzes 58+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
+description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge. Analyzes 61+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
 license: Apache-2.0
+user-invocable: true
 metadata:
-  version: "1.5.0"
+  version: "1.6.0"
   author: jaccen
-  tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing"]
+  tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing", "tetsphere", "physics-simulation"]
+  when_to_use:
+    - "Convert mesh to/from 3DGS representations"
+    - "Extract surfaces from Gaussian splats"
+    - "Reverse engineer CAD models from 3DGS"
+    - "NL-driven CAD assembly from 3DGS scenes"
+    - "B-rep or parametric reconstruction from images via 3DGS"
+    - "TetSphere physics simulation bridging with 3DGS"
+    - "mesh↔3DGS转换 / CAD逆向 / 曲面提取 / 参数化重建"
 ---
 
 # CAD & Mesh × 3DGS Bridge
@@ -478,6 +487,24 @@ When responding to user queries, use these templates:
 
 
 
+
+## New Methods (v1.6.0 — July 2026)
+
+### HoloTetSphere [arXiv:2607.08398] (ECCV 2026)
+- TetSphere mesh representation bridging 3DGS and physics simulation
+- Volumetric TetSphere → tetrahedral mesh with guaranteed manifold output
+- Enables physics simulation directly from 3DGS representations
+- Key insight: bridges the gap between unstructured Gaussians and structured volumetric meshes needed for FEM
+
+### Incremental 3D Gaussian Triangulation
+- Progressive mesh extraction from 3DGS with topological guarantees
+- Builds triangulation incrementally as Gaussians are added/optimized
+- Maintains consistent manifold topology throughout extraction
+
+### PEAR (SIGGRAPH 2026)
+- Single-image 100 FPS human avatar reconstruction
+- Pose-conditional efficient avatar: image → 3D Gaussian avatar in real-time
+- Relevant for CAD/Mesh pipeline: fast human body mesh extraction from Gaussians
 
 ## Red Lines
 

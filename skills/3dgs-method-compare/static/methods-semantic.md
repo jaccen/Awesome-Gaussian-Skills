@@ -1,4 +1,3 @@
-﻿
 | Method | Venue | Feature Source | 3D Storage | Key Feature |
 |--------|-------|---------------|------------|-------------|
 | LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
@@ -16,6 +15,9 @@
 |--------|-------|---------------|------------|-------------|
 | SAGO | arXiv'26 | SAM + Graph optimization | Per-Gaussian semantic labels | Structure-Aware Gaussian Optimization; SAM-guided segmentation with graph-based label propagation; consistent scene understanding across views |
 | Argus | ECCV'26 (如视) | Image-derived LiDAR | Per-Gaussian pose constraints | Image-derived LiDAR-level pose constraints for feed-forward 3DGS; novel pose regularization from RGB-only inputs |
+| CoSAG | arXiv'26 (2607.10237) | Compact semantic anchor | Anchor-based semantic features | Compact Semantic Anchor GS; 37-76× compression over LangSplatV2; training-free semantic field |
+| StructSplat | ECCV'26 (2606.28321) | Structure-guided | Per-Gaussian structure features | Structure-guided sparse-view GS; structural priors for geometric consistency |
+| MAC-Splat | ECCV'26 (2607.10792) | Multi-attribute | Per-Gaussian multi-attribute | Multi-attribute consistency for sparse-view GS; +4.5 dB over Splatt3R |
 
 ### Feed-Forward Methods
 

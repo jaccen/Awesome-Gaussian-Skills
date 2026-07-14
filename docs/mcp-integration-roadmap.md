@@ -1,7 +1,6 @@
-﻿
 # MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
 
-> Version: 0.2.1 | Date: 2026-07-09 | Status: Phase 1 In Progress
+> Version: 0.2.2 | Date: 2026-07-14 | Status: Phase 1 In Progress
 
 ## Overview
 
@@ -9,11 +8,12 @@ This document outlines the technical roadmap for integrating MCP (Model Context 
 
 ## Current State
 
-The `skills/3dgs-mcp-renderer/SKILL.md` (v0.5.0) defines a prototype architecture:
+The `skills/3dgs-mcp-renderer/SKILL.md` (v0.7.0) defines a prototype architecture:
 - Voice/Text → Agent → MCP Server → 3DGS Renderer (Three.js/WebGPU)
 - 6 MCP tools: `import_scene`, `set_camera`, `render_view`, `adjust_gaussian`, `query_scene`, `export_result`
 - 3 additional tools from v0.3.2: `simulate_physics`, `query_4d_scene`, `deform_elastic`
 - 1 tool from v0.5.0: `query_spatial_context` (Holi-Spatial/Spatial-TTT integration)
+- 3 new tools from v0.7.0: `bayesian_density_control` (DP-Splat), `moe_deform` (MoE-GS/MoDE), `surgical_tracking` (Track2Map)
 - Transport: WebSocket/HTTP between MCP Server and Renderer
 
 ## Phase 1: 3DGS-Specific MCP Tools (v0.4.0 target)

@@ -1,5 +1,3 @@
-﻿
----
 ## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
@@ -1070,3 +1068,54 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **GaussFusion** [arXiv:2607.05906](https://arxiv.org/abs/2607.05906) (arXiv 2026) — First multimodal 3D Gaussian pretraining framework; cross-modal semantic alignment in masked Gaussian modeling; Gaussian Saliency-guided Hierarchical Masking (GSHM)
 - **MACRO** [arXiv:2607.03875](https://arxiv.org/abs/2607.03875) (arXiv 2026) — Training-free multi-plane attention for closeup render optimization; depth-plane decomposition + scale-matching reference; first standardized closeup NVS benchmark
 - **SceneFrom3D** [arXiv:2607.04540](https://arxiv.org/abs/2607.04540) (arXiv 2026) — Geometry-conditioned outdoor 3D scene generation via view scheduling with object-level control; directed generation graph with anchor views + interpolation trajectories
+
+## Newly Added Methods (July 14, 2026 Update)
+
+> 21 methods added from arXiv Jul 9-14, SIGGRAPH 2026, and ECCV/TPAMI/ICRA/IROS/MICCAI acceptance wave
+
+### Acceleration / Optimization
+- **SalientGS** [arXiv:2607.11285](https://arxiv.org/abs/2607.11285) (arXiv 2026) — Unified SfM-to-3DGS pipeline with importance-guided MCMC Gaussian allocation; reallocates capacity from well-fit to underfit regions; 15-min end-to-end SOTA
+- **DP-Splat** [arXiv:2607.10912](https://arxiv.org/abs/2607.10912) (arXiv 2026) — Bayesian nonparametric complexity control via Dirichlet-process prior; 5.9-7.6x fewer components at matched quality; exact monotonicity guarantee + truncation-error bound
+
+### Feed-Forward / Generalizable
+- **HyperGS** [arXiv:2607.11500](https://arxiv.org/abs/2607.11500) (arXiv 2026) — Feedforward optimization-free Gaussian video representation; factorized spatiotemporal Transformer + learnable query-based Transformer; 10^4-10^5x speedup; +2.9-3.1 dB over prior video encoders
+- **AsySplat** [arXiv:2607.10995](https://arxiv.org/abs/2607.10995) (arXiv 2026) — Asymmetric architecture decoupling geometry and appearance modeling; coarse geometry branch + fine appearance branch; ~800x speedup over optimization-based methods
+- **StructSplat** [arXiv:2606.28321](https://arxiv.org/abs/2606.28321) (ECCV 2026) — Sparse-view generalizable 3DGS without camera parameters; structure-guided reconstruction from HITSZ/DU/BUTD
+- **MAC-Splat** [arXiv:2607.10792](https://arxiv.org/abs/2607.10792) (ECCV 2026) — Multi-Attribute Consistency for sparse-view 3DGS; MASt3R backbone + DINOv3 correspondences; +4.5 dB over Splatt3R
+
+### Dynamic / 4D
+- **Grassmannian Splatting** [arXiv:2607.10489](https://arxiv.org/abs/2607.10489) (arXiv 2026) — Rank-2 spacetime surfels via Grassmannian parameterization; closed-form motion model without deformation field; fastest among compared methods (4.9-5.6x over quality baselines)
+- **MoE-GS / MoDE** [arXiv:2607.08250](https://arxiv.org/abs/2607.08250) (TPAMI 2026) — Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling
+
+### SLAM
+- **GeoGS-SLAM (v2)** [arXiv:2607.11184](https://arxiv.org/abs/2607.11184) (arXiv 2026) — Online monocular SLAM combining 3DGS with learned geometric priors; coarse-to-fine strategy + online loop closure
+- **Anythingreality** [arXiv:2607.09260](https://arxiv.org/abs/2607.09260) (arXiv 2026) — Robust online GS SLAM for VR scene exploration + VLM interaction; ORB-SLAM3-based pose + real-time Gaussian reconstruction; +14.5% PSNR, 88% VLM recognition
+- **Track2Map** [arXiv:2607.08408](https://arxiv.org/abs/2607.08408) (MICCAI 2026) — Online deformable GS SLAM for robotic surgery; track-anchored deformation initialization; joint camera + scene optimization from surgical video
+
+### Sparse-View / Surface
+- **StereoSplat+** [arXiv:2607.08808](https://arxiv.org/abs/2607.08808) (IROS 2026) — Feed-forward stereo GS with diffusion-assisted progressive inference; one-step diffusion enhancer + stereo cost-volume + triplane 3D volume fusion
+
+### Large-Scale / Outdoor
+- **PanoLOG** [arXiv:2607.08769](https://arxiv.org/abs/2607.08769) (arXiv 2026) — Geometry and gradient-based partitioning for panoramic outdoor 3DGS reconstruction; first panoramic outdoor benchmark Pano360
+
+### Compression / Semantic
+- **CoSAG** [arXiv:2607.10237](https://arxiv.org/abs/2607.10237) (arXiv 2026) — Compact Semantic Anchor Gaussians via training-free rate-distortion coding; closed-form transmittance-weighted lift + spatially predictive entropy coder; 37-76x compression over LangSplatV2 at higher accuracy; sub-MB storage
+
+### Editing / MR
+- **SyncSpace** [arXiv:2607.10050](https://arxiv.org/abs/2607.10050) (arXiv 2026) — Layout-conditioned 3DGS for MR space reskinning; coarse-to-fine registration + hand-tracked engulfment interaction
+
+### World Model / Generation
+- **ABot-3DWorld 0** [arXiv:2607.11673](https://arxiv.org/abs/2607.11673) (arXiv 2026) — Universal world model → 3DGS; Spatial Generative Primitive (SGP) + panoramic video reconstruction; multimodal input → explorable 3DGS world; SOTA among open-source methods
+
+### Mesh / Surface
+- **HoloTetSphere** [arXiv:2607.08398](https://arxiv.org/abs/2607.08398) (ECCV 2026) — Unified TetSphere mesh reconstruction for physical simulation; Gaussian sphere coupling + edge-based element pruning; bypasses error-prone tetrahedralization
+- **Incremental 3D Gaussian Triangulation** [arXiv:2607.10690](https://arxiv.org/abs/2607.10690) (arXiv 2026) — Online incremental mesh extraction from dense Gaussian triangulation; plane-based pulling constraint + dynamic historical region freezing
+
+### Deblurring / Robustness
+- **FreDeGS** (Springer 2026) — Frequency-guided 3DGS for scene deblurring; frequency-aware decomposition for motion-blurred input reconstruction
+
+### Human / Avatar
+- **PEAR** (SIGGRAPH 2026) — Single-image animatable 3D human avatar at 100 FPS; full-body + hand + face reconstruction from single natural image
+
+### Robotics / Embodied AI
+- **SplatCtrl** [arXiv:2607.08948](https://arxiv.org/abs/2607.08948) (ICRA 2026) — Perception-action coupling via GS + reactive robot control; isotropic Gaussian → continuous SDF → control barrier functions; collision-free manipulation

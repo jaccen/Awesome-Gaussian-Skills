@@ -1,4 +1,3 @@
-﻿
 ## Known Methods Database
 
 ### Foundation Methods
@@ -78,6 +77,8 @@
 | AnchorSplat | ECCV'26 | Point Anchor Mechanism for 10^5× faster detail enhancement; anchor-based progressive refinement; sparse-to-dense density scheduling |
 | SSA-3DGS | arXiv'26 | Sparse Structure-Aware acceleration; exploits spatial sparsity for skip-rendering; 2-3× speedup on sparse scenes |
 | Bayesian 3DGS | arXiv'26 | Bayesian uncertainty quantification for 3DGS; per-Gaussian epistemic uncertainty enables confidence-aware pruning; connects to Prune Wisely DoG strategy |
+| SalientGS | arXiv'26 (2607.11285) | Importance-guided MCMC for 3DGS; 15-min SfM-to-3DGS pipeline; saliency-aware sampling |
+| DP-Splat | arXiv'26 (2607.10912) | Dirichlet-process prior for automatic component count determination; 5.9-7.6× fewer Gaussian components |
 
 ### Hardware Acceleration (New July 2026)
 

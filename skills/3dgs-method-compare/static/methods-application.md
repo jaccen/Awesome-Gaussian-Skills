@@ -1,4 +1,3 @@
-﻿
 ### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
@@ -136,3 +135,12 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | GeoGS-SLAM | arXiv'26 | SLAM / Geometry | Geometry-Only GS for monocular SLAM; 80%+ parameter reduction vs standard GS-SLAM; geometry-first pipeline |
 | Real-Time LiDAR GS-SLAM | arXiv'26 | SLAM / LiDAR | First real-time LiDAR-only GS-SLAM; LiDAR point cloud as Gaussian primitives; direct LiDAR rendering |
 | DL-SLAM | arXiv'26 | SLAM / Dynamic | Dual-level probability dynamic GS-SLAM; probability-based static/dynamic decomposition for robust dynamic SLAM |
+| HyperGS | arXiv'26 (2607.11500) | Acceleration / Feed-Forward | 10^4-10^5× feedforward video GS; massively parallel video-conditioned 3DGS |
+| AsySplat | arXiv'26 (2607.10995) | Acceleration / Architecture | ~800× speedup asymmetric encoder-decoder architecture for fast GS |
+| PanoLOG | arXiv'26 (2607.08769) | Outdoor / Panoramic | Panoramic outdoor partitioned GS; Pano360 benchmark for panoramic evaluation |
+| StereoSplat+ | IROS'26 (2607.08808) | Stereo / Diffusion | Stereo + diffusion progressive GS; progressive refinement from stereo priors |
+| SyncSpace | arXiv'26 (2607.10050) | MR / Reskinning | Mixed reality space reskinning via layout-conditioned GS; real-time spatial editing |
+| ABot-3DWorld 0 | arXiv'26 (2607.11673) | World Model / Agent | World model → 3DGS; SGP (Scene Graph Primitive) for agent-centered 3D understanding |
+| SplatCtrl | ICRA'26 (2607.08948) | Robotics / Control | GS + reactive robot control via Control Barrier Functions (CBF); safety-guaranteed navigation |
+| PEAR | SIGGRAPH'26 | Avatar / Real-Time | Single-image 100 FPS human avatar; real-time animatable Gaussian avatar |
+| FreDeGS | Springer'26 | Deblurring / Frequency | Frequency-guided deblurring GS; frequency-aware optimization for motion-blurred inputs |

@@ -1,4 +1,3 @@
-﻿
 ---
 # Engineering Technology Stack
 
@@ -26,7 +25,7 @@
 | Scaffold-GS | CUDA/Python | Large-scale scenes |
 | OpenGaussian | OpenGL | Non-CUDA rendering |
 
-**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive), **CodecSplat** (ultra-compact feed-forward, 20–108 KiB/scene, ArXiv 2605.25563), **Flux-GS** (ECCV 2026, Monte Carlo Energy Aggregation, mobile-optimized densification)
+**Compression**: HAC (100x), MobileGS (CPU-runnable), GETA-3DGS (5x), MesonGS++ (34x, SOTA rate-distortion), AdaGScale (adaptive), **CodecSplat** (ultra-compact feed-forward, 20–108 KiB/scene, ArXiv 2605.25563), **Flux-GS** (ECCV 2026, Monte Carlo Energy Aggregation, mobile-optimized densification), **CoSAG** (training-free semantic compression, 37–76x over LangSplatV2, arXiv:2607.10237), **DP-Splat** (Bayesian nonparametric complexity control via Dirichlet-process prior, arXiv:2607.10912)
 
 **Acceleration**: **Axis-Shared Rasterization Accelerator** (ISCA 2026, first 3DGS hardware accelerator, 10-100× energy efficiency vs GPU, targets edge/mobile), **AnchorSplat** (ECCV 2026, Point Anchor Mechanism, 10^5× faster detail enhancement)
 
@@ -64,7 +63,7 @@
 | UE5 plugin | DX12 | Desktop/Console | Plugin |
 | Unity renderer | Vulkan/DX12 | Multi-platform | Plugin |
 
-**Streaming**: CAGS (VQ + LoD, ~7x), AV1-3DGS (AV1 motion vectors, 63% training reduction), PD-4DGS (progressive 4D streaming, DASH/HLS-compatible), progressive loading, view-dependent prioritization, 20–50 Mbps for 1080p
+**Streaming**: CAGS (VQ + LoD, ~7x), AV1-3DGS (AV1 motion vectors, 63% training reduction), PD-4DGS (progressive 4D streaming, DASH/HLS-compatible), progressive loading, view-dependent prioritization, 20–50 Mbps for 1080p, **AsySplat** (asymmetric geometry/appearance streaming, ~800x speedup, arXiv:2607.10995)
 
 **Formats**: `.ply` (uncompressed), `.splat` (compact binary, web-friendly), **`.sog`** (PlayCanvas, ~20x, streaming LOD), **`.spz`** (Niantic, ~10x, mobile/AR), custom (HAC/MesonGS++), future: 3D Tiles + Gaussian extension
 
@@ -78,6 +77,10 @@
 
 **Game engines**: UE5 (experimental Nanite-compatible), Unity (gsplat package), Godot (community, early), **PlayCanvas** (MIT, first-class 3DGS + collision + navmesh + physics + WebXR, @playcanvas/react)
 
-**Robotics**: ROS2 scene server, MuJoCo/Isaac Sim, GS-Playground
+**Robotics**: ROS2 scene server, MuJoCo/Isaac Sim, GS-Playground, **SplatCtrl** (ICRA 2026, GS + reactive robot control via Gaussian world model, arXiv:2607.08948)
 
-**CAD/Assembly**: **ASSEMCAD** (ECCV 2026, natural language → production-ready CAD assembly; LLM-driven assembly graph), BrepGaussian (B-rep GS bridge), KDH-CAD (knowledge-data hybrid)
+**CAD/Assembly**: **ASSEMCAD** (ECCV 2026, natural language → production-ready CAD assembly; LLM-driven assembly graph), BrepGaussian (B-rep GS bridge), KDH-CAD (knowledge-data hybrid), **HoloTetSphere** (ECCV 2026, TetSphere → tetrahedral mesh for physics simulation, arXiv:2607.08398)
+
+**Medical/Surgical**: **Track2Map** (MICCAI 2026, surgical GS SLAM, instrument tracking → 3D map, arXiv:2607.08408)
+
+**Avatar/Human**: **PEAR** (SIGGRAPH 2026, single-image 100 FPS human avatar, pose-conditional)

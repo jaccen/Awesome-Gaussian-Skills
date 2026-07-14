@@ -2,10 +2,18 @@
 name: nerf-to-3dgs-migrator
 description: "Migrate NeRF-based methods to 3DGS with step-by-step guidance. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry. Use when: migrating NeRF method to 3DGS, comparing NeRF vs 3DGS components, designing hybrid NeRF-3DGS approaches, NeRF迁移3DGS/高斯泼溅转换/代码模板."
 license: Apache-2.0
+user-invocable: true
 metadata:
   version: "1.5.0"
   author: jaccen
   tags: ["nerf", "3dgs", "gaussian-splatting", "migration", "code-template", "research"]
+  when_to_use:
+    - "Migrate a NeRF-based method to 3DGS"
+    - "Compare NeRF vs 3DGS component compatibility"
+    - "Design hybrid NeRF-3DGS approaches"
+    - "Get step-by-step migration code templates"
+    - "Identify issues when converting from volume rendering to splatting"
+    - "NeRF迁移3DGS / 高斯泼溅转换 / 代码模板 / 组件兼容性分析"
 ---
 
 # NeRF-to-3DGS Migration Guide

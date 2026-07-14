@@ -2,6 +2,7 @@
 name: cg-paper-writing
 description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues. Multi-agent adversarial review, citation integrity gates, style calibration. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, 写论文/写paper/论文写作/CG论文/三维视觉论文."
 license: Apache-2.0
+user-invocable: true
 metadata:
   version: "3.0.0"
   author: jaccen

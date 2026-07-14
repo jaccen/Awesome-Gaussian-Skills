@@ -2,11 +2,20 @@
 name: 3dgs-spatial-agent
 description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Use when: 3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS."
 license: Apache-2.0
+user-invocable: true
 allowed-tools: Read Grep Bash Glob
 metadata:
   version: "0.7.0"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
+  when_to_use:
+    - "Understand a 3DGS scene at object-part level"
+    - "Extract CAD/parametric model from Gaussian splats"
+    - "Interactive 3D editing of reconstructed scenes"
+    - "Discover articulation or material properties from 3DGS"
+    - "Decouple geometry and opacity for reflective/transparent objects"
+    - "Spatial reasoning over reconstructed scenes"
+    - "3D场景理解 / CAD提取 / 参数化建模 / 材质推断 / 几何不透明度解耦"
 ---
 
 # 3DGS Spatial Intelligence Agent
@@ -26,7 +35,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (739+ methods)
+3DGS Scene (760+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │
@@ -75,8 +84,32 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
   │     └── Test-time training ──── 2B params > GPT-5 on spatial benchmarks
   │
   ├── Neuro-Symbolic Reasoning ──── APEIRIA (ICML 2026)
-        │
-        └── MLLM + Z3/SMT verification ──── Open-vocabulary + interpretable spatial proof
+  │     │
+  │     └── MLLM + Z3/SMT verification ──── Open-vocabulary + interpretable spatial proof
+  │
+  ├── Gaussian Complexity Control ──── DP-Splat (arXiv 2026), SalientGS (arXiv 2026)
+  │     │
+  │     ├── Bayesian nonparametric ──── DP-Splat: Dirichlet-process prior; data-adaptive component count
+  │     │
+  │     └── Importance-guided MCMC ──── SalientGS: unified SfM-to-3DGS; 15-min end-to-end
+  │
+  ├── Dynamic Deformation MoE ──── MoE-GS / MoDE (TPAMI 2026)
+  │     │
+  │     ├── Joint MoDE ──── Multiple deformation experts on shared canonical Gaussians
+  │     │
+  │     └── Routed MoE-GS ──── Separate expert optimization + routing stage
+  │
+  ├── Feed-Forward Generalizable ──── HyperGS, AsySplat, StructSplat, MAC-Splat
+  │     │
+  │     ├── Optimization-free video GS ──── HyperGS: 10^4-10^5x speedup over per-video optimization
+  │     │
+  │     ├── Asymmetric arch ──── AsySplat: geometry/appearance decoupling; ~800x speedup
+  │     │
+  │     └── Sparse-view consistency ──── MAC-Splat (ECCV 2026): +4.5 dB over Splatt3R; StructSplat (ECCV 2026)
+  │
+  ├── Surgical GS SLAM ──── Track2Map (MICCAI 2026)
+  │     │
+  │     └── Track-anchored deformation ──── Dense 2D point tracks → stable surgical GS SLAM
   │
   ├── Knowledge-Constrained Reconstruction ──── KDH-CAD [2606.01702], ASSEMCAD (ECCV 2026), ArtiTwinSplat
   │     │

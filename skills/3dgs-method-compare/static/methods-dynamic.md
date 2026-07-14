@@ -1,4 +1,3 @@
-﻿
 ### Cross-Domain Applications
 
 | Method | Venue | Domain | Key Feature |
@@ -82,6 +81,8 @@ _Multi-solver comparison sub-dimension for dynamic methods:_
 | World from Motion | arXiv'26 | Generative dynamic 4DGS from monocular video; generative prior fills unobserved regions; motion-conditioned 4D Gaussian generation |
 | MVFusion-GS | arXiv'26 | Multi-view fusion for dynamic 3DGS; cross-view temporal consistency via fusion attention; extends feed-forward to dynamic scenes |
 | DeGenseGS | arXiv'26 | Dense-to-sparse dynamic 3DGS; progressive densification pruning for temporal coherence; reduces 4DGS memory by 40%+ |
+| Grassmannian Splatting | arXiv'26 (2607.10489) | Rank-2 spacetime surfels with closed-form motion estimation; 4.9-5.6× faster than baseline dynamic GS |
+| MoE-GS / MoDE | TPAMI'26 (2607.08250) | Multi-deformation Mixture-of-Experts for dynamic GS; expert-wise deformation specialization |
 ### Streaming / Scalable Methods
 
 | Method | Venue | Primitive | Rendering | Key Feature |

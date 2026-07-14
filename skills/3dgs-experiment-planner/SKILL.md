@@ -2,10 +2,18 @@
 name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG. Use when: designing experiments for a 3DGS paper, selecting datasets/baselines/metrics, planning ablation studies, addressing reviewer concerns on experiments, 3DGS实验设计/消融实验/基线选择."
 license: Apache-2.0
+user-invocable: true
 metadata:
   version: "1.6.0"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
+  when_to_use:
+    - "Design experiments for a 3DGS research paper"
+    - "Select datasets, baselines, or evaluation metrics"
+    - "Plan ablation study matrices"
+    - "Address reviewer concerns on experiment design"
+    - "Choose appropriate benchmarks for a 3DGS method"
+    - "3DGS实验设计 / 消融实验 / 基线选择 / 数据集推荐 / 指标选取"
 ---
 
 # 3DGS Experiment Planner

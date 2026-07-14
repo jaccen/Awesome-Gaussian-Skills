@@ -1,4 +1,3 @@
-﻿
 ### SLAM Methods
 
 | Method | Venue | Input | Scale | Key Feature |
@@ -17,6 +16,9 @@
 | GeoGS-SLAM | arXiv'26 (2607.07452) | Monocular video | Room-scale | Geometry-Only GS removing appearance; 80%+ param reduction; SOTA online mapping |
 | Real-Time LiDAR GS-SLAM | arXiv'26 (2607.04127) | LiDAR point cloud | Outdoor | First real-time LiDAR GS-SLAM; G-ICP + spherical rasterization; F-score 86.78%@>20FPS |
 | DL-SLAM | arXiv'26 (2607.01860) | RGB video | Dynamic | Dual-level probability (semantic+geometric) for dynamic environment GS-SLAM; artifact-free static map |
+| GeoGS-SLAM v2 | arXiv'26 (2607.11184) | Monocular video | Room-scale | Monocular GS SLAM + geometric priors + loop closure; improved mapping accuracy over GeoGS-SLAM |
+| AnythingReality | arXiv'26 (2607.09260) | Multi-modal (VR+VLM) | Room-scale | Online GS SLAM + VR immersion + VLM understanding; +14.5% PSNR over prior GS-SLAM |
+| Track2Map | MICCAI'26 (2607.08408) | Endoscopic video | Surgical | Surgical scene GS SLAM; tracking-to-mapping for endoscopic reconstruction |
 
 ### Large-Scale Methods
 

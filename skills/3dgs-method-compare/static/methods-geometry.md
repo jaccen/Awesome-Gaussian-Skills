@@ -1,4 +1,3 @@
-﻿
 ### Geometry / Surface Methods
 
 | Method | Venue | Surface Quality | Key Feature |
@@ -25,6 +24,8 @@
 |--------|-------|----------------|-------------|
 | PRISM3D | ECCV'26 | High (sparse-view) | Prior-guided sparse-view surface reconstruction via multi-scale depth/normal priors; 2DGS backbone with geometry regularization |
 | TemporalGS | arXiv'26 | High (temporal surface) | Temporal-coherent surface extraction from dynamic 3DGS; frame-to-frame mesh consistency via Gaussian trajectory tracking |
+| HoloTetSphere | ECCV'26 (2607.08398) | High (tetrahedral) | TetSphere mesh representation for physics simulation; differentiable tetrahedral mesh from GS |
+| Incremental 3D Gaussian Triangulation | arXiv'26 (2607.10690) | High (online mesh) | Online mesh generation via Gaussian triangulation; incremental Delaunay-based surface extraction |
 
 ### Generation / Text-to-3D
 

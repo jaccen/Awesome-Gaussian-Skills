@@ -3,7 +3,7 @@ name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering."
 license: Apache-2.0
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
   author: jaccen
   tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive"]
   disable-model-invocation: true
@@ -253,6 +253,73 @@ MCP Tool: deform_elastic — Apply particle-skinned eigenmode deformation to 3DG
 
 Integrates Holi-Spatial (ICML 2026 Oral) data pipeline for automated spatial annotation and Spatial-TTT (ECCV 2026) for streaming spatial memory updates.
 
+### Tool 11: `bayesian_density_control`
+
+```json
+{
+  "name": "bayesian_density_control",
+  "description": "Agent-controlled Bayesian nonparametric Gaussian density control. Uses DP-Splat (arXiv:2607.10912) Dirichlet-process prior to automatically determine optimal Gaussian count per region, eliminating manual density hyperparameter tuning.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "concentration": { "type": "number", "minimum": 0.1, "maximum": 10.0, "description": "DP concentration parameter α (higher = more Gaussians)" },
+      "base_measure": { "enum": ["uniform", "saliency-weighted", "gradient-weighted"], "description": "Base measure for DP prior" },
+      "max_iterations": { "type": "integer", "default": 50, "description": "Maximum MCMC iterations for posterior inference" }
+    },
+    "required": ["scene_id", "concentration"]
+  },
+  "output": { "type": "object", "properties": { "gaussian_count": "number", "regions_adjusted": "array", "elpd": "number" } }
+}
+```
+
+**Use cases**: Auto-tune density for unknown scenes, eliminate manual clone/split threshold tuning, adapt density to scene complexity
+
+### Tool 12: `moe_deform`
+
+```json
+{
+  "name": "moe_deform",
+  "description": "Apply Mixture-of-Experts dynamic deformation to selected Gaussians. Uses MoE-GS/MoDE (arXiv:2607.08250, TPAMI 2026) expert routing per motion pattern for physically plausible dynamic deformation.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "object_ids": { "type": "array", "items": {"type": "integer"}, "description": "IDs of objects to deform" },
+      "target_motion": { "type": "string", "description": "Description of desired motion (e.g., 'wave left hand', 'open door')" },
+      "num_experts": { "type": "integer", "default": 4, "description": "Number of deformation experts" },
+      "temporal_range": { "type": "array", "items": {"type": "number"}, "description": "[start_time, end_time] for deformation" }
+    },
+    "required": ["scene_id", "object_ids", "target_motion"]
+  },
+  "output": { "type": "object", "properties": { "deformed_positions": "array", "expert_weights": "array", "motion_coherence": "number" } }
+}
+```
+
+**Use cases**: Voice-driven character animation, dynamic scene editing with motion-specific expert routing, 4D content creation
+
+### Tool 13: `surgical_tracking`
+
+```json
+{
+  "name": "surgical_tracking",
+  "description": "Track surgical instruments and reconstruct tissue map in real-time using Track2Map (arXiv:2607.08408, MICCAI 2026) surgical GS SLAM. Enables agent-assisted minimally invasive surgery guidance.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "tracking_mode": { "enum": ["instrument", "tissue", "both"], "description": "What to track" },
+      "update_rate_hz": { "type": "number", "default": 30, "description": "Target tracking update rate" },
+      "safety_margin_mm": { "type": "number", "default": 2.0, "description": "Safety margin for collision warning (mm)" }
+    },
+    "required": ["scene_id", "tracking_mode"]
+  },
+  "output": { "type": "object", "properties": { "instrument_poses": "array", "tissue_map_update": "boolean", "collision_warnings": "array", "tracking_accuracy_mm": "number" } }
+}
+```
+
+**Use cases**: Surgical navigation, instrument tracking, tissue deformation monitoring, collision avoidance in surgery
+
 ## Voice Intent Mapping
 
 | Voice Intent Example | Intent Type | MCP Tool Call |
@@ -351,6 +418,7 @@ Agent:
 - [ ] v0.5: Real-time streaming (WebSocket-based progressive rendering)
 - [ ] v0.6: DDF-GS distillation integration (shadow/AO/reflection rendering)
 - [ ] v0.7: HiGS hierarchical rendering backend (950+ FPS target)
+- [ ] v0.8: Bayesian density control (DP-Splat) + MoE deformation (MoE-GS/MoDE) + Surgical tracking (Track2Map)
 
 ## Rules
 

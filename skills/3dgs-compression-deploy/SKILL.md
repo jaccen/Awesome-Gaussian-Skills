@@ -1,11 +1,12 @@
 ---
 name: 3dgs-compression-deploy
-description: "3DGS compression-to-deployment pipeline: quantization (scalar/VQ/mixed-precision), pruning (coreset/adaptive/variational/merge), progressive streaming & LoD, Web/WebGPU/mobile deployment, hardware acceleration (Tensor Core/GEMM/FPGA/ASIC). Covers 50+ methods across 6 compression categories. Use when: compressing 3DGS models, deploying 3DGS to web/mobile/edge, selecting quantization bit-width, designing streaming pipelines, 3DGS压缩/量化/剪枝/部署/流式传输/移动端/硬件加速."
+description: "3DGS compression-to-deployment pipeline: quantization (scalar/VQ/mixed-precision), pruning (coreset/adaptive/variational/merge/Bayesian), progressive streaming & LoD, Web/WebGPU/mobile deployment, hardware acceleration (Tensor Core/GEMM/FPGA/ASIC), training-free semantic compression. Covers 53+ methods across 6 compression categories. Use when: compressing 3DGS models, deploying 3DGS to web/mobile/edge, selecting quantization bit-width, designing streaming pipelines, 3DGS压缩/量化/剪枝/部署/流式传输/移动端/硬件加速."
 license: Apache-2.0
+user-invocable: true
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "compression", "quantization", "pruning", "vector-quantization", "streaming", "deployment", "mobile", "webgpu", "tensor-core", "hardware-acceleration"]
+  tags: ["3dgs", "gaussian-splatting", "compression", "quantization", "pruning", "vector-quantization", "streaming", "deployment", "mobile", "webgpu", "tensor-core", "hardware-acceleration", "bayesian", "semantic-compression"]
   when_to_use:
     - "Compress a 3DGS model for storage or transmission"
     - "Deploy 3DGS to web browser, mobile device, or edge hardware"
@@ -145,6 +146,8 @@ Target Platform?
 | Strategy | Method | Venue | Compression | Quality Impact |
 |----------|--------|-------|-------------|----------------|
 | **Coreset-based** | Provable Pruning via Coresets | arXiv 2026 | Theoretical guarantee | Minimal — multiplicative approximation |
+| **Bayesian** | DP-Splat | arXiv 2026 | Automatic complexity control | Minimal — DP prior converges to optimal count |
+| **Training-free semantic** | CoSAG | arXiv 2026 | 37–76× over LangSplatV2 | Minimal — zero fine-tuning, leverages CLIP features |
 | **Importance-based** | Prune Wisely (DoG) | CVPR 2026 | 90% reduction | Minimal — DoG avoids false positives |
 | **Variational** | VEDAL | CGI 2026 | 5.2x (0.31 dB drop) | Low — uncertainty-gated async pruning |
 | **Merge-based** | NanoGS | arXiv 2026 | Training-free | Mass-preserving moment matching |

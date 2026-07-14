@@ -1,11 +1,19 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 101+ known bug patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 105+ known bug patterns including MoE-GS and Bayesian complexity control patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
 license: Apache-2.0
+user-invocable: true
 metadata:
   version: "2.0.0"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
+  when_to_use:
+    - "Review 3DGS/Gaussian Splatting CUDA code for correctness"
+    - "Debug rendering artifacts by analyzing code"
+    - "Optimize 3DGS training pipeline performance"
+    - "Check loss function implementations"
+    - "Detect known 3DGS bug patterns (105+ patterns)"
+    - "代码审查 / 3DGS调试 / 性能优化 / CUDA内核审查"
 ---
 
 # 3DGS Code Reviewer
@@ -15,7 +23,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (97+ known bug patterns)
+- Identify common 3DGS implementation pitfalls (105+ known bug patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -101,7 +109,8 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | Photometric & Probability | 5 | Photometric ambiguity, probability densification, TPS init |
 | Watermarking & View-Dep | 3 | High-capacity watermarking, view-dep splatting, UV-param |
 | Advanced Domain | 16 | Geometry opacity decoupling, reflective materials, physics sim, eigenmode, Bayesian pose, mesh generation proxies |
-| Total | **74+ categories** | **101+ patterns** with specific detection and fix guidance |
+| MoE Dynamic & Bayesian Control | 4 | MoE expert routing collapse, DP prior concentration, asynchronous decoupling, CoSAG semantic drift |
+| Total | **76+ categories** | **105+ patterns** with specific detection and fix guidance |
 
 ## Output Format
 

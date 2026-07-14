@@ -1,7 +1,8 @@
 ---
 name: 3dgs-engineering-guide
-description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 739+ methods. Use when: deploying 3DGS to production or industry, selecting tools/pipeline/platform, troubleshooting engineering problems (OOM, artifacts, platform lock-in), integrating 3DGS with GIS/BIM/ROS2/game engines, 3DGS部署/高斯泼溅工程化/3DGS生产环境/工程指南."
+description: "Guide for deploying 3DGS from research to production: 10 industry verticals, engineering stack, GIS toolchain solutions, cross-platform deployment, and common pitfalls. References 760+ methods. Use when: deploying 3DGS to production or industry, selecting tools/pipeline/platform, troubleshooting engineering problems (OOM, artifacts, platform lock-in), integrating 3DGS with GIS/BIM/ROS2/game engines, 3DGS部署/高斯泼溅工程化/3DGS生产环境/工程指南."
 license: Apache-2.0
+user-invocable: true
 metadata:
   version: "2.0.0"
   author: jaccen

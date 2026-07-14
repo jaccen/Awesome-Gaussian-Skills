@@ -2,10 +2,18 @@
 name: 3dgs-visualizer
 description: "Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Static (PDF/PNG) and interactive (HTML) output. Use when: creating comparison charts for 3DGS papers, visualizing method capabilities, generating method timelines or radar plots, 3DGS可视化/论文配图/方法对比图表."
 license: Apache-2.0
+user-invocable: true
 metadata:
   version: "1.5.0"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "visualization", "radar-chart", "timeline", "research"]
+  when_to_use:
+    - "Create comparison charts for 3DGS papers"
+    - "Visualize method capabilities with radar plots"
+    - "Generate method timelines or chronological evolution charts"
+    - "Produce publication-quality figures (PDF/PNG/HTML)"
+    - "Build interactive comparison tables for 3DGS methods"
+    - "3DGS可视化 / 论文配图 / 方法对比图表 / 雷达图 / 时间线"
 ---
 
 # 3DGS Visualizer — Publication-Quality Research Visualizations
