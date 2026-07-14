@@ -1128,7 +1128,6 @@ const METHODS = [
   { name: "PixelSplat", short: "PixelSplat", cat: "Feed-Forward", venue: "CVPR", year: 2024, desc: "Epipolar Transformer for feed-forward stereo GS reconstruction from image pairs", arxiv: "2312.12337" , citations: 0 },
   { name: "Sp2403GS", short: "Sp2403GS", cat: "Compression", venue: "CVPR", year: 2024, desc: "Sparse GS representation with importance-based pruning + codebook quantization", arxiv: "2312.09147" , citations: 0 },
   { name: "GaussianObject", short: "GaussianObject", cat: "Sparse-View", venue: "CVPR", year: 2024, desc: "Object-centric GS from sparse views with depth-regularized Gaussian initializ...", arxiv: "2312.11461" , citations: 0 },
-
   { name: "GaussianCtrl", short: "GaussianCtrl", cat: "Editing", venue: "CVPR", year: 2024, desc: "Depth-conditioned controlnet + progressive editing for controllable 3DGS gene...", arxiv: "2312.13763" , citations: 0 },
   { name: "SVG", short: "SVG", cat: "Editing", venue: "CVPR", year: 2024, desc: "Semantic-driven Gaussian editing: disentangled semantic fields for targeted 3...", arxiv: "2312.05664" , citations: 0 },
   { name: "GaussianDreamer", short: "GaussianDreamer", cat: "Generation", venue: "CVPR", year: 2024, desc: "Fast 3DGS-based text-to-3D generation coupling SDS with structured Gaussian i...", arxiv: "2312.05941" , citations: 0 },
@@ -1222,9 +1221,9 @@ const METHODS = [
   { name: "FenceGS", short: "FenceGS", cat: "Security", venue: "CVPR", year: 2025, desc: "Fence-protected GS: access control layer preventing unauthorized GS extraction", arxiv: "2501.14277" , citations: 0 },
   { name: "EndoGS", short: "EndoGS", cat: "Medical", venue: "CVPR", year: 2025, desc: "Endoscopic scene reconstruction with GS for surgical navigation", arxiv: "2502.01846" , citations: 0 },
   { name: "CT-GS", short: "CT-GS", cat: "Medical", venue: "CVPR", year: 2025, desc: "GS-based CT volume reconstruction with sparse-view acceleration", arxiv: "2502.02091" , citations: 0 },
-  { name: "SplatDM", short: "SplatDM", cat: "Generation", venue: "CVP
-  { name: "GaussianPile", short: "GaussianPile", cat: "Medical", venue: "arXiv", year: 611, desc: "**GaussianPile** [arXiv:2603.20611](https://arxiv.org/abs/2603.20611) (CVPR 2026) — Slice-based volumetric reconstruc...", arxiv: "2603.20611" , citations: 0 },
-  { name: "NAB-GS", short: "NAB-GS", cat: "Medical", venue: "arXiv", year: 5151, desc: "**NAB-GS** [arXiv:2508.15151](https://arxiv.org/abs/2508.15151) (MICCAI 2026) — Negative Alpha Blending for zero-shot...", arxiv: "2508.15151" , citations: 0 },R", year: 2025, desc: "Score distillation from diffusion models into Gaussian Splatting for 3D gener...", arxiv: "2502.05176" , citations: 0 },
+  { name: "SplatDM", short: "SplatDM", cat: "Generation", venue: "CVPR", year: 2025, desc: "Score distillation from diffusion models into Gaussian Splatting for 3D generation", arxiv: "2502.05176" , citations: 0 },
+  { name: "GaussianPile", short: "GaussianPile", cat: "Medical", venue: "CVPR", year: 2026, desc: "Slice-based volumetric reconstruction with Gaussian Splatting for histology", arxiv: "2603.20611" , citations: 0 },
+  { name: "NAB-GS", short: "NAB-GS", cat: "Medical", venue: "MICCAI", year: 2026, desc: "Negative Alpha Blending for zero-shot 3D medical segmentation", arxiv: "2508.15151" , citations: 0 },
   { name: "GaussianCity", short: "GaussianCity", cat: "Large-Scale", venue: "CVPR", year: 2025, desc: "City-scale GS with progressive training and semantic-guided densification", arxiv: "2502.11801" , citations: 0 },
   { name: "GS-UWF", short: "GS-UWF", cat: "Medical", venue: "CVPR", year: 2025, desc: "Ultra-widefield fundus reconstruction with Gaussian Splatting", arxiv: "2502.16652" , citations: 0 },
   { name: "GaussVis", short: "GaussVis", cat: "Cross-Domain", venue: "CVPR", year: 2025, desc: "GS-based visualization for scientific data with interactive exploration", arxiv: "2503.01610" , citations: 0 },
@@ -1286,14 +1285,14 @@ const METHODS = [
   { name: "Z-Order GS", short: "Z-Order GS", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "Z-order strategy for spatially coherent Gaussian sequence with sparse attention", arxiv: "2605.13465" , citations: 0 },
   { name: "RoSplat", short: "RoSplat", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regu...", arxiv: "2605.13093" , citations: 0 },
   { name: "Velox", short: "Velox", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Feed-forward 4D reconstruction learning representations of 4D geometry and ap...", arxiv: "2605.04527" , citations: 0 },
-  { name: "RetroNVS", short: "RetroNVS", cat: "Dynamic", venue: "CVPR", year
-  { name: "DropAnSH-GS", short: "DropAnSH-GS", cat: "Sparse-View", venue: "CVPR", year: 2026, desc: "**DropAnSH-GS** (CVPR 2026) — Dropping Anchor and Spherical Harmonics for sparse-view Gaussian Splatting; anchor-base...", arxiv: "" , citations: 0 },
-  { name: "BA-GS", short: "BA-GS", cat: "Sparse-View", venue: "CVPR", year: 2026, desc: "**BA-GS** (CVPR 2026) — Bayesian Adaptive Gaussian Splatting for SfM-free 3D reconstruction; joint camera pose + Gaus...", arxiv: "" , citations: 0 },: 2026, desc: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", arxiv: "2605.12437" , citations: 0 },
-  { name: "SCOUP", short: "SCOUP", cat: "Semantic", venue: "arXiv", year: 2026, de
-  { name: "TideGS", short: "TideGS", cat: "Large-Scale", venue: "arXiv", year: 150, desc: "**TideGS** [arXiv:2605.20150](https://arxiv.org/abs/2605.20150) (arXiv 2026) — Out-of-core training for 1B+ Gaussians...", arxiv: "2605.20150" , citations: 0 },
-  { name: "AnyCity", short: "AnyCity", cat: "Large-Scale", venue: "arXiv", year: 9949, desc: "**AnyCity** [arXiv:2605.19949](https://arxiv.org/abs/2605.19949) (arXiv 2026) — Observation-grounded generative recon...", arxiv: "2605.19949" , citations: 0 },
-  { name: "City-Mesh3R", short: "City-Mesh3R", cat: "Large-Scale", venue: "arXiv", year: 310, desc: "**City-Mesh3R** [arXiv:2605.30310](https://arxiv.org/abs/2605.30310) (CVPR 2026 USM3D Workshop, Oral) — End-to-end im...", arxiv: "2605.30310" , citations: 0 },
-  { name: "EvoGS", short: "EvoGS", cat: "Large-Scale", venue: "arXiv", year: 7179, desc: "**EvoGS** [arXiv:2606.07179](https://arxiv.org/abs/2606.07179) (arXiv 2026) — First continuous-layering 3DGS represen...", arxiv: "2606.07179" , citations: 0 },sc: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", arxiv: "2605.13600" , citations: 0 },
+  { name: "RetroNVS", short: "RetroNVS", cat: "Dynamic", venue: "CVPR", year: 2026, desc: "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark", arxiv: "2605.12437" , citations: 0 },
+  { name: "DropAnSH-GS", short: "DropAnSH-GS", cat: "Sparse-View", venue: "CVPR", year: 2026, desc: "Dropping Anchor and Spherical Harmonics for sparse-view Gaussian Splatting", arxiv: "" , citations: 0 },
+  { name: "BA-GS", short: "BA-GS", cat: "Sparse-View", venue: "CVPR", year: 2026, desc: "Bayesian Adaptive Gaussian Splatting for SfM-free 3D reconstruction", arxiv: "" , citations: 0 },
+  { name: "TideGS", short: "TideGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Out-of-core training for 1B+ Gaussians with chunk-based adaptive density control", arxiv: "2605.20150" , citations: 0 },
+  { name: "AnyCity", short: "AnyCity", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Observation-grounded generative reconstruction for large-scale city scenes", arxiv: "2605.19949" , citations: 0 },
+  { name: "City-Mesh3R", short: "City-Mesh3R", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "End-to-end image-to-mesh reconstruction for city-scale 3D mapping", arxiv: "2605.30310" , citations: 0 },
+  { name: "EvoGS", short: "EvoGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "First continuous-layering 3DGS representation for dynamic large-scale scenes", arxiv: "2606.07179" , citations: 0 },
+  { name: "SCOUP", short: "SCOUP", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Sparse Code Uplifting for efficient 3D language GS with 400x training speedup", arxiv: "2605.13600" , citations: 0 },
   { name: "PanoPlane", short: "PanoPlane", cat: "Sparse-View", venue: "arXiv", year: 2026, desc: "Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR", arxiv: "2605.14135" , citations: 0 },
   { name: "BlitzGS", short: "BlitzGS", cat: "Large-Scale", venue: "arXiv", year: 2026, desc: "Distributed 3DGS with parity-based GPU sharding + importance-scoring for city...", arxiv: "2605.13794" , citations: 0 },
   { name: "FaceParts", short: "FaceParts", cat: "Editing", venue: "arXiv", year: 2026, desc: "Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer", arxiv: "2605.13853" , citations: 0 },
@@ -1303,54 +1302,47 @@ const METHODS = [
   { name: "3DGS squared", short: "3DGS squared", cat: "Training", venue: "arXiv", year: 2025, desc: "Near second-order converging 3DGS with per-attribute Newton systems, 10x fewe...", arxiv: "2501.13975" , citations: 0 },
   { name: "GuardMarkGS", short: "GuardMarkGS", cat: "Security", venue: "arXiv", year: 2026, desc: "First unified watermarking + edit deterrence framework for 3DGS copyright pro...", arxiv: "2605.12919" , citations: 0 },
   { name: "Learn2Splat", short: "Learn2Splat", cat: "Training", venue: "arXiv", year: 2026, desc: "Meta-learned optimizer for 3DGS replacing Adam/SGD with long-horizon stabil...", arxiv: "2605.15760", citations: 0 },
-  { name: "Robust Prior-Guided Seg.", short: "Robust Prior-Guided Seg.", cat: "Editing", venue: "ICIP", year
-  { name: "4D-GSW", short: "4D-GSW", cat: "Security", venue: "arXiv", year: 2342, desc: "**4D-GSW** [arXiv:2605.22342](https://arxiv.org/abs/2605.22342) (arXiv 2026) — Kinematic-aware watermarking via STC m...", ar
   { name: "DelowlightSplat", short: "DelowlightSplat", cat: "Degradation-Aware", venue: "arXiv", year: 6629, desc: "**DelowlightSplat** [arXiv:2605.26629](https://arxiv.org/abs/2605.26629) (arXiv 2026) — Lowlight Adapter + cost-volum...", arxiv: "2605.26629" , citations: 0 },
   { name: "Underwater360", short: "Underwater360", cat: "Degradation-Aware", venue: "arXiv", year: 6447, desc: "**Underwater360** [arXiv:2605.26447](https://arxiv.org/abs/2605.26447) (arXiv 2026) — Omnidirectional GS + physics-ba...", arxiv: "2605.26447" , citations: 0 },
-  { name: "GlowGS", short: "GlowGS", cat: "Degradation-Aware", venue: "arXiv", year: 3602, desc: "**GlowGS** [arXiv:2605.23602](https://arxiv.org/abs/2605.23602) (CVPR Findings 2026) — Diffusion + VFM semantic featu...", arxiv: "2605.23602" , citations: 0 },
-  { name: "TDg", short: "TDg", cat: "Degradation-Aware", venue: "arXiv", year: 328, desc: "**TDg** [arXiv:2605.30328](https://arxiv.org/abs/2605.30328) (ISPRS 2026) — Thermal-to-Depth GS using only thermal im...", arxiv: "2605.30328" , citations: 0 },
-  { name: "3DReflecNet", short: "3DReflecNet", cat: "Degradation-Aware", venue: "arXiv", year: 204, desc: "**3DReflecNet** [arXiv:2605.10204](https://arxiv.org/abs/2605.10204) (CVPR 2026) — Large-scale dataset for 3D reconst...", arxiv: "2605.10204" , citations: 0 },xiv: "2605.22342" , citations: 0 },
-  { name: "BitC-3DGS", short: "BitC-3DGS", cat: "Security", venue: "arXiv", year: 9583, desc: "**BitC-3DGS** [arXiv:2605.29583](https://arxiv.org/abs/2605.29583) (arXiv 2026) — High-capacity 3DGS watermarking via...", arxiv: "2605.29583" , citations: 0 },: 2026, desc: "SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...", arxiv: "2605.16065", citations: 0 },
+  { name: "GlowGS", short: "GlowGS", cat: "Degradation-Aware", venue: "CVPR Findings", year: 2026, desc: "Diffusion + VFM semantic features for degraded-image 3DGS reconstruction", arxiv: "2605.23602" , citations: 0 },
+  { name: "TDg", short: "TDg", cat: "Degradation-Aware", venue: "ISPRS", year: 2026, desc: "Thermal-to-Depth GS using only thermal images for depth estimation", arxiv: "2605.30328" , citations: 0 },
+  { name: "3DReflecNet", short: "3DReflecNet", cat: "Degradation-Aware", venue: "CVPR", year: 2026, desc: "Large-scale dataset for 3D reconstruction from reflection-corrupted images", arxiv: "2605.10204" , citations: 0 },
+  { name: "4D-GSW", short: "4D-GSW", cat: "Security", venue: "arXiv", year: 2026, desc: "Kinematic-aware watermarking via STC metric + HMM-MRF energy for spatio-temporal consistency in 4DGS", arxiv: "2605.22342" , citations: 0 },
+  { name: "BitC-3DGS", short: "BitC-3DGS", cat: "Security", venue: "arXiv", year: 2026, desc: "High-capacity 3DGS watermarking via bit-plane complement coding", arxiv: "2605.29583" , citations: 0 },
+  { name: "Robust Prior-Guided Seg.", short: "RobustPriorSeg", cat: "Segmentation", venue: "ICIP", year: 2026, desc: "SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS segmentation", arxiv: "2605.16065", citations: 0 },
   { name: "EndoGSim", short: "EndoGSim", cat: "Cross-Domain", venue: "MICCAI", year: 2026, desc: "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic si...", arxiv: "2605.16022", citations: 0 },
   { name: "3DEditSafe", short: "3DEditSafe", cat: "Security", venue: "arXiv", year: 2026, desc: "First safety-regularized 3D editing framework constraining NSFW semant...", arxiv: "2605.15398", citations: 0 },
   { name: "GWM", short: "GWM", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "3DGS as environment dynamics modeling primitive with autoregressive future state prediction", arxiv: "", citations: 0 },
   { name: "FlashWorld", short: "FlashWorld", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "Feed-forward 3DGS world model: single forward pass generates dynamic 3D scenes", arxiv: "", citations: 0 },
   { name: "RAD", short: "RAD", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "3DGS twin digital world for closed-loop RL training of end-to-end driving", arxiv: "", citations: 0 },
   { name: "DLWM", short: "DLWM", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Dual Latent World Model with 3DGS-centric self-supervised pretraining", arxiv: "", citations: 0 },
-  { name: "GS-World", short: "GS-World", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "3DGS as differentiable simul
-  { name: "DeSplat", short: "DeSplat", cat: "Robustness", venue: "CVPR", year: 2026, desc: "**DeSplat** (CVPR 2026) — Decomposed Gaussian Splatting for distractor-free rendering; separates transient objects fr...", arxiv: "" , citations: 0 },ation engine for generative world model", arxiv: "", citations: 0 },
+  { name: "DeSplat", short: "DeSplat", cat: "Robustness", venue: "CVPR", year: 2026, desc: "Decomposed Gaussian Splatting for distractor-free rendering; separates transient objects from static scene", arxiv: "" , citations: 0 },
+  { name: "GS-World", short: "GS-World", cat: "Simulation", venue: "arXiv", year: 2026, desc: "World model generative simulation engine for generative world model", arxiv: "", citations: 0 },
   { name: "Visionary", short: "Visionary", cat: "Systems & Applications", venue: "arXiv", year: 2026, desc: "First WebGPU + ONNX Runtime 3DGS world model carrier platform", arxiv: "", citations: 0 },
   { name: "gsplat", short: "gsplat", cat: "Systems & Applications", venue: "arXiv", year: 2026, desc: "**gsplat** (UC Berkeley / NVIDIA, open-source) — CUDA-accelerated 3DGS rasterization library; 4x VRAM savings; 10% tr...", arxiv: "" , citations: 0 },
-
   { name: "ReorgGS", short: "ReorgGS", cat: "Training", venue: "arXiv", year: 8739, desc: "**ReorgGS** [arXiv:2605.08739](https://arxiv.org/abs/2605.08739) (arXiv 2026) — Equivalent distribution reorganizatio...", arxiv: "2605.08739" , citations: 0 },
   { name: "ConFi-GS", short: "ConFi-GS", cat: "Training", venue: "arXiv", year: 4964, desc: "**ConFi-GS** [arXiv:2605.24964](https://arxiv.org/abs/2605.24964) (arXiv 2026) — Confidence-guided high-frequency inj...", arxiv: "2605.24964" , citations: 0 },
-  { name: "EulerianGS", short: "EulerianGS", cat: "Training", venue: "arXiv", year: 9136, desc: "**EulerianGS*
   { name: "OP2GS", short: "OP2GS", cat: "Semantic", venue: "arXiv", year: 44, desc: "**OP2GS** [arXiv:2605.20044](https://arxiv.org/abs/2605.20044) (arXiv 2026) — Dual-opacity primitives: decoupled visu...", arxiv: "2605.20044" , citations: 0 },
   { name: "TrackRef3D", short: "TrackRef3D", cat: "Semantic", venue: "arXiv", year: 6576, desc: "**TrackRef3D** [arXiv:2605.26576](https://arxiv.org/abs/2605.26576) (arXiv 2026) — Track-then-label paradigm with TSC...", arxiv: "2605.26576" , citations: 0 },
   { name: "DGSG-Mind", short: "DGSG-Mind", cat: "Semantic", venue: "arXiv", year: 9879, desc: "**DGSG-Mind** [arXiv:2605.29879](https://arxiv.org/abs/2605.29879) (arXiv 2026) — Dynamic 3D Gaussian scene graphs wi...", arxiv: "2605.29879" , citations: 0 },
   { name: "X-GS", short: "X-GS", cat: "Semantic", venue: "arXiv", year: 9632, desc: "**X-GS** [arXiv:2603.09632](https://arxiv.org/abs/2603.09632) (arXiv 2026) — Extensible GS framework: X-GS-Perceiver ...", arxiv: "2603.09632" , citations: 0 },
   { name: "GeoSAM-3D", short: "GeoSAM-3D", cat: "Semantic", venue: "arXiv", year: 447, desc: "**GeoSAM-3D** [arXiv:2606.00447](https://arxiv.org/abs/2606.00447) (arXiv 2026) — Open-vocabulary 3D scene segmentati...", arxiv: "2606.00447" , citations: 0 },
-  { name: "ReLaGS", short: "ReLaGS", cat: "Semantic", venue: "arXiv", year: 7605, desc: "**ReLaGS** [arXiv:2603.17605](https://arxiv.org/abs/2603.17605) (CVPR 2026) — Relational Language Gaussian Splatting:...", arxiv: "2603.17605" , citations: 0 },* [arXiv:2605.29136](https://arxiv.org/abs/2605.29136) (CVPR 2026) — Replaces heuristic ADC densificatio...", arxiv: "2605.29136" , citations: 0 },
+  { name: "ReLaGS", short: "ReLaGS", cat: "Semantic", venue: "CVPR", year: 2026, desc: "Relational Language Gaussian Splatting for open-vocabulary 3D scene understanding", arxiv: "2603.17605" , citations: 0 },
+  { name: "EulerianGS", short: "EulerianGS", cat: "Training", venue: "CVPR", year: 2026, desc: "Replaces heuristic ADC densification with gradient-based optimization of volumetric probability density via hashed probability pyramids", arxiv: "2605.29136" , citations: 0 },
   { name: "TWINGS", short: "TWINGS", cat: "Training", venue: "arXiv", year: 2069, desc: "**TWINGS** [arXiv:2605.22069](https://arxiv.org/abs/2605.22069) (CVPR 2026) — Thin Plate Splines warp-aligned initial...", arxiv: "2605.22069" , citations: 0 },
   { name: "PocketGS", short: "PocketGS", cat: "Training", venue: "arXiv", year: 7354, desc: "**PocketGS** [arXiv:2601.17354](https://arxiv.org/abs/2601.17354) (arXiv 2026) — On-device 3DGS training for mobile; ...", arxiv: "2601.17354" , citations: 0 },
   { name: "Point Cloud Upsampling for 3DGS", short: "PointCloudUpsamp", cat: "Training", venue: "arXiv", year: 450, desc: "**Point Cloud Upsampling for 3DGS** [arXiv:2606.00450](https://arxiv.org/abs/2606.00450) (JCVIS 2024) — Systematic ev...", arxiv: "2606.00450" , citations: 0 },
   { name: "Prune Wisely", short: "Prune Wisely", cat: "Training", venue: "arXiv", year: 4136, desc: "**Prune Wisely** [arXiv:2602.24136](https://arxiv.org/abs/2602.24136) (CVPR 2026) — Adaptive pruning + Difference-of-...", arxiv: "2602.24136" , citations: 0 },
   { name: "FastGS", short: "FastGS", cat: "Training", venue: "arXiv", year: 4283, desc: "**FastGS** [arXiv:2511.04283](https://arxiv.org/abs/2511.04283) (CVPR 2026 Highlight) — Multi-view consistency-based ...", arxiv: "2511.04283" , citations: 0 },
-  { name: "Energy-GS", short: "Energy-GS", cat: "Training", venue: "arXiv", year: 2026, desc: "**Energy-GS** (CVPR 2026 Oral) — RGB-only pose-free 3DGS joint optimization; no depth/geometry priors required; energ...", arxiv: "" , citations: 0 },decomposition for embodied intelligence", arxiv: "", citations: 0 },
+  { name: "Energy-GS", short: "Energy-GS", cat: "Training", venue: "CVPR", year: 2026, desc: "RGB-only pose-free 3DGS joint optimization; no depth/geometry priors required; energy-based formulation", arxiv: "" , citations: 0 },
+  { name: "GS-ID", short: "GS-ID", cat: "Autonomous Driving", venue: "ICCV", year: 2025, desc: "GS-based illumination decomposition for embodied intelligence and autonomous driving", arxiv: "", citations: 0 },
   { name: "X-World", short: "X-World", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Controllable multi-view generative world model combining video diffusion and 3DGS", arxiv: "", citations: 0 },
   { name: "Spark 2.0", short: "Spark 2.0", cat: "Embodied AI/Robotics", venue: "arXiv", year: 2026, desc: "NVIDIA 3DGS-based robotic world simulation platform", arxiv: "", citations: 0 },
-
   { name: "NIRRGB-GS", short: "NIRRGB-GS", cat: "Degradation-Aware", venue: "arXiv", year: 2026, desc: "Near-infrared assisted low-light 3DGS reconstruction", arxiv: "", citations: 0 },
-
-
-
-  { name: "P
   { name: "GaussianZoom", short: "GaussianZoom", cat: "Generation", venue: "arXiv", year: 8252, desc: "**GaussianZoom** [arXiv:2605.18252](https://arxiv.org/abs/2605.18252) (arXiv 2026) — Progressive zoom-in generative 3...", arxiv: "2605.18252" , citations: 0 },
   { name: "PhysX-Omni", short: "PhysX-Omni", cat: "Generation", venue: "arXiv", year: 1572, desc: "**PhysX-Omni** [arXiv:2605.21572](https://arxiv.org/abs/2605.21572) (arXiv 2026) — Unified simulation-ready physical ...", arxiv: "2605.21572" , citations: 0 },
-  { name: "MeshWeaver", short: "MeshWeaver", cat: "Generation", venue: "arXiv", year: 4688, desc: "**MeshW
   { name: "BEA-GS", short: "BEA-GS", cat: "Editing", venue: "arXiv", year: 9662, desc: "**BEA-GS** [arXiv:2605.09662](https://arxiv.org/abs/2605.09662) (CVPR 2026 Highlight) — Visible boundary + non-visibl...", arxiv: "2605.09662" , citations: 0 },
   { name: "RoVES", short: "RoVES", cat: "Editing", venue: "arXiv", year: 5373, desc: "**RoVES** [arXiv:2605.25373](https://arxiv.org/abs/2605.25373) (arXiv 2026) — Physics-aware road geometry insertion +...", arxiv: "2605.25373" , citations: 0 },
-  { name: "DS-StyleGaussian", short: "DS-StyleGaussian", cat: "Editing", venue: "arXiv", year: 65, desc: "**DS-StyleGaussian** [arXiv:260
   { name: "Cross-View Splatter", short: "CrossViewSplatte", cat: "Feed-Forward", venue: "arXiv", year: 9656, desc: "**Cross-View Splatter** [arXiv:2605.19656](https://arxiv.org/abs/2605.19656) (arXiv 2026) — Ground+satellite cross-vi...", arxiv: "2605.19656" , citations: 0 },
   { name: "ArtSplat", short: "ArtSplat", cat: "Feed-Forward", venue: "arXiv", year: 4304, desc: "**ArtSplat** [arXiv:2605.24304](https://arxiv.org/abs/2605.24304) (arXiv 2026) — First feed-forward articulated 3DGS;...", arxiv: "2605.24304" , citations: 0 },
   { name: "TriSplat", short: "TriSplat", cat: "Feed-Forward", venue: "arXiv", year: 6115, desc: "**TriSplat** [arXiv:2605.26115](https://arxiv.org/abs/2605.26115) (arXiv 2026) — Triangle primitives replace Gaussian...", arxiv: "2605.26115" , citations: 0 },
@@ -1361,17 +1353,18 @@ const METHODS = [
   { name: "VG²GT", short: "VG²GT", cat: "Feed-Forward", venue: "arXiv", year: 1573, desc: "**VG²GT** [arXiv:2606.01573](https://arxiv.org/abs/2606.01573) (arXiv 2026) — Voxel-Gaussian Visual Geometry Grounded...", arxiv: "2606.01573" , citations: 0 },
   { name: "DeblurNVS", short: "DeblurNVS", cat: "Feed-Forward", venue: "arXiv", year: 1315, desc: "**DeblurNVS** [arXiv:2606.01315](https://arxiv.org/abs/2606.01315) (arXiv 2026) — First feed-forward NVS from sparse ...", arxiv: "2606.01315" , citations: 0 },
   { name: "SR3R", short: "SR3R", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "**SR3R** (CVPR 2026) — Rethinking Super-Resolution 3D Reconstruction with Feed-Forward Gaussian Splatting; multi-reso...", arxiv: "" , citations: 0 },
-  { name: "UniSHARP", short: "UniSHARP", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "**UniSHARP** (CVPR 2026, Insta360) — First unified monocular 3DGS across pinhole/fisheye/360 cameras; single image → ...", arxiv: "" , citations: 0 },5.30065](https://arxiv.org/abs/2605.30065) (IEEE IVMSP 2026) — Data-sufficient zero-sh...", arxiv: "2605.30065" , citations: 0 },
+  { name: "UniSHARP", short: "UniSHARP", cat: "Feed-Forward", venue: "CVPR", year: 2026, desc: "First unified monocular 3DGS across pinhole/fisheye/360 cameras", arxiv: "" , citations: 0 },
+  { name: "DS-StyleGaussian", short: "DS-StyleGaussian", cat: "Editing", venue: "IEEE IVMSP", year: 2026, desc: "Data-sufficient zero-shot 3D style transfer via feature Gaussian splatting + deferred stylization", arxiv: "2605.30065" , citations: 0 },
   { name: "WeatherCity", short: "WeatherCity", cat: "Editing", venue: "arXiv", year: 2096, desc: "**WeatherCity** [arXiv:2602.22096](https://arxiv.org/abs/2602.22096) (arXiv 2026) — Weather Gaussian representation f...", arxiv: "2602.22096" , citations: 0 },
   { name: "SplatShot", short: "SplatShot", cat: "Editing", venue: "arXiv", year: 1493, desc: "**SplatShot** [arXiv:2606.01493](https://arxiv.org/abs/2606.01493) (arXiv 2026) — Training-free 3D face avatar from s...", arxiv: "2606.01493" , citations: 0 },
   { name: "GSDeformer", short: "GSDeformer", cat: "Editing", venue: "arXiv", year: 5491, desc: "**GSDeformer** [arXiv:2405.15491](https://arxiv.org/abs/2405.15491) (arXiv 2024, updated 2026) — Cage-based deformati...", arxiv: "2405.15491" , citations: 0 },
   { name: "GeM-NR", short: "GeM-NR", cat: "Editing", venue: "arXiv", year: 5142, desc: "**GeM-NR** [arXiv:2606.05142](https://arxiv.org/abs/2606.05142) (arXiv 2026) — Geometry-aware multi-view editing for ...", arxiv: "2606.05142" , citations: 0 },
-  { name: "Capacity-Controlled Stylization", short: "CapacityControll", cat: "Editing", venue: "ECCV", year: 2026, desc: "**Capacity-Controlled Stylization** (ECCV 2026) — Capacity-controlled multi-view stylization of 3DGS; style-structure...", arxiv: "" , citations: 0 },eaver** [arXiv:2606.04688](https://arxiv.org/abs/2606.04688) (CVPR 2026) — Autoregressive next-vertex predicti...", arxiv: "2606.04688" , citations: 0 },
+  { name: "Capacity-Controlled Stylization", short: "CapacityControll", cat: "Editing", venue: "ECCV", year: 2026, desc: "Capacity-controlled multi-view stylization of 3DGS; style-structure disentanglement", arxiv: "" , citations: 0 },
+  { name: "MeshWeaver", short: "MeshWeaver", cat: "Surface", venue: "CVPR", year: 2026, desc: "Autoregressive next-vertex prediction guided by multi-level sparse-voxel encoder; 18% compression ratio", arxiv: "2606.04688" , citations: 0 },
   { name: "MeshFlow", short: "MeshFlow", cat: "Generation", venue: "arXiv", year: 4621, desc: "**MeshFlow** [arXiv:2606.04621](https://arxiv.org/abs/2606.04621) (CVPR 2026 Highlight) — Efficient artistic mesh gen...", arxiv: "2606.04621" , citations: 0 },
   { name: "SymTRELLIS", short: "SymTRELLIS", cat: "Generation", venue: "arXiv", year: 4108, desc: "**SymTRELLIS** [arXiv:2606.04108](https://arxiv.org/abs/2606.04108) (arXiv 2026, cs.GR) — Symmetry-enforced voxel lat...", arxiv: "2606.04108" , citations: 0 },
   { name: "TRELLIS.2", short: "TRELLIS.2", cat: "Generation", venue: "arXiv", year: 2026, desc: "**TRELLIS.2** (CVPR 2026 Best Student Paper) — 4B-parameter native 3D large model; 17s PBR asset generation with inte...", arxiv: "" , citations: 0 },
   { name: "SAM 3D", short: "SAM 3D", cat: "Generation", venue: "arXiv", year: 2026, desc: "**SAM 3D** (Meta, CVPR 2026 Honorable Mention) — Foundation model for single-image 3D reconstruction; generalizable 3...", arxiv: "" , citations: 0 },ointForward", short: "PointForward", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Point-aligned feed-forward driving scene reconstruction via 3DGS", arxiv: "", citations: 0 },
-  { name: "3DGS\u00B3", short: "3DGS\u00B3", cat: "Acceleration", venue: "arXiv", year: 2026, desc: "Joint sup
   { name: "3DSGS", short: "3DSGS", cat: "Foundation", venue: "arXiv", year: 8334, desc: "**3DSGS** [arXiv:2605.18334](https://arxiv.org/abs/2605.18334) (arXiv 2026) — General 3D Skew Gaussian primitives wit...", arxiv: "2605.18334" , citations: 0 },
   { name: "Topo-GS", short: "Topo-GS", cat: "Foundation", venue: "arXiv", year: 7011, desc: "**Topo-GS** [arXiv:2605.17011](https://arxiv.org/abs/2605.17011) (arXiv 2026) — Topological GS for high-dimensional d...", arxiv: "2605.17011" , citations: 0 },
   { name: "DP-GES", short: "DP-GES", cat: "Foundation", venue: "arXiv", year: 5345, desc: "**DP-GES** [arXiv:2605.25345](https://arxiv.org/abs/2605.25345) (arXiv 2026) — Depth Peeling enables sort-free Gaussi...", arxiv: "2605.25345" , citations: 0 },
@@ -1380,8 +1373,6 @@ const METHODS = [
   { name: "MetaPoint", short: "MetaPoint", cat: "Foundation", venue: "arXiv", year: 5031, desc: "**MetaPoint** [arXiv:2606.05031](https://arxiv.org/abs/2606.05031) (arXiv 2026) — Unlocking precise spatial control i...", arxiv: "2606.05031" , citations: 0 },
   { name: "PureLight", short: "PureLight", cat: "Foundation", venue: "arXiv", year: 4319, desc: "**PureLight** [arXiv:2606.04319](https://arxiv.org/abs/2606.04319) (arXiv 2026, cs.GR) — Learning complex luminaires ...", arxiv: "2606.04319" , citations: 0 },er sampling and frame interpolation for real-time large-scale 3DGS", arxiv: "", citations: 0 },
   { name: "TensorGS", short: "TensorGS", cat: "Acceleration", venue: "arXiv", year: 2026, desc: "Tensor Core acceleration for 3DGS rendering via FP16 matrix operations", arxiv: "", citations: 0 },
-  { name: "DeG", short: "DeG", cat: "Generation", venue: "SIGGRAPH", year: 2026, desc: "Density-Sampled Gaussians with learnable proba
-  { name: "FRUC", short: "FRUC", cat: "Autonomous Driving", venue: "arXiv", year: 9997, desc: "**FRUC** [arXiv:2605.29997](https://arxiv.org/abs/2605.29997) (arXiv 2026) — Feed-forward 3DGS for dynamic s
   { name: "R5DGS", short: "R5DGS", cat: "Dynamic", venue: "arXiv", year: 5909, desc: "**R5DGS** [arXiv:2605.25909](https://arxiv.org/abs/2605.25909) (arXiv 2026) — Identity Encoding + rigid-body centroid...", arxiv: "2605.25909" , citations: 0 },
   { name: "RiGS", short: "RiGS", cat: "Dynamic", venue: "arXiv", year: 3672, desc: "**RiGS** [arXiv:2605.23672](https://arxiv.org/abs/2605.23672) (arXiv 2026) — Static/rigid/transient Gaussian decompos...", arxiv: "2605.23672" , citations: 0 },
   { name: "NeuROK", short: "NeuROK", cat: "Dynamic", venue: "arXiv", year: 347, desc: "**NeuROK** [arXiv:2605.30347](https://arxiv.org/abs/2605.30347) (CVPR 2026) — Generative 4D Neural Object Kinematics;...", arxiv: "2605.30347" , citations: 0 },
@@ -1397,29 +1388,28 @@ const METHODS = [
   { name: "ArtMesh", short: "ArtMesh", cat: "Human", venue: "arXiv", year: 2026, desc: "Part-aware articulated mesh field with restricted Delaunay remeshing", arxiv: "", citations: 0 },
   { name: "DSGS", short: "DSGS", cat: "Compression", venue: "arXiv", year: 2026, desc: "Decoder-Side Gaussian Splatting for immersive video delivery", arxiv: "", citations: 0 },
   { name: "GEM", short: "GEM", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Gaussian Evolution Model for non-autoregressive occupancy world modeling", arxiv: "", citations: 0 },
-  { name: 
   { name: "SplitGS-Loc", short: "SplitGS-Loc", cat: "SLAM", venue: "arXiv", year: 7351, desc: "**SplitGS-Loc** [arXiv:2605.07351](https://arxiv.org/abs/2605.07351) (arXiv 2026) — Mixture-of-Gaussians splitting to...", arxiv: "2605.07351" , citations: 0 },
   { name: "GAVIS", short: "GAVIS", cat: "SLAM", venue: "arXiv", year: 342, desc: "**GAVIS** [arXiv:2605.30342](https://arxiv.org/abs/2605.30342) (CVPR 2026) — Uncertainty-driven 3DGS active mapping v...", arxiv: "2605.30342" , citations: 0 },
   { name: "Triangle Splatting SLAM", short: "TriangleSplattin", cat: "SLAM", venue: "arXiv", year: 1419, desc: "**Triangle Splatting SLAM** [arXiv:2605.31419](https://arxiv.org/abs/2605.31419) (arXiv 2026) — First dense RGB-D SLA...", arxiv: "2605.31419" , citations: 0 },
   { name: "Anchor3R", short: "Anchor3R", cat: "SLAM", venue: "arXiv", year: 5035, desc: "**Anchor3R** [arXiv:2606.05035](https://arxiv.org/abs/2606.05035) (arXiv 2026) — Streaming 3D reconstruction with cur...", arxiv: "2606.05035" , citations: 0 },
-  { name: "GaussianSplatting-SLAM-v2", short: "GaussianSplattin", cat: "SLAM", venue: "CVPR", year: 2026, desc: "**GaussianSplatting-SLAM-v2** (CVPR 2026) — Enhanced 3DGS-SLAM with improved tracking and mapping for RGBD SLAM; addr...", a
   { name: "MMGS", short: "MMGS", cat: "Compression", venue: "arXiv", year: 9304, desc: "**MMGS** [arXiv:2605.19304](https://arxiv.org/abs/2605.19304) (arXiv 2026) — 10x compressed 3DGS via multi-view ranki...", arxiv: "2605.19304" , citations: 0 },
   { name: "CodecSplat", short: "CodecSplat", cat: "Compression", venue: "arXiv", year: 5563, desc: "**CodecSplat** [arXiv:2605.25563](https://arxiv.org/abs/2605.25563) (arXiv 2026) — Ultra-compact entropy-coded latent...", arxiv: "2605.25563" , citations: 0 },
   { name: "ZipSplat", short: "ZipSplat", cat: "Compression", venue: "arXiv", year: 5102, desc: "**ZipSplat** [arXiv:2606.05102](https://arxiv.org/abs/2606.05102) (arXiv 2026) — Token-based feed-forward 3DGS decoup...", arxiv: "2606.05102" , citations: 0 },
   { name: "StreamLoD-GS", short: "StreamLoD-GS", cat: "Compression", venue: "arXiv", year: 8475, desc: "**StreamLoD-GS** [arXiv:2601.18475](https://arxiv.org/abs/2601.18475) (arXiv 2026) — Level-of-Detail structured 3DGS ...", arxiv: "2601.18475" , citations: 0 },rxiv: "" , citations: 0 },
-  { name: "GS-Map-SLAM", short: "GS-Map-SLAM", cat: "SLAM", venue: "CVPR", year: 2026, desc: "**GS-Map-SLAM** (CVPR 
-  { name: "F-RNG", short: "F-RNG", cat: "Material", venue: "arXiv", year: 5975, desc: "**F-RNG** [arXiv:2605.25975](https://arxiv.org/abs/2605.25975) (arXiv 2026) — Feed-forward relightable 3DGS via LRM +...", arxiv: "2605.25975" , citations: 0 },
-  { name: "SRUG", short: "SRUG", cat: "Material", venue: "arXiv", year: 4700, desc: "**SRUG** [arXiv:2605.24700](https://arxiv.org/abs/2605.24700) (arXiv 2026) — Shadow-guided relightable urban scene wi...", arxiv: "2605.24700" , citations: 0 },
-  { name: "Ambient-Robust Inverse Rendering", short: "AmbientRobustInv", cat: "Material", venue: "arXiv", year: 250, desc: "**Ambient-Robust Inverse Rendering** [arXiv:2605.30250](https://arxiv.org/abs/2605.30250) (arXiv 2026) — Active RGB-N...", arxiv: "2605.30250" , citations: 0 },2026) — Gaussian-based dense mapping for SLAM with view-dependent quality; real-time dense mapp...", arxiv: "" , citations: 0 },"PanoWorld", short: "PanoWorld", cat: "Generation", venue: "arXiv", year: 2026, desc: "Generative spatial world model for whole-house panorama synthesis", arxiv: "", citations: 0 },
+  { name: "GS-Map-SLAM", short: "GS-Map-SLAM", cat: "SLAM", venue: "CVPR", year: 2026, desc: "Gaussian-based dense mapping for SLAM with view-dependent quality; real-time dense mapping via GS optimization", arxiv: "" , citations: 0 },
+  { name: "F-RNG", short: "F-RNG", cat: "Material", venue: "arXiv", year: 2026, desc: "Feed-forward relightable 3DGS via LRM + residual", arxiv: "2605.25975" , citations: 0 },
+  { name: "SRUG", short: "SRUG", cat: "Material", venue: "arXiv", year: 2026, desc: "Shadow-guided relightable urban scene with 3DGS", arxiv: "2605.24700" , citations: 0 },
+  { name: "Ambient-Robust Inverse Rendering", short: "AmbientRobustInv", cat: "Material", venue: "arXiv", year: 2026, desc: "Active RGB-NIR imaging for ambient-robust inverse rendering", arxiv: "2605.30250" , citations: 0 },
+  { name: "PanoWorld", short: "PanoWorld", cat: "Generation", venue: "arXiv", year: 2026, desc: "Generative spatial world model for whole-house panorama synthesis with floorplan-derived 3D shell and dynamic 3DGS cache", arxiv: "2605.17916", citations: 0 },
   { name: "LiteLoc", short: "LiteLoc", cat: "SLAM", venue: "IEEE/CAA JAS", year: 2026, desc: "Lightweight 3DGS localizer with color-free decoupled feature field", arxiv: "", citations: 0 },
-  { name: "CAdam", short: "CAdam", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Context-Adaptive Moment Estimation for 3DGS densification in generative distill...", arxiv: "2605.20872", citations: 0 },
-  { name: "GGD-SLAM-ICRA", short: "G
+  { name: "CAdam", short: "CAdam", cat: "Training", venue: "SIGGRAPH", year: 2026, desc: "Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; 85-97% Gaussian reduction", arxiv: "2605.20872", citations: 0 },
+  { name: "GGD-SLAM-ICRA", short: "GGD-SLAM-ICRA", cat: "SLAM", venue: "ICRA", year: 2026, desc: "Generalizable motion model for monocular dynamic 3DGS SLAM; no semantic labels or depth input required", arxiv: "2604.12837", citations: 0 },
   { name: "RT-Splatting", short: "RT-Splatting", cat: "Cross-Domain", venue: "arXiv", year: 8263, desc: "**RT-Splatting** [arXiv:2605.18263](https://arxiv.org/abs/2605.18263) (CVPR 2026 Highlight) — Joint reflection-transm...", arxiv: "2605.18263" , citations: 0 },
   { name: "AsyncEvGS", short: "AsyncEvGS", cat: "Cross-Domain", venue: "arXiv", year: 7192, desc: "**AsyncEvGS** [arXiv:2605.07192](https://arxiv.org/abs/2605.07192) (arXiv 2026) — Asynchronous event camera + RGB dua...", arxiv: "2605.07192" , citations: 0 },
   { name: "Sensor2Sensor", short: "Sensor2Sensor", cat: "Cross-Domain", venue: "arXiv", year: 2809, desc: "**Sensor2Sensor** [arXiv:2605.22809](https://arxiv.org/abs/2605.22809) (CVPR 2026) — Cross-embodiment sensor conversi...", arxiv: "2605.22809" , citations: 0 },
   { name: "GSRep", short: "GSRep", cat: "Cross-Domain", venue: "arXiv", year: 9549, desc: "**GSRep** [arXiv:2605.29549](https://arxiv.org/abs/2605.29549) (arXiv 2026) — Comparative evaluation of point-based a...", arxiv: "2605.29549" , citations: 0 },
   { name: "DVSM", short: "DVSM", cat: "Cross-Domain", venue: "arXiv", year: 9891, desc: "**DVSM** [arXiv:2605.29891](https://arxiv.org/abs/2605.29891) (arXiv 2026) — Decoder-only view synthesis model; share...", arxiv: "2605.29891" , citations: 0 },
-  { name: "OpenSpatial", short: "OpenSpatial", cat: "Cross-Domain", venue: "arXiv", year: 7296, desc: "**OpenSpatial** [arXiv:2604.07296](https://arxiv.org/abs/2604.07296) (arXiv 2026) — Principled open-source data engin...", arxiv: "2604.07296" , citations: 0 },GD-SLAM-ICRA", cat: "SLAM", venue: "ICRA", year: 2026, desc: "Generalizable motion model for monocular dynamic 3DGS SLAM; no semantic labels...", arxiv: "2604.12837", citations: 0 },
+  { name: "OpenSpatial", short: "OpenSpatial", cat: "Cross-Domain", venue: "arXiv", year: 2026, desc: "Principled open-source data engineering for 3DGS", arxiv: "2604.07296" , citations: 0 },
   { name: "PiG-Avatar", short: "PiG-Avatar", cat: "Human", venue: "arXiv", year: 2026, desc: "Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space...", arxiv: "2605.20185", citations: 0 },
   { name: "Latent Dynamics", short: "Latent Dynamics", cat: "Human", venue: "arXiv", year: 2026, desc: "Pose-driven 3DGS avatar with dynamics residual latent; learned force decomp...", arxiv: "2605.21478", citations: 0 },
   { name: "ROAR-3D", short: "ROAR-3D", cat: "Generation", venue: "arXiv", year: 2026, desc: "Token-wise view router for multi-view 3D generation; dual-stream attention...", arxiv: "2605.21121", citations: 0 },
@@ -1427,8 +1417,6 @@ const METHODS = [
   { name: "DéjàView", short: "DéjàView", cat: "Feed-Forward", venue: "arXiv", year: 2026, desc: "Looped transformer with inference-time compute knob K; matches larger baseline...", arxiv: "2605.30215", citations: 0 },
   { name: "View-Dependent Splatting", short: "VD-Splatting", cat: "Surface", venue: "SIGGRAPH", year: 2026, desc: "Learned view-dependent splatting kernels replacing fixed covariance; first fund...", arxiv: "2605.25426", citations: 0 },
   { name: "SAM3D-Phys", short: "SAM3D-Phys", cat: "Simulation", venue: "arXiv", year: 2026, desc: "SAM3D generative priors + physics-constrained spatial optimization for simulata...", arxiv: "2605.30239", citations: 0 },
-  { name: "Gaga", short: "Gaga", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Group Any Gaussians via 3D-aware memory bank; robust sparse-v
-  { name: "COSY", short: "COSY", cat: "Human", venue: "arXiv", year: 4114, desc: "**COSY** [arXiv:2605.24114](https://arxiv.o
   { name: "Holi-Spatial", short: "Holi-Spatial", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "**Holi-Spatial** (ICML 2026 Oral) — Evolving Video Streams into Holistic 3D Spatial Intelligence; fully automated spa...", arxiv: "" , citations: 0 },
   { name: "Spatial-TTT", short: "Spatial-TTT", cat: "World Models & Spatial Intelligence", venue: "ECCV", year: 2026, desc: "**Spatial-TTT** (ECCV 2026) — Test-time training for streaming spatial intelligence; 2B-parameter model surpasses GPT...", arxiv: "" , citations: 0 },
   { name: "APEIRIA", short: "APEIRIA", cat: "World Models & Spatial Intelligence", venue: "arXiv", year: 2026, desc: "**APEIRIA** (ICML 2026) — Neuro-symbolic 3D spatial reasoning framework combining 3D MLLM open-vocabulary understandi...", arxiv: "" , citations: 0 },
@@ -1437,7 +1425,6 @@ const METHODS = [
   { name: "Multi-view Consistent 3D Gaussian Head Avatars", short: "MultiviewConsist", cat: "Human", venue: "arXiv", year: 5220, desc: "**Multi-view Consistent 3D Gaussian Head Avatars** [arXiv:2605.25220](https://arxiv.org/abs/2605.25220) (CVPR 2026) —...", arxiv: "2605.25220" , citations: 0 },iew segmentation", arxiv: "", citations: 0 },
   { name: "CapTalk", short: "CapTalk", cat: "Human", venue: "arXiv", year: 2026, desc: "Text-guided stylization + speech-driven 3D head animation; separate style/emo...", arxiv: "2605.29316", citations: 0 },
   { name: "SurfFill", short: "SurfFill", cat: "Cross-Domain", venue: "arXiv", year: 2025, desc: "LiDAR point cloud completion via Gaussian surfel splatting; building-scale div...", arxiv: "2512.03010", citations: 0 },
-  { name: "CLEAR-NeRF", short: "CLEAR-NeRF", cat: "Surface", venue: "arXiv", year: 2026, desc: "Collinearity + local-region enhanced accurate 3D reconstruction in unbounded sc...", 
   { name: "VoxelGS", short: "VoxelGS", cat: "Surface", venue: "arXiv", year: 6616, desc: "**VoxelGS** [arXiv:2605.26616](https://arxiv.org/abs/2605.26616) (arXiv 2026) — Scaffold-anchored Gaussians tethered ...", arxiv: "2605.26616" , citations: 0 },
   { name: "Neural 3D Mesh Texturing Survey", short: "Neural3DMeshText", cat: "Surface", venue: "arXiv", year: 137, desc: "**Neural 3D Mesh Texturing Survey** [arXiv:2606.00137](https://arxiv.org/abs/2606.00137) (Eurographics STAR, CGF 2026...", arxiv: "2606.00137" , citations: 0 },
   { name: "Dual Contouring of SDF", short: "DualContouringof", cat: "Surface", venue: "arXiv", year: 157, desc: "**Dual Contouring of SDF** [arXiv:2604.00157](https://arxiv.org/abs/2604.00157) (arXiv 2026, updated) — Quadratic opt...", arxiv: "2604.00157" , citations: 0 },
@@ -1451,7 +1438,6 @@ const METHODS = [
   { name: "DinoComplete", short: "DinoComplete", cat: "Surface", venue: "arXiv", year: 2026, desc: "3D shape completion with DINOv2-distilled semantic priors + state space model", arxiv: "2605.26949", citations: 0 },
   { name: "Ambient-Robust IR", short: "Ambient-IR", cat: "Material", venue: "arXiv", year: 2026, desc: "Active RGB-NIR imaging for ambient-robust inverse rendering", arxiv: "2605.30250", citations: 0 },
   { name: "Gaussian-Enhanced Surfel", short: "GE-Surfel", cat: "Surface", venue: "arXiv", year: 2026, desc: "Depth peeling for high-fidelity Gaussian-enhanced surfel rendering", arxiv: "2605.25345", citations: 0 },
-  { name: "HiGS", shor
   { name: "FLUIDSPLAT", short: "FLUIDSPLAT", cat: "Simulation", venue: "arXiv", year: 8866, desc: "**FLUIDSPLAT** [arXiv:2605.18866](https://arxiv.org/abs/2605.18866) (arXiv 2026) — Physical flow field reconstruction...", arxiv: "2605.18866" , citations: 0 },
   { name: "FreeForm", short: "FreeForm", cat: "Simulation", venue: "arXiv", year: 9318, desc: "**FreeForm** [arXiv:2605.29318](https://arxiv.org/abs/2605.29318) (CVPR 2026) — Reduced-order deformable simulation f...", arxiv: "2605.29318" , citations: 0 },
   { name: "PhyGenHOI", short: "PhyGenHOI", cat: "Simulation", venue: "arXiv", year: 268, desc: "**PhyGenHOI** [arXiv:2605.30268](https://arxiv.org/abs/2605.30268) (arXiv 2026) — Physically-aware 4D HOI generation;...", arxiv: "2605.30268" , citations: 0 },
@@ -1466,17 +1452,16 @@ const METHODS = [
   { name: "PARTICULATE", short: "PARTICULATE", cat: "Simulation", venue: "CVPR", year: 2026, desc: "**PARTICULATE** (CVPR 2026) — Feed-forward 3D object articulation from static mesh; auto-infer movable structure incl...", arxiv: "" , citations: 0 },
   { name: "ArtiTwinSplat", short: "ArtiTwinSplat", cat: "Simulation", venue: "arXiv", year: 2026, desc: "**ArtiTwinSplat** (arXiv 2026) — Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos; e...", arxiv: "" , citations: 0 },
   { name: "DISCOVERSE", short: "DISCOVERSE", cat: "Simulation", venue: "arXiv", year: 2026, desc: "**DISCOVERSE** (RAL 2026) — 3DGS + MuJoCo unified Real2Sim2Real robot learning framework; scene-level + object-level ...", arxiv: "" , citations: 0 },t: "HiGS", cat: "Acceleration", venue: "arXiv 2026", year: 2026, desc: "Hierarchically tiled GS decoupling partitioning/rasterization; 15.8x faster (NVIDIA)", arxiv: "2606.00352", citations: 0 },
-  
   { name: "MidSurfNet", short: "MidSurfNet", cat: "CAD", venue: "arXiv", year: 1891, desc: "**MidSurfNet** [arXiv:2606.01891](https://arxiv.org/abs/2606.01891) (arXiv 2026) — Learning-augmented mid-surface abs...", arxiv: "2606.01891" , citations: 0 },
   { name: "3DCodeBench", short: "3DCodeBench", cat: "CAD", venue: "arXiv", year: 1057, desc: "**3DCodeBench** [arXiv:2606.01057](https://arxiv.org/abs/2606.01057) (arXiv 2026) — Systematic benchmark for VLM agen...", arxiv: "2606.01057" , citations: 0 },
   { name: "UniCAD", short: "UniCAD", cat: "CAD", venue: "arXiv", year: 5058, desc: "**UniCAD** [arXiv:2606.05058](https://arxiv.org/abs/2606.05058) (arXiv 2026) — Unified multi-modal multi-task CAD ben...", arxiv: "2606.05058" , citations: 0 },
   { name: "BRepCLIP", short: "BRepCLIP", cat: "CAD", venue: "arXiv", year: 5515, desc: "**BRepCLIP** [arXiv:2606.05515](https://arxiv.org/abs/2606.05515) (arXiv 2026) — Contrastive multi-modal pre-training...", arxiv: "2606.05515" , citations: 0 },
   { name: "CADDreamer", short: "CADDreamer", cat: "CAD", venue: "arXiv", year: 2026, desc: "**CADDreamer** (CVPR 2025 Highlight) — CAD object generation from single-view images; parametric primitive sequence g...", arxiv: "" , citations: 0 },
   { name: "BrepGiff", short: "BrepGiff", cat: "CAD", venue: "CVPR", year: 2025, desc: "**BrepGiff** (CVPR 2025) — Lightweight generation of complex B-rep with 3D GAT Diffusion; graph attention network dif...", arxiv: "" , citations: 0 },
-  { name: "Zero-to-CAD", short: "Zero-to-CAD", cat: "CAD", venue: "arXiv", year: 4479, desc: "**Zero-to-CAD** [arXiv:2604.24479](https://arxiv.org/abs/2604.24479) (arXiv 2026) — Agentic synthesis of parametric C...", arxiv: "2604.24479" , citations: 0 },{ name: "DDF-GS", short: "DDF-GS", cat: "Foundation", venue: "arXiv 2026", year: 2026, desc: "Directed Distance Fields for constant-time ray queries on 3DGS; GI without mesh", arxiv: "2606.00817", citations: 0 },
+  { name: "Zero-to-CAD", short: "Zero-to-CAD", cat: "CAD", venue: "arXiv", year: 4479, desc: "**Zero-to-CAD** [arXiv:2604.24479](https://arxiv.org/abs/2604.24479) (arXiv 2026) — Agentic synthesis of parametric C...", arxiv: "2604.24479" , citations: 0 },
+  { name: "DDF-GS", short: "DDF-GS", cat: "Foundation", venue: "arXiv 2026", year: 2026, desc: "Directed Distance Fields for constant-time ray queries on 3DGS; GI without mesh", arxiv: "2606.00817", citations: 0 },
   { name: "VEDAL", short: "VEDAL", cat: "Compression", venue: "CGI 2026", year: 2026, desc: "Variational free energy pruning; 5.2x compression @ 0.31 dB loss; 185 FPS", arxiv: "2606.02346", citations: 0 },
   { name: "StreetNVS", short: "StreetNVS", cat: "Autonomous Driving", venue: "arXiv 2026", year: 2026, desc: "Multi-sensor NVs (LiDAR+camera+ego-motion); matches 100x denser methods", arxiv: "2606.01590", citations: 0 },
-
   { name: "KDH-CAD", short: "KDH-CAD", cat: "CAD", venue: "arXiv 2026", year: 2026, desc: "Knowledge-data hybrid CAD; 92.6% accuracy with 250 training samples", arxiv: "2606.01702", citations: 0 },
   { name: "SEIG", short: "SEIG", cat: "Generation", venue: "arXiv 2026", year: 2026, desc: "VLM generates executable Blender programs from single image", arxiv: "2606.02580", citations: 0 },
   { name: "MORPHOS", short: "MORPHOS", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Autoregressive 4D generation; T-SLAT unifies mesh/Gaussian/NeRF", arxiv: "2606.02491", citations: 0 },
@@ -1485,7 +1470,6 @@ const METHODS = [
   { name: "MRO-GWM", short: "MRO-GWM", cat: "World Models & Spatial Intelligence", venue: "arXiv 2026", year: 2026, desc: "Object-centric Gaussian world model for rigid body MPC", arxiv: "2606.01950", citations: 0 },
   { name: "DSD-GS", short: "DSD-GS", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Feed-forward dynamic-static decomposition; 700+ FPS RTX 5090; no COLMAP", arxiv: "2605.30863", citations: 0 },
   { name: "VG2GT", short: "VG2GT", cat: "Feed-Forward", venue: "arXiv 2026", year: 2026, desc: "Voxel-Gaussian Transformer; frozen VFM + stochastic solid volume rendering", arxiv: "2606.01573", citations: 0 },
-  { name: "TIDES", short: "TIDES", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Continuous-time event camera simulator from dynamic Gaussian Splatting", arxiv: "2606.02058", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -2150,7 +2134,11 @@ const SKILLS = [
   { id: "3dgs-spatial-agent", name: "Spatial Agent", desc: "3DGS/CAD/Mesh domain Agent for spatial intelligence & CAD extraction", color: "#a855f7",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>' },
   { id: "3dgs-mcp-renderer", name: "MCP Renderer", desc: "Agent-controlled Three.js/3DGS rendering via MCP protocol", color: "#22d3ee",
-    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/>' }
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/>' },
+  { id: "3dgs-compression-deploy", name: "Compression & Deploy", desc: "Deploy compressed 3DGS: 53+ compression & deployment methods", color: "#84cc16",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>' },
+  { id: "3dgs-articulated-reasoner", name: "Articulated Reasoner", desc: "Reason about articulated objects in 3DGS scenes & generate interactive digital twins", color: "#e879f9",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' }
 ];
 
 const INSTALL_BLOCKS = [
@@ -2166,7 +2154,9 @@ claw skills install jaccen-3dgs-visualizer
 claw skills install jaccen-3dgs-engineering-guide
 claw skills install jaccen-patent-software-ip
 claw skills install jaccen-3dgs-spatial-agent
-claw skills install jaccen-3dgs-mcp-renderer` },
+claw skills install jaccen-3dgs-mcp-renderer
+claw skills install jaccen-3dgs-compression-deploy
+claw skills install jaccen-3dgs-articulated-reasoner` },
   { label: "Claude Code / Cursor", lang: "bash", code: `# Clone and symlink into your agent's skills directory
 git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
 ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
@@ -2178,7 +2168,7 @@ REPO="jaccen/Awesome-Gaussian-Skills"
 SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
         3dgs-experiment-planner nerf-to-3dgs-migrator \\
         cad-mesh-3dgs cg-paper-writing 3dgs-visualizer \\
-        3dgs-engineering-guide patent-software-ip 3dgs-spatial-agent 3dgs-mcp-renderer 3dgs-compression-deploy)
+        3dgs-engineering-guide patent-software-ip 3dgs-spatial-agent 3dgs-mcp-renderer 3dgs-compression-deploy 3dgs-articulated-reasoner)
 DEST="\${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 mkdir -p "\$DEST" && cd "\$DEST"
 for s in "\${SKILLS[@]}"; do
@@ -3803,8 +3793,6 @@ document.addEventListener('DOMContentLoaded', () => {
           hunyuan3d: ['bg-accent-purple/20', 'text-accent-purple', 'border-accent-purple/30'],
           rodin: ['bg-rose-500/20', 'text-rose-400', 'border-rose-500/30']
         }
-  { name: 'PanoWorld', venue: 'arXiv', year: 2026, category: 'world-model', arxiv: '2605.17916', innovation: 'representation', description: 'Generative spatial world model for whole-house panorama synthesis with floorplan-derived 3D shell and dynamic 3DGS cache' },
-  { name: 'GaussianZoom', venue: 'arXiv', year: 2026, category: 'reconstruction', arxiv: '2605.18252', innovation: 'representation', description: 'Progressive zoom-in generative 3D reconstruction with multi-scale semantic reasoning and expandable continuous LoD hierarchy' };
         var styles = activeStyles[i2gCurrentProvider] || activeStyles.tripo;
         btn.classList.add('active');
         btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
