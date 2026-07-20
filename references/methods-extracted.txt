@@ -1,0 +1,755 @@
+​‍‍​​‍​‍​‍‍‍‍​​‍​‍​​‍​‍​​‍​​​​‍​​‍​‍​​‍‍​‍​‍​‍​‍​‍‍​​‍​​​‍​​​‍​​​‍​​‍​​‍​‍‍​‍​‍​​‍‍‍​​​​​​‍‍​‍‍‍​‍​​‍​​‍​‍‍​‍​‍‍​‍‍‍‍​​​​‍‍​‍​​​​‍​‍‍​​‍​‍‍​‍‍​‍​‍​‍​‍‍​​‍‍‍​​‍‍​‍​​‍​​‍​‍‍​‍​‍​​‍‍​‍‍‍‍​‍‍​‍​​‍​‍​​‍‍​‍​‍​‍​​‍‍​‍​​‍​​‍​‍‍‍​​‍‍​‍​​‍​​‍​‍‍​‍​‍‍​‍​​‍‍‍​​‍‍‍​‍‍​​‍‍​​​‍​​‍‍​‍‍‍​​‍​‍​​‍​​‍‍​‍‍​​​‍‍​​​‍​​‍‍​‍‍‍​​‍​‍​​‍​​‍​‍​​​‍​‍‍​​​‍‍​‍‍​‍‍​‍​​‍‍‍​​‍​‍‍​‍​‍‍​‍‍​​‍​​​‍​‍​‍‍‍​‍​​‍‍‍​​‍‍​‍‍​​​‍‍​​​‍‍​‍‍​‍​​‍​‍​​‍​​‍​​‍‍​‍‍​​‍​​‍​​‍​‍‍​‍​‍​​‍​​​​​‍​‍‍‍​‍‍‍​‍​​‍‍​‍​‍​‍​‍​​​‍​​​‍​‍​​‍‍​‍​‍​‍​​‍‍​‍​‍​‍​‍​​​‍​​​‍​‍​‍‍‍‍​​​​‍​​‍‍​‍​‍​​​‍​​​‍​​​‍​‍​‍‍‍​‍‍‍​‍​​‍‍​‍​‍‍​‍​‍‍​​‍‍​​​‍​‍​​​​‍​​‍​‍​​‍​​‍​​​‍​​​‍​‍​‍​‍​​‍‍​​​‍​‍​‍​‍‍​​‍​‍​‍​​​‍‍​‍‍​​​‍​​‍​​‍​‍​​‍‍​‍​‍​​​‍​‍​‍​‍‍​​‍​‍‍‍‍​​​​‍​​‍‍​‍​‍​​​‍​​​‍​​​​​‍​‍‍‍​‍‍‍​‍​​‍‍​‍​‍‍​‍​​‍​‍​​‍​​‍​‍‍‍​​‍‍​‍​​‍​​‍​‍‍​‍‍​​​‍​​​​‍​​‍‍‍‍​​‍​‍‍​​​‍​​​‍‍​​‍​​‍​‍​​‍​​​‍‍​​​‍​‍​‍‍​​‍​​‍‍​​‍​​‍​‍​‍‍​​‍​​‍​‍​​‍​‍​​‍​​‍​​​​‍‍​‍​​‍​​‍​​‍‍​‍‍​​‍​​‍​​‍​‍‍​‍​‍​​‍​‍​​​‍​​‍‍​​‍‍​‍​​‍‍​‍​‍‍​‍​‍​​‍​‍‍​​‍​‍‍‍‍​‍​​‍​​‍‍​‍​‍‍​‍‍​‍​‍​‍‍​​‍​​‍‍​​‍‍​‍​​‍‍​​​‍​‍​‍‍‍​‍​​‍‍​‍​‍‍‍‍​​‍​‍​​‍‍​‍​‍‍‍‍​‍​​‍​​​‍​‍​‍‍‍​‍​​​‍​​‍‍‍​​‍​​​‍‍‍​‍​​‍​‍​​‍‍​‍‍​​​‍​​‍‍‍‍​‍​​​​‍‍​​‍‍​​​​​​‍‍​‍​​​‍​​‍‍‍‍​‍​‍​‍‍‍​‍​‍​​​‍​​‍‍​‍​​​‍​​‍‍​​​‍​‍​‍​​​‍​​‍​​‍​‍‍‍‍​‍​​‍​‍‍​​‍​‍​‍​‍‍‍​‍​‍​‍‍​​‍‍​‍‍​​​‍​‍‍​​‍​‍​‍​‍‍‍​‍​‍​​​‍​‍‍‍‍​‍​​‍​‍‍​​‍​‍‍​‍​‍​​‍​​​‍​‍​‍‍‍‍​‍​​‍​​‍‍​‍​‍‍‍‍​​‍​‍​​‍​​‍​‍‍‍​​‍‍​‍​​‍​​‍​‍‍​‍‍​​​‍​​‍​‍​​‍‍​‍‍​​​‍‍​​​‍‍​​‍‍​​‍​​‍​‍​‍‍​​‍‍‍‍​​‍​‍‍​​‍​​​‍‍​‍‍​‍​‍​‍​‍‍​​‍‍​‍​‍‍​‍​‍​​​‍​​‍‍​​‍​​​‍‍‍​​‍​‍‍​‍​‍‍​‍​‍‍​‍​​‍​‍​‍​​​‍​​​‍​‍​‍‍​‍​​‍​‍​​‍‍‍‍​‍‍​‍​​‍​‍​​‍​​‍​​‍‍​​‍‍​‍​​‍‍‍‍​‍​‍​‍​​​‍​​​‍​‍​‍‍‍​‍‍‍​‍​‍‍​‍​​‍‍​‍​‍​​‍‍​​​‍‍​​‍‍​‍​‍​‍​‍‍​‍​​‍​​​​‍‍​​‍‍​​​‍​‍‍​‍‍​​​‍​​‍‍‍‍​‍​​​‍‍‍​‍​​​‍​‍​​‍‍​​​​​‍​​‍‍​​​‍​‍​‍​​​‍​‍​​​‍​​‍‍​​‍​​‍​‍‍​​‍​​‍‍​​‍​​‍​‍‍​​‍​‍‍‍​‍​​​‍​​‍‍‍‍​‍​​​‍‍‍​‍​‍​‍​‍​​‍‍​​‍​​‍​‍‍​‍​​‍​​​​‍‍​​‍‍​​​​​​‍‍​​‍​​‍​​‍‍‍​​‍​​​‍​​​‍​​​​‍​​‍‍​‍‍​‍​‍​​‍‍​‍​‍​​​‍‍‍​‍​‍​‍​‍​‍‍‍​‍‍‍​‍​​‍‍‍​​‍‍​‍‍​‍​‍​‍​‍​‍​​‍‍​‍​​​‍​‍‍​​‍​‍​‍​‍​​​‍​​​​​‍​‍‍​‍​​‍​‍​​‍‍​​​‍​​​​‍‍​‍​​‍​‍​​‍​​​‍​​​‍‍​​​‍​​​‍‍​​‍​​​‍‍​‍​‍​​‍‍​​​​​‍​‍‍​‍​​‍​‍​‍‍‍​​‍‍​‍​‍​​‍‍​​​​​‍​‍​‍​‍​‍​​‍​​​​‍​​‍​‍​​‍‍‍​‍‍​​‍‍​​​‍‍​‍​​​‍‍‍​‍​​​‍‍​​‍‍​‍‍‍​​‍​‍‍​​‍​‍​‍‍​​​​‍​‍​​‍​​‍‍‍​‍‍​​‍‍​​​‍‍​‍‍​‍​​‍​‍​​‍​​‍​​‍‍​‍‍​​‍​​‍​​‍​‍‍​‍​‍​​‍​​​​​‍​‍‍‍​‍‍‍​‍​​‍‍​‍​‍​‍​‍​​​‍​​​‍​‍​​‍‍​‍​‍​‍​​‍‍​‍​‍​‍​‍​​​‍​​​‍​‍​‍‍‍‍​​​​‍​​‍‍​‍​‍​​​‍​​​‍​​​‍​‍​‍‍‍​‍‍‍​‍​​‍‍​‍​‍‍​‍​‍‍​​‍‍​​​‍​‍​​​​‍​​‍​‍​​‍​​‍​​​‍​​​‍​‍​‍​‍​​‍‍​​​‍​‍​‍​‍‍​​‍​‍​‍​​​‍‍​‍‍​​​‍​​‍​​‍​‍​​‍‍​‍​‍​​​‍​‍​‍​‍‍​​‍​‍‍‍‍​​​​‍​​‍‍​‍​‍​​​‍​​​‍​​​​​‍​‍‍‍​‍‍‍​‍​​‍‍​‍​‍‍​‍​​‍​‍​​‍​​‍​‍‍‍​​‍‍​‍​​‍​​‍​‍‍​‍‍​​​‍​​​​‍​​‍‍‍‍​​‍​‍‍​​​‍​​​‍‍​​‍‍​‍​​​​‍​​‍‍​‍​​​​‍​‍‍​‍​​​‍‍​​‍​​‍​​​‍‍​​​‍‍​​​​​‍​‍‍​‍​​‍​‍​‍​‍​‍‍​‍‍​​​‍​​​‍​‍​‍​​‍​​‍​‍‍​‍​‍​​‍‍​‍‍‍‍​‍‍​‍​​‍​‍​​‍‍‍​​‍​​​‍​​​‍‍​​​‍‍​‍‍‍‍​​‍​‍​​‍‍‍​​‍‍​‍​‍​​‍​​‍‍​‍​‍‍‍‍​​‍​‍​‍‍​‍​​‍‍​‍​‍​​‍‍​​​‍‍​‍‍‍​‍​​​‍​‍‍​​‍​‍‍‍‍​‍​​‍​​‍​​‍​‍‍‍‍​‍​​‍​​‍‍​‍​‍​‍​​‍‍​​‍‍​​​​​​‍‍​​​​​‍​‍‍​​‍​‍‍​‍‍​‍​‍​‍​‍​‍​​‍‍​‍​​​‍​​‍‍​​​‍​‍​‍​​​‍‍​​‍‍‍​​‍‍​‍​‍​‍​‍‍​‍​​‍​​​‍​​​‍‍​​‍‍‍​‍‍‍​‍​​​‍​​‍‍​‍​‍‍​‍​‍​​‍​​‍‍‍​​‍‍​‍​​​​‍​‍‍​‍​​‍​‍​‍‍‍​‍​‍​‍‍​​‍‍​‍​​​​‍​‍‍​‍​​‍​​​‍​​​‍​​‍‍‍​​‍‍​‍​​‍​‍​​‍‍​‍​‍​‍​‍​​​‍​​‍‍​‍​‍‍‍‍​‍​​‍​​‍​​‍​‍‍​‍​​‍​‍‍‍​‍‍‍​‍‍​‍​​‍​‍​‍​‍​‍​‍‍​‍‍​‍​‍​‍​‍‍​​‍‍‍‍​‍​​‍​‍‍​‍​​‍​‍‍​​​​‍​​‍​‍​​​‍‍​​‍​​‍​‍‍​‍​​‍​‍​‍‍‍​‍​‍​​‍​​‍​​​‍​​​‍‍​​​‍​​​‍‍​​‍​​‍​‍​​‍​​‍‍​‍‍​​​‍​​‍‍​‍​‍‍​‍​​‍​‍​​‍​​‍​​‍‍​‍‍​​‍​​‍​​‍​‍‍​‍​‍​​‍‍​​​‍‍​​‍‍​‍​‍​‍​​‍‍​‍​‍​‍​‍​​​‍​​​​‍​​‍‍​‍‍​‍​‍​​‍‍‍​​‍‍‍‍​‍​​‍‍​‍‍​​​‍‍​‍​‍‍​‍​​‍‍​​​‍​‍​‍‍‍​‍​‍​‍​‍​​‍‍​‍​​​‍​‍‍​​‍​‍​‍​‍​​​‍​‍​​​‍​‍‍‍​‍​​​‍​​‍‍‍​​‍​​​‍​​​‍​‍‍​‍​​‍‍​‍​‍​​‍​‍‍​‍​​‍‍​‍​​‍​​‍‍​​​​​​‍‍​‍​​​‍​‍‍​‍​​‍​‍​‍​​​‍​‍‍​‍​​‍‍​‍​‍‍​‍​​‍‍​​​‍​‍​‍​​​‍​‍‍​​‍​​‍‍​​​​​‍​​‍‍​‍​‍​​​‍‍‍​‍​‍‍​​‍​‍‍‍​‍‍‍​‍​‍‍​‍​​‍​‍​‍​​​‍​​​​​‍​​‍‍​​‍​​‍​‍‍​‍​​‍​‍​‍​​​‍‍​‍​​​​‍‍​‍​​​​‍​​‍‍​‍​‍​​​​‍‍​‍​​‍​‍​​​‍‍‍​​‍​‍‍​​‍‍​​‍​‍​​​‍​​‍‍‍‍​‍​​‍‍‍‍​‍Survey-GS-Urban|||Survey on 3DGS for urban scenes: autonomous driving/street view/city-scale reconstruction
+GSurf|||Gaussian surface reconstruction with SDF-GS hybrid representation for watertight meshes
+SalientGS|||Unified SfM-to-3DGS pipeline with importance-guided MCMC Gaussian allocation; reallocates capacity from well-fit to underfit regions; 15-min end-to-end SOTA
+World from Motion|||Generative dynamic GS from monocular video; conditions video model to fix rendering artifacts + fill missing regions; distills back to consistent 4D Gaussians
+PruneGS|||Importance-aware pruning for GS with gradient-based contribution scoring
+DeblurNVS|||First feed-forward NVS from sparse motion-blurred images without per-scene optimization; recovers intermediate geometry for multi-view reasoning; constructs DL3DV-10K-based motion blur NVS dataset
+EmoTaG|||Few-shot emotion-aware talking head on Gaussian Splatting
+Asset Harvester|||AV log → simulation-ready 3D assets via SparseViewDiT
+WildGS-SLAM|||Dynamic environment SLAM with uncertainty-aware mapping
+MeshFlow|||Efficient artistic mesh generation via MeshVAE + flow-based Diffusion Transformer; compact latent space for high-quality mesh creation
+Luminance-GS++|||View-adaptive color/lightness correction for robust NVS
+Embedded-3DGS|||Neural architecture search, ~10x compression
+SplatFields|||Implicit neural field regularization on splat features for sparse-view 3D/4D reconstruction
+GS-LRM|||1B-parameter transformer with zero-shot generalization
+SNS|||Azzalini Skew-Normal distribution as 3DGS primitive; learnable skewness for a...
+EG3DGS|||Edge-guided Gaussian splitting replacing heuristic clone/split with edge-aware densification
+DualSplat|||Failure-to-Prior framework from reconstruction failures
+FewViewGS|||Multi-stage coarse-to-fine training strategy for few-view Gaussian Splatting
+GS-Surrogate|||Deformable GS surrogate for ensemble simulation exploration
+LRG|||Locally-reconstructible GS for scalable large scene rendering
+TIDES|||Continuous-time event camera simulator from dynamic Gaussian Splatting; derives per-pixel intensity dynamics from scene model (not frame differencing); multi-threshold crossing + adaptive time-stepping + tile-level bandwidth modeling
+3DGS as MCMC|||Density control as MCMC sampling moves
+GETA-3DGS|||End-to-end automatic joint pruning + quantization
+GWM|||Gaussian World Model: 3DGS as environment dynamics modeling primitive with autoregressive future state prediction for interactive world simulation
+CGGS|||Consistency-Augmented Geometric GS for ego-centric 3D scene generation; consistency-augmented loss + mutual information depth loss (MID) for hierarchical geometry-visual optimization
+Ilov3Splat|||Instance-level open-vocabulary 3DGS via multi-resolution hash embedding for CLIP features + SAM contrastive instance field; two-stage 3D clustering for natural language-driven 3D object retrieval (CSIRO)
+GS4D-v2|||Second-generation 4DGS with improved temporal deformation
+QuadBox|||Quad-tree-based accelerated rasterization for 3DGS with geometry-aware bounding boxes; reduces tile-based blank area
+FewSplat|||Few-shot GS with diffusion-guided depth completion and feature propagation
+SyncSpace|||Layout-conditioned 3DGS for MR space reskinning; coarse-to-fine registration + hand-tracked engulfment interaction
+Sensor2Sensor|||Cross-embodiment sensor conversion via 4DGS; translates dashcam to AV sensor suite using diffusion
+CityGaussian|||Hierarchical LOD for city-scale real-time rendering
+Cookbook of 3D Vision|||Data-centric taxonomy of 3D vision: point clouds, meshes, voxels, 3D Gaussians; Brown / UMaryland / UPenn / USC / NYU / Sydney / Stability AI
+MMGS|||10x compressed 3DGS via multi-view ranking + Optimal Transport aggregation; global OT-based merging preserving geometry + OT-based densification operator; 10% primitives + 10x training speedup
+Consistent Scene Understanding in 3DGS|||Multi-cue mask refinement with semantic/depth/edge fusion + cross-view mask matching for consistent 3DGS instance segmentation
+MORPHOS|||Autoregressive 4D generation with Temporal Structured Latents (T-SLAT) unifying mesh/Gaussian/radiance field; causal attention ensures temporal consistency + handles topology changes
+SpreG|||Separable Gaussian representation factorizing covariance for efficient storage
+CoR-GS|||Co-regularization of two randomly initialized GS fields: co-pruning + pseudo-view augmentation for sparse views
+GausSR|||Super-resolution guided GS with diffusion prior for high-frequency detail recovery
+GaussianCtrl|||Depth-conditioned controlnet + progressive editing for controllable 3DGS generation
+Spark 2.0|||NVIDIA 3DGS-based robotic world simulation: real-time 3DGS reconstruction for manipulation learning and physical AI interaction
+Proxy-GS|||Unified occlusion priors for structured 3DGS via lightweight proxy mesh; 3× rendering speedup for anchor-based methods; train+inference dual acceleration
+SplatFormer|||Transformer-based Gaussian prediction for generalizable 3D reconstruction
+FaceParts|||Unsupervised segmentation and editing of GS avatars with FLAME-anchored transfer
+FreeTimeGS++|||Principled analysis + gated marginalization for 4DGS stability
+VG2GT|||Voxel-Gaussian Transformer; frozen VFM + stochastic solid volume rendering
+HiFi-SurfSplat|||Compact polynomial kernel replacing IMLS + Laplacian stochastic regularizatio...
+SplatPose|||Pose-conditioned Gaussian Splatting for monocular human reconstruction
+CL-GS|||Contrastive learning for GS semantic features: CLIP-guided per-Gaussian feature distillation
+Splat-TOD|||GS-based 3D object detection with sparse Gaussian proposal generation
+GaussianSR|||2D super-resolution diffusion prior guiding 3DGS iterative refinement for high-quality rendering
+X-World|||Controllable multi-view generative world model (video diffusion + 3DGS simulation) for autonomous driving (XPeng)
+Axis-Shared Rasterization Accelerator|||3DGS hardware accelerator with axis-shared rasterization + order-independent transmittance; optimized for efficient on-chip rendering (SJTU)
+OGS|||Omnidirectional GS: spherical harmonics-free panoramic 3DGS for 360 capture
+RobustSplat|||Decouples densification from dynamics for transient-free 3DGS
+SplatSim|||GS-based sim-to-real transfer for robotic manipulation with photorealistic rendering
+Survey-GS-Gen|||Survey on 3DGS-based generation: text-to-3D/image-to-3D/3D editing pipelines
+GaussianDreamer|||Fast 3DGS-based text-to-3D generation coupling SDS with structured Gaussian initialization
+Deformable-3DGS|||Deformation field network for 3DGS enabling high-fidelity dynamic scene rendering
+PRISM3D|||First framework bootstrapping 3DGS from extreme motion blur; MCMC probabilistic densification + continuous Bezier trajectory physics modeling
+ShapeGS|||Shape prior-guided Gaussian Splatting for geometrically accurate surface reconstruction
+NanoGS|||Training-free simplification via local pairwise merging
+ReferSplat|||Referring segmentation in 3D Gaussian Splatting with language-guided instance...
+PM-Loss|||Pointmap-supervised depth representation for feed-forward 3DGS; regularizes depth maps in 3D point space to smooth boundary discontinuities without inference overhead
+ProEdit|||Progressive local editing with global consistency maintenance for 3D scenes
+NIRRGB-GS|||Near-infrared assisted low-light scene reconstruction and enhancement via Gaussian Splatting; multi-modal NIR+RGB fusion framework for dark场景 (Zhejiang Univ + XIOPM)
+GS-IR|||Inverse rendering: Gaussians → geometry + BRDF + lighting
+DéjàView|||Looped transformer block applied recurrently for K steps; exposes K as inference-time compute knob; matches larger baselines with fraction of parameters on 5 reconstruction benchmarks
+DySurface|||Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconst...
+PanoWorld|||Generative spatial world model for whole-house panorama synthesis: floorplan-derived 3D shell + dynamic 3DGS cache as renderable spatial memory
+2D-SuGaR|||2DGS enhanced with monocular depth/normal priors
+Clustered Codebook VQ|||CGVQ for 2D Gaussian image compression; cluster-guided grouping before quantization; 20% bpp reduction with preserved visual quality
+GOF|||Gaussian Opacity Field: opacity-weighted TSDF fusion for high-fidelity surface extraction from GS
+Spec-Gaussian|||Anisotropic Spherical Gaussians replacing SH for view-dependent specular appearance
+MERID-GS|||Retinex-based illumination/reflectance decoupling for low-light
+FlashSplat|||Alpha blending linearity enables 2D-to-3D GS segmentation as linear programming with closed-form solution (50x faster)
+FenceGS|||Fence-protected GS: access control layer preventing unauthorized GS extraction
+3DCodeBench|||Systematic benchmark for VLM agents on procedural 3D generation (text/image → code → 3D); evaluates 12 VLMs; includes 3DCodeArena human preference ranking platform
+GS-LRM-v2|||Enhanced large reconstruction model with improved cross-attention for feed-forward GS
+GeoLRM|||Geometry-aware attention for large reconstruction model generating high-quality 3D Gaussians
+PanoLOG|||Geometry and gradient-based partitioning for panoramic outdoor 3DGS reconstruction; first panoramic outdoor benchmark Pano360
+3DGS squared|||Near second-order converging 3DGS with per-attribute Newton systems, 10x fewe...
+DDGS-CT|||Direction-disentangled X-ray volume rendering with Gaussian acceleration for CT
+D4RT|||Efficiently Reconstructing Dynamic Scenes One at a Time; unified query mechanism for 4D reconstruction + tracking from monocular video; 200+ FPS; Google DeepMind / UCL / Oxford
+TAIL-Safe|||Safety monitoring for IL policies using 3DGS digital twin
+EffectiveRank-GS|||Effective rank analysis and regularization preventing Gaussian degeneracy
+BitC-3DGS|||High-capacity 3DGS watermarking via bit compression; 128-bit messages with dual-branch chunk decompression + hard-message sampling
+SSA-3DGS|||Unsupervised screen-space artifact removal for 3DGS; joint optimization of 3D scene + learnable 2D overlay; cross-view geometric consistency decouples artifacts from geometry; up to +9 dB PSNR
+COSY|||Compositional GAN generates hair/skin/glasses/torso independently for disentangled head editing
+GS-SC|||Gaussian Splatting SLAM with semantic consistency for indoor scene understanding
+TriGS|||Tri-plane augmented Gaussian Splatting: tri-plane features + Gaussian geometry for hybrid representation
+NeuroGauss4D-PCI|||4D neural field + Gaussian deformation fields for point cloud interpolation
+SAM 3D|||Foundation model for single-image 3D reconstruction; generalizable 3D understanding from 2D priors
+T2Mo|||Controllable dynamic 3D shape generation via 3D trajectories + text; shape-grounded trajectory embedding for feed-forward dynamic generation
+GaussCtrl-v2|||Enhanced controlled GS editing with multi-modal conditioning (text + depth + sketch)
+GSDrive|||3DGS-based RL reward shaping for driving policy improvement
+GauHuman|||Human-specific GS with SMPL-constrained Gaussian initialization and pose-aware densification
+DVSM|||Decoder-only view synthesis model; shared reconstruction/rendering weights; SOTA on NVS, in some cases outperforms per-scene-optimized 3DGS under dense views
+GSRep|||Comparative evaluation of point-based and graph-based architectures for learning representations from 3D Gaussian Splats
+SplatterVideo|||Video-level feed-forward GS prediction with frame-to-frame consistency
+FrameTwin|||Curve-anchored Gaussian alignment from sparse views for adaptive wireframe 3D...
+GaussianEditor|||CLIP-guided text/geometry-driven editing
+Holi-Spatial|||Evolving Video Streams into Holistic 3D Spatial Intelligence; fully automated spatial data construction framework from raw video; 4M+ spatial multimodal samples; covers 3D reconstruction, depth, 2D mask, 3D bbox, instance description, 3D grounding, spatial QA (Shanghai AI Lab, NWPU, SJTU)
+PEAR|||Single-image animatable 3D human avatar at 100 FPS; full-body + hand + face reconstruction from single natural image
+Nighttime AD GS|||PBR + BRDF for nighttime driving scene reconstruction
+Tetrahedron Splatting|||Novel tetrahedron primitive replacing Gaussian ellipsoid for 3D generation tasks
+Splat-Nav|||GS-based navigation with Gaussian-anchored topological maps
+HeadsUp|||UV-parameterized 3D Gaussian representation decoupling Gaussian count from input resolution; trained on 10,000+ subjects for feed-forward 3D Gaussian head reconstruction
+MesonGS++|||Post-training codec with 34x compression + ILP hyperparameter search
+WildSplatter|||Unconstrained images with appearance embeddings, <1s reconstruction
+SplitGS-Loc|||Mixture-of-Gaussians splitting to disambiguate 2D-3D correspondences in GS feature fields; no per-scene training needed
+CoSAG|||Compact Semantic Anchor Gaussians via training-free rate-distortion coding; closed-form transmittance-weighted lift + spatially predictive entropy coder; 37-76x compression over LangSplatV2 at higher accuracy; sub-MB storage
+Scaffold-GS|||Anchor-based structure for efficient large-scale representation
+LagrangianSplats|||Divergence-free constraint on Gaussian advection for fluid velocity field rec...
+SVG|||Semantic-driven Gaussian editing: disentangled semantic fields for targeted 3D manipulation
+HDR-NSFF|||Dynamic HDR radiance fields from alternating-exposure video
+MVSplat|||Cost-volume-based 3DGS from 3 sparse views
+GeoGaussian|||Mesh-prior-guided Gaussian manipulation
+TransSplat|||Language-driven editing as unbalanced semantic transport
+SplitAvatar|||Autoregressive Gaussian splitting via GNN for one-shot head avatar with progressive detail
+SparseSplat|||Entropy-based adaptive density, SOTA with 22% of Gaussians (150K vs 688K)
+Reliev3R|||Reduces dependency on dense multi-view geometric annotations
+GGD-SLAM-ICRA|||Generalizable motion model for monocular dynamic 3DGS SLAM; no semantic labels...
+RelightGS|||Relightable GS with environment map conditioning and PBR material decomposition
+UniSHARP|||First unified monocular 3DGS across pinhole/fisheye/360 cameras; single image → Gaussian point cloud in seconds via single-pass inference; universal geometric representation bridging heterogeneous camera models (Insta360 Research)
+Color-Encoded Illumination|||High-speed volumetric reconstruction via color-coded illumination
+GLUT|||3D Gaussian Lookup Table for continuous color transformation; replaces grid-based 3D LUT with learnable Gaussian primitives; compact conditional generator CGLUT for multi-style LUT blending; supports localized editing without global retraining
+DynGS|||Dynamic GS with motion decomposition into rigid + non-rigid components
+HybridGS|||Hybrid GS compression combining explicit pruning + implicit neural coding
+PanoPlane|||Plane-aware panoramic completion for indoor sparse-view 3DGS, +17.8% PSNR
+GaussScene|||Scene-graph Gaussian Splatting for structured 3D scene understanding
+Robust Prior-Guided Seg.|||SAM-HQ prior-guided label reassignment for multiview-consistent 3DGS seg...
+ArtifactWorld|||Video generation models for 3DGS artifact restoration at scale
+3DGS Demo Synthesis (IL)|||3DGS-based demonstration generation for imitation learning
+FAD-GS|||Frequency-aware decomposition for GS compression: separating low/high frequency Gaussians
+SAM3D-Phys|||Integrates SAM3D generative 3D priors with physics-constrained spatial optimization to recover simulatable objects from reconstructed scenes; mask-guided appearance distillation
+RESPIRE|||CT-informed mesh-anchored GS for dynamic bronchoscopy
+Prune Wisely|||Adaptive pruning + Difference-of-Gaussian (DoG) primitives for compact 3DGS; up to 90% Gaussian reduction with quality preservation
+Zero-to-CAD|||Agentic synthesis of parametric CAD programs; 2B VLM trained on 1M+ synthetic CAD programs outperforms GPT-5.2 on CAD generation
+NegGS|||Negative color values for ring/crescent/non-convex structures
+GS-ID|||GS-based illumination decomposition: real-scene light field factorization for embodied intelligence and autonomous driving with high-fidelity light field data
+RDO-Gaussian|||End-to-end rate-distortion optimization: dynamic pruning + ECVQ quantization for 40x+ compression with continuous rate control
+DENSER|||EFA-GS based football NVS: camera-height loss weighting + Depth-Anything-V2 depth supervision + 3-model pixel-average ensemble
+RDSplat|||Robust watermarking against diffusion editing
+HAC|||Hash-grid context modeling, ~100x compression
+Softmax-GS|||Learnable softmax-based competition replacing α-compositing
+BrepGiff|||Lightweight generation of complex B-rep with 3D GAT Diffusion; graph attention network diffusion for B-rep topology+geometry (IEEE Xplore)
+F-RNG|||Feed-forward relightable 3DGS via LRM + IDM priors; ~25x faster than SOTA relighting
+YOGO|||Budget-aware equilibrium for ultra-dense scene control
+Gaussian-Enhanced Surfel|||Depth peeling for high-fidelity Gaussian-enhanced surfel rendering
+SplAttN|||Gaussian soft splatting for point cloud completion
+TemporalGS|||Training-free plug-and-play 3DGS rendering acceleration via temporal priors; dynamic culling + selective rendering; up to 1.48x speedup
+ForeSplat|||MetaGrad meta-gradient training makes feed-forward 3DGS output optimizer-friendly initializations
+BA-GS|||Bayesian Adaptive Gaussian Splatting for SfM-free 3D reconstruction; joint camera pose + Gaussian optimization from scratch via Bayesian uncertainty modeling
+GS-LLM|||LLM-guided GS for reasoning-driven 3D scene understanding and manipulation
+GS-UWF|||Ultra-widefield fundus reconstruction with Gaussian Splatting
+SimuScene|||Physics-in-the-loop compositional 3D scene reconstruction from single image; physics engine as diagnostic tool for gravity-axis stretching + amodal resampling
+ArtMesh|||Part-aware articulated mesh field: restricted Delaunay remeshing + bidirectional vertex-wise motion consistency for connected triangle mesh reconstruction; Articulate-100 benchmark
+GaussianHand|||Interaction-aware 3DGS for one-shot hand avatars
+BRepCLIP|||Contrastive multi-modal pre-training with BRep primitives for CAD understanding; BRep-graph CLIP for cross-modal retrieval and QA
+CLEAR-NeRF|||Collinearity and local-region enhanced accurate 3D reconstruction in unbounded scenes via geometric regularization
+Survey-GS-NeRF|||Comparative survey of 3DGS vs NeRF covering quality/speed/memory trade-offs
+3DGEER|||Exact ray-Gaussian integration replacing splatting approximation for fisheye/...
+SplattingAvatar|||Expression-conditioned Gaussian deformation
+Capacity-Controlled Stylization|||Capacity-controlled multi-view stylization of 3DGS; style-structure disentanglement with capacity budget
+Ground4D|||Spatially-grounded feedforward 4D for off-road reconstruction
+RAF|||Representation Abstraction Framework: bridging 3DGS and physics engines via unified abstraction layer; MPM/SPH/PBD multi-solver coupling; 3DGS-mesh-fluid-cloth-rigid bidirectional interaction; UE5 rendering with Lumen GI
+ManiGaussian|||Dynamic GS for multi-task robotic manipulation via Gaussian world model predi...
+GeoQuery|||Geometry-guided cross-view attention replacing corrupted rendering features w...
+FreeForm|||Particle-skinned eigenmodes for elastic deformation simulation on 3DGS/mesh; low-DOF physics-driven deformation without mesh requirement; NVIDIA + U Toronto
+GaussianShader-v2|||Enhanced shading with environment map estimation for indoor/outdoor relightable GS
+SCGaussian|||Structure consistency constraint + geometric regularization for sparse-view GS
+Survey-GS-4D|||Survey on 4D Gaussian Splatting for dynamic scenes: deformation/propagation/temporal coherence
+HumanSplat-NIPS|||Single-image human GS with SMPL-guided Gaussian binding
+GeoGS-SLAM|||Geometry-Only Gaussian Splatting for dense monocular SLAM; removes appearance modeling reducing per-primitive params 80%+; SOTA online mapping + geometry quality
+SpacetimeGS|||Spacetime Gaussian representation unifying spatial and temporal dimensions in single primitive
+GaussianImage|||2D Gaussian image codec at 1000+ FPS
+HGS|||Hierarchical GS progressive streaming with level-of-detail Gaussian structuring
+Sparse2DGS|||Sparse-view surface reconstruction using 2D Gaussian Splatting with dense point cloud initialization; confidence-aware depth regularization
+StreetNVS|||Multi-sensor NVS framework (LiDAR + multi-camera + ego-motion) via Reference-Enhanced Camera Attention + relative ray-level positional encoding; matches methods with 10-100x denser point clouds on Waymo; supports extreme out-of-trajectory synthesis
+GStex|||Texture-tiled Gaussians with UV-parameterized appearance for editable material and relighting
+GS-Avatar|||Animatable 3DGS avatar from monocular video with pose-dependent Gaussian deformation
+Mind the Gap|||Reveals 3-12 dB interpolation-extrapolation gap in standard 3DGS evaluation; proposes fair match count protocol + spatial preservation benchmark toolkit (16 scenes)
+Street-GS|||LiDAR-camera fusion + multi-view optimization
+BAGS|||Body-Aligned Gaussian Splatting with SMPL-guided Gaussian anchoring for human reconstruction
+4D-GSW|||Kinematic-aware watermarking via STC metric + HMM-MRF energy for spatio-temporal consistency in 4DGS
+GeoSAM-3D|||Open-vocabulary 3D scene segmentation on monocular video: 3DGS reconstruction + differentiable graph-geodesic propagation kernel (SAM prompt propagates along heat-kernel distance on Gaussian scene graph)
+DP-GES|||Depth Peeling enables sort-free Gaussian-Enhanced Surfel rendering with correct transmittance
+SplatShot|||Training-free 3D face avatar from single in-the-wild photo; per-step 3D feedback loop: predict clean image → refit 3DGS → photometric difference backpropagated to noise estimate; guides sampling trajectory toward 3D consistency
+GaussRender|||Unified rendering pipeline for GS supporting multi-modal output (RGB/D/N/S)
+Grassmannian Splatting|||Rank-2 spacetime surfels via Grassmannian parameterization; closed-form motion model without deformation field; fastest among compared methods (4.9-5.6x over quality baselines)
+3DGS Safety Evaluation for AD|||Industrial-fidelity AD scene reconstruction evaluation
+Generalizable Human GS|||Cross-view attention for sparse-view human splatting
+CoherentRaster|||Subpixel-level 3DGS rasterization for light field displays
+LetCamsGo|||4D reconstruction from sparse dynamic cameras; inter-camera feature matching + intra-camera point tracking + depth-ordering regularization
+Splat-Security|||First systematic security analysis of GS pipeline: attack surfaces in training data and rendering
+PG-3DGS|||Differentiable physics simulation coupled with 3D Gaussian representations; p...
+Fake3DGS|||Benchmark for 3D manipulation detection in neural rendering
+AGILE|||Agentic generation for hand-object interaction reconstruction from video; VLM guides generative model for complete watertight mesh; anchor-and-track strategy bypasses SfM; contact-aware optimization for physical plausibility
+EGS|||Efficient GS optimization with gradient-informed densification and pruning
+HarmoGS|||Conflict-aware gradient harmonization for in-the-wild 3DGS: semantic consistency-guided masking + dual-view gradient rotation + conflict-aware densification/pruning
+NeuMA|||Neural Material Adaptor replacing SH with physics-constrained material decomposition
+DeGenseGS|||Geometrically and semantically decoupled 4DGS for surgical scene understanding; HexPlane spatiotemporal entanglement module synchronizes semantic changes with scene dynamics
+PointGS|||3DGS as unified intermediate representation bridging discrete-continuous gap ...
+GUSH3R|||Single-forward-pass reconstruction of dynamic humans + static scenes as 3DGS primitives from monocular video; geometry-consistent online NVS
+Point Cloud Upsampling for 3DGS|||Systematic evaluation of 5 point cloud upsampling methods + depth-guided point lifting for 3DGS initialization; surface reconstruction excels for organic scenes, interpolation for piecewise-smooth geometries
+SR3R|||Rethinking Super-Resolution 3D Reconstruction with Feed-Forward Gaussian Splatting; multi-resolution feature fusion + progressive optimization for high-fidelity 3D from low-res input
+SRUG|||Shadow-guided relightable urban scene with generation model; shadow-guided 3D completion + iterative material decomposition via LMM
+SuperGS|||Super-resolution guided GS: using 2D SR priors to enhance 3DGS rendering quality
+GaussianEditor-v2|||Enhanced text-driven GS editing with Gaussian semantic tracing and hierarchical selection
+GSGAN|||Hierarchical GAN for direct 3D Gaussian generation
+GaussianPrior|||Gaussian prior transfer from pre-trained models for few-shot GS training
+AniGen|||Unified S³ Fields for single-image animatable 3D asset generation with skelet...
+GSQ|||Gaussian Splatting Quantization with learned step size + group-wise quantization
+ArtGS|||3D Gaussian Splatting for interactive visual-physical modeling and manipulation of articulated objects; bone-driven deformation + contact-aware rendering
+VG²GT|||Voxel-Gaussian Visual Geometry Grounded Transformer; frozen VFM + multi-scale differentiable voxel module + stochastic solid volume rendering for depth supervision; outperforms SOTA on DTU/Replica/TAT/ScanNet
+3DSGS|||General 3D Skew Gaussian primitives with re-derived CUDA rasterization for asymmetric shape modeling
+VolSplat|||Voxel-aligned feed-forward Gaussian prediction; replaces pixel-aligned splats with voxel-space alignment for stronger multi-view consistency
+3DTV|||Feedforward 3-camera interpolation at 40 FPS
+GaussianBeV|||BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation
+AlbedoEdit|||Unified generative video editing (insertion/removal/texture) via intrinsic albedo map guidance; single-frame albedo edit auto-generates harmonized RGB video with specular/shadow/mirror effects
+GaussianMarker|||Uncertainty-aware watermark embedding + robust extraction for 3DGS copyright protection
+InstructGS|||Instruction-driven GS editing with LLM-guided editing plan generation
+SceneGen-LLMRL|||Unified 3D scene generation + immersive interaction via LLM-RL coupling
+Pi-GS|||Reference-free π³ initialization for sparse-view 3DGS
+PhyGenHOI|||Physically-aware 4D HOI generation; MDM + MPM + 3DGS unified representation; windowed attraction + contact-driven re-simulation
+SplatTalk|||Audio-driven 3D talking face GS with emotion and style control
+GS-PT|||Gaussian Splatting pre-training: self-supervised representation learning for Gaussian initialization
+GaussianWorld-v2|||Enhanced world-model GS with autoregressive scene extrapolation
+NRGS|||Neural regularization for semantic 3DGS
+CAdam|||Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; first moment interference principle separates signal from noise; 85-97% Gaussian reduction
+High-Fidelity Human GS|||SMPL-X geometric priors + region-aware initialization
+ZPressor|||Bottleneck-aware compression for scalable multi-view feed-forward 3DGS; compresses redundant multi-view tokens so reconstruction scales beyond 100 input views
+Dynamic3DGaussians|||Per-point deformation network for monocular dynamic scene reconstruction with temporal Gaussians
+Dual Contouring of SDF|||Quadratic optimization for optimal vertex placement in dual contouring from discretely sampled SDF; no gradient information or training required; state-of-the-art surface reconstruction from SDFs
+OP2GS|||Dual-opacity primitives: decoupled visual opacity σ + instance occupancy σ* for object-aware 3DGS; eliminates per-Gaussian feature storage
+GaussianPretrain|||Self-supervised pre-training for Gaussian initialization from multi-view features
+SEIG|||VLM generates executable Blender programs from single image via staged decomposition (geometry→materials→composition→lighting); no differentiable rendering or multi-view supervision needed
+DOGS|||Distributed GS with communication-efficient Gaussian consensus for large-scale reconstruction
+GS-DOT|||Diffuse optical tomography via Gaussian Splatting
+TriSplat|||Triangle primitives replace Gaussians; simulation-ready mesh export from single forward pass
+HDR-GS|||HDR-specific GS luminance encoding + fast tonemapping for 1000x HDR view synthesis
+Survey-GS-Surface|||Survey on surface reconstruction from Gaussian Splatting: regularization/TSDF/SDF fusion methods
+GS-Fed|||Federated GS training across multiple clients for privacy-preserving reconstruction
+Survey-GS-Compress|||Comprehensive survey on 3DGS compression: pruning/quantization/entropy coding/neural codecs
+GaussOcc|||GS-based 3D occupancy prediction with Gaussian-anchored dense features
+DepthSplat|||Stereo-guided depth regularization for feed-forward 3DGS
+PixelSplat|||Epipolar Transformer for feed-forward stereo GS reconstruction from image pairs
+ODGS|||Spherical projection + panoramic camera GS rasterization adaptation for 360-degree images
+MobileGS|||Extreme 50-100x compression for mobile deployment
+GaussianCity|||City-scale GS with progressive training and semantic-guided densification
+SSD-GS|||Scattering and shadow decomposition for relightable 3DGS
+Track2Map|||Online deformable GS SLAM for robotic surgery; track-anchored deformation initialization; joint camera + scene optimization from surgical video
+AsySplat|||Asymmetric architecture decoupling geometry and appearance modeling; coarse geometry branch + fine appearance branch; ~800x speedup over optimization-based methods
+LangFlash|||Sparse semantic encoding (global dict + local weights) for feed-forward 3D language GS from unposed images
+MGS|||Matryoshka continuous LoD via stochastic budget training; single ordered set ...
+GaussianOpacityFields|||Opacity field formulation enabling direct mesh extraction from GS without post-processing
+GauSF|||Gaussian Splatting with scene flow for consistent dynamic reconstruction
+Vidu4D|||Dynamic Gaussian Surfels for single-video to 4D reconstruction
+GaussianAT|||Attention-based GS for driving scene with temporal-aware Gaussian aggregation
+MarineSTD-GS|||Spatiotemporal underwater degradation modeling
+3DGS|||Anisotropic 3D Gaussians with tile-based differentiable rasterization
+LightGS|||Distillation-based, ~15-20x compression
+GaussianSSC|||GS-based 3D semantic scene completion with Gaussian-anchored feature lifting
+GeoGS-SLAM (v2)|||Online monocular SLAM combining 3DGS with learned geometric priors; coarse-to-fine strategy + online loop closure
+InstantSplat|||Pose-free sparse-view reconstruction in ~40 seconds
+CAGS|||VQ-based LoD for 3DGS streaming + low-res reference image color-distortion co...
+GP-3DGS|||Geometry-Preserving 3DGS for LiDAR-Camera extrinsic calibration; blocks photometric gradients from updating Gaussian spatial parameters to prevent geometry drift; dense depth supervision from multi-view LiDAR aggregation; outperforms targetless methods on public driving datasets
+AnySplat|||In-the-wild feed-forward with appearance/lighting variation handling
+City-Level 3D Surface|||Viewpoint orientation partitioning for 3DGS scene division; similar-orientation views joint depth estimation; multi-GPU parallel city-scale surface reconstruction
+RiGS|||Static/rigid/transient Gaussian decomposition + scene flow guidance for monocular 4DGS
+GScream|||Cross-attention feature propagation bridging visible/invisible regions for 3D object removal
+Aes3D|||First aesthetic assessment framework for 3DGS scenes; Aesthetic3D dataset + Aes3DGSNet that predicts scores directly from Gaussian primitives
+3DReflecNet|||Large-scale dataset for 3D reconstruction of reflective, transparent, and low-texture objects; systematically tests 48 material parameter combinations; reveals 3 failure modes in 3DGS/NeRF
+EvoGS|||First continuous-layering 3DGS representation via Evolution Tree; wavelet-inspired parent-child refinement structurally corrects ancestral errors; splat redundancy reduced from 65% to <25%; 2.4x transmission payload reduction; 5.5x GPU VRAM footprint reduction; smooth quality transitions for adaptive streaming
+AsyncEvGS|||Asynchronous event camera + RGB dual-system for motion-blurred 3DGS; high-resolution async RGB-Event cross-domain pose estimation via VGGT
+GS2Mesh|||Surface-regularized GS → mesh extraction with multi-view depth consistency constraints
+PixGS|||Single-stage pixel-space diffusion directly generating 3D Gaussians; bypasses lossy latent compression; denoise Gaussian attributes per timestep; inference ~1s/A100
+GuardMarkGS|||First unified watermarking + edit deterrence framework for 3DGS copyright pro...
+SplatAD|||Autonomous driving GS with dynamic object decomposition and sensor simulation
+SDTalk|||Structured facial priors + dual-branch motion fields for Gaussian talking hea...
+CT-GS|||GS-based CT volume reconstruction with sparse-view acceleration
+FieryGS|||Physics-integrated combustion simulation + 3DGS rendering
+DS-StyleGaussian|||Data-sufficient zero-shot 3D style transfer via feature Gaussian splatting + deferred stylization with 2D pre-trained decoder
+Gaga|||Group Any Gaussians via 3D-aware Memory Bank; leverages inconsistent 2D masks from zero-shot segmentation models; 3D-aware memory bank for robust cross-pose mask association
+TDg|||Thermal-to-Depth GS using only thermal images + depth estimation; removes RGB reliance; 55% training time reduction
+UniGS|||Unified Gaussian Splatting: single model supporting multiple rendering modes (RGB/depth/semantic)
+UniMGS|||Single-pass rasterization for both mesh and Gaussians simultaneously
+OT-UVGS|||Optimal-transport UV mapping as capacity allocation
+GaussianCut|||Graph cut algorithm for interactive 3DGS segmentation enabling instance-level editing
+RoVES|||Physics-aware road geometry insertion + 4-DOF vehicle dynamics for driving scene editing; 6.24s pipeline
+GSMem|||3DGS as persistent spatial memory for zero-shot embodied exploration and reas...
+RoboSplat|||3DGS-based diverse and spatially accurate data generation for robotic manipul...
+StreamLoD-GS|||Level-of-Detail structured 3DGS for streaming free-viewpoint video; progressive LoD delivery for bandwidth-adaptive FVV
+PaMoSplat|||部分感知 GS with graph-clustered Gaussian parts + differential evolution fo...
+FreeSplat|||Generalizable feed-forward indoor 3DGS with pixel-aligned Gaussian prediction
+GS-Skin|||Skin reflectance model in GS for physically accurate human material estimation
+SplatWeaver|||Cardinality Gaussian Expert Routing (0/1/2/3 experts) + DWT frequency prior +...
+GS-LRM-full|||Full-scale GS-LRM with extended context for large-baseline feed-forward reconstruction
+EMGS|||Expectation-Maximization framework for GS density control replacing heuristic clone/split/prune
+GaussianAvatar|||Pose-driven human body Gaussian representation
+TokenGS|||Encoder-decoder with learnable Gaussian tokens unbinds primitive count from input resolution
+OpenSpatial|||Principled open-source data engine for spatial intelligence; 3M-sample dataset; 5 foundational task hierarchy (Spatial Measurement, Spatial Relationship, Camera Perception, Multi-view Consistency, Scene-Aware Reasoning); 19% relative improvement on spatial benchmarks
+SpqGS|||Scalable parallel quantization for GS with hardware-friendly bit allocation
+PairDropGS|||Paired dropout-induced consistency regularization with progressive scheduling...
+GaussianZoom|||Progressive zoom-in generative 3D reconstruction with multi-scale semantic reasoning + expandable continuous LoD hierarchy
+WebSpline|||Structure-Informed Spline (learnable Hermite spline) models Gaussian trajectories + Structural Proxy Graph organizes motion; SOTA on iPhone dataset, 10x faster than WorldTree
+ColoredGaussian|||Color-controllable Gaussian editing with per-Gaussian color attribute decomposition
+GeometryCloak|||Geometric perturbation copyright watermark embedding into Gaussians preventing TGS-based 3D reconstruction
+SemanticGauss|||Unified semantic Gaussian representation for joint reconstruction and understanding
+DynMF|||Dynamic neural motion fields decomposing scene motion into compact basis functions for 4D GS
+ULF-Loc|||Unbiased landmark feature for robust visual localization with 3DGS; identifies alpha-compositing feature bias and replaces with geometry-weighted aggregation + keypoint consensus sampling
+Splat-MO|||Moving object discovery and reconstruction in 4DGS with motion-based Gaussian grouping
+GS-Blur|||Motion blur-aware GS training with blur kernel estimation for sharp reconstruction
+DeG|||Density-Sampled Gaussians: learnable probability density on octree for adaptive density control; fully differentiable analogue to densification/pruning; latent diffusion with VecSeq canonical re-indexing
+GOR-IS|||Physically consistent object removal via intrinsic decomposition
+GLINT|||Scene-scale transparency via decomposed Gaussian radiance transport for glass
+Gaussian Splatting SLAM|||First real-time monocular 3DGS SLAM
+SplatFace|||Face-specific GS with identity-preserving Gaussian anchoring from single image
+GS-Drive|||GS-based closed-loop driving simulation with dynamic agent rendering
+Geometry Gaussians|||Adds geometry opacity parameter per splat to decouple appearance and geometry in 3DGS; improves both rendering quality and geometry extraction, especially for transparent/thin objects
+S3PO-GS|||Global scale-consistent outdoor monocular 3DGS SLAM
+Binocular3DGS|||Binocular disparity-guided depth + GS joint optimization for sparse views
+GES|||Generalized Exponential Splatting: generalized exponential family replacing Gaussian for flexible primitive shapes
+P2M++|||Enhanced solver for point-to-mesh distance queries
+XFreq-GS|||Cross-frequency wireless radiation field reconstruction with shared geometry ...
+Mobile Avatar (Pruned Blendshapes)|||High-fidelity mobile avatars with pruned local blendshapes
+MaGS|||Mesh-adsorbed Gaussians; deform mesh → Gaussians follow
+CADFit|||IoU-driven hybrid optimization over structured CAD programs (extrusions, revo...
+EvFlow-GS|||Event camera + optical flow for motion blur handling
+Compact-3DGS|||Vector quantization + pruning, ~10-15x compression
+GaussCAD|||CAD reconstruction from GS with parametric primitive extraction
+GS-World|||World model generative simulation + Engine-driven Sim2Real VLA unified paradigm: 3DGS as differentiable, physically consistent simulation engine for robot skill learning
+AmbiSuR|||Photometric ambiguity self-indication via SH in 3DGS; primitive truncation + ray-color consistency for intrinsic disambiguation (Beihang + NUS)
+GaussianGrasper|||3D language GS for open-vocabulary robotic grasping via efficient feature dis...
+StructSplat|||Sparse-view generalizable 3DGS without camera parameters; structure-guided reconstruction from HITSZ/DU/BUTD
+DC-Gaussian|||Reflection separation + degradation-aware training for reflective dashcam 3DGS
+NAB-GS|||Negative Alpha Blending for zero-shot CT super-resolution; models positive/negative Gaussian densities for signed residuals
+GaussMesh|||Hybrid GS-Mesh representation with mutual supervision for surface reconstruction
+CodecSplat|||Ultra-compact entropy-coded latent features for feed-forward 3DGS; 20-108 KiB per scene, ~10x smaller than post-hoc compression of raw primitives
+GPSGaussian|||Generalizable pixel-aligned stereo GS for real-time novel view synthesis from stereo pairs
+3DGS-Avatar|||Deformable 3DGS for animatable human avatars with pose-conditioned Gaussian deformation
+GLMap|||Multi-scale Gaussian-Language map for zero-shot navigation
+Ambient-Robust Inverse Rendering|||Active RGB-NIR imaging for ambient-robust inverse rendering; near-infrared assistance for material decomposition under varying illumination
+Free Geometry|||Self-evolving feed-forward models via LoRA without 3D GT
+DreamGaussian|||SDS text-to-3D with 3DGS prior for orders-of-magnitude speedup
+ExpressiveGaussianHuman|||Expression-coefficient-driven Gaussian deformation fields for expressive human avatars
+GaussVis|||GS-based visualization for scientific data with interactive exploration
+SOG-GS|||Structured-omni-group GS: channel-grouped quantization preserving inter-Gaussian correlations
+GaussianHands-2|||Hand avatar GS with cross-attention feature blending for dexterous manipulation
+GaussianWorld|||World-model GS: dynamic scene forecasting with Gaussian-based future prediction
+Argus|||Image-derived LiDAR-level pose constraints for 3DGS without LiDAR; consumer-grade 3DGS applications (如视)
+SplaTAM-3|||Third-generation GS-SLAM with semantic loop closure
+FlowGS|||Flow-driven Gaussian densification for dynamic regions in 4DGS
+BiSplat-WRF|||Gaussian Splatting for wireless radiance field reconstruction
+PD-4DGS|||Progressive 4DGS compression/streaming with Hierarchical Deformation Decompos...
+DDF-GS|||Directed Distance Fields for constant-time ray queries on 3DGS scenes; 52MB neural field distilled from trained 3DGS; 26-72x faster than SDF sphere tracing; supports global illumination secondary rays at 30.3 dB shadow / 21.3 dB AO fidelity
+LightGS-v2|||Light-stage GS with spherical harmonics decomposition for full relighting
+EpiSplat|||Epipolar-aware cross-attention for feed-forward GS, encoding multi-view geometry priors
+Provable Pruning via Coresets|||First provable coreset construction theorem for 3DGS pruning; sensitivity-based sampling with multiplicative approximation guarantees; SOTA under aggressive compression + minimal finetuning
+MoE-GS / MoDE|||Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling
+PDE-Constrained 3DGS|||PDE physical constraints for 3DGS artifact removal; geometry occupy supervision for boundary precision; eliminates floating artifacts and sharpens geometric boundaries
+IP-GS|||Intellectual property protection for GS models via ownership verification
+FLUIDSPLAT|||Physical flow field reconstruction via anisotropic GS partition-of-unity; proven O(K^{-s/d}) Sobolev approximation rate
+Flow4DGS-SLAM|||Optical flow-guided 4D Gaussian SLAM for dynamic scenes; category-agnostic motion mask via ego-motion decomposition; GMM temporal opacity/rotation; flow-guided camera pose initialization (NUS)
+GaussianShader|||Shading functions for reflective/refractive surfaces
+BrepGaussian|||3DGS + B-rep CAD reconstruction to parametric STEP models
+FreeFix|||Fine-tuning-free diffusion guidance for extrapolated 3DGS
+3DGST|||3D Gaussian Splatting Transformer for feed-forward text-to-3D generation
+MeshWeaver|||Autoregressive next-vertex prediction guided by multi-level sparse-voxel encoder; 18% compression ratio, generates up to 16K-face meshes
+CompGS|||Compact GS with learned importance-aware quantization + progressive decoding
+GS-Uncertainty|||Uncertainty-aware GS training with Bayesian Gaussian parameter estimation
+GaussianCube|||Optimal Transport reorders Gaussians into voxel grid structure enabling 3D diffusion generation
+BEA-GS|||Visible boundary + non-visible extraction losses for near-perfect object extraction from 3DGS
+SplatSim-v2|||Enhanced GS simulation with domain randomization for robotic learning
+Dynamic 3DGS Paradigms|||Categorizes dynamic 3DGS into structure-guided (deformation fields, canonical spaces, grids) vs. gaussian-centric (continuous functions, 4D representations); reveals quality/compactness vs. speed trade-off
+EndoGS|||Endoscopic scene reconstruction with GS for surgical navigation
+Habitat-GS|||3DGS-rendered simulator for robot navigation training
+MidSurfNet|||Learning-augmented mid-surface abstraction: neural face pairing module + interference implicit field (SDF intersection) for arbitrary offset control; 87.32% pairing accuracy; 1,500+ annotated CAD model dataset
+Triangle Splatting SLAM|||First dense RGB-D SLAM with differentiable triangles as 3D map representation; Delaunay triangulation converts triangle soup to connected mesh online; supports mesh deformation and collision detection; outperforms baselines on Replica/TUM-RGBD
+Faster-GS|||Systematic benchmark separating engineering from algorithmic acceleration
+X-GS|||Extensible GS framework: X-GS-Perceiver for online SLAM + semantic distillation, X-GS-Thinker for multimodal downstream tasks
+LeanGaussian|||Extreme compression from single RGB image for efficient large-scale rendering
+SAGD|||Self-supervised articulated Gaussian discovery: automatic part segmentation + articulation estimation without supervision
+GSDF|||Dual representation: GS guides SDF geometry, SDF provides normal regularization for GS
+Dynamic Mesh-Gaussian|||Dual-representation framework: fixed-topology mesh for physics + Gaussian splatting for rendering; 4.65x speedup over varying-topology baseline; benchmark reveals 65-80% geometric degradation from topology conversion
+Scaffold-GS+|||Progressive training for better city-scale quality
+MAGICIAN|||Active mapping with imagined Gaussians + beam search
+GS-Physics|||Physics-integrated GS with differentiable simulation for rigid/soft body dynamics
+GS-Phong|||Phong shading model replacing SH for physically-grounded specular and diffuse decomposition in GS
+SplatLoc|||GS-based visual localization with Gaussian-anchored map representation
+Vol3DGS|||Physically accurate volume-consistent rendering resolving splatting/volume in...
+6DGS|||6-DoF Gaussian Splatting: explicit orientation-aware primitive with full 6D pose parameterization
+Spatial-TTT|||Test-time training for streaming spatial intelligence; 2B-parameter model surpasses GPT-5 and Gemini-3-pro on spatial benchmarks; continuous spatial memory update from long-form video streams; 40%+ savings in VRAM and compute
+Sparse-View Surface via GS|||Normal-guided depth propagation from high- to low-confidence regions + outlier depth edge-aware regularization; resolves Gaussian discreteness-induced depth discontinuities
+ReLaGS|||Relational Language Gaussian Splatting: open-vocabulary 3D semantic reasoning without per-scene training; hierarchical relational language field for segmentation/retrieval/relation understanding
+PocketGS|||On-device 3DGS training for mobile; geometry-faithful priors + anisotropic seeding + cached alpha compositing for stable mobile backprop
+GaussianSplatting-SLAM-v2|||Enhanced 3DGS-SLAM with improved tracking and mapping for RGBD SLAM; addresses the gap between 3DGS rendering quality and SLAM real-time constraints
+SuGaR|||Surface-aligned Gaussians for mesh extraction via TSDF + Marching Cubes
+TransmissiveGS|||Residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction; separates reflection and transmission components via residual-guided decomposition
+GeCGS|||Geometry-consistent GS: cross-view geometric consistency regularization preventing floaters
+GS-Aug|||Gaussian augmentation: synthesizing multi-view training data for GS regularization
+FSGS|||SRF geometric prior + 3DGS for few-shot view synthesis
+WildSplat|||First feed-forward 3DGS from unposed in-the-wild images; dual-branch architecture decoupling geometry and appearance for appearance-conditioned NVS
+EditGS|||Editable GS with Gaussian-level selection and transformation propagation
+VR-Robo|||Real-to-Sim-to-Real framework for visual robot navigation and locomotion via ...
+RoSplat|||Robust feed-forward pixel-wise GS with alpha normalization + 3D sampling regu...
+TensorGS|||Tensor Core acceleration for 3DGS: tensorizes rasterization into FP16 matrix operations with cross-tile grouping; 1.65x end-to-end speedup with negligible quality loss
+GauHuman-v2|||Second-generation human GS with improved SMPL-guided Gaussian binding
+D-Rex|||Diffusion post-process relighting for expressive avatars
+AnchorGS|||Anchor-based GS with learnable anchor positioning replacing random initialization
+OpenGaussian-v2|||Enhanced open-vocabulary GS with hierarchical feature aggregation
+VEDAL|||Variational free energy minimization for 3DGS pruning; prediction-error gating triggers asynchronous pruning + variational uncertainty head models pruning as latent variable with learnable prior; 5.2x compression with only 0.31 dB PSNR drop; 185 FPS
+DG-SLAM|||Dynamic Gaussian SLAM with hybrid pose optimization for dynamic environments
+GaussianAvatars-2|||Second-generation Gaussian avatars with FLAME-aligned Gaussian anchoring
+DreamMesh4D|||Sparse-controlled Gaussian-Mesh hybrid 4D generation
+TwinPose|||Multi-view 3D pose estimation via person-specific subspaces
+4DGS-Wild|||Uncertainty-aware regularization for 4DGS from unconstrained videos
+SIC3D|||Style image conditioned text-to-3D Gaussian Splatting generation
+MD-Splatting|||Multi-dynamic Gaussian Splatting: decomposing monocular video into multiple dynamic object layers
+SceneFrom3D|||Geometry-conditioned outdoor 3D scene generation via view scheduling with object-level control; directed generation graph with anchor views + interpolation trajectories
+ArtiTwinSplat|||Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos; enables interaction with reconstructed digital twins; agent-system integration for articulated object manipulation
+R5DGS|||Identity Encoding + rigid-body centroid constraint for semantic-aware 4DGS; CLIP-based object lookup; 11 FPS speedup
+GaussianFlow|||Optical flow-guided 4DGS for temporally consistent dynamic scene reconstruction
+DGSG-Mind|||Dynamic 3D Gaussian scene graphs with probabilistic voxel grid + 3D Gaussian Mind for embodied multimodal reasoning; best zero-shot 3DVG on self-reconstructed maps
+DL-SLAM|||Dual-level probability framework for dynamic environment GS-SLAM; semantic+geometric pixel/object-level dynamic probability; artifact-free static map + semantic map
+Z-Order GS|||Z-order strategy for spatially coherent Gaussian sequence with sparse attention
+LEGaussians|||Language-embedded Gaussians with CLIP-directed per-Gaussian feature alignment
+EulerianGS|||Replaces heuristic ADC densification with gradient-based optimization of volumetric probability density via hashed probability pyramids; unbiased gradient estimator with control variates; SOTA on mip-NeRF 360
+GaussianShell-CVPR|||Gaussian shells: surface-constrained Gaussians with shell-based opacity formulation
+KDH-CAD|||Knowledge-data hybrid CAD learning: pretrained foundation model + structured domain knowledge from textbooks + small labeled CAD data; 92.6% accuracy with only 250 samples, 95.8% with 1,000
+GaussianCross|||Cross-attention GS with multi-view feature aggregation for generalizable reconstruction
+GenWildSplat|||Generalizable sparse-view 3D reconstruction from unconstrained images
+VQGS|||Vector-quantized GS with residual codebook learning for high-ratio compression
+GS-Map-SLAM|||Gaussian-based dense mapping for SLAM with view-dependent quality; real-time dense mapping via GS optimization
+Large-Scale HQ 3D Gaussian Head|||Multi-view large-scale high-fidelity 3D Gaussian head reconstruction
+Human3Diffusion|||Diffusion + GS dual-driven 3D human avatar reconstruction
+FullyExplicitDynGS|||No-MLP directly parameterized dynamic Gaussian trajectories, fully explicit representation
+Learn2Splat|||Meta-learned optimizer for 3DGS via checkpoint buffer + optimizer rollout; extends optimization horizon without degradation; zero-shot generalization (Geiger group)
+Ev-GS|||Event camera-integrated 3DGS for high-speed and HDR scene reconstruction
+Splat-GS|||Scalable Gaussian editing with progressive region selection and style transplantation
+FreeMoCap|||Open-source markerless motion capture from webcams (AGPL-3.0, 8.3k stars); dr...
+2DGS-SLAM|||Globally consistent RGB-D SLAM with 2DGS; loop closure + global optimization
+GS-STVSR|||Ultra-efficient continuous spatio-temporal video super-resolution via 2D Gaus...
+LangSplat|||CLIP features stored per-Gaussian for open-vocabulary 3D queries
+GaussianObject|||Object-centric GS from sparse views with depth-regularized Gaussian initialization
+GaussianTalker|||Audio-driven Gaussian talking head with facial prior and emotion control
+GEM|||Gaussian Evolution Model for non-autoregressive occupancy forecasting: continuous 4D Gaussian primitives with learned dynamics for motion planning
+GeM-NR|||Geometry-aware multi-view editing for nonrigid scene changes; training-free depth alignment + query refinement for consistent nonrigid editing
+Fast 3D Foundation Model Initialized GS|||3D foundation model replacing SfM for pose/point cloud initialization; joint pose-Gaussian optimization; ~3 min/scene training
+WeatherCity|||Weather Gaussian representation for 4D urban scene weather editing; shared scene features + weather-specific decoders + physics-driven particle simulation
+LE3D|||Low-light to HDR linear GS encoding + denoising for Lighting Every Darkness
+MVFusion-GS|||Motion-variance guided refinement + MotionFormer temporal attention for dynamic 3DGS; explicit motion awareness improves foreground motion + static background
+LGGS|||Language-guided GS for zero-shot 3D understanding without per-scene training
+RGS|||Residual wavelet-GS for ultra sparse-view CBCT reconstruction
+GaussianSea|||Underwater GS with depth-dependent color correction and scattering compensation
+FRUC|||Feed-forward 3DGS for dynamic scene reconstruction from uncalibrated collaborative driving views; ego-centric causal occlusion field + zero-initialized injection
+SplatCtrl|||Perception-action coupling via GS + reactive robot control; isotropic Gaussian → continuous SDF → control barrier functions; collision-free manipulation
+Latent Dynamics|||Pose-driven 3DGS avatar with transformer decoder + dynamics residual latent; learned force decomposition (driving/restoring/dissipative) for temporally coherent clothing animation
+VCR-GauS|||View-consistent depth-normal regularization for GS surface reconstruction
+3DGS\u00B3|||Joint super sampling and frame interpolation for real-time large-scale 3DGS
+SAGS|||Shape-aware GS: shape priors guiding Gaussian distribution for anatomically faithful reconstruction
+Semantic Foam|||Volumetric Voronoi mesh for spatial + semantic decomposition
+HairGPT|||Strand-as-Language autoregressive modeling for 3D hairstyle synthesis
+MoS-GS|||Motion-separable GS: factoring dynamic scenes into moving object layers
+HiGS|||Hierarchically Tiled Gaussian Splatting: decouples partitioning (coarse macro-tiles) from rasterization (fine render tiles); up to 15.8x faster than original 3DGS while preserving exact front-to-back alpha compositing
+TWINGS|||Thin Plate Splines warp-aligned initialization for sparse-view 3DGS; TPS aligns backprojected points with triangulated 3D control points
+HoloTetSphere|||Unified TetSphere mesh reconstruction for physical simulation; Gaussian sphere coupling + edge-based element pruning; bypasses error-prone tetrahedralization
+TideGS|||Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy; block-virtualized geometry + trajectory-adaptive differential streaming on 24GB GPU
+AssetGen|||Deployable 3D asset generation at interactive speed; feed-forward texture+geometry generation for real-time 3D asset creation
+SwagGS|||Splatting with adaptive Gaussians: adaptive covariance optimization replacing hand-tuned schedules
+SCube|||VoxSplats: voxelized splat with hierarchical LOD for large-scale streaming reconstruction
+GSCompleter|||Distillation-free sparse-view completion via Stereo-Anchor
+InFusion|||Inpainting-guided Gaussian Splatting for 3D content insertion and scene completion
+Multi-view Consistent 3D Gaussian Head Avatars|||Achieves multi-view consistent 3D Gaussian head avatars without requiring multi-view generation; single-view input to 3D Gaussian head (Aviral Chharia, Fernando De la Torre)
+SatSurfGS|||Generalizable 2D Gaussian Splatting for sparse-view satellite surface reconstruction; confidence-aware multi-view feature aggregation for orbital imagery
+Incremental 3D Gaussian Triangulation|||Online incremental mesh extraction from dense Gaussian triangulation; plane-based pulling constraint + dynamic historical region freezing
+Gaussian-Enhanced Surfel Rendering with Depth Peeling|||Depth peeling technique for high-fidelity Gaussian-enhanced surfel rendering; resolves transparency ordering for glass/transmissive scenes
+SuperSplat|||Super-resolution guided Gaussian densification for detail enhancement in sparse-view settings
+SK-GS|||Template-free articulated GS with skeleton auto-discovery + articulated deformation fields
+DinoComplete|||3D Shape Completion with distilled semantic priors and state space models; DINOv2 distillation for partial shape completion
+FTSplat|||Feed-forward triangle primitive generation
+Hybrid-Capture Two-View Training|||Two-view-per-step as dominant training lever
+GaussHDR|||HDR-robust GS with exposure-aware Gaussian decomposition
+Flux-GS|||Monte Carlo Specular Energy Aggregator for mobile 3DGS: samples 3rd-order radiance residuals into compact latent space + Attribute-Conditioned SH Enhancement + Multi-view Alpha-based Densification/Pruning; real-time mobile rendering with significant parameter reduction (UTS/Baidu/U Adelaide)
+LiteLoc|||Color-free decoupled feature field for compact 3DGS localization: eliminates 94% redundant storage; condensing strategy distills matches to 5% for 19x speedup
+SymTRELLIS|||Symmetry-enforced voxel latents for 3D generation; velocity symmetrization at each ODE step enforces arbitrary finite point group symmetries; no VAE/flow retraining
+ROAR-3D|||Routing arbitrary views for multi-view 3D generation; token-wise view router establishes 2D-to-3D correspondences without explicit pose input; dual-stream attention preserves pretrained single-view behavior
+3D Representation Survey|||Recent advances and trends in learning-based 3D representations; paradigm shift from explicit to implicit/splatting representations
+Cross-View Splatter|||Ground+satellite cross-view feature fusion for outdoor 3DGS reconstruction; unified GPS-tagged 3D coordinate frame
+SVGS-Edit|||Single-view text-driven 3D editing with sparse 3DGS (disambiguation: distinct...
+GeoRect4D|||Geometry-compatible generative rectification for dynamic sparse-view 3D recon...
+PDF-GS|||Progressive distractor filtering for robust 3DGS
+IDESplat|||Iterative depth probability estimation for generalizable 3DGS; refines depth via multi-iteration probability updates
+Instant Colorization|||Visibility-weighted least squares for per-Gaussian colorization
+GGN|||Gaussian Graph Network modeling inter-Gaussian relationships with graph neural networks
+WaterGS|||Invisible watermark embedding in GS parameters with robustness against rendering-level attacks
+DropAnSH-GS|||Dropping Anchor and Spherical Harmonics for sparse-view Gaussian Splatting; anchor-based dropout strategy + SH regularization to mitigate overfitting
+GaussianShell|||Shell-structured Gaussians constrained on surface manifold for geometrically faithful reconstruction
+Real2Sim|||4DGS + differentiable MPM solver for physics-aware autonomous driving simulation
+GS-Retexture|||Texture transfer in GS with UV-aligned Gaussian appearance modification
+Gaussians on a Diet|||Memory-bounded training, 80% lower peak memory
+BAD-Gaussians|||Bundle-adjusted deformation Gaussians for consistent editing across views
+GS-IR-v2|||Enhanced inverse rendering with GS: joint geometry + BRDF + lighting estimation
+TrackRef3D|||Track-then-label paradigm with TSCM for open-world referring segmentation in 3DGS
+MAGS-SLAM|||First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry...
+LumiMotion|||Improving Gaussian relighting with scene dynamics
+Dynamic 3D Gaussians|||Per-point deformation network for monocular dynamic scenes
+HGS-Det|||Hierarchical GS for 3D detection with multi-scale Gaussian features
+ProgressiveAvatars|||Progressive animatable 3D Gaussian avatar generation
+GAGAvatar|||Generalizable and animatable Gaussian head avatar from monocular video
+GS-Manifold|||Manifold-constrained Gaussians for surface reconstruction with topological guarantees
+LightGaussian|||Global+local pruning + SVD distillation for 15x compression at 200+ FPS
+MonoPhysics|||Monocular inverse physics using differentiable MPM + 3DGS; three visual-physical bridges for joint geometry/appearance/physics
+AdpSplit|||Error-driven adaptive split operator replacing heuristic binary split; 9.2-22...
+Gaussian Grouping|||Identity encoding per Gaussian + SAM supervision + 3D spatial consistency for open-world 3D segmentation and editing
+DGD-v2|||Dense Gaussian distillation with multi-scale feature alignment for enhanced quality
+gsplat|||CUDA-accelerated 3DGS rasterization library; 4x VRAM savings; 10% training speedup; production-grade real-time rendering; part of nerfstudio project
+GaussCalib|||Joint camera calibration and GS optimization for posed/unposed images
+CityGS-v2|||Second-generation city-scale GS with block-wise training and seamless merging
+IRIS|||Hybrid proxy with analytical ray-primitive intersection
+Dynamic3DGS-Urban|||MAP4D: static background + dynamic instance decomposition for urban dynamic scenes
+AnchorSplat|||3D-native end-to-end depth network via Point Anchor Mechanism for GS detail enhancement; 10^5x faster than optimization methods; zero-shot generalization to generated models
+BlitzGS|||Distributed 3DGS with parity-based GPU sharding + importance-scoring for city...
+NeuSG|||Neural surface-guided GS: SDF-guided Gaussian anchoring for consistent surface reconstruction
+View-Dependent Splatting Kernels|||Learns view-dependent splatting kernels replacing fixed Gaussian kernels; improves rendering quality for Gaussian/surfel-based representations
+Anythingreality|||Robust online GS SLAM for VR scene exploration + VLM interaction; ORB-SLAM3-based pose + real-time Gaussian reconstruction; +14.5% PSNR, 88% VLM recognition
+PGSR|||Planar-based regularizer for high-fidelity surface reconstruction
+CompactGS|||Vector quantization + learned codebook for compact Gaussian attribute storage
+GaussianLoc|||GS-based visual localization with dense Gaussian map
+Feature 3DGS|||Distilled DINO/SAM features for 3D segmentation/detection
+SplatDM|||Score distillation from diffusion models into Gaussian Splatting for 3D generation
+E2EGS|||Event-to-edge pose-free 3D reconstruction
+MotionDreamer|||Category-agnostic skeletal animation from 2D video; structural-semantic injection maps visual dynamics to heterogeneous joint hierarchies; 20,000+ 3D model dataset with rigging and animation
+DiffSoup|||Triangle soup as extreme radiance field simplification
+SurfFill|||LiDAR point cloud completion via Gaussian surfel splatting; ambiguity heuristic for LiDAR beam divergence artifacts; divide-and-conquer for building-sized completion
+DN-4DGS|||Denoised deformable network with temporal-spatial aggregation for dynamic scene rendering
+MegaGaussian|||Mega-scale GS training with progressive data loading and chunk-based optimization
+StereoSplat+|||Feed-forward stereo GS with diffusion-assisted progressive inference; one-step diffusion enhancer + stereo cost-volume + triplane 3D volume fusion
+EpipolarFree-GS|||Removing epipolar constraint for generalizable NVS, stronger cross-domain generalization
+NG-GS|||NeRF-guided Gaussian-level semantic assignment
+Denoising-GS|||Formulates 3DGS optimization as primitive denoising; spatial gradient denoisi...
+APEIRIA|||Neuro-symbolic 3D spatial reasoning framework combining 3D MLLM open-vocabulary understanding with programmatic verification; bridges black-box neural reasoning and interpretable symbolic spatial reasoning
+SplatAD-v2|||Enhanced driving GS with multi-sensor fusion and sim-to-real transfer
+GAVIS|||Uncertainty-driven 3DGS active mapping via anisotropic visibility field (spherical harmonics); Bayesian Network rasterizer at 200 FPS
+3DEditSafe|||First safety-regularized 3D editing framework constraining NSFW semantic propagation; 3D safety regularization + safe semantic projection + residue suppression
+RetroNVS|||Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark
+GausCtrl-AD|||Controllable GS generation for AD simulation with layout conditioning
+GS-Mosaic|||Mosaic-style GS editing for large-scale scene layout modification
+GaussianDark|||Noise-aware 3DGS training + low-light robust rendering for in-the-dark reconstruction
+GEMM-GS|||GEMM-compatible blending for Tensor Core utilization, 1.42x speedup
+AdaptSplat|||Adapting vision foundation models for feed-forward 3DGS; leverages pretrained ViT/DINO features for cross-scene generalizable Gaussian prediction
+DelightingFace|||Dataset Latent Modulation delighting prior for facial appearance capture; 4K ...
+CADFS|||Large-scale CAD program dataset + LLM-assisted CAD understanding
+Survey-GS-Physics|||Survey on physics-integrated Gaussian Splatting: fluid/solid/cloth simulation + differentiable rendering
+CGS-SLAM|||Compact voxel-based 3DGS for dense visual SLAM
+GaussianUnderAttack|||Systematic adversarial attack analysis on 3DGS revealing robustness vulnerabilities
+GaussianCodec|||Learned Gaussian codec with entropy-constrained quantization for rate-distortion optimization
+QUEEN|||Quantized efficient encoding for streaming free-viewpoint video with dynamic Gaussians
+StylizedGS|||Reference-based controllable scene stylization with Gaussian Splatting
+SharpSplat|||SAM3-based building edge extraction + rendered gradient-edge alignment; sharp building boundary reconstruction in UAV 3DGS scenes
+EventGS|||Event camera-integrated GS for high-speed HDR scene reconstruction
+VEGS|||Video-driven editing of Gaussian Splatting with temporal consistency propagation
+WildGaussians|||Joint pose + 3DGS optimization from internet photos
+MSGS|||Multispectral 3D Gaussian Splatting
+Relightable-GS-VP|||GS-based relighting for Virtual Production with image-based illumination; UV-...
+AV1-3DGS|||AV1 motion vectors for dense SfM matching with 63% training time reduction
+AudioGS|||Spectrogram-based audio Gaussian Splatting for sound field reconstruction
+Topo-GS|||Topological GS for high-dimensional data embedding; ARAP prior + tangent space alignment via orthogonal Procrustes; topology-aware loss for 1D/2D intrinsic dimensionality
+DensifyGS|||Adaptive densification strategy with error-driven Gaussian splitting scheduling
+DSD-GS|||Dynamic-Static Decomposition via feed-forward GS encoder + optical flow; static regions skip redundant computation; 10 min training on Neural 3D; 700+ FPS on RTX 5090@1352x1014; no COLMAP required
+PointForward|||Point-aligned feed-forward driving scene reconstruction via 3DGS; anchor-aligned representation replacing pixel-alignment for autonomous driving
+PureLight|||Learning complex luminaires with light tracing; forward light tracing for efficient sampling of difficult light paths
+ABot-3DWorld 0|||Universal world model → 3DGS; Spatial Generative Primitive (SGP) + panoramic video reconstruction; multimodal input → explorable 3DGS world; SOTA among open-source methods
+EnerGS|||Energy-based soft geometric guidance from LiDAR/depth priors
+HumanSplatHMR|||Joint pose refinement + Gaussian avatar optimization
+Egocentric Dynamic 3DGS Evaluation|||Egocentric video reconstruction evaluation
+D-MiSo|||Multi-Gaussians Soup representation for editing dynamic 3D scenes
+PAGaS|||Pixel-aligned 1DoF Gaussians for depth refinement
+DISCOVERSE|||3DGS + MuJoCo unified Real2Sim2Real robot learning framework; scene-level + object-level dual-channel Real2Sim generation; multi-modal sensor native support (RGB/depth/LiDAR/tactile); open-source scalable modular architecture (Digua Robot / Tsinghua AIR / Qiuzhi Tech)
+Grid4D|||4D decomposed hash encoding for efficient spatiotemporal Gaussian queries in dynamic GS
+P2GS|||Physical prior-guided GS for photometrically consistent urban reconstruction: joint decomposition of HDR radiance + per-view exposure scales from LDR images
+GS-Wild-v2|||Enhanced unconstrained GS with illumination decomposition and transient handling
+HeroGS|||Hierarchical image→region→pixel guidance for sparse-view robustness
+ContextGS|||Anchor-level context model for entropy coding replacing uniform quantization in 3DGS
+Rendering-Aware Bayesian 3DGS|||Normal-Inverse-Wishart posterior tracking for Gaussian geometry; native predictive uncertainty for interval calibration + active view selection; ~17x coverage error reduction
+S²AM3D|||Scale-controllable 3D point cloud arbitrary part segmentation; first model with continuous scale granularity control; 28.5% performance improvement; SAM-based 2D-3D cross-modal alignment (HIT)
+NoPo4D|||Feed-forward dynamic Gaussians from unposed multi-view videos; velocity decomposition + bidirectional motion
+3DGS³|||Joint super sampling and frame interpolation for real-time large-scale 3DGS rendering; unified SS+FI pipeline enabling high-fidelity frame generation at scale
+DelowlightSplat|||Lowlight Adapter + cost-volume inference predicts clean Gaussians from degraded inputs
+HyperGS|||Feedforward optimization-free Gaussian video representation; factorized spatiotemporal Transformer + learnable query-based Transformer; 10^4-10^5x speedup; +2.9-3.1 dB over prior video encoders
+ArtSplat|||First feed-forward articulated 3DGS; per-pixel joint map + Cross-State Attention; 400x faster than optimization
+Survey-GS-Seg|||Survey on 3D segmentation within Gaussian Splatting: methods/datasets/metrics/taxonomy
+Frosting|||Decoupled geometry/appearance editing
+GaussianLSS|||BEV perception via Gaussian Splatting
+Survey-GS-SLAM|||Survey on Gaussian Splatting-based SLAM: tracking/mapping/dynamic handling/loop closure
+ConFixGS|||Confidence-aware diffusion priors for fixing feedforward 3DGS; +3.68 dB PSNR ...
+PUP-3DGS|||Prune-and-ultra-split: progressive pruning + targeted upsampling for efficient density control
+Semantic-Guided Progressive Object Removal|||DINOv2 semantic-guided block matching + region-wise progressive refinement for high-quality 3D object removal in 3DGS scenes
+GaussFusion|||First multimodal 3D Gaussian pretraining framework; cross-modal semantic alignment in masked Gaussian modeling; Gaussian Saliency-guided Hierarchical Masking (GSHM)
+NoiseGS|||Noise-resilient GS training with uncertainty-guided loss weighting
+GaussRover|||GS-based rover navigation with terrain-aware Gaussian representation
+PhysX-Omni|||Unified simulation-ready physical 3D generation across rigid, deformable, and articulated objects; VLM-tailored geometry encoding without compression; PhysXVerse dataset + PhysX-Bench (NTU/Ziwei Liu)
+SplatArmor|||LBS-based articulated Gaussian Splatting for human body with twist-aware deformation
+TRELLIS.2|||4B-parameter native 3D large model; 17s PBR asset generation with interior geometry; handles open surfaces, nested layers, transparent materials; Microsoft Research + Tsinghua
+LeGS|||Loco-manipulation via Embodied Gaussian Splatting; mesh foreground (robot/objects) + 3DGS background; procedural motion primitive generator synthesizes demonstrations; 2-stage color calibration aligns 3DGS renders with deploy cameras; VLA policy trained purely in LEGS matches human teleoperation (15x cost reduction)
+GS-Stream|||Progressive Gaussian streaming for bandwidth-adaptive 3DGS delivery
+ClipGStream|||Clip-stream any-length any-motion multi-view dynamic scene reconstruction
+DeGO|||Deformable Gaussian occupancy decoupling rigid and non-rigid motion with factorized 4D VGGT distillation; 13.5% gains on human-centric instances
+3DSS|||First differentiable surface splatting renderer for PBR inverse rendering wit...
+4DGaussians-v2|||Enhanced 4DGS with temporal smoothness regularization and flow-guided deformation
+X-Gaussian|||Expressive full-body Gaussian avatar from monocular video with LBS-based deformation
+CapTalk|||Text-guided stylization and speech-driven 3D head animation; separate control over style and emotion; dynamic emotion during inference
+UniCAD|||Unified multi-modal multi-task CAD benchmark + UniCAD-MLLM universal model for point/text/image→CAD reconstruction, generation, and QA
+GaussianSLAM-2|||Second-generation GS-SLAM with submap fusion and uncertainty-driven keyframing
+Real-Time LiDAR GS-SLAM|||First real-time LiDAR Gaussian Splatting SLAM; tight G-ICP + spherical rasterization dense mapping; Newer College F-score 86.78%@>20FPS
+Neural Gabor Splatting|||Neural Gabor augmentation per Gaussian + frequency-aware densification for hi...
+FluSplat|||Feed-forward sparse-view editing without per-scene optimization
+ASSEMCAD|||Axiom-driven framework for production-ready CAD assembly generation from natural language; port-and-mate-based library with executable mate relations + engineering axioms; outperforms code-centric CAD baselines on AssemBench
+Director3D|||Text to progressive 3D scene GS generation with camera trajectory planning
+GlowGS|||Diffusion + VFM semantic feature bank for nighttime glow scene reconstruction
+EAGLES|||Quantized embeddings + coarse-to-fine training + pruning for 10-20x memory compression maintaining quality
+Survey-GS-ZJU|||First comprehensive survey on 3D Gaussian Splatting covering representation/rendering/optimization/applications
+GaussianCut-v2|||Enhanced graph-cut segmentation for interactive GS editing with uncertainty refinement
+Sp2403GS|||Sparse GS representation with importance-based pruning + codebook quantization
+ParticleGS|||Physics-based MPM-inspired 4DGS with Neural ODE evolver for prior-free motion...
+GS-Wild|||Per-Gaussian intrinsic/appearance feature separation + adaptive sampling for unconstrained photo GS
+HSP|||Hierarchical Space Partition for surface reconstruction; priority-based plane assembling + min-cut optimization for watertight mesh from incomplete point clouds
+VoxelGS|||Scaffold-anchored Gaussians tethered to voxelized SDF for fast monocular surface reconstruction
+GS-CAD|||CAD model reconstruction from GS with parametric primitive fitting
+GaussianBody|||SMPL-X aligned Gaussian body with part-aware densification
+View-Dependent Splatting|||Learned view-dependent splatting kernels replacing fixed covariance; first fund...
+L4GM|||Large-scale feed-forward 4D Gaussian reconstruction from video
+Normal-GS|||Normal-involved rendering: normal constraint + differentiable normal guiding splat distribution
+STG|||Spatiotemporal Gaussians with decomposed spatial-temporal attention for 4D rendering
+AnyCity|||Observation-grounded generative reconstruction for sparse aerial urban scenes; observation-supported geometry latent + gated residual from diffusion prior
+SAGO|||Online segment 3D Gaussians via virtual drones; reframes interactive 3DGS segmentation as Next-Best-View planning; 50x faster than prior methods
+RAD|||Large-scale 3DGS-based Reinforcement Learning for end-to-end driving: 3DGS twin digital world + closed-loop RL training overcoming IL causal confusion
+GlobalSplat|||Global latent tokens → 16K Gaussians in 78ms single forward pass
+Underwater360|||Omnidirectional GS + physics-based appearance-medium decoupling for underwater panoramic scenes
+PointSplat|||Geometry-driven pruning + Transformer refinement for efficient 3DGS
+Structure-Aware Densification|||Frequency-aware anisotropic split replacing heuristic clone/split
+Ambient-Robust IR|||Active RGB-NIR imaging for ambient-robust inverse rendering
+GeoAugmentGS|||Geometry-aware data augmentation for 3DGS: depth-consistent view synthesis for regularization
+Street Gaussians|||Static/dynamic decomposition for urban street scenes
+GS-SCNet|||Generalizable 3DGS + semantic coding for immersive video
+AnySurf|||Any surface generation with directed edge; learns to generate diverse 3D surfaces from conditions
+SparseOIT|||Order-independent transparency via active set method for glass/refractive scenes
+SAND|||Spatially adaptive network depth for efficient neural implicit surface sampling
+GGD-SLAM|||Generalizable motion model for monocular 3DGS SLAM in dynamic environments; FIFO queue + sequential attention for dynamic semantic extraction; no semantic labels or depth input required; anti-interference SSIM loss
+VLRC|||Vision-Language Reprojection Consistency as scalable signal for better feed-forward 3D pretraining
+3DGS-Enhancer|||2D diffusion priors guiding iterative 3DGS refinement for view-consistent enhancement
+GS-Playground|||Batch 3DGS + parallel physics at 10^4 FPS for robot learning
+MVSplat360|||Feed-forward 360-degree scene synthesis from sparse views
+GIC|||Gaussian-Informed Continuum for physical property identification and differentiable simulation
+TransGS|||Transformer-based deformation field for 4DGS with attention-based temporal modeling
+FlashWorld|||Feed-forward 3DGS world model: single forward pass generates dynamic 3D scenes with real-time interaction, bridging video generation and 3D reconstruction
+DP-Splat|||Bayesian nonparametric complexity control via Dirichlet-process prior; 5.9-7.6x fewer components at matched quality; exact monotonicity guarantee + truncation-error bound
+DLWM|||Dual Latent World Model: 3DGS-centric self-supervised pretraining framework for autonomous driving via two-stage Gaussian-based world modeling
+Mobile Phone 3DGS Acquisition|||Object-centered on-device capture guidance
+Survey-GS-Medical|||Survey on 3DGS for medical imaging: CT/MRI/ultrasound reconstruction/surgical navigation
+HeadGaS|||Dynamic head GS with blendshape-driven Gaussian deformation for real-time reenactment
+DeSplat|||Decomposed Gaussian Splatting for distractor-free rendering; separates transient objects from static background via decomposed compositing; IEEE Xplore
+MotionGS|||Explicit motion field guiding deformable 3DGS, decoupling motion from appearance
+ELoG-GS|||Dual-branch luminance-guided extreme low-light GS enhancement
+2DGS|||Oriented 2D disks for geometrically accurate radiance fields
+MAC-Splat|||Multi-Attribute Consistency for sparse-view 3DGS; MASt3R backbone + DINOv3 correspondences; +4.5 dB over Splatt3R
+GeoSplat|||Geometry-aware feed-forward GS with cross-view feature matching
+NoDrift3R|||Raymap-Guided Coupling for drift-robust unposed feed-forward 3DGS; explicit geometry-appearance coupling module for long-sequence reconstruction
+SplaTAM-v2|||Enhanced GS-SLAM with online loop closure and global optimization
+SandSim|||Curve-guided GS for sand painting process reconstruction
+PiG-Avatar|||Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space decoupled from template topology; 3D barycentric anchor transport for kinematic coherence; emergent self-organization of anchor density
+FreeArtGS|||Articulated Gaussian Splatting under free-moving scenario; scalable articulated object reconstruction for AR and robotics
+OCH3R|||Object-Centric Holistic 3D from single RGB; per-pixel CLIP + 6D pose + per-ob...
+ARGS|||Auto-regressive O(log n) multi-scale 3D generation
+RelaxingAccurate|||Accurate mesh extraction from GS via relaxed surface constraints and multi-resolution TSDF
+ZipGS|||Zip-format GS compression using pruning+quantization+volumetric entropy coding
+Survey-GS-Render|||Survey on rendering formulations for Gaussian Splatting: alpha-compositing/OIT/ray-tracing alternatives
+GaussianPile|||Slice-based volumetric reconstruction via sparse 3DGS + imaging system-aware focus model; slice-aware piling strategy + differentiable PSF projection; 11x faster than NeRF, 16x compression over voxel grids; supports microscopy/ultrasound/MRI (中关村学院)
+GaussDreamer|||Enhanced GS-based text-to-3D with progressive generation and SDS refinement
+R2-Gaussian|||GS adapted for Radon transform + X-ray volume rendering for tomographic reconstruction
+GS-HDA|||Hessian-driven acceleration for 3DGS training with second-order optimization
+GausLoc|||GS-based hierarchical localization with Gaussian map representation
+GVKF|||Gaussian Voxel Kernel Functions for highly efficient surface reconstruction via TSDF fusion
+MVSplat-v2|||Enhanced MVSplat with cost-volume refinement for higher fidelity feed-forward GS
+SC-GS|||Spatial-temporal compression for dynamic Gaussians
+Relit-LiVE|||Relight video by jointly learning environment video
+ConFi-GS|||Confidence-guided high-frequency injection + reliability-aware densification for 3DGS super-resolution from low-res inputs
+GaussNav|||GS-based navigation with language-guided semantic Gaussian maps for embodied agents
+PatchPoison|||Poisoning multi-view datasets to degrade 3D reconstruction (Security)
+Forecast-GS|||Predictive 3D Gaussian representation forecasting task-completed states for r...
+RT-Splatting|||Joint reflection-transmission modeling with GS; disentangles geometric occupancy from optical opacity per Gaussian; Specular-Aware Gradient Gating reduces floaters
+OpenGaussian|||Per-Gaussian feature distillation for point-level open-vocabulary 3D understanding
+SVGS|||Spatially varying colors + opacity within each Gaussian primitive; three desi...
+Anchor3R|||Streaming 3D reconstruction with current-centric local measurement prediction (not fixed-gauge); transient anchor mechanism + loop closure + motion averaging for long-horizon mapping
+DiffGS|||Functional Gaussian Splatting diffusion in function space (not original space)
+MonoEM-GS|||Monocular expectation-maximization GS SLAM
+4DGS|||4D anisotropic Gaussians (3D + time) with regularized deformation
+SplatPose2|||Enhanced pose-conditioned GS with part-level deformation
+VR-GS|||Physical-based GS editing in VR: real-time Gaussian manipulation with haptic feedback
+AdaGScale|||Viewpoint-adaptive Gaussian scaling reducing gaussian-tile pairs for renderin...
+FreDeGS|||Frequency-guided 3DGS for scene deblurring; frequency-aware decomposition for motion-blurred input reconstruction
+Scaffold-v3|||Third-generation Scaffold-GS with neural anchor decoding
+SplatRS|||GS-based road surface reconstruction for HD map generation
+BRDF-GS|||BRDF decomposition in GS with deferred rendering for relightable scenes
+DiffAdapt4DSI|||Differentiable adaptive 4D structured illumination for joint capture of shape...
+SketchFaceGS|||Sketch-driven face editing via Transformer UV prediction
+ZipSplat|||Token-based feed-forward 3DGS decoupling Gaussian count from pixel grid via k-means clustering; ~6× fewer Gaussians, +2.1 dB PSNR SOTA on DL3DV/RealEstate10K; pose-free inference
+GauSec|||Security assessment of GS against adversarial reconstruction attacks
+Spark3R|||Training-free asymmetric query/KV token compression for 28x speedup on feed-f...
+Neural 3D Mesh Texturing Survey|||Comprehensive survey on neural 3D mesh texturing (synthesis/transfer/completion); from GAN-based to diffusion-based pipelines; datasets, evaluation protocols, open challenges
+NeuROK|||Generative 4D Neural Object Kinematics; learns latent kinematic state parameterization + decoder for simulative dynamics from Lagrangian mechanics
+GS4City|||Hierarchical semantic GS via city-model priors
+Energy-GS|||RGB-only pose-free 3DGS joint optimization; no depth/geometry priors required; energy-based pose correction function; resolves NeRF-vs-3DGS pose optimization asymmetry (Beijing Institute of Technology)
+SCOUP|||Sparse Code Uplifting for efficient 3D language GS with 400x training speedup
+GraspSplats|||Efficient zero-shot manipulation with 3D feature splatting; demonstrates NeRF...
+CoR-GS-CVPR|||Consistency regularization for sparse-view GS with depth-conditional diffusion priors
+HiCoM|||Hierarchical coherent motion for streamable dynamic scene with 3DGS
+OpenGaFF|||Open-vocabulary Gaussian feature field with codebook attention for improved s...
+GS-Hider|||Steganography embedding into Gaussian parameters for 3D message hiding, visually lossless
+GAS|||Compression + caching for real-time avatar rendering
+Velox|||Feed-forward 4D reconstruction learning representations of 4D geometry and ap...
+GS-OD|||GS-based 3D object detection with Gaussian-anchored feature sampling
+GS-DIFF|||Scene change detection directly on Gaussian primitives; separates geometric vs. appearance changes; +17% mIoU
+3DThinkVLA|||Endowing VLA models with latent 3D priors via 3D-thinking-guided co-training; geometry perception module + reasoning distillation anchor token; SOTA on LIBERO
+GaussCtrl|||Depth-conditioned attention + progressive editing for controllable GS generation from text/depth
+FastGS|||Multi-view consistency-based densification and pruning replacing Gaussian budget mechanism; 3.32× training acceleration on Mip-NeRF 360, 15.45× on Deep Blending; 100-second training with comparable quality to SOTA; generalizes across dynamic/surface/sparse-view/large-scale/SLAM tasks
+MACRO|||Training-free multi-plane attention for closeup render optimization; depth-plane decomposition + scale-matching reference; first standardized closeup NVS benchmark
+ObjectMorpher|||Deformable 3DGS for 3D-aware interactive image editing
+GRF|||Material decomposition + relighting in Gaussian space
+MVGamba|||State Space Model (Mamba) replacing Transformer for 3D generation via sequence modeling
+GS-VQA|||GS quality assessment via view-consistent quality prediction
+ReorgGS|||Equivalent distribution reorganization fixing parameterization degeneration in converged 3DGS; kNN anisotropic covariance re-estimation
+PARTICULATE|||Feed-forward 3D object articulation from static mesh; auto-infer movable structure including parts, connections, and motion axes; Oxford / Cambridge / NTU
+ADS-GS|||Static + dynamic decomposition for driving scenes
+GSDeformer|||Cage-based deformation for 3DGS: proxy point cloud bridges cage deformation to Gaussian transform; splitting handles bending; works with any vanilla 3DGS variant in real-time without retraining
+DSGS|||Decoder-Side Gaussian Splatting: replaces DSDE depth estimation with feed-forward 3DGS from compressed textures; lossy compression as implicit low-pass filter stabilizing prediction; +5.79 dB BD-PSNR
+CADDreamer|||CAD object generation from single-view images; parametric primitive sequence generation from 2D input
+VidSplat|||Training-free generative framework leveraging video diffusion priors with ite...
+GPSGaussian-Stereo|||Pixel-aligned stereo GS with cross-attention feature matching for generalizable real-time NVS
+SplatNeRF|||GS-NeRF hybrid combining explicit splatting with implicit neural fields
+MetaPoint|||Unlocking precise spatial control in agentic visual generation; represents continuous 2D coordinate as single special token via model's positional encoding; compositional agentic generation
+EndoGSim|||MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation
+GS-PT-v2|||Pre-trained GS initialization with multi-scene representation learning
+VIRGi|||View-dependent instant recoloring with single edited image
+GaussNav-2|||Enhanced GS navigation with hierarchical semantic Gaussian maps
+DisC-GS|||Progressive low-pass + discontinuity boundary detection preventing splat artifacts at edges
+ReGS|||Recursive Gaussian splitting for high-fidelity dynamic scene detail
+Visionary|||WebGPU + 3DGS world model carrier: first Web-native platform supporting 4DGS, neural avatars, and generative post-processing in real-time via WebGPU + ONNX Runtime
+City-Mesh3R|||End-to-end images-to-mesh city-scale reconstruction with divide-and-conquer; produces watertight simulation-ready meshes
+Mip-Splatting|||Anti-aliased 3DGS with 3D smoothing + 2D Mip filter
+GaussDet3D|||3D detection from GS with Gaussian-anchored multi-scale features
+VkSplat|||Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM
+Octree-GS|||Octree spatial partitioning + LOD management
+MRO-GWM|||Object-centric Gaussian world model for rigid bodies; canonical Gaussian + spatio-temporal transformer predicts rigid body motion; supports model-predictive control for non-prehensile manipulation
