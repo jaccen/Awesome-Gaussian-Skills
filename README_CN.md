@@ -1,3 +1,5 @@
+
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -39,6 +41,53 @@
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
 秒搜 760+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+
+## 📖 在线书籍：空间与具身智能（全新！）
+
+> **全新（2026 年 7 月）** — 一本完整的开源技术书籍，致敬 [*深入理解 AI Agent*](https://github.com/bojieli/ai-agent-book) 的结构风格，以 **3D Gaussian Splatting** 为主线，将**空间智能**与**具身智能**串联为一个闭环：*表示 → 感知 → 规划 → 行动*。
+
+**[📖 在线阅读 →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
+
+<div align="center">
+
+<img src="assets/book-intro.png" width="100%" alt="空间与具身智能书籍 — 封面与章节概览">
+
+</div>
+
+**核心公式**（呼应 `Agent = LLM + 上下文 + 工具`）：
+
+> **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
+
+**全书 12 章，每个方法名均锚定本仓库真实数据（760+ 方法、25 类别、14 技能），零虚构：**
+
+| # | 章节 | 核心议题 |
+|---|------|----------|
+| 引言 | 为什么写这本书 | 为什么 3DGS 是 Physical AI 的关键拼图 |
+| CH 01 | NeRF → 3DGS：范式跃迁 | 显式 vs 隐式，三大创新，alpha 合成公式 |
+| CH 02 | 数学与工程内核 | 各向异性高斯、可微光栅化、自适应密度控制、CUDA |
+| CH 03 | 从场景到世界 | 大规模、动态/4D、GS-SLAM、压缩与部署 |
+| CH 04 | 语义高斯 | CLIP/DINO 特征蒸馏、开放词汇 3D 分割 |
+| CH 05 | 编辑 · 生成 · 资产化 | 前馈重建、SDS 生成、可动画资产、PBR 重光照 |
+| CH 06 | 具身智能基础 | VLA 谱系（RT/π0/GR00T/ReconVLA）、仿真、Sim2Real |
+| CH 07 | 3DGS 作为机器人的空间记忆 | GS-SLAM、地图即渲染器、三层空间记忆模型 |
+| CH 08 | 物体级与铰接理解 | 部件级高斯、URDF 桥接、CAD·Mesh·3DGS 三角 |
+| CH 09 | Agent 驱动的数字孪生 | MCP 渲染管线、手势交互、感知-行动回路 |
+| CH 10 | 世界模型与未来 | 六大世界模型流派、3DGS×World Model、空间基础模型、Physical AI |
+| 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
+
+每章末尾附带动手练习，并回链仓库的方法表格、`references/` 和技能 —— 读书与工程实践融为一体。
+
+**你在论文列表里找不到的亮点：**
+- 2026 年世界模型六大流派分类法，以及 3DGS 作为*唯一*同时具备可渲染、可微分、可编辑三种属性的表示所占据的位置。
+- `GS-World`、`ManiGaussian`、`OrbiSim` 如何将 3DGS 变为可微仿真引擎。
+- 机器人空间记忆的三层模型（几何 → 外观 → 语义），以及当前 GS-SLAM 实际处于哪一层。
+
+<details>
+<summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
+
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 760+ 方法名、摘要和 14 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+
+</details>
 
 ## 最新动态（2026 年 7 月）
 

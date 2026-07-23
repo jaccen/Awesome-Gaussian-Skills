@@ -1,3 +1,4 @@
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -39,6 +40,53 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
 Search 760+ methods instantly, filter by category, sort by citations, click any method card for details.
+
+## 📖 Online Book: Spatial & Embodied Intelligence (New!)
+
+> ** NEW (Jul 2026)** — A full open-source technical book, structured in tribute to [*AI Agents in Depth*](https://github.com/bojieli/ai-agent-book), built around **3D Gaussian Splatting** as the spine and weaving together **spatial intelligence** and **embodied intelligence** into one closed loop: *representation → perception → planning → action*.
+
+**[📖 Read the Book →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
+
+<div align="center">
+
+<img src="assets/book-intro.png" width="100%" alt="Spatial & Embodied Intelligence Book — Cover & Chapter Overview">
+
+</div>
+
+**Core formula** (echoing `Agent = LLM + Context + Tools`):
+
+> **Embodied Agent = Spatial Representation × Perception × Planning × Action**
+
+**What's inside — 12 chapters, every method name anchored to this repo's real data (760+ methods, 25 categories, 14 skills), zero fabrication:**
+
+| # | Chapter | Focus |
+|---|---------|-------|
+| 引言 | Why this book | Why 3DGS is the key puzzle piece of Physical AI |
+| CH 01 | NeRF → 3DGS: A paradigm leap | Explicit vs implicit, the three innovations, the alpha-compositing formula |
+| CH 02 | The math & engineering core | Anisotropic Gaussians, differentiable rasterization, adaptive density control, CUDA |
+| CH 03 | From scene to world | Large-scale, dynamic/4D, GS-SLAM, compression & deployment |
+| CH 04 | Semantic Gaussians | CLIP/DINO feature distillation, open-vocabulary 3D segmentation |
+| CH 05 | Editing · Generation · Asset-ization | Feed-forward reconstruction, SDS generation, animatable assets, PBR relighting |
+| CH 06 | Embodied intelligence basics | VLA lineage (RT/π0/GR00T/ReconVLA), simulation, Sim2Real |
+| CH 07 | 3DGS as robot spatial memory | GS-SLAM, map-as-renderer, three tiers of spatial memory |
+| CH 08 | Object-level & articulated understanding | Part-level Gaussians, URDF bridging, the CAD·Mesh·3DGS triangle |
+| CH 09 | Agent-driven digital twins | MCP rendering pipeline, gesture interaction, the perception-action loop |
+| CH 10 | World models & the future | Six schools of world models, 3DGS×World Model, spatial foundation models, Physical AI |
+| 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
+
+Each chapter ends with hands-on exercises and links back to the repo's method tables, `references/`, and skills — so reading the book and doing the engineering are one seamless flow.
+
+**Highlights you won't find in a paper list:**
+- The six schools of world models (2026 taxonomy) and where 3DGS sits as the *only* representation that is simultaneously renderable, differentiable, and editable.
+- How `GS-World`, `ManiGaussian`, and `OrbiSim` turn 3DGS into a differentiable simulation engine.
+- A three-tier model of robot spatial memory (geometric → appearance → semantic) and where current GS-SLAM actually stands.
+
+<details>
+<summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
+
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 760+ method names, abstracts, and 14 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+
+</details>
 
 ## What's New (July 2026)
 
