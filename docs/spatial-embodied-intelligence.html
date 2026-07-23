@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深入理解空间智能与具身智能 · 以 3D Gaussian Splatting 为核心</title>
+<meta name="description" content="一本围绕空间智能与具身智能、以 3D Gaussian Splatting 为主线展开的开源技术书，致敬 ai-agent-book 体例。">
+<style>
+  /* ============ 设计令牌：淡彩学术风，致敬 Material for MkDocs ============ */
+  :root{
+    --bg:#f7f8fb; --surface:#ffffff; --surface-2:#f1f4f9; --surface-3:#e8edf5;
+    --sidebar:#fbfcfe; --border:#e3e8f0; --border-strong:#cdd5e3;
+    --text:#1e2533; --text-2:#51607a; --text-3:#8a96ad;
+    --primary:#4f46e5; --primary-2:#6366f1; --primary-soft:#eef0ff;
+    --blue:#3b82f6; --purple:#8b5cf6; --cyan:#06b6d4; --green:#10b981;
+    --orange:#f59e0b; --pink:#ec4899; --teal:#14b8a6;
+    --cvpr:#1a73e8; --sig:#e8453c; --iclr:#ff8c00; --neurips:#ff6f00;
+    --eccv:#4285f4; --icml:#e91e63; --rss:#00bcd4; --arxiv:#7c869a; --nature:#0f766e;
+    --code-bg:#1e2533; --code-text:#e6edf6;
+    --shadow-sm:0 1px 2px rgba(30,37,51,.05),0 1px 3px rgba(30,37,51,.06);
+    --shadow-md:0 4px 16px rgba(30,37,51,.08);
+    --shadow-lg:0 12px 40px rgba(30,37,51,.12);
+    --radius:14px; --radius-sm:10px;
+    --maxw:880px;
+    --sidebar-w:300px;
+    --topbar-h:60px;
+    --font-sans:"Inter","Segoe UI","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    --font-mono:"JetBrains Mono","SFMono-Regular","Consolas","Microsoft YaHei",monospace;
+    --font-serif:"Georgia","Times New Roman","Songti SC",serif;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0f1a; --surface:#111827; --surface-2:#161f31; --surface-3:#1e293b;
+    --sidebar:#0d1320; --border:#1f2937; --border-strong:#334155;
+    --text:#e6edf6; --text-2:#9fb0c8; --text-3:#64748b;
+    --primary:#818cf8; --primary-2:#a5b4fc; --primary-soft:#1e2440;
+    --code-bg:#0a0f1d; --code-text:#e6edf6;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3); --shadow-md:0 4px 16px rgba(0,0,0,.35); --shadow-lg:0 12px 40px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-sans);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+  a{color:var(--primary);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ============ 顶部进度条 ============ */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:1000;
+    background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan));transition:width .1s linear}
+
+  /* ============ 顶栏 ============ */
+  .topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);z-index:900;
+    background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;padding:0 18px}
+  .topbar .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--text)}
+  .topbar .brand .logo{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;font-size:16px;flex:none}
+  .topbar .brand small{display:block;font-weight:400;font-size:11px;color:var(--text-3);letter-spacing:.02em}
+  .topbar .spacer{flex:1}
+  .topbar .nav-links{display:flex;align-items:center;gap:6px}
+  .topbar .nav-links a{padding:6px 12px;border-radius:8px;font-size:13px;color:var(--text-2);font-weight:500}
+  .topbar .nav-links a:hover{background:var(--surface-2);text-decoration:none;color:var(--text)}
+  .icon-btn{width:36px;height:36px;border-radius:9px;border:1px solid var(--border);background:var(--surface);
+    color:var(--text-2);cursor:pointer;display:grid;place-items:center;font-size:16px;transition:all .2s}
+  .icon-btn:hover{color:var(--primary);border-color:var(--primary);background:var(--primary-soft)}
+  #menuToggle{display:none}
+  .badge-repo{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;
+    background:var(--surface-2);border:1px solid var(--border);font-size:12.5px;color:var(--text-2);font-weight:500}
+  .badge-repo:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+
+  /* ============ 布局 ============ */
+  .layout{display:flex;align-items:flex-start;max-width:calc(var(--sidebar-w) + 1200px);margin:0 auto;
+    padding-top:var(--topbar-h)}
+  .sidebar{position:sticky;top:var(--topbar-h);width:var(--sidebar-w);height:calc(100vh - var(--topbar-h));
+    overflow-y:auto;background:var(--sidebar);border-right:1px solid var(--border);flex:none;padding:18px 0 60px}
+  .sidebar .side-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--text-3);padding:14px 22px 6px}
+  .sidebar nav a{display:block;padding:7px 22px 7px 22px;font-size:13.5px;color:var(--text-2);
+    border-left:3px solid transparent;transition:all .15s;line-height:1.45}
+  .sidebar nav a:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
+  .sidebar nav a.active{color:var(--primary);border-left-color:var(--primary);background:var(--primary-soft);font-weight:600}
+  .sidebar nav .ch-num{display:inline-block;width:34px;color:var(--text-3);font-variant-numeric:tabular-nums}
+  .sidebar nav a.active .ch-num{color:var(--primary)}
+
+  .content{flex:1;min-width:0;padding:0 0 80px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+  /* ============ 封面 ============ */
+  .cover{padding:56px 32px 40px;max-width:var(--maxw);margin:0 auto;position:relative}
+  .cover .kicker{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;
+    background:var(--primary-soft);color:var(--primary);font-size:12px;font-weight:600;letter-spacing:.03em;margin-bottom:20px}
+  .cover h1{font-size:40px;line-height:1.18;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+  .cover h1 .grad{background:linear-gradient(120deg,var(--blue),var(--purple) 55%,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .cover .subtitle{font-size:17px;color:var(--text-2);margin-bottom:22px;font-weight:500}
+  .cover .formula{font-family:var(--font-mono);font-size:15px;background:var(--surface-2);
+    border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;color:var(--text);
+    display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:24px;box-shadow:var(--shadow-sm)}
+  .cover .formula b{color:var(--primary)}
+  .cover .formula .x{color:var(--text-3);margin:0 4px}
+  .cover .meta{display:flex;flex-wrap:wrap;gap:10px}
+  .cover .meta a,.cover .meta span{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:9px;
+    font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--surface);color:var(--text-2);box-shadow:var(--shadow-sm)}
+  .cover .meta a:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .cover .ribbons{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+  .cover .ribbons img{height:22px}
+
+  /* ============ 章节速览 ============ */
+  #overview{padding:30px 32px 10px;max-width:var(--maxw);margin:0 auto}
+  .sec-title{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);
+    margin-bottom:18px;display:flex;align-items:center;gap:8px}
+  .sec-title::after{content:"";flex:1;height:1px;background:var(--border)}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
+  .ch-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;
+    transition:all .2s;cursor:pointer;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .ch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+  .ch-card .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;margin-bottom:8px;letter-spacing:.02em}
+  .ch-card h3{font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.35}
+  .ch-card p{font-size:12.5px;color:var(--text-2);line-height:1.55}
+  .ch-card .go{font-size:12px;color:var(--primary);font-weight:600;margin-top:10px;display:inline-flex;align-items:center;gap:4px}
+  .ch-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent,var(--blue))}
+
+  /* color variants */
+  .c-intro{--accent:var(--text-3)} .c-intro .tag{background:#eef0f4;color:var(--text-2)}
+  .c1{--accent:var(--blue)} .c1 .tag{background:#e8f0fe;color:var(--blue)}
+  .c2{--accent:var(--purple)} .c2 .tag{background:#f1ebfe;color:var(--purple)}
+  .c3{--accent:var(--cyan)} .c3 .tag{background:#e2f6fb;color:var(--cyan)}
+  .c4{--accent:var(--green)} .c4 .tag{background:#e3f7ee;color:var(--green)}
+  .c5{--accent:var(--orange)} .c5 .tag{background:#fdf0dd;color:var(--orange)}
+  .c6{--accent:var(--pink)} .c6 .tag{background:#fce7f3;color:var(--pink)}
+  .c7{--accent:var(--teal)} .c7 .tag{background:#e0f5f2;color:var(--teal)}
+  .c8{--accent:var(--primary)} .c8 .tag{background:var(--primary-soft);color:var(--primary)}
+  .c9{--accent:var(--blue)} .c9 .tag{background:#e8f0fe;color:var(--blue)}
+  .c10{--accent:var(--purple)} .c10 .tag{background:#f1ebfe;color:var(--purple)}
+  .c-outro{--accent:var(--text-3)} .c-outro .tag{background:#eef0f4;color:var(--text-2)}
+
+  /* ============ 正文区块 ============ */
+  section.chapter{padding:46px 32px 10px;max-width:var(--maxw);margin:0 auto;scroll-margin-top:70px;border-top:1px solid var(--border)}
+  section.chapter:first-of-type{border-top:none}
+  .chapter-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .chapter-head .no{font-family:var(--font-mono);font-size:13px;font-weight:700;color:#fff;background:var(--accent,var(--primary));
+    padding:3px 10px;border-radius:7px;letter-spacing:.04em;flex:none}
+  .chapter-head h2{font-size:27px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+  .chapter-sub{font-size:14.5px;color:var(--text-2);margin-bottom:20px;font-weight:500}
+  section.chapter p{margin:0 0 14px;color:var(--text);font-size:15.5px}
+  section.chapter p.lead{font-size:16px;color:var(--text-2)}
+  section.chapter strong{color:var(--text);font-weight:650}
+  section.chapter h3{font-size:18px;font-weight:700;margin:26px 0 10px;display:flex;align-items:center;gap:8px}
+  section.chapter h3 .mi{font-size:14px;opacity:.55}
+  h4{font-size:15px;font-weight:650;margin:18px 0 8px;color:var(--text)}
+  ul,ol{margin:0 0 14px;padding-left:22px}
+  li{margin-bottom:6px;font-size:15px}
+
+  /* 引用块 / 提示框 */
+  .callout{border-radius:var(--radius-sm);padding:14px 16px 14px 18px;margin:16px 0;font-size:14px;
+    border:1px solid var(--border);border-left:4px solid var(--accent,var(--primary));background:var(--surface-2)}
+  .callout .ct{font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+  .callout.note{--accent:var(--blue)} .callout.note .ct{color:var(--blue)}
+  .callout.key{--accent:var(--orange)}.callout.key .ct{color:var(--orange)}
+  .callout.bio{--accent:var(--green)} .callout.bio .ct{color:var(--green)}
+  .callout.warn{--accent:#ef4444} .callout.warn .ct{color:#ef4444}
+
+  /* 公式 */
+  .formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:16px 18px;margin:16px 0;overflow-x:auto;font-family:var(--font-mono);font-size:14.5px;line-height:1.7;color:var(--text)}
+  .formula-box .lbl{font-family:var(--font-sans);font-size:11px;color:var(--text-3);font-weight:600;letter-spacing:.05em;display:block;margin-bottom:6px;text-transform:uppercase}
+  .formula-box .eq{display:block}
+  .formula-box .desc{font-family:var(--font-sans);font-size:12.5px;color:var(--text-2);margin-top:8px}
+
+  /* 方法表 */
+  .mtbl{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0;font-size:13px;
+    border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+  .mtbl th{background:var(--surface-3);text-align:left;padding:9px 12px;font-weight:600;color:var(--text-2);
+    font-size:12px;letter-spacing:.02em;border-bottom:1px solid var(--border)}
+  .mtbl td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.5}
+  .mtbl tr:last-child td{border-bottom:none}
+  .mtbl tr:nth-child(even) td{background:var(--surface-2)}
+  .mtbl td.mn{font-weight:650;color:var(--text)}
+  .mtbl td.o{color:var(--text-2);font-size:12.5px}
+  .vchip{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;white-space:nowrap}
+  .v-CVPR{background:#e8f0fe;color:var(--cvpr)} .v-SIGGRAPH{background:#fdeae9;color:var(--sig)}
+  .v-ICLR{background:#fdf0dd;color:var(--iclr)} .v-NeurIPS{background:#fdf0dd;color:var(--neurips)}
+  .v-ECCV{background:#e8f0fe;color:var(--eccv)} .v-ICML{background:#fce7f3;color:var(--icml)}
+  .v-RSS{background:#e2f6fb;color:var(--rss)} .v-arXiv{background:#eef0f4;color:var(--arxiv)}
+  .v-Nature{background:#e0f5f2;color:var(--nature)} .v-ICCV{background:#e8f0fe;color:var(--eccv)}
+  .v-CVPRW{background:#e8f0fe;color:var(--cvpr)} .v-TPAMI{background:#f1ebfe;color:var(--purple)}
+
+  /* 关联条 */
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .links a{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:8px;font-size:12.5px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text-2);font-weight:500;box-shadow:var(--shadow-sm)}
+  .links a:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
+  .links a .ico{font-size:13px}
+
+  /* 思考题 */
+  .exercise{margin:18px 0 6px;border:1px dashed var(--border-strong);border-radius:var(--radius-sm);padding:14px 16px;background:var(--surface)}
+  .exercise .et{font-weight:700;font-size:13px;color:var(--accent,var(--primary));margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .exercise ol{margin:0;padding-left:20px}
+  .exercise li{font-size:13.5px;color:var(--text-2)}
+
+  /* 章节锚 */
+  .ch-anchor{scroll-margin-top:70px}
+
+  /* pager */
+  .pager{max-width:var(--maxw);margin:40px auto 0;padding:0 32px;display:flex;gap:14px;flex-wrap:wrap}
+  .pager a{flex:1;min-width:200px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;
+    background:var(--surface);box-shadow:var(--shadow-sm);transition:all .2s}
+  .pager a:hover{border-color:var(--primary);box-shadow:var(--shadow-md);text-decoration:none}
+  .pager .dir{font-size:11px;color:var(--text-3);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+  .pager .ttl{font-size:14px;color:var(--primary);font-weight:600;margin-top:3px}
+  .pager a.next{text-align:right}
+
+  /* about / footer */
+  footer{max-width:var(--maxw);margin:50px auto 0;padding:30px 32px 10px;border-top:1px solid var(--border)}
+  footer .ft-title{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px}
+  footer ul{list-style:none;padding:0}
+  footer li{font-size:13.5px;color:var(--text-2);margin-bottom:6px}
+  footer .copy{margin-top:20px;font-size:12px;color:var(--text-3)}
+
+  /* back to top */
+  #toTop{position:fixed;right:24px;bottom:24px;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);
+    background:var(--surface);color:var(--text-2);cursor:pointer;display:grid;place-items:center;font-size:18px;
+    box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transition:all .25s;z-index:800}
+  #toTop.show{opacity:1;pointer-events:auto}
+  #toTop:hover{color:var(--primary);border-color:var(--primary)}
+
+  /* mobile mask */
+  #mask{position:fixed;inset:0;background:rgba(15,23,42,.4);z-index:850;opacity:0;pointer-events:none;transition:opacity .2s}
+  #mask.show{opacity:1;pointer-events:auto}
+
+  @media(max-width:1024px){
+    .sidebar{position:fixed;top:var(--topbar-h);left:0;z-index:880;transform:translateX(-100%);transition:transform .25s;
+      box-shadow:var(--shadow-lg)}
+    .sidebar.open{transform:translateX(0)}
+    #menuToggle{display:grid}
+    .topbar .nav-links{display:none}
+  }
+  @media(max-width:640px){
+    .cover{padding:36px 20px 30px}
+    .cover h1{font-size:30px}
+    section.chapter,.wrap,#overview{padding-left:20px;padding-right:20px}
+    .pager{padding:0 20px}
+    footer{padding:30px 20px 10px}
+    .chapter-head h2{font-size:22px}
+  }
+  ::-webkit-scrollbar{width:8px;height:8px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--text-3)}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="topbar">
+  <button class="icon-btn" id="menuToggle" aria-label="目录">☰</button>
+  <a class="brand" href="#">
+    <span class="logo">③</span>
+    <span>空间智能与具身智能<small>深入理解 · 以 3D Gaussian Splatting 为核心</small></span>
+  </a>
+  <span class="spacer"></span>
+  <nav class="nav-links">
+    <a href="#overview">章节速览</a>
+    <a href="#about">关于</a>
+  </nav>
+  <a class="badge-repo" href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">⎇ 仓库</a>
+  <button class="icon-btn" id="themeToggle" aria-label="切换主题">◐</button>
+</header>
+
+<div id="mask"></div>
+
+<div class="layout">
+  <!-- ============ 侧边目录 ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-label">目录</div>
+    <nav id="toc">
+      <a href="#intro"><span class="ch-num">00</span> 引言 · 为什么写这本书</a>
+      <a href="#ch1"><span class="ch-num">01</span> 从 NeRF 到 3DGS：范式跃迁</a>
+      <a href="#ch2"><span class="ch-num">02</span> 3DGS 的数学与工程内核</a>
+      <a href="#ch3"><span class="ch-num">03</span> 从场景到世界：大规模·动态·压缩</a>
+      <a href="#ch4"><span class="ch-num">04</span> 语义高斯：让空间被理解</a>
+      <a href="#ch5"><span class="ch-num">05</span> 编辑·生成·资产化</a>
+      <a href="#ch6"><span class="ch-num">06</span> 具身智能基础：仿真到 Sim2Real</a>
+      <a href="#ch7"><span class="ch-num">07</span> 3DGS 作为机器人空间记忆</a>
+      <a href="#ch8"><span class="ch-num">08</span> 物体级与铰接式理解</a>
+      <a href="#ch9"><span class="ch-num">09</span> Agent 驱动的数字孪生与交互</a>
+      <a href="#ch10"><span class="ch-num">10</span> 世界模型与未来展望</a>
+      <a href="#afterword"><span class="ch-num">后</span> 后记 · 3DGS 会被吃掉吗</a>
+    </nav>
+  </aside>
+
+  <!-- ============ 主内容 ============ -->
+  <main class="content">
+
+    <!-- 封面 -->
+    <div class="cover">
+      <span class="kicker">① 开源技术书 · 设计原理与工程实践</span>
+      <h1>深入理解<span class="grad">空间智能与具身智能</span></h1>
+      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 760+ 方法与 14 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
+      <div class="formula">
+        <b>具身智能体</b><span class="x">=</span>
+        空间表征<span class="x">×</span>感知<span class="x">×</span>规划<span class="x">×</span>行动
+        <span style="margin-left:10px;color:var(--text-3);font-size:13px">（核心公式，致敬 <code style="font-size:12px">Agent = LLM + 上下文 + 工具</code>）</span>
+      </div>
+      <div class="meta">
+        <a href="#intro">📖 开始阅读</a>
+        <a href="#overview">🗂 章节速览</a>
+        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener">🌐 方法浏览器</a>
+        <span>📜 License · Apache-2.0</span>
+      </div>
+      <div class="ribbons">
+        <img alt="methods" src="https://img.shields.io/badge/Methods-760+-9cf.svg">
+        <img alt="categories" src="https://img.shields.io/badge/Categories-25-green.svg">
+        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-14-22c55e.svg">
+        <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
+      </div>
+    </div>
+
+    <!-- 章节速览 -->
+    <div id="overview">
+      <div class="sec-title">章节速览</div>
+      <div class="card-grid">
+        <a class="ch-card c-intro" href="#intro"><span class="tag">引言</span><h3>为什么写这本书</h3><p>空间智能与具身智能的百年交汇，3DGS 为何是关键拼图，以及本书的核心公式与方法论。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c1" href="#ch1"><span class="tag">第 1 章</span><h3>从 NeRF 到 3DGS：范式跃迁</h3><p>显式 vs 隐式表征，体渲染与辐射场，3DGS 三大创新为何让它在一年内引爆。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c2" href="#ch2"><span class="tag">第 2 章</span><h3>3DGS 的数学与工程内核</h3><p>各向异性高斯、可微光栅化、自适应密度控制与 CUDA 工程的完整拆解。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c3" href="#ch3"><span class="tag">第 3 章</span><h3>从场景到世界</h3><p>大规模重建、动态/4D 高斯、SLAM 实时建图与压缩部署的工程化道路。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c4" href="#ch4"><span class="tag">第 4 章</span><h3>语义高斯</h3><p>语言/语义高斯、开放词汇 3D 分割——空间智能的"眼睛"如何长出来。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c5" href="#ch5"><span class="tag">第 5 章</span><h3>编辑·生成·资产化</h3><p>从重建到创造：前馈重建、文本/图像到 3DGS、可动画资产与材质重照明。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c6" href="#ch6"><span class="tag">第 6 章</span><h3>具身智能基础</h3><p>VLA 谱系、仿真平台、Sim2Real 鸿沟与数据飞轮——机器人如何"长记性"。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c7" href="#ch7"><span class="tag">第 7 章</span><h3>3DGS 作为空间记忆</h3><p>GS-SLAM 把高斯地图变成"可渲染记忆"，导航决策如何在其中推理。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c8" href="#ch8"><span class="tag">第 8 章</span><h3>物体级与铰接式理解</h3><p>part-level 高斯、铰接资产与 CAD·Mesh·3DGS 桥接——操作的前置条件。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c9" href="#ch9"><span class="tag">第 9 章</span><h3>Agent 驱动的数字孪生</h3><p>MCP 渲染管线、手势交互、3DGS 作为可交互世界，串起感知与行动闭环。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c10" href="#ch10"><span class="tag">第 10 章</span><h3>世界模型与未来</h3><p>世界模型六大学派、3DGS×World Model 交叉、空间基础模型与 Physical AI。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c-outro" href="#afterword"><span class="tag">后记</span><h3>3DGS 会被吃掉吗</h3><p>模型会不会吞掉表示？空间智能下一个十年，以及 3DGS 的持久价值。</p><span class="go">阅读 →</span></a>
+      </div>
+    </div>
+
+    <!-- ===================== 引言 ===================== -->
+    <section class="chapter" id="intro" style="--accent:var(--text-3)">
+      <div class="chapter-head"><span class="no">引言</span><h2>为什么写这本书</h2></div>
+      <p class="chapter-sub">空间智能与具身智能的百年交汇 · 3DGS 为何是关键拼图</p>
+
+      <p>2023 年，原始 3D Gaussian Splatting 论文发布——用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化，把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。一年内它从一篇 SIGGRAPH 论文变成一个 760+ 方法、跨 25 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。这本书想回答的问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
+
+      <p>李飞飞在 2024 年重新定义了"空间智能"——它不是物体识别，而是"在三维空间中推理、理解、移动和交互的深层能力"。黄仁勋在 2025 CES 把这件事命名为 Physical AI，并给出技术三角：<strong>世界模型 + 空间智能 + 具身智能</strong>。这三者恰恰都以"一份可计算、可渲染、可编辑的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 核心公式</span>
+        本书把整套技术压缩为一个公式，并贯穿全书（致敬 <em>深入理解 AI Agent</em> 的 <code>Agent = LLM + 上下文 + 工具</code>）：
+        <div class="formula-box" style="margin:10px 0 0">
+          <span class="eq"><b>具身智能体 = 空间表征 × 感知 × 规划 × 行动</b></span>
+          <span class="desc">空间表征是地基，感知/规划/行动是上层；四个因子任何一项变为零，智能体都无法在物理世界落地。3DGS 在"空间表征"这一因子上提供了当前最强的显式解。</span>
+        </div>
+      </div>
+
+      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表征→感知→规划→行动"的主线，把 760+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
+
+      <div class="callout note">
+        <span class="ct">③ 阅读建议</span>
+        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。每章末尾有思考题，建议带着自己的项目回答。
+      </div>
+
+      <p>开始之前，请记住一个判断：<strong>3DGS 的胜负不在于渲染多一两个 dB 的 PSNR，而在于它第一次让"空间"成为一份可微、实时、可被 Agent 调用的第一类数据结构。</strong>这正是空间智能走向具身智能的命门，也是本书的主线。</p>
+
+      <div class="links">
+        <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 原始 3DGS 仓库</a>
+        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 760+ 方法浏览器</a>
+        <a href="#ch1"><span class="ico">→</span> 下一章：范式跃迁</a>
+      </div>
+    </section>
+
+    <!-- ===================== 第 1 章 ===================== -->
+    <section class="chapter" id="ch1" style="--accent:var(--blue)">
+      <div class="chapter-head"><span class="no">CH 01</span><h2>从 NeRF 到 3DGS：空间表征的范式跃迁</h2></div>
+      <p class="chapter-sub">显式 vs 隐式 · 体渲染与辐射场 · 三大创新</p>
+
+      <p>在新视角合成这条线上，2020 年的 NeRF 用一个 MLP 隐式地把密度与颜色编进网络权重，靠光线步进求解体渲染积分。它漂亮但有代价：渲染是逐像素光线步进，慢；表示藏在网络里，不可编辑。"重建一片空间"和"得到一份可操作的空间数据"被硬生生割裂。</p>
+
+      <p>3DGS 的革命性不在于"更高 PSNR"，而在于它把辐射场<strong>显式化</strong>成一组可数、可微、可渲染的 3D 高斯基元。表示暴露在数据里，而不是埋在权重里——这一步直接决定了后面所有"编辑、压缩、语义、喂给机器人"的可能性。</p>
+
+      <h3><span class="mi">①</span> 三大创新</h3>
+      <ul>
+        <li><strong>各向异性 3D 高斯作直接表示</strong>：每个基元用均值(位置)、协方差(形状/朝向)、不透明度、球谐系数(视角颜色)刻画，不再需要任何 MLP 查询。</li>
+        <li><strong>可微光栅化</strong>：把 3D 高斯投影到屏幕、按深度排序、做 tile-based alpha 合成，前向渲染快、反向梯度可直接传回每个基元参数。</li>
+        <li><strong>自适应密度控制</strong>：训练中按位置梯度判据对高斯克隆/分裂/剪枝，让表示在重建质量与基元数量间自动平衡。</li>
+      </ul>
+
+      <div class="formula-box">
+        <span class="lbl">体渲染积分 ←→ 3DGS 的离散 alpha 合成</span>
+        <span class="eq">C(𝐮) = Σ<sub>i∈N</sub> cᵢ · αᵢ · Π<sub>j<i</sub>(1 − αⱼ)</span>
+        <span class="desc">NeRF 用数值积分近似上式（慢），3DGS 把参与合成的"体素"换成一排排好序的高斯，直接闭式求解（快）。这正是同一渲染方程、两种实现命运的分水岭。</span>
+      </div>
+
+      <h3><span class="mi">②</span> 关键方法</h3>
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">3DGS</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span></td><td class="o">各向异性高斯 + 可微光栅化 + 自适应密度控制，首破实时且质量超 NeRF</td></tr>
+          <tr><td class="mn">Mip-Splatting</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">3D 位置平滑 + 2D Mip 滤波，系统性消除多尺度锯齿与闪烁</td></tr>
+          <tr><td class="mn">2DGS</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">用贴在切平面的 2D 圆盘替代 3D 高斯，几何更干净、可直接提网格</td></tr>
+          <tr><td class="mn">Vol3DGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">重写合成方程为体一致，修复溅射-体不一致导致的透明/光照错误</td></tr>
+          <tr><td class="mn">NegGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">引入负颜色高斯，精确表示环/月牙等非凸结构，不再依赖过度剪枝</td></tr>
+          <tr><td class="mn">Neural Gabor Splatting</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">给基元挂可学习 Gabor 特征，建模锐边/细纹理/薄结构</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout bio">
+        <span class="ct">③ 工程要点</span>
+        3DGS 的"实时"依赖三点工程务实：基于瓦片的光栅化避免全局排序瓶颈；前向/反向共用同一套排序保证梯度一致；自适应密度控制用位置梯度的累积量而非重建误差做判据。迁移 NeRF 工作流时，最容易踩的坑是<strong>把"高质量渲染"误当成"高质量几何"</strong>——PSNR 高不代表法线干净，做后续 mesh/CAD 时要切换评价口径。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-core.md" target="_blank" rel="noopener"><span class="ico">⎇</span> Foundation & Core 分类</a>
+        <a href="#ch2"><span class="ico">→</span> 下一章：数学内核</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--blue)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>"表示暴露在数据里"这条性质，如何决定了 3DGS 比隐式 NeRF 更适合做机器人的空间记忆？</li>
+          <li>2DGS 与 3DGS 的取舍：什么场景下你宁可用 2D 圆盘牺牲一点渲染换来几何？</li>
+          <li>如果未来出现一个"隐式但可微可编辑"的表示，3DGS 的显式优势会被抹平吗？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 2 章 ===================== -->
+    <section class="chapter" id="ch2" style="--accent:var(--purple)">
+      <div class="chapter-head"><span class="no">CH 02</span><h2>3DGS 的数学与工程内核</h2></div>
+      <p class="chapter-sub">参数化 · 可微光栅化 · 自适应密度控制 · CUDA 工程</p>
+
+      <p>本章把"3DGS 为什么能又快又可微"拆成四块。它不是论文复述，而是工程视角的受力分析——知道梯度从哪来、卡在哪，你才知道为什么有那么多后续方法在"基元、排序、致密化"上做文章。</p>
+
+      <h3><span class="mi">①</span> 高斯基元的参数化</h3>
+      <p>每个高斯由 <em>位置 μ</em>、<em>协方差 Σ</em>（工程上分解为缩放 <em>q</em> 向量与四元数 <em>r</em>，保证半正定与可微）、<em>不透明度 α</em>、以及用于视角颜色的<em>球谐系数 SH</em> 组成。球谐阶数决定视角依赖建模能力，但也线性抬高参数量。</p>
+
+      <div class="formula-box">
+        <span class="lbl">3D 高斯密度与投影</span>
+        <span class="eq">G(x) = exp(−½ (x−μ)ᵀ Σ⁻¹ (x−μ))</span>
+        <span class="eq">Σ' = J W Σ Wᵀ Jᵀ &nbsp;&nbsp;(投影到屏幕，W 视图矩阵，J 投影局部线性化)</span>
+        <span class="desc">协方差用缩放+四元数参数化，既保证半正定，又让梯度能直达"形状/朝向"，这是 3DGS 比"自由协方差"更易优化的关键。</span>
+      </div>
+
+      <h3><span class="mi">②</span> 可微光栅化</h3>
+      <p>渲染时把每个高斯投影成 2D 椭圆，按深度排序，落进 16×16 的瓦片，对瓦片内像素做 alpha 合成。反向传播要对<strong>每个像素→每个高斯</strong>的贡嗾着色回梯度：屏幕空间梯度要乘回视图-屏幕雅可比，才能更新到 3D 协方差。这一套"前向闭式、反向解析"的设计，是实时训练的根本来源，也是 EWA 溅射理论的工程落地。</p>
+
+      <h3><span class="mi">③</span> 自适应密度控制</h3>
+      <div class="formula-box">
+        <span class="lbl">致密化判据</span>
+        <span class="eq">每 N 步：统计位置梯度 ‖∇<sub>μ</sub>L‖ 的视空间累积 τ_d</span>
+        <span class="eq">若 τ_d &gt; τ_pos：&nbsp;大尺度高斯 → 分裂(split)；小尺度高斯 → 克隆(clone)</span>
+        <span class="eq">若 α &lt; α_min 或世界尺寸超限：&nbsp;剪枝(prune)</span>
+        <span class="desc">注意：致密化判据用的是"位置梯度的累积量"，而非重建误差本身。这是很多初学者调不动 3DGS 的根因——你想加的约束不直接进入 split 判据，只能通过损失间接影响梯度。</span>
+      </div>
+
+      <h3><span class="mi">④</span> CUDA 工程与现实约束</h3>
+      <ul>
+        <li><strong>排序开销</strong>：每帧按深度桶排，是单帧最大的非并行环节；很多加速方法（如 radix 排序替代、稀疏化）都在这里开刀。</li>
+        <li><strong>显存</strong>：基元数量直接决定显存，城市级动辄上千万高斯，催生了整条压缩谱系（第 3 章）。</li>
+        <li><strong>训练稳定性</strong>：协方差若不加正则会退化成薄片；透明度 sigmoid 截断与 SH 截断是默认护栏。</li>
+      </ul>
+
+      <table class="mtbl">
+        <thead><tr><th>优化方向</th><th>代表方法</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">抗锯齿</td><td>Mip-Splatting</td><td class="o">多尺度一致，去闪烁</td></tr>
+          <tr><td class="mn">表面几何</td><td>2DGS / SuGaR / PGSR</td><td class="o">2D 圆盘或平面正则，出干净 mesh</td></tr>
+          <tr><td class="mn">基元表达力</td><td>SVGS / NegGS / Neural Gabor</td><td class="o">基元内颜色/形状变化，减少基元数</td></tr>
+          <tr><td class="mn">训练加速</td><td>Proxy-GS / Z-Order GS / AnchorSplat</td><td class="o">代理模型·Morton 序·锚点致密化</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 常见误区</span>
+        "3DGS 训练快"不等于"3DGS 调参简单"。位置梯度阈值 τ_pos、致密化间隔、clone 上限、透明度下限 α_min 这四个旋钮互相耦合；新加损失时要先确认它是否真的改变了 ‖∇μL‖，否则 split 不会按你的预期工作。本仓库的 3DGS 代码审查技能沉淀了 105+ 个已知 bug 模式，覆盖的正是这类"看起来在训练、其实在空转"的陷阱。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 官方实现</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-code-reviewer" target="_blank" rel="noopener"><span class="ico">③</span> 105+ bug 模式审查</a>
+        <a href="#ch3"><span class="ico">→</span> 下一章：从场景到世界</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--purple)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>为什么"位置梯度累积量"做 split 判据，而不是直接用 PSNR 改善量？这对设计新损失有什么限制？</li>
+          <li>协方差的缩放+四元数参数化，相比直接学 Σ，在梯度与稳定性上各带来什么？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 3 章 ===================== -->
+    <section class="chapter" id="ch3" style="--accent:var(--cyan)">
+      <div class="chapter-head"><span class="no">CH 03</span><h2>从场景到世界：大规模·动态·压缩</h2></div>
+      <p class="chapter-sub">真实世界的三道关：大、动、轻</p>
+
+      <p>从"一个物体"到"一个世界"，3DGS 要过三关。<strong>大规模</strong>：城市/自动驾驶动辄数百万平米，单卡装不下。<strong>动态</strong>：世界在变，4D、非刚性变形、滚动重建都要表达时间。<strong>压缩</strong>：部署到手机、车载、机器人，几十 GB 的高斯飞不动。这三关决定了 3DGS 能否走出 demo。</p>
+
+      <h3><span class="mi">①</span> 大规模与分块</h3>
+      <p>主流做法是空间分块（Level-of-detail 层级 + 瓦片流式），把海量高斯切到磁盘按需加载；并引入层级高斯/anchor 点替代逐基元存储，把"表示成本"从基元数解耦。自动驾驶赛道还要求与位姿里程计、传感器时序强耦合。</p>
+
+      <h3><span class="mi">②</span> 动态场景与 4D</h3>
+      <p>动态 3DGS 的核心是"如何让基元随时间形变而不爆炸"。两条路：<strong>形变场</strong>（一个 MLP/可微函数把规范空间高斯映射到各时刻，如 4DGS、Deformable-3DGS 系列）；<strong>逐帧/滑动窗口</strong>（SplaTAM 等 SLAM 路线）。前者适合离线重建可重放动态，后者适合在线增量。</p>
+
+      <div class="formula-box">
+        <span class="lbl">形变场范式</span>
+        <span class="eq">G<sub>t</sub> = D<sub>θ</sub>(G<sub>0</sub>, t) &nbsp;&nbsp;+&nbsp;&nbsp; 短期残差 / 流场</span>
+        <span class="desc">规范空间 G₀ 稳定，时间靠变形 Dθ 承载；TRiGS 等用 SE(3)+Bezier 残差让 4D 可扩展，避免每帧一组高斯。</span>
+      </div>
+
+      <h3><span class="mi">③</span> SLAM：把 3DGS 变成在线地图</h3>
+      <p>GS-SLAM 系列让 3DGS 同时承担"建图表示"与"可渲染预测器"——既存几何又可预测下一帧用于位姿优化。它的价值在于<strong>地图即渲染器</strong>：建好就能直接渲染任意视角做规划，而不必像点云那样需要额外管线。</p>
+
+      <table class="mtbl">
+        <thead><tr><th>方向</th><th>代表方法</th><th>工程要点</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">3DGS-SLAM</td><td>SplaTAM / GS-ICP-SLAM / Photo-SLAM</td><td class="o">在线增量大斯；位姿优化复用光栅化；关键帧选择与回环</td></tr>
+          <tr><td class="mn">动态/4D</td><td>4DGS / Deformable-3DGS / TRiGS</td><td class="o">形变场或 SE(3)+Bezier 残差；规范空间稳定</td></tr>
+          <tr><td class="mn">大规模</td><td>Hier-GS / City-Level / Anchor 系列</td><td class="o">层级/锚点 + 瓦片流式 + LoD</td></tr>
+          <tr><td class="mn">压缩</td><td>LightGaussian / Compact3D / SOG / CoSAG</td><td class="o">剪枝 + 向量量化 + SH 压缩；CoSAG 训练免语义压缩</td></tr>
+          <tr><td class="mn">自动驾驶</td><td>3DReflecNet / HERMES / SpaceDrive</td><td class="o">反射/透明材质；3D 场景理解+生成统一</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout bio">
+        <span class="ct">③ 部署落地</span>
+        本仓库的 <code>3dgs-engineering-guide</code> 把 3DGS 部署拆成 10 个行业垂直（手机/车载/机器人/文旅/测绘…），并给工程栈清单；<code>3dgs-compression-deploy</code> 专注压缩到端侧。压缩不是"先把模型做得小"，而是"在目标设备的解码带宽下选对剪枝+量化组合"——同样的 PSNR，车规芯片和手机 GPU 的最优压缩策略完全不同。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-engineering-guide" target="_blank" rel="noopener"><span class="ico">⚙</span> 10 行业部署指南</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-compression-deploy" target="_blank" rel="noopener"><span class="ico">📦</span> 压缩部署技能</a>
+        <a href="#ch4"><span class="ico">→</span> 下一章：语义高斯</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--cyan)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>"地图即渲染器"对 SLAM 的回环检测与全局一致性提出了什么新要求？</li>
+          <li>动态形变场与逐帧滑动窗口，在可重放性、在线性、内存上的取舍分别是什么？</li>
+          <li>若一个高斯地图已压到 20MB，再砍 PSNR 换算力还划算吗——取决于什么？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 4 章 ===================== -->
+    <section class="chapter" id="ch4" style="--accent:var(--green)">
+      <div class="chapter-head"><span class="no">CH 04</span><h2>语义高斯：让空间被理解</h2></div>
+      <p class="chapter-sub">语言/语义高斯 · 开放词汇 3D 分割 · 空间智能的"眼睛"</p>
+
+      <p>纯几何重建只回答"这里有什么形状"，不回答"这是什么"。<strong>语义高斯</strong>（Language/Semantic GS）把 CLIP/SAM/DINO 等基础模型的语义能力蒸馏到每个高斯基元上，让"空间"同时是几何的、外观的、语义的。这一步是空间智能从"被动渲染"走向"主动理解"的分水岭。</p>
+
+      <h3><span class="mi">①</span> 语义蒸馏的两种路线</h3>
+      <ul>
+        <li><strong>特征场路线</strong>：给每个高斯挂一个高维特征向量（来自 CLIP/DINO），训练时用多视角 2D 特征做监督，推理时直接对高斯做最近邻检索或聚类。代表：LEGaussians、Feature-3DGS、LangSplat。</li>
+        <li><strong>开放词汇分割路线</strong>：用 SAM 或开放词汇检测器在 2D 上出掩码，再反投影到 3D 高斯做一致性投票，实现任意文本→3D 实例分割。代表：OpenGaussian、Gaussian Grouping、PointGS(CVPR 2026)。</li>
+      </ul>
+
+      <div class="formula-box">
+        <span class="lbl">特征蒸馏损失</span>
+        <span class="eq">L<sub>feat</sub> = Σ<sub>i</sub> ‖ f<sub>3D</sub>(G<sub>i</sub>) − sg[ f<sub>2D</sub>(I, π(G<sub>i</sub>)) ] ‖²</span>
+        <span class="desc">f<sub>3D</sub> 是每个高斯的可学习特征；f<sub>2D</sub> 是冻结 2D 基础模型对投影区域的特征提取；sg 表示 stop-gradient。训练后每个高斯自带"语义指纹"，支持零样本开放词汇查询。</span>
+      </div>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">LEGaussians</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">CLIP 特征蒸馏到高斯 + 开放词汇 3D 定位</td></tr>
+          <tr><td class="mn">LangSplat</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">语言嵌入高斯，用 CLIP + SAM 做开放词汇 3D 分割</td></tr>
+          <tr><td class="mn">OpenGaussian</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td class="o">开放词汇 3D 语义分割，无需预定义类别</td></tr>
+          <tr><td class="mn">PointGS</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td class="o">3DGS 作统一中间表示，SAM + 对比学习做无监督点云分割</td></tr>
+          <tr><td class="mn">Gaussian Grouping</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">SAM 掩码反投影投票，自动分组语义实例</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout note">
+        <span class="ct">③ 从渲染到理解的闭环</span>
+        语义高斯的核心价值不是"更好看"，而是<strong>可查询</strong>——机器人能说"找到红色的椅子"，Agent 能说"删除所有窗户"，编辑器能说"把地板换成木纹"。当高斯从纯几何变成带语义的数据结构，3DGS 才真正进入"空间智能"的赛道。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-semantic-editing.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 语义/编辑分类</a>
+        <a href="#ch5"><span class="ico">→</span> 下一章：编辑·生成·资产化</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--green)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>特征蒸馏对训练成本和推理延迟各带来多少额外开销？在嵌入式端侧是否可行？</li>
+          <li>开放词汇 3D 分割在遮挡/反光区域的一致性如何保证？多视角投票的失败模式是什么？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 5 章 ===================== -->
+    <section class="chapter" id="ch5" style="--accent:var(--orange)">
+      <div class="chapter-head"><span class="no">CH 05</span><h2>编辑·生成·资产化</h2></div>
+      <p class="chapter-sub">从重建到创造：前馈重建 · 文本/图像到 3DGS · 可动画资产 · 材质重照明</p>
+
+      <p>重建是"看世界"，生成是"造世界"。<strong>3DGS 的显式性让它天然适合被编辑和被创造</strong>：你可以删除一组高斯、移动它们、改颜色、挂骨骼、换材质——这些在隐式 NeRF 里几乎不可能。</p>
+
+      <h3><span class="mi">①</span> 前馈重建：从稀疏视图到秒级 3DGS</h3>
+      <p>逐场景优化太慢？前馈方法用一个网络（通常 Transformer 架构）直接从几幅图像预测高斯参数，把重建从"分钟级优化"压到"毫秒级推理"。这个赛道的竞争点在泛化性（能否处理训练分布外场景）与高斯数量/质量比。</p>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">MVSplat</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">代价体编码几何，3 稀疏视图直接出高斯</td></tr>
+          <tr><td class="mn">InstantSplat</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">无位姿稀疏视图，~40 秒出高斯地图</td></tr>
+          <tr><td class="mn">GS-LRM</td><td><span class="vchip v-ICML">ICML 2025</span></td><td class="o">十亿参数 Transformer，直接预测高斯，零样本迁移</td></tr>
+          <tr><td class="mn">GlobalSplat</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">78 ms 前向，16K 高斯，近实时重建</td></tr>
+          <tr><td class="mn">DepthSplat</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">立体引导深度正则化，显著提升前馈几何精度</td></tr>
+          <tr><td class="mn">HyperGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">10⁴–10⁵× 前馈加速，超大规模前馈 3DGS</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">②</span> 文本/图像到 3DGS：SDS 与 Score Distillation</h3>
+      <p>DreamGaussian 把 NeRF 换成 3DGS 做 SDS 优化，生成时间从小时压到分钟。后续工作在保真度与可控性上不断推进——多文本条件、风格控制、自动骨骼绑定。</p>
+
+      <h3><span class="mi">③</span> 可动画资产与材质</h3>
+      <p>人体/头像高斯（Human/Avatar GS）给高斯绑骨骼与蒙皮权重，做出可驱动角色。AniGen 的 S3 Fields 把骨架/蒙皮/形状统一到一个框架，单图出可动画资产。材质方面，TransmissiveGS 与 3DSS 把 PBR 材质参数挂上高斯，实现重照明与透明/折射。</p>
+
+      <div class="callout key">
+        <span class="ct">★ "资产化"是 3DGS 的第二曲线</span>
+        重建是科学问题，资产化是工程+商业问题。一份高斯地图"可用"和"可卖"之间差三步：<strong>可编辑 → 可动画 → 可导入引擎</strong>。MaGS、UniMGS 的工作都在把高斯拉到"能被 Unity/Unreal 消费"的位置，这才是 3DGS 走向游戏/影视/数字人的真正障碍。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-core.md" target="_blank" rel="noopener"><span class="ico">⎇</span> Feed-Forward / Generation 分类</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-semantic-editing.md" target="_blank" rel="noopener"><span class="ico">⎇</span> Editing / Human / Material 分类</a>
+        <a href="#ch6"><span class="ico">→</span> 下一章：具身智能基础</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--orange)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>前馈方法的泛化性瓶颈在"高斯数量"还是在"场景类型分布"？如何用 LoRA 微调弥补？</li>
+          <li>SDS 优化的 Janus 问题（多面问题）在 3DGS 上比 NeRF 更难还是更容易解决？为什么？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 6 章 ===================== -->
+    <section class="chapter" id="ch6" style="--accent:var(--pink)">
+      <div class="chapter-head"><span class="no">CH 06</span><h2>具身智能基础：从仿真到 Sim2Real</h2></div>
+      <p class="chapter-sub">VLA 谱系 · 仿真平台 · Sim2Real 鸿沟 · 数据飞轮</p>
+
+      <p>具身智能体的任务不是"看图说话"，而是"在物理世界里做事"。这要求一个基础能力三角：<strong>感知环境→规划动作→执行操作</strong>，而 VLA（Vision-Language-Action）模型正是当前最被验证的路线。</p>
+
+      <h3><span class="mi">①</span> VLA 谱系：从端到端到分层</h3>
+      <p>第一代 VLA（RT-1/RT-2/OpenVLA/π0/GR00T）直接从图像+文本输出动作 token，端到端但不透明。第二代分层 VLA（SayCan/VoxPoser/Code-as-Policies/BISON）让 VLM 做高层规划、策略网络做低层执行，可解释且能长程推理。</p>
+
+      <div class="formula-box">
+        <span class="lbl">VLA 的隐式世界模型假设</span>
+        <span class="eq">a<sub>t</sub> = π(I<sub>t</sub>, L<sub>t</sub>, H<sub>t</sub>) &nbsp;&nbsp;←&nbsp;&nbsp;隐式包含 W(s<sub>t</sub>, a<sub>t</sub>) → s<sub>t+1</sub></span>
+        <span class="desc">端到端 VLA 把"世界模型"压进了策略网络的隐状态里——它能工作，但世界模型不可审计、不可干预。Goal-VLA (ICRA 2026) 与 ReconVLA (AAAI 2026 杰出论文) 开始显式化这个隐式世界模型，是当前最值得关注的方向。</span>
+      </div>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>团队/会议</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">RT-2</td><td>Google DeepMind / 2023</td><td class="o">首创 VLA 范式：VLM 微调机器人轨迹，知识从网到手</td></tr>
+          <tr><td class="mn">π0 (Pi-0)</td><td>Physical Intelligence / 2024</td><td class="o">Flow-matching 动作解码，50 时间步联合空间控制</td></tr>
+          <tr><td class="mn">GR00T N1–N1.7</td><td>NVIDIA / 2025–2026</td><td class="o">开源通用人形基础模型；System 1 快反应 + System 2 VLM 规划</td></tr>
+          <tr><td class="mn">ReconVLA</td><td>AAAI 2026 杰出论文</td><td class="o">首个在顶会获最佳论文的具身 AI 工作；重建引导 VLA 空间理解</td></tr>
+          <tr><td class="mn">Pelican-Unified 1.0</td><td>ByteDance / 2026.05</td><td class="o">首个统一具身基础模型：单 VLM 同时理解/推理/想象/行动</td></tr>
+          <tr><td class="mn">BISON</td><td>U of Toronto / 2026.05</td><td class="o">双层策略（高层符号+低层神经），10K 物体 &lt;1 min 规划</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">②</span> 仿真平台与 Sim2Real</h3>
+      <p>训练机器人需要海量交互数据，真实世界采不动。仿真平台（RoboCasa/LIBERO/Genie Sim 3.0/AGIBOT WORLD）负责生成，Sim2Real 负责迁移。但仿真器与真实之间永远有"现实鸿沟"——物理/视觉/接触都不完全一致。</p>
+
+      <div class="callout bio">
+        <span class="ct">③ 3DGS 在仿真中的新角色</span>
+        传统仿真用 URDF/Mesh/SDF 建环境，视觉真实度与编辑性往往不可兼得。GS-World（CUHK-Shenzhen, 2025.10）提出用 3DGS 做可微仿真引擎——环境既可渲染（视觉真实），又可求导（梯度传到策略），还能编辑（添加/删除/移动高斯 = 环境编辑）。这条路线如果走通，3DGS 就不只是"重建结果"，而是<strong>可微世界模拟器的标配表示层</strong>。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能核心论文库</a>
+        <a href="#ch7"><span class="ico">→</span> 下一章：3DGS 作为空间记忆</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--pink)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>端到端 VLA 的隐式世界模型与显式世界模型（Dreamer 系列）各有什么不可替代性？</li>
+          <li>3DGS 做可微仿真引擎，与 URDF/Mesh 仿真在"可微性"上的差距有多大？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 7 章 ===================== -->
+    <section class="chapter" id="ch7" style="--accent:var(--teal)">
+      <div class="chapter-head"><span class="no">CH 07</span><h2>3DGS 作为机器人空间记忆</h2></div>
+      <p class="chapter-sub">GS-SLAM · 地图即渲染器 · 导航推理 · 位姿图与语义标注</p>
+
+      <p>机器人需要空间记忆——不只是"我知道我在哪"，更是"我知道那里长什么样，我能在脑子里渲染它"。传统 SLAM 输出点云/栅格地图，可渲染但粗糙；NeRF-SLAM 可渲染但太慢。<strong>GS-SLAM 同时拿到了实时渲染、可微优化与显式数据结构</strong>，让地图变成"可渲染记忆"。</p>
+
+      <h3><span class="mi">①</span> GS-SLAM 的工程原理</h3>
+      <ul>
+        <li><strong>建图</strong>：每收到一帧 RGB-D，投影为高斯初值，用当前地图渲染出"预测帧"，与观测帧求光度/几何损失，反向传播更新高斯参数与相机位姿。</li>
+        <li><strong>跟踪</strong>：复用光栅化渲染做位姿优化——不需要额外特征提取管线，渲染即预测。</li>
+        <li><strong>关键帧与回环</strong>：选关键帧加入全局位姿图，回环时对高斯做全局 BA（Bundle Adjustment），消除漂移。</li>
+      </ul>
+
+      <div class="formula-box">
+        <span class="lbl">GS-SLAM 联合优化</span>
+        <span class="eq">L = L<sub>rgb</sub> + λ<sub>d</sub> L<sub>depth</sub> + λ<sub>ssim</sub> L<sub>ssim</sub></span>
+        <span class="desc">同时优化相机位姿 ξ 与高斯参数 {μ, Σ, α, SH}；关键帧窗口滑动做局部 BA，回环触发全局 BA。与 NeRF-SLAM 的根本区别：不需要逐像素光线步进，光栅化一次前向就是一张完整预测图。</span>
+      </div>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">SplaTAM</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">首个实时 GS-SLAM：在线增量大斯，渲染做位姿优化</td></tr>
+          <tr><td class="mn">GS-ICP-SLAM</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">ICP 配准 + 高斯地图，几何精度更稳</td></tr>
+          <tr><td class="mn">Photo-SLAM</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">光度 + 几何双损失，关键帧选择与回环检测</td></tr>
+          <tr><td class="mn">ManiGaussian</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td class="o">动态 GS 世界模型做多任务操作</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">②</span> 导航推理：从渲染到决策</h3>
+      <p>当地图是渲染器，导航规划就能直接在渲染结果上推理：在未探索区域渲染假设视角，评估通行性；在语义高斯地图上查询"最近的红色门"，输出可达路径。这与 NavSpace（ICRA 2026）的"空间大脑"方向完全对齐——<strong>空间记忆的最高形态不是点云，而是可查询、可渲染、可推理的三合一地图</strong>。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 空间记忆的三个层级</span>
+        <ol>
+          <li><strong>几何记忆</strong>（基础 SLAM）：我在哪，墙在哪——点云/栅格就够。</li>
+          <li><strong>外观记忆</strong>（可渲染 SLAM）：那里长什么样——需要 GS/NeRF。</li>
+          <li><strong>语义记忆</strong>（可查询 SLAM）：那是什么、能干什么——需要语义高斯 + 开放词汇。</li>
+        </ol>
+        当前 GS-SLAM 走到了第二层，与第 4 章的语义高斯结合就能到第三层——这才是机器人真正需要的"空间记忆"。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-systems-apps.md" target="_blank" rel="noopener"><span class="ico">⎇</span> SLAM / Systems 分类</a>
+        <a href="#ch8"><span class="ico">→</span> 下一章：物体级与铰接式理解</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--teal)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>GS-SLAM 的回环检测应该在高斯空间做还是在特征空间做？各自的代价是什么？</li>
+          <li>语义高斯地图的"可查询"能力，对路径规划的改变是量变还是质变？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 8 章 ===================== -->
+    <section class="chapter" id="ch8" style="--accent:var(--primary)">
+      <div class="chapter-head"><span class="no">CH 08</span><h2>物体级与铰接式理解</h2></div>
+      <p class="chapter-sub">Part-level 高斯 · 铰接资产 · CAD·Mesh·3DGS 桥接 · 操作的前置条件</p>
+
+      <p>机器人操作需要知道的不只是"那里有个东西"，还有"这个东西有几个零件、哪些能动、怎么动"。这叫<strong>铰接式理解</strong>（articulated understanding）——它是"看见"到"操作"之间的必要条件。</p>
+
+      <h3><span class="mi">①</span> Part-level 高斯</h3>
+      <p>场景级高斯把所有东西揉在一起；物体级/零件级高斯给每个高斯标所属 part/instance ID，让它"可拆"也"可动"。这与第 4 章语义高斯天然衔接——语义分割到 part-level 就是物体级高斯。</p>
+
+      <h3><span class="mi">②</span> 铰接式资产与 URDF 桥接</h3>
+      <p>AniGen 的 S3 Fields 把骨架/蒙皮/形状统一，单图出可动画资产。铰接式 3DGS 的目标是<strong>从观测中推断关节轴/旋转中心/运动范围</strong>，输出可直接驱动 URDF 的运动学参数。本仓库的 <code>3dgs-articulated-reasoner</code> 技能正是做这件事——从高斯场景中提取 part 结构、推断运动学约束、生成可交互数字孪生。</p>
+
+      <div class="formula-box">
+        <span class="lbl">铰接推理的目标</span>
+        <span class="eq">G<sub>scene</sub> → { (G<sub>part</sub><sup>k</sup>, T<sub>k</sub>(θ)) }<sub>k=1..K</sub></span>
+        <span class="desc">把场景高斯拆成 K 个零件，每个零件有一组局部高斯 G<sub>part</sub> 和一个受关节角 θ 驱动的变换 T<sub>k</sub>。推断 θ 的范围和 T 的类型（旋转/平移/螺旋）就是铰接推理的核心输出。</span>
+      </div>
+
+      <h3><span class="mi">③</span> CAD·Mesh·3DGS 三表示桥接</h3>
+      <p>3DGS 擅长外观，Mesh 擅长几何，CAD 擅长参数化可编辑。三者之间需要双向桥梁：</p>
+      <ul>
+        <li><strong>3DGS → Mesh</strong>：SuGaR、2DGS、PGSR 通过正则化让高斯对齐表面，TSDF/Poisson 提取网格。</li>
+        <li><strong>Mesh → 3DGS</strong>：MaGS、UniMGS 把高斯绑到网格面片，变形自然传播。</li>
+        <li><strong>3DGS → CAD</strong>：BrepGaussian、ASSEMCAD（ECCV 2026）从高斯恢复参数化 B-rep/装配体，输出 STEP 模型。</li>
+        <li><strong>CAD → 3DGS</strong>：CADFit 从 CAD 程序优化可微渲染，拟合多视图观测。</li>
+      </ul>
+
+      <div class="callout note">
+        <span class="ct">③ 工程路径</span>
+        本仓库的 <code>cad-mesh-3dgs</code> 技能覆盖 55+ 方法的双向转换管线；<code>3dgs-spatial-agent</code> 技能把 CAD-in-the-loop 参数提取与 Agent 驱动的 3D 交互合到一起。对机器人操作而言，最终需要的不是"3DGS"，而是一份<strong>可驱动、可编辑、可仿真</strong>的 URDF/CAD——3DGS 是通向它的最短路径。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/cad-mesh-3dgs" target="_blank" rel="noopener"><span class="ico">⎇</span> CAD·Mesh·3DGS 桥接技能</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-articulated-reasoner" target="_blank" rel="noopener"><span class="ico">③</span> 铰接推理技能</a>
+        <a href="#ch9"><span class="ico">→</span> 下一章：Agent 驱动的数字孪生</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--primary)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>铰接推理在观测不完整（只看到关了一半的抽屉）时如何约束解空间？</li>
+          <li>3DGS→CAD 的当前瓶颈在"几何保真度"还是在"拓扑正确性"？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 9 章 ===================== -->
+    <section class="chapter" id="ch9" style="--accent:var(--blue)">
+      <div class="chapter-head"><span class="no">CH 09</span><h2>Agent 驱动的数字孪生与交互</h2></div>
+      <p class="chapter-sub">MCP 渲染管线 · 手势交互 · 3DGS 作为可交互世界 · 感知-行动闭环</p>
+
+      <p>3DGS 重建了一个"看起来对"的世界，但"看起来对"和"能交互"之间差一个 Agent。<strong>Agent 驱动的数字孪生</strong>把 3DGS 从静态地图变成可操作的世界——Agent 感知空间、推理语义、执行动作，3DGS 提供可微、可渲染、可编辑的世界底座。</p>
+
+      <h3><span class="mi">①</span> MCP 渲染管线：Agent 与 3DGS 的协议层</h3>
+      <p>Model Context Protocol（MCP）让 Agent 以标准化方式调用渲染与场景操作。本仓库的 <code>3dgs-mcp-renderer</code> 技能定义了 Agent↔3DGS 的交互协议：Agent 发出"渲染视角 X"、"移动 part Y"、"查询语义 Z"的 MCP 调用，3DGS 渲染器执行并返回结果。这层协议让<strong>任何 Agent 都能"看见"和"操作"3DGS 世界</strong>，而不必关心底层实现。</p>
+
+      <h3><span class="mi">②</span> 手势驱动与多模态交互</h3>
+      <p>MediaPipe 手势 + YOLO 检测 + Three.js 渲染 + 3DGS 场景——这条融合管线让人类用手势直接"触摸"高斯世界：抓取、旋转、缩放物体级高斯组，实时看到渲染结果。它不是科幻，是当前已有工程原型的技术栈。</p>
+
+      <h3><span class="mi">③</span> 闭环：从感知到行动再回到感知</h3>
+      <div class="formula-box">
+        <span class="lbl">Agent-3DGS 交互闭环</span>
+        <span class="eq">感知(Render) → 推理(LLM/VLM) → 行动(MCP call) → 状态更新(3DGS edit) → 再感知</span>
+        <span class="desc">这个闭环的关键在"状态更新"——3DGS 的显式性让 Agent 的行动（移动/删除/创建高斯）直接映射为地图更新，而不需要重新训练或重编码。这是隐式表示做不到的。</span>
+      </div>
+
+      <div class="callout bio">
+        <span class="ct">③ 技能生态</span>
+        本仓库为 Agent-3DGS 交互提供了完整技能栈：<code>3dgs-mcp-renderer</code>（MCP 协议层）、<code>3dgs-spatial-agent</code>（空间推理与 CAD-in-the-loop 参数提取）、<code>3dgs-articulated-reasoner</code>（铰接推理与 URDF 桥接）、<code>3dgs-visualizer</code>（可视化与雷达图/对比表/方法时间线）。四个技能纵向串起了"渲染→理解→推理→操作"的闭环。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-mcp-renderer" target="_blank" rel="noopener"><span class="ico">⎇</span> MCP 渲染技能</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-spatial-agent" target="_blank" rel="noopener"><span class="ico">③</span> 空间智能体技能</a>
+        <a href="#ch10"><span class="ico">→</span> 下一章：世界模型与未来展望</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--blue)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>MCP 协议层在多 Agent 共享同一 3DGS 世界时，如何处理并发冲突（两个 Agent 同时移动同一个高斯组）？</li>
+          <li>手势交互的延迟预算是多少？3DGS 渲染、手势识别、MCP 调用各自分走多少？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 第 10 章 ===================== -->
+    <section class="chapter" id="ch10" style="--accent:var(--purple)">
+      <div class="chapter-head"><span class="no">CH 10</span><h2>世界模型与未来展望</h2></div>
+      <p class="chapter-sub">六大学派 · 3DGS×World Model 交叉 · 空间基础模型 · Physical AI</p>
+
+      <p>本书最后把视野拉到最远：<strong>世界模型</strong>——AI 系统内部构建对外部环境的模拟，使其能预测动态、预判后果、自主决策。2026 年这个词正处于"概念混战"期，六大学派各执一词，3DGS 在其中扮演一个特殊角色。</p>
+
+      <h3><span class="mi">①</span> 世界模型六大学派（2026 分类）</h3>
+      <table class="mtbl">
+        <thead><tr><th>流派</th><th>核心定义</th><th>代表</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">视频生成派</td><td class="o">生成逼真视频 = 模拟世界</td><td>Sora, Genie 3, HappyOyster, Cosmos</td></tr>
+          <tr><td class="mn">强化学习派</td><td class="o">内部环境模型用于策略训练</td><td>Dreamer 系列, DayDreamer</td></tr>
+          <tr><td class="mn">联合嵌入预测派</td><td class="o">在抽象表示空间做预测而非像素空间</td><td>JEPA/V-JEPA 2 (LeCun), AMI Labs</td></tr>
+          <tr><td class="mn">空间智能派</td><td class="o">理解和生成 3D 空间结构</td><td>World Labs/Marble (李飞飞), HY-World 2.0</td></tr>
+          <tr><td class="mn">自动驾驶仿真派</td><td class="o">物理一致的未来状态预测</td><td>Tesla Neural World Simulator, GAIA, X-World</td></tr>
+          <tr><td class="mn">3DGS 世界模型派</td><td class="o">可微渲染引擎做可交互仿真</td><td>GS-World, ManiGaussian, OrbiSim</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout key">
+        <span class="ct">★ 关键共识（2026 学界）</span>
+        <strong>视频生成 ≠ 世界模型。</strong>"能画出视频"不代表"理解世界"——Sora 1.0 后的核心反思。物理一致性、因果推理、行动可控性是世界模型区别于纯视频生成的根本。3DGS 在这个共识中处于独特位置：它是当前<strong>唯一同时满足"可渲染（视觉真实）+可微（梯度可传）+可编辑（行动可控）"</strong>的显式表示。
+      </div>
+
+      <h3><span class="mi">②</span> 3DGS×World Model 的技术交叉</h3>
+      <ul>
+        <li><strong>GS-World</strong>：用 3DGS 做生成式仿真 + 引擎驱动 Sim2Real VLA，世界既是可渲染的也是可求导的。</li>
+        <li><strong>ManiGaussian</strong>：动态 GS 世界模型做多任务操作，在"想象力"里练策略。</li>
+        <li><strong>OrbiSim</strong>：世界模型作为全可微物理引擎，3DGS 提供可微渲染层。</li>
+        <li><strong>RISE (χ0-RL)</strong>：组合多视角世界模型 + RL 想象训练，长程成功率跃升。</li>
+      </ul>
+
+      <h3><span class="mi">③</span> 空间基础模型与 Physical AI</h3>
+      <p>NVIDIA 的 Physical AI 技术三角——<strong>世界模型 + 空间智能 + 具身智能</strong>——中，3DGS 在"空间智能"充当表示地基，在"世界模型"充当可微渲染层，在"具身智能"充当空间记忆。三条线交汇到同一个表示，这是 3DGS 不容易被替代的核心原因。</p>
+
+      <p>空间基础模型（SpatialLM/SpatialVLM/Loc3R-VLM/ESI-Bench）正在把 VLM 的空间推理能力从 2D 拉到 3D。当这些模型能从 2D 图像直接输出 3D 空间结构时，3DGS 不再需要逐场景优化——前馈网络直接生成高斯，而 3DGS 的角色从"训练目标"变为"推理格式"。</p>
+
+      <div class="callout note">
+        <span class="ct">③ 预测</span>
+        未来 2–3 年，3DGS 的定位会从"重建方法"演化为"空间数据标准"——就像 JPEG 之于图像、MP4 之于视频。谁先定义好 3DGS 的交互协议（MCP）、查询语义（开放词汇）、编辑操作（Agent call），谁就先拿到空间智能平台的入口。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型与空间智能深研</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能核心论文库</a>
+        <a href="#afterword"><span class="ico">→</span> 后记：3DGS 会被吃掉吗</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--purple)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>3DGS 世界模型派与视频生成派在"可行动性"上的根本区别是什么？</li>
+          <li>空间基础模型前馈生成高斯后，3DGS 的"自适应密度控制"还重要吗？</li>
+          <li>Physical AI 三角中，3DGS 在哪两个角上最容易被替代？为什么？</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== 后记 ===================== -->
+    <section class="chapter" id="afterword" style="--accent:var(--text-3)">
+      <div class="chapter-head"><span class="no">后记</span><h2>3DGS 会被吃掉吗</h2></div>
+      <p class="chapter-sub">模型会不会吞掉表示</p>
+
+      <p>《深入理解 AI Agent》的后记问了一句"模型会不会吃掉 Harness"。我们这里也问一句：当一个十亿参数的空间基础模型能从图像直接预测世界结构时，3DGS 这种显式表示还有资格留在牌桌上吗？</p>
+
+      <p>本书的判断是：<strong>会被压缩，但不会被吃掉。</strong>理由有三。第一，可微性。3DGS 把空间变成可求导的数据结构，任何想"把渲染/物理/动作塞进一个可微闭环"的方法（GS-World、OrbiSim、ManiGaussian）都需要一份可微表示作骨架。第二，可编辑与确定性。世界模型生视频容易，但给一个可控、可审计、可版本化的"世界状态"仍要靠显式表示。第三，落地成本。车载、机器人、手机的算力与延迟约束，决定了你不能每帧跑一个超大模型，而一份压缩好的高斯地图几乎零推理代价。</p>
+
+      <p>所以更可能的演化是：空间基础模型在上面"想"，3DGS 在下面"是"——前者负责想象与决策，后者负责把想象锚定到可渲染、可触达、可验证的现实。本书的整条主线——从表示到感知、从感知到动作——正是在为这一分工搭脚手架。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 写在最后</span>
+        空间智能的下一个十年，不在于谁的模型更大，而在于谁先把"可微的空间"接到了"可行动的身体"上。3DGS 给了地基，剩下的是把地基上的感知、规划与行动一层层建扎实——这正是本书 760+ 方法与 14 个技能共同在做的事。
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型与空间智能深研</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能核心论文</a>
+        <a href="#intro"><span class="ico">↑</span> 回到开头</a>
+      </div>
+    </section>
+
+    <!-- ===================== 关于 ===================== -->
+    <footer id="about">
+      <div class="ft-title">关于本书</div>
+      <ul>
+        <li>📘 本书是一份围绕<strong>空间智能与具身智能</strong>、以 <strong>3D Gaussian Splatting</strong> 为主线的开源技术书，结构致敬李博杰《深入理解 AI Agent》（<a href="https://github.com/bojieli/ai-agent-book" target="_blank" rel="noopener">bojieli/ai-agent-book</a>）的章节体例。</li>
+        <li>⎇ 仓库：<a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">jaccen/Awesome-Gaussian-Skills</a> · 760+ 方法 · 25 类别 · 14 个 AI 技能</li>
+        <li>🌐 在线方法浏览器：<a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener">Interactive Explorer</a></li>
+        <li>📜 许可证：Apache License 2.0</li>
+        <li>🔄 内容随仓库更新持续迭代；方法名、分类、会议均锚定本仓库真实数据，避免杜撰。</li>
+      </ul>
+      <p class="copy">© 2026 Awesome-Gaussian-Skills · Made with care for spatial & embodied intelligence.</p>
+    </footer>
+
+    <div class="pager">
+      <a class="prev" href="#ch10"><div class="dir">← 上一页</div><div class="ttl">第 10 章 · 世界模型与未来展望</div></a>
+      <a class="next" href="#intro"><div class="dir">回到开头 →</div><div class="ttl">引言 · 为什么写这本书</div></a>
+    </div>
+
+  </main>
+</div>
+
+<button id="toTop" aria-label="回到顶部">↑</button>
+
+<!--SCRIPTS-->
+<script>
+(function(){
+  /* ── 阅读进度条 ── */
+  const bar = document.getElementById('progress');
+  function updateProgress(){
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+
+  /* ── 章节高亮 ── */
+  const tocLinks = document.querySelectorAll('#toc a');
+  const chapters = document.querySelectorAll('section.chapter, #intro, #afterword');
+  function updateActive(){
+    let cur = null;
+    chapters.forEach(s => {
+      if(s.getBoundingClientRect().top <= 100) cur = s;
+    });
+    tocLinks.forEach(a => {
+      a.classList.toggle('active', cur && a.getAttribute('href') === '#' + cur.id);
+    });
+  }
+  window.addEventListener('scroll', updateActive, {passive:true});
+  updateActive();
+
+  /* ── 回到顶部 ── */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 400);
+  }, {passive:true});
+  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  /* ── 主题切换 ── */
+  const themeBtn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const saved = localStorage.getItem('book-theme');
+  if(saved) root.setAttribute('data-theme', saved);
+  themeBtn.textContent = root.getAttribute('data-theme') === 'dark' ? '◑' : '◐';
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('book-theme', next);
+    themeBtn.textContent = next === 'dark' ? '◑' : '◐';
+  });
+
+  /* ── 移动端侧边栏 ── */
+  const sidebar = document.getElementById('sidebar');
+  const mask = document.getElementById('mask');
+  const menuBtn = document.getElementById('menuToggle');
+  function toggleSidebar(open){
+    sidebar.classList.toggle('open', open);
+    mask.classList.toggle('show', open);
+  }
+  menuBtn.addEventListener('click', () => toggleSidebar(true));
+  mask.addEventListener('click', () => toggleSidebar(false));
+  tocLinks.forEach(a => a.addEventListener('click', () => {
+    if(window.innerWidth <= 1024) toggleSidebar(false);
+  }));
+
+  /* ── 卡片点击 ── */
+  document.querySelectorAll('.ch-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const href = card.getAttribute('href');
+      if(href) window.location.hash = href.replace('#','');
+    });
+  });
+
+  /* ── Pager 动态 ── */
+  // Bottom pager already static with afterword links
+})();
+</script>
+</body>
+</html>
