@@ -43,7 +43,7 @@ Search 760+ methods instantly, filter by category, sort by citations, click any 
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
-> ** NEW (Jul 2026)** — A full open-source technical book, structured in tribute to [*AI Agents in Depth*](https://github.com/bojieli/ai-agent-book), built around **3D Gaussian Splatting** as the spine and weaving together **spatial intelligence** and **embodied intelligence** into one closed loop: *representation → perception → planning → action*.
+> ** NEW (Jul 2026)** — A full open-source technical book,  built around **3D Gaussian Splatting** as the spine and weaving together **spatial intelligence** and **embodied intelligence** into one closed loop: *representation → perception → planning → action*.
 
 **[📖 Read the Book →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
 
