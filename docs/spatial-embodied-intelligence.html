@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -294,7 +294,7 @@
     <div class="cover">
       <span class="kicker">① 开源技术书 · 设计原理与工程实践</span>
       <h1>深入理解<span class="grad">空间智能与具身智能</span></h1>
-      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 760+ 方法与 14 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
+      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 766+ 方法与 15 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
       <div class="formula">
         <b>具身智能体</b><span class="x">=</span>
         空间表征<span class="x">×</span>感知<span class="x">×</span>规划<span class="x">×</span>行动
@@ -307,7 +307,7 @@
         <span>📜 License · Apache-2.0</span>
       </div>
       <div class="ribbons">
-        <img alt="methods" src="https://img.shields.io/badge/Methods-760+-9cf.svg">
+        <img alt="methods" src="https://img.shields.io/badge/Methods-766+-9cf.svg">
         <img alt="categories" src="https://img.shields.io/badge/Categories-25-green.svg">
         <img alt="skills" src="https://img.shields.io/badge/AI_Skills-14-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
@@ -338,7 +338,7 @@
       <div class="chapter-head"><span class="no">引言</span><h2>为什么写这本书</h2></div>
       <p class="chapter-sub">空间智能与具身智能的百年交汇 · 3DGS 为何是关键拼图</p>
 
-      <p>2023 年，原始 3D Gaussian Splatting 论文发布——用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化，把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。一年内它从一篇 SIGGRAPH 论文变成一个 760+ 方法、跨 25 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。这本书想回答的问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
+      <p>2023 年，原始 3D Gaussian Splatting 论文发布——用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化，把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。一年内它从一篇 SIGGRAPH 论文变成一个 766+ 方法、跨 25 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。这本书想回答的问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
 
       <p>李飞飞在 2024 年重新定义了"空间智能"——它不是物体识别，而是"在三维空间中推理、理解、移动和交互的深层能力"。黄仁勋在 2025 CES 把这件事命名为 Physical AI，并给出技术三角：<strong>世界模型 + 空间智能 + 具身智能</strong>。这三者恰恰都以"一份可计算、可渲染、可编辑的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。</p>
 
@@ -351,7 +351,7 @@
         </div>
       </div>
 
-      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表征→感知→规划→行动"的主线，把 760+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
+      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表征→感知→规划→行动"的主线，把 766+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
 
       <div class="callout note">
         <span class="ct">③ 阅读建议</span>
@@ -362,7 +362,7 @@
 
       <div class="links">
         <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 原始 3DGS 仓库</a>
-        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 760+ 方法浏览器</a>
+        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 766+ 方法浏览器</a>
         <a href="#ch1"><span class="ico">→</span> 下一章：范式跃迁</a>
       </div>
     </section>
@@ -470,12 +470,13 @@
 
       <div class="callout warn">
         <span class="ct">⚠ 常见误区</span>
-        "3DGS 训练快"不等于"3DGS 调参简单"。位置梯度阈值 τ_pos、致密化间隔、clone 上限、透明度下限 α_min 这四个旋钮互相耦合；新加损失时要先确认它是否真的改变了 ‖∇μL‖，否则 split 不会按你的预期工作。本仓库的 3DGS 代码审查技能沉淀了 105+ 个已知 bug 模式，覆盖的正是这类"看起来在训练、其实在空转"的陷阱。
+        "3DGS 训练快"不等于"3DGS 调参简单"。位置梯度阈值 τ_pos、致密化间隔、clone 上限、透明度下限 α_min 这四个旋钮互相耦合；新加损失时要先确认它是否真的改变了 ‖∇μL‖，否则 split 不会按你的预期工作。本仓库的 3DGS 代码审查技能沉淀了 108+ 个已知 bug 模式，覆盖的正是这类"看起来在训练、其实在空转"的陷阱。
       </div>
 
       <div class="links">
         <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 官方实现</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-code-reviewer" target="_blank" rel="noopener"><span class="ico">③</span> 105+ bug 模式审查</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-code-reviewer" target="_blank" rel="noopener"><span class="ico">③</span> 108+ bug 模式审查</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-training-debugger" target="_blank" rel="noopener"><span class="ico">🔧</span> 60+ 训练运行时 bug 诊断</a>
         <a href="#ch3"><span class="ico">→</span> 下一章：从场景到世界</a>
       </div>
 
@@ -906,7 +907,7 @@
 
       <div class="callout key">
         <span class="ct">★ 写在最后</span>
-        空间智能的下一个十年，不在于谁的模型更大，而在于谁先把"可微的空间"接到了"可行动的身体"上。3DGS 给了地基，剩下的是把地基上的感知、规划与行动一层层建扎实——这正是本书 760+ 方法与 14 个技能共同在做的事。
+        空间智能的下一个十年，不在于谁的模型更大，而在于谁先把"可微的空间"接到了"可行动的身体"上。3DGS 给了地基，剩下的是把地基上的感知、规划与行动一层层建扎实——这正是本书 766+ 方法与 15 个技能共同在做的事。
       </div>
 
       <div class="links">
@@ -921,7 +922,7 @@
       <div class="ft-title">关于本书</div>
       <ul>
         <li>📘 本书是一份围绕<strong>空间智能与具身智能</strong>、以 <strong>3D Gaussian Splatting</strong> 为主线的开源技术书，结构致敬李博杰《深入理解 AI Agent》（<a href="https://github.com/bojieli/ai-agent-book" target="_blank" rel="noopener">bojieli/ai-agent-book</a>）的章节体例。</li>
-        <li>⎇ 仓库：<a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">jaccen/Awesome-Gaussian-Skills</a> · 760+ 方法 · 25 类别 · 14 个 AI 技能</li>
+        <li>⎇ 仓库：<a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">jaccen/Awesome-Gaussian-Skills</a> · 766+ 方法 · 25 类别 · 15 个 AI 技能</li>
         <li>🌐 在线方法浏览器：<a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener">Interactive Explorer</a></li>
         <li>📜 许可证：Apache License 2.0</li>
         <li>🔄 内容随仓库更新持续迭代；方法名、分类、会议均锚定本仓库真实数据，避免杜撰。</li>

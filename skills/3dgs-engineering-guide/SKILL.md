@@ -96,6 +96,17 @@ This skill focuses on production engineering. For related workflows:
 - **Spatial intelligence** → 3dgs-spatial-agent (for agent-driven deployment scenarios)
 - **CAD/Mesh integration** → cad-mesh-3dgs (for BIM/CAD workflows)
 
+
+## Red Lines
+
+The following are categorical prohibitions. Violating any of these invalidates the output:
+
+- **No invented data**: Never fabricate deployment metrics, VRAM numbers, or system requirements not in the loaded reference files. If a value is not found, write "data not available" or "N/A".
+- **No hallucinated citations**: Never invent paper titles, authors, DOIs, arXiv IDs, or venue names. Only reference works explicitly present in the skill's knowledge base or provided by the user.
+- **No silent speculation**: If you are uncertain about a technical detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
+- **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
+- **No oversimplified recommendations**: Do not reduce complex deployment trade-offs to a single "use this" judgment without considering the target environment.
+
 ## Related Skills
 
 - **3dgs-method-compare** — Method comparison (use for selecting methods for deployment)

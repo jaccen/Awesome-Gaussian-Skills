@@ -1,8 +1,8 @@
-﻿
+
 ---
 name: awesome-gaussian-skills
-version: "0.4.3"
-description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 766+ methods knowledge base, 14 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering, articulated reasoning, compression & deployment."
+version: "0.5.0"
+description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 766+ methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering, articulated reasoning, compression & deployment, training debugging."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin, Bayesian density control, MoE deformation, surgical SLAM, training-free semantic compression, deformable aggregation, PBR material splatting, 3DGS provenance analysis"
 arguments: [task]
 author: jaccen
@@ -31,9 +31,10 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 | `nerf-to-3dgs-migrator` | `/nerf-to-3dgs-migrator [method]` | Migrate NeRF methods to 3DGS |
 | `patent-software-ip` | `/patent-software-ip [project]` | Generate patent/copyright docs |
 | `3dgs-spatial-agent` | `/3dgs-spatial-agent [query]` | 3DGS/CAD/Mesh spatial intelligence agent |
-| `3dgs-mcp-renderer` | `/3dgs-mcp-renderer [action]` | MCP-controlled Three.js/3DGS rendering (13 tools) |
+| `3dgs-mcp-renderer` | `/3dgs-mcp-renderer [action]` | MCP-controlled Three.js/3DGS rendering (17 tools) |
 | `3dgs-articulated-reasoner` | `/3dgs-articulated-reasoner [task]` | Articulated object reasoning & digital twin |
 | `3dgs-compression-deploy` | `/3dgs-compression-deploy [target]` | Compress & deploy 3DGS models (quantize, prune, VQ, stream, Web/Mobile) |
+| `3dgs-training-debugger` | `/3dgs-training-debugger [symptom]` | Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns) |
 
 ## Knowledge Base Structure
 
@@ -61,6 +62,8 @@ references/
 - **Router Architecture**: 3 skills (3dgs-method-compare, cg-paper-writing, 3dgs-engineering-guide) use axis-driven Router + manifest.yaml + static/ fragments for efficient context usage
 - **Self-Check Loop**: 3dgs-code-reviewer v2.0.0 includes mandatory SC-1~SC-4 verification after each review
 - **Stage Gates**: cg-paper-writing includes SG-1/SG-2/SG-3 non-skippable gates
+- New skill (v0.4.4): 3dgs-training-debugger — Runtime training failure diagnosis (60+ runtime bug patterns, VRAM management, convergence analysis, novel method stability)
+- MCP implementation (v0.5.0): mcp-server/ — 24 MCP tools (11 fully implemented, 13 schema stubs), Three.js WebSocket renderer, 24-pattern voice intent mapper, headless mode support
 - Latest additions (2026-07 v0.4.3): GADA (ICML 2026), InvSplat, MGM, DualPhys-GS, GaussTrace (ICML 2026), StereoGS
 - Previous additions (2026-07 v0.4.2): SalientGS, DP-Splat, Grassmannian Splatting, MoE-GS/MoDE (TPAMI 2026), HyperGS, MAC-Splat (ECCV 2026), AsySplat, GeoGS-SLAM v2, AnythingReality, Track2Map (MICCAI 2026), HoloTetSphere (ECCV 2026), CoSAG, StructSplat (ECCV 2026), ABot-3DWorld 0, PEAR (SIGGRAPH 2026), CAGS (SIGGRAPH 2026), PanoLOG, SyncSpace, SplatCtrl (ICRA 2026), StereoSplat+ (IROS 2026), FreDeGS
 - Previous additions (2026-06/07 v0.4.1): FastGS, GaussianSplatting-SLAM-v2, GS-Map-SLAM, ArtiTwinSplat, Holi-Spatial, Spatial-TTT, Eulerian GS, Energy-GS, NG-GS, RAF, PDEO, UniSHARP, EvoGS, GP-3DGS, DISCOVERSE, gsplat, PDE-Constrained 3DGS, Capacity-Controlled Stylization, Flux-GS, Provable Pruning via Coresets, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R, Argus, World from Motion
@@ -74,8 +77,9 @@ references/
 - [x] `allowed-tools` field for pre-approved tool access
 - [x] Compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`) layouts
 - [x] Router architecture for efficient context usage (3 skills)
-- [x] Anti-hallucination guardrails (all 14 skills)
-- [x] Red Lines categorical prohibitions (7 research skills)
-- [x] Self-Check loops for code review (1 skill)
+- [x] Anti-hallucination guardrails (all 15 skills)
+- [x] Red Lines categorical prohibitions (all 15 skills)
+- [x] Self-Check loops for code review & training debugging (2 skills)
 - [x] Stage Gates for paper writing (1 skill)
-- [ ] Submit PR to `anthropics/skills` official repository
+- [ ] Submit PR to `anthropics/skills` official repository (materials prepared: `docs/anthropic-pr-preparation.md`)
+- [x] MCP protocol implementation (v0.5.0): 24 tool server in `mcp-server/`, Three.js browser renderer, voice intent mapper (24 patterns)

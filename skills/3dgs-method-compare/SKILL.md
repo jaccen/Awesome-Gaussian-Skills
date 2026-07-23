@@ -87,6 +87,17 @@ This skill focuses on method-level comparison. For related workflows:
 - **CAD/Mesh integration** → cad-mesh-3dgs
 - **Spatial intelligence/agent** → 3dgs-spatial-agent
 
+
+## Red Lines
+
+The following are categorical prohibitions. Violating any of these invalidates the output:
+
+- **No invented data**: Never fabricate benchmark results, timing numbers, or method characteristics not in the loaded reference files. If a value is not found, write "data not available" or "N/A".
+- **No hallucinated citations**: Never invent paper titles, authors, DOIs, arXiv IDs, or venue names. Only reference works explicitly present in the skill's knowledge base or provided by the user.
+- **No silent speculation**: If you are uncertain about a technical detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
+- **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
+- **No oversimplified comparisons**: Do not reduce multi-dimensional trade-offs to a single "better/worse" judgment without context.
+
 ## Related Skills
 
 - **3dgs-paper-reader** — Deep reading and analysis of 3DGS papers (use when you need detailed paper understanding, not just method comparison)
@@ -95,5 +106,12 @@ This skill focuses on method-level comparison. For related workflows:
 - **3dgs-engineering-guide** — Production deployment of 3DGS (use when comparison targets deployment scenarios)
 - **3dgs-visualizer** — Publication-quality comparison visualizations (use when comparison needs radar charts or timeline plots)
 - **3dgs-spatial-agent** — Spatial intelligence and embodied reasoning with 3DGS
+
+
+## Guardrail: Do Not Apply From Memory
+
+Do NOT try to apply the comparison logic, method data, or technical details described in this skill from memory. Always read the SKILL.md and referenced files from disk before producing any output. The knowledge base is updated frequently; stale memory may produce outdated, inaccurate, or fabricated results.
+
+If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, or technical features not present in the source data.
 
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills

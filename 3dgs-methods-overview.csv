@@ -1,4 +1,4 @@
-﻿method,arxiv_id,venue,year,category,core_innovation,code_url
+method,arxiv_id,venue,year,category,core_innovation,code_url
 3DGEER,,ICLR 2026,2026,Foundation Methods,Exact ray-Gaussian integration replacing splatting approximation for fisheye/generic cameras,https://github.com/boschresearch/3dgeer
 3DGS,2308.04079,SIGGRAPH 2023,2023,Foundation Methods,Anisotropic 3D Gaussians with tile-based differentiable rasterization,https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/
 Mip-Splatting,2311.16493,CVPR 2024 (Best Student Paper),2024,Foundation Methods,Anti-aliased 3DGS with 3D smoothing + 2D Mip filter,https://github.com/autonomousvision/mip-splatting
@@ -637,3 +637,9 @@ SyncSpace,2607.10050,,2026,Applications/MR,MR space reskinning via layout-condit
 FreDeGS,,Springer 2026,2026,Applications/Deblurring,Frequency-guided deblurring Gaussian splatting from motion blur,
 SplatCtrl,2607.08948,ICRA 2026,2026,Robotics,GS + reactive robot control via Gaussian world model-based behavior planning,
 StereoSplat+,2607.08808,IROS 2026,2026,Sensing,Stereo + diffusion progressive GS with depth-guided densification,
+GaussTrace,2606.10612,ICML 2026,2026,Security/Provenance,"3DGS provenance analysis via evidence-driven LLM reasoning; directed provenance graphs from Gaussian scene attributes for IP protection and forensics",
+GADA,2607.00595,ICML 2026,2026,Feed-Forward,"Geometry-aware deformable aggregation for image-based 3DGS; deformable offsets + implicit confidence weighting; 2.13x faster FPS",
+InvSplat,2607.02301,arXiv 2026,2026,Feed-Forward/Material,"Inverse feed-forward scene splatting; predicts structured 3D Gaussians with intrinsic material attributes (albedo metallic roughness) for relighting",
+MGM (Large Material Gaussian Model),2509.22112,arXiv 2026,2026,Relighting/Material,"Relightable 3D generation with full PBR materials via multiview material diffusion + Gaussian material representation",
+DualPhys-GS,2508.09610,arXiv 2026,2026,Robustness/Physics,"Dual physically-guided 3DGS for underwater scene reconstruction; joint attenuation-scattering physics + lighting decomposition",
+StereoGS,,2026,2026,Hardware Acceleration,"Energy-efficient 3DGS stereoscopic rendering processor; dual-eye shared compute and memory bandwidth for VR/AR",

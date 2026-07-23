@@ -282,6 +282,17 @@ outputs/{case-id}/
 
 
 
+
+## Red Lines
+
+The following are categorical prohibitions. Violating any of these invalidates the output:
+
+- **No invented data**: Never fabricate patent claims, prior art references, or legal requirements not in the loaded reference files. If a value is not found, write "data not available" or "N/A".
+- **No hallucinated citations**: Never invent paper titles, authors, DOIs, arXiv IDs, patent numbers, or venue names. Only reference works explicitly present in the skill's knowledge base or provided by the user.
+- **No silent speculation**: If you are uncertain about a technical or legal detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
+- **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
+- **No legal advice**: Never provide definitive legal advice. All patent and copyright output is draft material requiring review by a qualified attorney.
+
 ## Related Skills
 
 - **3dgs-method-compare** — Method comparison (use for prior art analysis and novelty assessment)

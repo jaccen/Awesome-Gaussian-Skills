@@ -276,6 +276,17 @@ When processing a 3DGS scene, select the appropriate pathway based on scenario:
 
 
 
+
+## Red Lines
+
+The following are categorical prohibitions. Violating any of these invalidates the output:
+
+- **No invented data**: Never fabricate spatial relationships, geometry properties, or method characteristics not in the loaded reference files. If a value is not found, write "data not available" or "N/A".
+- **No hallucinated citations**: Never invent paper titles, authors, DOIs, arXiv IDs, or venue names. Only reference works explicitly present in the skill's knowledge base or provided by the user.
+- **No silent speculation**: If you are uncertain about a technical detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
+- **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
+- **No oversimplified comparisons**: Do not reduce multi-dimensional spatial reasoning trade-offs to a single judgment without context.
+
 ## Related Skills
 
 - **3dgs-mcp-renderer** — MCP rendering protocol (use for real-time spatial rendering)

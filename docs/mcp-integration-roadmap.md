@@ -1,6 +1,8 @@
-﻿# MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
 
-> Version: 0.2.3 | Date: 2026-07-23 | Status: Phase 1 In Progress
+
+# MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
+
+> Version: 0.5.0 | Date: 2026-07-24 | Status: Phase 2 Implemented
 
 ## Overview
 
@@ -177,5 +179,5 @@ Agents communicate via shared MCP Server state, coordinating through semantic sc
 
 - **v0.4.0** (Jul 2026): Phase 1 — 4 new MCP tools, `prune_by_importance` spec integrated
 - **v0.4.5** (Jul 2026): Phase 1.5 — Spatial intelligence + articulated reasoning tools, `3dgs-articulated-reasoner` skill integration
-- **v0.5.0** (Aug 2026): Phase 2 — Voice-driven closed-loop demo
+- **v0.5.0** (Jul 2026): Phase 2 — Voice-driven closed-loop implemented ✅ (mcp-server/ directory, 24 tools, Three.js renderer, voice intent mapper)
 - **v1.0** (Sep 2026): Phase 3 prototype — Multi-agent orchestration + CI/CD

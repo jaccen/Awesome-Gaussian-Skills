@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3DGS MCP Renderer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    #canvas-container {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    }
+    #info-overlay {
+      position: fixed; top: 12px; left: 12px; z-index: 100;
+      background: rgba(20, 20, 30, 0.85); border: 1px solid #333;
+      border-radius: 8px; padding: 12px 16px; font-size: 13px;
+      max-width: 360px; backdrop-filter: blur(8px);
+    }
+    #status-dot {
+      display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      margin-right: 6px; vertical-align: middle;
+    }
+    .connected { background: #4caf50; }
+    .disconnected { background: #f44336; }
+    .connecting { background: #ff9800; }
+    #log-panel {
+      position: fixed; bottom: 12px; right: 12px; z-index: 100;
+      background: rgba(15, 15, 20, 0.85); border: 1px solid #333;
+      border-radius: 8px; padding: 10px; font-size: 11px;
+      max-width: 400px; max-height: 200px; overflow-y: auto;
+      font-family: 'Cascadia Code', 'Consolas', monospace; backdrop-filter: blur(8px);
+    }
+    .log-entry { margin-bottom: 2px; opacity: 0.8; }
+    .log-entry.ts { color: #569cd6; }
+    .log-entry.cmd { color: #4ec9b0; }
+    .log-entry.err { color: #f44747; }
+    .log-entry.ok { color: #6a9955; }
+    #renderer-port { color: #ce9178; font-weight: bold; }
+    h3 { font-size: 14px; margin-bottom: 8px; color: #ccc; }
+    .stat-row { display: flex; justify-content: space-between; margin: 2px 0; }
+    .stat-label { color: #888; }
+    .stat-val { color: #dcdcaa; }
+  </style>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <div id="info-overlay">
+    <h3>3DGS MCP Renderer</h3>
+    <div class="stat-row">
+      <span class="stat-label">Connection:</span>
+      <span><span id="status-dot" class="connecting"></span><span id="status-text">Connecting...</span></span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">WebSocket:</span>
+      <span class="stat-val" id="renderer-port">ws://localhost:9842</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Gaussians:</span>
+      <span class="stat-val" id="gaussian-count">0</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Last render:</span>
+      <span class="stat-val" id="last-render">-</span>
+    </div>
+  </div>
+
+  <div id="log-panel">
+    <div class="log-entry ts">--- Renderer Log ---</div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module" src="renderer.js"></script>
+</body>
+</html>

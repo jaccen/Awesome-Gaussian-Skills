@@ -1,4 +1,6 @@
-﻿<div align="center">
+
+
+<div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
@@ -11,7 +13,7 @@
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Methods](https://img.shields.io/badge/方法-766+-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI技能-14-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-105+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -83,13 +85,13 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 766+ 方法名、摘要和 14 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 766+ 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 7 月）
 
-最新更新（7 月 14 日）：**v0.4.2 — SIGGRAPH & MICCAI 2026 浪潮**，766+ 方法。新增：**DP-Splat**（贝叶斯密度控制）、**MoE-GS/MoDE**（TPAMI 2026）、**HyperGS**（10^4-10^5x 前馈）、**MAC-Splat**（ECCV 2026）、**Track2Map**（MICCAI 2026）、**PEAR**（SIGGRAPH 2026）、**CoSAG**（免训练语义压缩）、**HoloTetSphere**（ECCV 2026）。前次更新（7 月 9 日）：v0.4.1 ECCV & ISCA 2026 浪潮。3 个 Router 技能，全部 14 技能含反幻觉护栏。
+最新更新（7 月 23 日）：**v0.4.4 — 训练调试技能 + ICML 2026 浪潮**。新增第 15 个技能 `3dgs-training-debugger`（运行时训练故障诊断）。前次更新（7 月 23 日）：v0.4.3 — ICML 2026 & 材质/溯源浪潮。前次更新（7 月 14 日）：v0.4.2 — SIGGRAPH & MICCAI 2026 浪潮，766+ 方法。新增：**DP-Splat**（贝叶斯密度控制）、**MoE-GS/MoDE**（TPAMI 2026）、**HyperGS**（10^4-10^5x 前馈）、**MAC-Splat**（ECCV 2026）、**Track2Map**（MICCAI 2026）、**PEAR**（SIGGRAPH 2026）、**CoSAG**（免训练语义压缩）、**HoloTetSphere**（ECCV 2026）。前次更新（7 月 9 日）：v0.4.1 ECCV & ISCA 2026 浪潮。3 个 Router 技能，全部 15 技能含反幻觉护栏。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -201,7 +203,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 </details>
 
-## 14 AI 驱动技能
+## 15 AI 驱动技能
 
 | # | 技能 | 功能 | 示例 |
 |---|------|------|------|
@@ -219,6 +221,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 12 | [`3dgs-mcp-renderer`](skills/3dgs-mcp-renderer/) | MCP 控制的 Three.js/3DGS 渲染桥接 | "从上方看这个场景" |
 | 13 | [3dgs-articulated-reasoner](skills/3dgs-articulated-reasoner/) | 铰接物体推理与数字孪生 | "打开抽屉" |
 | 14 | [3dgs-compression-deploy](skills/3dgs-compression-deploy/) | 压缩与部署 3DGS（量化、剪枝、VQ、流式、Web/移动端） | "3DGS模型怎么压缩到10MB？" |
+| 15 | [3dgs-training-debugger](skills/3dgs-training-debugger/) | 训练故障诊断：OOM、NaN、发散、伪影（60+ 运行时模式） | "训练OOM了怎么办？" |
 
 兼容 **Claude Code**、**Cursor**、**Windsurf** 及其他 AI Agent 框架。
 
@@ -298,7 +301,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.4.0 — Router 架构扩展：cg-paper-writing + 3dgs-engineering-guide → Router + manifest.yaml + static/；3dgs-code-reviewer 自检循环；3 个 Router 技能（2026 年 7 月 2 日）
 - [x] v0.4.1 — ECCV & ISCA 2026 浪潮：+Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R（ECCV 2026）, Axis-Shared Rasterization Accelerator（ISCA 2026）, Provable Pruning via Coresets；739+ 方法（2026 年 7 月 9 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
-- [ ] v0.5 — MCP 协议集成：Agent 控制的 Three.js/3DGS 渲染管线
+- [x] v0.5.0 — MCP 协议实现：24 工具 MCP 服务器（mcp-server/），Three.js WebSocket 渲染器，24 模式语音意图映射，无头模式，语音演示（2026 年 7 月 24 日）
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
 - [ ] v2.0 — Agent 间协作（多 Agent 论文讨论）
 
@@ -308,7 +311,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ```
 Awesome-Gaussian-Skills/
-├── skills/                    # 14 个 AI Agent 技能（SKILL.md 格式）
+├── skills/                    # 15 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
 │   ├── 3dgs-code-reviewer/    # 代码审查（108+ bug 模式）
@@ -322,7 +325,9 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-spatial-agent/    # 空间智能 Agent
 │   ├── 3dgs-mcp-renderer/     # MCP 渲染桥接
 │   ├── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
-│   └── 3dgs-compression-deploy/  # 压缩与部署（量化、剪枝、VQ、流式）
+│   ├── 3dgs-compression-deploy/  # 压缩与部署（量化、剪枝、VQ、流式）
+│   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
+├── mcp-server/                # MCP 服务器 v0.5.0（24 工具，Three.js 渲染器，语音意图）
 ├── docs/                      # GitHub Pages 交互式浏览器
 ├── references/                # 知识库（766+ 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
