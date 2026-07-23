@@ -44,7 +44,7 @@
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
-> **全新（2026 年 7 月）** — 一本完整的开源技术书籍，致敬 [*深入理解 AI Agent*](https://github.com/bojieli/ai-agent-book) 的结构风格，以 **3D Gaussian Splatting** 为主线，将**空间智能**与**具身智能**串联为一个闭环：*表示 → 感知 → 规划 → 行动*。
+> **全新（2026 年 7 月）** — 一本完整的开源技术书籍，以 **3D Gaussian Splatting** 为主线，将**空间智能**与**具身智能**串联为一个闭环：*表示 → 感知 → 规划 → 行动*。
 
 **[📖 在线阅读 →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
 
