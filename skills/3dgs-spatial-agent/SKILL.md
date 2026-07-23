@@ -5,7 +5,7 @@ license: Apache-2.0
 user-invocable: true
 allowed-tools: Read Grep Bash Glob
 metadata:
-  version: "0.7.0"
+  version: "0.7.1"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
   when_to_use:
@@ -16,6 +16,7 @@ metadata:
     - "Decouple geometry and opacity for reflective/transparent objects"
     - "Spatial reasoning over reconstructed scenes"
     - "3D场景理解 / CAD提取 / 参数化建模 / 材质推断 / 几何不透明度解耦"
+    - "3DGS provenance analysis and IP forensics from Gaussian scene attributes"
 ---
 
 # 3DGS Spatial Intelligence Agent
@@ -35,7 +36,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (760+ methods)
+3DGS Scene (766+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │
@@ -134,6 +135,12 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
         ├── Canonical Gaussian per object ──── Spatio-temporal transformer predicts rigid body motion
         │
         └── Model-predictive control ──── Non-prehensile manipulation
+  │
+  ├── Provenance & IP Forensics ──── GaussTrace [arXiv:2606.10612] (ICML 2026)
+  │     │
+  │     ├── Evidence-driven LLM reasoning ──── Constructs directed provenance graphs from Gaussian scene attributes
+  │     │
+  │     └── 3DGS model IP protection ──── Traces model lineage, training data influence, and forgery detection
 ```
 
 ### Structured Understanding → 3DGS Editing Pipeline

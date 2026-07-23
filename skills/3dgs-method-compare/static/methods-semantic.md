@@ -1,4 +1,4 @@
-| Method | Venue | Feature Source | 3D Storage | Key Feature |
+﻿| Method | Venue | Feature Source | 3D Storage | Key Feature |
 |--------|-------|---------------|------------|-------------|
 | LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
 | Feature 3DGS | CVPR'24 | DINO/SAM (2D distillation) | Per-Gaussian feature vectors | Downstream task features |
@@ -64,3 +64,16 @@
 | WildSplat | ECCV'26 | Variable | Single-pass | First feed-forward 3DGS from unposed in-the-wild images; handles transient objects and illumination variation |
 | NoDrift3R | ECCV'26 | Variable | Single-pass | Raymap-Guided drift-robust unposed feed-forward 3DGS; eliminates camera drift in long sequences |
 | AnchorSplat | ECCV'26 | Anchor-based | Single-pass | Point Anchor Mechanism for feed-forward 3DGS; 10^5× faster detail enhancement via anchor-based refinement |
+
+### Feed-Forward New Additions (July 23, 2026)
+
+| Method | Venue | #Gaussians | Inference | Key Feature |
+|--------|-------|------------|-----------|-------------|
+| GADA | ICML'26 (2607.00595) | Variable | Single-pass | Geometry-Aware Deformable Aggregation; deformable offsets + implicit confidence weighting; 2.13× faster FPS |
+| InvSplat | arXiv'26 (2607.02301) | Structured | Single-pass | Inverse feed-forward scene splatting; intrinsic PBR material attributes (albedo, metallic, roughness) for relighting without post-hoc decomposition |
+
+### Material / Relighting Methods (July 23, 2026)
+
+| Method | Venue | Material Model | Key Feature |
+|--------|-------|---------------|-------------|
+| MGM (Large Material Gaussian Model) | arXiv'26 (2509.22112) | PBR (albedo, roughness, metallic) | Relightable 3D generation via multiview material diffusion + Gaussian material representation |

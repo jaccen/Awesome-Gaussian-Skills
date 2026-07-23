@@ -4,7 +4,7 @@ description: "3DGS compression-to-deployment pipeline: quantization (scalar/VQ/m
 license: Apache-2.0
 user-invocable: true
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "compression", "quantization", "pruning", "vector-quantization", "streaming", "deployment", "mobile", "webgpu", "tensor-core", "hardware-acceleration", "bayesian", "semantic-compression"]
   when_to_use:
@@ -306,6 +306,7 @@ Server                                          Client
 | LiteGS | GPU (Moore Threads) | SIGGRAPH Asia 2025 | Software-hardware co-opt | Won 3DGS Challenge silver at SIGGRAPH Asia |
 | SpqGS | FPGA-friendly | CVPR 2025 | Parallel bit allocation | Hardware-scalable quantization |
 | QuadBox | GPU (AABB optimization) | arXiv 2026 | 1.85x | Geometry-aware bounding boxes |
+| StereoGS | ASIC (stereoscopic) | 2026 | Dual-eye shared | Energy-efficient stereoscopic GS processor; shared compute + memory bandwidth for VR/AR |
 
 ### Acceleration Selection
 
@@ -318,8 +319,10 @@ Deployment hardware?
 │   └── Axis-Shared Rasterization Accelerator (ISCA 2026)
 ├── FPGA
 │   └── SpqGS (hardware-friendly quant) + custom rasterizer
-└── Mobile GPU (Mali/Adreno/Apple)
-    └── Mobile-GS depth-aware OIT + Flux-GS Monte Carlo
+├── Mobile GPU (Mali/Adreno/Apple)
+│   └── Mobile-GS depth-aware OIT + Flux-GS Monte Carlo
+└── VR/AR HMD (stereoscopic)
+    └── StereoGS (dual-eye shared compute + memory bandwidth)
 ```
 
 ## Methods Quick Reference

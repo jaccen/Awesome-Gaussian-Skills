@@ -4,7 +4,7 @@ description: "Generate CN patent docs (claims, specification, abstract) and soft
 license: Apache-2.0
 user-invocable: true
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
   author: jaccen
   tags: ["patent", "software-copyright", "ip", "ai", "big-data", "3d-vision", "generative-ai", "embodied-ai", "nlp", "rag", "ai-engineering", "ai-safety"]
   when_to_use:
@@ -57,7 +57,7 @@ Confirm: path (patent/copyright/both), tech topic, applicant/inventor info, exis
 | **D3 Generative AI** | Diffusion, LLM text gen, cross-modal gen, AIGC watermark | **Must bind condition injection method**; pure content gen = rejected |
 | **D4 Decision & Interaction** | Embodied AI, reinforcement learning, multi-agent | **Must bind sensor + actuator**; RL: bind reward to concrete task |
 | **D5 AI Engineering** | Training/fine-tuning, inference deployment, data engineering, edge IoT | Training: bind to specific model architecture; inference: bind to hardware |
-| **D6 AI Safety & Governance** | Adversarial robustness, watermark/tracing, privacy, alignment | Need concrete technical measure, not policy-level description |
+| **D6 AI Safety & Governance** | Adversarial robustness, watermark/tracing, privacy, alignment, 3DGS provenance | Need concrete technical measure, not policy-level description. 3DGS IP: reference GaussTrace (ICML 2026) for evidence-driven provenance graphs |
 | **D7 Industry Applications** | Autonomous driving, industrial, medical, financial, AI4Science | **Must bind data processing means**; financial: bind to data analysis |
 | **D8 Big Data** | Distributed computing, data pipeline, stream processing, data quality, real-time analytics | **Must bind to specific application scenario**; pure platform = rejected |
 

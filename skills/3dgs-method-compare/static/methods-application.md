@@ -1,4 +1,4 @@
-### Human & Avatar Methods
+﻿### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
@@ -144,3 +144,14 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | SplatCtrl | ICRA'26 (2607.08948) | Robotics / Control | GS + reactive robot control via Control Barrier Functions (CBF); safety-guaranteed navigation |
 | PEAR | SIGGRAPH'26 | Avatar / Real-Time | Single-image 100 FPS human avatar; real-time animatable Gaussian avatar |
 | FreDeGS | Springer'26 | Deblurring / Frequency | Frequency-guided deblurring GS; frequency-aware optimization for motion-blurred inputs |
+
+### New Additions (July 23, 2026)
+
+| Method | Venue | Category | Key Feature |
+|--------|-------|----------|-------------|
+| GaussTrace | ICML'26 (2606.10612) | Provenance / Security | 3DGS provenance analysis via evidence-driven LLM reasoning; directed provenance graphs from Gaussian attributes for IP protection & forensics |
+| DualPhys-GS | arXiv'26 (2508.09610) | Robustness / Underwater | Dual physically-guided 3DGS for underwater scenes; joint attenuation-scattering + lighting decomposition |
+| InvSplat | arXiv'26 (2607.02301) | Feed-Forward / Material | Inverse feed-forward scene splatting; intrinsic PBR attributes (albedo, metallic, roughness) for relighting |
+| GADA | ICML'26 (2607.00595) | Feed-Forward / Geometry | Geometry-Aware Deformable Aggregation; deformable offsets + implicit confidence; 2.13× faster FPS |
+| MGM | arXiv'26 (2509.22112) | Material / Relighting | Relightable 3D generation with PBR; multiview material diffusion + Gaussian material representation |
+| StereoGS | 2026 | Hardware / VR | Energy-efficient stereoscopic 3DGS processor; dual-eye shared compute for VR/AR rendering |

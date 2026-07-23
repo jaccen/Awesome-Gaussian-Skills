@@ -3,7 +3,7 @@ name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering."
 license: Apache-2.0
 metadata:
-  version: "0.7.0"
+  version: "0.7.1"
   author: jaccen
   tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive"]
   disable-model-invocation: true
@@ -320,12 +320,109 @@ Integrates Holi-Spatial (ICML 2026 Oral) data pipeline for automated spatial ann
 
 **Use cases**: Surgical navigation, instrument tracking, tissue deformation monitoring, collision avoidance in surgery
 
+### Tool 14: `query_provenance`
+
+```json
+{
+  "name": "query_provenance",
+  "description": "Query 3DGS model provenance and IP forensics using GaussTrace (arXiv:2606.10612, ICML 2026). Constructs directed provenance graphs from Gaussian scene attributes for model lineage tracing, training data influence analysis, and forgery detection.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "query_type": { "enum": ["lineage", "attribution", "forgery_detection", "training_data_influence"], "description": "Type of provenance query" },
+      "evidence_threshold": { "type": "number", "default": 0.75, "description": "Confidence threshold for evidence graph edges" }
+    },
+    "required": ["scene_id", "query_type"]
+  },
+  "output": { "type": "object", "properties": { "provenance_graph": "object", "confidence_score": "number", "evidence_chain": "array", "forgery_flags": "array" } }
+}
+```
+
+**Use cases**: 3DGS IP protection, model attribution, training data leakage detection, forgery analysis
+
+### Tool 15: `set_pbr_material`
+
+```json
+{
+  "name": "set_pbr_material",
+  "description": "Set physically-based rendering (PBR) material properties on selected Gaussians using MGM (arXiv:2509.22112) and InvSplat (arXiv:2607.02301) material representations. Enables relighting without post-hoc decomposition by assigning intrinsic material attributes (albedo, metallic, roughness) directly to Gaussians.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "select": { "type": "object", "description": "Selection criteria (same as modify_gaussians)" },
+      "albedo": { "type": "array", "items": {"type": "number"}, "description": "[r, g, b] albedo in [0,1]" },
+      "metallic": { "type": "number", "description": "Metallic factor in [0,1]" },
+      "roughness": { "type": "number", "description": "Roughness factor in [0,1]" },
+      "infer_from_appearance": { "type": "boolean", "default": false, "description": "Use InvSplat inverse feed-forward to infer PBR from existing appearance" }
+    },
+    "required": ["scene_id", "select"]
+  },
+  "output": { "type": "object", "properties": { "modified_count": "number", "material_preview": "string" } }
+}
+```
+
+**Use cases**: Relightable 3DGS editing, material transfer, PBR asset generation, appearance decoupling
+
+### Tool 16: `deformable_aggregate`
+
+```json
+{
+  "name": "deformable_aggregate",
+  "description": "Apply geometry-aware deformable aggregation (GADA, arXiv:2607.00595, ICML 2026) to feed-forward 3DGS from multi-view images. Uses deformable offsets and implicit confidence weighting for 2.13x faster FPS with improved PSNR over prior feed-forward methods.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "input_views": { "type": "array", "items": {"type": "string"}, "description": "Array of image URLs or file paths" },
+      "deform_offset_range": { "type": "number", "default": 0.1, "description": "Maximum deformable offset range (scene scale relative)" },
+      "confidence_weighting": { "type": "boolean", "default": true, "description": "Enable implicit confidence weighting" },
+      "output_format": { "enum": ["ply", "splat"], "default": "ply" }
+    },
+    "required": ["input_views"]
+  },
+  "output": { "type": "object", "properties": { "scene_id": "string", "gaussian_count": "number", "inference_time_ms": "number", "psnr_estimate": "number" } }
+}
+```
+
+**Use cases**: Fast feed-forward 3DGS reconstruction, real-time multi-view splatting, generalizable 3DGS
+
+### Tool 17: `set_stereoscopic`
+
+```json
+{
+  "name": "set_stereoscopic",
+  "description": "Enable stereoscopic (dual-eye) rendering mode using StereoGS energy-efficient processor paradigm. Shares compute and memory bandwidth between left and right eye views for VR/AR head-mounted displays. Approximates the StereoGS hardware accelerator in software.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scene_id": { "type": "string" },
+      "enabled": { "type": "boolean", "description": "Enable or disable stereoscopic mode" },
+      "ipd": { "type": "number", "default": 0.063, "description": "Interpupillary distance in meters (default: 63mm)" },
+      "shared_compute": { "type": "boolean", "default": true, "description": "Share Gaussian sorting and blending between eyes (StereoGS paradigm)" },
+      "output_mode": { "enum": ["side_by_side", "top_bottom", "dual_buffer"], "default": "dual_buffer" }
+    },
+    "required": ["scene_id", "enabled"]
+  },
+  "output": { "type": "object", "properties": { "left_eye_frame": "string", "right_eye_frame": "string", "render_time_ms": "number", "bandwidth_savings_pct": "number" } }
+}
+```
+
+**Use cases**: VR/AR scene viewing, stereoscopic 3DGS preview, dual-eye rendering optimization
+
 ## Voice Intent Mapping
 
 | Voice Intent Example | Intent Type | MCP Tool Call |
 |----------------------|-------------|---------------|
 | "What is to the left of the chair?" | Spatial grounding query | `query_spatial_context` (mode="grounding") |
 | "How far is the table from the door?" | Spatial measurement | `query_spatial_context` (mode="measurement") |
+| "Where did this 3D model come from?" | Provenance query | `query_provenance` (query_type="lineage") |
+| "Is this 3DGS model authentic?" | Forgery detection | `query_provenance` (query_type="forgery_detection") |
+| "Make this object look metallic" | PBR material edit | `set_pbr_material` (metallic=1.0) |
+| "Infer materials from appearance" | Inverse material estimation | `set_pbr_material` (infer_from_appearance=true) |
+| "Reconstruct from these photos fast" | Feed-forward splatting | `deformable_aggregate` (input_views=[...]) |
+| "Show me in VR mode" | Stereoscopic rendering | `set_stereoscopic` (enabled=true) |
+| "Adjust the eye distance" | VR IPD control | `set_stereoscopic` (ipd=value) |
 
 ## Voice-Driven Reconstruction Flow
 

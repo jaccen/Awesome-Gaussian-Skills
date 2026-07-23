@@ -1,18 +1,16 @@
-
-
-<div align="center">
+﻿<div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 760+ 方法，25 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 766+ 方法，25 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-760+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-766+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-14-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-105+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -30,7 +28,7 @@
 |----------|----------|--------|
 | 浏览论文 | 静态 Markdown 表格 | [交互式浏览器](https://jaccen.github.io/Awesome-Gaussian-Skills/)：搜索、筛选、排序 |
 | 对比方法 | 同时打开 2 篇论文对照 | 10+ 维度自动对比 |
-| 避免代码 bug | 提交后才发现 | 105+ 已知 bug 模式检测 |
+| 避免代码 bug | 提交后才发现 | 108+ 已知 bug 模式检测 |
 | 设计实验 | 猜基线和消融方案 | 顶会定制实验方案 |
 | NeRF → 3DGS | 试错式移植 | 逐步迁移指南 |
 | CAD ↔ 3DGS | 无覆盖 | 61+ 方法转换管线 |
@@ -40,7 +38,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 760+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 766+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -58,7 +56,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 12 章，每个方法名均锚定本仓库真实数据（760+ 方法、25 类别、14 技能），零虚构：**
+**全书 12 章，每个方法名均锚定本仓库真实数据（766+ 方法、25 类别、14 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -85,13 +83,13 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 760+ 方法名、摘要和 14 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 766+ 方法名、摘要和 14 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 7 月）
 
-最新更新（7 月 14 日）：**v0.4.2 — SIGGRAPH & MICCAI 2026 浪潮**，760+ 方法。新增：**DP-Splat**（贝叶斯密度控制）、**MoE-GS/MoDE**（TPAMI 2026）、**HyperGS**（10^4-10^5x 前馈）、**MAC-Splat**（ECCV 2026）、**Track2Map**（MICCAI 2026）、**PEAR**（SIGGRAPH 2026）、**CoSAG**（免训练语义压缩）、**HoloTetSphere**（ECCV 2026）。前次更新（7 月 9 日）：v0.4.1 ECCV & ISCA 2026 浪潮。3 个 Router 技能，全部 14 技能含反幻觉护栏。
+最新更新（7 月 14 日）：**v0.4.2 — SIGGRAPH & MICCAI 2026 浪潮**，766+ 方法。新增：**DP-Splat**（贝叶斯密度控制）、**MoE-GS/MoDE**（TPAMI 2026）、**HyperGS**（10^4-10^5x 前馈）、**MAC-Splat**（ECCV 2026）、**Track2Map**（MICCAI 2026）、**PEAR**（SIGGRAPH 2026）、**CoSAG**（免训练语义压缩）、**HoloTetSphere**（ECCV 2026）。前次更新（7 月 9 日）：v0.4.1 ECCV & ISCA 2026 浪潮。3 个 Router 技能，全部 14 技能含反幻觉护栏。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -132,7 +130,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（760+ 方法，25 类别）
+## 知识库（766+ 方法，25 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -209,7 +207,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 |---|------|------|------|
 | 1 | [`3dgs-paper-reader`](skills/3dgs-paper-reader/) | 读取任意 3DGS 论文，提取结构化洞见 | "帮我读一下 2401.01345" |
 | 2 | [`3dgs-method-compare`](skills/3dgs-method-compare/) | 从 10+ 维度对比变体 | "对比 3DGS 和 2DGS 的渲染公式差异" |
-| 3 | [`3dgs-code-reviewer`](skills/3dgs-code-reviewer/) | 检测 105+ 已知 3DGS 实现 bug | "审查我的 CUDA 渲染 kernel" |
+| 3 | [`3dgs-code-reviewer`](skills/3dgs-code-reviewer/) | 检测 108+ 已知 3DGS 实现 bug | "审查我的 CUDA 渲染 kernel" |
 | 4 | [`3dgs-experiment-planner`](skills/3dgs-experiment-planner/) | 为 CVPR/SIGGRAPH/TVCG 设计实验 | "帮我设计消融实验" |
 | 5 | [`nerf-to-3dgs-migrator`](skills/nerf-to-3dgs-migrator/) | 逐步将 NeRF 方法迁移到 3DGS | "hash encoding 怎么迁移到 3DGS？" |
 | 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | 桥接 CAD/Mesh/3DGS — 61+ 转换方法 | "3DGS模型怎么提取高质量mesh？" |
@@ -238,7 +236,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 760+ 方法的系统性空白分析生成。
+> 基于知识库 766+ 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -313,7 +311,7 @@ Awesome-Gaussian-Skills/
 ├── skills/                    # 14 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
-│   ├── 3dgs-code-reviewer/    # 代码审查（105+ bug 模式）
+│   ├── 3dgs-code-reviewer/    # 代码审查（108+ bug 模式）
 │   ├── 3dgs-experiment-planner/ # 实验设计
 │   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS 迁移
 │   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS 桥接
@@ -326,7 +324,7 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
 │   └── 3dgs-compression-deploy/  # 压缩与部署（量化、剪枝、VQ、流式）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（760+ 方法，25 类别）
+├── references/                # 知识库（766+ 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

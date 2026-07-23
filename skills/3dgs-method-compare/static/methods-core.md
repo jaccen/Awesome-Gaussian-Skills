@@ -1,4 +1,4 @@
-## Known Methods Database
+﻿## Known Methods Database
 
 ### Foundation Methods
 
@@ -57,6 +57,7 @@
 | Underwater360 | arXiv'26 | Degradation-aware | 3DGS for underwater 360° scenes; attenuation+scattering correction |
 | GlowGS | arXiv'26 | Low-light prior | 3DGS for low-light/glowing scenes; radiance-aware decomposition |
 | DelowlightSplat | arXiv'26 | Degradation-specific | Depth+low-light joint 3DGS; degradation-specific restoration |
+| DualPhys-GS | arXiv'26 (2508.09610) | Underwater physics | Dual physically-guided 3DGS for underwater scenes; joint attenuation-scattering + lighting decomposition |
 
 ### Foundation / Optimization Methods (New 2026 Additions)
 
@@ -85,3 +86,4 @@
 | Method | Venue | Key Innovation |
 |--------|-------|---------------|
 | Axis-Shared Rasterization Accelerator | ISCA'26 | First 3DGS hardware accelerator; axis-shared tile rasterization; 10-100× energy efficiency vs GPU; targets edge/mobile deployment |
+| StereoGS | 2026 | Energy-efficient stereoscopic 3DGS processor; dual-eye shared compute + memory bandwidth optimization for VR/AR stereoscopic rendering |

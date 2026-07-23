@@ -1,6 +1,6 @@
-# MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
+﻿# MCP Integration Roadmap: Agent-Controlled 3DGS Rendering Pipeline
 
-> Version: 0.2.2 | Date: 2026-07-14 | Status: Phase 1 In Progress
+> Version: 0.2.3 | Date: 2026-07-23 | Status: Phase 1 In Progress
 
 ## Overview
 

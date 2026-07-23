@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 105+ known bug patterns including MoE-GS and Bayesian complexity control patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 108+ known bug patterns including MoE-GS, Bayesian complexity control, deformable aggregation, and PBR material disentanglement patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
 license: Apache-2.0
 user-invocable: true
 metadata:
@@ -12,7 +12,7 @@ metadata:
     - "Debug rendering artifacts by analyzing code"
     - "Optimize 3DGS training pipeline performance"
     - "Check loss function implementations"
-    - "Detect known 3DGS bug patterns (105+ patterns)"
+    - "Detect known 3DGS bug patterns (108+ patterns)"
     - "代码审查 / 3DGS调试 / 性能优化 / CUDA内核审查"
 ---
 
@@ -23,7 +23,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (105+ known bug patterns)
+- Identify common 3DGS implementation pitfalls (108+ known bug patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -92,7 +92,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 
 ### 4. Known Bug Patterns
 
-> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 105+ known bug patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, etc.). The following summary lists pattern categories:
+> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 108+ known bug patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, deformable aggregation, PBR materials, etc.). The following summary lists pattern categories:
 
 | Category | Count | Key Patterns |
 |----------|-------|-------------|
@@ -110,7 +110,8 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | Watermarking & View-Dep | 3 | High-capacity watermarking, view-dep splatting, UV-param |
 | Advanced Domain | 16 | Geometry opacity decoupling, reflective materials, physics sim, eigenmode, Bayesian pose, mesh generation proxies |
 | MoE Dynamic & Bayesian Control | 4 | MoE expert routing collapse, DP prior concentration, asynchronous decoupling, CoSAG semantic drift |
-| Total | **76+ categories** | **105+ patterns** with specific detection and fix guidance |
+| Geometry-Aware Deformable & PBR / Physics | 3 | Deformable offset over-displacement, albedo-illumination entanglement, underwater attenuation mismatch |
+| Total | **79+ categories** | **108+ patterns** with specific detection and fix guidance |
 
 ## Output Format
 

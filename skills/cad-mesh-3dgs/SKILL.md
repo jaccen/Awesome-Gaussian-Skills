@@ -1,10 +1,10 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge. Analyzes 61+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
+description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge, PBR material generation. Analyzes 62+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
 license: Apache-2.0
 user-invocable: true
 metadata:
-  version: "1.6.0"
+  version: "1.6.1"
   author: jaccen
   tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing", "tetsphere", "physics-simulation"]
   when_to_use:
@@ -505,6 +505,11 @@ When responding to user queries, use these templates:
 - Single-image 100 FPS human avatar reconstruction
 - Pose-conditional efficient avatar: image → 3D Gaussian avatar in real-time
 - Relevant for CAD/Mesh pipeline: fast human body mesh extraction from Gaussians
+
+### Large Material Gaussian Model (MGM) [arXiv:2509.22112] (arXiv 2026)
+- Relightable 3D generation with full PBR materials (albedo, roughness, metallic)
+- Multiview material diffusion + Gaussian material representation
+- Relevant for CAD/Mesh pipeline: generates CAD assets with physically-based material properties from 3DGS, enabling relightable B-rep + material export
 
 ## Red Lines
 

@@ -1,4 +1,4 @@
-## Newly Added Methods (May 2026 Expansion)
+﻿## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
 
@@ -1119,3 +1119,23 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Robotics / Embodied AI
 - **SplatCtrl** [arXiv:2607.08948](https://arxiv.org/abs/2607.08948) (ICRA 2026) — Perception-action coupling via GS + reactive robot control; isotropic Gaussian → continuous SDF → control barrier functions; collision-free manipulation
+
+## Newly Added Methods (July 23, 2026 Update)
+
+> 6 methods added from ICML 2026, arXiv July 2026, and hardware acceleration research
+
+### Feed-Forward / Generalizable
+- **GADA** [arXiv:2607.00595](https://arxiv.org/abs/2607.00595) (ICML 2026) — Geometry-Aware Deformable Aggregation for image-based 3DGS; deformable offsets + implicit confidence weighting; 2.13× faster FPS with improved PSNR over prior feed-forward methods
+- **InvSplat** [arXiv:2607.02301](https://arxiv.org/abs/2607.02301) (arXiv 2026) — Inverse feed-forward scene splatting; predicts structured 3D Gaussians with intrinsic material attributes (albedo, metallic, roughness) for relighting without post-hoc decomposition
+
+### Material / Relighting
+- **Large Material Gaussian Model (MGM)** [arXiv:2509.22112](https://arxiv.org/abs/2509.22112) (arXiv 2026) — Relightable 3D generation with full PBR materials (albedo, roughness, metallic); multiview material diffusion + Gaussian material representation for relightable assets
+
+### Robustness / Physics-Guided
+- **DualPhys-GS** [arXiv:2508.09610](https://arxiv.org/abs/2508.09610) (arXiv 2026) — Dual physically-guided 3DGS for underwater scene reconstruction; joint attenuation-scattering physics + lighting decomposition for degraded underwater imagery
+
+### Provenance / Security
+- **GaussTrace** [arXiv:2606.10612](https://arxiv.org/abs/2606.10612) (ICML 2026) — 3DGS provenance analysis via evidence-driven LLM reasoning; constructs directed provenance graphs from Gaussian scene attributes for 3DGS model IP protection and forensics
+
+### 3DGS Hardware Acceleration
+- **StereoGS** (2026) — Energy-efficient 3DGS stereoscopic rendering processor; hardware accelerator optimized for dual-eye stereoscopic Gaussian rasterization with shared compute and memory bandwidth

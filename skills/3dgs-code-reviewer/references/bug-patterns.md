@@ -417,3 +417,21 @@
 | # | Pattern | Category | Method | Symptom | Fix |
 |---|---------|----------|--------|---------|-----|
 | 99 | Proxy Mesh Occlusion Over-Culling | Acceleration | Proxy-GS | Lightweight proxy mesh for occlusion culling incorrectly culls visible Gaussians when proxy mesh tessellation is too coarse; thin structures (wires, poles) pass between proxy triangles and are culled despite being visible | Ensure proxy mesh minimum tessellation density matches scene thin-structure distribution; add conservative offset (ε-inflation) to proxy triangles when culling; fall back to full rendering for tiles containing thin-structure Gaussians detected by aspect-ratio filter. (Proxy-GS, arXiv:2509.24421, CVPR 2026 Full Score Oral) |
+
+### Feed-Forward Geometry-Aware Deformable Aggregation Patterns (GADA)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 102 | Deformable Offset Over-Displacement | Feed-Forward | GADA | Geometry-aware deformable aggregation with learnable offsets can produce excessive displacement when implicit confidence weights are miscalibrated; Gaussians drift far from their geometric anchors, causing floaters and surface distortion in regions with weak photometric supervision | (1) Clamp offset magnitude to local Gaussian density radius; (2) Add anchor-pull regularization: λ·‖offset‖² decay term; (3) Use temperature-annealed softmax for implicit confidence: start high-T (uniform)→low-T (sharp). Verify: compare offset statistics (mean/std) across epochs; std should stabilize. (GADA, arXiv:2607.00595, ICML 2026) |
+
+### Inverse Feed-Forward PBR Material Patterns (InvSplat)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 103 | Albedo-Illumination Entanglement | Feed-Forward / Material | InvSplat | Inverse feed-forward splatting predicts intrinsic material attributes (albedo, metallic, roughness) from a single forward pass, but albedo and residual illumination are entangled; under novel lighting, relit results show baked-in shadows/highlights from the original capture, producing incorrect PBR | (1) Decompose predicted color into view-independent albedo and view-dependent residual via disentanglement loss; (2) Add shading consistency constraint: re-render under uniform lighting should match albedo-only output; (3) Use multi-view supervision with known lighting for initial training, then fine-tune on in-the-wild. Verify: check relighting consistency under 3+ novel environment maps. (InvSplat, arXiv:2607.02301) |
+
+### Underwater Physics-Guided GS Patterns (DualPhys-GS)
+
+| # | Pattern | Category | Method | Symptom | Fix |
+|---|---------|----------|--------|---------|-----|
+| 104 | Attenuation Coefficient Mismatch | Robustness / Physics | DualPhys-GS | Dual physically-guided underwater 3DGS uses fixed wavelength-dependent attenuation coefficients; when deployment water type (turbidity, chlorophyll concentration) differs from training data, attenuation model generates incorrect color correction, producing green/magenta casts | (1) Make attenuation coefficients learnable per-scene with physics-constrained prior; (2) Add water-type classifier to select attenuation profile from a parametric family; (3) Use dark channel prior as unsuperved regularization for unknown water types. Verify: test cross-water-type generalization on Sea-thru dataset variants. (DualPhys-GS, arXiv:2508.09610) |
