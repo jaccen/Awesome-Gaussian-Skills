@@ -163,7 +163,9 @@ GGD-SLAM,2604.12837,,2026,SLAM,Monocular 3DGS SLAM with generalizable motion mod
 MAGICIAN,2603.22650,CVPR 2026 Oral,2026,SLAM,Active mapping with imagined Gaussians + beam search,https://shiyao-li.github.io/magician/
 MAGS-SLAM,2605.10760,,2026,SLAM,First RGB-only multi-agent 3DGS SLAM; compact submap communication + geometry/appearance-aware loop verification,
 MonoEM-GS,2604.10593,,2026,SLAM,Monocular expectation-maximization GS SLAM,
+Photo-SLAM,2311.16728,CVPR 2024,2024,SLAM,Hyper primitives map with explicit geometric features for localization + implicit photometric features; Gaussian-Pyramid training; runs on Jetson AGX Orin,https://github.com/hjr37/Photo-SLAM
 S3PO-GS,,ICCV 2025,2025,SLAM,Global scale-consistent outdoor monocular 3DGS SLAM,
+SplaTAM,2312.02126,CVPR 2024,2024,SLAM,First real-time GS-SLAM: online incremental Gaussians with silhouette mask and rendering-based pose optimization,https://github.com/spla-tam/SplaTAM
 WildGS-SLAM,2504.03886,CVPR 2025,2025,SLAM,Dynamic environment SLAM with uncertainty-aware mapping,https://github.com/JokerJohn/WildGS-SLAM
 3DGS as MCMC,2404.09591,NeurIPS 2024,2024,Training & Optimization,Density control as MCMC sampling moves,
 AdaGScale,2604.18980,DAC 2026,2026,Training & Optimization,Viewpoint-adaptive Gaussian scaling reducing gaussian-tile pairs for rendering acceleration,
@@ -406,6 +408,8 @@ GSQ,2411.17190,CVPR 2025,2025,Compression Methods,Gaussian Splatting Quantizatio
 4DGaussians-v2,2411.18197,CVPR 2025,2025,Dynamic Scene Methods,Enhanced 4DGS with temporal smoothness regularization and flow-guided deformation,
 GaussianFlow,2411.18625,CVPR 2025,2025,Dynamic Scene Methods,Optical flow-guided 4DGS for temporally consistent dynamic scene reconstruction,
 STG,2411.19235,CVPR 2025,2025,Dynamic Scene Methods,Spatiotemporal Gaussians with decomposed spatial-temporal attention for 4D rendering,
+SplaTAM,2312.02126,CVPR 2024,2024,SLAM,First real-time GS-SLAM: online incremental Gaussians with silhouette mask and rendering-based pose optimization,https://github.com/spla-tam/SplaTAM
+Photo-SLAM,2311.16728,CVPR 2024,2024,SLAM,Hyper primitives map with explicit geometric features for localization + implicit photometric features; runs on Jetson AGX Orin,https://github.com/hjr37/Photo-SLAM
 SplaTAM-v2,2411.19654,CVPR 2025,2025,SLAM,Enhanced GS-SLAM with online loop closure and global optimization,
 GaussianSLAM-2,2411.19895,CVPR 2025,2025,SLAM,Second-generation GS-SLAM with submap fusion and uncertainty-driven keyframing,
 FlowGS,2412.00578,CVPR 2025,2025,Dynamic Scene Methods,Flow-driven Gaussian densification for dynamic regions in 4DGS,

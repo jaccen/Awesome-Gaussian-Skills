@@ -667,6 +667,8 @@ ELoG-GS|||Dual-branch luminance-guided extreme low-light GS enhancement
 MAC-Splat|||Multi-Attribute Consistency for sparse-view 3DGS; MASt3R backbone + DINOv3 correspondences; +4.5 dB over Splatt3R
 GeoSplat|||Geometry-aware feed-forward GS with cross-view feature matching
 NoDrift3R|||Raymap-Guided Coupling for drift-robust unposed feed-forward 3DGS; explicit geometry-appearance coupling module for long-sequence reconstruction
+SplaTAM|||First real-time GS-SLAM: online incremental Gaussians with silhouette mask and rendering-based pose optimization
+Photo-SLAM|||Hyper primitives map with explicit geometric features for localization + implicit photometric features; runs on Jetson AGX Orin
 SplaTAM-v2|||Enhanced GS-SLAM with online loop closure and global optimization
 SandSim|||Curve-guided GS for sand painting process reconstruction
 PiG-Avatar|||Hierarchical neural-field-guided Gaussian avatars in volumetric canonical space decoupled from template topology; 3D barycentric anchor transport for kinematic coherence; emergent self-organization of anchor density

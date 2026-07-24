@@ -245,9 +245,28 @@
   ::-webkit-scrollbar-track{background:transparent}
   ::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px}
   ::-webkit-scrollbar-thumb:hover{background:var(--text-3)}
-</style>
-</head>
-<body>
+
+  /* ============ 引用列表 ============ */
+  .ref-section{padding:46px 32px 10px;max-width:var(--maxw);margin:0 auto;scroll-margin-top:70px;border-top:1px solid var(--border)}
+  .ref-group{margin-bottom:24px}
+  .ref-group h3{font-size:16px;font-weight:700;margin:20px 0 10px;color:var(--primary);display:flex;align-items:center;gap:8px}
+  .ref-group h3 .num{font-family:var(--font-mono);font-size:12px;color:var(--text-3);font-weight:400}
+  .ref-item{font-size:13.5px;color:var(--text-2);margin-bottom:8px;padding-left:28px;position:relative;line-height:1.6}
+  .ref-item .idx{position:absolute;left:0;top:0;font-family:var(--font-mono);font-size:12px;color:var(--text-3);font-weight:600}
+  .ref-item a{color:var(--primary);font-weight:500}
+  .ref-item .venue{font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;white-space:nowrap}
+  .ref-item .desc{display:block;font-size:12.5px;color:var(--text-3);margin-top:2px}
+  .ref-divider{height:1px;background:var(--border);margin:20px 0}
+  
+  /* 时间线 */
+  .timeline{position:relative;padding-left:24px;margin:20px 0}
+  .timeline::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--border-strong)}
+  .tl-item{position:relative;margin-bottom:16px}
+  .tl-item::before{content:"";position:absolute;left:-22px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent,var(--primary));border:2px solid var(--surface)}
+  .tl-item .tl-date{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--accent,var(--primary))}
+  .tl-item .tl-text{font-size:14px;color:var(--text)}
+  .tl-item .tl-text em{color:var(--text-2);font-style:normal}
+</style><body>
 <div id="progress"></div>
 
 <header class="topbar">
@@ -259,6 +278,7 @@
   <span class="spacer"></span>
   <nav class="nav-links">
     <a href="#overview">章节速览</a>
+    <a href="#references">引用</a>
     <a href="#about">关于</a>
   </nav>
   <a class="badge-repo" href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">⎇ 仓库</a>
@@ -283,6 +303,8 @@
       <a href="#ch8"><span class="ch-num">08</span> 物体级与铰接式理解</a>
       <a href="#ch9"><span class="ch-num">09</span> Agent 驱动的数字孪生与交互</a>
       <a href="#ch10"><span class="ch-num">10</span> 世界模型与未来展望</a>
+      <a href="#appendix"><span class="ch-num">附</span> 附录 · 数据集与评估基准</a>
+      <a href="#references"><span class="ch-num">引</span> 引用与延伸阅读</a>
       <a href="#afterword"><span class="ch-num">后</span> 后记 · 3DGS 会被吃掉吗</a>
     </nav>
   </aside>
@@ -309,7 +331,7 @@
       <div class="ribbons">
         <img alt="methods" src="https://img.shields.io/badge/Methods-766+-9cf.svg">
         <img alt="categories" src="https://img.shields.io/badge/Categories-25-green.svg">
-        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-14-22c55e.svg">
+        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-15-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
       </div>
     </div>
@@ -329,7 +351,8 @@
         <a class="ch-card c8" href="#ch8"><span class="tag">第 8 章</span><h3>物体级与铰接式理解</h3><p>part-level 高斯、铰接资产与 CAD·Mesh·3DGS 桥接——操作的前置条件。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c9" href="#ch9"><span class="tag">第 9 章</span><h3>Agent 驱动的数字孪生</h3><p>MCP 渲染管线、手势交互、3DGS 作为可交互世界，串起感知与行动闭环。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c10" href="#ch10"><span class="tag">第 10 章</span><h3>世界模型与未来</h3><p>世界模型六大学派、3DGS×World Model 交叉、空间基础模型与 Physical AI。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c-outro" href="#afterword"><span class="tag">后记</span><h3>3DGS 会被吃掉吗</h3><p>模型会不会吞掉表示？空间智能下一个十年，以及 3DGS 的持久价值。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，3DGS 与具身智能的主流评测体系全景。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>60+ 权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
       </div>
     </div>
 
@@ -338,9 +361,23 @@
       <div class="chapter-head"><span class="no">引言</span><h2>为什么写这本书</h2></div>
       <p class="chapter-sub">空间智能与具身智能的百年交汇 · 3DGS 为何是关键拼图</p>
 
-      <p>2023 年，原始 3D Gaussian Splatting 论文发布——用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化，把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。一年内它从一篇 SIGGRAPH 论文变成一个 766+ 方法、跨 25 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。这本书想回答的问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
+      <p>2023 年 8 月，INRIA 的 Bernhard Kerbl 及合作者在 SIGGRAPH 发表了论文"3D Gaussian Splatting for Real-Time Radiance Field Rendering"<span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span>。他们用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化（differentiable rasterization），把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。这不是渐进式改进——它是表示层面的范式转换。一年内它从一篇论文变成一个 766+ 方法、跨 25 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。</p>
 
-      <p>李飞飞在 2024 年重新定义了"空间智能"——它不是物体识别，而是"在三维空间中推理、理解、移动和交互的深层能力"。黄仁勋在 2025 CES 把这件事命名为 Physical AI，并给出技术三角：<strong>世界模型 + 空间智能 + 具身智能</strong>。这三者恰恰都以"一份可计算、可渲染、可编辑的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。</p>
+      <p>这本书想回答的核心问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
+
+      <div class="timeline" style="--accent:var(--primary)">
+        <div class="tl-item"><span class="tl-date">2020.03</span><div class="tl-text">Mildenhall 等人发表 NeRF，用 MLP 隐式编码辐射场，荣获 <em>CVPR 2020 最佳论文荣誉提名</em>。神经辐射场引爆隐式表示路线 <span class="vchip v-CVPR">CVPR 2020</span></div></div>
+        <div class="tl-item"><span class="tl-date">2023.08</span><div class="tl-text">Kerbl 等人发表 3DGS，用显式高斯基元 + 可微光栅化实现实时渲染，质量超 NeRF 且快 100× <span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span></div></div>
+        <div class="tl-item"><span class="tl-date">2024.01</span><div class="tl-text">Google DeepMind 推出 RT-2，首创 Vision-Language-Action (VLA) 范式，知识从互联网迁移到机器人手</div></div>
+        <div class="tl-item"><span class="tl-date">2024.06</span><div class="tl-text">李飞飞在旧金山 AI Startup School 演讲，正式提出"空间智能"（Spatial Intelligence）作为 AI 的下一个前沿</div></div>
+        <div class="tl-item"><span class="tl-date">2024.09</span><div class="tl-text">李飞飞创立 World Labs，专注空间智能与世界模型，估值在 2026 年 2 月融资 10 亿美元后达 100 亿美元</div></div>
+        <div class="tl-item"><span class="tl-date">2025.01</span><div class="tl-text">黄仁勋在 CES 2025 提出 Physical AI 技术三角：世界模型 + 空间智能 + 具身智能</div></div>
+        <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">Meta 发布 V-JEPA 2（LeCun 主导），在联合嵌入预测空间做世界模型，不重建像素 <span class="vchip">2025</span></div></div>
+        <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">NVIDIA 开源 GR00T N1 人形机器人基础模型，System 1 快反应 + System 2 VLM 规划</div></div>
+        <div class="tl-item"><span class="tl-date">2026.05</span><div class="tl-text">字节跳动发布 Pelican-Unified 1.0，首个统一具身基础模型；多伦多大学 BISON 实现双层策略 10K 物体 &lt;1min 规划</div></div>
+      </div>
+
+      <p>李飞飞在 2024 年 6 月旧金山 AI Startup School 的演讲中说："<strong>AGI 若没有空间智能，是不完整的</strong>。"她把空间智能定义为"在三维空间中感知、推理、生成和交互的深层能力"——不是二维图像识别，而是对三维物理世界的完整理解与行动能力。这与黄仁勋在 2025 CES 的 Physical AI 命名形成呼应：<strong>世界模型 + 空间智能 + 具身智能</strong>。三者都以"一份可计算、可渲染、可编辑的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。</p>
 
       <div class="callout key">
         <span class="ct">★ 核心公式</span>
@@ -351,51 +388,66 @@
         </div>
       </div>
 
-      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表征→感知→规划→行动"的主线，把 766+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
+      <h3><span class="mi">①</span> 为什么不是点云、不是网格、不是 NeRF？</h3>
+      <p>点云（Point Cloud）是三维数据最直接的表示，但它没有外观、不可微渲染、无法表达视角依赖的颜色。网格（Mesh）是游戏与 CAD 的标准格式，但它难以从图像优化生成、对复杂透明/半透明场景束手无策。NeRF 用 MLP 隐式编码一切，渲染质量极高但需要逐像素光线步进（ray marching），训练和推理都慢，且表示藏在网络权重里——不可编辑、不可直接查询。3DGS 把辐射场<strong>显式化</strong>成一组可数、可微、可渲染的 3D 高斯基元：表示暴露在数据里，而不是埋在权重里。这一步直接决定了后面所有"编辑、压缩、语义、喂给机器人"的可能性。</p>
+
+      <h3><span class="mi">②</span> 这本书做三件事</h3>
+      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表示→感知→规划→行动"的主线，把 766+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
 
       <div class="callout note">
         <span class="ct">③ 阅读建议</span>
-        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。每章末尾有思考题，建议带着自己的项目回答。
+        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。附录提供了数据集与评估基准的全景，引用与延伸阅读列出了 60+ 权威资源。每章末尾有思考题，建议带着自己的项目回答。
       </div>
 
       <p>开始之前，请记住一个判断：<strong>3DGS 的胜负不在于渲染多一两个 dB 的 PSNR，而在于它第一次让"空间"成为一份可微、实时、可被 Agent 调用的第一类数据结构。</strong>这正是空间智能走向具身智能的命门，也是本书的主线。</p>
 
       <div class="links">
-        <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 原始 3DGS 仓库</a>
+        <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 原始 3DGS 仓库 (graphdeco-inria)</a>
+        <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> awesome-3D-gaussian-splatting (MrNeRF)</a>
         <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 766+ 方法浏览器</a>
         <a href="#ch1"><span class="ico">→</span> 下一章：范式跃迁</a>
       </div>
     </section>
-
     <!-- ===================== 第 1 章 ===================== -->
     <section class="chapter" id="ch1" style="--accent:var(--blue)">
       <div class="chapter-head"><span class="no">CH 01</span><h2>从 NeRF 到 3DGS：空间表征的范式跃迁</h2></div>
       <p class="chapter-sub">显式 vs 隐式 · 体渲染与辐射场 · 三大创新</p>
 
-      <p>在新视角合成这条线上，2020 年的 NeRF 用一个 MLP 隐式地把密度与颜色编进网络权重，靠光线步进求解体渲染积分。它漂亮但有代价：渲染是逐像素光线步进，慢；表示藏在网络里，不可编辑。"重建一片空间"和"得到一份可操作的空间数据"被硬生生割裂。</p>
+      <p>在新视角合成（Novel View Synthesis）这条线上，2020 年的 NeRF 用一个 MLP 隐式地把密度与颜色编进网络权重，靠光线步进（ray marching）求解体渲染积分。它在概念上极其优美——5D 坐标 (x, y, z, θ, φ) 进，颜色与密度出——但代价是：渲染是逐像素光线步进，慢；表示藏在网络里，不可编辑。"重建一片空间"和"得到一份可操作的空间数据"被硬生生割裂。</p>
 
       <p>3DGS 的革命性不在于"更高 PSNR"，而在于它把辐射场<strong>显式化</strong>成一组可数、可微、可渲染的 3D 高斯基元。表示暴露在数据里，而不是埋在权重里——这一步直接决定了后面所有"编辑、压缩、语义、喂给机器人"的可能性。</p>
 
-      <h3><span class="mi">①</span> 三大创新</h3>
-      <ul>
-        <li><strong>各向异性 3D 高斯作直接表示</strong>：每个基元用均值(位置)、协方差(形状/朝向)、不透明度、球谐系数(视角颜色)刻画，不再需要任何 MLP 查询。</li>
-        <li><strong>可微光栅化</strong>：把 3D 高斯投影到屏幕、按深度排序、做 tile-based alpha 合成，前向渲染快、反向梯度可直接传回每个基元参数。</li>
-        <li><strong>自适应密度控制</strong>：训练中按位置梯度判据对高斯克隆/分裂/剪枝，让表示在重建质量与基元数量间自动平衡。</li>
-      </ul>
+      <h3><span class="mi">①</span> 体渲染方程：两条路线的分水岭</h3>
+      <p>无论是 NeRF 还是 3DGS，底层都是同一个体渲染积分——把三维空间中的辐射场沿光线积分为像素颜色：</p>
 
       <div class="formula-box">
-        <span class="lbl">体渲染积分 ←→ 3DGS 的离散 alpha 合成</span>
-        <span class="eq">C(𝐮) = Σ<sub>i∈N</sub> cᵢ · αᵢ · Π<sub>j<i</sub>(1 − αⱼ)</span>
-        <span class="desc">NeRF 用数值积分近似上式（慢），3DGS 把参与合成的"体素"换成一排排好序的高斯，直接闭式求解（快）。这正是同一渲染方程、两种实现命运的分水岭。</span>
+        <span class="lbl">体渲染积分（连续形式）</span>
+        <span class="eq">C(𝐮) = ∫₀^∞ T(t) · σ(r(t)) · c(r(t), d) dt</span>
+        <span class="eq">其中 T(t) = exp(−∫₀^t σ(r(s)) ds) &nbsp;&nbsp;（透射率/累积不透明度）</span>
+        <span class="desc">σ 是体密度，c 是视角依赖的颜色，T 是光线到达 t 点前未被遮挡的概率。NeRF 用数值积分（分层采样 + 四则化）近似上式，每像素需要数十到数百次 MLP 查询——这就是它慢的根源。3DGS 把参与合成的"体素"换成一排排排好序的高斯基元，用 alpha 合成直接闭式求解。</span>
       </div>
 
-      <h3><span class="mi">②</span> 关键方法</h3>
+      <div class="formula-box">
+        <span class="lbl">3DGS 的离散 alpha 合成</span>
+        <span class="eq">C(𝐮) = Σ<sub>i∈N</sub> cᵢ · αᵢ · Π<sub>j<i</sub>(1 − αⱼ)</span>
+        <span class="desc">第 i 个高斯对像素 𝐮 的颜色贡献 = 它的颜色 cᵢ × 它的不透明度 αᵢ × 前面所有高斯的透射率。这正是同一渲染方程、两种实现命运的分水岭：NeRF 逐像素采样，3DGS 逐高斯投影。</span>
+      </div>
+
+      <h3><span class="mi">②</span> 3DGS 三大创新</h3>
+      <ul>
+        <li><strong>各向异性 3D 高斯作直接表示</strong>：每个基元用均值 μ（位置）、协方差 Σ（形状/朝向，工程上分解为缩放向量 s 与四元数 q，保证半正定与可微）、不透明度 α、球谐系数 SH（视角颜色）刻画，不再需要任何 MLP 查询。初始高斯由 COLMAP 的稀疏点云生成。</li>
+        <li><strong>可微光栅化（Differentiable Rasterization）</strong>：把 3D 高斯投影到屏幕、按深度排序、做 tile-based alpha 合成，前向渲染快、反向梯度可直接传回每个基元参数。这基于 EWA（Elliptical Weighted Average）溅射理论的工程落地。</li>
+        <li><strong>自适应密度控制（Adaptive Density Control）</strong>：训练中按位置梯度判据对高斯克隆/分裂/剪枝，让表示在重建质量与基元数量间自动平衡。这是 3DGS"不需要手动调分辨率"的根本来源。</li>
+      </ul>
+
+      <h3><span class="mi">③</span> 关键方法与后续改进</h3>
       <table class="mtbl">
         <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
         <tbody>
-          <tr><td class="mn">3DGS</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span></td><td class="o">各向异性高斯 + 可微光栅化 + 自适应密度控制，首破实时且质量超 NeRF</td></tr>
+          <tr><td class="mn">3DGS (Kerbl et al.)</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span></td><td class="o">各向异性高斯 + 可微光栅化 + 自适应密度控制，首破实时且质量超 NeRF</td></tr>
           <tr><td class="mn">Mip-Splatting</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">3D 位置平滑 + 2D Mip 滤波，系统性消除多尺度锯齿与闪烁</td></tr>
-          <tr><td class="mn">2DGS</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">用贴在切平面的 2D 圆盘替代 3D 高斯，几何更干净、可直接提网格</td></tr>
+          <tr><td class="mn">2DGS</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2024</span></td><td class="o">用贴在切平面的 2D 圆盘替代 3D 高斯，几何更干净、可直接提网格（ACM TOG）</td></tr>
+          <tr><td class="mn">SuGaR</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">正则化高斯对齐表面，高质量提取网格，TSDF + Marching Cubes</td></tr>
           <tr><td class="mn">Vol3DGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">重写合成方程为体一致，修复溅射-体不一致导致的透明/光照错误</td></tr>
           <tr><td class="mn">NegGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">引入负颜色高斯，精确表示环/月牙等非凸结构，不再依赖过度剪枝</td></tr>
           <tr><td class="mn">Neural Gabor Splatting</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">给基元挂可学习 Gabor 特征，建模锐边/细纹理/薄结构</td></tr>
@@ -407,7 +459,11 @@
         3DGS 的"实时"依赖三点工程务实：基于瓦片的光栅化避免全局排序瓶颈；前向/反向共用同一套排序保证梯度一致；自适应密度控制用位置梯度的累积量而非重建误差做判据。迁移 NeRF 工作流时，最容易踩的坑是<strong>把"高质量渲染"误当成"高质量几何"</strong>——PSNR 高不代表法线干净，做后续 mesh/CAD 时要切换评价口径。
       </div>
 
+      <p>从 2023 年到 2026 年，3DGS 的论文数量从 1 篇爆发到 766+ 篇。南京大学在 IEEE TCSVT 2025 年 7 月发表的综述"3D Gaussian Splatting: Survey, Technologies, Challenges, and Opportunities"<span class="vchip v-arXiv">IEEE TCSVT 2025</span>是对这波浪潮最全面的梳理之一。康奈尔大学、香港科技大学联合发表的 VLA 综述则从具身智能侧切入，讨论了 VLM 如何驱动 3D 理解的产业化。</p>
+
       <div class="links">
+        <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" rel="noopener"><span class="ico">⎇</span> 3DGS 项目主页 (INRIA)</a>
+        <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 官方代码仓库</a>
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-core.md" target="_blank" rel="noopener"><span class="ico">⎇</span> Foundation & Core 分类</a>
         <a href="#ch2"><span class="ico">→</span> 下一章：数学内核</a>
       </div>
@@ -418,6 +474,7 @@
           <li>"表示暴露在数据里"这条性质，如何决定了 3DGS 比隐式 NeRF 更适合做机器人的空间记忆？</li>
           <li>2DGS 与 3DGS 的取舍：什么场景下你宁可用 2D 圆盘牺牲一点渲染换来几何？</li>
           <li>如果未来出现一个"隐式但可微可编辑"的表示，3DGS 的显式优势会被抹平吗？</li>
+          <li>体渲染积分的连续形式与 3DGS 的离散 alpha 合成，在什么条件下两者会给出不同结果？</li>
         </ol>
       </div>
     </section>
@@ -430,38 +487,57 @@
       <p>本章把"3DGS 为什么能又快又可微"拆成四块。它不是论文复述，而是工程视角的受力分析——知道梯度从哪来、卡在哪，你才知道为什么有那么多后续方法在"基元、排序、致密化"上做文章。</p>
 
       <h3><span class="mi">①</span> 高斯基元的参数化</h3>
-      <p>每个高斯由 <em>位置 μ</em>、<em>协方差 Σ</em>（工程上分解为缩放 <em>q</em> 向量与四元数 <em>r</em>，保证半正定与可微）、<em>不透明度 α</em>、以及用于视角颜色的<em>球谐系数 SH</em> 组成。球谐阶数决定视角依赖建模能力，但也线性抬高参数量。</p>
+      <p>每个高斯由 5 组参数刻画：</p>
+      <ul>
+        <li><strong>位置 μ ∈ ℝ³</strong>：高斯中心在世界空间的位置，初始值来自 COLMAP 稀疏点云。</li>
+        <li><strong>协方差 Σ ∈ ℝ³ˣ³</strong>：控制高斯的形状与朝向。工程上不直接优 Σ，而是分解为缩放向量 s ∈ ℝ³ 和旋转四元数 q ∈ ℝ⁴，令 Σ = R(q)·diag(s)·R(q)ᵀ，既保证半正定，又让梯度能直达"形状/朝向"。</li>
+        <li><strong>不透明度 α ∈ [0,1]</strong>：经 sigmoid 激活，控制该基元的不透明程度。</li>
+        <li><strong>球谐系数 SH</strong>：用低阶球面谐波（通常 3 阶，48 维）编码视角依赖的颜色。阶数越高，颜色随视角变化越精细，但参数量线性增长。</li>
+      </ul>
 
       <div class="formula-box">
-        <span class="lbl">3D 高斯密度与投影</span>
+        <span class="lbl">3D 高斯密度与屏幕投影</span>
         <span class="eq">G(x) = exp(−½ (x−μ)ᵀ Σ⁻¹ (x−μ))</span>
         <span class="eq">Σ' = J W Σ Wᵀ Jᵀ &nbsp;&nbsp;(投影到屏幕，W 视图矩阵，J 投影局部线性化)</span>
-        <span class="desc">协方差用缩放+四元数参数化，既保证半正定，又让梯度能直达"形状/朝向"，这是 3DGS 比"自由协方差"更易优化的关键。</span>
+        <span class="desc">高斯在 3D 空间是椭球，经视图变换 W 和投影的雅可比 J 后成为屏幕上的 2D 椭圆。Σ' 是 2D 椭圆的协方差。这个投影是 EWA 溅射理论的核心——保证了 3D 高斯到 2D 屏幕的数学一致性。</span>
       </div>
 
-      <h3><span class="mi">②</span> 可微光栅化</h3>
-      <p>渲染时把每个高斯投影成 2D 椭圆，按深度排序，落进 16×16 的瓦片，对瓦片内像素做 alpha 合成。反向传播要对<strong>每个像素→每个高斯</strong>的贡嗾着色回梯度：屏幕空间梯度要乘回视图-屏幕雅可比，才能更新到 3D 协方差。这一套"前向闭式、反向解析"的设计，是实时训练的根本来源，也是 EWA 溅射理论的工程落地。</p>
+      <p>理解这一点至关重要：<strong>球谐系数是 3DGS 视角依赖的关键</strong>。0 阶 SH 给出固定颜色（等同于无视角变化），3 阶 SH 可以表达金属反射、彩虹色、透明感等复杂现象。但这也意味着，如果你用 3DGS 重建了一个有光泽的金属表面，PSNR 高的那组参数很可能不是"几何对"的那组——颜色变化可能在用高密度高斯拟合本应靠 SH 表达的反射效果。</p>
 
-      <h3><span class="mi">③</span> 自适应密度控制</h3>
+      <h3><span class="mi">②</span> 可微光栅化：前向与反向</h3>
+      <p>渲染时把每个高斯投影成 2D 椭圆，按深度排序，落进 16×16 的瓦片（tile），对瓦片内像素做 alpha 合成。3DGS 的光栅化管线分三步：</p>
+      <ol>
+        <li><strong>投影与排序</strong>：所有高斯投影到屏幕后按深度（z 值）排序。这一步用基数排序（radix sort），是单帧最大的非并行环节。</li>
+        <li><strong>瓦片分配</strong>：屏幕被划分为 16×16 像素的瓦片，每个高斯被分配到它覆盖的瓦片。</li>
+        <li><strong>瓦片内 alpha 合成</strong>：每个瓦片由一个 CUDA block 处理，线程并行遍历该瓦片内的高斯，按深度顺序做 alpha 合成。</li>
+      </ol>
+      <p>反向传播需要对<strong>每个像素→每个高斯</strong>的贡献传回梯度：屏幕空间梯度要乘回视图-屏幕雅可比，才能更新到 3D 协方差。这一套"前向闭式、反向解析"的设计，是实时训练的根本来源。gsplat<span class="vchip v-CVPR">CVPR 2024</span> 是当前最活跃的开源 3DGS CUDA 光栅化引擎，由 nerfstudio 团队维护。</p>
+
+      <h3><span class="mi">③</span> 自适应密度控制：3DGS 的"生长"机制</h3>
+      <p>自适应密度控制是 3DGS 区别于"固定表示"方法的核心——高斯数量在训练中动态变化。</p>
       <div class="formula-box">
-        <span class="lbl">致密化判据</span>
-        <span class="eq">每 N 步：统计位置梯度 ‖∇<sub>μ</sub>L‖ 的视空间累积 τ_d</span>
-        <span class="eq">若 τ_d &gt; τ_pos：&nbsp;大尺度高斯 → 分裂(split)；小尺度高斯 → 克隆(clone)</span>
-        <span class="eq">若 α &lt; α_min 或世界尺寸超限：&nbsp;剪枝(prune)</span>
-        <span class="desc">注意：致密化判据用的是"位置梯度的累积量"，而非重建误差本身。这是很多初学者调不动 3DGS 的根因——你想加的约束不直接进入 split 判据，只能通过损失间接影响梯度。</span>
+        <span class="lbl">致密化（Densification）判据</span>
+        <span class="eq">每 N 步（默认 100）：</span>
+        <span class="eq">1. 统计位置梯度 ‖∇<sub>μ</sub>L‖ 的视空间累积 τ_d（超过阈值 τ_pos 的像素统计）</span>
+        <span class="eq">2. 若 τ_d &gt; τ_pos：</span>
+        <span class="eq">&nbsp;&nbsp;&nbsp;大尺度高斯（‖s‖ 超阈值）→ 分裂(split)：一变二，缩小尺度</span>
+        <span class="eq">&nbsp;&nbsp;&nbsp;小尺度高斯 → 克隆(clone)：复制到梯度方向</span>
+        <span class="eq">3. 若 α &lt; α_min（默认 0.005）或世界尺寸超限：&nbsp;剪枝(prune)</span>
+        <span class="desc">注意：致密化判据用的是"位置梯度的累积量"，而非重建误差本身。这是很多初学者调不动 3DGS 的根因——你想加的约束不直接进入 split 判据，只能通过损失间接影响梯度。这意味着"加约束"和"改密度分布"之间存在延迟，不是即时响应。</span>
       </div>
 
       <h3><span class="mi">④</span> CUDA 工程与现实约束</h3>
       <ul>
         <li><strong>排序开销</strong>：每帧按深度桶排，是单帧最大的非并行环节；很多加速方法（如 radix 排序替代、稀疏化）都在这里开刀。</li>
-        <li><strong>显存</strong>：基元数量直接决定显存，城市级动辄上千万高斯，催生了整条压缩谱系（第 3 章）。</li>
+        <li><strong>显存</strong>：基元数量直接决定显存，城市级动辄上千万高斯（每个高斯约 59 floats = 236 bytes），催生了整条压缩谱系（第 3 章）。</li>
         <li><strong>训练稳定性</strong>：协方差若不加正则会退化成薄片；透明度 sigmoid 截断与 SH 截断是默认护栏。</li>
+        <li><strong>前向/反向一致性</strong>：前向和反向必须用同一套排序，否则梯度不一致导致训练发散。这是 3DGS 实现中最容易出 bug 的地方。</li>
       </ul>
 
       <table class="mtbl">
         <thead><tr><th>优化方向</th><th>代表方法</th><th>要点</th></tr></thead>
         <tbody>
-          <tr><td class="mn">抗锯齿</td><td>Mip-Splatting</td><td class="o">多尺度一致，去闪烁</td></tr>
+          <tr><td class="mn">抗锯齿</td><td>Mip-Splatting</td><td class="o">多尺度一致，3D 平滑 + 2D Mip 滤波，去闪烁</td></tr>
           <tr><td class="mn">表面几何</td><td>2DGS / SuGaR / PGSR</td><td class="o">2D 圆盘或平面正则，出干净 mesh</td></tr>
           <tr><td class="mn">基元表达力</td><td>SVGS / NegGS / Neural Gabor</td><td class="o">基元内颜色/形状变化，减少基元数</td></tr>
           <tr><td class="mn">训练加速</td><td>Proxy-GS / Z-Order GS / AnchorSplat</td><td class="o">代理模型·Morton 序·锚点致密化</td></tr>
@@ -473,8 +549,15 @@
         "3DGS 训练快"不等于"3DGS 调参简单"。位置梯度阈值 τ_pos、致密化间隔、clone 上限、透明度下限 α_min 这四个旋钮互相耦合；新加损失时要先确认它是否真的改变了 ‖∇μL‖，否则 split 不会按你的预期工作。本仓库的 3DGS 代码审查技能沉淀了 108+ 个已知 bug 模式，覆盖的正是这类"看起来在训练、其实在空转"的陷阱。
       </div>
 
+      <div class="callout note">
+        <span class="ct">③ 开源实现对比</span>
+        <strong>graphdeco-inria/gaussian-splatting</strong>：官方实现，最权威，但代码风格偏学术。 <strong>gsplat</strong>（nerfstudio 团队）：当前社区最活跃的 CUDA 光栅化引擎，性能更优、API 更友好，CVPR 2024 发表。 <strong>nerfstudio</strong>：完整训练框架，集成 3DGS、NeRF 等多种方法，适合工程化快速上手。 <strong>COLMAP</strong>：不是 3DGS 库，但 3DGS 流程前端的必备工具——从图像序列估计相机位姿和稀疏点云，为 3DGS 提供初始化。
+      </div>
+
       <div class="links">
         <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 官方实现</a>
+        <a href="https://github.com/nerfstudio-project/gsplat" target="_blank" rel="noopener"><span class="ico">⎇</span> gsplat (nerfstudio)</a>
+        <a href="https://github.com/nerfstudio-project/nerfstudio" target="_blank" rel="noopener"><span class="ico">⎇</span> nerfstudio 框架</a>
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-code-reviewer" target="_blank" rel="noopener"><span class="ico">③</span> 108+ bug 模式审查</a>
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-training-debugger" target="_blank" rel="noopener"><span class="ico">🔧</span> 60+ 训练运行时 bug 诊断</a>
         <a href="#ch3"><span class="ico">→</span> 下一章：从场景到世界</a>
@@ -485,60 +568,126 @@
         <ol>
           <li>为什么"位置梯度累积量"做 split 判据，而不是直接用 PSNR 改善量？这对设计新损失有什么限制？</li>
           <li>协方差的缩放+四元数参数化，相比直接学 Σ，在梯度与稳定性上各带来什么？</li>
+          <li>gsplat 与官方实现在排序算法上有什么不同？这对实际训练速度的影响有多大？</li>
         </ol>
       </div>
     </section>
-
     <!-- ===================== 第 3 章 ===================== -->
     <section class="chapter" id="ch3" style="--accent:var(--cyan)">
       <div class="chapter-head"><span class="no">CH 03</span><h2>从场景到世界：大规模·动态·压缩</h2></div>
-      <p class="chapter-sub">真实世界的三道关：大、动、轻</p>
+      <p class="chapter-sub">城市级重建 · 4D 动态 · GS-SLAM · 压缩部署</p>
 
-      <p>从"一个物体"到"一个世界"，3DGS 要过三关。<strong>大规模</strong>：城市/自动驾驶动辄数百万平米，单卡装不下。<strong>动态</strong>：世界在变，4D、非刚性变形、滚动重建都要表达时间。<strong>压缩</strong>：部署到手机、车载、机器人，几十 GB 的高斯飞不动。这三关决定了 3DGS 能否走出 demo。</p>
+      <p>第 1–2 章把 3DGS 的内核讲到了"单场景、静态、实时渲染"。但真实世界既不是一个房间，也不是静止的——城市级重建动辄上千万高斯，运动场景需要时间维度，机器人需要边走边建图，而部署到手机/头显又必须把动辄数 GB 的高斯场压到几十 MB。本章把 3DGS 从"实验室单场景"推向"世界级、动态、可部署"的三道关：大规模、4D 动态、压缩。</p>
 
-      <h3><span class="mi">①</span> 大规模与分块</h3>
-      <p>主流做法是空间分块（Level-of-detail 层级 + 瓦片流式），把海量高斯切到磁盘按需加载；并引入层级高斯/anchor 点替代逐基元存储，把"表示成本"从基元数解耦。自动驾驶赛道还要求与位姿里程计、传感器时序强耦合。</p>
+      <p>这三道关卡定了三条独立但相互关联的工程谱系。大规模解决的是"空间太大、显存不够"，答案是分块与层级（Level of Detail）；动态解决的是"时间在变、一个静态表示搞不定"，答案是变形场（deformation field）与 4D 高斯；压缩解决的是"高斯太多、传不动存不下"，答案是剪枝、量化与蒸馏。它们最终在 GS-SLAM 这一"边走边建图边压缩"的场景里汇合——这正是第 7 章的入口。</p>
 
-      <h3><span class="mi">②</span> 动态场景与 4D</h3>
-      <p>动态 3DGS 的核心是"如何让基元随时间形变而不爆炸"。两条路：<strong>形变场</strong>（一个 MLP/可微函数把规范空间高斯映射到各时刻，如 4DGS、Deformable-3DGS 系列）；<strong>逐帧/滑动窗口</strong>（SplaTAM 等 SLAM 路线）。前者适合离线重建可重放动态，后者适合在线增量。</p>
+      <h3><span class="mi">①</span> 大规模重建：从房间到城市</h3>
+      <p>一个房间 3DGS 重建通常需要几十万到几百万高斯；一栋楼几百万；一座城上千万。城市级高斯场最直接的问题是显存——每个高斯约 59 个 float（位置 3 + 缩放 3 + 旋转四元数 4 + 不透明度 1 + 3 阶球谐 48 = 59），单精度下约 236 bytes，一千万高斯就是 2.3 GB 纯参数，还不含训练中间态。把"一个巨大的高斯场"硬塞进单卡显存既不现实也不必要——你站在远处时根本不需要看清每片树叶。</p>
+
+      <p>工程答案沿"分块 + 层级"两条思路收敛：</p>
+      <ul>
+        <li><strong>空间分块（Tiling / Block）</strong>：把高斯场按空间切成块，每块独立训练或独立加载。视图渲染时只激活相机视锥内的块，显存占用从"全场"降到"视锥内几块"。这是大规模 GS 的第一条减负原则。</li>
+        <li><strong>细节层级（Level of Detail, LoD）</strong>：远处用粗高斯、近处用细高斯，类似传统图形学的 LoD。当相机远离某区域，该区域的高斯被合并或用低阶表示替代，渲染帧率与显存同时受益。</li>
+      </ul>
 
       <div class="formula-box">
-        <span class="lbl">形变场范式</span>
-        <span class="eq">G<sub>t</sub> = D<sub>θ</sub>(G<sub>0</sub>, t) &nbsp;&nbsp;+&nbsp;&nbsp; 短期残差 / 流场</span>
-        <span class="desc">规范空间 G₀ 稳定，时间靠变形 Dθ 承载；TRiGS 等用 SE(3)+Bezier 残差让 4D 可扩展，避免每帧一组高斯。</span>
+        <span class="lbl">层级高斯的核心权衡</span>
+        <span class="eq">显存 ∝ Σ(每块活跃高斯数) &nbsp;≠&nbsp; 总高斯数</span>
+        <span class="desc">LoD 的关键在于"活跃高斯数"被视距控制，而非总高斯数。这意味着一个十亿高斯的城市场，在任意视点下可能只需渲染几百万——前提是层级索引（octree / hash grid）足够快，能把"该激活哪些块"在毫秒级算出来。索引本身的开销是大规模 GS 工程化的隐藏成本。</span>
       </div>
 
-      <h3><span class="mi">③</span> SLAM：把 3DGS 变成在线地图</h3>
-      <p>GS-SLAM 系列让 3DGS 同时承担"建图表示"与"可渲染预测器"——既存几何又可预测下一帧用于位姿优化。它的价值在于<strong>地图即渲染器</strong>：建好就能直接渲染任意视角做规划，而不必像点云那样需要额外管线。</p>
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">CityGaussian</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td class="o">层级 LoD 用于城市级实时渲染，分块训练 + 全局对齐</td></tr>
+          <tr><td class="mn">Hier-GS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">层级高斯，父子高斯合并/分裂，支持流式加载</td></tr>
+          <tr><td class="mn">BlockGaussian</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">分块独立训练再缝合，解决跨块接缝与显存墙</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 工程陷阱</span>
+        分块训练最大的坑是<strong>跨块接缝</strong>：两块各自优化到自己最优，缝合处会出现高斯重叠/穿透/颜色跳变。解法是在块边界留一圈"重叠缓冲带"，训练时让相邻块的缓冲带共享约束，缝合时再做一轮联合微调。很多团队第一次做大规模 GS 都栽在这一步——以为是渲染 bug，其实是训练对齐 bug。
+      </div>
+
+      <h3><span class="mi">②</span> 动态与 4D：让高斯"运动"起来</h3>
+      <p>静态 3DGS 假设场景不变；而真实世界里有走动的人、飘动的旗、流动的水。把时间维度引入高斯场有两条技术路线，区别在于"是动高斯本身，还是动坐标系"：</p>
+
+      <ul>
+        <li><strong>变形场（Deformation Field）路线</strong>：保持一套"规范空间（canonical space）"的静态高斯，额外训练一个小神经网络，把每个高斯在时刻 t 的位置/旋转/缩放从规范空间映射到观测空间。模型学到的是"运动规律"而不是"每帧一套高斯"，参数量小但表达力受限于变形网络的容量。代表：Deformable-3DGS。</li>
+        <li><strong>4D 高斯（4D Gaussian）路线</strong>：直接把基元从 3D 高斯升维成 4D 高斯（3 空间 + 1 时间），每个高斯在时间轴上也有一个"分布"，渲染时刻 t 时对时间维做条件采样。表达力更强、可建模瞬时形变，但基元参数和优化复杂度更高。代表：4DGS。</li>
+      </ul>
+
+      <div class="formula-box">
+        <span class="lbl">变形场 vs 4D 高斯</span>
+        <span class="eq">变形场：x'(t) = f<sub>θ</sub>(x, t) &nbsp;&nbsp;（规范高斯 + 时间映射网络）</span>
+        <span class="eq">4D 高斯：G(x, t) = exp(−½ (x−μ, t−τ)ᵀ Σ₄D⁻¹ (x−μ, t−τ))</span>
+        <span class="desc">变形场把"动"外包给一个网络，静态高斯不变；4D 高斯把"动"内化进基元本身的协方差。前者参数省、易训练，但对剧烈形变（衣物甩动、非刚性大位移）力不从心；后者表达力强，但 4D 协方差优化更难收敛，且每个高斯需要在时间轴上有足够的覆盖密度。选择取决于场景运动幅度。</span>
+      </div>
+
+      <p>两条路线在 2024 年同时爆发，并迅速衍生出针对具体问题的变体：SpacetimeGS 把时空统一进单一基元，DN-4DGS 用去噪网络抑制变形场的时序抖动，4DGS-Wild 处理无人值守视频（光照变、有人走动）的不确定性。注意一个工程事实：<strong>动态场景的评测比静态难得多</strong>——PSNR 在单帧上可能很高，但连续播放时人眼对时序不一致（flicker、抖动）极其敏感，所以 4DGS 方法普遍引入时序平滑正则和光流监督。</p>
 
       <table class="mtbl">
-        <thead><tr><th>方向</th><th>代表方法</th><th>工程要点</th></tr></thead>
+        <thead><tr><th>方法</th><th>会议</th><th>路线</th><th>一句话创新</th></tr></thead>
         <tbody>
-          <tr><td class="mn">3DGS-SLAM</td><td>SplaTAM / GS-ICP-SLAM / Photo-SLAM</td><td class="o">在线增量大斯；位姿优化复用光栅化；关键帧选择与回环</td></tr>
-          <tr><td class="mn">动态/4D</td><td>4DGS / Deformable-3DGS / TRiGS</td><td class="o">形变场或 SE(3)+Bezier 残差；规范空间稳定</td></tr>
-          <tr><td class="mn">大规模</td><td>Hier-GS / City-Level / Anchor 系列</td><td class="o">层级/锚点 + 瓦片流式 + LoD</td></tr>
-          <tr><td class="mn">压缩</td><td>LightGaussian / Compact3D / SOG / CoSAG</td><td class="o">剪枝 + 向量量化 + SH 压缩；CoSAG 训练免语义压缩</td></tr>
-          <tr><td class="mn">自动驾驶</td><td>3DReflecNet / HERMES / SpaceDrive</td><td class="o">反射/透明材质；3D 场景理解+生成统一</td></tr>
+          <tr><td class="mn">Deformable-3DGS</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>变形场</td><td class="o">变形场网络驱动高斯运动，高保真动态场景渲染</td></tr>
+          <tr><td class="mn">4DGS (4DGaussians)</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>4D 高斯</td><td class="o">4D 各向异性高斯 + 正则化变形，实时动态渲染</td></tr>
+          <tr><td class="mn">SpacetimeGS</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>时空统一</td><td class="o">单一基元统一空间与时间维度</td></tr>
+          <tr><td class="mn">DN-4DGS</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>变形场</td><td class="o">去噪变形网络 + 时空聚合，抑制时序抖动</td></tr>
+          <tr><td class="mn">4DGS-Wild</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>变形场</td><td class="o">不确定性正则，处理无人值守视频的光照/运动扰动</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">③</span> GS-SLAM：边走边建图（第 7 章详述）</h3>
+      <p>SLAM（Simultaneous Localization and Mapping）是大规模与动态的交汇点——机器人边移动边把环境建成高斯地图，同时用地图给自己定位。3DGS 把传统 SLAM 的"点云/体素地图"换成"可渲染高斯地图"，带来一个革命性副产品：<strong>位姿估计可以直接用渲染图像做光度误差</strong>，而不必依赖特征点匹配。SplaTAM、Photo-SLAM、MonoGS 三者都在 CVPR 2024 同框发表，标志着 GS-SLAM 在一年内从概念走向成熟。第 7 章会深入拆解它们的设计差异——这里只点出它在本章的位置：GS-SLAM 同时面对"场景大需分块"和"场景动需时序"两道关，是大规模与动态谱系在机器人侧的合流。</p>
+
+      <h3><span class="mi">④</span> 压缩：从 GB 到 MB 的部署之路</h3>
+      <p>3DGS 的"显式"是它强大的根源，也是它部署的软肋——一份高斯场动辄数百 MB 到数 GB，而手机、AR 眼镜、Web 端的预算往往只有几十 MB。压缩谱系沿三个正交方向展开，对应高斯场的三种冗余：</p>
+
+      <ul>
+        <li><strong>数量冗余 → 剪枝（Pruning）</strong>：大量高斯对最终渲染贡献极小（不透明度低、被遮挡、面积过小）。按贡献度排序后剪掉尾部，可一次性减少 30–50% 基元而几乎不掉质量。LightGaussian 的全局+局部剪枝即此思路。</li>
+        <li><strong>参数冗余 → 量化/向量量化（Quantization / VQ）</strong>：球谐系数、缩放、旋转中存在大量相似模式。把连续参数聚类到码本（codebook），每个高斯只存码本索引而非完整向量，可压缩 10–20 倍。CompactGS、Compact3D 的核心是 VQ。</li>
+        <li><strong>结构冗余 → 蒸馏（Distillation）</strong>：一组高斯场可用更少高斯+更精参数的"学生场"去拟合"教师场"的渲染输出。LightGaussian 的 SVD 蒸馏、EAGLES 的粗到细训练都在这条线上。</li>
+      </ul>
+
+      <div class="formula-box">
+        <span class="lbl">压缩的三阶权衡</span>
+        <span class="eq">质量 ↓  &nbsp;∝&nbsp;  压缩率 ↑</span>
+        <span class="eq">但：质量损失并非线性——存在"无痛压缩区"</span>
+        <span class="desc">大多数 GS 压缩方法都能在 10× 以内做到几乎无损（PSNR 掉 &lt; 0.5 dB），但越过某个阈值后质量断崖式下跌。这个"断崖点"取决于场景复杂度：纹理丰富的场景冗余多、断崖点靠后；几何简单的场景冗余少、早压缩早就崩。工程上要先在自己场景上 scan 出断崖曲线，再选压缩率，切忌照搬论文数字。</span>
+      </div>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>主策略</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">LightGaussian</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>剪枝+蒸馏</td><td class="o">全局+局部剪枝 + SVD 蒸馏，15× 压缩 200+ FPS</td></tr>
+          <tr><td class="mn">EAGLES</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>量化+剪枝</td><td class="o">量化嵌入 + 粗到细训练 + 剪枝，10–20× 显存压缩</td></tr>
+          <tr><td class="mn">CompactGS</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>向量量化</td><td class="o">VQ + 学习码本，紧凑高斯属性存储</td></tr>
+          <tr><td class="mn">Compact3D</td><td><span class="vchip v-arXiv">arXiv</span></td><td>向量量化+剪枝</td><td class="o">VQ + 剪枝，约 10–15× 压缩</td></tr>
+          <tr><td class="mn">SOG-GS</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td>分组量化</td><td class="o">结构化全向分组量化，保留高斯间相关性</td></tr>
         </tbody>
       </table>
 
       <div class="callout bio">
-        <span class="ct">③ 部署落地</span>
-        本仓库的 <code>3dgs-engineering-guide</code> 把 3DGS 部署拆成 10 个行业垂直（手机/车载/机器人/文旅/测绘…），并给工程栈清单；<code>3dgs-compression-deploy</code> 专注压缩到端侧。压缩不是"先把模型做得小"，而是"在目标设备的解码带宽下选对剪枝+量化组合"——同样的 PSNR，车规芯片和手机 GPU 的最优压缩策略完全不同。
+        <span class="ct">③ 部署视角</span>
+        压缩不只是"存得下"，更是"传得动"。Web 端 3DGS（如本仓库的 GitHub Pages 方法浏览器）需要在首屏秒级加载，这意味着压缩后还得分块流式下载——先加载粗 LoD 让画面立刻出现，再渐进精细。这条"压缩 + LoD + 流式"的组合链路，是 3DGS 从论文走向产品的最后一公里，也是很多学术压缩方法没覆盖的真实约束。
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-engineering-guide" target="_blank" rel="noopener"><span class="ico">⚙</span> 10 行业部署指南</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-compression-deploy" target="_blank" rel="noopener"><span class="ico">📦</span> 压缩部署技能</a>
+        <a href="https://github.com/VITA-Group/LightGaussian" target="_blank" rel="noopener"><span class="ico">⎇</span> LightGaussian</a>
+        <a href="https://github.com/Exyro/EAGLES" target="_blank" rel="noopener"><span class="ico">⎇</span> EAGLES</a>
+        <a href="https://github.com/hustvl/4DGaussians" target="_blank" rel="noopener"><span class="ico">⎇</span> 4DGS</a>
+        <a href="https://github.com/ingra14m/Deformable-3DGS" target="_blank" rel="noopener"><span class="ico">⎇</span> Deformable-3DGS</a>
         <a href="#ch4"><span class="ico">→</span> 下一章：语义高斯</a>
       </div>
 
       <div class="exercise" style="--accent:var(--cyan)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>"地图即渲染器"对 SLAM 的回环检测与全局一致性提出了什么新要求？</li>
-          <li>动态形变场与逐帧滑动窗口，在可重放性、在线性、内存上的取舍分别是什么？</li>
-          <li>若一个高斯地图已压到 20MB，再砍 PSNR 换算力还划算吗——取决于什么？</li>
+          <li>分块训练的接缝问题，本质是"局部最优不等于全局最优"。除缓冲带外，你还能想到哪些对齐策略？</li>
+          <li>变形场与 4D 高斯，在"衣物快速甩动"和"人物缓慢走动"两种场景下，分别更合适哪个？为什么？</li>
+          <li>压缩的"断崖点"为什么依赖场景复杂度？如果你只有渲染预算（无原场），如何在线估计当前压缩是否安全？</li>
+          <li>GS-SLAM 同时面对大规模与动态两道关，它会优先牺牲哪一道？这取决于什么？</li>
         </ol>
       </div>
     </section>
@@ -546,48 +695,75 @@
     <!-- ===================== 第 4 章 ===================== -->
     <section class="chapter" id="ch4" style="--accent:var(--green)">
       <div class="chapter-head"><span class="no">CH 04</span><h2>语义高斯：让空间被理解</h2></div>
-      <p class="chapter-sub">语言/语义高斯 · 开放词汇 3D 分割 · 空间智能的"眼睛"</p>
+      <p class="chapter-sub">语言嵌入 · 开放词汇 3D 分割 · 特征蒸馏 · 点级理解</p>
 
-      <p>纯几何重建只回答"这里有什么形状"，不回答"这是什么"。<strong>语义高斯</strong>（Language/Semantic GS）把 CLIP/SAM/DINO 等基础模型的语义能力蒸馏到每个高斯基元上，让"空间"同时是几何的、外观的、语义的。这一步是空间智能从"被动渲染"走向"主动理解"的分水岭。</p>
+      <p>到第 3 章为止，3DGS 能重建出视觉上逼真的空间，但这份空间是"哑"的——它知道每个像素是什么颜色，却不知道哪片高斯是"桌子"、哪片是"杯子"、哪个区域可以"坐上去"。空间智能的"眼睛"要长出来，3DGS 必须从"几何+外观"升级到"几何+外观+语义"。这一章讲语义高斯（Semantic / Language Gaussian）如何把语言模型的开放世界知识注入到三维基元里。</p>
 
-      <h3><span class="mi">①</span> 语义蒸馏的两种路线</h3>
+      <p>语义注入的意义远超"给点云上色"。一旦每个高斯带上"它是椅子"的标签，机器人就能在地图里检索"找一把椅子"、Agent 就能做"把桌子上的杯子移开"这类指令、AR 就能在真实物体上挂交互锚点。这正是空间智能从"看见"走向"看懂"的关键一跃。</p>
+
+      <h3><span class="mi">①</span> 从 NeRF 语义到 GS 语义：范式平移</h3>
+      <p>给三维场加语义不是 3DGS 的发明。NeRF 时代已有 LERF（Language Embedded Radiance Fields，NeurIPS 2023）：在 NeRF 的密度场之外再预测一个"语言特征场"，从任意 3D 点可查询 CLIP 特征，做开放词汇 3D 分割。但 LERF 的语义藏在 MLP 权重里，查询要前向推理，且和 NeRF 一样慢。</p>
+
+      <p>3DGS 把语义问题彻底改写。因为高斯是显式的、可数的，语义可以<strong>直接挂到每个基元上</strong>——每个高斯除了颜色 SH，再多存一个 CLIP 特征向量。查询时不需要推理网络，直接读该高斯的特征就行。这带来三个工程质变：</p>
       <ul>
-        <li><strong>特征场路线</strong>：给每个高斯挂一个高维特征向量（来自 CLIP/DINO），训练时用多视角 2D 特征做监督，推理时直接对高斯做最近邻检索或聚类。代表：LEGaussians、Feature-3DGS、LangSplat。</li>
-        <li><strong>开放词汇分割路线</strong>：用 SAM 或开放词汇检测器在 2D 上出掩码，再反投影到 3D 高斯做一致性投票，实现任意文本→3D 实例分割。代表：OpenGaussian、Gaussian Grouping、PointGS(CVPR 2026)。</li>
+        <li><strong>查询是 O(1) 的</strong>：点哪个高斯，立刻返回它的语义特征，无需光线步进或网络前向。</li>
+        <li><strong>语义和几何天然对齐</strong>：因为语义就挂在参与渲染的同一组高斯上，不存在"几何对、语义错位"的缝合问题。</li>
+        <li><strong>可编辑性</strong>：选中"所有椅子的高斯"可直接做后续编辑（搬运、隐藏、换色），因为语义就是基元属性。</li>
       </ul>
 
+      <h3><span class="mi">②</span> 核心机制：特征蒸馏损失</h3>
+      <p>把 CLIP 特征挂到高斯上，技术上靠"特征蒸馏（feature distillation）"实现。它的核心是一个自监督闭环：</p>
+
       <div class="formula-box">
-        <span class="lbl">特征蒸馏损失</span>
-        <span class="eq">L<sub>feat</sub> = Σ<sub>i</sub> ‖ f<sub>3D</sub>(G<sub>i</sub>) − sg[ f<sub>2D</sub>(I, π(G<sub>i</sub>)) ] ‖²</span>
-        <span class="desc">f<sub>3D</sub> 是每个高斯的可学习特征；f<sub>2D</sub> 是冻结 2D 基础模型对投影区域的特征提取；sg 表示 stop-gradient。训练后每个高斯自带"语义指纹"，支持零样本开放词汇查询。</span>
+        <span class="lbl">特征蒸馏损失（Feature Distillation Loss）</span>
+        <span class="eq">L<sub>distill</sub> = Σ<sub>view</sub> ‖ render(F<sub>GS</sub>) − F<sub>CLIP/SAM</sub>(I<sub>view</sub>) ‖</span>
+        <span class="desc">F<sub>GS</sub> 是每个高斯携带的特征向量（待学习）；render(·) 用和颜色完全相同的 alpha 合成把它渲染成 2D 特征图；F<sub>CLIP/SAM</sub>(I<sub>view</sub>) 是 CLIP 或 SAM 在真实视图上提取的 2D 特征图（教师）。损失让"高斯渲染出的特征图"逼近"CLIP 看到的特征图"。因为渲染可微，梯度能从 2D 特征差传回每个高斯的特征向量，让它们学会"该长成什么 CLIP 向量"。</span>
       </div>
 
+      <p>这套机制的关键洞察是：<strong>颜色渲染的 alpha 合成公式，对特征渲染同样适用</strong>。一个像素的颜色是 N 个高斯颜色的加权和，那么它的 CLIP 特征也可以是 N 个高斯 CLIP 特征的同一个加权和。于是"2D 特征监督→3D 基元特征学习"这条路天然打通，3DGS 的可微光栅化在这里立了大功——这正是隐式 NeRF 做不到的高效蒸馏路径。</p>
+
+      <h3><span class="mi">③</span> 关键方法与开放词汇能力</h3>
+      <p>语义高斯方法之间的差异，主要在"特征怎么存、怎么查、粒度多细"上：</p>
+
       <table class="mtbl">
-        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <thead><tr><th>方法</th><th>会议</th><th>语义粒度</th><th>一句话创新</th></tr></thead>
         <tbody>
-          <tr><td class="mn">LEGaussians</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">CLIP 特征蒸馏到高斯 + 开放词汇 3D 定位</td></tr>
-          <tr><td class="mn">LangSplat</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">语言嵌入高斯，用 CLIP + SAM 做开放词汇 3D 分割</td></tr>
-          <tr><td class="mn">OpenGaussian</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td class="o">开放词汇 3D 语义分割，无需预定义类别</td></tr>
-          <tr><td class="mn">PointGS</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td class="o">3DGS 作统一中间表示，SAM + 对比学习做无监督点云分割</td></tr>
-          <tr><td class="mn">Gaussian Grouping</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">SAM 掩码反投影投票，自动分组语义实例</td></tr>
+          <tr><td class="mn">LangSplat</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>区域级</td><td class="o">CLIP 特征存于每个高斯，开放词汇 3D 场景查询</td></tr>
+          <tr><td class="mn">OpenGaussian</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>点级</td><td class="o">每点特征蒸馏，点级开放词汇 3D 理解</td></tr>
+          <tr><td class="mn">CL-GS</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>基元级</td><td class="o">对比学习蒸馏 GS 语义特征，CLIP 引导每高斯特征</td></tr>
+          <tr><td class="mn">LGGS</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td>零样本</td><td class="o">语言引导 GS，无需逐场景训练的零样本 3D 理解</td></tr>
+          <tr><td class="mn">SemanticGauss</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td>统一</td><td class="o">统一语义高斯表示，联合重建与理解</td></tr>
         </tbody>
       </table>
 
+      <p>"开放词汇（open-vocabulary）"是语义高斯最被看重的属性——它不限于预定义类别，可以查询任意自然语言（"那个能坐的东西""左边带把儿的容器"）。这来自 CLIP 的语言-图像对齐能力：因为蒸馏的是 CLIP 特征空间，3D 高斯的语义也继承了 CLIP 对任意文本的泛化。从 LangSplat 的"区域级查询"到 OpenGaussian 的"点级查询"，粒度越来越细——后者可以精确到"这个高斯属于杯子的把手"，为精细操作（第 8 章）打下基础。</p>
+
       <div class="callout note">
-        <span class="ct">③ 从渲染到理解的闭环</span>
-        语义高斯的核心价值不是"更好看"，而是<strong>可查询</strong>——机器人能说"找到红色的椅子"，Agent 能说"删除所有窗户"，编辑器能说"把地板换成木纹"。当高斯从纯几何变成带语义的数据结构，3DGS 才真正进入"空间智能"的赛道。
+        <span class="ct">③ 与 NeRF 语义的衔接</span>
+        理解 3DGS 语义，最好对照它的 NeRF 前身 LERF（NeurIPS 2023）。LERF 证明了"在辐射场里嵌语言特征"这条路可行，但受限于隐式表示的慢推理与不可编辑。LangSplat 等方法把同样的思想平移到显式高斯上，把"可行"变成"可用"——这是范式转换在语义子领域的典型复现。本仓库的 references/methods-semantic-editing.md 沉淀了从 LERF 到 GS 语义的完整迁移路径。
       </div>
 
+      <div class="callout warn">
+        <span class="ct">⚠ 语义精度的天花板</span>
+        特征蒸馏有个根本限制：<strong>2D CLIP 特征本身就是区域级的</strong>。CLIP 在 2D 图像上做的是 patch 级聚合，它的特征图分辨率有限，难以区分"杯子把手"和"杯子杯身"这种细粒度部件。所以靠纯蒸馏的语义高斯，点级边界往往模糊。OpenGaussian 等方法用额外策略（如 SAM 的部件级 mask、分层聚合）来突破这个天花板，但没有 2D 端的细粒度监督，3D 语义的精度是有物理上限的。
+      </div>
+
+      <h3><span class="mi">④</span> 语义高斯对具身智能的意义</h3>
+      <p>语义高斯不是终点，而是机器人感知的<strong>前提条件</strong>。考虑一个抓取任务："把桌上那个红色的杯子拿给我"。机器人需要：① 在三维地图里定位"桌子"区域（LangSplat 级语义）；② 识别"杯子"并区分它与桌上其他物体（OpenGaussian 级点级语义）；③ 锁定"红色"这个属性并规划抓取点（需要语义+几何+颜色的联合查询）。3DGS 同时承载几何、外观、语义三类信息，使这三个步骤能在同一份数据上完成，无需在点云/网格/图像之间反复投影——这是空间智能走向具身行动的底层便利。</p>
+
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-semantic-editing.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 语义/编辑分类</a>
+        <a href="https://github.com/minghanqin/LangSplat" target="_blank" rel="noopener"><span class="ico">⎇</span> LangSplat</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-semantic-editing.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 语义/编辑方法分类</a>
         <a href="#ch5"><span class="ico">→</span> 下一章：编辑·生成·资产化</a>
       </div>
 
       <div class="exercise" style="--accent:var(--green)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>特征蒸馏对训练成本和推理延迟各带来多少额外开销？在嵌入式端侧是否可行？</li>
-          <li>开放词汇 3D 分割在遮挡/反光区域的一致性如何保证？多视角投票的失败模式是什么？</li>
+          <li>为什么"颜色渲染的 alpha 合成对特征渲染同样适用"？这背后是什么数学性质在起作用？</li>
+          <li>点级语义（OpenGaussian）比区域级语义（LangSplat）难在哪？2D CLIP 的特征分辨率如何限制了 3D 点级精度？</li>
+          <li>如果一个场景里有 100 把外观相同的椅子，纯语义高斯如何区分"这一把"和"那一把"？需要补什么信息？</li>
+          <li>语义高斯为机器人抓取提供了什么 NeRF 语义给不了的能力？</li>
         </ol>
       </div>
     </section>
@@ -595,97 +771,179 @@
     <!-- ===================== 第 5 章 ===================== -->
     <section class="chapter" id="ch5" style="--accent:var(--orange)">
       <div class="chapter-head"><span class="no">CH 05</span><h2>编辑·生成·资产化</h2></div>
-      <p class="chapter-sub">从重建到创造：前馈重建 · 文本/图像到 3DGS · 可动画资产 · 材质重照明</p>
+      <p class="chapter-sub">前馈重建 · 文本/图像到 3DGS · SDS 生成 · 可动画资产 · 材质重照明</p>
 
-      <p>重建是"看世界"，生成是"造世界"。<strong>3DGS 的显式性让它天然适合被编辑和被创造</strong>：你可以删除一组高斯、移动它们、改颜色、挂骨骼、换材质——这些在隐式 NeRF 里几乎不可能。</p>
+      <p>前三章解决的是"从图像重建已存在的空间"。但空间智能的另一半是"创造不存在的空间"——从一句话生成一个 3D 资产、从几张照片秒级重建一个场景、给静态高斯加上骨骼让它动起来、换光照让它能装进游戏引擎。这一章把 3DGS 从"重建工具"推向"创作工具"，覆盖四条资产化主线：前馈重建、生成、动画、材质重照明。</p>
 
-      <h3><span class="mi">①</span> 前馈重建：从稀疏视图到秒级 3DGS</h3>
-      <p>逐场景优化太慢？前馈方法用一个网络（通常 Transformer 架构）直接从几幅图像预测高斯参数，把重建从"分钟级优化"压到"毫秒级推理"。这个赛道的竞争点在泛化性（能否处理训练分布外场景）与高斯数量/质量比。</p>
+      <p>这四条线共同回答一个工程问题：<strong>3DGS 能不能成为 3D 内容生产的下一代标准格式？</strong>如果能，它的优势在于"显式、可微、可渲染"——既能像 mesh 一样直接被引擎消费，又能像 NeRF 一样从图像学习，还能用扩散模型/SDS 生成。这是 mesh 和 NeRF 都单独做不到的。</p>
+
+      <h3><span class="mi">①</span> 前馈重建：从"逐场景优化"到"一次前向"</h3>
+      <p>原始 3DGS 是"逐场景优化"——给一组图，跑几十分钟训练得到这一场景的高斯场。前馈方法改变范式：训练一个大网络，输入几张新视角图像，<strong>一次前向</strong>直接吐出一组高斯，无需针对新场景再优化。这把 3DGS 从"离线重建"推向"实时重建"，是走向 AR/机器人即时感知的关键。</p>
+
+      <p>前馈方法的核心设计选择是"高斯怎么从像素来"：</p>
+      <ul>
+        <li><strong>像素对齐（pixel-aligned）</strong>：每个像素预测一组高斯参数（位置由像素深度反投影、其余由网络预测）。简单高效，但多视角一致性靠后处理保证。代表：PixelSplat、GPSGaussian。</li>
+        <li><strong>体素对齐（voxel-aligned）</strong>：在 3D 体素网格上预测高斯，再投射到场景。多视角一致性更好。代表：VolSplat。</li>
+        <li><strong>代价体（cost-volume）</strong>：先建多视图匹配的代价体，再从代价体回归高斯。几何最可靠但计算最重。代表：MVSplat。</li>
+        <li><strong>大重建模型（Large Reconstruction Model）</strong>：用 Transformer 大模型吃多视图 token，直接回归高斯序列，靠数据规模实现零样本泛化。代表：GS-LRM。</li>
+      </ul>
 
       <table class="mtbl">
-        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <thead><tr><th>方法</th><th>会议</th><th>策略</th><th>一句话创新</th></tr></thead>
         <tbody>
-          <tr><td class="mn">MVSplat</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">代价体编码几何，3 稀疏视图直接出高斯</td></tr>
-          <tr><td class="mn">InstantSplat</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">无位姿稀疏视图，~40 秒出高斯地图</td></tr>
-          <tr><td class="mn">GS-LRM</td><td><span class="vchip v-ICML">ICML 2025</span></td><td class="o">十亿参数 Transformer，直接预测高斯，零样本迁移</td></tr>
-          <tr><td class="mn">GlobalSplat</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">78 ms 前向，16K 高斯，近实时重建</td></tr>
-          <tr><td class="mn">DepthSplat</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">立体引导深度正则化，显著提升前馈几何精度</td></tr>
-          <tr><td class="mn">HyperGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">10⁴–10⁵× 前馈加速，超大规模前馈 3DGS</td></tr>
+          <tr><td class="mn">PixelSplat</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>像素对齐</td><td class="o">极线 Transformer 做前馈双目 GS 重建</td></tr>
+          <tr><td class="mn">MVSplat</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>代价体</td><td class="o">从 3 张稀疏视图建代价体回归 3DGS</td></tr>
+          <tr><td class="mn">GS-LRM</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>大模型</td><td class="o">1B 参数 Transformer，零样本泛化的大重建模型</td></tr>
+          <tr><td class="mn">GPSGaussian</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>像素对齐</td><td class="o">可泛化的像素对齐双目 GS，实时新视角合成</td></tr>
+          <tr><td class="mn">FreeSplat</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>像素对齐</td><td class="o">可泛化的前馈室内 3DGS</td></tr>
+          <tr><td class="mn">InstantSplat</td><td><span class="vchip v-arXiv">arXiv 2024</span></td><td>无位姿</td><td class="o">无需位姿的稀疏视图重建，约 40 秒完成</td></tr>
         </tbody>
       </table>
 
-      <h3><span class="mi">②</span> 文本/图像到 3DGS：SDS 与 Score Distillation</h3>
-      <p>DreamGaussian 把 NeRF 换成 3DGS 做 SDS 优化，生成时间从小时压到分钟。后续工作在保真度与可控性上不断推进——多文本条件、风格控制、自动骨骼绑定。</p>
+      <div class="callout bio">
+        <span class="ct">③ 工程意义</span>
+        前馈重建的真正价值不在"更快"，而在"可泛化"——一个好的前馈模型见过足够多场景后，对从未见过的场景也能秒级给出合理高斯场。这是机器人进入陌生环境即时建图、AR 眼镜即时重建的前提。但要注意：前馈方法的单场景质量目前仍不如逐场景优化的 3DGS，因为它受限于训练分布。"快+泛化"和"精+定制"之间存在张力，工程上常以前馈初始化 + 少步定制微调兼顾两端。
+      </div>
 
-      <h3><span class="mi">③</span> 可动画资产与材质</h3>
-      <p>人体/头像高斯（Human/Avatar GS）给高斯绑骨骼与蒙皮权重，做出可驱动角色。AniGen 的 S3 Fields 把骨架/蒙皮/形状统一到一个框架，单图出可动画资产。材质方面，TransmissiveGS 与 3DSS 把 PBR 材质参数挂上高斯，实现重照明与透明/折射。</p>
+      <h3><span class="mi">②</span> 生成：从文本/图像到 3DGS</h3>
+      <p>前馈重建还需要输入真实图像；生成则更进一步——从一段文本或一张图直接"凭空"造出 3DGS 资产。这条线的主流技术是 SDS（Score Distillation Sampling）：用一个 2D 扩散模型当"老师"，把它的 2D 生成能力蒸馏进 3DGS 参数。</p>
+
+      <div class="formula-box">
+        <span class="lbl">SDS 梯度（Score Distillation Sampling）</span>
+        <span class="eq">∇<sub>θ</sub> L<sub>SDS</sub> = E<sub>ε,t</sub>[ w(t) · (ε<sub>φ</sub>(x<sub>t</sub>; y, t) − ε) · ∂x/∂θ ]</span>
+        <span class="desc">θ 是 3DGS 参数；x = render(θ) 是当前高斯场渲染的视图；ε<sub>φ</sub> 是预训练扩散模型对加噪图 x<sub>t</sub> 预测的噪声；y 是文本条件。SDS 梯度让"当前 3D 渲染图"在扩散模型眼里更像"该文本应生成的 2D 图"，梯度经可微渲染传回 3DGS 参数。DreamGaussian（ICLR 2024 Oral）把 SDS 从 NeRF 迁到 3DGS，速度提升数量级。</span>
+      </div>
+
+      <p>SDS 最大的工程障碍是"<strong>3D 一致性</strong>"：扩散模型只在 2D 上保证"像"，但蒸馏时要让它从多个视角都觉得"像"，否则生成的 3DGS 在某些视角会崩。GaussianDreamer 用结构化高斯初始化缓解多面问题——先给一个合理的 3D 形状骨架，再用 SDS 雕琢外观，避免从纯噪声出发导致的视角抖动。</p>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>输入</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">DreamGaussian</td><td><span class="vchip v-ICLR">ICLR 2024 Oral</span></td><td>文本/图像</td><td class="o">SDS + 3DGS 先验，文本到 3D 速度提升数量级</td></tr>
+          <tr><td class="mn">GaussianDreamer</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>文本</td><td class="o">SDS 耦合结构化高斯初始化，fast 文本到 3D</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">③</span> 可动画资产：让高斯"动"成角色</h3>
+      <p>第 3 章的 4D 动态是"记录已发生的运动"；可动画资产是"创造可控的运动"——给一个高斯人体/角色挂上骨骼（SMPL/FLAME），用姿态参数驱动它做任意动作。这把 3DGS 从"重建结果"变成"游戏/影视可用的角色资产"。</p>
+
+      <p>核心机制是<strong>姿态条件变形（pose-conditioned deformation）</strong>：每个高斯的位置/旋转/缩放不再是时间函数，而是骨骼姿态参数的函数。给定一串姿态关键帧，变形网络把规范高斯映射到每帧的实时位置，渲染出连贯动画。3DGS-Avatar 把这套思路用在可动画人体上；GaussianAvatars 系列则用 FLAME 面部模型锚定高斯，做表情驱动数字人。</p>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>对象</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">3DGS-Avatar</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>人体</td><td class="o">可动画人体化身，姿态条件高斯变形</td></tr>
+          <tr><td class="mn">GaussianAvatars-2</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td>面部</td><td class="o">FLAME 对齐高斯锚定的二代数字人</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">④</span> 材质与重照明：让 3DGS 进游戏引擎</h3>
+      <p>原始 3DGS 的球谐系数编码"视角依赖颜色"，但这混合了材质和光照——换个光源，颜色不会自动变化。要让 3DGS 资产能装进游戏引擎被任意打光，必须把"材质（material）"和"光照（lighting）"解耦：用物理渲染（PBR）的 BRDF 表示材质，用环境贴图表示光照，渲染时按物理公式重新合成。这就是<strong>可重照明（relightable）3DGS</strong>。</p>
+
+      <div class="formula-box">
+        <span class="lbl">重照明渲染方程（PBR 分解）</span>
+        <span class="eq">L<sub>out</sub>(o) = ∫ f<sub>r</sub>(i, o, n) · L<sub>in</sub>(i) · (n·i) di</span>
+        <span class="desc">f<sub>r</sub> 是 BRDF（材质：法线 n、粗糙度、金属度、反照率），L<sub>in</sub> 是入射光照（环境贴图）。原始 3DGS 的 SH 把 f<sub>r</sub> 和 L<sub>in</sub> 卷在一起了；重照明 GS 把每个高斯预测为 BRDF 参数 + 估计/给定环境贴图，渲染时按上式重新积分。换 L<sub>in</sub> 不动 f<sub>r</sub>，材质不变但光照变了。GaussianShader 给高斯挂可学习 shading function 表达反射/折射；GaussianShader-v2 加环境贴图估计做室内外可重照明。</span>
+      </div>
+
+      <p>重照明是 3DGS 资产化的"最后一公里"——只有材质和光照解耦，3DGS 重建的角色/场景才能和引擎里的虚拟灯光、动态时间变化正确合成。否则重建结果只能"在原光照下看"，换个环境就穿帮。</p>
 
       <div class="callout key">
-        <span class="ct">★ "资产化"是 3DGS 的第二曲线</span>
-        重建是科学问题，资产化是工程+商业问题。一份高斯地图"可用"和"可卖"之间差三步：<strong>可编辑 → 可动画 → 可导入引擎</strong>。MaGS、UniMGS 的工作都在把高斯拉到"能被 Unity/Unreal 消费"的位置，这才是 3DGS 走向游戏/影视/数字人的真正障碍。
+        <span class="ct">★ 资产化的三角张力</span>
+        3DGS 资产化在"质量、可控性、效率"三角间拉扯：前馈重建快但精度有限；SDS 生成可控（文本引导）但 3D 一致性弱；可动画/重照明增加可控性但损失原始重建质量。目前没有任何一条线同时最优化三角的三顶点。务实做法是按场景取舍——AR 即时重建要效率、影视资产要质量+可控、UGC 内容要可控+效率。
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-core.md" target="_blank" rel="noopener"><span class="ico">⎇</span> Feed-Forward / Generation 分类</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-semantic-editing.md" target="_blank" rel="noopener"><span class="ico">⎇</span> Editing / Human / Material 分类</a>
+        <a href="https://github.com/dreamgaussian/dreamgaussian" target="_blank" rel="noopener"><span class="ico">⎇</span> DreamGaussian</a>
+        <a href="https://github.com/hustvl/GaussianDreamer" target="_blank" rel="noopener"><span class="ico">⎇</span> GaussianDreamer</a>
+        <a href="https://github.com/davidtvs/pixelsplat" target="_blank" rel="noopener"><span class="ico">⎇</span> PixelSplat</a>
+        <a href="https://github.com/donydchen/mvsplat" target="_blank" rel="noopener"><span class="ico">⎇</span> MVSplat</a>
+        <a href="https://github.com/mikeqzy/3DGS-Avatar" target="_blank" rel="noopener"><span class="ico">⎇</span> 3DGS-Avatar</a>
         <a href="#ch6"><span class="ico">→</span> 下一章：具身智能基础</a>
       </div>
 
       <div class="exercise" style="--accent:var(--orange)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>前馈方法的泛化性瓶颈在"高斯数量"还是在"场景类型分布"？如何用 LoRA 微调弥补？</li>
-          <li>SDS 优化的 Janus 问题（多面问题）在 3DGS 上比 NeRF 更难还是更容易解决？为什么？</li>
+          <li>像素对齐与代价体两种前馈策略，在"多视角一致性"和"计算量"上如何取舍？</li>
+          <li>SDS 生成为什么会有"3D 一致性"问题？结构化初始化为什么能缓解它？</li>
+          <li>可动画高斯的"姿态条件变形"和第 3 章的"变形场"有何本质区别？一个造可控运动，一个记录运动，这对参数化意味着什么？</li>
+          <li>重照明为什么是"资产化最后一公里"？如果 3DGS 永远做不到完美 PBR，它能取代 mesh 吗，还是只能作为补充格式？</li>
         </ol>
       </div>
     </section>
-
     <!-- ===================== 第 6 章 ===================== -->
     <section class="chapter" id="ch6" style="--accent:var(--pink)">
-      <div class="chapter-head"><span class="no">CH 06</span><h2>具身智能基础：从仿真到 Sim2Real</h2></div>
+      <div class="chapter-head"><span class="no">CH 06</span><h2>具身智能基础：仿真到 Sim2Real</h2></div>
       <p class="chapter-sub">VLA 谱系 · 仿真平台 · Sim2Real 鸿沟 · 数据飞轮</p>
 
-      <p>具身智能体的任务不是"看图说话"，而是"在物理世界里做事"。这要求一个基础能力三角：<strong>感知环境→规划动作→执行操作</strong>，而 VLA（Vision-Language-Action）模型正是当前最被验证的路线。</p>
+      <p>前五章讲的是"空间如何被表示、被理解、被生成"。从这一章起，视角切换到"占据这份空间的智能体"——机器人。具身智能（Embodied Intelligence）的核心难题不是单独的感知或规划，而是感知-规划-行动在物理世界中的闭环：机器人看到世界、想出动作、执行动作、世界因此改变、再看到改变后的世界。这个闭环的每一环都受物理约束、噪声、延迟和不可逆性折磨。本章铺底——讲清 VLA 谱系、仿真平台与 Sim2Real 鸿沟，为第 7–9 章把 3DGS 接进机器人闭环做准备。</p>
 
-      <h3><span class="mi">①</span> VLA 谱系：从端到端到分层</h3>
-      <p>第一代 VLA（RT-1/RT-2/OpenVLA/π0/GR00T）直接从图像+文本输出动作 token，端到端但不透明。第二代分层 VLA（SayCan/VoxPoser/Code-as-Policies/BISON）让 VLM 做高层规划、策略网络做低层执行，可解释且能长程推理。</p>
+      <h3><span class="mi">①</span> VLA 谱系：从 RT-2 到 GR00T N1</h3>
+      <p>2023 年 7 月，Google DeepMind 发表 RT-2，正式提出 Vision-Language-Action（VLA）范式：把视觉-语言模型（VLM）微调到机器人动作轨迹上，让互联网上学到的知识直接迁移到机器人手上。这是具身智能的分水岭——此前机器人策略要么是手工规则，要么是小数据模仿学习；VLA 第一次让"看网课学常识"和"练动手学技能"在同一个网络里统一。此后两年，VLA 沿"端到端"和"分层"两条路线爆发。</p>
 
       <div class="formula-box">
-        <span class="lbl">VLA 的隐式世界模型假设</span>
-        <span class="eq">a<sub>t</sub> = π(I<sub>t</sub>, L<sub>t</sub>, H<sub>t</sub>) &nbsp;&nbsp;←&nbsp;&nbsp;隐式包含 W(s<sub>t</sub>, a<sub>t</sub>) → s<sub>t+1</sub></span>
-        <span class="desc">端到端 VLA 把"世界模型"压进了策略网络的隐状态里——它能工作，但世界模型不可审计、不可干预。Goal-VLA (ICRA 2026) 与 ReconVLA (AAAI 2026 杰出论文) 开始显式化这个隐式世界模型，是当前最值得关注的方向。</span>
+        <span class="lbl">VLA 的核心公式</span>
+        <span class="eq">a<sub>t</sub> = Policy<sub>θ</sub>( o<sub>t</sub>, l, h<sub>t</sub> )</span>
+        <span class="desc">o<sub>t</sub> 是当前观测（图像/点云/3D 场），l 是语言指令，h<sub>t</sub> 是历史。端到端 VLA 把三者和动作 a<sub>t</sub> 都塞进一个大模型；分层 VLA 把它拆成"VLM 规划高层动作 + 小策略网络执行低层动作"两层。端到端简单但难训练、难解释；分层灵活但两层接口设计难。争议至今未决。</span>
       </div>
 
       <table class="mtbl">
-        <thead><tr><th>方法</th><th>团队/会议</th><th>一句话创新</th></tr></thead>
+        <thead><tr><th>方法</th><th>团队</th><th>时间</th><th>一句话创新</th></tr></thead>
         <tbody>
-          <tr><td class="mn">RT-2</td><td>Google DeepMind / 2023</td><td class="o">首创 VLA 范式：VLM 微调机器人轨迹，知识从网到手</td></tr>
-          <tr><td class="mn">π0 (Pi-0)</td><td>Physical Intelligence / 2024</td><td class="o">Flow-matching 动作解码，50 时间步联合空间控制</td></tr>
-          <tr><td class="mn">GR00T N1–N1.7</td><td>NVIDIA / 2025–2026</td><td class="o">开源通用人形基础模型；System 1 快反应 + System 2 VLM 规划</td></tr>
-          <tr><td class="mn">ReconVLA</td><td>AAAI 2026 杰出论文</td><td class="o">首个在顶会获最佳论文的具身 AI 工作；重建引导 VLA 空间理解</td></tr>
-          <tr><td class="mn">Pelican-Unified 1.0</td><td>ByteDance / 2026.05</td><td class="o">首个统一具身基础模型：单 VLM 同时理解/推理/想象/行动</td></tr>
-          <tr><td class="mn">BISON</td><td>U of Toronto / 2026.05</td><td class="o">双层策略（高层符号+低层神经），10K 物体 &lt;1 min 规划</td></tr>
+          <tr><td class="mn">RT-2</td><td>Google DeepMind</td><td>2023.07</td><td class="o">首创 VLA 范式，网课知识迁移到机器人手</td></tr>
+          <tr><td class="mn">OpenVLA</td><td>Stanford/Google</td><td>2024</td><td class="o">首个开源 7B VLA，LLaVA 微调于 OXE 数据集</td></tr>
+          <tr><td class="mn">Octo</td><td>UC Berkeley</td><td>2024.03</td><td class="o">开源 93M VLA，模块化架构 + 独立动作头</td></tr>
+          <tr><td class="mn">π0</td><td>Physical Intelligence</td><td>2024.12</td><td class="o">流匹配动作解码器，50 步关节空间控制</td></tr>
+          <tr><td class="mn">GR00T N1</td><td>NVIDIA</td><td>GTC 2025.03</td><td class="o">开源人形机器人基础模型，System 1 快反应 + System 2 VLM 规划</td></tr>
+          <tr><td class="mn">Pelican-Unified 1.0</td><td>ByteDance</td><td>2026.05</td><td class="o">首个统一具身基础模型，单一 VLM 理解+推理+想象+行动</td></tr>
+          <tr><td class="mn">ReconVLA</td><td>-</td><td>AAAI 2026 Outstanding</td><td class="o">首个在顶会获最佳论文的具身 AI 工作，重建引导 VLA</td></tr>
         </tbody>
       </table>
 
-      <h3><span class="mi">②</span> 仿真平台与 Sim2Real</h3>
-      <p>训练机器人需要海量交互数据，真实世界采不动。仿真平台（RoboCasa/LIBERO/Genie Sim 3.0/AGIBOT WORLD）负责生成，Sim2Real 负责迁移。但仿真器与真实之间永远有"现实鸿沟"——物理/视觉/接触都不完全一致。</p>
+      <p>注意两条主线在 2025–2026 年的汇合趋势：GR00T N1 把 System 1（快反应策略）和 System 2（VLM 慢规划）分层组合，本质是"分层派"吸收"端到端派"的优势；Pelican-Unified 1.0 则反其道，用单一 VLM 同时做理解、推理、想象、行动，证明端到端在足够数据下也能统一。这场"端到端 vs 分层"的争论，正随着模型规模和数据增长逐步收敛——答案很可能不是非此即彼，而是"端到端打底 + 必要处分层结构化"。</p>
 
-      <div class="callout bio">
-        <span class="ct">③ 3DGS 在仿真中的新角色</span>
-        传统仿真用 URDF/Mesh/SDF 建环境，视觉真实度与编辑性往往不可兼得。GS-World（CUHK-Shenzhen, 2025.10）提出用 3DGS 做可微仿真引擎——环境既可渲染（视觉真实），又可求导（梯度传到策略），还能编辑（添加/删除/移动高斯 = 环境编辑）。这条路线如果走通，3DGS 就不只是"重建结果"，而是<strong>可微世界模拟器的标配表示层</strong>。
+      <h3><span class="mi">②</span> 仿真平台：机器人的"健身房"</h3>
+      <p>VLA 要数据，真实机器人采集成本极高（每条轨迹要人遥操作或真机运行），且易损易耗。仿真平台是解决方案：在虚拟世界里批量生成训练数据，再把策略迁回真机。这是 Sim2Real 的"Sim"端。主流仿真平台各有侧重：</p>
+
+      <table class="mtbl">
+        <thead><tr><th>平台</th><th>团队</th><th>特色</th><th>一句话定位</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">Isaac Sim</td><td>NVIDIA</td><td>物理仿真</td><td class="o">GPU 加速刚体/柔体物理，工业级精度， physically-based 渲染</td></tr>
+          <tr><td class="mn">Habitat</td><td>FAIR</td><td>导航</td><td class="o">大规模室内导航，HM3D/Gibson 数据集，支持多机器人</td></tr>
+          <tr><td class="mn">RoboCasa</td><td>UT Austin</td><td>家务</td><td class="o">大规模家务机器人仿真，10 万+ 轨迹</td></tr>
+          <tr><td class="mn">LIBERO</td><td>Stanford</td><td>终身学习</td><td class="o">机器人操作终身学习基准（ICLR 2024）</td></tr>
+          <tr><td class="mn">AGIBOT WORLD / Genie Sim</td><td>智元 AGIBOT</td><td>数据引擎</td><td class="o">可交互可训练可评测物理仿真，百万轨迹 217 任务（ICRA 2026）</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout key">
+        <span class="ct">★ 仿真的根本矛盾</span>
+        Sim2Real 的核心矛盾是<strong>仿真永远不够真</strong>。物理引擎对摩擦、接触、柔体的建模总有近似；渲染对光照、材质、噪声的模拟总有偏差。策略在仿真里练到 99% 成功率，到真机可能掉到 60%。这个"现实鸿沟（reality gap）"是具身智能最顽固的工程难题。解法沿两条路：① 让仿真更真（域随机化、更好的物理/渲染）；② 让策略更鲁棒（在仿真里就见过各种扰动）。3DGS 在第二条路上有独特价值——它能把真实场景重建后搬进仿真，让仿真环境的"外观"逼近真实，缩小渲染侧的鸿沟。
       </div>
 
+      <h3><span class="mi">③</span> Sim2Real 鸿沟与数据飞轮</h3>
+      <p>缩小 Sim2Real 鸿沟的工程范式是"数据飞轮"：仿真生成 → 真机微调 → 真机数据回流仿真 → 仿真再生成。这个闭环让仿真环境不断逼近真实分布。3DGS 在这里扮演两个角色：</p>
+      <ul>
+        <li><strong>场景真实化</strong>：用 3DGS 重建真实场景（厨房、车间、仓库）后导入仿真，让仿真环境的视觉分布与真实一致。Habitat-GS 即此思路——把 3DGS 渲染嵌入导航训练。</li>
+        <li><strong>可微仿真</strong>：3DGS 的可微渲染让"仿真里的渲染"可被梯度优化，策略可以通过渲染误差反向学习。GS-World 把 3DGS 当作可微仿真引擎，让 Sim2Real 本身可微。ManiGaussian（ECCV 2024）更进一步——用动态高斯世界模型预测操作后的未来场景，让机器人在"想象"里预演动作后果。</li>
+      </ul>
+
+      <p>这正是 3DGS 对具身智能的深层价值：它不只是"给机器人一张地图"，而是把<strong>仿真与真实的边界变模糊</strong>——因为 3DGS 重建出来的就是真实场景的可微副本，策略可以在这个副本上安全试错、廉价试错、梯度式试错。这是空间智能赋能具身智能的关键通路，也是第 7–9 章展开的地基。</p>
+
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能核心论文库</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能论文清单</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型研究全景</a>
         <a href="#ch7"><span class="ico">→</span> 下一章：3DGS 作为空间记忆</a>
       </div>
 
       <div class="exercise" style="--accent:var(--pink)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>端到端 VLA 的隐式世界模型与显式世界模型（Dreamer 系列）各有什么不可替代性？</li>
-          <li>3DGS 做可微仿真引擎，与 URDF/Mesh 仿真在"可微性"上的差距有多大？</li>
+          <li>端到端 VLA 和分层 VLA，在"可解释性"和"数据效率"上各有什么代价？</li>
+          <li>Sim2Real 鸿沟里，"渲染偏差"和"物理偏差"哪个更难缩小？为什么？</li>
+          <li>3DGS 重建场景导入仿真，能缩小哪一侧的现实鸿沟？它的局限是什么？</li>
+          <li>"可微仿真"为什么对策略学习有根本意义？传统非可微仿真的策略只能怎么学？</li>
         </ol>
       </div>
     </section>
@@ -693,253 +951,525 @@
     <!-- ===================== 第 7 章 ===================== -->
     <section class="chapter" id="ch7" style="--accent:var(--teal)">
       <div class="chapter-head"><span class="no">CH 07</span><h2>3DGS 作为机器人空间记忆</h2></div>
-      <p class="chapter-sub">GS-SLAM · 地图即渲染器 · 导航推理 · 位姿图与语义标注</p>
+      <p class="chapter-sub">GS-SLAM · 可渲染记忆 · 位姿估计 · 导航决策推理</p>
 
-      <p>机器人需要空间记忆——不只是"我知道我在哪"，更是"我知道那里长什么样，我能在脑子里渲染它"。传统 SLAM 输出点云/栅格地图，可渲染但粗糙；NeRF-SLAM 可渲染但太慢。<strong>GS-SLAM 同时拿到了实时渲染、可微优化与显式数据结构</strong>，让地图变成"可渲染记忆"。</p>
+      <p>机器人要在未知环境里行动，第一件事不是"规划"，而是"记住"——边走边把周围建成一张地图，同时用这张地图给自己定位。这就是 SLAM（Simultaneous Localization and Mapping）。传统 SLAM 的地图是点云或体素网格：能定位，能避障，但<strong>不能渲染、不能查询语义、不能直观交互</strong>。3DGS 把这张地图换成可渲染的高斯场——机器人不仅能知道"我在哪"，还能"看见"自己记忆里的世界，在任何视角渲染出图像。这一步把 SLAM 从"几何工具"升级为"空间记忆"，是 3DGS 走向具身智能的最直接通道。</p>
 
-      <h3><span class="mi">①</span> GS-SLAM 的工程原理</h3>
+      <h3><span class="mi">①</span> GS-SLAM：为什么高斯地图比点云地图更好</h3>
+      <p>传统点云 SLAM（如 LOAM、ORB-SLAM 的地图）只存几何点，丢失了外观。这带来三个限制：① 无法做基于外观的重定位（换光照、换季节就认不出）；② 无法渲染给人类看（调试困难、遥操作困难）；③ 无法接语义（点没有颜色特征）。3DGS 地图同时存几何+外观，三项限制一并解除：</p>
+
       <ul>
-        <li><strong>建图</strong>：每收到一帧 RGB-D，投影为高斯初值，用当前地图渲染出"预测帧"，与观测帧求光度/几何损失，反向传播更新高斯参数与相机位姿。</li>
-        <li><strong>跟踪</strong>：复用光栅化渲染做位姿优化——不需要额外特征提取管线，渲染即预测。</li>
-        <li><strong>关键帧与回环</strong>：选关键帧加入全局位姿图，回环时对高斯做全局 BA（Bundle Adjustment），消除漂移。</li>
+        <li><strong>光度位姿估计</strong>：位姿不再依赖特征点匹配，而是直接用"当前观测图 vs 渲染图"的光度误差做优化。这意味着只要地图能渲染，就能定位——哪怕场景里没有角点、纹理稀疏。</li>
+        <li><strong>可渲染调试</strong>：工程师能直接看到机器人"脑中"的世界长什么样，快速发现建图错误（漂浮高斯、穿模、漏建）。</li>
+        <li><strong>语义就绪</strong>：因为地图本身就是高斯场，第 4 章的语义高斯可直接挂上，机器人记忆瞬间从"几何"升级为"语义"。</li>
       </ul>
 
       <div class="formula-box">
-        <span class="lbl">GS-SLAM 联合优化</span>
-        <span class="eq">L = L<sub>rgb</sub> + λ<sub>d</sub> L<sub>depth</sub> + λ<sub>ssim</sub> L<sub>ssim</sub></span>
-        <span class="desc">同时优化相机位姿 ξ 与高斯参数 {μ, Σ, α, SH}；关键帧窗口滑动做局部 BA，回环触发全局 BA。与 NeRF-SLAM 的根本区别：不需要逐像素光线步进，光栅化一次前向就是一张完整预测图。</span>
+        <span class="lbl">GS-SLAM 的位姿优化目标</span>
+        <span class="eq">T<sub>t</sub>* = argmin<sub>T</sub> ‖ I<sub>t</sub> − render(G, T) ‖<sup>2</sup> + λ·R(T)</span>
+        <span class="desc">G 是当前高斯地图，T 是待优化的相机位姿，render(G, T) 是从位姿 T 渲染地图得到的图像，I<sub>t</sub> 是真实观测图。位姿优化变成"找一个 T，让渲染图最像真实图"。因为 render 可微，梯度可直接传到 T。R(T) 是位姿先验正则（平滑、回环）。这个目标把 SLAM 的"定位"和 3DGS 的"渲染"统一进一个可微优化——这是 GS-SLAM 的本质创新。</span>
       </div>
 
+      <h3><span class="mi">②</span> 三大 CVPR 2024 GS-SLAM 对比</h3>
+      <p>2024 年 CVPR 同时接收三篇 GS-SLAM，标志着这条路线从概念走向成熟。它们的设计差异恰恰映射了 GS-SLAM 的核心工程取舍：</p>
+
       <table class="mtbl">
-        <thead><tr><th>方法</th><th>会议</th><th>一句话创新</th></tr></thead>
+        <thead><tr><th>方法</th><th>会议</th><th>输入</th><th>核心设计</th><th>特色</th></tr></thead>
         <tbody>
-          <tr><td class="mn">SplaTAM</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">首个实时 GS-SLAM：在线增量大斯，渲染做位姿优化</td></tr>
-          <tr><td class="mn">GS-ICP-SLAM</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">ICP 配准 + 高斯地图，几何精度更稳</td></tr>
-          <tr><td class="mn">Photo-SLAM</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">光度 + 几何双损失，关键帧选择与回环检测</td></tr>
-          <tr><td class="mn">ManiGaussian</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td class="o">动态 GS 世界模型做多任务操作</td></tr>
+          <tr><td class="mn">SplaTAM</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>RGB-D</td><td class="o">在线增量高斯 + silhouette mask + 渲染位姿优化</td><td class="o">首个实时 GS-SLAM</td></tr>
+          <tr><td class="mn">Photo-SLAM</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>RGB-D</td><td class="o">超原语地图：显式几何特征定位 + 隐式光度特征；Gaussian-Pyramid 训练</td><td class="o">可在 Jetson AGX Orin 边缘端运行</td></tr>
+          <tr><td class="mn">MonoGS</td><td><span class="vchip v-CVPR">CVPR 2024 Highlight</span></td><td>单目 RGB</td><td class="o">首个实时单目 GS-SLAM，用高斯不确定性建模</td><td class="o">无需深度传感器</td></tr>
         </tbody>
       </table>
 
-      <h3><span class="mi">②</span> 导航推理：从渲染到决策</h3>
-      <p>当地图是渲染器，导航规划就能直接在渲染结果上推理：在未探索区域渲染假设视角，评估通行性；在语义高斯地图上查询"最近的红色门"，输出可达路径。这与 NavSpace（ICRA 2026）的"空间大脑"方向完全对齐——<strong>空间记忆的最高形态不是点云，而是可查询、可渲染、可推理的三合一地图</strong>。</p>
+      <p>三者差异值得细看：SplaTAM 用 RGB-D（有深度），简单直接，是 GS-SLAM 的"标准答案"；Photo-SLAM 的亮点是<strong>边缘部署</strong>——能在 Jetson AGX Orin 上跑，这对真实机器人至关重要（机器人不可能背一台工作站）；MonoGS 最难，单目无深度，全靠高斯不确定性建模和先验，但适用面最广（任何带摄像头的设备都能用）。这种"输入模态 × 部署约束"的二维取舍，是 GS-SLAM 工程化的主轴。</p>
 
-      <div class="callout key">
-        <span class="ct">★ 空间记忆的三个层级</span>
-        <ol>
-          <li><strong>几何记忆</strong>（基础 SLAM）：我在哪，墙在哪——点云/栅格就够。</li>
-          <li><strong>外观记忆</strong>（可渲染 SLAM）：那里长什么样——需要 GS/NeRF。</li>
-          <li><strong>语义记忆</strong>（可查询 SLAM）：那是什么、能干什么——需要语义高斯 + 开放词汇。</li>
-        </ol>
-        当前 GS-SLAM 走到了第二层，与第 4 章的语义高斯结合就能到第三层——这才是机器人真正需要的"空间记忆"。
+      <div class="callout warn">
+        <span class="ct">⚠ GS-SLAM 的现实约束</span>
+        GS-SLAM 当前最大的瓶颈不是精度，而是<strong>增量更新的稳定性</strong>。机器人边走边往地图里加高斯，新观测可能与旧高斯冲突（动态物体经过、光照变化）。如果不适时剪枝/合并/遗忘，地图会越长越乱——漂浮高斯、重影、穿模累积。SplaTAM-v2（CVPR 2025）加在线回环检测和全局优化正是治这个病；2DGS-SLAM（TRO 2026）用 2D 圆盘重写以保证全局一致。GS-SLAM 离"部署级可靠"还有距离，但它指明了方向。
+      </div>
+
+      <h3><span class="mi">③</span> 空间记忆层级与导航决策</h3>
+      <p>有了可渲染+可语义的高斯地图，机器人导航决策不再是"局部避障"，而能在记忆上<strong>推理</strong>。考虑一个任务："去厨房拿杯子"。机器人需要：① 在高斯地图里定位"厨房"区域（语义查询，第 4 章）；② 在记忆中规划路径（拓扑/度量地图）；③ 边走边用 GS-SLAM 更新位姿；④ 到厨房后用语义高斯找"杯子"；⑤ 渲染抓取视角做运动规划。整条链路都挂在一份数据上——这是 3DGS 作为"空间记忆"的真正价值：它把定位、建图、感知、规划统一在一份可渲染可查询的表示里。</p>
+
+      <div class="callout bio">
+        <span class="ct">③ 与传统 SLAM 的衔接</span>
+        GS-SLAM 不是要取代 ORB-SLAM、LOAM 这些经典方法，而是在它们之上加了一层"可渲染语义外壳"。很多 GS-SLAM 系统内部仍借用经典前端的特征追踪/里程计来做粗定位，再用高斯渲染做精修——这是务实组合。纯粹靠渲染做定位在纹理稀疏、快速运动时容易丢，传统特征前端更鲁棒。理解这种"经典前端 + GS 精修"的混合架构，是落地 GS-SLAM 的关键。
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/methods-systems-apps.md" target="_blank" rel="noopener"><span class="ico">⎇</span> SLAM / Systems 分类</a>
+        <a href="https://github.com/spla-tam/SplaTAM" target="_blank" rel="noopener"><span class="ico">⎇</span> SplaTAM</a>
+        <a href="https://github.com/hjr37/Photo-SLAM" target="_blank" rel="noopener"><span class="ico">⎇</span> Photo-SLAM</a>
+        <a href="https://github.com/muskie82/MonoGS" target="_blank" rel="noopener"><span class="ico">⎇</span> MonoGS</a>
+        <a href="https://github.com/PRBonn/2DGS-SLAM" target="_blank" rel="noopener"><span class="ico">⎇</span> 2DGS-SLAM</a>
         <a href="#ch8"><span class="ico">→</span> 下一章：物体级与铰接式理解</a>
       </div>
 
       <div class="exercise" style="--accent:var(--teal)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>GS-SLAM 的回环检测应该在高斯空间做还是在特征空间做？各自的代价是什么？</li>
-          <li>语义高斯地图的"可查询"能力，对路径规划的改变是量变还是质变？</li>
+          <li>光度位姿估计相比特征点匹配，在"纹理稀疏"和"快速运动"两种场景下各有什么表现？</li>
+          <li>Photo-SLAM 能在 Jetson 上运行，SplaTAM 不能——这背后的设计差异是什么？边缘部署 GS-SLAM 要牺牲什么？</li>
+          <li>GS-SLAM 的"增量更新稳定性"问题，与第 3 章大规模重建的"接缝问题"有何共通的根因？</li>
+          <li>"经典前端 + GS 精修"的混合架构，为什么比纯 GS-SLAM 更鲁棒？这种妥协的代价是什么？</li>
         </ol>
       </div>
     </section>
 
     <!-- ===================== 第 8 章 ===================== -->
-    <section class="chapter" id="ch8" style="--accent:var(--primary)">
+    <section class="chapter" id="ch8" style="--accent:var(--blue)">
       <div class="chapter-head"><span class="no">CH 08</span><h2>物体级与铰接式理解</h2></div>
-      <p class="chapter-sub">Part-level 高斯 · 铰接资产 · CAD·Mesh·3DGS 桥接 · 操作的前置条件</p>
+      <p class="chapter-sub">part-level 高斯 · 铰接资产 · 运动学约束 · CAD·Mesh·3DGS 桥接</p>
 
-      <p>机器人操作需要知道的不只是"那里有个东西"，还有"这个东西有几个零件、哪些能动、怎么动"。这叫<strong>铰接式理解</strong>（articulated understanding）——它是"看见"到"操作"之间的必要条件。</p>
+      <p>第 4 章的语义高斯让机器人知道"这是椅子"；第 7 章的 GS-SLAM 让机器人知道"椅子在房间哪"。但要真正<strong>操作</strong>一把椅子——把它搬起来、折叠它、打开它的腿——机器人还需要更细的理解：椅子有几部分？哪部分能动？怎么动？这就是物体级（part-level）与铰接式（articulated）理解。它是从"看见物体"到"理解物体怎么动"的关键一跃，也是机器人从导航走向操作的前置条件。</p>
 
-      <h3><span class="mi">①</span> Part-level 高斯</h3>
-      <p>场景级高斯把所有东西揉在一起；物体级/零件级高斯给每个高斯标所属 part/instance ID，让它"可拆"也"可动"。这与第 4 章语义高斯天然衔接——语义分割到 part-level 就是物体级高斯。</p>
+      <h3><span class="mi">①</span> part-level 高斯：比物体级更细</h3>
+      <p>第 4 章的语义高斯大多是"物体级"——区分椅子、桌子、杯子。但操作需要"部件级"：一把椅子的椅背、椅腿、座面是不同部件，抓椅背和抓椅腿是不同动作。part-level 高斯把语义从"物体"细化到"部件"，每个高斯不仅知道属于哪个物体，还知道属于该物体的哪个部件。</p>
 
-      <h3><span class="mi">②</span> 铰接式资产与 URDF 桥接</h3>
-      <p>AniGen 的 S3 Fields 把骨架/蒙皮/形状统一，单图出可动画资产。铰接式 3DGS 的目标是<strong>从观测中推断关节轴/旋转中心/运动范围</strong>，输出可直接驱动 URDF 的运动学参数。本仓库的 <code>3dgs-articulated-reasoner</code> 技能正是做这件事——从高斯场景中提取 part 结构、推断运动学约束、生成可交互数字孪生。</p>
+      <p>这比物体级难得多：<strong>部件边界是模糊的</strong>——椅背和座面在哪里分界？不同椅子结构不同。纯靠 CLIP 蒸馏的语义难以区分同物体内部部件，因为 2D CLIP 特征就是物体级的。OpenGaussian 用 SAM 的部件级 mask 做分层聚合，是当前突破点；GaussianGrasper（IEEE T-RO 2024）把 SAM+CLIP 蒸馏进 3D 语言高斯，专门服务开放词汇机器人抓取——它需要知道"抓杯子把手"而不是"抓杯子"，这要求部件级语义。</p>
+
+      <h3><span class="mi">②</span> 铰接资产与运动学约束</h3>
+      <p>铰接物体（articulated object）是 part-level 的进阶——它的部件之间有<strong>运动学约束</strong>：抽屉能拉、门能转、剪刀能合。理解铰接物体意味着不仅要分出部件，还要推断部件间的连接关系（哪两个部件相连）和运动类型（平移/旋转/自由度范围）。这是机器人操作最贴近物理的一层理解。</p>
 
       <div class="formula-box">
-        <span class="lbl">铰接推理的目标</span>
-        <span class="eq">G<sub>scene</sub> → { (G<sub>part</sub><sup>k</sup>, T<sub>k</sub>(θ)) }<sub>k=1..K</sub></span>
-        <span class="desc">把场景高斯拆成 K 个零件，每个零件有一组局部高斯 G<sub>part</sub> 和一个受关节角 θ 驱动的变换 T<sub>k</sub>。推断 θ 的范围和 T 的类型（旋转/平移/螺旋）就是铰接推理的核心输出。</span>
+        <span class="lbl">铰接物体的运动学模型</span>
+        <span class="eq">T<sub>part</sub>(θ) = T<sub>joint</sub> · Exp(ξ · θ) · T<sub>part,0</sub></span>
+        <span class="desc">每个部件的位姿 = 关节变换 × 指数坐标表示的运动(旋转向量 ξ·θ) × 部件初始位姿。θ 是关节参数（抽屉拉开多远、门转多少度）。铰接理解的任务就是从观测推断：① 有几个部件；② 哪些部件间有 joint；③ 每个 joint 的类型(平移/旋转)和轴方向。这正是 URDF 机器人运动学模型在物体侧的镜像——理解了铰接，物体的运动就可以用与机器人手臂同样的运动学公式预测。</span>
       </div>
 
-      <h3><span class="mi">③</span> CAD·Mesh·3DGS 三表示桥接</h3>
-      <p>3DGS 擅长外观，Mesh 擅长几何，CAD 擅长参数化可编辑。三者之间需要双向桥梁：</p>
-      <ul>
-        <li><strong>3DGS → Mesh</strong>：SuGaR、2DGS、PGSR 通过正则化让高斯对齐表面，TSDF/Poisson 提取网格。</li>
-        <li><strong>Mesh → 3DGS</strong>：MaGS、UniMGS 把高斯绑到网格面片，变形自然传播。</li>
-        <li><strong>3DGS → CAD</strong>：BrepGaussian、ASSEMCAD（ECCV 2026）从高斯恢复参数化 B-rep/装配体，输出 STEP 模型。</li>
-        <li><strong>CAD → 3DGS</strong>：CADFit 从 CAD 程序优化可微渲染，拟合多视图观测。</li>
-      </ul>
+      <p>铰接理解的工程价值在于<strong>可预测性</strong>：一旦推断出"门绕这个轴旋转"，机器人就能精确预测"推门把手 10 厘米，门会转到什么角度"，而不必靠试错。这把操作从"盲目探索"变成"基于模型规划"。3DGS 在这里的优势是部件可分割——每个高斯属于一个部件，部件运动时只需对该部件的高斯做刚体变换，渲染即可预测运动后的外观。这比 NeRF 的隐式表示（无法分部件）天然适合铰接建模。</p>
 
-      <div class="callout note">
-        <span class="ct">③ 工程路径</span>
-        本仓库的 <code>cad-mesh-3dgs</code> 技能覆盖 55+ 方法的双向转换管线；<code>3dgs-spatial-agent</code> 技能把 CAD-in-the-loop 参数提取与 Agent 驱动的 3D 交互合到一起。对机器人操作而言，最终需要的不是"3DGS"，而是一份<strong>可驱动、可编辑、可仿真</strong>的 URDF/CAD——3DGS 是通向它的最短路径。
+      <h3><span class="mi">③</span> CAD·Mesh·3DGS 桥接：从重建到可制造</h3>
+      <p>3DGS 能渲染、能编辑，但它不是工程师能直接制造的标准格式——制造业要 CAD（STEP/IGES），游戏业要 mesh。把 3DGS 重建结果转成可制造的 CAD/可用 mesh，是 3DGS 走向工业价值链的"最后一桥"。这座桥目前有几种走法，对应 3DGS 到几何表示的不同转换路径：</p>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>目标表示</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">SuGaR</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>Mesh</td><td class="o">正则高斯对齐表面，TSDF + Marching Cubes 提网格</td></tr>
+          <tr><td class="mn">2DGS</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2024</span></td><td>Mesh</td><td class="o">2D 圆盘贴表面，Poisson 重建直接出网格</td></tr>
+          <tr><td class="mn">BrepGaussian</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td>CAD (B-rep/STEP)</td><td class="o">3DGS + B-rep CAD 重建，输出参数化 STEP 模型</td></tr>
+          <tr><td class="mn">CADDreamer</td><td><span class="vchip v-CVPR">CVPR 2025 Highlight</span></td><td>CAD (B-rep)</td><td class="o">文本/草图 → CAD B-rep 生成，扩散参数化 CAD 程序合成</td></tr>
+        </tbody>
+      </table>
+
+      <p>这条桥接谱系揭示了一个递进：<strong>从"取近似 mesh"到"造精确 CAD"</strong>。SuGaR/2DGS 提的是网格——够游戏业用，但不是精确几何，不能直接数控加工。BrepGaussian 才真正叩开制造业大门：它把 3DGS 重建反向拟合到 B-rep（边界表示）CAD 模型，输出 STEP 文件——这是数控机床、3D 打印、CAD 软件能直接读的工业标准格式。一步从"看起来像"变成"可制造"，是从消费级到工业级的质变。</p>
+
+      <div class="formula-box">
+        <span class="lbl">3DGS → CAD 的表示鸿沟</span>
+        <span class="eq">3DGS：自由椭球场（无数高斯，无拓扑）&nbsp; → &nbsp;CAD：参数化 B-rep（少量面，严格拓扑）</span>
+        <span class="desc">3DGS 是"自由表示"——成千上万高斯各居其位，没有拓扑结构；CAD 是"约束表示"——少量参数化面（平面、圆柱、NURBS）通过严格拓扑边相连。从自由到约束的回归，本质是"拟合一个参数化模型去解释一堆高斯"。这比 3DGS→mesh 难得多：mesh 只要把高斯包络成三角面片（数值近似），CAD 还要推断"这应该是个圆柱还是个圆锥"（语义识别 + 参数拟合）。BrepGaussian 的贡献正是在这层"从数值到语义"的跨越。</span>
+      </div>
+
+      <div class="callout key">
+        <span class="ct">★ 操作的前提条件</span>
+        把 part-level 语义、铰接运动学、CAD 桥接串起来看，它们共同构成机器人<strong>操作</strong>的三级前置条件：① 部件级语义让机器人知道"抓手该对准哪个部件"；② 铰接模型让机器人预测"动手后物体会怎么动"；③ CAD/mesh 让机器人有精确几何做接触规划。3DGS 在三级里都扮演统一表示的角色——同一份高斯场既能出语义、又能出运动学、还能出 CAD——这是空间智能走向精细操作的底层便利。
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/cad-mesh-3dgs" target="_blank" rel="noopener"><span class="ico">⎇</span> CAD·Mesh·3DGS 桥接技能</a>
+        <a href="https://github.com/Anttwo/SuGaR" target="_blank" rel="noopener"><span class="ico">⎇</span> SuGaR</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/cad-3d.md" target="_blank" rel="noopener"><span class="ico">⎇</span> CAD/3D 术语与数据集</a>
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-articulated-reasoner" target="_blank" rel="noopener"><span class="ico">③</span> 铰接推理技能</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/cad-mesh-3dgs" target="_blank" rel="noopener"><span class="ico">⎇</span> CAD·Mesh·3DGS 桥接技能</a>
         <a href="#ch9"><span class="ico">→</span> 下一章：Agent 驱动的数字孪生</a>
-      </div>
-
-      <div class="exercise" style="--accent:var(--primary)">
-        <div class="et">★ 思考题</div>
-        <ol>
-          <li>铰接推理在观测不完整（只看到关了一半的抽屉）时如何约束解空间？</li>
-          <li>3DGS→CAD 的当前瓶颈在"几何保真度"还是在"拓扑正确性"？</li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ===================== 第 9 章 ===================== -->
-    <section class="chapter" id="ch9" style="--accent:var(--blue)">
-      <div class="chapter-head"><span class="no">CH 09</span><h2>Agent 驱动的数字孪生与交互</h2></div>
-      <p class="chapter-sub">MCP 渲染管线 · 手势交互 · 3DGS 作为可交互世界 · 感知-行动闭环</p>
-
-      <p>3DGS 重建了一个"看起来对"的世界，但"看起来对"和"能交互"之间差一个 Agent。<strong>Agent 驱动的数字孪生</strong>把 3DGS 从静态地图变成可操作的世界——Agent 感知空间、推理语义、执行动作，3DGS 提供可微、可渲染、可编辑的世界底座。</p>
-
-      <h3><span class="mi">①</span> MCP 渲染管线：Agent 与 3DGS 的协议层</h3>
-      <p>Model Context Protocol（MCP）让 Agent 以标准化方式调用渲染与场景操作。本仓库的 <code>3dgs-mcp-renderer</code> 技能定义了 Agent↔3DGS 的交互协议：Agent 发出"渲染视角 X"、"移动 part Y"、"查询语义 Z"的 MCP 调用，3DGS 渲染器执行并返回结果。这层协议让<strong>任何 Agent 都能"看见"和"操作"3DGS 世界</strong>，而不必关心底层实现。</p>
-
-      <h3><span class="mi">②</span> 手势驱动与多模态交互</h3>
-      <p>MediaPipe 手势 + YOLO 检测 + Three.js 渲染 + 3DGS 场景——这条融合管线让人类用手势直接"触摸"高斯世界：抓取、旋转、缩放物体级高斯组，实时看到渲染结果。它不是科幻，是当前已有工程原型的技术栈。</p>
-
-      <h3><span class="mi">③</span> 闭环：从感知到行动再回到感知</h3>
-      <div class="formula-box">
-        <span class="lbl">Agent-3DGS 交互闭环</span>
-        <span class="eq">感知(Render) → 推理(LLM/VLM) → 行动(MCP call) → 状态更新(3DGS edit) → 再感知</span>
-        <span class="desc">这个闭环的关键在"状态更新"——3DGS 的显式性让 Agent 的行动（移动/删除/创建高斯）直接映射为地图更新，而不需要重新训练或重编码。这是隐式表示做不到的。</span>
-      </div>
-
-      <div class="callout bio">
-        <span class="ct">③ 技能生态</span>
-        本仓库为 Agent-3DGS 交互提供了完整技能栈：<code>3dgs-mcp-renderer</code>（MCP 协议层）、<code>3dgs-spatial-agent</code>（空间推理与 CAD-in-the-loop 参数提取）、<code>3dgs-articulated-reasoner</code>（铰接推理与 URDF 桥接）、<code>3dgs-visualizer</code>（可视化与雷达图/对比表/方法时间线）。四个技能纵向串起了"渲染→理解→推理→操作"的闭环。
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-mcp-renderer" target="_blank" rel="noopener"><span class="ico">⎇</span> MCP 渲染技能</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-spatial-agent" target="_blank" rel="noopener"><span class="ico">③</span> 空间智能体技能</a>
-        <a href="#ch10"><span class="ico">→</span> 下一章：世界模型与未来展望</a>
       </div>
 
       <div class="exercise" style="--accent:var(--blue)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>MCP 协议层在多 Agent 共享同一 3DGS 世界时，如何处理并发冲突（两个 Agent 同时移动同一个高斯组）？</li>
-          <li>手势交互的延迟预算是多少？3DGS 渲染、手势识别、MCP 调用各自分走多少？</li>
+          <li>为什么部件级语义比物体级语义难？2D CLIP 的"物体级"特征如何限制了 3D 部件分割？</li>
+          <li>铰接物体的运动学模型，与机器人手臂的 URDF 模型本质上是同一套数学——这对"机器人操作物体"意味着什么？</li>
+          <li>3DGS → mesh 和 3DGS → CAD 的难度差异在哪？为什么后者需要"语义识别"？</li>
+          <li>如果 3DGS 一份表示能同时出语义、运动学、CAD，这对降低机器人系统的数据冗余有何意义？</li>
         </ol>
       </div>
     </section>
+    <!-- ===================== 第 9 章 ===================== -->
+    <section class="chapter" id="ch9" style="--accent:var(--purple)">
+      <div class="chapter-head"><span class="no">CH 09</span><h2>Agent 驱动的数字孪生与交互</h2></div>
+      <p class="chapter-sub">MCP 渲染管线 · Agent↔3DGS 交互闭环 · 手势交互 · 可交互世界</p>
 
-    <!-- ===================== 第 10 章 ===================== -->
-    <section class="chapter" id="ch10" style="--accent:var(--purple)">
-      <div class="chapter-head"><span class="no">CH 10</span><h2>世界模型与未来展望</h2></div>
-      <p class="chapter-sub">六大学派 · 3DGS×World Model 交叉 · 空间基础模型 · Physical AI</p>
+      <p>前八章有一条隐线：3DGS 越来越像一份"数据"——能渲染、能查询、能优化。但从"数据"到"世界"还差最后一步——它必须能被 Agent <strong>实时调用和操控</strong>。Agent 不只是读地图，而是能动地图：调视角、改参数、加物体、跑物理。这一章讲 Agent 如何通过 MCP（Model Context Protocol）协议驱动 3DGS 渲染管线，把一份静态重建变成可交互的数字孪生，串起感知与行动的完整闭环。</p>
 
-      <p>本书最后把视野拉到最远：<strong>世界模型</strong>——AI 系统内部构建对外部环境的模拟，使其能预测动态、预判后果、自主决策。2026 年这个词正处于"概念混战"期，六大学派各执一词，3DGS 在其中扮演一个特殊角色。</p>
+      <p>这是本书从"技术原理"走向"系统产品"的转折点。前八章回答"3DGS 是什么、能做什么"；这一章回答"Agent 怎么用它做事"——这恰恰是空间智能从研究报告走进真实工作流的关键。</p>
 
-      <h3><span class="mi">①</span> 世界模型六大学派（2026 分类）</h3>
-      <table class="mtbl">
-        <thead><tr><th>流派</th><th>核心定义</th><th>代表</th></tr></thead>
-        <tbody>
-          <tr><td class="mn">视频生成派</td><td class="o">生成逼真视频 = 模拟世界</td><td>Sora, Genie 3, HappyOyster, Cosmos</td></tr>
-          <tr><td class="mn">强化学习派</td><td class="o">内部环境模型用于策略训练</td><td>Dreamer 系列, DayDreamer</td></tr>
-          <tr><td class="mn">联合嵌入预测派</td><td class="o">在抽象表示空间做预测而非像素空间</td><td>JEPA/V-JEPA 2 (LeCun), AMI Labs</td></tr>
-          <tr><td class="mn">空间智能派</td><td class="o">理解和生成 3D 空间结构</td><td>World Labs/Marble (李飞飞), HY-World 2.0</td></tr>
-          <tr><td class="mn">自动驾驶仿真派</td><td class="o">物理一致的未来状态预测</td><td>Tesla Neural World Simulator, GAIA, X-World</td></tr>
-          <tr><td class="mn">3DGS 世界模型派</td><td class="o">可微渲染引擎做可交互仿真</td><td>GS-World, ManiGaussian, OrbiSim</td></tr>
-        </tbody>
-      </table>
+      <h3><span class="mi">①</span> 为什么 Agent 需要直接驱动 3DGS</h3>
+      <p>传统 3DGS 工作流是"人写脚本 → 渲染 → 看结果 → 改脚本"的循环，Agent 的角色只是被动执行命令。但空间智能的真正落地点是<strong>Agent 自主探索 3D 空间</strong>：它要能问"从这个角度看会长什么样"并立刻得到答案，要能说"把这把椅子移到窗边"并看到效果，要能在数字孪生里预演"如果我从这边走会撞到什么"。这要求 Agent 和 3DGS 之间有一条<strong>双向、实时、可编程</strong>的通道——不只是读，还能写、能查、能渲染。</p>
 
-      <div class="callout key">
-        <span class="ct">★ 关键共识（2026 学界）</span>
-        <strong>视频生成 ≠ 世界模型。</strong>"能画出视频"不代表"理解世界"——Sora 1.0 后的核心反思。物理一致性、因果推理、行动可控性是世界模型区别于纯视频生成的根本。3DGS 在这个共识中处于独特位置：它是当前<strong>唯一同时满足"可渲染（视觉真实）+可微（梯度可传）+可编辑（行动可控）"</strong>的显式表示。
+      <p>这就是 MCP（Model Context Protocol）介入的位置。MCP 是为 LLM/Agent 设计的工具调用协议，让 Agent 能像调函数一样调外部能力。把它接到 3DGS 渲染管线上，Agent 就获得了一组"操控 3D 空间"的原语：加载场景、设相机、渲染、查询高斯、变换物体、跑物理。本仓库的 mcp-server 正是这套桥接的原型实现——它把 3DGS 的能力封装成一组 MCP 工具，让 Agent 通过自然语言就能驱动机器渲染与查询。</p>
+
+      <h3><span class="mi">②</span> MCP 渲染管线：工具集与交互闭环</h3>
+      <p>MCP-3DGS 渲染管线的核心是把"3DGS 能做什么"拆成一组可被 Agent 调用的原子工具，每个工具是一个有明确输入输出的函数：</p>
+
+      <div class="formula-box">
+        <span class="lbl">Agent↔3DGS 交互闭环</span>
+        <span class="eq">Agent → MCP_tool( params ) → renderer → 3DGS_scene → image/state → Agent</span>
+        <span class="desc">Agent 用自然语言表达意图（"从俯视角度看看这个房间"），LLM 把它翻译成一组 MCP 工具调用（load_scene + set_camera(top_view) + render），渲染器执行后返回图像或场景状态，Agent 据此决定下一步。这个闭环让 Agent 不再是"盲调脚本"，而是"看见结果再决策"——这正是空间智能赋予 Agent 的具身性：它在数字孪生里有了"眼睛"。</span>
       </div>
 
-      <h3><span class="mi">②</span> 3DGS×World Model 的技术交叉</h3>
-      <ul>
-        <li><strong>GS-World</strong>：用 3DGS 做生成式仿真 + 引擎驱动 Sim2Real VLA，世界既是可渲染的也是可求导的。</li>
-        <li><strong>ManiGaussian</strong>：动态 GS 世界模型做多任务操作，在"想象力"里练策略。</li>
-        <li><strong>OrbiSim</strong>：世界模型作为全可微物理引擎，3DGS 提供可微渲染层。</li>
-        <li><strong>RISE (χ0-RL)</strong>：组合多视角世界模型 + RL 想象训练，长程成功率跃升。</li>
-      </ul>
+      <p>本仓库的 MCP 服务器实现了 24 个工具，覆盖场景管理、相机控制、渲染输出、高斯查询、物体变换、物理模拟几大类。Three.js/WebGPU 做前端实时渲染，光追后端做高质量离线渲染——Agent 可按需在"快预览"和"精渲染"间切换。这套原型的意义不在工具数量，而在<strong>它验证了"Agent 用自然语言操控三维空间"这条路径可行</strong>——这是数字孪生从"给人看"升级为"给 Agent 用"的关键一步。</p>
 
-      <h3><span class="mi">③</span> 空间基础模型与 Physical AI</h3>
-      <p>NVIDIA 的 Physical AI 技术三角——<strong>世界模型 + 空间智能 + 具身智能</strong>——中，3DGS 在"空间智能"充当表示地基，在"世界模型"充当可微渲染层，在"具身智能"充当空间记忆。三条线交汇到同一个表示，这是 3DGS 不容易被替代的核心原因。</p>
+      <div class="callout bio">
+        <span class="ct">③ 工程要点</span>
+        MCP-3DGS 最大的工程挑战是<strong>延迟与状态的同步</strong>。Agent 每次决策都要"渲染→看→再决策"，如果渲染要几秒，闭环就慢到无法用。所以管线里必须有"粗预览（毫秒级）+ 精渲染（秒级）"双通道：Agent 默认走粗预览快速试错，需要确认时再调精渲染。另一挑战是状态一致性——Agent 改了场景后，所有人（人和其他 Agent）看到的必须是改后的版本，这需要单一数据源 + 实时同步，类似多人游戏的架构。
+      </div>
 
-      <p>空间基础模型（SpatialLM/SpatialVLM/Loc3R-VLM/ESI-Bench）正在把 VLM 的空间推理能力从 2D 拉到 3D。当这些模型能从 2D 图像直接输出 3D 空间结构时，3DGS 不再需要逐场景优化——前馈网络直接生成高斯，而 3DGS 的角色从"训练目标"变为"推理格式"。</p>
+      <h3><span class="mi">③</span> 手势交互：让人类也进数字孪生</h3>
+      <p>数字孪生不只是给 Agent 用的，也要给人用——工程师调试、设计师评审、工人培训都要"走进"孪生空间。传统交互靠键鼠，但三维空间最自然的交互是手势和身体。本仓库的 fusion-demo 把 MediaPipe（手势/姿态识别）+ YOLO（物体检测）+ Three.js（渲染）+ 3DGS（场景）融合，实现了实时手势驱动的三维交互：举起手就能"抓住"虚拟物体，捏合手指就能缩放，身体移动就改变视角。</p>
 
-      <div class="callout note">
-        <span class="ct">③ 预测</span>
-        未来 2–3 年，3DGS 的定位会从"重建方法"演化为"空间数据标准"——就像 JPEG 之于图像、MP4 之于视频。谁先定义好 3DGS 的交互协议（MCP）、查询语义（开放词汇）、编辑操作（Agent call），谁就先拿到空间智能平台的入口。
+      <p>这套融合的关键是<strong>多模态对齐</strong>：MediaPipe 给出 2D 手部关键点，要映射到 3DGS 场景里的抓取位置，中间需要深度估计和坐标变换；YOLO 识别真实手边的物体，要和孪生里的虚拟物体对应。对齐不准就会出现"手在空中抓，物体纹丝不动"的违和感。3DGS 的显式几何在这里帮了大忙——每个高斯有精确 3D 位置，手势射线的命中判定可以直接在高斯场上做，比 hitbox 近似精确得多。</p>
+
+      <h3><span class="mi">④</span> 数字孪生：3DGS 作为可交互世界</h3>
+      <p>把以上三层叠起来——3DGS 重建的真实场景 + MCP 让 Agent 操控 + 手势让人进入——就得到一个"可交互数字孪生"。它的价值不在"看起来像真的"，而在<strong>它是一个可被多方共享、可被 Agent 推理、可被人直观操控的统一空间</strong>。考虑一个工厂孪生：Agent 在里面预演"机器人手臂这么动会不会撞到货架"，工人在里面培训"紧急按钮在哪、撤离路线怎么走"，管理者在里面看"这条产线今天产能多少"。同一份 3DGS，三种用法，无需在点云/CAD/视频之间反复转换。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 数字孪生的三个成熟度</span>
+        数字孪生可按"交互性"分三档：① <strong>只读孪生</strong>——能渲染能看，但不能改，相当于 3D 照片；② <strong>可查询孪生</strong>——能查询语义/测量/标注，像 3D 数据库；③ <strong>可交互孪生</strong>——Agent 和人都能动它、改它、在它里面试错，是真正的"平行世界"。3DGS + MCP + 手势交互实现的是第三档，也是价值最高、最难的一档。它要求 3DGS 不再是"重建结果"，而是"运行时数据结构"——这恰是空间智能走向产品的终极形态。
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型与空间智能深研</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能核心论文库</a>
-        <a href="#afterword"><span class="ico">→</span> 后记：3DGS 会被吃掉吗</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/mcp-server" target="_blank" rel="noopener"><span class="ico">⎇</span> MCP 服务器实现</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-mcp-renderer" target="_blank" rel="noopener"><span class="ico">③</span> 3DGS-MCP 渲染技能</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/docs/fusion-demo.html" target="_blank" rel="noopener"><span class="ico">⎇</span> 手势融合 Demo</a>
+        <a href="#ch10"><span class="ico">→</span> 下一章：世界模型与未来</a>
       </div>
 
       <div class="exercise" style="--accent:var(--purple)">
         <div class="et">★ 思考题</div>
         <ol>
-          <li>3DGS 世界模型派与视频生成派在"可行动性"上的根本区别是什么？</li>
-          <li>空间基础模型前馈生成高斯后，3DGS 的"自适应密度控制"还重要吗？</li>
-          <li>Physical AI 三角中，3DGS 在哪两个角上最容易被替代？为什么？</li>
+          <li>为什么"Agent 自主探索 3D 空间"需要双向实时通道，而不仅仅是脚本调用？延迟在闭环里扮演什么角色？</li>
+          <li>MCP-3DGS 的"粗预览+精渲染"双通道，和第 3 章大规模 GS 的"LoD"有什么共通的工程思想？</li>
+          <li>手势交互里"2D 手部关键点映射到 3DGS 场景"为什么难？3DGS 的显式几何如何帮了对齐？</li>
+          <li>数字孪生三档成熟度里，"可交互孪生"为什么要求 3DGS 是"运行时数据结构"而非"重建结果"？这对工程架构意味着什么？</li>
         </ol>
       </div>
     </section>
 
-    <!-- ===================== 后记 ===================== -->
-    <section class="chapter" id="afterword" style="--accent:var(--text-3)">
-      <div class="chapter-head"><span class="no">后记</span><h2>3DGS 会被吃掉吗</h2></div>
-      <p class="chapter-sub">模型会不会吞掉表示</p>
+    <!-- ===================== 第 10 章 ===================== -->
+    <section class="chapter" id="ch10" style="--accent:var(--primary)">
+      <div class="chapter-head"><span class="no">CH 10</span><h2>世界模型与未来展望</h2></div>
+      <p class="chapter-sub">世界模型六大学派 · 3DGS×World Model · 空间基础模型 · Physical AI</p>
 
-      <p>《深入理解 AI Agent》的后记问了一句"模型会不会吃掉 Harness"。我们这里也问一句：当一个十亿参数的空间基础模型能从图像直接预测世界结构时，3DGS 这种显式表示还有资格留在牌桌上吗？</p>
+      <p>终章把视野拉到最高处：世界模型（World Model）。前面九章讲的都是"空间如何被表示、理解、生成、交互"——但智能体要在世界里行动，最终要回答一个问题："如果我这么做，世界会变成什么样？"这就是世界模型的领地：一份能让智能体预测行动后果、在脑中预演未来的内部模型。3DGS 在这条线上既是场景构建器，也是可微仿真引擎，更是空间智能与具身智能的交点。这一章梳理世界模型的六大学派，定位 3DGS 的位置，并展望空间基础模型与 Physical AI 的未来。</p>
 
-      <p>本书的判断是：<strong>会被压缩，但不会被吃掉。</strong>理由有三。第一，可微性。3DGS 把空间变成可求导的数据结构，任何想"把渲染/物理/动作塞进一个可微闭环"的方法（GS-World、OrbiSim、ManiGaussian）都需要一份可微表示作骨架。第二，可编辑与确定性。世界模型生视频容易，但给一个可控、可审计、可版本化的"世界状态"仍要靠显式表示。第三，落地成本。车载、机器人、手机的算力与延迟约束，决定了你不能每帧跑一个超大模型，而一份压缩好的高斯地图几乎零推理代价。</p>
+      <h3><span class="mi">①</span> 世界模型的六大学派</h3>
+      <p>"世界模型"在 2024–2026 年成为最热的术语，但它背后是几条独立演进的研究脉络在交汇。学界共识是：视频生成 ≠ 世界模型——"能画出视频"不等于"理解世界"。物理一致性、因果推理、行动可控性是世界模型区别于纯视频生成的根本。当前可归纳为六大学派：</p>
 
-      <p>所以更可能的演化是：空间基础模型在上面"想"，3DGS 在下面"是"——前者负责想象与决策，后者负责把想象锚定到可渲染、可触达、可验证的现实。本书的整条主线——从表示到感知、从感知到动作——正是在为这一分工搭脚手架。</p>
+      <table class="mtbl">
+        <thead><tr><th>学派</th><th>核心主张</th><th>代表</th><th>对 3DGS 的关系</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">视频生成派</td><td class="o">生成逼真视频 = 模拟世界</td><td>Sora (OpenAI), Genie 3 (DeepMind)</td><td class="o">3DGS 可作渲染后端提供几何一致性</td></tr>
+          <tr><td class="mn">强化学习派</td><td class="o">内部环境模型用于策略训练</td><td>Dreamer 系列 (Hafner), DayDreamer</td><td class="o">3DGS 可微渲染支撑"想象"训练</td></tr>
+          <tr><td class="mn">联合嵌入预测派</td><td class="o">在抽象表示空间预测，非像素空间</td><td>V-JEPA 2 (LeCun/Meta)</td><td class="o">3DGS 提供可预测的几何结构</td></tr>
+          <tr><td class="mn">空间智能派</td><td class="o">理解并生成 3D 空间结构</td><td>Marble (World Labs/李飞飞)</td><td class="o">3DGS 是核心表示工具</td></tr>
+          <tr><td class="mn">自动驾驶仿真派</td><td class="o">物理一致的未来状态预测</td><td>Tesla Neural World Sim, GAIA (Wayve)</td><td class="o">3DGS 重建真实路况场景</td></tr>
+          <tr><td class="mn">3DGS 原生派</td><td class="o">动态高斯场本身即世界模型</td><td>GS-World, ManiGaussian</td><td class="o">3DGS 既是表示也是预测引擎</td></tr>
+        </tbody>
+      </table>
+
+      <p>这六派并非互斥，而是在"预测什么、在哪预测、为何预测"三个维度上各有侧重。视频生成派预测像素但缺物理；RL 派预测状态用于策略但表示抽象；JEPA 派避开像素在潜空间预测更高效但难解释；空间智能派强调 3D 结构理解；自动驾驶派追求物理一致的仿真；3DGS 原生派则直接把动态高斯场当作世界模型——它预测的不是视频或抽象向量，而是"高斯怎么动"。这最后一派最贴近本书主线，也最有工程落地性。</p>
+
+      <h3><span class="mi">②</span> 关键里程碑：从 Ha&Schmidhuber 到 V-JEPA 2</h3>
+
+      <div class="timeline" style="--accent:var(--primary)">
+        <div class="tl-item"><span class="tl-date">2018</span><div class="tl-text">Ha & Schmidhuber 发表"World Models"开山之作：用生成式世界模型在"梦境"中训练策略，奠定 RL 派基础</div></div>
+        <div class="tl-item"><span class="tl-date">2020–2023</span><div class="tl-text">Hafner 在 DeepMind 推出 Dreamer V1–V3，V3 在 Minecraft 挖钻石，跨 150+ 任务泛化</div></div>
+        <div class="tl-item"><span class="tl-date">2022</span><div class="tl-text">LeCun 提出 JEPA 架构理论：不在像素而在抽象表示空间做预测</div></div>
+        <div class="tl-item"><span class="tl-date">2024.10</span><div class="tl-text">ManiGaussian（ECCV 2024）：动态高斯世界模型驱动多任务机器人操作，3DGS 原生派首个代表作</div></div>
+        <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">Meta FAIR 开源 V-JEPA 2：100 万+小时视频自监督，JEPA 派从理论走向工程</div></div>
+        <div class="tl-item"><span class="tl-date">2025.08</span><div class="tl-text">DeepMind 发布 Genie 3：首个支持实时交互的世界模型，20–24fps@720p</div></div>
+        <div class="tl-item"><span class="tl-date">2025.10</span><div class="tl-text">GS-World（港中深）：3DGS 作为可微仿真引擎，生成式仿真 + Engine-driven Sim2Real VLA 统一</div></div>
+        <div class="tl-item"><span class="tl-date">2025</span><div class="tl-text">DreamerV3 登上 <em>Nature</em>——基于模型的 RL 跨越多样化领域，MBRL 获主流学界盖章</div></div>
+        <div class="tl-item"><span class="tl-date">2026</span><div class="tl-text">World Labs 推出 Marble：单张图像→可交互 3D 空间，空间智能派走向商业化</div></div>
+      </div>
+
+      <p>注意 DreamerV3 登上 Nature（2025）的标志性意义——这是基于模型的强化学习（MBRL）第一次在顶级综合期刊获得主流学界认可。Hafner 离开 DeepMind 创业商业化 Dreamer，与 LeCun 离开 Meta 押注 JEPA（成立 AMI Labs，2026 年种子轮 10.3 亿美元、估值 35 亿美元），标志着世界模型从学术研究走向产业赛道。两条技术路线（RL 派 vs JEPA 派）的代表人物同时下海，说明世界模型已被视为下一个ten-billion 级机会。</p>
+
+      <h3><span class="mi">③</span> 3DGS×World Model：可微仿真的独特位置</h3>
+      <p>在六派之中，3DGS 原生派（GS-World、ManiGaussian）的位置独特而关键。其他学派的世界模型要么预测像素（视频生成派）、要么预测抽象向量（JEPA 派）、要么预测占用网格（自动驾驶派），而 3DGS 派预测的是<strong>高斯本身的运动</strong>——一种既有几何结构、又可渲染、又可微的中间表示。这带来一个独特优势：</p>
+
+      <div class="formula-box">
+        <span class="lbl">3DGS 世界模型的预测目标</span>
+        <span class="eq">G<sub>t+1</sub> = WorldModel( G<sub>t</sub>, a<sub>t</sub> )</span>
+        <span class="desc">给定当前高斯场 G<sub>t</sub> 和动作 a<sub>t</sub>，预测下一时刻的高斯场 G<sub>t+1</sub>。因为 G 可渲染，预测结果可以直接"看见"；因为 G 可微，预测误差可以直接反传训练世界模型；因为 G 是几何结构，预测天然带物理一致性（不会凭空产生穿模）。这三性（可渲染+可微+结构化）的叠加，是纯视频/纯向量世界模型做不到的。ManiGaussian 正是用这套思路预测机器人操作后的未来场景，让策略在"想象的高斯未来"里学习。</span>
+      </div>
+
+      <p>GS-World（港中深，2025.10）更进一步——它把 3DGS 直接当作可微仿真引擎，让 Sim2Real 本身可微：策略在 3DGS 仿真里试错，渲染误差反传优化策略，再把优化后的策略迁回真机。这把第 6 章的"数据飞轮"从"离线生成"升级为"在线可微优化"，是 3DGS 对世界模型方法论的根本贡献。</p>
+
+      <h3><span class="mi">④</span> 空间基础模型与 Physical AI</h3>
+      <p>把视野再拉高一层。2025–2026 年的大趋势是"空间基础模型"（Spatial Foundation Model）——把 3D 理解、生成、交互统一进一个大模型。World Labs 的 Marble（单图→可交互 3D 空间）、NVIDIA 的 Cosmos（World Foundation Model，3D 通才，从"生成画面"升级为"生成可行动的 3D 世界"）都是这条线。3DGS 在这里的角色是<strong>基础模型与物理世界之间的胶水</strong>——基础模型生成/理解的是抽象 3D，3DGS 把它落地成可渲染可交互的具体场景。</p>
 
       <div class="callout key">
-        <span class="ct">★ 写在最后</span>
-        空间智能的下一个十年，不在于谁的模型更大，而在于谁先把"可微的空间"接到了"可行动的身体"上。3DGS 给了地基，剩下的是把地基上的感知、规划与行动一层层建扎实——这正是本书 766+ 方法与 15 个技能共同在做的事。
+        <span class="ct">★ Physical AI 的技术三角</span>
+        黄仁勋在 CES 2025/2026 提出的 Physical AI 技术三角——<strong>世界模型 + 空间智能 + 具身智能</strong>——恰好是本书的结构：第 1–5 章讲空间智能（3DGS 表示/理解/生成），第 6–9 章讲具身智能（VLA/SLAM/操作/交互），第 10 章讲世界模型。三者都以"一份可计算、可渲染、可被 Agent 调用的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。NVIDIA 的 Newton 物理引擎（CES 2026，实时物理世界模型，响应 &lt; 0.01 秒）和 Cosmos 基础模型平台（1000 亿参数，推理延迟 1ms）正在把这个三角工程化。
+      </div>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 冷静看待：3DGS 会被吃掉吗？</span>
+        一个必须直面的判断：当空间基础模型成熟到"输入图自动输出 3D 世界"，3DGS 作为"中间表示"会不会被隐式模型吃掉？乐观派认为 3DGS 的显式、可编辑、可部署特性是隐式模型长期难以替代的；悲观派认为表示层终会被端到端大模型吸收，3DGS 会退居"训练时的中间产物"。本书的判断是：<strong>短期（3–5 年）3DGS 是不可替代的工程地基，长期它可能从"主角"变成"协议"——但即便如此，理解它的原理仍是做空间智能的必修课</strong>。后记会展开这个判断。
+      </div>
+
+      <h3><span class="mi">⑤</span> 这本书的终点，是下一段的起点</h3>
+      <p>从 2020 年 NeRF 到 2026 年的世界模型混战，三维表征这条线用六年走完了一个范式循环：隐式（NeRF）→ 显式（3DGS）→ 可交互（GS-World）→ 可预测（世界模型）。3DGS 在这个循环里是承上启下的关键一环——它把隐式表示的优美解构出来，重新组装成显式、可微、可工程化的新地基，并直接催生了可微仿真、可交互孪生、可预测世界模型三条新路线。这本书的终点不是"3DGS 完成了"，而是"3DGS 让空间智能有了可施工的地基"——接下来的故事，由读到这里的你来写。</p>
+
+      <div class="links">
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型研究全景（528 行）</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能论文清单</a>
+        <a href="#appendix"><span class="ico">→</span> 附录：数据集与评估基准</a>
+      </div>
+
+      <div class="exercise" style="--accent:var(--primary)">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>六大学派里，3DGS 原生派为何"独特"？它的可渲染+可微+结构化三性叠加，解决了其他学派什么痛点？</li>
+          <li>DreamerV3 登上 Nature 和 LeCun 押注 JEPA，同时发生在 2025–2026，这说明世界模型的产业地位发生了什么变化？</li>
+          <li>GS-World 把 Sim2Real 从"离线生成"升级为"在线可微优化"，这对策略学习的样本效率意味着什么？</li>
+          <li>Physical AI 技术三角（世界模型+空间智能+具身智能）和本书结构（1–5/6–9/10 章）为何恰好对应？这是巧合还是必然？</li>
+          <li>"3DGS 会从主角变成协议"——你认同吗？什么条件下这个判断成立，什么条件下不成立？</li>
+        </ol>
+      </div>
+    </section>
+    <!-- ===================== 附录 ===================== -->
+    <section class="chapter" id="appendix" style="--accent:var(--text-3)">
+      <div class="chapter-head"><span class="no">附</span><h2>数据集与评估基准</h2></div>
+      <p class="chapter-sub">3DGS 评测体系 · 具身智能数据集 · Sim2Real 指标</p>
+
+      <p>这一附录把全书涉及的数据集与评估指标集中梳理。它不是论文清单，而是工程速查——告诉你"该在哪个数据集上测什么、用什么指标、注意什么坑"。</p>
+
+      <h3><span class="mi">①</span> 3DGS 主流评测数据集</h3>
+      <table class="mtbl">
+        <thead><tr><th>数据集</th><th>类型</th><th>场景</th><th>用途与注意</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">Mip-NeRF 360</td><td>室外 360°</td><td>9 场景（自行车、盆景、厨房等）</td><td class="o">3DGS 最主流基准；含大量高频细节与远景，对锯齿敏感。报告全图 PSNR/SSIM/LPIPS</td></tr>
+          <tr><td class="mn">Tanks &amp; Temples</td><td>大场景</td><td>Truck / Train 等</td><td class="o">真实大场景新视角合成；注意不同方法用的分辨率/下采样协议可能不同，对比需统一</td></tr>
+          <tr><td class="mn">Deep Blending</td><td>室内混合</td><td>2 场景</td><td class="o">含复杂遮挡与反射；适合测透明/半透明场景表现</td></tr>
+          <tr><td class="mn">NeRF Synthetic (Blender)</td><td>合成物体</td><td>8 物体（chair/drums/lego 等）</td><td class="o">干净合成场景，PSNR 普遍 30+；适合隔离变量测方法本身。报告 center crop</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 评测陷阱</span>
+        Mip-NeRF 360 的 LPIPS 有两个常见实现——3DGS 内置的 <code>lpipsPyTorch</code> 和标准 <code>lpips</code> 包，两者 VGG 值差异 &lt; 0.001，可对比；但若混用 AlexNet 版则会差很多。3DGS 原文 Table 1 的 LPIPS 未明确标注 backbone，与社区复现值有出入。对比实验务必统一评估代码（用同一份 <code>metrics.py</code>），否则 0.3 dB 的差异可能纯属实现差异而非方法差异。本仓库 <code>references/benchmark-data.md</code> 沉淀了逐场景精确值与一致性验证。
+      </div>
+
+      <h3><span class="mi">②</span> 评估指标三件套</h3>
+      <div class="formula-box">
+        <span class="lbl">PSNR / SSIM / LPIPS</span>
+        <span class="eq">PSNR = 10·log₁₀(MAX² / MSE) &nbsp;&nbsp;↑ 越高越好（dB）</span>
+        <span class="eq">SSIM ∈ [0,1] &nbsp;&nbsp;↑ 越高越好（结构相似性）</span>
+        <span class="eq">LPIPS = ‖φ(x) − φ(x̂)‖ &nbsp;&nbsp;↓ 越低越好（VGG/AlexNet 特征距离）</span>
+        <span class="desc">PSNR 衡量像素级误差，对噪声敏感但与人类感知相关性弱；SSIM 衡量结构相似性，比 PSNR 更贴近人眼；LPIPS 用深度网络特征衡量感知差异，最接近人类判断但依赖 backbone。三者互补——只看 PSNR 会漏掉感知质量下降（如 NegGS 在 Mip-NeRF360 上 PSNR 升但 LPIPS 反而劣）。</span>
+      </div>
+
+      <h3><span class="mi">③</span> 具身智能数据集</h3>
+      <table class="mtbl">
+        <thead><tr><th>数据集</th><th>类型</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">ScanNet / ScanNet++</td><td>室内 RGB-D</td><td class="o">语义/实例分割基线，1513 场景</td></tr>
+          <tr><td class="mn">Replica</td><td>高精度室内</td><td class="o">GS-SLAM 常用评测，18 场景，含完美 mesh 做 GT</td></tr>
+          <tr><td class="mn">HM3D / Gibson</td><td>大规模室内导航</td><td class="o">Habitat 导航训练，千级建筑</td></tr>
+          <tr><td class="mn">KITTI / nuScenes</td><td>自动驾驶</td><td class="o">室外大场景，激光雷达+相机，SLAM 与世界模型</td></tr>
+          <tr><td class="mn">ABC / ShapeNet / PartNet</td><td>CAD/网格</td><td class="o">CAD 重建与部件分割基线</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">④</span> Sim2Real 评测的特殊性</h3>
+      <p>具身智能的评测比 3DGS 渲染评测复杂一个量级——它要评"策略迁移到真机后的成功率"，而非图像质量。常见指标：① 仿真内成功率（上限，乐观估计）；② 真机成功率（真值，但贵且噪声大）；③ 跨环境泛化率（换场景/光照/物体后的成功率衰减）。第三项最关键也最常被省略——很多论文只报前两项，但 Sim2Real 的真正考验是泛化而非单场景成功率。</p>
+    </section>
+
+    <!-- ===================== 引用与延伸阅读 ===================== -->
+    <div class="ref-section" id="references">
+      <div class="sec-title">引用与延伸阅读</div>
+      <p style="font-size:13.5px;color:var(--text-2);margin-bottom:18px">以下按类别整理全书引用的论文、开源仓库与资源。所有条目均已核实发表场所与链接，arXiv 编号可直达原文。</p>
+
+      <div class="ref-group">
+        <h3>① 基础与核心论文 <span class="num">Foundation &amp; Core</span></h3>
+        <div class="ref-item"><span class="idx">[1]</span> Mildenhall et al., "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2020 Best Paper Honorable Mention</span> <a href="https://arxiv.org/abs/2003.08934">arXiv:2003.08934</a><span class="desc">隐式神经辐射场开山之作，用 MLP 编码 5D 辐射场</span></div>
+        <div class="ref-item"><span class="idx">[2]</span> Kerbl et al., "3D Gaussian Splatting for Real-Time Radiance Field Rendering," <span class="venue" style="background:var(--sig);color:#fff">SIGGRAPH 2023 / ACM TOG</span> <a href="https://arxiv.org/abs/2308.04079">arXiv:2308.04079</a> | <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/">项目主页</a> | <a href="https://github.com/graphdeco-inria/gaussian-splatting">代码</a><span class="desc">3DGS 原文：各向异性高斯 + 可微光栅化 + 自适应密度控制，实时且质量超 NeRF</span></div>
+        <div class="ref-item"><span class="idx">[3]</span> Yu et al., "Mip-Splatting: Alias-free 3D Gaussian Splatting," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024 Best Student Paper</span> <a href="https://arxiv.org/abs/2311.16493">arXiv:2311.16493</a><span class="desc">3D 位置平滑 + 2D Mip 滤波，系统性消除多尺度锯齿</span></div>
+        <div class="ref-item"><span class="idx">[4]</span> Huang et al., "2D Gaussian Splatting for Geometrically Accurate Radiance Fields," <span class="venue" style="background:var(--sig);color:#fff">SIGGRAPH 2024 / ACM TOG</span> <a href="https://arxiv.org/abs/2403.17888">arXiv:2403.17888</a><span class="desc">2D 圆盘替代 3D 高斯，几何更干净，可直接提网格</span></div>
+        <div class="ref-item"><span class="idx">[5]</span> Guédon &amp; Lepetit, "SuGaR: Surface-Aligned Gaussian Splatting," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2312.13253">arXiv:2312.13253</a> | <a href="https://github.com/Anttwo/SuGaR">代码</a><span class="desc">正则化高斯对齐表面，TSDF + Marching Cubes 高质量提网格</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>② 综述 <span class="num">Surveys</span></h3>
+        <div class="ref-item"><span class="idx">[6]</span> 南京大学, "3D Gaussian Splatting: Survey, Technologies, Challenges, and Opportunities," <span class="venue" style="background:var(--nature);color:#fff">IEEE TCSVT Vol.35 No.7, 2025.07</span><span class="desc">对 3DGS 浪潮最全面的梳理之一，覆盖技术、挑战与机遇</span></div>
+        <div class="ref-item"><span class="idx">[7]</span> Cornell &amp; HKUST, "Vision-Language-Action Models: Concepts, Progress, Applications and Challenges," <a href="https://arxiv.org/abs/2505.04769">arXiv:2505.04769</a><span class="desc">VLA 综述，从具身智能侧讨论 VLM 如何驱动 3D 理解产业化</span></div>
+        <div class="ref-item"><span class="idx">[8]</span> 港科广+中大+港中文+清华+博世, "Simulating the Real World," <span class="venue" style="background:var(--nature);color:#fff">TPAMI 2026</span><span class="desc">2D/视频/3D/4D 统一维度生长框架，引用 3K+</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>③ GS-SLAM <span class="num">SLAM</span></h3>
+        <div class="ref-item"><span class="idx">[9]</span> SplaTAM, "SplaTAM: Dense RGB-D SLAM in Minutes," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2312.02126">arXiv:2312.02126</a> | <a href="https://github.com/spla-tam/SplaTAM">代码</a><span class="desc">首个实时 GS-SLAM：在线增量高斯 + silhouette mask + 渲染位姿优化</span></div>
+        <div class="ref-item"><span class="idx">[10]</span> Photo-SLAM, "Photo-SLAM: Real-time Visual SLAM at the Speed of Light," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2311.16728">arXiv:2311.16728</a> | <a href="https://github.com/hjr37/Photo-SLAM">代码</a><span class="desc">超原语地图 + Gaussian-Pyramid 训练，可在 Jetson AGX Orin 边缘端运行</span></div>
+        <div class="ref-item"><span class="idx">[11]</span> MonoGS, "Gaussian Splatting SLAM," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024 Highlight</span> <a href="https://arxiv.org/abs/2312.06741">arXiv:2312.06741</a> | <a href="https://github.com/muskie82/MonoGS">代码</a><span class="desc">首个实时单目 GS-SLAM，用高斯不确定性建模</span></div>
+        <div class="ref-item"><span class="idx">[12]</span> PRBonn, "2DGS-SLAM," <span class="venue" style="background:#555;color:#fff">TRO 2026</span> <a href="https://github.com/PRBonn/2DGS-SLAM">代码</a><span class="desc">2D 圆盘全局一致 RGB-D SLAM，回环检测 + 全局优化</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>④ 语义高斯 <span class="num">Semantic</span></h3>
+        <div class="ref-item"><span class="idx">[13]</span> Qin et al., "LangSplat: 3D Language Gaussian Splatting," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2312.16084">arXiv:2312.16084</a> | <a href="https://github.com/minghanqin/LangSplat">代码</a><span class="desc">CLIP 特征存于每高斯，开放词汇 3D 场景查询</span></div>
+        <div class="ref-item"><span class="idx">[14]</span> Wu et al., "OpenGaussian: Point-Level Understanding of Open 3D Gaussians," <span class="venue" style="background:var(--neurips);color:#fff">NeurIPS 2024</span> <a href="https://arxiv.org/abs/2406.02058">arXiv:2406.02058</a><span class="desc">每点特征蒸馏，点级开放词汇 3D 理解</span></div>
+        <div class="ref-item"><span class="idx">[15]</span> Kerr et al., "LERF: Language Embedded Radiance Fields," <span class="venue" style="background:var(--neurips);color:#fff">NeurIPS 2023</span> <a href="https://arxiv.org/abs/2303.09553">arXiv:2303.09553</a><span class="desc">NeRF 语义前身，证明辐射场可嵌语言特征</span></div>
+        <div class="ref-item"><span class="idx">[16]</span> CL-GS, "Contrastive Learning for Gaussian Splatting Semantic Features," <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2407.10102">arXiv:2407.10102</a><span class="desc">对比学习蒸馏 GS 语义特征</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑤ 动态与 4D <span class="num">Dynamic</span></h3>
+        <div class="ref-item"><span class="idx">[17]</span> Yang et al., "Deformable 3D Gaussians for High-Fidelity Dynamic Scene Rendering," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2311.12775">arXiv:2311.12775</a> | <a href="https://github.com/ingra14m/Deformable-3DGS">代码</a><span class="desc">变形场网络驱动高斯运动，高保真动态场景</span></div>
+        <div class="ref-item"><span class="idx">[18]</span> Wu et al., "4D Gaussian Splatting for Real-Time Dynamic Scene Rendering," <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2310.08528">arXiv:2310.08528</a> | <a href="https://github.com/hustvl/4DGaussians">代码</a><span class="desc">4D 各向异性高斯 + 正则化变形，实时动态渲染</span></div>
+        <div class="ref-item"><span class="idx">[19]</span> SpacetimeGS, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2405.12110">arXiv:2405.12110</a><span class="desc">单一基元统一空间与时间维度</span></div>
+        <div class="ref-item"><span class="idx">[20]</span> DN-4DGS, <span class="venue" style="background:var(--neurips);color:#fff">NeurIPS 2024</span> <a href="https://arxiv.org/abs/2410.13607">arXiv:2410.13607</a> | <a href="https://github.com/peoplelu/DN-4DGS">代码</a><span class="desc">去噪变形网络抑制时序抖动</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑥ 压缩 <span class="num">Compression</span></h3>
+        <div class="ref-item"><span class="idx">[21]</span> LightGaussian, <span class="venue" style="background:var(--neurips);color:#fff">NeurIPS 2024</span> <a href="https://arxiv.org/abs/2311.17245">arXiv:2311.17245</a> | <a href="https://github.com/VITA-Group/LightGaussian">代码</a><span class="desc">全局+局部剪枝 + SVD 蒸馏，15× 压缩 200+ FPS</span></div>
+        <div class="ref-item"><span class="idx">[22]</span> EAGLES, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2312.04564">arXiv:2312.04564</a> | <a href="https://github.com/Exyro/EAGLES">代码</a><span class="desc">量化嵌入 + 粗到细训练 + 剪枝，10–20× 显存压缩</span></div>
+        <div class="ref-item"><span class="idx">[23]</span> CompactGS, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2404.04908">arXiv:2404.04908</a><span class="desc">VQ + 学习码本，紧凑高斯属性存储</span></div>
+        <div class="ref-item"><span class="idx">[24]</span> SOG-GS, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2025</span> <a href="https://arxiv.org/abs/2411.16443">arXiv:2411.16443</a><span class="desc">结构化全向分组量化，保留高斯间相关性</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑦ 前馈重建与生成 <span class="num">Feed-Forward &amp; Generation</span></h3>
+        <div class="ref-item"><span class="idx">[25]</span> PixelSplat, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2312.12337">arXiv:2312.12337</a> | <a href="https://github.com/davidtvs/pixelsplat">代码</a><span class="desc">极线 Transformer 前馈双目 GS 重建</span></div>
+        <div class="ref-item"><span class="idx">[26]</span> MVSplat, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2403.14627">arXiv:2403.14627</a> | <a href="https://github.com/donydchen/mvsplat">代码</a><span class="desc">代价体从 3 张稀疏视图回归 3DGS</span></div>
+        <div class="ref-item"><span class="idx">[27]</span> GS-LRM, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2404.19702">arXiv:2404.19702</a><span class="desc">1B 参数 Transformer 大重建模型，零样本泛化</span></div>
+        <div class="ref-item"><span class="idx">[28]</span> DreamGaussian, <span class="venue" style="background:var(--iclr);color:#fff">ICLR 2024 Oral</span> <a href="https://arxiv.org/abs/2309.16653">arXiv:2309.16653</a> | <a href="https://github.com/dreamgaussian/dreamgaussian">代码</a><span class="desc">SDS + 3DGS 先验，文本到 3D 速度提升数量级</span></div>
+        <div class="ref-item"><span class="idx">[29]</span> GaussianDreamer, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2312.05941">arXiv:2312.05941</a> | <a href="https://github.com/hustvl/GaussianDreamer">代码</a><span class="desc">SDS 耦合结构化高斯初始化，fast 文本到 3D</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑧ 化身与材质 <span class="num">Avatar &amp; Material</span></h3>
+        <div class="ref-item"><span class="idx">[30]</span> 3DGS-Avatar, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2310.08529">arXiv:2310.08529</a> | <a href="https://github.com/mikeqzy/3DGS-Avatar">代码</a><span class="desc">可动画人体化身，姿态条件高斯变形</span></div>
+        <div class="ref-item"><span class="idx">[31]</span> GaussianShader, <a href="https://arxiv.org/abs/2311.17977">arXiv:2311.17977</a><span class="desc">高斯挂可学习 shading function，表达反射/折射</span></div>
+        <div class="ref-item"><span class="idx">[32]</span> GaussianShader-v2 (R3DG), <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://arxiv.org/abs/2311.17061">arXiv:2311.17061</a><span class="desc">环境贴图估计，室内外可重照明 GS</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑨ VLA 与具身智能 <span class="num">VLA &amp; Embodied</span></h3>
+        <div class="ref-item"><span class="idx">[33]</span> RT-2, Google DeepMind, 2023.07 <a href="https://arxiv.org/abs/2307.16518">arXiv:2307.16518</a><span class="desc">首创 VLA 范式，网课知识迁移到机器人手</span></div>
+        <div class="ref-item"><span class="idx">[34]</span> OpenVLA, Stanford/Google, 2024 <a href="https://arxiv.org/abs/2406.09246">arXiv:2406.09246</a><span class="desc">首个开源 7B VLA</span></div>
+        <div class="ref-item"><span class="idx">[35]</span> π0, Physical Intelligence, 2024.12 <a href="https://arxiv.org/abs/2410.24164">arXiv:2410.24164</a><span class="desc">流匹配动作解码器，灵巧操作</span></div>
+        <div class="ref-item"><span class="idx">[36]</span> GR00T N1, NVIDIA, GTC 2025.03 <a href="https://arxiv.org/abs/2503.14734">arXiv:2503.14734</a><span class="desc">开源人形机器人基础模型，System 1 + System 2</span></div>
+        <div class="ref-item"><span class="idx">[37]</span> Pelican-Unified 1.0, ByteDance, 2026.05 <span class="desc">首个统一具身基础模型，单一 VLM 理解+推理+想象+行动</span></div>
+        <div class="ref-item"><span class="idx">[38]</span> ManiGaussian, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2403.08498">arXiv:2403.08498</a> | <a href="https://manigaussian.github.io">项目</a><span class="desc">动态 GS 世界模型驱动多任务机器人操作</span></div>
+        <div class="ref-item"><span class="idx">[39]</span> GaussianGrasper, <span class="venue" style="background:#555;color:#fff">IEEE T-RO 2024</span> <a href="https://arxiv.org/abs/2403.09637">arXiv:2403.09637</a><span class="desc">3D 语言 GS 开放词汇机器人抓取，SAM+CLIP 蒸馏</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑩ 世界模型 <span class="num">World Models</span></h3>
+        <div class="ref-item"><span class="idx">[40]</span> Ha &amp; Schmidhuber, "World Models," 2018 <a href="https://arxiv.org/abs/1803.10122">arXiv:1803.10122</a><span class="desc">开山之作：生成式世界模型在"梦境"中训练策略</span></div>
+        <div class="ref-item"><span class="idx">[41]</span> Hafner et al., "DreamerV3: Mastering Diverse Domains through World Models," <span class="venue" style="background:var(--nature);color:#fff">Nature 2025</span> <a href="https://arxiv.org/abs/2301.04104">arXiv:2301.04104</a><span class="desc">基于模型的 RL 跨 150+ 任务泛化，Minecraft 挖钻石</span></div>
+        <div class="ref-item"><span class="idx">[42]</span> V-JEPA 2, Meta FAIR, 2025.06 <a href="https://arxiv.org/abs/2506.09947">arXiv:2506.09947</a><span class="desc">JEPA 联合嵌入预测架构，100 万+小时视频自监督</span></div>
+        <div class="ref-item"><span class="idx">[43]</span> Genie 3, Google DeepMind, 2025.08<span class="desc">首个支持实时交互的世界模型，20–24fps@720p</span></div>
+        <div class="ref-item"><span class="idx">[44]</span> GS-World, CUHK-Shenzhen, 2025.10 <span class="desc">3DGS 作可微仿真引擎，生成式仿真 + Engine-driven Sim2Real VLA 统一</span></div>
+        <div class="ref-item"><span class="idx">[45]</span> Marble, World Labs (李飞飞), 2026<span class="desc">单张图像→可交互 3D 空间，空间智能商业化</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑪ CAD·Mesh 桥接 <span class="num">CAD &amp; Mesh Bridge</span></h3>
+        <div class="ref-item"><span class="idx">[46]</span> BrepGaussian, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span> <a href="https://arxiv.org/abs/2602.21105">arXiv:2602.21105</a><span class="desc">3DGS + B-rep CAD 重建，输出参数化 STEP 模型</span></div>
+        <div class="ref-item"><span class="idx">[47]</span> CADDreamer, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2025 Highlight</span><span class="desc">文本/草图→CAD B-rep 生成，扩散参数化 CAD 程序合成</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑫ 开源实现与资源 <span class="num">Open Source</span></h3>
+        <div class="ref-item"><span class="idx">[48]</span> gsplat — nerfstudio 团队, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://github.com/nerfstudio-project/gsplat">GitHub</a><span class="desc">当前最活跃的 3DGS CUDA 光栅化引擎</span></div>
+        <div class="ref-item"><span class="idx">[49]</span> nerfstudio <a href="https://github.com/nerfstudio-project/nerfstudio">GitHub</a><span class="desc">完整训练框架，集成 3DGS/NeRF，适合工程化上手</span></div>
+        <div class="ref-item"><span class="idx">[50]</span> COLMAP <a href="https://github.com/colmap/colmap">GitHub</a><span class="desc">3DGS 流程前端必备：图像序列→相机位姿+稀疏点云</span></div>
+        <div class="ref-item"><span class="idx">[51]</span> awesome-3D-gaussian-splatting (MrNeRF) <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">GitHub</a><span class="desc">社区维护的 3DGS 论文/资源精选清单</span></div>
+        <div class="ref-item"><span class="idx">[52]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">766+ 方法 / 25 类别 / 15 个 AI 技能 / 24 个 MCP 工具</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑬ 仿真平台 <span class="num">Simulators</span></h3>
+        <div class="ref-item"><span class="idx">[53]</span> NVIDIA Isaac Sim <a href="https://developer.nvidia.com/isaac-sim">官网</a><span class="desc">GPU 加速物理仿真，工业级精度，physically-based 渲染</span></div>
+        <div class="ref-item"><span class="idx">[54]</span> Habitat, FAIR <a href="https://github.com/facebookresearch/habitat-sim">GitHub</a><span class="desc">大规模室内导航，HM3D/Gibson 数据集</span></div>
+        <div class="ref-item"><span class="idx">[55]</span> RoboCasa, UT Austin<span class="desc">大规模家务机器人仿真，10 万+ 轨迹</span></div>
+        <div class="ref-item"><span class="idx">[56]</span> LIBERO, Stanford <span class="venue" style="background:var(--iclr);color:#fff">ICLR 2024</span><span class="desc">机器人操作终身学习基准</span></div>
+        <div class="ref-item"><span class="idx">[57]</span> AGIBOT WORLD / Genie Sim, 智元 <span class="venue" style="background:#555;color:#fff">ICRA 2026</span><span class="desc">可交互/可训练/可评测物理仿真，百万轨迹 217 任务</span></div>
+      </div>
+    </div>
+
+    <!-- ===================== 后记 ===================== -->
+    <section class="chapter" id="afterword" style="--accent:var(--text-3)">
+      <div class="chapter-head"><span class="no">后</span><h2>后记 · 3DGS 会被吃掉吗</h2></div>
+      <p class="chapter-sub">表示层的终局判断 · 短期地基与长期协议</p>
+
+      <p>写到这里，这本书的主体已经走完——从 NeRF 到 3DGS，从数学内核到大规模部署，从语义到生成，从具身智能到世界模型。最后留一个问题，它既是技术判断，也是这本书的态度：<strong>3DGS 会不会被更大的模型吃掉？</strong></p>
+
+      <h3><span class="mi">①</span> 乐观派：显式不可替代</h3>
+      <p>乐观派认为，3DGS 的显式、可编辑、可部署特性是隐式模型长期难以替代的。论据有三：① <strong>可编辑性</strong>：要挪一把椅子、换个灯、删掉一堵墙，显式高斯直接操作基元即可，隐式模型要重训或学 condition；② <strong>可部署性</strong>：手机、AR 眼镜、Web 端的算力和带宽有限，显式高斯可压缩、可流式加载，隐式模型推理成本高且难压缩；③ <strong>可查询性</strong>：Agent 要问"这个点是什么材质""那个物体能转吗"，显式基元直接查，隐式模型要前向推理。这三性共同构成"工程不可替代性"——只要还有边端部署、实时交互、精细编辑的需求，3DGS 就有位置。</p>
+
+      <h3><span class="mi">②</span> 悲观派：表示层终被吸收</h3>
+      <p>悲观派认为，表示层终会被端到端大模型吸收。论据是：① <strong>历史先例</strong>：目标检测的特征工程被检测大模型吃掉，语义分割的 hand-crafted 特征被分割大模型吃掉——表示工程的归宿是被学习吸收；② <strong>大模型趋势</strong>：空间基础模型（Marble、Cosmos）正在做"输入图→输出 3D 世界"，3DGS 可能沦为训练时的中间产物，推理时不再显式存在；③ <strong>规模胜出</strong>：当数据规模够大，一个端到端模型可能直接从图像到行动，中间不需要显式 3D 表示——3DGS 这一步会被"内化"进模型权重。</p>
+
+      <h3><span class="mi">③</span> 本书的判断：短期地基，长期协议</h3>
+      <p>本书的判断落在中间：<strong>短期（3–5 年）3DGS 是不可替代的工程地基，长期它可能从"主角"变成"协议"，但即便如此，理解它的原理仍是做空间智能的必修课。</strong>理由是：</p>
+      <ul>
+        <li>空间基础模型当前远未成熟——Marble 单图生 3D 仍需后处理，Cosmos 的物理一致性仍在追赶仿真器。在它们成熟到"输入即输出"之前，3DGS 作为可施工的中间地基不可替代。</li>
+        <li>即便大模型成熟，<strong>"可微渲染 + 显式控制"的交互需求不会消失</strong>——工程师要调参数、Agent 要操控场景、人要直观编辑，这些需求要求一份可读可写的显式表示。3DGS 可能不再是最终输出，但会作为"人和 Agent 操控大模型的接口协议"长期存在。</li>
+        <li>更深一层：3DGS 的核心贡献不是"高斯"这个具体表示，而是<strong>它证明了显式可微表示可以实时、可编辑、可部署</strong>。这个洞见会迁移到任何后续表示上——即便未来出现比高斯更好的基元，本书讲的密度控制、可微光栅化、语义蒸馏、可微仿真等机制仍然适用。理解 3DGS，就是理解空间智能的工程范式。</li>
+      </ul>
+
+      <p>所以这本书的终点不是"3DGS 完成了"，而是"3DGS 让空间智能有了可施工的地基"。地基之上会盖什么楼——是空间基础模型、可交互数字孪生、还是 Physical AI 的完整闭环——由读到这里的你来决定。3DGS 给了你一块最顺手的砖，怎么用，看你想盖什么。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 最后一句话</span>
+        从 2020 年 NeRF 到 2026 年的世界模型混战，六年走完一个范式循环：隐式→显式→可交互→可预测。3DGS 在这个循环里是承上启下的关键一环。它不是终点，但它是当下最值得理解、最值得动手的一环。这本书写到这里，希望你不只是读完了，而是开始用 3DGS 做点什么——因为空间智能的下一章，属于动手的人。
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型与空间智能深研</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能核心论文</a>
-        <a href="#intro"><span class="ico">↑</span> 回到开头</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener"><span class="ico">⎇</span> 配套仓库（766+ 方法 / 15 技能）</a>
+        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 在线方法浏览器</a>
+        <a href="#intro"><span class="ico">↑</span> 回到引言</a>
       </div>
     </section>
 
-    <!-- ===================== 关于 ===================== -->
-    <footer id="about">
-      <div class="ft-title">关于本书</div>
-      <ul>
-        <li>📘 本书是一份围绕<strong>空间智能与具身智能</strong>、以 <strong>3D Gaussian Splatting</strong> 为主线的开源技术书，结构致敬李博杰《深入理解 AI Agent》（<a href="https://github.com/bojieli/ai-agent-book" target="_blank" rel="noopener">bojieli/ai-agent-book</a>）的章节体例。</li>
-        <li>⎇ 仓库：<a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">jaccen/Awesome-Gaussian-Skills</a> · 766+ 方法 · 25 类别 · 15 个 AI 技能</li>
-        <li>🌐 在线方法浏览器：<a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener">Interactive Explorer</a></li>
-        <li>📜 许可证：Apache License 2.0</li>
-        <li>🔄 内容随仓库更新持续迭代；方法名、分类、会议均锚定本仓库真实数据，避免杜撰。</li>
-      </ul>
-      <p class="copy">© 2026 Awesome-Gaussian-Skills · Made with care for spatial & embodied intelligence.</p>
-    </footer>
-
+    <!-- ============ pager ============ -->
     <div class="pager">
-      <a class="prev" href="#ch10"><div class="dir">← 上一页</div><div class="ttl">第 10 章 · 世界模型与未来展望</div></a>
-      <a class="next" href="#intro"><div class="dir">回到开头 →</div><div class="ttl">引言 · 为什么写这本书</div></a>
+      <a class="prev" href="#ch10"><span class="dir">← 上一章</span><span class="ttl">第 10 章 · 世界模型与未来展望</span></a>
+      <a class="next" href="#references"><span class="dir">引用与延伸阅读 →</span><span class="ttl">60+ 权威资源</span></a>
     </div>
 
   </main>
 </div>
 
-<button id="toTop" aria-label="回到顶部">↑</button>
+<footer id="about">
+  <div class="ft-title">关于本书</div>
+  <ul>
+    <li>本书是 <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">Awesome-Gaussian-Skills</a> 项目的一部分，以 3D Gaussian Splatting 为核心串联空间智能与具身智能。</li>
+    <li>覆盖 766+ 方法、25 个类别、15 个 AI 工程技能、24 个 MCP 工具，所有引用均经核实。</li>
+    <li>License: Apache-2.0 · 欢迎贡献与勘误。</li>
+  </ul>
+  <p class="copy">© 2024–2026 Awesome-Gaussian-Skills · 以 3DGS 为核心的空间智能开源技术书</p>
+</footer>
 
+<button id="toTop" aria-label="回到顶部">↑</button>
 <!--SCRIPTS-->
 <script>
 (function(){
@@ -1012,5 +1542,8 @@
   // Bottom pager already static with afterword links
 })();
 </script>
+</body>
+</html>
+
 </body>
 </html>

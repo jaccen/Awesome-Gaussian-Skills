@@ -1,3 +1,5 @@
+
+
 ## Newly Added (May 2026 Expansion)
 
 
@@ -218,6 +220,20 @@
 - **Year**: 2024
 - **Category**: SLAM
 - **Core Innovation**: Gaussian Splatting SLAM with semantic consistency for indoor scene understanding
+
+### SplaTAM
+- **arXiv**: [2312.02126](https://arxiv.org/abs/2312.02126)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: SLAM
+- **Core Innovation**: First real-time GS-SLAM: online incremental Gaussians with silhouette mask for scene density, rendering-based pose optimization
+
+### Photo-SLAM
+- **arXiv**: [2311.16728](https://arxiv.org/abs/2311.16728)
+- **Venue**: CVPR 2024
+- **Year**: 2024
+- **Category**: SLAM
+- **Core Innovation**: Hyper primitives map with explicit geometric features for localization + implicit photometric features; runs on Jetson AGX Orin
 
 ### SplaTAM-v2
 - **arXiv**: [2411.19654](https://arxiv.org/abs/2411.19654)

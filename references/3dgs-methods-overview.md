@@ -1,4 +1,6 @@
-﻿## Newly Added Methods (May 2026 Expansion)
+﻿
+
+## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
 
@@ -430,6 +432,8 @@
 ### SLAM
 - **DG-SLAM** [arXiv:2411.08373](https://arxiv.org/abs/2411.08373) (NeurIPS 2024) — Dynamic Gaussian SLAM with hybrid pose optimization for dynamic environments [Code](https://github.com/fudan-zvg/DG-SLAM)
 - **GS-SC** [arXiv:2312.07504](https://arxiv.org/abs/2312.07504) (CVPR 2024) — Gaussian Splatting SLAM with semantic consistency for indoor scene understanding
+- **SplaTAM** [arXiv:2312.02126](https://arxiv.org/abs/2312.02126) (CVPR 2024) — First real-time GS-SLAM: online incremental Gaussians with silhouette mask for scene density, rendering-based pose optimization [Code](https://github.com/spla-tam/SplaTAM)
+- **Photo-SLAM** [arXiv:2311.16728](https://arxiv.org/abs/2311.16728) (CVPR 2024) — Hyper primitives map with explicit geometric features for localization + implicit photometric features; runs on Jetson AGX Orin [Code](https://github.com/hjr37/Photo-SLAM)
 - **SplaTAM-v2** [arXiv:2411.19654](https://arxiv.org/abs/2411.19654) (CVPR 2025) — Enhanced GS-SLAM with online loop closure and global optimization
 - **GaussianSLAM-2** [arXiv:2411.19895](https://arxiv.org/abs/2411.19895) (CVPR 2025) — Second-generation GS-SLAM with submap fusion and uncertainty-driven keyframing
 - **SplaTAM-3** [arXiv:2503.16822](https://arxiv.org/abs/2503.16822) (CVPR 2025) — Third-generation GS-SLAM with semantic loop closure
