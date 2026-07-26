@@ -1,4 +1,4 @@
-
+﻿
 # PR Submission Preparation — anthropics/skills
 
 > This document contains the prepared PR description for submitting Awesome Gaussian Skills to the official `anthropics/skills` repository. Copy the content below into a GitHub PR when ready to submit.
@@ -6,7 +6,7 @@
 ## PR Title
 
 ```
-Add Awesome Gaussian Skills — 15 3DGS research lifecycle skills (766+ methods knowledge base)
+Add Awesome Gaussian Skills — 15 3DGS research lifecycle skills (789+ methods knowledge base)
 ```
 
 ## PR Description
@@ -14,7 +14,7 @@ Add Awesome Gaussian Skills — 15 3DGS research lifecycle skills (766+ methods 
 ```markdown
 ## Awesome Gaussian Skills
 
-A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussian Splatting (3DGS) research lifecycle — from paper reading to production deployment. Built on a knowledge base of 766+ methods across 25 categories with 108+ known code bug patterns and 60+ runtime training failure patterns.
+A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussian Splatting (3DGS) research lifecycle — from paper reading to production deployment. Built on a knowledge base of 789+ methods across 25 categories with 108+ known code bug patterns and 60+ runtime training failure patterns.
 
 ### Skills Included (15)
 
@@ -53,7 +53,7 @@ A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussia
 1. **Progressive disclosure architecture**: 3 skills use Router architecture with `manifest.yaml` + `static/` fragments for efficient context usage
 2. **Anti-hallucination guardrails**: Every skill enforces categorical prohibitions against fabricated data, hallucinated citations, and silent speculation
 3. **Domain-specific bug databases**: 108+ static code review patterns + 60+ runtime training patterns
-4. **Knowledge base integration**: Shared `references/` directory with 766+ method entries, updated daily
+4. **Knowledge base integration**: Shared `references/` directory with 789+ method entries, updated daily
 5. **MCP integration**: `3dgs-mcp-renderer` includes 17 MCP tool specifications for Three.js/WebGPU rendering
 
 ### Installation

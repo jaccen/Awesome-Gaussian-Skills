@@ -1,4 +1,4 @@
-﻿## Known Methods Database
+## Known Methods Database
 
 ### Foundation Methods
 
@@ -87,3 +87,17 @@
 |--------|-------|---------------|
 | Axis-Shared Rasterization Accelerator | ISCA'26 | First 3DGS hardware accelerator; axis-shared tile rasterization; 10-100× energy efficiency vs GPU; targets edge/mobile deployment |
 | StereoGS | 2026 | Energy-efficient stereoscopic 3DGS processor; dual-eye shared compute + memory bandwidth optimization for VR/AR stereoscopic rendering |
+### New Additions (July 26, 2026 Update)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| GrainGS | arXiv 2026 (2607.21448) | Hierarchical anchor skeleton + stop-gradient per-Gaussian deformation; 36.98 dB / 435.6 FPS / 4.67 MB |
+| AniGS | arXiv 2026 (2607.18539) | Scene-level 3DGS animation via diffusion prior; canonical 3DGS + time-conditioned deformation + video diffusion |
+| GLAM-SLAM | IROS 2026 (2607.21416) | Large-scale outdoor decoupled GS SLAM; feature tracking + sparse anchor grid; 15% better on KITTI/Oxford |
+| VIGS-SLAM | ECCV 2026 (2512.02293) | Visual-inertial GS SLAM; iPhone real-time demo; Docker + TensorRT; [Code](https://github.com/cvg/VIGS-SLAM) |
+| SubSplat | arXiv 2026 (2607.20813) | Subpixel Gaussian reparameterization; subdivide main Gaussians from low-res features |
+| ATSplat | arXiv 2026 (2607.20417) | Adaptive 3D Tokens for feed-forward 3DGS; 12 images to 1s / 1136 FPS / 5.7x fewer Gaussians |
+| FF-ProCams | arXiv 2026 (2607.17803) | Feed-forward 3DGS inverse rendering for projector-camera; Mamba2-Transformer; 8 views beat 297-view optimization |
+| CaT-GS | CVPR 2026 (2607.17842) | Renderspeed: speculative multi-frame preprocessing + inter-frame caching; 10x faster than vanilla 3DGS |
+| i3dgs | SIGGRAPH 2026 | Immediate 3DGS for large-scale unordered image collections; incremental reconstruction with on-the-fly pruning; [Code](https://github.com/graphdeco-inria/i3dgs) |
+| ECoNGS | IEEE VIS 2026 (2607.18466) | Neural GS for volume visualization; lightweight NNs predict splats from anchors; 6.1x model reduction / 5.9x training speedup |

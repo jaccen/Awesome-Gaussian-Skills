@@ -1,3 +1,4 @@
+﻿
 ## Newly Added (May 2026 Expansion)
 
 
@@ -602,3 +603,20 @@
 - **Year**: 2026
 - **Category**: Cross-Domain / Benchmark
 - **Core Innovation**: Systematic benchmark for reflective/transparent 3D reconstruction; identifies 3 catastrophic failure modes in NeRF/3DGS for specular and transparent objects
+## Newly Added Methods (July 26, 2026 Update)
+
+### Semantic / Editing (New Additions)
+- **3D-GIMP** [arXiv:2607.20789](https://arxiv.org/abs/2607.20789) (arXiv 2026)
+  - **Core**: 3DGS inpainting + PatchMatch hybrid
+  - **Key Innovation**: Single generative inpainting on key view then PatchMatch-based propagation to full 3D scene; combines generative quality with geometric consistency
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.20789)
+
+- **LB-Edit** [arXiv:2607.19777](https://arxiv.org/abs/2607.19777) (arXiv 2026)
+  - **Core**: Attention-guided editing camera placement + multi-view attention alignment
+  - **Key Innovation**: ACP selects optimal viewpoints for editing instructions; MAA ensures multi-view consistency of edits; 5 views sufficient, 7x lower latency than prior methods
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.19777)
+
+- **ZeroSplat** [arXiv:2607.18801](https://arxiv.org/abs/2607.18801) (ECCV 2026)
+  - **Core**: Generalized referring 3DGS segmentation (GR3DGS)
+  - **Key Innovation**: Zero-feature, training-free approach to 3DGS segmentation; supports 0-shot, 1-shot, and N-shot target specification; refers to arbitrary targets without category-specific training
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.18801)

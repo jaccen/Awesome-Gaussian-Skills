@@ -1,5 +1,3 @@
-﻿
-
 ## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
@@ -1089,7 +1087,7 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Dynamic / 4D
 - **Grassmannian Splatting** [arXiv:2607.10489](https://arxiv.org/abs/2607.10489) (arXiv 2026) — Rank-2 spacetime surfels via Grassmannian parameterization; closed-form motion model without deformation field; fastest among compared methods (4.9-5.6x over quality baselines)
-- **MoE-GS / MoDE** [arXiv:2607.08250](https://arxiv.org/abs/2607.08250) (TPAMI 2026) — Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling
+- **MoE-GS / MoDE** [arXiv:2607.08250](https://arxiv.org/abs/2607.08250) (TPAMI 2026) — Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling [Code](https://github.com/cvsp-lab/MoDE)
 
 ### SLAM
 - **GeoGS-SLAM (v2)** [arXiv:2607.11184](https://arxiv.org/abs/2607.11184) (arXiv 2026) — Online monocular SLAM combining 3DGS with learned geometric priors; coarse-to-fine strategy + online loop closure
@@ -1143,3 +1141,34 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### 3DGS Hardware Acceleration
 - **StereoGS** (2026) — Energy-efficient 3DGS stereoscopic rendering processor; hardware accelerator optimized for dual-eye stereoscopic Gaussian rasterization with shared compute and memory bandwidth
+## Newly Added Methods (July 26, 2026 Update)
+
+> 14 methods added from arXiv July 2026 + GitHub trending + venue-verified repos. Knowledge base now 789+ methods.
+
+### Dynamic / 4D
+- **GrainGS** [arXiv:2607.21448](https://arxiv.org/abs/2607.21448) (arXiv 2026) —Hierarchical anchor skeleton + per-Gaussian deformation with stop-gradient; 36.98 dB PSNR, 435.6 FPS, 4.67 MB
+- **AniGS** [arXiv:2607.18539](https://arxiv.org/abs/2607.18539) (arXiv 2026) —Scene-level 3DGS animation via diffusion prior; canonical 3DGS + time-conditioned deformation field; iterative dataset-model update with video diffusion; 5 real-world outdoor scenes
+
+### SLAM
+- **GLAM-SLAM** [arXiv:2607.21416](https://arxiv.org/abs/2607.21416) (IROS 2026) —Large-scale outdoor decoupled GS SLAM; feature tracking front-end + sparse anchor grid; 15% better than SOTA on KITTI/Oxford
+- **VIGS-SLAM** [arXiv:2512.02293](https://arxiv.org/abs/2512.02293) (ECCV 2026) —Visual-inertial GS SLAM with iPhone real-time demo; feature tracking + Gaussian mapping; Docker + TensorRT [Code](https://github.com/cvg/VIGS-SLAM)
+
+### Feed-Forward / Generalizable
+- **SubSplat** [arXiv:2607.20813](https://arxiv.org/abs/2607.20813) (arXiv 2026) —Subpixel Gaussian reparameterization (SPGR); subdivide main Gaussians from low-res features
+- **ATSplat** [arXiv:2607.20417](https://arxiv.org/abs/2607.20417) (arXiv 2026) —Adaptive 3D Tokens for feed-forward 3DGS; 12 images to 1s reconstruction, 1136 FPS, 5.7x fewer Gaussians
+- **FF-ProCams** [arXiv:2607.17803](https://arxiv.org/abs/2607.17803) (arXiv 2026) —Feed-forward 3DGS inverse rendering for projector-camera; Mamba2-Transformer; 8 views beat 297-view optimization
+
+### Semantic / Editing
+- **3D-GIMP** [arXiv:2607.20789](https://arxiv.org/abs/2607.20789) (arXiv 2026) —3DGS inpainting + PatchMatch hybrid; single generative inpainting on key view then propagate
+- **LB-Edit** [arXiv:2607.19777](https://arxiv.org/abs/2607.19777) (arXiv 2026) —Attention-guided editing camera placement (ACP) + multi-view attention alignment (MAA); 5 views, 7x lower latency
+- **ZeroSplat** [arXiv:2607.18801](https://arxiv.org/abs/2607.18801) (ECCV 2026) —Generalized referring 3DGS segmentation (GR3DGS); zero-feature, training-free, 0/1/N target support
+
+### Avatar / Human
+- **FlexiAvatar** [arXiv:2607.19100](https://arxiv.org/abs/2607.19100) (ECCV 2026) —Unified framework optimizing only visible body regions; SMPL-X tracking + diffusion completion
+
+### Large-Scale / Outdoor
+- **CaT-GS** [arXiv:2607.17842](https://arxiv.org/abs/2607.17842) (CVPR 2026) —Renderspeed: speculative multi-frame preprocessing + inter-frame caching; 10x faster than vanilla 3DGS
+- **i3dgs** (SIGGRAPH 2026) —Immediate 3DGS for large-scale unordered image collections; incremental reconstruction with on-the-fly pruning [Code](https://github.com/graphdeco-inria/i3dgs)
+
+### Compression / Volume Visualization
+- **ECoNGS** [arXiv:2607.18466](https://arxiv.org/abs/2607.18466) (IEEE VIS 2026) —Neural GS for volume visualization; lightweight NNs predict splats from anchors; joint learning clusters similar scenes; 6.1x model reduction, 5.9x training speedup

@@ -1,4 +1,4 @@
----
+﻿---
 name: nerf-to-3dgs-migrator
 description: "Migrate NeRF-based methods to 3DGS with step-by-step guidance. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry. Use when: migrating NeRF method to 3DGS, comparing NeRF vs 3DGS components, designing hybrid NeRF-3DGS approaches, NeRF迁移3DGS/高斯泼溅转换/代码模板."
 license: Apache-2.0
@@ -256,7 +256,7 @@ Key changes to the training loop:
 
 ## Knowledge Base
 
-This skill references a knowledge base of 690+ methods across 25 categories (updated for v0.3.3 cycle).
+This skill references a knowledge base of 789+ methods across 25 categories (updated for v0.3.3 cycle).
 
 ## Rules
 

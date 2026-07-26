@@ -1,4 +1,4 @@
----
+﻿---
 name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG. Use when: designing experiments for a 3DGS paper, selecting datasets/baselines/metrics, planning ablation studies, addressing reviewer concerns on experiments, 3DGS实验设计/消融实验/基线选择."
 license: Apache-2.0
@@ -301,7 +301,7 @@ Generate a complete experiment plan:
 2. **Be realistic**: Don't claim "state-of-the-art" unless metrics clearly support it.
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
 4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
-5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 675+ methods across 25 categories.
+5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 789+ methods across 25 categories.
 
 
 

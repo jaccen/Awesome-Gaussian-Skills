@@ -1,5 +1,3 @@
-
-
 ## Newly Added (May 2026 Expansion)
 
 
@@ -1053,3 +1051,10 @@
 - **Category**: Training & Optimization / Acceleration
 - **Core Innovation**: Geometry-aware AABB boxes replacing axis-aligned bounding boxes; tighter Gaussian bounds reduce tile-Gaussian pair checks; 1.85x rendering acceleration
 - **Code**: [https://github.com/Powertony102/QuadBox](https://github.com/Powertony102/QuadBox)
+## Newly Added Methods (July 26, 2026 Update)
+
+### Avatar / Human (New Addition)
+- **FlexiAvatar** [arXiv:2607.19100](https://arxiv.org/abs/2607.19100) (ECCV 2026)
+  - **Core**: Unified framework for 3D human avatar optimization
+  - **Key Innovation**: Optimizes only visible body regions during training, avoiding wasted computation on occluded areas; SMPL-X tracking provides body pose; diffusion-based completion fills unseen regions; produces high-quality animatable avatars from sparse views
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.19100)

@@ -1668,3 +1668,64 @@
 - **Key Innovation**: Unified pipeline combining single-image super-resolution with feed-forward 3DGS; SR enhances detail recovery before GS prediction; feed-forward architecture generalizes across scenes without per-scene optimization
 - **Related**: Feed-Forward Methods, ZipSplat, Anchor3R
 - **Links**: [arXiv](https://arxiv.org/)
+## Newly Added Methods (July 26, 2026 Update)
+
+> 10 methods added to core categories from arXiv July 2026 + GitHub trending + venue-verified repos
+
+### Dynamic / 4D (New Additions)
+- **GrainGS** [arXiv:2607.21448](https://arxiv.org/abs/2607.21448) (arXiv 2026)
+  - **Core**: Hierarchical anchor skeleton + per-Gaussian deformation with stop-gradient
+  - **Key Innovation**: Two-level deformation —anchor skeleton captures global motion, per-Gaussian deformation handles local detail; stop-gradient prevents interference between levels
+  - **Performance**: 36.98 dB PSNR, 435.6 FPS, 4.67 MB model size
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.21448)
+
+- **AniGS** [arXiv:2607.18539](https://arxiv.org/abs/2607.18539) (arXiv 2026)
+  - **Core**: Scene-level 3DGS animation via diffusion prior
+  - **Key Innovation**: Canonical 3DGS + time-conditioned deformation field; pretrained video diffusion model with iterative dataset-model update strategy; composed video-to-video refinement restricts motion to desired regions
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.18539)
+
+### SLAM (New Additions)
+- **GLAM-SLAM** [arXiv:2607.21416](https://arxiv.org/abs/2607.21416) (IROS 2026)
+  - **Core**: Large-scale outdoor decoupled GS SLAM
+  - **Key Innovation**: Feature tracking front-end + sparse anchor grid; decoupled tracking and mapping for outdoor scalability; 15% better than SOTA on KITTI/Oxford
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.21416)
+
+- **VIGS-SLAM** [arXiv:2512.02293](https://arxiv.org/abs/2512.02293) (ECCV 2026)
+  - **Core**: Visual-inertial GS SLAM
+  - **Key Innovation**: Feature tracking + Gaussian mapping fused with IMU; iPhone real-time demo; Docker + TensorRT deployment
+  - **Links**: [arXiv](https://arxiv.org/abs/2512.02293) | [Code](https://github.com/cvg/VIGS-SLAM)
+
+### Feed-Forward / Generalizable (New Additions)
+- **SubSplat** [arXiv:2607.20813](https://arxiv.org/abs/2607.20813) (arXiv 2026)
+  - **Core**: Subpixel Gaussian reparameterization (SPGR)
+  - **Key Innovation**: Subdivides main Gaussians from low-resolution features; subpixel-level precision for geometric detail in feed-forward 3DGS
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.20813)
+
+- **ATSplat** [arXiv:2607.20417](https://arxiv.org/abs/2607.20417) (arXiv 2026)
+  - **Core**: Adaptive 3D Tokens for feed-forward 3DGS
+  - **Key Innovation**: Token-based Gaussian prediction decoupled from image pixels; 12 images to 1s reconstruction, 1136 FPS rendering, 5.7x fewer Gaussians
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.20417)
+
+- **FF-ProCams** [arXiv:2607.17803](https://arxiv.org/abs/2607.17803) (arXiv 2026)
+  - **Core**: Feed-forward 3DGS inverse rendering for projector-camera systems
+  - **Key Innovation**: Mamba2-Transformer architecture; 8 views outperform 297-view optimization-based methods; joint geometry + material prediction
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.17803)
+
+### Large-Scale / Outdoor (New Additions)
+- **CaT-GS** [arXiv:2607.17842](https://arxiv.org/abs/2607.17842) (CVPR 2026)
+  - **Core**: Renderspeed —speculative multi-frame preprocessing + inter-frame caching
+  - **Key Innovation**: Speculative execution prefetches likely-needed Gaussians; inter-frame cache eliminates redundant compute; 10x faster than vanilla 3DGS at scale
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.17842)
+
+- **i3dgs** (SIGGRAPH 2026)
+  - **Core**: Immediate 3DGS for large-scale unordered image collections
+  - **Key Innovation**: Incremental reconstruction with on-the-fly pruning; processes unordered photosets without batch preprocessing; city-scale 3DGS from internet photo collections
+  - **Authors**: Meuleman, Franke, Zhestiankin, Montemagni, Drettakis (INRIA/EPFL)
+  - **Links**: [Code](https://github.com/graphdeco-inria/i3dgs)
+
+### Compression / Volume Visualization (New Addition)
+- **ECoNGS** [arXiv:2607.18466](https://arxiv.org/abs/2607.18466) (IEEE VIS 2026)
+  - **Core**: Efficient compressive neural Gaussian splatting for volume visualization
+  - **Key Innovation**: Lightweight NNs predict implicit editable splats from explicit anchors; joint learning clusters geometrically similar scenes and shares parameters; neural entropy model for anchor compression; 6.1x model reduction, 5.9x training speedup, 2.2 dB PSNR gain over iVR-GS
+  - **Authors**: Kaiyuan Tang, Chaoli Wang
+  - **Links**: [arXiv](https://arxiv.org/abs/2607.18466)

@@ -1,18 +1,17 @@
-
-
+﻿
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 766+ 方法，25 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 789+ 方法，25 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-766+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-789+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-105+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -40,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 766+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 789+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -58,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 12 章，每个方法名均锚定本仓库真实数据（766+ 方法、25 类别、14 技能），零虚构：**
+**全书 12 章，每个方法名均锚定本仓库真实数据（789+ 方法、25 类别、14 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -85,13 +84,13 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 766+ 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 789+ 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 7 月）
 
-最新更新（7 月 23 日）：**v0.4.4 — 训练调试技能 + ICML 2026 浪潮**。新增第 15 个技能 `3dgs-training-debugger`（运行时训练故障诊断）。前次更新（7 月 23 日）：v0.4.3 — ICML 2026 & 材质/溯源浪潮。前次更新（7 月 14 日）：v0.4.2 — SIGGRAPH & MICCAI 2026 浪潮，766+ 方法。新增：**DP-Splat**（贝叶斯密度控制）、**MoE-GS/MoDE**（TPAMI 2026）、**HyperGS**（10^4-10^5x 前馈）、**MAC-Splat**（ECCV 2026）、**Track2Map**（MICCAI 2026）、**PEAR**（SIGGRAPH 2026）、**CoSAG**（免训练语义压缩）、**HoloTetSphere**（ECCV 2026）。前次更新（7 月 9 日）：v0.4.1 ECCV & ISCA 2026 浪潮。3 个 Router 技能，全部 15 技能含反幻觉护栏。
+最新更新（7 月 26 日）：**v0.5.1 — 全面方法盘点 & 14 个新方法**。现 789+ 方法（775 经核实唯一基线 + 14 新增）。跨 11 个源文件全面重新盘点，所有方法计数统一为 789+。新增：**GrainGS**（动态场景，36.98 dB / 435.6 FPS / 4.67 MB）、**GLAM-SLAM**（IROS 2026，室外解耦 SLAM）、**SubSplat**（亚像素前馈）、**ATSplat**（自适应 3D Token，1136 FPS）、**3D-GIMP**（3DGS 修复）、**LB-Edit**（编辑延迟降低 7 倍）、**FlexiAvatar**（ECCV 2026，仅优化可见身体区域）、**ZeroSplat**（ECCV 2026，免训练分割）、**CaT-GS**（CVPR 2026，渲染快 10 倍）、**FF-ProCams**（投影仪-相机逆渲染）、**i3dgs**（SIGGRAPH 2026，大规模无序图像）、**VIGS-SLAM**（ECCV 2026，iPhone 实时演示）、**ECoNGS**（IEEE VIS 2026，体可视化）、**AniGS**（场景级动画，扩散先验）。+MoDE/MoE-GS 代码链接补充。前次更新（7 月 24 日）：v0.5.0 MCP 协议实现。前次更新（7 月 23 日）：v0.4.4 训练调试技能 + ICML 2026 浪潮。3 个 Router 技能，全部 15 技能含反幻觉护栏。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -132,7 +131,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（766+ 方法，25 类别）
+## 知识库（789+ 方法，25 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -239,7 +238,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 766+ 方法的系统性空白分析生成。
+> 基于知识库 789+ 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -295,13 +294,14 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 - [x] v0.1 — 初始版本，6 个核心技能（2026 年 4 月）
 - [x] v0.2 — `3dgs-visualizer` + Text2Word 演示（2026 年 5 月）
-- [x] v0.3 — 知识库 675→739+ 方法，25 类别，101+ bug 模式，12 个技能（2026 年 6 月）
-- [x] v0.3.7 — 空间智能浪潮：680→739+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
-- [x] v0.3.7 — CVPR 2026 代表性论文：690→739+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 14 技能更新（2026 年 6 月 28 日）
+- [x] v0.3 — 知识库 675→789+ 方法，25 类别，101+ bug 模式，12 个技能（2026 年 6 月）
+- [x] v0.3.7 — 空间智能浪潮：680→789+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
+- [x] v0.3.7 — CVPR 2026 代表性论文：690→789+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 14 技能更新（2026 年 6 月 28 日）
 - [x] v0.4.0 — Router 架构扩展：cg-paper-writing + 3dgs-engineering-guide → Router + manifest.yaml + static/；3dgs-code-reviewer 自检循环；3 个 Router 技能（2026 年 7 月 2 日）
-- [x] v0.4.1 — ECCV & ISCA 2026 浪潮：+Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R（ECCV 2026）, Axis-Shared Rasterization Accelerator（ISCA 2026）, Provable Pruning via Coresets；739+ 方法（2026 年 7 月 9 日）
+- [x] v0.4.1 — ECCV & ISCA 2026 浪潮：+Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R（ECCV 2026）, Axis-Shared Rasterization Accelerator（ISCA 2026）, Provable Pruning via Coresets；789+ 方法（2026 年 7 月 9 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
 - [x] v0.5.0 — MCP 协议实现：24 工具 MCP 服务器（mcp-server/），Three.js WebSocket 渲染器，24 模式语音意图映射，无头模式，语音演示（2026 年 7 月 24 日）
+- [x] v0.5.1 — 全面方法盘点 & 14 个新方法：775 经核实唯一基线 + 14 新增 = 789+ 方法；跨 11 个源文件全面盘点统一计数；+GrainGS, GLAM-SLAM, SubSplat, ATSplat, 3D-GIMP, LB-Edit, FlexiAvatar, ZeroSplat, CaT-GS, FF-ProCams, i3dgs, VIGS-SLAM, ECoNGS, AniGS（2026 年 7 月 26 日）
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
 - [ ] v2.0 — Agent 间协作（多 Agent 论文讨论）
 
@@ -329,7 +329,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.5.0（24 工具，Three.js 渲染器，语音意图）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（766+ 方法，25 类别）
+├── references/                # 知识库（789+ 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

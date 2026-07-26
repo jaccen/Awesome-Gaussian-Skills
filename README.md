@@ -1,18 +1,16 @@
-﻿
-
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 766+ Methods, 25 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 789+ Methods, 25 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
-[![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
+[![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-766+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-789+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-14-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-108+-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -40,7 +38,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 766+ Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 789+ Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
@@ -58,7 +56,7 @@ Search 766+ Methods instantly, filter by category, sort by citations, click any 
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 12 chapters, every method name anchored to this repo's real data (766+ Methods, 25 categories, 15 skills), zero fabrication:**
+**What's inside — 12 chapters, every method name anchored to this repo's real data (789+ Methods, 25 categories, 15 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -69,7 +67,7 @@ Search 766+ Methods instantly, filter by category, sort by citations, click any 
 | CH 04 | Semantic Gaussians | CLIP/DINO feature distillation, open-vocabulary 3D segmentation |
 | CH 05 | Editing · Generation · Asset-ization | Feed-forward reconstruction, SDS generation, animatable assets, PBR relighting |
 | CH 06 | Embodied intelligence basics | VLA lineage (RT/π0/GR00T/ReconVLA), simulation, Sim2Real |
-| CH 07 | 3DGS as robot spatial memory | GS-SLAM, map-as-renderer, three tiers of spatial memory |
+| CH 06 | 3DGS as robot spatial memory | GS-SLAM, map-as-renderer, three tiers of spatial memory |
 | CH 08 | Object-level & articulated understanding | Part-level Gaussians, URDF bridging, the CAD·Mesh·3DGS triangle |
 | CH 09 | Agent-driven digital twins | MCP rendering pipeline, gesture interaction, the perception-action loop |
 | CH 10 | World models & the future | Six schools of world models, 3DGS×World Model, spatial foundation models, Physical AI |
@@ -85,13 +83,13 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 766+ method names, abstracts, and 14 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 789+ method names, abstracts, and 14 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (July 2026)
 
-Latest update (Jul 23): **v0.4.3 — ICML 2026 & Material/Provenance Wave**. Now 766+ Methods. New additions: **GaussTrace** (ICML 2026, 3DGS provenance/IP forensics), **GADA** (ICML 2026, geometry-aware deformable aggregation, 2.13× faster), **InvSplat** (inverse feed-forward with intrinsic PBR materials), **MGM** (large material Gaussian model, relightable 3D generation), **DualPhys-GS** (underwater dual physics-guided 3DGS), **StereoGS** (hardware stereoscopic GS processor). +3 bug patterns (108+ total). MCP roadmap v0.2.3 with 4 new Phase 1.5 tools. Previous (Jul 14): v0.4.2 SIGGRAPH & MICCAI 2026 Wave. 3 Router skills total, all 15 skills with anti-hallucination guardrails. Newest: v0.5.0 implements MCP protocol server (24 tools, Three.js renderer, voice intent mapper). v0.4.4 added 3dgs-training-debugger skill (runtime training failure diagnosis, 60+ patterns).
+Latest update (Jul 26): **v0.5.1 — Full Method Audit & 14 New Methods**. Now 789+ Methods (775 verified unique baseline + 14 new). Full re-audit across 11 source files; all method counts unified to 789+. New additions: **GrainGS** (dynamic, 36.98 dB / 435.6 FPS / 4.67 MB), **GLAM-SLAM** (IROS 2026, outdoor decoupled SLAM), **SubSplat** (subpixel feed-forward), **ATSplat** (adaptive 3D tokens, 1136 FPS), **3D-GIMP** (3DGS inpainting), **LB-Edit** (7× lower editing latency), **FlexiAvatar** (ECCV 2026, visible-body-only optimization), **ZeroSplat** (ECCV 2026, training-free segmentation), **CaT-GS** (CVPR 2026, 10× faster rendering), **FF-ProCams** (projector-camera inverse rendering), **i3dgs** (SIGGRAPH 2026, large-scale unordered), **VIGS-SLAM** (ECCV 2026, iPhone real-time), **ECoNGS** (IEEE VIS 2026, volume visualization), **AniGS** (scene-level animation via diffusion prior). +MoDE/MoE-GS code link. Previous (Jul 24): v0.5.0 MCP Protocol Implementation. Previous (Jul 23): v0.4.3 ICML 2026 & Material/Provenance Wave — **GaussTrace** (ICML 2026), **GADA** (ICML 2026), **InvSplat**, **MGM**, **DualPhys-GS**, **StereoGS**. v0.4.4 added 3dgs-training-debugger skill (60+ runtime patterns).
 
 | Method | Venue | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
@@ -138,7 +136,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (766+ Methods, 25 Categories)
+## Knowledge Base (789+ Methods, 25 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -219,7 +217,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 | 4 | [`3dgs-experiment-planner`](skills/3dgs-experiment-planner/) | Design experiments for CVPR/SIGGRAPH/TVCG | "帮我设计消融实验" |
 | 5 | [`nerf-to-3dgs-migrator`](skills/nerf-to-3dgs-migrator/) | Migrate NeRF methods to 3DGS step-by-step | "hash encoding 怎么迁移到 3DGS？" |
 | 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | Bridge CAD/Mesh/3DGS — 61+ conversion methods | "3DGS模型怎么提取高质量mesh？" |
-| 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | Write papers for CVPR/SIGGRAPH/TVCG with adversarial review | "帮我写论文引言" |
+| 6 | [`cg-paper-writing`](skills/cg-paper-writing/) | Write papers for CVPR/SIGGRAPH/TVCG with adversarial review | "帮我写论文引言" |
 | 8 | [`3dgs-visualizer`](skills/3dgs-visualizer/) | Publication-quality radar charts, timelines, heatmaps | "画一个3DGS方法对比雷达图" |
 | 9 | [`3dgs-engineering-guide`](skills/3dgs-engineering-guide/) | Deploy 3DGS from research to production (10 industry tracks) | "怎么部署3DGS做自动驾驶仿真？" |
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | Generate patent applications & software copyrights | "生成专利申请文件" |
@@ -245,7 +243,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 766+ Methods.
+> Derived from systematic gap analysis across 789+ Methods.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -285,12 +283,12 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 </details>
 
 <details>
-<summary><strong>7 more innovation highlights (I-04 to I-10)</strong></summary>
+<summary><strong>6 more innovation highlights (I-04 to I-10)</strong></summary>
 
 - **I-04. Solid Geometry Neural-Symbolic Reasoning**: VLM + Z3/SMT formal verifier in iterative refinement loop. Target: Pattern Recognition / AAAI.
 - **I-05. Embodied Spatial Memory**: Hippocampus-inspired 3DGS scene graph + Perceiver compressor + importance-weighted forgetting. Target: T-RO / IJCV.
 - **I-06. Differentiable Physics Engine**: SDF-based contact + differentiable KKT contact solver + Coulomb friction for manipulation. Target: ACM TOG / SIGGRAPH.
-- **I-07. Tactile-Visual Spatial Fusion**: GelSight → contact geometry maps → 3D scene projection → cross-attention fusion. Target: T-RO / ICRA.
+- **I-06. Tactile-Visual Spatial Fusion**: GelSight → contact geometry maps → 3D scene projection → cross-attention fusion. Target: T-RO / ICRA.
 - **I-08. Panoramic Spatial World Model**: Spherical visual panorama + BEV semantic + affordance + spatial relation graph for "imagine then navigate". Target: ECCV / CVPR.
 - **I-09. Code-as-Spatial-Vocabulary**: VLM generates Three.js code → render → extract spatial annotations → fine-tune VLM. Target: CVPR / NeurIPS.
 - **I-10. Hyperbolic Cross-Modal Distillation**: Poincare ball distillation for image→point-cloud hierarchical feature transfer. Target: T-MM / T-IP.
@@ -301,16 +299,17 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 - [x] v0.1 — Initial release with 6 core skills (Apr 2026)
 - [x] v0.2 — `3dgs-visualizer` + Text2Word demo (May 2026)
-- [x] v0.3 — Knowledge base 675->766+ Methods, 25 Categories, 101+ bug patterns, 12 skills (Jun 2026)
-- [x] v0.3.7 — Spatial intelligence wave: 680->739+ methods, +10 new methods (FastGS, Holi-Spatial, Spatial-TTT, etc.), Dimension 11, Anthropic standard alignment (Jun 25, 2026)
-- [x] v0.3.7 — CVPR 2026 representative papers: 690->739+ methods, +23 verified new methods, all 13 skills updated (Jun 28, 2026)
+- [x] v0.3 — Knowledge base 665->789+ Methods, 25 Categories, 101+ bug patterns, 12 skills (Jun 2026)
+- [x] v0.3.6 — Spatial intelligence wave: 680->639+ methods, +10 new methods (FastGS, Holi-Spatial, Spatial-TTT, etc.), Dimension 11, Anthropic standard alignment (Jun 25, 2026)
+- [x] v0.3.6 — CVPR 2026 representative papers: 690->639+ methods, +23 verified new methods, all 13 skills updated (Jun 28, 2026)
 - [x] v0.4.0 — Router Architecture Expansion: cg-paper-writing + 3dgs-engineering-guide → Router + manifest.yaml + static/; 3dgs-code-reviewer Self-Check Loop; cg-paper-writing Stage Gates; 3 Router skills total (Jul 2, 2026)
-- [x] v0.4.1 — ECCV & ISCA 2026 Wave: +Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R (ECCV 2026), Axis-Shared Rasterization Accelerator (ISCA 2026), Provable Pruning via Coresets; 739+ methods (Jul 9, 2026)
-- [x] v0.4.2 — SIGGRAPH & MICCAI 2026 Wave: +DP-Splat, MoE-GS/MoDE (TPAMI 2026), HyperGS, MAC-Splat (ECCV 2026), Track2Map (MICCAI 2026), PEAR (SIGGRAPH 2026), CoSAG, HoloTetSphere (ECCV 2026), SalientGS; 739→766+ Methods, +3dgs-compression-deploy skill, 14 skills total (Jul 14, 2026)
-- [x] v0.4.3 — ICML 2026 & Material/Provenance Wave: +GaussTrace (ICML 2026), GADA (ICML 2026), InvSplat, MGM, DualPhys-GS, StereoGS; 760→766+ Methods, +3 bug patterns (108+ total), MCP roadmap v0.2.3 (Jul 23, 2026)
+- [x] v0.4.1 — ECCV & ISCA 2026 Wave: +Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R (ECCV 2026), Axis-Shared Rasterization Accelerator (ISCA 2026), Provable Pruning via Coresets; 639+ methods (Jul 9, 2026)
+- [x] v0.4.2 — SIGGRAPH & MICCAI 2026 Wave: +DP-Splat, MoE-GS/MoDE (TPAMI 2026), HyperGS, MAC-Splat (ECCV 2026), Track2Map (MICCAI 2026), PEAR (SIGGRAPH 2026), CoSAG, HoloTetSphere (ECCV 2026), SalientGS; 639→789+ Methods, +3dgs-compression-deploy skill, 14 skills total (Jul 14, 2026)
+- [x] v0.4.3 — ICML 2026 & Material/Provenance Wave: +GaussTrace (ICML 2026), GADA (ICML 2026), InvSplat, MGM, DualPhys-GS, StereoGS; 660→789+ Methods, +3 bug patterns (108+ total), MCP roadmap v0.2.3 (Jul 23, 2026)
 - [x] v0.4.4 — Training Debugger Skill: +1 skill (3dgs-training-debugger, 60+ runtime patterns, VRAM management, convergence analysis), 14→15 skills total (Jul 23, 2026)
 - [ ] v0.4 — `3dgs-spatial-agent` enhancements (knowledge-constrained CAD, DDF-GS ray query)
 - [x] v0.5.0 — MCP Protocol Implementation: 24-tool MCP server (mcp-server/), Three.js WebSocket renderer, 24-pattern voice intent mapper, headless mode, voice demo (Jul 24, 2026)
+- [x] v0.5.1 — Full Method Audit & 14 New Methods: 775 verified unique baseline + 14 new = 789+ methods; all method counts unified across 11 source files; +GrainGS, GLAM-SLAM, SubSplat, ATSplat, 3D-GIMP, LB-Edit, FlexiAvatar, ZeroSplat, CaT-GS, FF-ProCams, i3dgs, VIGS-SLAM, ECoNGS, AniGS (Jul 26, 2026)
 - [ ] v1.0 — CI/CD integration + multi-framework official listings
 - [ ] v2.0 — Agent-to-Agent collaboration (multi-agent paper discussion)
 
@@ -338,7 +337,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # Training failure diagnosis (OOM, NaN, divergence, artifacts)
 ├── mcp-server/                # MCP server v0.5.0 (24 tools, Three.js renderer, voice intent)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (766+ Methods, 25 Categories)
+├── references/                # Knowledge base (789+ Methods, 25 Categories)
 ├── scripts/                   # Install scripts & pipelines
 ├── Test/                      # Visualization samples
 └── assets/                    # Project images

@@ -1,4 +1,4 @@
-﻿| Method | Venue | Feature Source | 3D Storage | Key Feature |
+| Method | Venue | Feature Source | 3D Storage | Key Feature |
 |--------|-------|---------------|------------|-------------|
 | LangSplat | CVPR'24 | CLIP (2D distillation) | Per-Gaussian CLIP features | Open-vocabulary 3D queries |
 | Feature 3DGS | CVPR'24 | DINO/SAM (2D distillation) | Per-Gaussian feature vectors | Downstream task features |
@@ -77,3 +77,10 @@
 | Method | Venue | Material Model | Key Feature |
 |--------|-------|---------------|-------------|
 | MGM (Large Material Gaussian Model) | arXiv'26 (2509.22112) | PBR (albedo, roughness, metallic) | Relightable 3D generation via multiview material diffusion + Gaussian material representation |
+### New Additions (July 26, 2026 Update)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| 3D-GIMP | arXiv 2026 (2607.20789) | 3DGS inpainting + PatchMatch hybrid; generative inpainting on key view then propagate |
+| LB-Edit | arXiv 2026 (2607.19777) | Attention-guided editing camera placement (ACP) + multi-view attention alignment (MAA); 5 views / 7x lower latency |
+| ZeroSplat | ECCV 2026 (2607.18801) | Generalized referring 3DGS segmentation (GR3DGS); zero-feature / training-free / 0/1/N target support |

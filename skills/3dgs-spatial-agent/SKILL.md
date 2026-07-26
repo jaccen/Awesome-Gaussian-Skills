@@ -1,4 +1,4 @@
----
+﻿---
 name: 3dgs-spatial-agent
 description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Use when: 3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS."
 license: Apache-2.0
@@ -36,7 +36,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (766+ methods)
+3DGS Scene (789+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │

@@ -1,8 +1,8 @@
-
+﻿
 ---
 name: awesome-gaussian-skills
-version: "0.5.0"
-description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 766+ methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering, articulated reasoning, compression & deployment, training debugging."
+version: "0.5.1"
+description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 789+ methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering, articulated reasoning, compression & deployment, training debugging."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin, Bayesian density control, MoE deformation, surgical SLAM, training-free semantic compression, deformable aggregation, PBR material splatting, 3DGS provenance analysis"
 arguments: [task]
 author: jaccen
@@ -12,7 +12,7 @@ keywords: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", 
 
 # Awesome Gaussian Skills — Project Context
 
-This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 766+ methods across 25 categories with 108+ known bug patterns.
+This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 789+ methods across 25 categories with 108+ known bug patterns.
 
 > **Anthropic Skills Standard Alignment**: This project follows the SKILL.md standard format compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`), and other AI Agent frameworks. Each skill includes YAML frontmatter (name, description, version, when_to_use, tags) and structured Markdown body with capabilities, instructions, and reference data. Target: `anthropics/skills` official repository listing.
 
@@ -40,7 +40,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 
 ```
 references/
-|-- 3dgs-methods-overview.md   # 766+ methods index (25 categories)
+|-- 3dgs-methods-overview.md   # 789+ methods index (25 categories)
 |-- methods-core.md            # Core methods (Foundation->Dynamic)
 |-- methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 |-- methods-systems-apps.md    # Systems, Applications, Cross-Domain

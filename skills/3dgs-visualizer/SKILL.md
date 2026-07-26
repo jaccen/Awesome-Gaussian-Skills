@@ -1,4 +1,4 @@
----
+﻿---
 name: 3dgs-visualizer
 description: "Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Static (PDF/PNG) and interactive (HTML) output. Use when: creating comparison charts for 3DGS papers, visualizing method capabilities, generating method timelines or radar plots, 3DGS可视化/论文配图/方法对比图表."
 license: Apache-2.0
@@ -200,7 +200,7 @@ When generating timelines that include 2026 methods, highlight these as landmark
 | TRELLIS.2 | CVPR 2026 Best Student Paper | Structured 3D generation | Best Student Paper marker |
 | SAM 3D | CVPR 2026 | 3D segmentation foundation | Highlighted method |
 
-Knowledge base: 690+ methods across 25 categories (updated for v0.3.3 cycle).
+Knowledge base: 789+ methods across 25 categories (updated for v0.3.3 cycle).
 
 ### API — Static Timeline
 

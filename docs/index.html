@@ -156,7 +156,7 @@ if ('IntersectionObserver' in window) {
       3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting & Computer Graphics
     </p>
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">766+ Methods</span>
+      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">789+ Methods</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">25 Categories</span>
       <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">15 Skills</span>
       <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
@@ -384,7 +384,7 @@ if ('IntersectionObserver' in window) {
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
         <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">766+ 3DGS methods analyzed —best one auto-picked for you.</p>
+        <p class="text-[10px] text-gray-500 mt-1">789+ 3DGS methods analyzed —best one auto-picked for you.</p>
       </div>
       <div class="gradient-border p-4 text-center">
         <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
@@ -688,7 +688,7 @@ if ('IntersectionObserver' in window) {
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-10">
       <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-3 text-gray-400">Search and browse 766+ methods across 25 categories</p>
+      <p class="mt-3 text-gray-400">Search and browse 789+ methods across 25 categories</p>
       <div class="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm">
         <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue/10 border border-accent-blue/20 text-accent-blue">
           <span class="font-bold">1</span> Search or filter by category
@@ -1538,11 +1538,25 @@ const METHODS = [
   { name: "VLRC", short: "VLRC", cat: "Semantic", venue: "arXiv", year: 2026, desc: "Vision-Language Reprojection Consistency as scalable signal for better feed-forward 3D pretraining", arxiv: "", citations: 0 },
   { name: "FreDeGS", short: "FreDeGS", cat: "Applications/Deblurring", venue: "Springer 2026", year: 2026, desc: "Frequency-guided 3DGS for scene deblurring; frequency-aware decomposition for motion-blurred input reconstruction", arxiv: "", citations: 0 },
   { name: "SharpSplat", short: "SharpSplat", cat: "Robustness", venue: "arXiv", year: 2026, desc: "SAM3-based building edge extraction + rendered gradient-edge alignment; sharp building boundary reconstruction in UAV 3DGS scenes", arxiv: "", citations: 0 },
-  { name: "MoE-GS / MoDE", short: "MoE-GS / MoDE", cat: "Dynamic", venue: "arXiv", year: 2026, desc: "Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling", arxiv: "", citations: 0 },
+  { name: "MoE-GS / MoDE", short: "MoE-GS / MoDE", cat: "Dynamic", venue: "TPAMI 2026", year: 2026, desc: "Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling", arxiv: "2607.08250", citations: 0 },
   { name: "IPU-GS", short: "IPU-GS", cat: "Acceleration", venue: "arXiv 2026", year: 2026, desc: "First 3DGS renderer on Intelligence Processing Unit (IPU); 1472-tile on-chip SRAM architecture for sensor-processor near-data rendering; demonstrates edge inference without GPU", arxiv: "2607.15951", citations: 0 },
   { name: "ImprovedVBGS", short: "ImprovedVBGS", cat: "SLAM", venue: "arXiv 2026", year: 2026, desc: "Real-time continual Variational Bayes GS; improved CAVI with per-frame subset updates instead of full-observation iterations; enables on-the-fly SLAM without replay buffers", arxiv: "2607.15542", citations: 0 },
   { name: "E3DGS", short: "E3DGS", cat: "Foundation", venue: "arXiv 2026", year: 2026, desc: "Unified geometric-photometric equivariance for 3DGS via Color-as-Geometry embedding; builds SE(3)-equivariant architectures on Gaussian primitives by treating color as geometry", arxiv: "2607.15536", citations: 0 },
-  { name: "RoGS", short: "RoGS", cat: "Autonomous Driving", venue: "arXiv 2026", year: 2026, desc: "Adaptive Meshgrid Gaussian for large-scale road surface mapping; combines mesh-based and Gaussian representations for HD map generation and lane-level perception", arxiv: "2607.15048", citations: 0 }
+  { name: "RoGS", short: "RoGS", cat: "Autonomous Driving", venue: "arXiv 2026", year: 2026, desc: "Adaptive Meshgrid Gaussian for large-scale road surface mapping; combines mesh-based and Gaussian representations for HD map generation and lane-level perception", arxiv: "2607.15048", citations: 0 },
+  { name: "GrainGS", short: "GrainGS", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Hierarchical anchor skeleton + per-Gaussian deformation with stop-gradient; 36.98 dB PSNR, 435.6 FPS, 4.67 MB", arxiv: "2607.21448", citations: 0 },
+  { name: "GLAM-SLAM", short: "GLAM-SLAM", cat: "SLAM", venue: "IROS 2026", year: 2026, desc: "Large-scale outdoor decoupled GS SLAM; feature tracking front-end + sparse anchor grid; 15% better on KITTI/Oxford", arxiv: "2607.21416", citations: 0 },
+  { name: "SubSplat", short: "SubSplat", cat: "Feed-Forward", venue: "arXiv 2026", year: 2026, desc: "Subpixel Gaussian reparameterization (SPGR); subdivide main Gaussians from low-res features", arxiv: "2607.20813", citations: 0 },
+  { name: "ATSplat", short: "ATSplat", cat: "Feed-Forward", venue: "arXiv 2026", year: 2026, desc: "Adaptive 3D Tokens for feed-forward 3DGS; 12 images to 1s reconstruction, 1136 FPS, 5.7x fewer Gaussians", arxiv: "2607.20417", citations: 0 },
+  { name: "3D-GIMP", short: "3D-GIMP", cat: "Editing", venue: "arXiv 2026", year: 2026, desc: "3DGS inpainting + PatchMatch hybrid; single generative inpainting on key view then propagate", arxiv: "2607.20789", citations: 0 },
+  { name: "LB-Edit", short: "LB-Edit", cat: "Editing", venue: "arXiv 2026", year: 2026, desc: "Attention-guided editing camera placement (ACP) + multi-view attention alignment (MAA); 5 views, 7x lower latency", arxiv: "2607.19777", citations: 0 },
+  { name: "FlexiAvatar", short: "FlexiAvatar", cat: "Avatar", venue: "ECCV 2026", year: 2026, desc: "Unified framework optimizing only visible body regions; SMPL-X tracking + diffusion completion", arxiv: "2607.19100", citations: 0 },
+  { name: "ZeroSplat", short: "ZeroSplat", cat: "Semantic", venue: "ECCV 2026", year: 2026, desc: "Generalized referring 3DGS segmentation (GR3DGS); zero-feature, training-free, 0/1/N target support", arxiv: "2607.18801", citations: 0 },
+  { name: "CaT-GS", short: "CaT-GS", cat: "Large-Scale", venue: "CVPR 2026", year: 2026, desc: "Renderspeed: speculative multi-frame preprocessing + inter-frame caching; 10x faster than vanilla 3DGS", arxiv: "2607.17842", citations: 0 },
+  { name: "FF-ProCams", short: "FF-ProCams", cat: "Feed-Forward", venue: "arXiv 2026", year: 2026, desc: "Feed-forward 3DGS inverse rendering for projector-camera; Mamba2-Transformer; 8 views beat 297-view optimization", arxiv: "2607.17803", citations: 0 },
+  { name: "i3dgs", short: "i3dgs", cat: "Large-Scale", venue: "SIGGRAPH 2026", year: 2026, desc: "Immediate 3DGS for large-scale unordered image collections; incremental reconstruction with on-the-fly pruning", arxiv: "", citations: 0 },
+  { name: "VIGS-SLAM", short: "VIGS-SLAM", cat: "SLAM", venue: "ECCV 2026", year: 2026, desc: "Visual-inertial GS SLAM with iPhone real-time demo; feature tracking + Gaussian mapping; Docker + TensorRT", arxiv: "2512.02293", citations: 0 },
+  { name: "ECoNGS", short: "ECoNGS", cat: "Compression", venue: "IEEE VIS 2026", year: 2026, desc: "Neural GS for volume visualization; lightweight NNs predict splats from anchors; 6.1x model reduction, 5.9x training speedup", arxiv: "2607.18466", citations: 0 },
+  { name: "AniGS", short: "AniGS", cat: "Dynamic", venue: "arXiv 2026", year: 2026, desc: "Scene-level 3DGS animation via diffusion prior; canonical 3DGS + time-conditioned deformation; 5 outdoor scenes", arxiv: "2607.18539", citations: 0 }
 ];
 
 const METHOD_DETAILS = {
@@ -2122,7 +2136,22 @@ const METHOD_DETAILS = {
   "MRO-GWM": { innovation: "Object-centric Gaussian world model for rigid body MPC", codeUrl: "" },
   "DSD-GS": { innovation: "Feed-forward dynamic-static decomposition; 700+ FPS RTX 5090; no COLMAP", codeUrl: "" },
   "VG2GT": { innovation: "Voxel-Gaussian Transformer; frozen VFM + stochastic solid volume rendering", codeUrl: "" },
-  "TIDES": { innovation: "Continuous-time event camera simulator from dynamic Gaussian Splatting", codeUrl: "" }
+  "TIDES": { innovation: "Continuous-time event camera simulator from dynamic Gaussian Splatting", codeUrl: "" },
+  "GrainGS": { innovation: "Hierarchical anchor skeleton + stop-gradient per-Gaussian deformation; 36.98 dB / 435.6 FPS / 4.67 MB", codeUrl: "" },
+  "GLAM-SLAM": { innovation: "Large-scale outdoor decoupled GS SLAM; feature tracking front-end + sparse anchor grid", codeUrl: "" },
+  "SubSplat": { innovation: "Subpixel Gaussian reparameterization (SPGR); subdivide main Gaussians from low-res features", codeUrl: "" },
+  "ATSplat": { innovation: "Adaptive 3D Tokens for feed-forward 3DGS; 12 images to 1s / 1136 FPS / 5.7x fewer Gaussians", codeUrl: "" },
+  "3D-GIMP": { innovation: "3DGS inpainting + PatchMatch hybrid; generative inpainting on key view then propagate", codeUrl: "" },
+  "LB-Edit": { innovation: "Attention-guided editing camera placement + multi-view attention alignment; 5 views / 7x lower latency", codeUrl: "" },
+  "FlexiAvatar": { innovation: "Unified framework optimizing only visible body regions; SMPL-X tracking + diffusion completion", codeUrl: "" },
+  "ZeroSplat": { innovation: "Generalized referring 3DGS segmentation; zero-feature, training-free, 0/1/N target support", codeUrl: "" },
+  "CaT-GS": { innovation: "Renderspeed: speculative multi-frame preprocessing + inter-frame caching; 10x faster than vanilla 3DGS", codeUrl: "" },
+  "FF-ProCams": { innovation: "Feed-forward 3DGS inverse rendering for projector-camera; Mamba2-Transformer; 8 views beat 297-view", codeUrl: "" },
+  "i3dgs": { innovation: "Immediate 3DGS for large-scale unordered image collections; incremental reconstruction with on-the-fly pruning", codeUrl: "https://github.com/graphdeco-inria/i3dgs" },
+  "VIGS-SLAM": { innovation: "Visual-inertial GS SLAM with iPhone real-time demo; Docker + TensorRT", codeUrl: "https://github.com/cvg/VIGS-SLAM" },
+  "ECoNGS": { innovation: "Neural GS for volume visualization; 6.1x model reduction, 5.9x training speedup, 2.2 dB gain", codeUrl: "" },
+  "AniGS": { innovation: "Scene-level 3DGS animation via diffusion prior; canonical 3DGS + time-conditioned deformation", codeUrl: "" },
+  "MoE-GS / MoDE": { innovation: "Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling", codeUrl: "https://github.com/cvsp-lab/MoDE" }
 };
 
 

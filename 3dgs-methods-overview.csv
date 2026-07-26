@@ -622,7 +622,7 @@ Cookbook of 3D Vision,,arXiv 2026,2026,Surveys & Benchmarks,Comprehensive survey
 SalientGS,2607.11285,,2026,Foundation Methods,Unified SfM-to-3DGS pipeline with MCMC Gaussian allocation and salient-guided density control,
 DP-Splat,2607.10912,,2026,Optimization,Bayesian nonparametric complexity control via Dirichlet-process prior for automatic Gaussian count,
 Grassmannian Splatting,2607.10489,,2026,Dynamic/4D,Rank-2 spacetime surfels with closed-form motion model via Grassmannian manifold optimization,
-MoE-GS/MoDE,2607.08250,TPAMI 2026,2026,Dynamic/4D,Mixture-of-Experts for dynamic Gaussian deformation with expert routing per motion pattern,
+MoE-GS/MoDE,2607.08250,TPAMI 2026,2026,Dynamic/4D,Mixture-of-Experts for dynamic Gaussian deformation with expert routing per motion pattern,https://github.com/cvsp-lab/MoDE
 CAGS,,SIGGRAPH 2026,2026,Streaming,Color-adaptive volumetric video streaming with VQ+LoD dynamic 3DGS,
 HyperGS,2607.11500,,2026,Feed-Forward/Generalizable,Feedforward optimization-free Gaussian video at 10^4-10^5x speedup over optimization,
 MAC-Splat,2607.10792,ECCV 2026,2026,Feed-Forward/Generalizable,Multi-Attribute Consistency for feed-forward splats; +4.5 dB over Splatt3R,
@@ -647,3 +647,17 @@ InvSplat,2607.02301,arXiv 2026,2026,Feed-Forward/Material,"Inverse feed-forward 
 MGM (Large Material Gaussian Model),2509.22112,arXiv 2026,2026,Relighting/Material,"Relightable 3D generation with full PBR materials via multiview material diffusion + Gaussian material representation",
 DualPhys-GS,2508.09610,arXiv 2026,2026,Robustness/Physics,"Dual physically-guided 3DGS for underwater scene reconstruction; joint attenuation-scattering physics + lighting decomposition",
 StereoGS,,2026,2026,Hardware Acceleration,"Energy-efficient 3DGS stereoscopic rendering processor; dual-eye shared compute and memory bandwidth for VR/AR",
+GrainGS,2607.21448,arXiv 2026,2026,Dynamic,"Hierarchical anchor skeleton + stop-gradient per-Gaussian deformation; 36.98 dB PSNR / 435.6 FPS / 4.67 MB",
+GLAM-SLAM,2607.21416,IROS 2026,2026,SLAM,"Large-scale outdoor decoupled GS SLAM; feature tracking front-end + sparse anchor grid; 15% better on KITTI/Oxford",
+SubSplat,2607.20813,arXiv 2026,2026,Feed-Forward,"Subpixel Gaussian reparameterization; subdivide main Gaussians from low-res features",
+ATSplat,2607.20417,arXiv 2026,2026,Feed-Forward,"Adaptive 3D Tokens for feed-forward 3DGS; 12 images to 1s / 1136 FPS / 5.7x fewer Gaussians",
+3D-GIMP,2607.20789,arXiv 2026,2026,Semantic/Editing,"3DGS inpainting + PatchMatch hybrid; generative inpainting on key view then propagate",
+LB-Edit,2607.19777,arXiv 2026,2026,Semantic/Editing,"Attention-guided editing camera placement + multi-view attention alignment; 5 views / 7x lower latency",
+FlexiAvatar,2607.19100,ECCV 2026,2026,Avatar,"Unified framework optimizing only visible body regions; SMPL-X tracking + diffusion completion",
+ZeroSplat,2607.18801,ECCV 2026,2026,Semantic,"Generalized referring 3DGS segmentation; zero-feature / training-free / 0/1/N target support",
+CaT-GS,2607.17842,CVPR 2026,2026,Large-Scale,"Renderspeed speculative multi-frame preprocessing + inter-frame caching; 10x faster than vanilla 3DGS",
+FF-ProCams,2607.17803,arXiv 2026,2026,Feed-Forward/Material,"Feed-forward 3DGS inverse rendering for projector-camera; Mamba2-Transformer; 8 views beat 297-view optimization",
+i3dgs,,SIGGRAPH 2026,2026,Large-Scale,"Immediate 3DGS for large-scale unordered image collections; incremental reconstruction with on-the-fly pruning",https://github.com/graphdeco-inria/i3dgs
+VIGS-SLAM,2512.02293,ECCV 2026,2026,SLAM,"Visual-inertial GS SLAM with iPhone real-time demo; feature tracking + Gaussian mapping; Docker + TensorRT",https://github.com/cvg/VIGS-SLAM
+ECoNGS,2607.18466,IEEE VIS 2026,2026,Compression,"Neural GS for volume visualization; lightweight NNs predict splats from anchors; 6.1x model reduction / 5.9x training speedup",
+AniGS,2607.18539,arXiv 2026,2026,Dynamic,"Scene-level 3DGS animation via diffusion prior; canonical 3DGS + time-conditioned deformation; iterative dataset-model update",

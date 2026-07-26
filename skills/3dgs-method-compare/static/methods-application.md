@@ -1,4 +1,4 @@
-﻿### Human & Avatar Methods
+### Human & Avatar Methods
 
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
@@ -155,3 +155,8 @@ Comparison key: Does the method use 3DGS as (a) state representation only, (b) d
 | GADA | ICML'26 (2607.00595) | Feed-Forward / Geometry | Geometry-Aware Deformable Aggregation; deformable offsets + implicit confidence; 2.13× faster FPS |
 | MGM | arXiv'26 (2509.22112) | Material / Relighting | Relightable 3D generation with PBR; multiview material diffusion + Gaussian material representation |
 | StereoGS | 2026 | Hardware / VR | Energy-efficient stereoscopic 3DGS processor; dual-eye shared compute for VR/AR rendering |
+### New Additions (July 26, 2026 Update)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| FlexiAvatar | ECCV 2026 (2607.19100) | Unified framework optimizing only visible body regions; SMPL-X tracking + diffusion completion for 3D human avatars |

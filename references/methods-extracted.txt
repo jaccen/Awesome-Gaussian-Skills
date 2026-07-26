@@ -755,3 +755,18 @@ GaussDet3D|||3D detection from GS with Gaussian-anchored multi-scale features
 VkSplat|||Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM
 Octree-GS|||Octree spatial partitioning + LOD management
 MRO-GWM|||Object-centric Gaussian world model for rigid bodies; canonical Gaussian + spatio-temporal transformer predicts rigid body motion; supports model-predictive control for non-prehensile manipulation
+
+GrainGS
+GLAM-SLAM
+SubSplat
+ATSplat
+3D-GIMP
+LB-Edit
+FlexiAvatar
+ZeroSplat
+CaT-GS
+FF-ProCams
+i3dgs
+VIGS-SLAM
+ECoNGS
+AniGS
