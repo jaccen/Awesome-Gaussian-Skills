@@ -3,9 +3,9 @@ name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering."
 license: Apache-2.0
 metadata:
-  version: "0.7.1"
+  version: "0.8.0"
   author: jaccen
-  tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive"]
+  tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive", "spec-first", "sculpting", "code-first"]
   disable-model-invocation: true
   user-invocable: true
 ---
@@ -27,6 +27,186 @@ Prototype specification for integrating MCP (Model Context Protocol) with 3DGS r
                         │  Tool calls          │  WebSocket/HTTP       │  WebGL/WebGPU/
                         │  (MCP protocol)       │  transport            │  HiGS/DDF-GS
 ```
+
+## Spec-First Sculpting Pipeline (v0.8.0)
+
+> **Design inspiration**: img2threejs (GitHub: img2threejs/img2threejs) — open-source AI Skill that converts a single image into an interactive Three.js 3D model via a stage-gated sculpting pipeline. We borrow two core principles: (1) **spec-first** — define quality criteria and component hierarchy before any rendering; (2) **stage-gated sculpting** — progressive refinement with acceptance checks at each stage.
+
+### Why Spec-First for MCP Rendering?
+
+The original MCP pipeline was **reactive**: user issues a voice command → agent maps to a tool → render → verify. This works for single-step edits but fails for complex scene construction because:
+
+- No upfront quality criteria → agent cannot self-assess before rendering
+- No stage gates → errors compound across steps (bad camera → bad selection → bad edit)
+- No component hierarchy → edits are flat, no part-level control
+
+**The fix**: Introduce a `define_scene_spec` tool that runs *before* any sculpting/editing tools. This produces a machine-readable Object Spec that subsequent tools reference as acceptance criteria.
+
+### The 6-Stage Sculpting Pipeline
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    SPEC-FIRST SCULPTING                      │
+│                                                             │
+│  ┌──────────────┐                                           │
+│  │ define_scene │  ← Object Spec: component hierarchy,      │
+│  │ _spec        │    material system, quality criteria      │
+│  └──────┬───────┘                                           │
+│         │                                                   │
+│         ▼                                                   │
+│  Stage 1: blockout    → Bounding boxes, camera framing     │
+│         │  gate: bbox coverage ≥ spec.target_coverage?      │
+│         ▼                                                   │
+│  Stage 2: structural  → Part decomposition, hierarchy      │
+│         │  gate: part count & nesting matches spec?         │
+│         ▼                                                   │
+│  Stage 3: form        → Gaussian density/scale/rotation     │
+│         │  gate: PSNR estimate ≥ spec.min_psnr?             │
+│         ▼                                                   │
+│  Stage 4: material    → PBR/SH assignment per part         │
+│         │  gate: material count per part matches spec?      │
+│         ▼                                                   │
+│  Stage 5: surface     → Normal consistency, thin structures │
+│         │  gate: normal consistency score ≥ spec.threshold? │
+│         ▼                                                   │
+│  Stage 6: lighting    → Environment, shadows, AO           │
+│            gate: render quality score ≥ spec.target_score?  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+Each stage is an MCP tool call. The agent renders a frame after each stage, evaluates against the gate, and either advances or retries. This mirrors img2threejs's `blockout → structural → form → material → surface → lighting` flow.
+
+### Gate Evaluation Protocol
+
+For each stage gate, the agent follows this protocol:
+
+```
+1. Execute stage tool (e.g., sculpt_form with parameters)
+2. Call render_frame() to get current visual state
+3. Call query_scene(query_type="stats") to get quantitative metrics
+4. Compare metrics against spec gate criteria
+5. If pass → advance to next stage
+6. If fail → adjust parameters and retry (max 3 attempts)
+7. If 3 failures → report to user with diagnostic info
+```
+
+### Voice-Driven Sculpting Example
+
+```
+User: "Build me a 3D scene of a desk with a monitor and keyboard"
+
+Agent pipeline:
+  1. define_scene_spec(
+       components: ["desk", "monitor", "keyboard"],
+       hierarchy: {"desk": [], "monitor": ["screen", "stand"], "keyboard": ["keys", "body"]},
+       quality: {min_psnr: 25, target_coverage: 0.85, normal_consistency: 0.8}
+     )
+     → spec_id: "desk_scene_v1"
+
+  2. sculpt_pipeline(stage="blockout", spec_id="desk_scene_v1")
+     → Places bounding boxes for desk, monitor, keyboard
+     → Gate: coverage = 0.90 ✓ (≥ 0.85)
+
+  3. sculpt_pipeline(stage="structural", spec_id="desk_scene_v1")
+     → Decomposes monitor into screen + stand, keyboard into keys + body
+     → Gate: part count = 5, matches hierarchy ✓
+
+  4. sculpt_pipeline(stage="form", spec_id="desk_scene_v1")
+     → Adjusts Gaussian density on each part
+     → Gate: PSNR estimate = 27.3 ✓ (≥ 25)
+
+  5. sculpt_pipeline(stage="material", spec_id="desk_scene_v1")
+     → Assigns: desk=wood, monitor_screen=glass, keyboard=plastic
+     → Gate: materials per part ✓
+
+  6. sculpt_pipeline(stage="surface", spec_id="desk_scene_v1")
+     → Enforces normal consistency on flat surfaces
+     → Gate: normal_consistency = 0.85 ✓ (≥ 0.8)
+
+  7. sculpt_pipeline(stage="lighting", spec_id="desk_scene_v1")
+     → Adds desk lamp environment light
+     → Gate: quality_score = 0.87 ✓ (≥ 0.85)
+
+  8. export_scene_code(spec_id="desk_scene_v1", format="threejs+splat")
+     → Outputs: scene.js (procedural geometry) + scene.splat (3DGS data)
+```
+
+## Code-First Rendering Philosophy (v0.8.0)
+
+> **Design inspiration**: img2threejs outputs pure Three.js code (not GLB/OBJ/PLY), making every model fully editable, version-controllable, and lightweight. We adopt this philosophy for 3DGS scene export.
+
+### Traditional 3DGS Export vs Code-First Export
+
+| Aspect | Traditional (.ply/.splat) | Code-First (.js + .splat) |
+|--------|--------------------------|--------------------------|
+| Editability | Binary blob, hard to edit | Source code, any field adjustable |
+| Version control | Binary diff, no merge | Text diff, git-friendly |
+| File size | Full Gaussian set (MB-GB) | Code skeleton (KB) + compressed splat data |
+| Scene composition | Single flat Gaussian cloud | Hierarchical code with part-level control |
+| Interaction logic | Must be added externally | Embedded in code |
+| 3DGS data | All in one file | Separate .splat file loaded by code |
+| Procedural elements | Not supported | Parametric geometry in code (e.g., desk surface = PlaneGeometry) |
+
+### Hybrid: Procedural Code + 3DGS Splatting
+
+The key insight: **not everything needs to be Gaussians**. For a desk scene:
+- Desk surface → procedural `BoxGeometry` in code (simple, editable, lightweight)
+- Monitor screen texture → procedural `MeshStandardMaterial` (or 3DGS if view-dependent)
+- Complex organic objects → 3DGS splatting data (where procedural code can't compete)
+
+```javascript
+// Code-first export example: desk_scene.js
+import * as THREE from 'three';
+import { SplatLoader } from './splat-loader.js';
+
+export function createDeskScene() {
+  const scene = new THREE.Scene();
+  
+  // === Procedural geometry (from sculpting spec) ===
+  // Desk: simple parametric geometry
+  const desk = new THREE.Mesh(
+    new THREE.BoxGeometry(1.2, 0.05, 0.6),
+    new THREE.MeshStandardMaterial({ color: 0x8B4513, roughness: 0.7 })
+  );
+  desk.position.set(0, 0.75, 0);
+  scene.add(desk);
+  
+  // Keyboard: procedural + label-based grouping
+  const keyboardGroup = new THREE.Group();
+  // ... key meshes generated procedurally ...
+  scene.add(keyboardGroup);
+  
+  // === 3DGS splatting (for complex/organic elements) ===
+  // Monitor: splatting data for view-dependent reflections
+  const monitorSplat = new SplatLoader();
+  monitorSplat.load('monitor.splat').then(splat => {
+    splat.setPosition(0, 0.95, -0.15);
+    scene.add(splat);
+  });
+  
+  // === Lighting (from sculpting stage 6) ===
+  const lamp = new THREE.PointLight(0xFFE4B5, 0.8);
+  lamp.position.set(0.4, 1.2, 0.2);
+  scene.add(lamp);
+  
+  return scene;
+}
+```
+
+### When to Use Code-First vs Pure Splat
+
+| Scene Element | Recommendation | Why |
+|--------------|---------------|-----|
+| Flat surfaces (walls, floors, desks) | Procedural code | Simple, editable, tiny file size |
+| Parametric objects (cabinets, shelves) | Procedural code | Adjust dimensions in code |
+| Organic objects (plants, food, fabric) | 3DGS splat | Can't match quality procedurally |
+| View-dependent surfaces (screens, mirrors) | 3DGS splat | SH coefficients capture view dependence |
+| Articulated parts (joints, hinges) | Procedural code | Joint parameters are explicit in code |
+| Mixed scenes (most real cases) | Hybrid code + splat | Best of both worlds |
+
+### SLAT Connection
+
+The code-first approach connects to SLAT (see `references/slat-unified-representation.md`): the structured latent's voxel grid naturally maps to a procedural geometry skeleton, while the per-voxel features decode to 3DGS splatting for complex regions. **SLAT encode → hierarchical decode: simple voxels → procedural code, complex voxels → 3DGS splats.**
 
 ## MCP Tools Specification
 
@@ -410,10 +590,242 @@ Integrates Holi-Spatial (ICML 2026 Oral) data pipeline for automated spatial ann
 
 **Use cases**: VR/AR scene viewing, stereoscopic 3DGS preview, dual-eye rendering optimization
 
+### Tool 18: `define_scene_spec`
+
+```json
+{
+  "name": "define_scene_spec",
+  "description": "Define an Object Spec before any sculpting or editing. Establishes component hierarchy, material system, and quality gate criteria. Inspired by img2threejs spec-first methodology. Must be called before sculpt_pipeline stages.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "components": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Top-level component names (e.g., ['desk', 'monitor', 'keyboard'])"
+      },
+      "hierarchy": {
+        "type": "object",
+        "description": "Part decomposition tree. Keys are component names, values are arrays of sub-part names.",
+        "additionalProperties": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "materials": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "type": {"enum": ["procedural", "pbr", "splat", "hybrid"]},
+            "params": {"type": "object"}
+          }
+        },
+        "description": "Material system definition (procedural code, PBR attributes, or 3DGS splat)"
+      },
+      "quality_gates": {
+        "type": "object",
+        "properties": {
+          "min_psnr": {"type": "number", "default": 20},
+          "target_coverage": {"type": "number", "default": 0.8, "description": "Fraction of bbox occupied by geometry"},
+          "normal_consistency": {"type": "number", "default": 0.7},
+          "max_gaussian_count": {"type": "integer", "default": 500000}
+        }
+      },
+      "scene_id": {"type": "string", "description": "Existing scene to associate spec with, or omit for new scene"}
+    },
+    "required": ["components"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "spec_id": "string",
+      "stage_order": {"type": "array", "items": {"type": "string"}, "description": "['blockout', 'structural', 'form', 'material', 'surface', 'lighting']"},
+      "validation": "object"
+    }
+  }
+}
+```
+
+**Use cases**: Voice-driven scene construction, quality-controlled 3DGS editing, hierarchical part-level scene management
+
+### Tool 19: `sculpt_pipeline`
+
+```json
+{
+  "name": "sculpt_pipeline",
+  "description": "Execute one stage of the spec-first sculpting pipeline. Each stage refines the scene progressively: blockout (bounding boxes) → structural (part decomposition) → form (Gaussian density/scale) → material (PBR/SH) → surface (normal consistency) → lighting (environment). Automatically evaluates stage gate after execution.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "spec_id": {"type": "string", "description": "Spec ID from define_scene_spec"},
+      "stage": {
+        "enum": ["blockout", "structural", "form", "material", "surface", "lighting"],
+        "description": "Sculpting stage to execute"
+      },
+      "params": {
+        "type": "object",
+        "description": "Stage-specific parameters (varies by stage)",
+        "properties": {
+          "blockout": {
+            "type": "object",
+            "properties": {
+              "auto_layout": {"type": "boolean", "default": true, "description": "Auto-arrange component bounding boxes"},
+              "layout_hint": {"type": "string", "description": "Natural language layout guidance"}
+            }
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "density_strategy": {"enum": ["uniform", "curvature-aware", "saliency-weighted"], "default": "saliency-weighted"},
+              "target_count": {"type": "integer", "description": "Target Gaussian count for this stage"}
+            }
+          },
+          "material": {
+            "type": "object",
+            "properties": {
+              "infer_from_appearance": {"type": "boolean", "default": false, "description": "Use InvSplat inverse feed-forward"},
+              "material_assignments": {"type": "object", "description": "Part name → material name mapping"}
+            }
+          },
+          "lighting": {
+            "type": "object",
+            "properties": {
+              "environment_map": {"type": "string", "description": "HDRI environment map URL or preset name"},
+              "enable_shadows": {"type": "boolean", "default": true},
+              "enable_ao": {"type": "boolean", "default": true}
+            }
+          }
+        }
+      },
+      "max_retries": {"type": "integer", "default": 3, "description": "Max retry attempts if gate fails"}
+    },
+    "required": ["spec_id", "stage"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "stage": "string",
+      "gate_passed": "boolean",
+      "gate_metrics": "object",
+      "gate_criteria": "object",
+      "retries_used": "integer",
+      "next_stage": {"type": "string", "description": "Next stage if gate passed, or 'retry'/'failed'"}
+    }
+  }
+}
+```
+
+**Gate criteria per stage**:
+
+| Stage | Gate Metric | Source | Criteria |
+|-------|------------|--------|----------|
+| blockout | bbox_coverage | query_scene stats | ≥ spec.quality_gates.target_coverage |
+| structural | part_count_match | query_scene segmentation | Matches spec.hierarchy part count |
+| form | psnr_estimate | render_frame + metric | ≥ spec.quality_gates.min_psnr |
+| material | material_coverage | query_scene materials | All parts have assigned materials |
+| surface | normal_consistency | query_scene stats | ≥ spec.quality_gates.normal_consistency |
+| lighting | quality_score | render_frame + perceptual metric | ≥ 0.8 (relative scale) |
+
+**Use cases**: Progressive scene construction, quality-gated 3DGS editing, automated scene refinement with acceptance checks
+
+### Tool 20: `export_scene_code`
+
+```json
+{
+  "name": "export_scene_code",
+  "description": "Export the current scene as Three.js code + 3DGS splat data (code-first rendering philosophy). Simple/parametric elements become procedural Three.js geometry code; complex/organic elements become compressed .splat files. Produces a version-controllable, editable export instead of a binary blob.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "spec_id": {"type": "string", "description": "Spec ID for component hierarchy and material mapping"},
+      "format": {
+        "enum": ["threejs+splat", "threejs_only", "splat_only"],
+        "default": "threejs+splat",
+        "description": "Export format: hybrid (code+splat), pure code, or pure splat"
+      },
+      "code_options": {
+        "type": "object",
+        "properties": {
+          "module_format": {"enum": ["esm", "commonjs"], "default": "esm"},
+          "include_comments": {"type": "boolean", "default": true},
+          "split_files": {"type": "boolean", "default": true, "description": "Split into scene.js + per-part files"},
+          "interaction_hooks": {"type": "boolean", "default": true, "description": "Include interaction event hooks in code"}
+        }
+      },
+      "splat_compression": {
+        "type": "object",
+        "properties": {
+          "format": {"enum": ["ply", "splat", "spz", "ksplat"], "default": "splat"},
+          "quantization": {"enum": ["f32", "f16", "int8"], "default": "f16"},
+          "prune_threshold": {"type": "number", "default": 0.01, "description": "Opacity pruning threshold"}
+        }
+      },
+      "partition_strategy": {
+        "enum": ["spec_hierarchy", "spatial", "flat"],
+        "default": "spec_hierarchy",
+        "description": "How to partition scene into code-vs-splat: spec_hierarchy uses component parts, spatial uses voxel blocks, flat exports all as splat"
+      }
+    },
+    "required": ["spec_id"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "code_file": "string (file path to .js scene code)",
+      "splat_files": {"type": "array", "items": {"type": "string"}, "description": "File paths to .splat data per partition"},
+      "manifest": {
+        "type": "object",
+        "description": "Scene manifest: part → (code function | splat file) mapping",
+        "properties": {
+          "procedural_parts": "array",
+          "splat_parts": "array",
+          "total_code_size_kb": "number",
+          "total_splat_size_mb": "number"
+        }
+      },
+      "scene_graph": "object"
+    }
+  }
+}
+```
+
+**Partition strategy**:
+
+```javascript
+// spec_hierarchy partitioning logic:
+for (const component of spec.components) {
+  const partType = classifyPart(component);  // procedural | splat | hybrid
+  if (partType === 'procedural') {
+    // Generate Three.js geometry code
+    codeFile += generateGeometryCode(component, spec);
+  } else if (partType === 'splat') {
+    // Export Gaussians as .splat file
+    splatFile = exportGaussians(getGaussiansByLabel(component));
+  } else {  // hybrid
+    // Simple base as code, complex details as splat
+    codeFile += generateBaseGeometryCode(component);
+    splatFile = exportGaussians(getDetailGaussians(component));
+  }
+}
+```
+
+**Use cases**: Version-controllable 3DGS scene export, web-deployable hybrid rendering, editable scene handoff between agents or humans, lightweight scene sharing
+
 ## Voice Intent Mapping
 
 | Voice Intent Example | Intent Type | MCP Tool Call |
 |----------------------|-------------|---------------|
+| "Build a scene with a desk and monitor" | Scene spec definition | `define_scene_spec` (components=["desk","monitor"]) |
+| "Start with the rough layout" | Sculpting: blockout | `sculpt_pipeline` (stage="blockout") |
+| "Decompose into parts" | Sculpting: structural | `sculpt_pipeline` (stage="structural") |
+| "Refine the geometry" | Sculpting: form | `sculpt_pipeline` (stage="form") |
+| "Assign materials" | Sculpting: material | `sculpt_pipeline` (stage="material") |
+| "Fix the surfaces" | Sculpting: surface | `sculpt_pipeline` (stage="surface") |
+| "Set up lighting" | Sculpting: lighting | `sculpt_pipeline` (stage="lighting") |
+| "Export as editable code" | Code-first export | `export_scene_code` (format="threejs+splat") |
+| "Export scene code only" | Procedural-only export | `export_scene_code` (format="threejs_only") |
 | "What is to the left of the chair?" | Spatial grounding query | `query_spatial_context` (mode="grounding") |
 | "How far is the table from the door?" | Spatial measurement | `query_spatial_context` (mode="measurement") |
 | "Where did this 3D model come from?" | Provenance query | `query_provenance` (query_type="lineage") |
@@ -469,6 +881,8 @@ Agent:
 | Transport | WebSocket (localhost) | Working |
 | Voice STT | Whisper API / Web Speech API | Available |
 | Agent integration | Claude Code / TeleClaw MCP client | Pending |
+| Spec-first sculpting | define_scene_spec + sculpt_pipeline (6 stages) | Prototype (v0.8.0) |
+| Code-first export | Three.js code generator + splat partitioner | Prototype (v0.8.0) |
 
 ## Current Renderer Compatibility
 
@@ -515,7 +929,9 @@ Agent:
 - [ ] v0.5: Real-time streaming (WebSocket-based progressive rendering)
 - [ ] v0.6: DDF-GS distillation integration (shadow/AO/reflection rendering)
 - [ ] v0.7: HiGS hierarchical rendering backend (950+ FPS target)
-- [ ] v0.8: Bayesian density control (DP-Splat) + MoE deformation (MoE-GS/MoDE) + Surgical tracking (Track2Map)
+- [x] v0.8: Spec-first sculpting pipeline (define_scene_spec + sculpt_pipeline 6 stages) + Code-first rendering export (export_scene_code) + Bayesian density control (DP-Splat) + MoE deformation (MoE-GS/MoDE) + Surgical tracking (Track2Map)
+- [ ] v0.9: SLAT-integrated latent editing (edit structured latent → re-decode to 3DGS)
+- [ ] v1.0: Full voice-driven scene construction (spec → sculpt → export pipeline)
 
 ## Rules
 
@@ -524,6 +940,9 @@ Agent:
 3. **Respect GPU limits**: Check available VRAM before loading large scenes; provide downsampling option
 4. **Report rendering time**: Always include render_time_ms in render_frame output for performance monitoring
 5. **Safety gate**: Operations affecting >10% of Gaussians require explicit user confirmation
+6. **Spec before sculpt** (v0.8.0): `sculpt_pipeline` must not be called without a valid `spec_id`. The spec defines acceptance criteria; without it, gate evaluation is impossible.
+7. **Stage order enforced** (v0.8.0): Sculpting stages must execute in order: blockout → structural → form → material → surface → lighting. Skipping stages requires explicit user override.
+8. **Code-first default** (v0.8.0): When exporting a scene, prefer `export_scene_code` with `format="threejs+splat"` over pure .ply export. Pure .ply should only be used when the user explicitly requests a binary blob.
 
 > Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)
 
@@ -545,6 +964,9 @@ The following are categorical prohibitions. Violating any of these invalidates t
 - **3dgs-spatial-agent** — Spatial intelligence agent (use for agent-driven 3D interaction)
 - **3dgs-articulated-reasoner** — Articulated object reasoning (use for interactive object manipulation)
 - **3dgs-visualizer** — Visualization (use for rendering pipeline output quality assessment)
+- **cad-mesh-3dgs** — CAD/Mesh/3DGS conversion (use for code-first export partitioning and SLAT encoding)
+- **nerf-to-3dgs-migrator** — NeRF migration (use for SLAT-based component mapping)
+- **SLAT unified representation** — See `references/slat-unified-representation.md` for the shared theoretical framework underlying scene code-first export and latent editing
 
 ## Guardrail: Do Not Apply From Memory
 

@@ -1,10 +1,10 @@
 ﻿---
 name: nerf-to-3dgs-migrator
-description: "Migrate NeRF-based methods to 3DGS with step-by-step guidance. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry. Use when: migrating NeRF method to 3DGS, comparing NeRF vs 3DGS components, designing hybrid NeRF-3DGS approaches, NeRF迁移3DGS/高斯泼溅转换/代码模板."
+description: "Migrate NeRF-based methods to 3DGS via the SLAT unified encode-decode framework. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry. Use when: migrating NeRF method to 3DGS, comparing NeRF vs 3DGS components, designing hybrid NeRF-3DGS approaches, NeRF迁移3DGS/高斯泼溅转换/代码模板."
 license: Apache-2.0
 user-invocable: true
 metadata:
-  version: "1.5.0"
+  version: "1.6.0"
   author: jaccen
   tags: ["nerf", "3dgs", "gaussian-splatting", "migration", "code-template", "research"]
   when_to_use:
@@ -34,6 +34,61 @@ Before any migration, understand these fundamental differences:
 | Memory | Bounded (MLP params) | Unbounded (grows during training) |
 | Speed | Slow (per-pixel ray march) | Fast (parallel rasterization) |
 | Quality ceiling | High (continuous) | High (adaptive density) |
+
+## SLAT: Why NeRF→3DGS Migration Works
+
+> **v1.6.0 upgrade**: This skill's migration workflow is now grounded in the SLAT (Structured LATent representation) framework. See `../../references/slat-unified-representation.md` for the full theory.
+
+### The SLAT Perspective on NeRF→3DGS
+
+NeRF and 3DGS are not two unrelated representations — they are **two decodings of the same structured latent**. This is why migration is possible at all:
+
+```
+NeRF (continuous MLP field)
+       │
+       ▼  ENCODE: sample density + color on voxel grid
+┌──────────────────────┐
+│   SLAT               │
+│   (sparse voxel      │
+│    latent)           │
+└──────┬───────────────┘
+       │
+       ├── DECODE → 3D Gaussians (discrete, explicit)
+       └── DECODE → NeRF (continuous, implicit) ← original source
+```
+
+Under SLAT, NeRF→3DGS migration is a **re-decode** operation: encode the NeRF's continuous field into structured latent (by sampling on a voxel grid), then decode to discrete Gaussians. Each component migration step in this skill corresponds to a SLAT feature channel mapping:
+
+| Migration Step (this skill) | SLAT Feature Channel | Why It Maps |
+|------------------------------|---------------------|------------|
+| Positional Encoding → SH | Appearance feature | Both encode view-dependent color; SH is 3DGS-native |
+| Density (σ) → Opacity (α) | Geometry occupancy | σ sampled at voxel → α per Gaussian |
+| Color MLP → SH coefficients | Appearance feature | MLP output → explicit SH per Gaussian |
+| Deformation Field → offsets | Deformation hook | Temporal field → per-Gaussian offset at time t |
+| Appearance embedding → features | Appearance feature | Per-image vector → per-Gaussian feature |
+| Hash Grid → per-Gaussian features | Geometry+appearance | Multi-resolution → flat per-Gaussian vector |
+| Coarse-to-Fine → Progressive training | Training schedule | Both control resolution progression |
+
+### Conversion Loss Budget for NeRF→3DGS
+
+Under SLAT, NeRF→3DGS has **low total conversion loss** because:
+
+- **Encoding loss is low**: NeRF's continuous field can be densely sampled, capturing nearly all information
+- **Decoding loss is low**: 3DGS is a natural decode target — discrete Gaussians can approximate any continuous field
+
+This explains why NeRF→3DGS migration generally preserves quality, while the reverse (3DGS→NeRF) loses the explicit structure advantage.
+
+### When SLAT Helps vs When Direct Migration Is Better
+
+| Scenario | SLAT-Guided | Direct Component Migration |
+|----------|------------|--------------------------|
+| Migrating one method, one-on-one | ❌ Overkill | ✅ Simpler, faster |
+| Migrating to also support Mesh output | ✅ Encode once, decode to 3DGS + Mesh | ❌ Must redo for Mesh |
+| Need to quantify migration quality | ✅ Loss budget framework | ❌ No unified metric |
+| Designing a new hybrid NeRF-3DGS method | ✅ SLAT provides the theoretical basis | ❌ Ad-hoc |
+| Quick prototype migration | ❌ Latent overhead | ✅ Direct is faster |
+
+---
 
 ## Migration Workflow
 
@@ -288,7 +343,9 @@ The following are categorical prohibitions. Violating any of these invalidates t
 - **3dgs-method-compare** — Method comparison (use for comparing NeRF vs 3DGS approaches)
 - **3dgs-paper-reader** — Paper analysis (use for understanding NeRF and 3DGS papers)
 - **3dgs-code-reviewer** — Code review (use for verifying migration implementation)
-- **cad-mesh-3dgs** — CAD/Mesh integration (use for surface extraction post-migration)
+- **cad-mesh-3dgs** — CAD/Mesh integration (shares SLAT framework for Mesh↔3DGS conversion theory; use for surface extraction post-migration)
+- **3dgs-mcp-renderer** — MCP rendering (use for code-first export of migrated 3DGS scenes: `export_scene_code` partitions procedural geometry vs 3DGS splat based on SLAT encode-decode analysis)
+- **SLAT unified representation** — See `../../references/slat-unified-representation.md` for the shared theoretical framework
 
 ## Guardrail: Do Not Apply From Memory
 

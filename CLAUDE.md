@@ -1,8 +1,9 @@
 ﻿
+
 ---
 name: awesome-gaussian-skills
-version: "0.5.1"
-description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 789+ methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering, articulated reasoning, compression & deployment, training debugging."
+version: "0.6.0"
+description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 789+ methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering (spec-first sculpting + code-first export), articulated reasoning, compression & deployment, training debugging. SLAT unified representation framework for conversion skills."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin, Bayesian density control, MoE deformation, surgical SLAM, training-free semantic compression, deformable aggregation, PBR material splatting, 3DGS provenance analysis"
 arguments: [task]
 author: jaccen
@@ -24,14 +25,14 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 | `3dgs-method-compare` | `/3dgs-method-compare [method-a] [method-b]` | Compare methods across 11 dimensions (Router architecture) |
 | `3dgs-code-reviewer` | `/3dgs-code-reviewer [file]` | Review 3DGS code for 108+ bug patterns (Self-Check Loop) |
 | `3dgs-experiment-planner` | `/3dgs-experiment-planner [topic]` | Design experiments for top venues |
-| `cad-mesh-3dgs` | `/cad-mesh-3dgs [query]` | Bridge CAD/Mesh and 3DGS representations (61+ methods) |
+| `cad-mesh-3dgs` | `/cad-mesh-3dgs [query]` | Bridge CAD/Mesh and 3DGS via SLAT framework (61+ methods) |
 | `3dgs-visualizer` | `/3dgs-visualizer [chart-type]` | Generate publication-quality charts |
 | `cg-paper-writing` | `/cg-paper-writing [section]` | Write CG/3D vision papers — CVPR/SIGGRAPH (Router architecture) |
 | `3dgs-engineering-guide` | `/3dgs-engineering-guide [use-case]` | Deploy 3DGS from research to production (Router architecture) |
-| `nerf-to-3dgs-migrator` | `/nerf-to-3dgs-migrator [method]` | Migrate NeRF methods to 3DGS |
+| `nerf-to-3dgs-migrator` | `/nerf-to-3dgs-migrator [method]` | Migrate NeRF methods to 3DGS via SLAT framework |
 | `patent-software-ip` | `/patent-software-ip [project]` | Generate patent/copyright docs |
 | `3dgs-spatial-agent` | `/3dgs-spatial-agent [query]` | 3DGS/CAD/Mesh spatial intelligence agent |
-| `3dgs-mcp-renderer` | `/3dgs-mcp-renderer [action]` | MCP-controlled Three.js/3DGS rendering (17 tools) |
+| `3dgs-mcp-renderer` | `/3dgs-mcp-renderer [action]` | MCP-controlled Three.js/3DGS rendering (20 tools: spec-first sculpting + code-first export) |
 | `3dgs-articulated-reasoner` | `/3dgs-articulated-reasoner [task]` | Articulated object reasoning & digital twin |
 | `3dgs-compression-deploy` | `/3dgs-compression-deploy [target]` | Compress & deploy 3DGS models (quantize, prune, VQ, stream, Web/Mobile) |
 | `3dgs-training-debugger` | `/3dgs-training-debugger [symptom]` | Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns) |
@@ -49,6 +50,7 @@ references/
 |-- baselines.md               # Baseline methods & datasets
 |-- venues.md                  # Venue-specific conventions
 |-- terminology.md             # Domain terminology glossary
+|-- slat-unified-representation.md # SLAT framework: shared encode-decode theory for conversion skills
 ```
 
 ## Key Conventions
@@ -64,6 +66,9 @@ references/
 - **Stage Gates**: cg-paper-writing includes SG-1/SG-2/SG-3 non-skippable gates
 - New skill (v0.4.4): 3dgs-training-debugger — Runtime training failure diagnosis (60+ runtime bug patterns, VRAM management, convergence analysis, novel method stability)
 - MCP implementation (v0.5.0): mcp-server/ — 24 MCP tools (11 fully implemented, 13 schema stubs), Three.js WebSocket renderer, 24-pattern voice intent mapper, headless mode support
+- **Spec-First Sculpting Pipeline** (v0.6.0, 3dgs-mcp-renderer v0.8.0): 6-stage gate-gated sculpting (blockout -> structural -> form -> material -> surface -> lighting); 3 new tools: `define_scene_spec`, `sculpt_pipeline`, `export_scene_code`; each stage has acceptance gates before advancing
+- **Code-First Rendering Philosophy** (v0.6.0): hybrid procedural code + 3DGS splatting — procedural geometry rendered as Three.js code, complex photoreal elements exported as .splat data; default export mode is code + data, not GLB/OBJ
+- **SLAT Unified Representation Framework** (v0.6.0): shared `references/slat-unified-representation.md` provides encode-decode theory for all conversion skills (cad-mesh-3dgs v1.7.0, nerf-to-3dgs-migrator v1.6.0); methods classified as Category A (Direct Pairwise), B (Implicit Latent), C (Explicit SLAT); replaces ad-hoc pairwise conversion tables with principled conversion-loss budgets
 - Latest additions (2026-07 v0.4.3): GADA (ICML 2026), InvSplat, MGM, DualPhys-GS, GaussTrace (ICML 2026), StereoGS
 - Previous additions (2026-07 v0.4.2): SalientGS, DP-Splat, Grassmannian Splatting, MoE-GS/MoDE (TPAMI 2026), HyperGS, MAC-Splat (ECCV 2026), AsySplat, GeoGS-SLAM v2, AnythingReality, Track2Map (MICCAI 2026), HoloTetSphere (ECCV 2026), CoSAG, StructSplat (ECCV 2026), ABot-3DWorld 0, PEAR (SIGGRAPH 2026), CAGS (SIGGRAPH 2026), PanoLOG, SyncSpace, SplatCtrl (ICRA 2026), StereoSplat+ (IROS 2026), FreDeGS
 - Previous additions (2026-06/07 v0.4.1): FastGS, GaussianSplatting-SLAM-v2, GS-Map-SLAM, ArtiTwinSplat, Holi-Spatial, Spatial-TTT, Eulerian GS, Energy-GS, NG-GS, RAF, PDEO, UniSHARP, EvoGS, GP-3DGS, DISCOVERSE, gsplat, PDE-Constrained 3DGS, Capacity-Controlled Stylization, Flux-GS, Provable Pruning via Coresets, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R, Argus, World from Motion
@@ -83,3 +88,8 @@ references/
 - [x] Stage Gates for paper writing (1 skill)
 - [ ] Submit PR to `anthropics/skills` official repository (materials prepared: `docs/anthropic-pr-preparation.md`)
 - [x] MCP protocol implementation (v0.5.0): 24 tool server in `mcp-server/`, Three.js browser renderer, voice intent mapper (24 patterns)
+- [x] Spec-First Sculpting Pipeline (v0.6.0): 3dgs-mcp-renderer v0.8.0 — 6-stage gate-gated sculpting with `define_scene_spec` + `sculpt_pipeline` + `export_scene_code` (17 -> 20 tools)
+- [x] Code-First Rendering (v0.6.0): 3dgs-mcp-renderer v0.8.0 — hybrid procedural code + 3DGS splatting export, default output is Three.js code + .splat data
+- [x] SLAT Unified Representation Framework (v0.6.0): shared `references/slat-unified-representation.md`, adopted by cad-mesh-3dgs v1.7.0 and nerf-to-3dgs-migrator v1.6.0
+
+> AI生成

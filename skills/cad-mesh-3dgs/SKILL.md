@@ -1,10 +1,10 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge, PBR material generation. Analyzes 62+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
+description: "Bridge CAD, Mesh, and 3DGS representations via the SLAT unified encode-decode framework. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge, PBR material generation. Analyzes 62+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
 license: Apache-2.0
 user-invocable: true
 metadata:
-  version: "1.6.1"
+  version: "1.7.0"
   author: jaccen
   tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing", "tetsphere", "physics-simulation"]
   when_to_use:
@@ -29,10 +29,77 @@ You are a senior researcher at the intersection of CAD/CAM, geometric processing
 - Compare geometry quality across mesh, surfel, and Gaussian representations
 - Debug common issues in mesh-Gaussian hybrid methods
 - Evaluate B-rep / parametric reconstruction from images via 3DGS
+- **Reason about conversions through the SLAT unified framework** (encode-decode, not pairwise)
+
+## Section 0: SLAT — The Unified Conversion Framework
+
+> **v1.7.0 upgrade**: This skill's conversion methods are now organized through the lens of SLAT (Structured LATent representation). See `../../references/slat-unified-representation.md` for the full theoretical framework.
+
+### Why SLAT Replaces Pairwise Conversion Tables
+
+Previously, this skill treated each conversion (Mesh→3DGS, 3DGS→Mesh, 3DGS→CAD, etc.) as an isolated pairwise problem with its own pipeline. SLAT reframes all conversions through a **shared encode-decode pattern**:
+
+```
+Source Representation
+       │
+       ▼  ENCODE (lossy: captures what fits in sparse voxel grid)
+┌──────────────────────┐
+│   SLAT (Structured   │
+│   LATent)            │
+│                      │
+│  Sparse voxel grid   │
+│  Per-voxel features: │
+│  - geometry          │
+│  - appearance        │
+│  - semantics         │
+│  - deformation       │
+└──────────────────────┘
+       │
+       ├── DECODE → 3D Gaussians (μ, Σ, α, SH)
+       ├── DECODE → Mesh (vertices, faces)
+       ├── DECODE → Radiance Field (MLP weights)
+       └── DECODE → Parametric CAD (primitives, B-rep)
+```
+
+### Conversion Through the SLAT Lens
+
+| Conversion | SLAT Path | Encoding Loss | Decoding Loss |
+|-----------|-----------|--------------|--------------|
+| Mesh → 3DGS | Mesh → SLAT → 3DGS | Medium (no appearance in mesh) | Low (3DGS is natural target) |
+| 3DGS → Mesh | 3DGS → SLAT → Mesh | Low (rich geometry) | Medium (no view-dependent color) |
+| 3DGS → CAD | 3DGS → SLAT → CAD | High (no parametric structure) | Low (primitives are simple) |
+| Image → 3DGS | Image → SLAT (generative) → 3DGS | Depends on model | Low |
+
+### Method Classification Through SLAT
+
+The 62+ methods in this skill's database are now classified into three SLAT categories:
+
+| Category | Description | Examples |
+|----------|------------|---------|
+| **A: Direct Pairwise** | Converts directly, no intermediate | SuGaR, mesh→Gaussian sampling |
+| **B: Implicit Latent** | Uses undocumented intermediate | NeuS2 (SDF as proto-latent), BrepGaussian |
+| **C: Explicit SLAT** | Uses formal structured latent | TRELLIS (image→SLAT→multi-format) |
+
+**Research direction**: Upgrading Category A methods to Category C (introducing explicit SLAT intermediate) is an open, productive direction. When recommending methods, prefer Category B/C for multi-target conversions, Category A for single one-time conversions.
+
+### When to Apply SLAT Framework
+
+| Scenario | Use SLAT | Use Direct Pairwise |
+|----------|---------|-------------------|
+| Convert to multiple target formats | ✅ Encode once, decode many | ❌ Redundant work |
+| Need quantifiable conversion quality | ✅ Encoding + decoding loss budget | ❌ No unified metric |
+| Designing a new conversion method | ✅ Theoretical grounding | ❌ Ad-hoc |
+| Comparing conversion methods | ✅ Common latent for fair comparison | ❌ Different bases |
+| Single one-time conversion | ❌ Overkill | ✅ Faster |
+| Real-time conversion (< 1s) | ❌ Latent overhead | ✅ Direct is faster |
+
+---
 
 ## Core Knowledge: Representation Spectrum
 
 ### The Geometry Representation Landscape
+
+> **SLAT note**: The spectrum below is the *surface view* of representations. Under SLAT, all these formats are decodings of the same structured latent — the spectrum becomes a decode-target selector, not a set of isolated formats.
 
 ```
 Structured ◄──────────────────────────────────────────► Unstructured
@@ -415,6 +482,8 @@ def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000)
 ## Section 7: Methods Database
 
 > **Loaded on demand** — See [Methods Database](references/methods-database.md) for the complete database covering: Mesh-Gaussian Hybrid (7 methods), Generation (8 methods including SEIG, TRELLIS.2, MeshWeaver), Articulated Object & Interaction (3 methods), CAD Reconstruction (6 methods), Surface Extraction (5 methods), Mesh Processing, Semantic Scene Decomposition, and Cross-Domain Applications (8 methods).
+>
+> **SLAT classification** (v1.7.0): Each method in the database is tagged with its SLAT category: `[A: Direct Pairwise]`, `[B: Implicit Latent]`, or `[C: Explicit SLAT]`. See Section 0 above for category definitions and the full SLAT framework at `../../references/slat-unified-representation.md`.
 
 ## Output Format
 
@@ -527,6 +596,9 @@ The following are categorical prohibitions. Violating any of these invalidates t
 - **3dgs-paper-reader** — Paper analysis (use for understanding mesh reconstruction papers)
 - **3dgs-articulated-reasoner** — Articulated reasoning (use for URDF/skeleton export)
 - **3dgs-experiment-planner** — Experiment design (use for surface reconstruction benchmarks)
+- **3dgs-mcp-renderer** — MCP rendering (use for code-first export of converted scenes: `export_scene_code` partitions procedural geometry vs 3DGS splat based on SLAT encode-decode)
+- **nerf-to-3dgs-migrator** — NeRF migration (shares SLAT framework for NeRF→3DGS conversion theory)
+- **SLAT unified representation** — See `../../references/slat-unified-representation.md` for the shared theoretical framework
 
 ## Guardrail: Do Not Apply From Memory
 
