@@ -1,3 +1,5 @@
+
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -344,6 +346,138 @@ Awesome-Gaussian-Skills/
 ```
 
 Each skill follows the **SKILL.md standard**, compatible with **Claude Code** (`.claude/`), **Cursor** (`.cursor/rules/`), **Windsurf**, and other AI Agent frameworks.
+
+## SplatVerse Studio: Short Video Creation
+
+SplatVerse Studio integrates **3D Gaussian Splatting** with a short-drama pipeline powered by the **Toonflow** engine, letting you go from text scripts to 3DGS-rendered video scenes.
+
+### Architecture
+
+```
+Toonflow Engine (:10588)          SplatVerse Studio
+┌──────────────────────┐         ┌───────────────────────────┐
+│  Script → Assets →    │  REST   │  Bridge (:10590)          │
+│  Storyboard → Video   │◄──────►│  ├─ Project Browser       │
+│                       │         │  ├─ Render Studio          │
+│  Vendor: 3dgs-renderer│         │  └─ MCP Tools (25 tools)  │
+└──────────────────────┘         │    MCP Renderer (:9842)   │
+                                  │  Studio Web (:5173)        │
+                                  └───────────────────────────┘
+```
+
+### Quick Start
+
+**Prerequisites:** Node.js ≥ 18, Toonflow app installed at `../AI应用/Toonflow-app`
+
+```bash
+# 1. Start all services (Toonflow + MCP Server + Bridge + Studio Web)
+npm run prod:full
+
+# 2. Open Studio Web
+#    http://localhost:5173
+```
+
+If you only need the 3DGS rendering tools without Toonflow:
+
+```bash
+npm run dev    # MCP + Bridge + Web, no Toonflow
+```
+
+### Creating a Short Video: Step by Step
+
+#### Step 1 — Write a Script in Toonflow
+
+Open the Toonflow web app (typically at `http://localhost:10588`). Create a project, write a script, and generate storyboards. Each storyboard is a scene with:
+
+- **Prompt** — text description for image/video generation
+- **Duration** — scene length in seconds
+- **Track** — scene grouping label
+
+Toonflow's pipeline: `Text → Script → Assets (roles, scenes, props) → Storyboards → Video`
+
+#### Step 2 — Browse Projects in Studio Web
+
+Open `http://localhost:5173` and navigate to **Projects**. You'll see all Toonflow projects. Click a project to view its storyboards.
+
+<details>
+<summary>Example: Creating a test project via API</summary>
+
+```bash
+# Login to Toonflow
+TOKEN=$(curl -s http://localhost:10588/api/login/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}' | jq -r '.data.token')
+
+# Create a script
+curl -s http://localhost:10588/api/script/addScript \
+  -H "Authorization: $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Forest Adventure","content":"# Forest Adventure\n## Scene 1...","projectId":1}'
+
+# Add storyboards
+curl -s http://localhost:10588/api/production/storyboard/batchAddStoryboardInfo \
+  -H "Authorization: $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scriptId": 1,
+    "projectId": 1,
+    "data": [
+      {
+        "prompt": "A misty forest at dawn, sunlight through trees",
+        "videoDesc": "Dawn mist over ancient forest",
+        "duration": 5,
+        "track": "Scene 1",
+        "state": "pending",
+        "src": "",
+        "shouldGenerateImage": 1,
+        "associateAssetsIds": []
+      }
+    ]
+  }'
+```
+
+</details>
+
+#### Step 3 — Render Storyboards as 3DGS Scenes
+
+Two rendering modes in **Render Studio** (`/render`):
+
+| Mode | What it does | When to use |
+|------|-------------|-------------|
+| **Direct 3DGS Render** | Render a single scene from a text description or `.ply` file | Quick preview without Toonflow |
+| **Batch Render from Toonflow** | Render multiple Toonflow storyboards as 3DGS scenes | Full short-video production |
+
+For batch rendering, enter the Toonflow **Project ID** and **Storyboard IDs** (comma-separated), then click **Render Batch**. The Bridge fetches storyboards from Toonflow, builds 3DGS scenes via MCP Server, and renders each storyboard frame.
+
+#### Step 4 — Monitor Render Progress
+
+Render progress streams via SSE (Server-Sent Events). You'll see toast notifications in the top-right corner as each storyboard renders. The Dashboard shows recent render tasks with progress bars.
+
+#### Step 5 — 3DGS as a Toonflow Vendor (Optional)
+
+To use 3DGS rendering directly inside Toonflow's image/video generation:
+
+```bash
+# Copy the vendor adapter to Toonflow
+cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
+```
+
+This registers 3DGS as both an image model (single-frame render) and video model (multi-frame animation) in Toonflow's vendor system.
+
+### Port Reference
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Toonflow Engine | 10588 | Short-drama creation (external app) |
+| MCP Renderer | 9842 | WebSocket 3DGS renderer |
+| Bridge Server | 10590 | REST API + SSE, Toonflow proxy |
+| Studio Web | 5173 | Vue 3 SPA frontend |
+
+### Troubleshooting
+
+- **"Toonflow engine not running"** — Start Toonflow: `npm run prod:full` or manually `node data/serve/app.js` in the Toonflow directory
+- **Projects page shows no storyboards** — Create a script first in Toonflow; storyboards belong to scripts
+- **3DGS vendor not available in Toonflow** — Copy `studio/bridge/vendor/3dgs-renderer.ts` to Toonflow's `data/vendor/` directory
 
 ## Contributing
 

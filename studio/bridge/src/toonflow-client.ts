@@ -170,7 +170,7 @@ export class ToonflowClient {
   }
 
   async getStoryboards(projectId: string | number, scriptId?: string | number): Promise<ToonflowStoryboard[]> {
-    // If scriptId is known, fetch full storyboard with assets; otherwise try general stats
+    // If scriptId is known, fetch storyboard data directly
     if (scriptId) {
       const res = await this.http.post('/api/production/getStoryboardData', {
         scriptId: Number(scriptId),
@@ -178,14 +178,19 @@ export class ToonflowClient {
       });
       return res.data?.data || res.data || [];
     }
-    // No scriptId — try fetching stats first to get script info
-    const stats = await this.getScript(String(projectId));
-    if (stats?.scriptId) {
-      const res = await this.http.post('/api/production/getStoryboardData', {
-        scriptId: Number(stats.scriptId),
-        projectId: Number(projectId),
-      });
-      return res.data?.data || res.data || [];
+    // No scriptId — fetch scripts list and use the first one
+    try {
+      const scripts = await this.getScripts(Number(projectId));
+      if (scripts && scripts.length > 0) {
+        const firstScriptId = scripts[0].id;
+        const res = await this.http.post('/api/production/getStoryboardData', {
+          scriptId: Number(firstScriptId),
+          projectId: Number(projectId),
+        });
+        return res.data?.data || res.data || [];
+      }
+    } catch {
+      // fall through
     }
     return [];
   }

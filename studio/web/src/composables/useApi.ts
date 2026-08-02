@@ -88,7 +88,7 @@ export async function getToonflowProjects(): Promise<any> {
 }
 
 export async function getToonflowStoryboards(projectId: string): Promise<any> {
-  const res = await api.get(`/toonflow/projects/${projectId}/storyboards`);
+  const res = await api.post(`/toonflow/projects/${projectId}/storyboards`, {});
   return res.data;
 }
 

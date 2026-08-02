@@ -1,4 +1,5 @@
 ﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -337,6 +338,138 @@ Awesome-Gaussian-Skills/
 
 每个技能遵循 **SKILL.md 标准**，兼容 **Claude Code**（`.claude/`）、**Cursor**（`.cursor/rules/`）、**Windsurf** 及其他 AI Agent 框架。
 
+## SplatVerse Studio：短视频创作
+
+SplatVerse Studio 将 **3D 高斯泼溅（3DGS）** 与 **Toonflow** 短剧引擎集成，从文本脚本到 3DGS 渲染视频场景一步到位。
+
+### 架构
+
+```
+Toonflow 引擎 (:10588)             SplatVerse Studio
+┌──────────────────────┐          ┌───────────────────────────┐
+│  脚本 → 资产 →        │  REST    │  Bridge 桥接 (:10590)      │
+│  分镜 → 视频          │◄───────►│  ├─ 项目浏览器              │
+│                       │          │  ├─ 渲染工作室              │
+│  供应商: 3dgs-renderer│          │  └─ MCP 工具（25 个）      │
+└──────────────────────┘          │    MCP 渲染器 (:9842)      │
+                                   │  Studio Web (:5173)        │
+                                   └───────────────────────────┘
+```
+
+### 快速启动
+
+**前提条件：** Node.js ≥ 18，Toonflow 应用已安装到 `../AI应用/Toonflow-app`
+
+```bash
+# 1. 一键启动所有服务（Toonflow + MCP 服务器 + Bridge + Studio Web）
+npm run prod:full
+
+# 2. 打开 Studio Web
+#    http://localhost:5173
+```
+
+如果只需要 3DGS 渲染工具，不需要 Toonflow：
+
+```bash
+npm run dev    # MCP + Bridge + Web，不含 Toonflow
+```
+
+### 创作短视频：分步指南
+
+#### 第一步 — 在 Toonflow 中编写脚本
+
+打开 Toonflow Web 应用（通常在 `http://localhost:10588`）。创建项目、编写脚本、生成分镜。每个分镜包含：
+
+- **提示词（Prompt）** — 用于图像/视频生成的文本描述
+- **时长（Duration）** — 场景秒数
+- **轨道（Track）** — 场景分组标签
+
+Toonflow 数据流：`文本 → 脚本 → 资产（角色/场景/道具）→ 分镜 → 视频`
+
+#### 第二步 — 在 Studio Web 中浏览项目
+
+打开 `http://localhost:5173`，进入**项目**页面。可以看到所有 Toonflow 项目。点击项目卡片查看分镜列表。
+
+<details>
+<summary>示例：通过 API 创建测试项目</summary>
+
+```bash
+# 登录 Toonflow
+TOKEN=$(curl -s http://localhost:10588/api/login/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}' | jq -r '.data.token')
+
+# 创建脚本
+curl -s http://localhost:10588/api/script/addScript \
+  -H "Authorization: $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"森林奇遇","content":"# 森林奇遇\n## 第一幕...","projectId":1}'
+
+# 添加分镜
+curl -s http://localhost:10588/api/production/storyboard/batchAddStoryboardInfo \
+  -H "Authorization: $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scriptId": 1,
+    "projectId": 1,
+    "data": [
+      {
+        "prompt": "A misty forest at dawn, sunlight through trees",
+        "videoDesc": "清晨薄雾笼罩古老森林",
+        "duration": 5,
+        "track": "Scene 1",
+        "state": "pending",
+        "src": "",
+        "shouldGenerateImage": 1,
+        "associateAssetsIds": []
+      }
+    ]
+  }'
+```
+
+</details>
+
+#### 第三步 — 将分镜渲染为 3DGS 场景
+
+在**渲染工作室**（`/render`）中有两种渲染模式：
+
+| 模式 | 功能 | 适用场景 |
+|------|------|----------|
+| **直接 3DGS 渲染** | 从文本描述或 `.ply` 文件渲染单个场景 | 不依赖 Toonflow 的快速预览 |
+| **从 Toonflow 批量渲染** | 将多个 Toonflow 分镜渲染为 3DGS 场景 | 完整短视频生产 |
+
+批量渲染时，输入 Toonflow 的**项目 ID** 和**分镜 ID**（逗号分隔），点击**批量渲染**。Bridge 会从 Toonflow 获取分镜数据，通过 MCP 服务器构建 3DGS 场景，逐帧渲染每个分镜。
+
+#### 第四步 — 监控渲染进度
+
+渲染进度通过 SSE（Server-Sent Events）实时推送。右上角会弹出 Toast 通知。仪表盘页面显示最近渲染任务的进度条。
+
+#### 第五步 — 在 Toonflow 中使用 3DGS 供应商（可选）
+
+要在 Toonflow 的图像/视频生成中直接使用 3DGS 渲染：
+
+```bash
+# 将供应商适配器复制到 Toonflow
+cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
+```
+
+这会在 Toonflow 的供应商系统中注册 3DGS，同时作为图像模型（单帧渲染）和视频模型（多帧动画）。
+
+### 端口说明
+
+| 服务 | 端口 | 说明 |
+|------|------|------|
+| Toonflow 引擎 | 10588 | 短剧创作引擎（外部应用） |
+| MCP 渲染器 | 9842 | WebSocket 3DGS 渲染器 |
+| Bridge 服务器 | 10590 | REST API + SSE，Toonflow 代理 |
+| Studio Web | 5173 | Vue 3 单页应用前端 |
+
+### 常见问题
+
+- **"Toonflow 引擎未运行"** — 启动 Toonflow：`npm run prod:full`，或在 Toonflow 目录下手动执行 `node data/serve/app.js`
+- **项目页看不到分镜** — 先在 Toonflow 中创建脚本，分镜从属于脚本
+- **Toonflow 中没有 3DGS 供应商** — 将 `studio/bridge/vendor/3dgs-renderer.ts` 复制到 Toonflow 的 `data/vendor/` 目录
+
 ## 贡献指南
 
 欢迎贡献！详见 [贡献指南](CONTRIBUTING.md)。
@@ -391,3 +524,4 @@ Apache-2.0。详见 [LICENSE](LICENSE)。
 <div align="center">
 
 **如果这个项目帮你节省了时间，请给一个 Star！**</div>
+
