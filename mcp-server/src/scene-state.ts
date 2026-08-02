@@ -4,7 +4,11 @@
  * All operations are in-memory; no original PLY files are ever modified.
  */
 
-import type { Scene, Gaussian, CameraState, BoundingBox, GaussianSelection, GaussianOperation } from './types.js';
+import type { Scene, Gaussian, CameraState, BoundingBox, GaussianSelection, GaussianOperation, PlyHeaderInfo, PlyProperty } from './types.js';
+import { createRequire } from 'module';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const _require = createRequire(import.meta.url);
 
 export class SceneState {
   private scenes = new Map<string, Scene>();
@@ -299,5 +303,185 @@ export class SceneState {
     }
     const id = this.createScene('synthetic://sphere', 'ply', gaussians, { method: 'synthetic' });
     return { id, gaussianCount: count };
+  }
+
+  // -----------------------------------------------------------------------
+  // Real PLY File Loading
+  // -----------------------------------------------------------------------
+
+  /**
+   * Parse PLY header (ASCII) from a binary buffer.
+   * Returns header info including property layout and byte offset to data.
+   */
+  parsePlyHeader(buffer: Buffer): PlyHeaderInfo {
+    const headerEnd = buffer.indexOf('\nend_header\n');
+    if (headerEnd === -1) {
+      throw new Error('Invalid PLY: no end_header found');
+    }
+
+    const headerStr = buffer.toString('ascii', 0, headerEnd);
+    const lines = headerStr.split('\n').map(l => l.trim()).filter(Boolean);
+
+    let format: PlyHeaderInfo['format'] = 'ascii';
+    let vertexCount = 0;
+    const properties: PlyProperty[] = [];
+    let currentElement = '';
+
+    for (const line of lines) {
+      if (line.startsWith('format ')) {
+        const f = line.split(/\s+/)[1];
+        if (f === 'binary_little_endian') format = 'binary_little_endian';
+        else if (f === 'binary_big_endian') format = 'binary_big_endian';
+        else format = 'ascii';
+      } else if (line.startsWith('element ')) {
+        const parts = line.split(/\s+/);
+        currentElement = parts[1];
+        if (currentElement === 'vertex') {
+          vertexCount = parseInt(parts[2], 10);
+        }
+      } else if (line.startsWith('property ') && currentElement === 'vertex') {
+        const parts = line.split(/\s+/);
+        const type = parts[1] as PlyProperty['type'];
+        const name = parts[2];
+        const sizeMap: Record<string, number> = { float: 4, double: 8, uchar: 1, int: 4, short: 2, uint: 4 };
+        properties.push({ name, type, size: sizeMap[type] || 4 });
+      }
+    }
+
+    const vertexStride = properties.reduce((sum, p) => sum + p.size, 0);
+    const has3dgs = properties.some(p => p.name === 'opacity') &&
+                    properties.some(p => p.name.startsWith('scale_')) &&
+                    properties.some(p => p.name.startsWith('rot_'));
+
+    return {
+      format,
+      vertexCount,
+      properties,
+      headerByteLength: headerEnd + '\nend_header\n'.length,
+      vertexStride,
+      has3dgs,
+    };
+  }
+
+  /**
+   * Load a real 3DGS PLY file into the scene state.
+   * For large files (>1M gaussians), samples a representative subset for in-memory operations.
+   * Stores the file path for the browser renderer to load the full scene.
+   */
+  loadFromPlyFile(filePath: string): { id: string; gaussianCount: number; bbox: BoundingBox; sampled: boolean } {
+    // Use createRequire for ESM compatibility
+    const fs = _require('fs');
+    const path = _require('path');
+
+    if (!fs.existsSync(filePath)) {
+      throw new Error(`PLY file not found: ${filePath}`);
+    }
+
+    const buffer = fs.readFileSync(filePath);
+    const header = this.parsePlyHeader(buffer);
+
+    console.log(`[scene-state] PLY header parsed: ${header.vertexCount} vertices, ${header.properties.length} properties, stride=${header.vertexStride}, 3DGS=${header.has3dgs}`);
+
+    // Build property index map for fast access
+    const propIndex: Record<string, number> = {};
+    header.properties.forEach((p, i) => { propIndex[p.name] = i; });
+
+    // Compute byte offsets for each property within a vertex row
+    const propOffsets: Record<string, number> = {};
+    let offset = 0;
+    for (const p of header.properties) {
+      propOffsets[p.name] = offset;
+      offset += p.size;
+    }
+
+    const dataStart = header.headerByteLength;
+    const totalGaussians = header.vertexCount;
+
+    // For very large files, sample a subset to avoid OOM
+    // 500K is a good balance: covers enough points for visual fidelity
+    // while staying within memory limits for browser WebSocket transfer
+    const MAX_IN_MEMORY = 500000;
+    const sampled = totalGaussians > MAX_IN_MEMORY;
+    const sampleRate = sampled ? MAX_IN_MEMORY / totalGaussians : 1;
+    const gaussians: Gaussian[] = [];
+
+    // If 3DGS format, parse real properties; otherwise just positions
+    const hasOpacity = 'opacity' in propOffsets;
+    const hasScale = 'scale_0' in propOffsets;
+    const hasRot = 'rot_0' in propOffsets;
+    const hasDC = 'f_dc_0' in propOffsets;
+
+    let sampleIdx = 0;
+    for (let i = 0; i < totalGaussians; i++) {
+      // Sampling: include this vertex if not sampled or passes sample threshold
+      if (sampled && Math.random() > sampleRate) continue;
+
+      const rowStart = dataStart + i * header.vertexStride;
+
+      // Read position (always present)
+      const x = buffer.readFloatLE(rowStart + propOffsets['x']);
+      const y = buffer.readFloatLE(rowStart + propOffsets['y']);
+      const z = buffer.readFloatLE(rowStart + propOffsets['z']);
+
+      let opacity = 0.8;
+      let scale: [number, number, number] = [0.01, 0.01, 0.01];
+      let rotation: [number, number, number, number] = [1, 0, 0, 0];
+      let color: [number, number, number] = [0.5, 0.5, 0.5];
+
+      if (hasOpacity) {
+        const raw = buffer.readFloatLE(rowStart + propOffsets['opacity']);
+        opacity = 1 / (1 + Math.exp(-raw)); // sigmoid — 3DGS stores logit
+      }
+
+      if (hasScale) {
+        scale = [
+          Math.exp(buffer.readFloatLE(rowStart + propOffsets['scale_0'])),
+          Math.exp(buffer.readFloatLE(rowStart + propOffsets['scale_1'])),
+          Math.exp(buffer.readFloatLE(rowStart + propOffsets['scale_2'])),
+        ];
+      }
+
+      if (hasRot) {
+        rotation = [
+          buffer.readFloatLE(rowStart + propOffsets['rot_0']),
+          buffer.readFloatLE(rowStart + propOffsets['rot_1']),
+          buffer.readFloatLE(rowStart + propOffsets['rot_2']),
+          buffer.readFloatLE(rowStart + propOffsets['rot_3']),
+        ];
+      }
+
+      if (hasDC) {
+        // SH DC coefficients → RGB (approximate, ignoring SH_C0 constant for simplicity)
+        const SH_C0 = 0.28209479177387814;
+        color = [
+          buffer.readFloatLE(rowStart + propOffsets['f_dc_0']) * SH_C0 + 0.5,
+          buffer.readFloatLE(rowStart + propOffsets['f_dc_1']) * SH_C0 + 0.5,
+          buffer.readFloatLE(rowStart + propOffsets['f_dc_2']) * SH_C0 + 0.5,
+        ];
+      }
+
+      gaussians.push({
+        id: sampleIdx++,
+        position: [x, y, z],
+        scale,
+        rotation,
+        color,
+        opacity,
+      });
+    }
+
+    // Create scene with real data
+    const absPath = path.resolve(filePath);
+    const id = this.createScene(absPath, 'ply', gaussians, {
+      method: header.has3dgs ? '3DGS' : 'point_cloud',
+    });
+
+    const scene = this.getScene(id)!;
+    scene.filePath = absPath;
+    scene.headerInfo = header;
+
+    console.log(`[scene-state] Loaded PLY: ${gaussians.length} gaussians in memory${sampled ? ` (sampled from ${totalGaussians})` : ''}, bbox: ${JSON.stringify(scene.bbox)}`);
+
+    return { id, gaussianCount: gaussians.length, bbox: scene.bbox, sampled };
   }
 }

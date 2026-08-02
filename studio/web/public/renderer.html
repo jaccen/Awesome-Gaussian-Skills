@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SplatVerse Renderer</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #canvas-container { width: 100%; height: 100%; }
+  #canvas-container canvas { width: 100% !important; height: 100% !important; display: block; }
+  #status {
+    position: fixed; top: 8px; right: 8px;
+    font: 12px/1.4 monospace; color: #aaa;
+    background: rgba(0,0,0,0.7); padding: 6px 12px;
+    border-radius: 6px; border: 1px solid #333;
+    pointer-events: none; z-index: 10;
+  }
+  #status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  #status .dot.on { background: #4ade80; }
+  #status .dot.off { background: #f87171; }
+  #info {
+    position: fixed; bottom: 8px; left: 8px;
+    font: 11px/1.4 monospace; color: #555;
+    pointer-events: none; z-index: 10;
+  }
+  #loading-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px; z-index: 20;
+  }
+  #loading-overlay.hidden { display: none; }
+  #loading-overlay .spinner {
+    width: 36px; height: 36px; border: 3px solid #333;
+    border-top-color: #7c6aff; border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  #loading-overlay .msg { color: #888; font: 13px/1.4 monospace; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div id="canvas-container"></div>
+<div id="status"><span class="dot off" id="dot"></span><span id="status-text">Connecting...</span></div>
+<div id="info"></div>
+<div id="loading-overlay" class="hidden"><div class="spinner"></div><div class="msg" id="loading-msg">Loading...</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+// ============================================================================
+// Constants
+// ============================================================================
+var SH_C0 = 0.28209479177387814;
+var MAX_POINTS = 200000;
+var WS_PORT = 9842;
+var BRIDGE_PORT = 10590;
+
+// ============================================================================
+// State
+// ============================================================================
+var scene, camera, renderer, pointCloud = null;
+var sceneData = null;
+var ws = null;
+var pendingRequests = {};
+
+// ============================================================================
+// Simple Orbit Controls (no external dependency)
+// ============================================================================
+var orbitState = {
+  isDragging: false,
+  isRightDragging: false,
+  lastX: 0, lastY: 0,
+  theta: Math.PI / 4,
+  phi: Math.PI / 3,
+  radius: 5,
+  target: new THREE.Vector3(0, 0.8, 0),
+  damping: 0.92,
+  velocityTheta: 0,
+  velocityPhi: 0,
+};
+
+function updateCameraFromOrbit() {
+  var s = orbitState;
+  s.phi = Math.max(0.1, Math.min(Math.PI - 0.1, s.phi));
+  camera.position.set(
+    s.target.x + s.radius * Math.sin(s.phi) * Math.cos(s.theta),
+    s.target.y + s.radius * Math.cos(s.phi),
+    s.target.z + s.radius * Math.sin(s.phi) * Math.sin(s.theta)
+  );
+  camera.lookAt(s.target);
+}
+
+function initOrbitControls(canvas) {
+  canvas.addEventListener('mousedown', function(e) {
+    if (e.button === 0) { orbitState.isDragging = true; }
+    if (e.button === 2) { orbitState.isRightDragging = true; }
+    orbitState.lastX = e.clientX;
+    orbitState.lastY = e.clientY;
+  });
+  canvas.addEventListener('mousemove', function(e) {
+    var dx = e.clientX - orbitState.lastX;
+    var dy = e.clientY - orbitState.lastY;
+    orbitState.lastX = e.clientX;
+    orbitState.lastY = e.clientY;
+    if (orbitState.isDragging) {
+      orbitState.velocityTheta = dx * 0.005;
+      orbitState.velocityPhi = dy * 0.005;
+      orbitState.theta += orbitState.velocityTheta;
+      orbitState.phi += orbitState.velocityPhi;
+      updateCameraFromOrbit();
+    }
+    if (orbitState.isRightDragging) {
+      var panSpeed = orbitState.radius * 0.001;
+      var right = new THREE.Vector3();
+      var up = new THREE.Vector3();
+      camera.getWorldDirection(new THREE.Vector3());
+      right.crossVectors(camera.up, new THREE.Vector3().subVectors(camera.position, orbitState.target).normalize()).normalize();
+      up.copy(camera.up);
+      orbitState.target.add(right.multiplyScalar(-dx * panSpeed));
+      orbitState.target.add(up.multiplyScalar(dy * panSpeed));
+      updateCameraFromOrbit();
+    }
+  });
+  canvas.addEventListener('mouseup', function() {
+    orbitState.isDragging = false;
+    orbitState.isRightDragging = false;
+  });
+  canvas.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    orbitState.radius *= (1 + e.deltaY * 0.001);
+    orbitState.radius = Math.max(0.1, orbitState.radius);
+    updateCameraFromOrbit();
+  }, { passive: false });
+  canvas.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+}
+
+// ============================================================================
+// Three.js Setup
+// ============================================================================
+function initThree() {
+  var container = document.getElementById('canvas-container');
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0a0f);
+
+  camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.01, 1000);
+  updateCameraFromOrbit();
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  initOrbitControls(renderer.domElement);
+
+  // Grid
+  var grid = new THREE.GridHelper(10, 20, 0x222233, 0x111122);
+  scene.add(grid);
+
+  // Axes
+  var axes = new THREE.AxesHelper(0.5);
+  scene.add(axes);
+
+  window.addEventListener('resize', function() {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+
+  animate();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  // Apply damping
+  if (!orbitState.isDragging) {
+    orbitState.velocityTheta *= orbitState.damping;
+    orbitState.velocityPhi *= orbitState.damping;
+    if (Math.abs(orbitState.velocityTheta) > 0.0001 || Math.abs(orbitState.velocityPhi) > 0.0001) {
+      orbitState.theta += orbitState.velocityTheta;
+      orbitState.phi += orbitState.velocityPhi;
+      updateCameraFromOrbit();
+    }
+  }
+  renderer.render(scene, camera);
+}
+
+// ============================================================================
+// PLY Binary Parser (3DGS format)
+// ============================================================================
+function parsePlyBinary(buffer) {
+  var view = new DataView(buffer);
+  var decoder = new TextDecoder('ascii');
+
+  // Find end of header
+  var headerEnd = 0;
+  for (var i = 0; i < Math.min(buffer.byteLength, 10000); i++) {
+    if (view.getUint8(i) === 0x0A) {
+      var line = decoder.decode(new Uint8Array(buffer, headerEnd, i - headerEnd));
+      if (line.trim() === 'end_header') {
+        headerEnd = i + 1;
+        break;
+      }
+    }
+  }
+  if (headerEnd === 0) throw new Error('No end_header found in PLY');
+
+  // Parse header
+  var headerStr = decoder.decode(new Uint8Array(buffer, 0, headerEnd));
+  var headerLines = headerStr.split('\n');
+  var isBinary = false;
+  var vertexCount = 0;
+  var properties = [];
+
+  for (var li = 0; li < headerLines.length; li++) {
+    var l = headerLines[li].trim();
+    if (l.startsWith('format binary_little_endian')) isBinary = true;
+    if (l.startsWith('element vertex')) {
+      vertexCount = parseInt(l.split(/\s+/)[2], 10);
+    }
+    if (l.startsWith('property float') || l.startsWith('property uchar')) {
+      properties.push(l.split(/\s+/).pop());
+    }
+  }
+
+  if (!isBinary) throw new Error('Only binary_little_endian PLY supported');
+  if (vertexCount === 0) throw new Error('No vertices found');
+
+  // Build property index map
+  var propIndex = {};
+  for (var pi = 0; pi < properties.length; pi++) {
+    propIndex[properties[pi]] = pi;
+  }
+
+  var stride = properties.length * 4; // all float32
+  var dataStart = headerEnd;
+
+  // Sample for large files
+  var sampleRate = 1;
+  var sampledCount = vertexCount;
+  if (vertexCount > MAX_POINTS) {
+    sampleRate = Math.ceil(vertexCount / MAX_POINTS);
+    sampledCount = Math.floor(vertexCount / sampleRate);
+  }
+
+  var positions = new Float32Array(sampledCount * 3);
+  var colors = new Float32Array(sampledCount * 3);
+  var opacities = new Float32Array(sampledCount);
+
+  var ix = propIndex['x'] !== undefined ? propIndex['x'] : -1;
+  var iy = propIndex['y'] !== undefined ? propIndex['y'] : -1;
+  var iz = propIndex['z'] !== undefined ? propIndex['z'] : -1;
+  var idc0 = propIndex['f_dc_0'] !== undefined ? propIndex['f_dc_0'] : -1;
+  var idc1 = propIndex['f_dc_1'] !== undefined ? propIndex['f_dc_1'] : -1;
+  var idc2 = propIndex['f_dc_2'] !== undefined ? propIndex['f_dc_2'] : -1;
+  var iopacity = propIndex['opacity'] !== undefined ? propIndex['opacity'] : -1;
+
+  function readFloat(propIdx, vertexBase) {
+    if (propIdx < 0) return 0;
+    return view.getFloat32(vertexBase + propIdx * 4, true);
+  }
+
+  var outIdx = 0;
+  for (var vi = 0; vi < vertexCount && outIdx < sampledCount; vi++) {
+    if (vi % sampleRate !== 0) continue;
+
+    var base = dataStart + vi * stride;
+
+    positions[outIdx * 3 + 0] = readFloat(ix, base);
+    positions[outIdx * 3 + 1] = readFloat(iy, base);
+    positions[outIdx * 3 + 2] = readFloat(iz, base);
+
+    if (idc0 >= 0 && idc1 >= 0 && idc2 >= 0) {
+      colors[outIdx * 3 + 0] = Math.max(0, Math.min(1, readFloat(idc0, base) * SH_C0 + 0.5));
+      colors[outIdx * 3 + 1] = Math.max(0, Math.min(1, readFloat(idc1, base) * SH_C0 + 0.5));
+      colors[outIdx * 3 + 2] = Math.max(0, Math.min(1, readFloat(idc2, base) * SH_C0 + 0.5));
+    }
+
+    // Store real opacity (sigmoid of logit) as per-vertex attribute
+    if (iopacity >= 0) {
+      var raw = readFloat(iopacity, base);
+      opacities[outIdx] = 1 / (1 + Math.exp(-raw));
+    } else {
+      opacities[outIdx] = 1.0; // default full opacity
+    }
+
+    outIdx++;
+  }
+
+  return {
+    positions: positions.slice(0, outIdx * 3),
+    colors: colors.slice(0, outIdx * 3),
+    opacities: opacities.slice(0, outIdx),
+    count: outIdx,
+    totalVertices: vertexCount,
+    sampledRate: sampleRate
+  };
+}
+
+// ============================================================================
+// ============================================================================
+// Point Cloud Creation — v15: Custom ShaderMaterial with per-point opacity
+// ============================================================================
+// Key improvement: Each Gaussian's real opacity (sigmoid of logit from PLY)
+// is passed as a vertex attribute, so the shader can apply it as per-point alpha.
+// This means high-opacity splats (solid surfaces) appear bright while
+// low-opacity splats (translucent volumes) are subtle — matching real 3DGS rendering.
+// ============================================================================
+var _gaussianShaderVert = [
+  'attribute vec3 color;',
+  'attribute float opacity;',
+  'varying vec3 vColor;',
+  'varying float vOpacity;',
+  'uniform float uPointScale;',
+  'void main() {',
+  '  vColor = color;',
+  '  vOpacity = opacity;',
+  '  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);',
+  '  gl_PointSize = uPointScale * (300.0 / -mvPosition.z);',
+  '  gl_Position = projectionMatrix * mvPosition;',
+  '}'
+].join('\n');
+
+var _gaussianShaderFrag = [
+  'varying vec3 vColor;',
+  'varying float vOpacity;',
+  'uniform float uAlphaScale;',
+  'void main() {',
+  '  vec2 uv = gl_PointCoord * 2.0 - 1.0;',
+  '  float r2 = dot(uv, uv);',
+  '  if (r2 > 1.0) discard;',
+  '  // Gaussian-like soft falloff: exp(-2*r²)',
+  '  float gaussianAlpha = exp(-2.0 * r2);',
+  '  // Per-point alpha = real opacity * Gaussian falloff * global scale',
+  '  float alpha = vOpacity * gaussianAlpha * uAlphaScale;',
+  '  // Pre-multiplied alpha for AdditiveBlending',
+  '  gl_FragColor = vec4(vColor * alpha, alpha);',
+  '}'
+].join('\n');
+
+function createPointCloud(data) {
+  if (pointCloud) {
+    scene.remove(pointCloud);
+    pointCloud.geometry.dispose();
+    pointCloud.material.dispose();
+    pointCloud = null;
+  }
+
+  var geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(data.positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(data.colors, 3));
+  // Per-point opacity from real 3DGS data (sigmoid of logit)
+  if (data.opacities) {
+    geometry.setAttribute('opacity', new THREE.BufferAttribute(data.opacities, 1));
+  }
+
+  // Compute bounding box
+  geometry.computeBoundingBox();
+  var bbox = geometry.boundingBox;
+  var center = new THREE.Vector3();
+  bbox.getCenter(center);
+  var size = new THREE.Vector3();
+  bbox.getSize(size);
+  var maxDim = Math.max(size.x, size.y, size.z);
+
+  // Adaptive point scale
+  var densityFactor = Math.max(1, data.count / 50000);
+  var pointScale = Math.max(1.0, maxDim * 0.015 / Math.sqrt(densityFactor));
+  if (maxDim > 50) {
+    pointScale = Math.max(pointScale, maxDim * 0.02); // 150 * 0.02 = 3.0
+  }
+
+  // uAlphaScale: global multiplier for per-point opacity.
+  // With AdditiveBlending, low-opacity splats naturally accumulate.
+  // Avg opacity ~0.19. scale=4.0: center alpha = 0.19*4*1 = 0.76
+  // 3 overlapping splats: 2.28 → bright but not clipped
+  // 10 overlapping: 7.6 → white (clamped) — dense surfaces are bright
+  // 1 splat: 0.76 → visible, shows color
+  var alphaScale = 4.0;
+  if (data.count > 300000) alphaScale = 3.0;
+
+  var material = new THREE.ShaderMaterial({
+    uniforms: {
+      uPointScale: { value: pointScale },
+      uAlphaScale: { value: alphaScale }
+    },
+    vertexShader: _gaussianShaderVert,
+    fragmentShader: _gaussianShaderFrag,
+    transparent: true,
+    depthWrite: false,
+    depthTest: false,
+    blending: THREE.AdditiveBlending,
+  });
+
+  pointCloud = new THREE.Points(geometry, material);
+  scene.add(pointCloud);
+
+  // Auto-frame camera
+  orbitState.target.copy(center);
+  orbitState.radius = maxDim * 1.5;
+  orbitState.theta = Math.PI / 4;
+  orbitState.phi = Math.PI / 3;
+  updateCameraFromOrbit();
+
+  console.log('[renderer] createPointCloud v15: ' + data.count + ' points, maxDim=' + maxDim.toFixed(2) + ', pointScale=' + pointScale.toFixed(3) + ', alphaScale=' + alphaScale.toFixed(1) + ', center=[' + center.x.toFixed(2) + ',' + center.y.toFixed(2) + ',' + center.z.toFixed(2) + ']');
+
+  return { center: [center.x, center.y, center.z], size: [size.x, size.y, size.z], pointCount: data.count, pointSize: pointScale };
+}
+
+// ============================================================================
+// Render Frame Capture
+// ============================================================================
+function captureFrame(width, height) {
+  renderer.setSize(width, height);
+  renderer.render(scene, camera);
+  var dataUrl = renderer.domElement.toDataURL('image/png');
+  var base64 = dataUrl.replace(/^data:image\/png;base64,/, '');
+
+  var container = document.getElementById('canvas-container');
+  renderer.setSize(container.clientWidth, container.clientHeight);
+
+  return base64;
+}
+
+// ============================================================================
+// WebSocket
+// ============================================================================
+function connectWebSocket() {
+  var dot = document.getElementById('dot');
+  var statusText = document.getElementById('status-text');
+
+  try {
+    ws = new WebSocket('ws://localhost:' + WS_PORT);
+  } catch (e) {
+    dot.className = 'dot off';
+    statusText.textContent = 'Connection error';
+    setTimeout(connectWebSocket, 3000);
+    return;
+  }
+
+  ws.onopen = function() {
+    dot.className = 'dot on';
+    statusText.textContent = '3DGS Renderer Connected';
+    console.log('[renderer] WebSocket connected to :' + WS_PORT);
+    // Set binary type to ArrayBuffer so we receive binary data as ArrayBuffer (not Blob)
+    ws.binaryType = 'arraybuffer';
+  };
+
+  ws.onclose = function() {
+    dot.className = 'dot off';
+    statusText.textContent = 'Disconnected - retrying...';
+    console.log('[renderer] WebSocket disconnected, reconnecting in 3s...');
+    setTimeout(connectWebSocket, 3000);
+  };
+
+  ws.onerror = function() {
+    dot.className = 'dot off';
+    statusText.textContent = 'Connection error';
+  };
+
+  ws.onmessage = function(event) {
+    try {
+      if (typeof event.data === 'string') {
+        var msg = JSON.parse(event.data);
+        handleCommand(msg);
+      } else if (event.data instanceof ArrayBuffer) {
+        console.log('[renderer] Received binary message: ' + event.data.byteLength + ' bytes');
+        handleBinaryData(event.data);
+      } else {
+        console.warn('[renderer] Received unexpected data type: ' + typeof event.data);
+      }
+    } catch (err) {
+      console.error('[renderer] Failed to parse message:', err);
+    }
+  };
+}
+
+function handleCommand(msg) {
+  var id = msg.id;
+  var type = msg.type;
+
+  try {
+    if (type === 'load_point_cloud') {
+      // Metadata message preceding binary point cloud data
+      // Store metadata for use when binary arrives
+      console.log('[renderer] Received load_point_cloud metadata: ' + msg.pointCount + ' points, sceneId=' + msg.sceneId);
+      window._pendingPointCloud = {
+        sceneId: msg.sceneId,
+        pointCount: msg.pointCount,
+        bboxCenter: msg.bboxCenter,
+        bboxSize: msg.bboxSize,
+      };
+      showLoading('Receiving point cloud data (' + msg.pointCount + ' points)...');
+      return;
+
+    } else if (type === 'load_scene') {
+      var source = msg.source || '';
+      var sceneId = msg.sceneId || 'unknown';
+
+      // If source is a local PLY file path (not synthetic), skip —
+      // pushPointCloud already handles PLY data delivery via binary WebSocket.
+      // Only handle synthetic:// sources here.
+      if (source.startsWith('synthetic://')) {
+        showLoading('Loading synthetic scene...');
+        var data = generateSyntheticPoints();
+        var info = createPointCloud(data);
+        hideLoading();
+        updateInfo(data, info);
+        sendResponse(id, { type: 'scene_loaded', sceneId: sceneId, gaussianCount: data.count, bbox: { min: [-1,-1,-1], max: [1,1,1] } });
+      } else {
+        // Real PLY files are loaded via pushPointCloud (binary WebSocket), not HTTP fetch.
+        // This path is intentionally skipped to avoid downloading 100+ MB PLY files.
+        console.log('[renderer] Skipping load_scene for PLY file (handled by pushPointCloud): ' + source);
+        sendResponse(id, { type: 'scene_loaded', sceneId: sceneId, gaussianCount: 0, bbox: { min: [0,0,0], max: [0,0,0] }, note: 'Use pushPointCloud for real PLY data' });
+      }
+
+    } else if (type === 'set_camera') {
+      var pos = msg.position || [0, 1.5, 4];
+      var target = msg.target || [0, 0.8, 0];
+      var fov = msg.fov || 50;
+
+      camera.position.set(pos[0], pos[1], pos[2]);
+      camera.lookAt(target[0], target[1], target[2]);
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+
+      orbitState.target.set(target[0], target[1], target[2]);
+      orbitState.radius = camera.position.distanceTo(orbitState.target);
+
+      sendResponse(id, { type: 'camera_set', position: pos, target: target, fov: fov });
+
+    } else if (type === 'render') {
+      var width = msg.width || 1920;
+      var height = msg.height || 1080;
+      var t0 = performance.now();
+      var image = captureFrame(width, height);
+      var renderTime = Math.round(performance.now() - t0);
+
+      sendResponse(id, {
+        type: 'render_result',
+        image: image,
+        renderTimeMs: renderTime,
+        width: width,
+        height: height
+      });
+
+    } else if (type === 'modify_gaussians') {
+      sendResponse(id, { type: 'modify_result', status: 'acknowledged' });
+
+    } else if (type === 'query_scene') {
+      var info = sceneData ? { pointCount: sceneData.count, totalVertices: sceneData.totalVertices } : { pointCount: 0 };
+      sendResponse(id, { type: 'query_result', data: info });
+
+    } else {
+      sendResponse(id, { type: 'pong' });
+    }
+  } catch (err) {
+    sendResponse(id, { type: 'error', error: err.message || String(err) });
+  }
+}
+
+// ============================================================================
+// Binary Point Cloud Data Handler
+// ============================================================================
+var _pendingBinaryChunks = [];
+var _pendingPointCloudMeta = null;
+
+function handleBinaryData(buffer) {
+  if (!window._pendingPointCloud) {
+    console.warn('[renderer] Received binary data without preceding metadata, discarding');
+    return;
+  }
+
+  var meta = window._pendingPointCloud;
+  var view = new DataView(buffer);
+
+  // Parse header
+  var pointCount = view.getUint32(0, true);
+  var dataLength = view.getUint32(4, true);
+  var expected = 8 + pointCount * 7 * 4; // 7 floats per point: x,y,z,r,g,b,opacity
+
+  console.log('[renderer] Binary data received: ' + pointCount + ' points, ' + (buffer.byteLength / 1024 / 1024).toFixed(2) + ' MB');
+
+  if (buffer.byteLength < expected) {
+    console.error('[renderer] Binary data too short: expected ' + expected + ', got ' + buffer.byteLength);
+    hideLoading();
+    return;
+  }
+
+  // Decode interleaved [x,y,z,r,g,b,opacity] per point
+  var positions = new Float32Array(pointCount * 3);
+  var colors = new Float32Array(pointCount * 3);
+  var opacities = new Float32Array(pointCount);
+
+  for (var i = 0; i < pointCount; i++) {
+    var base = 8 + i * 7 * 4;
+    positions[i * 3 + 0] = view.getFloat32(base + 0, true);
+    positions[i * 3 + 1] = view.getFloat32(base + 4, true);
+    positions[i * 3 + 2] = view.getFloat32(base + 8, true);
+    colors[i * 3 + 0] = view.getFloat32(base + 12, true);
+    colors[i * 3 + 1] = view.getFloat32(base + 16, true);
+    colors[i * 3 + 2] = view.getFloat32(base + 20, true);
+    opacities[i] = view.getFloat32(base + 24, true);
+  }
+
+// NOTE: Colors from MCP Server pushPointCloud are already final RGB (0-1 range),
+// opacity-modulated at source. Do NOT multiply by opacity again here.
+// If parsing raw PLY locally, opacity modulation is applied above.
+
+  // Debug: log first 5 point colors and opacities to verify data
+  if (pointCount > 0) {
+    var dbgPos = [], dbgCol = [], dbgOpa = [];
+    for (var di = 0; di < Math.min(5, pointCount); di++) {
+      dbgPos.push('[' + positions[di*3].toFixed(2) + ',' + positions[di*3+1].toFixed(2) + ',' + positions[di*3+2].toFixed(2) + ']');
+      dbgCol.push('[' + colors[di*3].toFixed(3) + ',' + colors[di*3+1].toFixed(3) + ',' + colors[di*3+2].toFixed(3) + ']');
+      dbgOpa.push(opacities[di].toFixed(3));
+    }
+    console.log('[renderer] First 5 positions:', dbgPos.join(' '));
+    console.log('[renderer] First 5 colors:', dbgCol.join(' '));
+    console.log('[renderer] First 5 opacities:', dbgOpa.join(' '));
+  }
+
+  var data = {
+    positions: positions,
+    colors: colors,
+    opacities: opacities,
+    count: pointCount,
+    totalVertices: pointCount,
+    sampledRate: 1,
+  };
+
+  sceneData = data;
+  var info = createPointCloud(data);
+  hideLoading();
+  updateInfo(data, info);
+
+  console.log('[renderer] Point cloud loaded: ' + pointCount + ' points, center: [' +
+    info.center.map(function(v) { return v.toFixed(2); }).join(', ') + '], pointSize=' + info.pointSize);
+
+  // Send acknowledgment with scene info so MCP Server knows rendering is complete
+  if (meta.sceneId) {
+    sendResponse(0, { type: 'scene_loaded', sceneId: meta.sceneId, gaussianCount: pointCount, bbox: { min: [-1,-1,-1], max: [1,1,1] }, center: info.center, pointSize: info.pointSize });
+  }
+
+  window._pendingPointCloud = null;
+}
+
+function sendResponse(id, response) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    response.id = id;
+    ws.send(JSON.stringify(response));
+  }
+}
+
+// ============================================================================
+// PLY Fetching
+// ============================================================================
+function fetchAndParsePly(source) {
+  var filename = source;
+  if (filename.indexOf('/') >= 0 || filename.indexOf('\\') >= 0) {
+    filename = filename.split(/[/\\]/).pop();
+  }
+
+  var url = 'http://localhost:' + BRIDGE_PORT + '/api/files/scenes/' + filename;
+  console.log('[renderer] Fetching PLY:', url);
+
+  return fetch(url).then(function(response) {
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    return response.arrayBuffer();
+  }).then(function(buffer) {
+    console.log('[renderer] Received', (buffer.byteLength / 1024 / 1024).toFixed(1), 'MB');
+    var data = parsePlyBinary(buffer);
+    console.log('[renderer] Parsed', data.count, 'points (sampled 1:' + data.sampledRate + ' from', data.totalVertices, 'vertices)');
+    sceneData = data;
+    return data;
+  }).catch(function(err) {
+    console.error('[renderer] PLY fetch/parse failed:', err);
+    return null;
+  });
+}
+
+// ============================================================================
+// Synthetic Points
+// ============================================================================
+function generateSyntheticPoints() {
+  var count = 50000;
+  var positions = new Float32Array(count * 3);
+  var colors = new Float32Array(count * 3);
+  var opacities = new Float32Array(count);
+
+  for (var i = 0; i < count; i++) {
+    var theta = Math.random() * Math.PI * 2;
+    var phi = Math.acos(2 * Math.random() - 1);
+    var r = Math.cbrt(Math.random()) * 2;
+
+    positions[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
+
+    colors[i * 3 + 0] = (positions[i * 3 + 1] + 2) / 4;
+    colors[i * 3 + 1] = 0.3 + Math.random() * 0.3;
+    colors[i * 3 + 2] = 1 - (positions[i * 3 + 1] + 2) / 4;
+    opacities[i] = 0.5 + Math.random() * 0.5; // 0.5-1.0 for synthetic
+  }
+
+  var data = { positions: positions, colors: colors, opacities: opacities, count: count, totalVertices: count, sampledRate: 1 };
+  sceneData = data;
+  return data;
+}
+
+// ============================================================================
+// UI Helpers
+// ============================================================================
+function showLoading(msg) {
+  document.getElementById('loading-overlay').classList.remove('hidden');
+  document.getElementById('loading-msg').textContent = msg;
+}
+
+function hideLoading() {
+  document.getElementById('loading-overlay').classList.add('hidden');
+}
+
+function updateInfo(data, info) {
+  var total = data.totalVertices || data.count;
+  var sampled = data.count;
+  var rate = data.sampledRate || 1;
+  var el = document.getElementById('info');
+  el.innerHTML = sampled.toLocaleString() + ' points' +
+    (rate > 1 ? ' (1:' + rate + ' from ' + total.toLocaleString() + ')' : '') +
+    ' &middot; Center: [' + info.center.map(function(v) { return v.toFixed(2); }).join(', ') + ']';
+}
+
+// ============================================================================
+// Init
+// ============================================================================
+initThree();
+connectWebSocket();
+</script>
+</body>
+</html>

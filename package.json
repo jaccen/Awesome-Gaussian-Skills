@@ -1,0 +1,30 @@
+{
+  "name": "awesome-gaussian-skills",
+  "version": "0.7.0",
+  "private": true,
+  "description": "3D Spatial Intelligence Open-Source Toolbox — 789+ methods, 15 skills, MCP Server, SplatVerse Studio",
+  "license": "Apache-2.0",
+  "workspaces": [
+    "mcp-server",
+    "studio/bridge",
+    "studio/web"
+  ],
+  "scripts": {
+    "dev": "powershell -File scripts/start-dev.ps1",
+    "dev:bridge": "npm run dev --workspace=studio/bridge",
+    "dev:web": "npm run dev --workspace=studio/web",
+    "dev:mcp": "npm run dev --workspace=mcp-server",
+    "dev:renderer": "npm run renderer --workspace=mcp-server",
+    "build": "npm run build --workspaces",
+    "build:bridge": "npm run build --workspace=studio/bridge",
+    "build:web": "npm run build --workspace=studio/web",
+    "build:mcp": "npm run build --workspace=mcp-server",
+    "start": "npm run build && npm run dev",
+    "prod": "powershell -File scripts/start-prod.ps1",
+    "prod:quick": "powershell -File scripts/start-prod.ps1 -SkipBuild",
+    "prod:full": "powershell -File scripts/start-prod.ps1 -Toonflow"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

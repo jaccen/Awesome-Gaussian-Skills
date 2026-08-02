@@ -40,6 +40,8 @@ export interface Scene {
   segmentation: Map<string, number[]>; // label -> gaussian IDs
   metadata: SceneMetadata;
   createdAt: number;
+  filePath?: string; // Absolute path to original file for browser renderer
+  headerInfo?: PlyHeaderInfo; // Parsed PLY header metadata
 }
 
 export interface SceneMetadata {
@@ -126,4 +128,23 @@ export interface VoiceIntentResult {
   toolCalls: VoiceToolCall[];
   description: string;
   rawText: string;
+}
+
+// ---------------------------------------------------------------------------
+// PLY File Types
+// ---------------------------------------------------------------------------
+
+export interface PlyProperty {
+  name: string;
+  type: 'float' | 'double' | 'uchar' | 'int' | 'short' | 'uint';
+  size: number; // byte size
+}
+
+export interface PlyHeaderInfo {
+  format: 'ascii' | 'binary_little_endian' | 'binary_big_endian';
+  vertexCount: number;
+  properties: PlyProperty[];
+  headerByteLength: number; // byte offset where data begins
+  vertexStride: number; // bytes per vertex row
+  has3dgs: boolean; // true if contains 3DGS-specific properties (opacity, scale, rot)
 }

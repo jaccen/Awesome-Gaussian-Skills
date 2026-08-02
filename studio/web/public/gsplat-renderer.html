@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SplatVerse Studio — 3DGS Renderer (gsplat.js v1.2.9)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #111; }
+    #canvas { width: 100%; height: 100%; display: block; }
+    #overlay {
+      position: absolute; top: 10px; left: 10px; color: #4ecdc4; font: 12px monospace;
+      pointer-events: none; user-select: none; z-index: 10;
+      text-shadow: 0 0 4px rgba(0,0,0,0.9);
+    }
+    #status {
+      position: absolute; bottom: 10px; left: 10px; color: #666; font: 11px monospace;
+      pointer-events: none; z-index: 10;
+    }
+    #error {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: #ff6b6b; font: 14px monospace; text-align: center; display: none; z-index: 10;
+      max-width: 80%; word-wrap: break-word;
+    }
+    #progress {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      text-align: center; color: #4ecdc4; font: 13px monospace; z-index: 10;
+      display: none;
+    }
+    #stats {
+      position: absolute; top: 10px; right: 10px; color: #888; font: 11px monospace;
+      pointer-events: none; z-index: 10; text-align: right;
+      text-shadow: 0 0 4px rgba(0,0,0,0.9);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="overlay">SplatVerse Studio — gsplat.js v1.2.9</div>
+  <div id="status">Initializing...</div>
+  <div id="error"></div>
+  <div id="progress">Loading scene... 0%</div>
+  <div id="stats"></div>
+
+  <!--
+    gsplat.js v1.2.9 — ESM-only, no UMD build.
+    Use importmap to resolve the "gsplat" bare specifier to CDN.
+  -->
+  <script type="importmap">
+  {
+    "imports": {
+      "gsplat": "https://cdn.jsdelivr.net/npm/gsplat@1.2.9/dist/index.es.js"
+    }
+  }
+  </script>
+
+  <!--
+    preserveDrawingBuffer hack:
+    gsplat.js WebGLRenderer calls canvas.getContext('webgl2', { antialias: false })
+    without preserveDrawingBuffer, making toDataURL() return blank.
+    We monkey-patch getContext to inject preserveDrawingBuffer: true.
+  -->
+  <script>
+    (function() {
+      const _origGetContext = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function(type, attrs) {
+        if (type === 'webgl2' || type === 'webgl') {
+          attrs = Object.assign({}, attrs, { preserveDrawingBuffer: true });
+        }
+        return _origGetContext.call(this, type, attrs);
+      };
+    })();
+  </script>
+
+  <script type="module">
+    import * as SPLAT from "gsplat";
+
+    // ---- DOM refs ----
+    const statusEl  = document.getElementById('status');
+    const errorEl   = document.getElementById('error');
+    const progressEl = document.getElementById('progress');
+    const overlayEl = document.getElementById('overlay');
+    const statsEl   = document.getElementById('stats');
+
+    // ---- gsplat.js core objects ----
+    let scene, camera, renderer, controls;
+    let currentSplat = null;
+    let animFrameId = 0;
+
+    // ---- Config ----
+    // Bridge server base URL — construct scene file URLs from this
+    const BRIDGE_BASE = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port;
+    const SCENE_API   = BRIDGE_BASE + '/api/files/scenes';
+
+    // ---- WebSocket (MCP Server renderer bridge) ----
+    const WS_URL = 'ws://localhost:9842';
+    let ws = null;
+    let wsReconnectTimer = null;
+
+    // ---- postMessage (parent iframe communication) ----
+    const parentOrigin = '*';
+
+    // ================================================================
+    //  Initialization
+    // ================================================================
+
+    function initGsplat() {
+      const canvas = document.getElementById('canvas');
+
+      scene    = new SPLAT.Scene();
+      camera   = new SPLAT.Camera();
+      renderer = new SPLAT.WebGLRenderer(canvas);
+      controls = new SPLAT.OrbitControls(camera, renderer.canvas);
+
+      statusEl.textContent = 'gsplat.js v1.2.9 ready. Load a scene...';
+
+      // Render loop
+      const frame = () => {
+        controls.update();
+        renderer.render(scene, camera);
+        animFrameId = requestAnimationFrame(frame);
+      };
+      animFrameId = requestAnimationFrame(frame);
+    }
+
+    // ================================================================
+    //  Scene Loading
+    // ================================================================
+
+    async function loadSceneFromUrl(url) {
+      showProgress('Loading scene... 0%');
+      hideError();
+
+      try {
+        // Remove previous splat
+        if (currentSplat) {
+          scene.removeObject(currentSplat);
+          currentSplat = null;
+        }
+
+        // Determine format from URL
+        const ext = url.split('.').pop().toLowerCase();
+
+        if (ext === 'ply') {
+          currentSplat = await SPLAT.PLYLoader.LoadAsync(
+            url, scene,
+            function(progress) {
+              showProgress('Loading PLY... ' + Math.round(progress * 100) + '%');
+            },
+            '',    // splatFormat: empty = auto-detect
+            false  // useCache: false = always fresh
+          );
+        } else {
+          // .splat, .ksplat, .spz — use generic Loader
+          currentSplat = await SPLAT.Loader.LoadAsync(
+            url, scene,
+            function(progress) {
+              showProgress('Loading scene... ' + Math.round(progress * 100) + '%');
+            },
+            false  // useCache: false
+          );
+        }
+
+        hideProgress();
+
+        // Auto-fit camera using Splat.bounds
+        if (currentSplat) {
+          autoFitCamera(currentSplat);
+          const gaussCount = currentSplat.data
+            ? (currentSplat.data.positions.length / 3)
+            : 0;
+          statsEl.textContent = gaussCount.toLocaleString() + ' gaussians';
+        }
+
+        statusEl.textContent = 'Loaded: ' + url.split('/').pop();
+        overlayEl.textContent = 'SplatVerse Studio — ' + url.split('/').pop();
+
+        // Notify both channels
+        notifySceneLoaded(url);
+
+      } catch (e) {
+        hideProgress();
+        const msg = e.message || String(e);
+        showError('Load failed: ' + msg);
+        statusEl.textContent = 'Load failed';
+        notifyError(msg, 'load_scene');
+      }
+    }
+
+    /**
+     * Auto-fit camera to scene bounding box.
+     * gsplat.js Splat has a `bounds` property (Box3 with min/max/center/size).
+     */
+    function autoFitCamera(splat) {
+      try {
+        const bounds = splat.bounds;
+        const center = bounds.center();
+        const size   = bounds.size();
+
+        // Use the maximum dimension to determine camera distance
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const distance = maxDim * 1.8;
+
+        // Position camera along Z axis (common default view), looking at center
+        // gsplat.js Camera.position is a setter that takes a Vector3
+        camera.position = new SPLAT.Vector3(center.x, center.y, center.z + distance);
+        controls.setCameraTarget(new SPLAT.Vector3(center.x, center.y, center.z));
+
+        statusEl.textContent = 'Camera auto-fit: center(' +
+          center.x.toFixed(1) + ', ' + center.y.toFixed(1) + ', ' + center.z.toFixed(1) +
+          ') dist=' + distance.toFixed(1);
+      } catch (e) {
+        // Fallback: reset to default
+        camera.position = new SPLAT.Vector3(0, 1.5, 4);
+        controls.setCameraTarget(new SPLAT.Vector3(0, 0.8, 0));
+      }
+    }
+
+    // ================================================================
+    //  Camera Control
+    // ================================================================
+
+    function setCamera(position, target) {
+      if (position && position.length === 3) {
+        camera.position = new SPLAT.Vector3(position[0], position[1], position[2]);
+      }
+      if (target && target.length === 3) {
+        controls.setCameraTarget(new SPLAT.Vector3(target[0], target[1], target[2]));
+      }
+    }
+
+    function getCameraInfo() {
+      return {
+        position: [camera.position.x, camera.position.y, camera.position.z],
+        target: [controls.target ? controls.target.x : 0,
+                 controls.target ? controls.target.y : 0,
+                 controls.target ? controls.target.z : 0],
+      };
+    }
+
+    // ================================================================
+    //  Screenshot / Frame Capture
+    // ================================================================
+
+    function captureFrame() {
+      try {
+        const canvas = renderer.canvas;
+        const dataUrl = canvas.toDataURL('image/png');
+        return dataUrl;
+      } catch (e) {
+        console.warn('[gsplat-renderer] captureFrame failed:', e);
+        return null;
+      }
+    }
+
+    // ================================================================
+    //  WebSocket Communication (MCP Server)
+    // ================================================================
+
+    function connectWebSocket() {
+      if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
+
+      try {
+        ws = new WebSocket(WS_URL);
+        ws.binaryType = 'arraybuffer';
+
+        ws.onopen = function() {
+          statusEl.textContent = 'WebSocket connected to MCP Server';
+          if (wsReconnectTimer) { clearTimeout(wsReconnectTimer); wsReconnectTimer = null; }
+        };
+
+        ws.onclose = function() {
+          ws = null;
+          if (!wsReconnectTimer) {
+            wsReconnectTimer = setTimeout(function() {
+              wsReconnectTimer = null;
+              connectWebSocket();
+            }, 5000);
+          }
+        };
+
+        ws.onerror = function() { /* onclose handles reconnect */ };
+
+        ws.onmessage = function(event) {
+          if (typeof event.data === 'string') {
+            try {
+              const msg = JSON.parse(event.data);
+              handleWsMessage(msg);
+            } catch (ex) { /* ignore non-JSON */ }
+          }
+        };
+      } catch (e) {
+        showError('WebSocket connection failed: ' + e.message);
+      }
+    }
+
+    function handleWsMessage(msg) {
+      switch (msg.type) {
+        case 'connected':
+          statusEl.textContent = 'MCP Server connected';
+          break;
+
+        case 'load_scene':
+          handleLoadScene(msg);
+          break;
+
+        case 'set_camera':
+          if (msg.position && msg.target) {
+            setCamera(msg.position, msg.target);
+          }
+          break;
+
+        case 'render_request':
+          handleRenderRequest('ws');
+          break;
+
+        default:
+          statusEl.textContent = 'WS msg: ' + msg.type;
+      }
+    }
+
+    function handleLoadScene(msg) {
+      let url = '';
+      if (msg.url) {
+        url = msg.url;
+      } else if (msg.source) {
+        if (msg.source.startsWith('http')) {
+          url = msg.source;
+        } else {
+          const filename = msg.source.replace(/^scenes\//, '');
+          url = SCENE_API + '/' + filename;
+        }
+      }
+
+      if (!url) {
+        showError('No scene URL or source provided');
+        return;
+      }
+
+      loadSceneFromUrl(url);
+    }
+
+    function handleRenderRequest(replyVia) {
+      const dataUrl = captureFrame();
+      if (dataUrl) {
+        if (replyVia === 'ws' && ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: 'render_result', image: dataUrl }));
+        }
+        if (replyVia === 'postMessage' && window.parent) {
+          window.parent.postMessage({ type: 'render_result', image: dataUrl }, parentOrigin);
+        }
+      } else {
+        if (replyVia === 'ws' && ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: 'render_error', error: 'Screenshot failed' }));
+        }
+        if (replyVia === 'postMessage' && window.parent) {
+          window.parent.postMessage({ type: 'render_error', error: 'Screenshot failed' }, parentOrigin);
+        }
+      }
+    }
+
+    // ================================================================
+    //  postMessage Communication (Parent iframe)
+    // ================================================================
+
+    function setupPostMessageListener() {
+      window.addEventListener('message', function(event) {
+        const msg = event.data;
+        if (!msg || !msg.type) return;
+
+        switch (msg.type) {
+          case 'load_scene':
+            handleLoadScene(msg);
+            break;
+
+          case 'set_camera':
+            if (msg.position && msg.target) {
+              setCamera(msg.position, msg.target);
+            }
+            break;
+
+          case 'render_request':
+            handleRenderRequest('postMessage');
+            break;
+
+          case 'get_camera':
+            window.parent.postMessage({
+              type: 'camera_info',
+              camera: getCameraInfo(),
+            }, parentOrigin);
+            break;
+
+          case 'ping':
+            window.parent.postMessage({ type: 'pong' }, parentOrigin);
+            break;
+        }
+      });
+    }
+
+    // ================================================================
+    //  Notification helpers
+    // ================================================================
+
+    function notifySceneLoaded(url) {
+      const msg = { type: 'scene_loaded', source: url };
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(msg));
+      }
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage(msg, parentOrigin);
+      }
+    }
+
+    function notifyError(error, context) {
+      const msg = { type: 'error', error: error, context: context };
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(msg));
+      }
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage(msg, parentOrigin);
+      }
+    }
+
+    // ================================================================
+    //  UI helpers
+    // ================================================================
+
+    function showProgress(text) {
+      progressEl.textContent = text;
+      progressEl.style.display = 'block';
+    }
+    function hideProgress() {
+      progressEl.style.display = 'none';
+    }
+    function showError(text) {
+      errorEl.textContent = text;
+      errorEl.style.display = 'block';
+    }
+    function hideError() {
+      errorEl.style.display = 'none';
+    }
+
+    // ================================================================
+    //  Expose global API
+    // ================================================================
+
+    window.splatverse = {
+      loadScene: loadSceneFromUrl,
+      setCamera: setCamera,
+      captureFrame: captureFrame,
+      getCameraInfo: getCameraInfo,
+      getScene: function() { return scene; },
+      getCamera: function() { return camera; },
+      getControls: function() { return controls; },
+      getRenderer: function() { return renderer; },
+    };
+
+    // ================================================================
+    //  Boot
+    // ================================================================
+
+    initGsplat();
+    connectWebSocket();
+    setupPostMessageListener();
+
+    // Signal readiness to parent
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'renderer_ready', engine: 'gsplat' }, parentOrigin);
+    }
+  </script>
+</body>
+</html>

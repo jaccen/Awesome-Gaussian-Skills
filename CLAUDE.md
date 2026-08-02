@@ -2,7 +2,7 @@
 
 ---
 name: awesome-gaussian-skills
-version: "0.6.0"
+version: "0.7.0"
 description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 789+ methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering (spec-first sculpting + code-first export), articulated reasoning, compression & deployment, training debugging. SLAT unified representation framework for conversion skills."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin, Bayesian density control, MoE deformation, surgical SLAM, training-free semantic compression, deformable aggregation, PBR material splatting, 3DGS provenance analysis"
 arguments: [task]
@@ -73,6 +73,131 @@ references/
 - Previous additions (2026-07 v0.4.2): SalientGS, DP-Splat, Grassmannian Splatting, MoE-GS/MoDE (TPAMI 2026), HyperGS, MAC-Splat (ECCV 2026), AsySplat, GeoGS-SLAM v2, AnythingReality, Track2Map (MICCAI 2026), HoloTetSphere (ECCV 2026), CoSAG, StructSplat (ECCV 2026), ABot-3DWorld 0, PEAR (SIGGRAPH 2026), CAGS (SIGGRAPH 2026), PanoLOG, SyncSpace, SplatCtrl (ICRA 2026), StereoSplat+ (IROS 2026), FreDeGS
 - Previous additions (2026-06/07 v0.4.1): FastGS, GaussianSplatting-SLAM-v2, GS-Map-SLAM, ArtiTwinSplat, Holi-Spatial, Spatial-TTT, Eulerian GS, Energy-GS, NG-GS, RAF, PDEO, UniSHARP, EvoGS, GP-3DGS, DISCOVERSE, gsplat, PDE-Constrained 3DGS, Capacity-Controlled Stylization, Flux-GS, Provable Pruning via Coresets, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R, Argus, World from Motion
 
+## SplatVerse Studio (v0.7.0)
+
+**SplatVerse Studio** is a one-stop web platform integrating Toonflow short-drama creation with 3DGS rendering.
+
+### Architecture
+
+```
+Awesome-Gaussian-Skills/         (root, npm workspaces)
+├── mcp-server/                  3DGS MCP Server (24 tools, :9842 renderer)
+├── studio/
+│   ├── bridge/                  toonflow-bridge (REST + SSE + MCP)
+│   │   ├── src/
+│   │   │   ├── index.ts         MCP Server entry (8 tools, stdio)
+│   │   │   ├── render-server.ts REST API + SSE (:10590)
+│   │   │   ├── render-manager.ts Render task lifecycle
+│   │   │   ├── gs-mcp-client.ts 3DGS MCP Client (real SDK)
+│   │   │   ├── toonflow-client.ts Toonflow API client
+│   │   │   └── types.ts         Shared type definitions
+│   │   └── vendor/
+│   │       └── 3dgs-renderer.ts  Toonflow vendor adapter
+│   └── web/                     Vue3 + Vite SPA (:5173)
+│       ├── src/views/           Dashboard, RenderStudio, ProjectBrowser, McpTools
+│       └── src/composables/     useApi, useSSE
+├── scripts/
+│   └── start-dev.ps1            One-click dev launcher
+├── docs/                        Method explorer, fusion-framework
+├── skills/                      15 research-grade skills
+└── package.json                 Root workspace config
+```
+
+### Quick Start
+
+```powershell
+# One-click launch (MCP + Bridge + Web)
+powershell -File scripts/start-dev.ps1
+
+# Or run individually
+npm run dev:bridge    # Bridge REST server on :10590
+npm run dev:web       # Vite dev server on :5173
+npm run dev:mcp       # MCP Server (stdio)
+```
+
+### Services
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Studio Web | :5173 | Vue3 SPA dashboard |
+| Bridge REST | :10590 | REST API + SSE (render tasks, Toonflow proxy, MCP calls) |
+| Bridge MCP | stdio | 8 MCP tools for Agent integration |
+| MCP Renderer | :9842 | WebSocket Three.js renderer |
+| MCP Server | stdio | 24 3DGS tools (11 implemented) |
+
+### Bridge REST Endpoints
+
+- `GET /api/health` — Service health + MCP connection status
+- `POST /api/mcp/connect` — Connect to 3DGS MCP Server
+- `GET /api/mcp/tools` — List MCP tools
+- `POST /api/mcp/call` — Direct MCP tool invocation
+- `POST /api/render/direct` — 3DGS render from text description (returns `usedCameraSpec` when auto-adjusted)
+- `POST /api/render/batch` — Batch render Toonflow storyboards
+- `GET /api/events` — SSE real-time render progress
+- `GET /api/toonflow/health` — Toonflow connection status (JWT auto-login)
+- `GET /api/toonflow/projects` — Proxy Toonflow projects (auto-JWT-auth)
+- `POST /api/toonflow/projects` — Proxy Toonflow projects (POST variant)
+- `POST /api/toonflow/projects/:id/storyboards` — Proxy Toonflow storyboards
+- `POST /api/toonflow/projects/:id/assets` — Proxy Toonflow assets
+- `GET /api/scenes` — List local .ply/.splat scene files
+- `GET /api/renders/:filename` — Serve rendered images from .temp/renders/
+
+### Toonflow Integration Notes
+
+- **Default credentials**: admin / admin123 (via `TOONFLOW_USER`/`TOONFLOW_PASS` env vars)
+- **JWT auth**: Auto-login with 180-day token; auto-refresh via Axios interceptor
+- **API routes** (all POST): `/api/project/getProject`, `/api/production/getStoryboardData`, `/api/assets/getAssetsApi`, etc.
+
+### Duix-Avatar (HeyGem) Integration Assessment
+
+**Status**: Evaluated, deferred to Phase 2.
+
+**Architecture**: HeyGem is a local/offline digital human video generation system by GuijiAI (硅基智能).
+- **Core flow**: Upload 10s video → clone appearance + voice → text/audio drives lip-sync video
+- **Tech stack**: Docker (3 services: FunASR, Fish-Speech TTS, video synthesis) + Electron client
+- **Hardware**: NVIDIA GPU required (min 6GB VRAM for community 2.0 bundle, 16GB recommended for official Docker)
+- **API**: No stable REST API yet — currently Electron-only GUI; community builds HTTP wrappers (heygem-api on GitHub)
+
+**Integration plan for SplatVerse Studio** (Phase 2):
+1. Deploy HeyGem Docker services on GPU server (192.168.20.2)
+2. Build a thin `heygem-client.ts` in Bridge to call HeyGem's internal API
+3. Compositing pipeline: 3DGS background render + HeyGem digital human foreground → alpha composite
+4. Vendor adapter: `duix-avatar.ts` for Toonflow (text → script → 3DGS bg + digital human fg → composited video)
+
+**Blockers**: Requires GPU server with Docker; no stable HTTP API yet; community HTTP wrappers are experimental.
+
+### WebGPU Native 3DGS Renderer — Upgrade Plan
+
+**Current state**: Three.js `ShaderMaterial` with per-point opacity (v15 "Preview Mode") — soft round splats but no front-to-back depth sorting, so not photorealistic.
+
+**Candidate solutions** (evaluated):
+
+| Solution | Pros | Cons | Best For |
+|----------|------|------|----------|
+| **gsplat.js** | Purpose-built JS lib for 3DGS, Three.js-like API, WebGPU/WebGL | Relatively new, smaller community | Direct replacement for current Three.js renderer |
+| **Babylon.js** | Native built-in 3DGS support, mature, WebGPU | Larger bundle, different API from Three.js | Full-featured 3D engine with 3DGS |
+| **Three.js + GaussianSplats3D** | Stays in Three.js ecosystem, Spark is fast | Community-maintained, not official | Minimal changes to current code |
+| **SuperSplat (PlayCanvas)** | Full visual editor, production quality | PlayCanvas engine lock-in, heavy | Standalone 3DGS editing tool |
+
+**Recommended path**: **gsplat.js** as Phase 2 renderer upgrade — drop-in replacement for the `renderer.html` iframe, keeping the same WebSocket binary push protocol from MCP Server. The MCP Server can be extended to emit proper sorted-splat data for gsplat.js consumption.
+
+**Integration steps** (Phase 2):
+1. Replace `renderer.html` Three.js code with gsplat.js viewer
+2. Add MCP Server tool: `export_splat_data` — outputs .splat format for direct browser consumption
+3. Keep WebSocket push as fallback; add HTTP file serving for large scenes
+4. Result: Production-quality 3DGS rendering with proper depth sorting and alpha compositing
+
+### Bridge MCP Tools (8)
+
+1. `render_storyboard` — From Toonflow storyboard → 3DGS render
+2. `render_direct` — From text description → 3DGS scene
+3. `query_task` — Query render task status
+4. `list_tasks` — List all render tasks
+5. `connect_toonflow` — Connect Toonflow engine
+6. `connect_mcp` — Connect 3DGS MCP Server
+7. `list_mcp_tools` — List available MCP tools
+8. `call_mcp_tool` — Direct MCP tool invocation
+
 ## Anthropic Skills Standard Compliance
 
 - [x] YAML frontmatter with `name`, `description`, `license`, `metadata` (version, author, tags, when_to_use)
@@ -91,5 +216,3 @@ references/
 - [x] Spec-First Sculpting Pipeline (v0.6.0): 3dgs-mcp-renderer v0.8.0 — 6-stage gate-gated sculpting with `define_scene_spec` + `sculpt_pipeline` + `export_scene_code` (17 -> 20 tools)
 - [x] Code-First Rendering (v0.6.0): 3dgs-mcp-renderer v0.8.0 — hybrid procedural code + 3DGS splatting export, default output is Three.js code + .splat data
 - [x] SLAT Unified Representation Framework (v0.6.0): shared `references/slat-unified-representation.md`, adopted by cad-mesh-3dgs v1.7.0 and nerf-to-3dgs-migrator v1.6.0
-
-> AI生成

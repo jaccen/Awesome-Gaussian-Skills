@@ -14,6 +14,10 @@
 import type { ToolResult } from './types.js';
 import type { SceneState } from './scene-state.js';
 import type { RendererBridge } from './renderer-bridge.js';
+import { createRequire } from 'module';
+const _require = createRequire(import.meta.url);
+const _fs = _require('fs');
+const _path = _require('path');
 
 // ---------------------------------------------------------------------------
 // Context & Helpers
@@ -84,8 +88,86 @@ const tools: MCPTool[] = [
         return json({ scene_id: result.id, gaussian_count: result.gaussianCount, bbox: scene.bbox });
       }
 
-      // Real PLY loading — parse file (simplified: generate synthetic for now)
-      // Full PLY parse requires binary reading, omitted in prototype
+      // Real PLY file loading — parse actual binary data
+      // Resolve file path: support absolute paths, relative to cwd, or scenes/ directory
+      let filePath = source;
+      if (!_path.isAbsolute(filePath)) {
+        // Try scenes/ directory first, then cwd
+        const scenesPath = _path.resolve(process.cwd(), 'scenes', filePath);
+        const cwdPath = _path.resolve(process.cwd(), filePath);
+        if (_fs.existsSync(scenesPath)) {
+          filePath = scenesPath;
+        } else if (_fs.existsSync(cwdPath)) {
+          filePath = cwdPath;
+        }
+      }
+
+      if (_fs.existsSync(filePath)) {
+        try {
+          const result = ctx.state.loadFromPlyFile(filePath);
+          const scene = ctx.state.getScene(result.id);
+
+          // Push parsed point cloud directly to the browser renderer
+          // (instead of having the browser re-download the PLY file)
+          if (scene && scene.gaussians.length > 0) {
+            const gaussians = scene.gaussians;
+            const positions = new Float32Array(gaussians.length * 3);
+            const colors = new Float32Array(gaussians.length * 3);
+            const opacities = new Float32Array(gaussians.length);
+
+            // Debug: log first 5 gaussians to verify data
+            for (let di = 0; di < Math.min(5, gaussians.length); di++) {
+              console.error(`[import_scene] Gaussian[${di}]: pos=[${gaussians[di].position}], color=[${gaussians[di].color}], opacity=${gaussians[di].opacity}`);
+            }
+
+            for (let i = 0; i < gaussians.length; i++) {
+              positions[i * 3 + 0] = gaussians[i].position[0];
+              positions[i * 3 + 1] = gaussians[i].position[1];
+              positions[i * 3 + 2] = gaussians[i].position[2];
+
+              // Color: gamma=0.55 for AdditiveBlending — moderate darkening
+              // to compensate for additive accumulation brightening overlaps.
+              const gamma = 0.55;
+              colors[i * 3 + 0] = Math.pow(Math.max(0, Math.min(1, gaussians[i].color[0])), gamma);
+              colors[i * 3 + 1] = Math.pow(Math.max(0, Math.min(1, gaussians[i].color[1])), gamma);
+              colors[i * 3 + 2] = Math.pow(Math.max(0, Math.min(1, gaussians[i].color[2])), gamma);
+              opacities[i] = gaussians[i].opacity;
+            }
+            const center: [number, number, number] = [
+              (result.bbox.min[0] + result.bbox.max[0]) / 2,
+              (result.bbox.min[1] + result.bbox.max[1]) / 2,
+              (result.bbox.min[2] + result.bbox.max[2]) / 2,
+            ];
+            const size: [number, number, number] = [
+              result.bbox.max[0] - result.bbox.min[0],
+              result.bbox.max[1] - result.bbox.min[1],
+              result.bbox.max[2] - result.bbox.min[2],
+            ];
+            await ctx.bridge.pushPointCloud({
+              sceneId: result.id,
+              positions,
+              colors,
+              opacities,
+              pointCount: gaussians.length,
+              bboxCenter: center,
+              bboxSize: size,
+            });
+          }
+
+          return json({
+            scene_id: result.id,
+            gaussian_count: result.gaussianCount,
+            bbox: result.bbox,
+            sampled: result.sampled,
+            file_path: filePath,
+          });
+        } catch (parseErr: any) {
+          // Fall back to synthetic if parsing fails
+          console.error(`[import_scene] PLY parse failed, falling back to synthetic: ${parseErr.message}`);
+        }
+      }
+
+      // Fallback: synthetic scene for unrecognized or failed files
       const result = ctx.state.generateSyntheticScene(50000);
       const scene = ctx.state.getScene(result.id)!;
       scene.source = source;
@@ -94,7 +176,7 @@ const tools: MCPTool[] = [
         scene_id: result.id,
         gaussian_count: result.gaussianCount,
         bbox: scene.bbox,
-        note: `Loaded from ${source} (synthetic placeholder in prototype)`,
+        note: `Loaded from ${source} (synthetic fallback — file not found or parse error)`,
       });
     },
   },
@@ -211,12 +293,29 @@ const tools: MCPTool[] = [
       const response = await ctx.bridge.send({ type: 'render', width, height, format, background });
 
       if (response.type === 'render_result') {
+        // If renderer returned actual image data, save to temp file and return URL
+        if (response.image && response.image.length > 100) {
+          const renderId = `render-${Date.now()}`;
+          const renderDir = _path.resolve(process.cwd(), '.temp', 'renders');
+          if (!_fs.existsSync(renderDir)) _fs.mkdirSync(renderDir, { recursive: true });
+          const renderPath = _path.join(renderDir, `${renderId}.${format}`);
+          const buf = Buffer.from(response.image, 'base64');
+          _fs.writeFileSync(renderPath, buf);
+          return json({
+            image_url: `/api/renders/${renderId}.${format}`,
+            render_time_ms: response.renderTimeMs,
+            width: response.width,
+            height: response.height,
+            has_image: true,
+            image_size_bytes: buf.length,
+          });
+        }
         return json({
-          image: response.image ? `<base64:image:${format}>` : '(headless mode — no image)',
+          image: '(headless mode — no image)',
           render_time_ms: response.renderTimeMs,
           width: response.width,
           height: response.height,
-          has_image: !!response.image,
+          has_image: false,
         });
       }
       return error('Render failed');
@@ -243,7 +342,16 @@ const tools: MCPTool[] = [
       switch (queryType) {
         case 'stats': {
           const stats = ctx.state.getStats();
-          return json(stats);
+          const extra: Record<string, unknown> = {};
+          if (scene.filePath) extra.file_path = scene.filePath;
+          if (scene.headerInfo) {
+            extra.ply_format = scene.headerInfo.format;
+            extra.total_vertex_count = scene.headerInfo.vertexCount;
+            extra.vertex_stride = scene.headerInfo.vertexStride;
+            extra.property_count = scene.headerInfo.properties.length;
+            extra.is_3dgs = scene.headerInfo.has3dgs;
+          }
+          return json({ ...stats, ...extra });
         }
         case 'bbox':
           return json({ bbox: scene.bbox });
@@ -416,7 +524,7 @@ const tools: MCPTool[] = [
         const clones = scene.gaussians.slice(0, Math.floor(scene.gaussians.length * (factor - 1))).map((g, i) => ({
           ...g,
           id: scene.gaussians.length + i,
-          position: [g.position[0] + (Math.random() - 0.5) * 0.01, g.position[1] + (Math.random() - 0.5) * 0.01, g.position[2] + (Math.random() - 0.5) * 0.01],
+          position: [g.position[0] + (Math.random() - 0.5) * 0.01, g.position[1] + (Math.random() - 0.5) * 0.01, g.position[2] + (Math.random() - 0.5) * 0.01] as [number, number, number],
         }));
         scene.gaussians.push(...clones);
       } else if (mode === 'decrease') {

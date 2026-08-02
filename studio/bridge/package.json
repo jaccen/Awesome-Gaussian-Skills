@@ -1,0 +1,30 @@
+{
+  "name": "toonflow-bridge",
+  "version": "0.2.0",
+  "description": "MCP Bridge connecting Toonflow short-drama pipeline with 3DGS rendering from Awesome-Gaussian-Skills",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx src/render-server.ts",
+    "dev:mcp": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/render-server.js",
+    "start:mcp": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "express": "^4.21.0",
+    "cors": "^2.8.5",
+    "zod": "^3.23.8",
+    "axios": "^1.7.9",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/uuid": "^10.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  },
+  "license": "Apache-2.0"
+}

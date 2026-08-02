@@ -114,6 +114,14 @@ export class RendererBridge {
   private handleMessage(raw: string): void {
     try {
       const msg = JSON.parse(raw) as { id: number } & RendererResponse;
+
+      // Check for scene_loaded confirmation from browser (triggered by pushPointCloud)
+      if (msg.type === 'scene_loaded' && this.sceneLoadedResolve) {
+        console.error(`[RendererBridge] Received scene_loaded confirmation from browser`);
+        this.sceneLoadedResolve();
+        this.sceneLoadedResolve = null;
+      }
+
       const pending = this.pendingRequests.get(msg.id);
       if (pending) {
         clearTimeout(pending.timeout);
@@ -162,6 +170,94 @@ export class RendererBridge {
       default:
         return { type: 'pong' };
     }
+  }
+
+  private sceneLoadedResolve: (() => void) | null = null;
+
+  /**
+    * Push parsed point cloud data directly to the browser renderer.
+    * Sends position + color arrays as a single binary ArrayBuffer to avoid
+    * having the browser re-download and re-parse the PLY file.
+    *
+    * Binary layout:
+    *   [4 bytes: pointCount (uint32)]
+    *   [4 bytes: float data length (uint32)]
+    *   [pointCount * 6 * 4 bytes: interleaved x,y,z,r,g,b float32]
+    *
+    * Preceded by a JSON text message with type='load_point_cloud' containing
+    * scene metadata (sceneId, pointCount, bbox center, bbox size).
+    *
+    * After sending, waits for the browser to confirm scene_loaded before returning.
+    */
+  async pushPointCloud(params: {
+    sceneId: string;
+    positions: Float32Array;
+    colors: Float32Array;
+    opacities: Float32Array;
+    pointCount: number;
+    bboxCenter: [number, number, number];
+    bboxSize: [number, number, number];
+  }): Promise<void> {
+    if (!this.isRendererConnected()) {
+      console.error('[RendererBridge] No renderer connected, skipping point cloud push');
+      // Wait 3 seconds for potential late connection
+      await new Promise(r => setTimeout(r, 3000));
+      if (!this.isRendererConnected()) return;
+    }
+
+    const { sceneId, positions, colors, opacities, pointCount, bboxCenter, bboxSize } = params;
+
+    // 1. Set up a promise that resolves when browser confirms scene_loaded
+    const sceneLoadedPromise = new Promise<void>((resolve) => {
+      this.sceneLoadedResolve = resolve;
+    });
+    const timeoutPromise = new Promise<void>((resolve) => {
+      setTimeout(resolve, 15000); // 15s timeout
+    });
+
+    // 2. Send JSON metadata message
+    const metaMsg = JSON.stringify({
+      id: ++this.messageId,
+      type: 'load_point_cloud',
+      sceneId,
+      pointCount,
+      bboxCenter,
+      bboxSize,
+    });
+    this.client!.send(metaMsg);
+
+    // 3. Send binary data: interleaved [x,y,z,r,g,b,opacity] per point (7 floats)
+    const stride = 7; // 3 pos + 3 color + 1 opacity
+    const buffer = new ArrayBuffer(4 + 4 + pointCount * stride * 4);
+    const view = new DataView(buffer);
+
+    // Header: pointCount + data length
+    view.setUint32(0, pointCount, true);
+    view.setUint32(4, pointCount * stride * 4, true);
+
+    // Interleave position + color + opacity
+    let offset = 8;
+    for (let i = 0; i < pointCount; i++) {
+      view.setFloat32(offset, positions[i * 3 + 0], true);     offset += 4; // x
+      view.setFloat32(offset, positions[i * 3 + 1], true);     offset += 4; // y
+      view.setFloat32(offset, positions[i * 3 + 2], true);     offset += 4; // z
+      view.setFloat32(offset, colors[i * 3 + 0], true);        offset += 4; // r
+      view.setFloat32(offset, colors[i * 3 + 1], true);        offset += 4; // g
+      view.setFloat32(offset, colors[i * 3 + 2], true);        offset += 4; // b
+      view.setFloat32(offset, opacities[i], true);              offset += 4; // opacity
+    }
+
+    this.client!.send(buffer);
+    console.error(`[RendererBridge] Pushed ${pointCount} points to renderer (${(buffer.byteLength / 1024 / 1024).toFixed(2)} MB)`);
+
+    // 4. Wait for browser to confirm scene_loaded (or 15s timeout)
+    const startTime = Date.now();
+    await Promise.race([sceneLoadedPromise, timeoutPromise]);
+    const elapsed = Date.now() - startTime;
+    console.error(`[RendererBridge] Scene load confirmation received (or timed out) after ${elapsed}ms`);
+
+    // 5. Extra safety delay to ensure Three.js has rendered at least one frame
+    await new Promise(r => setTimeout(r, 500));
   }
 
   disconnect(): void {

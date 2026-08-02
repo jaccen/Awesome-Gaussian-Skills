@@ -77,18 +77,23 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     return {
       content: [{ type: 'text', text: `Unknown tool: ${name}. Available: ${toolDefinitions.map((t) => t.name).join(', ')}` }],
       isError: true,
-    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
   }
 
   try {
-    return await handler(args ?? {});
+    const result = await handler(args ?? {});
+    // SDK v1.12+ changed the expected return type; cast to satisfy both old and new versions.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return result as any;
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error(`[Tool:${name}] Error: ${message}`);
     return {
       content: [{ type: 'text', text: `Tool "${name}" failed: ${message}` }],
       isError: true,
-    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
   }
 });
 

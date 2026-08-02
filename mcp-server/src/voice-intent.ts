@@ -52,10 +52,13 @@ const rules: VoiceIntentRule[] = [
     intent: 'reduce_blur',
     pattern: /(make|it).*(less blurry|sharper|more detail|clearer|crisp)/i,
     toolCalls: [
-      { tool: 'modify_gaussians', params: {
+      {
+        tool: 'modify_gaussians',
+        params: {
           select: {},
           operations: [{ property: 'opacity', action: 'set', value: 0.95 }],
-      }],
+        },
+      },
       { tool: 'render_frame', params: {} },
     ],
   },
@@ -64,10 +67,13 @@ const rules: VoiceIntentRule[] = [
     intent: 'make_transparent',
     pattern: /(make|set).*(transparent|invisible|fade|ghost|see.through)/i,
     toolCalls: [
-      { tool: 'modify_gaussians', params: {
+      {
+        tool: 'modify_gaussians',
+        params: {
           select: { label: '$LABEL' },
           operations: [{ property: 'opacity', action: 'multiply', value: 0.2 }],
-      }],
+        },
+      },
     ],
   },
   {
@@ -75,10 +81,13 @@ const rules: VoiceIntentRule[] = [
     intent: 'make_visible',
     pattern: /(make|set).*(visible|opaque|solid|appear)/i,
     toolCalls: [
-      { tool: 'modify_gaussians', params: {
+      {
+        tool: 'modify_gaussians',
+        params: {
           select: { label: '$LABEL' },
           operations: [{ property: 'opacity', action: 'set', value: 1.0 }],
-      }],
+        },
+      },
     ],
   },
 
