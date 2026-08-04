@@ -717,6 +717,7 @@
 
 ### Rendering (New)
 - **View-Dependent Splatting Kernels** [arXiv:2605.25426](https://arxiv.org/abs/2605.25426) (SIGGRAPH 2026) — Learns view-dependent splatting kernels replacing fixed Gaussian kernels; improves rendering quality for Gaussian/surfel-based representations (Huakeng Ding et al.)
+- **MLP Splatting** [arXiv:2606.03877](https://arxiv.org/abs/2606.03877) ([Project](https://www.shinjeongkim.com/mlp-splatting/)) (ECCV 2026) — Retains 3DGS-style anisotropic Gaussian support and screen-space splatting, while equipping each splat with a compact local MLP that predicts view- and position-dependent radiance and opacity, enabling object- and part-level scene decomposition from RGB images. (Shinjeong Kim et al.)
 - **Gaussian-Enhanced Surfel Rendering with Depth Peeling** [arXiv:2605.25345](https://arxiv.org/abs/2605.25345) (arXiv 2026) — Depth peeling technique for high-fidelity Gaussian-enhanced surfel rendering; resolves transparency ordering for glass/transmissive scenes (Keyang Ye et al.)
 
 ### Simulation (New)
