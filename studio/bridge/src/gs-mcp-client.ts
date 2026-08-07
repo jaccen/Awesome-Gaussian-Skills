@@ -188,24 +188,25 @@ export class GsMcpClient extends EventEmitter {
       }
     } else {
       // Original logic: synthetic scene or file assets
-      const sceneId = `scene-${Date.now()}`;
       const syntheticAssets = request.assets.filter(a => !a.gsModelPath);
       const fileAssets = request.assets.filter(a => a.gsModelPath);
 
       if (syntheticAssets.length > 0 || fileAssets.length === 0) {
-        await this.callTool('import_scene', {
-          source: `synthetic:scene_${sceneId}`,
-          format: 'synthetic',
+        const synthResult = await this.callTool('import_scene', {
+          source: 'synthetic://sphere',
+          format: 'ply',
         });
+        if (synthResult?.scene_id) importResult = synthResult;
       }
 
-      // Import .ply/.splat file assets
+      // Import .ply/.splat file assets (server-authoritative scene ids)
       for (const asset of fileAssets) {
         const format = asset.gsModelPath!.endsWith('.ply') ? 'ply' : 'splat';
-        await this.callTool('import_scene', {
+        const assetResult = await this.callTool('import_scene', {
           source: asset.gsModelPath,
           format,
         });
+        if (assetResult?.scene_id) importResult = assetResult;
       }
     }
 
@@ -236,7 +237,8 @@ export class GsMcpClient extends EventEmitter {
       previewUrl = preview.data;
     }
 
-    const sceneId = `scene-${Date.now()}`;
+    const sceneId = importResult?.scene_id ?? `local-fallback-${Date.now()}`;
+    this.sceneId = sceneId;
     return { sceneId, previewUrl, usedCameraSpec };
   }
 
@@ -291,10 +293,15 @@ export class GsMcpClient extends EventEmitter {
       const framePath = `.temp/frames/scene_${sceneId}/frame_${String(i).padStart(5, '0')}.png`;
       framePaths.push(framePath);
 
-      // 如果有 base64 图片数据，保存到文件
-      const imageData = result?.image || result?.data || (typeof result === 'string' ? result : '');
-      if (imageData) {
-        await this._saveFrame(imageData, framePath);
+      // v0.8: render_frame 已将帧落盘并返回 local_path，直接复制
+      if (result?.local_path) {
+        await this._copyFrame(result.local_path, framePath);
+      } else {
+        // Legacy 兜底：base64 图片数据
+        const imageData = result?.image || result?.data || (typeof result === 'string' ? result : '');
+        if (imageData) {
+          await this._saveFrame(imageData, framePath);
+        }
       }
     }
 
@@ -311,8 +318,11 @@ export class GsMcpClient extends EventEmitter {
   // 查询 & 编辑
   // ============================================================
 
-  async queryScene(sceneId: string) {
-    return this.callTool('query_scene', { query_type: 'stats' });
+  async queryScene(sceneId?: string) {
+    return this.callTool('query_scene', {
+      query_type: 'stats',
+      scene_id: sceneId ?? this.sceneId ?? undefined,
+    });
   }
 
   async setPbrMaterial(gaussianIds: string[], material: { metallic?: number; roughness?: number; color?: string }) {
@@ -448,6 +458,13 @@ export class GsMcpClient extends EventEmitter {
     }
   }
 
+  private async _copyFrame(srcPath: string, framePath: string): Promise<void> {
+    const fs = await import('fs');
+    const path = await import('path');
+    await fs.promises.mkdir(path.dirname(framePath), { recursive: true });
+    await fs.promises.copyFile(srcPath, framePath);
+  }
+
   private async _ffmpegCompose(framePaths: string[], outputPath: string, fps: number): Promise<void> {
     const fs = await import('fs');
     const path = await import('path');
@@ -465,6 +482,6 @@ export class GsMcpClient extends EventEmitter {
     });
   }
 
-  // 场景 ID 占位（MCP Server 内部维护状态，此处仅做引用）
+  // 服务端权威 scene_id（buildScene 导入成功后记录；v0.8 起不再本地伪造）
   private sceneId: string = '';
 }

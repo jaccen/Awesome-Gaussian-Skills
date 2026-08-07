@@ -91,7 +91,7 @@
 - **XFreq-GS** [arXiv:2605.11432](https://arxiv.org/abs/2605.11432) (arXiv 2026) -- Cross-frequency wireless radiation field reconstruction with shared geometry ...
 - **PatchPoison** [arXiv:2604.13153](https://arxiv.org/abs/2604.13153) (arXiv 2026) -- Poisoning multi-view datasets to degrade 3D reconstruction (Security)
 - **3DTV** [arXiv:2604.11211](https://arxiv.org/abs/2604.11211) (arXiv 2026) -- Feedforward 3-camera interpolation at 40 FPS
-- **Fake3DGS** [arXiv:2604.27590](https://arxiv.org/abs/2604.27590) (ICPR 2026) -- Benchmark for 3D manipulation detection in neural rendering
+- **Fake3DGS** [arXiv:2604.27590](https://arxiv.org/abs/2604.27590) (arXiv 2026（venue 待核实）) -- Benchmark for 3D manipulation detection in neural rendering
 - **SplAttN** [arXiv:2605.01466](https://arxiv.org/abs/2605.01466) (ICML 2026) -- Gaussian soft splatting for point cloud completion
 - **Habitat-GS** (arXiv 2024) -- 3DGS-rendered simulator for robot navigation training
 - **GS-DOT** [arXiv:2604.23675](https://arxiv.org/abs/2604.23675) (arXiv 2026) -- Diffuse optical tomography via Gaussian Splatting
@@ -395,7 +395,7 @@
 - **CT-GS** [arXiv:2502.02091](https://arxiv.org/abs/2502.02091) (CVPR 2025) — GS-based CT volume reconstruction with sparse-view acceleration
 - **GS-UWF** [arXiv:2502.16652](https://arxiv.org/abs/2502.16652) (CVPR 2025) — Ultra-widefield fundus reconstruction with Gaussian Splatting
 - **EndoGSim** [arXiv:2605.16022](https://arxiv.org/abs/2605.16022) (MICCAI 2026) — MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation
-- **GaussianPile** [arXiv:2603.20611](https://arxiv.org/abs/2603.20611) (CVPR 2026) — Slice-based volumetric reconstruction via sparse 3DGS + imaging system-aware focus model; slice-aware piling strategy + differentiable PSF projection; 11x faster than NeRF, 16x compression over voxel grids; supports microscopy/ultrasound/MRI (中关村学院)
+- **GaussianPile** [arXiv:2603.20611](https://arxiv.org/abs/2603.20611) (arXiv 2026（venue 待核实）) — Slice-based volumetric reconstruction via sparse 3DGS + imaging system-aware focus model; slice-aware piling strategy + differentiable PSF projection; 11x faster than NeRF, 16x compression over voxel grids; supports microscopy/ultrasound/MRI (中关村学院)
 
 ### Robustness & Regularization
 - **DC-Gaussian** [arXiv:2405.17705](https://arxiv.org/abs/2405.17705) (NeurIPS 2024) — Reflection separation + degradation-aware training for reflective dashcam 3DGS [Code](https://github.com/linhanwang/DC-Gaussian)
@@ -757,7 +757,7 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **DDF-GS** [arXiv:2606.00817](https://arxiv.org/abs/2606.00817) (arXiv 2026) — Directed Distance Fields for constant-time ray queries on 3DGS scenes; 52MB neural field distilled from trained 3DGS; 26-72x faster than SDF sphere tracing; supports global illumination secondary rays at 30.3 dB shadow / 21.3 dB AO fidelity [Code](https://github.com/smlab-niser/ddf-gs) (Subhankar Mishra)
 
 #### Compression / Pruning
-- **VEDAL** [arXiv:2606.02346](https://arxiv.org/abs/2606.02346) (CGI 2026) — Variational free energy minimization for 3DGS pruning; prediction-error gating triggers asynchronous pruning + variational uncertainty head models pruning as latent variable with learnable prior; 5.2x compression with only 0.31 dB PSNR drop; 185 FPS (Aoduo Li et al.)
+- **VEDAL** [arXiv:2606.02346](https://arxiv.org/abs/2606.02346) (arXiv 2026（venue 待核实）) — Variational free energy minimization for 3DGS pruning; prediction-error gating triggers asynchronous pruning + variational uncertainty head models pruning as latent variable with learnable prior; 5.2x compression with only 0.31 dB PSNR drop; 185 FPS (Aoduo Li et al.)
 - **DSD-GS** [arXiv:2605.30863](https://arxiv.org/abs/2605.30863) (arXiv 2026) — Dynamic-Static Decomposition via feed-forward GS encoder + optical flow; static regions skip redundant computation; 10 min training on Neural 3D; 700+ FPS on RTX 5090@1352x1014; no COLMAP required
 
 #### Feed-Forward / Reconstruction

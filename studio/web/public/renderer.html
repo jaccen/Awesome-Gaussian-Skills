@@ -430,7 +430,7 @@ function connectWebSocket() {
   var statusText = document.getElementById('status-text');
 
   try {
-    ws = new WebSocket('ws://localhost:' + WS_PORT);
+    ws = new WebSocket('ws://' + location.hostname + ':' + WS_PORT);
   } catch (e) {
     dot.className = 'dot off';
     statusText.textContent = 'Connection error';
@@ -444,6 +444,8 @@ function connectWebSocket() {
     console.log('[renderer] WebSocket connected to :' + WS_PORT);
     // Set binary type to ArrayBuffer so we receive binary data as ArrayBuffer (not Blob)
     ws.binaryType = 'arraybuffer';
+    // Protocol handshake: identify this renderer right after connecting
+    ws.send(JSON.stringify({ type: 'hello', renderer: 'three-points', capabilities: ['point-cloud', 'capture'] }));
   };
 
   ws.onclose = function() {
@@ -485,6 +487,7 @@ function handleCommand(msg) {
       // Store metadata for use when binary arrives
       console.log('[renderer] Received load_point_cloud metadata: ' + msg.pointCount + ' points, sceneId=' + msg.sceneId);
       window._pendingPointCloud = {
+        id: msg.id,
         sceneId: msg.sceneId,
         pointCount: msg.pointCount,
         bboxCenter: msg.bboxCenter,
@@ -527,7 +530,7 @@ function handleCommand(msg) {
       orbitState.target.set(target[0], target[1], target[2]);
       orbitState.radius = camera.position.distanceTo(orbitState.target);
 
-      sendResponse(id, { type: 'camera_set', position: pos, target: target, fov: fov });
+      sendResponse(id, { type: 'pong' });
 
     } else if (type === 'render') {
       var width = msg.width || 1920;
@@ -639,7 +642,14 @@ function handleBinaryData(buffer) {
 
   // Send acknowledgment with scene info so MCP Server knows rendering is complete
   if (meta.sceneId) {
-    sendResponse(0, { type: 'scene_loaded', sceneId: meta.sceneId, gaussianCount: pointCount, bbox: { min: [-1,-1,-1], max: [1,1,1] }, center: info.center, pointSize: info.pointSize });
+    var bbox = { min: [-1,-1,-1], max: [1,1,1] };
+    if (meta.bboxCenter && meta.bboxSize && meta.bboxCenter.length === 3 && meta.bboxSize.length === 3) {
+      bbox = {
+        min: [meta.bboxCenter[0] - meta.bboxSize[0] / 2, meta.bboxCenter[1] - meta.bboxSize[1] / 2, meta.bboxCenter[2] - meta.bboxSize[2] / 2],
+        max: [meta.bboxCenter[0] + meta.bboxSize[0] / 2, meta.bboxCenter[1] + meta.bboxSize[1] / 2, meta.bboxCenter[2] + meta.bboxSize[2] / 2],
+      };
+    }
+    sendResponse(meta.id !== undefined ? meta.id : 0, { type: 'scene_loaded', sceneId: meta.sceneId, gaussianCount: pointCount, bbox: bbox, center: info.center, pointSize: info.pointSize });
   }
 
   window._pendingPointCloud = null;
@@ -661,7 +671,7 @@ function fetchAndParsePly(source) {
     filename = filename.split(/[/\\]/).pop();
   }
 
-  var url = 'http://localhost:' + BRIDGE_PORT + '/api/files/scenes/' + filename;
+  var url = 'http://' + location.hostname + ':' + BRIDGE_PORT + '/api/files/scenes/' + filename;
   console.log('[renderer] Fetching PLY:', url);
 
   return fetch(url).then(function(response) {

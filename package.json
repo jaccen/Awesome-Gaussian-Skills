@@ -1,8 +1,8 @@
 {
   "name": "awesome-gaussian-skills",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
-  "description": "3D Spatial Intelligence Open-Source Toolbox — 789+ methods, 15 skills, MCP Server, SplatVerse Studio",
+  "description": "3D Spatial Intelligence Open-Source Toolbox — 783+ methods, 15 skills, MCP Server, SplatVerse Studio",
   "license": "Apache-2.0",
   "workspaces": [
     "mcp-server",

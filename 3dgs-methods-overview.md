@@ -2,7 +2,7 @@
 # 3DGS Methods Overview
 
 > **This file has moved.** The authoritative knowledge base is now at:
-> **[references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)** — 680+ methods, 25 categories.
+> **[references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)** — 783+ methods, 23 categories.
 >
 > Detailed entries are split across three companion files:
 > - [references/methods-core.md](references/methods-core.md) — Foundation, Surface/Geometry, CAD/Mesh, Text-to-3D, Feed-Forward, Compression, Dynamic

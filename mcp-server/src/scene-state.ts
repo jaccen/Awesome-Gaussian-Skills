@@ -180,43 +180,119 @@ export class SceneState {
   // Pruning & Density Control
   // -----------------------------------------------------------------------
 
-  pruneByImportance(strategy: string, targetRatio: number, preserveRegions?: Array<{ center: number[]; radius: number }>, sceneId?: string): { removed: number; remaining: number } {
+  pruneByImportance(strategy: string, targetRatio: number, preserveRegions?: Array<{ center: number[]; radius: number }>, sceneId?: string): { removed: number; remaining: number; strategy: string } {
     const scene = this.getScene(sceneId);
     if (!scene) throw new Error('No active scene');
 
     const total = scene.gaussians.length;
     const targetCount = Math.floor(total * targetRatio);
     const toRemove = total - targetCount;
+    if (toRemove <= 0) return { removed: 0, remaining: total, strategy };
 
-    // Sort by importance metric (simplified — real impl would use DoG/coreset/gradient)
-    const scored = scene.gaussians.map((g, idx) => {
-      let score = g.opacity;
-      // Smaller scale = finer detail = more important
-      const scaleMag = Math.sqrt(g.scale[0] ** 2 + g.scale[1] ** 2 + g.scale[2] ** 2);
-      score += 1.0 / (scaleMag + 0.001);
-
-      // Protected regions
-      if (preserveRegions) {
-        for (const region of preserveRegions) {
-          const dx = g.position[0] - region.center[0];
-          const dy = g.position[1] - region.center[1];
-          const dz = g.position[2] - region.center[2];
-          if (dx * dx + dy * dy + dz * dz <= region.radius * region.radius) {
-            score += 1000; // Protect from pruning
-          }
-        }
+    const gs = scene.gaussians;
+    const scaleMag = (g: Gaussian) => Math.sqrt(g.scale[0] ** 2 + g.scale[1] ** 2 + g.scale[2] ** 2);
+    const inPreserve = (g: Gaussian): boolean => {
+      if (!preserveRegions) return false;
+      for (const region of preserveRegions) {
+        const dx = g.position[0] - region.center[0];
+        const dy = g.position[1] - region.center[1];
+        const dz = g.position[2] - region.center[2];
+        if (dx * dx + dy * dy + dz * dz <= region.radius * region.radius) return true;
       }
-      return { idx, score };
-    });
+      return false;
+    };
 
+    // Strategy-specific importance scoring (higher = keep)
+    let scores: number[];
+    switch (strategy) {
+      case 'sparsity': {
+        // Sparsity: small, opaque Gaussians carry fine detail — keep them.
+        scores = gs.map((g) => g.opacity + 1.0 / (scaleMag(g) + 0.001));
+        break;
+      }
+      case 'dog': {
+        // Difference-of-Gaussians band-pass: structure-band scales (near the
+        // median scale) matter most; very small (noise) and very large
+        // (background sheet) Gaussians score lower.
+        const mags = gs.map(scaleMag).sort((a, b) => a - b);
+        const median = mags[Math.floor(mags.length / 2)] || 0.01;
+        const sigma = median * 1.5 + 1e-6;
+        scores = gs.map((g) => {
+          const d = (scaleMag(g) - median) / sigma;
+          return g.opacity * Math.exp(-0.5 * d * d);
+        });
+        break;
+      }
+      case 'coreset': {
+        // Coreset-style spatial coverage: the scene is voxelized; within each
+        // voxel only the most opaque Gaussian is essential (covers that cell),
+        // duplicates get low scores. Greedy coverage approximation.
+        const cell = this.bboxDiagonal(scene) / 48;
+        const bestPerVoxel = new Map<string, { idx: number; opacity: number }>();
+        gs.forEach((g, idx) => {
+          const key = `${Math.floor(g.position[0] / cell)},${Math.floor(g.position[1] / cell)},${Math.floor(g.position[2] / cell)}`;
+          const cur = bestPerVoxel.get(key);
+          if (!cur || g.opacity > cur.opacity) bestPerVoxel.set(key, { idx, opacity: g.opacity });
+        });
+        const representative = new Set(Array.from(bestPerVoxel.values()).map((v) => v.idx));
+        scores = gs.map((g, idx) => (representative.has(idx) ? 1 + g.opacity : g.opacity * 0.1));
+        break;
+      }
+      case 'gradient': {
+        // Gradient proxy: Gaussians whose color deviates from their local
+        // voxel neighborhood approximate high-frequency (edge) content.
+        const cell = this.bboxDiagonal(scene) / 48;
+        const voxelColor = new Map<string, { sum: [number, number, number]; n: number }>();
+        for (const g of gs) {
+          const key = `${Math.floor(g.position[0] / cell)},${Math.floor(g.position[1] / cell)},${Math.floor(g.position[2] / cell)}`;
+          const v = voxelColor.get(key) ?? { sum: [0, 0, 0], n: 0 };
+          v.sum[0] += g.color[0]; v.sum[1] += g.color[1]; v.sum[2] += g.color[2]; v.n++;
+          voxelColor.set(key, v);
+        }
+        scores = gs.map((g) => {
+          const key = `${Math.floor(g.position[0] / cell)},${Math.floor(g.position[1] / cell)},${Math.floor(g.position[2] / cell)}`;
+          const v = voxelColor.get(key)!;
+          const dist = Math.abs(g.color[0] - v.sum[0] / v.n) + Math.abs(g.color[1] - v.sum[1] / v.n) + Math.abs(g.color[2] - v.sum[2] / v.n);
+          return g.opacity * 0.5 + dist;
+        });
+        break;
+      }
+      case 'variational': {
+        // Variational proxy: prune low-confidence primitives first. Confidence
+        // is approximated by decisiveness of opacity (distance from 0.5) and
+        // shape regularity (scale isotropy).
+        scores = gs.map((g) => {
+          const m = scaleMag(g) + 1e-6;
+          const isotropy = Math.min(...g.scale) / Math.max(...g.scale, 1e-6);
+          return Math.abs(g.opacity - 0.5) * 2 + isotropy * 0.5;
+        });
+        break;
+      }
+      default:
+        throw new Error(`Unknown pruning strategy: ${strategy} (expected dog|coreset|gradient|sparsity|variational)`);
+    }
+
+    const scored = gs
+      .map((g, idx) => ({ idx, score: scores[idx] }))
+      .filter((s) => !inPreserve(gs[s.idx])); // protected Gaussians are fully exempt
     scored.sort((a, b) => a.score - b.score); // Lowest score = least important = prune first
-    const toRemoveSet = new Set(scored.slice(0, toRemove).map((s) => s.idx));
+    const removable = Math.min(toRemove, scored.length);
+    const toRemoveSet = new Set(scored.slice(0, removable).map((s) => s.idx));
 
-    scene.gaussians = scene.gaussians.filter((_, idx) => !toRemoveSet.has(idx));
-    // Re-index
+    scene.gaussians = gs.filter((_, idx) => !toRemoveSet.has(idx));
     scene.gaussians.forEach((g, i) => (g.id = i));
+    this.invalidateSpatialIndex(scene);
 
-    return { removed: toRemove, remaining: scene.gaussians.length };
+    return { removed: removable, remaining: scene.gaussians.length, strategy };
+  }
+
+  private bboxDiagonal(scene: Scene): number {
+    const d = [
+      scene.bbox.max[0] - scene.bbox.min[0],
+      scene.bbox.max[1] - scene.bbox.min[1],
+      scene.bbox.max[2] - scene.bbox.min[2],
+    ];
+    return Math.sqrt(d[0] ** 2 + d[1] ** 2 + d[2] ** 2) || 1;
   }
 
   // -----------------------------------------------------------------------
@@ -261,6 +337,190 @@ export class SceneState {
       }
     }
     return closest;
+  }
+
+  // -----------------------------------------------------------------------
+  // Spatial Index & Ray Casting (grid-accelerated)
+  // -----------------------------------------------------------------------
+
+  private spatialIndex = new Map<string, { cell: number; grid: Map<string, number[]>; builtFor: number }>();
+
+  invalidateSpatialIndex(scene: Scene): void {
+    this.spatialIndex.delete(scene.id);
+  }
+
+  private getSpatialIndex(scene: Scene): { cell: number; grid: Map<string, number[]> } {
+    const cached = this.spatialIndex.get(scene.id);
+    if (cached && cached.builtFor === scene.gaussians.length) return cached;
+
+    const cell = this.bboxDiagonal(scene) / 64;
+    const grid = new Map<string, number[]>();
+    scene.gaussians.forEach((g, idx) => {
+      const key = `${Math.floor(g.position[0] / cell)},${Math.floor(g.position[1] / cell)},${Math.floor(g.position[2] / cell)}`;
+      const arr = grid.get(key);
+      if (arr) arr.push(idx);
+      else grid.set(key, [idx]);
+    });
+    const entry = { cell, grid, builtFor: scene.gaussians.length };
+    this.spatialIndex.set(scene.id, entry);
+    return entry;
+  }
+
+  /**
+   * Grid-accelerated ray query. Walks along the ray in steps of one cell and
+   * only tests Gaussians in the visited cells (with a 1-cell neighborhood),
+   * reducing cost from O(N) to O(steps × candidates-per-cell) on large scenes.
+   * Intersection test approximates each Gaussian as a sphere of its max scale.
+   */
+  castRay(origin: number[], direction: number[], sceneId?: string, maxDistance: number = 1000): { hit: boolean; distance: number; gaussianId: number | null; position: [number, number, number] | null } {
+    const scene = this.getScene(sceneId);
+    if (!scene) throw new Error('No active scene');
+    if (scene.gaussians.length === 0) return { hit: false, distance: Infinity, gaussianId: null, position: null };
+
+    const { cell, grid } = this.getSpatialIndex(scene);
+    const len = Math.sqrt(direction[0] ** 2 + direction[1] ** 2 + direction[2] ** 2) || 1;
+    const dir = [direction[0] / len, direction[1] / len, direction[2] / len];
+
+    let closestT = Infinity;
+    let hitIdx: number | null = null;
+    const visited = new Set<string>();
+    const steps = Math.min(Math.ceil(maxDistance / cell), 4096);
+
+    for (let s = 0; s <= steps; s++) {
+      const t = s * cell;
+      if (t >= closestT) break;
+      const px = origin[0] + dir[0] * t;
+      const py = origin[1] + dir[1] * t;
+      const pz = origin[2] + dir[2] * t;
+      const cx = Math.floor(px / cell), cy = Math.floor(py / cell), cz = Math.floor(pz / cell);
+
+      for (let ox = -1; ox <= 1; ox++) for (let oy = -1; oy <= 1; oy++) for (let oz = -1; oz <= 1; oz++) {
+        const key = `${cx + ox},${cy + oy},${cz + oz}`;
+        if (visited.has(key)) continue;
+        visited.add(key);
+        const candidates = grid.get(key);
+        if (!candidates) continue;
+        for (const idx of candidates) {
+          const g = scene.gaussians[idx];
+          const dx = g.position[0] - origin[0];
+          const dy = g.position[1] - origin[1];
+          const dz = g.position[2] - origin[2];
+          const tt = dx * dir[0] + dy * dir[1] + dz * dir[2];
+          if (tt < 0 || tt >= closestT) continue;
+          const perpX = dx - tt * dir[0], perpY = dy - tt * dir[1], perpZ = dz - tt * dir[2];
+          const perp2 = perpX * perpX + perpY * perpY + perpZ * perpZ;
+          const radius = Math.max(g.scale[0], g.scale[1], g.scale[2]);
+          if (perp2 < radius * radius) {
+            closestT = tt;
+            hitIdx = idx;
+          }
+        }
+      }
+    }
+
+    if (hitIdx === null) return { hit: false, distance: Infinity, gaussianId: null, position: null };
+    const g = scene.gaussians[hitIdx];
+    return { hit: true, distance: closestT, gaussianId: g.id, position: g.position };
+  }
+
+  /**
+   * Spatial context: voxel-cluster the scene and derive geometric spatial
+   * relations (above/below, left/right, in-front/behind, near/far) between
+   * clusters, plus point-to-point measurement. Pure geometry — no learned
+   * models involved; language grounding requires external features.
+   */
+  spatialContext(opts: { mode: 'scene_graph' | 'relation' | 'measurement'; pointA?: number[]; pointB?: number[]; label?: string; maxClusters?: number }, sceneId?: string): Record<string, unknown> {
+    const scene = this.getScene(sceneId);
+    if (!scene) throw new Error('No active scene');
+    const gs = scene.gaussians;
+    if (gs.length === 0) return { error: 'Empty scene' };
+
+    if (opts.mode === 'measurement') {
+      const a = opts.pointA, b = opts.pointB;
+      if (!a || !b) throw new Error('measurement mode requires pointA and pointB');
+      const dist = Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2);
+      const gA = this.gaussianAtPoint(a, sceneId), gB = this.gaussianAtPoint(b, sceneId);
+      return {
+        mode: 'measurement',
+        distance: dist,
+        pointA: a, pointB: b,
+        supportA: gA ? { gaussianId: gA.id, distanceToNearestGaussian: Math.sqrt((gA.position[0] - a[0]) ** 2 + (gA.position[1] - a[1]) ** 2 + (gA.position[2] - a[2]) ** 2) } : null,
+        supportB: gB ? { gaussianId: gB.id, distanceToNearestGaussian: Math.sqrt((gB.position[0] - b[0]) ** 2 + (gB.position[1] - b[1]) ** 2 + (gB.position[2] - b[2]) ** 2) } : null,
+        note: 'Euclidean distance in scene units; support fields indicate how well each point is backed by scene geometry.',
+      };
+    }
+
+    // Cluster into coarse voxels (structure-aware grouping)
+    const cell = this.bboxDiagonal(scene) / 16;
+    const clusters = new Map<string, { sum: number[]; n: number; opacity: number; min: number[]; max: number[] }>();
+    for (const g of gs) {
+      const key = `${Math.floor(g.position[0] / cell)},${Math.floor(g.position[1] / cell)},${Math.floor(g.position[2] / cell)}`;
+      let c = clusters.get(key);
+      if (!c) {
+        c = { sum: [0, 0, 0], n: 0, opacity: 0, min: [...g.position], max: [...g.position] };
+        clusters.set(key, c);
+      }
+      c.sum[0] += g.position[0]; c.sum[1] += g.position[1]; c.sum[2] += g.position[2];
+      c.n++; c.opacity += g.opacity;
+      for (let i = 0; i < 3; i++) { c.min[i] = Math.min(c.min[i], g.position[i]); c.max[i] = Math.max(c.max[i], g.position[i]); }
+    }
+
+    const maxClusters = opts.maxClusters ?? 12;
+    const top = Array.from(clusters.entries())
+      .map(([key, c]) => ({ key, centroid: c.sum.map((v) => v / c.n), count: c.n, opacity: c.opacity / c.n, min: c.min, max: c.max }))
+      .sort((x, y) => y.count - x.count)
+      .slice(0, maxClusters);
+
+    const sceneCenter = [
+      (scene.bbox.min[0] + scene.bbox.max[0]) / 2,
+      (scene.bbox.min[1] + scene.bbox.max[1]) / 2,
+      (scene.bbox.min[2] + scene.bbox.max[2]) / 2,
+    ];
+
+    const describeCluster = (c: (typeof top)[number], i: number) => ({
+      clusterId: i,
+      voxelKey: c.key,
+      centroid: c.centroid,
+      gaussianCount: c.count,
+      avgOpacity: Number(c.opacity.toFixed(3)),
+      extent: c.max.map((v, k) => v - c.min[k]),
+      location: this.octantLabel(c.centroid, sceneCenter),
+    });
+
+    if (opts.mode === 'scene_graph') {
+      return {
+        mode: 'scene_graph',
+        sceneCenter,
+        bbox: scene.bbox,
+        gaussianCount: gs.length,
+        clusters: top.map(describeCluster),
+        note: 'Clusters are coarse voxel groups ranked by Gaussian count. Semantic labels require external segmentation.',
+      };
+    }
+
+    // mode === 'relation': pairwise spatial relations among top clusters
+    const relations: Array<{ a: number; b: number; relation: string; distance: number }> = [];
+    const diag = this.bboxDiagonal(scene);
+    for (let i = 0; i < top.length; i++) {
+      for (let j = i + 1; j < top.length; j++) {
+        const ca = top[i].centroid, cb = top[j].centroid;
+        const d = Math.sqrt((ca[0] - cb[0]) ** 2 + (ca[1] - cb[1]) ** 2 + (ca[2] - cb[2]) ** 2);
+        const dy = ca[1] - cb[1];
+        const rel = Math.abs(dy) > 0.25 * d
+          ? (dy > 0 ? `cluster ${i} is above cluster ${j}` : `cluster ${i} is below cluster ${j}`)
+          : d < diag * 0.1 ? `cluster ${i} is near cluster ${j}` : `cluster ${i} is far from cluster ${j}`;
+        relations.push({ a: i, b: j, relation: rel, distance: Number(d.toFixed(4)) });
+      }
+    }
+    return { mode: 'relation', clusters: top.map(describeCluster), relations: relations.slice(0, 30) };
+  }
+
+  private octantLabel(p: number[], center: number[]): string {
+    const parts: string[] = [];
+    parts.push(p[1] > center[1] ? 'upper' : 'lower');
+    parts.push(p[0] > center[0] ? '+x-side' : '-x-side');
+    parts.push(p[2] > center[2] ? '+z-side' : '-z-side');
+    return parts.join('/');
   }
 
   // -----------------------------------------------------------------------
@@ -368,7 +628,7 @@ export class SceneState {
    * For large files (>1M gaussians), samples a representative subset for in-memory operations.
    * Stores the file path for the browser renderer to load the full scene.
    */
-  loadFromPlyFile(filePath: string): { id: string; gaussianCount: number; bbox: BoundingBox; sampled: boolean } {
+  loadFromPlyFile(filePath: string, keepId?: string): { id: string; gaussianCount: number; bbox: BoundingBox; sampled: boolean } {
     // Use createRequire for ESM compatibility
     const fs = _require('fs');
     const path = _require('path');
@@ -472,9 +732,19 @@ export class SceneState {
 
     // Create scene with real data
     const absPath = path.resolve(filePath);
-    const id = this.createScene(absPath, 'ply', gaussians, {
+    let id = this.createScene(absPath, 'ply', gaussians, {
       method: header.has3dgs ? '3DGS' : 'point_cloud',
     });
+
+    // Stable-ID restore: remap to a previously persisted scene id
+    if (keepId && keepId !== id) {
+      const sceneObj = this.scenes.get(id)!;
+      this.scenes.delete(id);
+      sceneObj.id = keepId;
+      this.scenes.set(keepId, sceneObj);
+      this.activeSceneId = keepId;
+      id = keepId;
+    }
 
     const scene = this.getScene(id)!;
     scene.filePath = absPath;
@@ -483,5 +753,62 @@ export class SceneState {
     console.log(`[scene-state] Loaded PLY: ${gaussians.length} gaussians in memory${sampled ? ` (sampled from ${totalGaussians})` : ''}, bbox: ${JSON.stringify(scene.bbox)}`);
 
     return { id, gaussianCount: gaussians.length, bbox: scene.bbox, sampled };
+  }
+
+  // -----------------------------------------------------------------------
+  // Persistence (scene index)
+  // -----------------------------------------------------------------------
+
+  /**
+   * Persist a scene index so scenes survive server restarts. Only scenes
+   * backed by an on-disk file are persistable (in-memory synthetic scenes
+   * are not — they are cheap to regenerate).
+   */
+  saveIndex(indexPath: string): number {
+    const fs = _require('fs');
+    const path = _require('path');
+    const entries = Array.from(this.scenes.values())
+      .filter((s) => s.filePath)
+      .map((s) => ({
+        id: s.id,
+        source: s.source,
+        filePath: s.filePath,
+        gaussianCount: s.gaussians.length,
+        createdAt: s.createdAt,
+      }));
+    fs.mkdirSync(path.dirname(indexPath), { recursive: true });
+    fs.writeFileSync(indexPath, JSON.stringify({ savedAt: Date.now(), scenes: entries }, null, 2));
+    return entries.length;
+  }
+
+  /**
+   * Restore scenes from a persisted index (lazy: reload PLY by original id).
+   * Missing source files are skipped with a warning. Returns restored count.
+   */
+  loadIndex(indexPath: string): { restored: number; skipped: number } {
+    const fs = _require('fs');
+    if (!fs.existsSync(indexPath)) return { restored: 0, skipped: 0 };
+    let restored = 0;
+    let skipped = 0;
+    try {
+      const data = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+      for (const entry of data.scenes ?? []) {
+        if (!entry.filePath || !fs.existsSync(entry.filePath)) {
+          console.error(`[scene-state] Restore skipped (file missing): ${entry.filePath}`);
+          skipped++;
+          continue;
+        }
+        try {
+          this.loadFromPlyFile(entry.filePath, entry.id);
+          restored++;
+        } catch (err) {
+          console.error(`[scene-state] Restore failed for ${entry.id}: ${(err as Error).message}`);
+          skipped++;
+        }
+      }
+    } catch (err) {
+      console.error(`[scene-state] Index load failed: ${(err as Error).message}`);
+    }
+    return { restored, skipped };
   }
 }

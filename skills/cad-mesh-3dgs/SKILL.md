@@ -1,6 +1,6 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations via the SLAT unified encode-decode framework. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge, PBR material generation. Analyzes 62+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
+description: "Bridge CAD, Mesh, and 3DGS representations via the SLAT unified encode-decode framework. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge, PBR material generation. Analyzes 40+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
 license: Apache-2.0
 user-invocable: true
 metadata:
@@ -72,7 +72,7 @@ Source Representation
 
 ### Method Classification Through SLAT
 
-The 62+ methods in this skill's database are now classified into three SLAT categories:
+The 41 methods in this skill's database are now classified into three SLAT categories:
 
 | Category | Description | Examples |
 |----------|------------|---------|

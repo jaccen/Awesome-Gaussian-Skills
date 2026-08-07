@@ -63,10 +63,10 @@
 | Method | Venue | Input | Output | Automation |
 |--------|-------|-------|--------|------------|
 | BrepGaussian | CVPR'26 | Images | B-rep (STEP) | Semi-auto |
-| CSGNet | NeurIPS'21 | Voxel grid | CSG tree | Auto |
+| CSGNet | CVPR'18 | Voxel grid | CSG tree | Auto |
 | BrepNet | CVPR'22 | Point cloud | B-rep edges | Auto |
 | Primitive fitting (RANSAC) | Classic | Point cloud | Primitives | Semi-auto |
-| DeepCAD | CVPR'21 | Point cloud | Sketch-extrusion | Auto |
+| DeepCAD | ICCV'21 | Point cloud | Sketch-extrusion | Auto |
 | KDH-CAD | arXiv'26 (2606.01702) | Small labeled data + domain knowledge | CAD classification/reconstruction | Auto |
 
 **KDH-CAD** — Knowledge-data hybrid framework combining pretrained foundation models with structured domain knowledge from CAD textbooks and small labeled data. Achieves 92.6% accuracy with only 250 training samples (Ziqin Gao et al.). Key insight: when CAD training data is scarce, domain knowledge (geometric constraints, design rules) supplements data-driven approaches. Pipeline: Foundation model features → Domain knowledge completion → Labeled data calibration → CAD classification/reconstruction.

@@ -79,6 +79,8 @@ export interface QueryResult {
 
 export type RendererMessage =
   | { type: 'load_scene'; sceneId: string; source: string; format: string }
+  | { type: 'load_point_cloud'; sceneId: string; pointCount: number; bboxCenter: [number, number, number]; bboxSize: [number, number, number] }
+  | { type: 'load_gaussians_url'; sceneId: string; url: string; format: string; bboxCenter: [number, number, number]; bboxSize: [number, number, number] }
   | { type: 'set_camera'; position: number[]; target: number[]; fov: number; up: number[] }
   | { type: 'modify_gaussians'; select: GaussianSelection; operations: GaussianOperation[] }
   | { type: 'render'; width: number; height: number; format: string; background: string }
@@ -88,6 +90,7 @@ export type RendererMessage =
   | { type: 'ping' };
 
 export type RendererResponse =
+  | { type: 'hello'; renderer: string; capabilities: string[] }
   | { type: 'render_result'; image: string; renderTimeMs: number; width: number; height: number }
   | { type: 'query_result'; data: QueryResult }
   | { type: 'scene_loaded'; sceneId: string; gaussianCount: number; bbox: BoundingBox }

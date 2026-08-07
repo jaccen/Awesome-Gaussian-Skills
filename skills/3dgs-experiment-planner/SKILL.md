@@ -44,7 +44,7 @@ Before designing experiments, extract:
 
 | Dataset | Type | Scenes | Resolution | Difficulty |
 |---------|------|--------|------------|------------|
-| Mip-NeRF 360 | Forward-facing + 360° | 8 (bicycle, garden, stump, ...) | 1008×756 | Medium |
+| Mip-NeRF 360 | Forward-facing + 360° | 9 (bicycle, garden, stump, bonsai, ...) | 1008×756 | Medium |
 | Tanks and Temples | Large outdoor | 5+ | Variable | Medium |
 | Deep Blending | Complex indoor | 7 | Variable | Hard |
 | DTU | Object-centric | 124+ | 1600×1200 | Medium |
@@ -66,7 +66,7 @@ Before designing experiments, extract:
 | SLAM | Replica / TUM-RGBD / ScanNet | Tracking + mapping accuracy |
 | SLAM (Dynamic) | Flow4DGS-SLAM benchmarks | Optical flow-guided dynamic SLAM consistency |
 | SLAM (Generalizable Dynamic) | GGD-SLAM (ICRA 2026) benchmarks | Generalizable motion model for dynamic SLAM |
-| Medical (Volumetric) | GaussianPile (CVPR 2026) benchmarks | Focus-aware PSF projection + additive rasterization for CT/ABUS/LSM/MRI; 16-26× compression, 11× faster than NeRF |
+| Medical (Volumetric) | GaussianPile (arXiv 2026（venue 待核实）) benchmarks | Focus-aware PSF projection + additive rasterization for CT/ABUS/LSM/MRI; 16-26× compression, 11× faster than NeRF |
 | Robustness / Adverse conditions | RealX3D (NTIRE 2026) | Tests reconstruction in adverse environments (low light, fog, sparse views) |
 | Reflection / Transparency | 3DReflecNet (CVPR 2026 Best Paper Candidate) | 120K+ synthetic + 1000+ real objects; 48 material combos; 3 failure modes (specular SH oscillation, transparency ordering, featureless init); 5 tasks |
 | Physics Interaction | RAF (CVPR 2026 Findings) scenarios | 5 heterogeneous demos: SPH+3DGS, SPH-MPM+soft body, PBD+statue, robot+rigid, rigid+3DGS container; UE5 rendering |
@@ -83,7 +83,7 @@ Before designing experiments, extract:
 | Physics Simulation | FieryGS (ICLR 2026) paper benchmarks | Physics-integrated fire synthesis evaluation |
 | Medical Bronchoscopy | RESPIRE paper benchmarks | CT-informed dynamic bronchoscopy reconstruction |
 | AD Safety Evaluation | 3DGS AD Safety Eval (SafeComp 2026) paper benchmarks | Industrial fidelity evaluation for autonomous driving perception |
-| Forensics / Security | Fake3DGS (ICPR 2026) paper benchmarks | First benchmark for 3D manipulation detection in neural rendering |
+| Forensics / Security | Fake3DGS (arXiv 2026（venue 待核实）) paper benchmarks | First benchmark for 3D manipulation detection in neural rendering |
 | Real-Time NVS (Multi-Camera) | 3DTV 3-camera setups | Real-time view synthesis at 40 FPS with multi-camera input |
 | Outdoor Robust / LiDAR Prior | EnerGS paper benchmarks | Tests energy-based guidance with partial geometric priors |
 | Wireless / Cross-Domain | BiSplat-WRF paper benchmarks | Wireless radiance field (non-VS) reconstruction |

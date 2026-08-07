@@ -1,6 +1,6 @@
 {
   "name": "splatverse-studio-web",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "SplatVerse Studio — Vue3 + Vite frontend for 3DGS short-drama creation",
   "type": "module",

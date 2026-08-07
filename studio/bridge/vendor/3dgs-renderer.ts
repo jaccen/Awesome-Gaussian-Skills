@@ -12,7 +12,20 @@
  *
  * 注意：本文件使用 Toonflow VM 沙箱兼容的 exports 风格，
  *       不要改为 ESM export 风格，否则 Sucrase 编译会出错。
+ *
+ * 对接的 bridge 真实端点（v0.8 修正）：
+ *   POST /api/render/direct            同步：{sceneDescription, sceneFile, cameraSpec, renderConfig}
+ *                                      → {sceneId, previewUrl, renderUrl}
+ *   POST /api/render/single            异步任务：{projectId, storyboardId, renderConfig} → {task}
+ *   GET  /api/render/tasks/:taskId     → {task}，task.status ∈ pending/queued/running/completed/failed
  */
+
+// axios：Toonflow 沙箱中优先用全局注入，其次 CommonJS require
+const axios = globalThis.axios
+  || (typeof require !== 'undefined' ? require('axios') : null);
+if (!axios) {
+  throw new Error('3DGS Renderer vendor 需要 axios（Toonflow 沙箱未提供 globalThis.axios）');
+}
 
 // ============================================================
 // 供应商配置（必须导出）
@@ -70,65 +83,64 @@ exports.imageRequest = async function(config, model) {
   const bridgeUrl = this.inputValues?.bridgeUrl || 'http://localhost:10590';
   const bridgeToken = this.inputValues?.bridgeToken || '';
   const quality = this.inputValues?.renderQuality || 'preview';
+  const headers = bridgeToken ? { Authorization: `Bearer ${bridgeToken}` } : {};
 
-  const sceneType = model.includes('character') ? 'character'
-    : model.includes('environment') ? 'environment'
-    : 'scene';
-
-  // Step 1: 构建3DGS场景
-  const buildResponse = await axios.post(`${bridgeUrl}/api/render/frame`, {
-    storyboardId: config.storyboardId || `gen-${Date.now()}`,
-    projectId: config.projectId || '',
-    sceneDescription: config.prompt,
-    width: config.width || 1920,
-    height: config.height || 1080,
-    quality: quality,
-    sceneType: sceneType
-  }, {
-    headers: { Authorization: `Bearer ${bridgeToken}` },
-    timeout: 120000
-  });
-
-  const taskId = buildResponse.data?.taskId;
-  if (!taskId) {
-    throw new Error('3DGS渲染任务创建失败');
-  }
-
-  // Step 2: 轮询渲染状态
-  const maxRetries = 120;
-  let retries = 0;
-
-  while (retries < maxRetries) {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    const statusResponse = await axios.get(`${bridgeUrl}/api/render/status/${taskId}`, {
-      headers: { Authorization: `Bearer ${bridgeToken}` }
-    });
-
-    const taskStatus = statusResponse.data?.task;
-
-    if (taskStatus?.status === 'completed') {
-      const outputPath = taskStatus.outputUrl;
-      if (!outputPath) {
-        throw new Error('3DGS渲染完成但无输出文件');
+  // 路径 A：有 storyboard 上下文 → /api/render/single（异步任务 + 轮询）
+  if (config.projectId && config.storyboardId) {
+    const buildResponse = await axios.post(`${bridgeUrl}/api/render/single`, {
+      projectId: config.projectId,
+      storyboardId: config.storyboardId,
+      renderConfig: {
+        width: config.width || 1920,
+        height: config.height || 1080,
+        quality: quality,
       }
+    }, { headers, timeout: 120000 });
 
-      const imageResponse = await axios.get(outputPath, {
-        responseType: 'arraybuffer'
-      });
+    const taskId = buildResponse.data?.task?.id;
+    if (!taskId) throw new Error('3DGS渲染任务创建失败');
 
-      const base64 = Buffer.from(imageResponse.data, 'binary').toString('base64');
-      return `data:image/png;base64,${base64}`;
+    const maxRetries = 120;
+    for (let retries = 0; retries < maxRetries; retries++) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const statusResponse = await axios.get(`${bridgeUrl}/api/render/tasks/${taskId}`, { headers });
+      const taskStatus = statusResponse.data?.task;
+      if (taskStatus?.status === 'completed') {
+        const outputUrl = taskStatus.outputUrl;
+        if (!outputUrl) throw new Error('3DGS渲染完成但无输出文件');
+        if (outputUrl.startsWith('data:')) return outputUrl;
+        // bridge 返回的是相对 URL（/api/renders/...），拼成绝对地址取回像素
+        const absUrl = outputUrl.startsWith('http') ? outputUrl : `${bridgeUrl}${outputUrl}`;
+        const imageResponse = await axios.get(absUrl, { responseType: 'arraybuffer', headers });
+        const base64 = Buffer.from(imageResponse.data, 'binary').toString('base64');
+        return `data:image/png;base64,${base64}`;
+      }
+      if (taskStatus?.status === 'failed') {
+        throw new Error(`3DGS渲染失败: ${taskStatus.error || '未知错误'}`);
+      }
     }
-
-    if (taskStatus?.status === 'failed') {
-      throw new Error(`3DGS渲染失败: ${taskStatus.error || '未知错误'}`);
-    }
-
-    retries++;
+    throw new Error('3DGS渲染超时');
   }
 
-  throw new Error('3DGS渲染超时');
+  // 路径 B：纯文本描述 → /api/render/direct（同步返回 renderUrl/previewUrl）
+  const directResponse = await axios.post(`${bridgeUrl}/api/render/direct`, {
+    sceneDescription: config.prompt,
+    renderConfig: {
+      width: config.width || 1920,
+      height: config.height || 1080,
+      quality: quality,
+    }
+  }, { headers, timeout: 180000 });
+
+  const renderUrl = directResponse.data?.renderUrl || directResponse.data?.previewUrl;
+  if (!renderUrl) {
+    throw new Error(`3DGS直渲失败: ${directResponse.data?.error || '无输出'}`);
+  }
+  if (renderUrl.startsWith('data:')) return renderUrl;
+  const absUrl = renderUrl.startsWith('http') ? renderUrl : `${bridgeUrl}${renderUrl}`;
+  const imageResponse = await axios.get(absUrl, { responseType: 'arraybuffer', headers });
+  const base64 = Buffer.from(imageResponse.data, 'binary').toString('base64');
+  return `data:image/png;base64,${base64}`;
 };
 
 // ============================================================
@@ -138,47 +150,54 @@ exports.imageRequest = async function(config, model) {
 exports.videoRequest = async function(config, model) {
   const bridgeUrl = this.inputValues?.bridgeUrl || 'http://localhost:10590';
   const bridgeToken = this.inputValues?.bridgeToken || '';
+  const headers = bridgeToken ? { Authorization: `Bearer ${bridgeToken}` } : {};
 
-  const renderResponse = await axios.post(`${bridgeUrl}/api/render/animation`, {
-    storyboardId: config.storyboardId || `anim-${Date.now()}`,
-    projectId: config.projectId || '',
+  const renderConfig = {
     duration: config.duration || 3,
     fps: 24,
-    animationType: model.includes('articulated') ? 'articulated'
-      : model.includes('composite') ? 'composite'
-      : 'camera',
-    sceneDescription: config.prompt
-  }, {
-    headers: { Authorization: `Bearer ${bridgeToken}` },
-    timeout: 300000
-  });
+    format: 'mp4',
+    quality: this.inputValues?.renderQuality || 'preview',
+  };
 
-  const taskId = renderResponse.data?.taskId;
+  // 路径 A：storyboard 任务（含动画合成）
+  if (config.projectId && config.storyboardId) {
+    const renderResponse = await axios.post(`${bridgeUrl}/api/render/single`, {
+      projectId: config.projectId,
+      storyboardId: config.storyboardId,
+      renderConfig,
+    }, { headers, timeout: 300000 });
 
-  const maxRetries = 300;
-  let retries = 0;
+    const taskId = renderResponse.data?.task?.id;
+    if (!taskId) throw new Error('3DGS动画任务创建失败');
 
-  while (retries < maxRetries) {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    const statusResponse = await axios.get(`${bridgeUrl}/api/render/status/${taskId}`, {
-      headers: { Authorization: `Bearer ${bridgeToken}` }
-    });
-
-    const taskStatus = statusResponse.data?.task;
-
-    if (taskStatus?.status === 'completed') {
-      return taskStatus.outputUrl;
+    const maxRetries = 300;
+    for (let retries = 0; retries < maxRetries; retries++) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const statusResponse = await axios.get(`${bridgeUrl}/api/render/tasks/${taskId}`, { headers });
+      const taskStatus = statusResponse.data?.task;
+      if (taskStatus?.status === 'completed') {
+        const outputUrl = taskStatus.outputUrl;
+        if (!outputUrl) throw new Error('3DGS动画完成但无输出文件');
+        return outputUrl.startsWith('http') ? outputUrl : `${bridgeUrl}${outputUrl}`;
+      }
+      if (taskStatus?.status === 'failed') {
+        throw new Error(`3DGS动画渲染失败: ${taskStatus.error || '未知错误'}`);
+      }
     }
-
-    if (taskStatus?.status === 'failed') {
-      throw new Error(`3DGS动画渲染失败: ${taskStatus.error || '未知错误'}`);
-    }
-
-    retries++;
+    throw new Error('3DGS动画渲染超时');
   }
 
-  throw new Error('3DGS动画渲染超时');
+  // 路径 B：纯描述直渲（单帧预览，视频需 storyboard 路径的 ffmpeg 合成）
+  const directResponse = await axios.post(`${bridgeUrl}/api/render/direct`, {
+    sceneDescription: config.prompt,
+    renderConfig,
+  }, { headers, timeout: 300000 });
+
+  const renderUrl = directResponse.data?.renderUrl || directResponse.data?.previewUrl;
+  if (!renderUrl) {
+    throw new Error(`3DGS动画直渲失败: ${directResponse.data?.error || '无输出'}`);
+  }
+  return renderUrl.startsWith('http') ? renderUrl : `${bridgeUrl}${renderUrl}`;
 };
 
 // ============================================================

@@ -1,0 +1,35 @@
+name: Code CI
+
+# 代码质量守门：mcp-server 构建 + 单元测试（PLY 解析 / 剪枝策略 / 射线 / 导出 / 意图映射）
+on:
+  push:
+    paths:
+      - "mcp-server/**"
+      - "studio/bridge/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    paths:
+      - "mcp-server/**"
+      - "studio/bridge/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install workspace dependencies
+        run: npm install --no-audit --no-fund --no-bin-links --ignore-scripts
+      - name: Build mcp-server
+        working-directory: mcp-server
+        run: ../node_modules/.bin/tsc -p tsconfig.json || node ../node_modules/typescript/bin/tsc -p tsconfig.json
+      - name: Run mcp-server unit tests
+        working-directory: mcp-server
+        run: node --test test/
+      - name: Build bridge
+        working-directory: studio/bridge
+        run: node ../../node_modules/typescript/bin/tsc -p tsconfig.json
+      - name: Knowledge base validation
+        run: python3 scripts/validate_knowledge_base.py

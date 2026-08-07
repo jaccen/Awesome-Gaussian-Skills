@@ -1,16 +1,24 @@
 /**
- * Renderer Bridge — WebSocket SERVER between MCP Server and Browser Renderer.
+ * Renderer Bridge — WebSocket + HTTP server between MCP Server and browser renderers.
  *
- * Architecture:
- *   MCP Client (stdio) ←→ MCP Server ←[WebSocket]→ Browser Renderer (Three.js)
+ * Architecture (v0.8):
+ *   MCP Client (stdio) ←→ MCP Server ←[WebSocket :9842]→ Browser Renderer(s)
+ *                                     ←[HTTP  :9842]→ scene file serving (/scenes/*)
  *
- * The browser renderer opens renderer/index.html, which connects to this
- * WebSocket server as a client. The MCP server pushes render commands and
- * receives rendered frames/results back.
+ * Multiple renderer clients may connect simultaneously. Each client announces
+ * its capabilities via a `hello` message ({ renderer: 'gsplat' | 'three-points' }).
+ * Render requests are routed to the most recently connected capable client.
  *
- * If no browser is connected, the bridge operates in headless mode (stub responses).
+ * True-3DGS loop: import_scene serializes the scene to a PLY under .temp/scenes/,
+ * serves it over HTTP, and sends `load_gaussians_url` — gsplat.js-capable
+ * renderers load the real Gaussian data (with sorting & alpha compositing).
+ *
+ * If no browser is connected, the bridge operates in headless mode.
  */
 
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
 import { WebSocketServer, WebSocket } from 'ws';
 import type { RendererMessage, RendererResponse } from './types.js';
 
@@ -22,44 +30,85 @@ interface PendingRequest {
   timeout: NodeJS.Timeout;
 }
 
+interface RendererClient {
+  ws: WebSocket;
+  renderer: string;           // 'gsplat' | 'three-points' | 'unknown'
+  capabilities: string[];     // e.g. ['splat-render', 'point-cloud', 'capture']
+  connectedAt: number;
+}
+
 export class RendererBridge {
+  private httpServer: http.Server | null = null;
   private wss: WebSocketServer | null = null;
-  private client: WebSocket | null = null;
+  private clients = new Set<RendererClient>();
   private port: number;
   private pendingRequests = new Map<number, PendingRequest>();
   private messageId = 0;
+  private sceneLoadedResolve: (() => void) | null = null;
+  private serveRoots: string[] = [];
 
   constructor(port: number = DEFAULT_PORT) {
     this.port = port;
   }
 
   /**
-   * Start the WebSocket server and wait for browser renderer to connect.
-   * Returns true if the server starts (browser may connect later).
+   * Start HTTP + WebSocket server. HTTP serves scene files from whitelisted
+   * directories; WebSocket carries the renderer control protocol.
+   * WebSocket upgrade requests are checked against an origin allowlist
+   * (RENDERER_ORIGINS env, default: any localhost origin).
    */
-  async connect(): Promise<boolean> {
+  async connect(serveRoots: string[] = []): Promise<boolean> {
+    this.serveRoots = serveRoots.map((r) => path.resolve(r));
     return new Promise((resolve) => {
       try {
-        this.wss = new WebSocketServer({ port: this.port });
+        this.httpServer = http.createServer((req, res) => this.handleHttp(req, res));
+        this.wss = new WebSocketServer({ server: this.httpServer });
 
-        this.wss.on('listening', () => {
-          console.error(`[RendererBridge] WebSocket server listening on port ${this.port}`);
-          console.error(`[RendererBridge] Open http://localhost:8080/renderer/index.html in a browser to connect.`);
+        // Origin allowlist for WebSocket upgrades (anti-hijack baseline)
+        const allowedOriginEnv = process.env.RENDERER_ORIGINS;
+        const isOriginAllowed = (origin: string | undefined): boolean => {
+          if (allowedOriginEnv) {
+            if (!origin) return false;
+            return allowedOriginEnv.split(',').some((o) => origin.startsWith(o.trim()));
+          }
+          // Default: localhost origins only
+          if (!origin) return true; // non-browser clients (curl/scripts)
+          return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+        };
+
+        this.httpServer.on('upgrade', (req, socket, head) => {
+          const origin = req.headers.origin as string | undefined;
+          if (!isOriginAllowed(origin)) {
+            console.error(`[RendererBridge] WS upgrade rejected for origin: ${origin ?? '(none)'}`);
+            socket.write('HTTP/1.1 403 Forbidden\r\n\r\n');
+            socket.destroy();
+            return;
+          }
+          this.wss!.handleUpgrade(req, socket, head, (ws) => {
+            this.wss!.emit('connection', ws, req);
+          });
+        });
+
+        this.httpServer.listen(this.port, () => {
+          console.error(`[RendererBridge] HTTP + WebSocket server listening on port ${this.port}`);
+          console.error(`[RendererBridge] Scene files: http://localhost:${this.port}/scenes/<file> | Renderer: gsplat-renderer.html`);
           resolve(true);
         });
 
         this.wss.on('connection', (ws: WebSocket, req) => {
-          console.error(`[RendererBridge] Browser renderer connected from ${req.socket.remoteAddress}`);
-          this.client = ws;
+          const client: RendererClient = { ws, renderer: 'unknown', capabilities: [], connectedAt: Date.now() };
+          this.clients.add(client);
+          console.error(`[RendererBridge] Renderer connected from ${req.socket.remoteAddress} (${this.clients.size} total)`);
 
-          ws.on('message', (data: WebSocket.RawData) => {
-            this.handleMessage(data.toString());
+          ws.on('message', (data: WebSocket.RawData, isBinary: boolean) => {
+            if (isBinary) return; // renderers only send JSON text
+            this.handleMessage(data.toString(), client);
           });
 
           ws.on('close', () => {
-            console.error('[RendererBridge] Browser renderer disconnected');
-            this.client = null;
-            this.rejectAllPending('Renderer disconnected');
+            this.clients.delete(client);
+            console.error(`[RendererBridge] Renderer disconnected (${this.clients.size} remaining)`);
+            if (this.clients.size === 0) this.rejectAllPending('All renderers disconnected');
           });
 
           ws.on('error', (err: Error) => {
@@ -67,12 +116,12 @@ export class RendererBridge {
           });
         });
 
-        this.wss.on('error', (err: Error) => {
+        this.httpServer.on('error', (err: Error) => {
           console.error(`[RendererBridge] Server error: ${err.message}`);
           if (err.message.includes('EADDRINUSE')) {
-            console.error(`[RendererBridge] Port ${this.port} in use, trying ${this.port + 1}...`);
-            this.port++;
-            this.connect().then(resolve);
+            console.error(`[RendererBridge] Port ${this.port} in use — refusing to hijack another process's port.`);
+            console.error(`[RendererBridge] Set RENDERER_PORT env to use a different port.`);
+            resolve(false);
           } else {
             resolve(false);
           }
@@ -84,18 +133,85 @@ export class RendererBridge {
     });
   }
 
+  /** Serve whitelisted scene/export files over HTTP (path-traversal safe). */
+  private handleHttp(req: http.IncomingMessage, res: http.ServerResponse): void {
+    const url = new URL(req.url ?? '/', `http://localhost:${this.port}`);
+    if (url.pathname === '/health') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true, port: this.port, clients: this.clients.size }));
+      return;
+    }
+    const m = url.pathname.match(/^\/(?:scenes|exports)\/(.+)$/);
+    if (!m) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not found');
+      return;
+    }
+    const name = decodeURIComponent(m[1]);
+    if (name.includes('..') || name.includes('/') || name.includes('\\')) {
+      res.writeHead(400); res.end('Bad request'); return;
+    }
+    const sub = url.pathname.startsWith('/exports/') ? 'exports' : 'scenes';
+    const filePath = path.resolve(path.join(process.cwd(), '.temp', sub, name));
+    // Defense in depth: resolved path must stay inside .temp/<sub>/
+    const allowedRoot = path.resolve(path.join(process.cwd(), '.temp', sub));
+    if (!filePath.startsWith(allowedRoot + path.sep) || !fs.existsSync(filePath)) {
+      res.writeHead(404); res.end('Not found'); return;
+    }
+    // Also honor configured external serve roots (e.g., repo scenes/ dir)
+    res.writeHead(200, {
+      'Content-Type': name.endsWith('.ply') ? 'application/octet-stream' : 'application/octet-stream',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Length': fs.statSync(filePath).size,
+    });
+    fs.createReadStream(filePath).pipe(res);
+  }
+
+  /** Check whether a path inside one of the configured serve roots; returns served URL or null. */
+  serveUrlForFile(absPath: string): string | null {
+    const resolved = path.resolve(absPath);
+    const inTempScenes = resolved.startsWith(path.resolve(path.join(process.cwd(), '.temp', 'scenes')) + path.sep);
+    const inTempExports = resolved.startsWith(path.resolve(path.join(process.cwd(), '.temp', 'exports')) + path.sep);
+    if (inTempScenes) return `/scenes/${path.basename(resolved)}`;
+    if (inTempExports) return `/exports/${path.basename(resolved)}`;
+    return null;
+  }
+
+  private anyClient(): RendererClient | null {
+    let best: RendererClient | null = null;
+    for (const c of this.clients) {
+      if (c.ws.readyState === WebSocket.OPEN && (!best || c.connectedAt > best.connectedAt)) best = c;
+    }
+    return best;
+  }
+
+  private pickClient(requireCapability?: string): RendererClient | null {
+    let best: RendererClient | null = null;
+    for (const c of this.clients) {
+      if (c.ws.readyState !== WebSocket.OPEN) continue;
+      if (requireCapability && !c.capabilities.includes(requireCapability)) continue;
+      if (!best || c.connectedAt > best.connectedAt) best = c;
+    }
+    return best;
+  }
+
   isRendererConnected(): boolean {
-    return this.client !== null && this.client.readyState === WebSocket.OPEN;
+    return this.anyClient() !== null;
+  }
+
+  connectedRenderers(): Array<{ renderer: string; capabilities: string[] }> {
+    return Array.from(this.clients).map((c) => ({ renderer: c.renderer, capabilities: c.capabilities }));
   }
 
   /**
-   * Send a message to the browser renderer and wait for response.
-   * If no renderer is connected, returns a headless stub response.
+   * Send a message to the renderer and wait for response.
+   * Render requests prefer a splat-render capable client (gsplat);
+   * other messages go to the newest client.
    */
   async send(message: RendererMessage): Promise<RendererResponse> {
-    if (!this.isRendererConnected()) {
-      return this.headlessResponse(message);
-    }
+    const needCapability = message.type === 'render' ? 'splat-render' : undefined;
+    const client = this.pickClient(needCapability) ?? this.anyClient();
+    if (!client) return this.headlessResponse(message);
 
     return new Promise((resolve, reject) => {
       const id = ++this.messageId;
@@ -107,21 +223,36 @@ export class RendererBridge {
       }, 10000);
 
       this.pendingRequests.set(id, { resolve, reject, timeout });
-      this.client!.send(payload);
+      client.ws.send(payload);
     });
   }
 
-  private handleMessage(raw: string): void {
-    try {
-      const msg = JSON.parse(raw) as { id: number } & RendererResponse;
+  /** Broadcast a message to all connected renderers (no response expected). */
+  broadcast(message: Record<string, unknown>): void {
+    const payload = JSON.stringify(message);
+    for (const c of this.clients) {
+      if (c.ws.readyState === WebSocket.OPEN) c.ws.send(payload);
+    }
+  }
 
-      // Check for scene_loaded confirmation from browser (triggered by pushPointCloud)
+  private handleMessage(raw: string, client: RendererClient): void {
+    try {
+      const msg = JSON.parse(raw) as { id?: number } & RendererResponse;
+
+      if (msg.type === 'hello') {
+        client.renderer = (msg as { renderer?: string }).renderer ?? 'unknown';
+        client.capabilities = (msg as { capabilities?: string[] }).capabilities ?? [];
+        console.error(`[RendererBridge] hello: renderer=${client.renderer} capabilities=[${client.capabilities.join(',')}]`);
+        return;
+      }
+
       if (msg.type === 'scene_loaded' && this.sceneLoadedResolve) {
-        console.error(`[RendererBridge] Received scene_loaded confirmation from browser`);
+        console.error(`[RendererBridge] Received scene_loaded confirmation from renderer`);
         this.sceneLoadedResolve();
         this.sceneLoadedResolve = null;
       }
 
+      if (msg.id === undefined) return;
       const pending = this.pendingRequests.get(msg.id);
       if (pending) {
         clearTimeout(pending.timeout);
@@ -141,54 +272,59 @@ export class RendererBridge {
     this.pendingRequests.clear();
   }
 
-  /**
-   * Headless fallback: when no browser renderer is connected,
-   * return stub responses so the MCP server remains functional.
-   */
+  /** Headless fallback when no renderer is connected. */
   private headlessResponse(message: RendererMessage): RendererResponse {
     switch (message.type) {
       case 'render':
-        return {
-          type: 'render_result',
-          image: '',
-          renderTimeMs: 0,
-          width: message.width,
-          height: message.height,
-        };
+        return { type: 'render_result', image: '', renderTimeMs: 0, width: message.width, height: message.height };
       case 'query_scene':
-        return {
-          type: 'query_result',
-          data: { headless: true, message: 'Renderer not connected. Scene state available via server-side query.' },
-        };
+        return { type: 'query_result', data: { headless: true, message: 'Renderer not connected. Scene state available via server-side query.' } };
       case 'load_scene':
-        return {
-          type: 'scene_loaded',
-          sceneId: message.sceneId,
-          gaussianCount: 0,
-          bbox: { min: [0, 0, 0], max: [0, 0, 0] },
-        };
+        return { type: 'scene_loaded', sceneId: message.sceneId, gaussianCount: 0, bbox: { min: [0, 0, 0], max: [0, 0, 0] } };
       default:
         return { type: 'pong' };
     }
   }
 
-  private sceneLoadedResolve: (() => void) | null = null;
+  /**
+   * Tell renderers to load a scene from an HTTP-served PLY/SPLAT file.
+   * gsplat-capable renderers perform real sorted alpha-compositing rendering.
+   */
+  async pushGaussiansUrl(params: {
+    sceneId: string;
+    url: string;
+    format: string;
+    bboxCenter: [number, number, number];
+    bboxSize: [number, number, number];
+  }): Promise<void> {
+    if (!this.isRendererConnected()) {
+      console.error('[RendererBridge] No renderer connected — load_gaussians_url skipped');
+      return;
+    }
+    const sceneLoadedPromise = new Promise<void>((resolve) => { this.sceneLoadedResolve = resolve; });
+    const timeoutPromise = new Promise<void>((resolve) => setTimeout(resolve, 30000));
+
+    this.broadcast({
+      id: ++this.messageId,
+      type: 'load_gaussians_url',
+      sceneId: params.sceneId,
+      url: params.url,
+      format: params.format,
+      bboxCenter: params.bboxCenter,
+      bboxSize: params.bboxSize,
+    });
+
+    const startTime = Date.now();
+    await Promise.race([sceneLoadedPromise, timeoutPromise]);
+    console.error(`[RendererBridge] Scene load via URL confirmed/timeout after ${Date.now() - startTime}ms`);
+    await new Promise((r) => setTimeout(r, 300));
+  }
 
   /**
-    * Push parsed point cloud data directly to the browser renderer.
-    * Sends position + color arrays as a single binary ArrayBuffer to avoid
-    * having the browser re-download and re-parse the PLY file.
-    *
-    * Binary layout:
-    *   [4 bytes: pointCount (uint32)]
-    *   [4 bytes: float data length (uint32)]
-    *   [pointCount * 6 * 4 bytes: interleaved x,y,z,r,g,b float32]
-    *
-    * Preceded by a JSON text message with type='load_point_cloud' containing
-    * scene metadata (sceneId, pointCount, bbox center, bbox size).
-    *
-    * After sending, waits for the browser to confirm scene_loaded before returning.
-    */
+   * Push parsed point cloud data directly (fallback preview path for
+   * renderers without splat support). Binary layout:
+   *   [4B pointCount][4B dataLen][pointCount × 7 × f32: xyz rgb opacity]
+   */
   async pushPointCloud(params: {
     sceneId: string;
     positions: Float32Array;
@@ -200,23 +336,15 @@ export class RendererBridge {
   }): Promise<void> {
     if (!this.isRendererConnected()) {
       console.error('[RendererBridge] No renderer connected, skipping point cloud push');
-      // Wait 3 seconds for potential late connection
-      await new Promise(r => setTimeout(r, 3000));
-      if (!this.isRendererConnected()) return;
+      return;
     }
 
     const { sceneId, positions, colors, opacities, pointCount, bboxCenter, bboxSize } = params;
 
-    // 1. Set up a promise that resolves when browser confirms scene_loaded
-    const sceneLoadedPromise = new Promise<void>((resolve) => {
-      this.sceneLoadedResolve = resolve;
-    });
-    const timeoutPromise = new Promise<void>((resolve) => {
-      setTimeout(resolve, 15000); // 15s timeout
-    });
+    const sceneLoadedPromise = new Promise<void>((resolve) => { this.sceneLoadedResolve = resolve; });
+    const timeoutPromise = new Promise<void>((resolve) => setTimeout(resolve, 15000));
 
-    // 2. Send JSON metadata message
-    const metaMsg = JSON.stringify({
+    this.broadcast({
       id: ++this.messageId,
       type: 'load_point_cloud',
       sceneId,
@@ -224,51 +352,36 @@ export class RendererBridge {
       bboxCenter,
       bboxSize,
     });
-    this.client!.send(metaMsg);
 
-    // 3. Send binary data: interleaved [x,y,z,r,g,b,opacity] per point (7 floats)
-    const stride = 7; // 3 pos + 3 color + 1 opacity
-    const buffer = new ArrayBuffer(4 + 4 + pointCount * stride * 4);
-    const view = new DataView(buffer);
-
-    // Header: pointCount + data length
-    view.setUint32(0, pointCount, true);
-    view.setUint32(4, pointCount * stride * 4, true);
-
-    // Interleave position + color + opacity
+    const stride = 7;
+    const buffer = Buffer.alloc(4 + 4 + pointCount * stride * 4);
+    buffer.writeUInt32LE(pointCount, 0);
+    buffer.writeUInt32LE(pointCount * stride * 4, 4);
     let offset = 8;
     for (let i = 0; i < pointCount; i++) {
-      view.setFloat32(offset, positions[i * 3 + 0], true);     offset += 4; // x
-      view.setFloat32(offset, positions[i * 3 + 1], true);     offset += 4; // y
-      view.setFloat32(offset, positions[i * 3 + 2], true);     offset += 4; // z
-      view.setFloat32(offset, colors[i * 3 + 0], true);        offset += 4; // r
-      view.setFloat32(offset, colors[i * 3 + 1], true);        offset += 4; // g
-      view.setFloat32(offset, colors[i * 3 + 2], true);        offset += 4; // b
-      view.setFloat32(offset, opacities[i], true);              offset += 4; // opacity
+      buffer.writeFloatLE(positions[i * 3 + 0], offset); offset += 4;
+      buffer.writeFloatLE(positions[i * 3 + 1], offset); offset += 4;
+      buffer.writeFloatLE(positions[i * 3 + 2], offset); offset += 4;
+      buffer.writeFloatLE(colors[i * 3 + 0], offset); offset += 4;
+      buffer.writeFloatLE(colors[i * 3 + 1], offset); offset += 4;
+      buffer.writeFloatLE(colors[i * 3 + 2], offset); offset += 4;
+      buffer.writeFloatLE(opacities[i], offset); offset += 4;
     }
 
-    this.client!.send(buffer);
-    console.error(`[RendererBridge] Pushed ${pointCount} points to renderer (${(buffer.byteLength / 1024 / 1024).toFixed(2)} MB)`);
+    for (const c of this.clients) {
+      if (c.ws.readyState === WebSocket.OPEN) c.ws.send(buffer);
+    }
+    console.error(`[RendererBridge] Pushed ${pointCount} points to ${this.clients.size} renderer(s) (${(buffer.byteLength / 1024 / 1024).toFixed(2)} MB)`);
 
-    // 4. Wait for browser to confirm scene_loaded (or 15s timeout)
-    const startTime = Date.now();
     await Promise.race([sceneLoadedPromise, timeoutPromise]);
-    const elapsed = Date.now() - startTime;
-    console.error(`[RendererBridge] Scene load confirmation received (or timed out) after ${elapsed}ms`);
-
-    // 5. Extra safety delay to ensure Three.js has rendered at least one frame
-    await new Promise(r => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 300));
   }
 
   disconnect(): void {
-    if (this.client) {
-      this.client.close();
-      this.client = null;
-    }
-    if (this.wss) {
-      this.wss.close();
-      this.wss = null;
-    }
+    for (const c of this.clients) c.ws.close();
+    this.clients.clear();
+    if (this.wss) { this.wss.close(); this.wss = null; }
+    if (this.httpServer) { this.httpServer.close(); this.httpServer = null; }
     this.rejectAllPending('Bridge disconnected');
   }
 }

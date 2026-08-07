@@ -1,6 +1,6 @@
 {
   "name": "toonflow-bridge",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "MCP Bridge connecting Toonflow short-drama pipeline with 3DGS rendering from Awesome-Gaussian-Skills",
   "type": "module",
   "main": "dist/index.js",

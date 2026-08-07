@@ -9,7 +9,7 @@
  * Toonflow 数据流：Text → Script → Assets → Storyboard → Video
  *
  * 认证：Toonflow 使用 JWT token（Bearer）鉴权。
- * 默认凭据 admin/admin123，可通过 TOONFLOW_USER/TOONFLOW_PASS 环境变量覆盖。
+ * 凭据通过 TOONFLOW_USER/TOONFLOW_PASS 环境变量提供（源码不内置默认账号）。
  */
 
 import axios, { type AxiosInstance } from 'axios';
@@ -35,8 +35,13 @@ export class ToonflowClient {
 
   constructor(opts: ToonflowClientOptions = {}) {
     this.baseUrl = opts.baseUrl || process.env.TOONFLOW_URL || 'http://localhost:10588';
-    this.username = opts.username || process.env.TOONFLOW_USER || 'admin';
-    this.password = opts.password || process.env.TOONFLOW_PASS || 'admin123';
+    // v0.8 安全基线：凭据只来自 opts 或环境变量，源码不再内置默认账号密码。
+    // 请在 .env 中配置 TOONFLOW_USER / TOONFLOW_PASS（参见根目录 .env.example）。
+    this.username = opts.username || process.env.TOONFLOW_USER || '';
+    this.password = opts.password || process.env.TOONFLOW_PASS || '';
+    if (!this.username || !this.password) {
+      console.warn('[toonflow-client] WARNING: TOONFLOW_USER / TOONFLOW_PASS not set — Toonflow login will fail. Set them via environment variables.');
+    }
     this.http = axios.create({
       baseURL: this.baseUrl,
       timeout: opts.timeout || 30000,

@@ -1,6 +1,6 @@
 {
   "name": "3dgs-mcp-renderer-server",
-  "version": "0.5.0",
+  "version": "0.8.0",
   "description": "MCP server for Agent-controlled 3D Gaussian Splatting rendering pipeline",
   "license": "Apache-2.0",
   "type": "module",
@@ -13,7 +13,9 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "renderer": "npx http-server renderer -p 8080 -c-1",
-    "demo": "tsx examples/voice-demo.ts"
+    "demo": "tsx examples/voice-demo.ts",
+    "test": "node --test test/",
+    "test:build": "tsc && node --test test/"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

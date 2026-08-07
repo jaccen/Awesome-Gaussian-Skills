@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ags://contracts/experiment-plan",
+  "title": "Experiment Plan — 3dgs-experiment-planner 的结构化输出契约",
+  "description": "experiment-planner 产出的实验设计。所有 baseline 必须来自知识库真实条目或用户提供，禁止虚构方法名。",
+  "type": "object",
+  "required": ["research_question", "datasets", "baselines", "ablations", "venue_target"],
+  "properties": {
+    "research_question": { "type": "string", "minLength": 20 },
+    "venue_target": { "type": "string" },
+    "datasets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "scenes": { "type": "array", "items": { "type": "string" } },
+          "split_protocol": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "baselines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "why"],
+        "properties": {
+          "name": { "type": "string" },
+          "arxiv_id": { "type": ["string", "null"] },
+          "why": { "type": "string" }
+        }
+      }
+    },
+    "ablations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "hypothesis"],
+        "properties": {
+          "name": { "type": "string" },
+          "hypothesis": { "type": "string" },
+          "removed_component": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["PSNR", "SSIM", "LPIPS", "FPS", "train_time", "model_size", "user_study", "other"] }
+    },
+    "compute_budget": {
+      "type": ["object", "null"],
+      "properties": {
+        "gpu": { "type": "string" },
+        "gpu_hours_estimate": { "type": ["number", "null"] }
+      }
+    }
+  }
+}

@@ -17,6 +17,12 @@
       position: absolute; bottom: 10px; left: 10px; color: #666; font: 11px monospace;
       pointer-events: none; z-index: 10;
     }
+    #wsbar {
+      position: absolute; bottom: 28px; left: 10px; color: #7fae8a; font: 11px monospace;
+      pointer-events: none; z-index: 10; max-width: 92%; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+      text-shadow: 0 0 4px rgba(0,0,0,0.9);
+    }
     #error {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       color: #ff6b6b; font: 14px monospace; text-align: center; display: none; z-index: 10;
@@ -38,6 +44,7 @@
   <canvas id="canvas"></canvas>
   <div id="overlay">SplatVerse Studio — gsplat.js v1.2.9</div>
   <div id="status">Initializing...</div>
+  <div id="wsbar">WS: initializing...</div>
   <div id="error"></div>
   <div id="progress">Loading scene... 0%</div>
   <div id="stats"></div>
@@ -81,6 +88,15 @@
     const progressEl = document.getElementById('progress');
     const overlayEl = document.getElementById('overlay');
     const statsEl   = document.getElementById('stats');
+    const wsbarEl   = document.getElementById('wsbar');
+
+    // ---- WS status bar (connection state + last message) ----
+    let wsStateText = 'disconnected';
+    let lastWsMsgText = '';
+    function updateWsBar() {
+      wsbarEl.textContent = 'WS: ' + wsStateText +
+        (lastWsMsgText ? ' | last: ' + lastWsMsgText : '');
+    }
 
     // ---- gsplat.js core objects ----
     let scene, camera, renderer, controls;
@@ -93,9 +109,13 @@
     const SCENE_API   = BRIDGE_BASE + '/api/files/scenes';
 
     // ---- WebSocket (MCP Server renderer bridge) ----
-    const WS_URL = 'ws://localhost:9842';
+    // Same host as the page: HTTP+WS share port 9842 on the MCP server.
+    const WS_PORT = 9842;
+    const WS_URL = 'ws://' + location.hostname + ':' + WS_PORT;
     let ws = null;
     let wsReconnectTimer = null;
+    // Metadata from a load_point_cloud text message, waiting for its binary payload
+    let pendingPointCloudMeta = null;
 
     // ---- postMessage (parent iframe communication) ----
     const parentOrigin = '*';
@@ -127,7 +147,8 @@
     //  Scene Loading
     // ================================================================
 
-    async function loadSceneFromUrl(url) {
+    async function loadSceneFromUrl(url, opts) {
+      opts = opts || {};
       showProgress('Loading scene... 0%');
       hideError();
 
@@ -164,9 +185,10 @@
         hideProgress();
 
         // Auto-fit camera using Splat.bounds
+        let gaussCount = 0;
         if (currentSplat) {
           autoFitCamera(currentSplat);
-          const gaussCount = currentSplat.data
+          gaussCount = currentSplat.data
             ? (currentSplat.data.positions.length / 3)
             : 0;
           statsEl.textContent = gaussCount.toLocaleString() + ' gaussians';
@@ -175,15 +197,23 @@
         statusEl.textContent = 'Loaded: ' + url.split('/').pop();
         overlayEl.textContent = 'SplatVerse Studio — ' + url.split('/').pop();
 
-        // Notify both channels
-        notifySceneLoaded(url);
+        // Notify both channels (skipped when the caller sends its own
+        // id-tagged scene_loaded reply over WebSocket)
+        if (!opts.skipNotify) {
+          notifySceneLoaded(url);
+        }
+        return gaussCount;
 
       } catch (e) {
         hideProgress();
         const msg = e.message || String(e);
         showError('Load failed: ' + msg);
         statusEl.textContent = 'Load failed';
-        notifyError(msg, 'load_scene');
+        if (!opts.skipNotify) {
+          notifyError(msg, 'load_scene');
+        }
+        if (opts.rethrow) throw e;
+        return -1;
       }
     }
 
@@ -254,23 +284,32 @@
     }
 
     // ================================================================
-    //  WebSocket Communication (MCP Server)
+    //  WebSocket Communication (MCP Server — full protocol)
     // ================================================================
 
     function connectWebSocket() {
       if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
 
       try {
+        wsStateText = 'connecting...'; updateWsBar();
         ws = new WebSocket(WS_URL);
         ws.binaryType = 'arraybuffer';
 
         ws.onopen = function() {
-          statusEl.textContent = 'WebSocket connected to MCP Server';
+          wsStateText = 'connected'; updateWsBar();
+          statusEl.textContent = 'WebSocket connected to MCP Server (' + WS_URL + ')';
+          // Protocol handshake: identify this renderer right after connecting
+          ws.send(JSON.stringify({
+            type: 'hello',
+            renderer: 'gsplat',
+            capabilities: ['splat-render', 'point-cloud', 'capture'],
+          }));
           if (wsReconnectTimer) { clearTimeout(wsReconnectTimer); wsReconnectTimer = null; }
         };
 
         ws.onclose = function() {
           ws = null;
+          wsStateText = 'disconnected (retrying...)'; updateWsBar();
           if (!wsReconnectTimer) {
             wsReconnectTimer = setTimeout(function() {
               wsReconnectTimer = null;
@@ -283,39 +322,226 @@
 
         ws.onmessage = function(event) {
           if (typeof event.data === 'string') {
+            let msg;
             try {
-              const msg = JSON.parse(event.data);
-              handleWsMessage(msg);
-            } catch (ex) { /* ignore non-JSON */ }
+              msg = JSON.parse(event.data);
+            } catch (ex) { return; /* ignore non-JSON */ }
+            handleWsMessage(msg);
+          } else if (event.data instanceof ArrayBuffer) {
+            handleBinaryPointCloud(event.data);
+          } else if (typeof Blob !== 'undefined' && event.data instanceof Blob) {
+            event.data.arrayBuffer().then(handleBinaryPointCloud).catch(function(e) {
+              console.warn('[gsplat-renderer] Blob read failed:', e);
+            });
           }
         };
       } catch (e) {
+        wsStateText = 'connection failed'; updateWsBar();
         showError('WebSocket connection failed: ' + e.message);
       }
     }
 
     function handleWsMessage(msg) {
+      lastWsMsgText = String(msg.type) + (msg.id !== undefined ? ' (id=' + msg.id + ')' : '');
+      updateWsBar();
+
       switch (msg.type) {
         case 'connected':
           statusEl.textContent = 'MCP Server connected';
           break;
 
+        case 'load_gaussians_url':
+          handleLoadGaussiansUrl(msg);
+          break;
+
+        case 'load_point_cloud':
+          // Metadata for the binary point-cloud payload that follows immediately
+          pendingPointCloudMeta = {
+            id: msg.id,
+            sceneId: msg.sceneId,
+            pointCount: msg.pointCount,
+            bboxCenter: msg.bboxCenter,
+            bboxSize: msg.bboxSize,
+          };
+          statusEl.textContent = 'Waiting for point cloud binary (' + msg.pointCount + ' points)...';
+          break;
+
         case 'load_scene':
-          handleLoadScene(msg);
+          // Composite scene notification — ack directly; real data arrives
+          // via load_gaussians_url / load_point_cloud.
+          wsSend({
+            type: 'scene_loaded',
+            id: msg.id,
+            sceneId: msg.sceneId,
+            gaussianCount: 0,
+            bbox: { min: [0, 0, 0], max: [0, 0, 0] },
+          });
           break;
 
         case 'set_camera':
-          if (msg.position && msg.target) {
+          if (msg.position || msg.target) {
             setCamera(msg.position, msg.target);
           }
+          applyFovAndUp(msg);
+          wsSend({ type: 'pong', id: msg.id });
+          break;
+
+        case 'render':
+          handleWsRender(msg);
           break;
 
         case 'render_request':
+          // Legacy manual capture flow (kept for backward compatibility)
           handleRenderRequest('ws');
           break;
 
+        case 'export':
+        case 'set_stereoscopic':
+        case 'ping':
+          // Export is handled server-side; just acknowledge
+          wsSend({ type: 'pong', id: msg.id });
+          break;
+
         default:
+          // Unknown command — acknowledge so the server never hangs
+          if (msg.id !== undefined) {
+            wsSend({ type: 'pong', id: msg.id });
+          }
           statusEl.textContent = 'WS msg: ' + msg.type;
+      }
+    }
+
+    function wsSend(obj) {
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(obj));
+      }
+    }
+
+    /** bbox = bboxCenter ± bboxSize/2; falls back to current splat bounds. */
+    function computeBbox(bboxCenter, bboxSize) {
+      if (bboxCenter && bboxSize && bboxCenter.length === 3 && bboxSize.length === 3) {
+        return {
+          min: [bboxCenter[0] - bboxSize[0] / 2, bboxCenter[1] - bboxSize[1] / 2, bboxCenter[2] - bboxSize[2] / 2],
+          max: [bboxCenter[0] + bboxSize[0] / 2, bboxCenter[1] + bboxSize[1] / 2, bboxCenter[2] + bboxSize[2] / 2],
+        };
+      }
+      try {
+        if (currentSplat && currentSplat.bounds) {
+          const b = currentSplat.bounds;
+          return {
+            min: [b.min.x, b.min.y, b.min.z],
+            max: [b.max.x, b.max.y, b.max.z],
+          };
+        }
+      } catch (e) { /* bounds unavailable */ }
+      return { min: [0, 0, 0], max: [0, 0, 0] };
+    }
+
+    /** Apply optional fov/up from set_camera (best effort for gsplat.js Camera). */
+    function applyFovAndUp(msg) {
+      try {
+        if (typeof msg.fov === 'number') {
+          if ('fovX' in camera) camera.fovX = msg.fov;
+          if ('fovY' in camera) camera.fovY = msg.fov;
+        }
+        if (msg.up && msg.up.length === 3 && 'up' in camera) {
+          camera.up = new SPLAT.Vector3(msg.up[0], msg.up[1], msg.up[2]);
+        }
+      } catch (e) { /* camera model may not support fov/up — ignore */ }
+    }
+
+    /**
+     * load_gaussians_url — load a real 3DGS PLY served by the MCP server
+     * (http://<ws host>:9842<url>) via gsplat.js (sort + alpha compositing),
+     * then reply with scene_loaded carrying the same id.
+     */
+    async function handleLoadGaussiansUrl(msg) {
+      const rawUrl = msg.url || '';
+      const url = /^https?:\/\//i.test(rawUrl)
+        ? rawUrl
+        : 'http://' + location.hostname + ':' + WS_PORT + rawUrl;
+
+      statusEl.textContent = 'Loading gaussians: ' + url;
+      try {
+        const gaussianCount = await loadSceneFromUrl(url, { skipNotify: true, rethrow: true });
+        wsSend({
+          type: 'scene_loaded',
+          id: msg.id,
+          sceneId: msg.sceneId,
+          gaussianCount: gaussianCount > 0 ? gaussianCount : 0,
+          bbox: computeBbox(msg.bboxCenter, msg.bboxSize),
+        });
+      } catch (e) {
+        wsSend({
+          type: 'error',
+          id: msg.id,
+          sceneId: msg.sceneId,
+          error: 'Load failed: ' + ((e && e.message) || String(e)),
+        });
+      }
+    }
+
+    /**
+     * render — capture the current canvas frame (preserveDrawingBuffer is
+     * monkey-patched in) and reply with prefix-stripped base64.
+     */
+    function handleWsRender(msg) {
+      const t0 = performance.now();
+      const fmt = (msg.format === 'jpeg' || msg.format === 'jpg') ? 'image/jpeg' : 'image/png';
+      try {
+        // Force a fresh draw right before reading back the framebuffer
+        renderer.render(scene, camera);
+        const canvas = renderer.canvas;
+        const dataUrl = canvas.toDataURL(fmt);
+        const renderTimeMs = Math.round(performance.now() - t0);
+        const base64 = dataUrl.substring(dataUrl.indexOf(',') + 1);
+        wsSend({
+          type: 'render_result',
+          id: msg.id,
+          image: base64,
+          renderTimeMs: renderTimeMs,
+          width: canvas.width,
+          height: canvas.height,
+        });
+      } catch (e) {
+        wsSend({ type: 'error', id: msg.id, error: 'Render failed: ' + ((e && e.message) || String(e)) });
+      }
+    }
+
+    /**
+     * Binary point-cloud payload: [u32 count][u32 byteLen][count × 7 × f32:
+     * x,y,z,r,g,b,opacity] little-endian. Paired with the preceding
+     * load_point_cloud metadata message; acked with scene_loaded.
+     */
+    function handleBinaryPointCloud(buffer) {
+      const meta = pendingPointCloudMeta || {};
+      pendingPointCloudMeta = null;
+      try {
+        if (buffer.byteLength < 8) throw new Error('binary payload too short');
+        const view = new DataView(buffer);
+        const count = view.getUint32(0, true);
+        const byteLen = view.getUint32(4, true);
+        const expected = 8 + count * 7 * 4;
+        if (buffer.byteLength < expected) {
+          throw new Error('binary payload truncated: expected ' + expected + ' bytes, got ' + buffer.byteLength);
+        }
+        // Validate the interleaved float layout (splat pipeline has no native
+        // point-cloud primitive, so we acknowledge without rasterizing it)
+        const floats = new Float32Array(buffer.slice(8, 8 + count * 7 * 4));
+        statusEl.textContent = 'Point cloud received: ' + count + ' points (' +
+          (buffer.byteLength / 1048576).toFixed(1) + ' MB, declared byteLen=' + byteLen + ')';
+        console.log('[gsplat-renderer] point cloud binary parsed: count=' + count +
+          ' byteLen=' + byteLen + ' first=[' + Array.prototype.slice.call(floats, 0, 7).join(',') + ']');
+        wsSend({
+          type: 'scene_loaded',
+          id: meta.id,
+          sceneId: meta.sceneId,
+          gaussianCount: count,
+          bbox: computeBbox(meta.bboxCenter, meta.bboxSize),
+        });
+      } catch (e) {
+        console.error('[gsplat-renderer] binary parse failed:', e);
+        wsSend({ type: 'error', id: meta.id, error: 'Binary parse failed: ' + (e.message || String(e)) });
       }
     }
 

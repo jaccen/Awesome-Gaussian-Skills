@@ -33,7 +33,7 @@ Methods that reduce Gaussian count via pruning, coreset selection, knowledge dis
 | Method | Strategy | Venue | Year | ArXiv | Compression | Quality Impact | Key Feature | Code |
 |--------|----------|-------|------|-------|-------------|---------------|-------------|------|
 | Prune Wisely | Adaptive pruning (DoG) | CVPR | 2026 | [2602.24136](https://arxiv.org/abs/2602.24136) | 90% Gaussians | Minimal | Difference-of-Gaussians avoids false positives from texture-frequency aliasing | — |
-| VEDAL | Variational pruning | CGI | 2026 | [2606.02346](https://arxiv.org/abs/2606.02346) | 5.2x | 0.31 dB drop | Variational free energy minimization; prediction-error gating; async pruning; 185 FPS | — |
+| VEDAL | Variational pruning | arXiv 2026（venue 待核实） | 2026 | [2606.02346](https://arxiv.org/abs/2606.02346) | 5.2x | 0.31 dB drop | Variational free energy minimization; prediction-error gating; async pruning; 185 FPS | — |
 | Provable Pruning via Coresets | Coreset sampling | arXiv | 2026 | [2607.02721](https://arxiv.org/abs/2607.02721) | Theoretical guarantee | Multiplicative approx | First provable coreset construction for 3DGS; sensitivity-based sampling | [GitHub](https://github.com/waseem-m/3dgs_provable_coresets) |
 | NanoGS | Merge-based simplification | arXiv | 2026 | [2603.16103](https://arxiv.org/abs/2603.16103) | Training-free | Mass-preserving | Pairwise merging on sparse spatial graph; runs on CPU; preserves standard parameterization | [GitHub](https://github.com/saliteta/NanoGS) |
 | LightGaussian | Global+local + SVD distill | NeurIPS | 2024 | [2311.17245](https://arxiv.org/abs/2311.17245) | 15x | High at 200+ FPS | SVD distillation of SH; global importance + local pruning | [GitHub](https://github.com/VITA-Group/LightGaussian) |
@@ -187,7 +187,7 @@ Key milestones in 3DGS compression and deployment:
 | 2026 | Q2 | CAGS (SIGGRAPH) | VQ LoD streaming with server-side color correction |
 | 2026 | Q2 | HiGS (NVIDIA) | 15.8x hierarchical tile speedup |
 | 2026 | Q2 | GETA-3DGS | First automatic joint structured pruning + quantization |
-| 2026 | Q2 | VEDAL (CGI) | Variational pruning with theoretical grounding |
+| 2026 | Q2 | VEDAL (arXiv 2026（venue 待核实）) | Variational pruning with theoretical grounding |
 | 2026 | Q2 | Flux-GS (ECCV) | Monte Carlo mobile rendering (UTS/Baidu) |
 | 2026 | Q3 | Mobile-GS (ICLR) | 1000+ FPS mobile; depth-aware OIT |
 | 2026 | Q3 | Provable Coresets | First theoretical pruning guarantee for 3DGS |

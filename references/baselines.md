@@ -12,7 +12,7 @@
 | Instant-NGP | 2022 | ACM TOG | ~31 dB (B) / ~25 dB (360) | 速度基线 |
 | Mip-Splatting | 2024 | CVPR Best Student | ~28.5 dB (360) | Anti-aliasing；无T&T数据 |
 | 2DGS | 2024 | SIGGRAPH | ~28.0 dB (360) | Geometry quality |
-| Scaffold-GS | 2023 | ICCV | ~25.0 dB (360) | Anchor-based |
+| Scaffold-GS | 2024 | CVPR Highlight | ~28.26 dB (360) | Anchor-based |
 
 ### 2024-2026 高频/边界增强方法
 
@@ -77,7 +77,7 @@
 
 ### 大尺度数据集（Mip-NeRF 360）
 
-- 场景：Bicycle, Garden, Stump, Room, Counter, Kitchen, Bonfire, Flowers, Treehill
+- 场景：Bicycle, Garden, Stump, Room, Counter, Kitchen, Bonsai, Flowers, Treehill（共 9 个场景）
 - 来源：智能手机拍摄
 - 评估：PSNR, SSIM, LPIPS
 - 训练/测试按相机编号划分

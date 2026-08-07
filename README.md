@@ -6,15 +6,15 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 789+ Methods, 25 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 783+ Methods, 23 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-789+-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI_Skills-14-green.svg)](skills/)
-[![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-108+-red.svg)](skills/3dgs-code-reviewer/)
+[![Methods](https://img.shields.io/badge/Methods-783+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI_Skills-15-green.svg)](skills/)
+[![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -30,17 +30,17 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 |---------------|-------------|-----------|
 | Browse papers | Static markdown table | [Interactive explorer](https://jaccen.github.io/Awesome-Gaussian-Skills/): search, filter, sort |
 | Compare methods | Open 2 papers side by side | 10+ dimension auto-comparison |
-| Avoid code bugs | Discover after submission | 108+ known bug pattern detection |
+| Avoid code bugs | Discover after submission | 104 known bug pattern detection |
 | Design experiments | Guess baselines & ablations | Venue-tailored experiment plan |
 | NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
-| CAD ↔ 3DGS | No coverage | 61+ method conversion pipeline |
+| CAD ↔ 3DGS | No coverage | 40+ method conversion pipeline |
 | Patent filing | Manual from scratch | Auto-generated claims & specs |
 
 ## Live Demo
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 789+ Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 783+ Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
@@ -58,7 +58,7 @@ Search 789+ Methods instantly, filter by category, sort by citations, click any 
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 12 chapters, every method name anchored to this repo's real data (789+ Methods, 25 categories, 15 skills), zero fabrication:**
+**What's inside — 12 chapters, every method name anchored to this repo's real data (783+ Methods, 23 categories, 15 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -85,13 +85,15 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 789+ method names, abstracts, and 14 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 783+ method names, abstracts, and 15 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
-## What's New (July 2026)
+## What's New (Aug 2026)
 
-Latest update (Jul 26): **v0.5.1 — Full Method Audit & 14 New Methods**. Now 789+ Methods (775 verified unique baseline + 14 new). Full re-audit across 11 source files; all method counts unified to 789+. New additions: **GrainGS** (dynamic, 36.98 dB / 435.6 FPS / 4.67 MB), **GLAM-SLAM** (IROS 2026, outdoor decoupled SLAM), **SubSplat** (subpixel feed-forward), **ATSplat** (adaptive 3D tokens, 1136 FPS), **3D-GIMP** (3DGS inpainting), **LB-Edit** (7× lower editing latency), **FlexiAvatar** (ECCV 2026, visible-body-only optimization), **ZeroSplat** (ECCV 2026, training-free segmentation), **CaT-GS** (CVPR 2026, 10× faster rendering), **FF-ProCams** (projector-camera inverse rendering), **i3dgs** (SIGGRAPH 2026, large-scale unordered), **VIGS-SLAM** (ECCV 2026, iPhone real-time), **ECoNGS** (IEEE VIS 2026, volume visualization), **AniGS** (scene-level animation via diffusion prior). +MoDE/MoE-GS code link. Previous (Jul 24): v0.5.0 MCP Protocol Implementation. Previous (Jul 23): v0.4.3 ICML 2026 & Material/Provenance Wave — **GaussTrace** (ICML 2026), **GADA** (ICML 2026), **InvSplat**, **MGM**, **DualPhys-GS**, **StereoGS**. v0.4.4 added 3dgs-training-debugger skill (60+ runtime patterns).
+Latest update (Aug 7): **v0.8.0 — Platform Upgrade (P0+P1+P2)**. Knowledge layer: single source of truth (`data/methods.json`, 783 methods, 23 categories) with data CI; 5 fabricated entries purged; 14 arXiv-verified frontier methods added. Capability layer: true-3DGS render loop (gsplat via HTTP-served PLY), server-authoritative scene persistence, real PLY/SPLAT export, 5 distinct prune strategies, grid-accelerated ray query, runtime arg validation, WS origin allowlist, 21 unit tests. Platform layer: Benchmark arena (`bench/`), skill orchestration contracts (`skills/_contracts/`), Router manifest loader (`scripts/router_load.py`). 13 core MCP tools (all real) + 13 experimental (gated by `INCLUDE_EXPERIMENTAL=1`). See [changelog/2026-08-07.md](changelog/2026-08-07.md).
+
+Previous (Jul 26): **v0.5.1 — Full Method Audit & 14 New Methods**. Now 789+ Methods (775 verified unique baseline + 14 new). Full re-audit across 11 source files; all method counts unified to 789+. New additions: **GrainGS** (dynamic, 36.98 dB / 435.6 FPS / 4.67 MB), **GLAM-SLAM** (IROS 2026, outdoor decoupled SLAM), **SubSplat** (subpixel feed-forward), **ATSplat** (adaptive 3D tokens, 1136 FPS), **3D-GIMP** (3DGS inpainting), **LB-Edit** (7× lower editing latency), **FlexiAvatar** (ECCV 2026, visible-body-only optimization), **ZeroSplat** (ECCV 2026, training-free segmentation), **CaT-GS** (CVPR 2026, 10× faster rendering), **FF-ProCams** (projector-camera inverse rendering), **i3dgs** (SIGGRAPH 2026, large-scale unordered), **VIGS-SLAM** (ECCV 2026, iPhone real-time), **ECoNGS** (IEEE VIS 2026, volume visualization), **AniGS** (scene-level animation via diffusion prior). +MoDE/MoE-GS code link. Previous (Jul 24): v0.5.0 MCP Protocol Implementation. Previous (Jul 23): v0.4.3 ICML 2026 & Material/Provenance Wave — **GaussTrace** (ICML 2026), **GADA** (ICML 2026), **InvSplat**, **MGM**, **DualPhys-GS**, **StereoGS**. v0.4.4 added 3dgs-training-debugger skill (60+ runtime patterns).
 
 | Method | Venue | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
@@ -138,7 +140,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (789+ Methods, 25 Categories)
+## Knowledge Base (783+ Methods, 23 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -151,75 +153,69 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 > Download full database: [CSV](3dgs-methods-overview.csv) | Full analysis: [references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
 
 <details>
-<summary><strong>Full Category Table (25 categories)</strong></summary>
+<summary><strong>Full Category Table (23 categories)</strong></summary>
 
 **Core Representations**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Foundation | Core 3DGS representations and basic variants | 3DGS, 2DGS, Scaffold-GS, Scaffold-GS+, Mip-Splatting, 3DGEER, SNS |
-| Antialiasing | Anti-aliasing and frequency-aware rendering | Mip-Splatting, LeanGaussian |
-| Optimization | Training objectives, density control, and convergence | 3DGS-as-MCMC, 3DGS², AdpSplit, Denoising-GS |
-| Surface / Rendering | Rendering formulation innovation (OIT, RBF, etc.) | SparseOIT, View-Dependent Splatting, Gaussian Surfel Rendering |
-| Image Representation | Image-level Gaussian encoding | GaussianImage |
+| Foundation (40) | Core 3DGS representations and basic variants | 3D Representation Survey, 3DGEER, 3DSGS |
+| Optimization (77) | Training objectives, density control, convergence | AdaGScale, AdpSplit, ArtifactWorld |
+| Surface & Rendering (49) | Surface extraction and rendering-formulation innovation | 2D-SuGaR, 3DSS, AmbiSuR |
 
 **Efficiency & Scale**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Compression / Streaming | Lightweight, mobile, and progressive streaming | Compact-3DGS, LightGS, MobileGS, Embedded-3DGS, NanoGS |
-| Acceleration | Training and inference speedup | FastGS, Proxy-GS, Faster-GS, GEMM-GS, AV1-3DGS, BlitzGS |
-| Large-Scale | City-scale and distributed scene management | BlitzGS |
-| Feed-Forward | Single-forward-pass generalizable reconstruction | Z-Order GS, RoSplat, SplatWeaver, AdaptSplat, VolSplat, VG²GT |
+| Compression & Streaming (43) | Lightweight, mobile, and progressive streaming | CAGS, Clustered Codebook VQ, CodecSplat |
+| Acceleration (10) | Training and inference speedup | 3DGS\u00B3, Axis-Shared Rasterization Accelerator, DDF-GS |
+| Large-Scale (20) | City-scale and distributed scene management | BlitzGS, CaT-GS, City-Level 3D Surface |
+| Feed-Forward (67) | Generalizable single-pass reconstruction (incl. foundation models) | AdaptSplat, AnchorSplat, AnyCity |
 
 **Understanding & Semantics**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Language / Semantic | Open-vocabulary 3D understanding and language fields | LangSplat, Feature 3DGS, Semantic Foam, ReferSplat, Gaga |
-| Generation / Text-to-3D | Text/condition-driven 3D generation | DreamGaussian, SceneGen-LLMRL, PanoWorld, MORPHOS |
-| Autonomous Driving | Driving scene reconstruction and simulation | Real2Sim, ConFixGS, P2GS, GEM, StreetNVS |
+| Language & Semantic (32) | Open-vocabulary 3D understanding and language fields | 3D-GIMP, Consistent Scene Understanding in 3DGS, DGSG-Mind |
+| Generation (26) | Text/condition-driven 3D/4D generation | AniGen, AnySurf, AssetGen |
+| Autonomous Driving (33) | Driving scene reconstruction and simulation | 3DGS Safety Evaluation for AD, Asset Harvester, CGGS |
 
 **Dynamic & Spatial**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Dynamic | 4D Gaussians, temporal deformation, and propagation | ParticleGS, 3DGS³, Velox, WebSpline |
-| HDR / Dynamic | HDR capture and time-varying illumination | HDR-NSFF, FreeTimeGS++ |
-| SLAM | Simultaneous localization and mapping | GaussianSplatting-SLAM-v2, GS-Map-SLAM, 2DGS-SLAM, MAGS-SLAM, ULF-Loc, GGD-SLAM |
-| Sparse-View | Few-shot and sparse-view reconstruction | FrameTwin, GeoQuery, VidSplat, PanoPlane |
-| Spatial Intelligence & World Model | 3D spatial reasoning, world modeling, neuro-symbolic | Holi-Spatial, Spatial-TTT, OpenSpatial, APEIRIA, S2AM3D |
+| Dynamic & 4D (71) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS³, AniGS, ClipGStream |
+| HDR & Relighting (26) | HDR capture, relightable and material-aware Gaussians | AlbedoEdit, Ambient-Robust IR, DiffAdapt4DSI |
+| SLAM (40) | Simultaneous localization and mapping | 2DGS-SLAM, Anchor3R, Anythingreality |
+| Sparse-View (20) | Few-shot and sparse-view reconstruction | DropAnSH-GS, FrameTwin, GeoQuery |
+| World Models & Spatial Intelligence (8) | 3D spatial reasoning, world modeling | ABot-3DWorld 0, APEIRIA, FlashWorld |
 
 **Applications & Cross-Domain**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Human / Avatar | Animatable human and avatar reconstruction | GaussianAvatar, SplattingAvatar, HairGPT, ArtMesh |
-| Editing | Interactive and text-guided scene editing | GaussianEditor, Frosting, AlbedoEdit, TransSplat |
-| Relighting | Relightable and material-aware Gaussians | Relightable-GS-VP, Ambient-Robust IR |
-| CAD | CAD model fitting and reverse engineering | CADFit, KDH-CAD, CADDreamer, Zero-to-CAD |
-| Cross-Domain | Multi-modal fusion and out-of-domain transfer | GS-DOT, DiffSoup, LagrangianSplats, SurfFill |
-| Simulation | Physics simulation and surrogate models | GS-Playground, GS-Surrogate, FieryGS |
-| Embodied AI / Robotics | Grasping, manipulation, navigation, sim-to-real | GaussianGrasper, GraspSplats, LEGS, RoboSplat |
-| Articulated / Digital Twin | Articulated object interaction and digital twin | ArtiTwinSplat |
-| Robustness | In-the-wild and degradation-robust reconstruction | NRGS, DualSplat, HarmoGS |
-| Security | Watermarking, copyright, forgery detection | RDSplat, GuardMarkGS, 3DEditSafe |
-| World Model | 3DGS world models and scene prediction | MRO-GWM |
-| Event Camera | Event camera-driven 3DGS | TIDES |
+| Human & Avatar (43) | Animatable human and avatar reconstruction | ArtMesh, CapTalk, COSY |
+| Editing (47) | Interactive and text-guided scene editing | BEA-GS, Capacity-Controlled Stylization, DeSplat |
+| CAD & Reverse Engineering (19) | CAD fitting, B-rep reconstruction, reverse engineering | 3DCodeBench, ASSEMCAD, BRepCLIP |
+| Cross-Domain (46) | Medical, underwater, remote sensing and other domains | 3DTV, Aes3D, AsyncEvGS |
+| Simulation (11) | Physics simulation and surrogate models | 3DThinkVLA, AGILE, ArtiTwinSplat |
+| Embodied AI & Robotics (30) | Grasping, manipulation, navigation, digital twins | 3DGS Demo Synthesis (IL), ArtGS, Forecast-GS |
+| Robustness (11) | In-the-wild and degradation-robust reconstruction | 3DReflecNet, DelowlightSplat, DualPhys-GS |
+| Security (14) | Watermarking, copyright, forgery detection | 3DEditSafe, 4D-GSW, BitC-3DGS |
 
 </details>
 
-## 14 AI-Powered Skills
+## 15 AI-Powered Skills
 
 | # | Skill | What It Does | Example |
 |---|-------|-------------|---------|
 | 1 | [`3dgs-paper-reader`](skills/3dgs-paper-reader/) | Read any 3DGS paper, extract structured insights | "帮我读一下 2401.01345" |
 | 2 | [`3dgs-method-compare`](skills/3dgs-method-compare/) | Compare variants across 10+ dimensions | "对比 3DGS 和 2DGS 的渲染公式差异" |
-| 3 | [`3dgs-code-reviewer`](skills/3dgs-code-reviewer/) | Catch 108+ known 3DGS implementation bugs | "审查我的 CUDA 渲染 kernel" |
+| 3 | [`3dgs-code-reviewer`](skills/3dgs-code-reviewer/) | Catch 104 known 3DGS implementation bugs | "审查我的 CUDA 渲染 kernel" |
 | 4 | [`3dgs-experiment-planner`](skills/3dgs-experiment-planner/) | Design experiments for CVPR/SIGGRAPH/TVCG | "帮我设计消融实验" |
 | 5 | [`nerf-to-3dgs-migrator`](skills/nerf-to-3dgs-migrator/) | Migrate NeRF methods to 3DGS step-by-step | "hash encoding 怎么迁移到 3DGS？" |
-| 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | Bridge CAD/Mesh/3DGS — 61+ conversion methods | "3DGS模型怎么提取高质量mesh？" |
-| 6 | [`cg-paper-writing`](skills/cg-paper-writing/) | Write papers for CVPR/SIGGRAPH/TVCG with adversarial review | "帮我写论文引言" |
+| 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | Bridge CAD/Mesh/3DGS — 40+ conversion methods | "3DGS模型怎么提取高质量mesh？" |
+| 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | Write papers for CVPR/SIGGRAPH/TVCG with adversarial review | "帮我写论文引言" |
 | 8 | [`3dgs-visualizer`](skills/3dgs-visualizer/) | Publication-quality radar charts, timelines, heatmaps | "画一个3DGS方法对比雷达图" |
 | 9 | [`3dgs-engineering-guide`](skills/3dgs-engineering-guide/) | Deploy 3DGS from research to production (10 industry tracks) | "怎么部署3DGS做自动驾驶仿真？" |
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | Generate patent applications & software copyrights | "生成专利申请文件" |
@@ -245,7 +241,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 789+ Methods.
+> Derived from systematic gap analysis across 783+ Methods.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -312,6 +308,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 - [ ] v0.4 — `3dgs-spatial-agent` enhancements (knowledge-constrained CAD, DDF-GS ray query)
 - [x] v0.5.0 — MCP Protocol Implementation: 24-tool MCP server (mcp-server/), Three.js WebSocket renderer, 24-pattern voice intent mapper, headless mode, voice demo (Jul 24, 2026)
 - [x] v0.5.1 — Full Method Audit & 14 New Methods: 775 verified unique baseline + 14 new = 789+ methods; all method counts unified across 11 source files; +GrainGS, GLAM-SLAM, SubSplat, ATSplat, 3D-GIMP, LB-Edit, FlexiAvatar, ZeroSplat, CaT-GS, FF-ProCams, i3dgs, VIGS-SLAM, ECoNGS, AniGS (Jul 26, 2026)
+- [x] v0.8.0 — Platform Upgrade (P0+P1+P2): single source of truth (data/methods.json, 783 methods, 23 categories, data CI); 5 fabricated entries purged + 14 arXiv-verified frontier methods; true-3DGS render loop (gsplat via HTTP-served PLY); server-authoritative scene persistence; real PLY/SPLAT export; 5 prune strategies; grid-accelerated ray query; runtime arg validation; WS origin allowlist; 21 unit tests + 2 CI workflows; Benchmark arena (bench/); skill orchestration contracts (skills/_contracts/); Router manifest loader (scripts/router_load.py); 13 core MCP tools + 13 experimental (Aug 7, 2026)
 - [ ] v1.0 — CI/CD integration + multi-framework official listings
 - [ ] v2.0 — Agent-to-Agent collaboration (multi-agent paper discussion)
 
@@ -321,27 +318,32 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 ```
 Awesome-Gaussian-Skills/
+├── data/                      # Single source of truth (methods.json, categories.json)
 ├── skills/                    # 15 AI Agent skills (SKILL.md format)
+│   ├── _contracts/            # Inter-skill I/O schemas (paper-insight, comparison-report, experiment-plan)
 │   ├── 3dgs-paper-reader/     # Paper reading & summarization
-│   ├── 3dgs-method-compare/   # Method comparison engine
-│   ├── 3dgs-code-reviewer/    # Code review (108+ bug patterns)
+│   ├── 3dgs-method-compare/   # Method comparison engine (Router)
+│   ├── 3dgs-code-reviewer/    # Code review (104 bug patterns)
 │   ├── 3dgs-experiment-planner/ # Experiment design
 │   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS migration
 │   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS bridge
-│   ├── cg-paper-writing/      # CG paper writing assistant
+│   ├── cg-paper-writing/      # CG paper writing assistant (Router)
 │   ├── 3dgs-visualizer/       # Research visualization
-│   ├── 3dgs-engineering-guide/ # Engineering deployment
+│   ├── 3dgs-engineering-guide/ # Engineering deployment (Router)
 │   ├── patent-software-ip/    # Patent & copyright generation
 │   ├── 3dgs-spatial-agent/    # Spatial intelligence agent
 │   ├── 3dgs-mcp-renderer/     # MCP rendering bridge
 │   ├── 3dgs-articulated-reasoner/ # Articulated reasoning & digital twin
-│   ├── 3dgs-compression-deploy/  # Compression & deployment (quantize, prune, VQ, stream, Web/Mobile)
-│   └── 3dgs-training-debugger/  # Training failure diagnosis (OOM, NaN, divergence, artifacts)
-├── mcp-server/                # MCP server v0.5.0 (24 tools, Three.js renderer, voice intent)
+│   ├── 3dgs-compression-deploy/  # Compression & deployment
+│   └── 3dgs-training-debugger/  # Training failure diagnosis
+├── mcp-server/                # MCP server v0.8.0 (13 core + 13 experimental tools, gsplat render loop, HTTP+WS :9842)
+├── bench/                     # Benchmark arena (metrics.py, run_eval.py, leaderboard.json)
+├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
+├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (789+ Methods, 25 Categories)
-├── scripts/                   # Install scripts & pipelines
+├── references/                # Knowledge base (783+ Methods, 23 Categories)
 ├── Test/                      # Visualization samples
+├── changelog/                 # Version history
 └── assets/                    # Project images
 ```
 

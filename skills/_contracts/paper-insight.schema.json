@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ags://contracts/paper-insight",
+  "title": "Paper Insight — 3dgs-paper-reader 的结构化输出契约",
+  "description": "paper-reader 技能读完一篇论文后必须产出该结构，供 method-compare / experiment-planner / cg-paper-writing 消费。所有数字必须来自论文原文，禁止补全或估算；缺失字段置 null。",
+  "type": "object",
+  "required": ["arxiv_id", "title", "venue", "year", "category", "core_innovation", "results"],
+  "properties": {
+    "arxiv_id": { "type": "string", "pattern": "^[0-9]{4}\\.[0-9]{4,5}(v[0-9]+)?$" },
+    "title": { "type": "string", "minLength": 5 },
+    "venue": { "type": "string" },
+    "year": { "type": "integer", "minimum": 2015, "maximum": 2030 },
+    "category": { "type": "string", "description": "必须属于 data/categories.json 规范 taxonomy" },
+    "core_innovation": { "type": "string", "minLength": 20 },
+    "representation": {
+      "type": ["object", "null"],
+      "properties": {
+        "primitive": { "type": "string" },
+        "param_count_per_primitive": { "type": ["integer", "null"] }
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["dataset", "metric", "value"],
+        "properties": {
+          "dataset": { "type": "string" },
+          "metric": { "type": "string", "enum": ["PSNR", "SSIM", "LPIPS", "FPS", "train_time_s", "model_size_MB", "other"] },
+          "value": { "type": "number" },
+          "iterations": { "type": ["integer", "null"] },
+          "table_ref": { "type": ["string", "null"], "description": "论文内表格编号，如 Table 1" }
+        }
+      }
+    },
+    "code_url": { "type": ["string", "null"] },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "provenance": {
+      "type": "object",
+      "required": ["extracted_by", "extraction_date"],
+      "properties": {
+        "extracted_by": { "type": "string" },
+        "extraction_date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+      }
+    }
+  }
+}

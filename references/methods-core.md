@@ -15,7 +15,7 @@
 - **Key Innovation**: Replaces NeRF's implicit MLP with explicit Gaussians + differentiable rasterization for real-time rendering
 - **Rendering**: Tile-based forward splatting, α-compositing
 - **Training**: Adaptive Density Control (clone + split + prune), 7k-30k iterations
-- **Baseline Performance**: Mip-NeRF 360 → PSNR -> ~25.2 dB, SSIM ~0.77, LPIPS ~0.36
+- **Baseline Performance**: Mip-NeRF 360 → PSNR 27.21 dB, SSIM 0.795, LPIPS 0.252（30K iterations, 原论文 Table 1 均值）
 - **Speed**: 100+ FPS at 1080p on RTX 3090
 - **Links**: [中英摘要](https://arxiv.org/abs/2308.04079) | [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) | [Code](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/)
 
@@ -117,10 +117,10 @@
 
 ### NegGS (Negative Gaussian Splatting)
 - **Paper**: Negative Gaussian Splatting
-- **ArXiv**: 2405.14786
+- **ArXiv**: 2405.18163
 - **Core**: Allows negative color values; opacity remains non-negative
 - **Key Innovation**: Diff-Gaussian distribution (subtraction of two Gaussians) for ring/crescent/non-convex structures; negative color values in RGB space (not negative opacity); ~20% negative Gaussians optimal
-- **Links**: [中英摘要](https://arxiv.org/abs/2405.14786) | [arXiv:2405.14786](https://arxiv.org/abs/2405.14786) | [Code]
+- **Links**: [中英摘要](https://arxiv.org/abs/2405.18163) | [arXiv:2405.18163](https://arxiv.org/abs/2405.18163) | [Code]
 
 ### SAND
 - **Paper**: SAND: Spatially Adaptive Network Depth for Fast Sampling of Neural Implicit Surfaces

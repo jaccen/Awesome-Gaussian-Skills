@@ -144,13 +144,17 @@ Export options:
 | Robotic Arm | 6-7 revolute (serial chain) | 6-7 |
 | Refrigerator | 1-2 revolute (doors) + 1-3 prismatic (drawers) | 2-5 |
 
-### Penetration Penalty Benchmarks
+### Penetration Penalty Tuning（无公开基准，须自行实测）
 
-| Object | lambda | Penetration Reduction | PSNR Impact |
-|--------|--------|----------------------|-------------|
-| Cabinet (ULF-Loc) | 10.0 | 78% | +0.3 dB |
-| Car door | 5.0 | 62% | +0.1 dB |
-| Robotic arm | 20.0 | 91% | +0.5 dB |
+> ⚠️ 目前**没有**公开的铰接物体穿透惩罚基准数据集或公认参考值。
+> λ（穿透惩罚权重）必须在你自己的数据上扫描确定，禁止引用或编造"标准值"。
+
+推荐扫描流程：
+
+1. 以 λ ∈ {0, 1, 5, 10, 20, 50} 做对数网格扫描，每个值训练至收敛。
+2. 记录三项指标：穿透体积占比（SDF 判定）、PSNR、关节角误差。
+3. 选择穿透显著下降且 PSNR 损失 < 0.2 dB 的最小 λ。
+4. 报告时必须注明数据集、迭代数与评估协议（参照 benchmark-data.md 的 [S] 实测标注规范）。
 
 ### Known Pitfalls
 

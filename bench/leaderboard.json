@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "updated_at": "2026-08-07",
+  "policy": "每条记录必须带 source 标注（A=论文原文, C=社区公认, S=本仓库实测, E=估算）与 eval_impl/协议信息。禁止提交无来源数字。",
+  "results": [
+    {
+      "method": "3DGS",
+      "iterations": 30000,
+      "dataset": "mipnerf360",
+      "psnr": 27.21,
+      "ssim": 0.795,
+      "lpips": 0.252,
+      "source": "A",
+      "reference": "arXiv:2308.04079 Table 1 (30K, Mip-NeRF 360 avg)",
+      "note": "原论文官方报告均值"
+    },
+    {
+      "method": "3DGS",
+      "iterations": 7000,
+      "dataset": "tanks_and_temples",
+      "psnr": 21.2,
+      "ssim": 0.767,
+      "lpips": 0.28,
+      "source": "A",
+      "reference": "NegGS paper Table 2 (arXiv:2405.18163)",
+      "note": "经 NegGS 论文表格转引的 3DGS 基线"
+    },
+    {
+      "method": "NegGS",
+      "iterations": 7000,
+      "dataset": "tanks_and_temples",
+      "psnr": 21.66,
+      "ssim": 0.775,
+      "lpips": 0.27,
+      "source": "A",
+      "reference": "NegGS paper Table 2 (arXiv:2405.18163)",
+      "note": "vs 3DGS-7K: +0.46 PSNR"
+    },
+    {
+      "method": "3DGS",
+      "iterations": 30000,
+      "dataset": "tanks_and_temples",
+      "psnr": 23.14,
+      "ssim": 0.841,
+      "lpips": 0.183,
+      "source": "A",
+      "reference": "NegGS paper Table 2 (arXiv:2405.18163)",
+      "note": "协议差异提示：与逐场景社区值均值 23.79 相差 0.65 dB，见 references/benchmark-data.md §1.2"
+    },
+    {
+      "method": "NegGS",
+      "iterations": 30000,
+      "dataset": "tanks_and_temples",
+      "psnr": 23.61,
+      "ssim": 0.844,
+      "lpips": 0.179,
+      "source": "A",
+      "reference": "NegGS paper Table 2 (arXiv:2405.18163)",
+      "note": "vs 3DGS-30K: +0.47 PSNR"
+    },
+    {
+      "method": "Scaffold-GS",
+      "iterations": 30000,
+      "dataset": "mipnerf360",
+      "psnr": 28.26,
+      "ssim": null,
+      "lpips": null,
+      "source": "A",
+      "reference": "Scaffold-GS paper (arXiv:2312.00109, CVPR 2024 Highlight)",
+      "note": "原论文 Mip-NeRF 360 均值"
+    }
+  ]
+}

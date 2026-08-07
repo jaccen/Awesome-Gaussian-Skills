@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ags://contracts/comparison-report",
+  "title": "Comparison Report — 3dgs-method-compare 的结构化输出契约",
+  "description": "method-compare 的多维对比结果。consumed-by: cg-paper-writing（Related Work 段落）、experiment-planner（基线选择）。",
+  "type": "object",
+  "required": ["methods", "dimensions", "generated_at"],
+  "properties": {
+    "methods": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "arxiv_id": { "type": ["string", "null"] },
+          "paper_insight": { "type": ["object", "null"], "description": "内嵌 paper-insight 契约对象（可选）" }
+        }
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "values"],
+        "properties": {
+          "name": { "type": "string" },
+          "values": { "type": "array", "items": { "type": ["string", "number", "null"] } }
+        }
+      }
+    },
+    "recommendation": {
+      "type": ["object", "null"],
+      "properties": {
+        "pick": { "type": "string" },
+        "rationale": { "type": "string" },
+        "tradeoffs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "generated_at": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+  }
+}

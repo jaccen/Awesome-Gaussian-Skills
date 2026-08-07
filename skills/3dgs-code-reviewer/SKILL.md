@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 108+ known bug patterns including MoE-GS, Bayesian complexity control, deformable aggregation, and PBR material disentanglement patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 104 known bug patterns including compression, forensics, SLAM, feed-forward, and method-specific failure patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
 license: Apache-2.0
 user-invocable: true
 metadata:
@@ -85,7 +85,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 - [ ] **Gradient flow**: Verify all loss components have gradient paths
 
 #### Training Schedule
-- [ ] **Learning rate**: Typical start 0.0016 for position, 0.0025 for SH, 0.005 for opacity, 0.00005 for scale, 0.001 for rotation
+- [ ] **Learning rate**: Official 3DGS defaults (INRIA reference implementation): 0.00016 position, 0.0025 SH features, 0.05 opacity, 0.005 scaling, 0.001 rotation
 - [ ] **Learning rate decay**: Exponential decay at 0.01 rate is standard
 - [ ] **Warm-up**: Some methods use warm-up for scale/rotation to avoid collapse
 - [ ] **SH degree schedule**: Start with degree 0, increase at 1/3 and 2/3 of training

@@ -1,0 +1,36 @@
+name: Knowledge Base CI
+
+# 知识库数据质量守门：去重 / arXiv 格式 / 类别规范 / 伪造黑名单 / 三载体计数一致
+on:
+  push:
+    paths:
+      - "data/**"
+      - "3dgs-methods-overview.csv"
+      - "docs/index.html"
+      - "docs/abstracts.js"
+      - "scripts/build_knowledge_base.py"
+      - "scripts/validate_knowledge_base.py"
+  pull_request:
+    paths:
+      - "data/**"
+      - "3dgs-methods-overview.csv"
+      - "docs/index.html"
+      - "docs/abstracts.js"
+  schedule:
+    # 每周一 06:00 UTC 做一次在线抽样核验（arXiv 可达性）
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Offline validation (dedup / format / taxonomy / blacklist / counts)
+        run: python3 scripts/validate_knowledge_base.py
+      - name: Online arXiv reachability sample (weekly schedule only)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 scripts/validate_knowledge_base.py --check-arxiv 25

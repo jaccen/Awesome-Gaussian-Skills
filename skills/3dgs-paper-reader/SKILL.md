@@ -104,9 +104,9 @@ Generate the summary in the following format:
 
 When analyzing papers, you have deep knowledge of these foundational methods:
 
-- **3DGS (Kerbl et al., SIGGRAPH 2023)**: Anisotropic 3D Gaussians, tile-based differentiable rasterization, adaptive density control. Baseline metrics on Mip-NeRF 360: ~25.2 dB PSNR.
+- **3DGS (Kerbl et al., SIGGRAPH 2023)**: Anisotropic 3D Gaussians, tile-based differentiable rasterization, adaptive density control. Baseline metrics on Mip-NeRF 360: 27.21 dB PSNR average (30K iterations, original paper).
 - **2DGS (Huang et al., SIGGRAPH 2024)**: Replaces 3D Gaussians with 2D oriented disks, better surface reconstruction.
-- **Scaffold-GS (Lu et al., ICCV 2023)**: Anchor-based structure for large-scale scenes.
+- **Scaffold-GS (Lu et al., CVPR 2024 Highlight)**: Anchor-based structure for stable training and large-scale scenes.
 - **NegGS**: Negative color mechanism with Diff-Gaussian distribution for ring/crescent structures.
 
 ### Notable 2025-2026 Papers (Quick Reference)
@@ -126,7 +126,7 @@ When analyzing papers, you have deep knowledge of these foundational methods:
 | 2605.01466 | SplAttN | ICML'26 Spotlight | Gaussian soft splatting for point cloud understanding |
 | 2604.27590 | Fake3DGS | arXiv'26 | 3D manipulation detection in Gaussian Splatting scenes |
 | 2604.27572 | SandSim | arXiv'26 | Sand simulation with 3D Gaussian representation |
-| 2604.27552 | RGS | arXiv'26 | Relightable Gaussian Splatting |
+| 2604.27552 | RGS | arXiv'26 | Residual GS for ultra sparse-view CBCT reconstruction |
 | 2403.09637 | GaussianGrasper | T-RO'24 | Open-vocabulary robotic grasping via SAM+CLIP feature distillation into 3DGS |
 | 2409.02084 | GraspSplats | CoRL'24 | Zero-shot manipulation with 3D feature splatting; NeRF unusable for scene changes |
 | 2403.08498 | ManiGaussian | ECCV'24 | Dynamic GS world model for multi-task robotic manipulation |

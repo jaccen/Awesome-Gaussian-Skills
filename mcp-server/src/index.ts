@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 
 /**
- * 3DGS MCP Renderer Server — Entry Point
+ * 3DGS MCP Renderer Server — Entry Point (v0.8)
  *
- * MCP server exposing 24 tools for Agent-controlled 3DGS rendering.
- * Uses stdio transport for communication with MCP clients (Claude, TeleClaw, etc.).
+ * MCP server exposing 13 core tools (+13 experimental behind
+ * INCLUDE_EXPERIMENTAL=1) for Agent-controlled 3DGS rendering.
+ * Uses stdio transport for communication with MCP clients.
  *
  * Architecture:
- *   MCP Client (stdio) ←→ This Server ←→ Browser Renderer (WebSocket :9842)
+ *   MCP Client (stdio) ←→ This Server ←→ Browser Renderer(s)
+ *                              (WebSocket + HTTP :9842, real 3DGS via gsplat)
  *
- * Usage:
- *   npx 3dgs-mcp-server                    # Start server
- *   RENDERER_PORT=9842 npx 3dgs-mcp-server # Custom renderer port
+ * Env:
+ *   RENDERER_PORT          WebSocket/HTTP port (default 9842)
+ *   RENDERER_ORIGINS       Comma-separated WS origin allowlist
+ *                          (default: localhost origins only)
+ *   SCENE_DIRS             Extra comma-separated scene directories
+ *   INCLUDE_EXPERIMENTAL   "1" to list experimental stub tools
+ *   AUTO_SYNTHETIC_SCENE   "1" to create a demo scene at startup
  *
- * Or in MCP client config (e.g., Claude Desktop):
+ * MCP client config (e.g., Claude Desktop):
  *   {
  *     "mcpServers": {
  *       "3dgs-renderer": {
@@ -24,6 +30,7 @@
  *   }
  */
 
+import path from 'path';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -32,15 +39,27 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { SceneState } from './scene-state.js';
 import { RendererBridge } from './renderer-bridge.js';
-import { toolDefinitions, createToolHandlers, type ToolContext } from './tools.js';
+import { getToolDefinitions, createToolHandlers, CORE_TOOL_COUNT, EXPERIMENTAL_TOOL_COUNT, type ToolContext } from './tools.js';
 
 // ---------------------------------------------------------------------------
 // Configuration
 // ---------------------------------------------------------------------------
 
 const SERVER_NAME = '3dgs-mcp-renderer';
-const SERVER_VERSION = '0.5.0';
+const SERVER_VERSION = '0.8.0';
 const RENDERER_PORT = parseInt(process.env.RENDERER_PORT ?? '9842', 10);
+const SCENE_INDEX_PATH = path.resolve(process.cwd(), '.temp', 'scenes', 'index.json');
+
+// Path whitelist for scene imports (anti path-traversal baseline)
+const sceneRoots: string[] = [path.resolve(process.cwd(), 'scenes')];
+if (process.env.SCENE_DIRS) {
+  for (const d of process.env.SCENE_DIRS.split(',')) {
+    if (d.trim()) sceneRoots.push(path.resolve(d.trim()));
+  }
+}
+// Also allow the repo-level scenes/ dir when running from mcp-server/
+const repoScenes = path.resolve(process.cwd(), '..', 'scenes');
+if (!sceneRoots.includes(repoScenes)) sceneRoots.push(repoScenes);
 
 // ---------------------------------------------------------------------------
 // Create Server
@@ -49,8 +68,9 @@ const RENDERER_PORT = parseInt(process.env.RENDERER_PORT ?? '9842', 10);
 const sceneState = new SceneState();
 const rendererBridge = new RendererBridge(RENDERER_PORT);
 
-const ctx: ToolContext = { state: sceneState, bridge: rendererBridge };
+const ctx: ToolContext = { state: sceneState, bridge: rendererBridge, sceneRoots };
 const toolHandlers = createToolHandlers(ctx);
+const toolDefinitions = getToolDefinitions();
 
 const server = new Server(
   { name: SERVER_NAME, version: SERVER_VERSION },
@@ -58,16 +78,12 @@ const server = new Server(
 );
 
 // ---------------------------------------------------------------------------
-// Tool Listing
+// Tool Listing & Execution
 // ---------------------------------------------------------------------------
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: toolDefinitions,
 }));
-
-// ---------------------------------------------------------------------------
-// Tool Execution
-// ---------------------------------------------------------------------------
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
@@ -104,21 +120,29 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   console.error(`[${SERVER_NAME} v${SERVER_VERSION}] Starting...`);
   console.error(`[Config] Renderer port: ${RENDERER_PORT}`);
-  console.error(`[Config] Tools registered: ${toolDefinitions.length}`);
+  console.error(`[Config] Scene roots: ${sceneRoots.join(', ')}`);
+  console.error(`[Config] Tools: ${CORE_TOOL_COUNT} core + ${EXPERIMENTAL_TOOL_COUNT} experimental (${process.env.INCLUDE_EXPERIMENTAL === '1' ? 'LISTED' : 'hidden; set INCLUDE_EXPERIMENTAL=1 to list'})`);
 
-  // Attempt to connect to browser renderer (non-blocking — headless mode if unavailable)
-  console.error('[Startup] Connecting to browser renderer...');
-  const connected = await rendererBridge.connect();
-  if (connected) {
-    console.error('[Startup] Renderer connected — full rendering mode.');
-  } else {
-    console.error('[Startup] Renderer not available — running in headless mode.');
-    console.error('[Startup] Open renderer/index.html in a browser to enable rendering.');
+  // Restore persisted scenes (server-authoritative scene ids survive restarts)
+  const { restored, skipped } = sceneState.loadIndex(SCENE_INDEX_PATH);
+  if (restored > 0 || skipped > 0) {
+    console.error(`[Startup] Scene index: ${restored} restored, ${skipped} skipped`);
   }
 
-  // Create a default synthetic scene so tools work immediately
-  const { id, gaussianCount } = sceneState.generateSyntheticScene(10000);
-  console.error(`[Startup] Default scene created: ${id} (${gaussianCount} Gaussians)`);
+  // Attempt to start renderer bridge (non-blocking — headless mode if unavailable)
+  console.error('[Startup] Starting renderer bridge (WS + HTTP)...');
+  const connected = await rendererBridge.connect(sceneRoots);
+  if (connected) {
+    console.error('[Startup] Renderer bridge ready — open gsplat-renderer.html in a browser for true 3DGS rendering.');
+  } else {
+    console.error('[Startup] Renderer bridge unavailable — running in headless mode.');
+  }
+
+  // Optional demo scene (off by default — agents should import real scenes)
+  if (process.env.AUTO_SYNTHETIC_SCENE === '1') {
+    const { id, gaussianCount } = sceneState.generateSyntheticScene(10000);
+    console.error(`[Startup] Synthetic demo scene created: ${id} (${gaussianCount} Gaussians)`);
+  }
 
   // Start MCP server with stdio transport
   const transport = new StdioServerTransport();
@@ -131,17 +155,19 @@ main().catch((err) => {
   process.exit(1);
 });
 
-// Graceful shutdown
-process.on('SIGINT', async () => {
-  console.error('[Shutdown] SIGINT received, cleaning up...');
+// Graceful shutdown: persist scene index before exit
+async function shutdown(signal: string) {
+  console.error(`[Shutdown] ${signal} received, persisting scene index...`);
+  try {
+    const n = sceneState.saveIndex(SCENE_INDEX_PATH);
+    console.error(`[Shutdown] Saved ${n} persistable scene(s)`);
+  } catch (err) {
+    console.error(`[Shutdown] Index save failed: ${(err as Error).message}`);
+  }
   rendererBridge.disconnect();
   await server.close();
   process.exit(0);
-});
+}
 
-process.on('SIGTERM', async () => {
-  console.error('[Shutdown] SIGTERM received, cleaning up...');
-  rendererBridge.disconnect();
-  await server.close();
-  process.exit(0);
-});
+process.on('SIGINT', () => void shutdown('SIGINT'));
+process.on('SIGTERM', () => void shutdown('SIGTERM'));

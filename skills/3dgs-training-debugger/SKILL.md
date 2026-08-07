@@ -1,6 +1,6 @@
 ---
 name: 3dgs-training-debugger
-description: "Diagnose and fix 3DGS training-time failures: NaN losses, OOM crashes, divergent optimization, floater artifacts, densification failures, hyperparameter sensitivity. Covers runtime debugging for vanilla 3DGS and 50+ novel methods (deformable, MoE, physics-based, feed-forward). Detects 50+ runtime failure patterns. Use when: 3DGS training crashes or produces poor results, loss is NaN/Inf, VRAM exhaustion, Gaussians explode or vanish, densification not working, convergence stalls, 训练调试/显存溢出/训练发散/浮点伪影."
+description: "Diagnose and fix 3DGS training-time failures: NaN losses, OOM crashes, divergent optimization, floater artifacts, densification failures, hyperparameter sensitivity. Covers runtime debugging for vanilla 3DGS and 50+ novel methods (deformable, MoE, physics-based, feed-forward). Detects 60 runtime failure patterns. Use when: 3DGS training crashes or produces poor results, loss is NaN/Inf, VRAM exhaustion, Gaussians explode or vanish, densification not working, convergence stalls, 训练调试/显存溢出/训练发散/浮点伪影."
 license: Apache-2.0
 user-invocable: true
 metadata:

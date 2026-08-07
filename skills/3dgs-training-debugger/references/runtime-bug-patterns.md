@@ -2,7 +2,7 @@
 # 3DGS Training Runtime Bug Patterns
 
 > 60+ runtime failure patterns that manifest DURING training execution. 
-> These complement the 108+ static code bugs in `3dgs-code-reviewer/references/bug-patterns.md`.
+> These complement the 104 static code bugs in `3dgs-code-reviewer/references/bug-patterns.md`.
 > Static bugs are visible from code review; runtime bugs require training execution to detect.
 
 ## How to Use This File

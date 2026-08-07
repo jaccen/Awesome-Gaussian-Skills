@@ -88,8 +88,30 @@ export class RenderServer {
   // ============================================================
 
   private _setupMiddleware(): void {
-    this.app.use(cors());
+    // CORS 白名单（默认仅本地 studio web 源；用 ALLOWED_ORIGINS 追加）
+    const defaultOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173'];
+    const allowedOrigins = process.env.ALLOWED_ORIGINS
+      ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean)
+      : defaultOrigins;
+    this.app.use(cors({ origin: allowedOrigins }));
     this.app.use(express.json({ limit: '50mb' }));
+
+    // Bearer token 鉴权（设置 STUDIO_TOKEN 后对 /api/* 生效；/api/events SSE 除外）
+    const token = process.env.STUDIO_TOKEN;
+    if (token) {
+      this.app.use((req: Request, res: Response, next: NextFunction) => {
+        if (!req.path.startsWith('/api/') || req.path === '/api/events') return next();
+        const auth = req.headers.authorization ?? '';
+        if (auth !== `Bearer ${token}`) {
+          res.status(401).json({ error: 'Unauthorized: missing or invalid STUDIO_TOKEN bearer' });
+          return;
+        }
+        next();
+      });
+      console.log('[render-server] STUDIO_TOKEN auth ENABLED for /api/*');
+    } else {
+      console.warn('[render-server] WARNING: STUDIO_TOKEN not set — API is unauthenticated. Set STUDIO_TOKEN for any non-localhost deployment.');
+    }
 
     // 请求日志
     this.app.use((req: Request, _res: Response, next: NextFunction) => {
@@ -717,14 +739,10 @@ if (__entry) {
   const mcpPath = process.env.MCP_SERVER_PATH || 'mcp-server/dist/index.js';
   const isProduction = (process.env.NODE_ENV === 'production' || process.env.PRODUCTION === '1');
 
-  // Clean up stale processes on the MCP renderer WebSocket port (9842)
-  // before starting, so the MCP Server child process can bind to it.
-  const rendererPort = parseInt(process.env.RENDERER_PORT || '9842');
-  import('child_process').then(({ exec }) => {
-    const killCmd = process.platform === 'win32'
-      ? `powershell -Command "Get-NetTCPConnection -LocalPort ${rendererPort} -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }"`
-      : `lsof -ti:${rendererPort} | xargs kill -9 2>/dev/null; true`;
-    exec(killCmd, () => {
+  // NOTE (v0.8): we intentionally do NOT kill whatever occupies the renderer
+  // port — that used to terminate unrelated processes. If the port is busy,
+  // the MCP Server will report the conflict; set RENDERER_PORT to resolve it.
+  {
       const server = new RenderServer({
         port: parseInt(process.env.BRIDGE_PORT || '10590'),
         mcpServerPath: mcpPath,
@@ -741,8 +759,7 @@ if (__entry) {
           console.log(`[render-server] Open http://localhost:${process.env.BRIDGE_PORT || '10590'}`);
         }
       });
-    });
-  });
+  }
 }
 
 export default RenderServer;

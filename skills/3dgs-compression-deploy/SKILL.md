@@ -149,7 +149,7 @@ Target Platform?
 | **Bayesian** | DP-Splat | arXiv 2026 | Automatic complexity control | Minimal — DP prior converges to optimal count |
 | **Training-free semantic** | CoSAG | arXiv 2026 | 37–76× over LangSplatV2 | Minimal — zero fine-tuning, leverages CLIP features |
 | **Importance-based** | Prune Wisely (DoG) | CVPR 2026 | 90% reduction | Minimal — DoG avoids false positives |
-| **Variational** | VEDAL | CGI 2026 | 5.2x (0.31 dB drop) | Low — uncertainty-gated async pruning |
+| **Variational** | VEDAL | arXiv 2026（venue 待核实） | 5.2x (0.31 dB drop) | Low — uncertainty-gated async pruning |
 | **Merge-based** | NanoGS | arXiv 2026 | Training-free | Mass-preserving moment matching |
 | **Global+Local** | LightGaussian | NeurIPS 2024 | 15x | SVD distillation compensates |
 | **Render-aware** | GETA-3DGS | arXiv 2026 | ~5x storage | Transmittance-weighted saliency |
@@ -332,7 +332,7 @@ Deployment hardware?
 | Mixed-precision Q | MesonGS++ | arXiv 2026 | 34x | High | Post-training |
 | Joint Prune+Q | GETA-3DGS | arXiv 2026 | ~5x | High | Auto |
 | Adaptive Prune | Prune Wisely | CVPR 2026 | 90% Gaussians | High | Post-training |
-| Variational Prune | VEDAL | CGI 2026 | 5.2x | 0.31 dB drop | 185 FPS |
+| Variational Prune | VEDAL | arXiv 2026（venue 待核实） | 5.2x | 0.31 dB drop | 185 FPS |
 | Coreset Prune | Provable Coresets | arXiv 2026 | Guaranteed | Theoretical | + finetune |
 | Merge Simplify | NanoGS | arXiv 2026 | Training-free | High | Fast (CPU) |
 | VQ+LoD Stream | CAGS | SIGGRAPH 2026 | Adaptive | +5–20 dB | Stream |

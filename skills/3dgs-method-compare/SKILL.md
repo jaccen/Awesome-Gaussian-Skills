@@ -31,8 +31,8 @@ Analyze the user's request to determine axis values:
 | Language features, semantic, feed-forward inference | semantic |
 | SLAM, large-scale scene, urban reconstruction | slam |
 | Dynamic scenes, 4DGS, human/avatar, articulated objects | dynamic |
-| Cross-domain, autonomous driving, spatial intelligence, editing, systems | pplication |
-| Broad/unspecified comparison across many categories | ll |
+| Cross-domain, autonomous driving, spatial intelligence, editing, systems | application |
+| Broad/unspecified comparison across many categories | all |
 
 ### Axis: depth
 | User Intent | depth value |
@@ -59,8 +59,8 @@ Read the corresponding fragment(s) from static/:
 | semantic | static/methods-semantic.md |
 | slam | static/methods-slam.md |
 | dynamic | static/methods-dynamic.md |
-| pplication | static/methods-application.md |
-| ll | ALL method fragments (methods-core.md through methods-application.md) |
+| application | static/methods-application.md |
+| all | ALL method fragments (methods-core.md through methods-application.md) |
 
 ### Reference Load (when producing structured output)
 - static/output-rules.md — Output format template and comparison rules
