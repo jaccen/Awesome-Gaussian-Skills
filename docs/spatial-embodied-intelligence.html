@@ -303,6 +303,7 @@
       <a href="#ch8"><span class="ch-num">08</span> 物体级与铰接式理解</a>
       <a href="#ch9"><span class="ch-num">09</span> Agent 驱动的数字孪生与交互</a>
       <a href="#ch10"><span class="ch-num">10</span> 世界模型与未来展望</a>
+      <a href="#ch11"><span class="ch-num">11</span> 安全、溯源与版权保护</a>
       <a href="#appendix"><span class="ch-num">附</span> 附录 · 数据集与评估基准</a>
       <a href="#references"><span class="ch-num">引</span> 引用与延伸阅读</a>
       <a href="#afterword"><span class="ch-num">后</span> 后记 · 3DGS 会被吃掉吗</a>
@@ -351,6 +352,7 @@
         <a class="ch-card c8" href="#ch8"><span class="tag">第 8 章</span><h3>物体级与铰接式理解</h3><p>part-level 高斯、铰接资产与 CAD·Mesh·3DGS 桥接——操作的前置条件。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c9" href="#ch9"><span class="tag">第 9 章</span><h3>Agent 驱动的数字孪生</h3><p>MCP 渲染管线、手势交互、3DGS 作为可交互世界，串起感知与行动闭环。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c10" href="#ch10"><span class="tag">第 10 章</span><h3>世界模型与未来</h3><p>世界模型六大学派、3DGS×World Model 交叉、空间基础模型与 Physical AI。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card" href="#ch11" style="--accent:var(--red,#e8453c)"><span class="tag">第 11 章</span><h3>安全、溯源与版权保护</h3><p>3DGS 水印谱系、GaussTrace 溯源、对抗攻击面、IP 管理与工业合规。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，3DGS 与具身智能的主流评测体系全景。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>60+ 权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
       </div>
@@ -571,6 +573,53 @@
           <li>gsplat 与官方实现在排序算法上有什么不同？这对实际训练速度的影响有多大？</li>
         </ol>
       </div>
+
+      <h3><span class="mi">⑤</span> 训练实践：损失、阶梯与密度控制</h3>
+      <p class="lead">前面的数学推导告诉你 3DGS <em>为什么</em> 能工作。这一节告诉你它<em>为什么会在你的数据上不工作</em>，以及怎么修。内容提炼自本仓库 <code>3dgs-training-debugger</code>（60+ 运行时失败模式）和 <code>3dgs-code-reviewer</code>（104 个已知 bug 模式）两个工程技能。</p>
+
+      <h4 style="font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--text)">损失函数设计</h4>
+      <p>原始 3DGS 使用 <strong>(1−λ)·L₁ + λ·D-SSIM</strong> 组合损失，经验值 λ=0.2。L₁ 项负责像素级保真度，D-SSIM 项（结构相异性）补充结构相似性感知。这不是唯一选择——以下是决策树：</p>
+      <ul style="font-size:14.5px;color:var(--text);padding-left:20px;line-height:1.8">
+        <li><strong>常规场景</strong>：λ=0.2 默认值即可。增大 λ→ 更锐利但可能过拟合高频噪声；减小 λ→ 更平滑但细节丢失。</li>
+        <li><strong>稀疏视角（&lt;20 张）</strong>：加入深度先验正则（DN-Splatter, [arXiv:2403.17822]）或法线一致性损失（DNGaussian, [arXiv:2403.06912]）。λ 可降至 0.1，给正则项更多梯度空间。</li>
+        <li><strong>无纹理区域（白墙、天空）</strong>：加入感知损失（LPIPS）或深度平滑正则。注意 LPIPS 会增加 ~30% 训练时间。</li>
+        <li><strong>动态场景</strong>：变形场正则（L₂ 流平滑、刚性约束）。4DGS 和 Deformable-GS 使用不同的变形正则策略。</li>
+      </ul>
+
+      <h4 style="font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--text)">SH 阶梯训练</h4>
+      <p>球谐函数（SH）表达视角依赖颜色。原始实现在训练前 1000 步仅使用 SH degree 0（DC 分量，即平均颜色），之后切换到完整 degree 3（48 维 SH 系数）。<strong>为什么要阶梯？</strong>因为早期训练的几何不稳定，如果一开始就让高 SH 阶自由优化，高斯会用视角依赖颜色"作弊"拟合噪声——几何还没长好，颜色已经在画"假视角"，后续收敛会陷入局部最优。</p>
+      <p>实践中，这个阶梯可以更细：<strong>degree 0（0-1000 步）→ degree 1（1000-7000 步）→ degree 3（7000+ 步）</strong>。在低纹理或反射场景中，永远不要在几何稳定前解锁高 SH 阶——这是 3DGS 训练中最常见的"看起来收敛了但视角一转就崩"的根因。</p>
+
+      <h4 style="font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--text)">密度控制阈值</h4>
+      <p>自适应密度控制（ADC）是 3DGS 的核心"生长"机制，但它的四个旋钮是训练不稳定的主要来源：</p>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse;margin:10px 0 14px">
+        <thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px">参数</th><th style="text-align:left;padding:6px 8px">默认值</th><th style="text-align:left;padding:6px 8px">过大 → 问题</th><th style="text-align:left;padding:6px 8px">过小 → 问题</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><code>τ_pos</code>（位置梯度阈值）</td><td style="padding:6px 8px">0.0002</td><td style="padding:6px 8px">欠拟合区域无法致密化</td><td style="padding:6px 8px">高斯数量爆炸（OOM）</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><code>α_min</code>（透明度剪枝阈值）</td><td style="padding:6px 8px">0.005</td><td style="padding:6px 8px">大量半透明"幽灵"高斯残留</td><td style="padding:6px 8px">误删有效高斯（空洞）</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">致密化间隔</td><td style="padding:6px 8px">100 步</td><td style="padding:6px 8px">生长缓慢，收敛慢</td><td style="padding:6px 8px">频繁重建空间索引，训练卡顿</td></tr>
+          <tr><td style="padding:6px 8px">clone 上限</td><td style="padding:6px 8px">无</td><td style="padding:6px 8px">—</td><td style="padding:6px 8px">无上限 = OOM 风险（大场景必须设）</td></tr>
+        </tbody>
+      </table>
+      <p><strong>调参建议</strong>：先跑默认参数到 7000 步，观察 PSNR 曲线和高斯数量曲线。如果高斯数在 7K 后仍线性增长 → 降 <code>τ_pos</code> 到 0.0001；如果 PSNR 在 15K 后停滞且高斯数平稳 → 检查是否欠拟合（提升 <code>τ_pos</code>）；如果出现 floater → 升 <code>α_min</code> 到 0.01 并在最后 5000 步加大剪枝频率。</p>
+
+      <h3><span class="mi">⑥</span> 常见失败模式排查表</h3>
+      <p>以下症状→原因→修复的映射提炼自 60+ 运行时失败模式库。这些不是理论推导——是真实训练崩溃的田野经验。</p>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse;margin:10px 0 14px">
+        <thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px;width:18%">症状</th><th style="text-align:left;padding:6px 8px;width:35%">常见根因</th><th style="text-align:left;padding:6px 8px;width:47%">修复</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Floater（漂浮高斯）</strong></td><td style="padding:6px 8px">α_min 过低；致密化产生的大高斯未被剪枝</td><td style="padding:6px 8px">升 α_min 到 0.01；最后 5K 步每 100 步剪枝一次；加深度正则</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>天空/背景塌缩</strong></td><td style="padding:6px 8px">无界场景背景高斯无限膨胀</td><td style="padding:6px 8px">设 scale 上限（如 10.0）；使用 Mip-Splatting 的 3D 平滑滤波器</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>PSNR 在致密化后突降</strong></td><td style="padding:6px 8px">新 clone 的高斯初始化过大，遮挡有效区域</td><td style="padding:6px 8px">减小 clone 后的 scale 初值；加 clone 上限</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>NaN loss</strong></td><td style="padding:6px 8px">协方差退化（scale→0）；SH 系数爆炸</td><td style="padding:6px 8px">设 scale 下限 0.0001；梯度裁剪 max_norm=1.0；检查输入图像归一化</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>OOM（显存溢出）</strong></td><td style="padding:6px 8px">高斯数 &gt;2M；batch_size 过大；SH degree=3 全程</td><td style="padding:6px 8px">设 clone 上限；降 batch_size；前 1000 步用 SH degree 0</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>模糊重建</strong></td><td style="padding:6px 8px">λ 过大（D-SSIM 主导）；SH degree 被锁在 0</td><td style="padding:6px 8px">降 λ 到 0.1；检查 SH degree 阶梯切换时机</td></tr>
+          <tr><td style="padding:6px 8px"><strong>视角一转就崩</strong></td><td style="padding:6px 8px">高 SH 阶在几何稳定前解锁；训练视角覆盖不足</td><td style="padding:6px 8px">推迟 SH degree 3 到 7000 步；增加训练视角数量</td></tr>
+        </tbody>
+      </table>
+      <div class="warn" style="border-left:3px solid var(--orange);padding:10px 14px;margin:14px 0;background:rgba(255,140,0,.05);border-radius:4px;font-size:13.5px">
+        <strong>⚠ 实践陷阱</strong>：很多失败模式不是代码 bug，而是<em>输入数据问题</em>——COLMAP 位姿错误、图像曝光不一致、背景运动物体（行人/车辆）未掩蔽。在调参之前，先用 <code>3dgs-code-reviewer</code> 技能检查代码实现，再用 <code>3dgs-training-debugger</code> 诊断训练症状。本仓库的知识库记录了 104 个静态代码 bug 模式和 60 个运行时失败模式——覆盖了 3DGS 训练实践中 90% 以上的常见问题。
+      </div>
     </section>
     <!-- ===================== 第 3 章 ===================== -->
     <section class="chapter" id="ch3" style="--accent:var(--cyan)">
@@ -690,6 +739,74 @@
           <li>GS-SLAM 同时面对大规模与动态两道关，它会优先牺牲哪一道？这取决于什么？</li>
         </ol>
       </div>
+
+      <h3><span class="mi">⑤</span> 3DGS 的局限性与失败模式</h3>
+      <p>前面四节讲了 3DGS 如何扩展到大规模、动态、SLAM 和压缩场景——每一节都在展示"3DGS 能做什么"。但一个同样重要的问题是：<strong>3DGS 在哪些场景下不工作？</strong>本节从 Awesome-3D-Gaussian-Splatting 仓库中 Robustness（鲁棒性）类别的 11 个方法中系统提炼，讨论 3DGS 的六类典型失败模式、根因分析和代表性改进方案。理解边界不是为了否定方法，而是为了在工程实践中知道何时该用 3DGS、何时该换路线、何时需要引入额外正则化。</p>
+
+      <p><strong>① 透明与半透明材质</strong>。3DGS 用 3 阶球谐函数（SH）表示视角依赖的颜色，但 SH 是低阶基函数，本质上是颜色的低通近似——它无法表达折射（refraction）这一需要追踪光线在介质内部弯折路径的物理现象。当训练数据中存在玻璃杯、水面、透明塑料等物体时，优化器会"投机取巧"：既然 SH 无法拟合折射产生的复杂视角色变，它就通过增大高斯的尺度（scale）和透明度（alpha）来用密度弥散地覆盖这片区域，结果是从不同视角看，高斯团的密度分布勉强"平均"出了正确颜色，但底层的几何形状完全错误——玻璃杯的壁可能变成一团半透明的云雾，而非薄壳曲面。<strong>SpecTRe-GS</strong>（CVPR 2025）提出了光线追踪（ray tracing）方案来应对这一问题：它不再依赖 SH 的颜色近似，而是为每条视线追踪多次折射/反射路径，让高斯参与物理意义明确的光线传播计算，从而在透明材质上同时恢复正确的外观与几何。这类方法的代价是渲染时需要额外的光线追踪 pass，速度比 vanilla 3DGS 慢一个数量级。</p>
+
+      <p><strong>② 镜面反射</strong>。镜面反射（specular reflection）是另一个 SH 表达力不足的场景。与透明材质不同，镜面反射的核心问题是<strong>视角依赖颜色与几何的解耦失败</strong>：一个闪亮的金属表面在不同视角下会反射出环境的不同部分，颜色剧烈变化，但几何位置不变。3DGS 的 SH 试图把这种强烈的视角色变编码到高斯的颜色参数里，但低阶 SH 的带宽不够，于是优化器会再次走捷径——把一个物理上的平坦镜面拆成多个位置略有偏移的高斯，每个高斯负责一小段视角范围的颜色。结果是渲染尚可，但几何变成了"碎玻璃"状的杂乱点云。<strong>GaussianShader</strong>（SIGGRAPH 2024）引入了逐高斯法线（normal）和可微球面追踪（sphere tracing），将反射方向显式建模，提升了金属/镜面场景的渲染质量。但其局限边界在于：它假设反射表面是刚性的、法线可估计的，对于多次反射（如两面镜子相对）或曲率极高的表面，法线估计会退化，改善有限。</p>
+
+      <p><strong>③ 无界场景边缘伪影</strong>。在室外大场景或"中心物体+远处背景"的无界（unbounded）设置中，3DGS 常在图像边缘出现高斯"爆炸"——巨大的半透明高斯团从画面边缘延伸到无穷远，严重破坏渲染质量。根因在于 SfM 初始化的稀疏点云在远景区域极为稀疏，少数高斯被赋予极大的尺度以覆盖大片背景像素，而视角稀疏的区域梯度信号弱，优化器无法有效约束这些"巨型高斯"。<strong>Mip-Splatting</strong>（CVPR 2024）从信号处理角度分析了这一问题：原始 3DGS 的光栅化没有对采样率做约束，单个高斯在屏幕上的投影可能跨越大量像素，本质上是对高分辨率信号的欠采样混叠。它引入了<strong>3D 平滑滤波器</strong>（3D smoothing filter）——在训练前对高斯的尺度施加一个与采样率匹配的低通滤波，强制每个高斯不能小于一个场景相关的最小尺寸，从根源上消除了巨型高斯的产生条件。同时配合 2D Mip 滤波器处理屏幕空间的混叠，使无界场景的边缘伪影得到显著缓解。</p>
+
+      <p><strong>④ 稀疏视角退化</strong>。3DGS 依赖 COLMAP 的 SfM 点云作为初始化，并需要足够密集的多视角图像来约束每个高斯的位置和颜色。当输入只有少量视角（如 3-9 张）时，未观测区域的梯度趋近于零，高斯在这些区域自由漂移、膨胀，产生大量"floater"浮空伪影，几何与外观双双退化。<strong>DNGaussian</strong>[arXiv:2403.06912] 提出了全局-局部深度归一化（global-local depth normalization）策略：利用预训练的深度估计网络（如 MiDaS）为每个视角提供深度伪标签，然后在全局尺度上对齐预测深度与渲染深度，在局部尺度上逐像素施加深度平滑约束，两层级联约束有效抑制了稀疏视角下高斯的随意膨胀。<strong>CoR-GS</strong>[arXiv:2405.12110] 则采用协同正则（collaborative regularization）思路：在训练过程中动态地进行高斯的增密（densify）和剪枝（prune），并通过一致性损失确保不同视角下同一区域的高斯分布稳定，减少因视角缺失导致的"幽灵"基元。两种方法都显著提升了稀疏视角下的重建质量，但前者依赖外部深度先验的精度，后者引入了额外的训练开销。</p>
+
+      <p><strong>⑤ 内存与显存爆炸</strong>。vanilla 3DGS 的自适应密度控制（adaptive density control）在训练中不断分裂和克隆高斯，却缺少有效的全局数量上限。在纹理丰富的场景中，高斯数量可轻松膨胀到数百万甚至上千万，每个高斯需要存储位置（3）、旋转（4）、缩放（3）、不透明度（1）和 SH 系数（48，3 阶×3 通道+DC），总内存占用可达 GB 级别，使得移动端部署和实时渲染变得不现实。<strong>Compact-3DGS</strong> 通过对 SH 系数做低秩矩阵分解、对几何属性做矢量量化（vector quantization），在不损失渲染质量的前提下将存储压缩到原始的 5%-10%。<strong>LightGS</strong> 则从另一个角度切入：在训练后阶段对高斯做重要性评分（基于对渲染像素的贡献量），剪枝低贡献高斯并对剩余高斯的 SH 做精度量化，实现"轻量化部署"。两类方法各有取舍——Compact-3DGS 的压缩率更高但训练时仍需完整内存，LightGS 的后处理剪枝适合已有模型的部署压缩但不降低训练成本。</p>
+
+      <table style="border-collapse:collapse;font-size:13.5px;width:100%;margin:18px 0">
+        <thead>
+          <tr style="background:var(--bg-card,#f5f5f5)">
+            <th style="border:1px solid #ccc;padding:8px 10px;text-align:left">失败模式</th>
+            <th style="border:1px solid #ccc;padding:8px 10px;text-align:left">根因</th>
+            <th style="border:1px solid #ccc;padding:8px 10px;text-align:left">代表性改进方法</th>
+            <th style="border:1px solid #ccc;padding:8px 10px;text-align:left">改进程度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid #ccc;padding:8px 10px">透明/半透明材质</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">SH 3 阶无法表达折射；高斯用密度拟合透明→几何错误</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">SpecTRe-GS（CVPR 2025）光线追踪</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">显著改善</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #ccc;padding:8px 10px">镜面反射</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">视角依赖颜色与几何解耦失败；SH 带宽不足</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">GaussianShader（SIGGRAPH 2024）</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">部分解决</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #ccc;padding:8px 10px">无界场景边缘伪影</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">远景高斯尺度爆炸；光栅化采样率不受约束</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">Mip-Splatting（CVPR 2024）3D 平滑滤波器</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">显著改善</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #ccc;padding:8px 10px">稀疏视角退化</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">SfM 初始化稀疏；未观测区梯度为零→浮空伪影</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">DNGaussian [arXiv:2403.06912]；CoR-GS [arXiv:2405.12110]</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">显著改善</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #ccc;padding:8px 10px">内存/显存爆炸</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">高斯数量无控制增长；无全局数量上限</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">Compact-3DGS 低秩分解；LightGS 重要性剪枝</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">部分解决</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #ccc;padding:8px 10px">动态场景大运动</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">变形场表达能力有限；大位移与拓扑变化难建模</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">4D-GS、Deformable-3DGS（见第 2 节）</td>
+            <td style="border:1px solid #ccc;padding:8px 10px">仍开放</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warn" style="border-left:3px solid var(--orange);padding:10px 14px;margin:14px 0;background:rgba(255,140,0,.05);border-radius:4px;font-size:13.5px">
+        上述六类失败模式有一个共性：<strong>根因都可追溯到 3DGS 的核心设计假设被打破</strong>。SH 表达力假设（透明/镜面）、采样率一致性假设（无界场景）、多视角充分性假设（稀疏视角）、内存可控性假设（显存爆炸）。这意味着——没有一种"通用补丁"能同时解决所有问题，改进方法都是针对特定假设违反而设计的局部正则化。在选择方法时，先判断你的场景违反了哪个假设，再对症下药。
+      </div>
+
+      <p>结语：在 3DGS 的生态中，<strong>"知道边界比知道能力更重要"</strong>。3DGS 在 2023-2025 年间被证明是一个极具表达力的表示方法，但它的能力边界并非无限——透明材质的折射、镜面的多次反射、无界场景的混叠、稀疏视角的欠约束、内存的无序膨胀，每一道边界都对应着一个活跃的研究方向。Robustness 类别的 11 个方法正是这些边界的"守门人"，它们各自针对一个被打破的假设设计正则化或物理建模策略。作为工程实践者，你需要做的不是记住"3DGS 能做什么"，而是记住"3DGS 在什么条件下会失败"——因为失败模式决定了你的项目能否落地，而能力只决定了上限能飞多高。</p>
     </section>
 
     <!-- ===================== 第 4 章 ===================== -->
@@ -870,6 +987,67 @@
           <li>可动画高斯的"姿态条件变形"和第 3 章的"变形场"有何本质区别？一个造可控运动，一个记录运动，这对参数化意味着什么？</li>
           <li>重照明为什么是"资产化最后一公里"？如果 3DGS 永远做不到完美 PBR，它能取代 mesh 吗，还是只能作为补充格式？</li>
         </ol>
+      </div>
+
+      <h3><span class="mi">⑤</span> 前馈基础模型 GS 完整谱系</h3>
+      <p>2024–2025 年，前馈 3DGS 经历了一次深刻的范式跃迁：从"逐场景优化"走向"一次前馈"。早期前馈方法（pixelSplat、MVSplat）虽然把推理时间从数十分钟压缩到秒级，但仍有一个前置依赖——输入图像的相机位姿必须已知，而这通常需要先跑一遍 COLMAP 做 SfM。这意味着"前馈"并非真正端到端：SfM 这一步仍是离线的、耗时的、且在弱纹理/重复结构场景容易失败的瓶颈。CVPR 2025 上爆发的<strong>"无位姿前馈"路线</strong>正是要砍掉这最后一道前置工序——网络直接从原始多视图图像同时回归相机位姿和 3DGS 参数，实现真正的"图像进、高斯出"。这一跃迁是 3DGS 从"重建工具"走向"空间基础模型"的关键过渡。</p>
+
+      <p>当前前馈 GS 领域形成了三大技术路线，它们在"如何从 2D 图像提取 3D 几何"这一核心问题上给出了截然不同的答案：</p>
+
+      <ul>
+        <li><strong>DUSt3R 系族（点图回归）</strong>：不走传统 SfM 流水线，而是用网络直接回归成对图像的<strong>点图（pointmap）</strong>——每个像素直接预测其在统一坐标系下的 3D 坐标。DUSt3R [arXiv:2304.03652] 开创了这条路线；Spann3R [arXiv:2408.16961] 引入空间记忆机制，把逐对回归扩展为增量式全局重建；CUT3R [arXiv:2501.12326] 进一步加入持久状态，支持任意长度视频流的在线 3D 重建；MonST3R [arXiv:2410.03735] 专攻动态场景，在点图回归中分离静态与动态点，实现单目视频的运动估计与重建。</li>
+        <li><strong>直接预测 GS 参数</strong>：网络直接输出 3DGS 的原始参数（位置、协方差、不透明度、颜色 SH 系数）。pixelSplat [arXiv:2312.12337] 采用像素对齐策略 + epipolar transformer 跨视图通信；MVSplat [arXiv:2403.14627] 用 cost volume 替代 epipolar attention，几何更可靠；NoPoSplat [arXiv:2406.06221] 彻底去除位姿输入，网络内部隐式估计相对位姿；GS-LRM [arXiv:2406.06521] 以大规模预训练（1B 参数 Transformer）实现零样本泛化，是"大重建模型"路线的代表。</li>
+        <li><strong>VGGT（CVPR 2025 Best Paper）</strong> [arXiv:2503.11651]：用一个单一 Transformer 同时处理<strong>任意数量</strong>的输入视图，一次性输出相机位姿、深度图、点云和 3DGS 场。无需 SfM、无需逐对推理、无需递归式增量重建。VGGT 的意义在于它把"多视图几何"压缩进了一个端到端的前馈网络，标志着前馈 3D 重建从"专用任务模型"走向"通用基础模型"。</li>
+      </ul>
+
+      <table class="mtbl" style="border-collapse:collapse;font-size:13.5px">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border)">
+            <th>方法</th><th>Venue</th><th>输入</th><th>位姿需求</th><th>输出格式</th><th>核心创新</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="mn">DUSt3R</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>图像对</td><td>无需</td><td>点图</td><td class="o">成对点图回归，替代传统 SfM 特征匹配</td></tr>
+          <tr><td class="mn">Spann3R</td><td><span class="vchip v-arXiv">arXiv 2024</span></td><td>多视图</td><td>无需</td><td>点图</td><td class="o">空间记忆机制，逐对扩展为全局增量重建</td></tr>
+          <tr><td class="mn">CUT3R</td><td><span class="vchip v-arXiv">arXiv 2025</span></td><td>视频流</td><td>无需</td><td>点图 + GS</td><td class="o">持久状态记忆，任意长度在线 3D 重建</td></tr>
+          <tr><td class="mn">MonST3R</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>单目视频</td><td>无需</td><td>点图（动/静分离）</td><td class="o">动态场景点图回归，分离静态与动态几何</td></tr>
+          <tr><td class="mn">pixelSplat</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td>双目图像</td><td>需要</td><td>3DGS</td><td class="o">像素对齐 + epipolar transformer 跨视图通信</td></tr>
+          <tr><td class="mn">MVSplat</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>稀疏多视图</td><td>需要</td><td>3DGS</td><td class="o">cost volume 替代 epipolar attention，几何更可靠</td></tr>
+          <tr><td class="mn">NoPoSplat</td><td><span class="vchip v-arXiv">arXiv 2024</span></td><td>多视图</td><td>无需</td><td>3DGS + 隐式位姿</td><td class="o">去除位姿输入，网络内部隐式估计相对位姿</td></tr>
+          <tr><td class="mn">GS-LRM</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>多视图</td><td>需要</td><td>3DGS</td><td class="o">1B 参数 Transformer 大规模预训练，零样本泛化</td></tr>
+          <tr><td class="mn">VGGT</td><td><span class="vchip v-CVPR">CVPR 2025 Best Paper</span></td><td>任意多视图</td><td>无需</td><td>位姿 + 深度 + 点云 + GS</td><td class="o">单一 Transformer 端到端，无需 SfM，全量输出</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout key">
+        <span class="ct">★ "无位姿"路线的深层意义</span>
+        从需要 COLMAP 预处理到端到端前馈，不只是"少了一步"——它改变了 3DGS 的应用边界。需要位姿意味着前馈 GS 只能在"已标定"场景使用（实验室、专业采集）；去掉位姿后，任意手机拍的照片、网络爬取的图片、机器人实时视频流都能直接输入，3DGS 才真正具备"基础模型"所需的输入泛化性。DUSt3R 系族和 NoPoSplat/VGGT 从两个方向逼近同一目标：前者用点图回归绕过显式位姿估计，后者在网络内部隐式消化位姿。两条路在 CVPR 2025 汇合，标志着前馈 GS 从"学术 demo"走向"可用基础模型"的临界点。后续若结合大规模多模态预训练，空间基础模型的轮廓将逐渐清晰。
+      </div>
+
+      <h3><span class="mi">⑥</span> GS × 扩散模型：两条路线的交叉</h3>
+      <p>3DGS 与扩散模型的结合是 2024 年 3D 生成领域最活跃的交叉地带。两条技术路线从不同方向逼近同一目标——用 2D 扩散先验生成 3D 资产——但在工程哲学上几乎对立。</p>
+
+      <p><strong>路线一：SDS 直接优化。</strong>DreamGaussian [arXiv:2309.16653]（ICLR 2024 Oral）是这条路线的里程碑。它用 3DGS 替代 NeRF 作为 SDS（Score Distillation Sampling）的优化载体：扩散模型在每个优化步骤对 3DGS 渲染图评分，梯度经可微光栅化传回高斯参数。由于 3DGS 的光栅化比 NeRF 的体积渲染快约一个数量级，DreamGaussian 把文本到 3D 的生成时间从 NeRF 时代的数十分钟压缩到<strong>约 1 分钟</strong>，速度提升约 10 倍。但代价是 SDS 固有的两个问题：<strong>梯度噪声</strong>（扩散模型的 score 估计本身有方差，导致优化方向抖动）和<strong>过平滑</strong>（SDS 倾向抹平高频细节，生成结果常缺乏纹理锐度）。这两个问题源于 SDS 的本质——它没有显式的似然函数，而是在高维参数空间用噪声梯度做随机游走。</p>
+
+      <p><strong>路线二：多视图扩散先验。</strong>CAT3D [arXiv:2405.10314]（NeurIPS 2024）走了另一条路：不直接用 SDS 优化 3DGS，而是先用多视图扩散模型从单张输入图<strong>生成一组多视角图像</strong>，再用标准 3DGS 重建 pipeline 从这些生成图重建 3DGS 场。因为重建阶段用的是成熟的 per-scene optimization（第 1 章的方法），不涉及 SDS 梯度，所以<strong>完全规避了梯度噪声问题</strong>，生成质量显著高于 SDS 路线。代价是：① 多视图扩散模型本身的采样开销（数十步去噪 × 多个视角）；② 生成视图之间的 3D 一致性仍不完美（扩散模型逐图生成，视角间几何可能冲突），需要重建阶段的正则化来吸收不一致。</p>
+
+      <table class="mtbl" style="border-collapse:collapse;font-size:13.5px">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border)">
+            <th>维度</th><th>SDS 直接优化（DreamGaussian）</th><th>多视图扩散先验（CAT3D）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="mn">速度</td><td class="o">快（~1 min），3DGS 光栅化加速</td><td class="o">慢（~10 min），扩散采样 × 多视角</td></tr>
+          <tr><td class="mn">质量</td><td class="o">中等，受梯度噪声 + 过平滑限制</td><td class="o">较高，规避 SDS 噪声，靠重建保几何</td></tr>
+          <tr><td class="mn">3D 一致性</td><td class="o">弱，依赖多视角 SDS 叠加收敛</td><td class="o">中等，生成图间一致性靠重建正则</td></tr>
+          <tr><td class="mn">核心瓶颈</td><td class="o">score 梯度方差大，高频细节丢失</td><td class="o">扩散采样开销，生成视角几何冲突</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout note">
+        <span class="ct">③ 未来方向：从"扩散像素"到"扩散高斯"</span>
+        当前两条路线的共同局限是：扩散模型仍在 2D 像素空间运作，3DGS 只是"消费者"——要么被 SDS 梯度拉扯，要么被生成图重建。下一步的突破点在于<strong>让扩散模型直接生成高斯场</strong>：把扩散的噪声-去噪过程从像素空间搬到 3DGS 参数空间，直接生成高斯的位置/协方差/颜色/不透明度。这条路线已有早期探索（如 GaussianCube 用体素化高斯做扩散生成），但离实用还有距离。另一个方向是<strong>GS 作为扩散先验的条件</strong>：给定一个粗略 3DGS 场作为条件，扩散模型在其基础上做细节增强或风格变换——这把 3DGS 从"生成结果"变成"生成条件"，可能在可控 3D 编辑上打开新空间。两条路最终可能在"扩散生成高斯场 + GS 条件引导"的统一框架下汇合。
       </div>
     </section>
     <!-- ===================== 第 6 章 ===================== -->
@@ -1142,6 +1320,56 @@
           <li>数字孪生三档成熟度里，"可交互孪生"为什么要求 3DGS 是"运行时数据结构"而非"重建结果"？这对工程架构意味着什么？</li>
         </ol>
       </div>
+
+      <h3><span class="mi">⑤</span> 3DGS 自动驾驶仿真：从重建到闭环</h3>
+      <p>自动驾驶是 3DGS 最大的工业应用场景之一。真实路测成本高昂、长尾场景难以复现、仿真保真度不足——这三个痛点恰好对应 3DGS 的三大工程优势：照片级真实感、实时渲染速率、可编辑可组合的场景结构。本仓库知识库目前收录了 <strong>33 个</strong>自动驾驶方向的 3DGS 方法，覆盖从街景重建、城市级生成到闭环仿真训练的完整链路。下面按"重建 → 生成 → 闭环训练"的递进逻辑梳理这条线的关键节点。</p>
+
+      <p><strong>街景重建</strong>是整条链路的起点。真实道路数据中既有静态背景（路面、建筑、交通标志），也有大量动态物体（行驶车辆、行人、骑行者），朴素地把所有高斯一起优化会导致动态物体在重建中出现"幽灵拖影"。<strong>Street Gaussians</strong> [arXiv:2401.01339] 给出的解法是将动态街景分解为两层：静态背景用一组常规 3DGS 表征，每个动态物体则用一个独立的<strong>刚体高斯组</strong>（rigid Gaussian group）表征，并附加 3D 包围盒和可追踪的姿态参数。渲染时先按物体姿态变换对应的刚体高斯组，再与背景合成，从而干净地分离动静态、消除拖影。<strong>S³Gaussian</strong> [arXiv:2405.20323] 更进一步——它不需要人工标注动态物体掩码，而是在训练过程中引入<strong>自监督的动静态分离机制</strong>：通过高斯的不透明度统计和残差分析自动识别动态像素，让静态背景和动态物体各自收敛到最优表征。两条路线的共同洞察是：街景重建的核心难点不在渲染质量，而在"动静态解耦"——3DGS 的显式高斯结构让这种解耦天然可做（每颗高斯有独立位置和属性），而 NeRF 的隐式表示做不到逐物体分离。</p>
+
+      <p><strong>城市级生成</strong>把重建的视野从单条街道拓展到整座城市。<strong>GaussianCity</strong>（CVPR 2025, [arXiv:2406.06526]）提出了一套从语义点云先验出发、用渐进式扩散生成城市级 3DGS 的方法。它的关键设计是：先从粗糙的语义点云（如来自地图服务的 LOD 数据）获取城市的拓扑结构骨架，再用扩散模型逐区域填充高斯细节——先粗后精，逐层提升分辨率和语义丰富度。这种"结构先验 + 渐进扩散"的策略避免了一步到位生成整座城市的不可控性，也让生成结果可以按区域增量更新。对于自动驾驶仿真而言，这意味着不必逐一重建每条道路——只需给出城市的语义地图骨架，就能自动生成大面积可供训练的 3DGS 场景。</p>
+
+      <p><strong>闭环仿真训练</strong>是这条链路的终点站，也是 3DGS 价值跃迁的关键节点。<strong>GSDrive</strong> [arXiv:2604.28111] 将 3DGS 重建的街景直接作为闭环仿真环境：驾驶策略 Agent 在其中行驶，每一步动作触发相机视角变化，3DGS 实时渲染出新视角图像，Agent 据此决策下一步。更关键的是，GSDrive 引入了<strong>多模式轨迹探测</strong>机制——在每个决策点采样多条候选轨迹，分别渲染结果并评估安全性与合规性，用强化信号回传优化驾驶策略。这使 3DGS 从"重建工具"升级为"仿真训练平台"：它不再只回答"这条路长什么样"，而是回答"如果我这么开，会发生什么"。</p>
+
+      <div class="formula-box">
+        <span class="lbl">3DGS 自动驾驶仿真全链路</span>
+        <span class="eq">采集车数据 → 街景重建（Street Gaussians / S³Gaussian）→ 城市生成（GaussianCity）→ 闭环仿真训练（GSDrive）</span>
+        <span class="desc">重建：从原始多视角图像恢复可渲染的 3DGS 街景，分离动静态。生成：从语义先验扩散出城市级场景，扩展训练覆盖面。仿真：在 3DGS 场景中实时渲染 Agent 视角，闭环训练驾驶策略。3DGS 在每个环节都有独特价值——可微渲染让仿真梯度可回传策略、实时速率（&gt;30fps）满足闭环延迟要求、照片级真实感让 Sim2Real gap 最小化。这三性的叠加是传统仿真器（如 CARLA 的网格渲染）无法同时提供的。</span>
+      </div>
+
+      <p>链路总结：重建 → 感知 → 仿真 → 闭环训练。3DGS 在每个环节都扮演不可替代的角色——重建阶段的动静态解耦依赖显式高斯结构，感知阶段的高质量渲染缩小 Sim2Real gap，仿真阶段的实时速率满足闭环延迟约束，闭环训练阶段的可微渲染让仿真梯度可直接回传优化策略。这条从"看路"到"练车"的链路，正是 3DGS 从学术重建方法走向工业仿真平台的核心通路。</p>
+
+      <h3><span class="mi">⑥</span> 多 Agent 协作与技能编排</h3>
+      <p>本章前四节只讲了<strong>单 Agent 驱动 3DGS</strong>——一个 Agent 通过 MCP 调用渲染工具完成探索、编辑、查询。但真实的空间智能平台远比这复杂：一个完整的数字孪生项目需要<strong>多个 Agent 协作</strong>。典型分工是三个角色：<strong>建图 Agent</strong>负责从原始数据重建 3DGS 场景；<strong>编辑 Agent</strong>负责在场景中增删改物体、调整光照、标注语义；<strong>验证 Agent</strong>负责检查编辑结果的物理合理性、渲染质量、语义一致性。三个 Agent 各有专长，各自调用不同的工具集，但它们必须在同一份 3DGS 场景上协同工作——这要求一套跨 Agent 的交接机制。</p>
+
+      <p>本仓库用<strong>技能编排契约</strong>（Skill Orchestration Contract）解决这个交接问题。在 <code>skills/_contracts/</code> 目录下定义了三份 JSON Schema，每份契约规定了一个技能的输出格式和下游技能的输入期望：</p>
+
+      <table class="mtbl">
+        <thead><tr><th>契约文件</th><th>产出技能</th><th>消费技能</th><th>交接内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">paper-insight.json</td><td class="o">paper-reader</td><td class="o">method-compare</td><td>论文核心贡献、方法摘要、关键指标、可对比维度</td></tr>
+          <tr><td class="mn">comparison-report.json</td><td class="o">method-compare</td><td class="o">experiment-planner</td><td>方法对比矩阵、优劣分析、推荐实验方向</td></tr>
+          <tr><td class="mn">experiment-plan.json</td><td class="o">experiment-planner</td><td class="o">benchmark arena</td><td>实验配置、数据集选择、评估指标、预期基线</td></tr>
+        </tbody>
+      </table>
+
+      <p>契约的核心价值是把"Agent 之间的交接"从自然语言的模糊约定变成<strong>机器可验证的结构化协议</strong>。上游技能的输出必须通过对应 JSON Schema 的校验才能被下游技能接收——字段缺失、类型不匹配、枚举值越界都会在交接时被拦截，而不是等到下游 Agent 拿到错误数据后产生连锁幻觉。</p>
+
+      <p>让这套契约真正"可执行"的是 <code>scripts/router_load.py</code>——Router 加载器。它把 Router manifest 从一份"提示词层面的约定文档"变成一个<strong>可执行的运行时机制</strong>，做三件事：① <strong>轴值校验</strong>——检查 manifest 中声明的每个轴（如 domain、task_type、scale）的值是否在预定义枚举范围内，拒绝非法值；② <strong>片段存在性检查</strong>——验证 manifest 引用的每个技能片段文件（SKILL.md、模板 HTML、契约 JSON）确实存在于仓库中，拒绝悬空引用；③ <strong>上下文拼接</strong>——根据当前请求的轴值组合，从对应技能片段中提取内容并拼接成完整的 Agent 系统提示词。这三步确保了"声明即真"——manifest 里写了什么，运行时就一定能加载到什么。</p>
+
+      <p>由此可以勾勒出一条<strong>标准流水线</strong>：</p>
+
+      <div class="formula-box">
+        <span class="lbl">技能编排标准流水线</span>
+        <span class="eq">paper-reader →(paper-insight 契约)→ method-compare →(comparison-report 契约)→ experiment-planner →(experiment-plan 契约)→ benchmark arena 实测</span>
+        <span class="desc">每个箭头代表一次契约校验的交接：上游技能产出结构化结果，通过 JSON Schema 校验后传递给下游技能。paper-reader 从论文 PDF 提取洞察并以 paper-insight 格式输出；method-compare 消费多份 paper-insight 生成对比报告；experiment-planner 基于对比报告规划实验方案；最终 benchmark arena 按实验方案在真实数据上跑评测。整条链路无需人工中间介入——契约保证每一步的输入都是结构合法的。</span>
+      </div>
+
+      <p>最后澄清这套契约机制与 MCP 的关系。MCP（Model Context Protocol）是<strong>Agent 与工具之间的协议</strong>——它定义了 Agent 如何调用渲染器、查询数据库、操作文件系统等外部能力。而技能编排契约是<strong>Agent 与 Agent 之间的协议</strong>——它定义了上游 Agent 的产出如何被下游 Agent 消费。两者互补：MCP 解决"一个 Agent 怎么用工具"，契约解决"多个 Agent 怎么接力"。一个完整的多 Agent 空间智能生态需要两层协议同时就位——MCP 让每个 Agent 有手（能操作 3DGS），契约让 Agent 之间有嘴（能结构化交接）。本仓库的 mcp-server + _contracts + router_load 三件套，正是这两层协议的原型实现。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 从单 Agent 到多 Agent 的工程跃迁</span>
+        单 Agent 系统的瓶颈不在能力，而在<strong>上下文窗口</strong>——一个 Agent 同时做重建、编辑、验证，上下文很快被填满，注意力被稀释。多 Agent 架构通过契约交接把长链路任务拆成多个短上下文，每个 Agent 只关注自己的子任务，上下文精简、注意力集中。这和软件工程里"微服务"的思路一致：不是把所有功能塞进一个进程，而是用明确的 API 契约把功能拆成可独立部署的服务。技能编排契约之于多 Agent，正如 OpenAPI 之于微服务——它是分布式智能的接口规范。
+      </div>
     </section>
 
     <!-- ===================== 第 10 章 ===================== -->
@@ -1228,6 +1456,85 @@
         </ol>
       </div>
     </section>
+
+    <!-- ===================== 第 11 章 ===================== -->
+    <section class="chapter" id="ch11" style="--accent:var(--red,#e8453c)">
+      <div class="chapter-head"><span class="no">CH 11</span><h2>安全、溯源与版权保护</h2></div>
+      <p class="chapter-sub">水印 · 溯源 · 篡改检测 · 对抗攻击 · IP 管理</p>
+
+      <p class="lead">当 3DGS 模型从研究产物变成工业资产——自动驾驶仿真场景、数字孪生城市、可交互 3DGS 电商展示——<strong>谁创建了它、谁拥有它、它是否被篡改过</strong>就不再是可有可无的问题。本章从本仓库知识库 Security 类别的 14 个方法中提炼，系统梳理 3DGS 的安全攻击面与防护技术谱系。</p>
+
+      <h3><span class="mi">①</span> 为什么 3DGS 需要独立的安全研究</h3>
+      <p>3DGS 的安全挑战与 2D 图像/视频不同，根植于其表征结构：</p>
+      <ul style="font-size:14.5px;color:var(--text);padding-left:20px;line-height:1.8">
+        <li><strong>参数即资产</strong>：一个 3DGS 模型 = 数百万高斯的 (μ, Σ, α, SH) 参数组。这些参数是训练数据+计算资源的结晶，直接复制 .ply 文件即完成"盗窃"。</li>
+        <li><strong>渲染即提取</strong>：从 3DGS 模型可以渲染任意视角图像——这意味着 3DGS 包含的视觉信息远多于单张图片，但水印只需在<em>渲染输出</em>中可检测即可。</li>
+        <li><strong>编辑即篡改</strong>：3DGS 天然可编辑（移动高斯、改颜色、删区域）。合法编辑 vs 恶意篡改的边界模糊，传统密码学签名不适用。</li>
+        <li><strong>扩散模型攻击</strong>：2D/3D 扩散模型可以"重绘"3DGS 渲染图或直接编辑场景——这绕过了传统像素级水印检测。</li>
+      </ul>
+
+      <h3><span class="mi">②</span> 水印谱系：从参数嵌入到几何扰动</h3>
+      <p>3DGS 水印的核心矛盾：<strong>嵌入信息要不影响渲染质量，同时对裁剪/压缩/编辑具有鲁棒性</strong>。现有方法分四派：</p>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse;margin:10px 0 14px">
+        <thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px">技术路线</th><th style="text-align:left;padding:6px 8px">代表方法</th><th style="text-align:left;padding:6px 8px">嵌入位置</th><th style="text-align:left;padding:6px 8px">鲁棒性</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>参数嵌入</strong></td><td style="padding:6px 8px">3D-GSW (CVPR 2025, [arXiv:2409.13222])</td><td style="padding:6px 8px">不透明度 + 颜色参数</td><td style="padding:6px 8px">抗裁剪/压缩；可微渲染保证视觉无损</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>几何扰动</strong></td><td style="padding:6px 8px">GeometryCloak (NeurIPS 2024)</td><td style="padding:6px 8px">高斯位置微扰</td><td style="padding:6px 8px">抗重渲染；但对致密化敏感</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>隐写术</strong></td><td style="padding:6px 8px">GS-Hider (NeurIPS 2024)</td><td style="padding:6px 8px">高斯参数隐写编码</td><td style="padding:6px 8px">可嵌入大量信息；但增加存储</td></tr>
+          <tr><td style="padding:6px 8px"><strong>扩散编辑鲁棒</strong></td><td style="padding:6px 8px">RDSplat ([arXiv:2512.06774])</td><td style="padding:6px 8px">多层级冗余嵌入</td><td style="padding:6px 8px">抗 2D/3D 扩散编辑——填补最大漏洞</td></tr>
+        </tbody>
+      </table>
+      <p>RDSplat 的意义在于：当攻击者用 Stable Diffusion 编辑 3DGS 渲染图，或用 3D 扩散模型直接修改场景后，传统水印会失效——而 RDSplat 通过多层级冗余嵌入，确保水印在扩散编辑后仍可检测。这是"水印 vs 生成式编辑"军备竞赛中的关键一步。</p>
+
+      <h3><span class="mi">③</span> 溯源与篡改检测</h3>
+      <p><strong>GaussTrace</strong> (ICML 2026, [arXiv:2606.10612]) 是首个针对 3DGS 模型的来源溯源方法。它不嵌入水印——而是<em>分析现有模型参数的统计特征</em>来推断来源：</p>
+      <ul style="font-size:14.5px;color:var(--text);padding-left:20px;line-height:1.8">
+        <li>分析高斯协方差矩阵的分布模式（不同训练代码/数据会产生不同的统计指纹）</li>
+        <li>SH 系数的统计特征可区分原始 3DGS vs Mip-Splatting vs Scaffold-GS 训练产物</li>
+        <li>结合 LLM 进行证据链推理：给定一个 3DGS 模型，输出"该模型很可能由 X 代码库在 Y 数据集上训练"</li>
+      </ul>
+      <p>这对于 IP 取证意义重大：当你在市场上发现一个可疑的 3DGS 模型，GaussTrace 可以提供"它是否源自你的训练数据"的证据链——无需预先嵌入水印。</p>
+
+      <h3><span class="mi">④</span> 对抗攻击面</h3>
+      <p><strong>GaussianUnderAttack</strong> (NeurIPS 2024) 首次系统分析了 3DGS 的对抗脆弱性：</p>
+      <ul style="font-size:14.5px;color:var(--text);padding-left:20px;line-height:1.8">
+        <li><strong>参数扰动攻击</strong>：微小修改少量关键高斯的位置/不透明度，即可在渲染图中产生大面积伪影</li>
+        <li><strong>致密化劫持</strong>：攻击训练过程中的 ADC 阈值，诱导生成大量恶意高斯</li>
+        <li><strong>渲染投毒</strong>：在 GS-SLAM 场景中，篡改 3DGS 地图可导致机器人定位错误——这是具身智能的<strong>物理安全风险</strong></li>
+      </ul>
+      <div class="warn" style="border-left:3px solid var(--orange);padding:10px 14px;margin:14px 0;background:rgba(255,140,0,.05);border-radius:4px;font-size:13.5px">
+        <strong>⚠ 具身安全警示</strong>：当 3DGS 作为机器人空间记忆或自动驾驶仿真环境时，地图篡改不仅是版权问题——它是<strong>物理安全威胁</strong>。一个被恶意修改的 3DGS 场景可以诱导自动驾驶系统在仿真中学习错误行为，或引导机器人碰撞。安全研究必须从"保护资产"升级到"保护物理实体"。
+      </div>
+
+      <h3><span class="mi">⑤</span> 版权保护与访问控制</h3>
+      <p>除了水印和溯源，3DGS 还需要<em>主动访问控制</em>——不是所有用户都应看到完整场景：</p>
+      <ul style="font-size:14.5px;color:var(--text);padding-left:20px;line-height:1.8">
+        <li><strong>FenceGS</strong> (CVPR 2025)：在 3DGS 模型上叠加访问控制层，不同权限用户渲染不同细节等级</li>
+        <li><strong>IP-GS</strong> (CVPR 2025)：知识产权保护框架，将版权信息与模型参数绑定，支持许可证验证</li>
+        <li><strong>GauSec</strong> (CVPR 2025)：首个 3DGS 安全评估基准，系统量化水印鲁棒性、溯源准确率、攻击成本</li>
+        <li><strong>3DEditSafe</strong> ([arXiv:2605.15398])：防御 3DGS 编辑管道生成不当内容（NSFW/有害 3D 场景）</li>
+      </ul>
+
+      <h3><span class="mi">⑥</span> 工业合规意义</h3>
+      <p>3DGS 安全不是纯学术问题——它直接关系到工业部署的合规性：</p>
+      <ul style="font-size:14.5px;color:var(--text);padding-left:20px;line-height:1.8">
+        <li><strong>数字孪生</strong>：工业设备的 3DGS 模型包含商业秘密，需要水印+访问控制防止泄露</li>
+        <li><strong>自动驾驶仿真</strong>：用于安全认证的仿真场景必须是可信的——地图篡改可能导致认证失效</li>
+        <li><strong>3D 电商/元宇宙</strong>：品牌 3D 展示需要版权保护，防止竞品复制 3DGS 资产</li>
+        <li><strong>AI 生成内容标识</strong>：随着 3DGS 生成方法普及，监管要求标识"AI 生成"——GaussTrace 的溯源能力可服务于此</li>
+      </ul>
+      <p>本仓库的 <code>patent-software-ip</code> 技能已覆盖 3DGS 相关的专利撰写与软件著作权登记流程——安全技术与法律保护的结合，才是完整的 IP 护城河。</p>
+
+      <div class="et" style="margin-top:20px">
+        <div class="et">★ 思考题</div>
+        <ol>
+          <li>如果一个 3DGS 模型经过 5 次合法编辑（致密化+剪枝+颜色调整），最初嵌入的水印还能存活吗？这取决于什么？</li>
+          <li>GaussTrace 的"统计指纹"方法能否区分"同一代码库在不同 GPU 上训练的两个模型"？为什么？</li>
+          <li>当 3DGS 作为 GS-SLAM 地图被篡改时，机器人有没有可能在运行时检测到？需要什么机制？</li>
+        </ol>
+      </div>
+    </section>
+
     <!-- ===================== 附录 ===================== -->
     <section class="chapter" id="appendix" style="--accent:var(--text-3)">
       <div class="chapter-head"><span class="no">附</span><h2>数据集与评估基准</h2></div>
@@ -1274,6 +1581,34 @@
 
       <h3><span class="mi">④</span> Sim2Real 评测的特殊性</h3>
       <p>具身智能的评测比 3DGS 渲染评测复杂一个量级——它要评"策略迁移到真机后的成功率"，而非图像质量。常见指标：① 仿真内成功率（上限，乐观估计）；② 真机成功率（真值，但贵且噪声大）；③ 跨环境泛化率（换场景/光照/物体后的成功率衰减）。第三项最关键也最常被省略——很多论文只报前两项，但 Sim2Real 的真正考验是泛化而非单场景成功率。</p>
+
+      <h3><span class="mi">⑤</span> 扩充数据集与训练资源</h3>
+      <p>除前述主流基准外，以下数据集在 3DGS 研究中日益重要：</p>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse;margin:10px 0 14px">
+        <thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px">数据集</th><th style="text-align:left;padding:6px 8px">类型</th><th style="text-align:left;padding:6px 8px">场景数</th><th style="text-align:left;padding:6px 8px">特点</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>DL3DV-10K</strong></td><td style="padding:6px 8px">自然场景</td><td style="padding:6px 8px">10K+</td><td style="padding:6px 8px">目前最大的 3DGS 评测集；覆盖室内外多样场景；4K 分辨率</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>MatrixCity</strong></td><td style="padding:6px 8px">城市仿真</td><td style="padding:6px 8px">大尺度</td><td style="padding:6px 8px">合成城市；可控光照/天气；支持大规模 GS 评测</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>KITTI-360</strong></td><td style="padding:6px 8px">自动驾驶</td><td style="padding:6px 8px">73km</td><td style="padding:6px 8px">含 LiDAR + 多相机；街景 GS 重建标准</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Waymo Open</strong></td><td style="padding:6px 8px">自动驾驶</td><td style="padding:6px 8px">1150 段</td><td style="padding:6px 8px">多传感器融合；动态场景标注完整</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Google Scanned Objects</strong></td><td style="padding:6px 8px">物体级</td><td style="padding:6px 8px">1K+</td><td style="padding:6px 8px">高质量物体扫描；物体级 GS 重建与编辑</td></tr>
+          <tr><td style="padding:6px 8px"><strong>ABO</strong></td><td style="padding:6px 8px">商品级</td><td style="padding:6px 8px">398</td><td style="padding:6px 8px">Amazon 商品 3D 模型；含材质纹理；电商 3DGS 应用</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--text)">训练资源参考</h4>
+      <p>以下为代表性方法的训练时间与资源消耗参考值（来自各论文报告，实际值因场景复杂度而异）：</p>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse;margin:10px 0 14px">
+        <thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:6px 8px">方法</th><th style="text-align:left;padding:6px 8px">GPU</th><th style="text-align:left;padding:6px 8px">训练时间</th><th style="text-align:left;padding:6px 8px">高斯数</th><th style="text-align:left;padding:6px 8px">显存峰值</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">3DGS (30K)</td><td style="padding:6px 8px">RTX 3090</td><td style="padding:6px 8px">~6 min</td><td style="padding:6px 8px">1-3M</td><td style="padding:6px 8px">~8 GB</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">Mip-Splatting</td><td style="padding:6px 8px">RTX 3090</td><td style="padding:6px 8px">~8 min</td><td style="padding:6px 8px">1-3M</td><td style="padding:6px 8px">~10 GB</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">Scaffold-GS</td><td style="padding:6px 8px">RTX 3090</td><td style="padding:6px 8px">~15 min</td><td style="padding:6px 8px">1-2M (锚点+高斯)</td><td style="padding:6px 8px">~12 GB</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">2DGS</td><td style="padding:6px 8px">RTX 3090</td><td style="padding:6px 8px">~7 min</td><td style="padding:6px 8px">1-2M</td><td style="padding:6px 8px">~9 GB</td></tr>
+          <tr><td style="padding:6px 8px">FastGS (CVPR 2026)</td><td style="padding:6px 8px">RTX 4090</td><td style="padding:6px 8px">~100 sec</td><td style="padding:6px 8px">0.5-1M</td><td style="padding:6px 8px">~6 GB</td></tr>
+        </tbody>
+      </table>
+      <p><strong>注意</strong>：以上数据来自论文报告，实际训练时间受场景复杂度、图像分辨率、视角数量、致密化策略等多因素影响。建议以本仓库 <code>bench/leaderboard.json</code> 中的 [S] 实测值为准——该文件记录了本仓库服务器复现的精确数字，附 GPU 型号、迭代数与评估实现版本。</p>
     </section>
 
     <!-- ===================== 引用与延伸阅读 ===================== -->
