@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { useSSE } from './composables/useSSE';
 import { useI18n } from './composables/useI18n';
 
@@ -110,7 +110,6 @@ onUnmounted(() => {
 });
 
 // React to latestEvent changes (watch-like)
-import { watch } from 'vue';
 watch(latestEvent, (evt) => {
   if (!evt) return;
   const key = `${evt.type}-${evt.timestamp}`;
