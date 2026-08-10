@@ -7,6 +7,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: () => import('./views/Dashboard.vue') },
+    { path: '/pipeline', component: () => import('./views/Pipeline.vue') },
     { path: '/render', component: () => import('./views/RenderStudio.vue') },
     { path: '/projects', component: () => import('./views/ProjectBrowser.vue') },
     { path: '/mcp', component: () => import('./views/McpTools.vue') },

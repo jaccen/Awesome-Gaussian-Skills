@@ -105,3 +105,71 @@ export async function listSceneFiles(): Promise<{ scenes: SceneFileInfo[]; direc
   const res = await api.get('/scenes');
   return res.data;
 }
+
+// ============================================================
+// Pipeline API（文稿→视频 端到端生产）
+// ============================================================
+
+export interface StylePresetInfo {
+  id: string;
+  label: string;
+  artStyle: string;
+  description: string;
+}
+
+export interface PipelineTaskInfo {
+  id: string;
+  status: 'pending' | 'running' | 'completed' | 'failed' | 'cancelled';
+  progress: number;
+  currentStep: string;
+  steps: Array<{
+    name: string;
+    label: string;
+    status: 'pending' | 'running' | 'completed' | 'failed' | 'skipped';
+    progress: number;
+    error?: string;
+  }>;
+  output?: {
+    script: string;
+    characters: any[];
+    scenes: any[];
+    finalVideoUrl?: string;
+    durationSec?: number;
+  };
+  error?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function getPipelineHealth(): Promise<any> {
+  const res = await api.get('/pipeline/health');
+  return res.data;
+}
+
+export async function getPipelineStyles(): Promise<{ styles: StylePresetInfo[] }> {
+  const res = await api.get('/pipeline/styles');
+  return res.data;
+}
+
+export async function createPipelineTask(params: {
+  text: string;
+  title?: string;
+  style?: string;
+  videoRatio?: string;
+  voiceMode?: string;
+  enableVideoGen?: boolean;
+  enableTTS?: boolean;
+}): Promise<{ task: PipelineTaskInfo }> {
+  const res = await api.post('/pipeline/tasks', params, { timeout: 60000 });
+  return res.data;
+}
+
+export async function listPipelineTasks(): Promise<{ tasks: PipelineTaskInfo[] }> {
+  const res = await api.get('/pipeline/tasks');
+  return res.data;
+}
+
+export async function getPipelineTask(taskId: string): Promise<{ task: PipelineTaskInfo }> {
+  const res = await api.get(`/pipeline/tasks/${taskId}`);
+  return res.data;
+}

@@ -19,6 +19,8 @@ import type { RenderEvent, RenderTask } from './types.js';
 import { RenderManager } from './render-manager.js';
 import { GsMcpClient } from './gs-mcp-client.js';
 import { ToonflowClient } from './toonflow-client.js';
+import { PipelineManager } from './pipeline/orchestrator.js';
+import { createPipelineRouter } from './pipeline-routes.js';
 
 export interface RenderServerOptions {
   port?: number;
@@ -35,6 +37,7 @@ export class RenderServer {
   private manager: RenderManager;
   private mcp: GsMcpClient;
   private toonflow: ToonflowClient;
+  private pipeline: PipelineManager;
   private port: number;
   private sseClients: Map<string, Response> = new Map();
   private production: boolean;
@@ -60,6 +63,8 @@ export class RenderServer {
       mcpClient: this.mcp,
       toonflowClient: this.toonflow,
     });
+
+    this.pipeline = new PipelineManager({ toonflow: this.toonflow });
 
     this.app = express();
     this._setupMiddleware();
@@ -613,6 +618,13 @@ export class RenderServer {
       }
       res.json({ batch });
     });
+
+    // ----------------------------------------------------------
+    // Pipeline API（文稿→视频 端到端生产）
+    // ----------------------------------------------------------
+    const pipelineOutputDir = process.env.PIPELINE_OUTPUT_DIR || '.temp/pipeline';
+    this.app.use('/api/pipeline', createPipelineRouter(this.pipeline, pipelineOutputDir));
+    console.log(`[render-server] Pipeline API mounted at /api/pipeline (output: ${pipelineOutputDir})`);
   }
 
   // ============================================================
@@ -709,6 +721,15 @@ export class RenderServer {
         type: 'log',
         data: { source: 'mcp', action: 'toolResult', toolName, summary: typeof result === 'string' ? result.slice(0, 200) : 'object' },
         timestamp: new Date().toISOString(),
+      });
+    });
+
+    // 从 Pipeline Manager 订阅事件
+    this.pipeline.on('event', (event: any) => {
+      this._broadcastSSE({
+        type: 'log',
+        data: { source: 'pipeline', ...event },
+        timestamp: event.timestamp || new Date().toISOString(),
       });
     });
   }

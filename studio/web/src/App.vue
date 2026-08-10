@@ -9,6 +9,7 @@
       </div>
       <div class="nav-links">
         <router-link to="/" exact-active-class="active">{{ t('nav.dashboard') }}</router-link>
+        <router-link to="/pipeline" active-class="active">文稿→视频</router-link>
         <router-link to="/render" active-class="active">{{ t('nav.render') }}</router-link>
         <router-link to="/projects" active-class="active">{{ t('nav.projects') }}</router-link>
         <router-link to="/mcp" active-class="active">{{ t('nav.mcpTools') }}</router-link>
