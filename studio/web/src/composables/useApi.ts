@@ -173,3 +173,44 @@ export async function getPipelineTask(taskId: string): Promise<{ task: PipelineT
   const res = await api.get(`/pipeline/tasks/${taskId}`);
   return res.data;
 }
+
+// ============================================================
+// Pipeline Config API
+// ============================================================
+
+export interface PipelineConfig {
+  llm: {
+    apiKey: string;
+    apiKeySet: boolean;
+    baseUrl: string;
+    model: string;
+  };
+  tts: {
+    provider: string;
+    cosyvoiceUrl: string;
+    cosyvoiceKeySet: boolean;
+  };
+  asr: {
+    provider: string;
+    whisperModel: string;
+    whisperDevice: string;
+  };
+  videoGen: {
+    provider: string;
+    seedanceKeySet: boolean;
+    seedanceBaseUrl: string;
+  };
+  ffmpeg: {
+    path: string;
+  };
+}
+
+export async function getPipelineConfig(): Promise<PipelineConfig> {
+  const res = await api.get('/pipeline/config');
+  return res.data;
+}
+
+export async function savePipelineConfig(config: Partial<PipelineConfig>): Promise<{ success: boolean; message: string; requiresRestart: boolean }> {
+  const res = await api.post('/pipeline/config', config, { timeout: 10000 });
+  return res.data;
+}

@@ -5,6 +5,8 @@
  *
  * 端点：
  *   GET  /api/pipeline/health          — 健康检查（各模块可用性）
+ *   GET  /api/pipeline/config          — 读取当前配置
+ *   POST /api/pipeline/config          — 保存配置（写入 .env）
  *   POST /api/pipeline/tasks           — 创建管线任务（文稿→视频）
  *   GET  /api/pipeline/tasks           — 列出所有任务
  *   GET  /api/pipeline/tasks/:taskId   — 查询任务状态
@@ -32,6 +34,153 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
       res.json({ status: 'ok', services: status });
     } catch (err: any) {
       res.json({ status: 'error', error: err.message });
+    }
+  });
+
+  // ----------------------------------------------------------
+  // 配置读取（GET /api/pipeline/config）
+  // ----------------------------------------------------------
+  router.get('/config', (_req: Request, res: Response) => {
+    try {
+      // 从环境变量读取当前配置（Key 做脱敏处理）
+      const maskKey = (key: string) => {
+        if (!key) return '';
+        if (key.length <= 8) return key.slice(0, 2) + '***';
+        return key.slice(0, 4) + '****' + key.slice(-4);
+      };
+
+      res.json({
+        llm: {
+          apiKey: maskKey(process.env.LLM_API_KEY || ''),
+          apiKeySet: !!process.env.LLM_API_KEY,
+          baseUrl: process.env.LLM_BASE_URL || 'https://api.deepseek.com/v1',
+          model: process.env.LLM_MODEL || 'deepseek-chat',
+        },
+        tts: {
+          provider: process.env.TTS_PROVIDER || 'edge',
+          cosyvoiceUrl: process.env.COSYVOICE_URL || 'http://localhost:5000',
+          cosyvoiceKeySet: !!process.env.COSYVOICE_API_KEY,
+        },
+        asr: {
+          provider: process.env.ASR_PROVIDER || 'skip',
+          whisperModel: process.env.ASR_WHISPER_MODEL || 'base',
+          whisperDevice: process.env.ASR_WHISPER_DEVICE || 'cpu',
+        },
+        videoGen: {
+          provider: process.env.VIDEO_GEN_PROVIDER || 'skip',
+          seedanceKeySet: !!process.env.SEEDANCE_API_KEY,
+          seedanceBaseUrl: process.env.SEEDANCE_BASE_URL || 'https://api.seedance.ai/v1',
+        },
+        ffmpeg: {
+          path: process.env.FFMPEG_PATH || 'ffmpeg',
+        },
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // ----------------------------------------------------------
+  // 配置保存（POST /api/pipeline/config）
+  // 写入 .env 文件，需要手动重启服务生效
+  // ----------------------------------------------------------
+  router.post('/config', (req: Request, res: Response) => {
+    try {
+      const body = req.body || {};
+      const envPath = path.resolve(process.cwd(), '.env');
+
+      // 读取现有 .env 内容（如果存在）
+      let envContent = '';
+      if (fs.existsSync(envPath)) {
+        envContent = fs.readFileSync(envPath, 'utf-8');
+      }
+
+      // 构建要更新/新增的键值对
+      const updates: Record<string, string> = {};
+
+      // LLM
+      if (body.llm) {
+        if (body.llm.apiKey !== undefined && body.llm.apiKey !== '') {
+          // 如果是脱敏格式（含****），不更新
+          if (!body.llm.apiKey.includes('****')) {
+            updates['LLM_API_KEY'] = body.llm.apiKey;
+          }
+        }
+        if (body.llm.baseUrl) updates['LLM_BASE_URL'] = body.llm.baseUrl;
+        if (body.llm.model) updates['LLM_MODEL'] = body.llm.model;
+      }
+
+      // TTS
+      if (body.tts) {
+        if (body.tts.provider) updates['TTS_PROVIDER'] = body.tts.provider;
+        if (body.tts.cosyvoiceUrl) updates['COSYVOICE_URL'] = body.tts.cosyvoiceUrl;
+        if (body.tts.cosyvoiceApiKey && !body.tts.cosyvoiceApiKey.includes('****')) {
+          updates['COSYVOICE_API_KEY'] = body.tts.cosyvoiceApiKey;
+        }
+      }
+
+      // ASR
+      if (body.asr) {
+        if (body.asr.provider) updates['ASR_PROVIDER'] = body.asr.provider;
+        if (body.asr.whisperModel) updates['ASR_WHISPER_MODEL'] = body.asr.whisperModel;
+        if (body.asr.whisperDevice) updates['ASR_WHISPER_DEVICE'] = body.asr.whisperDevice;
+      }
+
+      // VideoGen
+      if (body.videoGen) {
+        if (body.videoGen.provider) updates['VIDEO_GEN_PROVIDER'] = body.videoGen.provider;
+        if (body.videoGen.seedanceApiKey && !body.videoGen.seedanceApiKey.includes('****')) {
+          updates['SEEDANCE_API_KEY'] = body.videoGen.seedanceApiKey;
+        }
+        if (body.videoGen.seedanceBaseUrl) updates['SEEDANCE_BASE_URL'] = body.videoGen.seedanceBaseUrl;
+      }
+
+      // FFmpeg
+      if (body.ffmpeg && body.ffmpeg.path) {
+        updates['FFMPEG_PATH'] = body.ffmpeg.path;
+      }
+
+      // 逐行更新 .env 内容
+      const lines = envContent.split('\n');
+      const updatedKeys = new Set<string>();
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        // 跳过注释和空行
+        if (line.startsWith('#') || line === '') continue;
+        // 解析 KEY=VALUE
+        const eqIdx = line.indexOf('=');
+        if (eqIdx < 0) continue;
+        const key = line.substring(0, eqIdx).trim();
+        if (updates[key] !== undefined) {
+          lines[i] = `${key}=${updates[key]}`;
+          updatedKeys.add(key);
+        }
+      }
+
+      // 添加 .env 中不存在的键
+      const newLines: string[] = [];
+      if (updatedKeys.size < Object.keys(updates).length) {
+        newLines.push('');
+        newLines.push('# --- Pipeline config (added via UI) ---');
+        for (const [key, value] of Object.entries(updates)) {
+          if (!updatedKeys.has(key)) {
+            newLines.push(`${key}=${value}`);
+          }
+        }
+      }
+
+      const newContent = lines.join('\n') + (newLines.length > 0 ? '\n' + newLines.join('\n') : '');
+      fs.writeFileSync(envPath, newContent, 'utf-8');
+
+      res.json({
+        success: true,
+        message: '配置已保存到 .env 文件。需要重启服务生效。',
+        updatedKeys: Object.keys(updates),
+        requiresRestart: true,
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
     }
   });
 
