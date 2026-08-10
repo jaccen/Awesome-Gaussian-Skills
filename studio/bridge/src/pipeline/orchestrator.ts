@@ -480,6 +480,15 @@ export class PipelineManager extends EventEmitter {
       this.asr.healthCheck().catch(() => ({ available: false })),
     ]);
 
+    // 检查 Toonflow 实际连通性
+    let toonflowStatus = { configured: !!process.env.TOONFLOW_URL, available: false };
+    try {
+      const tfUrl = process.env.TOONFLOW_URL || 'http://localhost:10588';
+      const { default: axios } = await import('axios');
+      await axios.get(`${tfUrl}/`, { timeout: 3000 });
+      toonflowStatus.available = true;
+    } catch { /* not running */ }
+
     return {
       llm: {
         available: llm,
@@ -491,7 +500,7 @@ export class PipelineManager extends EventEmitter {
       videoGen,
       compositor: { available: compositor },
       asr,
-      toonflow: { configured: !!process.env.TOONFLOW_URL },
+      toonflow: toonflowStatus,
     };
   }
 }
