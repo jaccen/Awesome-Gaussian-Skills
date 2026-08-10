@@ -46,7 +46,12 @@ export class FFmpegCompositor {
 
   constructor() {
     this.ffmpegPath = process.env.FFMPEG_PATH || 'ffmpeg';
-    this.ffprobePath = process.env.FFMPEG_PATH ? process.env.FFMPEG_PATH.replace('ffmpeg', 'ffprobe') : 'ffprobe';
+    // P1修复：ffprobePath 替换 Bug——replace('ffmpeg', 'ffprobe') 会替换路径中非可执行文件名的部分
+    if (process.env.FFMPEG_PATH) {
+      this.ffprobePath = process.env.FFMPEG_PATH.replace(/ffmpeg(\.exe)?$/i, 'ffprobe$1');
+    } else {
+      this.ffprobePath = 'ffprobe';
+    }
   }
 
   // ============================================================
@@ -58,12 +63,20 @@ export class FFmpegCompositor {
     const workDir = path.resolve(opts.outputDir, `compose-${jobId}`);
     if (!fs.existsSync(workDir)) fs.mkdirSync(workDir, { recursive: true });
 
+    // P1修复：空 clips 前置检查
+    if (!opts.videoClips || opts.videoClips.length === 0) {
+      throw new Error('视频片段列表为空，无法合成');
+    }
+
+    try {
     // Step 1: 标准化每个视频片段（统一分辨率+帧率+时长对齐音频）
     const normalizedClips: string[] = [];
     for (let i = 0; i < opts.videoClips.length; i++) {
       const clip = opts.videoClips[i];
       const audio = opts.audioFiles[i];
       const scene = opts.scenes[i];
+      // P1修复：scene 可能为 undefined
+      if (!scene) throw new Error(`分镜数据缺失：第 ${i+1} 个片段无对应 scene`);
       const normalizedPath = await this._normalizeClip(
         clip, audio, scene, workDir, i, opts.videoRatio
       );
@@ -91,11 +104,6 @@ export class FFmpegCompositor {
     // Step 6: 获取总时长
     const durationSec = await this._getDuration(finalPath);
 
-    // 清理临时文件
-    try {
-      fs.rmSync(workDir, { recursive: true, force: true });
-    } catch { /* ignore */ }
-
     return {
       videoPath: finalPath,
       videoUrl: `/api/pipeline/files/${path.basename(finalPath)}`,
@@ -104,6 +112,10 @@ export class FFmpegCompositor {
       thumbnailPath,
       thumbnailUrl: `/api/pipeline/files/${path.basename(thumbnailPath)}`,
     };
+    } finally {
+      // P2修复：异常路径也清理临时文件
+      try { fs.rmSync(workDir, { recursive: true, force: true }); } catch { /* */ }
+    }
   }
 
   // ============================================================
@@ -211,7 +223,9 @@ export class FFmpegCompositor {
       filters.push(`subtitles='${srtPath}'`);
     }
     if (opts.watermark) {
-      filters.push(`drawtext=text='${opts.watermark}':fontcolor=white@0.5:fontsize=24:x=w-tw-20:y=h-th-20`);
+      // P0修复：水印文字转义单引号防FFmpeg滤镜注入
+      const safeWatermark = opts.watermark.replace(/'/g, "\\'").replace(/:/g, '\\:');
+      filters.push(`drawtext=text='${safeWatermark}':fontcolor=white@0.5:fontsize=24:x=w-tw-20:y=h-th-20`);
     }
     if (filters.length > 0) {
       args.push(`-vf "${filters.join(',')}"`);
@@ -220,7 +234,8 @@ export class FFmpegCompositor {
     // 音频混合
     if (opts.bgmPath && fs.existsSync(opts.bgmPath)) {
       const bgmVol = opts.bgmVolume ?? 0.15;
-      args.push(`-filter_complex "[0:a]volume=1.0[a1];[1:a]volume=${bgmVol}[a2];[a1][a2]amix=duration=first:dropout_transition=2[aout]"`);
+      // P1修复：用 0:a? (optional) 防止无音频流时报错
+      args.push(`-filter_complex "[0:a?]volume=1.0[a1];[1:a]volume=${bgmVol}[a2];[a1][a2]amix=duration=first:dropout_transition=2[aout]"`);
       args.push(`-map "0:v" -map "[aout]"`);
     } else {
       args.push(`-map "0:v" -map "0:a?"`);

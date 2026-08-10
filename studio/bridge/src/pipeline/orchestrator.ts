@@ -95,6 +95,10 @@ export class PipelineManager extends EventEmitter {
     };
 
     this.tasks.set(task.id, task);
+    // P1修复：超过 100 个任务时清理最旧的已完成/失败任务，防 OOM
+    if (this.tasks.size > 100) {
+      this._evictOldTasks();
+    }
 
     this._emit({
       type: 'task_created',
@@ -160,7 +164,9 @@ export class PipelineManager extends EventEmitter {
       });
 
       // Step 3: Toonflow集成（可选）
-      if (task.input.toonflowProjectId || this.toonflow) {
+      // P1修复：this.toonflow 在构造函数中总是被赋值，条件恒 true
+      // 改为检查 Toonflow 是否实际可连接（通过环境变量或传入的 projectId）
+      if (task.input.toonflowProjectId || process.env.TOONFLOW_URL) {
         await this._runStep(task, 'toonflow_sync', async (step) => {
           this._updateStepProgress(task, step, 30, '正在同步到Toonflow...');
           try {
@@ -169,7 +175,6 @@ export class PipelineManager extends EventEmitter {
             output.toonflowScriptId = toonflowResult.scriptId;
             output.toonflowStoryboardIds = toonflowResult.storyboardIds;
 
-            // 从Toonflow获取生成的图片
             if (toonflowResult.storyboardIds && toonflowResult.storyboardIds.length > 0) {
               for (let i = 0; i < output.scenes.length; i++) {
                 const sb = toonflowResult.storyboards?.[i];
@@ -233,8 +238,8 @@ export class PipelineManager extends EventEmitter {
           this._updateStepProgress(task, step, 100, `视频驱动完成`);
         });
       } else {
-        this._skipStep(task, 'video_gen', 'Video generation disabled');
-        // 即使跳过视频生成，仍需要为每个场景生成基本视频片段（Ken Burns效果）
+        // P1修复：不再先 skip 再 runStep（会导致状态混乱）
+        // 直接生成 Ken Burns 效果视频
         await this._runStep(task, 'video_gen', async (step) => {
           for (let i = 0; i < output.scenes.length; i++) {
             const scene = output.scenes[i];
@@ -256,8 +261,13 @@ export class PipelineManager extends EventEmitter {
       await this._runStep(task, 'compose', async (step) => {
         this._updateStepProgress(task, step, 30, '正在合成最终视频...');
 
-        const videoClips = output.scenes.map(s => s.videoPath!).filter(Boolean);
-        const audioFiles = output.scenes.map(s => s.audioPath || '').filter(Boolean);
+        // P1修复：videoClips 和 audioFiles 保持按 scene 对齐，不分别 filter
+        const videoClips: string[] = [];
+        const audioFiles: string[] = [];
+        for (const scene of output.scenes) {
+          videoClips.push(scene.videoPath || '');
+          audioFiles.push(scene.audioPath || '');
+        }
 
         const result = await this.compositor.compose({
           videoClips,
@@ -465,6 +475,17 @@ export class PipelineManager extends EventEmitter {
 
   listTasks(): PipelineTask[] {
     return Array.from(this.tasks.values());
+  }
+
+  // P1修复：清理已完成的旧任务，保留最近 50 个
+  private _evictOldTasks(): void {
+    const completed = Array.from(this.tasks.values())
+      .filter(t => t.status === 'completed' || t.status === 'failed')
+      .sort((a, b) => a.updatedAt.localeCompare(b.updatedAt));
+    const toRemove = completed.slice(0, completed.length - 50);
+    for (const t of toRemove) {
+      this.tasks.delete(t.id);
+    }
   }
 
   // ============================================================

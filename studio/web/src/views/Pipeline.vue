@@ -176,7 +176,7 @@
         <label>文稿内容</label>
         <textarea v-model="form.text" placeholder="粘贴小说、剧本或故事文稿..."
           class="textarea-input" rows="8"></textarea>
-        <span class="char-count">{{ form.text.length }} / 20000</span>
+        <span class="char-count" :class="{ 'over-limit': form.text.length > 20000 }">{{ form.text.length }} / 20000</span>
       </div>
 
       <div class="form-row-inline">
@@ -210,9 +210,11 @@
         </div>
       </div>
 
-      <button class="generate-btn" @click="startPipeline" :disabled="!canSubmit">
+      <button class="generate-btn" @click="startPipeline" :disabled="!canSubmit"
+        :title="!canSubmit ? (form.text.length < 10 ? '至少输入10个字' : '提交中...') : ''">
         {{ submitting ? '提交中...' : '一键生成视频' }}
       </button>
+      <p v-if="submitError" class="submit-error">{{ submitError }}</p>
     </div>
 
     <!-- 进度区域 -->
@@ -245,12 +247,15 @@
       <div class="result-section" v-if="currentTask.status === 'completed' && currentTask.output">
         <h4>生成完成</h4>
         <div class="result-stats">
-          <span>{{ currentTask.output.scenes.length }} 个分镜</span>
-          <span>{{ currentTask.output.characters.length }} 个角色</span>
+          <span>{{ currentTask.output.scenes?.length || 0 }} 个分镜</span>
+          <span>{{ currentTask.output.characters?.length || 0 }} 个角色</span>
           <span v-if="currentTask.output.durationSec">{{ currentTask.output.durationSec }}秒</span>
         </div>
         <video v-if="currentTask.output.finalVideoUrl"
-          :src="currentTask.output.finalVideoUrl" controls class="result-video"></video>
+          :src="currentTask.output.finalVideoUrl" controls
+          @error="videoError = '视频加载失败'"
+          class="result-video"></video>
+        <p v-if="videoError" class="error-msg">{{ videoError }}</p>
         <button class="reset-btn" @click="resetTask">再做一个</button>
       </div>
 
@@ -265,8 +270,8 @@
       <h4>历史任务</h4>
       <div class="task-card" v-for="t in tasks.slice(0, 5)" :key="t.id" @click="loadTask(t)">
         <span class="status-badge" :class="t.status">{{ t.status }}</span>
-        <span>{{ t.progress }}%</span>
-        <span>{{ t.createdAt }}</span>
+        <span>{{ t.progress || 0 }}%</span>
+        <span class="task-time">{{ formatTime(t.createdAt) }}</span>
       </div>
     </div>
   </div>
@@ -285,6 +290,7 @@ import {
   type PipelineTaskInfo,
   type StylePresetInfo,
   type PipelineConfig,
+  type PipelineConfigSave,
 } from '../composables/useApi';
 
 const form = ref({
@@ -316,8 +322,12 @@ const llmProvider = ref('deepseek');
 const savingConfig = ref(false);
 const configSaved = ref(false);
 const configError = ref('');
+const videoError = ref('');
+const submitError = ref('');
 
 let pollTimer: ReturnType<typeof setInterval> | null = null;
+let pollRetryCount = 0;
+let configLoadedOnce = false;
 
 const canSubmit = computed(() =>
   form.value.text.trim().length >= 10 && form.value.text.length <= 20000 && !submitting.value
@@ -340,6 +350,7 @@ function stepIcon(status: string): string {
 
 async function startPipeline() {
   submitting.value = true;
+  submitError.value = '';
   try {
     const res = await createPipelineTask({
       text: form.value.text,
@@ -353,7 +364,7 @@ async function startPipeline() {
     currentTask.value = res.task;
     startPolling(res.task.id);
   } catch (err: any) {
-    alert(`提交失败: ${err.response?.data?.error || err.message}`);
+    submitError.value = err.response?.data?.error || err.message || '提交失败';
   } finally {
     submitting.value = false;
   }
@@ -361,7 +372,10 @@ async function startPipeline() {
 
 function startPolling(taskId: string) {
   if (pollTimer) clearInterval(pollTimer);
+  let polling = false; // P1修复：防重叠
   pollTimer = setInterval(async () => {
+    if (polling) return; // 上一次还没返回，跳过本次
+    polling = true;
     try {
       const res = await getPipelineTask(taskId);
       currentTask.value = res.task;
@@ -369,8 +383,13 @@ function startPolling(taskId: string) {
         stopPolling();
       }
     } catch (err) {
-      console.error('Polling error:', err);
-      stopPolling();
+      // P1修复：单次抖动不停止轮询，最多重试3次
+      pollRetryCount++;
+      if (pollRetryCount > 3) {
+        stopPolling();
+      }
+    } finally {
+      polling = false;
     }
   }, 2000);
 }
@@ -390,9 +409,19 @@ function resetTask() {
 
 async function loadTask(t: PipelineTaskInfo) {
   currentTask.value = t;
+  pollRetryCount = 0;
   if (t.status === 'running' || t.status === 'pending') {
     startPolling(t.id);
   }
+}
+
+// 格式化时间
+function formatTime(iso: string): string {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+  } catch { return iso; }
 }
 
 async function loadTasks() {
@@ -455,10 +484,11 @@ async function loadConfig() {
     configForm.value.videoGen.seedanceApiKey = '';
     configForm.value.videoGen.seedanceBaseUrl = res.videoGen.seedanceBaseUrl;
 
-    // 如果 LLM 未配置 Key，自动展开配置面板
-    if (!res.llm.apiKeySet) {
+    // P1修复：只在首次加载时自动展开配置面板，不反复打扰用户
+    if (!res.llm.apiKeySet && !configLoadedOnce) {
       showConfig.value = true;
     }
+    configLoadedOnce = true;
     // 推断当前供应商
     for (const [key, preset] of Object.entries(LLM_PRESETS)) {
       if (res.llm.baseUrl === preset.baseUrl) {
@@ -483,6 +513,7 @@ async function saveConfig() {
       tts: {
         provider: configForm.value.tts.provider,
         cosyvoiceUrl: configForm.value.tts.cosyvoiceUrl,
+        cosyvoiceApiKey: undefined,
       },
       asr: {
         provider: configForm.value.asr.provider,
@@ -494,11 +525,10 @@ async function saveConfig() {
         seedanceApiKey: configForm.value.videoGen.seedanceApiKey || undefined,
         seedanceBaseUrl: configForm.value.videoGen.seedanceBaseUrl,
       },
-    });
+    } as PipelineConfigSave);
     configSaved.value = true;
-    // 刷新配置和健康检查
-    await loadConfig();
-    await loadHealth();
+    // P2修复：并行刷新配置和健康检查
+    await Promise.allSettled([loadConfig(), loadHealth()]);
   } catch (err: any) {
     configError.value = err.response?.data?.error || err.message;
   } finally {
@@ -748,6 +778,23 @@ onUnmounted(() => {
   text-align: right;
   display: block;
   margin-top: 4px;
+}
+.char-count.over-limit {
+  color: #f87171;
+  font-weight: 600;
+}
+
+.submit-error {
+  color: #f87171;
+  font-size: 13px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.task-time {
+  color: #666;
+  font-size: 12px;
+  margin-left: auto;
 }
 
 .toggle-row {

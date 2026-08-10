@@ -197,11 +197,13 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
   router.post('/tasks', (req: Request, res: Response) => {
     try {
       const body = req.body || {};
+      // P2修复：布尔强转防 "false" 字符串误判
       const input: PipelineInput = {
-        text: body.text || '',
-        title: body.title,
+        text: String(body.text || ''),
+        title: body.title ? String(body.title).slice(0, 200) : undefined,
         style: body.style || '写实',
-        videoRatio: body.videoRatio || '16:9',
+        // P2修复：videoRatio 白名单校验
+        videoRatio: ['16:9', '9:16', '1:1'].includes(body.videoRatio) ? body.videoRatio : '16:9',
         voiceMode: body.voiceMode || 'narration+dialogue',
         language: body.language || 'zh-CN',
         toonflowProjectId: body.toonflowProjectId,
@@ -210,12 +212,12 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
       };
 
       if (!input.text || input.text.trim().length < 10) {
-        res.status(400).json({ error: 'text is required and must be at least 10 characters' });
+        res.status(400).json({ error: '文稿内容至少 10 个字' });
         return;
       }
 
       if (input.text.length > 20000) {
-        res.status(400).json({ error: 'text too long (max 20000 characters)' });
+        res.status(400).json({ error: '文稿不能超过 20000 字' });
         return;
       }
 
@@ -256,14 +258,22 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
       const absOutputDir = path.resolve(process.cwd(), outputDir);
       const filePath = path.resolve(absOutputDir, filename);
 
-      // 安全：防止路径穿越
-      if (!filePath.startsWith(absOutputDir + path.sep) && filePath !== absOutputDir) {
-        res.status(403).json({ error: 'Path traversal denied' });
+      // 安全：防止路径穿越（Windows 大小写不敏感比较）
+      const normalizedAbs = path.normalize(absOutputDir).toLowerCase();
+      const normalizedFile = path.normalize(filePath).toLowerCase();
+      if (!normalizedFile.startsWith(normalizedAbs + path.sep) && normalizedFile !== normalizedAbs) {
+        res.status(403).json({ error: '路径访问被拒绝' });
+        return;
+      }
+
+      // 安全：文件名只允许字母数字点下划线横杠
+      if (!/^[a-zA-Z0-9._-]+$/.test(filename)) {
+        res.status(400).json({ error: '非法文件名' });
         return;
       }
 
       if (!fs.existsSync(filePath)) {
-        res.status(404).json({ error: 'File not found' });
+        res.status(404).json({ error: '文件不存在' });
         return;
       }
 

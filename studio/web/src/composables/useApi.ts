@@ -205,12 +205,36 @@ export interface PipelineConfig {
   };
 }
 
+// 保存用的配置类型（所有字段可选，Key 相关字段可为 undefined）
+export interface PipelineConfigSave {
+  llm?: {
+    apiKey?: string;
+    baseUrl?: string;
+    model?: string;
+  };
+  tts?: {
+    provider?: string;
+    cosyvoiceUrl?: string;
+    cosyvoiceApiKey?: string;
+  };
+  asr?: {
+    provider?: string;
+    whisperModel?: string;
+    whisperDevice?: string;
+  };
+  videoGen?: {
+    provider?: string;
+    seedanceApiKey?: string;
+    seedanceBaseUrl?: string;
+  };
+}
+
 export async function getPipelineConfig(): Promise<PipelineConfig> {
   const res = await api.get('/pipeline/config');
   return res.data;
 }
 
-export async function savePipelineConfig(config: Partial<PipelineConfig>): Promise<{ success: boolean; message: string; requiresRestart: boolean }> {
+export async function savePipelineConfig(config: PipelineConfigSave): Promise<{ success: boolean; message: string; requiresRestart: boolean }> {
   const res = await api.post('/pipeline/config', config, { timeout: 10000 });
   return res.data;
 }

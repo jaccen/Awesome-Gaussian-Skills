@@ -11,13 +11,14 @@
  */
 
 import axios from 'axios';
-import { exec } from 'child_process';
+import { exec, execFile } from 'child_process';
 import { promisify } from 'util';
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuid } from 'uuid';
 
 const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 export interface TtsOptions {
   voice?: string;        // 声音ID/名称
@@ -189,7 +190,7 @@ export class TtsClient {
   }
 
   // ============================================================
-  // EdgeTTS（通过 edge-tts Python 包或 PowerShell SAPI 降级）
+  // EdgeTTS（通过 edge-tts Python 包，execFile 防注入）
   // ============================================================
 
   private async _edgeTts(text: string, opts: TtsOptions): Promise<TtsResult> {
@@ -199,22 +200,25 @@ export class TtsClient {
 
     const voiceName = EDGE_VOICES[opts.voice || 'default'] || EDGE_VOICES['default'];
 
-    // 尝试方法1：edge-tts Python 包
-    // edge-tts 7.x 的 rate 格式为 +0%（相对值），1.0倍速=+0%
-    const speedDelta = Math.round((opts.speed || 1.0 - 1.0) * 100);
+    // P0修复：修复运算符优先级 + 使用 execFile 不经 shell 防命令注入
+    const speed = opts.speed ?? 1.0;
+    const speedDelta = Math.round((speed - 1.0) * 100);
     const rateStr = `${speedDelta >= 0 ? '+' : ''}${speedDelta}%`;
+
     try {
-      const { stderr } = await execAsync(
-        `edge-tts --voice "${voiceName}" --text "${this._escapeText(text)}" --write-media "${outputPath}" --rate "${rateStr}"`,
-        { timeout: 30000 }
-      );
+      await execFileAsync('edge-tts', [
+        '--voice', voiceName,
+        '--text', text,
+        '--write-media', outputPath,
+        '--rate', rateStr,
+      ], { timeout: 30000 });
+
       if (fs.existsSync(outputPath) && fs.statSync(outputPath).size > 0) {
         const duration = await this._getAudioDuration(outputPath);
         return { audioPath: outputPath, duration, provider: 'edge-tts' };
       }
       throw new Error('edge-tts produced empty file');
     } catch (pyErr: any) {
-      // 方法2：Windows SAPI 降级
       if (process.platform === 'win32') {
         return await this._windowsSapi(text, outputPath, opts);
       }
@@ -223,27 +227,39 @@ export class TtsClient {
   }
 
   // ============================================================
-  // Windows SAPI 降级（最终兜底）
+  // Windows SAPI 降级（用临时文件传参，不经 shell 拼接防注入）
   // ============================================================
 
   private async _windowsSapi(text: string, outputPath: string, opts: TtsOptions): Promise<TtsResult> {
+    const speed = opts.speed ?? 1.0;
+    const rate = Math.max(-5, Math.min(5, Math.round((speed - 1.0) * 5)));
+
+    // 用临时文件传递文本，避免 shell/PowerShell 注入
+    const tmpDir = path.resolve(process.cwd(), this.outputDir, 'tmp');
+    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+    const textFile = path.join(tmpDir, `sapi-text-${uuid()}.txt`);
+    // 写入 UTF-8 BOM 以便 PowerShell 正确读取中文
+    fs.writeFileSync(textFile, `\uFEFF${text}`, 'utf-8');
+
     const psScript = `
       Add-Type -AssemblyName System.Speech
       $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer
-      $synth.Rate = [Math]::Max(-5, [Math]::Min(5, [int]((${opts.speed || 1.0} - 1.0) * 5)))
+      $synth.Rate = ${rate}
       $synth.SetOutputToWaveFile("${outputPath.replace(/\\/g, '\\\\')}")
-      $synth.Speak("${this._escapeText(text)}")
+      $text = Get-Content -Path "${textFile.replace(/\\/g, '\\\\')}" -Raw -Encoding UTF8
+      $synth.Speak($text)
       $synth.Dispose()
     `;
 
-    await execAsync(`powershell -Command "${psScript}"`, { timeout: 30000 });
+    try {
+      await execFileAsync('powershell', ['-Command', psScript], { timeout: 30000, shell: true });
 
-    if (!fs.existsSync(outputPath)) {
-      throw new Error('Windows SAPI TTS failed');
+      if (!fs.existsSync(outputPath)) throw new Error('Windows SAPI TTS failed');
+      const duration = await this._getAudioDuration(outputPath);
+      return { audioPath: outputPath, duration, provider: 'windows-sapi' };
+    } finally {
+      try { fs.unlinkSync(textFile); } catch { /* cleanup */ }
     }
-
-    const duration = await this._getAudioDuration(outputPath);
-    return { audioPath: outputPath, duration, provider: 'windows-sapi' };
   }
 
   // ============================================================
@@ -252,13 +268,14 @@ export class TtsClient {
 
   private async _getAudioDuration(filePath: string): Promise<number> {
     try {
-      const { stdout } = await execAsync(
-        `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${filePath}"`,
-        { timeout: 5000 }
-      );
+      // P0修复：使用 execFile 不经 shell 防注入
+      const { stdout } = await execFileAsync('ffprobe', [
+        '-v', 'quiet', '-show_entries', 'format=duration',
+        '-of', 'csv=p=0', filePath,
+      ], { timeout: 5000 });
       return parseFloat(stdout.trim()) || 3;
     } catch {
-      return 3; // 默认3秒
+      return 3;
     }
   }
 
@@ -266,13 +283,16 @@ export class TtsClient {
     const audioId = uuid();
     const p = outputPath ||
       path.resolve(process.cwd(), this.outputDir, 'audio', `${audioId}.wav`);
-    await execAsync(`ffmpeg -y -f lavfi -i anullsrc=channel_layout=mono:sample_rate=22000 -t 1 "${p}"`, { timeout: 5000 });
+    // P0修复：execFile 防注入
+    await execFileAsync('ffmpeg', [
+      '-y', '-f', 'lavfi', '-i',
+      'anullsrc=channel_layout=mono:sample_rate=22000',
+      '-t', '1', p,
+    ], { timeout: 5000 });
     return { audioPath: p, duration: 1, provider: 'silence' };
   }
 
-  private _escapeText(text: string): string {
-    return text.replace(/"/g, '\\"').replace(/\n/g, ' ').replace(/\r/g, '');
-  }
+  // P0修复：_escapeText 已不再需要，execFile 不经 shell
 
   // ============================================================
   // 健康检查
@@ -287,9 +307,8 @@ export class TtsClient {
         return { provider: 'cosyvoice', available: false };
       }
     }
-    // EdgeTTS: 检查 edge-tts 命令是否可用
     try {
-      await execAsync('edge-tts --help', { timeout: 5000 });
+      await execFileAsync('edge-tts', ['--help'], { timeout: 5000 });
       return { provider: 'edge-tts', available: true };
     } catch {
       if (process.platform === 'win32') {

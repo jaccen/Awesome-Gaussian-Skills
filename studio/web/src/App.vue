@@ -9,7 +9,7 @@
       </div>
       <div class="nav-links">
         <router-link to="/" exact-active-class="active">{{ t('nav.dashboard') }}</router-link>
-        <router-link to="/pipeline" active-class="active">文稿→视频</router-link>
+        <router-link to="/pipeline" active-class="active">{{ t('nav.pipeline') }}</router-link>
         <router-link to="/render" active-class="active">{{ t('nav.render') }}</router-link>
         <router-link to="/projects" active-class="active">{{ t('nav.projects') }}</router-link>
         <router-link to="/mcp" active-class="active">{{ t('nav.mcpTools') }}</router-link>
@@ -86,9 +86,9 @@ function addToast(type: string, message: string, duration = 4000) {
 }
 
 function dismissToast(id: number) {
-  const t = toasts.value.find(t => t.id === id);
-  if (!t) return;
-  t.leaving = true;
+  const target = toasts.value.find(item => item.id === id);
+  if (!target) return;
+  target.leaving = true;
   setTimeout(() => {
     toasts.value = toasts.value.filter(x => x.id !== id);
   }, 300);
@@ -117,13 +117,27 @@ watch(latestEvent, (evt) => {
   lastEventKey = key;
 
   const data = evt.data || {};
-  const message = data.status || data.action || evt.type;
+  // P1修复：data 可能是对象，避免显示 [object Object]
+  let message: string;
+  if (typeof data === 'string') {
+    message = data;
+  } else if (data.status) {
+    message = String(data.status);
+  } else if (data.action) {
+    message = String(data.action);
+  } else if (data.source && data.stepName) {
+    message = `${data.source}: ${data.stepName}`;
+  } else if (data.source && data.message) {
+    message = `${data.source}: ${data.message}`;
+  } else {
+    message = evt.type;
+  }
 
   // Skip heartbeat and pure connect events
   if (evt.type === 'connected') return;
   if (message === 'heartbeat') return;
 
-  addToast(evt.type, String(message).slice(0, 80));
+  addToast(evt.type, message.slice(0, 100));
 });
 </script>
 

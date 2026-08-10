@@ -65,7 +65,7 @@
           <p class="card-desc">{{ t('dashboard.methodsDesc') }}</p>
         </div>
         <div class="card-footer">
-          <a href="/docs/index.html" target="_blank" class="btn btn-sm">{{ t('dashboard.browse') }}</a>
+          <a href="/docs/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-sm">{{ t('dashboard.browse') }}</a>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@
           <span class="action-icon">&#128295;</span>
           <span>{{ t('dashboard.mcpTools') }}</span>
         </router-link>
-        <a href="/Text2Word/index.html" target="_blank" class="action-card">
+        <a href="/Text2Word/index.html" target="_blank" rel="noopener noreferrer" class="action-card">
           <span class="action-icon">&#128312;</span>
           <span>{{ t('dashboard.text2Word') }}</span>
         </a>
@@ -98,10 +98,10 @@
       <h2>{{ t('dashboard.recentRenders') }}</h2>
       <div class="task-list">
         <div v-for="task in tasks.slice(0, 5)" :key="task.id" class="task-row">
-          <span class="task-id">{{ task.id.slice(0, 8) }}</span>
+          <span class="task-id">{{ (task.id || '').slice(0, 8) }}</span>
           <span class="task-status" :class="'status-' + task.status">{{ task.status }}</span>
-          <div class="progress-bar"><div class="progress-fill" :style="{ width: task.progress + '%' }"></div></div>
-          <span class="task-type">{{ task.outputType }}</span>
+          <div class="progress-bar"><div class="progress-fill" :style="{ width: (task.progress || 0) + '%' }"></div></div>
+          <span class="task-type">{{ task.outputType || '' }}</span>
         </div>
       </div>
     </div>
@@ -116,35 +116,25 @@ import { useI18n } from '../composables/useI18n';
 const { t } = useI18n();
 
 const mcpConnected = ref(false);
-const bridgeOk = ref(true);
+const bridgeOk = ref(false);
 const toonflowOk = ref(false);
 const tasks = ref<any[]>([]);
 
 let refreshTimer: ReturnType<typeof setInterval> | null = null;
 
 async function refresh() {
-  try {
-    const status = await api.getMcpStatus();
-    mcpConnected.value = status.connected;
-  } catch { mcpConnected.value = false; }
+  // P1修复：4个请求并行而非串行，减少首屏白屏时间
+  const [mcpP, healthP, toonflowP, tasksP] = await Promise.allSettled([
+    api.getMcpStatus(),
+    api.getHealth(),
+    fetch('/api/toonflow/health').then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))),
+    api.listTasks(),
+  ]);
 
-  try {
-    const health = await api.getHealth();
-    bridgeOk.value = health.status === 'ok';
-  } catch { bridgeOk.value = false; }
-
-  try {
-    const res = await fetch('/api/toonflow/health');
-    if (res.ok) {
-      const data = await res.json();
-      toonflowOk.value = data.connected;
-    } else { toonflowOk.value = false; }
-  } catch { toonflowOk.value = false; }
-
-  try {
-    const res = await api.listTasks();
-    tasks.value = res.tasks || [];
-  } catch { /* ignore */ }
+  mcpConnected.value = mcpP.status === 'fulfilled' ? mcpP.value.connected : false;
+  bridgeOk.value = healthP.status === 'fulfilled' ? healthP.value.status === 'ok' : false;
+  toonflowOk.value = toonflowP.status === 'fulfilled' ? toonflowP.value.connected : false;
+  tasks.value = tasksP.status === 'fulfilled' ? (tasksP.value.tasks || []) : [];
 }
 
 async function connectMcp() {

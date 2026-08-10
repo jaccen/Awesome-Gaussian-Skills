@@ -2,6 +2,7 @@ export default {
   // --- App.vue (navigation) ---
   nav: {
     dashboard: 'Dashboard',
+    pipeline: 'Script→Video',
     render: 'Render',
     projects: 'Projects',
     mcpTools: 'MCP Tools',

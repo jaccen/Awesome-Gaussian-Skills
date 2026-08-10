@@ -2,6 +2,7 @@ export default {
   // --- App.vue (navigation) ---
   nav: {
     dashboard: '仪表盘',
+    pipeline: '文稿→视频',
     render: '渲染',
     projects: '项目',
     mcpTools: 'MCP 工具',

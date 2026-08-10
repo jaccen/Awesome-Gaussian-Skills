@@ -10,14 +10,14 @@
  * 配置：ASR_PROVIDER, ASR_WHISPER_MODEL 等环境变量
  */
 
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuid } from 'uuid';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 export interface AsrResult {
   segments: AsrSegment[];
@@ -75,17 +75,27 @@ export class AsrClient {
     const device = process.env.ASR_WHISPER_DEVICE || 'cpu';
     const language = process.env.ASR_WHISPER_LANGUAGE || 'zh';
 
-    // 方法1：openai-whisper Python 包（输出 JSON 含时间戳）
-    const jsonOutput = path.resolve(process.cwd(), this.outputDir, `asr-${uuid()}.json`);
+    // P0修复：execFile 防命令注入；参数校验防非法值
+    const validModel = /^[a-zA-Z0-9._-]+$/.test(model) ? model : 'base';
+    const validDevice = /^(cpu|cuda)$/.test(device) ? device : 'cpu';
+    const validLang = /^[a-zA-Z-]{2,5}$/.test(language) ? language : 'zh';
+
+    const outputDir = path.resolve(process.cwd(), this.outputDir, 'asr');
+    if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
+
     try {
-      await execAsync(
-        `whisper "${audioPath}" --model ${model} --language ${language} --device ${device} --output_format json --output_dir "${path.dirname(jsonOutput)}"`,
-        { timeout: 120000 }
-      );
+      await execFileAsync('whisper', [
+        audioPath,
+        '--model', validModel,
+        '--language', validLang,
+        '--device', validDevice,
+        '--output_format', 'json',
+        '--output_dir', outputDir,
+      ], { timeout: 120000 });
 
       // whisper 输出的 JSON 文件名与音频文件同名
       const baseName = path.basename(audioPath, path.extname(audioPath));
-      const expectedPath = path.join(path.dirname(jsonOutput), `${baseName}.json`);
+      const expectedPath = path.join(outputDir, `${baseName}.json`);
 
       if (fs.existsSync(expectedPath)) {
         const data = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
@@ -102,21 +112,34 @@ export class AsrClient {
       }
       throw new Error('Whisper JSON output not found');
     } catch (err: any) {
-      // 方法2：faster-whisper Python 包
-      const script = `
-import sys, json
+      // 方法2：faster-whisper Python 包（用临时文件传参防注入）
+      const validModel = /^[a-zA-Z0-9._-]+$/.test(model) ? model : 'base';
+      const validDevice = /^(cpu|cuda)$/.test(device) ? device : 'cpu';
+      const validLang = /^[a-zA-Z-]{2,5}$/.test(language) ? language : 'zh';
+
+      const tmpDir = path.resolve(process.cwd(), this.outputDir, 'asr');
+      if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+      const scriptFile = path.join(tmpDir, `faster-whisper-${uuid()}.py`);
+      const jsonOutFile = path.join(tmpDir, `faster-whisper-${uuid()}.json`);
+      const script = `# -*- coding: utf-8 -*-
+import json, sys
 from faster_whisper import WhisperModel
-model = WhisperModel("${model}", device="${device}")
-segments, info = model.transcribe("${audioPath.replace(/\\/g, '\\\\')}", language="${language}")
+model = WhisperModel(sys.argv[1], device=sys.argv[2])
+segments, info = model.transcribe(sys.argv[3], language=sys.argv[4])
 result = {"segments": [], "text": ""}
 for seg in segments:
     result["segments"].append({"start": seg.start, "end": seg.end, "text": seg.text.strip()})
     result["text"] += seg.text
-print(json.dumps(result, ensure_ascii=False))
+with open(sys.argv[5], "w", encoding="utf-8") as f:
+    json.dump(result, f, ensure_ascii=False)
 `;
       try {
-        const { stdout } = await execAsync(`python -c "${script}"`, { timeout: 120000 });
-        const data = JSON.parse(stdout);
+        fs.writeFileSync(scriptFile, script, 'utf-8');
+        await execFileAsync('python', [
+          scriptFile, validModel, validDevice, audioPath, validLang, jsonOutFile,
+        ], { timeout: 120000 });
+
+        const data = JSON.parse(fs.readFileSync(jsonOutFile, 'utf-8'));
         return {
           segments: data.segments || [],
           fullText: data.text || '',
@@ -124,6 +147,9 @@ print(json.dumps(result, ensure_ascii=False))
         };
       } catch (err2: any) {
         throw new Error(`Whisper failed: ${err.message}; faster-whisper also failed: ${err2.message}`);
+      } finally {
+        try { fs.unlinkSync(scriptFile); } catch { /* */ }
+        try { fs.unlinkSync(jsonOutFile); } catch { /* */ }
       }
     }
   }
@@ -187,13 +213,12 @@ print(json.dumps(result, ensure_ascii=False))
   // ============================================================
 
   private async _fallback(audioPath: string): Promise<AsrResult> {
-    // 获取音频时长
     let duration = 3;
     try {
-      const { stdout } = await execAsync(
-        `ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${audioPath}"`,
-        { timeout: 5000 }
-      );
+      const { stdout } = await execFileAsync('ffprobe', [
+        '-v', 'quiet', '-show_entries', 'format=duration',
+        '-of', 'csv=p=0', audioPath,
+      ], { timeout: 5000 });
       duration = parseFloat(stdout.trim()) || 3;
     } catch { /* 使用默认值 */ }
 
@@ -215,12 +240,11 @@ print(json.dumps(result, ensure_ascii=False))
 
     if (this.provider === 'whisper-local') {
       try {
-        await execAsync('whisper --help', { timeout: 5000 });
+        await execFileAsync('whisper', ['--help'], { timeout: 5000 });
         return { provider: 'whisper-local', available: true, detail: `model=${process.env.ASR_WHISPER_MODEL || 'base'}` };
       } catch {
-        // 尝试 faster-whisper
         try {
-          await execAsync('python -c "import faster_whisper; print(\'ok\')"', { timeout: 10000 });
+          await execFileAsync('python', ['-c', 'import faster_whisper; print("ok")'], { timeout: 10000 });
           return { provider: 'faster-whisper', available: true };
         } catch {
           return { provider: 'whisper-local', available: false, detail: 'Install: pip install openai-whisper or pip install faster-whisper' };
