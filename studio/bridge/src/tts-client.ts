@@ -66,22 +66,93 @@ export class TtsClient {
 
   async synthesize(text: string, opts: TtsOptions = {}): Promise<TtsResult> {
     if (!text || !text.trim()) {
-      // 空文本：返回一个1秒静音音频
       return this._generateSilence(opts.outputPath);
     }
 
     const provider = opts.voice && opts.voice.startsWith('edge:') ? 'edge' : this.provider;
 
+    // 按供应商优先级尝试，失败自动降级到 EdgeTTS
     try {
-      if (provider === 'cosyvoice') {
-        return await this._cosyvoice(text, opts);
+      switch (provider) {
+        case 'cosyvoice':
+          return await this._cosyvoice(text, opts);
+        case 'openai':
+          return await this._openaiTts(text, opts);
+        case 'aliyun':
+          return await this._aliyunTts(text, opts);
       }
     } catch (err: any) {
-      console.warn(`[tts-client] CosyVoice failed: ${err.message}, falling back to EdgeTTS`);
+      console.warn(`[tts-client] ${provider} failed: ${err.message}, falling back to EdgeTTS`);
     }
 
     // EdgeTTS 作为默认/降级方案
     return await this._edgeTts(text, opts);
+  }
+
+  // ============================================================
+  // OpenAI TTS API
+  // ============================================================
+
+  private async _openaiTts(text: string, opts: TtsOptions): Promise<TtsResult> {
+    const apiKey = process.env.LLM_API_KEY || '';
+    const baseUrl = process.env.LLM_BASE_URL || 'https://api.openai.com/v1';
+    const model = process.env.TTS_OPENAI_MODEL || 'tts-1';
+    const voice = process.env.TTS_OPENAI_VOICE || 'alloy';
+    if (!apiKey) throw new Error('LLM_API_KEY required for OpenAI TTS');
+
+    const audioId = uuid();
+    const outputPath = opts.outputPath ||
+      path.resolve(process.cwd(), this.outputDir, 'audio', `${audioId}.mp3`);
+
+    const response = await axios.post(
+      `${baseUrl}/audio/speech`,
+      { model, voice, input: text, response_format: 'mp3', speed: opts.speed || 1.0 },
+      {
+        headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        responseType: 'arraybuffer',
+        timeout: 30000,
+      }
+    );
+
+    fs.writeFileSync(outputPath, Buffer.from(response.data));
+    const duration = await this._getAudioDuration(outputPath);
+    return { audioPath: outputPath, duration, provider: 'openai-tts' };
+  }
+
+  // ============================================================
+  // 阿里云语音合成
+  // ============================================================
+
+  private async _aliyunTts(text: string, opts: TtsOptions): Promise<TtsResult> {
+    const key = process.env.TTS_ALIYUN_KEY;
+    const appkey = process.env.TTS_ALIYUN_APPKEY;
+    const voice = process.env.TTS_ALIYUN_VOICE || 'siyue';
+    if (!key || !appkey) throw new Error('TTS_ALIYUN_KEY and TTS_ALIYUN_APPKEY required');
+
+    const audioId = uuid();
+    const outputPath = opts.outputPath ||
+      path.resolve(process.cwd(), this.outputDir, 'audio', `${audioId}.wav`);
+
+    const response = await axios.post(
+      'https://nls-gateway.cn-shanghai.aliyuncs.com/stream/v1/tts',
+      {
+        appkey,
+        text,
+        voice,
+        format: 'wav',
+        sample_rate: 16000,
+        speed: opts.speed || 0,
+      },
+      {
+        headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+        responseType: 'arraybuffer',
+        timeout: 30000,
+      }
+    );
+
+    fs.writeFileSync(outputPath, Buffer.from(response.data));
+    const duration = await this._getAudioDuration(outputPath);
+    return { audioPath: outputPath, duration, provider: 'aliyun-tts' };
   }
 
   // ============================================================

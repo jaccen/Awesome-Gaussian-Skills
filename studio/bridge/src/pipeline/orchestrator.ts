@@ -33,6 +33,7 @@ import { LlmClient } from '../llm-client.js';
 import { TtsClient } from '../tts-client.js';
 import { VideoGenClient } from '../video-gen-client.js';
 import { FFmpegCompositor } from '../ffmpeg-compositor.js';
+import { AsrClient } from '../asr-client.js';
 import { ToonflowClient } from '../toonflow-client.js';
 
 export interface PipelineManagerOptions {
@@ -40,6 +41,7 @@ export interface PipelineManagerOptions {
   tts?: TtsClient;
   videoGen?: VideoGenClient;
   compositor?: FFmpegCompositor;
+  asr?: AsrClient;
   toonflow?: ToonflowClient;
   outputDir?: string;
 }
@@ -49,6 +51,7 @@ export class PipelineManager extends EventEmitter {
   private tts: TtsClient;
   private videoGen: VideoGenClient;
   private compositor: FFmpegCompositor;
+  private asr: AsrClient;
   private toonflow: ToonflowClient;
   private outputDir: string;
   private tasks: Map<string, PipelineTask> = new Map();
@@ -59,6 +62,7 @@ export class PipelineManager extends EventEmitter {
     this.tts = opts.tts || new TtsClient();
     this.videoGen = opts.videoGen || new VideoGenClient();
     this.compositor = opts.compositor || new FFmpegCompositor();
+    this.asr = opts.asr || new AsrClient();
     this.toonflow = opts.toonflow || new ToonflowClient();
     this.outputDir = opts.outputDir || process.env.PIPELINE_OUTPUT_DIR || '.temp/pipeline';
 
@@ -468,18 +472,25 @@ export class PipelineManager extends EventEmitter {
   // ============================================================
 
   async healthCheck(): Promise<Record<string, any>> {
-    const [llm, tts, videoGen, compositor] = await Promise.all([
+    const [llm, tts, videoGen, compositor, asr] = await Promise.all([
       this.llm.healthCheck().catch(() => false),
       this.tts.healthCheck().catch(() => ({ available: false })),
       this.videoGen.healthCheck().catch(() => ({ available: false })),
       this.compositor.healthCheck().catch(() => false),
+      this.asr.healthCheck().catch(() => ({ available: false })),
     ]);
 
     return {
-      llm: { available: llm, model: process.env.LLM_MODEL || 'deepseek-chat' },
+      llm: {
+        available: llm,
+        model: process.env.LLM_MODEL || 'deepseek-chat',
+        baseUrl: process.env.LLM_BASE_URL || 'https://api.deepseek.com/v1',
+        configured: !!process.env.LLM_API_KEY,
+      },
       tts,
       videoGen,
       compositor: { available: compositor },
+      asr,
       toonflow: { configured: !!process.env.TOONFLOW_URL },
     };
   }

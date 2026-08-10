@@ -61,12 +61,21 @@ export class VideoGenClient {
     const outputPath = opts.outputPath ||
       path.resolve(process.cwd(), this.outputDir, 'video', `${videoId}.mp4`);
 
-    if (this.provider === 'seedance' && this.seedanceKey) {
-      try {
-        return await this._seedance(opts, outputPath);
-      } catch (err: any) {
-        console.warn(`[video-gen] Seedance failed: ${err.message}, using Ken Burns fallback`);
+    // 按供应商优先级尝试
+    try {
+      switch (this.provider) {
+        case 'seedance':
+          if (this.seedanceKey) return await this._seedance(opts, outputPath);
+          break;
+        case 'kling':
+          if (process.env.KLING_API_KEY) return await this._kling(opts, outputPath);
+          break;
+        case 'wan-local':
+          if (process.env.WAN_LOCAL_URL) return await this._wanLocal(opts, outputPath);
+          break;
       }
+    } catch (err: any) {
+      console.warn(`[video-gen] ${this.provider} failed: ${err.message}, using fallback`);
     }
 
     // Fallback: Ken Burns 效果（图片→视频 with zoom/pan）
@@ -149,6 +158,97 @@ export class VideoGenClient {
       // 继续等待
     }
     throw new Error('Seedance: task timed out');
+  }
+
+  // ============================================================
+  // Kling API（快手可灵）
+  // ============================================================
+
+  private async _kling(opts: VideoGenOptions, outputPath: string): Promise<VideoGenResult> {
+    const apiKey = process.env.KLING_API_KEY || '';
+    const apiSecret = process.env.KLING_API_SECRET || '';
+    const baseUrl = process.env.KLING_BASE_URL || 'https://api.kuaishou.com/v1';
+
+    // Kling 使用 JWT 鉴权（简化处理：直接用 API Key）
+    const payload: Record<string, any> = {
+      prompt: opts.prompt,
+      duration: opts.duration,
+      aspect_ratio: opts.width && opts.height ? `${opts.width}:${opts.height}` : '16:9',
+    };
+    if (opts.imageUrl) payload.image = opts.imageUrl;
+    else if (opts.imagePath) {
+      const imgBuffer = fs.readFileSync(opts.imagePath);
+      payload.image = `data:image/png;base64,${imgBuffer.toString('base64')}`;
+    }
+
+    const submitRes = await axios.post(
+      `${baseUrl}/video/generations`,
+      payload,
+      { headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' }, timeout: 30000 }
+    );
+
+    const taskId = submitRes.data?.task_id || submitRes.data?.id;
+    if (!taskId) throw new Error('Kling: no task ID returned');
+
+    for (let i = 0; i < 120; i++) {
+      await new Promise(r => setTimeout(r, 5000));
+      const pollRes = await axios.get(`${baseUrl}/video/generations/${taskId}`,
+        { headers: { 'Authorization': `Bearer ${apiKey}` }, timeout: 10000 });
+      const status = pollRes.data?.status;
+      if (status === 'succeed' || status === 'completed') {
+        const videoUrl = pollRes.data?.video_result?.[0]?.url || pollRes.data?.video_url;
+        if (!videoUrl) throw new Error('Kling: completed but no video URL');
+        const videoRes = await axios.get(videoUrl, { responseType: 'arraybuffer', timeout: 120000 });
+        fs.writeFileSync(outputPath, Buffer.from(videoRes.data));
+        return { videoPath: outputPath, duration: opts.duration, provider: 'kling' };
+      }
+      if (status === 'failed') throw new Error(`Kling task failed: ${pollRes.data?.error || 'unknown'}`);
+    }
+    throw new Error('Kling: task timed out');
+  }
+
+  // ============================================================
+  // 本地 Wan2.1（通过 ComfyUI API）
+  // ============================================================
+
+  private async _wanLocal(opts: VideoGenOptions, outputPath: string): Promise<VideoGenResult> {
+    const comfyUrl = process.env.WAN_LOCAL_URL || 'http://localhost:8188';
+
+    // 构建 ComfyUI 工作流（简化：文本生视频）
+    const workflow = {
+      prompt: opts.prompt,
+      duration: opts.duration,
+      width: opts.width || 1920,
+      height: opts.height || 1080,
+      image: opts.imagePath || opts.imageUrl || null,
+    };
+
+    // 提交工作流
+    const submitRes = await axios.post(`${comfyUrl}/prompt`, { prompt: workflow }, { timeout: 30000 });
+    const promptId = submitRes.data?.prompt_id;
+    if (!promptId) throw new Error('ComfyUI: no prompt_id returned');
+
+    // 轮询
+    for (let i = 0; i < 120; i++) {
+      await new Promise(r => setTimeout(r, 3000));
+      const histRes = await axios.get(`${comfyUrl}/history/${promptId}`, { timeout: 10000 });
+      const outputs = histRes.data?.[promptId]?.outputs;
+      if (outputs) {
+        // 获取输出文件
+        for (const nodeId of Object.keys(outputs)) {
+          const videos = outputs[nodeId]?.videos;
+          if (videos?.length > 0) {
+            const filename = videos[0].filename;
+            const subfolder = videos[0].subfolder || '';
+            const downloadUrl = `${comfyUrl}/view?filename=${filename}&subfolder=${subfolder}&type=output`;
+            const videoRes = await axios.get(downloadUrl, { responseType: 'arraybuffer', timeout: 120000 });
+            fs.writeFileSync(outputPath, Buffer.from(videoRes.data));
+            return { videoPath: outputPath, duration: opts.duration, provider: 'wan-local' };
+          }
+        }
+      }
+    }
+    throw new Error('ComfyUI/Wan2.1: task timed out');
   }
 
   // ============================================================
