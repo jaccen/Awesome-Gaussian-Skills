@@ -503,6 +503,15 @@ This registers 3DGS as both an image model (single-frame render) and video model
 | **Full Video Generation** | Step 6 (Compose) | Final fallback when 3DGS / Toonflow / video gen all produce no clips — uses Pexels / Pixabay / Coverr online materials |
 | **Cross-Platform Publish** | Step 7 (Publish, new) | One-click publish to TikTok / Instagram / YouTube Shorts |
 
+#### Frontend Entry
+
+The Studio Web "Script → Video" page (`/pipeline`) ships a built-in MPT entry:
+
+- **Config panel**: a "🚀 MoneyPrinterTurbo Integration" group at the bottom of the model config section — enable toggle, service URL, material source, default voice, plus a live connection status (Connected / Not connected). Saving writes the settings into `.env`.
+- **Per-task options**: a "🚀 MoneyPrinterTurbo Fallback" block at the bottom of the input section — check "Video fallback" and "TTS fallback" to automatically degrade to MPT when any main-pipeline step (3DGS / Toonflow / TTS) fails; when MPT is enabled you can also pick an MPT voice and publish platforms (TikTok / YouTube / Instagram).
+
+> Note: the bridge auto-loads the project-root `.env` at startup (dependency-free implementation, see `studio/bridge/src/load-env.ts`), so config saved from the UI takes effect **after the bridge restarts**. Launch the bridge from the project root (`npm run dev:bridge` or `scripts/start-dev.ps1`) to ensure the root `.env` is picked up.
+
 #### Setup
 
 ```bash

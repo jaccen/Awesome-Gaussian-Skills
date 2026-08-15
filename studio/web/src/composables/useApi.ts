@@ -135,6 +135,10 @@ export interface PipelineTaskInfo {
     scenes: any[];
     finalVideoUrl?: string;
     durationSec?: number;
+    // MPT 相关
+    mptTaskId?: string;
+    mptFallbackUsed?: boolean;
+    publishResults?: Array<{ platform: string; success: boolean; url?: string; error?: string }>;
   };
   error?: string;
   createdAt: string;
@@ -159,8 +163,40 @@ export async function createPipelineTask(params: {
   voiceMode?: string;
   enableVideoGen?: boolean;
   enableTTS?: boolean;
+  // --- MPT 扩展参数 ---
+  enableMptFallback?: boolean;
+  enableMptTTS?: boolean;
+  mptVoiceName?: string;
+  publishPlatforms?: Array<{
+    name: string;
+    title: string;
+    description?: string;
+    tags?: string[];
+    isShort?: boolean;
+  }>;
 }): Promise<{ task: PipelineTaskInfo }> {
   const res = await api.post('/pipeline/tasks', params, { timeout: 60000 });
+  return res.data;
+}
+
+// ============================================================
+// MPT (MoneyPrinterTurbo) API
+// ============================================================
+
+export interface MptHealthInfo {
+  status: string;
+  available: boolean;
+  url: string;
+  version?: string;
+}
+
+export async function getMptHealth(): Promise<MptHealthInfo> {
+  const res = await api.get('/pipeline/mpt/health');
+  return res.data;
+}
+
+export async function getMptBgm(): Promise<{ musics: any[]; warning?: string }> {
+  const res = await api.get('/pipeline/mpt/bgm');
   return res.data;
 }
 
@@ -200,6 +236,13 @@ export interface PipelineConfig {
     seedanceKeySet: boolean;
     seedanceBaseUrl: string;
   };
+  mpt: {
+    enabled: boolean;
+    apiUrl: string;
+    materialSource: string;
+    defaultVoice: string;
+    configured: boolean;
+  };
   ffmpeg: {
     path: string;
   };
@@ -226,6 +269,12 @@ export interface PipelineConfigSave {
     provider?: string;
     seedanceApiKey?: string;
     seedanceBaseUrl?: string;
+  };
+  mpt?: {
+    enabled?: boolean;
+    apiUrl?: string;
+    materialSource?: string;
+    defaultVoice?: string;
   };
 }
 

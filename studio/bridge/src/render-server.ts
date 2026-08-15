@@ -21,6 +21,11 @@ import { GsMcpClient } from './gs-mcp-client.js';
 import { ToonflowClient } from './toonflow-client.js';
 import { PipelineManager } from './pipeline/orchestrator.js';
 import { createPipelineRouter } from './pipeline-routes.js';
+import { loadEnvFile } from './load-env.js';
+
+// 启动时加载 .env（零依赖）。必须在任何 process.env 读取前执行。
+// 否则 UI 保存到 .env 的配置（LLM/TTS/MPT 等）重启后不会生效。
+loadEnvFile();
 
 export interface RenderServerOptions {
   port?: number;

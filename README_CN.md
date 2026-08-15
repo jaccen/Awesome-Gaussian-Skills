@@ -1,4 +1,5 @@
 ﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -490,6 +491,15 @@ cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
 | **扩展 TTS** | 第 4 步（TTS 配音） | CosyVoice2 → Edge → SAPI 全部失败后降级；新增 Azure / SiliconFlow / ElevenLabs / Gemini 音色 |
 | **全量视频生成** | 第 6 步（FFmpeg 合成） | 3DGS / Toonflow / 视频驱动均无产出时的最终降级 —— 使用 Pexels / Pixabay / Coverr 在线素材生成完整视频 |
 | **跨平台发布** | 第 7 步（发布，新增） | 一键发布到 TikTok / Instagram / YouTube Shorts |
+
+#### 前端入口
+
+Studio Web 的「文稿 → 视频」页面（`/pipeline`）已内置 MPT 入口：
+
+- **配置面板**：模型配置区底部新增「🚀 MoneyPrinterTurbo 集成」分组——启用开关、服务地址、素材来源、默认音色，并实时显示连接状态（已连接 / 未连接）。保存配置即写入 `.env`。
+- **任务级选项**：输入区底部新增「🚀 MoneyPrinterTurbo 兜底」区块——勾选「视频兜底」与「配音兜底」后，主管线（3DGS / Toonflow / TTS）任一步骤失败时自动降级到 MPT；MPT 启用时还可选择 MPT 音色与发布平台（TikTok / YouTube / Instagram）。
+
+> 说明：bridge 启动时会自动加载项目根目录 `.env`（零依赖实现，见 `studio/bridge/src/load-env.ts`），因此 UI 保存的配置**重启 bridge 后生效**。建议从项目根目录启动 bridge（`npm run dev:bridge` 或 `scripts/start-dev.ps1`），以保证读取到根目录 `.env`。
 
 #### 部署步骤
 
