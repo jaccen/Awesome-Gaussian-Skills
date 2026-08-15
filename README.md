@@ -6,7 +6,7 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 783+ Methods, 23 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 783+ Methods, 23 Categories, Intractive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
@@ -361,8 +361,16 @@ Toonflow Engine (:10588)          SplatVerse Studio
 │  Script → Assets →    │  REST   │  Bridge (:10590)          │
 │  Storyboard → Video   │◄──────►│  ├─ Project Browser       │
 │                       │         │  ├─ Render Studio          │
-│  Vendor: 3dgs-renderer│         │  └─ MCP Tools (25 tools)  │
-└──────────────────────┘         │    MCP Renderer (:9842)   │
+│  Vendor: 3dgs-renderer│         │  ├─ MCP Tools (25 tools)  │
+└──────────────────────┘         │  │  MCP Renderer (:9842)  │
+                                  │  ├─ Pipeline (7 steps)     │
+ MoneyPrinterTurbo (:8501)       │  │  ├─ Script Adaptation   │
+┌──────────────────────┐         │  │  ├─ Storyboard          │
+│  Online material →    │  REST   │  │  ├─ Toonflow Sync       │
+│  TTS → FFmpeg → Video │◄──────►│  │  ├─ TTS Dubbing         │
+│  Cross-platform post  │         │  │  ├─ Video Gen           │
+└──────────────────────┘         │  │  ├─ FFmpeg Compose      │
+                                  │  │  └─ Publish (MPT)       │
                                   │  Studio Web (:5173)        │
                                   └───────────────────────────┘
 ```
@@ -474,12 +482,86 @@ This registers 3DGS as both an image model (single-frame render) and video model
 | MCP Renderer | 9842 | WebSocket 3DGS renderer |
 | Bridge Server | 10590 | REST API + SSE, Toonflow proxy |
 | Studio Web | 5173 | Vue 3 SPA frontend |
+| MPT Sidecar | 8501 | MoneyPrinterTurbo API (optional) |
+| MPT Web UI | 8500 | MoneyPrinterTurbo Streamlit UI (optional) |
 
 ### Troubleshooting
 
 - **"Toonflow engine not running"** — Start Toonflow: `npm run prod:full` or manually `node data/serve/app.js` in the Toonflow directory
 - **Projects page shows no storyboards** — Create a script first in Toonflow; storyboards belong to scripts
 - **3DGS vendor not available in Toonflow** — Copy `studio/bridge/vendor/3dgs-renderer.ts` to Toonflow's `data/vendor/` directory
+
+### MoneyPrinterTurbo (MPT) Integration
+
+[MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) is integrated as an **optional HTTP API sidecar**, extending SplatVerse Studio with online material video generation, additional TTS voices, and cross-platform publishing. **Zero intrusion** — when `MPT_ENABLED=false` or `MPT_API_URL` is unset, the pipeline behaves exactly as before.
+
+#### What MPT Adds
+
+| Capability | Pipeline Step | Role |
+|------------|---------------|------|
+| **Extended TTS** | Step 4 (TTS) | Fallback when CosyVoice2 → Edge → SAPI all fail; adds Azure / SiliconFlow / ElevenLabs / Gemini voices |
+| **Full Video Generation** | Step 6 (Compose) | Final fallback when 3DGS / Toonflow / video gen all produce no clips — uses Pexels / Pixabay / Coverr online materials |
+| **Cross-Platform Publish** | Step 7 (Publish, new) | One-click publish to TikTok / Instagram / YouTube Shorts |
+
+#### Setup
+
+```bash
+# 1. Configure MPT (fill in at least one material API key)
+cp mpt-config.example.toml mpt-config.toml
+#    Edit mpt-config.toml — required: pexels.api_key or pixabay.api_key (both free)
+
+# 2. Start MPT container
+docker compose -f docker-compose.mpt.yml up -d
+
+# 3. Verify MPT is running
+curl http://localhost:8501/api/v1/tasks?page=1&page_size=1
+
+# 4. Enable MPT in Studio .env
+#    MPT_ENABLED=true
+#    MPT_API_URL=http://localhost:8501
+```
+
+#### Configuration Reference
+
+| Env Variable | Default | Description |
+|--------------|---------|-------------|
+| `MPT_ENABLED` | `false` | Enable/disable MPT integration |
+| `MPT_API_URL` | (empty) | MPT FastAPI service URL |
+| `MPT_MATERIAL_SOURCE` | `pexels` | Material source: `pexels` / `pixabay` / `coverr` / `local` |
+| `MPT_DEFAULT_VOICE` | `zh-CN-XiaoxiaoNeural` | Default TTS voice name |
+
+MPT-side settings (API keys for Pexels/Pixabay, TTS providers, LLM) go in `mpt-config.toml`, not `.env`. See `mpt-config.example.toml` for the full template.
+
+#### API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/pipeline/mpt/health` | GET | Check MPT service availability |
+| `/api/pipeline/mpt/bgm` | GET | List MPT BGM library |
+| `/api/pipeline/tasks/:id/publish` | POST | Publish video to platforms (`{ platforms: [{ name, title, tags }] }`) |
+
+#### Creating a Task with MPT Fallback
+
+```bash
+curl -s http://localhost:10590/api/pipeline/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "In a quiet town, a kitten named HuaHua chats with a butterfly...",
+    "title": "HuaHua Adventure",
+    "style": "水彩",
+    "videoRatio": "16:9",
+    "enableTTS": true,
+    "enableVideoGen": false,
+    "enableMptFallback": true,
+    "enableMptTTS": true,
+    "mptVoiceName": "zh-CN-XiaoxiaoNeural",
+    "publishPlatforms": [
+      { "name": "tiktok", "title": "HuaHua Adventure", "tags": ["animation", "cat"] }
+    ]
+  }'
+```
+
+The 7-step pipeline: **Script Adaptation → Storyboard → Toonflow Sync → TTS (MPT fallback) → Video Gen → FFmpeg Compose (MPT fallback) → Publish (MPT)**
 
 ## Contributing
 

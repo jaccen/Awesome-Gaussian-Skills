@@ -1,5 +1,4 @@
 ﻿
-
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -350,8 +349,16 @@ Toonflow 引擎 (:10588)             SplatVerse Studio
 │  脚本 → 资产 →        │  REST    │  Bridge 桥接 (:10590)      │
 │  分镜 → 视频          │◄───────►│  ├─ 项目浏览器              │
 │                       │          │  ├─ 渲染工作室              │
-│  供应商: 3dgs-renderer│          │  └─ MCP 工具（25 个）      │
-└──────────────────────┘          │    MCP 渲染器 (:9842)      │
+│  供应商: 3dgs-renderer│          │  ├─ MCP 工具（25 个）      │
+└──────────────────────┘          │  │  MCP 渲染器 (:9842)     │
+                                   │  ├─ 管线（7 步）            │
+ MoneyPrinterTurbo (:8501)        │  │  ├─ 剧本改编              │
+┌──────────────────────┐          │  │  ├─ 智能分镜              │
+│  在线素材 →           │  REST    │  │  ├─ Toonflow 集成        │
+│  TTS → FFmpeg → 视频  │◄───────►│  │  ├─ TTS 配音              │
+│  跨平台发布            │          │  │  ├─ 视频驱动              │
+└──────────────────────┘          │  │  ├─ FFmpeg 合成           │
+                                   │  │  └─ 跨平台发布 (MPT)      │
                                    │  Studio Web (:5173)        │
                                    └───────────────────────────┘
 ```
@@ -463,12 +470,86 @@ cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
 | MCP 渲染器 | 9842 | WebSocket 3DGS 渲染器 |
 | Bridge 服务器 | 10590 | REST API + SSE，Toonflow 代理 |
 | Studio Web | 5173 | Vue 3 单页应用前端 |
+| MPT Sidecar | 8501 | MoneyPrinterTurbo API（可选） |
+| MPT Web UI | 8500 | MoneyPrinterTurbo Streamlit 管理界面（可选） |
 
 ### 常见问题
 
 - **"Toonflow 引擎未运行"** — 启动 Toonflow：`npm run prod:full`，或在 Toonflow 目录下手动执行 `node data/serve/app.js`
 - **项目页看不到分镜** — 先在 Toonflow 中创建脚本，分镜从属于脚本
 - **Toonflow 中没有 3DGS 供应商** — 将 `studio/bridge/vendor/3dgs-renderer.ts` 复制到 Toonflow 的 `data/vendor/` 目录
+
+### MoneyPrinterTurbo (MPT) 集成
+
+[MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) 以**可选 HTTP API Sidecar** 方式集成，为 SplatVerse Studio 扩展在线素材视频生成、额外 TTS 音色和跨平台发布能力。**零侵入** —— `MPT_ENABLED=false` 或 `MPT_API_URL` 未设置时，管线行为与集成前完全一致。
+
+#### MPT 扩展能力
+
+| 能力 | 管线步骤 | 作用 |
+|------|----------|------|
+| **扩展 TTS** | 第 4 步（TTS 配音） | CosyVoice2 → Edge → SAPI 全部失败后降级；新增 Azure / SiliconFlow / ElevenLabs / Gemini 音色 |
+| **全量视频生成** | 第 6 步（FFmpeg 合成） | 3DGS / Toonflow / 视频驱动均无产出时的最终降级 —— 使用 Pexels / Pixabay / Coverr 在线素材生成完整视频 |
+| **跨平台发布** | 第 7 步（发布，新增） | 一键发布到 TikTok / Instagram / YouTube Shorts |
+
+#### 部署步骤
+
+```bash
+# 1. 配置 MPT（至少填入一个素材 API Key）
+cp mpt-config.example.toml mpt-config.toml
+#    编辑 mpt-config.toml —— 必填：pexels.api_key 或 pixabay.api_key（均免费申请）
+
+# 2. 启动 MPT 容器
+docker compose -f docker-compose.mpt.yml up -d
+
+# 3. 验证 MPT 服务
+curl http://localhost:8501/api/v1/tasks?page=1&page_size=1
+
+# 4. 在 Studio .env 中启用 MPT
+#    MPT_ENABLED=true
+#    MPT_API_URL=http://localhost:8501
+```
+
+#### 配置项说明
+
+| 环境变量 | 默认值 | 说明 |
+|----------|--------|------|
+| `MPT_ENABLED` | `false` | 是否启用 MPT 集成 |
+| `MPT_API_URL` | （空） | MPT FastAPI 服务地址 |
+| `MPT_MATERIAL_SOURCE` | `pexels` | 素材来源：`pexels` / `pixabay` / `coverr` / `local` |
+| `MPT_DEFAULT_VOICE` | `zh-CN-XiaoxiaoNeural` | 默认 TTS 音色名称 |
+
+MPT 侧配置（Pexels/Pixabay API Key、TTS 服务商、LLM）在 `mpt-config.toml` 中设置，不在此处 `.env`。完整模板见 `mpt-config.example.toml`。
+
+#### API 端点
+
+| 端点 | 方法 | 说明 |
+|------|------|------|
+| `/api/pipeline/mpt/health` | GET | 检查 MPT 服务可用性 |
+| `/api/pipeline/mpt/bgm` | GET | 获取 MPT BGM 曲库 |
+| `/api/pipeline/tasks/:id/publish` | POST | 发布视频到平台（`{ platforms: [{ name, title, tags }] }`） |
+
+#### 创建带 MPT 降级的任务
+
+```bash
+curl -s http://localhost:10590/api/pipeline/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "在一个宁静的小镇上，一只名叫花花的小猫和蝴蝶聊天...",
+    "title": "花花的冒险",
+    "style": "水彩",
+    "videoRatio": "16:9",
+    "enableTTS": true,
+    "enableVideoGen": false,
+    "enableMptFallback": true,
+    "enableMptTTS": true,
+    "mptVoiceName": "zh-CN-XiaoxiaoNeural",
+    "publishPlatforms": [
+      { "name": "tiktok", "title": "花花的冒险", "tags": ["动画", "猫咪"] }
+    ]
+  }'
+```
+
+7 步管线：**剧本改编 → 智能分镜 → Toonflow 集成 → TTS 配音（MPT 降级）→ 视频驱动 → FFmpeg 合成（MPT 降级）→ 跨平台发布（MPT）**
 
 ## 贡献指南
 
@@ -524,4 +605,3 @@ Apache-2.0。详见 [LICENSE](LICENSE)。
 <div align="center">
 
 **如果这个项目帮你节省了时间，请给一个 Star！**</div>
-

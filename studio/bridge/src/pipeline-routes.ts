@@ -74,6 +74,13 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
         ffmpeg: {
           path: process.env.FFMPEG_PATH || 'ffmpeg',
         },
+        mpt: {
+          enabled: process.env.MPT_ENABLED === 'true',
+          apiUrl: process.env.MPT_API_URL || '',
+          materialSource: process.env.MPT_MATERIAL_SOURCE || 'pexels',
+          defaultVoice: process.env.MPT_DEFAULT_VOICE || 'zh-CN-XiaoxiaoNeural',
+          configured: !!process.env.MPT_API_URL,
+        },
       });
     } catch (err: any) {
       res.status(500).json({ error: err.message });
@@ -138,6 +145,14 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
       // FFmpeg
       if (body.ffmpeg && body.ffmpeg.path) {
         updates['FFMPEG_PATH'] = body.ffmpeg.path;
+      }
+
+      // MPT
+      if (body.mpt) {
+        if (body.mpt.enabled !== undefined) updates['MPT_ENABLED'] = body.mpt.enabled ? 'true' : 'false';
+        if (body.mpt.apiUrl) updates['MPT_API_URL'] = body.mpt.apiUrl;
+        if (body.mpt.materialSource) updates['MPT_MATERIAL_SOURCE'] = body.mpt.materialSource;
+        if (body.mpt.defaultVoice) updates['MPT_DEFAULT_VOICE'] = body.mpt.defaultVoice;
       }
 
       // 逐行更新 .env 内容
@@ -209,6 +224,11 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
         toonflowProjectId: body.toonflowProjectId,
         enableVideoGen: body.enableVideoGen !== false,
         enableTTS: body.enableTTS !== false,
+        // MPT 扩展字段
+        enableMptFallback: body.enableMptFallback === true,
+        enableMptTTS: body.enableMptTTS === true,
+        mptVoiceName: body.mptVoiceName ? String(body.mptVoiceName) : undefined,
+        publishPlatforms: Array.isArray(body.publishPlatforms) ? body.publishPlatforms : undefined,
       };
 
       if (!input.text || input.text.trim().length < 10) {
@@ -297,6 +317,80 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
       stream.on('error', () => {
         if (!res.headersSent) res.status(500).json({ error: 'Stream error' });
       });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // ----------------------------------------------------------
+  // MPT 健康检查
+  // GET /api/pipeline/mpt/health
+  // ----------------------------------------------------------
+  router.get('/mpt/health', async (_req: Request, res: Response) => {
+    const { MptClient } = await import('./mpt-client.js');
+    const mpt = new MptClient();
+    const status = await mpt.healthCheck();
+    res.json({ status: status.available ? 'ok' : 'unavailable', ...status });
+  });
+
+  // ----------------------------------------------------------
+  // MPT BGM 曲库
+  // GET /api/pipeline/mpt/bgm
+  // ----------------------------------------------------------
+  router.get('/mpt/bgm', async (_req: Request, res: Response) => {
+    try {
+      const { MptClient } = await import('./mpt-client.js');
+      const mpt = new MptClient();
+      if (!mpt.isAvailable()) {
+        res.json({ musics: [], warning: 'MPT not configured' });
+        return;
+      }
+      const musics = await mpt.listBgm();
+      res.json({ musics });
+    } catch (err: any) {
+      res.json({ musics: [], error: err.message });
+    }
+  });
+
+  // ----------------------------------------------------------
+  // 跨平台发布
+  // POST /api/pipeline/tasks/:taskId/publish
+  // body: { platforms: MptPublishPlatform[] }
+  // ----------------------------------------------------------
+  router.post('/tasks/:taskId/publish', async (req: Request, res: Response) => {
+    try {
+      const taskId = req.params.taskId as string;
+      const task = pipelineManager.getTask(taskId);
+      if (!task) {
+        res.status(404).json({ error: 'Task not found' });
+        return;
+      }
+      if (!task.output?.mptTaskId) {
+        res.status(400).json({
+          error: '跨平台发布仅支持 MPT 降级生成的视频（需 mptTaskId）',
+        });
+        return;
+      }
+
+      const platforms = req.body?.platforms;
+      if (!Array.isArray(platforms) || platforms.length === 0) {
+        res.status(400).json({ error: 'platforms array required' });
+        return;
+      }
+
+      const { MptClient } = await import('./mpt-client.js');
+      const mpt = new MptClient();
+      if (!mpt.isAvailable()) {
+        res.status(503).json({ error: 'MPT not configured' });
+        return;
+      }
+
+      const results = await mpt.publishVideo(task.output.mptTaskId, platforms);
+      // 更新 task output
+      if (task.output) {
+        task.output.publishResults = results;
+      }
+      res.json({ results });
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

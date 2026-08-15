@@ -39,6 +39,24 @@ export interface PipelineInput {
   toonflowProjectId?: string; // 已有Toonflow项目ID（可选）
   enableVideoGen: boolean;    // 是否启用图→视频驱动
   enableTTS: boolean;         // 是否启用TTS配音
+  // --- MPT 扩展字段 ---
+  /** 是否启用 MPT 作为最终降级（当 3DGS/Toonflow/视频驱动全失败时，用 MPT 在线素材生成完整视频） */
+  enableMptFallback?: boolean;
+  /** 是否启用 MPT TTS 作为额外 TTS 选项（扩展现有 CosyVoice2→Edge→SAPI 降级链） */
+  enableMptTTS?: boolean;
+  /** MPT TTS 音色名称（如 azure-XiaoxiaoNeural / elevenlabs-xxx） */
+  mptVoiceName?: string;
+  /** 跨平台发布配置——完成视频后自动发布到指定平台 */
+  publishPlatforms?: MptPublishPlatform[];
+}
+
+// MPT 跨平台发布配置
+export interface MptPublishPlatform {
+  name: 'tiktok' | 'instagram' | 'youtube';
+  title: string;
+  description?: string;
+  tags?: string[];
+  isShort?: boolean;
 }
 
 export type ArtStyle = '写实' | '国漫' | '日漫' | '美漫' | '水彩' | '3D写实';
@@ -93,6 +111,21 @@ export interface PipelineOutput {
   subtitlePath?: string;     // 字幕文件路径
   thumbnailUrl?: string;     // 缩略图URL
   durationSec?: number;      // 总时长（秒）
+  // --- MPT 扩展字段 ---
+  /** MPT 任务 ID（若使用了 MPT 降级） */
+  mptTaskId?: string;
+  /** MPT 生成的视频是否替代了 Studio 原生管线 */
+  mptFallbackUsed?: boolean;
+  /** 跨平台发布结果 */
+  publishResults?: MptPublishResult[];
+}
+
+// MPT 跨平台发布结果
+export interface MptPublishResult {
+  platform: string;
+  success: boolean;
+  url?: string;
+  error?: string;
 }
 
 // ============================================================

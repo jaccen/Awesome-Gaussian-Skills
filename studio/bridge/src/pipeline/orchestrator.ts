@@ -35,6 +35,7 @@ import { VideoGenClient } from '../video-gen-client.js';
 import { FFmpegCompositor } from '../ffmpeg-compositor.js';
 import { AsrClient } from '../asr-client.js';
 import { ToonflowClient } from '../toonflow-client.js';
+import { MptClient } from '../mpt-client.js';
 
 export interface PipelineManagerOptions {
   llm?: LlmClient;
@@ -43,6 +44,7 @@ export interface PipelineManagerOptions {
   compositor?: FFmpegCompositor;
   asr?: AsrClient;
   toonflow?: ToonflowClient;
+  mpt?: MptClient;
   outputDir?: string;
 }
 
@@ -53,6 +55,7 @@ export class PipelineManager extends EventEmitter {
   private compositor: FFmpegCompositor;
   private asr: AsrClient;
   private toonflow: ToonflowClient;
+  private mpt: MptClient;
   private outputDir: string;
   private tasks: Map<string, PipelineTask> = new Map();
 
@@ -64,6 +67,7 @@ export class PipelineManager extends EventEmitter {
     this.compositor = opts.compositor || new FFmpegCompositor();
     this.asr = opts.asr || new AsrClient();
     this.toonflow = opts.toonflow || new ToonflowClient();
+    this.mpt = opts.mpt || new MptClient();
     this.outputDir = opts.outputDir || process.env.PIPELINE_OUTPUT_DIR || '.temp/pipeline';
 
     // 确保输出目录
@@ -89,6 +93,7 @@ export class PipelineManager extends EventEmitter {
         { name: 'tts', label: 'TTS配音', status: 'pending', progress: 0 },
         { name: 'video_gen', label: '视频驱动', status: 'pending', progress: 0 },
         { name: 'compose', label: 'FFmpeg合成', status: 'pending', progress: 0 },
+        { name: 'publish', label: '跨平台发布', status: 'pending', progress: 0 },
       ],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -206,8 +211,23 @@ export class PipelineManager extends EventEmitter {
             if (dialogueText.trim()) {
               // 根据角色选择声音
               const voice = scene.characters[0]?.name === '旁白' ? 'narrator' : 'default';
-              const result = await this.tts.synthesize(dialogueText, { voice });
-              scene.audioPath = result.audioPath;
+              try {
+                const result = await this.tts.synthesize(dialogueText, { voice });
+                scene.audioPath = result.audioPath;
+              } catch (ttsErr: any) {
+                // MPT TTS 降级：当 Studio 原生 TTS 链（CosyVoice2→Edge→SAPI）全部失败时
+                if (task.input.enableMptTTS && this.mpt.isAvailable()) {
+                  this._updateStepProgress(task, step,
+                    Math.round((i / output.scenes.length) * 100),
+                    `MPT TTS 降级: 分镜${i + 1}/${output.scenes.length}`);
+                  const mptResult = await this.mpt.synthesizeTTS(dialogueText, {
+                    voiceName: task.input.mptVoiceName,
+                  });
+                  scene.audioPath = mptResult.audioPath;
+                } else {
+                  throw ttsErr;
+                }
+              }
             }
           }
           this._updateStepProgress(task, step, 100, `TTS配音完成`);
@@ -257,8 +277,60 @@ export class PipelineManager extends EventEmitter {
         });
       }
 
-      // Step 6: FFmpeg合成
-      await this._runStep(task, 'compose', async (step) => {
+      // --- MPT 最终降级 ---
+      // 当所有分镜均无视频片段（3DGS / Toonflow / 视频驱动全失败），
+      // 且 MPT 降级已启用时，用 MPT 在线素材生成完整视频，跳过 FFmpeg 合成
+      const allVideosMissing = output.scenes.length > 0 &&
+        output.scenes.every(s => !s.videoPath);
+
+      if (allVideosMissing && task.input.enableMptFallback && this.mpt.isAvailable()) {
+        // 用 MPT 全量生成
+        await this._runStep(task, 'compose', async (step) => {
+          this._updateStepProgress(task, step, 10, 'MPT 降级：在线素材生成完整视频...');
+
+          // 拼接完整脚本
+          const fullScript = output.scenes.map(s =>
+            [s.narration, s.dialogue].filter(Boolean).join('\n')
+          ).join('\n\n');
+
+          // 素材关键词：从场景描述提取
+          const terms = output.scenes.map(s => s.sceneDesc).join(' ');
+
+          const mptResult = await this.mpt.generateFullVideo(
+            {
+              script: fullScript || task.input.text,
+              terms,
+              aspectRatio: task.input.videoRatio as '16:9' | '9:16' | '1:1',
+              voiceName: task.input.mptVoiceName,
+              materialSource: undefined, // 使用 MPT 侧默认配置
+            },
+            (progress, message) => {
+              this._updateStepProgress(task, step, 10 + Math.round(progress * 0.85), message);
+            },
+          );
+
+          // 下载 MPT 生成的视频到本地
+          if (mptResult.videoUrl || mptResult.videoPath) {
+            const mptSource = mptResult.videoUrl || mptResult.videoPath!;
+            const localPath = await this.mpt.downloadFile(mptSource);
+            output.finalVideoPath = localPath;
+            output.finalVideoUrl = mptResult.videoUrl || `/api/pipeline/files/${path.basename(localPath)}`;
+            output.durationSec = output.scenes.reduce((sum, s) => sum + s.duration, 0);
+            output.mptTaskId = mptResult.taskId;
+            output.mptFallbackUsed = true;
+            output.subtitlePath = mptResult.subtitleUrl;
+          }
+
+          this._updateStepProgress(task, step, 100,
+            `MPT 降级完成${output.finalVideoPath ? '' : '（无视频产出）'}`);
+        });
+      } else if (allVideosMissing) {
+        // 无任何视频源可用，跳过合成
+        this._skipStep(task, 'compose',
+          '无视频素材可用（3DGS/Toonflow/视频驱动/MPT 均未产出）');
+      } else {
+        // Step 6: FFmpeg合成
+        await this._runStep(task, 'compose', async (step) => {
         this._updateStepProgress(task, step, 30, '正在合成最终视频...');
 
         // P1修复：videoClips 和 audioFiles 保持按 scene 对齐，不分别 filter
@@ -285,6 +357,35 @@ export class PipelineManager extends EventEmitter {
 
         this._updateStepProgress(task, step, 100, `成片完成：${result.durationSec}秒`);
       });
+      }
+
+      // Step 7: 跨平台发布（可选）
+      if (task.input.publishPlatforms && task.input.publishPlatforms.length > 0) {
+        await this._runStep(task, 'publish', async (step) => {
+          if (!output.mptTaskId) {
+            this._updateStepProgress(task, step, 100,
+              '跨平台发布需要 MPT 降级模式（MPT 生成的视频可直接发布）', true);
+            return;
+          }
+          if (!this.mpt.isAvailable()) {
+            this._updateStepProgress(task, step, 100, 'MPT 不可用，跳过发布', true);
+            return;
+          }
+
+          this._updateStepProgress(task, step, 20, `正在发布到 ${task.input.publishPlatforms!.length} 个平台...`);
+          const results = await this.mpt.publishVideo(
+            output.mptTaskId,
+            task.input.publishPlatforms!,
+          );
+          output.publishResults = results;
+
+          const succeeded = results.filter(r => r.success).length;
+          this._updateStepProgress(task, step, 100,
+            `发布完成：${succeeded}/${results.length} 个平台成功`);
+        });
+      } else {
+        this._skipStep(task, 'publish', '未配置发布平台');
+      }
 
       // 完成
       task.status = 'completed';
@@ -493,12 +594,13 @@ export class PipelineManager extends EventEmitter {
   // ============================================================
 
   async healthCheck(): Promise<Record<string, any>> {
-    const [llm, tts, videoGen, compositor, asr] = await Promise.all([
+    const [llm, tts, videoGen, compositor, asr, mpt] = await Promise.all([
       this.llm.healthCheck().catch(() => false),
       this.tts.healthCheck().catch(() => ({ available: false })),
       this.videoGen.healthCheck().catch(() => ({ available: false })),
       this.compositor.healthCheck().catch(() => false),
       this.asr.healthCheck().catch(() => ({ available: false })),
+      this.mpt.healthCheck().catch(() => ({ available: false })),
     ]);
 
     // 检查 Toonflow 实际连通性
@@ -522,6 +624,11 @@ export class PipelineManager extends EventEmitter {
       compositor: { available: compositor },
       asr,
       toonflow: toonflowStatus,
+      mpt: {
+        available: mpt.available,
+        enabled: this.mpt.isAvailable(),
+        url: this.mpt.getApiUrl() || 'not configured',
+      },
     };
   }
 }

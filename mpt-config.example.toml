@@ -1,0 +1,84 @@
+# ============================================================
+# MoneyPrinterTurbo 配置文件模板
+# ============================================================
+# 用法：
+#   cp mpt-config.example.toml mpt-config.toml
+#   编辑 mpt-config.toml，填入你的 API Key
+#   docker compose -f docker-compose.mpt.yml up -d
+#
+# 必填项（至少一个素材源）：
+#   - pexels.api_key  (https://www.pexels.com/api/   免费)
+#   - pixabay.api_key (https://pixabay.com/api/docs/  免费)
+# ============================================================
+
+[app]
+# 视频生成并发数
+max_concurrent_tasks = 1
+# 搜索引擎（用于主题→关键词提取，可选）
+search_engine = "google"
+
+[whisper]
+# 本地 Whisper 模型（subtitle 生成用，不需要可留空）
+model = ""
+
+[proxy]
+# HTTP 代理（不需要可留空）
+http = ""
+https = ""
+
+# ============================================================
+# 素材来源 API Key（至少配一个）
+# ============================================================
+
+[pexels]
+api_key = ""
+
+[pixabay]
+api_key = ""
+
+# ============================================================
+# TTS 语音合成（按需配置，Studio 已有自己的降级链，
+# MPT TTS 仅作为扩展选项。以下任选一个即可）
+# ============================================================
+
+[azure]
+# Azure TTS V2（音色最多，推荐）
+speech_key = ""
+speech_region = ""
+
+[openai]
+# OpenAI TTS（tts-1 / tts-1-hd）
+api_key = ""
+base_url = "https://api.openai.com/v1"
+tts_model = "tts-1"
+
+[siliconflow]
+# 硅基流动（国内可直连，免费额度）
+api_key = ""
+base_url = "https://api.siliconflow.cn/v1"
+tts_model = "FunAudioLLM/CosyVoice2-0.5B"
+tts_voice = "alexlearnapi114"
+
+[elevenlabs]
+# ElevenLabs TTS + Music
+api_key = ""
+
+# ============================================================
+# LLM（MPT 内部脚本生成用，Studio 已有自己的 LLM，
+# MPT 侧 LLM 仅在 subject 模式下使用。可不配）
+# ============================================================
+
+[openai.llm]
+api_key = ""
+base_url = "https://api.openai.com/v1"
+llm_model = "gpt-4o-mini"
+
+[deepseek]
+api_key = ""
+base_url = "https://api.deepseek.com"
+llm_model = "deepseek-chat"
+
+[moonshot]
+api_key = ""
+base_url = "https://api.moonshot.cn/v1"
+llm_model = "moonshot-v1-8k"
