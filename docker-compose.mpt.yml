@@ -4,57 +4,77 @@
 # 用途：以 HTTP API Sidecar 方式运行 MPT，为 SplatVerse Studio
 #       提供扩展 TTS / 在线素材视频生成 / 跨平台发布能力
 #
+# 注意：
+#   - 官方镜像托管在 GHCR：ghcr.io/harry0703/moneyprinterturbo:latest
+#   - MPT 有两个服务：api（FastAPI，8080，Studio bridge 调用）
+#     + webui（Streamlit，8501，可视化操作）
+#
 # 启动：
 #   cp mpt-config.example.toml mpt-config.toml   # 填入 API Key
 #   docker compose -f docker-compose.mpt.yml up -d
 #
 # 验证：
-#   curl http://localhost:8501/api/v1/tasks?page=1&page_size=1
+#   curl http://localhost:8081/api/v1/tasks?page=1&page_size=1
 #
 # 在 Studio .env 中设置：
 #   MPT_ENABLED=true
-#   MPT_API_URL=http://localhost:8501
+#   MPT_API_URL=http://localhost:8081
 # ============================================================
 
+x-common-volumes: &common-volumes
+  # 配置文件：MPT 的 config.toml
+  - ./mpt-config.toml:/MoneyPrinterTurbo/config.toml
+  # 生成的视频/音频/字幕持久化到宿主机
+  - ./mpt-storage:/MoneyPrinterTurbo/storage
+  # 本地素材目录（video_source=local 时读取）
+  - ./mpt-materials:/MoneyPrinterTurbo/materials
+
 services:
-  mpt:
-    # 官方镜像，内置 Python 3.10 + FFmpeg + ImageMagick
-    image: harry0703/moneyprinterturbo:latest
-    container_name: splatverse-mpt
+  api:
+    # 官方镜像，内置 Python 3.11 + FFmpeg
+    # 注意：宿主 8080 可能被其他进程占用（如 TeleAgent 运行时），故映射到 8081
+    image: ghcr.io/harry0703/moneyprinterturbo:latest
+    container_name: splatverse-mpt-api
+    ports:
+      - "127.0.0.1:8081:8080"   # FastAPI REST API（Studio bridge 调用）
+    command: ["python3", "main.py"]
+    volumes: *common-volumes
     restart: unless-stopped
 
-    ports:
-      - "8501:8501"   # FastAPI REST API（Studio bridge 调用）
-      - "8500:8500"   # Streamlit Web UI（可选，可视化操作）
-
-    volumes:
-      # 配置文件：MPT 的 config.toml
-      - ./mpt-config.toml:/MoneyPrinterTurbo/config.toml:ro
-      # 生成的视频/音频/字幕持久化到宿主机
-      - ./mpt-storage:/MoneyPrinterTurbo/storage
-      # 本地素材目录（material_source=local 时读取）
-      - ./mpt-materials:/MoneyPrinterTurbo/materials
-
     environment:
-      # 覆盖 MPT 的工作进程数（默认 1，并发高时调大）
-      - MAX_WORKERS=2
-      # 时区
       - TZ=Asia/Shanghai
 
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/api/v1/tasks?page=1&page_size=1')"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/api/v1/tasks?page=1&page_size=1')"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 30s
+      start_period: 60s
 
-    # 资源限制（按需调整）
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 1G
+  webui:
+    image: ghcr.io/harry0703/moneyprinterturbo:latest
+    container_name: splatverse-mpt-webui
+    ports:
+      - "127.0.0.1:8501:8501"   # Streamlit Web UI（可选，可视化操作）
+    command:
+      [
+        "streamlit",
+        "run",
+        "./webui/Main.py",
+        "--server.address=0.0.0.0",
+        "--server.port=8501",
+        "--browser.serverAddress=127.0.0.1",
+        "--server.enableCORS=True",
+        "--browser.gatherUsageStats=False",
+        "--client.toolbarMode=minimal",
+        "--logger.hideWelcomeMessage=True",
+        "--server.showEmailPrompt=False",
+      ]
+    volumes: *common-volumes
+    restart: unless-stopped
+
+    environment:
+      - TZ=Asia/Shanghai
 
     # 若需 GPU（本地 Whisper / 本地图片生成），取消注释：
     # deploy:

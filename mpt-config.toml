@@ -1,0 +1,122 @@
+# ============================================================
+# MoneyPrinterTurbo 配置文件（SplatVerse Studio 集成版）
+# ============================================================
+# 说明：本文件挂载到 MPT 容器 /MoneyPrinterTurbo/config.toml。
+# 字段结构已对齐新版 MPT（harry0703/MoneyPrinterTurbo 官方 config.example.toml）。
+#
+# 使用：
+#   docker compose -f docker-compose.mpt.yml up -d
+#
+# 验证：
+#   curl http://localhost:8080/api/v1/tasks?page=1&page_size=1
+# ============================================================
+
+# -----------------------------------------------------------------------------
+# API 服务（api 容器以 python3 main.py 启动，监听 listen_port）
+# -----------------------------------------------------------------------------
+log_level = "INFO"
+listen_host = "0.0.0.0"
+listen_port = 8080
+
+# 素材来源：pexels / pixabay / coverr / local
+video_source = "pexels"
+
+# -----------------------------------------------------------------------------
+# 素材 API Key（至少配一个才能生成视频；多个 Key 用英文逗号分隔）
+#   Pexels:  https://www.pexels.com/api/   （免费）
+#   Pixabay: https://pixabay.com/api/docs/  （免费）
+#   Coverr:  https://coverr.co/developers
+# -----------------------------------------------------------------------------
+pexels_api_keys = []
+pixabay_api_keys = []
+coverr_api_keys = []
+
+# -----------------------------------------------------------------------------
+# LLM 提供商（MPT 内部脚本生成用；Studio 已有自己的 LLM，MPT 侧可不配）
+# llm_provider 取值见 app/models/llm_provider.py 注册表：
+#   moonshot / openai / gemini / deepseek / qwen / azure / volcengine /
+#   grok / minimax / mimo / cloudflare / modelscope / aihubmix / aimlapi /
+#   evolink / ollama / oneapi / litellm / groq / pollinations
+# -----------------------------------------------------------------------------
+llm_provider = "deepseek"
+deepseek_api_key = ""
+deepseek_base_url = ""
+deepseek_model_name = ""
+
+# -----------------------------------------------------------------------------
+# 字幕与 TTS（Studio 已有 TTS 降级链，MPT TTS 仅作扩展选项）
+# -----------------------------------------------------------------------------
+subtitle_provider = "edge"
+
+# -----------------------------------------------------------------------------
+# 存储与任务运行
+# -----------------------------------------------------------------------------
+# 生成视频下载链接的公共 Base URL；留空则使用当前 API 服务地址
+endpoint = ""
+# 素材目录；"" 使用 ./storage/cache_videos，"task" 存在各任务目录，
+# 绝对路径存在指定目录（本地素材场景可指向 /MoneyPrinterTurbo/materials）
+material_directory = ""
+
+# 最大并发/排队视频生成任务数
+max_concurrent_tasks = 5
+max_queued_tasks = 100
+
+# -----------------------------------------------------------------------------
+# 跨平台发布（Upload-Post；Studio 调用 MPT publish 端点时需要）
+# -----------------------------------------------------------------------------
+upload_post_enabled = false
+upload_post_api_key = ""
+upload_post_username = ""
+upload_post_platforms = ["tiktok", "instagram", "youtube"]
+upload_post_auto_upload = false
+upload_post_youtube_privacy_status = "public"
+upload_post_max_pending_tasks = 10
+
+# -----------------------------------------------------------------------------
+# Whisper 字幕（本地模型，仅 subtitle_provider=whisper 时加载）
+# -----------------------------------------------------------------------------
+[whisper]
+model_size = "large-v3"
+device = "cpu"
+compute_type = "int8"
+
+# -----------------------------------------------------------------------------
+# 素材请求代理（可选）
+# -----------------------------------------------------------------------------
+[proxy]
+
+# -----------------------------------------------------------------------------
+# TTS 提供商（任选其一，留空则使用默认 Edge TTS）
+# -----------------------------------------------------------------------------
+[azure]
+speech_key = ""
+speech_region = ""
+
+[siliconflow]
+api_key = ""
+
+[minimax_tts]
+api_key = ""
+base_url = ""
+model_id = "speech-2.8-hd"
+voice_id = "English_expressive_narrator"
+
+[elevenlabs]
+api_key = ""
+model_id = "eleven_multilingual_v2"
+music_model_id = "music_v2"
+music_timeout = 600
+
+[chatterbox]
+base_url = "http://127.0.0.1:4123/v1"
+api_key = ""
+model_id = "chatterbox"
+voices = ["default-Female"]
+
+# -----------------------------------------------------------------------------
+# WebUI 偏好
+# -----------------------------------------------------------------------------
+[ui]
+hide_log = false
+open_task_folder_on_completion = false
+language = "zh"
