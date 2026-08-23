@@ -1,3 +1,4 @@
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -364,15 +365,35 @@ Toonflow 引擎 (:10588)             SplatVerse Studio
 
 ### 快速启动
 
-**前提条件：** Node.js ≥ 18，Toonflow 应用已安装到 `../AI应用/Toonflow-app`
+**前提条件：** [Node.js ≥ 18](https://nodejs.org/)（Toonflow 与 MoneyPrinterTurbo 为可选项）。
+
+一键启动脚本会在首次运行时自动完成全部准备工作：检测 Node.js、缺失 `.env` 时从 `.env.example` 复制、缺失依赖时自动 `npm install`、缺失构建产物时自动编译 MCP 服务器 / Bridge，然后依次启动
+**Toonflow Studio (:10588)**（若检测到）、**MCP 3D 渲染器 (:9842)**、**Bridge 服务器 (:10590)** 与 **Studio Web (:5173)**，对每个服务做健康检查，并自动打开浏览器。
+
+#### 方式一 — Windows 双击（最推荐）
+
+下载项目后，直接双击项目根目录下的 **`start-all.bat`** 即可。所有服务自动启动，浏览器自动打开 `http://localhost:5173`。
+
+#### 方式二 — npm（任何系统）
 
 ```bash
-# 1. 一键启动所有服务（Toonflow + MCP 服务器 + Bridge + Studio Web）
-npm run prod:full
-
-# 2. 打开 Studio Web
-#    http://localhost:5173
+npm run start:all
 ```
+
+#### 方式三 — PowerShell（Windows）
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-all.ps1
+```
+
+> **仅生成视频时才需要手动配置一步：** 在生成的 `.env` 中设置 `LLM_API_KEY`（用于脚本/分镜生成）。
+>
+> Toonflow（可选项，用于完整视频管线）会自动探测 `../AI应用/Toonflow-app`、`../Toonflow-app`、`./Toonflow-app` 或 `TOONFLOW_APP_DIR` 环境变量。
+> MoneyPrinterTurbo（可选项，需 Docker）仅在 `.env` 中设置 `MPT_ENABLED=true` 时启动。
+
+常用参数：`-NoToonflow` 跳过 Toonflow，`-NoMpt` 跳过 MPT，`-NoBrowser` 不自动打开浏览器，`-SkipInstall` 跳过 `npm install`。
+
+#### 仅 3DGS 渲染（不含 Toonflow）
 
 如果只需要 3DGS 渲染工具，不需要 Toonflow：
 
@@ -474,7 +495,7 @@ cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
 
 ### 常见问题
 
-- **"Toonflow 引擎未运行"** — 启动 Toonflow：`npm run prod:full`，或在 Toonflow 目录下手动执行 `node data/serve/app.js`
+- **"Toonflow 引擎未运行"** — 启动 Toonflow：`npm run start:all`，或在 Toonflow 目录下手动执行 `node data/serve/app.js`
 - **项目页看不到分镜** — 先在 Toonflow 中创建脚本，分镜从属于脚本
 - **Toonflow 中没有 3DGS 供应商** — 将 `studio/bridge/vendor/3dgs-renderer.ts` 复制到 Toonflow 的 `data/vendor/` 目录
 

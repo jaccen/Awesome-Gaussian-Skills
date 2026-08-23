@@ -1,14 +1,14 @@
 # ============================================================
 # MoneyPrinterTurbo 配置文件模板
 # ============================================================
+# 注意：本文件为早期格式，仅作参考；实际挂载到 MPT 容器使用的
+# 是 mpt-config.toml（其结构已对齐 MPT v1.3.5 官方 config.example.toml）。
+# 以 mpt-config.toml 为准，勿直接用本文件。
+#
 # 用法：
 #   cp mpt-config.example.toml mpt-config.toml
 #   编辑 mpt-config.toml，填入你的 API Key
 #   docker compose -f docker-compose.mpt.yml up -d
-#
-# 必填项（至少一个素材源）：
-#   - pexels.api_key  (https://www.pexels.com/api/   免费)
-#   - pixabay.api_key (https://pixabay.com/api/docs/  免费)
 # ============================================================
 
 [app]

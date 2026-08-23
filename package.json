@@ -20,6 +20,7 @@
     "build:web": "npm run build --workspace=studio/web",
     "build:mcp": "npm run build --workspace=mcp-server",
     "start": "npm run build && npm run dev",
+    "start:all": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-all.ps1",
     "prod": "powershell -File scripts/start-prod.ps1",
     "prod:quick": "powershell -File scripts/start-prod.ps1 -SkipBuild",
     "prod:full": "powershell -File scripts/start-prod.ps1 -Toonflow"

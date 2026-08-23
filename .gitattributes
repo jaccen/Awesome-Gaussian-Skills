@@ -1,0 +1,27 @@
+# AIGC 水印自动剥离 filter（git add 时清理，工作区文件不受影响）
+*.md    filter=strip-aigc
+*.txt   filter=strip-aigc
+*.json  filter=strip-aigc
+*.yaml  filter=strip-aigc
+*.yml   filter=strip-aigc
+*.toml  filter=strip-aigc
+*.ps1   filter=strip-aigc
+*.py    filter=strip-aigc
+*.js    filter=strip-aigc
+*.ts    filter=strip-aigc
+*.vue   filter=strip-aigc
+*.html  filter=strip-aigc
+*.css   filter=strip-aigc
+*.tex   filter=strip-aigc
+*.bib   filter=strip-aigc
+
+# 二进制文件不要走 filter
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.pdf   binary
+*.docx  binary
+*.xlsx  binary
+*.pptx  binary

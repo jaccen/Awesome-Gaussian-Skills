@@ -47,3 +47,8 @@ build/
 
 ~$*
 *.docx
+
+# Large 3D assets (training artifacts, not for repo)
+*.ply
+*.splat
+*.binvox

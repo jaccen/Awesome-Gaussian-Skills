@@ -1,3 +1,4 @@
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -378,15 +379,44 @@ Toonflow Engine (:10588)          SplatVerse Studio
 
 ### Quick Start
 
-**Prerequisites:** Node.js ≥ 18, Toonflow app installed at `../AI应用/Toonflow-app`
+**Prerequisites:** [Node.js ≥ 18](https://nodejs.org/) (Toonflow and MoneyPrinterTurbo are optional).
+
+The one-click launcher starts everything automatically on first run:
+checks Node.js, creates `.env` from `.env.example` if missing, runs `npm install`
+if dependencies are missing, builds the MCP Server / Bridge binaries if needed, then
+starts **Toonflow Studio (:10588)** (if found), **MCP 3D Renderer (:9842)**,
+**Bridge Server (:10590)** and **Studio Web (:5173)**, health-checks every service,
+and opens your browser.
+
+#### Option A — Windows (double-click)
+
+Download the project, then double-click **`start-all.bat`** in the project root.
+That's it — all services start automatically and a browser opens at `http://localhost:5173`.
+
+#### Option B — npm (any OS)
 
 ```bash
-# 1. Start all services (Toonflow + MCP Server + Bridge + Studio Web)
-npm run prod:full
-
-# 2. Open Studio Web
-#    http://localhost:5173
+npm run start:all
 ```
+
+#### Option C — PowerShell (Windows)
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-all.ps1
+```
+
+> **One-time manual step only needed for video generation:** set `LLM_API_KEY` in the
+> generated `.env` (used for script/storyboard generation).
+>
+> Toonflow (optional, for the full video pipeline) is auto-detected from
+> `../AI应用/Toonflow-app`, `../Toonflow-app`, `./Toonflow-app`, or `TOONFLOW_APP_DIR`.
+> MoneyPrinterTurbo (optional, needs Docker) is started only when `MPT_ENABLED=true`
+> in `.env`.
+
+Useful flags: `-NoToonflow` skip Toonflow, `-NoMpt` skip MPT, `-NoBrowser` skip
+auto-opening the browser, `-SkipInstall` skip `npm install`.
+
+#### Minimal (no Toonflow)
 
 If you only need the 3DGS rendering tools without Toonflow:
 
@@ -488,7 +518,7 @@ This registers 3DGS as both an image model (single-frame render) and video model
 
 ### Troubleshooting
 
-- **"Toonflow engine not running"** — Start Toonflow: `npm run prod:full` or manually `node data/serve/app.js` in the Toonflow directory
+- **"Toonflow engine not running"** — Start Toonflow: `npm run start:all` or manually `node data/serve/app.js` in the Toonflow directory
 - **Projects page shows no storyboards** — Create a script first in Toonflow; storyboards belong to scripts
 - **3DGS vendor not available in Toonflow** — Copy `studio/bridge/vendor/3dgs-renderer.ts` to Toonflow's `data/vendor/` directory
 
