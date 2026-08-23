@@ -10,7 +10,7 @@ import {
 
 test('voice intent mapper covers all documented patterns', () => {
   const intents = listVoiceIntents();
-  assert.equal(intents.length, 40, `expected 40 intent rules (23 core + 8 sculpting + 9 slat), got ${intents.length}`);
+  assert.equal(intents.length, 42, `expected 42 intent rules (23 core + 8 sculpting + 9 slat + 2 cross-scene), got ${intents.length}`);
   for (const i of intents) {
     assert.ok(i.intent && i.tools.length > 0, `intent ${i.intent} missing tools`);
   }

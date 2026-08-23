@@ -13,12 +13,8 @@ function detectInitialLocale(): Locale {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved === 'zh' || saved === 'en') return saved;
 
-  // 2. Check browser language
-  const browserLang = navigator.language.toLowerCase();
-  if (browserLang.startsWith('zh')) return 'zh';
-
-  // 3. Default to English
-  return 'en';
+  // 2. Default to Chinese
+  return 'zh';
 }
 
 // Global reactive locale — shared across all components

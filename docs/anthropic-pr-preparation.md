@@ -1,3 +1,4 @@
+
 # PR Submission Preparation — anthropics/skills
 
 > This document contains the prepared PR description for submitting Awesome Gaussian Skills to the official `anthropics/skills` repository. Copy the content below into a GitHub PR when ready to submit.
@@ -13,7 +14,7 @@ Add Awesome Gaussian Skills — 15 3DGS research lifecycle skills + MCP sculpt p
 ```markdown
 ## Awesome Gaussian Skills
 
-A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussian Splatting (3DGS) research lifecycle — from paper reading to production deployment. Built on a knowledge base of 790+ methods across 23 categories with 108+ known code bug patterns and 60+ runtime training failure patterns. Includes a working MCP server (v1.0.0) with 19 core tools, a spec-first sculpting pipeline, and SLAT latent editing for voice-driven 3D scene construction.
+A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussian Splatting (3DGS) research lifecycle — from paper reading to production deployment. Built on a knowledge base of 790+ methods across 23 categories with 108+ known code bug patterns and 60+ runtime training failure patterns. Includes a working MCP server (v1.1.0) with 21 core tools, a spec-first sculpting pipeline, SLAT latent editing, and cross-scene latent transfer for voice-driven 3D scene construction.
 
 ### Skills Included (15)
 
@@ -30,7 +31,7 @@ A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussia
 | 9 | `3dgs-compression-deploy` | Compress & deploy: quantize, prune, VQ, stream, Web/Mobile | Post-training |
 | 10 | `cad-mesh-3dgs` | Bridge CAD/Mesh and 3DGS representations (40+ methods) | Cross-phase |
 | 11 | `3dgs-spatial-agent` | 3DGS/CAD/Mesh spatial intelligence agent | Cross-phase |
-| 12 | `3dgs-mcp-renderer` | MCP-controlled Three.js/3DGS rendering + sculpt pipeline + SLAT latent editing (19 core + 13 experimental tools) | Cross-phase |
+| 12 | `3dgs-mcp-renderer` | MCP-controlled Three.js/3DGS rendering + sculpt pipeline + SLAT latent editing + cross-scene transfer (21 core + 13 experimental tools) | Cross-phase |
 | 13 | `3dgs-articulated-reasoner` | Articulated object reasoning & digital twin | Cross-phase |
 | 14 | `nerf-to-3dgs-migrator` | Migrate NeRF methods to 3DGS | Cross-phase |
 | 15 | `patent-software-ip` | Generate patent/copyright docs from AI projects | Cross-phase |
@@ -53,8 +54,8 @@ A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussia
 2. **Anti-hallucination guardrails**: Every skill enforces categorical prohibitions against fabricated data, hallucinated citations, and silent speculation
 3. **Domain-specific bug databases**: 108+ static code review patterns + 60+ runtime training patterns
 4. **Knowledge base integration**: Shared `references/` directory with 790+ method entries, updated daily
-5. **MCP server with sculpt + SLAT pipeline**: `3dgs-mcp-renderer` includes a working TypeScript MCP server (v1.0.0) with 19 core tools (import, render, query, modify, prune, sculpt, export, encode/edit/list latent) and 13 experimental tool stubs. The spec-first sculpting pipeline supports 6-stage gate-evaluated sculpting (blockout → structural → form → material → surface → lighting) with code-first export to Three.js procedural geometry + .splat binary. SLAT latent editing adds encode/edit/decode of structured scene latents with 7 edit ops and a 10% safety gate.
-6. **Voice-driven scene construction**: 40 regex-based voice intent rules map natural language to MCP tool calls, including 8 sculpting-specific and 9 SLAT-specific commands for stage-by-stage pipeline execution
+5. **MCP server with sculpt + SLAT pipeline**: `3dgs-mcp-renderer` includes a working TypeScript MCP server (v1.1.0) with 21 core tools (import, render, query, modify, prune, sculpt, export, encode/edit/list latent, transfer/interpolate latent) and 13 experimental tool stubs. The spec-first sculpting pipeline supports 6-stage gate-evaluated sculpting (blockout → structural → form → material → surface → lighting) with code-first export to Three.js procedural geometry + .splat binary. SLAT latent editing adds encode/edit/decode of structured scene latents with 7 edit ops and a 10% safety gate; cross-scene transfer re-applies a latent edit across scenes (relative change) and interpolates two scenes in latent space.
+6. **Voice-driven scene construction**: 42 regex-based voice intent rules map natural language to MCP tool calls, including 8 sculpting-specific and 11 SLAT-specific commands (9 single-scene + 2 cross-scene) for stage-by-stage pipeline execution
 
 ### Installation
 
@@ -78,7 +79,7 @@ Each skill can be tested independently:
     /3dgs-training-debugger "NaN at iteration 500"
     /3dgs-method-compare 3DGS Mip-NeRF360
 
-MCP server tests (25 tests, Node.js test runner):
+MCP server tests (71 tests, Node.js test runner):
 
     cd mcp-server && npm test
 
@@ -86,7 +87,7 @@ MCP server tests (25 tests, Node.js test runner):
 
 - **GitHub**: https://github.com/jaccen/Awesome-Gaussian-Skills
 - **License**: Apache-2.0
-- **Version**: v1.0.0 (MCP server) / v0.8.1 (knowledge base)
+- **Version**: v1.1.0 (MCP server) / v0.8.1 (knowledge base)
 - **Last updated**: August 23, 2026
 ```
 
@@ -102,17 +103,18 @@ MCP server tests (25 tests, Node.js test runner):
 | `## Related Skills` | 15/15 (100%) | Cross-references |
 | `## Guardrail: Do Not Apply From Memory` | 15/15 (100%) | Knowledge freshness guard |
 
-## MCP Server Status (v1.0.0)
+## MCP Server Status (v1.1.0)
 
 | Component | Status | Details |
 |-----------|--------|---------|
-| Core tools (19) | Implemented | import_scene, set_camera, modify_gaussians, render_frame, query_scene, cast_ray, export_result, prune_by_importance, set_gaussian_density, adjust_opacity, set_rotation, query_spatial_context, resolve_voice_command, define_scene_spec, sculpt_pipeline, export_scene_code, encode_scene_slatent, edit_scene_latent, list_slatents |
+| Core tools (21) | Implemented | import_scene, set_camera, modify_gaussians, render_frame, query_scene, cast_ray, export_result, prune_by_importance, set_gaussian_density, adjust_opacity, set_rotation, query_spatial_context, resolve_voice_command, define_scene_spec, sculpt_pipeline, export_scene_code, encode_scene_slatent, edit_scene_latent, list_slatents, transfer_scene_edit, interpolate_scene_latent |
 | Experimental tools (13) | Schema-only stubs | Requires INCLUDE_EXPERIMENTAL=1 env var |
 | Sculpt pipeline (6 stages) | Implemented | blockout → structural → form → material → surface → lighting, with quality gate evaluation |
 | SLAT latent editing (3 tools) | Implemented | encode_scene_slatent / edit_scene_latent / list_slatents, 7 edit ops, 10% safety gate |
-| Voice intent rules (40) | Implemented | 23 core + 8 sculpting + 9 SLAT rules |
+| SLAT cross-scene transfer (2 tools) | Implemented | transfer_scene_edit / interpolate_scene_latent, voxel-grid spatial correspondence, 10% safety gate |
+| Voice intent rules (42) | Implemented | 23 core + 8 sculpting + 9 SLAT + 2 cross-scene rules |
 | Code-first export | Implemented | Three.js procedural JS + .splat binary, standalone HTML with CDN |
-| Tests | 60 tests | 6 test files covering exporters, PLY, pruning/spatial, voice validation, sculpt pipeline, SLAT |
+| Tests | 71 tests | 7 test files covering exporters, PLY, pruning/spatial, voice validation, sculpt pipeline, SLAT, cross-scene transfer |
 | TypeScript compilation | 0 errors | strict mode, ES2022 |
 
 ## Remaining Technical Debt (Non-blocking for PR)

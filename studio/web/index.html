@@ -9,7 +9,7 @@
     // Set initial lang before Vue loads — prevents flash of wrong language
     (function() {
       var saved = localStorage.getItem('splatverse-locale');
-      var lang = saved || (navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en');
+      var lang = saved === 'en' ? 'en' : 'zh';
       document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     })();
   </script>

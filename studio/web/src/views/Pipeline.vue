@@ -51,13 +51,13 @@
             </select>
           </div>
           <div class="config-row">
-            <label>API Key</label>
+            <label>API 密钥</label>
             <input v-model="configForm.llm.apiKey" type="password" placeholder="sk-..."
               :class="['text-input', config?.llm?.apiKeySet ? 'has-value' : '']" />
             <span class="input-hint" v-if="config?.llm?.apiKeySet">已设置（如需修改请重新输入）</span>
           </div>
           <div class="config-row">
-            <label>Base URL</label>
+            <label>接口地址</label>
             <input v-model="configForm.llm.baseUrl" class="text-input" placeholder="https://api.deepseek.com/v1" />
           </div>
           <div class="config-row">
@@ -88,12 +88,12 @@
             <select v-model="configForm.tts.provider" class="select-input">
               <option value="edge">EdgeTTS（免费，无需Key）</option>
               <option value="cosyvoice">CosyVoice2（本地部署，声音克隆）</option>
-              <option value="openai">OpenAI TTS</option>
+              <option value="openai">OpenAI 语音</option>
               <option value="aliyun">阿里云语音合成</option>
             </select>
           </div>
           <div class="config-row" v-if="configForm.tts.provider === 'cosyvoice'">
-            <label>CosyVoice URL</label>
+            <label>CosyVoice 地址</label>
             <input v-model="configForm.tts.cosyvoiceUrl" class="text-input" placeholder="http://localhost:5000" />
           </div>
         </div>
@@ -120,8 +120,8 @@
             <select v-model="configForm.asr.whisperModel" class="select-input">
               <option value="tiny">tiny（最快，精度低）</option>
               <option value="base">base（推荐平衡）</option>
-              <option value="small">small</option>
-              <option value="medium">medium</option>
+              <option value="small">small（较快，精度中）</option>
+              <option value="medium">medium（均衡）</option>
               <option value="large">large（最精确，需GPU）</option>
             </select>
           </div>
@@ -148,7 +148,7 @@
             </select>
           </div>
           <div class="config-row" v-if="configForm.videoGen.provider === 'seedance'">
-            <label>Seedance Key</label>
+            <label>Seedance 密钥</label>
             <input v-model="configForm.videoGen.seedanceApiKey" type="password" placeholder="sk-..."
               :class="['text-input', config?.videoGen?.seedanceKeySet ? 'has-value' : '']" />
           </div>

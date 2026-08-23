@@ -1,12 +1,13 @@
 /**
- * MCP Tool Definitions & Handlers — v1.0 (SLAT Latent Editing)
+ * MCP Tool Definitions & Handlers — v1.1 (SLAT Latent Editing + Cross-Scene Transfer)
  *
  * Core tools (real implementations, always listed):
  *   import_scene, set_camera, modify_gaussians, render_frame, query_scene,
  *   cast_ray, export_result, prune_by_importance, set_gaussian_density,
  *   adjust_opacity, set_rotation, query_spatial_context, resolve_voice_command,
  *   define_scene_spec, sculpt_pipeline, export_scene_code,
- *   encode_scene_slatent, edit_scene_latent, list_slatents
+ *   encode_scene_slatent, edit_scene_latent, list_slatents,
+ *   transfer_scene_edit, interpolate_scene_latent
  *
  * Experimental tools (schema complete, backend pending — ONLY listed when
  * INCLUDE_EXPERIMENTAL=1, and explicitly marked as unimplemented):
@@ -137,6 +138,57 @@ function guarded(fn: (args: Record<string, unknown>, ctx: ToolContext) => Promis
       throw err;
     }
   };
+}
+
+/**
+ * Parse a raw `op` object (snake_case MCP layer) into a typed LatentEditOp
+ * (camelCase core layer). Shared by edit_scene_latent and transfer_scene_edit.
+ */
+function parseLatentEditOp(opRaw: Record<string, unknown>): LatentEditOp {
+  const op = opRaw.op as LatentEditOp['op'];
+  const validOps: LatentEditOp['op'][] = ['translate', 'scale', 'rotate', 'recolor', 'opacity', 'smooth', 'delete'];
+  if (!validOps.includes(op)) {
+    throw new ValidationError(`Invalid op "${op}". Must be one of: ${validOps.join(', ')}`);
+  }
+  const selector = (opRaw.selector ?? {}) as LatentSelector;
+  if (!selector.region && !selector.bbox && !selector.part) {
+    throw new ValidationError('op.selector must include at least one of region / bbox / part');
+  }
+  switch (op) {
+    case 'translate': {
+      const delta = asVec3(opRaw, 'delta', { required: true })!;
+      return { op, selector, delta };
+    }
+    case 'scale': {
+      const factor = asNumber(opRaw, 'factor', { required: true, min: 0.01, max: 100 })!;
+      const origin = asVec3(opRaw, 'origin') as [number, number, number] | undefined;
+      return { op, selector, factor, origin };
+    }
+    case 'rotate': {
+      const axis = asString(opRaw, 'axis', { enum: ['x', 'y', 'z'], required: true }) as 'x' | 'y' | 'z';
+      const angleDeg = asNumber(opRaw, 'angle_deg', { required: true })!;
+      const origin = asVec3(opRaw, 'origin') as [number, number, number] | undefined;
+      return { op, selector, axis, angleDeg, origin };
+    }
+    case 'recolor': {
+      const color = asVec3(opRaw, 'color', { required: true })! as [number, number, number];
+      const mix = asNumber(opRaw, 'mix', { default: 1, min: 0, max: 1 })!;
+      return { op, selector, color, mix };
+    }
+    case 'opacity': {
+      const opacity = asNumber(opRaw, 'opacity', { required: true, min: 0, max: 1 })!;
+      const mode = (asString(opRaw, 'mode', { enum: ['set', 'multiply'] }) ?? 'set') as 'set' | 'multiply';
+      return { op, selector, opacity, mode };
+    }
+    case 'smooth': {
+      const iterations = asNumber(opRaw, 'iterations', { default: 1, min: 1, max: 8 })!;
+      return { op, selector, iterations };
+    }
+    case 'delete':
+      return { op, selector };
+    default:
+      throw new ValidationError(`Unhandled op "${op}"`);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -1112,60 +1164,8 @@ const coreTools: MCPTool[] = [
         throw new ValidationError(`SLAT snapshot not found: ${slatId}. Call encode_scene_slatent first.`);
       }
 
-      const op = opRaw.op as LatentEditOp['op'];
-      const validOps: LatentEditOp['op'][] = ['translate', 'scale', 'rotate', 'recolor', 'opacity', 'smooth', 'delete'];
-      if (!validOps.includes(op)) {
-        throw new ValidationError(`Invalid op "${op}". Must be one of: ${validOps.join(', ')}`);
-      }
-      const selector = (opRaw.selector ?? {}) as LatentSelector;
-      if (!selector.region && !selector.bbox && !selector.part) {
-        throw new ValidationError('op.selector must include at least one of region / bbox / part');
-      }
-
-      // Build a typed LatentEditOp
-      let edit: LatentEditOp;
-      switch (op) {
-        case 'translate': {
-          const delta = asVec3(opRaw, 'delta', { required: true })!;
-          edit = { op, selector, delta };
-          break;
-        }
-        case 'scale': {
-          const factor = asNumber(opRaw, 'factor', { required: true, min: 0.01, max: 100 })!;
-          const origin = asVec3(opRaw, 'origin') as [number, number, number] | undefined;
-          edit = { op, selector, factor, origin };
-          break;
-        }
-        case 'rotate': {
-          const axis = asString(opRaw, 'axis', { enum: ['x', 'y', 'z'], required: true }) as 'x' | 'y' | 'z';
-          const angleDeg = asNumber(opRaw, 'angle_deg', { required: true })!;
-          const origin = asVec3(opRaw, 'origin') as [number, number, number] | undefined;
-          edit = { op, selector, axis, angleDeg, origin };
-          break;
-        }
-        case 'recolor': {
-          const color = asVec3(opRaw, 'color', { required: true })! as [number, number, number];
-          const mix = asNumber(opRaw, 'mix', { default: 1, min: 0, max: 1 })!;
-          edit = { op, selector, color, mix };
-          break;
-        }
-        case 'opacity': {
-          const opacity = asNumber(opRaw, 'opacity', { required: true, min: 0, max: 1 })!;
-          const mode = (asString(opRaw, 'mode', { enum: ['set', 'multiply'] }) ?? 'set') as 'set' | 'multiply';
-          edit = { op, selector, opacity, mode };
-          break;
-        }
-        case 'smooth': {
-          const iterations = asNumber(opRaw, 'iterations', { default: 1, min: 1, max: 8 })!;
-          edit = { op, selector, iterations };
-          break;
-        }
-        case 'delete': {
-          edit = { op, selector };
-          break;
-        }
-      }
-
+      const edit = parseLatentEditOp(opRaw);
+      const op = edit.op;
       const result = mgr.edit(slatId, edit);
 
       // Hard safety gate: >10% of scene affected requires confirmation
@@ -1218,6 +1218,169 @@ const coreTools: MCPTool[] = [
     handler: guarded(async (_args, ctx) => {
       void ctx;
       return json({ slats: getSlatManager().list() });
+    }),
+  },
+  // === Tool 20: transfer_scene_edit ===
+  {
+    name: 'transfer_scene_edit',
+    description: 'Replay a latent edit (any of the 7 SLAT ops) computed on one scene onto a different scene. The op is applied to the source snapshot; each edited source voxel transfers its RELATIVE change (position offset, color offset, opacity ratio, delete) to the spatially nearest target voxel within match_radius. Use to reuse a look/edit across scenes (e.g. recolor or lift the same region in two captures). Optionally decodes the resulting target deltas back into a scene.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        scene_id: { type: 'string', description: 'Target scene to apply the transferred deltas to (required when apply_to_scene=true)' },
+        source_slat_id: { type: 'string', description: 'SLAT snapshot to compute the edit on (from encode_scene_slatent)' },
+        target_slat_id: { type: 'string', description: 'SLAT snapshot to transfer the edit onto' },
+        op: {
+          type: 'object',
+          description: 'Latent edit operation (same shape as edit_scene_latent.op)',
+          properties: {
+            op: { type: 'string', enum: ['translate', 'scale', 'rotate', 'recolor', 'opacity', 'smooth', 'delete'], description: 'Edit operation type' },
+            selector: {
+              type: 'object',
+              description: 'Voxel selection on the SOURCE snapshot. At least one of region/bbox/part.',
+              properties: {
+                region: { type: 'object', properties: { center: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 }, radius: { type: 'number' } }, description: 'Spherical region of voxel centers' },
+                bbox: { type: 'object', properties: { min: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 }, max: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 } }, description: 'Axis-aligned voxel box' },
+                part: { type: 'string', description: 'Part or semantic label (matches voxel partName / semanticLabel)' },
+              },
+            },
+            delta: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: '[translate] translation offset' },
+            factor: { type: 'number', description: '[scale] scale factor' },
+            axis: { type: 'string', enum: ['x', 'y', 'z'], description: '[rotate] rotation axis' },
+            angle_deg: { type: 'number', description: '[rotate] rotation angle in degrees' },
+            color: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: '[recolor] target RGB [0,1]' },
+            mix: { type: 'number', default: 1, minimum: 0, maximum: 1, description: '[recolor] blend factor (1 = full recolor)' },
+            opacity: { type: 'number', minimum: 0, maximum: 1, description: '[opacity] target opacity' },
+            mode: { type: 'string', enum: ['set', 'multiply'], default: 'set', description: '[opacity] set or multiply' },
+            iterations: { type: 'integer', minimum: 1, default: 1, description: '[smooth] number of neighbor-averaging passes' },
+            origin: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: '[scale/rotate] pivot origin (defaults to bbox min / selected centroid)' },
+          },
+          required: ['op', 'selector'],
+        },
+        match_radius: { type: 'number', minimum: 0.0001, description: 'Spatial match radius between target and source voxels (scene units). Defaults to 2x source voxel_size.' },
+        strength: { type: 'number', minimum: 0, maximum: 3, default: 1, description: 'Effect strength of the transferred delta (0 = none, 1 = full, >1 = amplify).' },
+        apply_to_scene: { type: 'boolean', default: true, description: 'Decode the transferred deltas and write them back to the target scene. If false, returns deltas only.' },
+        confirm: { type: 'boolean', default: false, description: 'Required when the transferred deltas affect >10% of the target scene Gaussians' },
+      },
+      required: ['source_slat_id', 'target_slat_id', 'op'],
+    },
+    handler: guarded(async (args, ctx) => {
+      const sourceSlatId = asString(args, 'source_slat_id', { required: true })!;
+      const targetSlatId = asString(args, 'target_slat_id', { required: true })!;
+      const opRaw = asRecord(args, 'op', { required: true })!;
+      const edit = parseLatentEditOp(opRaw);
+      const mgr = getSlatManager();
+      const source = mgr.get(sourceSlatId);
+      const target = mgr.get(targetSlatId);
+      if (!source) throw new ValidationError(`SLAT snapshot not found: ${sourceSlatId}. Call encode_scene_slatent first.`);
+      if (!target) throw new ValidationError(`SLAT snapshot not found: ${targetSlatId}. Call encode_scene_slatent first.`);
+
+      const matchRadius = asNumber(args, 'match_radius', { min: 0.0001 });
+      const strength = asNumber(args, 'strength', { default: 1, min: 0, max: 3 })!;
+      const result = mgr.transfer(sourceSlatId, targetSlatId, edit, {
+        matchRadius,
+        strength,
+      });
+
+      // Safety gate against large destructive transfers.
+      const sceneId = asString(args, 'scene_id');
+      const applyToScene = asBool(args, 'apply_to_scene', { default: true });
+      let scene = null;
+      if (applyToScene) {
+        scene = ctx.state.getScene(sceneId);
+        if (!scene) {
+          throw new ValidationError('apply_to_scene=true requires a valid scene_id (the target scene must already exist).');
+        }
+        const pct = scene.gaussians.length > 0 ? (result.metrics.matched_target_voxels / scene.gaussians.length) * 100 : 0;
+        if (pct > 10 && !asBool(args, 'confirm')) {
+          return error(`Transfer would affect ${result.metrics.matched_target_voxels} of ${scene.gaussians.length} Gaussians (${pct.toFixed(1)}% > 10%). Re-run with confirm=true to apply. Deltas below.`);
+        }
+      }
+
+      const decoded = applyToScene && scene ? mgr.decode(targetSlatId, result.targetDeltas) : null;
+      if (applyToScene && scene && decoded) {
+        scene.gaussians = decoded;
+        ctx.state.invalidateSpatialIndex(scene);
+        await ctx.bridge.broadcast({ type: 'modify_gaussians', select: {}, operations: [] });
+      }
+
+      return json({
+        status: 'ok',
+        source_slat_id: sourceSlatId,
+        target_slat_id: targetSlatId,
+        op: edit.op,
+        matched_target_voxels: result.metrics.matched_target_voxels,
+        unmatched_target_voxels: result.metrics.unmatched_target_voxels,
+        source_edited_voxels: result.metrics.source_edited_voxels,
+        match_radius: result.metrics.match_radius,
+        applied_to_scene: !!(applyToScene && scene && decoded),
+        decoded_gaussians: decoded ? decoded.length : 0,
+        metrics: result.metrics,
+      });
+    }),
+  },
+  // === Tool 21: interpolate_scene_latent ===
+  {
+    name: 'interpolate_scene_latent',
+    description: 'Blend a target scene toward a source scene via latent-space interpolation at fraction t in [0,1]. For each target voxel, the spatially nearest source voxel (within match_radius) pulls target position, color and opacity toward the source. t=0 keeps the target unchanged; t=1 fully adopts the source appearance. Useful for cross-scene style/look transfer.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        scene_id: { type: 'string', description: 'Target scene to apply the interpolated deltas to (required when apply_to_scene=true)' },
+        target_slat_id: { type: 'string', description: 'SLAT snapshot to interpolate (base scene)' },
+        source_slat_id: { type: 'string', description: 'SLAT snapshot to interpolate toward' },
+        t: { type: 'number', default: 0.5, minimum: 0, maximum: 1, description: 'Interpolation fraction: 0 = keep target, 1 = adopt source' },
+        match_radius: { type: 'number', minimum: 0.0001, description: 'Spatial match radius (scene units). Defaults to 2x source voxel_size.' },
+        apply_to_scene: { type: 'boolean', default: true, description: 'Decode the interpolated deltas and write them back to the target scene. If false, returns deltas only.' },
+        confirm: { type: 'boolean', default: false, description: 'Required when the interpolation affects >10% of the target scene Gaussians' },
+      },
+      required: ['target_slat_id', 'source_slat_id'],
+    },
+    handler: guarded(async (args, ctx) => {
+      const targetSlatId = asString(args, 'target_slat_id', { required: true })!;
+      const sourceSlatId = asString(args, 'source_slat_id', { required: true })!;
+      const t = asNumber(args, 't', { default: 0.5, min: 0, max: 1 })!;
+      const matchRadius = asNumber(args, 'match_radius', { min: 0.0001 });
+      const mgr = getSlatManager();
+      const source = mgr.get(sourceSlatId);
+      const target = mgr.get(targetSlatId);
+      if (!target) throw new ValidationError(`SLAT snapshot not found: ${targetSlatId}. Call encode_scene_slatent first.`);
+      if (!source) throw new ValidationError(`SLAT snapshot not found: ${sourceSlatId}. Call encode_scene_slatent first.`);
+
+      const result = mgr.interpolate(targetSlatId, sourceSlatId, { t, matchRadius });
+
+      const sceneId = asString(args, 'scene_id');
+      const applyToScene = asBool(args, 'apply_to_scene', { default: true });
+      let scene = null;
+      if (applyToScene) {
+        scene = ctx.state.getScene(sceneId);
+        if (!scene) {
+          throw new ValidationError('apply_to_scene=true requires a valid scene_id (the target scene must already exist).');
+        }
+        const pct = scene.gaussians.length > 0 ? (result.metrics.matched_voxels / scene.gaussians.length) * 100 : 0;
+        if (pct > 10 && !asBool(args, 'confirm')) {
+          return error(`Interpolation would affect ${result.metrics.matched_voxels} of ${scene.gaussians.length} Gaussians (${pct.toFixed(1)}% > 10%). Re-run with confirm=true to apply. Deltas below.`);
+        }
+      }
+
+      const decoded = applyToScene && scene ? mgr.decode(targetSlatId, result.targetDeltas) : null;
+      if (applyToScene && scene && decoded) {
+        scene.gaussians = decoded;
+        ctx.state.invalidateSpatialIndex(scene);
+        await ctx.bridge.broadcast({ type: 'modify_gaussians', select: {}, operations: [] });
+      }
+
+      return json({
+        status: 'ok',
+        target_slat_id: targetSlatId,
+        source_slat_id: sourceSlatId,
+        t: result.metrics.interpolation_t,
+        matched_voxels: result.metrics.matched_voxels,
+        total_voxels: result.metrics.total_voxels,
+        applied_to_scene: !!(applyToScene && scene && decoded),
+        decoded_gaussians: decoded ? decoded.length : 0,
+        metrics: result.metrics,
+      });
     }),
   },
 ];

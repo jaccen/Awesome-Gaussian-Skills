@@ -396,6 +396,24 @@ const rules: VoiceIntentRule[] = [
       { tool: 'list_slatents', params: {} },
     ],
   },
+
+  // --- Cross-Scene Latent Transfer & Interpolation (v1.1) ---
+  {
+    description: 'Transfer a latent edit from one scene to another',
+    intent: 'slat_transfer',
+    pattern: /(transfer|copy|reuse|apply).*(edit|change|move|recolor|color|style|look|shift).*(scene|slat|latent|other|another|other scene|to .*)/i,
+    toolCalls: [
+      { tool: 'transfer_scene_edit', params: { source_slat_id: '$SOURCE_SLAT', target_slat_id: '$TARGET_SLAT', op: { op: 'translate', selector: { part: '$PART' }, delta: [0, 0, 0] } } },
+    ],
+  },
+  {
+    description: 'Interpolate/blend one scene toward another in latent space',
+    intent: 'slat_interpolate',
+    pattern: /(blend|mix|morph|interpolate|merge|fuse).*(scene|slat|latent|the .* with .*|toward|from|into)/i,
+    toolCalls: [
+      { tool: 'interpolate_scene_latent', params: { target_slat_id: '$TARGET_SLAT', source_slat_id: '$SOURCE_SLAT', t: 0.5 } },
+    ],
+  },
 ];
 
 /**

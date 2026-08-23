@@ -1,8 +1,10 @@
 /**
- * SLAT Latent Editing — v1.0
+ * SLAT Latent Editing — v1.1
  *
  * Structured LATent representation as the edit intermediate for 3DGS scenes.
  * Pipeline: encode (3DGS → voxel latent) → edit (latent-space deltas) → decode (apply deltas).
+ * v1.1 adds cross-scene latent transfer (replay an edit from one scene onto
+ * another) and latent interpolation (blend two scenes' appearance).
  *
  * Grounding: SLAT (TRELLIS, SIGGRAPH 2025) — structured shared latent for 3D
  * representation conversion. Here it becomes the edit space of the MCP renderer:
@@ -409,6 +411,216 @@ export function decodeSlatToGaussians(slat: SlatScene, deltas: Map<string, Voxel
 }
 
 // ---------------------------------------------------------------------------
+// Cross-Scene Latent Transfer & Interpolation — v1.1
+//
+// Reuse a latent edit computed on one scene (source) onto another scene
+// (target), and blend scene appearances through latent interpolation.
+// Correspondence is spatial: every target voxel maps to the nearest source
+// voxel within a match radius; edits carry over as *relative* changes so the
+// transfer stays meaningful across different coordinate frames.
+// ---------------------------------------------------------------------------
+
+export interface LatentTransferOptions {
+  /** Spatial match radius (scene units) between target and source voxels. */
+  matchRadius?: number;
+  /** How strongly to apply the transferred delta (0 = none, 1 = full, >1 = amplify). */
+  strength?: number;
+}
+
+export interface LatentTransferResult {
+  /** Deltas to apply against the TARGET scene (decode with target's slat). */
+  targetDeltas: Map<string, VoxelDelta>;
+  metrics: {
+    /** Source voxels that were edited by the op. */
+    source_edited_voxels: number;
+    /** Target voxels that received a transferred delta. */
+    matched_target_voxels: number;
+    /** Target voxels with no corresponding edited source voxel. */
+    unmatched_target_voxels: number;
+    match_radius: number;
+    target_voxel_count: number;
+    source_voxel_count: number;
+  };
+}
+
+export interface LatentInterpolationOptions {
+  /** Spatial match radius (scene units). */
+  matchRadius?: number;
+  /** 0 = keep target, 1 = fully adopt source. Default 0.5. */
+  t?: number;
+}
+
+export interface LatentInterpolationResult {
+  /** Deltas to apply against the target scene. */
+  targetDeltas: Map<string, VoxelDelta>;
+  metrics: {
+    matched_voxels: number;
+    total_voxels: number;
+    interpolation_t: number;
+    match_radius: number;
+  };
+}
+
+interface VoxelGrid {
+  cell: number;
+  buckets: Map<string, SlatVoxel[]>;
+}
+
+/** Bucket source voxels into a uniform grid keyed by integer cell coords. */
+function buildVoxelGrid(source: SlatScene, cell: number): VoxelGrid {
+  const buckets = new Map<string, SlatVoxel[]>();
+  for (const v of source.voxels.values()) {
+    const key = `${Math.floor(v.position[0] / cell)},${Math.floor(v.position[1] / cell)},${Math.floor(v.position[2] / cell)}`;
+    const arr = buckets.get(key);
+    if (arr) arr.push(v);
+    else buckets.set(key, [v]);
+  }
+  return { cell, buckets };
+}
+
+/** Nearest source voxel to a world position within matchRadius, or null. */
+function nearestVoxel(
+  grid: VoxelGrid,
+  pos: [number, number, number],
+  matchRadius: number,
+): SlatVoxel | null {
+  const cell = grid.cell;
+  const cx = Math.floor(pos[0] / cell);
+  const cy = Math.floor(pos[1] / cell);
+  const cz = Math.floor(pos[2] / cell);
+  const r2 = matchRadius * matchRadius;
+  let best: SlatVoxel | null = null;
+  let bestD2 = r2;
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dz = -1; dz <= 1; dz++) {
+        const bucket = grid.buckets.get(`${cx + dx},${cy + dy},${cz + dz}`);
+        if (!bucket) continue;
+        for (const v of bucket) {
+          const ddx = v.position[0] - pos[0];
+          const ddy = v.position[1] - pos[1];
+          const ddz = v.position[2] - pos[2];
+          const d2 = ddx * ddx + ddy * ddy + ddz * ddz;
+          if (d2 <= bestD2) { best = v; bestD2 = d2; }
+        }
+      }
+    }
+  }
+  return best;
+}
+
+/**
+ * Replay a latent edit from a source scene onto a target scene.
+ * The op is applied to the source; each edited source voxel transfers its
+ * *relative* change (position offset, color offset, opacity ratio) to the
+ * spatially nearest target voxel within matchRadius.
+ */
+export function transferLatentEdit(
+  source: SlatScene,
+  target: SlatScene,
+  op: LatentEditOp,
+  options: LatentTransferOptions = {},
+): LatentTransferResult {
+  const matchRadius = options.matchRadius ?? source.voxelSize * 2;
+  const strength = options.strength ?? 1;
+  const sourceResult = applyLatentEdit(source, op);
+  const sourceDeltas = sourceResult.deltas;
+  const grid = buildVoxelGrid(source, matchRadius);
+
+  const targetDeltas = new Map<string, VoxelDelta>();
+  let matched = 0;
+  for (const tv of target.voxels.values()) {
+    const sv = nearestVoxel(grid, tv.position, matchRadius);
+    if (!sv) continue;
+    const sd = sourceDeltas.get(sv.id);
+    if (!sd) continue; // source voxel was not edited
+    const td: VoxelDelta = {};
+    if (sd.remove) {
+      td.remove = true;
+    } else {
+      if (sd.position) {
+        td.position = [
+          tv.position[0] + (sd.position[0] - sv.position[0]) * strength,
+          tv.position[1] + (sd.position[1] - sv.position[1]) * strength,
+          tv.position[2] + (sd.position[2] - sv.position[2]) * strength,
+        ];
+      }
+      if (sd.color) {
+        td.color = [
+          clamp01(tv.color[0] + (sd.color[0] - sv.color[0]) * strength),
+          clamp01(tv.color[1] + (sd.color[1] - sv.color[1]) * strength),
+          clamp01(tv.color[2] + (sd.color[2] - sv.color[2]) * strength),
+        ];
+      }
+      if (sd.opacity !== undefined) {
+        const ratio = sv.opacity > 0 ? sd.opacity / sv.opacity : 0;
+        td.opacity = clamp01(tv.opacity * (1 + (ratio - 1) * strength));
+      }
+    }
+    targetDeltas.set(tv.id, td);
+    matched++;
+  }
+
+  return {
+    targetDeltas,
+    metrics: {
+      source_edited_voxels: sourceDeltas.size,
+      matched_target_voxels: matched,
+      unmatched_target_voxels: target.voxels.size - matched,
+      match_radius: matchRadius,
+      target_voxel_count: target.voxels.size,
+      source_voxel_count: source.voxels.size,
+    },
+  };
+}
+
+/**
+ * Latent interpolation: blend a target scene toward a source scene's
+ * appearance at fraction t, by spatial correspondence. Keeps target geometry
+ * count; moves position, blends color and opacity toward the source voxels.
+ */
+export function interpolateLatent(
+  target: SlatScene,
+  source: SlatScene,
+  options: LatentInterpolationOptions = {},
+): LatentInterpolationResult {
+  const t = Math.min(1, Math.max(0, options.t ?? 0.5));
+  const matchRadius = options.matchRadius ?? source.voxelSize * 2;
+  const grid = buildVoxelGrid(source, matchRadius);
+
+  const targetDeltas = new Map<string, VoxelDelta>();
+  let matched = 0;
+  for (const tv of target.voxels.values()) {
+    const sv = nearestVoxel(grid, tv.position, matchRadius);
+    if (!sv) continue;
+    matched++;
+    const td: VoxelDelta = {
+      position: [
+        tv.position[0] + (sv.position[0] - tv.position[0]) * t,
+        tv.position[1] + (sv.position[1] - tv.position[1]) * t,
+        tv.position[2] + (sv.position[2] - tv.position[2]) * t,
+      ],
+      color: [
+        clamp01(tv.color[0] + (sv.color[0] - tv.color[0]) * t),
+        clamp01(tv.color[1] + (sv.color[1] - tv.color[1]) * t),
+        clamp01(tv.color[2] + (sv.color[2] - tv.color[2]) * t),
+      ],
+      opacity: clamp01(tv.opacity + (sv.opacity - tv.opacity) * t),
+    };
+    targetDeltas.set(tv.id, td);
+  }
+  return {
+    targetDeltas,
+    metrics: {
+      matched_voxels: matched,
+      total_voxels: target.voxels.size,
+      interpolation_t: t,
+      match_radius: matchRadius,
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
 // SlatManager — snapshot cache shared by the MCP tools
 // ---------------------------------------------------------------------------
 
@@ -432,6 +644,33 @@ export class SlatManager {
     const slat = this.slats.get(slatId);
     if (!slat) throw new Error(`SLAT snapshot not found: ${slatId}. Call encode_scene_slatent first.`);
     return applyLatentEdit(slat, op);
+  }
+
+  /** Transfer an edit computed on `sourceSlatId` onto `targetSlatId`. */
+  transfer(
+    sourceSlatId: string,
+    targetSlatId: string,
+    op: LatentEditOp,
+    options?: LatentTransferOptions,
+  ): LatentTransferResult {
+    const source = this.slats.get(sourceSlatId);
+    const target = this.slats.get(targetSlatId);
+    if (!source) throw new Error(`SLAT snapshot not found: ${sourceSlatId}. Call encode_scene_slatent first.`);
+    if (!target) throw new Error(`SLAT snapshot not found: ${targetSlatId}. Call encode_scene_slatent first.`);
+    return transferLatentEdit(source, target, op, options);
+  }
+
+  /** Interpolate `targetSlatId` toward `sourceSlatId` at fraction t. */
+  interpolate(
+    targetSlatId: string,
+    sourceSlatId: string,
+    options?: LatentInterpolationOptions,
+  ): LatentInterpolationResult {
+    const target = this.slats.get(targetSlatId);
+    const source = this.slats.get(sourceSlatId);
+    if (!target) throw new Error(`SLAT snapshot not found: ${targetSlatId}. Call encode_scene_slatent first.`);
+    if (!source) throw new Error(`SLAT snapshot not found: ${sourceSlatId}. Call encode_scene_slatent first.`);
+    return interpolateLatent(target, source, options);
   }
 
   /** Decode a snapshot + deltas back into an updated Gaussian list. */

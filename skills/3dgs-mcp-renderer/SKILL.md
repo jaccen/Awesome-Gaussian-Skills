@@ -3,7 +3,7 @@ name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering."
 license: Apache-2.0
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: jaccen
   tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive", "spec-first", "sculpting", "code-first", "slat", "latent-editing"]
   disable-model-invocation: true
@@ -170,9 +170,50 @@ Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edit
 
 > **Loaded on demand** — See [mcp-tools-spec.md](references/mcp-tools-spec.md) for full SLAT voice examples ("encode the scene", "move the cluster left", "scale the group up", etc.).
 
+## Cross-Scene Latent Transfer & Interpolation (v1.1.0)
+
+v1.1 extends SLAT beyond a single scene. A latent edit computed on one scene (source) can now be **transferred** to another scene (target), or the two scenes can be **interpolated** in latent space. Both operations rely on a spatial correspondence built over the voxel grids.
+
+### Correspondence: Voxel Grid Matching
+
+Both operations build a voxel grid over the source scene (cell size = `match_radius`) via `buildVoxelGrid`, then for each target voxel find the nearest source voxel within `match_radius` (`nearestVoxel`, 3×3×3 neighborhood search). The resulting pairs carry the relative changes across scenes.
+
+### Transferring a Latent Edit
+
+`transfer_scene_edit` re-applies a `LatentEditOp` from source to target **as a relative change**:
+
+| Op | Transferred As |
+|----|----------------|
+| `translate` | Same `delta` applied to matched target voxels, scaled by `strength` |
+| `recolor` | Color **offset** (target − source voxel color) applied to matched target voxels, scaled by `strength` |
+| `opacity` | Opacity **ratio** (edited / original) scaled toward 1 by `strength` |
+| `delete` | Matched target voxels removed when source voxels were deleted |
+
+- `match_radius` (default 1.0) bounds the spatial correspondence.
+- `strength` (0–1) controls how strongly the source change is applied; 0 applies nothing, 1 applies fully.
+- **Safety gate**: if the matched fraction exceeds 10% of the target scene, `confirm=true` is required (same project-wide 10% rule).
+- `apply_to_scene` (default true) re-decodes and broadcasts via `modify_gaussians`; `false` only updates the in-memory snapshot for preview.
+
+### `interpolate_scene_latent`
+
+`interpolate_scene_latent` blends the target scene toward the source in latent space:
+
+- `t` (0–1): 0 = target unchanged, 1 = fully source. Position, color, and opacity are all linearly interpolated per matched voxel.
+- `match_radius` (default 1.0) governs the correspondence as above.
+- Same 10% safety gate and `apply` semantics as transfer.
+
+> **Design note**: transfer carries *relative* change (style), while interpolation carries *absolute* blend (morph). Use transfer to reuse an edit, interpolation to morph one scene into another.
+
+### Voice Examples for Cross-Scene Transfer
+
+- "transfer the recolor to the other scene" → `transfer_scene_edit` (op="recolor")
+- "reuse this translate on scene B" → `transfer_scene_edit` (op="translate", target_slat_id=sceneB)
+- "blend scene B toward scene A" → `interpolate_scene_latent` (t=0.5)
+- "morph the table into the desk" → `interpolate_scene_latent` (t=1.0)
+
 ## MCP Tools Specification
 
-19 core MCP tools (fully implemented) + 13 experimental tools (schema-only stubs) enable agent-controlled 3DGS rendering, editing, sculpting, latent editing, and export. Full JSON schemas are loaded on demand.
+21 core MCP tools (fully implemented) + 13 experimental tools (schema-only stubs) enable agent-controlled 3DGS rendering, editing, sculpting, latent editing, cross-scene transfer, and export. Full JSON schemas are loaded on demand.
 
 | # | Tool Name | Description |
 |---|-----------|-------------|
@@ -199,6 +240,8 @@ Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edit
 | 21 | `encode_scene_slatent` | Encode current scene into a SLAT structured latent snapshot (voxel grid + per-voxel features) |
 | 22 | `edit_scene_latent` | Apply a latent edit (translate/scale/rotate/recolor/opacity/smooth/delete) to a SLAT snapshot, optionally re-decode to scene |
 | 23 | `list_slatents` | List in-memory SLAT snapshots (id, voxel count, source Gaussian count) |
+| 24 | `transfer_scene_edit` | Transfer a latent edit computed on a source scene to a target scene (relative change, spatial correspondence) |
+| 25 | `interpolate_scene_latent` | Interpolate the target scene toward the source in latent space (position/color/opacity blend) |
 
 > **Full tool schemas loaded on demand** — See [mcp-tools-spec.md](references/mcp-tools-spec.md) for complete JSON schemas, sculpting examples, and reconstruction flows.
 
@@ -233,6 +276,10 @@ Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edit
 | "Smooth the table surface" | SLAT smooth | `edit_scene_latent` (op="smooth") |
 | "Delete the chair voxels" | SLAT delete | `edit_scene_latent` (op="delete") |
 | "List my latent snapshots" | SLAT listing | `list_slatents` |
+| "Transfer the recolor to the other scene" | SLAT cross-scene transfer | `transfer_scene_edit` (op="recolor", match_radius=1.0) |
+| "Reuse this translate on scene B" | SLAT cross-scene transfer | `transfer_scene_edit` (op="translate", target_slat_id=sceneB) |
+| "Blend scene B toward scene A" | SLAT cross-scene interpolation | `interpolate_scene_latent` (t=0.5) |
+| "Morph the table into the desk" | SLAT cross-scene interpolation | `interpolate_scene_latent` (t=1.0) |
 
 ## Voice-Driven Reconstruction Flow
 
@@ -253,6 +300,7 @@ Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edit
 | Spec-first sculpting | define_scene_spec + sculpt_pipeline (6 stages) | Implemented (v0.9.0) |
 | Code-first export | Three.js code generator + splat partitioner | Implemented (v0.9.0) |
 | SLAT latent editing | encode/edit/decode structured latent (3 tools) | Implemented (v1.0.0) |
+| SLAT cross-scene transfer | transfer_scene_edit + interpolate_scene_latent (2 tools) | Implemented (v1.1.0) |
 
 ## Renderer Backend Details
 
@@ -277,7 +325,8 @@ Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edit
 - [x] v0.8: Spec-first sculpting pipeline design (define_scene_spec + sculpt_pipeline 6 stages) + Code-first rendering export (export_scene_code) + Bayesian density control (DP-Splat) + MoE deformation (MoE-GS/MoDE) + Surgical tracking (Track2Map)
 - [x] v0.9: Spec-first sculpting pipeline **implemented** — 3 new core tools (define_scene_spec, sculpt_pipeline, export_scene_code) with SceneSpecManager, 6-stage gate-evaluated executor, Three.js code generator, 8 voice intent patterns. E2E smoke test passing.
 - [x] v1.0: SLAT-integrated latent editing **implemented** — 3 new core tools (encode_scene_slatent, edit_scene_latent, list_slatents) with SlatManager, 7 latent edit ops (translate/scale/rotate/recolor/opacity/smooth/delete), voxel-grid encoder/decoder, 9 SLAT voice intent patterns, 10% safety gate, E2E tests passing.
-- [ ] v1.1: Full voice-driven scene construction (spec → sculpt → export pipeline with real STT) + SLAT-based cross-scene latent transfer
+- [x] v1.1: SLAT cross-scene latent transfer **implemented** — 2 new core tools (transfer_scene_edit, interpolate_scene_latent) with voxel-grid spatial correspondence, relative-change transfer, latent interpolation, 2 new voice intent patterns, 10% safety gate, tests passing. Remaining: full voice-driven scene construction (spec → sculpt → export pipeline with real STT).
+- [ ] v1.2: Full voice-driven scene construction (spec → sculpt → export pipeline with real STT) + SLAT cross-scene latent transfer for dynamic/articulated scenes
 
 ## Rules
 
@@ -291,6 +340,7 @@ Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edit
 8. **Code-first default** (v0.9.0): When exporting a scene, prefer `export_scene_code` with `format="threejs+splat"` over pure .ply export. Pure .ply should only be used when the user explicitly requests a binary blob.
 9. **SLAT safety gate** (v1.0.0): `edit_scene_latent` affecting >10% of Gaussians requires `confirm=true`. Preview with `apply_to_scene=false` before committing destructive latent edits.
 10. **Naming boundary** (v1.0.0): MCP tool arguments use snake_case (`angle_deg`); the core `LatentEditOp` uses camelCase (`angleDeg`). Handlers convert at the boundary; never mix cases in the core layer.
+11. **Cross-scene safety gate** (v1.1.0): `transfer_scene_edit` and `interpolate_scene_latent` affecting >10% of target Gaussians require `confirm=true`. Preview with `apply_to_scene=false` before committing cross-scene edits.
 
 > Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)
 

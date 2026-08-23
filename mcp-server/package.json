@@ -1,6 +1,6 @@
 {
   "name": "3dgs-mcp-renderer-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server for Agent-controlled 3D Gaussian Splatting rendering pipeline",
   "license": "Apache-2.0",
   "type": "module",
