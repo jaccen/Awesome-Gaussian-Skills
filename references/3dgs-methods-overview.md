@@ -1172,3 +1172,26 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Compression / Volume Visualization
 - **ECoNGS** [arXiv:2607.18466](https://arxiv.org/abs/2607.18466) (IEEE VIS 2026) —Neural GS for volume visualization; lightweight NNs predict splats from anchors; joint learning clusters similar scenes; 6.1x model reduction, 5.9x training speedup
+
+---
+
+## Newly Added Methods (August 23, 2026 — Daily Update)
+
+### Language & Semantic
+- **LEGO** [arXiv:2608.10057](https://arxiv.org/abs/2608.10057) (ECCV 2026) —Hierarchical language gaussian splatting; multi-view SAM granularity-adaptive re-grading into 3D-consistent hierarchy; per-level language scene graph supports LLM spatial reasoning
+- **OutLangSplat** [arXiv:2608.04560](https://arxiv.org/abs/2608.04560) (arXiv 2026) —UAV outdoor 3D language GS; 2D-3D dual-branch representation; training-free contribution and consistency-aware gaussian feature aggregation; first UAV open-vocabulary 3D scene dataset
+
+### Cross-Domain (Scientific Visualization)
+- **ESVR** [arXiv:2608.05564](https://arxiv.org/abs/2608.05564) (IEEE VIS 2026) —3D ellipsoid sparse volume rendering; learns directly from raw volume data; per-primitive ray sampling; up to 4 orders of magnitude compression, 43–223 FPS
+
+### Sparse-View
+- **TRACE-GS** [arXiv:2608.10286](https://arxiv.org/abs/2608.10286) (arXiv 2026) —On-policy trajectory distillation + privileged geometric conditioning; first to derive on-policy supervision from privileged geometry for sparse-view 3DGS recovery; LUPI setting
+
+### CAD & Reverse Engineering
+- **RORA** [arXiv:2608.04842](https://arxiv.org/abs/2608.04842) (arXiv 2026, IEEE submitted) —Single static video to articulated object end-to-end pipeline; mixed 3DGS + mesh; convex decomposition + automatic joint suggestion algorithm; deployed in Unreal Engine & Isaac Sim
+
+### Dynamic & 4D / Simulation
+- **OVOW** [arXiv:2606.31388](https://arxiv.org/abs/2606.31388) (ECCV 2026) —Monocular video to instance-level 4D mesh scene for physics simulation; unifies static/rigid/non-rigid; gravity/contact/support correction; 120-scene benchmark
+
+### Editing
+- **Super-Gaussian** [arXiv:2608.04475](https://arxiv.org/abs/2608.04475) (arXiv 2026) —3DGS interactive scene editing + NLI-based volume rendering visualization in VR

@@ -782,3 +782,10 @@ GaussianUnderAttack,2412.02803,NeurIPS 2024,2024,Security,Systematic adversarial
 GeometryCloak,2410.22705,NeurIPS 2024,2024,Security,Geometric perturbation copyright watermark embedding into Gaussians preventing TGS-based 3D reconstruction,https://github.com/qsong2001/Geometry-Cloak
 GS-Hider,2405.15118,NeurIPS 2024,2024,Security,"Steganography embedding into Gaussian parameters for 3D message hiding, visually lossless",
 Splat-Security,2407.04699,ECCV 2024,2024,Security,First systematic security analysis of GS pipeline: attack surfaces in training data and rendering,
+LEGO,2608.10057,ECCV 2026,2026,Language & Semantic,Hierarchical language gaussian splatting; multi-view SAM granularity-adaptive re-grading into 3D-consistent hierarchy; per-level language scene graph supports LLM spatial reasoning,
+OutLangSplat,2608.04560,arXiv,2026,Language & Semantic,UAV outdoor 3D language GS; 2D-3D dual-branch representation; training-free contribution and consistency-aware gaussian feature aggregation; first UAV open-vocabulary 3D scene dataset,
+ESVR,2608.05564,IEEE VIS 2026,2026,Cross-Domain,3D ellipsoid sparse volume rendering; learns directly from raw volume data; per-primitive ray sampling; up to 4 orders of magnitude compression; 43-223 FPS,
+TRACE-GS,2608.10286,arXiv,2026,Sparse-View,On-policy trajectory distillation plus privileged geometric conditioning; first to derive on-policy supervision from privileged geometry for sparse-view 3DGS recovery; LUPI setting,
+RORA,2608.04842,arXiv,2026,CAD & Reverse Engineering,Single static video to articulated object end-to-end pipeline; mixed 3DGS plus mesh; convex decomposition plus automatic joint suggestion algorithm; deployed in Unreal Engine and Isaac Sim,
+OVOW,2606.31388,ECCV 2026,2026,Dynamic & 4D,Monocular video to instance-level 4D mesh scene for physics simulation; unifies static/rigid/non-rigid; gravity/contact/support correction; 120-scene benchmark,
+Super-Gaussian,2608.04475,arXiv,2026,Editing,3DGS interactive scene editing plus NLI-based volume rendering visualization in VR,

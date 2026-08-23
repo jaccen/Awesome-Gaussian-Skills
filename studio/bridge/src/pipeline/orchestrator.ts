@@ -37,6 +37,19 @@ import { AsrClient } from '../asr-client.js';
 import { ToonflowClient } from '../toonflow-client.js';
 import { MptClient } from '../mpt-client.js';
 
+// Path C: 借鉴 DSH 架构模式引入的三个模块
+import { PipelineEventLog } from './event-log.js';
+import type { LogEntry } from './event-log.js';
+import { FallbackChain } from './strategies.js';
+import type { TtsStrategyInput, TtsStrategyOutput } from './strategies.js';
+import {
+  loadPipelineConfig,
+  shouldRunStep,
+  isProviderAvailable,
+  reloadPipelineConfig,
+} from './pipeline-config.js';
+import type { PipelineConfig, StepConfig, StrategyProviderConfig } from './pipeline-config.js';
+
 export interface PipelineManagerOptions {
   llm?: LlmClient;
   tts?: TtsClient;
@@ -57,6 +70,12 @@ export class PipelineManager extends EventEmitter {
   private toonflow: ToonflowClient;
   private mpt: MptClient;
   private outputDir: string;
+
+  // Path C: 事件日志（持久化）+ 管线配置（外部化）
+  private eventLog: PipelineEventLog;
+  private config: PipelineConfig;
+
+  // 内存 Map 保留为快速缓存（运行中的任务）
   private tasks: Map<string, PipelineTask> = new Map();
 
   constructor(opts: PipelineManagerOptions = {}) {
@@ -70,6 +89,10 @@ export class PipelineManager extends EventEmitter {
     this.mpt = opts.mpt || new MptClient();
     this.outputDir = opts.outputDir || process.env.PIPELINE_OUTPUT_DIR || '.temp/pipeline';
 
+    // Path C: 初始化事件日志和管线配置
+    this.eventLog = new PipelineEventLog(this.outputDir);
+    this.config = loadPipelineConfig();
+
     // 确保输出目录
     const absDir = path.resolve(process.cwd(), this.outputDir);
     if (!fs.existsSync(absDir)) fs.mkdirSync(absDir, { recursive: true });
@@ -80,21 +103,23 @@ export class PipelineManager extends EventEmitter {
   // ============================================================
 
   createTask(input: PipelineInput): PipelineTask {
+    // Path C: 从配置文件读取步骤定义（而非硬编码）
+    const steps = this.config.steps
+      .filter((s) => s.enabled)
+      .map((s) => ({
+        name: s.name,
+        label: s.label,
+        status: 'pending' as const,
+        progress: 0,
+      }));
+
     const task: PipelineTask = {
       id: uuid(),
       input,
       status: 'pending',
       progress: 0,
       currentStep: '',
-      steps: [
-        { name: 'script_adaptation', label: '剧本改编', status: 'pending', progress: 0 },
-        { name: 'storyboard', label: '智能分镜', status: 'pending', progress: 0 },
-        { name: 'toonflow_sync', label: 'Toonflow集成', status: 'pending', progress: 0 },
-        { name: 'tts', label: 'TTS配音', status: 'pending', progress: 0 },
-        { name: 'video_gen', label: '视频驱动', status: 'pending', progress: 0 },
-        { name: 'compose', label: 'FFmpeg合成', status: 'pending', progress: 0 },
-        { name: 'publish', label: '跨平台发布', status: 'pending', progress: 0 },
-      ],
+      steps,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -105,14 +130,16 @@ export class PipelineManager extends EventEmitter {
       this._evictOldTasks();
     }
 
+    // Path C: _emit 统一负责 SSE 推送 + JSONL 持久化（含 input/steps 供 replay 恢复）
     this._emit({
       type: 'task_created',
       taskId: task.id,
       message: `Pipeline task created: ${input.title || 'untitled'}`,
+      data: { input, steps: task.steps },
     });
 
     // 异步执行
-    this._execute(task.id).catch(err => {
+    this._execute(task.id).catch((err) => {
       console.error(`[pipeline] Task ${task.id} fatal error:`, err);
       const t = this.tasks.get(task.id);
       if (t) {
@@ -145,33 +172,56 @@ export class PipelineManager extends EventEmitter {
     };
 
     try {
+      // Path C: 从配置读取步骤条件，而非硬编码 if/else
+      const ctx = this._buildContext(task);
+
       // Step 1: 剧本改编
-      await this._runStep(task, 'script_adaptation', async (step) => {
-        this._updateStepProgress(task, step, 30, 'LLM正在改编剧本...');
-        const adapted = await this.llm.adaptScript(task.input.text, task.input.style);
-        output.script = adapted.synopsis;
-        output.characters = adapted.characters;
-        // 扁平化所有幕的场景
-        const allScenes = adapted.acts.flatMap(act => act.scenes);
-        // 暂存中间结果到 task 供下一步使用
-        (task as any)._adaptedScript = adapted;
-        (task as any)._allScenes = allScenes;
-        this._updateStepProgress(task, step, 100, `剧本改编完成：${adapted.acts.length}幕，${allScenes.length}个场景`);
-      });
+      if (shouldRunStep(this._getStepConfig('script_adaptation'), ctx)) {
+        await this._runStep(task, 'script_adaptation', async (step) => {
+          this._updateStepProgress(task, step, 30, 'LLM正在改编剧本...');
+          const adapted = await this.llm.adaptScript(task.input.text, task.input.style);
+          output.script = adapted.synopsis;
+          output.characters = adapted.characters;
+          const allScenes = adapted.acts.flatMap(act => act.scenes);
+          (task as any)._adaptedScript = adapted;
+          (task as any)._allScenes = allScenes;
+          this._updateStepProgress(task, step, 100,
+            `剧本改编完成：${adapted.acts.length}幕，${allScenes.length}个场景`);
+          // Path C: 记录中间结果到事件日志（供断点续做）
+          this.eventLog.append({
+            timestamp: new Date().toISOString(),
+            type: 'step_output',
+            taskId: task.id,
+            stepName: 'script_adaptation',
+            data: { script: output.script, characters: output.characters, sceneCount: allScenes.length },
+          });
+        });
+      } else {
+        this._skipStep(task, 'script_adaptation', 'Condition not met');
+      }
 
       // Step 2: 智能分镜
-      await this._runStep(task, 'storyboard', async (step) => {
-        this._updateStepProgress(task, step, 20, 'LLM正在生成分镜...');
-        const adapted = (task as any)._adaptedScript;
-        const scenes = await this.llm.generateStoryboard(adapted, preset);
-        output.scenes = scenes;
-        this._updateStepProgress(task, step, 100, `分镜生成完成：${scenes.length}个分镜`);
-      });
+      if (shouldRunStep(this._getStepConfig('storyboard'), ctx)) {
+        await this._runStep(task, 'storyboard', async (step) => {
+          this._updateStepProgress(task, step, 20, 'LLM正在生成分镜...');
+          const adapted = (task as any)._adaptedScript;
+          const scenes = await this.llm.generateStoryboard(adapted, preset);
+          output.scenes = scenes;
+          this._updateStepProgress(task, step, 100, `分镜生成完成：${scenes.length}个分镜`);
+          this.eventLog.append({
+            timestamp: new Date().toISOString(),
+            type: 'step_output',
+            taskId: task.id,
+            stepName: 'storyboard',
+            data: { sceneCount: scenes.length },
+          });
+        });
+      } else {
+        this._skipStep(task, 'storyboard', 'Condition not met');
+      }
 
       // Step 3: Toonflow集成（可选）
-      // P1修复：this.toonflow 在构造函数中总是被赋值，条件恒 true
-      // 改为检查 Toonflow 是否实际可连接（通过环境变量或传入的 projectId）
-      if (task.input.toonflowProjectId || process.env.TOONFLOW_URL) {
+      if (shouldRunStep(this._getStepConfig('toonflow_sync'), ctx)) {
         await this._runStep(task, 'toonflow_sync', async (step) => {
           this._updateStepProgress(task, step, 30, '正在同步到Toonflow...');
           try {
@@ -198,36 +248,51 @@ export class PipelineManager extends EventEmitter {
       }
 
       // Step 4: TTS配音
-      if (task.input.enableTTS) {
+      if (shouldRunStep(this._getStepConfig('tts'), ctx)) {
         await this._runStep(task, 'tts', async (step) => {
+          // Path C: 使用 FallbackChain 替代硬编码降级
+          const ttsChain = new FallbackChain<TtsStrategyInput, TtsStrategyOutput>()
+            .setLogger((msg) => console.log(`[pipeline:tts] ${msg}`))
+            .add({
+              name: 'studio-native',
+              available: () => isProviderAvailable(this._getStrategyProvider('tts', 'studio-native'), ctx),
+              execute: async (input) => {
+                const result = await this.tts.synthesize(input.text, { voice: input.voice });
+                return {
+                  audioPath: result.audioPath,
+                  duration: (result as any).duration || 0,
+                  provider: 'studio-native',
+                };
+              },
+            })
+            .add({
+              name: 'mpt',
+              available: () =>
+                isProviderAvailable(this._getStrategyProvider('tts', 'mpt'), ctx) &&
+                this.mpt.isAvailable(),
+              execute: async (input) => {
+                const result = await this.mpt.synthesizeTTS(input.text, {
+                  voiceName: task.input.mptVoiceName,
+                });
+                return {
+                  audioPath: result.audioPath,
+                  duration: (result as any).duration || 0,
+                  provider: 'mpt',
+                };
+              },
+            });
+
           for (let i = 0; i < output.scenes.length; i++) {
             const scene = output.scenes[i];
             this._updateStepProgress(task, step,
               Math.round((i / output.scenes.length) * 100),
               `TTS: 分镜${i + 1}/${output.scenes.length}`);
 
-            // 合成对白音频
             const dialogueText = scene.dialogue || scene.narration || '';
             if (dialogueText.trim()) {
-              // 根据角色选择声音
               const voice = scene.characters[0]?.name === '旁白' ? 'narrator' : 'default';
-              try {
-                const result = await this.tts.synthesize(dialogueText, { voice });
-                scene.audioPath = result.audioPath;
-              } catch (ttsErr: any) {
-                // MPT TTS 降级：当 Studio 原生 TTS 链（CosyVoice2→Edge→SAPI）全部失败时
-                if (task.input.enableMptTTS && this.mpt.isAvailable()) {
-                  this._updateStepProgress(task, step,
-                    Math.round((i / output.scenes.length) * 100),
-                    `MPT TTS 降级: 分镜${i + 1}/${output.scenes.length}`);
-                  const mptResult = await this.mpt.synthesizeTTS(dialogueText, {
-                    voiceName: task.input.mptVoiceName,
-                  });
-                  scene.audioPath = mptResult.audioPath;
-                } else {
-                  throw ttsErr;
-                }
-              }
+              const ttsResult = await ttsChain.execute({ text: dialogueText, voice });
+              scene.audioPath = ttsResult.result.audioPath;
             }
           }
           this._updateStepProgress(task, step, 100, `TTS配音完成`);
@@ -237,79 +302,71 @@ export class PipelineManager extends EventEmitter {
       }
 
       // Step 5: 视频驱动
-      if (task.input.enableVideoGen) {
-        await this._runStep(task, 'video_gen', async (step) => {
-          for (let i = 0; i < output.scenes.length; i++) {
-            const scene = output.scenes[i];
-            this._updateStepProgress(task, step,
-              Math.round((i / output.scenes.length) * 100),
-              `视频生成: 分镜${i + 1}/${output.scenes.length}`);
-
-            // 为每个分镜生成视频片段
-            // 如果有图片路径，用图生视频；否则纯文本生视频
-            const result = await this.videoGen.generate({
-              imagePath: scene.imagePath,
-              prompt: scene.videoPrompt,
-              duration: scene.duration,
-              videoRatio: task.input.videoRatio,
-            } as any);
-            scene.videoPath = result.videoPath;
-          }
-          this._updateStepProgress(task, step, 100, `视频驱动完成`);
-        });
+      if (shouldRunStep(this._getStepConfig('video_gen'), ctx)) {
+        if (task.input.enableVideoGen) {
+          // AI 视频生成模式
+          await this._runStep(task, 'video_gen', async (step) => {
+            for (let i = 0; i < output.scenes.length; i++) {
+              const scene = output.scenes[i];
+              this._updateStepProgress(task, step,
+                Math.round((i / output.scenes.length) * 100),
+                `视频生成: 分镜${i + 1}/${output.scenes.length}`);
+              const result = await this.videoGen.generate({
+                imagePath: scene.imagePath,
+                prompt: scene.videoPrompt,
+                duration: scene.duration,
+                videoRatio: task.input.videoRatio,
+              } as any);
+              scene.videoPath = result.videoPath;
+            }
+            this._updateStepProgress(task, step, 100, `视频驱动完成`);
+          });
+        } else {
+          // Ken Burns 降级模式
+          await this._runStep(task, 'video_gen', async (step) => {
+            for (let i = 0; i < output.scenes.length; i++) {
+              const scene = output.scenes[i];
+              this._updateStepProgress(task, step,
+                Math.round((i / output.scenes.length) * 100),
+                `Ken Burns: 分镜${i + 1}/${output.scenes.length}`);
+              const result = await this.videoGen.generate({
+                imagePath: scene.imagePath,
+                prompt: scene.videoPrompt || scene.imagePrompt,
+                duration: scene.duration,
+              });
+              scene.videoPath = result.videoPath;
+            }
+            this._updateStepProgress(task, step, 100, `视频片段生成完成`);
+          });
+        }
       } else {
-        // P1修复：不再先 skip 再 runStep（会导致状态混乱）
-        // 直接生成 Ken Burns 效果视频
-        await this._runStep(task, 'video_gen', async (step) => {
-          for (let i = 0; i < output.scenes.length; i++) {
-            const scene = output.scenes[i];
-            this._updateStepProgress(task, step,
-              Math.round((i / output.scenes.length) * 100),
-              `Ken Burns: 分镜${i + 1}/${output.scenes.length}`);
-            const result = await this.videoGen.generate({
-              imagePath: scene.imagePath,
-              prompt: scene.videoPrompt || scene.imagePrompt,
-              duration: scene.duration,
-            });
-            scene.videoPath = result.videoPath;
-          }
-          this._updateStepProgress(task, step, 100, `视频片段生成完成`);
-        });
+        this._skipStep(task, 'video_gen', 'Condition not met');
       }
 
-      // --- MPT 最终降级 ---
-      // 当所有分镜均无视频片段（3DGS / Toonflow / 视频驱动全失败），
-      // 且 MPT 降级已启用时，用 MPT 在线素材生成完整视频，跳过 FFmpeg 合成
+      // --- 合成阶段（含 MPT 全面降级）---
       const allVideosMissing = output.scenes.length > 0 &&
         output.scenes.every(s => !s.videoPath);
 
       if (allVideosMissing && task.input.enableMptFallback && this.mpt.isAvailable()) {
-        // 用 MPT 全量生成
+        // MPT 全量降级
         await this._runStep(task, 'compose', async (step) => {
           this._updateStepProgress(task, step, 10, 'MPT 降级：在线素材生成完整视频...');
-
-          // 拼接完整脚本
           const fullScript = output.scenes.map(s =>
             [s.narration, s.dialogue].filter(Boolean).join('\n')
           ).join('\n\n');
-
-          // 素材关键词：从场景描述提取
           const terms = output.scenes.map(s => s.sceneDesc).join(' ');
-
           const mptResult = await this.mpt.generateFullVideo(
             {
               script: fullScript || task.input.text,
               terms,
               aspectRatio: task.input.videoRatio as '16:9' | '9:16' | '1:1',
               voiceName: task.input.mptVoiceName,
-              materialSource: undefined, // 使用 MPT 侧默认配置
+              materialSource: undefined,
             },
             (progress, message) => {
               this._updateStepProgress(task, step, 10 + Math.round(progress * 0.85), message);
             },
           );
-
-          // 下载 MPT 生成的视频到本地
           if (mptResult.videoUrl || mptResult.videoPath) {
             const mptSource = mptResult.videoUrl || mptResult.videoPath!;
             const localPath = await this.mpt.downloadFile(mptSource);
@@ -320,47 +377,42 @@ export class PipelineManager extends EventEmitter {
             output.mptFallbackUsed = true;
             output.subtitlePath = mptResult.subtitleUrl;
           }
-
           this._updateStepProgress(task, step, 100,
             `MPT 降级完成${output.finalVideoPath ? '' : '（无视频产出）'}`);
         });
       } else if (allVideosMissing) {
-        // 无任何视频源可用，跳过合成
         this._skipStep(task, 'compose',
           '无视频素材可用（3DGS/Toonflow/视频驱动/MPT 均未产出）');
-      } else {
+      } else if (shouldRunStep(this._getStepConfig('compose'), ctx)) {
         // Step 6: FFmpeg合成
         await this._runStep(task, 'compose', async (step) => {
-        this._updateStepProgress(task, step, 30, '正在合成最终视频...');
-
-        // P1修复：videoClips 和 audioFiles 保持按 scene 对齐，不分别 filter
-        const videoClips: string[] = [];
-        const audioFiles: string[] = [];
-        for (const scene of output.scenes) {
-          videoClips.push(scene.videoPath || '');
-          audioFiles.push(scene.audioPath || '');
-        }
-
-        const result = await this.compositor.compose({
-          videoClips,
-          audioFiles,
-          scenes: output.scenes,
-          outputDir: this.outputDir,
-          videoRatio: task.input.videoRatio,
-          enableSubtitles: true,
+          this._updateStepProgress(task, step, 30, '正在合成最终视频...');
+          const videoClips: string[] = [];
+          const audioFiles: string[] = [];
+          for (const scene of output.scenes) {
+            videoClips.push(scene.videoPath || '');
+            audioFiles.push(scene.audioPath || '');
+          }
+          const result = await this.compositor.compose({
+            videoClips,
+            audioFiles,
+            scenes: output.scenes,
+            outputDir: this.outputDir,
+            videoRatio: task.input.videoRatio,
+            enableSubtitles: true,
+          });
+          output.finalVideoPath = result.videoPath;
+          output.finalVideoUrl = result.videoUrl;
+          output.subtitlePath = result.subtitlePath;
+          output.durationSec = result.durationSec;
+          this._updateStepProgress(task, step, 100, `成片完成：${result.durationSec}秒`);
         });
-
-        output.finalVideoPath = result.videoPath;
-        output.finalVideoUrl = result.videoUrl;
-        output.subtitlePath = result.subtitlePath;
-        output.durationSec = result.durationSec;
-
-        this._updateStepProgress(task, step, 100, `成片完成：${result.durationSec}秒`);
-      });
+      } else {
+        this._skipStep(task, 'compose', 'Condition not met');
       }
 
       // Step 7: 跨平台发布（可选）
-      if (task.input.publishPlatforms && task.input.publishPlatforms.length > 0) {
+      if (shouldRunStep(this._getStepConfig('publish'), ctx)) {
         await this._runStep(task, 'publish', async (step) => {
           if (!output.mptTaskId) {
             this._updateStepProgress(task, step, 100,
@@ -371,14 +423,13 @@ export class PipelineManager extends EventEmitter {
             this._updateStepProgress(task, step, 100, 'MPT 不可用，跳过发布', true);
             return;
           }
-
-          this._updateStepProgress(task, step, 20, `正在发布到 ${task.input.publishPlatforms!.length} 个平台...`);
+          this._updateStepProgress(task, step, 20,
+            `正在发布到 ${task.input.publishPlatforms!.length} 个平台...`);
           const results = await this.mpt.publishVideo(
             output.mptTaskId,
             task.input.publishPlatforms!,
           );
           output.publishResults = results;
-
           const succeeded = results.filter(r => r.success).length;
           this._updateStepProgress(task, step, 100,
             `发布完成：${succeeded}/${results.length} 个平台成功`);
@@ -397,7 +448,8 @@ export class PipelineManager extends EventEmitter {
         taskId: task.id,
         progress: 100,
         message: `Pipeline completed: ${output.scenes.length} scenes, ${output.durationSec}s`,
-        data: { finalVideoUrl: output.finalVideoUrl },
+        // Path C: 包含完整 output 供 replay 恢复
+        data: { finalVideoUrl: output.finalVideoUrl, output },
       });
 
     } catch (err: any) {
@@ -558,12 +610,59 @@ export class PipelineManager extends EventEmitter {
     return STYLE_PRESETS.find(p => p.artStyle === style) || STYLE_PRESETS[0];
   }
 
+  // ============================================================
+  // Path C: 配置辅助方法
+  // ============================================================
+
+  /** 构建 PipelineInput 上下文，供条件求值使用 */
+  private _buildContext(task: PipelineTask): Record<string, any> {
+    return { ...task.input, process };
+  }
+
+  /** 从配置中查找步骤定义 */
+  private _getStepConfig(name: string): StepConfig {
+    return this.config.steps.find(s => s.name === name)
+      || { name, label: name, enabled: true };
+  }
+
+  /** 从配置中查找策略 provider */
+  private _getStrategyProvider(
+    strategy: 'tts' | 'video' | 'compose',
+    providerName: string,
+  ): StrategyProviderConfig {
+    const s = this.config.strategies[strategy];
+    return s.providers.find(p => p.name === providerName)
+      || { name: providerName };
+  }
+
+  /** Path C: 热重载管线配置（供 API 端点调用） */
+  reloadConfig(): PipelineConfig {
+    this.config = reloadPipelineConfig();
+    return this.config;
+  }
+
   private _emit(event: Partial<PipelineEvent>): void {
-    this.emit('event', {
+    const fullEvent = {
       ...event,
       taskId: event.taskId || '',
       timestamp: new Date().toISOString(),
-    } as PipelineEvent);
+    } as PipelineEvent;
+
+    // SSE 推送
+    this.emit('event', fullEvent);
+
+    // Path C: 持久化到 JSONL 事件日志（所有带 taskId 的事件统一记录）
+    if (fullEvent.taskId) {
+      this.eventLog.append({
+        timestamp: fullEvent.timestamp,
+        type: fullEvent.type,
+        taskId: fullEvent.taskId,
+        stepName: fullEvent.stepName,
+        progress: fullEvent.progress,
+        message: fullEvent.message,
+        data: (fullEvent as any).data,
+      });
+    }
   }
 
   // ============================================================
@@ -571,11 +670,48 @@ export class PipelineManager extends EventEmitter {
   // ============================================================
 
   getTask(taskId: string): PipelineTask | undefined {
-    return this.tasks.get(taskId);
+    const cached = this.tasks.get(taskId);
+    if (cached) return cached;
+
+    // Path C: 内存 miss 后从事件日志 replay 恢复
+    const restored = this.eventLog.replay(taskId);
+    if (restored) {
+      this.tasks.set(taskId, restored);
+      return restored;
+    }
+    return undefined;
   }
 
   listTasks(): PipelineTask[] {
-    return Array.from(this.tasks.values());
+    const memoryIds = new Set(this.tasks.keys());
+    const diskIds = this.eventLog.listTaskIds();
+
+    // Path C: 合并内存 + 磁盘，去重
+    const allIds = new Set([...memoryIds, ...diskIds]);
+    const tasks: PipelineTask[] = [];
+
+    for (const id of allIds) {
+      const task = this.tasks.get(id) || this.eventLog.replay(id);
+      if (task) tasks.push(task);
+    }
+
+    // 按创建时间降序排列
+    return tasks.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }
+
+  /** Path C: 获取任务事件日志（供 API 端点调用） */
+  getTaskLog(taskId: string): LogEntry[] {
+    return this.eventLog.read(taskId);
+  }
+
+  /** Path C: 获取日志文件路径（供文件下载端点调用） */
+  getLogPath(taskId: string): string {
+    return this.eventLog.getLogPath(taskId);
+  }
+
+  /** Path C: 列出所有可恢复的任务 ID */
+  listResumableTaskIds(): string[] {
+    return this.eventLog.listResumableTaskIds();
   }
 
   // P1修复：清理已完成的旧任务，保留最近 50 个

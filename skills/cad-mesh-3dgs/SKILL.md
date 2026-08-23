@@ -163,36 +163,7 @@ Mesh (OBJ/PLY) → Sample Points on Surface → Initialize Gaussians → Optimiz
 
 ### 1.4 Covariance Initialization from Mesh
 
-Given a mesh face with normal n and area A:
-
-```python
-# For a Gaussian on a mesh surface:
-# Normal direction: flat (small scale)
-# Tangent directions: spread proportional to sqrt(face_area)
-
-def init_gaussian_from_face(vertex_positions, face_normal, face_area):
-    # Build local frame from face normal
-    normal = face_normal / torch.norm(face_normal)
-    # Find tangent vectors
-    if abs(normal[0]) < 0.9:
-        tangent1 = torch.cross(normal, torch.tensor([1, 0, 0]))
-    else:
-        tangent1 = torch.cross(normal, torch.tensor([0, 1, 0]))
-    tangent1 = tangent1 / torch.norm(tangent1)
-    tangent2 = torch.cross(normal, tangent1)
-
-    # Scale: flat in normal direction, spread in tangent
-    scale = torch.tensor([
-        math.sqrt(face_area) * 0.5,  # tangent 1
-        math.sqrt(face_area) * 0.5,  # tangent 2
-        0.01                          # normal (thin shell)
-    ])
-
-    # Rotation from local frame to world
-    R = torch.stack([tangent1, tangent2, normal], dim=1)  # 3x3
-
-    return R, scale
-```
+> **Loaded on demand** — See [conversion-examples.md](references/conversion-examples.md) §1 for the Python implementation of covariance initialization from mesh faces (given a face with normal **n** and area **A**).
 
 ### 1.5 Known Issues in Mesh→3DGS
 
@@ -270,30 +241,7 @@ After extraction, evaluate mesh quality:
 | Mesh watertightness | PyMeshLab / Trimesh | Whether mesh is manifold + closed |
 | Edge ratio | PyMeshLab | Triangle quality (ideal = equilateral) |
 
-```python
-# Standard evaluation
-import trimesh
-import numpy as np
-from scipy.spatial import cKDTree
-
-def chamfer_distance(mesh_pred, mesh_gt, num_samples=100000):
-    pts_pred = mesh_pred.sample(num_samples)
-    pts_gt = mesh_gt.sample(num_samples)
-
-    tree_pred = cKDTree(pts_pred)
-    tree_gt = cKDTree(pts_gt)
-
-    d1, _ = tree_gt.query(pts_pred)  # pred → gt
-    d2, _ = tree_pred.query(pts_gt)  # gt → pred
-
-    return np.mean(d1**2) + np.mean(d2**2)
-
-def fscore(mesh_pred, mesh_gt, threshold=0.01):
-    # F-Score = 2 * Precision * Recall / (Precision + Recall)
-    # Precision: fraction of pred points within threshold of gt
-    # Recall: fraction of gt points within threshold of pred
-    ...
-```
+> **Loaded on demand** — See [conversion-examples.md](references/conversion-examples.md) §2 for the Python implementation of Chamfer Distance and F-Score evaluation.
 
 ## Section 3: Mesh-Adsorbed & Hybrid Representations
 
@@ -411,39 +359,7 @@ Common CAD primitives to detect:
 | Torus | (center, axis, R, r) | RANSAC |
 | Free-form surface | NURBS control points | Least-squares fitting |
 
-```python
-# Example: Plane detection from point cloud using RANSAC
-import open3d as o3d
-
-def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000):
-    segments = []
-    remaining = pcd
-
-    for _ in range(10):  # detect up to 10 planes
-        plane_model, inliers = remaining.segment_plane(
-            distance_threshold=distance_threshold,
-            ransac_n=ransac_n,
-            num_iterations=num_iterations
-        )
-        if len(inliers) < 100:
-            break
-
-        # Extract plane segment
-        plane_cloud = remaining.select_by_index(inliers)
-        remaining = remaining.select_by_index(inliers, invert=True)
-
-        # [a, b, c, d] where ax + by + cz + d = 0
-        a, b, c, d = plane_model
-        segments.append({
-            'type': 'plane',
-            'normal': [a, b, c],
-            'offset': d,
-            'points': plane_cloud,
-            'num_points': len(inliers)
-        })
-
-    return segments, remaining
-```
+> **Loaded on demand** — See [conversion-examples.md](references/conversion-examples.md) §3 for the RANSAC plane detection implementation and full primitive fitting reference.
 
 ## Section 5: Common Pitfalls & Debugging
 
@@ -487,59 +403,7 @@ def detect_planes(pcd, distance_threshold=0.01, ransac_n=3, num_iterations=1000)
 
 ## Output Format
 
-When responding to user queries, use these templates:
-
-### For Conversion Advice:
-```
-## [Mesh/3DGS/CAD] Conversion Recommendation
-
-### Input: [description]
-### Output Goal: [description]
-
-### Recommended Pipeline
-1. [Step 1]: [Tool/Method] — [Why]
-2. [Step 2]: ...
-
-### Expected Quality
-- Geometric accuracy: [High/Medium/Low]
-- Rendering fidelity: [High/Medium/Low]
-- Processing time: [estimate]
-
-### Key Parameters
-- [Param]: [Recommended value] — [Reason]
-
-### Potential Issues & Mitigations
-1. [Issue] → [Fix]
-```
-
-### For Method Comparison:
-```
-## [Method A] vs [Method B] for [Task]
-
-| Dimension | Method A | Method B |
-|-----------|----------|----------|
-| Geometry quality | ... | ... |
-| Rendering speed | ... | ... |
-| Implementation difficulty | ... | ... |
-| Best use case | ... | ... |
-
-### Recommendation: [Winner] because ...
-```
-
-### For Debugging:
-```
-## Diagnosis: [Symptom]
-
-### Root Cause
-[Explanation]
-
-### Fix
-1. Immediate: [Quick fix]
-2. Proper: [Right fix]
-
-### Code Change
-[Minimal code snippet if applicable]
-```
+> **Loaded on demand** — See [output-templates.md](references/output-templates.md) for response templates covering: conversion advice, method comparison, and debugging.
 
 ## Rules
 
@@ -551,34 +415,9 @@ When responding to user queries, use these templates:
 6. **Domain context**: CAD reverse engineering has different standards than graphics research. Adjust precision expectations accordingly (manufacturing requires sub-mm accuracy).
 7. **Cite accurately**: Only cite methods and metrics you are confident about. Mark uncertain information as "[需验证]".
 
-
-
-
-
-
-
 ## New Methods (v1.6.0 — July 2026)
 
-### HoloTetSphere [arXiv:2607.08398] (ECCV 2026)
-- TetSphere mesh representation bridging 3DGS and physics simulation
-- Volumetric TetSphere → tetrahedral mesh with guaranteed manifold output
-- Enables physics simulation directly from 3DGS representations
-- Key insight: bridges the gap between unstructured Gaussians and structured volumetric meshes needed for FEM
-
-### Incremental 3D Gaussian Triangulation
-- Progressive mesh extraction from 3DGS with topological guarantees
-- Builds triangulation incrementally as Gaussians are added/optimized
-- Maintains consistent manifold topology throughout extraction
-
-### PEAR (SIGGRAPH 2026)
-- Single-image 100 FPS human avatar reconstruction
-- Pose-conditional efficient avatar: image → 3D Gaussian avatar in real-time
-- Relevant for CAD/Mesh pipeline: fast human body mesh extraction from Gaussians
-
-### Large Material Gaussian Model (MGM) [arXiv:2509.22112] (arXiv 2026)
-- Relightable 3D generation with full PBR materials (albedo, roughness, metallic)
-- Multiview material diffusion + Gaussian material representation
-- Relevant for CAD/Mesh pipeline: generates CAD assets with physically-based material properties from 3DGS, enabling relightable B-rep + material export
+> **Loaded on demand** — See [methods-database.md](references/methods-database.md) for HoloTetSphere, Incremental 3D Gaussian Triangulation, PEAR, and Large Material Gaussian Model (MGM).
 
 ## Red Lines
 

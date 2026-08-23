@@ -1,4 +1,3 @@
-﻿
 # CAD & Mesh × 3DGS Methods Database
 
 ### Mesh-Gaussian Hybrid Methods
@@ -115,3 +114,39 @@
 **Note on triangle/mesh primitive alternatives**: DiffSoup and FTSplat represent a growing trend of returning to mesh/triangle primitives within neural rendering frameworks. DiffSoup replaces Gaussians with triangle soup while retaining differentiability, enabling direct use of standard depth testing and z-buffer pipelines. FTSplat produces explicit triangle meshes via feed-forward prediction, bypassing the need for post-hoc mesh extraction. Both methods eliminate the mesh↔GS conversion bottleneck for downstream applications requiring mesh geometry.
 
 **Note on hybrid proxy representations**: IRIS demonstrates that Gaussians can serve as learnable proxies for implicit neural fields, enabling shape editing that propagates through the proxy to the underlying INR. This is relevant for mesh↔GS conversion workflows where editing operations need to transfer across representation boundaries.
+
+### Articulated Object Reconstruction (August 2026 Update)
+
+| Method | Venue | Input | Representation | Key Feature |
+|--------|-------|-------|---------------|-------------|
+| RORA | arXiv'26 (2608.04842) | Single static video | Mixed 3DGS + mesh | End-to-end articulated object pipeline; convex decomposition + automatic joint suggestion; deployed in Unreal Engine & Isaac Sim |
+| OVOW | ECCV'26 (2606.31388) | Monocular video | Instance-level 4D mesh | Unifies static/rigid/non-rigid into 4D mesh scene for physics simulation; gravity/contact/support correction; 120-scene benchmark |
+
+**RORA** — Single static video to articulated object end-to-end pipeline. Combines 3DGS for appearance with mesh for structural geometry. Convex decomposition segments the object into parts, then an automatic joint suggestion algorithm infers kinematic structure. Deployed in Unreal Engine and Isaac Sim for robotics simulation. Critical for CAD-to-digital-twin workflows where articulated objects (drawers, doors, laptops) need both visual fidelity (GS) and physical interactability (mesh + joints).
+
+**OVOW** — Monocular video to instance-level 4D mesh scene for physics simulation. Unifies static, rigid, and non-rigid motion into a single 4D mesh framework. Gravity, contact, and support corrections ensure physically plausible simulations. 120-scene benchmark. Relevant to mesh↔GS conversion as it produces simulation-ready mesh output from video input, bypassing the need for separate mesh extraction.
+
+---
+
+## New Methods (v1.6.0 — July 2026)
+
+### HoloTetSphere [arXiv:2607.08398] (ECCV 2026)
+- TetSphere mesh representation bridging 3DGS and physics simulation
+- Volumetric TetSphere → tetrahedral mesh with guaranteed manifold output
+- Enables physics simulation directly from 3DGS representations
+- Key insight: bridges the gap between unstructured Gaussians and structured volumetric meshes needed for FEM
+
+### Incremental 3D Gaussian Triangulation
+- Progressive mesh extraction from 3DGS with topological guarantees
+- Builds triangulation incrementally as Gaussians are added/optimized
+- Maintains consistent manifold topology throughout extraction
+
+### PEAR (SIGGRAPH 2026)
+- Single-image 100 FPS human avatar reconstruction
+- Pose-conditional efficient avatar: image → 3D Gaussian avatar in real-time
+- Relevant for CAD/Mesh pipeline: fast human body mesh extraction from Gaussians
+
+### Large Material Gaussian Model (MGM) [arXiv:2509.22112] (arXiv 2026)
+- Relightable 3D generation with full PBR materials (albedo, roughness, metallic)
+- Multiview material diffusion + Gaussian material representation
+- Relevant for CAD/Mesh pipeline: generates CAD assets with physically-based material properties from 3DGS, enabling relightable B-rep + material export

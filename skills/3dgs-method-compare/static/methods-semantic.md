@@ -84,3 +84,10 @@
 | 3D-GIMP | arXiv 2026 (2607.20789) | 3DGS inpainting + PatchMatch hybrid; generative inpainting on key view then propagate |
 | LB-Edit | arXiv 2026 (2607.19777) | Attention-guided editing camera placement (ACP) + multi-view attention alignment (MAA); 5 views / 7x lower latency |
 | ZeroSplat | ECCV 2026 (2607.18801) | Generalized referring 3DGS segmentation (GR3DGS); zero-feature / training-free / 0/1/N target support |
+
+### New Additions (August 23, 2026 Update)
+
+| Method | Venue | Key Innovation |
+|--------|-------|---------------|
+| LEGO | ECCV 2026 (2608.10057) | Hierarchical language GS; multi-view SAM granularity-adaptive re-grading into 3D-consistent hierarchy; per-level language scene graph supports LLM spatial reasoning |
+| OutLangSplat | arXiv 2026 (2608.04560) | UAV outdoor 3D language GS; 2D-3D dual-branch representation; training-free contribution and consistency-aware gaussian feature aggregation; first UAV open-vocabulary 3D scene dataset |

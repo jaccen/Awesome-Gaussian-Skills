@@ -94,3 +94,9 @@ _Multi-solver comparison sub-dimension for dynamic methods:_
 | Method | Venue | Input | Key Feature |
 |--------|-------|-------|-------------|
 | Energy-GS | CVPR'26 Oral | RGB only (pose-free) | RGB-only joint camera pose + 3DGS optimization; no depth/geometry priors; energy-based pose correction; resolves NeRF-vs-3DGS optimization asymmetry |
+
+### New Additions (August 23, 2026 Update)
+
+| Method | Venue | Input | Key Feature |
+|--------|-------|-------|-------------|
+| OVOW | ECCV'26 (2606.31388) | Monocular video | Instance-level 4D mesh scene for physics simulation; unifies static/rigid/non-rigid; gravity/contact/support correction; 120-scene benchmark |

@@ -1,0 +1,85 @@
+# SplatVerse Studio Pipeline Configuration
+#
+# 借鉴 DSH Profile/Bundle 分层配置模式：将管线步骤和降级策略从代码中外部化。
+#
+# 分层覆盖：pipeline.yml (base) → pipeline.local.yml (user override, gitignored)
+# 修改后需重启 bridge 生效，或调用 POST /api/pipeline/config/reload 热重载。
+
+# ============================================================
+# 管线步骤定义
+#
+# enabled: 是否启用该步骤
+# condition: JavaScript 表达式，在 PipelineInput 上下文中求值
+#            可用的变量：text, title, style, videoRatio, voiceMode, language,
+#            toonflowProjectId, enableVideoGen, enableTTS,
+#            enableMptFallback, enableMptTTS, mptVoiceName, publishPlatforms
+#            以及 process（Node.js process 对象）
+# ============================================================
+steps:
+  - name: script_adaptation
+    label: 剧本改编
+    enabled: true
+
+  - name: storyboard
+    label: 智能分镜
+    enabled: true
+
+  - name: toonflow_sync
+    label: Toonflow集成
+    enabled: true
+    condition: "toonflowProjectId || process.env.TOONFLOW_URL"
+
+  - name: tts
+    label: TTS配音
+    enabled: true
+    condition: "enableTTS"
+
+  - name: video_gen
+    label: 视频驱动
+    enabled: true
+
+  - name: compose
+    label: FFmpeg合成
+    enabled: true
+
+  - name: publish
+    label: 跨平台发布
+    enabled: true
+    condition: "publishPlatforms && publishPlatforms.length > 0"
+
+# ============================================================
+# 降级策略配置
+#
+# providers 按顺序尝试，第一个成功的 provider 即返回结果。
+# condition 控制该 provider 是否参与降级链。
+# ============================================================
+strategies:
+  # TTS 降级链：
+  #   studio-native: TTS 客户端内部降级（CosyVoice2→OpenAI→Aliyun→EdgeTTS→SAPI）
+  #   mpt: MoneyPrinterTurbo TTS（当 Studio 原生 TTS 全部失败时）
+  tts:
+    providers:
+      - name: studio-native
+      - name: mpt
+        condition: "enableMptTTS"
+
+  # 视频降级链：
+  #   video-gen: 视频生成客户端（Seedance→Kling→Wan→Ken Burns）
+  #   ken-burns: 纯 Ken Burns 模式（仅图片 Zoom/Pan，无 AI 视频生成）
+  #   mpt-full: MPT 在线素材全量生成（管线级别降级，替换整个合成步骤）
+  video:
+    providers:
+      - name: video-gen
+        condition: "enableVideoGen"
+      - name: ken-burns
+      - name: mpt-full
+        condition: "enableMptFallback"
+
+  # 合成降级链：
+  #   ffmpeg: FFmpeg 本地合成（视频片段+音频+字幕+BGM→成片）
+  #   mpt-full: MPT 全量生成（当所有视频片段缺失时）
+  compose:
+    providers:
+      - name: ffmpeg
+      - name: mpt-full
+        condition: "enableMptFallback"

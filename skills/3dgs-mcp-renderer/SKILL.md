@@ -3,9 +3,9 @@ name: 3dgs-mcp-renderer
 description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering."
 license: Apache-2.0
 metadata:
-  version: "0.8.0"
+  version: "1.0.0"
   author: jaccen
-  tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive", "spec-first", "sculpting", "code-first"]
+  tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive", "spec-first", "sculpting", "code-first", "slat", "latent-editing"]
   disable-model-invocation: true
   user-invocable: true
 ---
@@ -28,7 +28,7 @@ Prototype specification for integrating MCP (Model Context Protocol) with 3DGS r
                         │  (MCP protocol)       │  transport            │  HiGS/DDF-GS
 ```
 
-## Spec-First Sculpting Pipeline (v0.8.0)
+## Spec-First Sculpting Pipeline (v0.9.0)
 
 > **Design inspiration**: img2threejs (GitHub: img2threejs/img2threejs) — open-source AI Skill that converts a single image into an interactive Three.js 3D model via a stage-gated sculpting pipeline. We borrow two core principles: (1) **spec-first** — define quality criteria and component hierarchy before any rendering; (2) **stage-gated sculpting** — progressive refinement with acceptance checks at each stage.
 
@@ -92,46 +92,9 @@ For each stage gate, the agent follows this protocol:
 
 ### Voice-Driven Sculpting Example
 
-```
-User: "Build me a 3D scene of a desk with a monitor and keyboard"
+> **Loaded on demand** — See [mcp-tools-spec.md](references/mcp-tools-spec.md) for the full voice-driven sculpting example (desk scene with 8-step agent pipeline).
 
-Agent pipeline:
-  1. define_scene_spec(
-       components: ["desk", "monitor", "keyboard"],
-       hierarchy: {"desk": [], "monitor": ["screen", "stand"], "keyboard": ["keys", "body"]},
-       quality: {min_psnr: 25, target_coverage: 0.85, normal_consistency: 0.8}
-     )
-     → spec_id: "desk_scene_v1"
-
-  2. sculpt_pipeline(stage="blockout", spec_id="desk_scene_v1")
-     → Places bounding boxes for desk, monitor, keyboard
-     → Gate: coverage = 0.90 ✓ (≥ 0.85)
-
-  3. sculpt_pipeline(stage="structural", spec_id="desk_scene_v1")
-     → Decomposes monitor into screen + stand, keyboard into keys + body
-     → Gate: part count = 5, matches hierarchy ✓
-
-  4. sculpt_pipeline(stage="form", spec_id="desk_scene_v1")
-     → Adjusts Gaussian density on each part
-     → Gate: PSNR estimate = 27.3 ✓ (≥ 25)
-
-  5. sculpt_pipeline(stage="material", spec_id="desk_scene_v1")
-     → Assigns: desk=wood, monitor_screen=glass, keyboard=plastic
-     → Gate: materials per part ✓
-
-  6. sculpt_pipeline(stage="surface", spec_id="desk_scene_v1")
-     → Enforces normal consistency on flat surfaces
-     → Gate: normal_consistency = 0.85 ✓ (≥ 0.8)
-
-  7. sculpt_pipeline(stage="lighting", spec_id="desk_scene_v1")
-     → Adds desk lamp environment light
-     → Gate: quality_score = 0.87 ✓ (≥ 0.85)
-
-  8. export_scene_code(spec_id="desk_scene_v1", format="threejs+splat")
-     → Outputs: scene.js (procedural geometry) + scene.splat (3DGS data)
-```
-
-## Code-First Rendering Philosophy (v0.8.0)
+## Code-First Rendering Philosophy (v0.9.0)
 
 > **Design inspiration**: img2threejs outputs pure Three.js code (not GLB/OBJ/PLY), making every model fully editable, version-controllable, and lightweight. We adopt this philosophy for 3DGS scene export.
 
@@ -154,44 +117,7 @@ The key insight: **not everything needs to be Gaussians**. For a desk scene:
 - Monitor screen texture → procedural `MeshStandardMaterial` (or 3DGS if view-dependent)
 - Complex organic objects → 3DGS splatting data (where procedural code can't compete)
 
-```javascript
-// Code-first export example: desk_scene.js
-import * as THREE from 'three';
-import { SplatLoader } from './splat-loader.js';
-
-export function createDeskScene() {
-  const scene = new THREE.Scene();
-  
-  // === Procedural geometry (from sculpting spec) ===
-  // Desk: simple parametric geometry
-  const desk = new THREE.Mesh(
-    new THREE.BoxGeometry(1.2, 0.05, 0.6),
-    new THREE.MeshStandardMaterial({ color: 0x8B4513, roughness: 0.7 })
-  );
-  desk.position.set(0, 0.75, 0);
-  scene.add(desk);
-  
-  // Keyboard: procedural + label-based grouping
-  const keyboardGroup = new THREE.Group();
-  // ... key meshes generated procedurally ...
-  scene.add(keyboardGroup);
-  
-  // === 3DGS splatting (for complex/organic elements) ===
-  // Monitor: splatting data for view-dependent reflections
-  const monitorSplat = new SplatLoader();
-  monitorSplat.load('monitor.splat').then(splat => {
-    splat.setPosition(0, 0.95, -0.15);
-    scene.add(splat);
-  });
-  
-  // === Lighting (from sculpting stage 6) ===
-  const lamp = new THREE.PointLight(0xFFE4B5, 0.8);
-  lamp.position.set(0.4, 1.2, 0.2);
-  scene.add(lamp);
-  
-  return scene;
-}
-```
+> **Loaded on demand** — See [code-first-examples.md](references/code-first-examples.md) for hybrid export code examples.
 
 ### When to Use Code-First vs Pure Splat
 
@@ -206,612 +132,75 @@ export function createDeskScene() {
 
 ### SLAT Connection
 
-The code-first approach connects to SLAT (see `references/slat-unified-representation.md`): the structured latent's voxel grid naturally maps to a procedural geometry skeleton, while the per-voxel features decode to 3DGS splatting for complex regions. **SLAT encode → hierarchical decode: simple voxels → procedural code, complex voxels → 3DGS splats.**
+The code-first approach connects to SLAT (see `../../references/slat-unified-representation.md`): the structured latent's voxel grid naturally maps to a procedural geometry skeleton, while the per-voxel features decode to 3DGS splatting for complex regions. **SLAT encode → hierarchical decode: simple voxels → procedural code, complex voxels → 3DGS splats.**
+
+## SLAT Latent Editing (v1.0.0)
+
+> **Theoretical basis**: SLAT (Structured Latent Aggregation Transform) — see `../../references/slat-unified-representation.md`. A scene is encoded into a compact structured latent (a voxel grid over the scene, each voxel aggregating local Gaussian features), edited in latent space, then re-decoded back to a Gaussian set. This lets the agent manipulate entire semantic regions with a single operation, independent of per-Gaussian IDs.
+
+### Encoding: Scene → Structured Latent
+
+`encode_scene_slatent` voxelizes the active scene into a regular grid (`voxel_size`, default 1.0), assigning each Gaussian to a voxel by position. Each voxel stores an aggregated feature vector (mean position, mean scale, mean color, mean opacity, size, plus optional weighted semantic/part labels). The result is a `slat_id` referencing an in-memory snapshot with an `encode_loss` (reconstruction RMSE), letting the agent judge fidelity before editing.
+
+### Editing in Latent Space
+
+`edit_scene_latent` applies a `LatentEditOp` to voxels matched by a `LatentSelector` (by voxel ids, a spatial box, or a part name — substring, case-insensitive). Seven operations are supported:
+
+| Op | Fields | Effect |
+|----|--------|--------|
+| `translate` | `delta: Vec3` | Move matched voxels (and their Gaussians) by a vector |
+| `scale` | `factor: number`, `origin: Vec3` | Scale voxel positions relative to an origin |
+| `rotate` | `angleDeg: number`, `axis: Vec3`, `origin: Vec3` | Rotate voxels around an axis (degrees) |
+| `recolor` | `color: Vec3`, `mix: number` | Blend matched voxels' colors toward a target |
+| `opacity` | `opacity: number`, `mode` | Set or scale opacity (mode `set`/`scale`) |
+| `smooth` | `iterations: number`, `strength: number` | Smooth feature positions/colors by averaging neighbors |
+| `delete` | `target: "voxel"` | Remove all Gaussians in matched voxels |
+
+**Schema vs core naming**: the MCP JSON schema uses snake_case (`angle_deg`); the internal `LatentEditOp` uses camelCase (`angleDeg`). Handlers convert at the boundary. Library/test callers use camelCase directly.
+
+**Safety gate**: `edit_scene_latent` computes `affected_gaussians`; if this exceeds 10% of the scene, the edit is rejected unless `confirm=true`. This reuses the project-wide 10% safety rule.
+
+**Apply to scene**: with `apply_to_scene=true` (default) the edit is re-decoded and broadcast to the renderer via `modify_gaussians`; with `false` it only updates the in-memory snapshot, so the agent can preview/cancel before committing.
+
+### Decoding: Latent → Scene
+
+Decoding rebuilds the Gaussian set: matched voxels are re-instantiated from edited features, untouched voxels keep their original Gaussians. `delete` removes the affected Gaussians entirely.
+
+### Voice-Driven SLAT Example
+
+> **Loaded on demand** — See [mcp-tools-spec.md](references/mcp-tools-spec.md) for full SLAT voice examples ("encode the scene", "move the cluster left", "scale the group up", etc.).
 
 ## MCP Tools Specification
 
-### Tool 1: `import_scene`
+19 core MCP tools (fully implemented) + 13 experimental tools (schema-only stubs) enable agent-controlled 3DGS rendering, editing, sculpting, latent editing, and export. Full JSON schemas are loaded on demand.
 
-```json
-{
-  "name": "import_scene",
-  "description": "Load a 3DGS scene from PLY/SPLAT file or URL into the renderer",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "source": { "type": "string", "description": "File path or URL to .ply/.splat file" },
-      "format": { "enum": ["ply", "splat", "spz", "ksplat"], "description": "File format" }
-    },
-    "required": ["source"]
-  },
-  "output": { "type": "object", "properties": { "scene_id": "string", "gaussian_count": "number", "bbox": "object" } }
-}
-```
+| # | Tool Name | Description |
+|---|-----------|-------------|
+| 1 | `import_scene` | Load a 3DGS scene from PLY/SPLAT file or URL |
+| 2 | `set_camera` | Set camera position, target, and field of view |
+| 3 | `modify_gaussians` | Modify Gaussian properties by selection criteria (IDs, region, label) |
+| 4 | `render_frame` | Render current scene from current camera as image |
+| 5 | `query_scene` | Query scene stats, bbox, point, segmentation, or materials |
+| 6 | `cast_ray` | Cast ray for distance/normal via DDF-GS neural field |
+| 7 | `simulate_physics` | Invoke external physics engine (MPM/SPH/PBD) on 3DGS scene |
+| 8 | `query_4d_scene` | Query dynamic 3D scene at arbitrary (x,y,t) coordinates |
+| 9 | `deform_elastic` | Apply particle-skinned eigenmode deformation to 3DGS object |
+| 10 | `query_spatial_context` | Spatial understanding query (grounding, relation, measurement, scene graph) |
+| 11 | `bayesian_density_control` | DP-Splat Bayesian nonparametric Gaussian density control |
+| 12 | `moe_deform` | MoE-GS/MoDE mixture-of-experts dynamic deformation |
+| 13 | `surgical_tracking` | Track2Map surgical instrument tracking and tissue mapping |
+| 14 | `query_provenance` | GaussTrace provenance query and IP forgery detection |
+| 15 | `set_pbr_material` | Set PBR material properties (MGM/InvSplat) on selected Gaussians |
+| 16 | `deformable_aggregate` | GADA feed-forward 3DGS from multi-view images |
+| 17 | `set_stereoscopic` | Stereoscopic dual-eye rendering (StereoGS) for VR/AR |
+| 18 | `define_scene_spec` | Define Object Spec (hierarchy, materials, quality gates) before sculpting |
+| 19 | `sculpt_pipeline` | Execute one stage of spec-first sculpting (6 stages, gate-evaluated) |
+| 20 | `export_scene_code` | Export scene as Three.js code + 3DGS splat (code-first philosophy) |
+| 21 | `encode_scene_slatent` | Encode current scene into a SLAT structured latent snapshot (voxel grid + per-voxel features) |
+| 22 | `edit_scene_latent` | Apply a latent edit (translate/scale/rotate/recolor/opacity/smooth/delete) to a SLAT snapshot, optionally re-decode to scene |
+| 23 | `list_slatents` | List in-memory SLAT snapshots (id, voxel count, source Gaussian count) |
 
-### Tool 2: `set_camera`
-
-```json
-{
-  "name": "set_camera",
-  "description": "Set camera position, target, and field of view",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "position": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z]" },
-      "target": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] look-at point" },
-      "fov": { "type": "number", "description": "Field of view in degrees" },
-      "up": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] up vector" }
-    },
-    "required": ["position", "target"]
-  }
-}
-```
-
-### Tool 3: `modify_gaussians`
-
-```json
-{
-  "name": "modify_gaussians",
-  "description": "Modify properties of Gaussians by selection criteria",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "select": {
-        "type": "object",
-        "properties": {
-          "ids": { "type": "array", "items": {"type": "integer"}, "description": "Specific Gaussian IDs" },
-          "region": { "type": "object", "properties": {"center": "array", "radius": "number"}, "description": "Sphere selection" },
-          "label": { "type": "string", "description": "Semantic label from segmentation" }
-        }
-      },
-      "operations": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "property": { "enum": ["opacity", "color", "position", "scale", "rotation"] },
-            "action": { "enum": ["set", "add", "multiply"] },
-            "value": {}
-          }
-        }
-      }
-    },
-    "required": ["select", "operations"]
-  }
-}
-```
-
-### Tool 4: `render_frame`
-
-```json
-{
-  "name": "render_frame",
-  "description": "Render current scene from current camera and return as image",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "width": { "type": "integer", "default": 1920 },
-      "height": { "type": "integer", "default": 1080 },
-      "format": { "enum": ["png", "jpeg", "webp"], "default": "png" },
-      "background": { "type": "string", "default": "#000000" }
-    }
-  },
-  "output": { "type": "object", "properties": { "image": "string (base64)", "render_time_ms": "number" } }
-}
-```
-
-### Tool 5: `query_scene`
-
-```json
-{
-  "name": "query_scene",
-  "description": "Query scene information: statistics, geometry, semantics",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "query_type": { "enum": ["stats", "bbox", "gaussian_at_point", "segmentation", "materials"] },
-      "point": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] for point queries" }
-    },
-    "required": ["query_type"]
-  }
-}
-```
-
-### Tool 6: `cast_ray`
-
-```json
-{
-  "name": "cast_ray",
-  "description": "Cast a ray from origin in direction and return distance to first surface hit. Leverages DDF-GS (arXiv:2606.00817) neural field distilled from trained 3DGS.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "origin": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] ray origin" },
-      "direction": { "type": "array", "items": {"type": "number"}, "description": "[x, y, z] ray direction (normalized)" }
-    },
-    "required": ["origin", "direction"]
-  },
-  "output": { "type": "object", "properties": { "distance": "number", "hit": "boolean", "normal": "array [x,y,z]" } }
-}
-```
-
-**Use cases**: Shadow rendering, ambient occlusion, reflection rays, global illumination
-
-**Limitation**: Requires DDF distillation step after 3DGS training (adds ~10 min for 52MB model)
-
-### Tool 7: `simulate_physics`
-
-MCP Tool: simulate_physics — Invoke external physics engine (MPM/SPH/PBD) on 3DGS scene via RAF-style representation abstraction; parameters: object_ids, force, solver_type; returns: updated Gaussian positions/covariances
-
-```json
-{
-  "name": "simulate_physics",
-  "description": "Invoke external physics engine (MPM/SPH/PBD) on 3DGS scene via RAF-style representation abstraction",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "object_ids": { "type": "array", "items": {"type": "integer"}, "description": "IDs of objects to simulate" },
-      "force": { "type": "object", "properties": {"linear": "array", "angular": "array"}, "description": "Applied force/torque" },
-      "solver_type": { "enum": ["mpm", "sph", "pbd", "rigid_body"], "description": "Physics solver backend" },
-      "dt": { "type": "number", "description": "Time step in seconds", "default": 0.016 },
-      "steps": { "type": "integer", "description": "Number of simulation steps", "default": 1 }
-    },
-    "required": ["object_ids", "solver_type"]
-  },
-  "output": { "type": "object", "properties": { "updated_positions": "array", "updated_covariances": "array", "energy": "number" } }
-}
-```
-
-**Use cases**: Physics-driven scene editing, collapse/fall simulation, fluid interaction with Gaussian objects
-
-### Tool 8: `query_4d_scene`
-
-MCP Tool: query_4d_scene — Query dynamic 3D scene at arbitrary (x,y,t) coordinates; returns: 3D position, flow vector, segmentation label; enables voice-driven temporal navigation
-
-```json
-{
-  "name": "query_4d_scene",
-  "description": "Query dynamic 3D scene at arbitrary (x,y,t) coordinates; enables voice-driven temporal navigation via D4RT unified query mechanism",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "x": { "type": "number", "description": "X coordinate in scene space" },
-      "y": { "type": "number", "description": "Y coordinate in scene space" },
-      "t": { "type": "number", "description": "Time index in dynamic sequence" },
-      "query_fields": { "type": "array", "items": {"enum": ["position_3d", "flow_vector", "segmentation_label", "depth"]}, "description": "Fields to return" }
-    },
-    "required": ["x", "y", "t"]
-  },
-  "output": { "type": "object", "properties": { "position_3d": "array [x,y,z]", "flow_vector": "array [dx,dy,dz]", "segmentation_label": "string", "depth": "number" } }
-}
-```
-
-**Use cases**: "What was here at time t=5?", temporal object tracking, voice-driven time scrubbing
-
-### Tool 9: `deform_elastic`
-
-MCP Tool: deform_elastic — Apply particle-skinned eigenmode deformation to 3DGS object; parameters: object_id, mode_indices, amplitudes; returns: deformed Gaussian positions
-
-```json
-{
-  "name": "deform_elastic",
-  "description": "Apply particle-skinned eigenmode deformation to 3DGS object (FreeForm-style elastic deformation)",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "object_id": { "type": "integer", "description": "ID of object to deform" },
-      "mode_indices": { "type": "array", "items": {"type": "integer"}, "description": "Eigenmode indices to activate" },
-      "amplitudes": { "type": "array", "items": {"type": "number"}, "description": "Amplitude per eigenmode" },
-      "interpolation": { "enum": ["linear", "smoothstep"], "description": "Interpolation method for deformation", "default": "smoothstep" }
-    },
-    "required": ["object_id", "mode_indices", "amplitudes"]
-  },
-  "output": { "type": "object", "properties": { "deformed_positions": "array", "eigenmode_energies": "array" } }
-}
-```
-
-**Use cases**: Elastic soft-body deformation, eigenmode-based shape editing, physically plausible object bending
-
-### Tool 10: `query_spatial_context`
-
-```json
-{
-  "name": "query_spatial_context",
-  "description": "Query spatial understanding of the current 3DGS scene using spatial intelligence models (Spatial-TTT/Holi-Spatial pipeline). Returns spatial relations, grounding, and scene graph.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string", "description": "Scene identifier from import_scene" },
-      "query": { "type": "string", "description": "Natural language spatial query about the scene" },
-      "mode": { "enum": ["grounding", "relation", "measurement", "scene_graph"], "description": "Type of spatial query" }
-    },
-    "required": ["scene_id", "query", "mode"]
-  },
-  "output": { "type": "object", "properties": { "answer": "string", "spatial_data": "object", "confidence": "number" } }
-}
-```
-
-Integrates Holi-Spatial (ICML 2026 Oral) data pipeline for automated spatial annotation and Spatial-TTT (ECCV 2026) for streaming spatial memory updates.
-
-### Tool 11: `bayesian_density_control`
-
-```json
-{
-  "name": "bayesian_density_control",
-  "description": "Agent-controlled Bayesian nonparametric Gaussian density control. Uses DP-Splat (arXiv:2607.10912) Dirichlet-process prior to automatically determine optimal Gaussian count per region, eliminating manual density hyperparameter tuning.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string" },
-      "concentration": { "type": "number", "minimum": 0.1, "maximum": 10.0, "description": "DP concentration parameter α (higher = more Gaussians)" },
-      "base_measure": { "enum": ["uniform", "saliency-weighted", "gradient-weighted"], "description": "Base measure for DP prior" },
-      "max_iterations": { "type": "integer", "default": 50, "description": "Maximum MCMC iterations for posterior inference" }
-    },
-    "required": ["scene_id", "concentration"]
-  },
-  "output": { "type": "object", "properties": { "gaussian_count": "number", "regions_adjusted": "array", "elpd": "number" } }
-}
-```
-
-**Use cases**: Auto-tune density for unknown scenes, eliminate manual clone/split threshold tuning, adapt density to scene complexity
-
-### Tool 12: `moe_deform`
-
-```json
-{
-  "name": "moe_deform",
-  "description": "Apply Mixture-of-Experts dynamic deformation to selected Gaussians. Uses MoE-GS/MoDE (arXiv:2607.08250, TPAMI 2026) expert routing per motion pattern for physically plausible dynamic deformation.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string" },
-      "object_ids": { "type": "array", "items": {"type": "integer"}, "description": "IDs of objects to deform" },
-      "target_motion": { "type": "string", "description": "Description of desired motion (e.g., 'wave left hand', 'open door')" },
-      "num_experts": { "type": "integer", "default": 4, "description": "Number of deformation experts" },
-      "temporal_range": { "type": "array", "items": {"type": "number"}, "description": "[start_time, end_time] for deformation" }
-    },
-    "required": ["scene_id", "object_ids", "target_motion"]
-  },
-  "output": { "type": "object", "properties": { "deformed_positions": "array", "expert_weights": "array", "motion_coherence": "number" } }
-}
-```
-
-**Use cases**: Voice-driven character animation, dynamic scene editing with motion-specific expert routing, 4D content creation
-
-### Tool 13: `surgical_tracking`
-
-```json
-{
-  "name": "surgical_tracking",
-  "description": "Track surgical instruments and reconstruct tissue map in real-time using Track2Map (arXiv:2607.08408, MICCAI 2026) surgical GS SLAM. Enables agent-assisted minimally invasive surgery guidance.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string" },
-      "tracking_mode": { "enum": ["instrument", "tissue", "both"], "description": "What to track" },
-      "update_rate_hz": { "type": "number", "default": 30, "description": "Target tracking update rate" },
-      "safety_margin_mm": { "type": "number", "default": 2.0, "description": "Safety margin for collision warning (mm)" }
-    },
-    "required": ["scene_id", "tracking_mode"]
-  },
-  "output": { "type": "object", "properties": { "instrument_poses": "array", "tissue_map_update": "boolean", "collision_warnings": "array", "tracking_accuracy_mm": "number" } }
-}
-```
-
-**Use cases**: Surgical navigation, instrument tracking, tissue deformation monitoring, collision avoidance in surgery
-
-### Tool 14: `query_provenance`
-
-```json
-{
-  "name": "query_provenance",
-  "description": "Query 3DGS model provenance and IP forensics using GaussTrace (arXiv:2606.10612, ICML 2026). Constructs directed provenance graphs from Gaussian scene attributes for model lineage tracing, training data influence analysis, and forgery detection.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string" },
-      "query_type": { "enum": ["lineage", "attribution", "forgery_detection", "training_data_influence"], "description": "Type of provenance query" },
-      "evidence_threshold": { "type": "number", "default": 0.75, "description": "Confidence threshold for evidence graph edges" }
-    },
-    "required": ["scene_id", "query_type"]
-  },
-  "output": { "type": "object", "properties": { "provenance_graph": "object", "confidence_score": "number", "evidence_chain": "array", "forgery_flags": "array" } }
-}
-```
-
-**Use cases**: 3DGS IP protection, model attribution, training data leakage detection, forgery analysis
-
-### Tool 15: `set_pbr_material`
-
-```json
-{
-  "name": "set_pbr_material",
-  "description": "Set physically-based rendering (PBR) material properties on selected Gaussians using MGM (arXiv:2509.22112) and InvSplat (arXiv:2607.02301) material representations. Enables relighting without post-hoc decomposition by assigning intrinsic material attributes (albedo, metallic, roughness) directly to Gaussians.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string" },
-      "select": { "type": "object", "description": "Selection criteria (same as modify_gaussians)" },
-      "albedo": { "type": "array", "items": {"type": "number"}, "description": "[r, g, b] albedo in [0,1]" },
-      "metallic": { "type": "number", "description": "Metallic factor in [0,1]" },
-      "roughness": { "type": "number", "description": "Roughness factor in [0,1]" },
-      "infer_from_appearance": { "type": "boolean", "default": false, "description": "Use InvSplat inverse feed-forward to infer PBR from existing appearance" }
-    },
-    "required": ["scene_id", "select"]
-  },
-  "output": { "type": "object", "properties": { "modified_count": "number", "material_preview": "string" } }
-}
-```
-
-**Use cases**: Relightable 3DGS editing, material transfer, PBR asset generation, appearance decoupling
-
-### Tool 16: `deformable_aggregate`
-
-```json
-{
-  "name": "deformable_aggregate",
-  "description": "Apply geometry-aware deformable aggregation (GADA, arXiv:2607.00595, ICML 2026) to feed-forward 3DGS from multi-view images. Uses deformable offsets and implicit confidence weighting for 2.13x faster FPS with improved PSNR over prior feed-forward methods.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "input_views": { "type": "array", "items": {"type": "string"}, "description": "Array of image URLs or file paths" },
-      "deform_offset_range": { "type": "number", "default": 0.1, "description": "Maximum deformable offset range (scene scale relative)" },
-      "confidence_weighting": { "type": "boolean", "default": true, "description": "Enable implicit confidence weighting" },
-      "output_format": { "enum": ["ply", "splat"], "default": "ply" }
-    },
-    "required": ["input_views"]
-  },
-  "output": { "type": "object", "properties": { "scene_id": "string", "gaussian_count": "number", "inference_time_ms": "number", "psnr_estimate": "number" } }
-}
-```
-
-**Use cases**: Fast feed-forward 3DGS reconstruction, real-time multi-view splatting, generalizable 3DGS
-
-### Tool 17: `set_stereoscopic`
-
-```json
-{
-  "name": "set_stereoscopic",
-  "description": "Enable stereoscopic (dual-eye) rendering mode using StereoGS energy-efficient processor paradigm. Shares compute and memory bandwidth between left and right eye views for VR/AR head-mounted displays. Approximates the StereoGS hardware accelerator in software.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "scene_id": { "type": "string" },
-      "enabled": { "type": "boolean", "description": "Enable or disable stereoscopic mode" },
-      "ipd": { "type": "number", "default": 0.063, "description": "Interpupillary distance in meters (default: 63mm)" },
-      "shared_compute": { "type": "boolean", "default": true, "description": "Share Gaussian sorting and blending between eyes (StereoGS paradigm)" },
-      "output_mode": { "enum": ["side_by_side", "top_bottom", "dual_buffer"], "default": "dual_buffer" }
-    },
-    "required": ["scene_id", "enabled"]
-  },
-  "output": { "type": "object", "properties": { "left_eye_frame": "string", "right_eye_frame": "string", "render_time_ms": "number", "bandwidth_savings_pct": "number" } }
-}
-```
-
-**Use cases**: VR/AR scene viewing, stereoscopic 3DGS preview, dual-eye rendering optimization
-
-### Tool 18: `define_scene_spec`
-
-```json
-{
-  "name": "define_scene_spec",
-  "description": "Define an Object Spec before any sculpting or editing. Establishes component hierarchy, material system, and quality gate criteria. Inspired by img2threejs spec-first methodology. Must be called before sculpt_pipeline stages.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "components": {
-        "type": "array",
-        "items": {"type": "string"},
-        "description": "Top-level component names (e.g., ['desk', 'monitor', 'keyboard'])"
-      },
-      "hierarchy": {
-        "type": "object",
-        "description": "Part decomposition tree. Keys are component names, values are arrays of sub-part names.",
-        "additionalProperties": {
-          "type": "array",
-          "items": {"type": "string"}
-        }
-      },
-      "materials": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {"type": "string"},
-            "type": {"enum": ["procedural", "pbr", "splat", "hybrid"]},
-            "params": {"type": "object"}
-          }
-        },
-        "description": "Material system definition (procedural code, PBR attributes, or 3DGS splat)"
-      },
-      "quality_gates": {
-        "type": "object",
-        "properties": {
-          "min_psnr": {"type": "number", "default": 20},
-          "target_coverage": {"type": "number", "default": 0.8, "description": "Fraction of bbox occupied by geometry"},
-          "normal_consistency": {"type": "number", "default": 0.7},
-          "max_gaussian_count": {"type": "integer", "default": 500000}
-        }
-      },
-      "scene_id": {"type": "string", "description": "Existing scene to associate spec with, or omit for new scene"}
-    },
-    "required": ["components"]
-  },
-  "output": {
-    "type": "object",
-    "properties": {
-      "spec_id": "string",
-      "stage_order": {"type": "array", "items": {"type": "string"}, "description": "['blockout', 'structural', 'form', 'material', 'surface', 'lighting']"},
-      "validation": "object"
-    }
-  }
-}
-```
-
-**Use cases**: Voice-driven scene construction, quality-controlled 3DGS editing, hierarchical part-level scene management
-
-### Tool 19: `sculpt_pipeline`
-
-```json
-{
-  "name": "sculpt_pipeline",
-  "description": "Execute one stage of the spec-first sculpting pipeline. Each stage refines the scene progressively: blockout (bounding boxes) → structural (part decomposition) → form (Gaussian density/scale) → material (PBR/SH) → surface (normal consistency) → lighting (environment). Automatically evaluates stage gate after execution.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "spec_id": {"type": "string", "description": "Spec ID from define_scene_spec"},
-      "stage": {
-        "enum": ["blockout", "structural", "form", "material", "surface", "lighting"],
-        "description": "Sculpting stage to execute"
-      },
-      "params": {
-        "type": "object",
-        "description": "Stage-specific parameters (varies by stage)",
-        "properties": {
-          "blockout": {
-            "type": "object",
-            "properties": {
-              "auto_layout": {"type": "boolean", "default": true, "description": "Auto-arrange component bounding boxes"},
-              "layout_hint": {"type": "string", "description": "Natural language layout guidance"}
-            }
-          },
-          "form": {
-            "type": "object",
-            "properties": {
-              "density_strategy": {"enum": ["uniform", "curvature-aware", "saliency-weighted"], "default": "saliency-weighted"},
-              "target_count": {"type": "integer", "description": "Target Gaussian count for this stage"}
-            }
-          },
-          "material": {
-            "type": "object",
-            "properties": {
-              "infer_from_appearance": {"type": "boolean", "default": false, "description": "Use InvSplat inverse feed-forward"},
-              "material_assignments": {"type": "object", "description": "Part name → material name mapping"}
-            }
-          },
-          "lighting": {
-            "type": "object",
-            "properties": {
-              "environment_map": {"type": "string", "description": "HDRI environment map URL or preset name"},
-              "enable_shadows": {"type": "boolean", "default": true},
-              "enable_ao": {"type": "boolean", "default": true}
-            }
-          }
-        }
-      },
-      "max_retries": {"type": "integer", "default": 3, "description": "Max retry attempts if gate fails"}
-    },
-    "required": ["spec_id", "stage"]
-  },
-  "output": {
-    "type": "object",
-    "properties": {
-      "stage": "string",
-      "gate_passed": "boolean",
-      "gate_metrics": "object",
-      "gate_criteria": "object",
-      "retries_used": "integer",
-      "next_stage": {"type": "string", "description": "Next stage if gate passed, or 'retry'/'failed'"}
-    }
-  }
-}
-```
-
-**Gate criteria per stage**:
-
-| Stage | Gate Metric | Source | Criteria |
-|-------|------------|--------|----------|
-| blockout | bbox_coverage | query_scene stats | ≥ spec.quality_gates.target_coverage |
-| structural | part_count_match | query_scene segmentation | Matches spec.hierarchy part count |
-| form | psnr_estimate | render_frame + metric | ≥ spec.quality_gates.min_psnr |
-| material | material_coverage | query_scene materials | All parts have assigned materials |
-| surface | normal_consistency | query_scene stats | ≥ spec.quality_gates.normal_consistency |
-| lighting | quality_score | render_frame + perceptual metric | ≥ 0.8 (relative scale) |
-
-**Use cases**: Progressive scene construction, quality-gated 3DGS editing, automated scene refinement with acceptance checks
-
-### Tool 20: `export_scene_code`
-
-```json
-{
-  "name": "export_scene_code",
-  "description": "Export the current scene as Three.js code + 3DGS splat data (code-first rendering philosophy). Simple/parametric elements become procedural Three.js geometry code; complex/organic elements become compressed .splat files. Produces a version-controllable, editable export instead of a binary blob.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "spec_id": {"type": "string", "description": "Spec ID for component hierarchy and material mapping"},
-      "format": {
-        "enum": ["threejs+splat", "threejs_only", "splat_only"],
-        "default": "threejs+splat",
-        "description": "Export format: hybrid (code+splat), pure code, or pure splat"
-      },
-      "code_options": {
-        "type": "object",
-        "properties": {
-          "module_format": {"enum": ["esm", "commonjs"], "default": "esm"},
-          "include_comments": {"type": "boolean", "default": true},
-          "split_files": {"type": "boolean", "default": true, "description": "Split into scene.js + per-part files"},
-          "interaction_hooks": {"type": "boolean", "default": true, "description": "Include interaction event hooks in code"}
-        }
-      },
-      "splat_compression": {
-        "type": "object",
-        "properties": {
-          "format": {"enum": ["ply", "splat", "spz", "ksplat"], "default": "splat"},
-          "quantization": {"enum": ["f32", "f16", "int8"], "default": "f16"},
-          "prune_threshold": {"type": "number", "default": 0.01, "description": "Opacity pruning threshold"}
-        }
-      },
-      "partition_strategy": {
-        "enum": ["spec_hierarchy", "spatial", "flat"],
-        "default": "spec_hierarchy",
-        "description": "How to partition scene into code-vs-splat: spec_hierarchy uses component parts, spatial uses voxel blocks, flat exports all as splat"
-      }
-    },
-    "required": ["spec_id"]
-  },
-  "output": {
-    "type": "object",
-    "properties": {
-      "code_file": "string (file path to .js scene code)",
-      "splat_files": {"type": "array", "items": {"type": "string"}, "description": "File paths to .splat data per partition"},
-      "manifest": {
-        "type": "object",
-        "description": "Scene manifest: part → (code function | splat file) mapping",
-        "properties": {
-          "procedural_parts": "array",
-          "splat_parts": "array",
-          "total_code_size_kb": "number",
-          "total_splat_size_mb": "number"
-        }
-      },
-      "scene_graph": "object"
-    }
-  }
-}
-```
-
-**Partition strategy**:
-
-```javascript
-// spec_hierarchy partitioning logic:
-for (const component of spec.components) {
-  const partType = classifyPart(component);  // procedural | splat | hybrid
-  if (partType === 'procedural') {
-    // Generate Three.js geometry code
-    codeFile += generateGeometryCode(component, spec);
-  } else if (partType === 'splat') {
-    // Export Gaussians as .splat file
-    splatFile = exportGaussians(getGaussiansByLabel(component));
-  } else {  // hybrid
-    // Simple base as code, complex details as splat
-    codeFile += generateBaseGeometryCode(component);
-    splatFile = exportGaussians(getDetailGaussians(component));
-  }
-}
-```
-
-**Use cases**: Version-controllable 3DGS scene export, web-deployable hybrid rendering, editable scene handoff between agents or humans, lightweight scene sharing
+> **Full tool schemas loaded on demand** — See [mcp-tools-spec.md](references/mcp-tools-spec.md) for complete JSON schemas, sculpting examples, and reconstruction flows.
 
 ## Voice Intent Mapping
 
@@ -835,39 +224,19 @@ for (const component of spec.components) {
 | "Reconstruct from these photos fast" | Feed-forward splatting | `deformable_aggregate` (input_views=[...]) |
 | "Show me in VR mode" | Stereoscopic rendering | `set_stereoscopic` (enabled=true) |
 | "Adjust the eye distance" | VR IPD control | `set_stereoscopic` (ipd=value) |
+| "Encode the scene as a latent snapshot" | SLAT encoding | `encode_scene_slatent` |
+| "Move the cluster to the left" | SLAT translate | `edit_scene_latent` (op="translate", select part="cluster") |
+| "Scale the whole group up" | SLAT scale | `edit_scene_latent` (op="scale") |
+| "Rotate the table 90 degrees" | SLAT rotate | `edit_scene_latent` (op="rotate", angleDeg=90) |
+| "Recolor the background to blue" | SLAT recolor | `edit_scene_latent` (op="recolor") |
+| "Fade out the distant objects" | SLAT opacity | `edit_scene_latent` (op="opacity") |
+| "Smooth the table surface" | SLAT smooth | `edit_scene_latent` (op="smooth") |
+| "Delete the chair voxels" | SLAT delete | `edit_scene_latent` (op="delete") |
+| "List my latent snapshots" | SLAT listing | `list_slatents` |
 
 ## Voice-Driven Reconstruction Flow
 
-```
-User: "Show me the scene from above"
-  │
-  ▼
-Whisper STT ──▶ Text: "Show me the scene from above"
-  │
-  ▼
-Agent (Claude/TeleClaw) interprets:
-  - Intent: Change camera to bird's-eye view
-  - Parameters: position=[0, 10, 0], target=[0, 0, 0], up=[0, 0, -1]
-  │
-  ▼
-MCP tool call: set_camera(position=[0, 10, 0], target=[0, 0, 0])
-  │
-  ▼
-MCP tool call: render_frame(width=1920, height=1080)
-  │
-  ▼
-Agent receives base64 image, verifies, reports to user
-```
-
-```
-User: "Make the left wall transparent"
-  │
-  ▼
-Agent:
-  1. query_scene(query_type="segmentation") → find "left wall" label
-  2. modify_gaussians(select={label: "left wall"}, operations=[{property: "opacity", action: "multiply", value: 0.2}])
-  3. render_frame() → verify visual result
-```
+> **Loaded on demand** — See [mcp-tools-spec.md](references/mcp-tools-spec.md) for the full voice-driven reconstruction flow examples (camera control and transparency editing).
 
 ## Implementation Stack
 
@@ -881,37 +250,13 @@ Agent:
 | Transport | WebSocket (localhost) | Working |
 | Voice STT | Whisper API / Web Speech API | Available |
 | Agent integration | Claude Code / TeleClaw MCP client | Pending |
-| Spec-first sculpting | define_scene_spec + sculpt_pipeline (6 stages) | Prototype (v0.8.0) |
-| Code-first export | Three.js code generator + splat partitioner | Prototype (v0.8.0) |
+| Spec-first sculpting | define_scene_spec + sculpt_pipeline (6 stages) | Implemented (v0.9.0) |
+| Code-first export | Three.js code generator + splat partitioner | Implemented (v0.9.0) |
+| SLAT latent editing | encode/edit/decode structured latent (3 tools) | Implemented (v1.0.0) |
 
-## Current Renderer Compatibility
+## Renderer Backend Details
 
-| Renderer | Format | WebGPU | MCP-Ready | Stars |
-|----------|--------|--------|-----------|-------|
-| gsplat.js | .ply/.splat | Yes | Needs adapter | — |
-| GaussianSplats3D | .ply | WebGL | Needs adapter | — |
-| viser/nerfstudio | .ply | WebGL | Partial | — |
-| PlayCanvas | .ply | Yes | Needs adapter | — |
-| brush (Rust/WebGPU) | .ply | Yes | Closest | 4.3k |
-| HiGS | .ply | Yes | Planned | — |
-| DDF-GS | .ply + .ddf | Yes | Planned | — |
-
-## DDF-GS Distillation Pipeline
-
-1. Train 3DGS scene normally
-2. Distill into Directed Distance Function (DDF) neural field
-   - Input: trained 3DGS model (.ply)
-   - Output: DDF model (~52MB, size independent of Gaussian count)
-   - Training time: ~10 minutes
-   - Quality: shadow at 30.3 dB PSNR, AO at 21.3 dB PSNR
-3. DDF enables: shadow maps, AO, reflections, global illumination
-
-## HiGS Hierarchical Rendering Integration
-
-- HiGS (arXiv:2606.00352) achieves 15.8x rendering speedup via dual-scale tile architecture
-- MCP integration: `render_frame()` can leverage HiGS backend for real-time rendering
-- Architecture: Agent → MCP → HiGS Renderer (macro-tile partitioning + micro-tile rasterization)
-- Performance target: 950+ FPS on NVIDIA GPU for interactive scene exploration
+> **Loaded on demand** — See [renderer-backends.md](references/renderer-backends.md) for renderer compatibility, DDF-GS, and HiGS details.
 
 ## Known Limitations
 
@@ -929,9 +274,10 @@ Agent:
 - [ ] v0.5: Real-time streaming (WebSocket-based progressive rendering)
 - [ ] v0.6: DDF-GS distillation integration (shadow/AO/reflection rendering)
 - [ ] v0.7: HiGS hierarchical rendering backend (950+ FPS target)
-- [x] v0.8: Spec-first sculpting pipeline (define_scene_spec + sculpt_pipeline 6 stages) + Code-first rendering export (export_scene_code) + Bayesian density control (DP-Splat) + MoE deformation (MoE-GS/MoDE) + Surgical tracking (Track2Map)
-- [ ] v0.9: SLAT-integrated latent editing (edit structured latent → re-decode to 3DGS)
-- [ ] v1.0: Full voice-driven scene construction (spec → sculpt → export pipeline)
+- [x] v0.8: Spec-first sculpting pipeline design (define_scene_spec + sculpt_pipeline 6 stages) + Code-first rendering export (export_scene_code) + Bayesian density control (DP-Splat) + MoE deformation (MoE-GS/MoDE) + Surgical tracking (Track2Map)
+- [x] v0.9: Spec-first sculpting pipeline **implemented** — 3 new core tools (define_scene_spec, sculpt_pipeline, export_scene_code) with SceneSpecManager, 6-stage gate-evaluated executor, Three.js code generator, 8 voice intent patterns. E2E smoke test passing.
+- [x] v1.0: SLAT-integrated latent editing **implemented** — 3 new core tools (encode_scene_slatent, edit_scene_latent, list_slatents) with SlatManager, 7 latent edit ops (translate/scale/rotate/recolor/opacity/smooth/delete), voxel-grid encoder/decoder, 9 SLAT voice intent patterns, 10% safety gate, E2E tests passing.
+- [ ] v1.1: Full voice-driven scene construction (spec → sculpt → export pipeline with real STT) + SLAT-based cross-scene latent transfer
 
 ## Rules
 
@@ -940,9 +286,11 @@ Agent:
 3. **Respect GPU limits**: Check available VRAM before loading large scenes; provide downsampling option
 4. **Report rendering time**: Always include render_time_ms in render_frame output for performance monitoring
 5. **Safety gate**: Operations affecting >10% of Gaussians require explicit user confirmation
-6. **Spec before sculpt** (v0.8.0): `sculpt_pipeline` must not be called without a valid `spec_id`. The spec defines acceptance criteria; without it, gate evaluation is impossible.
-7. **Stage order enforced** (v0.8.0): Sculpting stages must execute in order: blockout → structural → form → material → surface → lighting. Skipping stages requires explicit user override.
-8. **Code-first default** (v0.8.0): When exporting a scene, prefer `export_scene_code` with `format="threejs+splat"` over pure .ply export. Pure .ply should only be used when the user explicitly requests a binary blob.
+6. **Spec before sculpt** (v0.9.0): `sculpt_pipeline` must not be called without a valid `spec_id`. The spec defines acceptance criteria; without it, gate evaluation is impossible.
+7. **Stage order enforced** (v0.9.0): Sculpting stages must execute in order: blockout → structural → form → material → surface → lighting. Skipping stages requires explicit user override.
+8. **Code-first default** (v0.9.0): When exporting a scene, prefer `export_scene_code` with `format="threejs+splat"` over pure .ply export. Pure .ply should only be used when the user explicitly requests a binary blob.
+9. **SLAT safety gate** (v1.0.0): `edit_scene_latent` affecting >10% of Gaussians requires `confirm=true`. Preview with `apply_to_scene=false` before committing destructive latent edits.
+10. **Naming boundary** (v1.0.0): MCP tool arguments use snake_case (`angle_deg`); the core `LatentEditOp` uses camelCase (`angleDeg`). Handlers convert at the boundary; never mix cases in the core layer.
 
 > Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)
 
@@ -966,7 +314,7 @@ The following are categorical prohibitions. Violating any of these invalidates t
 - **3dgs-visualizer** — Visualization (use for rendering pipeline output quality assessment)
 - **cad-mesh-3dgs** — CAD/Mesh/3DGS conversion (use for code-first export partitioning and SLAT encoding)
 - **nerf-to-3dgs-migrator** — NeRF migration (use for SLAT-based component mapping)
-- **SLAT unified representation** — See `references/slat-unified-representation.md` for the shared theoretical framework underlying scene code-first export and latent editing
+- **SLAT unified representation** — See `../../references/slat-unified-representation.md` for the shared theoretical framework underlying scene code-first export and latent editing
 
 ## Guardrail: Do Not Apply From Memory
 

@@ -10,6 +10,8 @@
  *   POST /api/pipeline/tasks           — 创建管线任务（文稿→视频）
  *   GET  /api/pipeline/tasks           — 列出所有任务
  *   GET  /api/pipeline/tasks/:taskId   — 查询任务状态
+ *   GET  /api/pipeline/tasks/:taskId/log   — 获取任务事件日志
+ *   POST /api/pipeline/config/reload — 热重载管线配置（pipeline.yml）
  *   GET  /api/pipeline/styles          — 获取风格预设列表
  *   GET  /api/pipeline/files/:filename  — 获取输出文件
  */
@@ -267,6 +269,41 @@ export function createPipelineRouter(pipelineManager: PipelineManager, outputDir
       return;
     }
     res.json({ task });
+  });
+
+  // ----------------------------------------------------------
+  // 任务事件日志（Path C: 断点续做 / 审计回放）
+  // GET /api/pipeline/tasks/:taskId/log
+  // ----------------------------------------------------------
+  router.get('/tasks/:taskId/log', (req: Request, res: Response) => {
+    try {
+      const taskId = req.params.taskId as string;
+      const entries = pipelineManager.getTaskLog(taskId);
+      if (entries.length === 0) {
+        res.status(404).json({ error: 'No event log found for this task' });
+        return;
+      }
+      res.json({ taskId, entries, count: entries.length });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // ----------------------------------------------------------
+  // 管线配置热重载（Path C: 外部化 YAML 配置）
+  // POST /api/pipeline/config/reload
+  // ----------------------------------------------------------
+  router.post('/config/reload', (_req: Request, res: Response) => {
+    try {
+      const config = pipelineManager.reloadConfig();
+      res.json({
+        success: true,
+        message: 'Pipeline configuration reloaded from pipeline.yml',
+        steps: config.steps.map(s => ({ name: s.name, enabled: s.enabled, condition: s.condition })),
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
   });
 
   // ----------------------------------------------------------

@@ -256,6 +256,146 @@ const rules: VoiceIntentRule[] = [
       { tool: 'query_scene', params: { query_type: 'stats' } },
     ],
   },
+
+  // --- Spec-First Sculpting (v0.9) ---
+  {
+    description: 'Define a scene spec for sculpting',
+    intent: 'sculpt_define',
+    pattern: /(define|create|new|make).*(spec|scene spec|object spec|blueprint|sculpt)/i,
+    toolCalls: [
+      { tool: 'define_scene_spec', params: {} },
+    ],
+  },
+  {
+    description: 'Start sculpting (blockout stage)',
+    intent: 'sculpt_blockout',
+    pattern: /(sculpt|build|blockout|block out|start sculpting|begin sculpting)/i,
+    toolCalls: [
+      { tool: 'sculpt_pipeline', params: { stage: 'blockout' } },
+    ],
+  },
+  {
+    description: 'Run structural segmentation',
+    intent: 'sculpt_structural',
+    pattern: /(structural|segment|partition|divide into parts|identify parts)/i,
+    toolCalls: [
+      { tool: 'sculpt_pipeline', params: { stage: 'structural' } },
+    ],
+  },
+  {
+    description: 'Refine form',
+    intent: 'sculpt_form',
+    pattern: /(refine form|form|shape|refine geometry|smooth geometry)/i,
+    toolCalls: [
+      { tool: 'sculpt_pipeline', params: { stage: 'form' } },
+    ],
+  },
+  {
+    description: 'Apply materials',
+    intent: 'sculpt_material',
+    pattern: /(material|texture|color|paint|assign material|apply material)/i,
+    toolCalls: [
+      { tool: 'sculpt_pipeline', params: { stage: 'material' } },
+    ],
+  },
+  {
+    description: 'Finalize surface',
+    intent: 'sculpt_surface',
+    pattern: /(surface|polish|finish surface|clean up surface)/i,
+    toolCalls: [
+      { tool: 'sculpt_pipeline', params: { stage: 'surface' } },
+    ],
+  },
+  {
+    description: 'Set up lighting / camera framing',
+    intent: 'sculpt_lighting',
+    pattern: /(lighting|light|frame the scene|set up camera|final render|lighting setup)/i,
+    toolCalls: [
+      { tool: 'sculpt_pipeline', params: { stage: 'lighting' } },
+    ],
+  },
+  {
+    description: 'Export scene as Three.js code',
+    intent: 'export_code',
+    pattern: /(export|generate|download).*(code|three\.?js|javascript|html|runnable)/i,
+    toolCalls: [
+      { tool: 'export_scene_code', params: { format: 'threejs+splat' } },
+    ],
+  },
+
+  // --- SLAT Latent Editing (v1.0) ---
+  {
+    description: 'Encode the scene into a SLAT latent snapshot',
+    intent: 'slat_encode',
+    pattern: /(encode|create|build|make).*(slat|latent|voxel|latent space|latent snapshot)/i,
+    toolCalls: [
+      { tool: 'encode_scene_slatent', params: { voxel_size: 0.1 } },
+    ],
+  },
+  {
+    description: 'Move a part/region in latent space',
+    intent: 'slat_translate',
+    pattern: /(move|shift|drag|translate|push).*(the |a |this )?(part|object|region|piece|left|right|forward|backward|up|down)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'translate', selector: { part: '$PART' }, delta: [0, 0, 0] } } },
+    ],
+  },
+  {
+    description: 'Rotate a part/region in latent space',
+    intent: 'slat_rotate',
+    pattern: /(rotate|spin|turn|tilt).*(part|object|region|piece|arm|door|wheel)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'rotate', selector: { part: '$PART' }, axis: 'y', angle_deg: 30 } } },
+    ],
+  },
+  {
+    description: 'Rescale a part/region in latent space',
+    intent: 'slat_scale',
+    pattern: /(scale|shrink|grow|enlarge|resize|bigger|smaller).*(part|object|region|piece|table|chair)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'scale', selector: { part: '$PART' }, factor: 1.5 } } },
+    ],
+  },
+  {
+    description: 'Recolor a part/region in latent space',
+    intent: 'slat_recolor',
+    pattern: /(paint|recolor|change.*color|make.*(red|blue|green|white|black|color)|tint).*(part|object|region|piece)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'recolor', selector: { part: '$PART' }, color: [1, 0, 0] } } },
+    ],
+  },
+  {
+    description: 'Fade a part/region in latent space',
+    intent: 'slat_opacity',
+    pattern: /(fade|fade out|make.*transparent|ghost|see.through|invisible).*(part|object|region|piece)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'opacity', selector: { part: '$PART' }, opacity: 0.2, mode: 'set' } } },
+    ],
+  },
+  {
+    description: 'Delete a part/region in latent space',
+    intent: 'slat_delete',
+    pattern: /(remove|delete|get rid of|erase|drop).*(part|object|region|piece|table|chair|sphere)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'delete', selector: { part: '$PART' } } } },
+    ],
+  },
+  {
+    description: 'Smooth a part/region in latent space',
+    intent: 'slat_smooth',
+    pattern: /(smooth|soften|blur).*(part|object|region|surface|geometry)/i,
+    toolCalls: [
+      { tool: 'edit_scene_latent', params: { op: { op: 'smooth', selector: { part: '$PART' }, iterations: 2 } } },
+    ],
+  },
+  {
+    description: 'List active SLAT snapshots',
+    intent: 'slat_list',
+    pattern: /(list|show|what).*(slat|latent snapshot|snapshots|latents)/i,
+    toolCalls: [
+      { tool: 'list_slatents', params: {} },
+    ],
+  },
 ];
 
 /**

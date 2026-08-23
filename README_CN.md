@@ -1,5 +1,3 @@
-﻿
-
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -353,7 +351,7 @@ Toonflow 引擎 (:10588)             SplatVerse Studio
 │  供应商: 3dgs-renderer│          │  ├─ MCP 工具（25 个）      │
 └──────────────────────┘          │  │  MCP 渲染器 (:9842)     │
                                    │  ├─ 管线（7 步）            │
- MoneyPrinterTurbo (:8501)        │  │  ├─ 剧本改编              │
+ MoneyPrinterTurbo (:8081)        │  │  ├─ 剧本改编              │
 ┌──────────────────────┐          │  │  ├─ 智能分镜              │
 │  在线素材 →           │  REST    │  │  ├─ Toonflow 集成        │
 │  TTS → FFmpeg → 视频  │◄───────►│  │  ├─ TTS 配音              │
@@ -471,8 +469,8 @@ cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
 | MCP 渲染器 | 9842 | WebSocket 3DGS 渲染器 |
 | Bridge 服务器 | 10590 | REST API + SSE，Toonflow 代理 |
 | Studio Web | 5173 | Vue 3 单页应用前端 |
-| MPT Sidecar | 8501 | MoneyPrinterTurbo API（可选） |
-| MPT Web UI | 8500 | MoneyPrinterTurbo Streamlit 管理界面（可选） |
+| MPT API (Sidecar) | 8081 | MoneyPrinterTurbo FastAPI（可选，宿主 8080 被占时用 8081） |
+| MPT Web UI | 8501 | MoneyPrinterTurbo Streamlit 管理界面（可选） |
 
 ### 常见问题
 
@@ -512,11 +510,11 @@ cp mpt-config.example.toml mpt-config.toml
 docker compose -f docker-compose.mpt.yml up -d
 
 # 3. 验证 MPT 服务
-curl http://localhost:8501/api/v1/tasks?page=1&page_size=1
+curl http://localhost:8081/api/v1/tasks?page=1&page_size=1
 
 # 4. 在 Studio .env 中启用 MPT
 #    MPT_ENABLED=true
-#    MPT_API_URL=http://localhost:8501
+#    MPT_API_URL=http://localhost:8081
 ```
 
 #### 配置项说明

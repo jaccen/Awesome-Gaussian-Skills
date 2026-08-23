@@ -1,10 +1,12 @@
 /**
- * MCP Tool Definitions & Handlers — v0.8 (P1 工具治理)
+ * MCP Tool Definitions & Handlers — v1.0 (SLAT Latent Editing)
  *
  * Core tools (real implementations, always listed):
  *   import_scene, set_camera, modify_gaussians, render_frame, query_scene,
  *   cast_ray, export_result, prune_by_importance, set_gaussian_density,
- *   adjust_opacity, set_rotation, query_spatial_context, resolve_voice_command
+ *   adjust_opacity, set_rotation, query_spatial_context, resolve_voice_command,
+ *   define_scene_spec, sculpt_pipeline, export_scene_code,
+ *   encode_scene_slatent, edit_scene_latent, list_slatents
  *
  * Experimental tools (schema complete, backend pending — ONLY listed when
  * INCLUDE_EXPERIMENTAL=1, and explicitly marked as unimplemented):
@@ -22,6 +24,10 @@ import { mapVoiceIntent, listVoiceIntents } from './voice-intent.js';
 import {
   ValidationError, asString, asNumber, asBool, asVec3, asNumberArray, asRecord,
 } from './validate.js';
+import { SceneSpecManager, SculptPipeline, generateSceneCode } from './sculpt.js';
+import type { SceneSpec, SculptStage } from './sculpt.js';
+import { SlatManager } from './slat.js';
+import type { LatentEditOp, LatentSelector } from './slat.js';
 import { createRequire } from 'module';
 const _require = createRequire(import.meta.url);
 const _fs = _require('fs');
@@ -63,6 +69,51 @@ function tempDir(sub: string): string {
   const dir = _path.resolve(process.cwd(), '.temp', sub);
   if (!_fs.existsSync(dir)) _fs.mkdirSync(dir, { recursive: true });
   return dir;
+}
+
+// Shared spec manager singleton for sculpt tools (persists across calls)
+let _specManager: SceneSpecManager | null = null;
+function getSpecManager(): SceneSpecManager {
+  if (!_specManager) _specManager = new SceneSpecManager();
+  return _specManager;
+}
+
+/** Serialize a SceneSpec (with Map<>) to plain JSON for tool output. */
+function serializeSpec(spec: SceneSpec): Record<string, unknown> {
+  const stages: Record<string, unknown> = {};
+  for (const [key, value] of spec.stages) {
+    stages[key] = value;
+  }
+  return {
+    id: spec.id,
+    name: spec.name,
+    componentCount: spec.components.length,
+    materialCount: spec.materials.length,
+    qualityGates: spec.qualityGates,
+    targetCoverage: spec.targetCoverage,
+    minPsnr: spec.minPsnr,
+    targetScore: spec.targetScore,
+    sceneId: spec.sceneId,
+    stages,
+    createdAt: spec.createdAt,
+  };
+}
+
+/** Validate a stage name string. */
+function asStage(args: Record<string, unknown>): SculptStage {
+  const s = asString(args, 'stage') ?? '';
+  const valid: SculptStage[] = ['blockout', 'structural', 'form', 'material', 'surface', 'lighting'];
+  if (!valid.includes(s as SculptStage)) {
+    throw new ValidationError(`Invalid stage "${s}". Must be one of: ${valid.join(', ')}`);
+  }
+  return s as SculptStage;
+}
+
+// Shared SLAT snapshot manager singleton for latent-edit tools (persists across calls)
+let _slatManager: SlatManager | null = null;
+function getSlatManager(): SlatManager {
+  if (!_slatManager) _slatManager = new SlatManager();
+  return _slatManager;
 }
 
 // ---------------------------------------------------------------------------
@@ -730,6 +781,443 @@ const coreTools: MCPTool[] = [
       const text = asString(args, 'text', { required: true })!;
       const result = mapVoiceIntent(text);
       return json(result);
+    }),
+  },
+  // === Tool 14: define_scene_spec ===
+  {
+    name: 'define_scene_spec',
+    description: 'Define a scene specification (Object Spec) for the spec-first sculpting pipeline. The spec contains: component hierarchy (bbox + type per part), material assignments, and quality gates (per-stage metric targets). Returns a spec_id used by sculpt_pipeline and export_scene_code.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        name: { type: 'string', description: 'Human-readable spec name, e.g. "conference_room"' },
+        components: {
+          type: 'array',
+          description: 'Component specifications defining the scene geometry',
+          items: {
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+              type: { type: 'string', enum: ['box', 'sphere', 'cylinder', 'cone', 'torus', 'plane', 'organic'] },
+              bbox: {
+                type: 'object',
+                properties: {
+                  min: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 },
+                  max: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 },
+                },
+                required: ['min', 'max'],
+              },
+              parent: { type: 'string', description: 'Parent component name for articulated hierarchy' },
+              material: { type: 'string', description: 'Material name from materials array' },
+              gaussianCount: { type: 'integer', description: 'Target Gaussian count for this component' },
+            },
+            required: ['name', 'type', 'bbox'],
+          },
+          minItems: 1,
+        },
+        materials: {
+          type: 'array',
+          description: 'Material definitions (PBR / SH / procedural)',
+          items: {
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+              type: { type: 'string', enum: ['pbr', 'sh', 'procedural'] },
+              baseColor: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: 'RGB [0,1]' },
+              metallic: { type: 'number', minimum: 0, maximum: 1 },
+              roughness: { type: 'number', minimum: 0, maximum: 1 },
+              opacity: { type: 'number', minimum: 0, maximum: 1 },
+            },
+            required: ['name', 'type', 'baseColor'],
+          },
+        },
+        quality_gates: {
+          type: 'array',
+          description: 'Custom quality gates (overrides defaults). Each gate maps a stage metric to a target value.',
+          items: {
+            type: 'object',
+            properties: {
+              stage: { type: 'string', enum: ['blockout', 'structural', 'form', 'material', 'surface', 'lighting'] },
+              metric: { type: 'string' },
+              target: { type: 'number' },
+              description: { type: 'string' },
+            },
+            required: ['stage', 'metric', 'target'],
+          },
+        },
+        target_coverage: { type: 'number', default: 0.85, description: 'Target bbox coverage for blockout gate' },
+        min_psnr: { type: 'number', default: 20, description: 'Minimum PSNR estimate for form gate' },
+        target_score: { type: 'number', default: 0.8, description: 'Overall target quality score' },
+      },
+      required: ['name', 'components'],
+    },
+    handler: guarded(async (args, ctx) => {
+      void ctx;
+      const name = asString(args, 'name', { required: true })!;
+      const componentsRaw = args.components as Array<Record<string, unknown>>;
+      if (!Array.isArray(componentsRaw) || componentsRaw.length === 0) {
+        throw new ValidationError('components must be a non-empty array');
+      }
+
+      const components = componentsRaw.map((c) => {
+        const bbox = c.bbox as { min: [number, number, number]; max: [number, number, number] };
+        if (!bbox || !Array.isArray(bbox.min) || !Array.isArray(bbox.max)) {
+          throw new ValidationError(`Component "${c.name}" missing valid bbox`);
+        }
+        return {
+          name: c.name as string,
+          type: c.type as 'box' | 'sphere' | 'cylinder' | 'cone' | 'torus' | 'plane' | 'organic',
+          bbox,
+          parent: c.parent as string | undefined,
+          material: c.material as string | undefined,
+          gaussianCount: c.gaussianCount as number | undefined,
+        };
+      });
+
+      const materialsRaw = args.materials as Array<Record<string, unknown>> | undefined;
+      const materials = materialsRaw?.map((m) => ({
+        name: m.name as string,
+        type: m.type as 'pbr' | 'sh' | 'procedural',
+        baseColor: m.baseColor as [number, number, number],
+        metallic: m.metallic as number | undefined,
+        roughness: m.roughness as number | undefined,
+        opacity: m.opacity as number | undefined,
+      })) ?? [];
+
+      const gatesRaw = args.quality_gates as Array<Record<string, unknown>> | undefined;
+      const qualityGates = gatesRaw?.map((g) => ({
+        stage: g.stage as SculptStage,
+        metric: g.metric as string,
+        target: g.target as number,
+        description: (g.description as string) ?? '',
+      }));
+
+      const specManager = getSpecManager();
+      const spec = specManager.defineSpec({
+        name,
+        components,
+        materials,
+        qualityGates,
+        targetCoverage: args.target_coverage as number | undefined,
+        minPsnr: args.min_psnr as number | undefined,
+        targetScore: args.target_score as number | undefined,
+      });
+
+      return json({
+        spec_id: spec.id,
+        status: 'defined',
+        ...serializeSpec(spec),
+      });
+    }),
+  },
+  // === Tool 15: sculpt_pipeline ===
+  {
+    name: 'sculpt_pipeline',
+    description: 'Execute one stage of the spec-first sculpting pipeline. Stages run in order: blockout → structural → form → material → surface → lighting. Each stage produces metrics evaluated against spec quality gates. The blockout stage creates a new scene from the spec; subsequent stages refine it. Returns stage status, metrics, and gate pass/fail.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        spec_id: { type: 'string', description: 'Scene spec ID from define_scene_spec' },
+        stage: { type: 'string', enum: ['blockout', 'structural', 'form', 'material', 'surface', 'lighting'], description: 'Stage to execute' },
+        override_order: { type: 'boolean', default: false, description: 'Skip stage-order enforcement (use with caution)' },
+        params: {
+          type: 'object',
+          description: 'Stage-specific parameters',
+          properties: {
+            density_factor: { type: 'number', default: 1.0, description: '[form] Gaussian scale multiplier' },
+            thin_threshold: { type: 'number', default: 0.01, description: '[surface] Minimum Gaussian scale clamp' },
+            fov: { type: 'number', default: 50, description: '[lighting] Camera field of view' },
+          },
+        },
+      },
+      required: ['spec_id', 'stage'],
+    },
+    handler: guarded(async (args, ctx) => {
+      const specId = asString(args, 'spec_id', { required: true })!;
+      const stage = asStage(args);
+      const overrideOrder = asBool(args, 'override_order') || false;
+      const params = (args.params as Record<string, unknown>) ?? {};
+      if (overrideOrder) params.override_order = true;
+
+      const specManager = getSpecManager();
+      const spec = specManager.getSpec(specId);
+      if (!spec) {
+        throw new ValidationError(`Spec not found: ${specId}. Call define_scene_spec first.`);
+      }
+
+      const pipeline = new SculptPipeline(ctx.state, specManager);
+      const result = await pipeline.executeStage(specId, stage, params);
+
+      return json({
+        spec_id: specId,
+        stage: result.stage,
+        status: result.status,
+        passed: result.passed,
+        attempts: result.attempts,
+        metrics: result.metrics,
+        message: result.message,
+        scene_id: spec.sceneId,
+        completed_at: new Date(result.completedAt).toISOString(),
+      });
+    }),
+  },
+  // === Tool 16: export_scene_code ===
+  {
+    name: 'export_scene_code',
+    description: 'Export a sculpted scene using the code-first approach: procedural geometry (box/cylinder/cone/plane) becomes Three.js source code; organic regions become .splat binary data. Produces a standalone, runnable Three.js HTML module. Requires a scene (from sculpt_pipeline blockout or import_scene) and optionally a spec for geometry partitioning.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        scene_id: { type: 'string', description: 'Scene ID to export. If omitted, uses active scene.' },
+        spec_id: { type: 'string', description: 'Spec ID for geometry partitioning. If omitted, uses scene segmentation.' },
+        format: { type: 'string', enum: ['threejs+splat', 'threejs_only', 'splat_only', 'html'], default: 'threejs+splat', description: 'Export format. Use "html" for a standalone browser-openable HTML file with CDN Three.js.' },
+        output_dir: { type: 'string', default: '.temp/exports', description: 'Output directory for generated files' },
+      },
+    },
+    handler: guarded(async (args, ctx) => {
+      const sceneId = asString(args, 'scene_id') ?? ctx.state.getActiveSceneId() ?? undefined;
+      const scene = ctx.state.getScene(sceneId);
+      if (!scene) {
+        throw new ValidationError('No scene found. Provide scene_id or run sculpt_pipeline blockout first.');
+      }
+
+      const specId = asString(args, 'spec_id');
+      const specManager = getSpecManager();
+      const spec = specId ? specManager.getSpec(specId) : null;
+      if (specId && !spec) {
+        throw new ValidationError(`Spec not found: ${specId}`);
+      }
+
+      const format = (args.format as 'threejs+splat' | 'threejs_only' | 'splat_only' | 'html') ?? 'threejs+splat';
+      const outputDir = (args.output_dir as string) ?? _path.resolve(process.cwd(), '.temp', 'exports');
+      if (!_fs.existsSync(outputDir)) _fs.mkdirSync(outputDir, { recursive: true });
+
+      const result = generateSceneCode(scene, spec, format, outputDir);
+
+      return json({
+        status: 'exported',
+        scene_id: scene.id,
+        format: result.format,
+        code_path: result.codePath,
+        html_path: result.htmlPath,
+        splat_path: result.splatPath,
+        component_count: result.componentCount,
+        gaussian_count: result.gaussianCount,
+        procedural_count: result.proceduralCount,
+        splat_count: result.splatCount,
+        message: result.htmlPath
+          ? `Standalone HTML written to ${result.htmlPath}`
+          : result.codePath
+            ? `Three.js code written to ${result.codePath}`
+            : 'Splat data only (no procedural code).',
+      });
+    }),
+  },
+  // === Tool 17: encode_scene_slatent ===
+  {
+    name: 'encode_scene_slatent',
+    description: 'Encode the current scene into a SLAT latent snapshot (sparse voxel grid with per-voxel feature aggregation). The snapshot is immutable and used as the edit intermediate for edit_scene_latent. Returns a slat_id, voxel count, and the position encode-loss (RMSE vs voxel centers).',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        scene_id: { type: 'string', description: 'Scene to encode (uses active scene if omitted)' },
+        voxel_size: { type: 'number', default: 0.1, description: 'Voxel edge length in scene units. Smaller = finer latent, more voxels.' },
+      },
+    },
+    handler: guarded(async (args, ctx) => {
+      const sceneId = asString(args, 'scene_id') ?? ctx.state.getActiveSceneId() ?? undefined;
+      const scene = ctx.state.getScene(sceneId);
+      if (!scene || scene.gaussians.length === 0) {
+        throw new ValidationError('No scene with Gaussians found. Import or sculpt a scene first.');
+      }
+      const voxelSize = asNumber(args, 'voxel_size', { default: 0.1, min: 0.001, max: 100 })!;
+      const mgr = getSlatManager();
+      const { slatId, slat } = mgr.encode(scene.gaussians, voxelSize);
+
+      // Encode loss: RMSE of source positions vs voxel centers
+      let sq = 0;
+      let n = 0;
+      const byId = new Map<number, (typeof scene.gaussians)[number]>();
+      for (const g of scene.gaussians) byId.set(g.id, g);
+      for (const v of slat.voxels.values()) {
+        for (const gid of v.gaussianIds) {
+          const g = byId.get(gid);
+          if (!g) continue;
+          sq += (v.position[0] - g.position[0]) ** 2 +
+                (v.position[1] - g.position[1]) ** 2 +
+                (v.position[2] - g.position[2]) ** 2;
+          n += 3;
+        }
+      }
+
+      return json({
+        status: 'ok',
+        slat_id: slatId,
+        scene_id: scene.id,
+        voxel_size: voxelSize,
+        voxel_count: slat.voxels.size,
+        source_count: scene.gaussians.length,
+        encode_loss: n > 0 ? Math.sqrt(sq / n) : 0,
+        active_slats: mgr.list().length,
+      });
+    }),
+  },
+  // === Tool 18: edit_scene_latent ===
+  {
+    name: 'edit_scene_latent',
+    description: 'Apply a latent-space edit to a SLAT snapshot (from encode_scene_slatent). Computes deltas on the immutable snapshot, then optionally decodes them back into the scene. Ops: translate (region/bbox/part by delta), scale (by factor about an origin), rotate (about an axis+origin), recolor (mix toward a target color), opacity, smooth (neighbor averaging), delete. Returns affected voxels/gaussians, edit delta, and decode result.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        scene_id: { type: 'string', description: 'Scene to apply the decoded edit to (required when apply_to_scene=true)' },
+        slat_id: { type: 'string', description: 'SLAT snapshot id from encode_scene_slatent' },
+        op: {
+          type: 'object',
+          description: 'Latent edit operation',
+          properties: {
+            op: { type: 'string', enum: ['translate', 'scale', 'rotate', 'recolor', 'opacity', 'smooth', 'delete'], description: 'Edit operation type' },
+            selector: {
+              type: 'object',
+              description: 'Voxel selection. At least one of region/bbox/part.',
+              properties: {
+                region: { type: 'object', properties: { center: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 }, radius: { type: 'number' } }, description: 'Spherical region of voxel centers' },
+                bbox: { type: 'object', properties: { min: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 }, max: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3 } }, description: 'Axis-aligned voxel box' },
+                part: { type: 'string', description: 'Part or semantic label (matches voxel partName / semanticLabel)' },
+              },
+            },
+            delta: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: '[translate] translation offset' },
+            factor: { type: 'number', description: '[scale] scale factor' },
+            axis: { type: 'string', enum: ['x', 'y', 'z'], description: '[rotate] rotation axis' },
+            angle_deg: { type: 'number', description: '[rotate] rotation angle in degrees' },
+            color: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: '[recolor] target RGB [0,1]' },
+            mix: { type: 'number', default: 1, minimum: 0, maximum: 1, description: '[recolor] blend factor (1 = full recolor)' },
+            opacity: { type: 'number', minimum: 0, maximum: 1, description: '[opacity] target opacity' },
+            mode: { type: 'string', enum: ['set', 'multiply'], default: 'set', description: '[opacity] set or multiply' },
+            iterations: { type: 'integer', minimum: 1, default: 1, description: '[smooth] number of neighbor-averaging passes' },
+            origin: { type: 'array', items: { type: 'number' }, minItems: 3, maxItems: 3, description: '[scale/rotate] pivot origin (defaults to bbox min / selected centroid)' },
+          },
+          required: ['op', 'selector'],
+        },
+        apply_to_scene: { type: 'boolean', default: true, description: 'Decode the deltas and write them back to the scene. If false, returns deltas only without mutating the scene.' },
+        confirm: { type: 'boolean', default: false, description: 'Required when the edit affects >10% of scene Gaussians' },
+      },
+      required: ['slat_id', 'op'],
+    },
+    handler: guarded(async (args, ctx) => {
+      const slatId = asString(args, 'slat_id', { required: true })!;
+      const opRaw = asRecord(args, 'op', { required: true })!;
+      const mgr = getSlatManager();
+      const slat = mgr.get(slatId);
+      if (!slat) {
+        throw new ValidationError(`SLAT snapshot not found: ${slatId}. Call encode_scene_slatent first.`);
+      }
+
+      const op = opRaw.op as LatentEditOp['op'];
+      const validOps: LatentEditOp['op'][] = ['translate', 'scale', 'rotate', 'recolor', 'opacity', 'smooth', 'delete'];
+      if (!validOps.includes(op)) {
+        throw new ValidationError(`Invalid op "${op}". Must be one of: ${validOps.join(', ')}`);
+      }
+      const selector = (opRaw.selector ?? {}) as LatentSelector;
+      if (!selector.region && !selector.bbox && !selector.part) {
+        throw new ValidationError('op.selector must include at least one of region / bbox / part');
+      }
+
+      // Build a typed LatentEditOp
+      let edit: LatentEditOp;
+      switch (op) {
+        case 'translate': {
+          const delta = asVec3(opRaw, 'delta', { required: true })!;
+          edit = { op, selector, delta };
+          break;
+        }
+        case 'scale': {
+          const factor = asNumber(opRaw, 'factor', { required: true, min: 0.01, max: 100 })!;
+          const origin = asVec3(opRaw, 'origin') as [number, number, number] | undefined;
+          edit = { op, selector, factor, origin };
+          break;
+        }
+        case 'rotate': {
+          const axis = asString(opRaw, 'axis', { enum: ['x', 'y', 'z'], required: true }) as 'x' | 'y' | 'z';
+          const angleDeg = asNumber(opRaw, 'angle_deg', { required: true })!;
+          const origin = asVec3(opRaw, 'origin') as [number, number, number] | undefined;
+          edit = { op, selector, axis, angleDeg, origin };
+          break;
+        }
+        case 'recolor': {
+          const color = asVec3(opRaw, 'color', { required: true })! as [number, number, number];
+          const mix = asNumber(opRaw, 'mix', { default: 1, min: 0, max: 1 })!;
+          edit = { op, selector, color, mix };
+          break;
+        }
+        case 'opacity': {
+          const opacity = asNumber(opRaw, 'opacity', { required: true, min: 0, max: 1 })!;
+          const mode = (asString(opRaw, 'mode', { enum: ['set', 'multiply'] }) ?? 'set') as 'set' | 'multiply';
+          edit = { op, selector, opacity, mode };
+          break;
+        }
+        case 'smooth': {
+          const iterations = asNumber(opRaw, 'iterations', { default: 1, min: 1, max: 8 })!;
+          edit = { op, selector, iterations };
+          break;
+        }
+        case 'delete': {
+          edit = { op, selector };
+          break;
+        }
+      }
+
+      const result = mgr.edit(slatId, edit);
+
+      // Hard safety gate: >10% of scene affected requires confirmation
+      const sceneId = asString(args, 'scene_id');
+      const applyToScene = asBool(args, 'apply_to_scene', { default: true });
+      let scene = null;
+      if (applyToScene) {
+        scene = ctx.state.getScene(sceneId);
+        if (!scene) {
+          throw new ValidationError('apply_to_scene=true requires a valid scene_id (the scene must already exist).');
+        }
+        const pct = scene.gaussians.length > 0 ? (result.metrics.affected_gaussians / scene.gaussians.length) * 100 : 0;
+        if (pct > 10 && !asBool(args, 'confirm')) {
+          return error(`Edit would affect ${result.metrics.affected_gaussians} of ${scene.gaussians.length} Gaussians (${pct.toFixed(1)}% > 10%). Re-run with confirm=true to apply. Deltas below.`);
+        }
+      }
+
+      const decoded = applyToScene && scene ? mgr.decode(slatId, result.deltas) : null;
+
+      // Apply decoded Gaussians back into the scene
+      if (applyToScene && scene && decoded) {
+        scene.gaussians = decoded;
+        ctx.state.invalidateSpatialIndex(scene);
+        await ctx.bridge.broadcast({ type: 'modify_gaussians', select: {}, operations: [] });
+      }
+
+      return json({
+        status: 'ok',
+        slat_id: slatId,
+        op,
+        affected_voxels: result.metrics.affected_voxels,
+        affected_gaussians: result.metrics.affected_gaussians,
+        edit_delta: result.metrics.edit_delta,
+        encode_loss: result.metrics.encode_loss,
+        voxel_count: result.metrics.voxel_count,
+        applied_to_scene: !!(applyToScene && scene && decoded),
+        decoded_gaussians: decoded ? decoded.length : 0,
+        metrics: result.metrics,
+      });
+    }),
+  },
+  // === Tool 19: list_slatents ===
+  {
+    name: 'list_slatents',
+    description: 'List all SLAT snapshots currently held in memory, with voxel and source counts. Use to discover available slat_ids before editing.',
+    inputSchema: {
+      type: 'object',
+      properties: {},
+    },
+    handler: guarded(async (_args, ctx) => {
+      void ctx;
+      return json({ slats: getSlatManager().list() });
     }),
   },
 ];

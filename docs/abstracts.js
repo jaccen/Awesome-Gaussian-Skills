@@ -782,4 +782,11 @@ const ABSTRACTS = {
   "GeometryCloak": { abstractEn: "Geometric perturbation copyright watermark embedding into Gaussians preventing TGS-based 3D reconstruction [Abstract pending — contribution details to be added]", abstractCn: "几何扰动版权水印嵌入高斯防止基于TGS的3D重建。 [摘要待补充——贡献详情待添加]" },
   "GS-Hider": { abstractEn: "GS-Hider proposes a steganography framework that embeds hidden messages into the parameters of 3D Gaussian representations while preserving visual fidelity of the rendered scene. It allocates redundant capacity in Gaussian attributes (opacity, SH coefficients) for message encoding through a learnable embedding module trained jointly with scene reconstruction. The embedded information is visually lossless in rendered outputs and extractable without accessing the original training images.", abstractCn: "GS-Hider提出了一种隐写术框架，将隐藏信息嵌入3D高斯表示的参数中，同时保持渲染场景的视觉保真度。它通过可学习的嵌入模块分配高斯属性中的冗余容量进行信息编码，该模块与场景重建联合训练。嵌入的信息在渲染输出中视觉无损，并且无需访问原始训练图像即可提取。" },
   "Splat-Security": { abstractEn: "First systematic security analysis of GS pipeline: attack surfaces in training data and rendering [Abstract pending — contribution details to be added]", abstractCn: "首个GS管线系统安全分析：训练数据和渲染中的攻击面。 [摘要待补充——贡献详情待添加]" },
+  "LEGO": { abstractEn: "", abstractCn: "" },
+  "OutLangSplat": { abstractEn: "", abstractCn: "" },
+  "ESVR": { abstractEn: "", abstractCn: "" },
+  "TRACE-GS": { abstractEn: "", abstractCn: "" },
+  "RORA": { abstractEn: "", abstractCn: "" },
+  "OVOW": { abstractEn: "", abstractCn: "" },
+  "Super-Gaussian": { abstractEn: "", abstractCn: "" },
 };

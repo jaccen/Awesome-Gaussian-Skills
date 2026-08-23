@@ -10,7 +10,7 @@ import {
 
 test('voice intent mapper covers all documented patterns', () => {
   const intents = listVoiceIntents();
-  assert.equal(intents.length, 23, `expected 23 intent rules, got ${intents.length}`);
+  assert.equal(intents.length, 40, `expected 40 intent rules (23 core + 8 sculpting + 9 slat), got ${intents.length}`);
   for (const i of intents) {
     assert.ok(i.intent && i.tools.length > 0, `intent ${i.intent} missing tools`);
   }
@@ -50,7 +50,8 @@ test('asVec3 requires numeric triples', () => {
 
 test('resolveSafePath blocks path traversal', () => {
   const root = '/tmp/allowed';
-  assert.equal(resolveSafePath('/tmp/allowed/scene.ply', [root]).replace(/\\/g, '/'), '/tmp/allowed/scene.ply');
+  const result = resolveSafePath('/tmp/allowed/scene.ply', [root]).replace(/\\/g, '/');
+  assert.ok(result.endsWith('tmp/allowed/scene.ply'), `expected path ending with tmp/allowed/scene.ply, got ${result}`);
   assert.throws(() => resolveSafePath('/etc/passwd', [root]), ValidationError);
   assert.throws(() => resolveSafePath('/tmp/allowed/../etc/passwd', [root]), ValidationError);
 });

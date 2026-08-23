@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-08-06",
- "generator": "scripts/build_knowledge_base.py",
- "count": 783,
+  "generated_at": "2026-08-23",
+  "generator": "scripts/build_knowledge_base.py",
+  "count": 790,
  "category_count": 23,
  "categories": {
   "Foundation": 40,
@@ -11,18 +11,18 @@
   "Acceleration": 10,
   "Large-Scale": 20,
   "Feed-Forward": 67,
-  "Language & Semantic": 32,
+   "Language & Semantic": 34,
   "Generation": 26,
   "Autonomous Driving": 33,
-  "Dynamic & 4D": 71,
+   "Dynamic & 4D": 72,
   "HDR & Relighting": 26,
   "SLAM": 40,
-  "Sparse-View": 20,
+   "Sparse-View": 21,
   "World Models & Spatial Intelligence": 8,
   "Human & Avatar": 43,
-  "Editing": 47,
-  "CAD & Reverse Engineering": 19,
-  "Cross-Domain": 46,
+   "Editing": 48,
+   "CAD & Reverse Engineering": 20,
+   "Cross-Domain": 47,
   "Simulation": 11,
   "Embodied AI & Robotics": 30,
   "Robustness": 11,
@@ -10057,6 +10057,97 @@
    "year": 2024,
    "category": "Security",
    "desc": "First systematic security analysis of GS pipeline: attack surfaces in training data and rendering",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "LEGO",
+   "arxiv_id": "2608.10057",
+   "venue": "ECCV 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Hierarchical language gaussian splatting; multi-view SAM granularity-adaptive re-grading into 3D-consistent hierarchy; per-level language scene graph supports LLM spatial reasoning",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "OutLangSplat",
+   "arxiv_id": "2608.04560",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "UAV outdoor 3D language GS; 2D-3D dual-branch representation; training-free contribution and consistency-aware gaussian feature aggregation; first UAV open-vocabulary 3D scene dataset",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "ESVR",
+   "arxiv_id": "2608.05564",
+   "venue": "IEEE VIS 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "3D ellipsoid sparse volume rendering; learns directly from raw volume data; per-primitive ray sampling; up to 4 orders of magnitude compression; 43-223 FPS",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "TRACE-GS",
+   "arxiv_id": "2608.10286",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Sparse-View",
+   "desc": "On-policy trajectory distillation plus privileged geometric conditioning; first to derive on-policy supervision from privileged geometry for sparse-view 3DGS recovery; LUPI setting",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "RORA",
+   "arxiv_id": "2608.04842",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "CAD & Reverse Engineering",
+   "desc": "Single static video to articulated object end-to-end pipeline; mixed 3DGS plus mesh; convex decomposition plus automatic joint suggestion algorithm; deployed in Unreal Engine and Isaac Sim",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "OVOW",
+   "arxiv_id": "2606.31388",
+   "venue": "ECCV 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Monocular video to instance-level 4D mesh scene for physics simulation; unifies static/rigid/non-rigid; gravity/contact/support correction; 120-scene benchmark",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "Super-Gaussian",
+   "arxiv_id": "2608.04475",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Editing",
+   "desc": "3DGS interactive scene editing plus NLI-based volume rendering visualization in VR",
    "code_url": "",
    "sources": [
     "csv",
