@@ -1,3 +1,4 @@
+
 ## Newly Added Methods (May 2026 Expansion)
 
 > 279 methods added from ECCV/NeurIPS/CVPR 2024-2025 backfill
@@ -498,7 +499,7 @@
 - **GaussianShell-CVPR** [arXiv:2403.06912](https://arxiv.org/abs/2403.06912) (CVPR 2024) — Gaussian shells: surface-constrained Gaussians with shell-based opacity formulation
 - **GSurf** [arXiv:2404.16510](https://arxiv.org/abs/2404.16510) (CVPR 2024) — Gaussian surface reconstruction with SDF-GS hybrid representation for watertight meshes
 - **GaussianOpacityFields** [arXiv:2401.15318](https://arxiv.org/abs/2401.15318) (CVPR 2025) — Opacity field formulation enabling direct mesh extraction from GS without post-processing
-- **GS-Manifold** [arXiv:2409.13222](https://arxiv.org/abs/2409.13222) (CVPR 2025) — Manifold-constrained Gaussians for surface reconstruction with topological guarantees
+- **GS-Manifold** [arXiv:编号待核实] (CVPR 2025) — Manifold-constrained Gaussians for surface reconstruction with topological guarantees
 - **GaussMesh** [arXiv:2412.14963](https://arxiv.org/abs/2412.14963) (CVPR 2025) — Hybrid GS-Mesh representation with mutual supervision for surface reconstruction
 - **SplatNeRF** [arXiv:2503.19458](https://arxiv.org/abs/2503.19458) (CVPR 2025) — GS-NeRF hybrid combining explicit splatting with implicit neural fields
 - **AmbiSuR** [arXiv:2605.12494](https://arxiv.org/abs/2605.12494) (ICML 2026) — Photometric ambiguity self-indication via SH in 3DGS; primitive truncation + ray-color consistency for intrinsic disambiguation (Beihang + NUS)

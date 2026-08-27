@@ -145,7 +145,7 @@ View-Dependent Splatting,2605.25426,SIGGRAPH,2026,Surface & Rendering,We present
 VoxelGS,2605.26616,arXiv,2026,Surface & Rendering,Scaffold-anchored Gaussians tethered to voxelized SDF for fast monocular surface reconstruction,
 GaussianOpacityFields,2401.15318,CVPR 2025,2025,Surface & Rendering,Opacity field formulation enabling direct mesh extraction from GS without post-processing,
 GaussMesh,2412.14963,CVPR 2025,2025,Surface & Rendering,Hybrid GS-Mesh representation with mutual supervision for surface reconstruction,
-GS-Manifold,2409.13222,CVPR 2025,2025,Surface & Rendering,Manifold-constrained Gaussians for surface reconstruction with topological guarantees,
+GS-Manifold,,CVPR 2025,2025,Surface & Rendering,Manifold-constrained Gaussians for surface reconstruction with topological guarantees,
 LeanGaussian,,CVPR 2025,2025,Surface & Rendering,Extreme compression from single RGB image for efficient large-scale rendering,
 SplatNeRF,2503.19458,CVPR 2025,2025,Surface & Rendering,GS-NeRF hybrid combining explicit splatting with implicit neural fields,
 GaussianShell,2403.15530,ECCV 2024,2024,Surface & Rendering,Shell-structured Gaussians constrained on surface manifold for geometrically faithful reconstruction,

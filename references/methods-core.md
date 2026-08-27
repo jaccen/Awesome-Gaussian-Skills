@@ -1,3 +1,4 @@
+
 # Core 3DGS Methods
 
 > Core methods covering foundations, representations, feed-forward, compression, and dynamic scenes.
@@ -959,7 +960,7 @@
 - **Core Innovation**: Opacity field formulation enabling direct mesh extraction from GS without post-processing
 
 ### GS-Manifold
-- **arXiv**: [2409.13222](https://arxiv.org/abs/2409.13222)
+- **arXiv**: 编号待核实
 - **Venue**: CVPR 2025
 - **Year**: 2025
 - **Category**: Surface & Geometry Methods

@@ -16,6 +16,7 @@
     --orange:#f59e0b; --pink:#ec4899; --teal:#14b8a6;
     --cvpr:#1a73e8; --sig:#e8453c; --iclr:#ff8c00; --neurips:#ff6f00;
     --eccv:#4285f4; --icml:#e91e63; --rss:#00bcd4; --arxiv:#7c869a; --nature:#0f766e;
+    --corl:#2e7d32; --icra:#7b1fa2; --tro:#c62828;
     --code-bg:#1e2533; --code-text:#e6edf6;
     --shadow-sm:0 1px 2px rgba(30,37,51,.05),0 1px 3px rgba(30,37,51,.06);
     --shadow-md:0 4px 16px rgba(30,37,51,.08);
@@ -182,6 +183,8 @@
   .v-RSS{background:#e2f6fb;color:var(--rss)} .v-arXiv{background:#eef0f4;color:var(--arxiv)}
   .v-Nature{background:#e0f5f2;color:var(--nature)} .v-ICCV{background:#e8f0fe;color:var(--eccv)}
   .v-CVPRW{background:#e8f0fe;color:var(--cvpr)} .v-TPAMI{background:#f1ebfe;color:var(--purple)}
+  .v-CoRL{background:#e8f5e9;color:var(--corl)} .v-ICRA{background:#f3e5f5;color:var(--icra)} .v-TRO{background:#fce8e8;color:var(--tro)}
+  .v-CoRL{background:#e8f5e9;color:var(--corl)} .v-ICRA{background:#f3e5f5;color:var(--icra)} .v-TRO{background:#fce8e8;color:var(--tro)}
 
   /* 关联条 */
   .links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
@@ -1115,6 +1118,21 @@
         <a href="#ch7"><span class="ico">→</span> 下一章：3DGS 作为空间记忆</a>
       </div>
 
+      <h4>本章 Paper List</h4>
+      <p style="font-size:13px;color:var(--text-3);margin:-4px 0 10px">与正文对照表互为补充的具身智能关键论文，出处见本仓库 references 素材库。</p>
+      <table class="mtbl">
+        <thead><tr><th>论文</th><th>会议</th><th>一句话贡献</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">π0.5</td><td>2025.06</td><td class="o">VLA-Flow 模型：流匹配动作解码 + 灵巧操作与泛化提升（Physical Intelligence）</td></tr>
+          <tr><td class="mn">VoxPoser</td><td><span class="vchip v-CoRL">CoRL 2023</span></td><td class="o">LLM+VLM 组合 3D 价值图，零样本操作规划（Stanford）</td></tr>
+          <tr><td class="mn">Diffusion Policy</td><td><span class="vchip v-RSS">RSS 2023</span></td><td class="o">扩散去噪生成动作序列，轨迹平滑度与多模态性优于行为克隆（CMU）</td></tr>
+          <tr><td class="mn">ALOHA 2</td><td><span class="vchip v-RSS">RSS 2024</span></td><td class="o">低成本双臂遥操作平台 + 60Hz 扩散策略，灵巧操作基准（Stanford）</td></tr>
+          <tr><td class="mn">RoboCasa</td><td>2024</td><td class="o">大规模家务仿真环境，10 万+ 遥操作轨迹（UT Austin）</td></tr>
+          <tr><td class="mn">LIBERO</td><td><span class="vchip v-ICLR">ICLR 2024</span></td><td class="o">机器人操作终身学习基准，评估跨任务知识迁移</td></tr>
+          <tr><td class="mn">WorldArena 2.0</td><td><span class="vchip v-arXiv">arXiv 2026.05</span></td><td class="o">具身世界模型评测：视觉→触觉、策略评测→交互 RL、仿真→真机全链路升级</td></tr>
+        </tbody>
+      </table>
+
       <div class="exercise" style="--accent:var(--pink)">
         <div class="et">★ 思考题</div>
         <ol>
@@ -1183,6 +1201,22 @@
         <a href="#ch8"><span class="ico">→</span> 下一章：物体级与铰接式理解</a>
       </div>
 
+      <h4>本章 Paper List</h4>
+      <p style="font-size:13px;color:var(--text-3);margin:-4px 0 10px">GS-SLAM 家族与空间记忆的扩展论文，覆盖定位、融合、动态场景与导航推理。</p>
+      <table class="mtbl">
+        <thead><tr><th>论文</th><th>会议</th><th>一句话贡献</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">SplatLoc</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">高斯锚定地图表示，视觉定位新范式</td></tr>
+          <tr><td class="mn">GaussFusion</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">多会话 GS-SLAM 子图对齐融合，跨会话一致性建图</td></tr>
+          <tr><td class="mn">ULF-Loc</td><td><span class="vchip v-CVPR">CVPR 2026 Highlight</span></td><td class="o">揭示高斯 alpha 合成的特征偏置，几何加权聚合 + 关键点共识采样重定位</td></tr>
+          <tr><td class="mn">Flow4DGS-SLAM</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td class="o">光流引导 4D 高斯 SLAM：自监督动静态分离，免语义标签（NUS）</td></tr>
+          <tr><td class="mn">GGD-SLAM</td><td><span class="vchip v-ICRA">ICRA 2026</span></td><td class="o">单目动态场景可泛化运动模型，无需语义标签与深度输入</td></tr>
+          <tr><td class="mn">GaussNav-2</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">分层语义高斯地图导航，语言引导具身探索增强</td></tr>
+          <tr><td class="mn">GaussRover</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">地形感知高斯表示，星表漫游器导航</td></tr>
+          <tr><td class="mn">GSMem</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">3DGS 作为持久空间记忆，零样本具身探索与再定位</td></tr>
+        </tbody>
+      </table>
+
       <div class="exercise" style="--accent:var(--teal)">
         <div class="et">★ 思考题</div>
         <ol>
@@ -1250,6 +1284,20 @@
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/cad-mesh-3dgs" target="_blank" rel="noopener"><span class="ico">⎇</span> CAD·Mesh·3DGS 桥接技能</a>
         <a href="#ch9"><span class="ico">→</span> 下一章：Agent 驱动的数字孪生</a>
       </div>
+
+      <h4>本章 Paper List</h4>
+      <p style="font-size:13px;color:var(--text-3);margin:-4px 0 10px">part-level 高斯、铰接资产与 CAD 桥接的扩展论文，与正文三级前置条件一一对应。</p>
+      <table class="mtbl">
+        <thead><tr><th>论文</th><th>会议</th><th>一句话贡献</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">ArtSplat</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">首个前馈铰接 3DGS：逐像素关节图 + 跨状态注意力，比优化快 400 倍</td></tr>
+          <tr><td class="mn">GraspSplats</td><td><span class="vchip v-CoRL">CoRL 2024</span></td><td class="o">3D 特征 splatting 零样本操作，端到端优于 NeRF 抓取管线</td></tr>
+          <tr><td class="mn">GaussianGrasper</td><td><span class="vchip v-TRO">T-RO 2024</span></td><td class="o">SAM+CLIP 蒸馏 3D 语言高斯，开放词汇部件级抓取</td></tr>
+          <tr><td class="mn">SuGaR</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">正则高斯贴合表面，TSDF+Marching Cubes 提网格</td></tr>
+          <tr><td class="mn">BrepGaussian</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td class="o">3DGS 反向拟合 B-rep CAD，输出参数化 STEP 可制造模型</td></tr>
+          <tr><td class="mn">CADDreamer</td><td><span class="vchip v-CVPR">CVPR 2025 Highlight</span></td><td class="o">文本/草图 → CAD B-rep 扩散参数化程序合成</td></tr>
+        </tbody>
+      </table>
 
       <div class="exercise" style="--accent:var(--blue)">
         <div class="et">★ 思考题</div>
@@ -1366,10 +1414,26 @@
 
       <p>最后澄清这套契约机制与 MCP 的关系。MCP（Model Context Protocol）是<strong>Agent 与工具之间的协议</strong>——它定义了 Agent 如何调用渲染器、查询数据库、操作文件系统等外部能力。而技能编排契约是<strong>Agent 与 Agent 之间的协议</strong>——它定义了上游 Agent 的产出如何被下游 Agent 消费。两者互补：MCP 解决"一个 Agent 怎么用工具"，契约解决"多个 Agent 怎么接力"。一个完整的多 Agent 空间智能生态需要两层协议同时就位——MCP 让每个 Agent 有手（能操作 3DGS），契约让 Agent 之间有嘴（能结构化交接）。本仓库的 mcp-server + _contracts + router_load 三件套，正是这两层协议的原型实现。</p>
 
-      <div class="callout key">
+        <div class="callout key">
         <span class="ct">★ 从单 Agent 到多 Agent 的工程跃迁</span>
         单 Agent 系统的瓶颈不在能力，而在<strong>上下文窗口</strong>——一个 Agent 同时做重建、编辑、验证，上下文很快被填满，注意力被稀释。多 Agent 架构通过契约交接把长链路任务拆成多个短上下文，每个 Agent 只关注自己的子任务，上下文精简、注意力集中。这和软件工程里"微服务"的思路一致：不是把所有功能塞进一个进程，而是用明确的 API 契约把功能拆成可独立部署的服务。技能编排契约之于多 Agent，正如 OpenAPI 之于微服务——它是分布式智能的接口规范。
       </div>
+
+      <h4>本章 Paper List</h4>
+      <p style="font-size:13px;color:var(--text-3);margin:-4px 0 10px">Agent 驱动数字孪生与自动驾驶仿真的关键论文，覆盖街景重建、城市生成、闭环训练与多智能体协作。</p>
+      <table class="mtbl">
+        <thead><tr><th>论文</th><th>会议</th><th>一句话贡献</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">Street Gaussians</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td class="o">刚体高斯组 + 3D 包围盒动静态分离，消除街景重影</td></tr>
+          <tr><td class="mn">S³Gaussian</td><td><span class="vchip v-arXiv">arXiv 2024</span></td><td class="o">自监督动静态分离，无需人工动态掩码</td></tr>
+          <tr><td class="mn">GaussianCity</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">语义点云先验 + 渐进扩散生成城市级 3DGS</td></tr>
+          <tr><td class="mn">GSDrive</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">3DGS 闭环仿真训练 + 多模式轨迹探测，强化信号回传驾驶策略</td></tr>
+          <tr><td class="mn">SplatAD</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">动态物体分解 + 多传感器仿真，驾驶 3DGS 全链路</td></tr>
+          <tr><td class="mn">HERMES</td><td><span class="vchip v-ICCV">ICCV 2025</span></td><td class="o">首个统一 3D 场景理解+生成自动驾驶世界模型</td></tr>
+          <tr><td class="mn">X-World</td><td>2026</td><td class="o">可控多视角生成式驾驶世界模型（视频扩散 + 3DGS 仿真，小鹏）</td></tr>
+          <tr><td class="mn">RAD</td><td><span class="vchip v-NeurIPS">NeurIPS 2025</span></td><td class="o">3DGS 数字孪生 + 闭环 RL 训练端到端驾驶，克服模仿学习因果混淆</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <!-- ===================== 第 10 章 ===================== -->
@@ -1444,6 +1508,24 @@
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能论文清单</a>
         <a href="#appendix"><span class="ico">→</span> 附录：数据集与评估基准</a>
       </div>
+
+      <h4>本章 Paper List</h4>
+      <p style="font-size:13px;color:var(--text-3);margin:-4px 0 10px">世界模型六大学派与 3DGS×World Model 交叉的关键论文，与正文 timeline 互为补充。</p>
+      <table class="mtbl">
+        <thead><tr><th>论文</th><th>会议</th><th>一句话贡献</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">DreamerV3</td><td><span class="vchip v-Nature">Nature 2025</span></td><td class="o">基于模型的 RL 跨 150+ 任务泛化，MBRL 获顶级期刊盖章</td></tr>
+          <tr><td class="mn">V-JEPA 2</td><td>2025.06</td><td class="o">100 万+ 小时视频自监督 JEPA 世界模型，环境理解+零样本规划+机器人控制</td></tr>
+          <tr><td class="mn">Genie 3</td><td>2025.08</td><td class="o">首个实时交互世界模型，24fps@720p，应用于机器人仿真</td></tr>
+          <tr><td class="mn">Marble</td><td>2026</td><td class="o">单张图像 → 可交互 3D 空间，空间智能商业化产品（World Labs/李飞飞）</td></tr>
+          <tr><td class="mn">GWM</td><td><span class="vchip v-arXiv">arXiv 2025</span></td><td class="o">高斯世界模型：3DGS 作为环境动力学建模基元，自回归预测未来状态</td></tr>
+          <tr><td class="mn">FlashWorld</td><td><span class="vchip v-arXiv">arXiv 2025</span></td><td class="o">前馈 3DGS 世界模型：单次前向生成动态 3D 场景，桥接视频生成与 3D 重建</td></tr>
+          <tr><td class="mn">DLWM</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td class="o">双潜变量世界模型：面向自动驾驶的 3DGS 中心自监督预训练</td></tr>
+          <tr><td class="mn">Cosmos</td><td>NVIDIA</td><td class="o">世界基础模型平台，从"生成画面"升级为"生成可行动的 3D 世界"</td></tr>
+          <tr><td class="mn">Newton</td><td>CES 2026</td><td class="o">实时物理世界模型，响应时间 &lt;0.01 秒，Physical AI 技术三角落地</td></tr>
+          <tr><td class="mn">ESI-Bench</td><td><span class="vchip v-arXiv">arXiv 2026.05</span></td><td class="o">首个具身空间智能基准：强制感知-行动回路闭合，"具身智能的 ImageNet"</td></tr>
+        </tbody>
+      </table>
 
       <div class="exercise" style="--accent:var(--primary)">
         <div class="et">★ 思考题</div>
@@ -1533,6 +1615,28 @@
           <li>当 3DGS 作为 GS-SLAM 地图被篡改时，机器人有没有可能在运行时检测到？需要什么机制？</li>
         </ol>
       </div>
+
+      <h4>本章 Paper List</h4>
+      <p style="font-size:13px;color:var(--text-3);margin:-4px 0 10px">安全、溯源与版权保护谱系的扩展论文，按参数嵌入/几何扰动/隐写/攻击分析/编辑鲁棒/统一防护排列。</p>
+      <table class="mtbl">
+        <thead><tr><th>论文</th><th>会议</th><th>一句话贡献</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">3D-GSW</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">不透明度+颜色参数嵌入，可微渲染保证视觉无损，抗裁剪/压缩</td></tr>
+          <tr><td class="mn">GeometryCloak</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td class="o">高斯位置微扰水印，抗重渲染但对致密化敏感</td></tr>
+          <tr><td class="mn">GS-Hider</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td class="o">高斯参数隐写编码，可嵌入大量信息但增加存储</td></tr>
+          <tr><td class="mn">RDSplat</td><td><span class="vchip v-arXiv">arXiv 2025</span></td><td class="o">多层级冗余嵌入，抗 2D/3D 扩散编辑——填补最大漏洞</td></tr>
+          <tr><td class="mn">GaussianUnderAttack</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td class="o">首次系统分析 3DGS 对抗脆弱性：参数扰动/致密化劫持/渲染投毒</td></tr>
+          <tr><td class="mn">Splat-Security</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td class="o">首个 GS 管道系统性安全分析：训练数据与渲染攻击面</td></tr>
+          <tr><td class="mn">GauSec</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">首个 3DGS 安全评估基准：量化水印鲁棒性/溯源准确率/攻击成本</td></tr>
+          <tr><td class="mn">GaussTrace</td><td><span class="vchip v-ICML">ICML 2026</span></td><td class="o">无需预嵌水印的模型溯源：统计指纹 + LLM 证据链推理</td></tr>
+          <tr><td class="mn">FenceGS</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">叠加访问控制层，不同权限渲染不同细节等级</td></tr>
+          <tr><td class="mn">IP-GS</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">版权信息与模型参数绑定，许可证验证</td></tr>
+          <tr><td class="mn">3DEditSafe</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">首个安全正则化 3D 编辑框架，抑制 NSFW 语义传播</td></tr>
+          <tr><td class="mn">GuardMarkGS</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">首个统一水印+编辑阻止框架，版权防护与篡改威慑一体</td></tr>
+          <tr><td class="mn">BitC-3DGS</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">位压缩高容量 3DGS 水印：128-bit 消息 + 双分支块解压</td></tr>
+          <tr><td class="mn">4D-GSW</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">运动学感知的 4DGS 水印，时空一致性 STC 度量 + HMM-MRF</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <!-- ===================== 附录 ===================== -->
