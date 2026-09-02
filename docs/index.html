@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="zh-CN" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Awesome Gaussian Skills</title>
+<title>Awesome Gaussian Skills · 3D 高斯溅射开源工具箱</title>
+<meta name="description" content="Awesome Gaussian Skills —— 面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱：800+ 方法、15 项技能、一站式 Text2Word / Img2GS 生成。" />
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- model-viewer loaded dynamically -->
-<!-- model-viewer loaded dynamically -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script>
 tailwind.config = {
   theme: {
     extend: {
-      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+      fontFamily: { sans: ['Inter', 'Noto Sans SC', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
       colors: {
-        bg: { DEFAULT: '#0a0e1a', card: '#111827', hover: '#1e293b' },
-        accent: { blue: '#3b82f6', purple: '#8b5cf6', cyan: '#06b6d4' },
+        bg: { DEFAULT: '#f5f7fb', card: '#ffffff', hover: '#eef1f7' },
+        accent: { blue: '#6366f1', purple: '#a855f7', cyan: '#06b6d4', teal: '#14b8a6', green: '#10b981', rose: '#f43f5e', amber: '#f59e0b' },
         venue: {
           CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00',
           NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63',
@@ -28,71 +29,213 @@ tailwind.config = {
 }
 </script>
 <style>
-  body { background: #0a0e1a; }
+  :root {
+    --bg: #f5f7fb;
+    --bg-soft: #eef1f7;
+    --surface: #ffffff;
+    --surface-2: #f1f4f9;
+    --border: rgba(15,23,42,0.08);
+    --border-strong: rgba(15,23,42,0.14);
+    --text: #0f172a;
+    --text-2: #475569;
+    --text-3: #94a3b8;
+    --accent: #6366f1;
+    --accent-2: #a855f7;
+    --accent-3: #0891b2;
+    --grad: linear-gradient(135deg, #6366f1 0%, #a855f7 52%, #06b6d4 100%);
+    --radius: 16px;
+    --shadow-card: 0 1px 2px rgba(15,23,42,0.04), 0 12px 32px -16px rgba(99,102,241,0.18);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text-2);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* Ambient aurora background */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: -2;
+    background:
+      radial-gradient(1100px 620px at 82% -12%, rgba(99,102,241,0.12), transparent 60%),
+      radial-gradient(950px 620px at 8% 8%, rgba(168,85,247,0.09), transparent 55%),
+      radial-gradient(900px 720px at 50% 112%, rgba(6,182,212,0.08), transparent 60%);
+  }
+  /* Subtle grid overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+  ::selection { background: rgba(99,102,241,0.22); color: #0f172a; }
+
   .gradient-text {
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* ---- Nav ---- */
+  .nav-blur {
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+  }
+  .nav-link { color: var(--text-2); transition: color .2s; }
+  .nav-link:hover { color: var(--text); }
+
+  /* Language switch */
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 2px;
+    padding: 3px; border-radius: 999px;
+    background: rgba(15,23,42,0.05);
+    border: 1px solid var(--border);
+  }
+  .lang-option {
+    padding: 4px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; line-height: 1.4;
+    color: var(--text-3); cursor: pointer; border: none; background: transparent;
+    transition: all .2s; font-family: inherit;
+  }
+  .lang-option.active { color: #fff; background: var(--accent); box-shadow: 0 2px 6px rgba(99,102,241,0.35); }
+
+  /* ---- Cards ---- */
+  .glass-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+  }
+  .glass-card.glow::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(168,85,247,0.22), rgba(6,182,212,0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0; transition: opacity .3s; pointer-events: none;
+  }
+  .glass-card.glow:hover::before { opacity: 1; }
+
   .gradient-border {
     position: relative;
-    background: #111827;
-    border-radius: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-card);
   }
-  .gradient-border::before {
-    content: ''; position: absolute; inset: -1px; border-radius: 0.75rem; padding: 1px;
-    background: linear-gradient(135deg, #3b82f633, #8b5cf633, #06b6d433);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+
+  .method-card { cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+  .method-card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px -18px rgba(99,102,241,0.32); }
+  .skill-card, .trend-card { transition: transform .2s ease, box-shadow .2s ease; }
+  .skill-card:hover, .trend-card:hover { transform: translateY(-4px); box-shadow: 0 22px 52px -22px rgba(99,102,241,0.34); }
+
+  /* ---- Buttons ---- */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 12px;
+    background: var(--grad); color: #fff; font-weight: 600; font-size: 14px;
+    box-shadow: 0 8px 24px -8px rgba(99,102,241,0.5);
+    transition: transform .18s, box-shadow .18s, filter .18s;
   }
-  .hero-glow {
-    position: absolute; width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-    top: -200px; left: 50%; transform: translateX(-50%); pointer-events: none;
+  .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 14px 34px -8px rgba(99,102,241,0.6); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 12px;
+    background: #fff; color: var(--text);
+    border: 1px solid var(--border-strong); font-weight: 600; font-size: 14px;
+    transition: all .18s;
   }
-  .hero-glow-2 {
-    position: absolute; width: 400px; height: 400px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
-    top: -100px; right: -100px; pointer-events: none;
+  .btn-ghost:hover { background: var(--surface-2); border-color: rgba(15,23,42,0.22); }
+
+  /* Eyebrow section label */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-3);
   }
+  .eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--grad); }
+
+  .stat-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px; border-radius: 999px;
+    background: #fff; border: 1px solid var(--border);
+    font-size: 13px; font-weight: 500; color: var(--text-2);
+    box-shadow: 0 1px 2px rgba(15,23,42,0.05);
+  }
+
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.55; pointer-events: none;
+    animation: orb-float 16s ease-in-out infinite;
+  }
+  @keyframes orb-float {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(34px, -22px) scale(1.08); }
+    66% { transform: translate(-24px, 24px) scale(0.94); }
+  }
+
   .category-tab { transition: all 0.2s; }
-  .category-tab.active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; }
-  .category-tab:not(.active):hover { background: #1e293b; }
-  .method-card { transition: all 0.15s; cursor: pointer; }
-  .method-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.12); }
+  .category-tab.active { background: var(--grad); color: white; border-color: transparent !important; }
+  .category-tab:not(.active):hover { background: var(--surface-2); color: var(--text); }
+
   /* Modal */
-  .modal-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .modal-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(15,23,42,0.45); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
   .modal-overlay.open { opacity: 1; pointer-events: auto; }
-  .modal-box { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; max-width: 520px; width: 90vw; max-height: 85vh; overflow-y: auto; position: relative; }
-  .modal-close { position: absolute; top: 1rem; right: 1rem; color: #9ca3af; background: none; border: none; cursor: pointer; font-size: 1.25rem; line-height: 1; transition: color 0.15s; }
-  .modal-close:hover { color: #fff; }
-  .modal-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 0.75rem; }
-  .modal-tab { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 500; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
-  .modal-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
-  .modal-tab:hover { color: #d1d5db; }
+  .modal-box { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 16px; max-width: 560px; width: 92vw; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 24px 64px -16px rgba(15,23,42,0.3); }
+  .modal-close { position: absolute; top: 14px; right: 14px; color: var(--text-3); background: none; border: none; cursor: pointer; font-size: 1.4rem; line-height: 1; transition: color 0.15s; }
+  .modal-close:hover { color: var(--text); }
+  .modal-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+  .modal-tab { padding: 7px 16px; font-size: 12px; font-weight: 500; color: var(--text-3); cursor: pointer; border: none; border-bottom: 2px solid transparent; background: none; transition: all 0.15s; }
+  .modal-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+  .modal-tab:hover { color: var(--text-2); }
   .abstract-panel { display: none; }
   .abstract-panel.active { display: block; }
-  .api-key-input { background: #0f172a; border: 1px solid rgba(255,255,255,0.1); border-radius: 0.5rem; padding: 0.35rem 0.75rem; color: #e2e8f0; font-size: 0.75rem; width: 200px; outline: none; transition: border-color 0.15s; }
-  .api-key-input:focus { border-color: #3b82f6; }
-  .api-key-input::placeholder { color: #475569; }
-  .gen-result-img { border-radius: 0.75rem; max-width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; transition: transform 0.2s; }
+
+  .api-key-input { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 8px 14px; color: var(--text); font-size: 12px; width: 200px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+  .api-key-input:focus { border-color: rgba(99,102,241,0.55); box-shadow: 0 0 0 3px rgba(99,102,241,0.16); }
+  .api-key-input::placeholder { color: var(--text-3); }
+
+  .gen-result-img { border-radius: 12px; max-width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; transition: transform 0.2s; }
   .gen-result-img:hover { transform: scale(1.03); }
-  .spinner { border: 2px solid rgba(59,130,246,0.2); border-top: 2px solid #3b82f6; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
+  .spinner { border: 2px solid rgba(99,102,241,0.2); border-top: 2px solid var(--accent); border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .skill-card { transition: all 0.2s; }
-  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(59,130,246,0.15); }
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
   .copy-btn.copied { color: #10b981 !important; }
-  .trend-card { transition: all 0.2s; }
-  .trend-card:hover { transform: translateY(-3px); border-color: #3b82f6; }
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: #0a0e1a; }
-  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  .search-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; transition: border-color .2s, box-shadow .2s; }
+  .search-box:focus-within { border-color: rgba(99,102,241,0.55); box-shadow: 0 0 0 3px rgba(99,102,241,0.16); }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   @keyframes pulse-slow { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
   .pulse-dot { animation: pulse-slow 2s ease-in-out infinite; }
   pre code { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+
+  /* Tag / pill chips */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border); background: #fff; color: var(--text-2);
+    cursor: pointer; transition: all .15s;
+  }
+  .chip:hover { border-color: var(--border-strong); color: var(--text); background: var(--surface-2); }
+  .chip.tint-blue { color: #4f46e5; border-color: rgba(99,102,241,0.3); background: rgba(99,102,241,0.07); }
+  .chip.tint-purple { color: #9333ea; border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.07); }
+  .chip.tint-cyan { color: #0891b2; border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.07); }
+  .chip.tint-amber { color: #d97706; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+  .chip.tint-emerald { color: #059669; border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
+  .chip.tint-rose { color: #e11d48; border-color: rgba(244,63,94,0.3); background: rgba(244,63,94,0.08); }
 </style>
 <script>
 // Lazy-load model-viewer when needed
@@ -120,317 +263,318 @@ if ('IntersectionObserver' in window) {
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-<body class="text-gray-300 font-sans antialiased">
+<body class="text-slate-700 font-sans antialiased">
 
-<!-- Nav -->
-<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-bg/80 border-b border-white/5">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-    <a href="#" class="font-bold text-white text-lg tracking-tight">AGS<span class="text-accent-blue">.</span></a>
-    <div class="hidden sm:flex items-center gap-7 text-sm text-gray-400">
-      <a href="#methods" class="hover:text-white transition">Methods</a>
-      <a href="#skills" class="hover:text-white transition">Skills</a>
-      <a href="spatial-embodied-intelligence.html" class="hover:text-cyan-400 transition text-cyan-400/80 font-medium">Book</a>
-      <a href="http://localhost:5173" target="_blank" class="text-cyan-400 font-medium hover:text-cyan-300 transition">Studio</a>
-    </div>
-    <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition">
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.2 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-      GitHub
+<!-- ===== Nav ===== -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-slate-900/5">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5 font-bold text-slate-900 text-lg tracking-tight group">
+      <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-extrabold text-white bg-[length:200%_200%]" style="background:var(--grad)">G</span>
+      <span>AGS<span class="gradient-text">.</span></span>
     </a>
+    <div class="hidden md:flex items-center gap-7 text-sm">
+      <a href="#methods" class="nav-link" data-i18n="nav.methods">方法</a>
+      <a href="#skills" class="nav-link" data-i18n="nav.skills">技能</a>
+      <a href="spatial-embodied-intelligence.html" class="nav-link !text-cyan-600/90 hover:!text-cyan-700 font-medium" data-i18n="nav.book">电子书</a>
+      <a href="http://localhost:5173" target="_blank" class="nav-link !text-cyan-600/90 hover:!text-cyan-700 font-medium" data-i18n="nav.studio">Studio</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-option" data-lang="zh" onclick="setLang('zh')">中文</button>
+        <button class="lang-option" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 transition px-3 py-1.5 rounded-lg hover:bg-slate-900/5">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.3 2.9.2 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        <span class="hidden sm:inline" data-i18n="nav.github">GitHub</span>
+      </a>
+    </div>
   </div>
 </nav>
 
-<!-- Hero -->
-<section class="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden">
-  <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
+<!-- ===== Hero ===== -->
+<section class="relative pt-36 pb-20 sm:pt-44 sm:pb-28 overflow-hidden">
+  <div class="orb" style="width:560px;height:560px;top:-180px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(99,102,241,0.28),transparent 70%)"></div>
+  <div class="orb" style="width:360px;height:360px;top:-60px;right:6%;background:radial-gradient(circle,rgba(168,85,247,0.22),transparent 70%);animation-delay:-6s"></div>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 border border-slate-900/10 text-xs text-slate-700 mb-7">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+      <span data-i18n="hero.version">v0.8.0 · 现已开源</span>
+    </div>
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05]">
       Awesome<br><span class="gradient-text">Gaussian Skills</span>
     </h1>
-    <p class="mt-6 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-      3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting & Computer Graphics
+    <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed" data-i18n="hero.sub">
+      面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱
     </p>
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-gray-400">
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">783+ Methods</span>
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">23 Categories</span>
-      <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">15 Skills</span>
-      <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span> v0.8.0
-      </span>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium">
+      <span class="stat-pill" data-i18n="hero.badge.methods">800+ 方法</span>
+      <span class="stat-pill" data-i18n="hero.badge.cats">23 个分类</span>
+      <span class="stat-pill" data-i18n="hero.badge.skills">15 项技能</span>
     </div>
     <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-      <a href="#methods" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm hover:from-cyan-600 hover:to-blue-700 transition shadow-lg shadow-cyan-500/25">
-        Explore Methods
+      <a href="#methods" class="btn-primary">
+        <span data-i18n="hero.cta.methods">探索方法</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
-      <a href="spatial-embodied-intelligence.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold text-sm hover:from-indigo-600 hover:to-purple-600 transition">
-        <span>&#x1F4D8;</span> Read the Book
+      <a href="spatial-embodied-intelligence.html" class="btn-ghost">
+        <span>📘</span><span data-i18n="hero.cta.book">阅读电子书</span>
       </a>
     </div>
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500">
-      <a href="http://localhost:5173" target="_blank" class="hover:text-cyan-400 transition">SplatVerse Studio →</a>
-      <span class="text-gray-700">·</span>
-      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-white transition">Star on GitHub →</a>
+    <div class="mt-7 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">
+      <a href="http://localhost:5173" target="_blank" class="hover:text-cyan-600 transition" data-i18n="hero.studio">SplatVerse Studio →</a>
+      <span class="text-slate-300">·</span>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-slate-900 transition" data-i18n="hero.star">在 GitHub 上 Star →</a>
     </div>
   </div>
 </section>
 
-<!-- Text2Word: Interactive Demo Entry -->
-<section id="text2word" class="py-16 sm:py-20 fade-in border-t border-white/5">
+<!-- ===== Text2Word ===== -->
+<section id="text2word" class="py-16 sm:py-24 fade-in">
   <div class="max-w-5xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-8">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">Text2Word</h2>
-      <p class="mt-3 text-gray-400 text-base sm:text-lg">Describe a scene in words —get a 3D Gaussian world in return</p>
-      <p class="mt-2 text-gray-500 text-xs sm:text-sm">The creative platform making 3DGS &amp; CAD accessible to everyone</p>
-      <p class="mt-1 text-[10px] text-gray-600">Powered by Tripo / Meshy / Hunyuan3D —multi-provider text-to-3D generation</p>
+    <div class="text-center mb-10">
+      <span class="eyebrow" data-i18n="t2w.eyebrow">文生 3D</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">Text2Word</h2>
+      <p class="mt-3 text-slate-600 text-base sm:text-lg" data-i18n="t2w.sub">用一句话描述场景，换取一个 3D 高斯世界</p>
+      <p class="mt-2 text-slate-500 text-xs sm:text-sm" data-i18n="t2w.sub2">让 3DGS 与 CAD 创作触手可及的创意平台</p>
+      <p class="mt-1 text-[11px] text-slate-400" data-i18n="t2w.powered">由 Tripo / Meshy / Hunyuan3D 驱动 —— 多供应商文生 3D 生成</p>
     </div>
 
-    <!-- Prompt Input -->
-    <div class="gradient-border p-6 sm:p-8 mb-6">
-      <!-- Provider & API Key Config -->
-<div class="mb-5 pb-4 border-b border-white/5">
-  <div class="flex flex-wrap items-center gap-3 mb-3">
-    <div class="flex items-center gap-1.5 shrink-0">
-      <div class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></div>
-      <span class="text-[11px] font-medium text-gray-400">3D Provider</span>
-    </div>
-    <div class="flex gap-1.5 flex-wrap">
-      <button class="t2w-provider-btn active px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30" data-provider="tripo">Tripo (Aliyun)</button>
-      <button class="t2w-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-accent-purple/30" data-provider="meshy">Meshy AI</button>
-      <button class="t2w-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30" data-provider="hunyuan3d">Hunyuan3D (Tencent)</button>
-    </div>
-  </div>
-  <div id="t2wProviderConfig">
-    <!-- Tripo config (default) -->
-    <div id="t2wConfigTripo" class="flex items-center gap-3">
-      <input id="t2wApiKeyTripo" type="password" class="api-key-input flex-1" placeholder="DashScope API Key (sk-xxx)" value="">
-      <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →/a>
-    </div>
-    <!-- Meshy config -->
-    <div id="t2wConfigMeshy" class="hidden flex items-center gap-3">
-      <input id="t2wApiKeyMeshy" type="password" class="api-key-input flex-1" placeholder="Meshy API Key" value="">
-      <a href="https://www.meshy.ai/settings/api" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key →/a>
-    </div>
-    <!-- Hunyuan3D config (no direct API - redirect) -->
-    <div id="t2wConfigHunyuan3d" class="hidden">
-      <p class="text-[11px] text-gray-500 leading-relaxed">Hunyuan3D API uses TC3-HMAC-SHA256 signing (not callable from browser). Click Generate to open Tencent Cloud console, or switch to Tripo/Meshy for in-browser generation.</p>
-      <a href="https://3d.hunyuan.tencent.com/" target="_blank" class="inline-flex items-center gap-1 mt-1.5 text-[11px] text-accent-blue hover:underline">Open Hunyuan3D Console →/a>
-    </div>
-  </div>
-</div>
+    <div class="glass-card p-6 sm:p-8 mb-6">
+      <div class="mb-5 pb-4 border-b border-slate-900/5">
+        <div class="flex flex-wrap items-center gap-3 mb-3">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <div class="w-2 h-2 rounded-full bg-amber-400 pulse-dot"></div>
+            <span class="text-[11px] font-medium text-slate-600" data-i18n="t2w.provider">3D 供应商</span>
+          </div>
+          <div class="flex gap-1.5 flex-wrap">
+            <button class="t2w-provider-btn active px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30" data-provider="tripo">Tripo (阿里云)</button>
+            <button class="t2w-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-accent-purple/30" data-provider="meshy">Meshy AI</button>
+            <button class="t2w-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-emerald-500/30" data-provider="hunyuan3d">Hunyuan3D (腾讯)</button>
+          </div>
+        </div>
+        <div id="t2wProviderConfig">
+          <div id="t2wConfigTripo" class="flex items-center gap-3">
+            <input id="t2wApiKeyTripo" type="password" class="api-key-input flex-1" placeholder="DashScope API Key (sk-xxx)" value="">
+            <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=model#/api-key" target="_blank" class="text-[11px] text-accent-blue hover:underline shrink-0" data-i18n="t2w.getkey">获取密钥 →</a>
+          </div>
+          <div id="t2wConfigMeshy" class="hidden flex items-center gap-3">
+            <input id="t2wApiKeyMeshy" type="password" class="api-key-input flex-1" placeholder="Meshy API Key" value="">
+            <a href="https://www.meshy.ai/settings/api" target="_blank" class="text-[11px] text-accent-blue hover:underline shrink-0" data-i18n="t2w.getkey">获取密钥 →</a>
+          </div>
+          <div id="t2wConfigHunyuan3d" class="hidden">
+            <p class="text-[11px] text-slate-500 leading-relaxed" data-i18n="t2w.hunyuan.note">Hunyuan3D API 采用 TC3-HMAC-SHA256 签名（无法在浏览器直接调用）。点击「生成」将打开腾讯云控制台，或切换到 Tripo / Meshy 进行浏览器内生成。</p>
+            <a href="https://3d.hunyuan.tencent.com/" target="_blank" class="inline-flex items-center gap-1 mt-1.5 text-[11px] text-accent-blue hover:underline" data-i18n="t2w.hunyuan.open">打开 Hunyuan3D 控制台 →</a>
+          </div>
+        </div>
+      </div>
+
       <div class="flex flex-col sm:flex-row gap-4 items-start">
         <div class="flex-1 w-full">
           <div class="flex items-center gap-2 mb-3">
             <div class="w-2.5 h-2.5 rounded-full bg-accent-green pulse-dot"></div>
-            <span class="text-xs font-medium text-gray-400">Try it now</span>
+            <span class="text-xs font-medium text-slate-600" data-i18n="t2w.trynow">立即体验</span>
           </div>
-          <textarea id="t2wDemoInput" rows="3" placeholder="Describe your 3D scene... e.g. A medieval castle with towers and a moat"
-            class="w-full px-4 py-3 rounded-lg bg-bg-card border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/25 transition text-sm leading-relaxed resize-none">A medieval castle with two cylindrical towers, a drawbridge, and stone walls</textarea>
+          <textarea id="t2wDemoInput" rows="3" placeholder="描述你的 3D 场景…例如：一座带塔楼和护城河的中世纪城堡"
+            class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-900/10 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/25 transition text-sm leading-relaxed resize-none">一座带有两座圆柱塔楼、一座吊桥和石墙的中世纪城堡</textarea>
           <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20 hover:bg-accent-blue/20 transition" data-prompt="A mechanical spur gear with 20 teeth, 50mm diameter, central bore, steel material">Gear</button>
-            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-prompt="A modern living room with leather sofa, glass coffee table, and natural lighting">Room</button>
-            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 hover:bg-accent-cyan/20 transition" data-prompt="A scenic mountain lake with snow-capped peaks reflecting in calm water">Landscape</button>
-            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-rose/10 text-accent-rose border border-accent-rose/20 hover:bg-accent-rose/20 transition" data-prompt="A photorealistic human avatar in casual clothing, standing pose">Avatar</button>
-            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition" data-prompt="A dancer performing a spinning motion captured with FreeMoCap, rendered as an animatable 3DGS avatar">MoCap</button>
-            <button class="t2w-tag px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition" data-prompt="A red sports car with aerodynamic body, alloy wheels, and reflective paint">Vehicle</button>
+            <button class="t2w-tag chip tint-blue" data-prompt="A mechanical spur gear with 20 teeth, 50mm diameter, central bore, steel material" data-i18n="t2w.tag.gear">齿轮</button>
+            <button class="t2w-tag chip tint-purple" data-prompt="A modern living room with leather sofa, glass coffee table, and natural lighting" data-i18n="t2w.tag.room">室内</button>
+            <button class="t2w-tag chip tint-cyan" data-prompt="A scenic mountain lake with snow-capped peaks reflecting in calm water" data-i18n="t2w.tag.landscape">风景</button>
+            <button class="t2w-tag chip tint-rose" data-prompt="A photorealistic human avatar in casual clothing, standing pose" data-i18n="t2w.tag.avatar">虚拟人</button>
+            <button class="t2w-tag chip tint-emerald" data-prompt="A dancer performing a spinning motion captured with FreeMoCap, rendered as an animatable 3DGS avatar" data-i18n="t2w.tag.mocap">动作捕捉</button>
+            <button class="t2w-tag chip tint-amber" data-prompt="A red sports car with aerodynamic body, alloy wheels, and reflective paint" data-i18n="t2w.tag.vehicle">车辆</button>
           </div>
         </div>
         <div class="shrink-0 flex flex-col gap-2 sm:mt-6">
-          <button id="t2wGenBtn" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm hover:shadow-lg hover:shadow-accent-blue/20 transition disabled:opacity-40 disabled:cursor-not-allowed">
+          <button id="t2wGenBtn" class="btn-primary">
             <svg id="t2wGenIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            <span id="t2wGenText">Generate</span>
+            <span id="t2wGenText" data-i18n="t2w.gen">生成</span>
           </button>
-          <a href="../Text2Word/index.html" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg border border-white/20 text-white font-medium text-sm hover:bg-white/5 transition">
+          <a href="../Text2Word/index.html" class="btn-ghost">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Full Editor
+            <span data-i18n="t2w.editor">完整编辑器</span>
           </a>
         </div>
       </div>
 
-      <!-- Pipeline Steps (animated) -->
-      <div id="t2wPipeline" class="hidden mt-6 pt-6 border-t border-white/5">
+      <!-- Pipeline Steps -->
+      <div id="t2wPipeline" class="hidden mt-6 pt-6 border-t border-slate-900/5">
         <div class="flex items-center gap-1 overflow-x-auto pb-2" id="t2wPipelineSteps"></div>
       </div>
 
       <!-- Results -->
       <div id="t2wResult" class="hidden mt-5">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-          <div class="p-3 rounded-lg bg-bg-card border border-accent-blue/20">
-            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
-            <div id="t2wRMethod" class="text-sm font-bold text-white">—/div>
-            <div id="t2wRReason" class="text-[10px] text-gray-400 mt-0.5 leading-snug">—/div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-accent-blue/20">
+            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="t2w.result.method">方法</div>
+            <div id="t2wRMethod" class="text-sm font-bold text-slate-900">—</div>
+            <div id="t2wRReason" class="text-[10px] text-slate-600 mt-0.5 leading-snug">—</div>
           </div>
-          <div class="p-3 rounded-lg bg-bg-card border border-accent-green/20">
-            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Scene</div>
-            <div id="t2wRType" class="text-sm font-bold text-white">—/div>
-            <div id="t2wRFeatures" class="text-[10px] text-gray-400 mt-0.5">—/div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-accent-green/20">
+            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="t2w.result.scene">场景</div>
+            <div id="t2wRType" class="text-sm font-bold text-slate-900">—</div>
+            <div id="t2wRFeatures" class="text-[10px] text-slate-600 mt-0.5">—</div>
           </div>
-          <div class="p-3 rounded-lg bg-bg-card border border-accent-purple/20">
-            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Primary Export</div>
-            <div id="t2wRExport" class="text-sm font-bold text-white">—/div>
-            <div id="t2wRExportNote" class="text-[10px] text-gray-400 mt-0.5">—/div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-accent-purple/20">
+            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="t2w.result.export">主导出</div>
+            <div id="t2wRExport" class="text-sm font-bold text-slate-900">—</div>
+            <div id="t2wRExportNote" class="text-[10px] text-slate-600 mt-0.5">—</div>
           </div>
-          <div class="p-3 rounded-lg bg-bg-card border border-accent-cyan/20">
-            <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Secondary</div>
-            <div id="t2wRExport2" class="text-sm font-bold text-white">—/div>
-            <div id="t2wRExport2Note" class="text-[10px] text-gray-400 mt-0.5">—/div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-accent-cyan/20">
+            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="t2w.result.secondary">次级</div>
+            <div id="t2wRExport2" class="text-sm font-bold text-slate-900">—</div>
+            <div id="t2wRExport2Note" class="text-[10px] text-slate-600 mt-0.5">—</div>
           </div>
         </div>
-        <!-- Brief -->
         <details class="group">
-          <summary class="cursor-pointer text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+          <summary class="cursor-pointer text-xs text-slate-600 hover:text-slate-900 transition flex items-center gap-1">
             <svg class="w-3.5 h-3.5 transition group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            Scene Brief
+            <span data-i18n="t2w.brief">场景简报</span>
           </summary>
-          <pre id="t2wRBrief" class="mt-2 text-[11px] text-gray-400 leading-relaxed font-mono bg-bg-card rounded-lg p-3 overflow-x-auto border border-white/5"></pre>
+          <pre id="t2wRBrief" class="mt-2 text-[11px] text-slate-600 leading-relaxed font-mono bg-slate-50 rounded-xl p-3 overflow-x-auto border border-slate-900/5"></pre>
         </details>
       </div>
     </div>
 
-      <!-- 3D Generation Result (Real API Output) -->
-      <div id="t2w3DResult" class="hidden mt-5 pt-5 border-t border-white/5">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
-          <span class="text-xs font-semibold text-white">Generated 3D Model</span>
-          <span id="t2w3DStatus" class="text-[10px] text-gray-500"></span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Preview Image -->
-          <div class="rounded-xl overflow-hidden border border-white/5 bg-bg-card">
-            <img id="t2w3DPreview" class="gen-result-img w-full" src="" alt="3D preview" loading="lazy">
-            <div class="px-3 py-2 border-t border-white/5">
-              <span class="text-[10px] text-gray-500">Preview Render</span>
-            </div>
+    <!-- 3D Generation Result -->
+    <div id="t2w3DResult" class="hidden mt-5 pt-5 border-t border-slate-900/5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+        <span class="text-xs font-semibold text-slate-900" data-i18n="t2w.genmodel">生成的 3D 模型</span>
+        <span id="t2w3DStatus" class="text-[10px] text-slate-500"></span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="rounded-xl overflow-hidden border border-slate-900/5 bg-slate-50">
+          <img id="t2w3DPreview" class="gen-result-img w-full" src="" alt="3D preview" loading="lazy">
+          <div class="px-3 py-2 border-t border-slate-900/5">
+            <span class="text-[10px] text-slate-500" data-i18n="t2w.preview">预览渲染</span>
           </div>
-          <!-- 3D Viewer -->
-          <div class="rounded-xl overflow-hidden border border-white/5 bg-bg-card" style="min-height:300px;">
-            <model-viewer id="t2w3DViewer" auto-rotate camera-controls shadow-intensity="1" exposure="1.1"
-              style="width:100%;height:300px;background:#0a0a0f;" alt="Generated 3D model">
-            </model-viewer>
-            <div class="px-3 py-2 border-t border-white/5 flex items-center justify-between">
-              <span class="text-[10px] text-gray-500">Interactive 3D —drag to rotate, scroll to zoom</span>
-              <a id="t2w3DDownload" href="#" download="model.glb" class="text-[10px] text-emerald-400 hover:underline">Download GLB →/a>
-            </div>
+        </div>
+        <div class="rounded-xl overflow-hidden border border-slate-900/5 bg-slate-50" style="min-height:300px;">
+          <model-viewer id="t2w3DViewer" auto-rotate camera-controls shadow-intensity="1" exposure="1.1"
+            style="width:100%;height:300px;background:#f1f5f9;" alt="Generated 3D model">
+          </model-viewer>
+          <div class="px-3 py-2 border-t border-slate-900/5 flex items-center justify-between">
+            <span class="text-[10px] text-slate-500" data-i18n="t2w.interact">交互式 3D — 拖拽旋转，滚轮缩放</span>
+            <a id="t2w3DDownload" href="#" download="model.glb" class="text-[10px] text-emerald-600 hover:underline" data-i18n="t2w.download">下载 GLB →</a>
           </div>
         </div>
       </div>
+    </div>
 
-    <!-- PlayCanvas 3DGS Interactive Viewer -->
+    <!-- PlayCanvas 3DGS Viewer -->
     <div id="t2wPlayCanvas" class="mt-6">
-      <div class="gradient-border overflow-hidden">
-        <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+      <div class="glass-card overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-900/5">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-accent-teal pulse-dot"></span>
-            <span class="text-xs font-medium text-gray-300">PlayCanvas 3DGS Viewer</span>
-            <span class="text-[10px] text-gray-500">Interactive —drag to rotate, scroll to zoom</span>
+            <span class="text-xs font-medium text-slate-700" data-i18n="t2w.viewer">PlayCanvas 3DGS 查看器</span>
+            <span class="text-[10px] text-slate-500" data-i18n="t2w.viewerhint">交互式 — 拖拽旋转，滚轮缩放</span>
           </div>
           <div class="flex items-center gap-1.5">
-            <select id="t2wSceneSelect" class="text-[11px] bg-bg-card border border-white/10 rounded px-2 py-1 text-gray-300 focus:outline-none focus:border-accent-teal/50">
+            <select id="t2wSceneSelect" class="text-[11px] bg-slate-50 border border-slate-900/10 rounded-lg px-2 py-1 text-slate-700 focus:outline-none focus:border-accent-teal/50">
               <option value="https://developer.playcanvas.com/assets/toy-cat.sog">Toy Cat (.sog)</option>
               <option value="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb">Astronaut (glTF)</option>
             </select>
           </div>
         </div>
-        <div id="t2wSplatCanvas" class="relative w-full" style="height:400px;background:#0a0a0f;">
-          <div id="t2wSplatPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+        <div id="t2wSplatCanvas" class="relative w-full" style="height:400px;background:#f1f5f9;">
+          <div id="t2wSplatPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-500">
             <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span class="text-xs">Click "Generate" to load a 3DGS scene</span>
+            <span class="text-xs" data-i18n="t2w.load">点击「生成」载入 3DGS 场景</span>
           </div>
         </div>
-        <div class="px-4 py-2 border-t border-white/5 flex items-center justify-between">
-          <span class="text-[10px] text-gray-500">Powered by <a href="https://github.com/playcanvas/engine" target="_blank" class="text-accent-teal hover:underline">PlayCanvas Engine</a> (MIT, 15.2k stars) —WebGL2 + WebGPU</span>
-          <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">Open SuperSplat Editor →/a>
+        <div class="px-4 py-2 border-t border-slate-900/5 flex items-center justify-between">
+          <span class="text-[10px] text-slate-500"><span data-i18n="t2w.poweredby">由</span> <a href="https://github.com/playcanvas/engine" target="_blank" class="text-accent-teal hover:underline">PlayCanvas Engine</a> (MIT, 15.2k stars) 驱动 — WebGL2 + WebGPU</span>
+          <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline" data-i18n="t2w.openSplat">打开 SuperSplat 编辑器 →</a>
         </div>
       </div>
 
       <!-- Preset Demo Scenes -->
       <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://developer.playcanvas.com/assets/toy-cat.sog" data-label="Toy Cat">
+        <button class="t2w-preset glass-card p-3 text-left transition hover:border-accent-teal/40" data-splat="https://developer.playcanvas.com/assets/toy-cat.sog" data-label="Toy Cat">
           <div class="flex items-center gap-2 mb-1">
             <span class="w-5 h-5 rounded bg-accent-teal/10 flex items-center justify-center text-accent-teal text-xs">1</span>
-            <span class="text-xs font-semibold text-white">Toy Cat (.sog)</span>
+            <span class="text-xs font-semibold text-slate-900" data-i18n="t2w.preset1">玩具猫 (.sog)</span>
           </div>
-          <p class="text-[10px] text-gray-500 ml-7">Compressed Gaussian Splat —streaming format</p>
+          <p class="text-[10px] text-slate-500 ml-7" data-i18n="t2w.preset1d">压缩高斯溅射 — 流式格式</p>
         </button>
-        <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb" data-label="Astronaut">
+        <button class="t2w-preset glass-card p-3 text-left transition hover:border-accent-blue/40" data-splat="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb" data-label="Astronaut">
           <div class="flex items-center gap-2 mb-1">
             <span class="w-5 h-5 rounded bg-accent-blue/10 flex items-center justify-center text-accent-blue text-xs">2</span>
-            <span class="text-xs font-semibold text-white">Astronaut (glTF)</span>
+            <span class="text-xs font-semibold text-slate-900" data-i18n="t2w.preset2">宇航员 (glTF)</span>
           </div>
-          <p class="text-[10px] text-gray-500 ml-7">Standard 3D model —orbit & zoom</p>
+          <p class="text-[10px] text-slate-500 ml-7" data-i18n="t2w.preset2d">标准 3D 模型 — 环绕与缩放</p>
         </button>
-        <button class="t2w-preset gradient-border p-3 text-left hover:border-accent-teal/40 transition" data-splat="https://superspl.at/editor" data-label="SuperSplat Editor" data-iframe="true">
+        <button class="t2w-preset glass-card p-3 text-left transition hover:border-accent-purple/40" data-splat="https://superspl.at/editor" data-label="SuperSplat Editor" data-iframe="true">
           <div class="flex items-center gap-2 mb-1">
             <span class="w-5 h-5 rounded bg-accent-purple/10 flex items-center justify-center text-accent-purple text-xs">3</span>
-            <span class="text-xs font-semibold text-white">SuperSplat Editor</span>
+            <span class="text-xs font-semibold text-slate-900" data-i18n="t2w.preset3">SuperSplat 编辑器</span>
           </div>
-          <p class="text-[10px] text-gray-500 ml-7">Full-featured browser 3DGS editor</p>
+          <p class="text-[10px] text-slate-500 ml-7" data-i18n="t2w.preset3d">功能完整的浏览器 3DGS 编辑器</p>
         </button>
       </div>
     </div>
 
     <!-- Feature highlight -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <div class="gradient-border p-4 text-center">
-        <div class="w-8 h-8 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-2">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5">
+      <div class="glass-card p-5 text-center">
+        <div class="w-9 h-9 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-3">
           <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33"/></svg>
         </div>
-        <h4 class="text-xs font-semibold text-white">Natural Language In</h4>
-        <p class="text-[10px] text-gray-500 mt-1">Describe your scene in plain words. No JSON, no forms.</p>
+        <h4 class="text-sm font-semibold text-slate-900" data-i18n="t2w.f1t">自然语言输入</h4>
+        <p class="text-[11px] text-slate-500 mt-1.5" data-i18n="t2w.f1d">用大白话描述场景，无需 JSON，无需表单。</p>
       </div>
-      <div class="gradient-border p-4 text-center">
-        <div class="w-8 h-8 rounded-lg bg-accent-purple/10 flex items-center justify-center mx-auto mb-2">
+      <div class="glass-card p-5 text-center">
+        <div class="w-9 h-9 rounded-lg bg-accent-purple/10 flex items-center justify-center mx-auto mb-3">
           <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
         </div>
-        <h4 class="text-xs font-semibold text-white">Smart Method Selection</h4>
-        <p class="text-[10px] text-gray-500 mt-1">783+ 3DGS methods analyzed —best one auto-picked for you.</p>
+        <h4 class="text-sm font-semibold text-slate-900" data-i18n="t2w.f2t">智能方法选择</h4>
+        <p class="text-[11px] text-slate-500 mt-1.5" data-i18n="t2w.f2d">分析 800+ 3DGS 方法 — 自动为你挑选最优方案。</p>
       </div>
-      <div class="gradient-border p-4 text-center">
-        <div class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-2">
+      <div class="glass-card p-5 text-center">
+        <div class="w-9 h-9 rounded-lg bg-accent-cyan/10 flex items-center justify-center mx-auto mb-3">
           <svg class="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375m13.5 0v9.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
         </div>
-        <h4 class="text-xs font-semibold text-white">Multi-Format Export</h4>
-        <p class="text-[10px] text-gray-500 mt-1">3DGS, mesh, CAD (STEP), point cloud —from text to any format.</p>
+        <h4 class="text-sm font-semibold text-slate-900" data-i18n="t2w.f3t">多格式导出</h4>
+        <p class="text-[11px] text-slate-500 mt-1.5" data-i18n="t2w.f3d">3DGS、网格、CAD (STEP)、点云 — 从文本到任意格式。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Img2GS: Image-to-3DGS Pipeline Demo -->
-<section id="img2gs" class="py-16 sm:py-20 fade-in border-t border-white/5">
+<!-- ===== Img2GS ===== -->
+<section id="img2gs" class="py-16 sm:py-24 fade-in">
   <div class="max-w-5xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-8">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">Img2GS</h2>
-      <p class="mt-3 text-gray-400 text-base sm:text-lg">Upload an image —reconstruct a 3D Gaussian world from a single photo</p>
-      <p class="mt-2 text-gray-500 text-xs sm:text-sm">From biological cells to architecture: any image becomes explorable 3D</p>
+    <div class="text-center mb-10">
+      <span class="eyebrow" data-i18n="i2g.eyebrow">图生 3DGS</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">Img2GS</h2>
+      <p class="mt-3 text-slate-600 text-base sm:text-lg" data-i18n="i2g.sub">上传一张图片 — 从单张照片重建 3D 高斯世界</p>
+      <p class="mt-2 text-slate-500 text-xs sm:text-sm" data-i18n="i2g.sub2">从生物细胞到建筑：任何图片都能变成可探索的 3D</p>
     </div>
 
-    <div class="gradient-border p-6 sm:p-8 mb-6">
+    <div class="glass-card p-6 sm:p-8 mb-6">
       <div class="flex flex-col lg:flex-row gap-6">
-        <!-- Left: Upload Area -->
+        <!-- Left: Upload -->
         <div class="flex-1">
           <div class="flex items-center gap-2 mb-3">
             <div class="w-2.5 h-2.5 rounded-full bg-amber-400 pulse-dot"></div>
-            <span class="text-xs font-medium text-gray-400">Image Input</span>
+            <span class="text-xs font-medium text-slate-600" data-i18n="i2g.input">图片输入</span>
           </div>
-          <!-- Drop zone -->
-          <div id="img2gsDropZone" class="relative group cursor-pointer rounded-xl border-2 border-dashed border-white/10 hover:border-accent-blue/40 transition-all duration-300 bg-bg/50 overflow-hidden" style="min-height:220px;">
-            <!-- Placeholder -->
-            <div id="img2gsPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 transition-opacity duration-300">
+          <div id="img2gsDropZone" class="relative group cursor-pointer rounded-xl border-2 border-dashed border-slate-900/10 hover:border-accent-blue/40 transition-all duration-300 bg-slate-100/50 overflow-hidden" style="min-height:220px;">
+            <div id="img2gsPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-500 transition-opacity duration-300">
               <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-              <span class="text-xs">Drop an image here or click to upload</span>
-              <span class="text-[10px] mt-1 text-gray-600">PNG, JPG, WebP —any scene</span>
+              <span class="text-xs" data-i18n="i2g.drop">将图片拖到这里，或点击上传</span>
+              <span class="text-[10px] mt-1 text-slate-400" data-i18n="i2g.drop2">PNG、JPG、WebP — 任意场景</span>
             </div>
-            <!-- Preview -->
             <img id="img2gsPreview" class="hidden w-full h-full object-contain rounded-xl" alt="Uploaded image preview" loading="lazy">
             <input id="img2gsFileInput" type="file" accept="image/*" class="hidden">
           </div>
-          <!-- Preset reference images -->
           <div class="flex flex-wrap gap-1.5 mt-3">
-            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 transition" data-url="https://raw.githubusercontent.com/huangserva/3DCellForge/main/public/epithelial_cell_3d_tripo_input.png" data-type="biological">Cell</button>
-            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20 hover:bg-accent-blue/20 transition" data-url="https://images.unsplash.com/photo-1518005020951-37224ce0f628?w=512&h=512&fit=crop" data-type="architecture">Building</button>
-            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-purple/10 text-accent-purple border border-accent-purple/20 hover:bg-accent-purple/20 transition" data-url="https://images.unsplash.com/photo-1535241749838-299277c6fc11?w=512&h=512&fit=crop" data-type="sculpture">Sculpture</button>
-            <button class="i2g-preset-img px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition" data-url="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=512&h=512&fit=crop" data-type="product">Product</button>
+            <button class="i2g-preset-img chip tint-amber" data-url="https://raw.githubusercontent.com/huangserva/3DCellForge/main/public/epithelial_cell_3d_tripo_input.png" data-type="biological" data-i18n="i2g.preset.cell">细胞</button>
+            <button class="i2g-preset-img chip tint-blue" data-url="https://images.unsplash.com/photo-1518005020951-37224ce0f628?w=512&h=512&fit=crop" data-type="architecture" data-i18n="i2g.preset.building">建筑</button>
+            <button class="i2g-preset-img chip tint-purple" data-url="https://images.unsplash.com/photo-1535241749838-299277c6fc11?w=512&h=512&fit=crop" data-type="sculpture" data-i18n="i2g.preset.sculpture">雕塑</button>
+            <button class="i2g-preset-img chip tint-emerald" data-url="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=512&h=512&fit=crop" data-type="product" data-i18n="i2g.preset.product">产品</button>
           </div>
         </div>
 
@@ -438,91 +582,85 @@ if ('IntersectionObserver' in window) {
         <div class="flex-1 flex flex-col gap-4">
           <div class="flex items-center gap-2 mb-1">
             <div class="w-2.5 h-2.5 rounded-full bg-accent-blue pulse-dot"></div>
-            <span class="text-xs font-medium text-gray-400">3DGS Reconstruction</span>
+            <span class="text-xs font-medium text-slate-600" data-i18n="i2g.reconstruct">3DGS 重建</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium active bg-accent-blue/20 text-accent-blue border border-accent-blue/30" data-provider="tripo">Tripo (阿里云)</button>
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-emerald-500/30" data-provider="meshy">Meshy AI</button>
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-accent-purple/30" data-provider="hunyuan3d">Hunyuan3D (腾讯)</button>
+            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-rose-500/30" data-provider="rodin">Rodin (Hyper3D)</button>
           </div>
 
-          <!-- Provider selector -->
-          <div class="flex flex-wrap gap-1.5">
-            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium active bg-accent-blue/20 text-accent-blue border border-accent-blue/30" data-provider="tripo">Tripo (Aliyun)</button>
-            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30" data-provider="meshy">Meshy AI</button>
-            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-accent-purple/30" data-provider="hunyuan3d">Hunyuan3D (Tencent)</button>
-            <button class="i2g-provider-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-rose-500/30" data-provider="rodin">Rodin (Hyper3D)</button>
-          </div>
-          <!-- Provider API key configs -->
           <div id="i2gProviderConfig" class="mt-1">
             <div id="i2gConfigTripo" class="flex items-center gap-3">
               <input id="i2gApiKeyTripo" type="password" class="api-key-input flex-1" placeholder="Aliyun Bailian API Key (DashScope)" value="">
-              <a href="https://bailian.console.aliyun.com/" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0">Get Key</a>
+              <a href="https://bailian.console.aliyun.com/" target="_blank" class="text-[10px] text-accent-blue hover:underline shrink-0" data-i18n="i2g.getkey">获取密钥</a>
             </div>
             <div id="i2gConfigMeshy" class="hidden flex items-center gap-3">
               <input id="i2gApiKeyMeshy" type="password" class="api-key-input flex-1" placeholder="Meshy API Key" value="">
-              <a href="https://www.meshy.ai/" target="_blank" class="text-[10px] text-emerald-400 hover:underline shrink-0">Get Key</a>
+              <a href="https://www.meshy.ai/" target="_blank" class="text-[10px] text-emerald-600 hover:underline shrink-0" data-i18n="i2g.getkey">获取密钥</a>
             </div>
             <div id="i2gConfigHunyuan3d" class="hidden">
               <div class="flex items-center gap-3">
                 <input id="i2gApiKeyHunyuan3d" type="password" class="api-key-input flex-1" placeholder="Hunyuan3D API Key (sk-xxx)" value="">
-                <a href="https://console.cloud.tencent.com/hunyuan/start" target="_blank" class="text-[10px] text-accent-purple hover:underline shrink-0">Get Key</a>
+                <a href="https://console.cloud.tencent.com/hunyuan/start" target="_blank" class="text-[10px] text-accent-purple hover:underline shrink-0" data-i18n="i2g.getkey">获取密钥</a>
               </div>
-              <p class="text-[10px] text-gray-500 mt-1">OpenAI-compatible API —direct browser call, no server-side signing needed.</p>
+              <p class="text-[10px] text-slate-500 mt-1" data-i18n="i2g.hunyuan.note">兼容 OpenAI 的 API — 直接浏览器调用，无需服务端签名。</p>
             </div>
             <div id="i2gConfigRodin" class="hidden flex items-center gap-3">
               <input id="i2gApiKeyRodin" type="password" class="api-key-input flex-1" placeholder="Hyper3D Rodin API Key" value="">
-              <a href="https://hyper3d.ai/api-dashboard" target="_blank" class="text-[10px] text-rose-400 hover:underline shrink-0">Get Key</a>
+              <a href="https://hyper3d.ai/api-dashboard" target="_blank" class="text-[10px] text-rose-600 hover:underline shrink-0" data-i18n="i2g.getkey">获取密钥</a>
             </div>
           </div>
 
-          <!-- Action buttons -->
           <div class="flex gap-2">
-            <button id="i2gGenBtn" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-accent-blue text-white font-semibold text-sm hover:shadow-lg hover:shadow-amber-500/20 transition disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+            <button id="i2gGenBtn" class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#6366f1)" disabled>
               <svg id="i2gGenIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              <span id="i2gGenText">Reconstruct</span>
+              <span id="i2gGenText" data-i18n="i2g.reconstructBtn">重建</span>
             </button>
-            <button id="i2gClearBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-white/10 text-gray-400 text-sm hover:bg-white/5 transition">
+            <button id="i2gClearBtn" class="btn-ghost">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-              Clear
+              <span data-i18n="i2g.clear">清除</span>
             </button>
           </div>
 
-          <!-- Pipeline Steps -->
           <div id="i2gPipeline" class="hidden">
             <div class="flex items-center gap-1 overflow-x-auto pb-2" id="i2gPipelineSteps"></div>
           </div>
 
-          <!-- Results cards -->
           <div id="i2gResult" class="hidden mt-1">
             <div class="grid grid-cols-2 gap-3 mb-3">
-              <div class="p-3 rounded-lg bg-bg-card border border-amber-500/20">
-                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Detected Scene</div>
-                <div id="i2gRScene" class="text-sm font-bold text-white">—/div>
-                <div id="i2gRSceneDetail" class="text-[10px] text-gray-400 mt-0.5">—/div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-amber-500/20">
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="i2g.result.scene">识别场景</div>
+                <div id="i2gRScene" class="text-sm font-bold text-slate-900">—</div>
+                <div id="i2gRSceneDetail" class="text-[10px] text-slate-600 mt-0.5">—</div>
               </div>
-              <div class="p-3 rounded-lg bg-bg-card border border-accent-blue/20">
-                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Method</div>
-                <div id="i2gRMethod" class="text-sm font-bold text-white">—/div>
-                <div id="i2gRReason" class="text-[10px] text-gray-400 mt-0.5">—/div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-accent-blue/20">
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="t2w.result.method">方法</div>
+                <div id="i2gRMethod" class="text-sm font-bold text-slate-900">—</div>
+                <div id="i2gRReason" class="text-[10px] text-slate-600 mt-0.5">—</div>
               </div>
-              <div class="p-3 rounded-lg bg-bg-card border border-accent-purple/20">
-                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">3D Provider</div>
-                <div id="i2gRProvider" class="text-sm font-bold text-white">—/div>
-                <div id="i2gRProviderNote" class="text-[10px] text-gray-400 mt-0.5">—/div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-accent-purple/20">
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="i2g.result.provider">3D 供应商</div>
+                <div id="i2gRProvider" class="text-sm font-bold text-slate-900">—</div>
+                <div id="i2gRProviderNote" class="text-[10px] text-slate-600 mt-0.5">—</div>
               </div>
-              <div class="p-3 rounded-lg bg-bg-card border border-emerald-500/20">
-                <div class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Output</div>
-                <div id="i2gROutput" class="text-sm font-bold text-white">—/div>
-                <div id="i2gROutputNote" class="text-[10px] text-gray-400 mt-0.5">—/div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-emerald-500/20">
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1" data-i18n="i2g.result.output">输出</div>
+                <div id="i2gROutput" class="text-sm font-bold text-slate-900">—</div>
+                <div id="i2gROutputNote" class="text-[10px] text-slate-600 mt-0.5">—</div>
               </div>
             </div>
           </div>
 
-          <!-- 3D Model Result -->
           <div id="i2g3DResult" class="hidden mt-3">
-            <div class="gradient-border overflow-hidden">
-              <div class="relative w-full" style="height:300px;background:#0a0a0f;">
+            <div class="glass-card overflow-hidden">
+              <div class="relative w-full" style="height:300px;background:#f1f5f9;">
                 <model-viewer id="i2gModelViewer" class="w-full h-full" camera-controls auto-rotate rotation-per-second="30deg" shadow-intensity="1" exposure="1.1" environment-image="neutral" style="--poster-color: transparent;"></model-viewer>
               </div>
-              <div class="px-3 py-2 border-t border-white/5 flex items-center justify-between">
-                <span id="i2g3DStatus" class="text-[10px] text-gray-500">Loading model...</span>
-                <a id="i2g3DDownload" href="#" download="img2gs-result.glb" class="hidden text-[10px] text-accent-blue hover:underline">Download GLB</a>
+              <div class="px-3 py-2 border-t border-slate-900/5 flex items-center justify-between">
+                <span id="i2g3DStatus" class="text-[10px] text-slate-500" data-i18n="i2g.loading">正在载入模型…</span>
+                <a id="i2g3DDownload" href="#" download="img2gs-result.glb" class="hidden text-[10px] text-accent-blue hover:underline" data-i18n="i2g.download">下载 GLB</a>
               </div>
             </div>
           </div>
@@ -530,35 +668,35 @@ if ('IntersectionObserver' in window) {
       </div>
     </div>
 
-    <!-- PlayCanvas 3DGS Viewer for Img2GS (reuses PlayCanvas instance) -->
+    <!-- PlayCanvas 3DGS Viewer for Img2GS -->
     <div class="mt-6">
-      <div class="gradient-border overflow-hidden">
-        <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+      <div class="glass-card overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-900/5">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-amber-400 pulse-dot"></span>
-            <span class="text-xs font-medium text-gray-300">Img2GS 3D Viewer</span>
-            <span class="text-[10px] text-gray-500">Generated scene preview —drag to rotate</span>
+            <span class="text-xs font-medium text-slate-700" data-i18n="i2g.viewer">Img2GS 3D 查看器</span>
+            <span class="text-[10px] text-slate-500" data-i18n="i2g.viewerhint">生成场景预览 — 拖拽旋转</span>
           </div>
           <div class="flex items-center gap-2">
-            <select id="i2gSceneSelect" class="text-[11px] bg-bg-card border border-white/10 rounded px-2 py-1 text-gray-300 focus:outline-none focus:border-amber-500/50">
-              <option value="https://developer.playcanvas.com/assets/toy-cat.sog">Reconstructed (.sog)</option>
-              <option value="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb">Preview (glTF)</option>
+            <select id="i2gSceneSelect" class="text-[11px] bg-slate-50 border border-slate-900/10 rounded-lg px-2 py-1 text-slate-700 focus:outline-none focus:border-amber-500/50">
+              <option value="https://developer.playcanvas.com/assets/toy-cat.sog" data-i18n="i2g.opt1">重建结果 (.sog)</option>
+              <option value="https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb" data-i18n="i2g.opt2">预览 (glTF)</option>
             </select>
           </div>
         </div>
-        <div id="i2gSplatCanvas" class="relative w-full" style="height:380px;background:#0a0a0f;">
-          <div id="i2gSplatPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-gray-500">
+        <div id="i2gSplatCanvas" class="relative w-full" style="height:380px;background:#f1f5f9;">
+          <div id="i2gSplatPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-500">
             <svg class="w-10 h-10 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-            <span class="text-xs">Upload an image and click Reconstruct to preview 3DGS output</span>
+            <span class="text-xs" data-i18n="i2g.placeholder">上传图片并点击「重建」以预览 3DGS 输出</span>
           </div>
         </div>
-        <div class="px-4 py-2 border-t border-white/5 flex items-center justify-between">
-          <span class="text-[10px] text-gray-500">Powered by PlayCanvas Engine + <a href="https://github.com/huangserva/3DCellForge" target="_blank" class="text-amber-400 hover:underline">3DCellForge</a> pipeline</span>
+        <div class="px-4 py-2 border-t border-slate-900/5 flex items-center justify-between">
+          <span class="text-[10px] text-slate-500"><span data-i18n="i2g.poweredby">由 PlayCanvas Engine +</span> <a href="https://github.com/huangserva/3DCellForge" target="_blank" class="text-amber-600 hover:underline">3DCellForge</a> <span data-i18n="i2g.pipeline">流水线驱动</span></span>
           <div class="flex items-center gap-3">
             <a href="https://www.tripo3d.ai/" target="_blank" class="text-[10px] text-accent-blue hover:underline">Tripo</a>
-            <a href="https://www.meshy.ai/" target="_blank" class="text-[10px] text-emerald-400 hover:underline">Meshy</a>
+            <a href="https://www.meshy.ai/" target="_blank" class="text-[10px] text-emerald-600 hover:underline">Meshy</a>
             <a href="https://github.com/tencent/Hunyuan3D-2" target="_blank" class="text-[10px] text-accent-purple hover:underline">Hunyuan3D</a>
-            <a href="https://hyper3d.ai/" target="_blank" class="text-[10px] text-rose-400 hover:underline">Rodin</a>
+            <a href="https://hyper3d.ai/" target="_blank" class="text-[10px] text-rose-600 hover:underline">Rodin</a>
             <a href="https://superspl.at/editor" target="_blank" class="text-[10px] text-accent-blue hover:underline">SuperSplat</a>
           </div>
         </div>
@@ -567,57 +705,56 @@ if ('IntersectionObserver' in window) {
 
     <!-- Feature cards -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5">
-      <div class="gradient-border p-4 text-center">
-        <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center mx-auto mb-2">
-          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      <div class="glass-card p-5 text-center">
+        <div class="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
-        <h4 class="text-xs font-semibold text-white">Single Image In</h4>
-        <p class="text-[10px] text-gray-500 mt-1">Upload any photo —from microscopy to cityscape.</p>
+        <h4 class="text-sm font-semibold text-slate-900" data-i18n="i2g.f1t">单图输入</h4>
+        <p class="text-[11px] text-slate-500 mt-1.5" data-i18n="i2g.f1d">上传任意照片 — 从显微影像到城市天际线。</p>
       </div>
-      <div class="gradient-border p-4 text-center">
-        <div class="w-8 h-8 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-2">
+      <div class="glass-card p-5 text-center">
+        <div class="w-9 h-9 rounded-lg bg-accent-blue/10 flex items-center justify-center mx-auto mb-3">
           <svg class="w-4 h-4 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
         </div>
-        <h4 class="text-xs font-semibold text-white">AI 3D Generation</h4>
-        <p class="text-[10px] text-gray-500 mt-1">Tripo / Meshy / Hunyuan3D / Rodin —multi-provider image-to-3D reconstruction.</p>
+        <h4 class="text-sm font-semibold text-slate-900" data-i18n="i2g.f2t">AI 3D 生成</h4>
+        <p class="text-[11px] text-slate-500 mt-1.5" data-i18n="i2g.f2d">Tripo / Meshy / Hunyuan3D / Rodin — 多供应商图生 3D 重建。</p>
       </div>
-      <div class="gradient-border p-4 text-center">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center mx-auto mb-2">
-          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
+      <div class="glass-card p-5 text-center">
+        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.007 4.125-6.75 4.125S6.75 8.653 6.75 6.375m13.5 0c0-2.278-3.007-4.125-6.75-4.125S6.75 4.097 6.75 6.375m13.5 0v6.75c0 2.278-3.007 4.125-6.75 4.125s-6.75-1.847-6.75-4.125V6.375"/></svg>
         </div>
-        <h4 class="text-xs font-semibold text-white">3DGS + Mesh Export</h4>
-        <p class="text-[10px] text-gray-500 mt-1">GLB model →3DGS refinement →.ply / .obj / .step output.</p>
+        <h4 class="text-sm font-semibold text-slate-900" data-i18n="i2g.f3t">3DGS + 网格导出</h4>
+        <p class="text-[11px] text-slate-500 mt-1.5" data-i18n="i2g.f3d">GLB 模型 → 3DGS 精化 → .ply / .obj / .step 输出。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3DGS in Action -->
+<!-- ===== Showcase ===== -->
 <section id="showcase" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">3DGS in Action</h2>
-      <p class="mt-3 text-gray-400">Real-time radiance field rendering —from photos to photorealistic 3D in minutes</p>
+    <div class="text-center mb-12">
+      <span class="eyebrow" data-i18n="show.eyebrow">可视化</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="show.title">3DGS 实战</h2>
+      <p class="mt-3 text-slate-600" data-i18n="show.sub">实时辐射场渲染 — 几分钟内从照片到照片级真实的 3D</p>
     </div>
-    <!-- Main Teaser -->
-    <div class="gradient-border overflow-hidden mb-4">
-      <div class="p-1">
+    <div class="glass-card overflow-hidden mb-4">
+      <div class="p-1.5">
         <img src="https://raw.githubusercontent.com/graphdeco-inria/gaussian-splatting/main/assets/teaser.png"
-             alt="3D Gaussian Splatting teaser —bicycle, garden, stump, room scenes"
-             class="w-full rounded-lg" loading="lazy"
-             onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-64 text-gray-500 text-sm\' loading="lazy">Image loading... please refresh if it doesn\'t appear</div>'">
-        <p class="text-center mt-3 mb-2 text-xs text-gray-500">
-          3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) —Real-time novel-view synthesis on bicycle, garden, stump &amp; room scenes
+             alt="3D Gaussian Splatting teaser — bicycle, garden, stump, room scenes"
+             class="w-full rounded-xl" loading="lazy"
+             onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-64 text-slate-500 text-sm\'>图片加载中…若未显示请刷新</div>'">
+        <p class="text-center mt-3 mb-2 text-xs text-slate-500" data-i18n="show.teaser">
+          3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) — 在自行车、花园、树桩与室内场景上的实时新视角合成
         </p>
       </div>
     </div>
-    <!-- Scene Gallery -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-      <div class="gradient-border overflow-hidden group">
-        <div class="relative p-1">
+      <div class="glass-card overflow-hidden group">
+        <div class="relative p-1.5">
           <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_truck.png"
-               alt="Truck scene —Tanks & Temples" class="w-full rounded-lg" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+               alt="Truck scene — Tanks & Temples" class="w-full rounded-xl" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
             <div>
               <p class="text-white text-sm font-semibold">Truck</p>
               <p class="text-gray-300 text-xs">Tanks &amp; Temples</p>
@@ -625,11 +762,11 @@ if ('IntersectionObserver' in window) {
           </div>
         </div>
       </div>
-      <div class="gradient-border overflow-hidden group">
-        <div class="relative p-1">
+      <div class="glass-card overflow-hidden group">
+        <div class="relative p-1.5">
           <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_bicycle.png"
-               alt="Bicycle scene —Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+               alt="Bicycle scene — Mip-NeRF 360" class="w-full rounded-xl" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
             <div>
               <p class="text-white text-sm font-semibold">Bicycle</p>
               <p class="text-gray-300 text-xs">Mip-NeRF 360</p>
@@ -637,11 +774,11 @@ if ('IntersectionObserver' in window) {
           </div>
         </div>
       </div>
-      <div class="gradient-border overflow-hidden group">
-        <div class="relative p-1">
+      <div class="glass-card overflow-hidden group">
+        <div class="relative p-1.5">
           <img src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/images/comparisons/ours_garden.png"
-               alt="Garden scene —Mip-NeRF 360" class="w-full rounded-lg" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+               alt="Garden scene — Mip-NeRF 360" class="w-full rounded-xl" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
             <div>
               <p class="text-white text-sm font-semibold">Garden</p>
               <p class="text-gray-300 text-xs">Mip-NeRF 360</p>
@@ -650,31 +787,29 @@ if ('IntersectionObserver' in window) {
         </div>
       </div>
     </div>
-    <!-- Anti-aliasing Demo -->
-    <div class="gradient-border overflow-hidden mb-8">
-      <div class="p-1 flex flex-col sm:flex-row items-center gap-4">
+    <div class="glass-card overflow-hidden mb-8">
+      <div class="p-2 flex flex-col sm:flex-row items-center gap-4">
         <img src="https://raw.githubusercontent.com/graphdeco-inria/gaussian-splatting/main/assets/aa_onoff.gif"
-             alt="Anti-aliasing on/off comparison" class="max-w-md w-full rounded-lg" loading="lazy">
+             alt="Anti-aliasing on/off comparison" class="max-w-md w-full rounded-xl" loading="lazy">
         <div class="px-2 py-4 sm:px-4">
-          <h3 class="text-white font-semibold text-sm mb-2">Mip-Splatting Anti-Aliasing</h3>
-          <p class="text-gray-400 text-xs leading-relaxed">Left: 3DGS baseline —zoom artifacts &amp; aliasing. Right: Mip-Splatting —smooth, aliasing-free rendering at any scale.</p>
+          <h3 class="text-slate-900 font-semibold text-sm mb-2" data-i18n="show.aa.title">Mip-Splatting 抗锯齿</h3>
+          <p class="text-slate-600 text-xs leading-relaxed" data-i18n="show.aa.desc">左：3DGS 基线 — 缩放伪影与锯齿。右：Mip-Splatting — 任意尺度下平滑、无锯齿渲染。</p>
           <a href="https://arxiv.org/abs/2312.21535" target="_blank" class="inline-flex items-center gap-1 mt-3 text-xs text-accent-blue hover:underline font-mono">2312.21535</a>
         </div>
       </div>
     </div>
-    <!-- Interactive WebGL Viewer -->
     <div class="text-center">
-      <button id="toggleViewer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-accent-blue/30 text-accent-blue font-medium text-sm hover:bg-accent-blue/10 transition">
+      <button id="toggleViewer" class="btn-ghost">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        Try Interactive 3DGS Viewer
+        <span data-i18n="show.try">体验交互式 3DGS 查看器</span>
       </button>
-      <div id="viewerContainer" class="hidden mt-6 gradient-border overflow-hidden">
-        <div class="p-1">
-          <iframe id="viewerFrame" class="w-full rounded-lg" style="height:500px;border:none;" loading="lazy"
+      <div id="viewerContainer" class="hidden mt-6 glass-card overflow-hidden">
+        <div class="p-1.5">
+          <iframe id="viewerFrame" class="w-full rounded-xl" style="height:500px;border:none;" loading="lazy"
                   src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                   title="3DGS Interactive Viewer"></iframe>
-          <p class="text-center mt-2 mb-1 text-xs text-gray-500">
-            Powered by <a href="https://github.com/antimatter15/splat" target="_blank" class="text-accent-blue hover:underline">antimatter15/splat</a> (MIT) —Drag to rotate, scroll to zoom
+          <p class="text-center mt-2 mb-1 text-xs text-slate-500">
+            <span data-i18n="show.poweredby">由</span> <a href="https://github.com/antimatter15/splat" target="_blank" class="text-accent-blue hover:underline">antimatter15/splat</a> (MIT) <span data-i18n="show.drag">驱动 — 拖拽旋转，滚轮缩放</span>
           </p>
         </div>
       </div>
@@ -682,21 +817,22 @@ if ('IntersectionObserver' in window) {
   </div>
 </section>
 
-<!-- Interactive Method Browser -->
+<!-- ===== Methods ===== -->
 <section id="methods" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="mb-8">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">Method Explorer</h2>
-      <p class="mt-2 text-gray-400 text-sm">Browse 801+ methods across 23 categories — search, filter, sort, and click any card for details.</p>
+    <div class="mb-10">
+      <span class="eyebrow" data-i18n="methods.eyebrow">方法库</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="methods.title">方法探索器</h2>
+      <p class="mt-2 text-slate-600 text-sm" data-i18n="methods.sub">浏览 800+ 个方法、横跨 23 个分类 — 搜索、筛选、排序，点击任意卡片查看详情。</p>
     </div>
-    <div class="relative mb-6">
-      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      <input id="searchInput" type="text" placeholder="Search methods by name..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-bg-card border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/25 transition text-sm">
+    <div class="relative mb-6 search-box">
+      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input id="searchInput" type="text" placeholder="按名称搜索方法…" class="w-full pl-11 pr-4 py-3 rounded-xl bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none text-sm" data-i18n-ph="methods.search">
     </div>
     <div id="categoryTabs" class="flex flex-wrap gap-2 mb-8"></div>
     <div class="flex items-center justify-between mb-4">
-      <p id="methodCount" class="text-sm text-gray-500"></p>
-      <div class="flex items-center gap-3 text-xs text-gray-500">
+      <p id="methodCount" class="text-sm text-slate-500"></p>
+      <div class="hidden sm:flex items-center gap-3 text-xs text-slate-500">
         <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-CVPR inline-block"></span>CVPR</span>
         <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-SIGGRAPH inline-block"></span>SIGGRAPH</span>
         <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ICLR inline-block"></span>ICLR</span>
@@ -706,63 +842,278 @@ if ('IntersectionObserver' in window) {
         <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-arXiv inline-block"></span>arXiv</span>
       </div>
     </div>
-    <!-- Sort controls -->
-    <div class="flex items-center gap-2 mb-5">
-      <span class="text-[11px] text-gray-500 font-medium uppercase tracking-wider">Sort:</span>
-      <button id="sortDefault" class="sort-btn active px-2.5 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30 transition" data-sort="default">Default</button>
-      <button id="sortCitations" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition" data-sort="citations">Citations ↓</button>
-      <button id="sortNewest" class="sort-btn px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30 transition" data-sort="newest">Newest</button>
-      <span id="sortHint" class="text-[10px] text-gray-600 ml-1"></span>
+    <div class="flex items-center gap-2 mb-6">
+      <span class="text-[11px] text-slate-500 font-medium uppercase tracking-wider" data-i18n="methods.sort">排序：</span>
+      <button id="sortDefault" class="sort-btn active px-3 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30 transition" data-sort="default" data-i18n="methods.sort.default">默认</button>
+      <button id="sortCitations" class="sort-btn px-3 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-amber-500/30 transition" data-sort="citations" data-i18n="methods.sort.citations">引用 ↓</button>
+      <button id="sortNewest" class="sort-btn px-3 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-emerald-500/30 transition" data-sort="newest" data-i18n="methods.sort.newest">最新</button>
+      <span id="sortHint" class="text-[10px] text-slate-400 ml-1"></span>
     </div>
     <div id="methodGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
   </div>
 </section>
 
-<!-- Skills Showcase -->
+<!-- ===== Skills ===== -->
 <section id="skills" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="mb-8">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">15 Specialized Skills</h2>
-      <p class="mt-2 text-gray-400 text-sm">End-to-end AI assistance for 3DGS research workflow.</p>
+    <div class="mb-10">
+      <span class="eyebrow" data-i18n="skills.eyebrow">技能</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="skills.title">15 项专业技能</h2>
+      <p class="mt-2 text-slate-600 text-sm" data-i18n="skills.sub">面向 3DGS 研究全流程的端到端 AI 助手。</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="skillsGrid"></div>
   </div>
 </section>
 
-<!-- Quick Start -->
+<!-- ===== Quick Start ===== -->
 <section id="install" class="py-16 sm:py-24 fade-in">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">Quick Start</h2>
-      <p class="mt-3 text-gray-400">Install in seconds, compatible with major AI agent platforms</p>
+      <span class="eyebrow" data-i18n="install.eyebrow">安装</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="install.title">快速开始</h2>
+      <p class="mt-3 text-slate-600" data-i18n="install.sub">秒级安装，兼容主流 AI Agent 平台</p>
     </div>
     <div class="space-y-6" id="installBlocks"></div>
   </div>
 </section>
 
-<!-- Trending -->
+<!-- ===== Trends ===== -->
 <section id="trends" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white">Hot Trends in 3DGS Research</h2>
-      <p class="mt-3 text-gray-400">Tracked daily from arXiv, conferences, and GitHub</p>
+      <span class="eyebrow" data-i18n="trends.eyebrow">热点</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="trends.title">3DGS 研究热点趋势</h2>
+      <p class="mt-3 text-slate-600" data-i18n="trends.sub">每日追踪 arXiv、会议与 GitHub</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="trendsGrid"></div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="border-t border-white/5 py-10">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-    <p>Awesome Gaussian Skills &mdash; Apache-2.0 License</p>
+<!-- ===== Footer ===== -->
+<footer class="border-t border-slate-900/5 py-12 mt-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+    <p>Awesome Gaussian Skills · Apache-2.0 License</p>
     <div class="flex items-center gap-6">
-      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-white transition">GitHub</a>
-      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/README.md" target="_blank" class="hover:text-white transition">Install Guide</a>
-      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/changelog" target="_blank" class="hover:text-white transition">Changelog</a>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-slate-900 transition">GitHub</a>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/README.md" target="_blank" class="hover:text-slate-900 transition" data-i18n="footer.guide">安装指南</a>
+      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/changelog" target="_blank" class="hover:text-slate-900 transition" data-i18n="footer.changelog">更新日志</a>
     </div>
-    <p>Built for the 3DGS community</p>
+    <p data-i18n="footer.built">为 3DGS 社区打造</p>
   </div>
 </footer>
+
+<!-- ===== i18n ===== -->
+<script>
+(function () {
+  var I18N = {
+    zh: {
+      title: "Awesome Gaussian Skills · 3D 高斯溅射开源工具箱",
+      "nav.methods": "方法", "nav.skills": "技能", "nav.book": "电子书", "nav.studio": "Studio", "nav.github": "GitHub",
+      "hero.version": "v0.8.0 · 现已开源",
+      "hero.sub": "面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱",
+      "hero.badge.methods": "800+ 方法", "hero.badge.cats": "23 个分类", "hero.badge.skills": "15 项技能",
+      "hero.cta.methods": "探索方法", "hero.cta.book": "阅读电子书",
+      "hero.studio": "SplatVerse Studio →", "hero.star": "在 GitHub 上 Star →",
+
+      "t2w.eyebrow": "文生 3D", "t2w.sub": "用一句话描述场景，换取一个 3D 高斯世界",
+      "t2w.sub2": "让 3DGS 与 CAD 创作触手可及的创意平台",
+      "t2w.powered": "由 Tripo / Meshy / Hunyuan3D 驱动 —— 多供应商文生 3D 生成",
+      "t2w.provider": "3D 供应商", "t2w.getkey": "获取密钥 →",
+      "t2w.hunyuan.note": "Hunyuan3D API 采用 TC3-HMAC-SHA256 签名（无法在浏览器直接调用）。点击「生成」将打开腾讯云控制台，或切换到 Tripo / Meshy 进行浏览器内生成。",
+      "t2w.hunyuan.open": "打开 Hunyuan3D 控制台 →",
+      "t2w.trynow": "立即体验",
+      "t2w.tag.gear": "齿轮", "t2w.tag.room": "室内", "t2w.tag.landscape": "风景", "t2w.tag.avatar": "虚拟人", "t2w.tag.mocap": "动作捕捉", "t2w.tag.vehicle": "车辆",
+      "t2w.gen": "生成", "t2w.editor": "完整编辑器",
+      "t2w.result.method": "方法", "t2w.result.scene": "场景", "t2w.result.export": "主导出", "t2w.result.secondary": "次级",
+      "t2w.brief": "场景简报",
+      "t2w.genmodel": "生成的 3D 模型", "t2w.preview": "预览渲染",
+      "t2w.interact": "交互式 3D — 拖拽旋转，滚轮缩放", "t2w.download": "下载 GLB →",
+      "t2w.viewer": "PlayCanvas 3DGS 查看器", "t2w.viewerhint": "交互式 — 拖拽旋转，滚轮缩放",
+      "t2w.load": "点击「生成」载入 3DGS 场景",
+      "t2w.poweredby": "由", "t2w.openSplat": "打开 SuperSplat 编辑器 →",
+      "t2w.preset1": "玩具猫 (.sog)", "t2w.preset1d": "压缩高斯溅射 — 流式格式",
+      "t2w.preset2": "宇航员 (glTF)", "t2w.preset2d": "标准 3D 模型 — 环绕与缩放",
+      "t2w.preset3": "SuperSplat 编辑器", "t2w.preset3d": "功能完整的浏览器 3DGS 编辑器",
+      "t2w.f1t": "自然语言输入", "t2w.f1d": "用大白话描述场景，无需 JSON，无需表单。",
+      "t2w.f2t": "智能方法选择", "t2w.f2d": "分析 800+ 3DGS 方法 — 自动为你挑选最优方案。",
+      "t2w.f3t": "多格式导出", "t2w.f3d": "3DGS、网格、CAD (STEP)、点云 — 从文本到任意格式。",
+
+      "i2g.eyebrow": "图生 3DGS", "i2g.sub": "上传一张图片 — 从单张照片重建 3D 高斯世界",
+      "i2g.sub2": "从生物细胞到建筑：任何图片都能变成可探索的 3D",
+      "i2g.input": "图片输入", "i2g.drop": "将图片拖到这里，或点击上传", "i2g.drop2": "PNG、JPG、WebP — 任意场景",
+      "i2g.preset.cell": "细胞", "i2g.preset.building": "建筑", "i2g.preset.sculpture": "雕塑", "i2g.preset.product": "产品",
+      "i2g.reconstruct": "3DGS 重建", "i2g.getkey": "获取密钥",
+      "i2g.hunyuan.note": "兼容 OpenAI 的 API — 直接浏览器调用，无需服务端签名。",
+      "i2g.reconstructBtn": "重建", "i2g.clear": "清除",
+      "i2g.result.scene": "识别场景", "i2g.result.provider": "3D 供应商", "i2g.result.output": "输出",
+      "i2g.loading": "正在载入模型…", "i2g.download": "下载 GLB",
+      "i2g.viewer": "Img2GS 3D 查看器", "i2g.viewerhint": "生成场景预览 — 拖拽旋转",
+      "i2g.opt1": "重建结果 (.sog)", "i2g.opt2": "预览 (glTF)",
+      "i2g.placeholder": "上传图片并点击「重建」以预览 3DGS 输出",
+      "i2g.poweredby": "由 PlayCanvas Engine +", "i2g.pipeline": "流水线驱动",
+      "i2g.f1t": "单图输入", "i2g.f1d": "上传任意照片 — 从显微影像到城市天际线。",
+      "i2g.f2t": "AI 3D 生成", "i2g.f2d": "Tripo / Meshy / Hunyuan3D / Rodin — 多供应商图生 3D 重建。",
+      "i2g.f3t": "3DGS + 网格导出", "i2g.f3d": "GLB 模型 → 3DGS 精化 → .ply / .obj / .step 输出。",
+
+      "show.eyebrow": "可视化", "show.title": "3DGS 实战",
+      "show.sub": "实时辐射场渲染 — 几分钟内从照片到照片级真实的 3D",
+      "show.teaser": "3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) — 在自行车、花园、树桩与室内场景上的实时新视角合成",
+      "show.aa.title": "Mip-Splatting 抗锯齿",
+      "show.aa.desc": "左：3DGS 基线 — 缩放伪影与锯齿。右：Mip-Splatting — 任意尺度下平滑、无锯齿渲染。",
+      "show.try": "体验交互式 3DGS 查看器", "show.hide": "收起交互式查看器",
+      "show.poweredby": "由", "show.drag": "驱动 — 拖拽旋转，滚轮缩放",
+
+      "methods.eyebrow": "方法库", "methods.title": "方法探索器",
+      "methods.sub": "浏览 800+ 个方法、横跨 23 个分类 — 搜索、筛选、排序，点击任意卡片查看详情。",
+      "methods.search": "按名称搜索方法…",
+      "methods.sort": "排序：", "methods.sort.default": "默认", "methods.sort.citations": "引用 ↓", "methods.sort.newest": "最新",
+      "methods.sortHint.citations": "按预估引用数排序", "methods.sortHint.newest": "按发布日期排序",
+
+      "skills.eyebrow": "技能", "skills.title": "15 项专业技能", "skills.sub": "面向 3DGS 研究全流程的端到端 AI 助手。",
+      "install.eyebrow": "安装", "install.title": "快速开始", "install.sub": "秒级安装，兼容主流 AI Agent 平台",
+      "trends.eyebrow": "热点", "trends.title": "3DGS 研究热点趋势", "trends.sub": "每日追踪 arXiv、会议与 GitHub",
+
+      "footer.guide": "安装指南", "footer.changelog": "更新日志", "footer.built": "为 3DGS 社区打造",
+
+      "cat.all": "全部",
+      "copy": "复制", "copied": "已复制！",
+      "modal.innovation": "核心创新", "modal.innovations": "核心创新点", "modal.code": "代码", "modal.abstract.en": "English", "modal.abstract.zh": "中文",
+      "gen.generating": "生成中…", "gen.regenerate": "重新生成",
+      "step.parse": "解析", "step.select": "选择", "step.init": "初始化", "step.train": "训练", "step.validate": "校验", "step.export": "导出",
+      "i2gstep.upload": "上传", "i2gstep.analyze": "分析", "i2gstep.generate": "生成", "i2gstep.refine": "精化", "i2gstep.validate": "校验", "i2gstep.export": "导出",
+      "i2g.reconstructing": "重建中…", "i2g.rereconstruct": "重新重建",
+      "status.done": "完成！", "status.loaded": "模型加载成功"
+    },
+    en: {
+      title: "Awesome Gaussian Skills · 3D Gaussian Splatting Toolbox",
+      "nav.methods": "Methods", "nav.skills": "Skills", "nav.book": "Book", "nav.studio": "Studio", "nav.github": "GitHub",
+      "hero.version": "v0.8.0 · Open Source",
+      "hero.sub": "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting & Computer Graphics",
+      "hero.badge.methods": "800+ Methods", "hero.badge.cats": "23 Categories", "hero.badge.skills": "15 Skills",
+      "hero.cta.methods": "Explore Methods", "hero.cta.book": "Read the Book",
+      "hero.studio": "SplatVerse Studio →", "hero.star": "Star on GitHub →",
+
+      "t2w.eyebrow": "Text-to-3D", "t2w.sub": "Describe a scene in words — get a 3D Gaussian world in return",
+      "t2w.sub2": "The creative platform making 3DGS & CAD accessible to everyone",
+      "t2w.powered": "Powered by Tripo / Meshy / Hunyuan3D — multi-provider text-to-3D generation",
+      "t2w.provider": "3D Provider", "t2w.getkey": "Get Key →",
+      "t2w.hunyuan.note": "Hunyuan3D API uses TC3-HMAC-SHA256 signing (not callable from browser). Click Generate to open Tencent Cloud console, or switch to Tripo/Meshy for in-browser generation.",
+      "t2w.hunyuan.open": "Open Hunyuan3D Console →",
+      "t2w.trynow": "Try it now",
+      "t2w.tag.gear": "Gear", "t2w.tag.room": "Room", "t2w.tag.landscape": "Landscape", "t2w.tag.avatar": "Avatar", "t2w.tag.mocap": "MoCap", "t2w.tag.vehicle": "Vehicle",
+      "t2w.gen": "Generate", "t2w.editor": "Full Editor",
+      "t2w.result.method": "Method", "t2w.result.scene": "Scene", "t2w.result.export": "Primary Export", "t2w.result.secondary": "Secondary",
+      "t2w.brief": "Scene Brief",
+      "t2w.genmodel": "Generated 3D Model", "t2w.preview": "Preview Render",
+      "t2w.interact": "Interactive 3D — drag to rotate, scroll to zoom", "t2w.download": "Download GLB →",
+      "t2w.viewer": "PlayCanvas 3DGS Viewer", "t2w.viewerhint": "Interactive — drag to rotate, scroll to zoom",
+      "t2w.load": "Click \"Generate\" to load a 3DGS scene",
+      "t2w.poweredby": "Powered by", "t2w.openSplat": "Open SuperSplat Editor →",
+      "t2w.preset1": "Toy Cat (.sog)", "t2w.preset1d": "Compressed Gaussian Splat — streaming format",
+      "t2w.preset2": "Astronaut (glTF)", "t2w.preset2d": "Standard 3D model — orbit & zoom",
+      "t2w.preset3": "SuperSplat Editor", "t2w.preset3d": "Full-featured browser 3DGS editor",
+      "t2w.f1t": "Natural Language In", "t2w.f1d": "Describe your scene in plain words. No JSON, no forms.",
+      "t2w.f2t": "Smart Method Selection", "t2w.f2d": "783+ 3DGS methods analyzed — best one auto-picked for you.",
+      "t2w.f3t": "Multi-Format Export", "t2w.f3d": "3DGS, mesh, CAD (STEP), point cloud — from text to any format.",
+
+      "i2g.eyebrow": "Image-to-3DGS", "i2g.sub": "Upload an image — reconstruct a 3D Gaussian world from a single photo",
+      "i2g.sub2": "From biological cells to architecture: any image becomes explorable 3D",
+      "i2g.input": "Image Input", "i2g.drop": "Drop an image here or click to upload", "i2g.drop2": "PNG, JPG, WebP — any scene",
+      "i2g.preset.cell": "Cell", "i2g.preset.building": "Building", "i2g.preset.sculpture": "Sculpture", "i2g.preset.product": "Product",
+      "i2g.reconstruct": "3DGS Reconstruction", "i2g.getkey": "Get Key",
+      "i2g.hunyuan.note": "OpenAI-compatible API — direct browser call, no server-side signing needed.",
+      "i2g.reconstructBtn": "Reconstruct", "i2g.clear": "Clear",
+      "i2g.result.scene": "Detected Scene", "i2g.result.provider": "3D Provider", "i2g.result.output": "Output",
+      "i2g.loading": "Loading model...", "i2g.download": "Download GLB",
+      "i2g.viewer": "Img2GS 3D Viewer", "i2g.viewerhint": "Generated scene preview — drag to rotate",
+      "i2g.opt1": "Reconstructed (.sog)", "i2g.opt2": "Preview (glTF)",
+      "i2g.placeholder": "Upload an image and click Reconstruct to preview 3DGS output",
+      "i2g.poweredby": "Powered by PlayCanvas Engine +", "i2g.pipeline": "pipeline",
+      "i2g.f1t": "Single Image In", "i2g.f1d": "Upload any photo — from microscopy to cityscape.",
+      "i2g.f2t": "AI 3D Generation", "i2g.f2d": "Tripo / Meshy / Hunyuan3D / Rodin — multi-provider image-to-3D reconstruction.",
+      "i2g.f3t": "3DGS + Mesh Export", "i2g.f3d": "GLB model → 3DGS refinement → .ply / .obj / .step output.",
+
+      "show.eyebrow": "Visualization", "show.title": "3DGS in Action",
+      "show.sub": "Real-time radiance field rendering — from photos to photorealistic 3D in minutes",
+      "show.teaser": "3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023) — real-time novel-view synthesis on bicycle, garden, stump & room scenes",
+      "show.aa.title": "Mip-Splatting Anti-Aliasing",
+      "show.aa.desc": "Left: 3DGS baseline — zoom artifacts & aliasing. Right: Mip-Splatting — smooth, aliasing-free rendering at any scale.",
+      "show.try": "Try Interactive 3DGS Viewer", "show.hide": "Hide Interactive Viewer",
+      "show.poweredby": "Powered by", "show.drag": "(MIT) — drag to rotate, scroll to zoom",
+
+      "methods.eyebrow": "Library", "methods.title": "Method Explorer",
+      "methods.sub": "Browse 800+ methods across 23 categories — search, filter, sort, and click any card for details.",
+      "methods.search": "Search methods by name...",
+      "methods.sort": "Sort:", "methods.sort.default": "Default", "methods.sort.citations": "Citations ↓", "methods.sort.newest": "Newest",
+      "methods.sortHint.citations": "Sorted by estimated citation count", "methods.sortHint.newest": "Sorted by publication date",
+
+      "skills.eyebrow": "Skills", "skills.title": "15 Specialized Skills", "skills.sub": "End-to-end AI assistance for 3DGS research workflow.",
+      "install.eyebrow": "Install", "install.title": "Quick Start", "install.sub": "Install in seconds, compatible with major AI agent platforms",
+      "trends.eyebrow": "Trends", "trends.title": "Hot Trends in 3DGS Research", "trends.sub": "Tracked daily from arXiv, conferences, and GitHub",
+
+      "footer.guide": "Install Guide", "footer.changelog": "Changelog", "footer.built": "Built for the 3DGS community",
+
+      "cat.all": "All",
+      "copy": "Copy", "copied": "Copied!",
+      "modal.innovation": "Core Innovation", "modal.innovations": "Core Innovations", "modal.code": "Code", "modal.abstract.en": "English", "modal.abstract.zh": "中文",
+      "gen.generating": "Generating...", "gen.regenerate": "Regenerate",
+      "step.parse": "Parse", "step.select": "Select", "step.init": "Init", "step.train": "Train", "step.validate": "Validate", "step.export": "Export",
+      "i2gstep.upload": "Upload", "i2gstep.analyze": "Analyze", "i2gstep.generate": "Generate", "i2gstep.refine": "Refine", "i2gstep.validate": "Validate", "i2gstep.export": "Export",
+      "i2g.reconstructing": "Reconstructing...", "i2g.rereconstruct": "Re-reconstruct",
+      "status.done": "Done!", "status.loaded": "Model loaded successfully"
+    }
+  };
+
+  window.AGS_I18N = I18N;
+  window.AGS_LANG = (function () {
+    var hash = (location.hash || '').replace(/^#/, '').toLowerCase();
+    if (hash === 'en' || hash === 'zh') return hash;
+    var parts = hash.split('=');
+    if (parts.length === 2 && parts[0] === 'lang' && (parts[1] === 'en' || parts[1] === 'zh')) return parts[1];
+    try { var s = localStorage.getItem('ags-lang'); return s === 'en' ? 'en' : 'zh'; }
+    catch (e) { return 'zh'; }
+  })();
+
+  window.t = function (key) {
+    var d = I18N[window.AGS_LANG] || I18N.zh;
+    if (d[key] !== undefined) return d[key];
+    if (I18N.zh[key] !== undefined) return I18N.zh[key];
+    return key;
+  };
+
+  window.applyStaticLang = function () {
+    document.documentElement.lang = window.AGS_LANG === 'zh' ? 'zh-CN' : 'en';
+    document.title = t('title');
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (k) el.textContent = t(k);
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-ph');
+      if (k) el.setAttribute('placeholder', t(k));
+    });
+    document.querySelectorAll('.lang-option').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === window.AGS_LANG);
+    });
+  };
+
+  window.setLang = function (lang) {
+    if (lang !== 'zh' && lang !== 'en') return;
+    window.AGS_LANG = lang;
+    try { localStorage.setItem('ags-lang', lang); } catch (e) {}
+    applyStaticLang();
+    if (typeof renderTabs === 'function') { renderTabs(); renderMethods(); renderSkills(); renderInstall(); renderTrends(); }
+    if (typeof window.refreshDynamicLabels === 'function') window.refreshDynamicLabels();
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyStaticLang();
+    if (typeof window.refreshDynamicLabels === 'function') window.refreshDynamicLabels();
+  });
+})();
+</script>
+
+
 
 <script>
 const METHODS = [
@@ -2194,66 +2545,66 @@ if (document.readyState === 'loading') {
 }
 
 const CATEGORIES = [
-  { id: "Foundation", label: "Foundation" },
-  { id: "Surface", label: "Surface & Geometry" },
-  { id: "CAD", label: "CAD/Mesh" },
-  { id: "Generation", label: "Generation" },
-  { id: "Feed-Forward", label: "Feed-Forward" },
-  { id: "Compression", label: "Compression" },
-  { id: "Dynamic", label: "Dynamic" },
-  { id: "Semantic", label: "Semantic" },
-  { id: "Image", label: "Image Representation" },
-  { id: "Sparse-View", label: "Sparse-View" },
-  { id: "Large-Scale", label: "Large-Scale" },
-  { id: "Editing", label: "Editing" },
-  { id: "Material", label: "Material & Relighting" },
-  { id: "Human", label: "Human & Avatar" },
-  { id: "Robustness", label: "Robustness" },
-  { id: "Autonomous Driving", label: "Autonomous Driving" },
-  { id: "SLAM", label: "SLAM" },
-  { id: "Training", label: "Training & Optimization" },
-  { id: "Simulation", label: "Simulation & Robotics" },
-  { id: "Cross-Domain", label: "Cross-Domain" },
-  { id: "Security", label: "Security" },
-  { id: "Medical", label: "Medical & Biomedical" },
-  { id: "Surveys", label: "Surveys & Benchmarks" },
-  { id: "World Models & Spatial Intelligence", label: "World Models & Spatial Intelligence" },
-  { id: "Embodied AI/Robotics", label: "Embodied AI/Robotics" },
-  { id: "Systems & Applications", label: "Systems & Applications" },
-  { id: "Acceleration", label: "Acceleration" },
-  { id: "Degradation-Aware", label: "Degradation-Aware" }
+  { id: "Foundation", label: "Foundation", labelZh: "基础" },
+  { id: "Surface", label: "Surface & Geometry", labelZh: "表面与几何" },
+  { id: "CAD", label: "CAD/Mesh", labelZh: "CAD/网格" },
+  { id: "Generation", label: "Generation", labelZh: "生成" },
+  { id: "Feed-Forward", label: "Feed-Forward", labelZh: "前馈" },
+  { id: "Compression", label: "Compression", labelZh: "压缩" },
+  { id: "Dynamic", label: "Dynamic", labelZh: "动态" },
+  { id: "Semantic", label: "Semantic", labelZh: "语义" },
+  { id: "Image", label: "Image Representation", labelZh: "图像表示" },
+  { id: "Sparse-View", label: "Sparse-View", labelZh: "稀疏视角" },
+  { id: "Large-Scale", label: "Large-Scale", labelZh: "大规模" },
+  { id: "Editing", label: "Editing", labelZh: "编辑" },
+  { id: "Material", label: "Material & Relighting", labelZh: "材质与重光照" },
+  { id: "Human", label: "Human & Avatar", labelZh: "人体与虚拟人" },
+  { id: "Robustness", label: "Robustness", labelZh: "鲁棒性" },
+  { id: "Autonomous Driving", label: "Autonomous Driving", labelZh: "自动驾驶" },
+  { id: "SLAM", label: "SLAM", labelZh: "SLAM" },
+  { id: "Training", label: "Training & Optimization", labelZh: "训练与优化" },
+  { id: "Simulation", label: "Simulation & Robotics", labelZh: "仿真与机器人" },
+  { id: "Cross-Domain", label: "Cross-Domain", labelZh: "跨域" },
+  { id: "Security", label: "Security", labelZh: "安全" },
+  { id: "Medical", label: "Medical & Biomedical", labelZh: "医学与生物" },
+  { id: "Surveys", label: "Surveys & Benchmarks", labelZh: "综述与基准" },
+  { id: "World Models & Spatial Intelligence", label: "World Models & Spatial Intelligence", labelZh: "世界模型与空间智能" },
+  { id: "Embodied AI/Robotics", label: "Embodied AI/Robotics", labelZh: "具身智能/机器人" },
+  { id: "Systems & Applications", label: "Systems & Applications", labelZh: "系统与应用" },
+  { id: "Acceleration", label: "Acceleration", labelZh: "加速" },
+  { id: "Degradation-Aware", label: "Degradation-Aware", labelZh: "退化感知" }
 ];
 
 const SKILLS = [
-  { id: "3dgs-paper-reader", name: "3DGS Paper Reader", desc: "Read any 3DGS paper & extract structured insights in seconds", color: "#3b82f6",
+  { id: "3dgs-paper-reader", name: "3DGS Paper Reader", nameZh: "论文精读", desc: "Read any 3DGS paper & extract structured insights in seconds", descZh: "秒级阅读任意 3DGS 论文并提取结构化洞见", color: "#3b82f6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
-  { id: "3dgs-method-compare", name: "Method Comparator", desc: "Compare 3DGS variants across 8+ comparison tables", color: "#8b5cf6",
+  { id: "3dgs-method-compare", name: "Method Comparator", nameZh: "方法对比", desc: "Compare 3DGS variants across 8+ comparison tables", descZh: "在 8+ 对比表中横向比较 3DGS 变体", color: "#8b5cf6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
-  { id: "3dgs-code-reviewer", name: "Code Reviewer", desc: "Catch 108+ common 3DGS implementation bugs", color: "#ef4444",
+  { id: "3dgs-code-reviewer", name: "Code Reviewer", nameZh: "代码审查", desc: "Catch 108+ common 3DGS implementation bugs", descZh: "捕捉 108+ 常见 3DGS 实现缺陷", color: "#ef4444",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3.75 4.97v14.06"/>' },
-  { id: "3dgs-experiment-planner", name: "Experiment Planner", desc: "Design rigorous experiments for top venues", color: "#06b6d4",
+  { id: "3dgs-experiment-planner", name: "Experiment Planner", nameZh: "实验规划", desc: "Design rigorous experiments for top venues", descZh: "为顶会设计严谨实验", color: "#06b6d4",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' },
-  { id: "nerf-to-3dgs-migrator", name: "NeRF Migrator", desc: "Migrate your NeRF method to 3DGS", color: "#f59e0b",
+  { id: "nerf-to-3dgs-migrator", name: "NeRF Migrator", nameZh: "NeRF 迁移", desc: "Migrate your NeRF method to 3DGS", descZh: "将 NeRF 方法迁移到 3DGS", color: "#f59e0b",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>' },
-  { id: "cad-mesh-3dgs", name: "CAD/Mesh Bridge", desc: "Bridge CAD, Mesh & 3DGS representations", color: "#10b981",
+  { id: "cad-mesh-3dgs", name: "CAD/Mesh Bridge", nameZh: "CAD/网格桥接", desc: "Bridge CAD, Mesh & 3DGS representations", descZh: "桥接 CAD、Mesh 与 3DGS 表示", color: "#10b981",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/>' },
-  { id: "cg-paper-writing", name: "CG Paper Writer", desc: "Write publication-ready CG papers", color: "#ec4899",
+  { id: "cg-paper-writing", name: "CG Paper Writer", nameZh: "CG 论文写作", desc: "Write publication-ready CG papers", descZh: "撰写可发表的 CG 论文", color: "#ec4899",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>' },
-  { id: "3dgs-visualizer", name: "3DGS Visualizer", desc: "Generate publication charts, timelines & comparison tables", color: "#6366f1",
+  { id: "3dgs-visualizer", name: "3DGS Visualizer", nameZh: "3DGS 可视化", desc: "Generate publication charts, timelines & comparison tables", descZh: "生成发表级图表、时间线与对比表", color: "#6366f1",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
-  { id: "3dgs-engineering-guide", name: "Engineering Guide", desc: "Bridge 3DGS from research to production", color: "#14b8a6",
+  { id: "3dgs-engineering-guide", name: "Engineering Guide", nameZh: "工程指南", desc: "Bridge 3DGS from research to production", descZh: "将 3DGS 从研究落地到生产", color: "#14b8a6",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' },
-  { id: "patent-software-ip", name: "Patent & IP", desc: "Generate patent docs and software copyright materials", color: "#f97316",
+  { id: "patent-software-ip", name: "Patent & IP", nameZh: "专利与知识产权", desc: "Generate patent docs and software copyright materials", descZh: "生成专利文档与软件著作权材料", color: "#f97316",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>' },
-  { id: "3dgs-spatial-agent", name: "Spatial Agent", desc: "3DGS/CAD/Mesh domain Agent for spatial intelligence & CAD extraction", color: "#a855f7",
+  { id: "3dgs-spatial-agent", name: "Spatial Agent", nameZh: "空间智能体", desc: "3DGS/CAD/Mesh domain Agent for spatial intelligence & CAD extraction", descZh: "面向空间智能与 CAD 提取的 3DGS/CAD/Mesh 领域 Agent", color: "#a855f7",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>' },
-  { id: "3dgs-mcp-renderer", name: "MCP Renderer", desc: "Agent-controlled Three.js/3DGS rendering via MCP protocol", color: "#22d3ee",
+  { id: "3dgs-mcp-renderer", name: "MCP Renderer", nameZh: "MCP 渲染器", desc: "Agent-controlled Three.js/3DGS rendering via MCP protocol", descZh: "通过 MCP 协议进行 Agent 控制的 Three.js/3DGS 渲染", color: "#22d3ee",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/>' },
-  { id: "3dgs-compression-deploy", name: "Compression & Deploy", desc: "Deploy compressed 3DGS: 53+ compression & deployment methods", color: "#84cc16",
+  { id: "3dgs-compression-deploy", name: "Compression & Deploy", nameZh: "压缩与部署", desc: "Deploy compressed 3DGS: 53+ compression & deployment methods", descZh: "部署压缩 3DGS：53+ 压缩与部署方法", color: "#84cc16",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>' },
-  { id: "3dgs-articulated-reasoner", name: "Articulated Reasoner", desc: "Reason about articulated objects in 3DGS scenes & generate interactive digital twins", color: "#e879f9",
+  { id: "3dgs-articulated-reasoner", name: "Articulated Reasoner", nameZh: "关节推理", desc: "Reason about articulated objects in 3DGS scenes & generate interactive digital twins", descZh: "推理 3DGS 场景中的关节物体并生成交互式数字孪生", color: "#e879f9",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' },
-  { id: "3dgs-training-debugger", name: "Training Debugger", desc: "Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns)", color: "#f59e0b",
+  { id: "3dgs-training-debugger", name: "Training Debugger", nameZh: "训练调试器", desc: "Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns)", descZh: "诊断训练失败：OOM、NaN、发散、伪影（60+ 运行时模式）", color: "#f59e0b",
     icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' }
 ];
 
@@ -2296,15 +2647,15 @@ echo "Done! $(echo "\${SKILLS[@]}" | wc -w) skills installed."` }
 ];
 
 const TRENDS = [
-  { title: "Distributed City-Scale GS", desc: "BlitzGS achieves order-of-magnitude speedup for city-scale 3DGS via parity-based GPU sharding —approaching practical deployment timelines", tags: ["Large-Scale", "Systems"] },
-  { title: "4DGS + Physics Deep Integration", desc: "Real2Sim (4DGS + differentiable MPM) combines physics-aware simulation with Gaussian rendering for autonomous driving", tags: ["Simulation", "CVPR 2026"] },
-  { title: "3DGS Security & Watermarking", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence —critical as 3DGS assets become commercially valuable", tags: ["Security", "Copyright"] },
-  { title: "Feed-Forward Quality Gap Closing", desc: "Z-Order GS (CVPR Oral) and RoSplat show spatial ordering and robust training strategies closing the gap with per-scene optimization", tags: ["Feed-Forward", "CVPR 2026"] },
-  { title: "Language-3DGS Efficiency", desc: "SCOUP achieves 400x training speedup by decoupling language representation from 3D optimization for open-vocabulary understanding", tags: ["Semantic", "Efficiency"] },
-  { title: "OIT Transparency in 3DGS", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", tags: ["Surface", "Rendering"] },
-  { title: "View-Dependent Splatting Kernels", desc: "SIGGRAPH 2026: learned view-dependent kernels replace fixed covariance —first fundamental rethink of the 3DGS rendering primitive since 2023", tags: ["Rendering", "SIGGRAPH 2026"] },
-  { title: "Apple HeadsUp: Scale Meets Quality", desc: "UV-parameterized 3DGS head deployed over 10K+ subjects —largest-scale 3DGS avatar to date, Gaussian count decoupled from mesh resolution", tags: ["Human", "Feed-Forward"] },
-  { title: "Inference-Time Compute Scaling", desc: "DejaView introduces compute knob K for looped transformer inference —matches larger baselines with fraction of params", tags: ["Feed-Forward", "Trend"] }
+  { title: "Distributed City-Scale GS", titleZh: "分布式城市级 GS", desc: "BlitzGS achieves order-of-magnitude speedup for city-scale 3DGS via parity-based GPU sharding —approaching practical deployment timelines", descZh: "BlitzGS 通过基于奇偶校验的 GPU 分片，将城市级 3DGS 实现数量级加速 —— 逼近实用化部署时间线", tags: ["Large-Scale", "Systems"] },
+  { title: "4DGS + Physics Deep Integration", titleZh: "4DGS 与物理深度融合", desc: "Real2Sim (4DGS + differentiable MPM) combines physics-aware simulation with Gaussian rendering for autonomous driving", descZh: "Real2Sim（4DGS + 可微 MPM）将物理感知仿真与高斯渲染结合，用于自动驾驶", tags: ["Simulation", "CVPR 2026"] },
+  { title: "3DGS Security & Watermarking", titleZh: "3DGS 安全与水印", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence —critical as 3DGS assets become commercially valuable", descZh: "GuardMarkGS 是首个联合水印与编辑威慑的框架 —— 随着 3DGS 资产商业价值提升而愈发关键", tags: ["Security", "Copyright"] },
+  { title: "Feed-Forward Quality Gap Closing", titleZh: "前馈质量差距收敛", desc: "Z-Order GS (CVPR Oral) and RoSplat show spatial ordering and robust training strategies closing the gap with per-scene optimization", descZh: "Z-Order GS（CVPR Oral）与 RoSplat 通过空间排序与鲁棒训练策略，缩小与逐场景优化的差距", tags: ["Feed-Forward", "CVPR 2026"] },
+  { title: "Language-3DGS Efficiency", titleZh: "语言-3DGS 效率", desc: "SCOUP achieves 400x training speedup by decoupling language representation from 3D optimization for open-vocabulary understanding", descZh: "SCOUP 通过将语言表示与 3D 优化解耦，实现 400 倍训练加速，用于开放词汇理解", tags: ["Semantic", "Efficiency"] },
+  { title: "OIT Transparency in 3DGS", titleZh: "3DGS 中的 OIT 透明", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", descZh: "SparseOIT 通过活跃集方法，解决室内与车载场景长期存在的玻璃/透明渲染难题", tags: ["Surface", "Rendering"] },
+  { title: "View-Dependent Splatting Kernels", titleZh: "视角依赖溅射核", desc: "SIGGRAPH 2026: learned view-dependent kernels replace fixed covariance —first fundamental rethink of the 3DGS rendering primitive since 2023", descZh: "SIGGRAPH 2026：学习到的视角依赖核取代固定协方差 —— 自 2023 年以来对 3DGS 渲染原语的首次根本性反思", tags: ["Rendering", "SIGGRAPH 2026"] },
+  { title: "Apple HeadsUp: Scale Meets Quality", titleZh: "Apple HeadsUp：规模与质量并举", desc: "UV-parameterized 3DGS head deployed over 10K+ subjects —largest-scale 3DGS avatar to date, Gaussian count decoupled from mesh resolution", descZh: "UV 参数化 3DGS 头部部署于 10K+ 对象 —— 迄今最大规模 3DGS 虚拟人，高斯数量与网格分辨率解耦", tags: ["Human", "Feed-Forward"] },
+  { title: "Inference-Time Compute Scaling", titleZh: "推理时计算扩展", desc: "DejaView introduces compute knob K for looped transformer inference —matches larger baselines with fraction of params", descZh: "DejaView 为循环 Transformer 推理引入计算旋钮 K —— 以更少参数匹敌更大基线", tags: ["Feed-Forward", "Trend"] }
 ];
 
 let activeCategory = "All";
@@ -2313,6 +2664,12 @@ let currentSort = "default"; // "default" | "citations" | "newest"
 function venueColor(v) {
   const map = { CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00', NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63', RSS: '#00bcd4', arXiv: '#6b7280', ICPR: '#00897b' };
   return map[v] || '#6b7280';
+}
+
+function catLabel(id) {
+  if (window.AGS_LANG !== 'zh') return id;
+  var c = CATEGORIES.find(function (x) { return x.id === id; });
+  return c ? (c.labelZh || c.label) : id;
 }
 
 function renderMethods() {
@@ -2335,23 +2692,23 @@ function renderMethods() {
     });
   }
 
-  document.getElementById('methodCount').textContent = `${filtered.length} method${filtered.length !== 1 ? 's' : ''}`;
+  document.getElementById('methodCount').textContent = filtered.length + ' ' + (window.AGS_LANG === 'zh' ? '个方法' : 'method' + (filtered.length !== 1 ? 's' : ''));
   grid.innerHTML = filtered.map((m, i) => {
     const d = METHOD_DETAILS[m.name] || {};
-    const citBadge = (currentSort === 'citations' && m.citations) ? `<span class="shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20" title="Estimated citations"> ?${m.citations}</span>` : '';
+    const citBadge = (currentSort === 'citations' && m.citations) ? `<span class="shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 border border-amber-500/20" title="${window.t('methods.sortHint.citations')}"> ?${m.citations}</span>` : '';
     return `
     <div class="method-card gradient-border p-4 flex flex-col gap-2" onclick="openMethodModal(${METHODS.indexOf(m)})">
       <div class="flex items-start justify-between gap-2">
-        <h3 class="font-semibold text-white text-sm leading-tight">${m.name}</h3>
+        <h3 class="font-semibold text-slate-900 text-sm leading-tight">${m.name}</h3>
         <div class="flex items-center gap-1 shrink-0">
           ${citBadge}
           <span class="text-[11px] font-medium px-2 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
         </div>
       </div>
-      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-[10px] text-gray-500">${d.nameCn}</p>` : ''}
-      <p class="text-xs text-gray-400 leading-relaxed">${m.desc}</p>
+      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-[10px] text-slate-500">${d.nameCn}</p>` : ''}
+      <p class="text-xs text-slate-600 leading-relaxed">${m.desc}</p>
       <div class="flex items-center justify-between mt-auto pt-1">
-        <span class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">${m.cat}</span>
+        <span class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">${catLabel(m.cat)}</span>
         ${m.arxiv ? `<span class="text-[11px] text-accent-blue font-mono">${m.arxiv}</span>` : ''}
       </div>
     </div>`;
@@ -2369,43 +2726,43 @@ function openMethodModal(idx) {
     <button class="modal-close" onclick="closeMethodModal()">&times;</button>
     <div class="pr-6">
       <div class="flex items-center gap-3 mb-1">
-        <h2 class="text-xl font-bold text-white">${m.name}</h2>
+        <h2 class="text-xl font-bold text-slate-900">${m.name}</h2>
         <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
       </div>
-      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-sm text-gray-400 mb-3">${d.nameCn}</p>` : '<div class="mb-2"></div>'}
+      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-sm text-slate-600 mb-3">${d.nameCn}</p>` : '<div class="mb-2"></div>'}
       <div class="space-y-3">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${m.cat}</span>
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${catLabel(m.cat)}</span>
         </div>
         ${d.innovation ? `<div>
-          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Core Innovation</p>
-          <p class="text-sm text-gray-300 leading-relaxed">${d.innovation}</p>
+          <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-1">${t('modal.innovation')}</p>
+          <p class="text-sm text-slate-700 leading-relaxed">${d.innovation}</p>
         </div>` : ''}
         ${d.innovations && d.innovations.length ? `<div>
-          <p class="text-[10px] uppercase tracking-wider text-gray-500 mb-1">Core Innovations</p>
-          <ul class="list-disc list-inside space-y-1">${d.innovations.map(i => `<li class="text-sm text-gray-300 leading-relaxed">${i}</li>`).join('')}</ul>
+          <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-1">${t('modal.innovations')}</p>
+          <ul class="list-disc list-inside space-y-1">${d.innovations.map(i => `<li class="text-sm text-slate-700 leading-relaxed">${i}</li>`).join('')}</ul>
         </div>` : ''}
         ${hasAbstract ? `
         <div>
           <div class="modal-tabs" id="abstractTabs">
-            <div class="modal-tab active" data-lang="en" onclick="switchAbstractTab('en')">English</div>
-            <div class="modal-tab" data-lang="cn" onclick="switchAbstractTab('cn')">中文</div>
+            <div class="modal-tab active" data-lang="en" onclick="switchAbstractTab('en')">${t('modal.abstract.en')}</div>
+            <div class="modal-tab" data-lang="cn" onclick="switchAbstractTab('cn')">${t('modal.abstract.zh')}</div>
           </div>
           <div id="abstractEn" class="abstract-panel active">
-            <p class="text-sm text-gray-300 leading-relaxed">${abstractEn || 'N/A'}</p>
+            <p class="text-sm text-slate-700 leading-relaxed">${abstractEn || 'N/A'}</p>
           </div>
           <div id="abstractCn" class="abstract-panel">
-            <p class="text-sm text-gray-300 leading-relaxed">${a.abstractCn || 'N/A'}</p>
+            <p class="text-sm text-slate-700 leading-relaxed">${a.abstractCn || 'N/A'}</p>
           </div>
         </div>` : ''}
-        <div class="flex flex-wrap gap-3 pt-2 border-t border-white/5">
+        <div class="flex flex-wrap gap-3 pt-2 border-t border-slate-900/5">
           ${m.arxiv ? `<a href="https://arxiv.org/abs/${m.arxiv}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-accent-blue hover:underline font-medium">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             arXiv:${m.arxiv}
           </a>` : ''}
-          ${d.codeUrl ? `<a href="${d.codeUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-emerald-400 hover:underline font-medium">
+          ${d.codeUrl ? `<a href="${d.codeUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-emerald-600 hover:underline font-medium">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-            Code
+            ${t('modal.code')}
           </a>` : ''}
         </div>
       </div>
@@ -2430,13 +2787,14 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMethodM
 
 function renderTabs() {
   const container = document.getElementById('categoryTabs');
-  const all = [{ id: 'All', label: 'All' }, ...CATEGORIES];
+  const all = [{ id: 'All', label: 'All', labelZh: t('cat.all') }, ...CATEGORIES];
   const counts = {};
   METHODS.forEach(m => { counts[m.cat] = (counts[m.cat] || 0) + 1; });
   container.innerHTML = all.map(c => {
     const cnt = c.id === 'All' ? METHODS.length : (counts[c.id] || 0);
     const isActive = activeCategory === c.id;
-    return `<button class="category-tab ${isActive ? 'active' : ''} px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 border border-white/5" data-cat="${c.id}">${c.label} <span class="opacity-60">${cnt}</span></button>`;
+    const label = (c.id !== 'All' && window.AGS_LANG === 'zh') ? (c.labelZh || c.label) : c.label;
+    return `<button class="category-tab ${isActive ? 'active' : ''} px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 border border-slate-900/5" data-cat="${c.id}">${label} <span class="opacity-60">${cnt}</span></button>`;
   }).join('');
   container.querySelectorAll('.category-tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2455,8 +2813,8 @@ function renderSkills() {
         <svg class="w-5 h-5" style="color:${s.color}" fill="none" stroke="currentColor" viewBox="0 0 24 24">${s.icon}</svg>
       </div>
       <div>
-        <h3 class="font-semibold text-white text-sm">${s.name}</h3>
-        <p class="mt-1 text-xs text-gray-400 leading-relaxed">${s.desc}</p>
+        <h3 class="font-semibold text-slate-900 text-sm">${window.AGS_LANG === 'zh' ? (s.nameZh || s.name) : s.name}</h3>
+        <p class="mt-1 text-xs text-slate-600 leading-relaxed">${window.AGS_LANG === 'zh' ? (s.descZh || s.desc) : s.desc}</p>
       </div>
     </div>
   `).join('');
@@ -2466,14 +2824,14 @@ function renderInstall() {
   const container = document.getElementById('installBlocks');
   container.innerHTML = INSTALL_BLOCKS.map((b, i) => `
     <div class="gradient-border p-0 overflow-hidden">
-      <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
-        <span class="text-sm font-medium text-white">${b.label}</span>
-        <button class="copy-btn text-xs text-gray-400 hover:text-white transition flex items-center gap-1" data-idx="${i}">
+      <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-900/5">
+        <span class="text-sm font-medium text-slate-900">${b.label}</span>
+        <button class="copy-btn text-xs text-slate-600 hover:text-slate-900 transition flex items-center gap-1" data-idx="${i}">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-          Copy
+          ${t('copy')}
         </button>
       </div>
-      <pre class="p-4 overflow-x-auto text-gray-300 bg-transparent"><code>${escapeHtml(b.code)}</code></pre>
+      <pre class="p-4 overflow-x-auto text-slate-700 bg-slate-50 rounded-b-xl"><code>${escapeHtml(b.code)}</code></pre>
     </div>
   `).join('');
   container.querySelectorAll('.copy-btn').forEach(btn => {
@@ -2481,10 +2839,10 @@ function renderInstall() {
       const idx = btn.dataset.idx;
       navigator.clipboard.writeText(INSTALL_BLOCKS[idx].code).then(() => {
         btn.classList.add('copied');
-        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ' + t('copied');
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy';
+          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> ' + t('copy');
         }, 2000);
       });
     });
@@ -2495,8 +2853,8 @@ function renderTrends() {
   const grid = document.getElementById('trendsGrid');
   grid.innerHTML = TRENDS.map(t => `
     <div class="trend-card gradient-border p-5 flex flex-col gap-3">
-      <h3 class="font-semibold text-white text-sm leading-tight">${t.title}</h3>
-      <p class="text-xs text-gray-400 leading-relaxed">${t.desc}</p>
+      <h3 class="font-semibold text-slate-900 text-sm leading-tight">${window.AGS_LANG === 'zh' ? (t.titleZh || t.title) : t.title}</h3>
+      <p class="text-xs text-slate-600 leading-relaxed">${window.AGS_LANG === 'zh' ? (t.descZh || t.desc) : t.desc}</p>
       <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
         ${t.tags.map(tag => `<span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${tag}</span>`).join('')}
       </div>
@@ -2526,20 +2884,20 @@ document.addEventListener('DOMContentLoaded', () => {
       currentSort = btn.dataset.sort;
       document.querySelectorAll('.sort-btn').forEach(b => {
         b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30',
-          'bg-amber-500/20', 'text-amber-400', 'border-amber-500/30',
-          'bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30');
-        b.classList.add('bg-white/5', 'text-gray-400', 'border-white/10');
+          'bg-amber-500/20', 'text-amber-600', 'border-amber-500/30',
+          'bg-emerald-500/20', 'text-emerald-600', 'border-emerald-500/30');
+        b.classList.add('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
       });
       var colorMap = {
         default: ['bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30'],
-        citations: ['bg-amber-500/20', 'text-amber-400', 'border-amber-500/30'],
-        newest: ['bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30']
+        citations: ['bg-amber-500/20', 'text-amber-600', 'border-amber-500/30'],
+        newest: ['bg-emerald-500/20', 'text-emerald-600', 'border-emerald-500/30']
       };
       btn.classList.add('active');
-      btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
+      btn.classList.remove('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
       (colorMap[currentSort] || []).forEach(c => btn.classList.add(c));
       // Show sort hint
-      var hints = { default: '', citations: 'Sorted by estimated citation count', newest: 'Sorted by publication date' };
+      var hints = { default: '', citations: t('methods.sortHint.citations'), newest: t('methods.sortHint.newest') };
       document.getElementById('sortHint').textContent = hints[currentSort] || '';
       renderMethods();
     });
@@ -2559,10 +2917,10 @@ document.addEventListener('DOMContentLoaded', () => {
         viewerFrame.src = 'https://antimatter15.com/splat/';
         viewerLoaded = true;
       }
-      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg> Hide Interactive Viewer';
+      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg> ' + t('show.hide');
     } else {
       viewerContainer.classList.add('hidden');
-      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Try Interactive 3DGS Viewer';
+      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ' + t('show.try');
     }
   });
 
@@ -2580,12 +2938,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const t2wSteps = [
-    { name: 'Parse', icon: '🔍' },
-    { name: 'Select', icon: '📋' },
-    { name: 'Init', icon: '🚀' },
-    { name: 'Train', icon: '⚙' },
-    { name: 'Validate', icon: '✅' },
-    { name: 'Export', icon: '📦' }
+    { key: 'step.parse', icon: '🔍' },
+    { key: 'step.select', icon: '📋' },
+    { key: 'step.init', icon: '🚀' },
+    { key: 'step.train', icon: '⚙' },
+    { key: 'step.validate', icon: '✅' },
+    { key: 'step.export', icon: '📦' }
   ];
 
   function t2wParse(text) {
@@ -2633,7 +2991,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     icon.innerHTML = '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>';
     icon.setAttribute('class', 'w-4 h-4 animate-spin');
-    txt.textContent = 'Generating...';
+    txt.textContent = t('gen.generating');
 
     // Show pipeline
     const pipeline = document.getElementById('t2wPipeline');
@@ -2641,11 +2999,11 @@ document.addEventListener('DOMContentLoaded', () => {
     pipeline.classList.remove('hidden');
     stepsEl.innerHTML = t2wSteps.map((s, i) => `
       <div class="flex items-center shrink-0" id="t2wStep${i}">
-        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-white/10 text-gray-500 transition-all duration-300">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-slate-900/10 text-slate-500 transition-all duration-300">
           <span class="step-icon">${s.icon}</span>
-          <span class="step-label">${s.name}</span>
+          <span class="step-label">${window.t(s.key)}</span>
         </div>
-        ${i < t2wSteps.length - 1 ? '<svg class="w-3 h-3 text-gray-600 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : ''}
+        ${i < t2wSteps.length - 1 ? '<svg class="w-3 h-3 text-slate-400 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : ''}
       </div>
     `).join('');
 
@@ -2659,7 +3017,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const stepEl = document.getElementById('t2wStep' + i);
       if (!stepEl) return;
       const inner = stepEl.querySelector('div');
-      inner.classList.remove('border-white/10', 'text-gray-500');
+      inner.classList.remove('border-slate-900/10', 'text-slate-500');
       inner.classList.add('border-accent-blue', 'text-accent-blue', 'bg-accent-blue/10');
       await t2wDelay(delayMs);
       inner.classList.remove('border-accent-blue', 'text-accent-blue', 'bg-accent-blue/10');
@@ -2682,7 +3040,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = false;
       icon.setAttribute('class', 'w-4 h-4');
       icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-      txt.textContent = 'Regenerate';
+      txt.textContent = t('gen.regenerate');
       return;
     }
 
@@ -2715,7 +3073,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const inner = stepEl.querySelector('div');
           const iconEl = stepEl.querySelector('.step-icon');
           if (iconEl && iconEl.textContent !== '🚀') {
-            inner.classList.remove('border-white/10', 'text-gray-500');
+            inner.classList.remove('border-slate-900/10', 'text-slate-500');
             inner.classList.add('border-red-500/30', 'text-red-400');
             iconEl.textContent = '🚀';
           }
@@ -2726,7 +3084,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = false;
     icon.setAttribute('class', 'w-4 h-4');
     icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-    txt.textContent = 'Regenerate';
+    txt.textContent = t('gen.regenerate');
   }
 
   function showMethodRecommendation(method, parsed, text, isRealGen) {
@@ -2754,7 +3112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function show3DResult(result) {
     const res3D = document.getElementById('t2w3DResult');
     res3D.classList.remove('hidden');
-    document.getElementById('t2w3DStatus').textContent = 'Done!';
+    document.getElementById('t2w3DStatus').textContent = t('status.done');
 
     if (result.thumbnailUrl) {
       document.getElementById('t2w3DPreview').src = result.thumbnailUrl;
@@ -2913,10 +3271,10 @@ document.addEventListener('DOMContentLoaded', () => {
       t2wProvider = btn.dataset.provider;
       document.querySelectorAll('.t2w-provider-btn').forEach(b => {
         b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30');
-        b.classList.add('bg-white/5', 'text-gray-400', 'border-white/10');
+        b.classList.add('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
       });
       btn.classList.add('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30');
-      btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
+      btn.classList.remove('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
       // Show/hide configs
       document.getElementById('t2wConfigTripo').classList.toggle('hidden', t2wProvider !== 'tripo');
       document.getElementById('t2wConfigMeshy').classList.toggle('hidden', t2wProvider !== 'meshy');
@@ -3078,7 +3436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.warn('PlayCanvas init failed:', err);
       placeholder.style.display = 'flex';
-      placeholder.innerHTML = '<span class="text-xs text-gray-500">WebGL not available —try Chrome/Firefox</span>';
+      placeholder.innerHTML = '<span class="text-xs text-slate-500">WebGL not available —try Chrome/Firefox</span>';
     }
   }
 
@@ -3249,7 +3607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.warn('Img2GS PlayCanvas init failed:', err);
       placeholder.style.display = 'flex';
-      placeholder.innerHTML = '<span class="text-xs text-gray-500">WebGL not available</span>';
+      placeholder.innerHTML = '<span class="text-xs text-slate-500">WebGL not available</span>';
     }
   }
 
@@ -3337,12 +3695,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   var i2gPipelineSteps = [
-    { name: 'Upload', icon: '馃摲' },
-    { name: 'Analyze', icon: '馃攳' },
-    { name: 'Generate', icon: '⚙' },
-    { name: 'Refine', icon: '✨' },
-    { name: 'Validate', icon: '✅' },
-    { name: 'Export', icon: '📦' }
+    { key: 'i2gstep.upload', icon: '📤' },
+    { key: 'i2gstep.analyze', icon: '🔍' },
+    { key: 'i2gstep.generate', icon: '⚙' },
+    { key: 'i2gstep.refine', icon: '✨' },
+    { key: 'i2gstep.validate', icon: '✅' },
+    { key: 'i2gstep.export', icon: '📦' }
   ];
 
   function i2gDelay(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
@@ -3382,7 +3740,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     icon.innerHTML = '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>';
     icon.setAttribute('class', 'w-4 h-4 animate-spin');
-    txt.textContent = 'Reconstructing...';
+    txt.textContent = t('i2g.reconstructing');
 
     // Show pipeline
     var pipeline = document.getElementById('i2gPipeline');
@@ -3390,9 +3748,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pipeline.classList.remove('hidden');
     stepsEl.innerHTML = i2gPipelineSteps.map(function(s, i) {
       return '<div class="flex items-center shrink-0" id="i2gStep' + i + '">' +
-        '<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-white/10 text-gray-500 transition-all duration-300">' +
-        '<span class="step-icon">' + s.icon + '</span><span class="step-label">' + s.name + '</span></div>' +
-        (i < i2gPipelineSteps.length - 1 ? '<svg class="w-3 h-3 text-gray-600 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : '') +
+        '<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-slate-900/10 text-slate-500 transition-all duration-300">' +
+        '<span class="step-icon">' + s.icon + '</span><span class="step-label">' + window.t(s.key) + '</span></div>' +
+        (i < i2gPipelineSteps.length - 1 ? '<svg class="w-3 h-3 text-slate-400 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : '') +
         '</div>';
     }).join('');
 
@@ -3462,7 +3820,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = false;
     icon.setAttribute('class', 'w-4 h-4');
     icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-    txt.textContent = 'Re-reconstruct';
+    txt.textContent = t('i2g.rereconstruct');
   }
 
   function i2gMarkStep(i, delayMs) {
@@ -3470,11 +3828,11 @@ document.addEventListener('DOMContentLoaded', () => {
       var stepEl = document.getElementById('i2gStep' + i);
       if (!stepEl) { resolve(); return; }
       var inner = stepEl.querySelector('div');
-      inner.classList.remove('border-white/10', 'text-gray-500');
-      inner.classList.add('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
+      inner.classList.remove('border-slate-900/10', 'text-slate-500');
+      inner.classList.add('border-amber-500', 'text-amber-600', 'bg-amber-500/10');
       setTimeout(function() {
-        inner.classList.remove('border-amber-500', 'text-amber-400', 'bg-amber-500/10');
-        inner.classList.add('border-emerald-400', 'text-emerald-400', 'bg-emerald-500/10');
+        inner.classList.remove('border-amber-500', 'text-amber-600', 'bg-amber-500/10');
+        inner.classList.add('border-emerald-400', 'text-emerald-600', 'bg-emerald-500/10');
         stepEl.querySelector('.step-icon').textContent = '🚀';
         resolve();
       }, delayMs);
@@ -3485,7 +3843,17 @@ document.addEventListener('DOMContentLoaded', () => {
     var r = document.getElementById('i2gResult');
     r.classList.remove('hidden');
     document.getElementById('i2gRScene').textContent = i2gDetectedType.charAt(0).toUpperCase() + i2gDetectedType.slice(1);
-    var sceneDetails = {
+    var sceneDetailsZh = {
+      biological: '细胞 / 微观结构 — 高细节',
+      architecture: '建筑 / 城市 — 大规模',
+      sculpture: '雕塑 / 艺术 — 复杂几何',
+      product: '产品 / 物体 — 干净表面',
+      outdoor: '景观 — 室外尺度',
+      indoor: '室内 — 室内场景',
+      avatar: '人物 / 角色 — 可驱动',
+      general: '通用场景'
+    };
+    var sceneDetailsEn = {
       biological: 'Cell / micro-structure - high detail',
       architecture: 'Building / urban - large scale',
       sculpture: 'Sculpture / art - complex geometry',
@@ -3495,7 +3863,8 @@ document.addEventListener('DOMContentLoaded', () => {
       avatar: 'Human / character - animatable',
       general: 'General scene'
     };
-    document.getElementById('i2gRSceneDetail').textContent = sceneDetails[i2gDetectedType] || 'General scene';
+    var sceneDetails = window.AGS_LANG === 'zh' ? sceneDetailsZh : sceneDetailsEn;
+    document.getElementById('i2gRSceneDetail').textContent = sceneDetails[i2gDetectedType] || sceneDetails.general;
     document.getElementById('i2gRMethod').textContent = sceneInfo.method;
     document.getElementById('i2gRMethod').style.color = sceneInfo.color;
     document.getElementById('i2gRReason').textContent = sceneInfo.reason;
@@ -3519,7 +3888,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dlLink.href = result.modelUrl;
       dlLink.classList.remove('hidden');
     }
-    document.getElementById('i2g3DStatus').textContent = 'Model loaded successfully';
+    document.getElementById('i2g3DStatus').textContent = t('status.loaded');
   }
 
   function i2gLoadDemoPreview() {
@@ -3899,20 +4268,20 @@ document.addEventListener('DOMContentLoaded', () => {
         i2gCurrentProvider = btn.dataset.provider;
         document.querySelectorAll('.i2g-provider-btn').forEach(function(b) {
           b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30',
-            'bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30',
+            'bg-emerald-500/20', 'text-emerald-600', 'border-emerald-500/30',
             'bg-accent-purple/20', 'text-accent-purple', 'border-accent-purple/30',
-            'bg-rose-500/20', 'text-rose-400', 'border-rose-500/30');
-          b.classList.add('bg-white/5', 'text-gray-400', 'border-white/10');
+            'bg-rose-500/20', 'text-rose-600', 'border-rose-500/30');
+          b.classList.add('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
         });
         var activeStyles = {
           tripo: ['bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30'],
-          meshy: ['bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/30'],
+          meshy: ['bg-emerald-500/20', 'text-emerald-600', 'border-emerald-500/30'],
           hunyuan3d: ['bg-accent-purple/20', 'text-accent-purple', 'border-accent-purple/30'],
-          rodin: ['bg-rose-500/20', 'text-rose-400', 'border-rose-500/30']
+          rodin: ['bg-rose-500/20', 'text-rose-600', 'border-rose-500/30']
         }
         var styles = activeStyles[i2gCurrentProvider] || activeStyles.tripo;
         btn.classList.add('active');
-        btn.classList.remove('bg-white/5', 'text-gray-400', 'border-white/10');
+        btn.classList.remove('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
         styles.forEach(function(s) { btn.classList.add(s); });
         document.getElementById('i2gConfigTripo').classList.toggle('hidden', i2gCurrentProvider !== 'tripo');
         document.getElementById('i2gConfigMeshy').classList.toggle('hidden', i2gCurrentProvider !== 'meshy');
