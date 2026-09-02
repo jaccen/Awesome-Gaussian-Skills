@@ -1,33 +1,33 @@
 {
-  "generated_at": "2026-08-23",
+  "generated_at": "2026-09-02",
   "generator": "scripts/build_knowledge_base.py",
-  "count": 790,
- "category_count": 23,
- "categories": {
-  "Foundation": 40,
-  "Optimization": 77,
-  "Surface & Rendering": 49,
-  "Compression & Streaming": 43,
-  "Acceleration": 10,
-  "Large-Scale": 20,
-  "Feed-Forward": 67,
-   "Language & Semantic": 34,
-  "Generation": 26,
-  "Autonomous Driving": 33,
-   "Dynamic & 4D": 72,
-  "HDR & Relighting": 26,
-  "SLAM": 40,
+  "count": 801,
+  "category_count": 23,
+  "categories": {
+   "Foundation": 40,
+   "Optimization": 77,
+   "Surface & Rendering": 50,
+   "Compression & Streaming": 43,
+   "Acceleration": 11,
+   "Large-Scale": 20,
+   "Feed-Forward": 67,
+   "Language & Semantic": 37,
+   "Generation": 27,
+   "Autonomous Driving": 33,
+   "Dynamic & 4D": 75,
+   "HDR & Relighting": 27,
+   "SLAM": 40,
    "Sparse-View": 21,
-  "World Models & Spatial Intelligence": 8,
-  "Human & Avatar": 43,
+   "World Models & Spatial Intelligence": 8,
+   "Human & Avatar": 43,
    "Editing": 48,
-   "CAD & Reverse Engineering": 20,
+   "CAD & Reverse Engineering": 21,
    "Cross-Domain": 47,
-  "Simulation": 11,
-  "Embodied AI & Robotics": 30,
-  "Robustness": 11,
-  "Security": 14
- },
+   "Simulation": 11,
+   "Embodied AI & Robotics": 30,
+   "Robustness": 11,
+   "Security": 14
+  },
  "methods": [
   {
    "name": "3D Representation Survey",
@@ -10149,10 +10149,142 @@
    "category": "Editing",
    "desc": "3DGS interactive scene editing plus NLI-based volume rendering visualization in VR",
    "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  }
- ]
-}
+    "sources": [
+     "csv",
+     "explorer"
+    ]
+   },
+   {
+    "name": "BRF-GS",
+    "arxiv_id": "2608.31159",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "HDR & Relighting",
+    "desc": "Hyperspectral bidirectional reflectance factor modeling with 3DGS; joint hyperspectral image generation and BRDF reconstruction from multi-view hyperspectral imagery",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "SMG",
+    "arxiv_id": "2608.31023",
+    "venue": "ECCV 2026",
+    "year": 2026,
+    "category": "Dynamic & 4D",
+    "desc": "Semantic Motion Graph for monocular dynamic Gaussian splatting; semantic-motion coupling enables coherent decomposition of complex non-rigid scenes into motion groups",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "VCAR",
+    "arxiv_id": "2608.30870",
+    "venue": "ACM MM 2026",
+    "year": 2026,
+    "category": "Language & Semantic",
+    "desc": "Training-free 3DGS segmentation via view completeness and axis-aware boundary refinement; no additional training required for high-quality 3D segmentation",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "RealCAD",
+    "arxiv_id": "2608.30617",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "CAD & Reverse Engineering",
+    "desc": "Real-world image to CAD reconstruction; handles domain gap and parametric deviation from imperfect photographs; code and dataset released",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "ObjectSplat",
+    "arxiv_id": "2608.30423",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "Surface & Rendering",
+    "desc": "Object-level mesh splatting for enhanced mesh fidelity and interactivity; bridges 3DGS and mesh-based representations at object granularity",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "CapFrame",
+    "arxiv_id": "2608.30342",
+    "venue": "ECCV 2026",
+    "year": 2026,
+    "category": "Language & Semantic",
+    "desc": "Text-instructed viewpoint localization in 3D Gaussian scenes; geometric pseudo-labels bridge language queries and spatial grounding",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "Amortized Anchor Refinement",
+    "arxiv_id": "2608.30218",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "Dynamic & 4D",
+    "desc": "Deployable continuous-time 4D Gaussian reconstruction with amortized anchor refinement; enables real-time temporal coherent 4D reconstruction from multi-view video",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "ATGS",
+    "arxiv_id": "2608.30184",
+    "venue": "SIGGRAPH 2026",
+    "year": 2026,
+    "category": "Dynamic & 4D",
+    "desc": "Anchored Temporal Gaussian Splatting for long volumetric video representation; temporal anchor points stabilize Gaussian trajectories over extended video sequences",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "CausalSplat",
+    "arxiv_id": "2608.11150",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "Language & Semantic",
+    "desc": "Hierarchical causal reasoning in 3DGS; implicit intent understanding + complex spatial relationship comprehension for scene-level causal inference",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "VoroTracing",
+    "arxiv_id": "2608.17682",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "Acceleration",
+    "desc": "Differentiable ray tracing at 623 FPS (RTX 5090); Voronoi-based traversal with 3.2x throughput over fastest RT methods and 2.8x over 3DGS rasterization",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   },
+   {
+    "name": "Lucida",
+    "arxiv_id": "2608.30821",
+    "venue": "arXiv",
+    "year": 2026,
+    "category": "Generation",
+    "desc": "Parse-Generate-Place paradigm for Real-to-Sim composable scene modeling; structured scene generation with physical plausibility for embodied AI training",
+    "code_url": "",
+    "sources": [
+     "explorer"
+    ]
+   }
+  ]
+ }

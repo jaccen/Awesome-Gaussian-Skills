@@ -1196,3 +1196,34 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Editing
 - **Super-Gaussian** [arXiv:2608.04475](https://arxiv.org/abs/2608.04475) (arXiv 2026) —3DGS interactive scene editing + NLI-based volume rendering visualization in VR
+
+---
+
+## Newly Added Methods (September 2, 2026 — Daily Update)
+
+> 11 methods added from arXiv late August 2026 + ECCV 2026 / SIGGRAPH 2026 / ACM MM 2026 proceedings. Knowledge base now 801+ methods.
+
+### HDR & Relighting / Cross-Domain
+- **BRF-GS** [arXiv:2608.31159](https://arxiv.org/abs/2608.31159) (arXiv 2026) — Hyperspectral bidirectional reflectance factor modeling with 3DGS; joint hyperspectral image generation and BRDF reconstruction from multi-view hyperspectral imagery
+
+### Dynamic & 4D
+- **SMG** [arXiv:2608.31023](https://arxiv.org/abs/2608.31023) (ECCV 2026) — Semantic Motion Graph for monocular dynamic Gaussian splatting; semantic-motion coupling enables coherent decomposition of complex non-rigid scenes into motion groups
+- **Amortized Anchor Refinement** [arXiv:2608.30218](https://arxiv.org/abs/2608.30218) (arXiv 2026) — Deployable continuous-time 4D Gaussian reconstruction with amortized anchor refinement; enables real-time temporal coherent 4D reconstruction from multi-view video
+- **ATGS** [arXiv:2608.30184](https://arxiv.org/abs/2608.30184) (SIGGRAPH 2026 / ACM ToG) — Anchored Temporal Gaussian Splatting for long volumetric video representation; temporal anchor points stabilize Gaussian trajectories over extended video sequences
+
+### Language & Semantic / Editing
+- **VCAR** [arXiv:2608.30870](https://arxiv.org/abs/2608.30870) (ACM MM 2026) — Training-free 3DGS segmentation via view completeness and axis-aware boundary refinement; no additional training required for high-quality 3D segmentation
+- **CapFrame** [arXiv:2608.30342](https://arxiv.org/abs/2608.30342) (ECCV 2026) — Text-instructed viewpoint localization in 3D Gaussian scenes; geometric pseudo-labels bridge language queries and spatial grounding
+- **CausalSplat** [arXiv:2608.11150](https://arxiv.org/abs/2608.11150) (arXiv 2026) — Hierarchical causal reasoning in 3DGS; implicit intent understanding + complex spatial relationship comprehension for scene-level causal inference
+
+### CAD & Reverse Engineering
+- **RealCAD** [arXiv:2608.30617](https://arxiv.org/abs/2608.30617) (arXiv 2026) — Real-world image to CAD reconstruction; handles domain gap and parametric deviation from imperfect photographs; code and dataset released
+
+### Surface & Rendering
+- **ObjectSplat** [arXiv:2608.30423](https://arxiv.org/abs/2608.30423) (arXiv 2026) — Object-level mesh splatting for enhanced mesh fidelity and interactivity; bridges 3DGS and mesh-based representations at object granularity
+
+### Acceleration
+- **VoroTracing** [arXiv:2608.17682](https://arxiv.org/abs/2608.17682) (arXiv 2026) — Differentiable ray tracing at 623 FPS (RTX 5090); Voronoi-based traversal with 3.2x throughput over fastest RT methods and 2.8x over 3DGS rasterization
+
+### Generation / Embodied AI
+- **Lucida** [arXiv:2608.30821](https://arxiv.org/abs/2608.30821) (arXiv 2026) — Parse-Generate-Place paradigm for Real-to-Sim composable scene modeling; structured scene generation with physical plausibility for embodied AI training

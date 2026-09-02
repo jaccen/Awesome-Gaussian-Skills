@@ -5,15 +5,15 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 783+ 方法，23 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 801+ 方法，23 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-783+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-801+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
-[![Bug Patterns](https://img.shields.io/badge/Bug模式-105+-red.svg)](skills/3dgs-code-reviewer/)
+[![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 783+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 801+ 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 12 章，每个方法名均锚定本仓库真实数据（783+ 方法、23 类别、15 技能），零虚构：**
+**全书 12 章，每个方法名均锚定本仓库真实数据（801+ 方法、23 类别、15 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -84,13 +84,19 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 783+ 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 801+ 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
-## 最新动态（2026 年 7 月）
+## 最新动态（2026 年 9 月）
 
-最新更新（7 月 26 日）：**v0.5.1 — 全面方法盘点 & 14 个新方法**。现 783+ 方法（775 经核实唯一基线 + 14 新增）。跨 11 个源文件全面重新盘点，所有方法计数统一为 783+。新增：**GrainGS**（动态场景，36.98 dB / 435.6 FPS / 4.67 MB）、**GLAM-SLAM**（IROS 2026，室外解耦 SLAM）、**SubSplat**（亚像素前馈）、**ATSplat**（自适应 3D Token，1136 FPS）、**3D-GIMP**（3DGS 修复）、**LB-Edit**（编辑延迟降低 7 倍）、**FlexiAvatar**（ECCV 2026，仅优化可见身体区域）、**ZeroSplat**（ECCV 2026，免训练分割）、**CaT-GS**（CVPR 2026，渲染快 10 倍）、**FF-ProCams**（投影仪-相机逆渲染）、**i3dgs**（SIGGRAPH 2026，大规模无序图像）、**VIGS-SLAM**（ECCV 2026，iPhone 实时演示）、**ECoNGS**（IEEE VIS 2026，体可视化）、**AniGS**（场景级动画，扩散先验）。+MoDE/MoE-GS 代码链接补充。前次更新（7 月 24 日）：v0.5.0 MCP 协议实现。前次更新（7 月 23 日）：v0.4.4 训练调试技能 + ICML 2026 浪潮。3 个 Router 技能，全部 15 技能含反幻觉护栏。
+最新更新（9 月 2 日）：**v0.8.2 — 每日更新：11 个新方法**。知识库从 790 扩展至 801 条已验证方法，覆盖 7 个类别。新增：**BRF-GS**（高光谱 BRDF 建模与 3DGS）、**SMG**（ECCV 2026，语义运动图用于动态高斯泼溅）、**VCAR**（ACM MM 2026，免训练 3DGS 分割）、**RealCAD**（真实图像到 CAD 重建）、**ObjectSplat**（对象级网格泼溅）、**CapFrame**（ECCV 2026，文本指令视角定位）、**Amortized Anchor Refinement**（连续时间 4D 重建）、**ATGS**（SIGGRAPH 2026，锚定时间高斯泼溅）、**CausalSplat**（3DGS 分层因果推理）、**VoroTracing**（623 FPS 可微光线追踪）、**Lucida**（Real-to-Sim 可组合场景建模）。所有 arXiv ID 经核验，数据 CI 全量通过。详见 [changelog/2026-09-02.md](changelog/2026-09-02.md)。
+
+前次更新（8 月 23 日）：**v0.8.1 — 每日更新：7 个新方法**。知识库从 783 扩展至 790 条已验证方法。新增：**LEGO**（ECCV 2026，分层语言高斯泼溅）、**OutLangSplat**（无人机室外开放词汇 3D 语言 GS）、**ESVR**（IEEE VIS 2026，3D 椭球稀疏体绘制）、**TRACE-GS**（稀疏视角 3DGS 恢复）、**RORA**（单视频到铰接物体管线）、**OVOW**（ECCV 2026，单目视频到 4D Mesh）、**Super-Gaussian**（3DGS 交互式场景编辑）。详见 [changelog/2026-08-23.md](changelog/2026-08-23.md)。
+
+前次更新（8 月 7 日）：**v0.8.0 — 平台升级（P0+P1+P2）**。单一真相源（data/methods.json，783 方法，23 类别，数据 CI）；5 条伪造条目清除 + 14 条 arXiv 验证前沿方法；真 3DGS 渲染循环（gsplat HTTP PLY）；服务端权威场景持久化；真实 PLY/SPLAT 导出；5 种剪枝策略；网格加速射线查询；21 个单元测试 + 2 个 CI 工作流；基准竞技场（bench/）；技能编排合约（skills/_contracts/）；Router manifest 加载器（scripts/router_load.py）；13 个核心 MCP 工具 + 13 个实验性。详见 [changelog/2026-08-07.md](changelog/2026-08-07.md)。
+
+前次更新（7 月 26 日）：**v0.5.1 — 全面方法盘点 & 14 个新方法**。789+ 方法（775 经核实唯一基线 + 14 新增）。跨 11 个源文件全面重新盘点。新增：GrainGS、GLAM-SLAM、SubSplat、ATSplat、3D-GIMP、LB-Edit、FlexiAvatar、ZeroSplat、CaT-GS、FF-ProCams、i3dgs、VIGS-SLAM、ECoNGS、AniGS。3 个 Router 技能，全部 15 技能含反幻觉护栏。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -131,7 +137,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（783+ 方法，23 类别）
+## 知识库（801+ 方法，23 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -238,7 +244,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 783+ 方法的系统性空白分析生成。
+> 基于知识库 801+ 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -301,7 +307,10 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.4.1 — ECCV & ISCA 2026 浪潮：+Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R（ECCV 2026）, Axis-Shared Rasterization Accelerator（ISCA 2026）, Provable Pruning via Coresets；783+ 方法（2026 年 7 月 9 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
 - [x] v0.5.0 — MCP 协议实现：24 工具 MCP 服务器（mcp-server/），Three.js WebSocket 渲染器，24 模式语音意图映射，无头模式，语音演示（2026 年 7 月 24 日）
-- [x] v0.5.1 — 全面方法盘点 & 14 个新方法：775 经核实唯一基线 + 14 新增 = 783+ 方法；跨 11 个源文件全面盘点统一计数；+GrainGS, GLAM-SLAM, SubSplat, ATSplat, 3D-GIMP, LB-Edit, FlexiAvatar, ZeroSplat, CaT-GS, FF-ProCams, i3dgs, VIGS-SLAM, ECoNGS, AniGS（2026 年 7 月 26 日）
+- [x] v0.5.1 — 全面方法盘点 & 14 个新方法：775 经核实唯一基线 + 14 新增 = 789+ 方法；跨 11 个源文件全面盘点统一计数；+GrainGS, GLAM-SLAM, SubSplat, ATSplat, 3D-GIMP, LB-Edit, FlexiAvatar, ZeroSplat, CaT-GS, FF-ProCams, i3dgs, VIGS-SLAM, ECoNGS, AniGS（2026 年 7 月 26 日）
+- [x] v0.8.0 — 平台升级（P0+P1+P2）：单一真相源（data/methods.json，783 方法，23 类别，数据 CI）；5 条伪造条目清除 + 14 条 arXiv 验证前沿方法；真 3DGS 渲染循环；21 个单元测试 + 2 个 CI 工作流；13 个核心 MCP 工具 + 13 个实验性（2026 年 8 月 7 日）
+- [x] v0.8.1 — 每日更新：7 个新 arXiv 验证方法（LEGO, OutLangSplat, ESVR, TRACE-GS, RORA, OVOW, Super-Gaussian）；783→790 方法；6 个类别更新；所有数据载体同步（2026 年 8 月 23 日）
+- [x] v0.8.2 — 每日更新：11 个新 arXiv 验证方法（BRF-GS, SMG, VCAR, RealCAD, ObjectSplat, CapFrame, Amortized Anchor Refinement, ATGS, CausalSplat, VoroTracing, Lucida）；790→801 方法；7 个类别更新；所有数据载体同步（2026 年 9 月 2 日）
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
 - [ ] v2.0 — Agent 间协作（多 Agent 论文讨论）
 
@@ -327,9 +336,9 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-articulated-reasoner/ # 铰接推理与数字孪生
 │   ├── 3dgs-compression-deploy/  # 压缩与部署（量化、剪枝、VQ、流式）
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
-├── mcp-server/                # MCP 服务器 v0.5.0（24 工具，Three.js 渲染器，语音意图）
+├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（783+ 方法，23 类别）
+├── references/                # 知识库（801+ 方法，23 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
