@@ -4,7 +4,9 @@ description: "Design rigorous experiments for 3DGS research papers. Recommends d
 license: Apache-2.0
 user-invocable: true
 metadata:
-  version: "1.6.0"
+  version: "1.7.0"
+  name_cn: "3DGS实验设计规划器"
+  description_cn: "为3DGS研究论文设计严谨的实验方案。推荐数据集、基线方法、评估指标和消融实验矩阵。目标期刊CVPR/ICCV/ECCV/SIGGRAPH/TVCG。适用场景：3DGS论文实验设计、数据集/基线/指标选择、消融实验规划、回应审稿人实验问题。"
   author: jaccen
   tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
   when_to_use:
