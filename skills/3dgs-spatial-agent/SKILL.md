@@ -17,6 +17,7 @@ metadata:
     - "Spatial reasoning over reconstructed scenes"
     - "3D场景理解 / CAD提取 / 参数化建模 / 材质推断 / 几何不透明度解耦"
     - "3DGS provenance analysis and IP forensics from Gaussian scene attributes"
+
 ---
 
 # 3DGS Spatial Intelligence Agent
@@ -36,7 +37,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (789+ methods)
+3DGS Scene (819+ methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │

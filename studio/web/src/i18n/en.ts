@@ -26,7 +26,7 @@ export default {
     mcpDesc: '24 tools (11 implemented), WebSocket renderer :9842',
     bridgeDesc: 'REST API + SSE on :10590, 8 MCP tools',
     toonflowDesc: 'Short-drama pipeline, 12 vendors incl. 3DGS renderer',
-    methodsDesc: '3DGS research methods across 25 categories',
+    methodsDesc: '3DGS research methods across 23 categories',
     port: 'Port',
     browse: 'Browse',
     connect: 'Connect',

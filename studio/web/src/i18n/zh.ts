@@ -26,7 +26,7 @@ export default {
     mcpDesc: '24 个工具（11 个已实现），WebSocket 渲染器 :9842',
     bridgeDesc: 'REST API + SSE :10590，8 个 MCP 工具',
     toonflowDesc: '短剧制作流程，12 个厂商含 3DGS 渲染器',
-    methodsDesc: '25 个类别共 789+ 3DGS 研究方法',
+    methodsDesc: '23 个类别共 819+ 3DGS 研究方法',
     port: '端口',
     browse: '浏览',
     connect: '连接',

@@ -1,33 +1,33 @@
 {
-  "generated_at": "2026-09-02",
-  "generator": "scripts/build_knowledge_base.py",
-  "count": 801,
-  "category_count": 23,
-  "categories": {
-   "Foundation": 40,
-   "Optimization": 77,
-   "Surface & Rendering": 50,
-   "Compression & Streaming": 43,
-   "Acceleration": 11,
-   "Large-Scale": 20,
-   "Feed-Forward": 67,
-   "Language & Semantic": 37,
-   "Generation": 27,
-   "Autonomous Driving": 33,
-   "Dynamic & 4D": 75,
-   "HDR & Relighting": 27,
-   "SLAM": 40,
-   "Sparse-View": 21,
-   "World Models & Spatial Intelligence": 8,
-   "Human & Avatar": 43,
-   "Editing": 48,
-   "CAD & Reverse Engineering": 21,
-   "Cross-Domain": 47,
-   "Simulation": 11,
-   "Embodied AI & Robotics": 30,
-   "Robustness": 11,
-   "Security": 14
-  },
+ "generated_at": "2026-09-04",
+ "generator": "scripts/build_knowledge_base.py",
+ "count": 819,
+ "category_count": 23,
+ "categories": {
+  "Foundation": 40,
+  "Optimization": 76,
+  "Surface & Rendering": 50,
+  "Compression & Streaming": 43,
+  "Acceleration": 11,
+  "Large-Scale": 20,
+  "Feed-Forward": 67,
+  "Language & Semantic": 37,
+  "Generation": 27,
+  "Autonomous Driving": 33,
+  "Dynamic & 4D": 97,
+  "HDR & Relighting": 27,
+  "SLAM": 40,
+  "Sparse-View": 21,
+  "World Models & Spatial Intelligence": 8,
+  "Human & Avatar": 43,
+  "Editing": 47,
+  "CAD & Reverse Engineering": 20,
+  "Cross-Domain": 47,
+  "Simulation": 11,
+  "Embodied AI & Robotics": 30,
+  "Robustness": 11,
+  "Security": 13
+ },
  "methods": [
   {
    "name": "3D Representation Survey",
@@ -1185,19 +1185,6 @@
    ]
   },
   {
-   "name": "GS-PT-v2",
-   "arxiv_id": "2503.16979",
-   "venue": "CVPR 2025",
-   "year": 2025,
-   "category": "Optimization",
-   "desc": "Pre-trained GS initialization with multi-scene representation learning",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
    "name": "GS-Uncertainty",
    "arxiv_id": "2503.21816",
    "venue": "CVPR 2025",
@@ -1394,7 +1381,7 @@
   },
   {
    "name": "GaussianSR",
-   "arxiv_id": "2403.01444",
+   "arxiv_id": "2406.10111",
    "venue": "CVPR 2024",
    "year": 2024,
    "category": "Optimization",
@@ -1433,7 +1420,7 @@
   },
   {
    "name": "GS-PT",
-   "arxiv_id": "2403.11324",
+   "arxiv_id": "2409.04963",
    "venue": "ECCV 2024",
    "year": 2024,
    "category": "Optimization",
@@ -1721,6 +1708,18 @@
    "code_url": "",
    "sources": [
     "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "ObjectSplat",
+   "arxiv_id": "2608.30423",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Object-level mesh splatting for enhanced mesh fidelity and interactivity; bridges 3DGS and mesh-based representations at object granularity",
+   "code_url": "",
+   "sources": [
     "explorer"
    ]
   },
@@ -2839,6 +2838,18 @@
    "code_url": "",
    "sources": [
     "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "VoroTracing",
+   "arxiv_id": "2608.17682",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Differentiable ray tracing at 623 FPS (RTX 5090); Voronoi-based traversal with 3.2x throughput over fastest RT methods and 2.8x over 3DGS rasterization",
+   "code_url": "",
+   "sources": [
     "explorer"
    ]
   },
@@ -3963,6 +3974,30 @@
    ]
   },
   {
+   "name": "CapFrame",
+   "arxiv_id": "2608.30342",
+   "venue": "ECCV 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Text-instructed viewpoint localization in 3D Gaussian scenes; geometric pseudo-labels bridge language queries and spatial grounding",
+   "code_url": "",
+   "sources": [
+    "explorer"
+   ]
+  },
+  {
+   "name": "CausalSplat",
+   "arxiv_id": "2608.11150",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Hierarchical causal reasoning in 3DGS; implicit intent understanding + complex spatial relationship comprehension for scene-level causal inference",
+   "code_url": "",
+   "sources": [
+    "explorer"
+   ]
+  },
+  {
    "name": "Consistent Scene Understanding in 3DGS",
    "arxiv_id": "",
    "venue": "arXiv",
@@ -4051,6 +4086,19 @@
    ]
   },
   {
+   "name": "LEGO",
+   "arxiv_id": "2608.10057",
+   "venue": "ECCV 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Hierarchical language gaussian splatting; multi-view SAM granularity-adaptive re-grading into 3D-consistent hierarchy; per-level language scene graph supports LLM spatial reasoning",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
    "name": "NG-GS",
    "arxiv_id": "2604.14706",
    "venue": "arXiv",
@@ -4083,6 +4131,19 @@
    "year": 2026,
    "category": "Language & Semantic",
    "desc": "Understanding open-vocabulary 3D scenes with Gaussian-based representations remains challenging due to fragmented and spatially inconsistent semantic predictions across multi-view observations. In ...",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "OutLangSplat",
+   "arxiv_id": "2608.04560",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "UAV outdoor 3D language GS; 2D-3D dual-branch representation; training-free contribution and consistency-aware gaussian feature aggregation; first UAV open-vocabulary 3D scene dataset",
    "code_url": "",
    "sources": [
     "csv",
@@ -4174,6 +4235,18 @@
    "year": 2026,
    "category": "Language & Semantic",
    "desc": "Track-then-label paradigm with TSCM for open-world referring segmentation in 3DGS",
+   "code_url": "",
+   "sources": [
+    "explorer"
+   ]
+  },
+  {
+   "name": "VCAR",
+   "arxiv_id": "2608.30870",
+   "venue": "ACM MM 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Training-free 3DGS segmentation via view completeness and axis-aware boundary refinement; no additional training required for high-quality 3D segmentation",
    "code_url": "",
    "sources": [
     "explorer"
@@ -4419,6 +4492,18 @@
    "code_url": "",
    "sources": [
     "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "Lucida",
+   "arxiv_id": "2608.30821",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Generation",
+   "desc": "Parse-Generate-Place paradigm for Real-to-Sim composable scene modeling; structured scene generation with physical plausibility for embodied AI training",
+   "code_url": "",
+   "sources": [
     "explorer"
    ]
   },
@@ -5131,6 +5216,18 @@
    ]
   },
   {
+   "name": "Amortized Anchor Refinement",
+   "arxiv_id": "2608.30218",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Deployable continuous-time 4D Gaussian reconstruction with amortized anchor refinement; enables real-time temporal coherent 4D reconstruction from multi-view video",
+   "code_url": "",
+   "sources": [
+    "explorer"
+   ]
+  },
+  {
    "name": "AniGS",
    "arxiv_id": "2607.18539",
    "venue": "arXiv 2026",
@@ -5140,6 +5237,18 @@
    "code_url": "",
    "sources": [
     "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "ATGS",
+   "arxiv_id": "2608.30184",
+   "venue": "SIGGRAPH 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Anchored Temporal Gaussian Splatting for long volumetric video representation; temporal anchor points stabilize Gaussian trajectories over extended video sequences",
+   "code_url": "",
+   "sources": [
     "explorer"
    ]
   },
@@ -5384,6 +5493,19 @@
    ]
   },
   {
+   "name": "OVOW",
+   "arxiv_id": "2606.31388",
+   "venue": "ECCV 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Monocular video to instance-level 4D mesh scene for physics simulation; unifies static/rigid/non-rigid; gravity/contact/support correction; 120-scene benchmark",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
    "name": "PaMoSplat",
    "arxiv_id": "2605.10307",
    "venue": "TCSVT",
@@ -5454,6 +5576,18 @@
    "year": 2026,
    "category": "Dynamic & 4D",
    "desc": "Static/rigid/transient Gaussian decomposition + scene flow guidance for monocular 4DGS",
+   "code_url": "",
+   "sources": [
+    "explorer"
+   ]
+  },
+  {
+   "name": "SMG",
+   "arxiv_id": "2608.31023",
+   "venue": "ECCV 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Semantic Motion Graph for monocular dynamic Gaussian splatting; semantic-motion coupling enables coherent decomposition of complex non-rigid scenes into motion groups",
    "code_url": "",
    "sources": [
     "explorer"
@@ -5536,6 +5670,18 @@
    ]
   },
   {
+   "name": "BARD-GS",
+   "arxiv_id": "2503.15835",
+   "venue": "CVPR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Bundle-Adjustable and Rational Deformation Gaussian Splatting; rational motion model with bundle adjustment for complex non-rigid dynamics; rational deformation model for complex non-rigid dynamics",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "DynGS",
    "arxiv_id": "2412.00905",
    "venue": "CVPR 2025",
@@ -5549,6 +5695,18 @@
    ]
   },
   {
+   "name": "DynOMo",
+   "arxiv_id": "2409.02104",
+   "venue": "3DV 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Online motion adaptation for dynamic Gaussian Splatting; adaptive per-frame Gaussian motion estimation handles changing scene dynamics; online motion adaptation for dynamic scenes",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "FlowGS",
    "arxiv_id": "2412.00578",
    "venue": "CVPR 2025",
@@ -5559,6 +5717,18 @@
    "sources": [
     "csv",
     "explorer"
+   ]
+  },
+  {
+   "name": "GauFRE",
+   "arxiv_id": "2312.11458",
+   "venue": "WACV 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Gaussian Frequency-domain Radial basis Expansion; radial basis function networks for dynamic Gaussian deformation in frequency domain; evaluated on D-NeRF, HyperNeRF, NeRF-DS",
+   "code_url": "",
+   "sources": [
+    "survey"
    ]
   },
   {
@@ -5589,7 +5759,7 @@
   },
   {
    "name": "GaussianWorld",
-   "arxiv_id": "2409.17280",
+   "arxiv_id": "2412.10373",
    "venue": "CVPR 2025",
    "year": 2025,
    "category": "Dynamic & 4D",
@@ -5601,16 +5771,15 @@
    ]
   },
   {
-   "name": "GaussianWorld-v2",
-   "arxiv_id": "2503.15835",
-   "venue": "CVPR 2025",
+   "name": "GFlow",
+   "arxiv_id": "2405.18426",
+   "venue": "AAAI 2025",
    "year": 2025,
    "category": "Dynamic & 4D",
-   "desc": "Enhanced world-model GS with autoregressive scene extrapolation",
+   "desc": "Gaussian Flow for dynamic scene reconstruction; flow-based temporal motion modeling with warp refinement for continuous-time rendering; evaluated on D-NeRF (PSNR 34.27), HyperNeRF (PSNR 26.30, 12 min training), Plenoptic Video (PSNR 32.00, SSIM 0.970)",
    "code_url": "",
    "sources": [
-    "csv",
-    "explorer"
+    "survey"
    ]
   },
   {
@@ -5627,6 +5796,42 @@
    ]
   },
   {
+   "name": "IGS",
+   "arxiv_id": "2503.16979",
+   "venue": "CVPR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Incremental Gaussian Splatting; incremental reconstruction pipeline with per-frame Gaussian management for streaming dynamic scenes; incremental Gaussian management for streaming dynamic scenes",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "MoDec-GS",
+   "arxiv_id": "2501.03714",
+   "venue": "CVPR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Motion Decomposition Gaussian Splatting; decomposes scene motion into global and local components with separate deformation networks; evaluated on HyperNeRF (PSNR 27.78, rank 1)",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "MoDGS",
+   "arxiv_id": "2406.00434",
+   "venue": "ICLR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Motion-aware 3D Gaussian Splatting for dynamic scenes; explicit motion field modeling with smoothness constraints for high-quality temporal coherence; motion-aware approach for monocular dynamic scenes",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "MoS-GS",
    "arxiv_id": "2412.01553",
    "venue": "CVPR 2025",
@@ -5637,6 +5842,18 @@
    "sources": [
     "csv",
     "explorer"
+   ]
+  },
+  {
+   "name": "ReconDreamer++",
+   "arxiv_id": "2503.18438",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Incremental reconstruction and rendering for dynamic driving scenarios; integrates temporal Gaussian management with driving scene expansion; dynamic driving scenario reconstruction",
+   "code_url": "",
+   "sources": [
+    "survey"
    ]
   },
   {
@@ -5678,6 +5895,42 @@
    ]
   },
   {
+   "name": "SpectroMotion",
+   "arxiv_id": "2410.17249",
+   "venue": "CVPR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Spectral temporal analysis for motion-aware 3DGS; frequency-domain decomposition of Gaussian motions handles both slow and fast dynamics; evaluated on HyperNeRF and NeRF-DS (PSNR 24.65, rank 1 on NeRF-DS)",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "SplineGS",
+   "arxiv_id": "2412.09982",
+   "venue": "CVPR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Spline-based sparse control for dynamic Gaussian Splatting; B-spline trajectories of sparse control points model continuous scene deformation; B-spline sparse control for dynamic deformation",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "STC-GS",
+   "arxiv_id": "2502.14895",
+   "venue": "ICLR 2025",
+   "year": 2025,
+   "category": "Dynamic & 4D",
+   "desc": "Spatio-Temporal Consistent Gaussian Splatting; temporal consistency loss with Gaussian re-projection for artifact-free dynamic rendering; spatio-temporal consistent dynamic rendering",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "STG",
    "arxiv_id": "2411.19235",
    "venue": "CVPR 2025",
@@ -5704,6 +5957,30 @@
    ]
   },
   {
+   "name": "3DGStream",
+   "arxiv_id": "2403.01444",
+   "venue": "CVPR 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "3D Gaussian Stream for real-time radiance field streaming; per-frame 3DGS optimization with temporal consistency for long dynamic video sequences; per-frame streaming for long dynamic video sequences",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "4D-rotor GS",
+   "arxiv_id": "2402.03307",
+   "venue": "SIGGRAPH 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "4D rotor-based Gaussian Splatting; geometric algebra rotors for compact 4D motion representation suitable for articulated and non-rigid dynamics; evaluated on D-NeRF (PSNR 34.26) and Plenoptic Video (277.5 FPS, highest frame rate)",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "4DGS",
    "arxiv_id": "2310.08528",
    "venue": "CVPR 2024",
@@ -5727,6 +6004,30 @@
    "sources": [
     "csv",
     "explorer"
+   ]
+  },
+  {
+   "name": "CD-GS",
+   "arxiv_id": "2311.12897",
+   "venue": "ECCV 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Color-decomposed Gaussian Splatting for dynamic scenes; separates static and dynamic color channels with distinct deformation strategies; evaluated on D-NeRF (PSNR 32.19)",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "CoGS",
+   "arxiv_id": "2312.05664",
+   "venue": "CVPR 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Controllable Gaussian Splatting for dynamic scenes; invertible deformation network enables both reconstruction and real-time editing of dynamic content; deformation field approach for dynamic scenes",
+   "code_url": "",
+   "sources": [
+    "survey"
    ]
   },
   {
@@ -5766,6 +6067,18 @@
    "sources": [
     "csv",
     "explorer"
+   ]
+  },
+  {
+   "name": "Dual-GS",
+   "arxiv_id": "2409.08353",
+   "venue": "ACM ToG 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Dual-stream Gaussian Splatting; separates global and local geometry streams for stable reconstruction of long-duration dynamic scenes; dual-stream for long-duration dynamic scenes",
+   "code_url": "",
+   "sources": [
+    "survey"
    ]
   },
   {
@@ -5821,6 +6134,18 @@
    ]
   },
   {
+   "name": "GPS-Gaussian",
+   "arxiv_id": "2312.02155",
+   "venue": "CVPR 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Generalizable Pixel-aligned Gaussian Splatting for novel view synthesis of dynamic scenes; feed-forward pipeline without per-scene optimization; generalizable feed-forward approach for dynamic scenes",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "Grid4D",
    "arxiv_id": "2410.20815",
    "venue": "NeurIPS 2024",
@@ -5873,6 +6198,18 @@
    ]
   },
   {
+   "name": "LoopGaussian",
+   "arxiv_id": "2404.08966",
+   "venue": "ACM MM 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Loop-based motion representation for dynamic 3DGS; decomposes SE(3) transformations into meaningful sub-operations via loop primitives; loop-based motion decomposition for dynamic 3DGS",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "MD-Splatting",
    "arxiv_id": "2407.02945",
    "venue": "ECCV 2024",
@@ -5909,6 +6246,30 @@
    "sources": [
     "csv",
     "explorer"
+   ]
+  },
+  {
+   "name": "PGED",
+   "arxiv_id": "2404.03613",
+   "venue": "ECCV 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Progressive deformation-based Gaussian Splatting; coarse-to-fine deformation learning with entropy regularization for dynamic scene reconstruction; evaluated on HyperNeRF and Plenoptic Video",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
+   "name": "Real-time 4DGS",
+   "arxiv_id": "2310.10642",
+   "venue": "ICLR 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Real-time 4D Gaussian Splatting; 4DGS with temporal slicing for real-time rendering of dynamic scenes at interactive frame rates; evaluated on D-NeRF (PSNR 34.09) and Plenoptic Video (PSNR 32.01, 114 FPS)",
+   "code_url": "",
+   "sources": [
+    "survey"
    ]
   },
   {
@@ -5951,6 +6312,18 @@
    ]
   },
   {
+   "name": "SP-GS",
+   "arxiv_id": "2406.03697",
+   "venue": "ICML 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Gaussian Splatting with Sparse Pixels; sparse-pixel control points drive deformation field for efficient dynamic scene reconstruction; evaluated on D-NeRF (PSNR 37.98), HyperNeRF (PSNR 26.78), NeRF-DS",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "SpacetimeGS",
    "arxiv_id": "2405.12110",
    "venue": "ECCV 2024",
@@ -5986,6 +6359,18 @@
    "code_url": "https://github.com/sherwinbahmani/tc4d",
    "sources": [
     "frontier-verified-2026-08"
+   ]
+  },
+  {
+   "name": "Video-3DGS",
+   "arxiv_id": "2406.02541",
+   "venue": "arXiv 2024",
+   "year": 2024,
+   "category": "Dynamic & 4D",
+   "desc": "Video-based 3D Gaussian Splatting; per-frame Gaussian initialization with inter-frame motion priors for video-to-3D dynamic reconstruction; video-based per-frame dynamic reconstruction",
+   "code_url": "",
+   "sources": [
+    "survey"
    ]
   },
   {
@@ -6026,6 +6411,18 @@
    ]
   },
   {
+   "name": "PVG",
+   "arxiv_id": "2311.18561",
+   "venue": "arXiv 2023",
+   "year": 2023,
+   "category": "Dynamic & 4D",
+   "desc": "Periodic Vibration Gaussian; models temporal dynamics via periodic vibration functions enabling 4D representation without explicit deformation networks; periodic vibration function for 4D representation",
+   "code_url": "",
+   "sources": [
+    "survey"
+   ]
+  },
+  {
    "name": "AlbedoEdit",
    "arxiv_id": "2606.01362",
    "venue": "arXiv 2026",
@@ -6048,6 +6445,18 @@
    "code_url": "",
    "sources": [
     "alias:Ambient-Robust Inverse Rendering",
+    "explorer"
+   ]
+  },
+  {
+   "name": "BRF-GS",
+   "arxiv_id": "2608.31159",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "HDR & Relighting",
+   "desc": "Hyperspectral bidirectional reflectance factor modeling with 3DGS; joint hyperspectral image generation and BRDF reconstruction from multi-view hyperspectral imagery",
+   "code_url": "",
+   "sources": [
     "explorer"
    ]
   },
@@ -7014,6 +7423,19 @@
    ]
   },
   {
+   "name": "TRACE-GS",
+   "arxiv_id": "2608.10286",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Sparse-View",
+   "desc": "On-policy trajectory distillation plus privileged geometric conditioning; first to derive on-policy supervision from privileged geometry for sparse-view 3DGS recovery; LUPI setting",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
    "name": "VidSplat",
    "arxiv_id": "2605.11424",
    "venue": "SIGGRAPH 2026",
@@ -7528,7 +7950,7 @@
   },
   {
    "name": "GaussianTalker",
-   "arxiv_id": "2412.09982",
+   "arxiv_id": "2404.16012",
    "venue": "CVPR 2025",
    "year": 2025,
    "category": "Human & Avatar",
@@ -7989,6 +8411,19 @@
    ]
   },
   {
+   "name": "Super-Gaussian",
+   "arxiv_id": "2608.04475",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "Editing",
+   "desc": "3DGS interactive scene editing plus NLI-based volume rendering visualization in VR",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
    "name": "SVGS-Edit",
    "arxiv_id": "2603.28126",
    "venue": "arXiv",
@@ -8210,7 +8645,7 @@
   },
   {
    "name": "Gaussian Grouping",
-   "arxiv_id": "2311.12897",
+   "arxiv_id": "2312.00732",
    "venue": "ECCV 2024",
    "year": 2024,
    "category": "Editing",
@@ -8364,19 +8799,6 @@
    ]
   },
   {
-   "name": "SVG",
-   "arxiv_id": "2312.05664",
-   "venue": "CVPR 2024",
-   "year": 2024,
-   "category": "Editing",
-   "desc": "Semantic-driven Gaussian editing: disentangled semantic fields for targeted 3D manipulation",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
    "name": "VR-GS",
    "arxiv_id": "2407.12777",
    "venue": "ECCV 2024",
@@ -8506,6 +8928,31 @@
    ]
   },
   {
+   "name": "RealCAD",
+   "arxiv_id": "2608.30617",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "CAD & Reverse Engineering",
+   "desc": "Real-world image to CAD reconstruction; handles domain gap and parametric deviation from imperfect photographs; code and dataset released",
+   "code_url": "",
+   "sources": [
+    "explorer"
+   ]
+  },
+  {
+   "name": "RORA",
+   "arxiv_id": "2608.04842",
+   "venue": "arXiv",
+   "year": 2026,
+   "category": "CAD & Reverse Engineering",
+   "desc": "Single static video to articulated object end-to-end pipeline; mixed 3DGS plus mesh; convex decomposition plus automatic joint suggestion algorithm; deployed in Unreal Engine and Isaac Sim",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
    "name": "SEIG",
    "arxiv_id": "2606.02580",
    "venue": "arXiv 2026",
@@ -8576,19 +9023,6 @@
    "year": 2025,
    "category": "CAD & Reverse Engineering",
    "desc": "CAD reconstruction from GS with parametric primitive extraction",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "GS-CAD",
-   "arxiv_id": "2410.17249",
-   "venue": "CVPR 2025",
-   "year": 2025,
-   "category": "CAD & Reverse Engineering",
-   "desc": "CAD model reconstruction from GS with parametric primitive fitting",
    "code_url": "",
    "sources": [
     "csv",
@@ -8757,6 +9191,19 @@
    "year": 2026,
    "category": "Cross-Domain",
    "desc": "MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "ESVR",
+   "arxiv_id": "2608.05564",
+   "venue": "IEEE VIS 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "3D ellipsoid sparse volume rendering; learns directly from raw volume data; per-primitive ray sampling; up to 4 orders of magnitude compression; 43-223 FPS",
    "code_url": "",
    "sources": [
     "csv",
@@ -9960,19 +10407,6 @@
    ]
   },
   {
-   "name": "GauSec",
-   "arxiv_id": "2501.03714",
-   "venue": "CVPR 2025",
-   "year": 2025,
-   "category": "Security",
-   "desc": "Security assessment of GS against adversarial reconstruction attacks",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
    "name": "IP-GS",
    "arxiv_id": "2501.10283",
    "venue": "CVPR 2025",
@@ -10062,229 +10496,6 @@
     "csv",
     "explorer"
    ]
-  },
-  {
-   "name": "LEGO",
-   "arxiv_id": "2608.10057",
-   "venue": "ECCV 2026",
-   "year": 2026,
-   "category": "Language & Semantic",
-   "desc": "Hierarchical language gaussian splatting; multi-view SAM granularity-adaptive re-grading into 3D-consistent hierarchy; per-level language scene graph supports LLM spatial reasoning",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "OutLangSplat",
-   "arxiv_id": "2608.04560",
-   "venue": "arXiv",
-   "year": 2026,
-   "category": "Language & Semantic",
-   "desc": "UAV outdoor 3D language GS; 2D-3D dual-branch representation; training-free contribution and consistency-aware gaussian feature aggregation; first UAV open-vocabulary 3D scene dataset",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "ESVR",
-   "arxiv_id": "2608.05564",
-   "venue": "IEEE VIS 2026",
-   "year": 2026,
-   "category": "Cross-Domain",
-   "desc": "3D ellipsoid sparse volume rendering; learns directly from raw volume data; per-primitive ray sampling; up to 4 orders of magnitude compression; 43-223 FPS",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "TRACE-GS",
-   "arxiv_id": "2608.10286",
-   "venue": "arXiv",
-   "year": 2026,
-   "category": "Sparse-View",
-   "desc": "On-policy trajectory distillation plus privileged geometric conditioning; first to derive on-policy supervision from privileged geometry for sparse-view 3DGS recovery; LUPI setting",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "RORA",
-   "arxiv_id": "2608.04842",
-   "venue": "arXiv",
-   "year": 2026,
-   "category": "CAD & Reverse Engineering",
-   "desc": "Single static video to articulated object end-to-end pipeline; mixed 3DGS plus mesh; convex decomposition plus automatic joint suggestion algorithm; deployed in Unreal Engine and Isaac Sim",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "OVOW",
-   "arxiv_id": "2606.31388",
-   "venue": "ECCV 2026",
-   "year": 2026,
-   "category": "Dynamic & 4D",
-   "desc": "Monocular video to instance-level 4D mesh scene for physics simulation; unifies static/rigid/non-rigid; gravity/contact/support correction; 120-scene benchmark",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
-   "name": "Super-Gaussian",
-   "arxiv_id": "2608.04475",
-   "venue": "arXiv",
-   "year": 2026,
-   "category": "Editing",
-   "desc": "3DGS interactive scene editing plus NLI-based volume rendering visualization in VR",
-   "code_url": "",
-    "sources": [
-     "csv",
-     "explorer"
-    ]
-   },
-   {
-    "name": "BRF-GS",
-    "arxiv_id": "2608.31159",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "HDR & Relighting",
-    "desc": "Hyperspectral bidirectional reflectance factor modeling with 3DGS; joint hyperspectral image generation and BRDF reconstruction from multi-view hyperspectral imagery",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "SMG",
-    "arxiv_id": "2608.31023",
-    "venue": "ECCV 2026",
-    "year": 2026,
-    "category": "Dynamic & 4D",
-    "desc": "Semantic Motion Graph for monocular dynamic Gaussian splatting; semantic-motion coupling enables coherent decomposition of complex non-rigid scenes into motion groups",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "VCAR",
-    "arxiv_id": "2608.30870",
-    "venue": "ACM MM 2026",
-    "year": 2026,
-    "category": "Language & Semantic",
-    "desc": "Training-free 3DGS segmentation via view completeness and axis-aware boundary refinement; no additional training required for high-quality 3D segmentation",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "RealCAD",
-    "arxiv_id": "2608.30617",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "CAD & Reverse Engineering",
-    "desc": "Real-world image to CAD reconstruction; handles domain gap and parametric deviation from imperfect photographs; code and dataset released",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "ObjectSplat",
-    "arxiv_id": "2608.30423",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "Surface & Rendering",
-    "desc": "Object-level mesh splatting for enhanced mesh fidelity and interactivity; bridges 3DGS and mesh-based representations at object granularity",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "CapFrame",
-    "arxiv_id": "2608.30342",
-    "venue": "ECCV 2026",
-    "year": 2026,
-    "category": "Language & Semantic",
-    "desc": "Text-instructed viewpoint localization in 3D Gaussian scenes; geometric pseudo-labels bridge language queries and spatial grounding",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "Amortized Anchor Refinement",
-    "arxiv_id": "2608.30218",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "Dynamic & 4D",
-    "desc": "Deployable continuous-time 4D Gaussian reconstruction with amortized anchor refinement; enables real-time temporal coherent 4D reconstruction from multi-view video",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "ATGS",
-    "arxiv_id": "2608.30184",
-    "venue": "SIGGRAPH 2026",
-    "year": 2026,
-    "category": "Dynamic & 4D",
-    "desc": "Anchored Temporal Gaussian Splatting for long volumetric video representation; temporal anchor points stabilize Gaussian trajectories over extended video sequences",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "CausalSplat",
-    "arxiv_id": "2608.11150",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "Language & Semantic",
-    "desc": "Hierarchical causal reasoning in 3DGS; implicit intent understanding + complex spatial relationship comprehension for scene-level causal inference",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "VoroTracing",
-    "arxiv_id": "2608.17682",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "Acceleration",
-    "desc": "Differentiable ray tracing at 623 FPS (RTX 5090); Voronoi-based traversal with 3.2x throughput over fastest RT methods and 2.8x over 3DGS rasterization",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   },
-   {
-    "name": "Lucida",
-    "arxiv_id": "2608.30821",
-    "venue": "arXiv",
-    "year": 2026,
-    "category": "Generation",
-    "desc": "Parse-Generate-Place paradigm for Real-to-Sim composable scene modeling; structured scene generation with physical plausibility for embodied AI training",
-    "code_url": "",
-    "sources": [
-     "explorer"
-    ]
-   }
-  ]
- }
+  }
+ ]
+}

@@ -14,6 +14,7 @@ metadata:
     - "Produce publication-quality figures (PDF/PNG/HTML)"
     - "Build interactive comparison tables for 3DGS methods"
     - "3DGS可视化 / 论文配图 / 方法对比图表 / 雷达图 / 时间线"
+
 ---
 
 # 3DGS Visualizer — Publication-Quality Research Visualizations
@@ -200,7 +201,7 @@ When generating timelines that include 2026 methods, highlight these as landmark
 | TRELLIS.2 | CVPR 2026 Best Student Paper | Structured 3D generation | Best Student Paper marker |
 | SAM 3D | CVPR 2026 | 3D segmentation foundation | Highlighted method |
 
-Knowledge base: 789+ methods across 25 categories (updated for v0.3.3 cycle).
+Knowledge base: 819+ methods across 23 categories (updated for v0.8.3 cycle).
 
 ### API — Static Timeline
 

@@ -33,7 +33,7 @@
 |-----------|------------|----------------|-----|-------------|
 | **awesome-3D-gaussian-splatting** | MrNeRF | 8,500+ (as of Apr 2026) | [github.com/MrNeRF/awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) | **[CROSS-REF]** The most popular curated list of 3DGS papers, methods, and resources. Star count from CSDN article (Apr 2026). GitHub direct fetch was blocked but existence confirmed via multiple search results. |
 | **gaussian-splatting (official)** | graphdeco-inria | — | [github.com/graphdeco-inria/gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) | **[CROSS-REF]** Official implementation of the original 3DGS paper by the INRIA team. Confirmed via multiple search results. |
-| **Awesome-Gaussian-Skills** | (local project) | — | [github.com user project] | **[VERIFIED — LOCAL]** The current project: 789+ methods, 25 categories, 15 Agent Skills, MCP protocol integration. Comprehensive 3DGS/CAD/Mesh knowledge base for AI agents. |
+| **Awesome-Gaussian-Skills** | (local project) | — | [github.com user project] | **[VERIFIED — LOCAL]** The current project: 819+ methods, 23 categories, 15 Agent Skills, MCP protocol integration. Comprehensive 3DGS/CAD/Mesh knowledge base for AI agents. |
 
 ---
 

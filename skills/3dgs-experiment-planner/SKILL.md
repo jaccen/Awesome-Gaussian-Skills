@@ -1,4 +1,4 @@
-﻿---
+---
 name: 3dgs-experiment-planner
 description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG. Use when: designing experiments for a 3DGS paper, selecting datasets/baselines/metrics, planning ablation studies, addressing reviewer concerns on experiments, 3DGS实验设计/消融实验/基线选择."
 license: Apache-2.0
@@ -14,6 +14,7 @@ metadata:
     - "Address reviewer concerns on experiment design"
     - "Choose appropriate benchmarks for a 3DGS method"
     - "3DGS实验设计 / 消融实验 / 基线选择 / 数据集推荐 / 指标选取"
+
 ---
 
 # 3DGS Experiment Planner
@@ -55,7 +56,7 @@ Before designing experiments, extract:
 |-------------|-------------------|--------|
 | High-frequency / Boundary | Synthetic sharp-edge scenes | Best reveals boundary quality |
 | Large-scale | Mill 19 / MatrixCity / Block-NeRF | Tests scalability |
-| Dynamic scenes | D-NeRF / Technicolor / Neural 3D Video | Temporal consistency |
+| Dynamic scenes | D-NeRF / HyperNeRF / iPhone / NeRF-DS / Google Immersive / HiFi4G / Plenoptic Video / Meet Room / Waymo Dynamic / Motion Blur / ParticleNeRF (see `references/dynamic-datasets.md` for details) | Temporal consistency, topology change, sparse-view generalization, motion blur robustness, high-frequency detail |
 | Editing | NeRF-Synthetic / SHARP | Controllability evaluation |
 | Material / Relighting | Light Stage / Polyhaven | Material decomposition quality |
 | Autonomous Driving | Waymo / nuScenes / KITTI-360 | Real-world driving scenes |
@@ -238,6 +239,62 @@ When making efficiency claims, include:
 
 **Always report GPU model** — reviewers compare across papers.
 
+### Dynamic Scene Experiment Design
+
+For dynamic 3DGS methods, select datasets and baselines based on the method's technical category:
+
+#### Dynamic Method Categories
+
+| Category | Description | Key Methods in Knowledge Base |
+|----------|-------------|-------------------------------|
+| Deformation Field | Learn a deformation network to map canonical Gaussians to each timestep | Deformable-3DGS, 4DGS, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, LoopGaussian, ReconDreamer++ |
+| Deformation + Sparse Control | Drive deformation via sparse control points for efficiency | SP-GS, SplineGS, SC-GS, D-MiSo, Video-3DGS |
+| 4D Gaussian Primitive | Extend Gaussians to 4D (3D spatial + 1D temporal) for inherent dynamics | Real-time 4DGS, PVG, 4D-rotor GS, DynMF |
+| Per-frame Training + Inter-frame Transfer | Optimize per-frame 3DGS with temporal propagation between frames | 3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo, Dynamic3DGaussians, GaussianFlow, SpacetimeGS |
+
+#### Dynamic Dataset Selection
+
+| Evaluation Goal | Recommended Dataset | Source |
+|-----------------|---------------------|--------|
+| Ablation (clean, synthetic) | D-NeRF | CVPR 2021 |
+| Topology change | HyperNeRF (vrig) | SIGGRAPH 2021 |
+| Real monocular | iPhone | NeurIPS 2022 |
+| Sparse-view generalization | NeRF-DS | arXiv 2023 |
+| Motion blur robustness | Motion Blur | 3DV 2025 |
+| Large-scale outdoor | Waymo Dynamic | Waymo Open |
+| Dense multi-view | Google Immersive | SIGGRAPH 2020 |
+| Indoor human activity | Meet Room | — |
+| High-frequency detail | HiFi4G | ICML 2024 |
+| Unconstrained appearance | ParticleNeRF | 3DV 2024 |
+| Light field video | Plenoptic Video | — |
+
+#### Dynamic Baseline Tiers
+
+**Tier 1 (Must compare)**: Deformable-3DGS (CVPR 2024) + 4DGS (CVPR 2024)
+
+**Tier 2 (Should compare)**: Dynamic3DGaussians (3DV 2024), SC-GS (CVPR 2024), 3DGStream (CVPR 2024)
+
+**Tier 3 (Nice to compare, if directly related)**:
+- Deformation field methods: CoGS, CD-GS, PGED, MoDGS, MoDec-GS
+- 4D primitive methods: Real-time 4DGS, PVG, 4D-rotor GS
+- Per-frame methods: Dual-GS, STC-GS, GFlow, DynOMo
+- Sparse control: SP-GS, SplineGS
+- Flow-based: GaussianFlow
+
+#### Dynamic-Specific Metrics
+
+| Metric | When to Report | Note |
+|--------|---------------|------|
+| PSNR / SSIM / LPIPS | Always (all dynamic datasets) | Core metrics |
+| MS-SSIM | HyperNeRF, Google Immersive | Multi-scale structural similarity |
+| VMAF | Plenoptic Video, long sequences | Netflix video quality; temporal coherence |
+| FID | Generative / large-scale rendering | Distribution-level quality |
+| Rendering FPS | Real-time dynamic claim | Frame rate at target resolution |
+| Training time per frame | Efficiency claim | Wall-clock seconds/frame |
+| Gaussian count growth | Memory efficiency | #Gaussians vs frame count |
+
+See `references/benchmark-data.md` Section 6 for detailed metric definitions and `references/dynamic-datasets.md` for full dataset catalog.
+
 ### Spatial Intelligence Experiments
 
 **Target venues**: ICML, ECCV, CVPR, NeurIPS
@@ -301,7 +358,7 @@ Generate a complete experiment plan:
 2. **Be realistic**: Don't claim "state-of-the-art" unless metrics clearly support it.
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
 4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
-5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 789+ methods across 25 categories.
+5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 819+ methods across 23 categories.
 
 
 

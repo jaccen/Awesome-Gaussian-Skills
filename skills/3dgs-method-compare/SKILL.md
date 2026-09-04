@@ -1,6 +1,6 @@
 ﻿---
 name: 3dgs-method-compare
-description: "Compare 3D Gaussian Splatting variants across 11 dimensions. Built-in knowledge of 789+ methods across 25 categories. Supports axis-driven fragment loading for efficient context usage. Use when: comparing 3DGS methods or variants, analyzing trade-offs between Gaussian Splatting approaches, generating comparison tables for 3DGS papers, finding the best 3DGS method for a scenario, 检索3DGS方法对比/3D高斯泼溅方法比较."
+description: "Compare 3D Gaussian Splatting variants across 11 dimensions. Built-in knowledge of 819+ methods across 23 categories. Supports axis-driven fragment loading for efficient context usage. Use when: comparing 3DGS methods or variants, analyzing trade-offs between Gaussian Splatting approaches, generating comparison tables for 3DGS papers, finding the best 3DGS method for a scenario, 检索3DGS方法对比/3D高斯泼溅方法比较."
 license: Apache-2.0
 user-invocable: true
 metadata:
@@ -13,6 +13,7 @@ metadata:
     - "Generate comparison tables for 3DGS papers"
     - "Find the best 3DGS method for a specific scenario"
     - "检索3DGS方法对比、3D高斯泼溅方法比较"
+
 ---
 
 # 3DGS Method Comparison Engine (Router)

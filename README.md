@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 801+ Methods, 23 Categories, Intractive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 819+ Methods, 23 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-801+-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-819+-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 801+ Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 819+ Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
@@ -57,7 +57,7 @@ Search 801+ Methods instantly, filter by category, sort by citations, click any 
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 12 chapters, every method name anchored to this repo's real data (801+ Methods, 23 categories, 15 skills), zero fabrication:**
+**What's inside — 12 chapters, every method name anchored to this repo's real data (819+ Methods, 23 categories, 15 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -84,13 +84,15 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 801+ method names, abstracts, and 15 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 819+ method names, abstracts, and 15 engineering skills — but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (Aug 2026)
 
-Latest update (Sep 2): **v0.8.2 — Daily Update: 11 New Methods**. Knowledge base expanded from 790→801 verified methods. New additions span 7 categories: **BRF-GS** (hyperspectral BRDF modeling with 3DGS), **SMG** (ECCV 2026, semantic motion graph for dynamic GS), **VCAR** (ACM MM 2026, training-free 3DGS segmentation), **RealCAD** (real-world image to CAD reconstruction), **ObjectSplat** (object-level mesh splatting), **CapFrame** (ECCV 2026, text-instructed viewpoint localization), **Amortized Anchor Refinement** (continuous-time 4D reconstruction), **ATGS** (SIGGRAPH 2026, anchored temporal GS for long volumetric video), **CausalSplat** (hierarchical causal reasoning in 3DGS), **VoroTracing** (623 FPS differentiable ray tracing), **Lucida** (Real-to-Sim composable scene modeling). All arXiv IDs verified, data CI passed. See [changelog/2026-09-02.md](changelog/2026-09-02.md).
+Latest update (Sep 4): **v0.8.3 — Dynamic Scene Survey Integration: 23 New Methods**. Knowledge base expanded from 801→819 verified methods. Added 23 arXiv-verified dynamic scene reconstruction methods from survey paper (连振晗 et al., J CAD & CG, Jan 2026), spanning 3 categories: deformation field (LoopGaussian, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, ReconDreamer++), sparse-control deformation (SP-GS, Video-3DGS, SplineGS), 4D Gaussian primitive (Real-time 4DGS, PVG, 4D-rotor GS), and per-frame inter-frame transfer (3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo). Dynamic & 4D category: 75→97. New `references/dynamic-datasets.md` (11 datasets) and expanded `benchmark-data.md` (MS-SSIM/VMAF/FID metrics + 4 performance comparison tables). Experiment planner skill updated with dynamic scene design guide. See [changelog/2026-09-04.md](changelog/2026-09-04.md).
+
+Previous (Sep 2): **v0.8.2 — Daily Update: 11 New Methods**. Knowledge base expanded from 790→801 verified methods. New additions span 7 categories: **BRF-GS** (hyperspectral BRDF modeling with 3DGS), **SMG** (ECCV 2026, semantic motion graph for dynamic GS), **VCAR** (ACM MM 2026, training-free 3DGS segmentation), **RealCAD** (real-world image to CAD reconstruction), **ObjectSplat** (object-level mesh splatting), **CapFrame** (ECCV 2026, text-instructed viewpoint localization), **Amortized Anchor Refinement** (continuous-time 4D reconstruction), **ATGS** (SIGGRAPH 2026, anchored temporal GS for long volumetric video), **CausalSplat** (hierarchical causal reasoning in 3DGS), **VoroTracing** (623 FPS differentiable ray tracing), **Lucida** (Real-to-Sim composable scene modeling). All arXiv IDs verified, data CI passed. See [changelog/2026-09-02.md](changelog/2026-09-02.md).
 
 Previous (Aug 23): **v0.8.1 — Daily Update: 7 New Methods**. Knowledge base expanded from 783→790 verified methods. New additions span 6 categories: **LEGO** (ECCV 2026, hierarchical language GS with LLM spatial reasoning), **OutLangSplat** (UAV outdoor open-vocabulary 3D language GS), **ESVR** (IEEE VIS 2026, 3D ellipsoid sparse volume rendering with 4 orders of magnitude compression), **TRACE-GS** (sparse-view 3DGS via privileged geometric conditioning), **RORA** (single-video-to-articulated-object pipeline with Unreal Engine deployment), **OVOW** (ECCV 2026, monocular video to instance-level 4D mesh for physics simulation), **Super-Gaussian** (interactive 3DGS scene editing with VR NLI visualization). All arXiv IDs verified, data CI passed. See [changelog/2026-08-23.md](changelog/2026-08-23.md).
 
@@ -143,7 +145,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (801+ Methods, 23 Categories)
+## Knowledge Base (819+ Methods, 23 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -163,8 +165,8 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 | Category | Description | Methods |
 |----------|-------------|---------|
 | Foundation (40) | Core 3DGS representations and basic variants | 3D Representation Survey, 3DGEER, 3DSGS |
-| Optimization (77) | Training objectives, density control, convergence | AdaGScale, AdpSplit, ArtifactWorld |
-| Surface & Rendering (49) | Surface extraction and rendering-formulation innovation | 2D-SuGaR, 3DSS, AmbiSuR |
+| Optimization (76) | Training objectives, density control, convergence | AdaGScale, AdpSplit, ArtifactWorld |
+| Surface & Rendering (50) | Surface extraction and rendering-formulation innovation | 2D-SuGaR, 3DSS, AmbiSuR |
 
 **Efficiency & Scale**
 
@@ -179,18 +181,18 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Language & Semantic (32) | Open-vocabulary 3D understanding and language fields | 3D-GIMP, Consistent Scene Understanding in 3DGS, DGSG-Mind |
-| Generation (26) | Text/condition-driven 3D/4D generation | AniGen, AnySurf, AssetGen |
+| Language & Semantic (37) | Open-vocabulary 3D understanding and language fields | 3D-GIMP, Consistent Scene Understanding in 3DGS, DGSG-Mind |
+| Generation (27) | Text/condition-driven 3D/4D generation | AniGen, AnySurf, AssetGen |
 | Autonomous Driving (33) | Driving scene reconstruction and simulation | 3DGS Safety Evaluation for AD, Asset Harvester, CGGS |
 
 **Dynamic & Spatial**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Dynamic & 4D (71) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS³, AniGS, ClipGStream |
-| HDR & Relighting (26) | HDR capture, relightable and material-aware Gaussians | AlbedoEdit, Ambient-Robust IR, DiffAdapt4DSI |
+| Dynamic & 4D (97) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS³, AniGS, ClipGStream |
+| HDR & Relighting (27) | HDR capture, relightable and material-aware Gaussians | AlbedoEdit, Ambient-Robust IR, DiffAdapt4DSI |
 | SLAM (40) | Simultaneous localization and mapping | 2DGS-SLAM, Anchor3R, Anythingreality |
-| Sparse-View (20) | Few-shot and sparse-view reconstruction | DropAnSH-GS, FrameTwin, GeoQuery |
+| Sparse-View (21) | Few-shot and sparse-view reconstruction | DropAnSH-GS, FrameTwin, GeoQuery |
 | World Models & Spatial Intelligence (8) | 3D spatial reasoning, world modeling | ABot-3DWorld 0, APEIRIA, FlashWorld |
 
 **Applications & Cross-Domain**
@@ -199,12 +201,12 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 |----------|-------------|---------|
 | Human & Avatar (43) | Animatable human and avatar reconstruction | ArtMesh, CapTalk, COSY |
 | Editing (47) | Interactive and text-guided scene editing | BEA-GS, Capacity-Controlled Stylization, DeSplat |
-| CAD & Reverse Engineering (19) | CAD fitting, B-rep reconstruction, reverse engineering | 3DCodeBench, ASSEMCAD, BRepCLIP |
-| Cross-Domain (46) | Medical, underwater, remote sensing and other domains | 3DTV, Aes3D, AsyncEvGS |
+| CAD & Reverse Engineering (20) | CAD fitting, B-rep reconstruction, reverse engineering | 3DCodeBench, ASSEMCAD, BRepCLIP |
+| Cross-Domain (47) | Medical, underwater, remote sensing and other domains | 3DTV, Aes3D, AsyncEvGS |
 | Simulation (11) | Physics simulation and surrogate models | 3DThinkVLA, AGILE, ArtiTwinSplat |
 | Embodied AI & Robotics (30) | Grasping, manipulation, navigation, digital twins | 3DGS Demo Synthesis (IL), ArtGS, Forecast-GS |
 | Robustness (11) | In-the-wild and degradation-robust reconstruction | 3DReflecNet, DelowlightSplat, DualPhys-GS |
-| Security (14) | Watermarking, copyright, forgery detection | 3DEditSafe, 4D-GSW, BitC-3DGS |
+| Security (13) | Watermarking, copyright, forgery detection | 3DEditSafe, 4D-GSW, BitC-3DGS |
 
 </details>
 
@@ -244,7 +246,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 801+ Methods.
+> Derived from systematic gap analysis across 819+ Methods.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -314,6 +316,7 @@ Generated by `3dgs-visualizer` — see [`Test/`](Test/) for full-resolution file
 - [x] v0.8.0 — Platform Upgrade (P0+P1+P2): single source of truth (data/methods.json, 783 methods, 23 categories, data CI); 5 fabricated entries purged + 14 arXiv-verified frontier methods; true-3DGS render loop (gsplat via HTTP-served PLY); server-authoritative scene persistence; real PLY/SPLAT export; 5 prune strategies; grid-accelerated ray query; runtime arg validation; WS origin allowlist; 21 unit tests + 2 CI workflows; Benchmark arena (bench/); skill orchestration contracts (skills/_contracts/); Router manifest loader (scripts/router_load.py); 13 core MCP tools + 13 experimental (Aug 7, 2026)
 - [x] v0.8.1 — Daily Update: 7 new arXiv-verified methods (LEGO, OutLangSplat, ESVR, TRACE-GS, RORA, OVOW, Super-Gaussian); 783→790 methods; 6 categories updated; all data carriers in sync (Aug 23, 2026)
 - [x] v0.8.2 — Daily Update: 11 new arXiv-verified methods (BRF-GS, SMG, VCAR, RealCAD, ObjectSplat, CapFrame, Amortized Anchor Refinement, ATGS, CausalSplat, VoroTracing, Lucida); 790→801 methods; 7 categories updated; all data carriers in sync (Sep 2, 2026)
+- [x] v0.8.3 — Dynamic Scene Survey Integration: 23 new arXiv-verified methods from 连振晗 et al. survey (J CAD & CG, Jan 2026); 801→819 methods; Dynamic & 4D 75→97; +dynamic-datasets.md (11 datasets); +benchmark-data.md metrics (MS-SSIM/VMAF/FID) and 4 performance tables; experiment-planner skill updated (Sep 4, 2026)
 - [ ] v1.0 — CI/CD integration + multi-framework official listings
 - [ ] v2.0 — Agent-to-Agent collaboration (multi-agent paper discussion)
 
@@ -346,7 +349,7 @@ Awesome-Gaussian-Skills/
 ├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
 ├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (801+ Methods, 23 Categories)
+├── references/                # Knowledge base (819+ Methods, 23 Categories)
 ├── Test/                      # Visualization samples
 ├── changelog/                 # Version history
 └── assets/                    # Project images

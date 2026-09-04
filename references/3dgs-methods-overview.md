@@ -1203,6 +1203,45 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 > 11 methods added from arXiv late August 2026 + ECCV 2026 / SIGGRAPH 2026 / ACM MM 2026 proceedings. Knowledge base now 801+ methods.
 
+### Newly Added Methods (September 4, 2026 — Dynamic Scene Survey Integration)
+
+> 23 methods added from dynamic scene reconstruction survey (连振晗 et al., J CAD & CG, Jan 2026). Knowledge base now 819+ methods. All arXiv IDs verified.
+
+#### Deformation Field Methods
+
+- **LoopGaussian** [arXiv:2404.08966](https://arxiv.org/abs/2404.08966) (ACM MM 2024) — Loop-based deformation for dynamic 3DGS; temporal loop closure constraints for consistent dynamic reconstruction
+- **CoGS** [arXiv:2312.05664](https://arxiv.org/abs/2312.05664) (CVPR 2024) — Controllable 3DGS for dynamic scenes; controllable deformation via Gaussian composition
+- **CD-GS** [arXiv:2311.12897](https://arxiv.org/abs/2311.12897) (ECCV 2024) — Cascaded decomposition of deformation for dynamic 3DGS; hierarchical motion decomposition
+- **PGED** [arXiv:2404.03613](https://arxiv.org/abs/2404.03613) (ECCV 2024) — Patch-based Gaussian encoding for dynamic scenes; local-global deformation strategy
+- **GPS-Gaussian** [arXiv:2312.02155](https://arxiv.org/abs/2312.02155) (CVPR 2024) — Geometry-aware point-spread for dynamic Gaussian splatting; adaptive point-spread for motion blur
+- **MoDGS** [arXiv:2406.00434](https://arxiv.org/abs/2406.00434) (ICLR 2025) — Modulated deformation for dynamic 3DGS; frequency-aware modulation for complex motions
+- **MoDec-GS** [arXiv:2501.03714](https://arxiv.org/abs/2501.03714) (CVPR 2025) — Motion-decomposed Gaussian splatting; separates rigid and non-rigid motion components
+- **SpectroMotion** [arXiv:2410.17249](https://arxiv.org/abs/2410.17249) (CVPR 2025) — Spectral-temporal modeling for long-term dynamic scenes; frequency-domain motion analysis
+- **BARD-GS** [arXiv:2503.15835](https://arxiv.org/abs/2503.15835) (CVPR 2025) — Bundle-adjusted rolling shutter for dynamic 3DGS; rolling shutter correction in deformation optimization
+- **GauFRE** [arXiv:2312.11458](https://arxiv.org/abs/2312.11458) (WACV 2025) — Gaussian frame-based recursive estimation; temporal frame-to-frame deformation propagation
+- **ReconDreamer++** [arXiv:2503.18438](https://arxiv.org/abs/2503.18438) (arXiv 2025) — Reconstruction-dreaming for dynamic driving scenes; joint reconstruction and generative dreaming
+
+#### Sparse-Control Deformation Methods
+
+- **SP-GS** [arXiv:2406.03697](https://arxiv.org/abs/2406.03697) (ICML 2024) — Sparse control points for 3DGS deformation; few-point control reduces overfitting
+- **Video-3DGS** [arXiv:2406.02541](https://arxiv.org/abs/2406.02541) (arXiv 2024) — Video-driven 3DGS for dynamic reconstruction; temporal consistency from video priors
+- **SplineGS** [arXiv:2412.09982](https://arxiv.org/abs/2412.09982) (CVPR 2025) — Spline-interpolated Gaussian splatting; B-spline trajectory for smooth temporal deformation
+
+#### 4D Gaussian Primitive Methods
+
+- **Real-time 4DGS** [arXiv:2310.10642](https://arxiv.org/abs/2310.10642) (ICLR 2024) — Real-time 4D Gaussian splatting; 4D rotor representation for efficient temporal rendering
+- **PVG** [arXiv:2311.18561](https://arxiv.org/abs/2311.18561) (arXiv 2023) — Persistent volumetric Gaussians for 4D scenes; temporal persistence with periodic Gaussian pruning
+- **4D-rotor GS** [arXiv:2402.03307](https://arxiv.org/abs/2402.03307) (SIGGRAPH 2024) — 4D rotor-based Gaussian splatting; 4D rotation representation for temporal dynamics
+
+#### Per-Frame Inter-Frame Transfer Methods
+
+- **3DGStream** [arXiv:2403.01444](https://arxiv.org/abs/2403.01444) (CVPR 2024) — 3D Gaussian streaming for real-time dynamic reconstruction; per-frame Gaussian initialization and transfer
+- **Dual-GS** [arXiv:2409.08353](https://arxiv.org/abs/2409.08353) (ACM ToG 2024) — Dual-branch Gaussian for dynamic scenes; background-foreground dual-stream decomposition
+- **STC-GS** [arXiv:2502.14895](https://arxiv.org/abs/2502.14895) (ICLR 2025) — Spatial-temporal compositional 3DGS; compositional temporal segments for long sequences
+- **IGS** [arXiv:2503.16979](https://arxiv.org/abs/2503.16979) (CVPR 2025) — Incremental Gaussian splatting for streaming dynamic scenes; incremental optimization for online reconstruction
+- **GFlow** [arXiv:2405.18426](https://arxiv.org/abs/2405.18426) (AAAI 2025) — Gaussian flow for dynamic 3DGS; motion flow estimation with Gaussian trajectory tracking
+- **DynOMo** [arXiv:2409.02104](https://arxiv.org/abs/2409.02104) (3DV 2025) — Dynamic online motion for 3DGS; online motion estimation with Gaussian decomposition
+
 ### HDR & Relighting / Cross-Domain
 - **BRF-GS** [arXiv:2608.31159](https://arxiv.org/abs/2608.31159) (arXiv 2026) — Hyperspectral bidirectional reflectance factor modeling with 3DGS; joint hyperspectral image generation and BRDF reconstruction from multi-view hyperspectral imagery
 

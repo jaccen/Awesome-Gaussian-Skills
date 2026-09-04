@@ -14,6 +14,7 @@ metadata:
     - "Get step-by-step migration code templates"
     - "Identify issues when converting from volume rendering to splatting"
     - "NeRF迁移3DGS / 高斯泼溅转换 / 代码模板 / 组件兼容性分析"
+
 ---
 
 # NeRF-to-3DGS Migration Guide
@@ -311,7 +312,7 @@ Key changes to the training loop:
 
 ## Knowledge Base
 
-This skill references a knowledge base of 789+ methods across 25 categories (updated for v0.3.3 cycle).
+This skill references a knowledge base of 819+ methods across 23 categories (updated for v0.8.3 cycle).
 
 ## Rules
 

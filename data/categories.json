@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-02",
+ "generated_at": "2026-09-04",
  "canonical": [
   "Foundation",
   "Optimization",
@@ -27,7 +27,7 @@
  ],
  "counts": {
   "Foundation": 40,
-  "Optimization": 77,
+  "Optimization": 76,
   "Surface & Rendering": 50,
   "Compression & Streaming": 43,
   "Acceleration": 11,
@@ -36,18 +36,18 @@
   "Language & Semantic": 37,
   "Generation": 27,
   "Autonomous Driving": 33,
-  "Dynamic & 4D": 75,
+  "Dynamic & 4D": 97,
   "HDR & Relighting": 27,
   "SLAM": 40,
   "Sparse-View": 21,
   "World Models & Spatial Intelligence": 8,
   "Human & Avatar": 43,
-  "Editing": 48,
-  "CAD & Reverse Engineering": 21,
+  "Editing": 47,
+  "CAD & Reverse Engineering": 20,
   "Cross-Domain": 47,
   "Simulation": 11,
   "Embodied AI & Robotics": 30,
   "Robustness": 11,
-  "Security": 14
+  "Security": 13
  }
 }

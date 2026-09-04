@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
@@ -119,7 +119,7 @@ tailwind.config = {
     </h1>
     <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
       Awesome Gaussian Skills — 3D空间智能开源工具箱，从知识层到全链路融合框架：<br>
-      789+ 方法知识库 × 10 开源项目 = 生成→编辑→交互→仿真→部署 闭环
+      819+ 方法知识库 × 10 开源项目 = 生成→编辑→交互→仿真→部署 闭环
     </p>
     <div class="flex flex-wrap justify-center gap-3 text-xs">
       <span class="px-3 py-1.5 rounded-lg bg-pink-500/10 text-pink-300 border border-pink-500/20">生成 Generation</span>
@@ -273,7 +273,7 @@ const PROJECTS = [
     tags: ["Text→3DGS", "World Model", "Tencent"],
     skill: "3dgs-world-generator",
     desc: "腾讯开源的3D世界生成模型。唯一同时输出3DGS+Mesh+点云的开源世界模型——一句话生成可漫游3DGS场景。",
-    fusion: `当前789+方法都是"照片→3DGS"，缺"文本→3DGS"。融合后：用户说"赛博朋克城市街道"→ Skill调HunyuanWorld API → 3DGS场景 → SuperSplat编辑 → 社区分享。与Tripo/Meshy API对接形成"文本→3DGS→编辑→部署"全链路。`,
+    fusion: `当前819+方法都是"照片→3DGS"，缺"文本→3DGS"。融合后：用户说"赛博朋克城市街道"→ Skill调HunyuanWorld API → 3DGS场景 → SuperSplat编辑 → 社区分享。与Tripo/Meshy API对接形成"文本→3DGS→编辑→部署"全链路。`,
     kbRef: "前馈式3DGS、4DGS动态生成方向"
   },
   {
@@ -432,8 +432,8 @@ const LAYERS = [
 ];
 
 const ROADMAP = [
-  { phase:"v0.3", title:"Spatial Agent + Standard Alignment", color:"teal", items:["3dgs-spatial-agent Skill: Agent驱动的3DGS/CAD/Mesh空间智能", "3dgs-mcp-renderer Skill: MCP协议+Three.js/3DGS渲染桥接", "Skills标准对齐（Anthropic Claude Code / OpenClaw兼容）", "v0.2.14: 789+方法, 82+ bug模式, 25类别"], status:"active" },
-    { phase:"v0.3b", title:"Generation + Training Layer", color:"pink", items:["3dgs-world-generator Skill: HunyuanWorld API封装，Text→3DGS", "3dgs-train-anywhere Skill: Brush CLI封装，去CUDA训练", "Skill自动推荐最优训练方法（基于789+方法知识库）"], status:"planned" },
+  { phase:"v0.3", title:"Spatial Agent + Standard Alignment", color:"teal", items:["3dgs-spatial-agent Skill: Agent驱动的3DGS/CAD/Mesh空间智能", "3dgs-mcp-renderer Skill: MCP协议+Three.js/3DGS渲染桥接", "Skills标准对齐（Anthropic Claude Code / OpenClaw兼容）", "v0.2.14: 819+方法, 82+ bug模式, 23类别"], status:"active" },
+    { phase:"v0.3b", title:"Generation + Training Layer", color:"pink", items:["3dgs-world-generator Skill: HunyuanWorld API封装，Text→3DGS", "3dgs-train-anywhere Skill: Brush CLI封装，去CUDA训练", "Skill自动推荐最优训练方法（基于819+方法知识库）"], status:"planned" },
   { phase:"v0.4", title:"Editing Layer", color:"blue", items:["3dgs-splat-editor Skill: SuperSplat API自动化剪裁/压缩/发布", "cad-mesh-3dgs扩展: Chili3D+3DGS双模工作流", "train→auto-clean→compress→share 闭环验证"], status:"planned" },
   { phase:"v0.5", title:"Interaction Layer", color:"green", items:["3dgs-game-prototyper Skill: Bevy+3DGS交互原型生成", "碰撞体/Trigger Zone自动提取", "自然语言→Rust游戏代码生成"], status:"planned" },
   { phase:"v0.6", title:"Simulation Layer", color:"purple", items:["3dgs-embodied-sim Skill: ManiSkill+OpenLoong融合", "3DGS表面→碰撞Mesh自动转换", "Real2Sim2Real闭环验证（工业场景）"], status:"planned" },

@@ -61,7 +61,7 @@
           <span>{{ t('dashboard.methodsDb') }}</span>
         </div>
         <div class="card-body">
-          <span class="badge badge-blue">789+</span>
+          <span class="badge badge-blue">819+</span>
           <p class="card-desc">{{ t('dashboard.methodsDesc') }}</p>
         </div>
         <div class="card-footer">

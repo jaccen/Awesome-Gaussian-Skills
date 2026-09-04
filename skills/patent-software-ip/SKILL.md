@@ -15,6 +15,7 @@ metadata:
     - "Auto-detect AI domain and select claim template"
     - "Self-check patent specification completeness"
     - "专利撰写 / 软件著作权 / AI知识产权 / 脱敏处理 / 现有技术检索"
+
 ---
 
 # Patent & Software Copyright Generation (AI + Big Data)
@@ -232,9 +233,12 @@ Deep-dive reference files for domain-specific patent writing rules, claim templa
 
 | File | Sections | Key Content |
 |------|----------|-------------|
-| references/ai-patent-claims-guide.md | 11 claim templates (T1-T14) | Full legal claim text per template: method/system/medium triples with dependent claims; Big Data T10-T14 included |
-| references/ai-patent-special.md | Patentability framework, 8 risk domains, CPC codes, desensitization rules | AI+Big Data patentability risk assessment; domain mapping; figure requirements; industry desensitization; CPC classification (7.1-7.7); 9-domain quick reference |
-| references/ai-software-copyright-guide.md | Type detection, source file priority, 5 domain templates, FAQ | Decision tree for 10+ project types; source code priority by domain; Big Data dedicated template (section 3.5); desensitization checklist; common pitfalls |
+| 
+references/ai-patent-claims-guide.md | 11 claim templates (T1-T14) | Full legal claim text per template: method/system/medium triples with dependent claims; Big Data T10-T14 included |
+| 
+references/ai-patent-special.md | Patentability framework, 8 risk domains, CPC codes, desensitization rules | AI+Big Data patentability risk assessment; domain mapping; figure requirements; industry desensitization; CPC classification (7.1-7.7); 9-domain quick reference |
+| 
+references/ai-software-copyright-guide.md | Type detection, source file priority, 5 domain templates, FAQ | Decision tree for 10+ project types; source code priority by domain; Big Data dedicated template (section 3.5); desensitization checklist; common pitfalls |
 ## 3DGS Patentable Innovation Examples (CVPR 2026)
 
 | Innovation | Method | Patentable Aspect | Claim Template |
@@ -248,7 +252,7 @@ CVPR 2026 accepted 116 3DGS-related papers, creating a surge of patentable innov
 3. Articulated 3DGS methods generate IP around interaction primitives and joint representations
 4. File early -- the dense publication cohort means similar innovations may appear concurrently
 
-Knowledge base: 789+ methods across 25 categories (updated for v0.3.3 cycle).
+Knowledge base: 819+ methods across 23 categories (updated for v0.8.3 cycle).
 
 ## Phase D: Iterative Correction
 
