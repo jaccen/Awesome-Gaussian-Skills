@@ -2557,25 +2557,31 @@ const METHOD_DETAILS = {
 };
 
 
-const ABSTRACTS = {};
-// Lazy-load abstracts on demand
+var ABSTRACTS = {};
 let _abstractsLoaded = false;
 let _abstractsPromise = null;
 function loadAbstracts() {
   if (_abstractsLoaded) return Promise.resolve(ABSTRACTS);
   if (_abstractsPromise) return _abstractsPromise;
-  _abstractsPromise = fetch('abstracts.js')
-    .then(r => r.text())
-    .then(text => {
-      const start = text.indexOf('{');
-      const end = text.lastIndexOf('}');
-      const obj = text.substring(start, end + 1);
-      const parsed = new Function('return ' + obj)();
-      Object.assign(ABSTRACTS, parsed);
+  _abstractsPromise = new Promise((resolve) => {
+    var s = document.createElement('script');
+    s.src = 'abstracts.js';
+    s.onload = function() {
+      try {
+        if (typeof _ABSTRACTS_DATA !== 'undefined') {
+          Object.assign(ABSTRACTS, _ABSTRACTS_DATA);
+        }
+      } catch(e) { console.warn('Abstracts merge error:', e); }
       _abstractsLoaded = true;
-      return ABSTRACTS;
-    })
-    .catch(err => { console.warn('Failed to load abstracts:', err); return ABSTRACTS; });
+      resolve(ABSTRACTS);
+    };
+    s.onerror = function() {
+      console.warn('Failed to load abstracts.js');
+      _abstractsLoaded = true;
+      resolve(ABSTRACTS);
+    };
+    document.head.appendChild(s);
+  });
   return _abstractsPromise;
 }
 // Auto-load after page renders (non-blocking)

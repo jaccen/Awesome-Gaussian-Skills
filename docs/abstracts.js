@@ -1,4 +1,4 @@
-const ABSTRACTS = {
+var _ABSTRACTS_DATA = {
   "3D Representation Survey": { abstractEn: "", abstractCn: "" },
   "3DGEER": { abstractEn: "3DGEER addresses the rendering inaccuracy caused by the splatting approximation in standard 3D Gaussian Splatting, particularly for fisheye and generic camera models. It replaces the point-based rasterization with exact ray-Gaussian integration, computing the analytical intersection between camera rays and Gaussian ellipsoids. This formulation naturally supports non-pinhole camera projections without requiring specialized splatting adaptations. Experiments demonstrate superior rendering quality on fisheye camera datasets compared to standard 3DGS and its camera-adapted variants.", abstractCn: "3DGEER解决了标准3D高斯溅射中基于点溅射近似导致的渲染不精确问题，尤其针对鱼眼和通用相机模型。它用精确的光线-高斯解析积分替代了基于点的光栅化，计算相机光线与高斯椭球体之间的解析交集。该公式天然支持非针孔相机投影，无需专门的光溅射适配。实验表明，在鱼眼相机数据集上，其渲染质量显著优于标准3DGS及其相机适配变体。" },
   "3DSGS": { abstractEn: "", abstractCn: "" },
