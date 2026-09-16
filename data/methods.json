@@ -1,46 +1,34 @@
 {
-  "generated_at": "2026-09-16",
+  "generated_at": "2026-09-16T11:04:38Z",
   "generator": "scripts/build_knowledge_base.py",
-  "count": 858,
+  "count": 678,
   "category_count": 23,
-  "categories": {
-    "Foundation": 40,
-    "Optimization": 76,
-    "Surface & Rendering": 50,
-    "Compression & Streaming": 43,
-    "Acceleration": 11,
-    "Large-Scale": 20,
-    "Feed-Forward": 67,
-    "Language & Semantic": 37,
-    "Generation": 27,
-    "Autonomous Driving": 33,
-    "Dynamic & 4D": 97,
-    "HDR & Relighting": 27,
-    "SLAM": 40,
-    "Sparse-View": 21,
-    "World Models & Spatial Intelligence": 8,
-    "Human & Avatar": 43,
-    "Editing": 47,
-    "CAD & Reverse Engineering": 20,
-    "Cross-Domain": 47,
-    "Simulation": 11,
-    "Embodied AI & Robotics": 30,
-    "Robustness": 11,
-    "Security": 13
-  },
+  "categories": [
+    "Acceleration",
+    "Autonomous Driving",
+    "CAD & Reverse Engineering",
+    "Compression & Streaming",
+    "Cross-Domain",
+    "Dynamic & 4D",
+    "Editing",
+    "Embodied AI & Robotics",
+    "Feed-Forward",
+    "Foundation",
+    "Generation",
+    "HDR & Relighting",
+    "Human & Avatar",
+    "Language & Semantic",
+    "Large-Scale",
+    "Optimization",
+    "Robustness",
+    "SLAM",
+    "Security",
+    "Simulation",
+    "Sparse-View",
+    "Surface & Rendering",
+    "World Models & Spatial Intelligence"
+  ],
   "methods": [
-    {
-      "name": "3D Representation Survey",
-      "arxiv_id": "2606.04871",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Foundation",
-      "desc": "Recent advances in learning-based 3D representations; paradigm shift from explicit to implicit/splatting",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
     {
       "name": "3DGEER",
       "arxiv_id": "",
@@ -143,18 +131,6 @@
       ]
     },
     {
-      "name": "Neural 3D Mesh Texturing Survey",
-      "arxiv_id": "2606.00137",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Foundation",
-      "desc": "Comprehensive survey on neural 3D mesh texturing (synthesis/transfer/completion); GAN to diffusion",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "PRISM3D",
       "arxiv_id": "",
       "venue": "arXiv",
@@ -245,7 +221,7 @@
     },
     {
       "name": "GaussRender",
-      "arxiv_id": "2503.07476",
+      "arxiv_id": "2502.05040",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Foundation",
@@ -257,73 +233,8 @@
       ]
     },
     {
-      "name": "OGS",
-      "arxiv_id": "2503.12886",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Foundation",
-      "desc": "Omnidirectional GS: spherical harmonics-free panoramic 3DGS for 360 capture",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Medical",
-      "arxiv_id": "2505.05474",
-      "venue": "arXiv 2025",
-      "year": 2025,
-      "category": "Foundation",
-      "desc": "Survey on 3DGS for medical imaging: CT/MRI/ultrasound reconstruction/surgical navigation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Physics",
-      "arxiv_id": "2508.09977",
-      "venue": "arXiv 2025",
-      "year": 2025,
-      "category": "Foundation",
-      "desc": "Survey on physics-integrated Gaussian Splatting: fluid/solid/cloth simulation + differentiable rendering",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-SLAM",
-      "arxiv_id": "2502.19457",
-      "venue": "arXiv 2025",
-      "year": 2025,
-      "category": "Foundation",
-      "desc": "Survey on Gaussian Splatting-based SLAM: tracking/mapping/dynamic handling/loop closure",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Surface",
-      "arxiv_id": "2503.08166",
-      "venue": "arXiv 2025",
-      "year": 2025,
-      "category": "Foundation",
-      "desc": "Survey on surface reconstruction from Gaussian Splatting: regularization/TSDF/SDF fusion methods",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "UniGS",
-      "arxiv_id": "2406.02720",
+      "arxiv_id": "2510.12174",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Foundation",
@@ -336,7 +247,7 @@
     },
     {
       "name": "6DGS",
-      "arxiv_id": "2404.13679",
+      "arxiv_id": "2410.04974",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Foundation",
@@ -420,110 +331,6 @@
       "category": "Foundation",
       "desc": "Spherical projection + panoramic camera GS rasterization adaptation for 360-degree images",
       "code_url": "https://github.com/esw0116/ODGS",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-4D",
-      "arxiv_id": "2407.09510",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Survey on 4D Gaussian Splatting for dynamic scenes: deformation/propagation/temporal coherence",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Compress",
-      "arxiv_id": "2405.03417",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Comprehensive survey on 3DGS compression: pruning/quantization/entropy coding/neural codecs",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Gen",
-      "arxiv_id": "2412.06257",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Survey on 3DGS-based generation: text-to-3D/image-to-3D/3D editing pipelines",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-NeRF",
-      "arxiv_id": "2402.07181",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Comparative survey of 3DGS vs NeRF covering quality/speed/memory trade-offs",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Render",
-      "arxiv_id": "2410.12262",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Survey on rendering formulations for Gaussian Splatting: alpha-compositing/OIT/ray-tracing alternatives",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Seg",
-      "arxiv_id": "2403.11134",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Survey on 3D segmentation within Gaussian Splatting: methods/datasets/metrics/taxonomy",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-Urban",
-      "arxiv_id": "2407.17418",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "Survey on 3DGS for urban scenes: autonomous driving/street view/city-scale reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Survey-GS-ZJU",
-      "arxiv_id": "2401.03890",
-      "venue": "arXiv 2024",
-      "year": 2024,
-      "category": "Foundation",
-      "desc": "First comprehensive survey on 3D Gaussian Splatting covering representation/rendering/optimization/applications",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -710,18 +517,6 @@
       ]
     },
     {
-      "name": "EulerianGS",
-      "arxiv_id": "2605.29136",
-      "venue": "CVPR",
-      "year": 2026,
-      "category": "Optimization",
-      "desc": "Replaces heuristic ADC densification with gradient-based optimization of volumetric probability density via hashed probability pyramids",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "Faster-GS",
       "arxiv_id": "",
       "venue": "CVPR 2026",
@@ -876,18 +671,6 @@
       ]
     },
     {
-      "name": "Point Cloud Upsampling for 3DGS",
-      "arxiv_id": "2606.00450",
-      "venue": "JCVIS",
-      "year": 2026,
-      "category": "Optimization",
-      "desc": "Systematic evaluation of point cloud upsampling methods + depth-guided point lifting for 3DGS",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "Proxy-GS",
       "arxiv_id": "",
       "venue": "CVPR 2026",
@@ -1003,99 +786,8 @@
       ]
     },
     {
-      "name": "3DGS squared",
-      "arxiv_id": "2501.13975",
-      "venue": "arXiv 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "3D Gaussian Splatting (3DGS) has emerged as a mainstream solution for novel view synthesis and 3D reconstruction. By explicitly encoding a 3D scene using a collection of Gaussian kernels, 3DGS achi...",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "AnchorGS",
-      "arxiv_id": "2503.04314",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Anchor-based GS with learnable anchor positioning replacing random initialization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "DensifyGS",
-      "arxiv_id": "2503.05082",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Adaptive densification strategy with error-driven Gaussian splitting scheduling",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "DGD-v2",
-      "arxiv_id": "2412.03844",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Dense Gaussian distillation with multi-scale feature alignment for enhanced quality",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "EGS",
-      "arxiv_id": "2503.14198",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Efficient GS optimization with gradient-informed densification and pruning",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "EventGS",
-      "arxiv_id": "2503.19976",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Event camera-integrated GS for high-speed HDR scene reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussCalib",
-      "arxiv_id": "2504.09491",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Joint camera calibration and GS optimization for posed/unposed images",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GaussHDR",
-      "arxiv_id": "2503.18421",
+      "arxiv_id": "2503.10143",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Optimization",
@@ -1107,103 +799,12 @@
       ]
     },
     {
-      "name": "GaussianPrior",
-      "arxiv_id": "2504.01957",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Gaussian prior transfer from pre-trained models for few-shot GS training",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GausSR",
-      "arxiv_id": "2503.08224",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Super-resolution guided GS with diffusion prior for high-frequency detail recovery",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Aug",
-      "arxiv_id": "2503.03115",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Gaussian augmentation: synthesizing multi-view training data for GS regularization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GS-Blur",
-      "arxiv_id": "2408.15708",
+      "arxiv_id": "2410.23658",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Optimization",
       "desc": "Motion blur-aware GS training with blur kernel estimation for sharp reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Fed",
-      "arxiv_id": "2504.09097",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Federated GS training across multiple clients for privacy-preserving reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-HDA",
-      "arxiv_id": "2406.04251",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Hessian-driven acceleration for 3DGS training with second-order optimization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Uncertainty",
-      "arxiv_id": "2503.21816",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Uncertainty-aware GS training with Bayesian Gaussian parameter estimation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Wild-v2",
-      "arxiv_id": "2503.18402",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Enhanced unconstrained GS with illumination decomposition and transient handling",
       "code_url": "",
       "sources": [
         "csv",
@@ -1217,45 +818,6 @@
       "year": 2025,
       "category": "Optimization",
       "desc": "Spatiotemporal underwater degradation modeling",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "NoiseGS",
-      "arxiv_id": "2503.18682",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Noise-resilient GS training with uncertainty-guided loss weighting",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "PruneGS",
-      "arxiv_id": "2503.05484",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Optimization",
-      "desc": "Importance-aware pruning for GS with gradient-based contribution scoring",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "3DGS as MCMC",
-      "arxiv_id": "2404.09591",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Density control as MCMC sampling moves",
       "code_url": "",
       "sources": [
         "csv",
@@ -1289,47 +851,8 @@
       ]
     },
     {
-      "name": "EffectiveRank-GS",
-      "arxiv_id": "2406.11672",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Effective rank analysis and regularization preventing Gaussian degeneracy",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "EG3DGS",
-      "arxiv_id": "2312.04820",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Edge-guided Gaussian splitting replacing heuristic clone/split with edge-aware densification",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "EMGS",
-      "arxiv_id": "2403.12550",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Expectation-Maximization framework for GS density control replacing heuristic clone/split/prune",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "Ev-GS",
-      "arxiv_id": "2312.07920",
+      "arxiv_id": "2407.11343",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Optimization",
@@ -1341,38 +864,12 @@
       ]
     },
     {
-      "name": "GaussianDark",
-      "arxiv_id": "2406.08300",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Noise-aware 3DGS training + low-light robust rendering for in-the-dark reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GaussianPretrain",
-      "arxiv_id": "2404.07991",
+      "arxiv_id": "2411.12452",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Optimization",
       "desc": "Self-supervised pre-training for Gaussian initialization from multi-view features",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianSea",
-      "arxiv_id": "2404.06270",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Underwater GS with depth-dependent color correction and scattering compensation",
       "code_url": "",
       "sources": [
         "csv",
@@ -1393,51 +890,12 @@
       ]
     },
     {
-      "name": "GeCGS",
-      "arxiv_id": "2403.13327",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Geometry-consistent GS: cross-view geometric consistency regularization preventing floaters",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GeoAugmentGS",
-      "arxiv_id": "2311.16037",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Geometry-aware data augmentation for 3DGS: depth-consistent view synthesis for regularization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GS-PT",
       "arxiv_id": "2409.04963",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Optimization",
       "desc": "Gaussian Splatting pre-training: self-supervised representation learning for Gaussian initialization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Wild",
-      "arxiv_id": "2403.15704",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Per-Gaussian intrinsic/appearance feature separation + adaptive sampling for unconstrained photo GS",
       "code_url": "",
       "sources": [
         "csv",
@@ -1458,51 +916,12 @@
       ]
     },
     {
-      "name": "PUP-3DGS",
-      "arxiv_id": "2403.12957",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Prune-and-ultra-split: progressive pruning + targeted upsampling for efficient density control",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SplatFields",
       "arxiv_id": "2409.11211",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Optimization",
       "desc": "Implicit neural field regularization on splat features for sparse-view 3D/4D reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SuperSplat",
-      "arxiv_id": "2409.16504",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Super-resolution guided Gaussian densification for detail enhancement in sparse-view settings",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SwagGS",
-      "arxiv_id": "2401.02436",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Optimization",
-      "desc": "Splatting with adaptive Gaussians: adaptive covariance optimization replacing hand-tuned schedules",
       "code_url": "",
       "sources": [
         "csv",
@@ -1563,7 +982,7 @@
     },
     {
       "name": "CLEAR-NeRF",
-      "arxiv_id": "2605.28394",
+      "arxiv_id": "2605.28125",
       "venue": "arXiv",
       "year": 2026,
       "category": "Surface & Rendering",
@@ -1580,18 +999,6 @@
       "year": 2026,
       "category": "Surface & Rendering",
       "desc": "3D shape completion with DINOv2-distilled semantic priors + state space model",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
-      "name": "Dual Contouring of SDF",
-      "arxiv_id": "2604.00157",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Surface & Rendering",
-      "desc": "Quadratic optimization for optimal vertex placement in dual contouring from discretely sampled SDF",
       "code_url": "",
       "sources": [
         "explorer"
@@ -1636,19 +1043,6 @@
       ]
     },
     {
-      "name": "HiFi-SurfSplat",
-      "arxiv_id": "2605.07254",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Surface & Rendering",
-      "desc": "Multi-view mesh reconstruction remains a core challenge in computer graphics and vision, especially for recovering high-frequency geometry from sparse observations. Recent methods such as 3D Gaussi...",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "HoloTetSphere",
       "arxiv_id": "2607.08398",
       "venue": "ECCV 2026",
@@ -1658,18 +1052,6 @@
       "code_url": "",
       "sources": [
         "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "HSP",
-      "arxiv_id": "2606.04891",
-      "venue": "3DV",
-      "year": 2026,
-      "category": "Surface & Rendering",
-      "desc": "Hierarchical Space Partition for surface reconstruction; priority-based plane assembling + min-cut",
-      "code_url": "",
-      "sources": [
         "explorer"
       ]
     },
@@ -1878,32 +1260,6 @@
       ]
     },
     {
-      "name": "GaussianOpacityFields",
-      "arxiv_id": "2401.15318",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Surface & Rendering",
-      "desc": "Opacity field formulation enabling direct mesh extraction from GS without post-processing",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussMesh",
-      "arxiv_id": "2412.14963",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Surface & Rendering",
-      "desc": "Hybrid GS-Mesh representation with mutual supervision for surface reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GS-Manifold",
       "arxiv_id": "",
       "venue": "CVPR 2025",
@@ -1930,45 +1286,6 @@
       ]
     },
     {
-      "name": "SplatNeRF",
-      "arxiv_id": "2503.19458",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Surface & Rendering",
-      "desc": "GS-NeRF hybrid combining explicit splatting with implicit neural fields",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianShell",
-      "arxiv_id": "2403.15530",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Surface & Rendering",
-      "desc": "Shell-structured Gaussians constrained on surface manifold for geometrically faithful reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianShell-CVPR",
-      "arxiv_id": "2403.06912",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Surface & Rendering",
-      "desc": "Gaussian shells: surface-constrained Gaussians with shell-based opacity formulation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GOF",
       "arxiv_id": "2312.13299",
       "venue": "ECCV 2024",
@@ -1983,7 +1300,7 @@
     },
     {
       "name": "GS2Mesh",
-      "arxiv_id": "2403.05087",
+      "arxiv_id": "2404.01810",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2009,7 +1326,7 @@
     },
     {
       "name": "GSurf",
-      "arxiv_id": "2404.16510",
+      "arxiv_id": "2411.15723",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2035,7 +1352,7 @@
     },
     {
       "name": "NegGS",
-      "arxiv_id": "2405.14786",
+      "arxiv_id": "2405.18163",
       "venue": "arXiv",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2048,7 +1365,7 @@
     },
     {
       "name": "NeuSG",
-      "arxiv_id": "2311.13398",
+      "arxiv_id": "2312.00846",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2073,21 +1390,8 @@
       ]
     },
     {
-      "name": "RelaxingAccurate",
-      "arxiv_id": "2311.14521",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Surface & Rendering",
-      "desc": "Accurate mesh extraction from GS via relaxed surface constraints and multi-resolution TSDF",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SAGS",
-      "arxiv_id": "2403.16292",
+      "arxiv_id": "2510.27318",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2099,21 +1403,8 @@
       ]
     },
     {
-      "name": "ShapeGS",
-      "arxiv_id": "2311.12198",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Surface & Rendering",
-      "desc": "Shape prior-guided Gaussian Splatting for geometrically accurate surface reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SuGaR",
-      "arxiv_id": "2312.13253",
+      "arxiv_id": "2311.12775",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2126,7 +1417,7 @@
     },
     {
       "name": "SuperGS",
-      "arxiv_id": "2311.16099",
+      "arxiv_id": "2410.02571",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Surface & Rendering",
@@ -2408,7 +1699,7 @@
     },
     {
       "name": "CompGS",
-      "arxiv_id": "2411.06019",
+      "arxiv_id": "2311.18159",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Compression & Streaming",
@@ -2420,129 +1711,12 @@
       ]
     },
     {
-      "name": "GaussianCodec",
-      "arxiv_id": "2411.14716",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Learned Gaussian codec with entropy-constrained quantization for rate-distortion optimization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Stream",
-      "arxiv_id": "2411.14974",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Progressive Gaussian streaming for bandwidth-adaptive 3DGS delivery",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GSQ",
-      "arxiv_id": "2411.17190",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Gaussian Splatting Quantization with learned step size + group-wise quantization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "HGS",
-      "arxiv_id": "2411.12089",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Hierarchical GS progressive streaming with level-of-detail Gaussian structuring",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "HybridGS",
-      "arxiv_id": "2411.11921",
+      "arxiv_id": "2505.01938",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Compression & Streaming",
       "desc": "Hybrid GS compression combining explicit pruning + implicit neural coding",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SOG-GS",
-      "arxiv_id": "2411.16443",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Structured-omni-group GS: channel-grouped quantization preserving inter-Gaussian correlations",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SpqGS",
-      "arxiv_id": "2411.16816",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Scalable parallel quantization for GS with hardware-friendly bit allocation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SpreG",
-      "arxiv_id": "2411.10504",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Separable Gaussian representation factorizing covariance for efficient storage",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "VQGS",
-      "arxiv_id": "2411.17067",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Vector-quantized GS with residual codebook learning for high-ratio compression",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "ZipGS",
-      "arxiv_id": "2411.16785",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Compression & Streaming",
-      "desc": "Zip-format GS compression using pruning+quantization+volumetric entropy coding",
       "code_url": "",
       "sources": [
         "csv",
@@ -2556,19 +1730,6 @@
       "year": 2024,
       "category": "Compression & Streaming",
       "desc": "Vector quantization + pruning, ~10-15x compression",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "CompactGS",
-      "arxiv_id": "2404.04908",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Compression & Streaming",
-      "desc": "Vector quantization + learned codebook for compact Gaussian attribute storage",
       "code_url": "",
       "sources": [
         "csv",
@@ -2608,19 +1769,6 @@
       "year": 2024,
       "category": "Compression & Streaming",
       "desc": "Neural architecture search, ~10x compression",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "FAD-GS",
-      "arxiv_id": "2404.10625",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Compression & Streaming",
-      "desc": "Frequency-aware decomposition for GS compression: separating low/high frequency Gaussians",
       "code_url": "",
       "sources": [
         "csv",
@@ -2706,31 +1854,6 @@
       ]
     },
     {
-      "name": "Sp2403GS",
-      "arxiv_id": "2312.09147",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Compression & Streaming",
-      "desc": "Sparse GS representation with importance-based pruning + codebook quantization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "3DGS\\u00B3",
-      "arxiv_id": "",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Acceleration",
-      "desc": "Joint super sampling and frame interpolation for real-time large-scale 3DGS",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "Axis-Shared Rasterization Accelerator",
       "arxiv_id": "",
       "venue": "arXiv",
@@ -2777,18 +1900,6 @@
       "code_url": "",
       "sources": [
         "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "IPU-GS",
-      "arxiv_id": "2607.15951",
-      "venue": "arXiv 2026",
-      "year": 2026,
-      "category": "Acceleration",
-      "desc": "First 3DGS renderer on Intelligence Processing Unit (IPU); 1472-tile on-chip SRAM architecture for sensor-processor near-data rendering; demonstrates edge inference without GPU",
-      "code_url": "",
-      "sources": [
         "explorer"
       ]
     },
@@ -2955,60 +2066,8 @@
       ]
     },
     {
-      "name": "CityGS-v2",
-      "arxiv_id": "2503.10437",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Large-Scale",
-      "desc": "Second-generation city-scale GS with block-wise training and seamless merging",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianCity",
-      "arxiv_id": "2502.11801",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Large-Scale",
-      "desc": "City-scale GS with progressive training and semantic-guided densification",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "LRG",
-      "arxiv_id": "2504.00387",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Large-Scale",
-      "desc": "Locally-reconstructible GS for scalable large scene rendering",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Scaffold-v3",
-      "arxiv_id": "2503.06900",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Large-Scale",
-      "desc": "Third-generation Scaffold-GS with neural anchor decoding",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "CityGaussian",
-      "arxiv_id": "2401.02379",
+      "arxiv_id": "2404.01133",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Large-Scale",
@@ -3027,19 +2086,6 @@
       "category": "Large-Scale",
       "desc": "Distributed GS with communication-efficient Gaussian consensus for large-scale reconstruction",
       "code_url": "https://github.com/AIBluefisher/DOGS",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "MegaGaussian",
-      "arxiv_id": "2404.14410",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Large-Scale",
-      "desc": "Mega-scale GS training with progressive data loading and chunk-based optimization",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -3099,7 +2145,7 @@
     },
     {
       "name": "Scaffold-GS",
-      "arxiv_id": "2312.13209",
+      "arxiv_id": "2312.00109",
       "venue": "ICCV 2023",
       "year": 2023,
       "category": "Large-Scale",
@@ -3567,20 +2613,6 @@
       ]
     },
     {
-      "name": "VG²GT",
-      "arxiv_id": "2606.01573",
-      "venue": "arXiv 2026",
-      "year": 2026,
-      "category": "Feed-Forward",
-      "desc": "Voxel-Gaussian Visual Geometry Grounded Transformer; frozen VFM + multi-scale differentiable voxel module + stochastic solid volume rendering for depth supervision; outperforms SOTA on DTU/Replica/TAT/ScanNet",
-      "code_url": "",
-      "sources": [
-        "alias:VG2GT",
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "WildSplat",
       "arxiv_id": "",
       "venue": "arXiv",
@@ -3669,12 +2701,12 @@
       ]
     },
     {
-      "name": "GeoSplat",
+      "name": "OmniSplat",
       "arxiv_id": "2412.16604",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Feed-Forward",
-      "desc": "Geometry-aware feed-forward GS with cross-view feature matching",
+      "desc": "Taming feed-forward 3D Gaussian Splatting for omni-view novel view synthesis with cross-view feature matching",
       "code_url": "",
       "sources": [
         "csv",
@@ -3719,7 +2751,7 @@
     },
     {
       "name": "SplatFormer",
-      "arxiv_id": "2412.20522",
+      "arxiv_id": "2411.06390",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Feed-Forward",
@@ -3794,19 +2826,6 @@
       ]
     },
     {
-      "name": "EpiSplat",
-      "arxiv_id": "2403.09434",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Feed-Forward",
-      "desc": "Epipolar-aware cross-attention for feed-forward GS, encoding multi-view geometry priors",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "FreeSplat",
       "arxiv_id": "2405.17958",
       "venue": "NeurIPS 2024",
@@ -3840,19 +2859,6 @@
       "category": "Feed-Forward",
       "desc": "Gaussian Graph Network modeling inter-Gaussian relationships with graph neural networks",
       "code_url": "https://github.com/shengjun-zhang/GGN",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GPSGaussian",
-      "arxiv_id": "2312.00112",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Feed-Forward",
-      "desc": "Generalizable pixel-aligned stereo GS for real-time novel view synthesis from stereo pairs",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -3945,19 +2951,6 @@
       "code_url": "https://github.com/btsmart/splatt3r",
       "sources": [
         "frontier-verified-2026-08"
-      ]
-    },
-    {
-      "name": "SplatterVideo",
-      "arxiv_id": "2406.13870",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Feed-Forward",
-      "desc": "Video-level feed-forward GS prediction with frame-to-frame consistency",
-      "code_url": "https://github.com/SunYangtian/Splatter_A_Video",
-      "sources": [
-        "csv",
-        "explorer"
       ]
     },
     {
@@ -4290,64 +3283,12 @@
       ]
     },
     {
-      "name": "GaussScene",
-      "arxiv_id": "2412.06273",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Language & Semantic",
-      "desc": "Scene-graph Gaussian Splatting for structured 3D scene understanding",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GS-LLM",
-      "arxiv_id": "2412.06767",
+      "arxiv_id": "2412.09176",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Language & Semantic",
       "desc": "LLM-guided GS for reasoning-driven 3D scene understanding and manipulation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "LEGaussians",
-      "arxiv_id": "2412.03911",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Language & Semantic",
-      "desc": "Language-embedded Gaussians with CLIP-directed per-Gaussian feature alignment",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "LGGS",
-      "arxiv_id": "2409.04196",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Language & Semantic",
-      "desc": "Language-guided GS for zero-shot 3D understanding without per-scene training",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "OpenGaussian-v2",
-      "arxiv_id": "2412.06234",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Language & Semantic",
-      "desc": "Enhanced open-vocabulary GS with hierarchical feature aggregation",
       "code_url": "",
       "sources": [
         "csv",
@@ -4362,32 +3303,6 @@
       "category": "Language & Semantic",
       "desc": "Referring segmentation in 3D Gaussian Splatting with language-guided instance-level features for open-vocabulary 3D understanding",
       "code_url": "https://github.com/heshuting555/ReferSplat",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SemanticGauss",
-      "arxiv_id": "2412.06250",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Language & Semantic",
-      "desc": "Unified semantic Gaussian representation for joint reconstruction and understanding",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "CL-GS",
-      "arxiv_id": "2407.10102",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Language & Semantic",
-      "desc": "Contrastive learning for GS semantic features: CLIP-guided per-Gaussian feature distillation",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -4583,19 +3498,6 @@
       ]
     },
     {
-      "name": "SceneGen-LLMRL",
-      "arxiv_id": "2605.05711",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Generation",
-      "desc": "Unified 3D scene generation + immersive interaction via LLM-RL coupling",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SIC3D",
       "arxiv_id": "2604.08760",
       "venue": "arXiv",
@@ -4634,38 +3536,12 @@
       ]
     },
     {
-      "name": "3DGST",
-      "arxiv_id": "2409.19702",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Generation",
-      "desc": "3D Gaussian Splatting Transformer for feed-forward text-to-3D generation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussDreamer",
+      "name": "HoGS",
       "arxiv_id": "2503.19232",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Generation",
-      "desc": "Enhanced GS-based text-to-3D with progressive generation and SDS refinement",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SplatDM",
-      "arxiv_id": "2502.05176",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Generation",
-      "desc": "Score distillation from diffusion models into Gaussian Splatting for 3D generation",
+      "desc": "Unified near and far object reconstruction via homogeneous Gaussian Splatting",
       "code_url": "",
       "sources": [
         "csv",
@@ -4726,7 +3602,7 @@
     },
     {
       "name": "GaussianDreamer",
-      "arxiv_id": "2312.05941",
+      "arxiv_id": "2310.08529",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Generation",
@@ -4771,19 +3647,6 @@
       "category": "Generation",
       "desc": "Novel tetrahedron primitive replacing Gaussian ellipsoid for 3D generation tasks",
       "code_url": "https://github.com/fudan-zvg/tet-splatting",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "3DGS Safety Evaluation for AD",
-      "arxiv_id": "2605.01995",
-      "venue": "SafeComp 2026",
-      "year": 2026,
-      "category": "Autonomous Driving",
-      "desc": "Industrial-fidelity AD scene reconstruction evaluation",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -4840,20 +3703,6 @@
       ]
     },
     {
-      "name": "DENSR",
-      "arxiv_id": "2606.01419",
-      "venue": "arXiv 2026",
-      "year": 2026,
-      "category": "Autonomous Driving",
-      "desc": "EFA-GS based football NVS: camera-height loss weighting + Depth-Anything-V2 depth supervision + 3-model pixel-average ensemble; SoccerNet NVS Challenge Rank 1",
-      "code_url": "",
-      "sources": [
-        "alias:DENSER",
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "DLWM",
       "arxiv_id": "",
       "venue": "CVPR 2026",
@@ -4880,18 +3729,6 @@
       ]
     },
     {
-      "name": "GP-3DGS",
-      "arxiv_id": "2606.20103",
-      "venue": "ECCV",
-      "year": 2026,
-      "category": "Autonomous Driving",
-      "desc": "Geometry-Preserving 3DGS for LiDAR-Camera extrinsic calibration; blocks photometric gradient drift",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "Ground4D",
       "arxiv_id": "2605.04435",
       "venue": "arXiv",
@@ -4899,19 +3736,6 @@
       "category": "Autonomous Driving",
       "desc": "Spatially-grounded feedforward 4D for off-road reconstruction",
       "code_url": "https://github.com/wsnbws/Ground4D",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Nighttime AD GS",
-      "arxiv_id": "2602.13549",
-      "venue": "ICRA 2026",
-      "year": 2026,
-      "category": "Autonomous Driving",
-      "desc": "PBR + BRDF for nighttime driving scene reconstruction",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -4995,45 +3819,6 @@
       ]
     },
     {
-      "name": "GausCtrl-AD",
-      "arxiv_id": "2503.19913",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "Controllable GS generation for AD simulation with layout conditioning",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussDet3D",
-      "arxiv_id": "2504.00665",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "3D detection from GS with Gaussian-anchored multi-scale features",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianAT",
-      "arxiv_id": "2503.10143",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "Attention-based GS for driving scene with temporal-aware Gaussian aggregation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GaussianLSS",
       "arxiv_id": "",
       "venue": "CVPR 2025",
@@ -5048,7 +3833,7 @@
     },
     {
       "name": "GaussianSSC",
-      "arxiv_id": "2503.17032",
+      "arxiv_id": "2603.21487",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Autonomous Driving",
@@ -5060,103 +3845,12 @@
       ]
     },
     {
-      "name": "GaussOcc",
-      "arxiv_id": "2503.14029",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "GS-based 3D occupancy prediction with Gaussian-anchored dense features",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Drive",
-      "arxiv_id": "2504.17810",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "GS-based closed-loop driving simulation with dynamic agent rendering",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-OD",
-      "arxiv_id": "2503.08135",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "GS-based 3D object detection with Gaussian-anchored feature sampling",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "HGS-Det",
-      "arxiv_id": "2503.12535",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "Hierarchical GS for 3D detection with multi-scale Gaussian features",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Splat-TOD",
-      "arxiv_id": "2503.21442",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "GS-based 3D object detection with sparse Gaussian proposal generation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SplatAD",
-      "arxiv_id": "2503.08352",
+      "arxiv_id": "2411.16816",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Autonomous Driving",
       "desc": "Autonomous driving GS with dynamic object decomposition and sensor simulation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SplatAD-v2",
-      "arxiv_id": "2504.00763",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "Enhanced driving GS with multi-sensor fusion and sim-to-real transfer",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SplatRS",
-      "arxiv_id": "2504.01503",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Autonomous Driving",
-      "desc": "GS-based road surface reconstruction for HD map generation",
       "code_url": "",
       "sources": [
         "csv",
@@ -5178,7 +3872,7 @@
     },
     {
       "name": "GaussianBeV",
-      "arxiv_id": "2403.11056",
+      "arxiv_id": "2407.14108",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Autonomous Driving",
@@ -5316,18 +4010,6 @@
       ]
     },
     {
-      "name": "Dynamic 3DGS Paradigms",
-      "arxiv_id": "2606.00452",
-      "venue": "JCVIS",
-      "year": 2026,
-      "category": "Dynamic & 4D",
-      "desc": "Categorizes dynamic 3DGS into structure-guided vs gaussian-centric; reveals quality/speed trade-off",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "FreeForm",
       "arxiv_id": "2605.29318",
       "venue": "CVPR 2026",
@@ -5430,19 +4112,6 @@
       ]
     },
     {
-      "name": "MoE-GS / MoDE",
-      "arxiv_id": "2607.08250",
-      "venue": "TPAMI 2026",
-      "year": 2026,
-      "category": "Dynamic & 4D",
-      "desc": "Mixture-of-Experts for dynamic GS; MoDE (joint optimization) and MoE-GS (separate routing) for multi-deformation modeling",
-      "code_url": "https://github.com/cvsp-lab/MoDE",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "MORPHOS",
       "arxiv_id": "2606.02491",
       "venue": "arXiv 2026",
@@ -5457,7 +4126,7 @@
     },
     {
       "name": "MotionDreamer",
-      "arxiv_id": "2606.01518",
+      "arxiv_id": "2405.20155",
       "venue": "arXiv 2026",
       "year": 2026,
       "category": "Dynamic & 4D",
@@ -5557,19 +4226,6 @@
       ]
     },
     {
-      "name": "RetroNVS",
-      "arxiv_id": "2605.12437",
-      "venue": "CVPR 2026",
-      "year": 2026,
-      "category": "Dynamic & 4D",
-      "desc": "Retrospective dynamic NVS with SfM-initialized Gaussian propagation benchmark",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "RiGS",
       "arxiv_id": "2605.23672",
       "venue": "arXiv",
@@ -5657,19 +4313,6 @@
       ]
     },
     {
-      "name": "4DGaussians-v2",
-      "arxiv_id": "2411.18197",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Enhanced 4DGS with temporal smoothness regularization and flow-guided deformation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "BARD-GS",
       "arxiv_id": "2503.15835",
       "venue": "CVPR 2025",
@@ -5679,19 +4322,6 @@
       "code_url": "",
       "sources": [
         "survey"
-      ]
-    },
-    {
-      "name": "DynGS",
-      "arxiv_id": "2412.00905",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Dynamic GS with motion decomposition into rigid + non-rigid components",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
       ]
     },
     {
@@ -5707,19 +4337,6 @@
       ]
     },
     {
-      "name": "FlowGS",
-      "arxiv_id": "2412.00578",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Flow-driven Gaussian densification for dynamic regions in 4DGS",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GauFRE",
       "arxiv_id": "2312.11458",
       "venue": "WACV 2025",
@@ -5732,21 +4349,8 @@
       ]
     },
     {
-      "name": "GauSF",
-      "arxiv_id": "2412.02684",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Gaussian Splatting with scene flow for consistent dynamic reconstruction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GaussianFlow",
-      "arxiv_id": "2411.18625",
+      "arxiv_id": "2403.12365",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Dynamic & 4D",
@@ -5780,19 +4384,6 @@
       "code_url": "",
       "sources": [
         "survey"
-      ]
-    },
-    {
-      "name": "GS4D-v2",
-      "arxiv_id": "2503.19443",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Second-generation 4DGS with improved temporal deformation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
       ]
     },
     {
@@ -5832,19 +4423,6 @@
       ]
     },
     {
-      "name": "MoS-GS",
-      "arxiv_id": "2412.01553",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Motion-separable GS: factoring dynamic scenes into moving object layers",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "ReconDreamer++",
       "arxiv_id": "2503.18438",
       "venue": "arXiv 2025",
@@ -5854,19 +4432,6 @@
       "code_url": "",
       "sources": [
         "survey"
-      ]
-    },
-    {
-      "name": "ReGS",
-      "arxiv_id": "2412.03378",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Recursive Gaussian splitting for high-fidelity dynamic scene detail",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
       ]
     },
     {
@@ -5932,24 +4497,11 @@
     },
     {
       "name": "STG",
-      "arxiv_id": "2411.19235",
+      "arxiv_id": "2510.22140",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Dynamic & 4D",
       "desc": "Spatiotemporal Gaussians with decomposed spatial-temporal attention for 4D rendering",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "TransGS",
-      "arxiv_id": "2412.01745",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Dynamic & 4D",
-      "desc": "Transformer-based deformation field for 4DGS with attention-based temporal modeling",
       "code_url": "",
       "sources": [
         "csv",
@@ -5994,31 +4546,6 @@
       ]
     },
     {
-      "name": "4DGS-Wild",
-      "arxiv_id": "2411.08879",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Uncertainty-aware regularization for 4DGS from unconstrained videos",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "CD-GS",
-      "arxiv_id": "2311.12897",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Color-decomposed Gaussian Splatting for dynamic scenes; separates static and dynamic color channels with distinct deformation strategies; evaluated on D-NeRF (PSNR 32.19)",
-      "code_url": "",
-      "sources": [
-        "survey"
-      ]
-    },
-    {
       "name": "CoGS",
       "arxiv_id": "2312.05664",
       "venue": "CVPR 2024",
@@ -6032,7 +4559,7 @@
     },
     {
       "name": "Deformable-3DGS",
-      "arxiv_id": "2311.12775",
+      "arxiv_id": "2309.13101",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Dynamic & 4D",
@@ -6082,51 +4609,12 @@
       ]
     },
     {
-      "name": "Dynamic3DGaussians",
-      "arxiv_id": "2309.13101",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Per-point deformation network for monocular dynamic scene reconstruction with temporal Gaussians",
-      "code_url": "https://github.com/JonathonLuiten/Dynamic3DGaussians",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Dynamic3DGS-Urban",
-      "arxiv_id": "2406.03175",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "MAP4D: static background + dynamic instance decomposition for urban dynamic scenes",
-      "code_url": "https://github.com/tobiasfshr/map4d",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "DynMF",
-      "arxiv_id": "2311.16096",
+      "arxiv_id": "2312.00112",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Dynamic & 4D",
       "desc": "Dynamic neural motion fields decomposing scene motion into compact basis functions for 4D GS",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "FullyExplicitDynGS",
-      "arxiv_id": "2410.15629",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "No-MLP directly parameterized dynamic Gaussian trajectories, fully explicit representation",
       "code_url": "",
       "sources": [
         "csv",
@@ -6210,19 +4698,6 @@
       ]
     },
     {
-      "name": "MD-Splatting",
-      "arxiv_id": "2407.02945",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Multi-dynamic Gaussian Splatting: decomposing monocular video into multiple dynamic object layers",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "MotionGS",
       "arxiv_id": "2410.07707",
       "venue": "NeurIPS 2024",
@@ -6249,18 +4724,6 @@
       ]
     },
     {
-      "name": "PGED",
-      "arxiv_id": "2404.03613",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Progressive deformation-based Gaussian Splatting; coarse-to-fine deformation learning with entropy regularization for dynamic scene reconstruction; evaluated on HyperNeRF and Plenoptic Video",
-      "code_url": "",
-      "sources": [
-        "survey"
-      ]
-    },
-    {
       "name": "Real-time 4DGS",
       "arxiv_id": "2310.10642",
       "venue": "ICLR 2024",
@@ -6274,7 +4737,7 @@
     },
     {
       "name": "SAGD",
-      "arxiv_id": "2407.15070",
+      "arxiv_id": "2401.17857",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Dynamic & 4D",
@@ -6299,19 +4762,6 @@
       ]
     },
     {
-      "name": "SK-GS",
-      "arxiv_id": "2412.05570",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Template-free articulated GS with skeleton auto-discovery + articulated deformation fields",
-      "code_url": "https://github.com/dnvtmf/SK_GS",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SP-GS",
       "arxiv_id": "2406.03697",
       "venue": "ICML 2024",
@@ -6321,32 +4771,6 @@
       "code_url": "",
       "sources": [
         "survey"
-      ]
-    },
-    {
-      "name": "SpacetimeGS",
-      "arxiv_id": "2405.12110",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Spacetime Gaussian representation unifying spatial and temporal dimensions in single primitive",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Splat-MO",
-      "arxiv_id": "2407.04237",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Dynamic & 4D",
-      "desc": "Moving object discovery and reconstruction in 4DGS with motion-based Gaussian grouping",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
       ]
     },
     {
@@ -6461,19 +4885,6 @@
       ]
     },
     {
-      "name": "DiffAdapt4DSI",
-      "arxiv_id": "2605.06214",
-      "venue": "CVPR 2026",
-      "year": 2026,
-      "category": "HDR & Relighting",
-      "desc": "We present a differentiable framework to adaptively compute 4D illumination conditions with respect to an object, for efficient, high-quality simultaneous acquisition of its shape and reflectance, ...",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "F-RNG",
       "arxiv_id": "2605.25975",
       "venue": "arXiv",
@@ -6518,31 +4929,6 @@
       "year": 2026,
       "category": "HDR & Relighting",
       "desc": "Improving Gaussian relighting with scene dynamics",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "MGM (Large Material Gaussian Model)",
-      "arxiv_id": "2509.22112",
-      "venue": "arXiv 2026",
-      "year": 2026,
-      "category": "HDR & Relighting",
-      "desc": "Relightable 3D generation with full PBR materials via multiview material diffusion + Gaussian material representation",
-      "code_url": "",
-      "sources": [
-        "csv"
-      ]
-    },
-    {
-      "name": "Relightable-GS-VP",
-      "arxiv_id": "2605.09024",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "HDR & Relighting",
-      "desc": "Virtual production (VP) use LED walls to provide both background imagery and image-based lighting. While this enables on-set compositing, it couples lighting to background and scene appearance, lim...",
       "code_url": "",
       "sources": [
         "csv",
@@ -6601,77 +4987,12 @@
       ]
     },
     {
-      "name": "BRDF-GS",
-      "arxiv_id": "2503.18794",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "HDR & Relighting",
-      "desc": "BRDF decomposition in GS with deferred rendering for relightable scenes",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-IR-v2",
-      "arxiv_id": "2412.12507",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "HDR & Relighting",
-      "desc": "Enhanced inverse rendering with GS: joint geometry + BRDF + lighting estimation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Skin",
-      "arxiv_id": "2412.15215",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "HDR & Relighting",
-      "desc": "Skin reflectance model in GS for physically accurate human material estimation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "LightGS-v2",
-      "arxiv_id": "2412.15867",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "HDR & Relighting",
-      "desc": "Light-stage GS with spherical harmonics decomposition for full relighting",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "RelightGS",
-      "arxiv_id": "2412.13193",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "HDR & Relighting",
-      "desc": "Relightable GS with environment map conditioning and PBR material decomposition",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianShader-v2",
+      "name": "HumanGaussian",
       "arxiv_id": "2311.17061",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "HDR & Relighting",
-      "desc": "Enhanced shading with environment map estimation for indoor/outdoor relightable GS",
+      "desc": "Text-driven 3D human generation with Gaussian Splatting",
       "code_url": "",
       "sources": [
         "csv",
@@ -6705,21 +5026,8 @@
       ]
     },
     {
-      "name": "GS-Phong",
-      "arxiv_id": "2403.04926",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "HDR & Relighting",
-      "desc": "Phong shading model replacing SH for physically-grounded specular and diffuse decomposition in GS",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GStex",
-      "arxiv_id": "2403.04116",
+      "arxiv_id": "2409.12954",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "HDR & Relighting",
@@ -7099,51 +5407,12 @@
       ]
     },
     {
-      "name": "GausLoc",
-      "arxiv_id": "2504.00219",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "SLAM",
-      "desc": "GS-based hierarchical localization with Gaussian map representation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussFusion",
+      "name": "CoMapGS",
       "arxiv_id": "2503.20998",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "SLAM",
-      "desc": "Gaussian Splatting fusion for multi-session SLAM with submap alignment",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianLoc",
-      "arxiv_id": "2504.06210",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "SLAM",
-      "desc": "GS-based visual localization with dense Gaussian map",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianSLAM-2",
-      "arxiv_id": "2411.19895",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "SLAM",
-      "desc": "Second-generation GS-SLAM with submap fusion and uncertainty-driven keyframing",
+      "desc": "Covisibility map-based Gaussian Splatting for sparse-view novel view synthesis and rendering",
       "code_url": "",
       "sources": [
         "csv",
@@ -7164,34 +5433,8 @@
       ]
     },
     {
-      "name": "SplaTAM-3",
-      "arxiv_id": "2503.16822",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "SLAM",
-      "desc": "Third-generation GS-SLAM with semantic loop closure",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SplaTAM-v2",
-      "arxiv_id": "2411.19654",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "SLAM",
-      "desc": "Enhanced GS-SLAM with online loop closure and global optimization",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SplatLoc",
-      "arxiv_id": "2503.18107",
+      "arxiv_id": "2409.14067",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "SLAM",
@@ -7236,19 +5479,6 @@
       "category": "SLAM",
       "desc": "First real-time monocular 3DGS SLAM",
       "code_url": "https://github.com/muskie82/MonoGS",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-SC",
-      "arxiv_id": "2312.07504",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "SLAM",
-      "desc": "Gaussian Splatting SLAM with semantic consistency for indoor scene understanding",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -7449,19 +5679,6 @@
       ]
     },
     {
-      "name": "FewSplat",
-      "arxiv_id": "2412.21206",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Sparse-View",
-      "desc": "Few-shot GS with diffusion-guided depth completion and feature propagation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "Binocular3DGS",
       "arxiv_id": "2410.18822",
       "venue": "NeurIPS 2024",
@@ -7476,24 +5693,11 @@
     },
     {
       "name": "CoR-GS",
-      "arxiv_id": "2401.00834",
+      "arxiv_id": "2405.12110",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Sparse-View",
       "desc": "Co-regularization of two randomly initialized GS fields: co-pruning + pseudo-view augmentation for sparse views",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "CoR-GS-CVPR",
-      "arxiv_id": "2402.10128",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Sparse-View",
-      "desc": "Consistency regularization for sparse-view GS with depth-conditional diffusion priors",
       "code_url": "",
       "sources": [
         "csv",
@@ -7528,7 +5732,7 @@
     },
     {
       "name": "GaussianObject",
-      "arxiv_id": "2312.11461",
+      "arxiv_id": "2402.10259",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Sparse-View",
@@ -7579,7 +5783,7 @@
     },
     {
       "name": "FlashWorld",
-      "arxiv_id": "2510.13677",
+      "arxiv_id": "2510.13678",
       "venue": "arXiv 2025",
       "year": 2026,
       "category": "World Models & Spatial Intelligence",
@@ -7703,38 +5907,12 @@
       ]
     },
     {
-      "name": "DelightingFace",
-      "arxiv_id": "2605.05636",
-      "venue": "SIGGRAPH 2026 TOG",
-      "year": 2026,
-      "category": "Human & Avatar",
-      "desc": "High-quality facial appearance capture has traditionally required costly studio recording. Recent works consider an in-the-wild smartphone-based setup; however, their model-based inverse rendering ...",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "FlexiAvatar",
       "arxiv_id": "2607.19100",
       "venue": "ECCV 2026",
       "year": 2026,
       "category": "Human & Avatar",
       "desc": "Unified framework optimizing only visible body regions; SMPL-X tracking + diffusion completion",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Generalizable Human GS",
-      "arxiv_id": "2604.25466",
-      "venue": "CVPR 2026 Findings",
-      "year": 2026,
-      "category": "Human & Avatar",
-      "desc": "Cross-view attention for sparse-view human splatting",
       "code_url": "",
       "sources": [
         "csv",
@@ -7801,19 +5979,6 @@
       "year": 2026,
       "category": "Human & Avatar",
       "desc": "Pose-driven 3DGS avatar with transformer decoder + dynamics residual latent; learned force decomposition (driving/restoring/dissipative) for temporally coherent clothing animation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Mobile Avatar (Pruned Blendshapes)",
-      "arxiv_id": "2605.01854",
-      "venue": "CVPR 2026",
-      "year": 2026,
-      "category": "Human & Avatar",
-      "desc": "High-fidelity mobile avatars with pruned local blendshapes",
       "code_url": "",
       "sources": [
         "csv",
@@ -7897,51 +6062,12 @@
       ]
     },
     {
-      "name": "GauHuman-v2",
-      "arxiv_id": "2503.24210",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Human & Avatar",
-      "desc": "Second-generation human GS with improved SMPL-guided Gaussian binding",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianAvatars-2",
-      "arxiv_id": "2412.07739",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Human & Avatar",
-      "desc": "Second-generation Gaussian avatars with FLAME-aligned Gaussian anchoring",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GaussianBody",
-      "arxiv_id": "2412.10972",
+      "arxiv_id": "2401.09720",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Human & Avatar",
       "desc": "SMPL-X aligned Gaussian body with part-aware densification",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianHands-2",
-      "arxiv_id": "2412.09606",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Human & Avatar",
-      "desc": "Hand avatar GS with cross-attention feature blending for dexterous manipulation",
       "code_url": "",
       "sources": [
         "csv",
@@ -7963,7 +6089,7 @@
     },
     {
       "name": "SplatFace",
-      "arxiv_id": "2412.10209",
+      "arxiv_id": "2403.18784",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Human & Avatar",
@@ -7976,7 +6102,7 @@
     },
     {
       "name": "SplatPose",
-      "arxiv_id": "2412.09511",
+      "arxiv_id": "2503.05174",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Human & Avatar",
@@ -7988,21 +6114,8 @@
       ]
     },
     {
-      "name": "SplatPose2",
-      "arxiv_id": "2504.13167",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Human & Avatar",
-      "desc": "Enhanced pose-conditioned GS with part-level deformation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "SplatTalk",
-      "arxiv_id": "2503.24382",
+      "arxiv_id": "2503.06271",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Human & Avatar",
@@ -8014,39 +6127,13 @@
       ]
     },
     {
-      "name": "X-Gaussian",
-      "arxiv_id": "2412.09723",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Human & Avatar",
-      "desc": "Expressive full-body Gaussian avatar from monocular video with LBS-based deformation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "3DGS-Avatar",
-      "arxiv_id": "2310.08529",
+      "arxiv_id": "2312.09228",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Human & Avatar",
       "desc": "Deformable 3DGS for animatable human avatars with pose-conditioned Gaussian deformation",
       "code_url": "https://github.com/mikeqzy/3DGS-Avatar",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "BAGS",
-      "arxiv_id": "2403.14166",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Human & Avatar",
-      "desc": "Body-Aligned Gaussian Splatting with SMPL-guided Gaussian anchoring for human reconstruction",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -8093,7 +6180,7 @@
     },
     {
       "name": "GauHuman",
-      "arxiv_id": "2403.16095",
+      "arxiv_id": "2312.02973",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Human & Avatar",
@@ -8112,32 +6199,6 @@
       "category": "Human & Avatar",
       "desc": "Pose-driven human body Gaussian representation",
       "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianHand",
-      "arxiv_id": "2410.08840",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Human & Avatar",
-      "desc": "Interaction-aware 3DGS for one-shot hand avatars",
-      "code_url": "https://github.com/XuanHuang0/GuassianHand",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Avatar",
-      "arxiv_id": "2311.18159",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Human & Avatar",
-      "desc": "Animatable 3DGS avatar from monocular video with pose-dependent Gaussian deformation",
-      "code_url": "https://github.com/mikeqzy/GS-Avatar",
       "sources": [
         "csv",
         "explorer"
@@ -8184,7 +6245,7 @@
     },
     {
       "name": "SplatArmor",
-      "arxiv_id": "2311.13681",
+      "arxiv_id": "2311.10812",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Human & Avatar",
@@ -8462,99 +6523,8 @@
       ]
     },
     {
-      "name": "EditGS",
-      "arxiv_id": "2412.13047",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Editable GS with Gaussian-level selection and transformation propagation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussCtrl-v2",
-      "arxiv_id": "2412.12096",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Enhanced controlled GS editing with multi-modal conditioning (text + depth + sketch)",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianCut-v2",
-      "arxiv_id": "2406.09394",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Enhanced graph-cut segmentation for interactive GS editing with uncertainty refinement",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Diff",
-      "arxiv_id": "2504.05152",
-      "venue": "arXiv 2026",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Scene change detection directly on Gaussian primitives; separates geometric vs appearance changes; +17% mIoU",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Mosaic",
-      "arxiv_id": "2504.00773",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Mosaic-style GS editing for large-scale scene layout modification",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-Retexture",
-      "arxiv_id": "2503.20776",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Texture transfer in GS with UV-aligned Gaussian appearance modification",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "InstructGS",
-      "arxiv_id": "2503.20779",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Editing",
-      "desc": "Instruction-driven GS editing with LLM-guided editing plan generation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "VEGS",
-      "arxiv_id": "2406.06526",
+      "arxiv_id": "2407.02945",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Editing",
@@ -8567,25 +6537,12 @@
     },
     {
       "name": "BAD-Gaussians",
-      "arxiv_id": "2401.06116",
+      "arxiv_id": "2403.11831",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Editing",
       "desc": "Bundle-adjusted deformation Gaussians for consistent editing across views",
       "code_url": "https://github.com/yccyencheng/BAD-Gaussians",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "ColoredGaussian",
-      "arxiv_id": "2405.10508",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Editing",
-      "desc": "Color-controllable Gaussian editing with per-Gaussian color attribute decomposition",
-      "code_url": "",
       "sources": [
         "csv",
         "explorer"
@@ -8632,7 +6589,7 @@
     },
     {
       "name": "GaussCtrl",
-      "arxiv_id": "2311.16043",
+      "arxiv_id": "2403.08733",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Editing",
@@ -8657,12 +6614,12 @@
       ]
     },
     {
-      "name": "GaussianCtrl",
+      "name": "Align Your Gaussians",
       "arxiv_id": "2312.13763",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Editing",
-      "desc": "Depth-conditioned controlnet + progressive editing for controllable 3DGS generation",
+      "desc": "Text-to-4D with dynamic 3D Gaussians and composed diffusion models",
       "code_url": "",
       "sources": [
         "csv",
@@ -8696,19 +6653,6 @@
       ]
     },
     {
-      "name": "GaussianEditor-v2",
-      "arxiv_id": "2312.09228",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Editing",
-      "desc": "Enhanced text-driven GS editing with Gaussian semantic tracing and hierarchical selection",
-      "code_url": "https://github.com/NEU-GCL/GaussianEditor",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GeoGaussian",
       "arxiv_id": "",
       "venue": "arXiv",
@@ -8723,7 +6667,7 @@
     },
     {
       "name": "GScream",
-      "arxiv_id": "2404.15264",
+      "arxiv_id": "2404.13679",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Editing",
@@ -8748,7 +6692,7 @@
     },
     {
       "name": "InFusion",
-      "arxiv_id": "2403.06908",
+      "arxiv_id": "2404.11613",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Editing",
@@ -8773,21 +6717,8 @@
       ]
     },
     {
-      "name": "Splat-GS",
-      "arxiv_id": "2406.08488",
-      "venue": "CVPR 2024",
-      "year": 2024,
-      "category": "Editing",
-      "desc": "Scalable Gaussian editing with progressive region selection and style transplantation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "StylizedGS",
-      "arxiv_id": "2407.07220",
+      "arxiv_id": "2404.05220",
       "venue": "NeurIPS 2024",
       "year": 2024,
       "category": "Editing",
@@ -8800,7 +6731,7 @@
     },
     {
       "name": "VR-GS",
-      "arxiv_id": "2407.12777",
+      "arxiv_id": "2401.16663",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Editing",
@@ -9017,19 +6948,6 @@
       ]
     },
     {
-      "name": "GaussCAD",
-      "arxiv_id": "2503.19358",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "CAD & Reverse Engineering",
-      "desc": "CAD reconstruction from GS with parametric primitive extraction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "MaGS",
       "arxiv_id": "",
       "venue": "ICCV 2025",
@@ -9159,19 +7077,6 @@
       ]
     },
     {
-      "name": "Egocentric Dynamic 3DGS Evaluation",
-      "arxiv_id": "2604.23803",
-      "venue": "EgoVis Workshop @ CVPR 2026",
-      "year": 2026,
-      "category": "Cross-Domain",
-      "desc": "Egocentric video reconstruction evaluation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "EmoTaG",
       "arxiv_id": "2603.21332",
       "venue": "CVPR 2026",
@@ -9288,37 +7193,12 @@
       ]
     },
     {
-      "name": "GSRep",
-      "arxiv_id": "2605.29549",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Cross-Domain",
-      "desc": "Comparative evaluation of point-based and graph-based architectures for learning from 3D Gaussian Splats",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "LagrangianSplats",
       "arxiv_id": "2605.09299",
       "venue": "arXiv",
       "year": 2026,
       "category": "Cross-Domain",
       "desc": "Reconstructing 3D fluid velocity fields from sparse 2D video observations is a highly ill-posed inverse problem, demanding both transport consistency with observed motion and physical validity unde...",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Mobile Phone 3DGS Acquisition",
-      "arxiv_id": "2604.19216",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Cross-Domain",
-      "desc": "Object-centered on-device capture guidance",
       "code_url": "",
       "sources": [
         "csv",
@@ -9544,64 +7424,12 @@
       ]
     },
     {
-      "name": "CT-GS",
-      "arxiv_id": "2502.02091",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Cross-Domain",
-      "desc": "GS-based CT volume reconstruction with sparse-view acceleration",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "EndoGS",
-      "arxiv_id": "2502.01846",
+      "arxiv_id": "2401.11535",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Cross-Domain",
       "desc": "Endoscopic scene reconstruction with GS for surgical navigation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussVis",
-      "arxiv_id": "2503.01610",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Cross-Domain",
-      "desc": "GS-based visualization for scientific data with interactive exploration",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-UWF",
-      "arxiv_id": "2502.16652",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Cross-Domain",
-      "desc": "Ultra-widefield fundus reconstruction with Gaussian Splatting",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GS-VQA",
-      "arxiv_id": "2503.23297",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Cross-Domain",
-      "desc": "GS quality assessment via view-consistent quality prediction",
       "code_url": "",
       "sources": [
         "csv",
@@ -9771,31 +7599,6 @@
       ]
     },
     {
-      "name": "RAF",
-      "arxiv_id": "2605.25980",
-      "venue": "CVPR 2026 Findings",
-      "year": 2026,
-      "category": "Simulation",
-      "desc": "Representation Abstraction Framework: bridging 3DGS and physics engines via unified abstraction layer; MPM/SPH/PBD multi-solver coupling; 3DGS-mesh-fluid-cloth-rigid bidirectional interaction; UE5 rendering with Lumen GI",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SAM3D-Phys",
-      "arxiv_id": "2605.30239",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Simulation",
-      "desc": "Integrates SAM3D generative 3D priors with physics-constrained spatial optimization to recover simulatable objects from reconstructed scenes; mask-guided appearance distillation",
-      "code_url": "",
-      "sources": [
-        "explorer"
-      ]
-    },
-    {
       "name": "SimuScene",
       "arxiv_id": "2606.03994",
       "venue": "arXiv",
@@ -9804,19 +7607,6 @@
       "desc": "Physics-in-the-loop compositional 3D scene reconstruction from single image; physics engine as diagnostic",
       "code_url": "",
       "sources": [
-        "explorer"
-      ]
-    },
-    {
-      "name": "3DGS Demo Synthesis (IL)",
-      "arxiv_id": "2605.01232",
-      "venue": "arXiv",
-      "year": 2026,
-      "category": "Embodied AI & Robotics",
-      "desc": "3DGS-based demonstration generation for imitation learning",
-      "code_url": "",
-      "sources": [
-        "csv",
         "explorer"
       ]
     },
@@ -10003,32 +7793,6 @@
       ]
     },
     {
-      "name": "GaussNav-2",
-      "arxiv_id": "2412.04470",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Embodied AI & Robotics",
-      "desc": "Enhanced GS navigation with hierarchical semantic Gaussian maps",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussRover",
-      "arxiv_id": "2503.20168",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Embodied AI & Robotics",
-      "desc": "GS-based rover navigation with terrain-aware Gaussian representation",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GS-ID",
       "arxiv_id": "",
       "venue": "ICCV 2025",
@@ -10043,7 +7807,7 @@
     },
     {
       "name": "GS-Physics",
-      "arxiv_id": "2410.08107",
+      "arxiv_id": "2409.08042",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Embodied AI & Robotics",
@@ -10055,21 +7819,8 @@
       ]
     },
     {
-      "name": "RoboSplat",
-      "arxiv_id": "2504.15387",
-      "venue": "RSS 2025",
-      "year": 2025,
-      "category": "Embodied AI & Robotics",
-      "desc": "CRES is a technique for precision measurements of kinetic energies of charged particles, pioneered by the Project 8 experiment to measure the neutrino mass using the tritium endpoint method. It was...",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "Splat-Nav",
-      "arxiv_id": "2504.06978",
+      "arxiv_id": "2403.02751",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Embodied AI & Robotics",
@@ -10082,24 +7833,11 @@
     },
     {
       "name": "SplatSim",
-      "arxiv_id": "2406.10219",
+      "arxiv_id": "2409.10161",
       "venue": "CVPR 2025",
       "year": 2025,
       "category": "Embodied AI & Robotics",
       "desc": "GS-based sim-to-real transfer for robotic manipulation with photorealistic rendering",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "SplatSim-v2",
-      "arxiv_id": "2504.20378",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Embodied AI & Robotics",
-      "desc": "Enhanced GS simulation with domain randomization for robotic learning",
       "code_url": "",
       "sources": [
         "csv",
@@ -10147,7 +7885,7 @@
     },
     {
       "name": "GaussNav",
-      "arxiv_id": "2403.12722",
+      "arxiv_id": "2403.11625",
       "venue": "CVPR 2024",
       "year": 2024,
       "category": "Embodied AI & Robotics",
@@ -10186,11 +7924,11 @@
     },
     {
       "name": "ManiGaussian",
-      "arxiv_id": "2403.08498",
+      "arxiv_id": "2403.08321",
       "venue": "ECCV 2024",
       "year": 2024,
       "category": "Embodied AI & Robotics",
-      "desc": "3D scene stylization extends the work of neural style transfer to 3D. A vital challenge in this problem is to maintain the uniformity of the stylized appearance across multiple views. A vast majori...",
+      "desc": "Dynamic Gaussian Splatting for multi-task robotic manipulation — Gaussian world model predicts optimal actions",
       "code_url": "https://manigaussian.github.io",
       "sources": [
         "csv",
@@ -10394,64 +8132,12 @@
       ]
     },
     {
-      "name": "FenceGS",
-      "arxiv_id": "2501.14277",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Security",
-      "desc": "Fence-protected GS: access control layer preventing unauthorized GS extraction",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "IP-GS",
-      "arxiv_id": "2501.10283",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Security",
-      "desc": "Intellectual property protection for GS models via ownership verification",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "WaterGS",
-      "arxiv_id": "2501.05379",
-      "venue": "CVPR 2025",
-      "year": 2025,
-      "category": "Security",
-      "desc": "Invisible watermark embedding in GS parameters with robustness against rendering-level attacks",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
       "name": "GaussianMarker",
       "arxiv_id": "2410.23718",
       "venue": "NeurIPS 2024",
       "year": 2024,
       "category": "Security",
       "desc": "Uncertainty-aware watermark embedding + robust extraction for 3DGS copyright protection",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "GaussianUnderAttack",
-      "arxiv_id": "2412.02803",
-      "venue": "NeurIPS 2024",
-      "year": 2024,
-      "category": "Security",
-      "desc": "Systematic adversarial attack analysis on 3DGS revealing robustness vulnerabilities",
       "code_url": "",
       "sources": [
         "csv",
@@ -10478,19 +8164,6 @@
       "year": 2024,
       "category": "Security",
       "desc": "Steganography embedding into Gaussian parameters for 3D message hiding, visually lossless",
-      "code_url": "",
-      "sources": [
-        "csv",
-        "explorer"
-      ]
-    },
-    {
-      "name": "Splat-Security",
-      "arxiv_id": "2407.04699",
-      "venue": "ECCV 2024",
-      "year": 2024,
-      "category": "Security",
-      "desc": "First systematic security analysis of GS pipeline: attack surfaces in training data and rendering",
       "code_url": "",
       "sources": [
         "csv",

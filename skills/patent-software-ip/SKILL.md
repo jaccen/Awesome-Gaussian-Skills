@@ -252,7 +252,7 @@ CVPR 2026 accepted 116 3DGS-related papers, creating a surge of patentable innov
 3. Articulated 3DGS methods generate IP around interaction primitives and joint representations
 4. File early -- the dense publication cohort means similar innovations may appear concurrently
 
-Knowledge base: 858+ methods across 23 categories (updated for v0.8.4 cycle).
+Knowledge base: 678+ methods across 23 categories (updated for v0.8.4 cycle).
 
 ## Phase D: Iterative Correction
 

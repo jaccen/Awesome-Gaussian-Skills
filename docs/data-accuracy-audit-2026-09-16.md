@@ -351,3 +351,35 @@
 | `.temp/verify_venue_missing.py` | 会议声明核验 + 漏收论文定位 |
 
 审计原始数据：`.temp/full_audit.json`、`.temp/remediation.json`、`.temp/arxiv_scan_0916.json`。
+
+---
+
+## 八、修复执行记录（v0.9.0，同日完成）
+
+全部 242 条问题条目处置完毕，858 → **678** 条。每个新 ID 落盘前均经 arXiv API 逐条复核
+（方法名出现在论文标题/摘要中，归一化匹配 + 缩写容错）。
+
+| 处置 | 数量 | 说明 |
+|---|---|---|
+| 改挂正确论文（fix） | 56 | 含 Scaffold-GS→2312.00109、CityGaussian→2404.01133、SuGaR→2311.12775、GaussianDreamer→2310.08529、3DGS-Avatar→2312.09228 等 |
+| 按论文自述名重命名（rename） | 5 | GaussDreamer→HoGS、GaussianShader-v2→HumanGaussian、GaussianCtrl→Align Your Gaussians、GeoSplat→OmniSplat、GaussFusion→CoMapGS |
+| 删除不可核实条目（delete） | 180 | B 类虚构名 173 + EGS/EMGS/LRG/BAGS/RAF 5 + HGS/FlowGS 2 |
+| 去重 | 1 | 无编号的 `3DGS\u00B3`（与 3DGS³ / 2605.11489 重复） |
+| 误报维持原样 | 1 | `3DGS` 现挂 2308.04079 本即原始论文 |
+
+人工裁定中拦截的同名误配（自动候选被否决）：
+
+- `Deformable-3DGS`：自动候选 2603.28152 实为 ObjectMorpher → 采用 2309.13101（Deformable 3D Gaussians for High-Fidelity Monocular Dynamic Scene Reconstruction）
+- `HGS`：描述指向分层 GS，但 arXiv 无同名论文 → 删除（自动候选 3D-HGS 为 Half-Gaussian，主题不符）
+- `FlowGS`：唯一候选 2609.17039 实为 Bi-FlowGS 且库内已有 → 删除
+- `InFusion`：按标题检索定位真实 ID 2404.11613（记忆中的 2404.03501 经查为 QAOA 量子论文，再次印证「先核验后落库」）
+
+修复后全库状态：**678 条 / 23 分类 / arXiv 568 (83%) / 代码链接 130 (19%)**。
+五载体（methods.json、CSV、methods.html、abstracts.js、references md）交叉核对一致，
+`scripts/validate_knowledge_base.py` PASS，浏览器实测零 JS 错误。
+
+### 残留事项
+
+- references md 中少量条目的 venue/year 字段未随 ID 修正重核（如 Scaffold-GS 标注 ICCV 2023，
+  实为 CVPR 2024）——属下一轮 venue 核验范围。
+- `references/3dgs-methods-overview.md` 中存在个别同名条目行（Scaffold-v3 等）待后续核查。
