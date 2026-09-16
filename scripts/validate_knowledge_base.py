@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""
+r"""
 validate_knowledge_base.py — 知识库数据 CI 校验器（P0）
 
 校验项（任一失败即非零退出）：
   1. data/methods.json 存在且可解析，count 与 methods 数组长度一致
   2. 无重复方法名（大小写不敏感）、无重复非空 arXiv ID
-  3. arXiv ID 格式合法（^\d{4}\.\d{4,5}(v\d+)?$）
+  3. arXiv ID 格式合法（^\d{4}\.\d{4,5}(v\d+)?$ — raw 正则见 ARXIV_RE）
   4. category 全部属于 data/categories.json 规范集
   5. 伪造黑名单条目不存在于任何数据载体
   6. CSV / docs/index.html METHODS / docs/abstracts.js 三载体计数与 methods.json 一致

@@ -1205,7 +1205,7 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Newly Added Methods (September 4, 2026 — Dynamic Scene Survey Integration)
 
-> 23 methods added from dynamic scene reconstruction survey (连振晗 et al., J CAD & CG, Jan 2026). Knowledge base now 819+ methods. All arXiv IDs verified.
+> 23 methods added from dynamic scene reconstruction survey (连振晗 et al., J CAD & CG, Jan 2026). Knowledge base now 858+ methods. All arXiv IDs verified.
 
 #### Deformation Field Methods
 
@@ -1266,3 +1266,77 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 
 ### Generation / Embodied AI
 - **Lucida** [arXiv:2608.30821](https://arxiv.org/abs/2608.30821) (arXiv 2026) — Parse-Generate-Place paradigm for Real-to-Sim composable scene modeling; structured scene generation with physical plausibility for embodied AI training
+
+## September 16, 2026 — Daily Update (v0.8.4)
+
+> 39 new methods added (arXiv window 2026-09-02 ~ 2026-09-16). Knowledge base 819 -> 858.
+
+### Optimization
+- **RouteBridge** [arXiv:2609.09606](https://arxiv.org/abs/2609.09606) (arXiv 2026) — Reliability-routed bidirectional distillation between NeRF and 3DGS; complementary inductive biases via adaptive routing
+- **Compact Neural Appearance** [arXiv:2609.05255](https://arxiv.org/abs/2609.05255) (arXiv 2026) — Compact neural appearance models for efficient 3DGS; shared MLP decodes latent codes, 192->28 bytes per primitive vs SH3
+- **TruncGradGS** [arXiv:2609.03534](https://arxiv.org/abs/2609.03534) (Pacific Graphics 2026) — Improved 3DGS via truncated gradient updates; addresses gradient vanishing for robust primitive learning
+- **Laplacian Frequency Hierarchies** [arXiv:2609.03334](https://arxiv.org/abs/2609.03334) (Pacific Graphics 2026) — Laplacian frequency hierarchies for efficient 3DGS training; coarse-to-fine frequency-staged, 1.73x speedup
+
+### Surface & Rendering
+- **AnyGS2Mesh** [arXiv:2609.03304](https://arxiv.org/abs/2609.03304) (arXiv 2026) — Feed-forward mesh reconstruction from 3DGS with arbitrary-resolution views; Gaussian-guided transformer + TSDF fusion
+
+### Compression & Streaming
+- **Deformable 2D Gaussian Splatting** [arXiv:2609.14129](https://arxiv.org/abs/2609.14129) (arXiv 2026) — Deformable 2DGS for efficient 4K UHD video compression; outperforms neural video compression and implicit representations
+- **LinearMask-GS** [arXiv:2609.10095](https://arxiv.org/abs/2609.10095) (arXiv 2026) — Stable-mask importance pruning for compact 3DGS; learned-mask pruning with stability guarantees
+- **CVT-GS** [arXiv:2609.08730](https://arxiv.org/abs/2609.08730) (arXiv 2026) — Learning to simplify 3DGS with centroidal Voronoi tessellation; reduces Gaussian primitive count
+- **CC-4DGS** [arXiv:2609.02184](https://arxiv.org/abs/2609.02184) (IEEE TVCG 2026) — Computational deformation and point-cloud compression for storage-efficient dynamic 4DGS; CDF replaces hash tables (1-3 MB), CCA compresses SH attributes 3-5x, total 20-30 MB
+
+### Acceleration
+- **TileGS** [arXiv:2609.03613](https://arxiv.org/abs/2609.03613) (arXiv 2026) — Tile-local depth binning for 3DGS rasterization; 1.44x raster-kernel speedup on RTX 4090, matches gsplat output
+- **Atlas** [arXiv:2609.02352](https://arxiv.org/abs/2609.02352) (arXiv 2026) — Algorithm-hardware co-design for on-device city-scale 3DGS in VR; hierarchical memory offloading, 18.5x speedup
+
+### Large-Scale
+- **HLC-GS** [arXiv:2609.16772](https://arxiv.org/abs/2609.16772) (arXiv 2026) — Risk-map-guided height-layer consistency 3DGS for DSM reconstruction from optical satellite imagery; reduces MAE 1.46->1.18 m
+- **SkyAnchor** [arXiv:2609.13903](https://arxiv.org/abs/2609.13903) (arXiv 2026) — Updating metric-scale aerial 3DGS scenes from unposed ground-view sequences; metric SfM anchor + ground-view update
+- **STARS-GS** [arXiv:2609.03447](https://arxiv.org/abs/2609.03447) (arXiv 2026) — Structure-aware regularized 3DGS for large-scale aerial surface reconstruction; F1-score 0.640->0.698 (+9.1%)
+- **InceptionGS** [arXiv:2609.02747](https://arxiv.org/abs/2609.02747) (arXiv 2026) — Generative bootstrapping for large-scale 3DGS under unstructured view sampling; balances reconstruction and generation
+
+### Feed-Forward
+- **VS-Splat** [arXiv:2609.12343](https://arxiv.org/abs/2609.12343) (arXiv 2026) — Voxel-selective feed-forward 3DGS for end-to-end 3D object reconstruction from sparse views
+- **AVSplat** [arXiv:2609.05925](https://arxiv.org/abs/2609.05925) (arXiv 2026) — Dense-view feed-forward 3DGS with assist-view preconditioning; positive view scaling stable in dense-view regime
+
+### Generation
+- **GSComplete** [arXiv:2609.08449](https://arxiv.org/abs/2609.08449) (arXiv 2026) — Gaussian splat completion with 2D diffusion priors; fills missing regions of incomplete Gaussian splats
+- **Filling the Unseen** [arXiv:2609.13262](https://arxiv.org/abs/2609.13262) (arXiv 2026) — Scene extrapolation via 3DGS; fills unobserved regions and OOD novel views beyond training view distribution
+- **SPAR3S** [arXiv:2609.03931](https://arxiv.org/abs/2609.03931) (ECCV 2026) — Sparse voxel-aligned 3D latent generative model for scene completion; learns compact latent space via differentiable 3DGS, masked autoregressive transformer
+
+### Dynamic & 4D
+- **FastFlowGS** [arXiv:2609.16310](https://arxiv.org/abs/2609.16310) (arXiv 2026) — Streaming 4DGS for fast-moving subjects from sparse external cameras; fuses sparse matches + optical flow via Kalman temporal update; +12.6% VMAF on Panoptic
+- **EdMCGS** [arXiv:2609.08332](https://arxiv.org/abs/2609.08332) (arXiv 2026) — Event-driven Markov chain 3DGS for extreme-low-frame-rate dynamic scene reconstruction from RGB + event stream
+- **UniFusion** [arXiv:2609.05888](https://arxiv.org/abs/2609.05888) (ECCV 2026) — Unified spatio-temporal depth alignment for sparse-view 4D reconstruction; spatio-temporal neural fields align cross-view/cross-time depth without masks
+
+### HDR & Relighting
+- **LightBridge** [arXiv:2609.02543](https://arxiv.org/abs/2609.02543) (arXiv 2026) — Feed-forward generative relighting for 3DGS; latent bridge diffusion + Gaussian propagation transformer, single-pass
+
+### SLAM
+- **PanoGS-SLAM** [arXiv:2609.17387](https://arxiv.org/abs/2609.17387) (arXiv 2026) — First panoramic dense SLAM on 3DGS; spherical-domain differentiable rendering, sphere-consistent photometric loss, depth-guided Gaussian init
+- **SCOUT-SLAM** [arXiv:2609.14634](https://arxiv.org/abs/2609.14634) (arXiv 2026) — Structurally-coupled dual-uncertainty 3DGS SLAM; shared-base LoAd tracking uncertainty independent of reconstruction quality
+- **LightSplat** [arXiv:2609.07274](https://arxiv.org/abs/2609.07274) (arXiv 2026) — Real-time high-fidelity 3DGS SLAM with loop closure; meets real-time constraints with loop closure support
+
+### Sparse-View
+- **Bi-FlowGS** [arXiv:2609.17039](https://arxiv.org/abs/2609.17039) (arXiv 2026) — Bidirectional flow co-refinement bridging generative view completion and Gaussian geometry; V2G/G2V distillation alleviates Geometry Cheating
+- **TV-SGS** [arXiv:2609.07734](https://arxiv.org/abs/2609.07734) (arXiv 2026) — Gaussian splatting with geometric information propagation via tensor voting under sparse views
+
+### Human & Avatar
+- **GradRig** [arXiv:2609.05127](https://arxiv.org/abs/2609.05127) (arXiv 2026) — Differentiable weights for skinned Gaussian splat deformation; spatial gradient of skinning weights for mesh-free deformation
+
+### Cross-Domain
+- **CVQPG** [arXiv:2609.11434](https://arxiv.org/abs/2609.11434) (arXiv 2026) — Complex-valued quadratic phase Gaussian splatting for hologram representation; replaces standard 2D Gaussian in 2DGS
+- **Shape-guided X-ray GS** [arXiv:2609.10376](https://arxiv.org/abs/2609.10376) (arXiv 2026) — Shape-guided 3DGS for sparse-view X-ray 3D reconstruction; reduces radiation exposure via shape priors
+- **MedGSSR** [arXiv:2609.06874](https://arxiv.org/abs/2609.06874) (arXiv 2026) — Generalizable medical image super-resolution 3D reconstruction via hierarchical feed-forward Gaussian splatting
+
+### Embodied AI & Robotics
+- **RIDE** [arXiv:2609.11079](https://arxiv.org/abs/2609.11079) (arXiv 2026) — Relocalization-informed depth estimation with 3DGS; render-match-PnP relocalization supports dense depth estimation
+- **PG-Pose** [arXiv:2609.07231](https://arxiv.org/abs/2609.07231) (arXiv 2026) — Generalizable 6D pose estimation of textureless objects with planar-based Gaussian splatting; no CAD prior needed
+
+### Robustness
+- **NOVA-GS** [arXiv:2609.12682](https://arxiv.org/abs/2609.12682) (arXiv 2026) — Noise-aware view-consistent 3DGS for low-light novel view synthesis; handles severe sensor noise and low SNR
+- **Tri-DehazeGS** [arXiv:2609.11223](https://arxiv.org/abs/2609.11223) (arXiv 2026) — Scene-medium decoupled 3DGS with transmittance-aware optimization for hazy multi-view reconstruction
+- **View-Structured Conformal Prediction** [arXiv:2609.10307](https://arxiv.org/abs/2609.10307) (arXiv 2026) — View-structured conformal prediction for 3DGS; certifies rendered view meets prediction coverage via statistical guarantee
+- **FujinSplat** [arXiv:2609.06017](https://arxiv.org/abs/2609.06017) (arXiv 2026) — RAW-domain Gaussian splatting seeing through smoke; separates participating medium and ISP in RAW domain
+
