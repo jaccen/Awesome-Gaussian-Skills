@@ -81,10 +81,10 @@ def main():
         csv_n = sum(1 for _ in csv.DictReader(f))
     check(csv_n == n, f"CSV 行数 {csv_n} != methods.json {n}（请重新运行构建脚本）")
 
-    text = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    text = (ROOT / "docs" / "methods.html").read_text(encoding="utf-8")
     block = text.split("const METHODS = [", 1)[1].split("\n];", 1)[0]
     html_n = len(re.findall(r"\{ name: ", block))
-    check(html_n == n, f"index.html METHODS {html_n} != methods.json {n}")
+    check(html_n == n, f"methods.html METHODS {html_n} != methods.json {n}")
 
     ab_text = (ROOT / "docs" / "abstracts.js").read_text(encoding="utf-8")
     ab_n = len(re.findall(r'^  ".+": \{ abstractEn:', ab_text, flags=re.M))

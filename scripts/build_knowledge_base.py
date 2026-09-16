@@ -9,7 +9,7 @@ build_knowledge_base.py — Awesome-Gaussian-Skills 单一数据源构建器 (P0
   4. 类别标签归一化到规范 taxonomy（data/categories.json）
   5. 追加经 arXiv 原文核验的前沿条目（frontier batch）
   6. 重新生成全部下游载体：data/methods.json(真源) / 3dgs-methods-overview.csv /
-     docs/abstracts.js / docs/index.html 内嵌 METHODS 数组
+     docs/abstracts.js / docs/methods.html 内嵌 METHODS 数组
 
 用法：
   python3 scripts/build_knowledge_base.py --report    # 只解析并打印统计，不写文件
@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CSV_PATH = ROOT / "3dgs-methods-overview.csv"
-INDEX_HTML = ROOT / "docs" / "index.html"
+METHODS_HTML = ROOT / "docs" / "methods.html"  # METHODS 数组随 2026-09-16 拆分迁至方法库子页
 ABSTRACTS_JS = ROOT / "docs" / "abstracts.js"
 DATA_DIR = ROOT / "data"
 METHODS_JSON = DATA_DIR / "methods.json"
@@ -237,7 +237,7 @@ def parse_csv():
 ENTRY_START = re.compile(r'^\s*\{ name: "((?:[^"\\]|\\.)*)"')
 
 def parse_index_html():
-    text = INDEX_HTML.read_text(encoding="utf-8")
+    text = METHODS_HTML.read_text(encoding="utf-8")
     block = text.split("const METHODS = [", 1)[1].split("\n];", 1)[0]
     entries = {}
     for line in block.split("\n"):
@@ -465,8 +465,8 @@ def build(report_only=False):
     ab_lines.append("};")
     ABSTRACTS_JS.write_text("\n".join(ab_lines) + "\n", encoding="utf-8")
 
-    # index.html METHODS 块再生成
-    text = INDEX_HTML.read_text(encoding="utf-8")
+    # methods.html METHODS 块再生成
+    text = METHODS_HTML.read_text(encoding="utf-8")
     head, rest = text.split("const METHODS = [", 1)
     _, tail = rest.split("\n];", 1)
     lines = []
@@ -485,7 +485,7 @@ def build(report_only=False):
             f'desc: {json.dumps(desc, ensure_ascii=False)}, '
             f'arxiv: {json.dumps(r["arxiv_id"], ensure_ascii=False)} , citations: 0 }},'
         )
-    INDEX_HTML.write_text(head + "const METHODS = [\n" + "\n".join(lines) + "\n];" + tail, encoding="utf-8")
+    METHODS_HTML.write_text(head + "const METHODS = [\n" + "\n".join(lines) + "\n];" + tail, encoding="utf-8")
 
     print(f"\n[write] methods.json / CSV / abstracts.js / index.html 已全部再生成：{len(clean)} 条")
 

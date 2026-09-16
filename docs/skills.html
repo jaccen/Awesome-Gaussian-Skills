@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Awesome Gaussian Skills · 3D 高斯溅射开源工具箱</title>
+<title>技能与安装 · Awesome Gaussian Skills</title>
 <meta name="description" content="Awesome Gaussian Skills —— 面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱：858+ 方法、15 项技能、一站式 Text2Word / Img2GS 生成。" />
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- model-viewer loaded dynamically -->
@@ -409,10 +409,14 @@ if ('IntersectionObserver' in window) {
 </script>
 <link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>window.AGS_TITLE_KEY='title.skills';</script>
   <script src="app-common.js"></script>
   <style>.nav-link.active{color:var(--text);font-weight:600}</style>
 </head>
 <body class="text-slate-700 font-sans antialiased">
+
+<!-- ===== Nav ===== -->
+
 <nav class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-slate-900/5">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2.5 font-bold text-slate-900 text-lg tracking-tight">
@@ -420,10 +424,10 @@ if ('IntersectionObserver' in window) {
       <span>AGS<span class="gradient-text">.</span></span>
     </a>
     <div class="hidden md:flex items-center gap-7 text-sm">
-      <a href="index.html" class="nav-link active" data-i18n="nav.home">首页</a>
+      <a href="index.html" class="nav-link" data-i18n="nav.home">首页</a>
       <a href="methods.html" class="nav-link" data-i18n="nav.methods2">方法库</a>
       <a href="studio.html" class="nav-link" data-i18n="nav.studio2">在线工作台</a>
-      <a href="skills.html" class="nav-link" data-i18n="nav.skills2">技能与安装</a>
+      <a href="skills.html" class="nav-link active" data-i18n="nav.skills2">技能与安装</a>
       <a href="spatial-embodied-intelligence.html" class="nav-link" data-i18n="nav.book">电子书</a>
     </div>
     <div class="flex items-center gap-3">
@@ -439,86 +443,42 @@ if ('IntersectionObserver' in window) {
   </div>
 </nav>
 
-<!-- ===== Hero ===== -->
-<section class="relative pt-36 pb-20 sm:pt-44 sm:pb-28 overflow-hidden">
-  <div class="orb" style="width:560px;height:560px;top:-180px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(99,102,241,0.28),transparent 70%)"></div>
-  <div class="orb" style="width:360px;height:360px;top:-60px;right:6%;background:radial-gradient(circle,rgba(168,85,247,0.22),transparent 70%);animation-delay:-6s"></div>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 border border-slate-900/10 text-xs text-slate-700 mb-7">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
-      <span data-i18n="hero.version">v0.8.4 · 现已开源</span>
+<section id="skills" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="mb-10">
+      <span class="eyebrow" data-i18n="skills.eyebrow">技能</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="skills.title">15 项专业技能</h2>
+      <p class="mt-2 text-slate-600 text-sm" data-i18n="skills.sub">面向 3DGS 研究全流程的端到端 AI 助手。</p>
     </div>
-    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.05]">
-      Awesome <span class="gradient-text">Gaussian Skills</span>
-    </h1>
-    <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed" data-i18n="hero.sub">
-      面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium">
-      <span class="stat-pill" data-i18n="hero.badge.methods">858+ 方法</span>
-      <span class="stat-pill" data-i18n="hero.badge.cats">23 个分类</span>
-      <span class="stat-pill" data-i18n="hero.badge.skills">15 项技能</span>
-    </div>
-
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-      <a href="methods.html" class="btn-primary">
-        <span data-i18n="hero.cta.methods">探索方法</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-      <a href="studio.html" class="btn-ghost">
-        <span data-i18n="hero.cta.studio">进入工作台</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m0 0l-4-4m4 4l-4 4"/></svg>
-      </a>
-    </div>
-    <div class="mt-7 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">
-      <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" class="hover:text-slate-900 transition" data-i18n="hero.star">在 GitHub 上 Star →</a>
-    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="skillsGrid"></div>
   </div>
 </section>
 
-<!-- ===== 入口卡片 ===== -->
-<section class="pb-24 sm:pb-32">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-    <a href="methods.html" class="glass-card group p-6 rounded-2xl border border-slate-900/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white mb-4" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
-      </div>
-      <h3 class="font-bold text-slate-900" data-i18n="home.card.methods.t">方法库</h3>
-      <p class="mt-2 text-sm text-slate-600 leading-relaxed" data-i18n="home.card.methods.d">858+ 个 3DGS 方法、23 个分类 — 搜索、筛选、对比，一键直达论文与代码。</p>
-      <span class="mt-4 inline-block text-sm font-medium text-accent-blue group-hover:translate-x-1 transition-transform">→</span>
-    </a>
-
-    <a href="studio.html" class="glass-card group p-6 rounded-2xl border border-slate-900/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white mb-4" style="background:linear-gradient(135deg,#14b8a6,#06b6d4)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </div>
-      <h3 class="font-bold text-slate-900" data-i18n="home.card.studio.t">在线工作台</h3>
-      <p class="mt-2 text-sm text-slate-600 leading-relaxed" data-i18n="home.card.studio.d">文生 3D · 图生 3DGS · 实时查看器 — 在浏览器中完成从创意到 3D。</p>
-      <span class="mt-4 inline-block text-sm font-medium text-accent-teal group-hover:translate-x-1 transition-transform">→</span>
-    </a>
-
-    <a href="skills.html" class="glass-card group p-6 rounded-2xl border border-slate-900/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white mb-4" style="background:linear-gradient(135deg,#f59e0b,#f43f5e)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      </div>
-      <h3 class="font-bold text-slate-900" data-i18n="home.card.skills.t">技能与安装</h3>
-      <p class="mt-2 text-sm text-slate-600 leading-relaxed" data-i18n="home.card.skills.d">15 项专业技能，秒级接入主流 AI Agent 平台。</p>
-      <span class="mt-4 inline-block text-sm font-medium text-accent-amber group-hover:translate-x-1 transition-transform">→</span>
-    </a>
-
-    <a href="skills.html#trends" class="glass-card group p-6 rounded-2xl border border-slate-900/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white mb-4" style="background:linear-gradient(135deg,#10b981,#14b8a6)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-      </div>
-      <h3 class="font-bold text-slate-900" data-i18n="home.card.trends.t">研究热点</h3>
-      <p class="mt-2 text-sm text-slate-600 leading-relaxed" data-i18n="home.card.trends.d">每日追踪 arXiv、顶会与 GitHub 上的 3DGS 最新动态。</p>
-      <span class="mt-4 inline-block text-sm font-medium text-accent-green group-hover:translate-x-1 transition-transform">→</span>
-    </a>
-
+<!-- ===== Quick Start ===== -->
+<section id="install" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <span class="eyebrow" data-i18n="install.eyebrow">安装</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="install.title">快速开始</h2>
+      <p class="mt-3 text-slate-600" data-i18n="install.sub">秒级安装，兼容主流 AI Agent 平台</p>
+    </div>
+    <div class="space-y-6" id="installBlocks"></div>
   </div>
 </section>
+
+<!-- ===== Trends ===== -->
+<section id="trends" class="py-16 sm:py-24 fade-in">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <span class="eyebrow" data-i18n="trends.eyebrow">热点</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="trends.title">3DGS 研究热点趋势</h2>
+      <p class="mt-3 text-slate-600" data-i18n="trends.sub">每日追踪 arXiv、会议与 GitHub</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="trendsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
 
 <footer class="border-t border-slate-900/5 py-12 mt-8">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
@@ -533,12 +493,158 @@ if ('IntersectionObserver' in window) {
 </footer>
 
 <script>
-// 旧锚点兼容：index.html#methods 等旧链接自动跳转到对应子页
-(function () {
-  var map = { methods: 'methods.html', text2word: 'studio.html', img2gs: 'studio.html', showcase: 'studio.html', skills: 'skills.html', install: 'skills.html', trends: 'skills.html' };
-  var h = (location.hash || '').replace(/^#/, '').split('=')[0].toLowerCase();
-  if (map[h]) location.replace(map[h] + location.hash);
-})();
+const SKILLS = [
+  { id: "3dgs-paper-reader", name: "3DGS Paper Reader", nameZh: "论文精读", desc: "Read any 3DGS paper & extract structured insights in seconds", descZh: "秒级阅读任意 3DGS 论文并提取结构化洞见", color: "#3b82f6",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>' },
+  { id: "3dgs-method-compare", name: "Method Comparator", nameZh: "方法对比", desc: "Compare 3DGS variants across 8+ comparison tables", descZh: "在 8+ 对比表中横向比较 3DGS 变体", color: "#8b5cf6",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
+  { id: "3dgs-code-reviewer", name: "Code Reviewer", nameZh: "代码审查", desc: "Catch 108+ common 3DGS implementation bugs", descZh: "捕捉 108+ 常见 3DGS 实现缺陷", color: "#ef4444",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H21M3.75 4.97v14.06"/>' },
+  { id: "3dgs-experiment-planner", name: "Experiment Planner", nameZh: "实验规划", desc: "Design rigorous experiments for top venues", descZh: "为顶会设计严谨实验", color: "#06b6d4",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' },
+  { id: "nerf-to-3dgs-migrator", name: "NeRF Migrator", nameZh: "NeRF 迁移", desc: "Migrate your NeRF method to 3DGS", descZh: "将 NeRF 方法迁移到 3DGS", color: "#f59e0b",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>' },
+  { id: "cad-mesh-3dgs", name: "CAD/Mesh Bridge", nameZh: "CAD/网格桥接", desc: "Bridge CAD, Mesh & 3DGS representations", descZh: "桥接 CAD、Mesh 与 3DGS 表示", color: "#10b981",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/>' },
+  { id: "cg-paper-writing", name: "CG Paper Writer", nameZh: "CG 论文写作", desc: "Write publication-ready CG papers", descZh: "撰写可发表的 CG 论文", color: "#ec4899",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>' },
+  { id: "3dgs-visualizer", name: "3DGS Visualizer", nameZh: "3DGS 可视化", desc: "Generate publication charts, timelines & comparison tables", descZh: "生成发表级图表、时间线与对比表", color: "#6366f1",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>' },
+  { id: "3dgs-engineering-guide", name: "Engineering Guide", nameZh: "工程指南", desc: "Bridge 3DGS from research to production", descZh: "将 3DGS 从研究落地到生产", color: "#14b8a6",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' },
+  { id: "patent-software-ip", name: "Patent & IP", nameZh: "专利与知识产权", desc: "Generate patent docs and software copyright materials", descZh: "生成专利文档与软件著作权材料", color: "#f97316",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>' },
+  { id: "3dgs-spatial-agent", name: "Spatial Agent", nameZh: "空间智能体", desc: "3DGS/CAD/Mesh domain Agent for spatial intelligence & CAD extraction", descZh: "面向空间智能与 CAD 提取的 3DGS/CAD/Mesh 领域 Agent", color: "#a855f7",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>' },
+  { id: "3dgs-mcp-renderer", name: "MCP Renderer", nameZh: "MCP 渲染器", desc: "Agent-controlled Three.js/3DGS rendering via MCP protocol", descZh: "通过 MCP 协议进行 Agent 控制的 Three.js/3DGS 渲染", color: "#22d3ee",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/>' },
+  { id: "3dgs-compression-deploy", name: "Compression & Deploy", nameZh: "压缩与部署", desc: "Deploy compressed 3DGS: 53+ compression & deployment methods", descZh: "部署压缩 3DGS：53+ 压缩与部署方法", color: "#84cc16",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>' },
+  { id: "3dgs-articulated-reasoner", name: "Articulated Reasoner", nameZh: "关节推理", desc: "Reason about articulated objects in 3DGS scenes & generate interactive digital twins", descZh: "推理 3DGS 场景中的关节物体并生成交互式数字孪生", color: "#e879f9",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085"/>' },
+  { id: "3dgs-training-debugger", name: "Training Debugger", nameZh: "训练调试器", desc: "Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns)", descZh: "诊断训练失败：OOM、NaN、发散、伪影（60+ 运行时模式）", color: "#f59e0b",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>' }
+];
+
+const INSTALL_BLOCKS = [
+  { label: "OpenClaw / ClawHub", lang: "bash", code: `# One command install via ClawHub
+claw skills install jaccen-3dgs-paper-reader
+claw skills install jaccen-3dgs-method-compare
+claw skills install jaccen-3dgs-code-reviewer
+claw skills install jaccen-3dgs-experiment-planner
+claw skills install jaccen-nerf-to-3dgs-migrator
+claw skills install jaccen-cad-mesh-3dgs
+claw skills install jaccen-cg-paper-writing
+claw skills install jaccen-3dgs-visualizer
+claw skills install jaccen-3dgs-engineering-guide
+claw skills install jaccen-patent-software-ip
+claw skills install jaccen-3dgs-spatial-agent
+claw skills install jaccen-3dgs-mcp-renderer
+claw skills install jaccen-3dgs-compression-deploy
+claw skills install jaccen-3dgs-articulated-reasoner
+claw skills install jaccen-3dgs-training-debugger` },
+  { label: "Claude Code / Cursor", lang: "bash", code: `# Clone and symlink into your agent's skills directory
+git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
+ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
+# Or copy directly:
+cp -r Awesome-Gaussian-Skills/skills/* .claude/skills/` },
+  { label: "One-click Script (Bash)", lang: "bash", code: `#!/bin/bash
+# Install all 15 skills in one go
+REPO="jaccen/Awesome-Gaussian-Skills"
+SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
+        3dgs-experiment-planner nerf-to-3dgs-migrator \\
+        cad-mesh-3dgs cg-paper-writing 3dgs-visualizer \\
+        3dgs-engineering-guide patent-software-ip 3dgs-spatial-agent 3dgs-mcp-renderer 3dgs-compression-deploy 3dgs-articulated-reasoner 3dgs-training-debugger)
+DEST="\${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
+mkdir -p "\$DEST" && cd "\$DEST"
+for s in "\${SKILLS[@]}"; do
+  curl -sL "https://raw.githubusercontent.com/\$REPO/main/skills/\$s/SKILL.md" \\
+    -o "\$s/SKILL.md" && mkdir -p "\$s"
+done
+echo "Done! $(echo "\${SKILLS[@]}" | wc -w) skills installed."` }
+];
+
+const TRENDS = [
+  { title: "Distributed City-Scale GS", titleZh: "分布式城市级 GS", desc: "BlitzGS achieves order-of-magnitude speedup for city-scale 3DGS via parity-based GPU sharding —approaching practical deployment timelines", descZh: "BlitzGS 通过基于奇偶校验的 GPU 分片，将城市级 3DGS 实现数量级加速 —— 逼近实用化部署时间线", tags: ["Large-Scale", "Systems"] },
+  { title: "4DGS + Physics Deep Integration", titleZh: "4DGS 与物理深度融合", desc: "Real2Sim (4DGS + differentiable MPM) combines physics-aware simulation with Gaussian rendering for autonomous driving", descZh: "Real2Sim（4DGS + 可微 MPM）将物理感知仿真与高斯渲染结合，用于自动驾驶", tags: ["Simulation", "CVPR 2026"] },
+  { title: "3DGS Security & Watermarking", titleZh: "3DGS 安全与水印", desc: "GuardMarkGS is the first framework for joint watermarking + edit deterrence —critical as 3DGS assets become commercially valuable", descZh: "GuardMarkGS 是首个联合水印与编辑威慑的框架 —— 随着 3DGS 资产商业价值提升而愈发关键", tags: ["Security", "Copyright"] },
+  { title: "Feed-Forward Quality Gap Closing", titleZh: "前馈质量差距收敛", desc: "Z-Order GS (CVPR Oral) and RoSplat show spatial ordering and robust training strategies closing the gap with per-scene optimization", descZh: "Z-Order GS（CVPR Oral）与 RoSplat 通过空间排序与鲁棒训练策略，缩小与逐场景优化的差距", tags: ["Feed-Forward", "CVPR 2026"] },
+  { title: "Language-3DGS Efficiency", titleZh: "语言-3DGS 效率", desc: "SCOUP achieves 400x training speedup by decoupling language representation from 3D optimization for open-vocabulary understanding", descZh: "SCOUP 通过将语言表示与 3D 优化解耦，实现 400 倍训练加速，用于开放词汇理解", tags: ["Semantic", "Efficiency"] },
+  { title: "OIT Transparency in 3DGS", titleZh: "3DGS 中的 OIT 透明", desc: "SparseOIT addresses the long-standing glass/transparency rendering gap for indoor and automotive scenes via active set method", descZh: "SparseOIT 通过活跃集方法，解决室内与车载场景长期存在的玻璃/透明渲染难题", tags: ["Surface", "Rendering"] },
+  { title: "View-Dependent Splatting Kernels", titleZh: "视角依赖溅射核", desc: "SIGGRAPH 2026: learned view-dependent kernels replace fixed covariance —first fundamental rethink of the 3DGS rendering primitive since 2023", descZh: "SIGGRAPH 2026：学习到的视角依赖核取代固定协方差 —— 自 2023 年以来对 3DGS 渲染原语的首次根本性反思", tags: ["Rendering", "SIGGRAPH 2026"] },
+  { title: "Apple HeadsUp: Scale Meets Quality", titleZh: "Apple HeadsUp：规模与质量并举", desc: "UV-parameterized 3DGS head deployed over 10K+ subjects —largest-scale 3DGS avatar to date, Gaussian count decoupled from mesh resolution", descZh: "UV 参数化 3DGS 头部部署于 10K+ 对象 —— 迄今最大规模 3DGS 虚拟人，高斯数量与网格分辨率解耦", tags: ["Human", "Feed-Forward"] },
+  { title: "Inference-Time Compute Scaling", titleZh: "推理时计算扩展", desc: "DejaView introduces compute knob K for looped transformer inference —matches larger baselines with fraction of params", descZh: "DejaView 为循环 Transformer 推理引入计算旋钮 K —— 以更少参数匹敌更大基线", tags: ["Feed-Forward", "Trend"] }
+];
+
+function renderSkills() {
+  const grid = document.getElementById('skillsGrid');
+  grid.innerHTML = SKILLS.map(s => `
+    <div class="skill-card gradient-border p-5 flex flex-col gap-3">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:${s.color}15">
+        <svg class="w-5 h-5" style="color:${s.color}" fill="none" stroke="currentColor" viewBox="0 0 24 24">${s.icon}</svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-slate-900 text-sm">${window.AGS_LANG === 'zh' ? (s.nameZh || s.name) : s.name}</h3>
+        <p class="mt-1 text-xs text-slate-600 leading-relaxed">${window.AGS_LANG === 'zh' ? (s.descZh || s.desc) : s.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderInstall() {
+  const container = document.getElementById('installBlocks');
+  container.innerHTML = INSTALL_BLOCKS.map((b, i) => `
+    <div class="gradient-border p-0 overflow-hidden">
+      <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-900/5">
+        <span class="text-sm font-medium text-slate-900">${b.label}</span>
+        <button class="copy-btn text-xs text-slate-600 hover:text-slate-900 transition flex items-center gap-1" data-idx="${i}">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          ${AGS_T('copy')}
+        </button>
+      </div>
+      <pre class="p-4 overflow-x-auto text-slate-700 bg-slate-50 rounded-b-xl"><code>${escapeHtml(b.code)}</code></pre>
+    </div>
+  `).join('');
+  container.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.idx;
+      navigator.clipboard.writeText(INSTALL_BLOCKS[idx].code).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ' + AGS_T('copied');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> ' + AGS_T('copy');
+        }, 2000);
+      });
+    });
+  });
+}
+
+function renderTrends() {
+  const grid = document.getElementById('trendsGrid');
+  grid.innerHTML = TRENDS.map(t => `
+    <div class="trend-card gradient-border p-5 flex flex-col gap-3">
+      <h3 class="font-semibold text-slate-900 text-sm leading-tight">${window.AGS_LANG === 'zh' ? (t.titleZh || t.title) : t.title}</h3>
+      <p class="text-xs text-slate-600 leading-relaxed">${window.AGS_LANG === 'zh' ? (t.descZh || t.desc) : t.desc}</p>
+      <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
+        ${t.tags.map(tag => `<span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${tag}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.01 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  renderSkills(); renderInstall(); renderTrends();
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
 </script>
 
 </body>
