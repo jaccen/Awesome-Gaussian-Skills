@@ -236,6 +236,153 @@ tailwind.config = {
   .chip.tint-amber { color: #d97706; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
   .chip.tint-emerald { color: #059669; border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
   .chip.tint-rose { color: #e11d48; border-color: rgba(244,63,94,0.3); background: rgba(244,63,94,0.08); }
+
+  /* ===================== Method Explorer v2 ===================== */
+  .explorer-toolbar { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+  .search-wrap { position: relative; }
+  .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-3); pointer-events: none; }
+  .search-input {
+    width: 100%; padding: 13px 44px; border-radius: 14px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 14px; font-family: inherit;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .search-input::placeholder { color: var(--text-3); }
+  .search-input:focus { outline: none; border-color: rgba(99,102,241,.55); box-shadow: 0 0 0 3px rgba(99,102,241,.16); }
+  .search-input::-webkit-search-cancel-button { display: none; }
+  .search-clear {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    width: 24px; height: 24px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(15,23,42,.07); color: var(--text-2); font-size: 15px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .search-clear:hover { background: rgba(15,23,42,.14); color: var(--text); }
+
+  .sort-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .sort-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+  .sort-btn {
+    padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+    background: rgba(15,23,42,.05); color: var(--text-2);
+    border: 1px solid var(--border); transition: all .15s;
+  }
+  .sort-btn:hover { border-color: var(--border-strong); color: var(--text); }
+  .sort-btn.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 4px 14px -6px rgba(99,102,241,.6); }
+  .sort-hint { font-size: 10px; color: var(--text-3); margin-left: 2px; }
+
+  .category-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .category-tab {
+    padding: 6px 11px; border-radius: 10px; font-size: 12px; font-weight: 500; font-family: inherit;
+    color: var(--text-2); background: var(--surface); border: 1px solid var(--border);
+    cursor: pointer; transition: all .16s; white-space: nowrap;
+  }
+  .category-tab:hover { background: var(--surface-2); color: var(--text); }
+  .category-tab.active { background: var(--grad); color: #fff; border-color: transparent; }
+  .tab-num { opacity: .6; font-variant-numeric: tabular-nums; }
+
+  .explorer-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .venue-legend { display: none; align-items: center; gap: 12px; font-size: 11px; color: var(--text-3); }
+  @media (min-width: 640px) { .venue-legend { display: flex; } }
+  .venue-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .venue-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+  .active-filter {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+    padding: 8px 14px; border-radius: 10px; font-size: 12px;
+    background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.2); color: #4f46e5;
+  }
+  .active-filter[hidden] { display: none; }
+  .active-filter-x {
+    margin-left: auto; border: none; background: none; cursor: pointer;
+    font: inherit; color: #4f46e5; text-decoration: underline; padding: 0;
+  }
+  .active-filter-x:hover { color: #3730a3; }
+
+  .method-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 640px) { .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .method-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  .mc {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 16px; border-radius: 14px; min-height: 134px;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: var(--shadow-card); text-decoration: none; color: inherit;
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 152px;
+  }
+  .mc:hover { transform: translateY(-3px); border-color: rgba(99,102,241,.35); box-shadow: 0 18px 44px -18px rgba(99,102,241,.34); }
+  .mc:focus-visible { outline: none; border-color: rgba(99,102,241,.6); box-shadow: 0 0 0 3px rgba(99,102,241,.24), 0 18px 44px -18px rgba(99,102,241,.34); }
+  .mc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .mc-title { font-size: 14px; font-weight: 600; line-height: 1.3; color: var(--text); word-break: break-word; }
+  .mc-venue { flex: none; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 999px; color: #fff; white-space: nowrap; }
+  .mc-desc {
+    font-size: 12px; line-height: 1.62; color: var(--text-2); margin: 0;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .mc-dim { color: var(--text-3); }
+  .mc-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 2px; }
+  .mc-cat { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+  .mc-meta { display: inline-flex; align-items: center; gap: 7px; }
+  .mc-arxiv { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #6366f1; }
+  .mc-code { width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block; }
+  mark.hl { background: rgba(245,158,11,.34); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+  .load-more { display: flex; justify-content: center; padding: 28px 0 4px; }
+  .load-more[hidden] { display: none; }
+  #methodSentinel { height: 1px; }
+
+  .empty-state {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    padding: 56px 20px; text-align: center;
+    border: 1px dashed var(--border-strong); border-radius: 16px; background: var(--surface);
+  }
+  .empty-state[hidden] { display: none; }
+  .empty-state p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.7; }
+  .empty-state b { color: var(--text); }
+
+  /* ---- Modal v2 ---- */
+  .modal-box { max-width: 640px; }
+  .modal-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; padding-right: 28px; }
+  .modal-title { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.25; margin: 0; word-break: break-word; }
+  .modal-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .modal-cat { font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: rgba(99,102,241,.1); color: #4f46e5; }
+  .modal-section { margin-bottom: 18px; }
+  .modal-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin: 0 0 6px; }
+  .modal-links { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .mlink { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; text-decoration: none; }
+  .mlink svg { width: 14px; height: 14px; }
+  .mlink-arxiv { color: #4f46e5; }
+  .mlink-arxiv:hover { text-decoration: underline; }
+  .mlink-code { color: #059669; }
+  .mlink-code:hover { text-decoration: underline; }
+  .mtext { font-size: 14px; line-height: 1.7; color: var(--text-2); margin: 0; word-break: break-word; }
+  .mtext-dim { color: var(--text-3); font-size: 13px; }
+  .mlist { margin: 0; padding-left: 18px; }
+  .mlist li { font-size: 14px; line-height: 1.7; color: var(--text-2); }
+  #modalContent { outline: none; }
+
+  /* ---- Back to top ---- */
+  #backTop {
+    position: fixed; right: 20px; bottom: 24px; z-index: 40;
+    width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-strong);
+    background: #fff; color: var(--text-2); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 28px -12px rgba(15,23,42,.35);
+    opacity: 0; pointer-events: none; transform: translateY(10px);
+    transition: opacity .25s, transform .25s, color .2s;
+  }
+  #backTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  #backTop:hover { color: var(--accent); }
+  #backTop svg { width: 18px; height: 18px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .mc { transition: none; }
+    .mc:hover { transform: none; }
+    .orb { animation: none; }
+  }
 </style>
 <script>
 // Lazy-load model-viewer when needed
@@ -825,34 +972,59 @@ if ('IntersectionObserver' in window) {
       <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="methods.title">方法探索器</h2>
       <p class="mt-2 text-slate-600 text-sm" data-i18n="methods.sub">浏览 858+ 个方法、横跨 23 个分类 — 搜索、筛选、排序，点击任意卡片查看详情。</p>
     </div>
-    <div class="relative mb-6 search-box">
-      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      <input id="searchInput" type="text" placeholder="按名称搜索方法…" class="w-full pl-11 pr-4 py-3 rounded-xl bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none text-sm" data-i18n-ph="methods.search">
-    </div>
-    <div id="categoryTabs" class="flex flex-wrap gap-2 mb-8"></div>
-    <div class="flex items-center justify-between mb-4">
-      <p id="methodCount" class="text-sm text-slate-500"></p>
-      <div class="hidden sm:flex items-center gap-3 text-xs text-slate-500">
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-CVPR inline-block"></span>CVPR</span>
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-SIGGRAPH inline-block"></span>SIGGRAPH</span>
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ICLR inline-block"></span>ICLR</span>
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ICML inline-block"></span>ICML</span>
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-ECCV inline-block"></span>ECCV</span>
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-RSS inline-block"></span>RSS</span>
-        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-venue-arXiv inline-block"></span>arXiv</span>
+
+    <div class="explorer-toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" spellcheck="false" class="search-input"
+               placeholder="按名称、描述、分类或 arXiv ID 搜索…" data-i18n-ph="methods.search"
+               aria-label="搜索方法" data-i18n-aria="methods.search">
+        <button type="button" id="searchClear" class="search-clear" hidden aria-label="清除搜索" data-i18n-aria="methods.clearSearch">&times;</button>
+      </div>
+      <div class="sort-row">
+        <span class="sort-label" data-i18n="methods.sort">排序：</span>
+        <button type="button" class="sort-btn active" data-sort="default" aria-pressed="true" data-i18n="methods.sort.default">默认</button>
+        <button type="button" class="sort-btn" data-sort="newest" aria-pressed="false" data-i18n="methods.sort.newest">最新</button>
+        <button type="button" class="sort-btn" data-sort="name" aria-pressed="false" data-i18n="methods.sort.name">名称 A-Z</button>
+        <button type="button" class="sort-btn" data-sort="code" aria-pressed="false" data-i18n="methods.sort.code">有代码</button>
+        <span id="sortHint" class="sort-hint"></span>
       </div>
     </div>
-    <div class="flex items-center gap-2 mb-6">
-      <span class="text-[11px] text-slate-500 font-medium uppercase tracking-wider" data-i18n="methods.sort">排序：</span>
-      <button id="sortDefault" class="sort-btn active px-3 py-1 rounded-full text-[11px] font-medium bg-accent-blue/20 text-accent-blue border border-accent-blue/30 transition" data-sort="default" data-i18n="methods.sort.default">默认</button>
-      <button id="sortCitations" class="sort-btn px-3 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-amber-500/30 transition" data-sort="citations" data-i18n="methods.sort.citations">引用 ↓</button>
-      <button id="sortNewest" class="sort-btn px-3 py-1 rounded-full text-[11px] font-medium bg-slate-900/5 text-slate-600 border border-slate-900/10 hover:border-emerald-500/30 transition" data-sort="newest" data-i18n="methods.sort.newest">最新</button>
-      <span id="sortHint" class="text-[10px] text-slate-400 ml-1"></span>
+
+    <div id="categoryTabs" class="category-tabs"></div>
+
+    <div class="explorer-meta">
+      <p id="methodCount" class="text-sm text-slate-500" aria-live="polite"></p>
+      <div class="venue-legend" aria-hidden="true">
+        <span><i style="background:#1a73e8"></i>CVPR</span>
+        <span><i style="background:#e8453c"></i>SIGGRAPH</span>
+        <span><i style="background:#ff8c00"></i>ICLR</span>
+        <span><i style="background:#e91e63"></i>ICML</span>
+        <span><i style="background:#4285f4"></i>ECCV</span>
+        <span><i style="background:#00bcd4"></i>RSS</span>
+        <span><i style="background:#6b7280"></i>arXiv</span>
+      </div>
     </div>
-    <div id="methodGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+
+    <div id="activeFilterBar" class="active-filter" hidden>
+      <span data-i18n="methods.filtering">当前筛选：</span>
+      <b id="activeFilterText"></b>
+      <button type="button" id="clearFilter" class="active-filter-x" data-i18n="methods.clear">清除</button>
+    </div>
+
+    <div id="methodGrid" class="method-grid"></div>
+
+    <div id="methodEmpty" class="empty-state" hidden>
+      <p><span data-i18n="methods.emptyA">没有找到与</span> <b id="emptyKeyword"></b> <span data-i18n="methods.emptyB">匹配的方法，换个关键词或分类试试。</span></p>
+      <button type="button" id="emptyReset" class="btn-ghost" data-i18n="methods.reset">重置筛选</button>
+    </div>
+
+    <div id="loadMoreWrap" class="load-more" hidden>
+      <button type="button" id="loadMoreBtn" class="btn-ghost" data-i18n="methods.loadMore">加载更多</button>
+    </div>
+    <div id="methodSentinel" aria-hidden="true"></div>
   </div>
 </section>
-
 <!-- ===== Skills ===== -->
 <section id="skills" class="py-16 sm:py-24 fade-in">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -965,9 +1137,18 @@ if ('IntersectionObserver' in window) {
 
       "methods.eyebrow": "方法库", "methods.title": "方法探索器",
       "methods.sub": "浏览 858+ 个方法、横跨 23 个分类 — 搜索、筛选、排序，点击任意卡片查看详情。",
-      "methods.search": "按名称搜索方法…",
-      "methods.sort": "排序：", "methods.sort.default": "默认", "methods.sort.citations": "引用 ↓", "methods.sort.newest": "最新",
-      "methods.sortHint.citations": "按预估引用数排序", "methods.sortHint.newest": "按发布日期排序",
+      "methods.search": "按名称、描述、分类或 arXiv ID 搜索…",
+      "methods.sort": "排序：", "methods.sort.default": "默认", "methods.sort.newest": "最新",
+      "methods.sortHint.newest": "按发布日期排序（无 arXiv ID 的排在最后）",
+      "methods.sort.name": "名称 A-Z", "methods.sort.code": "有代码",
+      "methods.sortHint.name": "按方法名字母顺序", "methods.sortHint.code": "优先显示提供代码的方法",
+      "methods.loadMore": "加载更多", "methods.filtering": "当前筛选：", "methods.clear": "清除",
+      "methods.reset": "重置筛选", "methods.clearSearch": "清除搜索", "methods.hasCode": "提供代码链接",
+      "methods.emptyA": "没有找到与", "methods.emptyB": "匹配的方法，换个关键词或分类试试。",
+      "modal.noData": "暂无收录详情", "modal.noLink": "暂无公开链接", "modal.close": "关闭",
+      "modal.abstract.loading": "正在载入摘要…", "modal.abstract.none": "暂无摘要",
+      "a11y.backTop": "回到顶部",
+
 
       "skills.eyebrow": "技能", "skills.title": "15 项专业技能", "skills.sub": "面向 3DGS 研究全流程的端到端 AI 助手。",
       "install.eyebrow": "安装", "install.title": "快速开始", "install.sub": "秒级安装，兼容主流 AI Agent 平台",
@@ -1043,9 +1224,18 @@ if ('IntersectionObserver' in window) {
 
       "methods.eyebrow": "Library", "methods.title": "Method Explorer",
       "methods.sub": "Browse 858+ methods across 23 categories — search, filter, sort, and click any card for details.",
-      "methods.search": "Search methods by name...",
-      "methods.sort": "Sort:", "methods.sort.default": "Default", "methods.sort.citations": "Citations ↓", "methods.sort.newest": "Newest",
-      "methods.sortHint.citations": "Sorted by estimated citation count", "methods.sortHint.newest": "Sorted by publication date",
+      "methods.search": "Search by name, description, category or arXiv ID...",
+      "methods.sort": "Sort:", "methods.sort.default": "Default", "methods.sort.newest": "Newest",
+      "methods.sortHint.newest": "Sorted by publication date (entries without an arXiv ID last)",
+      "methods.sort.name": "Name A-Z", "methods.sort.code": "Has code",
+      "methods.sortHint.name": "Sorted alphabetically by name", "methods.sortHint.code": "Methods with code links first",
+      "methods.loadMore": "Load more", "methods.filtering": "Filtered by:", "methods.clear": "Clear",
+      "methods.reset": "Reset filters", "methods.clearSearch": "Clear search", "methods.hasCode": "Code link available",
+      "methods.emptyA": "No methods match", "methods.emptyB": "— try a different keyword or category.",
+      "modal.noData": "Detailed notes not curated yet", "modal.noLink": "No public link yet", "modal.close": "Close",
+      "modal.abstract.loading": "Loading abstract…", "modal.abstract.none": "No abstract available",
+      "a11y.backTop": "Back to top",
+
 
       "skills.eyebrow": "Skills", "skills.title": "15 Specialized Skills", "skills.sub": "End-to-end AI assistance for 3DGS research workflow.",
       "install.eyebrow": "Install", "install.title": "Quick Start", "install.sub": "Install in seconds, compatible with major AI agent platforms",
@@ -1074,23 +1264,31 @@ if ('IntersectionObserver' in window) {
     catch (e) { return 'zh'; }
   })();
 
-  window.t = function (key) {
+  window.AGS_T = function (key) {
     var d = I18N[window.AGS_LANG] || I18N.zh;
     if (d[key] !== undefined) return d[key];
     if (I18N.zh[key] !== undefined) return I18N.zh[key];
     return key;
   };
 
+  // 兼容旧调用；注意 playcanvas.min.js 会覆盖 window.t，
+  // 因此内部代码一律使用 AGS_T，不要依赖 window.t
+  window.t = window.AGS_T;
+
   window.applyStaticLang = function () {
     document.documentElement.lang = window.AGS_LANG === 'zh' ? 'zh-CN' : 'en';
-    document.title = t('title');
+    document.title = AGS_T('title');
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var k = el.getAttribute('data-i18n');
-      if (k) el.textContent = t(k);
+      if (k) { var v = AGS_T(k); el.textContent = v == null ? '' : String(v); }
     });
     document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
       var k = el.getAttribute('data-i18n-ph');
-      if (k) el.setAttribute('placeholder', t(k));
+      if (k) el.setAttribute('placeholder', AGS_T(k) || '');
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-aria');
+      if (k) el.setAttribute('aria-label', AGS_T(k) || '');
     });
     document.querySelectorAll('.lang-option').forEach(function (b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === window.AGS_LANG);
@@ -2291,7 +2489,6 @@ const METHOD_DETAILS = {
   "EpiSplat": { innovation: "Epipolar-aware cross-attention for feed-forward GS, encoding multi-view geometry priors", codeUrl: "" },
   "GaussianBeV": { innovation: "BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation", codeUrl: "" },
   "GS-PT": { innovation: "Gaussian Splatting pre-training: self-supervised representation learning for Gaussian initialization", codeUrl: "" },
-  "GPSGaussian-Stereo": { innovation: "Pixel-aligned stereo GS with cross-attention feature matching for generalizable real-time NVS", codeUrl: "" },
   "EMGS": { innovation: "Expectation-Maximization framework for GS density control replacing heuristic clone/split/prune", codeUrl: "" },
   "PUP-3DGS": { innovation: "Prune-and-ultra-split: progressive pruning + targeted upsampling for efficient density control", codeUrl: "" },
   "GeCGS": { innovation: "Geometry-consistent GS: cross-view geometric consistency regularization preventing floaters", codeUrl: "" },
@@ -2352,15 +2549,12 @@ const METHOD_DETAILS = {
   "Splat-GS": { innovation: "Scalable Gaussian editing with progressive region selection and style transplantation", codeUrl: "" },
   "SuperSplat": { innovation: "Super-resolution guided Gaussian densification for detail enhancement in sparse-view settings", codeUrl: "" },
   "GaussianOpacityFields": { innovation: "Opacity field formulation enabling direct mesh extraction from GS without post-processing", codeUrl: "" },
-  "GS-LRM-v2": { innovation: "Enhanced large reconstruction model with improved cross-attention for feed-forward GS", codeUrl: "" },
-  "GaussianCross": { innovation: "Cross-attention GS with multi-view feature aggregation for generalizable reconstruction", codeUrl: "" },
   "UniGS": { innovation: "Unified Gaussian Splatting: single model supporting multiple rendering modes (RGB/depth/semantic)", codeUrl: "" },
   "GS-HDA": { innovation: "Hessian-driven acceleration for 3DGS training with second-order optimization", codeUrl: "" },
   "VEGS": { innovation: "Video-driven editing of Gaussian Splatting with temporal consistency propagation", codeUrl: "" },
   "GaussianCut-v2": { innovation: "Enhanced graph-cut segmentation for interactive GS editing with uncertainty refinement", codeUrl: "" },
   "SplatSim": { innovation: "GS-based sim-to-real transfer for robotic manipulation with photorealistic rendering", codeUrl: "" },
   "GS-ID": { innovation: "Identity-preserving Gaussian editing for 3D portrait manipulation", codeUrl: "" },
-  "GS-LRM-full": { innovation: "Full-scale GS-LRM with extended context for large-baseline feed-forward reconstruction", codeUrl: "" },
   "GS-Blur": { innovation: "Motion blur-aware GS training with blur kernel estimation for sharp reconstruction", codeUrl: "" },
   "LGGS": { innovation: "Language-guided GS for zero-shot 3D understanding without per-scene training", codeUrl: "" },
   "GS-Manifold": { innovation: "Manifold-constrained Gaussians for surface reconstruction with topological guarantees", codeUrl: "" },
@@ -2413,7 +2607,6 @@ const METHOD_DETAILS = {
   "GaussMesh": { innovation: "Hybrid GS-Mesh representation with mutual supervision for surface reconstruction", codeUrl: "" },
   "GS-Skin": { innovation: "Skin reflectance model in GS for physically accurate human material estimation", codeUrl: "" },
   "LightGS-v2": { innovation: "Light-stage GS with spherical harmonics decomposition for full relighting", codeUrl: "" },
-  "MVSplat-v2": { innovation: "Enhanced MVSplat with cost-volume refinement for higher fidelity feed-forward GS", codeUrl: "" },
   "GeoSplat": { innovation: "Geometry-aware feed-forward GS with cross-view feature matching", codeUrl: "" },
   "SplatFormer": { innovation: "Transformer-based Gaussian prediction for generalizable 3D reconstruction", codeUrl: "" },
   "FewSplat": { innovation: "Few-shot GS with diffusion-guided depth completion and feature propagation", codeUrl: "" },
@@ -2597,6 +2790,7 @@ const METHOD_DETAILS = {
 
 
 var ABSTRACTS = {};
+var ABSTRACTS_READY = false;
 let _abstractsLoaded = false;
 let _abstractsPromise = null;
 function loadAbstracts() {
@@ -2612,11 +2806,13 @@ function loadAbstracts() {
         }
       } catch(e) { console.warn('Abstracts merge error:', e); }
       _abstractsLoaded = true;
+      ABSTRACTS_READY = true;
       resolve(ABSTRACTS);
     };
     s.onerror = function() {
       console.warn('Failed to load abstracts.js');
       _abstractsLoaded = true;
+      ABSTRACTS_READY = true;
       resolve(ABSTRACTS);
     };
     document.head.appendChild(s);
@@ -2739,153 +2935,378 @@ const TRENDS = [
   { title: "Inference-Time Compute Scaling", titleZh: "推理时计算扩展", desc: "DejaView introduces compute knob K for looped transformer inference —matches larger baselines with fraction of params", descZh: "DejaView 为循环 Transformer 推理引入计算旋钮 K —— 以更少参数匹敌更大基线", tags: ["Feed-Forward", "Trend"] }
 ];
 
-let activeCategory = "All";
-let currentSort = "default"; // "default" | "citations" | "newest"
+/* ============================================================================
+   Method Explorer v2
+   约束：858 条方法、弱机可用、键盘可达、状态可分享
+   - 预建检索索引：启动时一次性小写化，输入时零重复计算
+   - 分块渲染：首屏 48 张 + 哨兵自动续载，避免 858 节点同步插入阻塞主线程
+   - 卡片全部走自定义 class：绕开 Tailwind 运行时对 858 个节点的类名重扫
+   - 状态写入 URL：分类 / 搜索 / 排序可分享、刷新可还原
+   - 全字段转义 + 命中高亮
+   ========================================================================== */
+var PAGE_SIZE = 48;
 
+var activeCategory = 'All';
+var currentSort = 'default';
+var searchQuery = '';
+
+var SEARCH_INDEX = METHODS.map(function (m, i) {
+  return {
+    i: i,
+    hay: [m.name, m.short, m.desc, m.cat, m.venue, m.year, m.arxiv || ''].join(' ').toLowerCase()
+  };
+});
+
+var _result = [];      // 当前结果集（METHODS 下标）
+var _rendered = 0;     // 已插入 DOM 的条数
+var _modalName = null; // 当前打开的详情
+var _lastFocus = null; // 打开详情前的焦点元素
+
+/* ---------- 基础工具 ---------- */
 function venueColor(v) {
-  const map = { CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00', NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63', RSS: '#00bcd4', arXiv: '#6b7280', ICPR: '#00897b' };
+  var map = { CVPR: '#1a73e8', SIGGRAPH: '#e8453c', ICLR: '#ff8c00', NeurIPS: '#ff6f00', ECCV: '#4285f4', ICML: '#e91e63', RSS: '#00bcd4', arXiv: '#6b7280', ICPR: '#00897b' };
   return map[v] || '#6b7280';
 }
 
 function catLabel(id) {
   if (window.AGS_LANG !== 'zh') return id;
-  var c = CATEGORIES.find(function (x) { return x.id === id; });
-  return c ? (c.labelZh || c.label) : id;
+  for (var i = 0; i < CATEGORIES.length; i++) {
+    if (CATEGORIES[i].id === id) return CATEGORIES[i].labelZh || CATEGORIES[i].label;
+  }
+  return id;
 }
 
-function renderMethods() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const grid = document.getElementById('methodGrid');
-  let filtered = METHODS.filter(m => {
-    const matchCat = activeCategory === 'All' || m.cat === activeCategory;
-    const matchQ = !q || m.name.toLowerCase().includes(q) || m.short.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q);
-    return matchCat && matchQ;
-  });
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 
-  // Sort
-  if (currentSort === 'citations') {
-    filtered.sort((a, b) => (b.citations || 0) - (a.citations || 0));
-  } else if (currentSort === 'newest') {
-    filtered.sort((a, b) => {
-      if (b.year !== a.year) return b.year - a.year;
-      // Within same year, arXiv ID as proxy for date
-      return (b.arxiv || '').localeCompare(a.arxiv || '');
+/* 显示名归一化：修正历史上误把 \uXXXX 转义字面量写入方法名导致的乱码
+   （数据层的重复/转义问题仍需在 methods.json 等载体中修复，此处只保证展示正确） */
+function cleanName(s) {
+  var v = String(s == null ? '' : s);
+  if (v.indexOf('\\u') === -1) return v;
+  return v.replace(/\\u([0-9a-fA-F]{4})/g, function (_, h) {
+    return String.fromCharCode(parseInt(h, 16));
+  });
+}
+
+function highlight(text, q) {
+  var safe = esc(text);
+  if (!q) return safe;
+  var needle = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  try { return safe.replace(new RegExp('(' + needle + ')', 'ig'), '<mark class="hl">$1</mark>'); }
+  catch (e) { return safe; }
+}
+
+/* ---------- 结果集 ---------- */
+function computeResults() {
+  var q = searchQuery.trim().toLowerCase();
+  var out = [];
+  for (var n = 0; n < SEARCH_INDEX.length; n++) {
+    var m = METHODS[SEARCH_INDEX[n].i];
+    if (activeCategory !== 'All' && m.cat !== activeCategory) continue;
+    if (q && SEARCH_INDEX[n].hay.indexOf(q) === -1) continue;
+    out.push(SEARCH_INDEX[n].i);
+  }
+  if (currentSort === 'newest') {
+    out.sort(function (a, b) {
+      var A = METHODS[a], B = METHODS[b];
+      if (B.year !== A.year) return B.year - A.year;
+      var ka = A.arxiv || '', kb = B.arxiv || '';
+      if (!ka && !kb) return A.name.localeCompare(B.name, 'en');
+      if (!ka) return 1;          // 无 arXiv ID 的沉底
+      if (!kb) return -1;
+      return kb.localeCompare(ka);
+    });
+  } else if (currentSort === 'name') {
+    out.sort(function (a, b) { return METHODS[a].name.localeCompare(METHODS[b].name, 'en'); });
+  } else if (currentSort === 'code') {
+    out.sort(function (a, b) {
+      var A = (METHOD_DETAILS[METHODS[a].name] || {}).codeUrl ? 0 : 1;
+      var B = (METHOD_DETAILS[METHODS[b].name] || {}).codeUrl ? 0 : 1;
+      return A - B || METHODS[a].name.localeCompare(METHODS[b].name, 'en');
     });
   }
-
-  document.getElementById('methodCount').textContent = filtered.length + ' ' + (window.AGS_LANG === 'zh' ? '个方法' : 'method' + (filtered.length !== 1 ? 's' : ''));
-  grid.innerHTML = filtered.map((m, i) => {
-    const d = METHOD_DETAILS[m.name] || {};
-    const citBadge = (currentSort === 'citations' && m.citations) ? `<span class="shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 border border-amber-500/20" title="${window.t('methods.sortHint.citations')}"> ?${m.citations}</span>` : '';
-    return `
-    <div class="method-card gradient-border p-4 flex flex-col gap-2" onclick="openMethodModal(${METHODS.indexOf(m)})">
-      <div class="flex items-start justify-between gap-2">
-        <h3 class="font-semibold text-slate-900 text-sm leading-tight">${m.name}</h3>
-        <div class="flex items-center gap-1 shrink-0">
-          ${citBadge}
-          <span class="text-[11px] font-medium px-2 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
-        </div>
-      </div>
-      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-[10px] text-slate-500">${d.nameCn}</p>` : ''}
-      <p class="text-xs text-slate-600 leading-relaxed">${m.desc}</p>
-      <div class="flex items-center justify-between mt-auto pt-1">
-        <span class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">${catLabel(m.cat)}</span>
-        ${m.arxiv ? `<span class="text-[11px] text-accent-blue font-mono">${m.arxiv}</span>` : ''}
-      </div>
-    </div>`;
-  }).join('');
+  return out;
 }
 
-function openMethodModal(idx) {
-  const m = METHODS[idx];
-  const d = METHOD_DETAILS[m.name] || {};
-  const a = ABSTRACTS[m.name] || {};
-  const abstractEn = a.abstractEn || '';
-  const hasAbstract = !!abstractEn;
-  const el = document.getElementById('modalContent');
-  el.innerHTML = `
-    <button class="modal-close" onclick="closeMethodModal()">&times;</button>
-    <div class="pr-6">
-      <div class="flex items-center gap-3 mb-1">
-        <h2 class="text-xl font-bold text-slate-900">${m.name}</h2>
-        <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-white" style="background:${venueColor(m.venue)}">${m.venue} ${m.year}</span>
-      </div>
-      ${d.nameCn && d.nameCn !== m.name ? `<p class="text-sm text-slate-600 mb-3">${d.nameCn}</p>` : '<div class="mb-2"></div>'}
-      <div class="space-y-3">
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-blue/10 text-accent-blue">${catLabel(m.cat)}</span>
-        </div>
-        ${d.innovation ? `<div>
-          <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-1">${t('modal.innovation')}</p>
-          <p class="text-sm text-slate-700 leading-relaxed">${d.innovation}</p>
-        </div>` : ''}
-        ${d.innovations && d.innovations.length ? `<div>
-          <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-1">${t('modal.innovations')}</p>
-          <ul class="list-disc list-inside space-y-1">${d.innovations.map(i => `<li class="text-sm text-slate-700 leading-relaxed">${i}</li>`).join('')}</ul>
-        </div>` : ''}
-        ${hasAbstract ? `
-        <div>
-          <div class="modal-tabs" id="abstractTabs">
-            <div class="modal-tab active" data-lang="en" onclick="switchAbstractTab('en')">${t('modal.abstract.en')}</div>
-            <div class="modal-tab" data-lang="cn" onclick="switchAbstractTab('cn')">${t('modal.abstract.zh')}</div>
-          </div>
-          <div id="abstractEn" class="abstract-panel active">
-            <p class="text-sm text-slate-700 leading-relaxed">${abstractEn || 'N/A'}</p>
-          </div>
-          <div id="abstractCn" class="abstract-panel">
-            <p class="text-sm text-slate-700 leading-relaxed">${a.abstractCn || 'N/A'}</p>
-          </div>
-        </div>` : ''}
-        <div class="flex flex-wrap gap-3 pt-2 border-t border-slate-900/5">
-          ${m.arxiv ? `<a href="https://arxiv.org/abs/${m.arxiv}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-accent-blue hover:underline font-medium">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            arXiv:${m.arxiv}
-          </a>` : ''}
-          ${d.codeUrl ? `<a href="${d.codeUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-sm text-emerald-600 hover:underline font-medium">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-            ${t('modal.code')}
-          </a>` : ''}
-        </div>
-      </div>
-    </div>`;
-  document.getElementById('methodModal').classList.add('open');
+/* ---------- 单卡片 ---------- */
+function cardHtml(mi, q) {
+  var m = METHODS[mi];
+  var d = METHOD_DETAILS[m.name] || {};
+  var desc = m.desc ? highlight(m.desc, q) : '<span class="mc-dim">—</span>';
+  var tail = '';
+  if (d.codeUrl) tail += '<span class="mc-code" title="' + esc(t('methods.hasCode')) + '"></span>';
+  if (m.arxiv) tail += '<span class="mc-arxiv">' + esc(m.arxiv) + '</span>';
+  return '<a class="mc" href="#m=' + encodeURIComponent(m.name) + '" data-mi="' + mi + '" role="button">' +
+      '<span class="mc-head">' +
+        '<span class="mc-title">' + highlight(cleanName(m.name), q) + '</span>' +
+        '<span class="mc-venue" style="background:' + venueColor(m.venue) + '">' + esc(m.venue) + ' ' + esc(m.year) + '</span>' +
+      '</span>' +
+      '<span class="mc-desc">' + desc + '</span>' +
+      '<span class="mc-foot">' +
+        '<span class="mc-cat">' + esc(catLabel(m.cat)) + '</span>' +
+        '<span class="mc-meta">' + tail + '</span>' +
+      '</span>' +
+    '</a>';
+}
+
+/* ---------- 渲染：分块插入 + 元信息 ---------- */
+function renderMethods(reset) {
+  if (reset === undefined) reset = true;
+  var grid = document.getElementById('methodGrid');
+  if (!grid) return;
+  if (reset) {
+    _result = computeResults();
+    _rendered = 0;
+    grid.innerHTML = '';
+  }
+  var q = searchQuery.trim();
+  var slice = _result.slice(_rendered, _rendered + PAGE_SIZE);
+  if (slice.length) {
+    var buf = '';
+    for (var i = 0; i < slice.length; i++) buf += cardHtml(slice[i], q);
+    grid.insertAdjacentHTML('beforeend', buf);   // 一次性插入，避免 N 次重排
+    _rendered += slice.length;
+  }
+  updateExplorerMeta();
+}
+
+function updateExplorerMeta() {
+  var total = _result.length;
+  var zh = window.AGS_LANG === 'zh';
+  var countEl = document.getElementById('methodCount');
+  if (countEl) {
+    if (total === 0) {
+      countEl.textContent = zh ? '没有匹配的方法' : 'No matching methods';
+    } else if (_rendered < total) {
+      countEl.textContent = zh
+        ? '匹配 ' + total + ' 个 · 已显示 ' + _rendered
+        : total + ' matched · showing ' + _rendered;
+    } else {
+      countEl.textContent = zh ? '共 ' + total + ' 个方法' : total + ' method' + (total === 1 ? '' : 's');
+    }
+  }
+
+  var moreWrap = document.getElementById('loadMoreWrap');
+  if (moreWrap) moreWrap.hidden = _rendered >= total;
+
+  var empty = document.getElementById('methodEmpty');
+  if (empty) {
+    empty.hidden = total !== 0;
+    if (total === 0) {
+      var kw = document.getElementById('emptyKeyword');
+      if (kw) kw.textContent = searchQuery.trim() || catLabel(activeCategory);
+    }
+  }
+
+  var filterBar = document.getElementById('activeFilterBar');
+  if (filterBar) {
+    var parts = [];
+    if (activeCategory !== 'All') parts.push(catLabel(activeCategory));
+    if (searchQuery.trim()) parts.push('“' + searchQuery.trim() + '”');
+    filterBar.hidden = parts.length === 0;
+    var ft = document.getElementById('activeFilterText');
+    if (ft) ft.textContent = parts.join(' · ');
+  }
+  syncUrlState();
+}
+
+/* ---------- URL 状态 ---------- */
+function syncUrlState() {
+  if (!window.history || !history.replaceState) return;
+  var p = new URLSearchParams(location.search);
+  if (searchQuery.trim()) p.set('q', searchQuery.trim()); else p.delete('q');
+  if (activeCategory !== 'All') p.set('cat', activeCategory); else p.delete('cat');
+  if (currentSort !== 'default') p.set('sort', currentSort); else p.delete('sort');
+  var qs = p.toString();
+  history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+}
+
+function readUrlState() {
+  var p = new URLSearchParams(location.search);
+  var q = p.get('q');
+  if (q) {
+    searchQuery = q;
+    var el = document.getElementById('searchInput');
+    if (el) el.value = q;
+  }
+  var c = p.get('cat');
+  if (c && (c === 'All' || CATEGORIES.some(function (x) { return x.id === c; }))) {
+    activeCategory = c;
+  } else {
+    // 兼容旧链接 #<Category>；语言用 #en/#zh、锚点用 #methods、详情用 #m=，均排除
+    var h = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+    if (h && h.indexOf('=') === -1 && h !== 'en' && h !== 'zh' &&
+        CATEGORIES.some(function (x) { return x.id === h; })) {
+      activeCategory = h;
+    }
+  }
+  var s = p.get('sort');
+  if (s === 'newest' || s === 'name' || s === 'code' || s === 'default') currentSort = s;
+}
+
+/* ---------- 方法详情 ---------- */
+function abstractSlotHtml(name) {
+  var a = ABSTRACTS[name] || {};
+  var en = a.abstractEn || '', cn = a.abstractCn || '';
+  if (!en && !cn) {
+    return '<p class="mtext mtext-dim" id="abstractPending">' +
+      esc(ABSTRACTS_READY ? t('modal.abstract.none') : t('modal.abstract.loading')) + '</p>';
+  }
+  return '<div class="modal-tabs" id="abstractTabs">' +
+      '<button type="button" class="modal-tab active" data-lang="en" onclick="switchAbstractTab(\'en\')">' + esc(t('modal.abstract.en')) + '</button>' +
+      '<button type="button" class="modal-tab" data-lang="cn" onclick="switchAbstractTab(\'cn\')">' + esc(t('modal.abstract.zh')) + '</button>' +
+    '</div>' +
+    '<div id="abstractEn" class="abstract-panel active"><p class="mtext">' + (esc(en) || 'N/A') + '</p></div>' +
+    '<div id="abstractCn" class="abstract-panel"><p class="mtext">' + (esc(cn) || 'N/A') + '</p></div>';
+}
+
+function openMethodModal(target) {
+  var mi = typeof target === 'number'
+    ? target
+    : METHODS.findIndex(function (x) { return x.name === target; });
+  if (mi < 0 || !METHODS[mi]) return;
+  var m = METHODS[mi];
+  var d = METHOD_DETAILS[m.name] || {};
+
+  var innovBlock;
+  if (d.innovation) {
+    innovBlock = '<p class="mtext">' + esc(d.innovation) + '</p>';
+  } else if (d.innovations && d.innovations.length) {
+    innovBlock = '<ul class="mlist">' + d.innovations.map(function (x) {
+      return '<li>' + esc(x) + '</li>';
+    }).join('') + '</ul>';
+  } else {
+    innovBlock = '<p class="mtext mtext-dim">' + esc(t('modal.noData')) + '</p>';
+  }
+
+  var linkRow = '';
+  if (m.arxiv) {
+    linkRow += '<a href="https://arxiv.org/abs/' + encodeURIComponent(m.arxiv) + '" target="_blank" rel="noopener" class="mlink mlink-arxiv">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>' +
+      'arXiv:' + esc(m.arxiv) + '</a>';
+  }
+  if (d.codeUrl) {
+    linkRow += '<a href="' + esc(d.codeUrl) + '" target="_blank" rel="noopener" class="mlink mlink-code">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>' +
+      esc(t('modal.code')) + '</a>';
+  }
+  if (!linkRow) linkRow = '<span class="mtext mtext-dim">' + esc(t('modal.noLink')) + '</span>';
+
+  document.getElementById('modalContent').innerHTML =
+    '<button type="button" class="modal-close" aria-label="' + esc(t('modal.close')) + '" onclick="closeMethodModal()">&times;</button>' +
+    '<div class="pr-6">' +
+      '<div class="modal-head">' +
+        '<h2 class="modal-title">' + esc(cleanName(m.name)) + '</h2>' +
+        '<span class="mc-venue" style="background:' + venueColor(m.venue) + '">' + esc(m.venue) + ' ' + esc(m.year) + '</span>' +
+      '</div>' +
+      '<div class="modal-sub">' +
+        '<span class="modal-cat">' + esc(catLabel(m.cat)) + '</span>' +
+        (d.nameCn && d.nameCn !== m.name ? '<span class="mtext mtext-dim">' + esc(d.nameCn) + '</span>' : '') +
+      '</div>' +
+      '<div class="modal-section">' +
+        '<p class="modal-label">' + esc(t('modal.innovation')) + '</p>' + innovBlock +
+      '</div>' +
+      '<div class="modal-section" id="abstractSlot">' + abstractSlotHtml(m.name) + '</div>' +
+      '<div class="modal-links">' + linkRow + '</div>' +
+    '</div>';
+
+  _modalName = m.name;
+  _lastFocus = document.activeElement;
+
+  var modal = document.getElementById('methodModal');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+
+  // 补偿滚动条宽度，避免打开瞬间页面横向跳动
+  var sbw = window.innerWidth - document.documentElement.clientWidth;
+  document.body.style.paddingRight = sbw > 0 ? sbw + 'px' : '';
   document.body.style.overflow = 'hidden';
+
+  var box = document.getElementById('modalContent');
+  box.setAttribute('tabindex', '-1');
+  try { box.focus({ preventScroll: true }); } catch (e) { box.focus(); }
+
+  if (history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search + '#m=' + encodeURIComponent(m.name));
+  }
+
+  // 摘要尚未就绪 → 补齐后原地更新，避免出现"没有摘要"的错觉
+  if (!ABSTRACTS_READY) {
+    loadAbstracts().then(function () {
+      if (_modalName !== m.name) return;
+      var slot = document.getElementById('abstractSlot');
+      if (slot) slot.innerHTML = abstractSlotHtml(m.name);
+    });
+  }
 }
 
 function closeMethodModal() {
-  document.getElementById('methodModal').classList.remove('open');
+  var modal = document.getElementById('methodModal');
+  if (!modal || !modal.classList.contains('open')) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  document.body.style.paddingRight = '';
+  _modalName = null;
+  if (_lastFocus && _lastFocus.focus) {
+    try { _lastFocus.focus({ preventScroll: true }); } catch (e) {}
+  }
+  if (location.hash.indexOf('#m=') === 0 && history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
 }
 
 function switchAbstractTab(lang) {
-  const tabs = document.querySelectorAll('#abstractTabs .modal-tab');
-  tabs.forEach(t => t.classList.toggle('active', t.dataset.lang === lang));
-  document.getElementById('abstractEn').classList.toggle('active', lang === 'en');
-  document.getElementById('abstractCn').classList.toggle('active', lang === 'cn');
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMethodModal(); });
-
-function renderTabs() {
-  const container = document.getElementById('categoryTabs');
-  const all = [{ id: 'All', label: 'All', labelZh: t('cat.all') }, ...CATEGORIES];
-  const counts = {};
-  METHODS.forEach(m => { counts[m.cat] = (counts[m.cat] || 0) + 1; });
-  container.innerHTML = all.map(c => {
-    const cnt = c.id === 'All' ? METHODS.length : (counts[c.id] || 0);
-    const isActive = activeCategory === c.id;
-    const label = (c.id !== 'All' && window.AGS_LANG === 'zh') ? (c.labelZh || c.label) : c.label;
-    return `<button class="category-tab ${isActive ? 'active' : ''} px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 border border-slate-900/5" data-cat="${c.id}">${label} <span class="opacity-60">${cnt}</span></button>`;
-  }).join('');
-  container.querySelectorAll('.category-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeCategory = btn.dataset.cat;
-      renderTabs();
-      renderMethods();
-    });
+  document.querySelectorAll('#abstractTabs .modal-tab').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
   });
+  var en = document.getElementById('abstractEn');
+  var cn = document.getElementById('abstractCn');
+  if (en) en.classList.toggle('active', lang === 'en');
+  if (cn) cn.classList.toggle('active', lang === 'cn');
 }
 
+/* Esc 关闭详情 */
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && _modalName) closeMethodModal();
+});
+
+/* 详情内 Tab 焦点循环，避免焦点跑到背后的页面 */
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Tab' || !_modalName) return;
+  var box = document.getElementById('modalContent');
+  if (!box) return;
+  var f = box.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+  if (!f.length) return;
+  var first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+/* ---------- 分类标签 ---------- */
+function renderTabs() {
+  var container = document.getElementById('categoryTabs');
+  if (!container) return;
+  var counts = {};
+  METHODS.forEach(function (m) { counts[m.cat] = (counts[m.cat] || 0) + 1; });
+  var list = [{ id: 'All', label: t('cat.all'), labelZh: t('cat.all') }].concat(CATEGORIES);
+  container.innerHTML = list.map(function (c) {
+    var cnt = c.id === 'All' ? METHODS.length : (counts[c.id] || 0);
+    var label = (c.id !== 'All' && window.AGS_LANG === 'zh') ? (c.labelZh || c.label) : c.label;
+    var on = activeCategory === c.id;
+    return '<button type="button" class="category-tab' + (on ? ' active' : '') +
+      '" data-cat="' + esc(c.id) + '" aria-pressed="' + on + '">' +
+      esc(label) + ' <span class="tab-num">' + cnt + '</span></button>';
+  }).join('');
+  var active = container.querySelector('.category-tab.active');
+  if (active && active.scrollIntoView) {
+    try { active.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) {}
+  }
+}
 function renderSkills() {
   const grid = document.getElementById('skillsGrid');
   grid.innerHTML = SKILLS.map(s => `
@@ -2909,7 +3330,7 @@ function renderInstall() {
         <span class="text-sm font-medium text-slate-900">${b.label}</span>
         <button class="copy-btn text-xs text-slate-600 hover:text-slate-900 transition flex items-center gap-1" data-idx="${i}">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-          ${t('copy')}
+          ${AGS_T('copy')}
         </button>
       </div>
       <pre class="p-4 overflow-x-auto text-slate-700 bg-slate-50 rounded-b-xl"><code>${escapeHtml(b.code)}</code></pre>
@@ -2920,10 +3341,10 @@ function renderInstall() {
       const idx = btn.dataset.idx;
       navigator.clipboard.writeText(INSTALL_BLOCKS[idx].code).then(() => {
         btn.classList.add('copied');
-        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ' + t('copied');
+        btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ' + AGS_T('copied');
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> ' + t('copy');
+          btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> ' + AGS_T('copy');
         }, 2000);
       });
     });
@@ -2952,37 +3373,157 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.01 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  /* 1. 先还原 URL 状态（分享链接 / 刷新 / 后退都能对得上） */
+  readUrlState();
+
   renderTabs();
   renderMethods();
   renderSkills();
   renderInstall();
   renderTrends();
-  document.getElementById('searchInput').addEventListener('input', renderMethods);
 
-  // Sort button handlers
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('searchClear');
+  const sortHint = document.getElementById('sortHint');
+  const SORT_HINTS = {
+    newest: 'methods.sortHint.newest',
+    name: 'methods.sortHint.name',
+    code: 'methods.sortHint.code'
+  };
+
+  function syncSortButtons() {
+    document.querySelectorAll('.sort-btn').forEach(b => {
+      const on = b.dataset.sort === currentSort;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (sortHint) sortHint.textContent = SORT_HINTS[currentSort] ? t(SORT_HINTS[currentSort]) : '';
+  }
+  syncSortButtons();
+
+  /* 2. 搜索：160ms 防抖，避免每敲一个字就重建整页卡片 */
+  let debounceTimer = 0;
+  function applyQuery(v) {
+    searchQuery = v || '';
+    if (clearBtn) clearBtn.hidden = !searchQuery;
+    renderMethods();
+  }
+  if (input) {
+    clearBtn.hidden = !input.value;
+    input.addEventListener('input', () => {
+      clearBtn.hidden = !input.value;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => applyQuery(input.value), 160);
+    });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { input.value = ''; applyQuery(''); input.blur(); }
+      else if (e.key === 'Enter') { clearTimeout(debounceTimer); applyQuery(input.value); }
+    });
+  }
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    if (input) { input.value = ''; input.focus(); }
+    applyQuery('');
+  });
+
+  /* 按 "/" 直达搜索框；不在输入框内才拦截 */
+  document.addEventListener('keydown', e => {
+    if (e.key !== '/' || _modalName) return;
+    const tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+    e.preventDefault();
+    if (input) { input.focus(); input.select(); }
+  });
+
+  /* 3. 分类：事件委托，避免每次重绘都重绑 23 个监听 */
+  const tabs = document.getElementById('categoryTabs');
+  if (tabs) {
+    tabs.addEventListener('click', e => {
+      const btn = e.target.closest('.category-tab');
+      if (!btn) return;
+      activeCategory = btn.dataset.cat;
+      renderTabs();
+      renderMethods();
+    });
+  }
+
+  /* 4. 排序 */
   document.querySelectorAll('.sort-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      currentSort = btn.dataset.sort;
-      document.querySelectorAll('.sort-btn').forEach(b => {
-        b.classList.remove('active', 'bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30',
-          'bg-amber-500/20', 'text-amber-600', 'border-amber-500/30',
-          'bg-emerald-500/20', 'text-emerald-600', 'border-emerald-500/30');
-        b.classList.add('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
-      });
-      var colorMap = {
-        default: ['bg-accent-blue/20', 'text-accent-blue', 'border-accent-blue/30'],
-        citations: ['bg-amber-500/20', 'text-amber-600', 'border-amber-500/30'],
-        newest: ['bg-emerald-500/20', 'text-emerald-600', 'border-emerald-500/30']
-      };
-      btn.classList.add('active');
-      btn.classList.remove('bg-slate-900/5', 'text-slate-600', 'border-slate-900/10');
-      (colorMap[currentSort] || []).forEach(c => btn.classList.add(c));
-      // Show sort hint
-      var hints = { default: '', citations: t('methods.sortHint.citations'), newest: t('methods.sortHint.newest') };
-      document.getElementById('sortHint').textContent = hints[currentSort] || '';
+      currentSort = btn.dataset.sort || 'default';
+      syncSortButtons();
       renderMethods();
     });
   });
+
+  /* 5. 续载：按钮 + 哨兵自动加载，首屏只渲染 48 张 */
+  const moreBtn = document.getElementById('loadMoreBtn');
+  if (moreBtn) moreBtn.addEventListener('click', () => renderMethods(false));
+
+  const sentinel = document.getElementById('methodSentinel');
+  if (sentinel && 'IntersectionObserver' in window) {
+    const so = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting && _rendered < _result.length) renderMethods(false);
+      });
+    }, { rootMargin: '500px 0px' });
+    so.observe(sentinel);
+  }
+
+  /* 6. 一键重置（筛选条 / 空态都复用） */
+  function resetExplorer() {
+    activeCategory = 'All';
+    searchQuery = '';
+    currentSort = 'default';
+    if (input) input.value = '';
+    if (clearBtn) clearBtn.hidden = true;
+    syncSortButtons();
+    renderTabs();
+    renderMethods();
+  }
+  const clearFilter = document.getElementById('clearFilter');
+  if (clearFilter) clearFilter.addEventListener('click', resetExplorer);
+  const emptyReset = document.getElementById('emptyReset');
+  if (emptyReset) emptyReset.addEventListener('click', resetExplorer);
+
+  /* 7. 卡片：委托点击打开详情；中键 / Ctrl / Cmd 走原生新标签页 */
+  const grid = document.getElementById('methodGrid');
+  if (grid) {
+    grid.addEventListener('click', e => {
+      const card = e.target.closest('.mc');
+      if (!card) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      openMethodModal(parseInt(card.dataset.mi, 10));
+    });
+  }
+
+  /* 详情深链：#m=方法名 可直接打开 */
+  function openFromHash() {
+    const h = location.hash || '';
+    if (h.indexOf('#m=') === 0 && !_modalName) {
+      let name = h.slice(3);
+      try { name = decodeURIComponent(name); } catch (err) {}
+      openMethodModal(name);
+    }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', () => {
+    const h = location.hash || '';
+    if (h.indexOf('#m=') === 0) openFromHash();
+    else if (_modalName) closeMethodModal();
+  });
+
+  /* 8. 回到顶部 */
+  const backTop = document.getElementById('backTop');
+  if (backTop) {
+    const onScroll = () => backTop.classList.toggle('show', window.scrollY > 900);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    backTop.addEventListener('click', () => {
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (err) { window.scrollTo(0, 0); }
+    });
+  }
+
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // Interactive viewer toggle (lazy-load iframe)
@@ -2998,10 +3539,10 @@ document.addEventListener('DOMContentLoaded', () => {
         viewerFrame.src = 'https://antimatter15.com/splat/';
         viewerLoaded = true;
       }
-      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg> ' + t('show.hide');
+      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg> ' + AGS_T('show.hide');
     } else {
       viewerContainer.classList.add('hidden');
-      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ' + t('show.try');
+      toggleBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> ' + AGS_T('show.try');
     }
   });
 
@@ -3072,7 +3613,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     icon.innerHTML = '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>';
     icon.setAttribute('class', 'w-4 h-4 animate-spin');
-    txt.textContent = t('gen.generating');
+    txt.textContent = AGS_T('gen.generating');
 
     // Show pipeline
     const pipeline = document.getElementById('t2wPipeline');
@@ -3082,7 +3623,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="flex items-center shrink-0" id="t2wStep${i}">
         <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-slate-900/10 text-slate-500 transition-all duration-300">
           <span class="step-icon">${s.icon}</span>
-          <span class="step-label">${window.t(s.key)}</span>
+          <span class="step-label">${window.AGS_T(s.key)}</span>
         </div>
         ${i < t2wSteps.length - 1 ? '<svg class="w-3 h-3 text-slate-400 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : ''}
       </div>
@@ -3121,7 +3662,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = false;
       icon.setAttribute('class', 'w-4 h-4');
       icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-      txt.textContent = t('gen.regenerate');
+      txt.textContent = AGS_T('gen.regenerate');
       return;
     }
 
@@ -3165,7 +3706,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = false;
     icon.setAttribute('class', 'w-4 h-4');
     icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-    txt.textContent = t('gen.regenerate');
+    txt.textContent = AGS_T('gen.regenerate');
   }
 
   function showMethodRecommendation(method, parsed, text, isRealGen) {
@@ -3193,7 +3734,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function show3DResult(result) {
     const res3D = document.getElementById('t2w3DResult');
     res3D.classList.remove('hidden');
-    document.getElementById('t2w3DStatus').textContent = t('status.done');
+    document.getElementById('t2w3DStatus').textContent = AGS_T('status.done');
 
     if (result.thumbnailUrl) {
       document.getElementById('t2w3DPreview').src = result.thumbnailUrl;
@@ -3386,14 +3927,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(btn.dataset.splat, '_blank');
         return;
       }
-      if (typeof initPlayCanvas === 'function') {
-        initPlayCanvas();
-        var url = btn.dataset.splat;
-        if (url.endsWith('.glb')) {
-          loadGLTF(url);
-        } else {
-          loadGSplat(url, btn.dataset.label || '');
-        }
+      if (typeof window.openScene === 'function') {
+        window.openScene(btn.dataset.splat, btn.dataset.label);
       }
       // Highlight selected
       document.querySelectorAll('.t2w-preset').forEach(b => b.style.borderColor = '');
@@ -3405,22 +3940,15 @@ document.addEventListener('DOMContentLoaded', () => {
   var sceneSelect = document.getElementById('t2wSceneSelect');
   if (sceneSelect) {
     sceneSelect.addEventListener('change', function() {
-      if (typeof initPlayCanvas === 'function') {
-        initPlayCanvas();
-        var url = this.value;
-        if (url.endsWith('.glb')) {
-          loadGLTF(url);
-        } else {
-          loadGSplat(url, this.options[this.selectedIndex].text);
-        }
+      if (typeof window.openScene === 'function') {
+        window.openScene(this.value, this.options[this.selectedIndex].text);
       }
     });
   }
 });
 </script>
 
-<!-- PlayCanvas Engine CDN for 3DGS rendering -->
-<script defer src="https://cdn.jsdelivr.net/npm/playcanvas@2.18.1/build/playcanvas.min.js"></script>
+<!-- PlayCanvas Engine: 改为按需加载。其一，压缩产物会向 window 泄漏全局变量 t（覆盖 i18n 函数，导致页面文案全部丢失）；其二，约 1.3MB，仅在用户打开 3D 查看器时才需要 -->
 <script>
 (function() {
   let pcApp = null;
@@ -3432,8 +3960,23 @@ document.addEventListener('DOMContentLoaded', () => {
   let orbitDistance = 3;
   let autoRotate = true;
 
+  // 按需加载 PlayCanvas 引擎（全局共享，T2W 与 I2G 两个查看器复用）
+  function loadPlayCanvasLib() {
+    if (window.pc) return Promise.resolve();
+    if (window._pcLibPromise) return window._pcLibPromise;
+    window._pcLibPromise = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/playcanvas@2.18.1/build/playcanvas.min.js';
+      s.onload = function () { window.t = window.AGS_T; resolve(); };
+      s.onerror = function () { window._pcLibPromise = null; reject(new Error('PlayCanvas 引擎加载失败')); };
+      document.head.appendChild(s);
+    });
+    return window._pcLibPromise;
+  }
+  window.ensurePlayCanvas = loadPlayCanvasLib;
+
   function initPlayCanvas() {
-    if (pcApp) return;
+    if (pcApp || !window.pc) return;
     const container = document.getElementById('t2wSplatCanvas');
     const placeholder = document.getElementById('t2wSplatPlaceholder');
     if (!container || !placeholder) return;
@@ -3595,6 +4138,18 @@ document.addEventListener('DOMContentLoaded', () => {
   window.initPlayCanvas = initPlayCanvas;
   window.loadGSplat = loadGSplat;
   window.loadGLTF = loadGLTF;
+
+  // 打开一个 3D 场景：先确保引擎就绪，再载入
+  window.openScene = function (url, label) {
+    loadPlayCanvasLib().then(function () {
+      initPlayCanvas();
+      if (url.slice(-4).toLowerCase() === '.glb') loadGLTF(url);
+      else loadGSplat(url, label || '');
+    }).catch(function (e) {
+      var ph = document.getElementById('t2wSplatPlaceholder');
+      if (ph) { ph.style.display = 'block'; ph.textContent = e.message; }
+    });
+  };
 })();
 </script>
 
@@ -3614,7 +4169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let i2gAutoRotate = true;
 
   function i2gInitPC() {
-    if (i2gApp) return;
+    if (i2gApp || !window.pc) return;
     var container = document.getElementById('i2gSplatCanvas');
     var placeholder = document.getElementById('i2gSplatPlaceholder');
     if (!container || !placeholder) return;
@@ -3821,7 +4376,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     icon.innerHTML = '<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>';
     icon.setAttribute('class', 'w-4 h-4 animate-spin');
-    txt.textContent = t('i2g.reconstructing');
+    txt.textContent = AGS_T('i2g.reconstructing');
 
     // Show pipeline
     var pipeline = document.getElementById('i2gPipeline');
@@ -3830,7 +4385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     stepsEl.innerHTML = i2gPipelineSteps.map(function(s, i) {
       return '<div class="flex items-center shrink-0" id="i2gStep' + i + '">' +
         '<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-medium border-slate-900/10 text-slate-500 transition-all duration-300">' +
-        '<span class="step-icon">' + s.icon + '</span><span class="step-label">' + window.t(s.key) + '</span></div>' +
+        '<span class="step-icon">' + s.icon + '</span><span class="step-label">' + window.AGS_T(s.key) + '</span></div>' +
         (i < i2gPipelineSteps.length - 1 ? '<svg class="w-3 h-3 text-slate-400 mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' : '') +
         '</div>';
     }).join('');
@@ -3901,7 +4456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = false;
     icon.setAttribute('class', 'w-4 h-4');
     icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>';
-    txt.textContent = t('i2g.rereconstruct');
+    txt.textContent = AGS_T('i2g.rereconstruct');
   }
 
   function i2gMarkStep(i, delayMs) {
@@ -3969,18 +4524,19 @@ document.addEventListener('DOMContentLoaded', () => {
       dlLink.href = result.modelUrl;
       dlLink.classList.remove('hidden');
     }
-    document.getElementById('i2g3DStatus').textContent = t('status.loaded');
+    document.getElementById('i2g3DStatus').textContent = AGS_T('status.loaded');
   }
 
   function i2gLoadDemoPreview() {
-    i2gInitPC();
-    var previewUrl = 'https://developer.playcanvas.com/assets/toy-cat.sog';
-    if (i2gDetectedType === 'product' || i2gDetectedType === 'sculpture') {
-      previewUrl = 'https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb';
-      i2gLoadGLTF(previewUrl);
-    } else {
-      i2gLoadSplat(previewUrl);
-    }
+    window.ensurePlayCanvas().then(function () {
+      i2gInitPC();
+      var previewUrl = 'https://developer.playcanvas.com/assets/toy-cat.sog';
+      if (i2gDetectedType === 'product' || i2gDetectedType === 'sculpture') {
+        i2gLoadGLTF('https://modelviewer.dev/shared-assets/models/Astronaut/Astronaut.glb');
+      } else {
+        i2gLoadSplat(previewUrl);
+      }
+    });
   }
 
   // =============================================
@@ -4375,13 +4931,12 @@ document.addEventListener('DOMContentLoaded', () => {
     var i2gSceneSelect = document.getElementById('i2gSceneSelect');
     if (i2gSceneSelect) {
       i2gSceneSelect.addEventListener('change', function() {
-        i2gInitPC();
         var url = this.value;
-        if (url.endsWith('.glb')) {
-          i2gLoadGLTF(url);
-        } else {
-          i2gLoadSplat(url);
-        }
+        window.ensurePlayCanvas().then(function () {
+          i2gInitPC();
+          if (url.slice(-4).toLowerCase() === '.glb') i2gLoadGLTF(url);
+          else i2gLoadSplat(url);
+        });
       });
     }
   });
@@ -4392,6 +4947,11 @@ document.addEventListener('DOMContentLoaded', () => {
 <div id="methodModal" class="modal-overlay" onclick="if(event.target===this)closeMethodModal()">
   <div class="modal-box p-6" id="modalContent"></div>
 </div>
+
+<!-- Back to top -->
+<button type="button" id="backTop" aria-label="回到顶部" data-i18n-aria="a11y.backTop">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+</button>
 
 </body>
 </html>
