@@ -56,6 +56,7 @@ If the user does not specify, defaults are: section=all, venue=all.
 Read these files from static/:
 - static/core-stance.md — Role, writing process, de-AI rules, citation fact-check, guardrails
 - static/symbols-terminology.md — Mathematical symbols, CG/CAD/3D terminology reference
+- static/writing-patterns-from-top-papers.md — Exemplar patterns from 3DGS/Mip-Splatting/D4RT (concrete writing techniques with direct quotes)
 
 ### On-Demand Load (by detected section)
 | section | Fragment(s) to Load |
@@ -80,7 +81,10 @@ Read these files from static/:
 ### Reference Load (for review/integrity work)
 - static/review-integrity.md — Multi-agent review, Devil's Advocate Protocol, citation verification, integrity gates, style calibration, writing quality check, persistence
 
-**Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + venue-formats (if venue specified). For full paper work, load all fragments.
+### Exemplar Calibration (always load alongside writing fragments)
+- static/writing-patterns-from-top-papers.md — Concrete writing techniques distilled from 3DGS (SIGGRAPH 2023), Mip-Splatting (CVPR 2024 Best Student Paper), and D4RT (CVPR 2026 Best Paper). Every pattern is backed by direct quotes. Load for style calibration on any section.
+
+**Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load all fragments.
 
 ## Step 3 — Execute Writing Task
 

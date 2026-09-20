@@ -126,6 +126,80 @@ Applies when the user targets a Chinese core journal (中文核心期刊 / 软�
 | 综合性/应用基础研究 | 计算机研究与发展 | 综合性强，接受面广 |
 | AI+3D视觉+Agent | 软件学报专刊 | 近期有"具身推理与多模态世界模型"专刊 |
 
+## Exemplar Patterns from High-Impact Chinese Journal Papers
+
+The patterns below are distilled from actual high-impact papers published in 软件学报 and 计算机辅助设计与图形学学报, with direct structural evidence.
+
+### Exemplar 1: 软件学报 综述论文引言结构 (智能数据可视分析技术综述, 2024, 35(1): 356-404)
+
+The introduction uses "●" bullet markers to structure four key elements, each as a mini-paragraph:
+
+```
+1 引言
+  [研究背景与意义 — 2-3段正文，无标记]
+  [核心概念定义 — 1段正文，引入关键术语]
+
+  ● 综述调查范围: 明确论文数量和时间跨度
+    例: "本文对30多年来(1984-2022)近200篇论文进行了系统性地梳理"
+    附表列出覆盖的会议/期刊（按研究领域分组）
+
+  ● 与相关综述性文章的区别: 逐一点评已有综述，指出各自局限
+    例: "Qin等人[4]主要从数据库的视角出发... Battle等人[9]也从数据管理的视角出发...
+        然而, 上述综述往往从单一的学科视角出发, 或只涵盖了...个别细分领域"
+
+  ● 本文的主要贡献: 3条，用"首先...其次...最后..."结构
+    例: "首先, 本文通过调查...总结出...凝练出...揭示了...
+         其次, 本文系统性地梳理和分析了...
+         最后, 本文还探讨了...并为研究者们提供了未来可能的探索方向"
+
+  ● 本文的组织结构: 逐节预告
+    例: "本文第2节介绍...第3节介绍...第4节梳理...第5节分析了...第6节展开介绍...
+         第7节讨论...并在第8节总结全文"
+```
+
+**Key language patterns observed:**
+- "本文" as primary subject throughout (not "我们"): "本文通过调查...", "本文从...视角出发", "本文系统性地梳理..."
+- First-occurrence term format: "结构化查询语言(structured query language, SQL)" — 中文全称(英文全称, 缩写)
+- Figure references: "如图X所示", "图X展示了...", "图X形象化地展示了..."
+- Table references: "如表X所示"
+- Section headers use full-width space: "1 引　言" (not "1 引言")
+- Survey scope quantified: explicit paper count + year range + coverage table
+
+### Exemplar 2: 中文核心期刊 NeRF 综述结构 (计算机辅助设计与图形学学报, 2025)
+
+Published NeRF survey structure (陈涛, 杨启亮, 陈寅):
+- Title: 神经辐射场技术及应用综述 — "技术及应用综述" is the standard survey title suffix
+- Keywords: 神经辐射场; 神经网络三维重建; 体渲染; 新视角图像 — semicolons, not commas
+- Abstract follows 目的→方法→结果→结论 four-element structure
+- Body: NeRF原理 → 体渲染方程 → 训练方法 → 应用场景 → 未来方向
+
+### Cross-Journal Common Patterns
+
+| Pattern | 软件学报 | 计算机学报 | 计算机辅助设计与图形学学报 |
+|---------|---------|-----------|----------------------|
+| 摘要结构 | 目的→方法→结果→结论 | 同左 | 同左 |
+| 主语偏好 | "本文"为主 | "本文"为主 | "本文"为主 |
+| 综述标题后缀 | "综述" | "综述" | "技术及应用综述" |
+| 图表引用 | "如图X所示" | 同左 | 同左 |
+| 关键词分隔 | 分号(;) | 分号(;) | 分号(;) |
+| 贡献列举 | "首先...其次...最后..." | 同左 | 同左 |
+| 组织结构预告 | "本文第X节介绍..." | 同左 | 同左 |
+| 术语首次出现 | 中文全称(英文全称, 缩写) | 同左 | 同左 |
+
+### Chinese vs English Writing: Structural Differences from Exemplars
+
+| Dimension | English Top Papers (CVPR/SIGGRAPH) | Chinese Core Journals (软件学报/计算机学报) |
+|-----------|-------------------------------------|---------------------------------------------|
+| Subject | "We" as primary subject | "本文" as primary subject |
+| Opening | Rhetorical question or taxonomy framing | 研究背景与意义 (background + significance) |
+| Contributions | 3-4 technical artifact bullets | "首先...其次...最后..." 3条 |
+| Survey scope | Implicit in related work | Explicit: paper count + year range + coverage table |
+| Paper organization | Optional roadmap sentence | Required: "本文第X节介绍...并在第X节总结全文" |
+| Limitations | Dedicated subsection | Folded into 结论 or 未来工作 |
+| Figure captions | Conclusion sentence as caption | "图X [描述]" format (descriptive, not conclusion) |
+| Term definition | Abbreviation on first use | 中文全称(英文全称, 缩写) on first use |
+| Tone | Assertive, quotable claims | Formal, measured ("表明"/"揭示"/"凝练") |
+
 ## AIGC Compliance (2026 update)
 
 From 2026, most Chinese core journals require AIGC detection reports:

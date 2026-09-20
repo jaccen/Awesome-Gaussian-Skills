@@ -27,6 +27,7 @@ axes:
 routing:
   always_load:
     - static/core-stance.md
+    - static/writing-patterns-from-top-papers.md
   on_demand:
     section:
       title:
@@ -69,5 +70,6 @@ routing:
   references:
     always_load:
       - static/symbols-terminology.md
+      - static/writing-patterns-from-top-papers.md
     on_demand:
       - static/review-integrity.md
