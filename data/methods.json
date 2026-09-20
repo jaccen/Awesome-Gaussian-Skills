@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-09-20T18:00:00Z",
   "generator": "scripts/build_knowledge_base.py",
-  "count": 692,
+  "count": 697,
   "category_count": 23,
   "categories": [
     "Acceleration",
@@ -8775,6 +8775,56 @@
       "year": 2026,
       "category": "Robustness",
       "desc": "Propagating reliable multi-view information for distractor-free 3DGS; 3D-aware inpainting engine from view synthesis prior; geometry-aware support view selection; mask-aware fast weight update",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "SceneSmith",
+      "arxiv_id": "2602.09153",
+      "venue": "ICML 2026 Spotlight",
+      "year": 2026,
+      "category": "Embodied AI & Robotics",
+      "desc": "Hierarchical agentic framework for simulation-ready indoor scene generation from natural language; designer-critic-orchestrator VLM agents; text-to-3D + dataset retrieval + physics property estimation; 3-6x more objects than prior methods, <2% collisions, 96% physics-stable",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "SceneGenAgent",
+      "arxiv_id": "2410.21909",
+      "venue": "ACL 2025",
+      "year": 2025,
+      "category": "Generation",
+      "desc": "LLM-based coding agent for precise industrial scene generation via C# code; structured calculable format + layout verification + iterative refinement; 81% success rate on real industrial tasks; SceneInstruct dataset for fine-tuning open-source LLMs",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "SceneConductor",
+      "arxiv_id": "2606.08402",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Generation",
+      "desc": "Multi-agent orchestration for single-image 3D scene generation; three-stage pipeline: scene initialization + environment construction + multi-agent refinement; geometry-aware layout predictor from point maps; planner agent dispatches specialist agents for localized revisions",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "SceneAssistant",
+      "arxiv_id": "2603.12238",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Generation",
+      "desc": "Visual-feedback-driven agent for open-vocabulary 3D scene generation; VLM + 3D object generation with atomic operations (Scale/Rotate/FocusOn); iterative visual feedback loop for spatial coherence; supports natural-language scene editing",
+      "code_url": "https://github.com/ROUJINN/SceneAssistant",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "Scenethesis",
+      "arxiv_id": "2505.02836",
+      "venue": "ICLR 2026",
+      "year": 2026,
+      "category": "Generation",
+      "desc": "Training-free agentic framework integrating LLM scene planning with vision-guided layout refinement; vision module generates image guidance + extracts scene structure; optimization module enforces pose alignment and physical plausibility; judge module verifies spatial coherence",
       "code_url": "",
       "sources": ["arxiv-api"]
     }

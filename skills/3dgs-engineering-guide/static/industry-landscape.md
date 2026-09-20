@@ -1,3 +1,4 @@
+
 ---
 # Industry Application Landscape
 
@@ -15,7 +16,7 @@
 
 ## 1.2 Digital Twin & Smart City
 
-**Maturity**: Commercial | **Players**: SuperMap, FantoVision, LCC
+**Maturity**: Commercial | **Players**: SuperMap, FantoVision, LCC, **Mapmost** (苏州园测)
 
 **Pipeline**: Aerial + streetview → Large-scale 3DGS → S3M conversion → GIS integration → IoT fusion
 
@@ -23,7 +24,7 @@
 
 **Standards**: S3M (Chinese GIS), OGC 3D Tiles, glTF/glb, CityGML
 
-**Notes**: City-level = 10^9–10^10 Gaussians; WGS84→ENU→3DGS alignment critical; streaming LOD mandatory; S3M needs custom exporter
+**Notes**: City-level = 10^9–10^10 Gaussians; WGS84→ENU→3DGS alignment critical; streaming LOD mandatory; S3M needs custom exporter. **Mapmost** has demonstrated 100km² city-scale 3DGS streaming with LOD + seam-fix (Mapmost SDK for WebGL + 3DGS Builder pipeline); 3DGS+3DTiles multi-source fusion is the production pattern; individualization (单体化) is the key enabler for object-level interaction in digital twin applications
 
 ## 1.3 Cultural Heritage & Museum
 

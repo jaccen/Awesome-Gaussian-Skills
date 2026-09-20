@@ -1180,3 +1180,10 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **Heat Kernel Textures** (ECCV 2026 Best Paper) — Geodesic Gaussians that do not splat; anisotropic heat kernel on non-Euclidean manifolds (Surface & Rendering)
 - **GRF-Recon** (ECCV 2026) — Global ray-field optimization for long-sequence feed-forward reconstruction; drift suppression (Feed-Forward)
 - **GS-Underwater** [arXiv:2608.25483](https://arxiv.org/abs/2608.25483) (arXiv 2026) — Controlled cross-regime study of Gaussian splatting underwater; five systems benchmarked (Cross-Domain)
+
+### Scene Generation Agent Wave (Sep 2026)
+- **SceneSmith** [arXiv:2602.09153](https://arxiv.org/abs/2602.09153) (ICML 2026 Spotlight) — Hierarchical agentic framework for simulation-ready indoor scenes; designer-critic-orchestrator VLM agents; 3-6x more objects, <2% collisions, 96% physics-stable (Embodied AI & Robotics)
+- **SceneGenAgent** [arXiv:2410.21909](https://arxiv.org/abs/2410.21909) (ACL 2025) — LLM-based coding agent for precise industrial scene generation via C# code; 81% success rate; SceneInstruct dataset (Generation)
+- **SceneConductor** [arXiv:2606.08402](https://arxiv.org/abs/2606.08402) (arXiv 2026) — Multi-agent orchestration for single-image 3D scene generation; three-stage pipeline with geometry-aware layout predictor (Generation)
+- **SceneAssistant** [arXiv:2603.12238](https://arxiv.org/abs/2603.12238) (arXiv 2026) — Visual-feedback-driven agent for open-vocabulary 3D scene generation; VLM + atomic operations with iterative visual feedback (Generation)
+- **Scenethesis** [arXiv:2505.02836](https://arxiv.org/abs/2505.02836) (ICLR 2026) — Training-free agentic framework integrating LLM planning with vision-guided refinement; judge module verifies spatial coherence (Generation)

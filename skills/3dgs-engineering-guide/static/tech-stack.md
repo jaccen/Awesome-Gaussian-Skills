@@ -1,3 +1,4 @@
+
 ---
 # Engineering Technology Stack
 
@@ -42,6 +43,8 @@
 **Relighting (feed-forward)**: **F-RNG** (ArXiv 2605.25975) — feed-forward relightable 3DGS, ~25× faster than optimization-based; recommended for production relighting pipelines
 
 **Editing**: GaussianEditor, ObjectMorpher, TransSplat, **SuperSplat** (PlayCanvas, MIT, browser-based: inspect/edit/compress/publish PLY & SOG; https://superspl.at/editor)
+
+**Color grading (LUT)**: LUT (Look-Up Table) color mapping for cinematic tone in 3D scenes; Mapmost SDK supports one-click LUT application — from manual creation to preset调用; eliminates "plastic look" in digital twin rendering; lightweight (no re-rendering needed, applied as post-processing pass)
 
 **Toolchain**: **splat-transform** (PlayCanvas, MIT, CLI) — PLY→SOG (~20x), PLY→streamed SOG (LOD), `-K` collision mesh; `npm install -g @playcanvas/splat-transform`
 

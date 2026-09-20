@@ -1,3 +1,4 @@
+
 ---
 # The GIS Toolchain Gap: "3DGS Looks Good but Does Nothing"
 
@@ -56,3 +57,22 @@ npx glb-to-navmesh scene.collision.glb navmesh.bin
 | Cesium rendering | gsplat.js, cesium-3dgs-plugin | Three.js limited native support |
 
 **Standards progress**: CSM group standard for 3DGS modeling initiated (2026-04); S3M extended; 3D Tiles extension proposals; Spatial-TTT (ECCV 2026): streaming spatial memory; Holi-Spatial (ICML 2026 Oral): automated 4M+ spatial data from video streams
+
+## 3DGS + 3DTiles Multi-Source Fusion (Mapmost Practice)
+
+In real engineering systems, pure-3DGS pipelines are rare. Structured geometry, interactive objects, business logic, and semantic attributes still rely on traditional 3D model systems. The production pattern is multi-source fusion:
+
+| Layer | Responsibility | Technology |
+|-------|---------------|------------|
+| Realistic appearance | High-fidelity visual rendering | 3DGS (.ply/.splat) |
+| Interactive objects | Per-object selection, highlighting, data binding | 3DTiles / traditional mesh |
+| Business logic | IoT data, facility management, spatial analysis | GIS SDK (Mapmost / Cesium / SuperMap) |
+| Semantic attributes | Object classification, metadata | Individualization (单体化) layer |
+
+**Mapmost SDK for WebGL** unifies all layers in a single rendering engine:
+- Simultaneous loading of 3DGS layers (`type: '3DGS'`) and 3DTiles layers
+- Cross-layer occlusion handling (3DGS behind mesh renders correctly)
+- Individualization works on both 3DGS and 3DTiles via the same `ClassifyAnalysis` API
+- LOD streaming for both data types with seamless zoom
+
+**Key insight**: The fusion approach — 3DGS for "how it looks" + traditional models for "what it is" + SDK for "what you can do with it" — is the dominant engineering pattern for digital twin deployments in China (智慧城市, 智慧水利, 智能工厂).
