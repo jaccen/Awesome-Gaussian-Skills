@@ -1,3 +1,4 @@
+
 ---
 # Venue Formats & Reviewer Preferences
 
@@ -74,17 +75,19 @@ Review tendency & weights:
 
 ## 2025-2026 Key Papers (Citation Reference)
 
+All entries verified against arXiv API (Sep 20, 2026). Venue and arXiv ID confirmed for each.
+
 | Venue | Method | ArXiv | Core Contribution |
 |-------|--------|-------|-------------------|
 | SIGGRAPH 2026 | Structure-Aware Densification | 2604.28016 | Frequency-aware anisotropic splitting, replacing vanilla 3DGS uniform split strategy |
 | ICLR 2026 | FieryGS | 2605.00177 | Physics-integrated fire synthesis, fusing flame dynamics into Gaussian rendering |
-| ICML 2026 Spotlight | SplAttN | 2605.01466 | Gaussian soft splatting for point cloud understanding |
-| CVPR 2026 | GLMap | 2605.01736 | Gaussian-Language Map, language-guided Gaussian scene representation for navigation |
+| ICML 2026 Spotlight | SplAttN | 2605.01466 | Gaussian soft splatting for point cloud completion (not "understanding") |
+| CVPR 2026 | GLMap | 2605.01736 | Multi-scale Gaussian-Language Map for zero-shot embodied navigation and reasoning |
 | CVPR 2026 Findings | Softmax-GS | 2604.27437 | Softmax competition rendering, alternative to α-compositing |
-| SIGGRAPH 2026 | LeGS | 2605.00408 | RL-based density control, replacing heuristic clone/split/prune |
-| CVPR 2026 | 2D-SuGaR | 2605.00569 | Surface-aware 2DGS with depth/normal priors, improved surface extraction |
+| arXiv 2026 | LeGS | 2605.00408 | RL-based density control, replacing heuristic clone/split/prune (venue unconfirmed) |
+| Eurographics 2026 | 2D-SuGaR | 2605.00569 | Surface-aware 2DGS with depth/normal priors, improved surface extraction |
 | arXiv 2026 | GETA-3DGS | 2605.02086 | Joint pruning + quantization for 3DGS compression |
-| arXiv 2026 | GOR-IS | 2605.00498 | Intrinsic decomposition editing for Gaussian scenes |
-| CVPR 2026 | ReLaGS | — | Language-guided 3D reasoning with Gaussian representation, LLM-driven 3D scene understanding |
-| CVPR 2026 Best Paper | D4RT | — | 4D dynamic reconstruction, temporal-consistent Gaussian representation |
-| CVPR 2026 Best Student Paper | TRELLIS.2 | — | Structured 3D generation combining generative modeling with 3DGS |
+| arXiv 2026 | GOR-IS | 2605.00498 | 3D Gaussian object removal in the intrinsic space (not "editing") |
+| CVPR 2026 | ReLaGS | 2603.17605 | Relational language Gaussian splatting for training-free 3D perception and reasoning |
+| CVPR 2026 Best Paper | D4RT | 2512.08924 | Feedforward 4D dynamic scene reconstruction via unified transformer (not Gaussian-based) |
+| CVPR 2026 Best Student Paper | TRELLIS.2 | 2512.14692 | Structured 3D generation with O-Voxel sparse voxel latent + flow-matching (not 3DGS-based) |

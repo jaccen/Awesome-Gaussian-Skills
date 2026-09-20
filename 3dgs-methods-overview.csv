@@ -70,7 +70,7 @@ GS-PT,2409.04963,ECCV 2024,2024,Optimization,Gaussian Splatting pre-training: se
 LE3D,2406.06216,NeurIPS 2024,2024,Optimization,Low-light to HDR linear GS encoding + denoising for Lighting Every Darkness,https://github.com/Srameo/LE3D
 SplatFields,2409.11211,ECCV 2024,2024,Optimization,Implicit neural field regularization on splat features for sparse-view 3D/4D reconstruction,
 WildGaussians,2407.08447,NeurIPS 2024,2024,Optimization,Joint pose + 3DGS optimization from internet photos,https://github.com/jkulhanek/wild-gaussians/
-2D-SuGaR,2605.00569,arXiv,2026,Surface & Rendering,2DGS enhanced with monocular depth/normal priors,
+2D-SuGaR,2605.00569,Eurographics 2026,2026,Surface & Rendering,2DGS enhanced with monocular depth/normal priors,
 3DSS,2605.05876,arXiv,2026,Surface & Rendering,"We present 3D Surface Splatting (3DSS), the first differentiable surface splatting renderer for physically-based inverse rendering from multi-view images. Our central insight is that the surface se...",
 AmbiSuR,2605.12494,ICML 2026,2026,Surface & Rendering,Photometric ambiguity disambiguation for accurate GS surface reconstruction,
 CLEAR-NeRF,2605.28125,arXiv,2026,Surface & Rendering,Collinearity and local-region enhanced accurate 3D reconstruction in unbounded scenes via geometric regularization,
@@ -677,3 +677,17 @@ InceptionGS,2609.02747,arXiv 2026,2026,Large-Scale,Generative bootstrapping for 
 LightBridge,2609.02543,arXiv 2026,2026,HDR & Relighting,"Feed-forward generative relighting for 3DGS; latent bridge diffusion + Gaussian propagation transformer, single-pass",
 Atlas,2609.02352,arXiv 2026,2026,Acceleration,"Algorithm-hardware co-design for on-device city-scale 3DGS in VR; hierarchical memory offloading, 18.5x speedup",
 CC-4DGS,2609.02184,IEEE TVCG 2026,2026,Compression & Streaming,"Computational deformation and point-cloud compression for storage-efficient dynamic 4DGS; CDF replaces hash tables (1-3 MB), CCA compresses SH attributes 3-5x, total 20-30 MB",https://github.com/KyungdaePark/CC-4DGS
+Wat3R,2607.08772,ECCV 2026,2026,Cross-Domain,"Cross-domain semi-supervised underwater 3D geometry learning without annotations; teacher-student architecture adapts feed-forward reconstruction from air to underwater",
+GeoNVS,2603.14965,ECCV 2026,2026,Feed-Forward,"Geometry-grounded video diffusion for novel view synthesis; GS-Adapter lifts diffusion features into 3D Gaussian representations for geometry-constrained rendering",
+Edit3r,2512.25071,ECCV 2026,2026,Editing,"Instant 3D scene editing from sparse unposed images; SAM2-based recoloring strategy for cross-view-consistent supervision; single-pass feed-forward editing",
+SA-ResGS,2601.03024,ECCV 2026,2026,Embodied AI & Robotics,"Self-augmented residual 3DGS for next-best-view selection; SA-Points via triangulation for coverage estimation; first residual learning for 3DGS",
+GaussianLens,2509.25603,ECCV 2026,2026,Feed-Forward,"Localized high-resolution reconstruction via on-demand Gaussian densification; pixel-guided mechanism; scales to 1024x1024 input",
+Deformable Triangle Splatting,2607.22446,ECCV 2026,2026,Surface & Rendering,"Flexible primitives with K control points per edge for non-convex shape; barycentric coordinate rasterization with winding number test",
+GS-Underwater,2608.25483,arXiv 2026,2026,Cross-Domain,"Controlled cross-regime study of Gaussian splatting underwater; benchmarks five systems across turbidity levels; restoration pre-pass beats medium-aware systems",
+Per-View Distractor Filtering,2608.26951,arXiv 2026,2026,Robustness,"Training-free distractor filtering in feed-forward 3DGS; excludes per-view Gaussians to identify inconsistent content; rendering-based verification",
+Neural Harmonic Textures,2604.01204,ECCV 2026,2026,Surface & Rendering,"Per-primitive learnable feature scaffolds with periodic activation; harmonic decomposition + deferred decoding; compatible with 3DGUT/Triangle Splatting/2DGS",
+CubicSplat,2608.20803,ECCV 2026,2026,Surface & Rendering,"Differentiable vector graphics via error-bounded forward relaxation; O(S^-2) bounded geometric error; 2dB PSNR improvement; 4x faster training",
+TetraSDF,2511.16273,ECCV 2026,2026,Surface & Rendering,"Analytic isosurface extraction with multi-resolution tetrahedral grid; ReLU MLP with tetrahedral encoding preserves CPWA structure for exact zero-level-set extraction",
+Heat Kernel Textures,,ECCV 2026 Best Paper,2026,Surface & Rendering,"Geodesic Gaussians that do not splat; anisotropic heat kernel on non-Euclidean manifolds replacing Euclidean Gaussians for surface texture representation",
+GRF-Recon,,ECCV 2026,2026,Feed-Forward,"Global ray-field optimization for long-sequence feed-forward reconstruction; LoRA distillation; hybrid-weight sparse ray-field optimization for drift suppression",
+PriSplat,,ECCV 2026,2026,Robustness,"Propagating reliable multi-view information for distractor-free 3DGS; 3D-aware inpainting engine; geometry-aware support view selection",

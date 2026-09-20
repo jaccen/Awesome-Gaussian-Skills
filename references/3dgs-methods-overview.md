@@ -386,7 +386,7 @@
 - **DySurface** [arXiv:2605.10360](https://arxiv.org/abs/2605.10360) (arXiv 2026) -- Bridges explicit Gaussians and implicit SDF for consistent 4D surface reconst...
 - **3DSS** [arXiv:2605.05876](https://arxiv.org/abs/2605.05876) (arXiv 2026) -- First differentiable surface splatting renderer for PBR inverse rendering wit...
 - **PointSplat** [arXiv:2604.09903](https://arxiv.org/abs/2604.09903) (arXiv 2026) -- Geometry-driven pruning + Transformer refinement for efficient 3DGS
-- **2D-SuGaR** [arXiv:2605.00569](https://arxiv.org/abs/2605.00569) (arXiv 2026) -- 2DGS enhanced with monocular depth/normal priors
+- **2D-SuGaR** [arXiv:2605.00569](https://arxiv.org/abs/2605.00569) (Eurographics 2026) -- 2DGS enhanced with monocular depth/normal priors
 - **SuGaR** [arXiv:2311.12775](https://arxiv.org/abs/2312.13253) (CVPR 2024) -- Surface-aligned Gaussians for mesh extraction via TSDF + Marching Cubes
 - **SAND** (SIGGRAPH 2026) -- Spatially adaptive network depth for efficient neural implicit surface sampling
 - **PGSR** [arXiv:2406.06521](https://arxiv.org/abs/2406.06521) (TVCG 2024) -- Planar-based regularizer for high-fidelity surface reconstruction
@@ -1164,4 +1164,19 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **Tri-DehazeGS** [arXiv:2609.11223](https://arxiv.org/abs/2609.11223) (arXiv 2026) — Scene-medium decoupled 3DGS with transmittance-aware optimization for hazy multi-view reconstruction
 - **View-Structured Conformal Prediction** [arXiv:2609.10307](https://arxiv.org/abs/2609.10307) (arXiv 2026) — View-structured conformal prediction for 3DGS; certifies rendered view meets prediction coverage via statistical guarantee
 - **FujinSplat** [arXiv:2609.06017](https://arxiv.org/abs/2609.06017) (arXiv 2026) — RAW-domain Gaussian splatting seeing through smoke; separates participating medium and ISP in RAW domain
+- **Per-View Distractor Filtering** [arXiv:2608.26951](https://arxiv.org/abs/2608.26951) (arXiv 2026) — Training-free distractor filtering in feed-forward 3DGS; excludes per-view Gaussians to identify inconsistent content
+- **PriSplat** (ECCV 2026) — Propagating reliable multi-view information for distractor-free 3DGS; 3D-aware inpainting engine; geometry-aware support view selection
 
+### ECCV 2026 New Wave (Sep 2026)
+- **Wat3R** [arXiv:2607.08772](https://arxiv.org/abs/2607.08772) (ECCV 2026) — Cross-domain semi-supervised underwater 3D geometry learning without annotations (Cross-Domain)
+- **GeoNVS** [arXiv:2603.14965](https://arxiv.org/abs/2603.14965) (ECCV 2026) — Geometry-grounded video diffusion for novel view synthesis; GS-Adapter lifts diffusion features into 3D Gaussians (Feed-Forward)
+- **Edit3r** [arXiv:2512.25071](https://arxiv.org/abs/2512.25071) (ECCV 2026) — Instant 3D scene editing from sparse unposed images; SAM2-based recoloring supervision (Editing)
+- **SA-ResGS** [arXiv:2601.03024](https://arxiv.org/abs/2601.03024) (ECCV 2026) — Self-augmented residual 3DGS for next-best-view selection; first residual learning for 3DGS (Embodied AI & Robotics)
+- **GaussianLens** [arXiv:2509.25603](https://arxiv.org/abs/2509.25603) (ECCV 2026) — Localized high-resolution reconstruction via on-demand Gaussian densification; scales to 1024×1024 (Feed-Forward)
+- **Deformable Triangle Splatting** [arXiv:2607.22446](https://arxiv.org/abs/2607.22446) (ECCV 2026) — Flexible primitives with K control points per edge for non-convex shape representation (Surface & Rendering)
+- **Neural Harmonic Textures** [arXiv:2604.01204](https://arxiv.org/abs/2604.01204) (ECCV 2026) — Per-primitive learnable feature scaffolds with harmonic decomposition; compatible with 3DGUT/Triangle Splatting/2DGS (Surface & Rendering)
+- **CubicSplat** [arXiv:2608.20803](https://arxiv.org/abs/2608.20803) (ECCV 2026) — Differentiable vector graphics via error-bounded forward relaxation; 2dB PSNR improvement (Surface & Rendering)
+- **TetraSDF** [arXiv:2511.16273](https://arxiv.org/abs/2511.16273) (ECCV 2026) — Analytic isosurface extraction with multi-resolution tetrahedral grid; exact zero-level-set extraction (Surface & Rendering)
+- **Heat Kernel Textures** (ECCV 2026 Best Paper) — Geodesic Gaussians that do not splat; anisotropic heat kernel on non-Euclidean manifolds (Surface & Rendering)
+- **GRF-Recon** (ECCV 2026) — Global ray-field optimization for long-sequence feed-forward reconstruction; drift suppression (Feed-Forward)
+- **GS-Underwater** [arXiv:2608.25483](https://arxiv.org/abs/2608.25483) (arXiv 2026) — Controlled cross-regime study of Gaussian splatting underwater; five systems benchmarked (Cross-Domain)

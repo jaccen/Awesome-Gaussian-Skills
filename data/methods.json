@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-16T11:04:38Z",
+  "generated_at": "2026-09-20T18:00:00Z",
   "generator": "scripts/build_knowledge_base.py",
-  "count": 678,
+  "count": 692,
   "category_count": 23,
   "categories": [
     "Acceleration",
@@ -944,7 +944,7 @@
     {
       "name": "2D-SuGaR",
       "arxiv_id": "2605.00569",
-      "venue": "arXiv",
+      "venue": "Eurographics 2026",
       "year": 2026,
       "category": "Surface & Rendering",
       "desc": "2DGS enhanced with monocular depth/normal priors",
@@ -8637,6 +8637,146 @@
       "sources": [
         "arxiv-api"
       ]
+    },
+    {
+      "name": "Wat3R",
+      "arxiv_id": "2607.08772",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Cross-Domain",
+      "desc": "Cross-domain semi-supervised underwater 3D geometry learning without annotations; teacher-student architecture adapts feed-forward reconstruction from air to underwater",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "GeoNVS",
+      "arxiv_id": "2603.14965",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Feed-Forward",
+      "desc": "Geometry-grounded video diffusion for novel view synthesis; GS-Adapter lifts diffusion features into 3D Gaussian representations for geometry-constrained rendering",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "Edit3r",
+      "arxiv_id": "2512.25071",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Editing",
+      "desc": "Instant 3D scene editing from sparse unposed images; SAM2-based recoloring strategy for cross-view-consistent supervision; single-pass feed-forward editing",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "SA-ResGS",
+      "arxiv_id": "2601.03024",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Embodied AI & Robotics",
+      "desc": "Self-augmented residual 3DGS for next-best-view selection; SA-Points via triangulation for coverage estimation; first residual learning for 3DGS to improve gradient flow in sparse regions",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "GaussianLens",
+      "arxiv_id": "2509.25603",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Feed-Forward",
+      "desc": "Localized high-resolution reconstruction via on-demand Gaussian densification; feed-forward densification with pixel-guided mechanism; scales to 1024x1024 input",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "Deformable Triangle Splatting",
+      "arxiv_id": "2607.22446",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Surface & Rendering",
+      "desc": "Flexible primitives for real-time radiance field rendering; K control points per edge with learnable scalar displacement for non-convex shape representation; barycentric coordinate rasterization with winding number test",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "GS-Underwater",
+      "arxiv_id": "2608.25483",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Cross-Domain",
+      "desc": "Controlled cross-regime study of Gaussian splatting underwater; benchmarks five systems under shared protocol across turbidity levels; finds restoration pre-pass beats medium-aware systems",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "Per-View Distractor Filtering",
+      "arxiv_id": "2608.26951",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Robustness",
+      "desc": "Training-free distractor filtering in feed-forward 3DGS; excludes per-view Gaussians and renders with remaining representation to identify inconsistent content; feature similarity + rendering-based verification",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "Neural Harmonic Textures",
+      "arxiv_id": "2604.01204",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Surface & Rendering",
+      "desc": "High-quality primitive-based neural reconstruction; per-primitive learnable feature scaffolds with periodic activation; harmonic decomposition + deferred decoding; compatible with 3DGUT, Triangle Splatting, 2DGS",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "CubicSplat",
+      "arxiv_id": "2608.20803",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Surface & Rendering",
+      "desc": "Differentiable vector graphics via error-bounded forward relaxation; uniform polyline proxy replacing Bezier nearest-point solver; O(S^-2) bounded geometric error with static computation graph; 2dB PSNR improvement",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "TetraSDF",
+      "arxiv_id": "2511.16273",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Surface & Rendering",
+      "desc": "Analytic isosurface extraction with multi-resolution tetrahedral grid; ReLU MLP composed with tetrahedral position encoding preserves CPWA structure for exact zero-level-set extraction; analytic input preconditioner",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "Heat Kernel Textures",
+      "arxiv_id": "",
+      "venue": "ECCV 2026 Best Paper",
+      "year": 2026,
+      "category": "Surface & Rendering",
+      "desc": "Geodesic Gaussians that do not splat; anisotropic heat kernel on non-Euclidean manifolds replacing standard Euclidean Gaussians for surface texture representation",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "GRF-Recon",
+      "arxiv_id": "",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Feed-Forward",
+      "desc": "Global ray-field optimization for long-sequence feed-forward reconstruction; coarse-to-fine trajectory alignment + LoRA distillation; hybrid-weight sparse ray-field optimization for drift suppression",
+      "code_url": "",
+      "sources": ["arxiv-api"]
+    },
+    {
+      "name": "PriSplat",
+      "arxiv_id": "",
+      "venue": "ECCV 2026",
+      "year": 2026,
+      "category": "Robustness",
+      "desc": "Propagating reliable multi-view information for distractor-free 3DGS; 3D-aware inpainting engine from view synthesis prior; geometry-aware support view selection; mask-aware fast weight update",
+      "code_url": "",
+      "sources": ["arxiv-api"]
     }
   ]
 }
