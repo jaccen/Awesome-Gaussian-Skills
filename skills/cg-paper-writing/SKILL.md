@@ -13,6 +13,7 @@ metadata:
     - "Run adversarial review or citation integrity check on a draft"
     - "Calibrate writing style to a target venue"
     - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
+
 ---
 
 # CG Paper Writing Engine (Router)
@@ -43,6 +44,7 @@ Analyze the user's request to determine axis values:
 | Targeting NeurIPS/AAAI | neurips |
 | Targeting TVCG/CGF/TOG/TPAMI | tvcg |
 | Writing PhD thesis chapter | thesis |
+| Targeting Nature/Science sub-journals, Chemical Reviews, or other top-tier journals; submission strategy questions (投稿策略/顶刊/子刊/综述) | top-journal |
 | Unspecified or multi-venue | all |
 
 If the user does not specify, defaults are: section=all, venue=all.
@@ -69,7 +71,8 @@ Read these files from static/:
 ### On-Demand Load (by detected venue)
 | venue | Fragment to Load |
 |-------|-----------------|
-| any non-all value | static/venue-formats.md |
+| top-journal | static/venue-formats.md + static/top-journal-strategy.md |
+| any other non-all value | static/venue-formats.md |
 | all | static/venue-formats.md |
 
 ### Reference Load (for review/integrity work)

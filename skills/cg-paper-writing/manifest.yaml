@@ -19,6 +19,7 @@ axes:
       - neurips
       - tvcg
       - thesis
+      - top-journal
       - all
     default: all
 
@@ -46,6 +47,9 @@ routing:
         - static/writing-related-method.md
         - static/writing-experiments.md
     venue:
+      top-journal:
+        - static/venue-formats.md
+        - static/top-journal-strategy.md
       cvpr:
         - static/venue-formats.md
       siggraph:
