@@ -1,3 +1,4 @@
+
 ---
 # Related Work & Methodology Templates
 
@@ -53,3 +54,14 @@ English template:
 - Every design choice needs justification (why this way, not alternatives)
 - Loss functions: state formula + intuition + hyperparameter defaults
 - Network architecture: layers, channels, activation — or reference implementation section
+
+### Methodology Hidden Goal: Earn the Reviewer's Trust
+
+Reproducibility is necessary but NOT sufficient for a high-scoring manuscript. The methodology section has a hidden objective: **dispel the reviewer's doubts and prove the experimental design is sound and the results credible**. Many "please add method details" revision comments arise because reviewers cannot be convinced of the result from your description.
+
+- Mature/routine techniques: do not belabor; cite the literature instead
+- Your own improved/novel pipeline: give complete key parameters and operational details
+- Do not just log "what operations I did"; explain the design rationale — e.g., why this control group, what hypothesis this experiment was meant to verify
+- Build an implicit link between your innovative method and the breakthrough results you later report, so the reviewer understands: it is precisely this design that yields the paper's key conclusions
+
+Getting the logic across up front preempts latent questions and sharply reduces post-review revision workload.

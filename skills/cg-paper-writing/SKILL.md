@@ -26,6 +26,7 @@ Analyze the user's request to determine axis values:
 ### Axis: section
 | User Intent | section value |
 |-------------|--------------|
+| Writing or revising title | title |
 | Writing or revising abstract | abstract |
 | Writing or revising introduction | intro |
 | Writing or revising related work | related-work |
@@ -56,6 +57,7 @@ Read these files from static/:
 ### On-Demand Load (by detected section)
 | section | Fragment(s) to Load |
 |---------|-------------------|
+| title | static/writing-abstract-intro.md |
 | abstract | static/writing-abstract-intro.md |
 | intro | static/writing-abstract-intro.md |
 | related-work | static/writing-related-method.md |

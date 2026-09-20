@@ -1,5 +1,28 @@
+
 ---
-# Abstract & Introduction Templates
+# Title, Abstract & Introduction Templates
+
+## Title
+
+The title is the paper's first impression and largely determines whether editors/reviewers read further. Do NOT just state "what you did" (object + operation). Lead with research value.
+
+Core logic: **innovation core + achieved breakthrough + field value**. Tell the reader what change your work brings.
+
+Bad examples (too flat, no value):
+- "Preparation and Performance Study of [Material]"
+- "3D Gaussian Splatting with [Component]"
+
+Good pattern:
+```
+[Strategy]: achieving [large performance gain], providing new insights for [application scenario]
+```
+Example: "[Modification strategy]: achieves substantial improvement in [metric], offering a new avenue for [application]"
+
+Title checklist:
+1. Lead with the highlight (core improvement / effect), not generic subjects
+2. Avoid vague, generic phrasings; front-load your selling point
+3. One glance should reveal: object, method/means, improvement achieved, application value
+4. Keep concise; do not pile up jargon nouns
 
 ## Abstract
 
@@ -18,6 +41,22 @@ English template:
 [Main results with numbers, 1-2 sentences]
 [Broader impact or implication, 1 sentence]
 ```
+
+### Abstract Closed-Loop Logic (anti-summary mindset)
+
+An abstract is NOT a compressed restatement of the whole paper — it is an independent micro-story. A reviewer must understand your complete work without reading the body. Follow this closed loop:
+
+1. Briefly state field importance (1 sentence)
+2. Raise the current pain point / existing shortcoming
+3. State the research approach this paper adopts to target it
+4. Show key experimental results with quantitative data
+5. Distill the academic and application value of this work
+
+Anti-pattern: opening with a long industry history or generic background, which buries the point and loses the reviewer within a few lines.
+
+### Transition-Word Rhythm Trick
+
+Use contrast/transition connectives (however, but, 然而, 但是, 为此, thereby, to this end) to create reading rhythm and clearly segment background → contradiction → solution → result. This lets reviewers quickly locate your innovation focus and avoids a flat, monotonous block of prose. Memorize: the abstract is the hook of the whole paper, not a content replay.
 
 ## Introduction
 
@@ -43,6 +82,18 @@ Paragraph 5: Contributions (bulleted, 3-4 items)
 - No math formulas in introduction (at most one core formula for intuitive illustration)
 - No experimental details in introduction (specific numbers go to experiments section)
 - Avoid generic optimistic endings ("We believe this work will advance the field")
+- Do NOT only list prior literature without carving out a clear research gap; if a reviewer doubts "existing work is already good, what is your significance?", the paper is set for major revision
+
+### Four-Step Funneling Logic ("Why this work must be done")
+
+The introduction must ultimately answer: why is this work non-negotiable? Use this progressive funnel:
+
+1. **Step 1 — Real field problem**: Raise a real domain difficulty to prove the direction itself is research-worthy and set the big background
+2. **Step 2 — Prior achievements**: Sort existing works and objectively acknowledge their progress; do NOT wholesale-dismiss predecessors
+3. **Step 3 — Precise limitation**: Pinpoint the limitation that still remains in current approaches, and dig out the gap in fine-grained sub-scenarios that has not yet been filled
+4. **Step 4 — Introduce this work**: Naturally bring in your work — it happens to target that pain point and provides the corresponding solution
+
+The whole introduction narrows progressively from grand domain → specific scientific problem → your research, so the reviewer genuinely accepts: the gap is real, and this work is necessary. This layers down step by step rather than staying flat.
 
 ### Contribution Statement Template
 

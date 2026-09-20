@@ -2,6 +2,7 @@ axes:
   section:
     description: "Paper section the user is writing"
     values:
+      - title
       - abstract
       - intro
       - related-work
@@ -26,6 +27,8 @@ routing:
     - static/core-stance.md
   on_demand:
     section:
+      title:
+        - static/writing-abstract-intro.md
       abstract:
         - static/writing-abstract-intro.md
       intro:

@@ -1,0 +1,45 @@
+name: Daily arXiv 3DGS scan
+
+on:
+  schedule:
+    # UTC 22:00 = 北京时间 06:00，覆盖前一日提交窗口
+    - cron: "0 22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-arxiv
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scan arXiv for new 3DGS papers
+        id: scan
+        run: |
+          python scripts/daily_arxiv_scan.py 3 || code=$?
+          count=$(python -c "import json;print(json.load(open('reports/arxiv-daily/latest.json'))['count'])")
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit daily report
+        if: steps.scan.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/arxiv-daily/
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "chore(arxiv-daily): $(date -u +%F) scan report" --no-verify
+            git push
+          fi
