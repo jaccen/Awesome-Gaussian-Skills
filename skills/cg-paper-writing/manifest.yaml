@@ -20,6 +20,7 @@ axes:
       - tvcg
       - thesis
       - top-journal
+      - chinese-journal
       - all
     default: all
 
@@ -50,6 +51,9 @@ routing:
       top-journal:
         - static/venue-formats.md
         - static/top-journal-strategy.md
+      chinese-journal:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
       cvpr:
         - static/venue-formats.md
       siggraph:

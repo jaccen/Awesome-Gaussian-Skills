@@ -45,6 +45,7 @@ Analyze the user's request to determine axis values:
 | Targeting TVCG/CGF/TOG/TPAMI | tvcg |
 | Writing PhD thesis chapter | thesis |
 | Targeting Nature/Science sub-journals, Chemical Reviews, or other top-tier journals; submission strategy questions (投稿策略/顶刊/子刊/综述) | top-journal |
+| Targeting Chinese core journals (软件学报/计算机学报/计算机研究与发展/中文核心期刊) or writing in Chinese | chinese-journal |
 | Unspecified or multi-venue | all |
 
 If the user does not specify, defaults are: section=all, venue=all.
@@ -72,6 +73,7 @@ Read these files from static/:
 | venue | Fragment to Load |
 |-------|-----------------|
 | top-journal | static/venue-formats.md + static/top-journal-strategy.md |
+| chinese-journal | static/venue-formats.md + static/writing-chinese-journal.md |
 | any other non-all value | static/venue-formats.md |
 | all | static/venue-formats.md |
 
