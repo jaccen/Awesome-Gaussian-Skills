@@ -1,4 +1,4 @@
-
+﻿
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -120,13 +120,13 @@ they are two methods, not a sequel, and are now disambiguated. 862 → **859**.
 See [changelog/2026-09-21.md](changelog/2026-09-21.md) and
 [changelog/2026-09-21-v2.md](changelog/2026-09-21-v2.md) for the full audit trail.
 
-Latest update (Sep 20): **v0.9.2 —Scene Agent + Mapmost Engineering Wave: 5 New Methods + 6 Skill Enhancements**. Knowledge base expanded from 692→ 97 methods. Added 5 scene-generation Agent papers: **SceneSmith** (ICML 2026 Spotlight, MIT CSAIL —hierarchical designer-critic-orchestrator VLM agents for simulation-ready indoor scenes), **Scenethesis** (ICLR 2026, NVIDIA —training-free LLM+vision agentic framework), **SceneGenAgent** (ACL 2025 —LLM coding agent for industrial scenes), **SceneConductor** (arXiv —multi-agent orchestration from single image), **SceneAssistant** (arXiv —visual-feedback agent for open-vocabulary scene generation). Injected Mapmost production engineering knowledge into 4 skill files: 3DGS individualization (鍗曚綋鍖? in best-practices.md, LOD streaming + seam-fix + adaptive partition training in best-practices.md, 3DGS+3DTiles multi-source fusion in gis-toolchain.md, LUT color grading in tech-stack.md, Mapmost as Digital Twin player with 100km² benchmark in industry-landscape.md. Categories updated: Generation +4, Embodied AI & Robotics +1.
+Latest update (Sep 20): **v0.9.2 —Scene Agent + Mapmost Engineering Wave: 5 New Methods + 6 Skill Enhancements**. Knowledge base expanded from 692→ 97 methods. Added 5 scene-generation Agent papers: **SceneSmith** (ICML 2026 Spotlight, MIT CSAIL —hierarchical designer-critic-orchestrator VLM agents for simulation-ready indoor scenes), **Scenethesis** (ICLR 2026, NVIDIA —training-free LLM+vision agentic framework), **SceneGenAgent** (ACL 2025 —LLM coding agent for industrial scenes), **SceneConductor** (arXiv —multi-agent orchestration from single image), **SceneAssistant** (arXiv —visual-feedback agent for open-vocabulary scene generation). Injected Mapmost production engineering knowledge into 4 skill files: 3DGS individualization (单体化) in best-practices.md, LOD streaming + seam-fix + adaptive partition training in best-practices.md, 3DGS+3DTiles multi-source fusion in gis-toolchain.md, LUT color grading in tech-stack.md, Mapmost as Digital Twin player with 100km² benchmark in industry-landscape.md. Categories updated: Generation +4, Embodied AI & Robotics +1.
 
 Previous (Sep 20): **v0.9.1 —ECCV 2026 Wave: 14 New Methods**. Knowledge base expanded from 678→ 92 methods. All 14 new entries arXiv-verified or ECCV-official: **Wat3R** (underwater 3D geometry without annotations), **GeoNVS** (geometry-grounded video diffusion with GS-Adapter), **Edit3r** (instant 3D editing from unposed images), **SA-ResGS** (first residual learning for 3DGS in next-best-view selection), **GaussianLens** (on-demand localized high-res reconstruction), **Deformable Triangle Splatting** (non-convex primitive with per-edge control points), **Neural Harmonic Textures** (per-primitive harmonic feature decoding), **CubicSplat** (error-bounded differentiable vector graphics), **TetraSDF** (analytic isosurface extraction), **Heat Kernel Textures** (ECCV 2026 Best Paper —geodesic Gaussians), **GRF-Recon** (long-sequence feed-forward with global ray-field), **PriSplat** (distractor-free 3DGS via multi-view propagation), **Per-View Distractor Filtering** (training-free feed-forward artifact removal), **GS-Underwater** (controlled cross-regime underwater benchmark study). Categories updated: Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1. All data carriers in sync.
 
 Previous (Sep 16): **v0.9.0 —Data Accuracy Release**. Full-library audit of every entry against the arXiv API: each arXiv ID re-verified reachable **and** matched to its paper (method name must appear in the title/abstract). **181 entries failed verification and were removed, 56 wrong-ID entries re-linked to their real papers, 5 renamed to the papers' self-declared method names**, plus 1 duplicate removed. The count is now honest instead of inflated: **678 methods, 23 categories, 568 arXiv-verified (83%), 130 code links (19%)**. Per-entry audit evidence: [docs/data-accuracy-audit-2026-09-16.md](docs/data-accuracy-audit-2026-09-16.md). See [changelog/2026-09-16-v5.md](changelog/2026-09-16-v5.md).
 
-Previous (Sep 4): **v0.8.3 —Dynamic Scene Survey Integration: 23 New Methods**. Knowledge base expanded from 801→ 19 verified methods. Added 23 arXiv-verified dynamic scene reconstruction methods from survey paper (杩炴尟鏅?et al., J CAD & CG, Jan 2026), spanning 3 categories: deformation field (LoopGaussian, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, ReconDreamer++), sparse-control deformation (SP-GS, Video-3DGS, SplineGS), 4D Gaussian primitive (Real-time 4DGS, PVG, 4D-rotor GS), and per-frame inter-frame transfer (3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo). Dynamic & 4D category: 75→ 7. New `references/dynamic-datasets.md` (11 datasets) and expanded `benchmark-data.md` (MS-SSIM/VMAF/FID metrics + 4 performance comparison tables). Experiment planner skill updated with dynamic scene design guide. See [changelog/2026-09-04.md](changelog/2026-09-04.md).
+Previous (Sep 4): **v0.8.3 —Dynamic Scene Survey Integration: 23 New Methods**. Knowledge base expanded from 801→ 19 verified methods. Added 23 arXiv-verified dynamic scene reconstruction methods from survey paper (连振晗 et al., J CAD & CG, Jan 2026), spanning 3 categories: deformation field (LoopGaussian, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, ReconDreamer++), sparse-control deformation (SP-GS, Video-3DGS, SplineGS), 4D Gaussian primitive (Real-time 4DGS, PVG, 4D-rotor GS), and per-frame inter-frame transfer (3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo). Dynamic & 4D category: 75→ 7. New `references/dynamic-datasets.md` (11 datasets) and expanded `benchmark-data.md` (MS-SSIM/VMAF/FID metrics + 4 performance comparison tables). Experiment planner skill updated with dynamic scene design guide. See [changelog/2026-09-04.md](changelog/2026-09-04.md).
 
 Previous (Sep 2): **v0.8.2 —Daily Update: 11 New Methods**. Knowledge base expanded from 790→ 01 verified methods. New additions span 7 categories: **BRF-GS** (hyperspectral BRDF modeling with 3DGS), **SMG** (ECCV 2026, semantic motion graph for dynamic GS), **VCAR** (ACM MM 2026, training-free 3DGS segmentation), **RealCAD** (real-world image to CAD reconstruction), **ObjectSplat** (object-level mesh splatting), **CapFrame** (ECCV 2026, text-instructed viewpoint localization), **Amortized Anchor Refinement** (continuous-time 4D reconstruction), **ATGS** (SIGGRAPH 2026, anchored temporal GS for long volumetric video), **CausalSplat** (hierarchical causal reasoning in 3DGS), **VoroTracing** (623 FPS differentiable ray tracing), **Lucida** (Real-to-Sim composable scene modeling). All arXiv IDs verified, data CI passed. See [changelog/2026-09-02.md](changelog/2026-09-02.md).
 
@@ -134,7 +134,7 @@ Previous (Aug 23): **v0.8.1 —Daily Update: 7 New Methods**. Knowledge base exp
 
 Previous (Aug 7): **v0.8.0 —Platform Upgrade (P0+P1+P2)**. Knowledge layer: single source of truth (`data/methods.json`, 783 methods, 23 categories) with data CI; 5 fabricated entries purged; 14 arXiv-verified frontier methods added. Capability layer: true-3DGS render loop (gsplat via HTTP-served PLY), server-authoritative scene persistence, real PLY/SPLAT export, 5 distinct prune strategies, grid-accelerated ray query, runtime arg validation, WS origin allowlist, 21 unit tests. Platform layer: Benchmark arena (`bench/`), skill orchestration contracts (`skills/_contracts/`), Router manifest loader (`scripts/router_load.py`). 13 core MCP tools (all real) + 13 experimental (gated by `INCLUDE_EXPERIMENTAL=1`). See [changelog/2026-08-07.md](changelog/2026-08-07.md).
 
-Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Methods (775 verified unique baseline + 14 new). Full re-audit across 11 source files; all method counts unified to 789+. New additions: **GrainGS** (dynamic, 36.98 dB / 435.6 FPS / 4.67 MB), **GLAM-SLAM** (IROS 2026, outdoor decoupled SLAM), **SubSplat** (subpixel feed-forward), **ATSplat** (adaptive 3D tokens, 1136 FPS), **3D-GIMP** (3DGS inpainting), **LB-Edit** (7脳 lower editing latency), **FlexiAvatar** (ECCV 2026, visible-body-only optimization), **ZeroSplat** (ECCV 2026, training-free segmentation), **CaT-GS** (CVPR 2026, 10脳 faster rendering), **FF-ProCams** (projector-camera inverse rendering), **i3dgs** (SIGGRAPH 2026, large-scale unordered), **VIGS-SLAM** (ECCV 2026, iPhone real-time), **ECoNGS** (IEEE VIS 2026, volume visualization), **AniGS** (scene-level animation via diffusion prior). +MoDE/MoE-GS code link. Previous (Jul 24): v0.5.0 MCP Protocol Implementation. Previous (Jul 23): v0.4.3 ICML 2026 & Material/Provenance Wave —**GaussTrace** (ICML 2026), **GADA** (ICML 2026), **InvSplat**, **MGM**, **DualPhys-GS**, **StereoGS**. v0.4.4 added 3dgs-training-debugger skill (60+ runtime patterns).
+Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Methods (775 verified unique baseline + 14 new). Full re-audit across 11 source files; all method counts unified to 789+. New additions: **GrainGS** (dynamic, 36.98 dB / 435.6 FPS / 4.67 MB), **GLAM-SLAM** (IROS 2026, outdoor decoupled SLAM), **SubSplat** (subpixel feed-forward), **ATSplat** (adaptive 3D tokens, 1136 FPS), **3D-GIMP** (3DGS inpainting), **LB-Edit** (7× lower editing latency), **FlexiAvatar** (ECCV 2026, visible-body-only optimization), **ZeroSplat** (ECCV 2026, training-free segmentation), **CaT-GS** (CVPR 2026, 10× faster rendering), **FF-ProCams** (projector-camera inverse rendering), **i3dgs** (SIGGRAPH 2026, large-scale unordered), **VIGS-SLAM** (ECCV 2026, iPhone real-time), **ECoNGS** (IEEE VIS 2026, volume visualization), **AniGS** (scene-level animation via diffusion prior). +MoDE/MoE-GS code link. Previous (Jul 24): v0.5.0 MCP Protocol Implementation. Previous (Jul 23): v0.4.3 ICML 2026 & Material/Provenance Wave —**GaussTrace** (ICML 2026), **GADA** (ICML 2026), **InvSplat**, **MGM**, **DualPhys-GS**, **StereoGS**. v0.4.4 added 3dgs-training-debugger skill (60+ runtime patterns).
 
 | Method | Venue | Category | One-Line Innovation |
 |--------|-------|----------|-------------------|
@@ -181,7 +181,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (692 Methods, 23 Categories)
+## Knowledge Base (859 Methods, 23 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -225,7 +225,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Dynamic & 4D (97) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS鲁, AniGS, ClipGStream |
+| Dynamic & 4D (97) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS³, AniGS, ClipGStream |
 | HDR & Relighting (27) | HDR capture, relightable and material-aware Gaussians | AlbedoEdit, Ambient-Robust IR, DiffAdapt4DSI |
 | SLAM (40) | Simultaneous localization and mapping | 2DGS-SLAM, Anchor3R, Anythingreality |
 | Sparse-View (21) | Few-shot and sparse-view reconstruction | DropAnSH-GS, FrameTwin, GeoQuery |
@@ -282,7 +282,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 692 Methods.
+> Derived from systematic gap analysis across 859 Methods.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -352,7 +352,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 - [x] v0.8.0 —Platform Upgrade (P0+P1+P2): single source of truth (data/methods.json, 783 methods, 23 categories, data CI); 5 fabricated entries purged + 14 arXiv-verified frontier methods; true-3DGS render loop (gsplat via HTTP-served PLY); server-authoritative scene persistence; real PLY/SPLAT export; 5 prune strategies; grid-accelerated ray query; runtime arg validation; WS origin allowlist; 21 unit tests + 2 CI workflows; Benchmark arena (bench/); skill orchestration contracts (skills/_contracts/); Router manifest loader (scripts/router_load.py); 13 core MCP tools + 13 experimental (Aug 7, 2026)
 - [x] v0.8.1 —Daily Update: 7 new arXiv-verified methods (LEGO, OutLangSplat, ESVR, TRACE-GS, RORA, OVOW, Super-Gaussian); 783→ 90 methods; 6 categories updated; all data carriers in sync (Aug 23, 2026)
 - [x] v0.8.2 —Daily Update: 11 new arXiv-verified methods (BRF-GS, SMG, VCAR, RealCAD, ObjectSplat, CapFrame, Amortized Anchor Refinement, ATGS, CausalSplat, VoroTracing, Lucida); 790→ 01 methods; 7 categories updated; all data carriers in sync (Sep 2, 2026)
-- [x] v0.8.3 —Dynamic Scene Survey Integration: 23 new arXiv-verified methods from 杩炴尟鏅?et al. survey (J CAD & CG, Jan 2026); 801→ 19 methods; Dynamic & 4D 75→ 7; +dynamic-datasets.md (11 datasets); +benchmark-data.md metrics (MS-SSIM/VMAF/FID) and 4 performance tables; experiment-planner skill updated (Sep 4, 2026)
+- [x] v0.8.3 —Dynamic Scene Survey Integration: 23 new arXiv-verified methods from 连振晗 et al. survey (J CAD & CG, Jan 2026); 801→ 19 methods; Dynamic & 4D 75→ 7; +dynamic-datasets.md (11 datasets); +benchmark-data.md metrics (MS-SSIM/VMAF/FID) and 4 performance tables; experiment-planner skill updated (Sep 4, 2026)
 - [x] v0.9.0 —Data Accuracy Release: full-library name↔ paper verification against arXiv API; 181 unverifiable entries removed, 56 wrong IDs fixed, 5 renames, 1 dedup; count corrected to 678 (Sep 16, 2026)
 - [x] v0.8.4 —Daily Update: 39 new arXiv-verified methods (arXiv window 2026-09-02 ~ 09-16); 819→ 78 methods; 15 categories updated (Compression & Streaming +4, Large-Scale +4, Optimization +4, Robustness +4, Cross-Domain +3, Dynamic & 4D +3, Generation +3, SLAM +3, Acceleration +2, Embodied AI & Robotics +2, Feed-Forward +2, Sparse-View +2, HDR & Relighting +1, Human & Avatar +1, Surface & Rendering +1); pure benchmarks/surveys excluded; validate_knowledge_base.py SyntaxWarning fixed; all data carriers in sync (Sep 16, 2026)
 - [x] v0.9.1 —ECCV 2026 Wave: 14 new arXiv-verified methods (Wat3R, GeoNVS, Edit3r, SA-ResGS, GaussianLens, Deformable Triangle Splatting, Neural Harmonic Textures, CubicSplat, TetraSDF, Heat Kernel Textures, GRF-Recon, PriSplat, Per-View Distractor Filtering, GS-Underwater); 678→ 92 methods; 6 categories updated (Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1); all data carriers in sync (Sep 20, 2026)
@@ -404,12 +404,27 @@ SplatVerse Studio integrates **3D Gaussian Splatting** with a short-drama pipeli
 ### Architecture
 
 ```
-Toonflow Engine (:10588)          SplatVerse Studio
-鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?        鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹? Script → Assets →   鈹? REST   鈹? Bridge (:10590)          鈹?鈹? Storyboard → Video   鈹傗梽鈹€鈹€鈹€鈹€鈹€鈹€鈻衡攤  鈹溾攢 Project Browser       鈹?鈹?                      鈹?        鈹? 鈹溾攢 Render Studio          鈹?鈹? Vendor: 3dgs-renderer鈹?        鈹? 鈹溾攢 MCP Tools (25 tools)  鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?        鈹? 鈹? MCP Renderer (:9842)  鈹?                                  鈹? 鈹溾攢 Pipeline (7 steps)     鈹? MoneyPrinterTurbo (:8081)       鈹? 鈹? 鈹溾攢 Script Adaptation   鈹?鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?        鈹? 鈹? 鈹溾攢 Storyboard          鈹?鈹? Online material →   鈹? REST   鈹? 鈹? 鈹溾攢 Toonflow Sync       鈹?鈹? TTS → FFmpeg → Video 鈹傗梽鈹€鈹€鈹€鈹€鈹€鈹€鈻衡攤  鈹? 鈹溾攢 TTS Dubbing         鈹?鈹? Cross-platform post  鈹?        鈹? 鈹? 鈹溾攢 Video Gen           鈹?鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?        鈹? 鈹? 鈹溾攢 FFmpeg Compose      鈹?                                  鈹? 鈹? 鈹斺攢 Publish (MPT)       鈹?                                  鈹? Studio Web (:5173)        鈹?                                  鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?```
+Toonflow Engine (:10588)                    SplatVerse Studio
++------------------------------+            +------------------------------------------+
+| Script -> Assets ->           |   REST     | Bridge (:10590)                           |
+| Storyboard -> Video           |<--------->| Project Browser                            |
+| Vendor: 3dgs-renderer         |            | Render Studio                              |
+|                               |            | MCP Tools (25 tools)                       |
+|                               |            | MCP Renderer (:9842)                       |
+|                               |            | Pipeline (7 steps)                         |
+|                               |            |   |-- Script Adaptation                     |
+| MoneyPrinterTurbo (:8081)     |   REST     |   |-- Storyboard                            |
+| Online material ->            |<--------->|   |-- Toonflow Sync                         |
+| TTS -> FFmpeg -> Video        |            |   |-- TTS Dubbing                           |
+| Cross-platform post           |            |   |-- Video Gen                             |
+|                               |            |   |-- FFmpeg Compose                        |
+| Studio Web (:5173)            |            |   +-- Publish (MPT)                         |
++------------------------------+            +------------------------------------------+
+```
 
 ### Quick Start
 
-**Prerequisites:** [Node.js 鈮?18](https://nodejs.org/) (Toonflow and MoneyPrinterTurbo are optional).
+**Prerequisites:** [Node.js ≥18](https://nodejs.org/) (Toonflow and MoneyPrinterTurbo are optional).
 
 The one-click launcher starts everything automatically on first run:
 checks Node.js, creates `.env` from `.env.example` if missing, runs `npm install`
@@ -439,7 +454,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-all.ps1
 > generated `.env` (used for script/storyboard generation).
 >
 > Toonflow (optional, for the full video pipeline) is auto-detected from
-> `../AI搴旂敤/Toonflow-app`, `../Toonflow-app`, `./Toonflow-app`, or `TOONFLOW_APP_DIR`.
+> `../AI应用/Toonflow-app`, `../Toonflow-app`, `./Toonflow-app`, or `TOONFLOW_APP_DIR`.
 > MoneyPrinterTurbo (optional, needs Docker) is started only when `MPT_ENABLED=true`
 > in `.env`.
 
@@ -530,7 +545,7 @@ To use 3DGS rendering directly inside Toonflow's image/video generation:
 
 ```bash
 # Copy the vendor adapter to Toonflow
-cp studio/bridge/vendor/3dgs-renderer.ts ../AI搴旂敤/Toonflow-app/data/vendor/
+cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
 ```
 
 This registers 3DGS as both an image model (single-frame render) and video model (multi-frame animation) in Toonflow's vendor system.
@@ -618,7 +633,7 @@ curl -s http://localhost:10590/api/pipeline/tasks \
   -d '{
     "text": "In a quiet town, a kitten named HuaHua chats with a butterfly...",
     "title": "HuaHua Adventure",
-    "style": "姘村僵",
+    "style": "水彩",
     "videoRatio": "16:9",
     "enableTTS": true,
     "enableVideoGen": false,
@@ -669,12 +684,12 @@ If this project helps your research or work, consider supporting us!
 <tr>
 <td align="center">
 <img src="assets/sponsor-qrcode.jpg" width="200"><br>
-<b>Sponsor / 鎵撹祻</b><br>
+<b>Sponsor / 打赏</b><br>
 Buy us a coffee
 </td>
 <td align="center">
 <img src="assets/group-qrcode.jpg" width="200"><br>
-<b>Join Group / 鍔犲叆绀剧兢</b><br>
+<b>Join Group / 加入社群</b><br>
 3DGS research discussion
 </td>
 </tr>

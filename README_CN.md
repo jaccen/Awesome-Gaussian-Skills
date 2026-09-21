@@ -11,7 +11,7 @@
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-862-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-859-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -84,7 +84,7 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 862 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 859 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
@@ -278,7 +278,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 862 方法的系统性空白分析生成。
+> 基于知识库 859 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -349,7 +349,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.9.0 — 数据准确性版本：全库名称↔论文逐条核验（arXiv API）；删除不可核实条目 181 条、修正错误编号 56 条、重命名 5 条、去重 1 条；总数修正为 678（2026 年 9 月 16 日）
 - [x] v0.8.4 — 每日更新：39 个新 arXiv 验证方法（arXiv 窗口 2026-09-02 ~ 09-16）；819→858 方法；15 个类别更新（Compression & Streaming +4, Large-Scale +4, Optimization +4, Robustness +4, Cross-Domain +3, Dynamic & 4D +3, Generation +3, SLAM +3, Acceleration +2, Embodied AI & Robotics +2, Feed-Forward +2, Sparse-View +2, HDR & Relighting +1, Human & Avatar +1, Surface & Rendering +1）；排除纯基准/综述；修复 validate 脚本 \\d 语法警告；全载体同步（2026 年 9 月 16 日）
 - [x] v0.9.1 — ECCV 2026 浪潮：14 个新 arXiv 验证方法（Wat3R, GeoNVS, Edit3r, SA-ResGS, GaussianLens, Deformable Triangle Splatting, Neural Harmonic Textures, CubicSplat, TetraSDF, Heat Kernel Textures, GRF-Recon, PriSplat, Per-View Distractor Filtering, GS-Underwater）；678→692 方法；6 个类别更新；所有数据载体同步（2026 年 9 月 20 日）
-- [x] v0.9.2 — 场景 Agent + Mapmost 工程化浪潮：5 个新场景生成 Agent 方法（SceneSmith ICML 2026, Scenethesis ICLR 2026, SceneGenAgent ACL 2025, SceneConductor, SceneAssistant）；692→862 方法；Generation +4, Embodied AI & Robotics +1；6 项技能文件增强：3DGS 单体化、LOD 流式加载+接缝优化、分区训练、3DGS+3DTiles 融合、LUT 调色、Mapmost 100km² 基准（2026 年 9 月 20 日）
+- [x] v0.9.2 — 场景 Agent + Mapmost 工程化浪潮：5 个新场景生成 Agent 方法（SceneSmith ICML 2026, Scenethesis ICLR 2026, SceneGenAgent ACL 2025, SceneConductor, SceneAssistant）；692→697 方法；Generation +4, Embodied AI & Robotics +1；6 项技能文件增强：3DGS 单体化、LOD 流式加载+接缝优化、分区训练、3DGS+3DTiles 融合、LUT 调色、Mapmost 100km² 基准（2026 年 9 月 20 日）
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
 - [ ] v2.0 — Agent 间协作（多 Agent 论文讨论）
 
