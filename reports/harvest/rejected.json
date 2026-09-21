@@ -1,0 +1,277 @@
+[
+ {
+  "id": "2609.19421",
+  "title": "RGS: Reflection-aware Gaussian Splatting via Learning Geometry Continuity for Reflective Objects",
+  "why": "dup-name:RGS"
+ },
+ {
+  "id": "2609.19330",
+  "title": "SemSafe-3DGS: Semantic Risk-Aware Active Navigation in Uncertain 3D Gaussian Splatting Maps",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2609.18898",
+  "title": "NormLift: From Lifted Features To Semantic Reliability In 3D Gaussian Splatting",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2609.17106",
+  "title": "BRAVE-6D: Benchmark for Robotic Active Vision in 6DOF Pose Estimation",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2609.16443",
+  "title": "The Neverwhere Visual Parkour Benchmark Suite",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2609.16233",
+  "title": "SceneBench: A Hierarchical Benchmark for Vision-Language Understanding of 3D Scenes",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2609.14899",
+  "title": "What Makes a 3D Scene Editable? A Factorized Benchmark of Fidelity, Locality, Consistency, and Preservation",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2609.00994",
+  "title": "EvoGS: Modeling Deformation Evolution for Dynamic Gaussian Splatting",
+  "why": "dup-name:EvoGS"
+ },
+ {
+  "id": "2608.26868",
+  "title": "CGS-SLAM: Collaborative Gaussian Splatting based SLAM for Multi-Agent Reconstruction",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.25401",
+  "title": "PIVOT: A Multi-Trajectory Dataset and Testbed for Pose, Intrinsics, and Novel Viewpoint Evaluation in Real-World 3D Reconstruction",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.26383",
+  "title": "Cross-Platform Benchmark of Neural 3D Reconstruction for Autonomous Laboratory Robots",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.22465",
+  "title": "M3ISR: A Multi-Modal Multi-View Benchmark for 3D/4D Gaussian Splatting and Feedforward Compression",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.22102",
+  "title": "Learning Implicit Constitutive Laws for Dynamic 3D Gaussian Splatting from Monocular Videos",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.20602",
+  "title": "Sparse Light Field Sampling Improves Casual 3D and 4D Reconstruction",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.19066",
+  "title": "GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.17420",
+  "title": "SPVC: Structured and Panoptic Video Fixing for Cross-Dataset Driving Scene Rendering",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.15024",
+  "title": "MotionGS-SLAM: Event-Modulated Gaussian Splatting for Motion-Blur Robust SLAM",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.12860",
+  "title": "HumanoidVLN: A Physics-Grounded Simulator and Benchmark for Vision-Language Navigation Across Diverse Humanoid Embodiments",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.12825",
+  "title": "LocusGS: Spatially Grounded Tokens for Feed-Forward 3D Gaussian Splatting",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.10345",
+  "title": "CasDeblurGS: Cascaded 2D-to-3D Multi-View Consistency for 3D Gaussian Splatting from Two Blurry Images",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2608.03279",
+  "title": "3DGSI-Assessor: A Large-Scale Dataset and An LMM-based Method for 3D Gaussian Splatting Image Quality Assessment",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.01958",
+  "title": "FAST-GS: Frequency Aware Space-time Gaussian Splatting for Photorealistic Dynamic Novel View Synthesis",
+  "why": "dup-name:FAST-GS"
+ },
+ {
+  "id": "2608.06404",
+  "title": "UAV3DCrop: Benchmarking 3D Reconstruction in Repeated Multi-Angle UAV Crop Surveys",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2608.01492",
+  "title": "GaussianSelector: Lightweight Human-Guided Object Selection in 3D Gaussian Splatting with Graph Optimization",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2607.25219",
+  "title": "SONG: A Photorealistic 3D Gaussian Simulation Platform for Benchmarking Social Navigation",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2607.16838",
+  "title": "TopoGS: Planar Reconstruction via Topology-aware 3D Gaussian Splatting",
+  "why": "dup-name:TopoGS"
+ },
+ {
+  "id": "2607.13682",
+  "title": "When Variance Is Not an Error Map: Calibrated Uncertainty for Radiative Gaussian Splatting in Sparse-View CT",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2607.07452",
+  "title": "GeoGS-SLAM: Geometry-Only Gaussian Splatting for Dense Monocular SLAM",
+  "why": "dup-name:GeoGS-SLAM"
+ },
+ {
+  "id": "2607.05598",
+  "title": "SSA-3DGS: Unsupervised Removal of Screen-Space Artifacts for 3D Gaussian Splatting",
+  "why": "dup-name:SSA-3DGS"
+ },
+ {
+  "id": "2607.05347",
+  "title": "WildSplat: Feedforward Gaussian Splatting from Unposed In-the-Wild Images",
+  "why": "dup-name:WildSplat"
+ },
+ {
+  "id": "2607.04761",
+  "title": "DeGenseGS: Geometrically and Semantically Decoupled Surgical Scene Understanding in 4D Gaussian Splatting",
+  "why": "dup-name:DeGenseGS"
+ },
+ {
+  "id": "2607.03872",
+  "title": "SharpSplat: Edge-Regularized 3D Gaussian Splatting for High Fidelity Urban Building Reconstruction from UAV images",
+  "why": "dup-name:SharpSplat"
+ },
+ {
+  "id": "2607.03819",
+  "title": "CGGS: Consistency-Augmented Geometric Gaussian Splatting for Ego-Centric 3D Scene Generation",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2607.03390",
+  "title": "TemporalGS: Training-Free Plug-and-Play Acceleration for 3D Gaussian Splatting Rendering via Temporal Priors",
+  "why": "dup-name:TemporalGS"
+ },
+ {
+  "id": "2607.01860",
+  "title": "DL-SLAM: Enabling High-Fidelity Gaussian Splatting SLAM in Dynamic Environments based on Dual-Level Probability",
+  "why": "dup-name:DL-SLAM"
+ },
+ {
+  "id": "2607.01803",
+  "title": "PixGS: Pixel-Space Diffusion for Direct 3D Gaussian Splat Generation",
+  "why": "dup-name:PixGS"
+ },
+ {
+  "id": "2607.01578",
+  "title": "MVFusion-GS: Motion-Variance Guided Temporal Attention for High-Quality Dynamic Gaussian Splatting",
+  "why": "dup-name:MVFusion-GS"
+ },
+ {
+  "id": "2607.01290",
+  "title": "AnchorSplat: Fast and Structure Consistent Detail Synthesis for Gaussian Splatting",
+  "why": "dup-name:AnchorSplat"
+ },
+ {
+  "id": "2606.32036",
+  "title": "PointSplat: Compact Gaussian Splatting via Human-Centric Prediction",
+  "why": "dup-name:PointSplat"
+ },
+ {
+  "id": "2606.30545",
+  "title": "StereoGS: Sparse-View 3D Gaussian Splatting via Stereo Priors",
+  "why": "dup-name:StereoGS"
+ },
+ {
+  "id": "2606.28820",
+  "title": "CoGS: Compositional Dynamic Human-Object Scenes Gaussian Splatting from Monocular Video",
+  "why": "dup-name:CoGS"
+ },
+ {
+  "id": "2606.25427",
+  "title": "Gastroendoscopy View Synthesis: A New Real Dataset and Evaluation",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2606.24628",
+  "title": "ArtiTwinSplat: Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos",
+  "why": "dup-name:ArtiTwinSplat"
+ },
+ {
+  "id": "2606.24361",
+  "title": "SignNet-1M: Large-Scale Multilingual Sign Language Video Dataset with Downstream Benchmarks",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2606.21258",
+  "title": "Spectral GS-SLAM: Observability-Aware, Degeneracy-Robust Tracking for Real-Time 3D Gaussian Splatting SLAM",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2606.17520",
+  "title": "GASE: Gaussian Splatting-Based Automated System for Reconstructing Embodied-Simulation Environments",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2606.17212",
+  "title": "Renderable Partial Representations for Dynamic Gaussian Splatting under Incomplete Delivery",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2606.10656",
+  "title": "Envision4D: Envisioning Visual Futures via Feed-forward 4D Gaussian Splatting for Autonomous Driving",
+  "why": "not-gs-core"
+ },
+ {
+  "id": "2606.07932",
+  "title": "LEGS: Laplacian-Enhanced Gaussian Splatting with a Nonlinear Weighted Loss",
+  "why": "dup-name:LEGS"
+ },
+ {
+  "id": "2606.01458",
+  "title": "LEGS: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting World",
+  "why": "dup-name:LEGS"
+ },
+ {
+  "id": "2605.30987",
+  "title": "Benchmarking Single-Step Inpainting Methods for Multi-Object 3D Gaussian Splatting Scenes",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2606.00137",
+  "title": "Advances in Neural 3D Mesh Texturing: A Survey",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2605.28237",
+  "title": "POINav: Benchmarking and Enhancing Final-Meters Arrival in Real-World Vision-Language Navigation",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2605.26880",
+  "title": "GScomp-QA: A Subjective Dataset for Quality Assessment of Compressed Gaussian Splatting",
+  "why": "survey/benchmark/dataset"
+ },
+ {
+  "id": "2607.16926",
+  "title": "Splat-based 3D Scene Reconstruction with Extreme Motion-blur",
+  "why": "intra-batch-dup:Splat-based"
+ }
+]

@@ -1,6 +1,6 @@
 ﻿---
 name: 3dgs-paper-reader
-description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 678+ methods across 23 categories. Use when: reading or analyzing a 3DGS/NeRF paper, extracting method details from arXiv PDF, summarizing 3D reconstruction research, 读论文/3DGS论文分析/文献总结."
+description: "Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables. Knowledge of 859 methods across 23 categories. Use when: reading or analyzing a 3DGS/NeRF paper, extracting method details from arXiv PDF, summarizing 3D reconstruction research, 读论文/3DGS论文分析/文献总结."
 license: Apache-2.0
 user-invocable: true
 metadata:

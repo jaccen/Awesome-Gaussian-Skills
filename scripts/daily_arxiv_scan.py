@@ -66,7 +66,9 @@ def is_3dgs(p: dict) -> bool:
 
 
 def main() -> int:
-    since = (datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)).strftime("%Y-%m-%d")
+    # arXiv submittedDate 必须是 YYYYMMDDHHMM（带横杠会返回 400）
+    since = (datetime.now(timezone.utc) - timedelta(days=DAYS_BACK)).strftime("%Y%m%d")
+    today_str = date.today().strftime("%Y%m%d")
     known = set()
     methods = json.loads(io.open(ROOT / "data" / "methods.json", encoding="utf-8").read())
     entries = methods.get("methods", methods if isinstance(methods, list) else [])

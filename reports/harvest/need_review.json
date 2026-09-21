@@ -1,0 +1,1395 @@
+[
+ {
+  "id": "2609.21516",
+  "title": "2D GauSS-MI: Efficient Active Scene Reconstruction with Balanced Visual and Geometric Quality",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Active reconstruction requires efficient active view selection to achieve high-quality reconstruction within limited onboard computational resources. Existing methods face challenges in adequately balancing visual and geometric quality with the computational efficiency required for real-time operation. In this work, we present an active reconstruction framework based on 2D Gaussian Splatting (2DGS"
+ },
+ {
+  "id": "2609.21176",
+  "title": "4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "This paper addresses the challenges of dynamic scene synthesis from sparse-view videos. Existing methods employ geometric priors, adaptive optimization, or density-control strategies to improve 4D Gaussian modeling under sparse observations. However, they cannot fundamentally resolve the ill-posed problem caused by insufficient observations and missing scene information. Moreover, sparse-view 4D G"
+ },
+ {
+  "id": "2609.20623",
+  "title": "PhGS: Post-Hoc Pruning and Refinement of Single-View Feed-Forward 3D Gaussian Reconstructions",
+  "name": "PhGS",
+  "why": "title-no-gs-mention",
+  "abstract": "Recent single-view feed-forward 3D Gaussian Splatting (3DGS) generation predicts a fixed number of Gaussians per camera ray, introducing severe spatial redundancy. Most existing compaction strategies target multi-view setups to exploit cross-view consistency and are incompatible with single-image models. Instead of retraining the base feed-forward network to directly output compact representations"
+ },
+ {
+  "id": "2609.20589",
+  "title": "RawSLAM: Online HDR Gaussian SLAM from Linear Radiance",
+  "name": "RawSLAM",
+  "why": "title-no-gs-mention",
+  "abstract": "Current dense visual SLAM systems rely almost exclusively on 8-bit tonemapped Low Dynamic Range (LDR) inputs, limiting their robustness in extreme lighting where shadows and highlights trigger tracking drift and mapping collapse. Conversely, existing raw and High Dynamic Range (HDR) reconstruction pipelines operate strictly offline. They depend on Structure-from-Motion preprocessing and are not su"
+ },
+ {
+  "id": "2609.19782",
+  "title": "Printing the Underdetermined: Materializing Multi-solutionness in Figurative Paintings",
+  "name": "Printing the Underdetermined",
+  "why": "title-no-gs-mention",
+  "abstract": "Figurative paintings are often approached as if they depict a single recoverable 3D scene: viewers infer depth and occlusion, and reconstruction pipelines attempt to converge to one stable model. We instead foreground multi-solutionness, the non-uniqueness of 3D configurations compatible with a single painted image, and propose a workflow that keeps this non-uniqueness visible and material. Multi-"
+ },
+ {
+  "id": "2609.19716",
+  "title": "GAPrompt++: Multi-Granular Geometry-Aware Point Cloud Prompt for 3D Vision Model",
+  "name": "GAPrompt++",
+  "why": "title-no-gs-mention",
+  "abstract": "Pre-trained 3D vision models have substantially advanced point cloud analysis, yet adapting them to downstream tasks via full fine-tuning is computationally expensive and storage-intensive. Parameter-Efficient Fine-Tuning (PEFT) offers a promising alternative by reducing both adaptation cost and storage burden. However, existing prompting-based approaches ignore the intrinsic geometric structures "
+ },
+ {
+  "id": "2609.21112",
+  "title": "Demonstration Synthesis from a Single Scan via Gaussian Splatting for Visuomotor Policy Learning",
+  "name": "Demonstration",
+  "why": "not-proper-noun:Demonstration",
+  "abstract": "Training a visuomotor policy calls for abundant demonstrations that closely match the target environment, yet collecting them anew remains expensive. Existing demonstration synthesis methods reduce this cost but remain constrained by high manual effort, limited visual fidelity, or heavy reliance on physics simulators. This paper introduces GaussianFactory, a high-fidelity data engine that mass-pro"
+ },
+ {
+  "id": "2609.19533",
+  "title": "SLAMSqueezeBench: Comparing SLAM Systems under Resource Constraints",
+  "name": "SLAMSqueezeBench",
+  "why": "title-no-gs-mention",
+  "abstract": "Simultaneous localization and mapping (SLAM) is one of the services running on an autonomous robot. It is typically run to assist other tasks such as planning, manipulation, etc. All these tasks are run on edge hardware and are subject to severe resource constraints. However, most SLAM systems are built and tested in isolation, and their performance is reported as if they are the only task running"
+ },
+ {
+  "id": "2609.18737",
+  "title": "Geometry beneath the Waves: Dense Priors for Sparse-View Underwater 3D Gaussian Splatting",
+  "name": "Geometry beneath the Waves",
+  "why": "not-proper-noun:Geometry beneath the Waves",
+  "abstract": "Underwater 3D reconstruction supports applications ranging from marine ecosystem monitoring and subsea inspection to underwater archaeology, education, and immersive visualisation. 3D Gaussian Splatting has made real-time photorealistic novel-view rendering practical, while underwater variants incorporate physically based image-formation models to separate medium effects from scene radiance. Their"
+ },
+ {
+  "id": "2609.17810",
+  "title": "Wind on Trees: Testing Physical Grounding in Dynamic 4D Gaussian Splatting",
+  "name": "Wind on Trees",
+  "why": "not-proper-noun:Wind on Trees",
+  "abstract": "Monocular reconstruction of wind-driven vegetation is severely underconstrained: motion along the viewing direction is largely unobservable, a moving canopy offers few reliable correspondences, and nearly the entire scene is dynamic, providing little static reference. Directly-learned deformation fields in 4D Gaussian Splatting therefore optimize photometric consistency rather than recover the mot"
+ },
+ {
+  "id": "2609.12395",
+  "title": "Is Gaussian Splatting Becoming Neural Again? A Taxonomy and Controlled Study of Learned Parameterization",
+  "name": "Is",
+  "why": "name-length-anomaly",
+  "abstract": "Three-dimensional Gaussian Splatting (3DGS) combines explicit primitives with efficient rasterization, yet recent systems increasingly use neural networks to generate or share Gaussian parameters. We characterize this trend along five axes: attribute decoding, spatial sharing, view-conditioned decoding, topology generation, and amortized inference. An analysis of 19 representative methods shows th"
+ },
+ {
+  "id": "2609.07557",
+  "title": "Heat Kernel Textures: the Geodesic Gaussians That Do Not Splat",
+  "name": "Heat Kernel Textures",
+  "why": "not-proper-noun:Heat Kernel Textures",
+  "abstract": "3D Gaussian Splatting has recently revolutionised novel view synthesis as well as many other 3D vision methods and applications. Drawing inspiration from this representation, we now rethink textures to overcome the main issues of UV mapping while considerably lowering their memory footprint. Heat Kernel Textures (HKTex) eliminate UV unwrapping as well as their persistent issues of wasted UV space,"
+ },
+ {
+  "id": "2609.07346",
+  "title": "From Explicit References to Scene Manifolds: Distributional Fidelity and Realism for Radiance Field Quality Assessment",
+  "name": "From",
+  "why": "title-no-gs-mention",
+  "abstract": "Radiance field representations such as 3D Gaussian Splatting (3DGS) enable high-quality novel view synthesis but can introduce complex, view-dependent artifacts from reconstruction, rendering, and compression. Reliable perceptual quality assessment (QA) is thus essential for evaluating rendered views and guiding the design of perceptually faithful scene representations. Existing full-reference QA "
+ },
+ {
+  "id": "2609.06157",
+  "title": "From Splats to Silicon: Rethinking Computational Efficiency of 3DGS",
+  "name": "From Splats to Silicon",
+  "why": "not-proper-noun:From Splats to Silicon",
+  "abstract": "3D Gaussian splatting (3DGS) represents scenes with explicit primitives and supports real-time novel-view synthesis, yet its system efficiency varies substantially across scenes, viewpoints, rendering paths, and platform constraints. Existing studies pursue efficiency through representation and algorithm design, GPU runtime optimization, and architectural support, but their reported gains correspo"
+ },
+ {
+  "id": "2609.05583",
+  "title": "An overview of 3D Vision-Language Models",
+  "name": "An",
+  "why": "title-no-gs-mention",
+  "abstract": "Vision-Language Models (VLMs) are reshaping computer vision by aligning visual and textual embeddings, allowing models to recognize visual concepts and reason about them using natural language. Traditional 3D deep-learning models, however, are typically trained for specific tasks, such as classification, segmentation, or detection, and do not naturally support cross-modal retrieval from their embe"
+ },
+ {
+  "id": "2609.04381",
+  "title": "Where Appearance Fails, Geometry Recognizes: A CAD-Free 3D Shape Prior That Complements Vision Foundation Models",
+  "name": "Where",
+  "why": "title-no-gs-mention",
+  "abstract": "Recognizing specific objects onboarded without a labeled training set recurs across manufacturing and service robotics, yet the conventional renderable prior, a computer-aided-design (CAD) model, is often unavailable. Two-dimensional capture supplies no shape prior, and frozen foundation features fail on geometrically similar, low-texture industrial parts. We ask what a short object-centric scan b"
+ },
+ {
+  "id": "2609.03657",
+  "title": "Rethinking 3D Noise: Learning 3D-Aware Video Priors via Optimization-Free Morphological Perturbations",
+  "name": "Rethinking 3D Noise",
+  "why": "title-no-gs-mention",
+  "abstract": "3D scene representations like NeRF and 3D Gaussian Splatting (3DGS) suffer severe artifacts in sparse-view settings. Recent generative 3D artifact fixers attempt to address this, but rely on paired corrupted and clean renders requiring costly, per-scene reconstructions across varying view configurations. While 2D image augmentations act as instant regularizers, no explicit equivalents exist for 3D"
+ },
+ {
+  "id": "2609.03341",
+  "title": "PointGT: Simultaneous Geometry and Texture Editing for Point-Based Representations",
+  "name": "PointGT",
+  "why": "title-no-gs-mention",
+  "abstract": "We present PointGT, a point-based 3D representation that enables simultaneous editing of object geometry and appearance. Existing reconstruction and view synthesis techniques produce volumetric 3D representations that are high-quality and photorealistic, but are difficult to edit. In particular, recent efforts to enable texture editing for 3D Gaussian Splatting representations are not compatible w"
+ },
+ {
+  "id": "2609.03897",
+  "title": "Reparametrizing 3D Gaussian Splatting for Real-Time Palette-based Color and Luminance Editing",
+  "name": "Reparametrizing",
+  "why": "not-proper-noun:Reparametrizing",
+  "abstract": "Professional color editing requires precise control over both color (hue and saturation) and lightness, ideally through separate, independent controls. We present a real-time interactive color editing framework for 3D Gaussian Splatting that supports palette-based recoloring, per-palette tone curves for color-aware luminance adjustment, and pixel-level color constraints. Rather than training a new"
+ },
+ {
+  "id": "2609.01698",
+  "title": "VirSqueezer: Generating Realistic Deformations and Squeezing Dynamics in VR from Fine-Grained Squeezing Controls",
+  "name": "VirSqueezer",
+  "why": "title-no-gs-mention",
+  "abstract": "Squeezing is one of the most natural forms of hand manipulation, inherently involving fine-grained, temporally evolving, per-finger flexion. In VR content creation, squeezing plays a unique role in enabling particular visual effects such as localized deformations and dynamic behaviors, e.g., bursting a Coke can or juicing a fruit, thereby expanding the expressive possibilities of VR content. Howev"
+ },
+ {
+  "id": "2608.30054",
+  "title": "When 3D Gaussian Splatting Recovers Real Surfaces",
+  "name": "When",
+  "why": "not-proper-noun:When",
+  "abstract": "When does 3D Gaussian Splatting (3DGS) recover the true scene surface rather than just overfitting view-dependent appearance? We answer this by developing a mathematical framework based on a first-hit rendering abstraction that cleanly isolates geometry from appearance. We prove that geometric misalignment forcefully converts spatial textures into high-frequency angular signals via parallax. This "
+ },
+ {
+  "id": "2608.29538",
+  "title": "As-Rigid-As-Possible Deformation of Gaussian Radiance Fields",
+  "name": "As-Rigid-As-Possible",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) models radiance fields as sparsely distributed 3D Gaussians, providing a compelling solution to novel view synthesis at high resolutions and real-time frame rates. However, deforming objects represented by 3D Gaussians remains a challenging task. Existing methods deform a 3DGS object by editing Gaussians geometrically. These approaches ignore the fact that it is the ra"
+ },
+ {
+  "id": "2608.29346",
+  "title": "GSPotential: Camera Potential Field for Sparse-View 3D Gaussian Splatting",
+  "name": "GSPotential",
+  "why": "not-proper-noun:GSPotential",
+  "abstract": "3D Gaussian Splatting has achieved remarkable success in photorealistic rendering, yet it suffers from severe overfitting and geometric artifacts in sparse-view scenarios due to the inherent deficiency of photometric supervision. Recent advances have attempted to regularize optimization by incorporating external priors, such as depth, point clouds, or diffusion models. However, these methods typic"
+ },
+ {
+  "id": "2608.29106",
+  "title": "Elastic Triangle Splatting",
+  "name": "Elastic",
+  "why": "title-no-gs-mention",
+  "abstract": "While neural rendering methods such as 3D Gaussian Splatting achieve remarkable visual fidelity, traditional polygonal meshes remain the backbone of established graphics pipelines. Triangle splatting bridges this gap by optimizing triangle primitives as differentiable splats, producing representations that are closer to mesh-based workflows. Central to these methods is the kernel function that sof"
+ },
+ {
+  "id": "2608.28272",
+  "title": "Non-Uniform Quantisation for 3DGS Compression",
+  "name": "Non-Uniform",
+  "why": "not-proper-noun:Non-Uniform",
+  "abstract": "3D Gaussian Splatting (3DGS) has emerged as a powerful technique for novel view synthesis, yet its high bitrate requirements pose significant challenges for storage and transmission. To enable practical applications and ensure interoperability within the 3DGS ecosystem, standardised compression formats are essential. In this paper, we propose a novel non-uniform quantisation scheme specifically ta"
+ },
+ {
+  "id": "2608.27735",
+  "title": "ABCD: Alpha-Composited Block Coordinate Descent: Constant-VRAM Training for Large Radiance Fields",
+  "name": "ABCD",
+  "why": "title-no-gs-mention",
+  "abstract": "We present ABCD (Alpha-Composited Block Coordinate Descent), an out-of-core training framework for alpha-composited radiance fields, instantiated here for 3D Gaussian Splatting. Our method reformulates training as block coordinate descent over spatial partitions: only one block of parameters is active at a time, while all others are frozen. By exploiting the associativity of alpha blending, these "
+ },
+ {
+  "id": "2608.28702",
+  "title": "Stochastic Liquid Deformation Fields: An SDE Generalisation of Closed-Form Continuous-Time Cells for Dynamic 3D Gaussian Splatting",
+  "name": "Stochastic Liquid Deformation Fields",
+  "why": "name-length-anomaly",
+  "abstract": "Deformable 3D Gaussian Splatting (D-3DGS) reconstructs dynamic scenes by deforming a canonical set of 3D Gaussians through a deformation field of frame time. Replacing its MLP with a stack of Closed-form Continuous-time (CfC) cells-a Liquid Neural Network that solves the Liquid Timeconstant ODE in closed form-gives the field continuous-time behaviour at feed-forward cost. That closed form, however"
+ },
+ {
+  "id": "2608.27301",
+  "title": "Comparative Evaluation of 3D Reconstruction Methods for Immersive Visualization of Laboratory Objects",
+  "name": "Comparative",
+  "why": "title-no-gs-mention",
+  "abstract": "In this study, we examined whether current 3D reconstruction methods can support the creation of realistic holographic representations of laboratory objects for educational use. In this regard, we compared four approaches: photogrammetry, a neural radiance field (NeRF)-based method, Gaussian splatting, and LiDAR. These methods were used to generate holographic models of common laboratory items and"
+ },
+ {
+  "id": "2608.25956",
+  "title": "4DGS-WAM: Bridging Past and Future with an Object-Centric World Action Model based on 4D Gaussian Splatting",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Current world action models (WAMs) typically operate on 2D visual data. These models can achieve exceptional visual quality, but they lack explicit spatial structure for individual objects and repeatedly process redundant background content. Although point clouds can represent the world in 3D space, they can be difficult to align and accumulate across viewpoints. In this paper, we leverage an expl"
+ },
+ {
+  "id": "2608.24049",
+  "title": "Physics-Integrated Operator Learning via Gaussian Splatting Representations",
+  "name": "Physics-Integrated",
+  "why": "not-proper-noun:Physics-Integrated",
+  "abstract": "Neural operators provide efficient surrogates for spatiotemporal PDE systems, but purely data-driven formulations often accumulate substantial errors during long-horizon autoregressive prediction and may fail to exploit available governing-equation structure. Existing approaches incorporate physics primarily through residual-based training objectives or PDE-specific architectural constraints, whic"
+ },
+ {
+  "id": "2608.23549",
+  "title": "FixAnything: 3D-Consistent Rendering Refinement via Video Generative Priors",
+  "name": "FixAnything",
+  "why": "title-no-gs-mention",
+  "abstract": "Rendering views using 3D scene representations such as Gaussian Splatting (3DGS), Neural Radiance Fields (NeRF), meshes, or even point clouds produces artifacts when input views are sparse or target views lie far from the input. Recent work mitigates these artifacts using diffusion-based generative priors, but is specialized to individual representations and require custom architectures or extensi"
+ },
+ {
+  "id": "2608.22740",
+  "title": "Seeing the Unseen: Semantic-in-Gaussian for Sparse-View 3D Generalization",
+  "name": "Seeing the Unseen",
+  "why": "title-no-gs-mention",
+  "abstract": "Generalizable 3D Gaussian Splatting (G-3DGS) has emerged as a promising approach for novel view synthesis undersparse-view settings. However, existing frameworks remain restricted by pixel-aligned Gaussian estimation, whichstruggles in partially observed or occluded regions and often leads to incomplete surfaces or structural collapse. Toaddress these challenges, we propose SeeU (Seeing the Unseen"
+ },
+ {
+  "id": "2608.22344",
+  "title": "Fast and Compact 3D Gaussian Splatting with Polarized Opacity Prior",
+  "name": "Fast",
+  "why": "not-proper-noun:Fast",
+  "abstract": "3D Gaussian Splatting (3DGS) achieves state-of-the-art rendering quality at real-time speeds but suffers from \"model bloat\" - a large number of redundant, low-opacity Gaussians that inflate memory usage and training costs. This inefficiency stems from the standard \"densify-then-prune\" paradigm, which expands the model aggressively before relying on pruning to achieve compactness. To mitigate this "
+ },
+ {
+  "id": "2608.21828",
+  "title": "Towards Alias-Free 4D Gaussian Representations with Motion-Aware Filtering",
+  "name": "Towards",
+  "why": "title-no-gs-mention",
+  "abstract": "Novel-view synthesis of dynamic scenes, crucial for AR/VR applications, remains a challenging problem. Recent methods adapt representations like 3D Gaussian Splatting (3DGS) and Neural Radiance Fields (NeRF) for dynamic scenes by incorporating time as the fourth dimension (4D representations). These 4D representations still suffer from aliasing artifacts, especially when generating novel views fro"
+ },
+ {
+  "id": "2608.20687",
+  "title": "TopoSurfel: Closing the Loop between Gaussian Surfels and Meshes for Surface Reconstruction",
+  "name": "TopoSurfel",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting has achieved remarkable success in novel view synthesis. However, extracting high-fidelity surfaces directly from 3DGS remains challenging due to its discrete and unstructured nature. Existing 3DGS-based reconstruction methods typically rely on multi-view geometric consistency or local constraints. Without an explicit structured geometric prior during optimization, these meth"
+ },
+ {
+  "id": "2608.21685",
+  "title": "In-Situ Reconstruction of the International Space Station Using 3D Gaussian Splatting and Astrobee",
+  "name": "In-Situ",
+  "why": "not-proper-noun:In-Situ",
+  "abstract": "This article presents a novel 3D reconstruction and mapping of the interior of the International Space Station (ISS) using 3D Gaussian Splatting (3DGS). Using existing grayscale images from the Astrobee free-flying robot dataset, we construct a full 3D splat of the ISS' Kibō or Japanese Experiment Module (JEM). 3DGS has in recent years shown promise in providing novel view synthesis of scenes capt"
+ },
+ {
+  "id": "2608.20335",
+  "title": "4DAnyone: Create Anyone in 4D from a Casual Monocular Video",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "We present 4DAnyone, a framework for reconstructing 4D humans from an uncalibrated monocular video by generating reconstruction-grade multiview-consistent videos and lifting them into 4D Gaussian Splatting (4DGS). Existing camera-controlled video diffusion models synthesize plausible novel-view videos but fail to maintain consistency when scaled to the tens of target views required for 4DGS recons"
+ },
+ {
+  "id": "2608.20000",
+  "title": "Point-Based 3D Reconstruction from Sparse Views under Known Illumination",
+  "name": "Point-Based",
+  "why": "title-no-gs-mention",
+  "abstract": "Sparse view 3D reconstruction is commonly addressed with neural implicit surfaces or dense point-based representations such as Gaussian splatting. Surface-aware splatting methods improve extracted geometry through oriented primitives and regularization, while RadiosityGS incorporates differentiable light transport through a radiosity inspired finite-element surfel formulation. We propose a differe"
+ },
+ {
+  "id": "2608.19556",
+  "title": "Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models",
+  "name": "Stream4D",
+  "why": "title-no-gs-mention",
+  "abstract": "Streaming autoregressive diffusion models enable real-time, long-horizon video generation, but their training objectives optimize local frame prediction rather than the geometry and dynamics of a coherent world: long rollouts accumulate geometric drift and degrade into static or unnatural motion. Recent bidirectional approaches address this problem using rewards signals built upon 3D Gaussian-Spla"
+ },
+ {
+  "id": "2608.18388",
+  "title": "Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splatting",
+  "name": "Depth Anything V4",
+  "why": "name-not-self-mentioned",
+  "abstract": "We present Depth Anything V4 (DAV4), a framework for dynamic 4D scene reconstruction from monocular video. Our key contribution is the application of Riemannian Flow Matching (RFM) to 4D Gaussian Splatting parameters, defining probability paths directly on non-Euclidean manifolds (scale, rotation, opacity), ensuring all intermediate states are valid. Through controlled experiments, we isolate RFM'"
+ },
+ {
+  "id": "2608.17298",
+  "title": "3D Gaussian Accelerated Ray Tracing: Fast training through particle-based backward propagation",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "3D Gaussian Splatting has made Gaussian primitives a highly efficient representation for real-time novel view synthesis, but its rasterisation-based formulation relies on screen-space approximations that limit accurate view-dependent ordering and the integration of secondary ray effects such as reflections, refractions, and shadows. Gaussian ray tracing addresses these limitations by evaluating ex"
+ },
+ {
+  "id": "2608.21438",
+  "title": "DesignAgent3D: Interactive 3D Scene Editing via Designer-like Multimodal Reasoning",
+  "name": "DesignAgent3D",
+  "why": "title-no-gs-mention",
+  "abstract": "Text guided 3D scene editing provides an intuitive interface for modifying reconstructed environments, but remains difficult because natural language design requests are often semantically underspecified and must be grounded in cluttered 3D scenes. Existing methods typically formulate the task as one-shot conditional generation from a single prompt, failing to resolve ambiguous user intents or ach"
+ },
+ {
+  "id": "2608.16103",
+  "title": "Beyond Similarity Matching: Structured Reasoning for Open-Vocabulary Referring Segmentation in 3DGS",
+  "name": "Beyond Similarity Matching",
+  "why": "not-proper-noun:Beyond Similarity Matching",
+  "abstract": "Open-vocabulary referring segmentation in 3D Gaussian Splatting (3DGS) requires a neural model to select Gaussian primitives according to free-form language expressions. Existing 3DGS-based methods usually rely on global text-region similarity, which is weak for queries involving attributes, reference objects, spatial relations, and fine-grained parts. This often causes target-reference confusion,"
+ },
+ {
+  "id": "2608.14902",
+  "title": "Geometry-Aware Online Mapping for 3D Gaussian Splatting SLAM",
+  "name": "Geometry-Aware",
+  "why": "not-proper-noun:Geometry-Aware",
+  "abstract": "Recent 3D Gaussian Splatting (3DGS) has enabled efficient photorealistic view synthesis and is rapidly being adopted in simultaneous localization and mapping (SLAM) systems for online mapping. In these systems, a Gaussian map must be expanded and refined incrementally while tracking runs in real time, so initialization and density control directly determine where limited computation and iterations"
+ },
+ {
+  "id": "2608.11928",
+  "title": "Seed2GS: Camera-Free, Training-Free Object Extraction from 3D Gaussian Scenes via a Single Reference-View Grounding",
+  "name": "Seed2GS",
+  "why": "title-no-gs-mention",
+  "abstract": "Extracting a target object from a pre-built 3D Gaussian Splatting (3DGS) scene enables interactive 3D editing. Existing methods either train for tens of minutes per scene, sacrifice accuracy, or require original reconstruction cameras that pre-built assets may not include. We present Seed2GS, which achieves the highest reported LERF-MASK accuracy without original reconstruction cameras or scene-sp"
+ },
+ {
+  "id": "2608.10756",
+  "title": "Embodied Multimodal Grounding for Open-Vocabulary Mobile Manipulation via Semantic 3D Gaussian Splatting",
+  "name": "Embodied",
+  "why": "not-proper-noun:Embodied",
+  "abstract": "Embodied mobile manipulation requires language, visual observations, three-dimensional scene structure, and action feasibility to be aligned before execution. We study open-vocabulary target grounding with few-shot manipulation in local household workspaces and present an embodied multimodal grounding framework that integrates active multi-view Semantic 3D Gaussian Splatting (Semantic-3DGS), reach"
+ },
+ {
+  "id": "2608.10712",
+  "title": "Compact Feed-Forward 3D Gaussians via Saliency-Guided Primitive Merging",
+  "name": "Compact",
+  "why": "title-no-gs-mention",
+  "abstract": "3D scene reconstruction, modeling, and rendering are highly relevant for numerous tasks, and 3D Gaussian splatting has become a standard choice in this context. Its feed-forward variants provide fast reconstruction from sparse input views but often produce per-pixel primitives, leading to highly redundant and thus inefficient representations. We present a structure-aware merging pipeline that take"
+ },
+ {
+  "id": "2608.10682",
+  "title": "Visual Geometry Foundation-Aware Gaussians for Single-Frame Surround-View Driving Reconstruction",
+  "name": "Visual",
+  "why": "title-no-gs-mention",
+  "abstract": "Single-frame surround-view reconstruction faces severe geometric instability and rendering artifacts due to minimal inter-camera overlap. While existing methods rely on complex decoders or auxiliary cues, they remain bottlenecked by the weak geometric capacity of upstream features. We argue that leveraging pretrained visual geometry priors strengthens upstream representations and alleviates the ge"
+ },
+ {
+  "id": "2608.06801",
+  "title": "AdvTiles: Physical Adversarial Camouflage Clothing against Person Detectors via Learnable Tiles",
+  "name": "AdvTiles",
+  "why": "title-no-gs-mention",
+  "abstract": "Physical adversarial attacks against person detectors have evolved from localized patches to full-body textures. However, achieving both visual naturalness and strong attack effectiveness remains challenging. Existing natural-looking methods typically optimize camouflage textures as a whole, limiting the flexibility to refine local adversarial patterns and their spatial arrangement. To address thi"
+ },
+ {
+  "id": "2608.06117",
+  "title": "Confidence matters: Leveraging Multi-view Geometric Priors for GS-based Reconstruction",
+  "name": "Confidence matters",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian splatting (3DGS) has emerged as a widely-used tool for novel view synthesis, offering real-time rendering in a sparse representation. However, the method's reliance on structure-from-motion initialization and photometric optimization can lead to suboptimal geometric reconstruction, particularly for objects with high specularity. In this work, we investigate the integration of geometric"
+ },
+ {
+  "id": "2608.05482",
+  "title": "CDSeg: A Renderable Gaussian Carrier for Image-to-3D Label Transfer",
+  "name": "CDSeg",
+  "why": "title-no-gs-mention",
+  "abstract": "Modern image models provide strong cues about \\emph{what} should be segmented in each view, but their masks do not by themselves determine \\emph{where} those labels should persist in 3D. We present Cross-Domain Segmentation via Gaussian Splatting (CDSeg), a label-transfer interface that requires no task-specific 3D segmentation training and uses Gaussian primitives as a renderable label carrier. A"
+ },
+ {
+  "id": "2608.05145",
+  "title": "Objects as Audio-Visual Modal Sound Fields",
+  "name": "Objects",
+  "why": "title-no-gs-mention",
+  "abstract": "While modern 3D reconstruction excels at modeling object geometry and appearance, it largely ignores the rich acoustic cues revealed through physical interaction. Object impact sounds convey material, stiffness, and structural properties that complement vision, yet existing impact sound modeling approaches either rely on expensive physics-based simulation or require large datasets to generalize in"
+ },
+ {
+  "id": "2608.04701",
+  "title": "UniWorld-View: Large-Baseline View Synthesis via Video Diffusion Models",
+  "name": "UniWorld-View",
+  "why": "title-no-gs-mention",
+  "abstract": "The abundance of casually captured monocular videos and images on social media provides a valuable source for immersive content creation, where generating novel views from such sparse observations can greatly enhance user experiences. However, producing photorealistic and geometrically consistent views with precise camera control remains challenging when input coverage is extremely limited. Recons"
+ },
+ {
+  "id": "2608.03023",
+  "title": "Standalone DINOv3 for Training-Free Open-Vocabulary Semantic Segmentation in Remote Sensing",
+  "name": "Standalone",
+  "why": "title-no-gs-mention",
+  "abstract": "Remote sensing semantic segmentation is hindered by costly pixel-level annotations, motivating training-free open-vocabulary methods. Recently, the recent release of DINOv3 brings DINO.txt, which equips the standalone DINO backbone with image-text contrastive learning and thus opens up the possibility of open-vocabulary segmentation. We propose DinoSplat-OV, a training-free framework that adapts D"
+ },
+ {
+  "id": "2608.02304",
+  "title": "TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction",
+  "name": "TRACE",
+  "why": "title-no-gs-mention",
+  "abstract": "Existing active reconstruction systems with Gaussian-splatting maps select observations greedily, optimizing a single next-best-view (NBV) at each step and connecting the chosen views by short-horizon path planning. This greedy decoupling disregards the global structure of scene information, producing inefficient trajectories that waste sensing capacity in transit between selected views. In this w"
+ },
+ {
+  "id": "2608.02206",
+  "title": "CLEAR: Conflict-aware Learning via Evidence-guided Adaptive Routing for Unified Sparse-View 3D Gaussian Super-Resolution",
+  "name": "CLEAR",
+  "why": "title-no-gs-mention",
+  "abstract": "Sparse-view 3D Gaussian Splatting Super-resolution is highly challenging since the sparse and low-resolution (LR) inputs lack sufficient geometric and high-frequency information for accurate reconstruction. To achieve high-quality reconstruction, existing sparse-view super-resolution methods adhere to two-stage pipeline that performs LR Gaussian reconstruction and then high-resolution (HR) Gaussia"
+ },
+ {
+  "id": "2608.02177",
+  "title": "GSRAIN: Physically Calibrated High-/Low-Frequency Rainfall Synthesis for 3D Gaussian Driving Scenes",
+  "name": "GSRAIN",
+  "why": "title-no-gs-mention",
+  "abstract": "Existing rainfall simulation methods for autonomous driving remain limited in physical controllability and multi-view consistency. This paper presents GSRAIN, a high-/low-frequency rainfall synthesis method for 3D Gaussian Splatting (3DGS) driving scenes. GSRAIN constructs a high-frequency raindrop model from measured rainfall data and generates low-frequency rainy appearance using a geometry-awar"
+ },
+ {
+  "id": "2608.02006",
+  "title": "ASTRA: Asynchronous Spatio-Temporal Reconstruction via Trajectory Alignment",
+  "name": "ASTRA",
+  "why": "title-no-gs-mention",
+  "abstract": "Dynamic 3D scene reconstruction has made significant progress with multi-camera systems, often relying on temporally aligned observations across views. However, in real-world scenarios, temporal asynchrony among capturing devices remains a common limitation, leading to severe motion blur and geometric artifacts. Existing asynchronous reconstruction methods typically estimate temporal offsets throu"
+ },
+ {
+  "id": "2608.01726",
+  "title": "G-Skin: Learning to Bind 3D Gaussians with Generative Visual Priors",
+  "name": "G-Skin",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting has achieved remarkable success in photorealistic and efficient rendering, leading to a rapid increase in 3D assets represented by 3D Gaussian primitives. Directly rigging these assets with arbitrary skeleton topologies is highly desirable. However, training a feed-forward skinning framework is infeasible due to the lack of high-quality 3D Gaussian rigging datasets. An altern"
+ },
+ {
+  "id": "2608.01969",
+  "title": "3D Gaussian Splatting and Mesh-Based Digital Twins: An Exploratory Study for Virtual Reality Tourism",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Digital Twins (DTs) are increasingly used for immersive experiences in virtual tourism. Virtual Reality (VR) enables remote visits to replicated locations for promotional purposes or access to fragile and rural cultural heritage sites. However, developing high-fidelity DTs of tourist destinations is costly, due to the manual creation of 3D environments. Novel 3D rendering techniques, such as 3D Ga"
+ },
+ {
+  "id": "2608.00950",
+  "title": "Swimm3R: Splatting with Medium-aware SfM for Underwater 3D Reconstruction",
+  "name": "Swimm3R",
+  "why": "title-no-gs-mention",
+  "abstract": "We propose Swimm3R, a unified framework that combines medium-aware structure-from-motion (SfM) with Underwater Beta Splatting to address scattering- and attenuation-induced failures in underwater 3D reconstruction. Swimm3R distills in-air geometric priors into a feed-forward backbone and uses a physics head to regress underwater image-formation parameters, camera poses, and restored point clouds. "
+ },
+ {
+  "id": "2608.00931",
+  "title": "Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking",
+  "name": "Stipple",
+  "why": "not-proper-noun:Stipple",
+  "abstract": "3D Gaussian Splatting (3DGS) provides efficient rendering of photo-realistic scenes, but its heavy preprocessing and training steps make it a poor fit for applications that require real-time reconstruction in robotics or XR. This capability is important since it allows immediate feedback and interaction with new environments. Visual-inertial odometry (VIO) and simultaneous localization and mapping"
+ },
+ {
+  "id": "2608.00463",
+  "title": "Scene2Sound: Auditory-Grounded Soundscape Generation for 3D Gaussian Worlds",
+  "name": "Scene2Sound",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) turns captured or generated imagery into photorealistic 3D world simulations that users can freely explore, yet these worlds remain silent. Because existing audio generation methods condition on a single image or viewpoint, their sound is tied to that observation and cannot stay consistent while a listener moves. We introduce the task of generating a spatially consiste"
+ },
+ {
+  "id": "2607.28834",
+  "title": "FocusGS: Spatial Delta Layers for Local Repair and Deterministic Editing of Trained 3D Gaussian Assets",
+  "name": "FocusGS",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) is evolving from one-time reconstruction into deliverable, inspectable, and maintainable visual assets. Existing workflows focus on global reconstruction, training-time density control, or open-ended generative editing, leaving trained assets without precise local maintenance. We propose FocusGS, which unifies local repair and deterministic editing as composite spatial"
+ },
+ {
+  "id": "2607.28164",
+  "title": "S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image",
+  "name": "S-Avatar",
+  "why": "title-no-gs-mention",
+  "abstract": "We propose S-Avatar, a novel method for generating photorealistic 3D head avatars from a single image using a diffusion-guided 3D model generation module and strategies for animating 3D Gaussian Splatting (3DGS). While single-image head avatar reconstruction is crucial for lifelike Virtual Reality (VR) applications, existing approaches often struggle to preserve 3D consistency under unseen viewpoi"
+ },
+ {
+  "id": "2607.28049",
+  "title": "TSOG: A Format For Temporally And Spatially Ordered Gaussians",
+  "name": "TSOG",
+  "why": "title-no-gs-mention",
+  "abstract": "We propose Temporally and Spatially Ordered Gaussians (TSOG), a format for efficient representation of 4D Gaussian Splatting (4DGS) content. TSOG extends the Spatially Ordered Gaussians (SOG) framework to the temporal domain by introducing a timeline attribute and temporal parameterization of geometry and appearance attributes. Similar to SOG, TSOG is a lossy format that assigns each Gaussian a un"
+ },
+ {
+  "id": "2607.28032",
+  "title": "Split and Drive: Dual-Axis Disentanglement for Real-Time Gaussian Head Avatars",
+  "name": "Split and Drive",
+  "why": "title-no-gs-mention",
+  "abstract": "Creating photorealistic animatable head avatars from a single image remains a fundamental challenge in digital human synthesis. While recent 3D Gaussian Splatting methods have achieved promising results, they rely on external tracking pipelines whose latency is excluded from inference measurements. Furthermore, they adopt unified representations that entangle geometrically distinct facial regions,"
+ },
+ {
+  "id": "2607.27634",
+  "title": "4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Generating high-quality 360-degree dynamic human assets from text prompts is challenging. Existing methods usually synthesize monocular or multi-view videos first and then fit a 4D representation, which is expensive and often causes incomplete geometry or view-inconsistent renderings. We present 4DHumanDiff, a diffusion framework that directly generates dynamic humans represented by 4D Gaussian Sp"
+ },
+ {
+  "id": "2607.26578",
+  "title": "3DGBGS: 3D Granular Ball Gaussian Splatting for Compact Novel View Synthesis",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Three-dimensional Gaussian Splatting (3DGS) enables high-quality real-time novel-view synthesis through explicit Gaussian primitives and differentiable rasterization. 3DGS and Granular Ball Computing (GBC), proposed in 2019, share a natural compatibility in adaptive representation. The efficiency of 3DGS partly stems from a coarse-to-fine and on-demand refinement process that draws on the generati"
+ },
+ {
+  "id": "2607.25362",
+  "title": "PanoLess: Environment Reconstruction from Partial Reflective Views",
+  "name": "PanoLess",
+  "why": "title-no-gs-mention",
+  "abstract": "Reflections from shiny objects and glass facades naturally extend the field of view of a camera, capturing the surrounding environment without the need to pan the camera or acquire a full panorama. We propose PanoLess, a Gaussian-splat-based framework that reconstructs the surrounding environment as a distant illumination map from images captured on only one side of a reflective surface. PanoLess "
+ },
+ {
+  "id": "2607.23861",
+  "title": "Head Avatars with Dynamic Explicit Hair",
+  "name": "Head",
+  "why": "title-no-gs-mention",
+  "abstract": "We present DynHair, a novel method for tracking and modeling dynamic hair for human head avatars. From video input, we reconstruct a dynamic head avatar with an explicit strand-based hair representation using structured 3D Gaussian Splatting. In contrast to the face region of human head avatars, which can be modeled with 3D Gaussians that are attached or generated with respect to some expressive 3"
+ },
+ {
+  "id": "2607.23189",
+  "title": "Fashion-3DLR: A Controllable 3D Garment Generation Using Pairwise Fashion Elements for Intelligent Design",
+  "name": "Fashion-3DLR",
+  "why": "title-no-gs-mention",
+  "abstract": "AI-generated content (AIGC) has made significant progress, with 2D generative models becoming ready-to-use tools for the digital fashion industry. However, 3D garment generation remains in its nascent stage, where in the realm of fashion, the semantic information of diverse design elements exhibits intricate coupling relationships in 3D representations, posing substantial challenges for generating"
+ },
+ {
+  "id": "2607.22997",
+  "title": "Real2Sim2Real for Vision-Language-Action Manipulation: An AMD ROCm-Based Pipeline",
+  "name": "Real2Sim2Real",
+  "why": "title-no-gs-mention",
+  "abstract": "Physical AI -- the integration of large vision-language-action (VLA) models with embodied agents that act in the real world -- has emerged as the next major frontier for AI, echoed by industry leaders such as Jensen Huang (``the next big thing is Physical AI, AI with a body,'' GTC Paris, June 2025) and Dr. Lisa Su (`we're entering the world of Physical AI ... this is where AI enters the real world"
+ },
+ {
+  "id": "2607.22890",
+  "title": "Meshless Domain Randomization via Explicit Parameter Perturbation of 3D Gaussian Splatting",
+  "name": "Meshless",
+  "why": "not-proper-noun:Meshless",
+  "abstract": "Domain Randomization (DR) is a standard technique for closing the Sim-to-Real gap, yet traditional DR pipelines rely on classical computer graphics rendering driven by polygon meshes. For complex organic subjects, such as insect specimens, extracting and rendering textured meshes is challenging. To address this issue, we propose a meshless DR framework that operates on the parameter space of 3D Ga"
+ },
+ {
+  "id": "2607.22780",
+  "title": "Inter-Reflective Gaussian Splatting for Robust and Efficient Inverse Rendering",
+  "name": "Inter-Reflective",
+  "why": "not-proper-noun:Inter-Reflective",
+  "abstract": "Faithful inverse rendering requires visibility and indirect radiance to explain secondary illumination and inter-reflection, yet rasterization-oriented Gaussian representations do not naturally support the secondary-ray queries needed to recover them. We present IRGS++ (Inter-Reflective Gaussian Splatting), a unified robust and efficient Gaussian inverse rendering framework. During transport-aware"
+ },
+ {
+  "id": "2607.22147",
+  "title": "Visual Relocalization from Sparse Views in Aliased and Low-Texture Environments via Novel View Synthesis",
+  "name": "Visual",
+  "why": "title-no-gs-mention",
+  "abstract": "Visual localization becomes extremely challenging in planetary-like terrains characterized by low texture, perceptual aliasing, harsh illumination, and sparse, weakly overlapping viewpoints induced by forward rover motion and unconstrained driving directions. Under these conditions, state-of-the-art image-to-image and image-to-map matching pipelines suffer significant performance degradation. In t"
+ },
+ {
+  "id": "2607.22956",
+  "title": "3D Gaussian Splatting for Scientific Particle Data Compression and Rendering",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Large-scale particle simulations produce hundreds of millions of particles, straining storage, transfer, and interactive visualization. Existing lossy compressors such as SZ3 operate in data space and provide no guarantees on downstream visualization fidelity. We propose ParticleGS, a visualization-aware framework based on 3D Gaussian Splatting (3DGS) that learns a compact representation directly "
+ },
+ {
+  "id": "2607.21099",
+  "title": "Construction and Dynamic Update of Channel Gain Maps via 3D Gaussian Splatting",
+  "name": "Construction",
+  "why": "not-proper-noun:Construction",
+  "abstract": "Channel knowledge maps (CKMs) have emerged as a promising technique for providing scene-specific and location-dependent propagation knowledge to enable environment-aware wireless network design. This paper investigates the construction and dynamic updating of a particular type of CKM, namely grid-based channel gain maps (CGMs), for large-scale networks using three-dimensional Gaussian splatting (3"
+ },
+ {
+  "id": "2607.20628",
+  "title": "RealVDeblur: One-Step Diffusion for Generalizable Real-World Video Deblurring",
+  "name": "RealVDeblur",
+  "why": "title-no-gs-mention",
+  "abstract": "Real-world video deblurring remains challenging due to diverse motion patterns, complex degradations, and the scarcity of realistic training data, yet robust restoration is critical for downstream pipelines such as mobile imaging and 3D reconstruction. This work presents \\textbf{RealVDeblur}, an efficient generative framework designed to improve in-the-wild robustness under diverse real capture co"
+ },
+ {
+  "id": "2607.17965",
+  "title": "Exploration Matters for Escaping the Blur Trap in 3D Gaussian Splatting",
+  "name": "Exploration",
+  "why": "not-proper-noun:Exploration",
+  "abstract": "3D Gaussian Splatting (3DGS) employs Gaussian primitives for explicit scene representation, facilitating real-time, high-fidelity reconstruction and novel view synthesis of complex scenes. However, the explicit modeling inherent in 3DGS introduces a gradient bias during optimization, rendering its non-convex optimization process highly susceptible to convergence toward local suboptimal solutions. "
+ },
+ {
+  "id": "2607.17916",
+  "title": "Packet-Loss Robust 3D Gaussian Compression via Atomic Packaging and GNN-based Error Concealment",
+  "name": "Packet-Loss",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) and recent compression schemes such as HAC++ enable high-fidelity real-time neural rendering, but their bitstreams are fragile under packet loss during network streaming. Existing compression methods often separate correlated anchor attributes into independent streams, so losing one packet can create attribute-inconsistent broken anchors and severe rendering artifacts."
+ },
+ {
+  "id": "2607.17896",
+  "title": "Locality-Aware Density Control for Efficient Gaussian-based Image Representation",
+  "name": "Locality-Aware",
+  "why": "title-no-gs-mention",
+  "abstract": "2D Gaussian Splatting is an attractive direction for image representation due to its explicit formulation, fast rasterization, and favorable decoding efficiency. The representation quality of this paradigm depends on the proper allocation of Gaussian capacity to the demanding regions. However, existing methods fail to allocate Gaussian capacity efficiently during optimization: under-reconstructed "
+ },
+ {
+  "id": "2607.16362",
+  "title": "OmniStyle-INR: Universal and Multimodal Style Transfer for INRs",
+  "name": "OmniStyle-INR",
+  "why": "title-no-gs-mention",
+  "abstract": "Style transfer remains a fundamental and highly important task across various data modalities, enabling creative manipulation conditioned by both reference images and textual descriptions. Recently, methods utilizing Gaussian Splatting have emerged as a unified representation for 2D images, video, 3D scenes, and 4D dynamics. However, representing videos and 2D images with Gaussian Splatting is str"
+ },
+ {
+  "id": "2607.15806",
+  "title": "HybridSim: A Physics-Learning Hybrid Digital Twin for mmWave Human Sensing",
+  "name": "HybridSim",
+  "why": "title-no-gs-mention",
+  "abstract": "High-fidelity simulation of mmWave radar signals for dynamic human motion is valuable for developing radar-based human sensing models; yet collecting accurately labeled measurements for a specific deployment site remains expensive. We present HybridSim, a physics-learning hybrid simulator that synthesizes mmWave radar signals from dynamic human meshes under a fixed indoor room configuration, expli"
+ },
+ {
+  "id": "2607.14513",
+  "title": "Compression of 3D Gaussian Splatting Data Using GPU-friendly Graphics Texture Coding",
+  "name": "Compression",
+  "why": "not-proper-noun:Compression",
+  "abstract": "Techniques for modeling 3D scenes from image collections, such as 3D Gaussian Splatting (3DGS), are capable of generating high-quality novel views by leveraging graphics primitives with view-dependent appearance. In 3DGS, spherical harmonic (SH) are employed to model view-dependent color, resulting in a large number of SH coefficients per primitive and large memory requirements. While compression "
+ },
+ {
+  "id": "2607.14481",
+  "title": "Immediate 3D Gaussian Splat Reconstruction of Unordered Input with Global Consistency",
+  "name": "Immediate",
+  "why": "not-proper-noun:Immediate",
+  "abstract": "3D Gaussian Splatting (3DGS) has become the method of choice for reconstructing and real-time rendering of captured scenes. To capture a scene with good visual quality, continuous image sequences are usually combined with out-of-order shots for better scene coverage. Structure from motion can reconstruct such captures, but only after they are all available and often with high computational cost. I"
+ },
+ {
+  "id": "2607.14470",
+  "title": "G2SR: Geometric Methods for Fast and Memory-Efficient Gaussian-based Surface Reconstruction",
+  "name": "G2SR",
+  "why": "title-no-gs-mention",
+  "abstract": "Few-view surface reconstruction recovers the visible surfaces of a scene from a few posed RGB images, providing the 3D models that robots need to explore and interact online. On mobile platforms, the reconstruction must be fast and geometrically accurate while keeping a small memory footprint to ensure safe and efficient operation. 3D Gaussian Splatting (3DGS) offers a high-fidelity scene represen"
+ },
+ {
+  "id": "2607.14997",
+  "title": "AeroAct: Action-Centered World-Action Models for Language-Conditioned Quadrotor Flight",
+  "name": "AeroAct",
+  "why": "title-no-gs-mention",
+  "abstract": "Language-conditioned quadrotor flight requires a policy to ground semantic goals, anticipate the visual consequences of ego-motion, and output control references that remain smooth and dynamically executable under rapidly changing first-person views. Existing aerial vision-language navigation and vision-language-action methods commonly use discrete actions, high-level waypoints, or instantaneous v"
+ },
+ {
+  "id": "2609.17422",
+  "title": "Talking Head Synthesis with Facial Landmark Guidance via 3D Gaussian Splatting",
+  "name": "Talking",
+  "why": "not-proper-noun:Talking",
+  "abstract": "Audio-driven digital human generation plays an important role in virtual communication, immersive interaction, and media production. With the development of Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS), recent talking-head systems have obtained more faithful 3D facial geometry and appearance modeling. A remaining difficulty is that speech features mainly describe temporal acousti"
+ },
+ {
+  "id": "2607.14203",
+  "title": "Instant NuRec: Feed-Forward 3D Gaussian Reconstruction for Driving Scene Simulation",
+  "name": "Instant NuRec",
+  "why": "title-no-gs-mention",
+  "abstract": "3D simulation platforms are critical for autonomous driving because they enable end-to-end policy evaluation, thereby reducing development costs and improving safety. In recent years, neural simulation has become predominant, with methods such as NuRec playing a central role; however, these methods remain relatively slow and typically require per-scene tuning. In this work, we present Instant NuRe"
+ },
+ {
+  "id": "2607.13808",
+  "title": "Bake It Till You Make It: Ultrafast Spatial Texture-Atlas Splatting",
+  "name": "Bake",
+  "why": "title-no-gs-mention",
+  "abstract": "Recent extensions of 3D Gaussian Splatting (3DGS) capture fine color details using hash-grid-based appearance parameterization but incur high computational cost during fragment rendering. We introduce a decoupled radiance representation that models low-frequency geometry and view dependent appearance features with 2D surfels while representing high-frequency textures via a view-independent spatial"
+ },
+ {
+  "id": "2607.13451",
+  "title": "Learning Physics-Guided Residual Dynamics for Deformable Object Simulation",
+  "name": "Learning",
+  "why": "title-no-gs-mention",
+  "abstract": "Simulating deformable objects is essential for a wide range of robotic manipulation applications, yet accurately predicting their dynamics remains challenging. We propose Physics-Guided Residual Dynamics (PGRD), a hybrid simulation framework that combines the advantages of physics-based and learning-based approaches. Specifically, PGRD combines an optimizable spring-mass simulator as a backbone wi"
+ },
+ {
+  "id": "2607.13524",
+  "title": "COLMAR: Cooperative View Policy Learning for Multi-Agent Active 3D Reconstruction",
+  "name": "COLMAR",
+  "why": "title-no-gs-mention",
+  "abstract": "Active 3D reconstruction requires selecting informative viewpoints under limited sensing budgets. In multi-agent settings, coordination inefficiencies such as redundant observations and spatial clustering can significantly reduce reconstruction quality. We present COLMAR, a cooperative view policy learning framework for multi-agent active 3D reconstruction. COLMAR formulates viewpoint allocation a"
+ },
+ {
+  "id": "2607.16309",
+  "title": "SaaF: Scene-Specific Ambiguity-Aware 3D Language Fields towards Interactive Real-World Object Retrieval",
+  "name": "SaaF",
+  "why": "title-no-gs-mention",
+  "abstract": "We propose Scene-specific Ambiguity-aware 3D Language Fields (SaaF), a novel Gaussian Splatting-based 3D language field designed for interactive object retrieval in a given real-world scene. Interactive object retrieval using natural language is a crucial capability for service robots operating in complex real-world environments. While recent 3D language field methods for object retrieval establis"
+ },
+ {
+  "id": "2607.12362",
+  "title": "Implicit 4D Gaussian Splatting for Fast Motion with Large Inter-Frame Displacements",
+  "name": "Implicit",
+  "why": "not-proper-noun:Implicit",
+  "abstract": "Recent 4D Gaussian Splatting (4DGS) methods often fail under fast motion with large inter-frame displacements, where Gaussian attributes are poorly learned during training, and fast-moving objects are often lost from the reconstruction. In this work, we introduce Spatiotemporal Position Implicit Network for 4DGS, coined SPIN-4DGS, which learns Gaussian attributes from explicitly collected spatiote"
+ },
+ {
+  "id": "2607.13154",
+  "title": "Worlds in One Demo: A Synthetic Data Engine for Learning Open-World Mobile Manipulation",
+  "name": "Worlds in One Demo",
+  "why": "title-no-gs-mention",
+  "abstract": "Learning open-world mobile manipulation policies requires vast data to achieve spatial generalization, long-horizon robustness, and scene generalization. Current prevailing data collection paradigms, teleoperation and UMI, demand prohibitive human effort and cost at scale. To scale beyond the limits of manual data collection, we seek to maximize the value of each human demonstration by scalable da"
+ },
+ {
+  "id": "2607.10690",
+  "title": "Incremental Online Scene Reconstruction by 3D Gaussian Triangulation",
+  "name": "Incremental",
+  "why": "title-no-gs-mention",
+  "abstract": "Incremental scene reconstruction is essential for real-world applications. Although 3D Gaussian Splatting shows strong potential, most existing approaches require offline conversion of the optimized Gaussians into an intermediate implicit field for explicit mesh extraction, which hinders seamless integration with downstream tasks. To address this limitation, we propose a novel online framework tha"
+ },
+ {
+  "id": "2607.13067",
+  "title": "A 3DGS-Driven Dynamic Viewpoint and Vibrotactile Framework for Subsea Teleoperation Validated via fNIRS",
+  "name": "A",
+  "why": "name-length-anomaly",
+  "abstract": "Teleoperating remotely operated vehicles (ROVs) in flooded, cluttered infrastructure is fundamentally limited by narrow 2D egocentric views and subsea communication latency. We present a multimodal teleoperation architecture built on a ROS-Unity framework that decouples proactive spatial planning from reactive boundary avoidance. The system replaces static camera feeds with a Dynamic Adaptive View"
+ },
+ {
+  "id": "2607.08250",
+  "title": "On the Design of Mixture-of-Experts for Dynamic Gaussian Splatting",
+  "name": "On",
+  "why": "name-length-anomaly",
+  "abstract": "Dynamic scene reconstruction remains challenging due to the heterogeneous and spatially varying nature of real-world motion. Although recent 3D Gaussian Splatting methods have introduced diverse deformation formulations for dynamic novel view synthesis, each method typically relies on a single deformation model within its representation, which limits robustness across diverse dynamic scenarios. In"
+ },
+ {
+  "id": "2607.07168",
+  "title": "NoDrift3R: Raymap-Guided Coupling for Drift-Robust Unposed Feed-Forward 3D Reconstruction",
+  "name": "NoDrift3R",
+  "why": "title-no-gs-mention",
+  "abstract": "Pose-Free Feed-forward 3D Gaussian Splatting (3DGS) has recently emerged as a powerful paradigm for fast scene reconstruction. However, its performance degrades significantly in long image sequences due to cumulative camera pose estimation drift, which propagates errors into geometric modeling and severely limits rendering fidelity. In this work, we revisit the long-sequence bottleneck and identif"
+ },
+ {
+  "id": "2607.07015",
+  "title": "EscFOA: Enhancing Spatial Learning for Visually Impaired Learners via Generative Spatial Audio in 360-Degree Educational Environments",
+  "name": "EscFOA",
+  "why": "title-no-gs-mention",
+  "abstract": "Immersive 360-degree educational environments often lack accessible spatial structure, limiting visually impaired learners' ability to orient, explore, and construct mental representations. This paper proposes EscFOA, a geometry-aware spatial audio generation framework designed as an \\emph{acoustic scaffolding} to support spatial cognition. By integrating 3D Gaussian Splatting (3DGS) with conditio"
+ },
+ {
+  "id": "2607.06238",
+  "title": "PhyMRI-SR: Toward Physics-Aware MRI Image Super-Resolution",
+  "name": "PhyMRI-SR",
+  "why": "title-no-gs-mention",
+  "abstract": "Magnetic resonance imaging (MRI) super-resolution is vital for improving diagnostic accessibility, yet most methods treat it as a deterministic mapping from a fixed low-resolution input to a high-resolution target. This overlooks a key property of MRI acquisition physics: spatial resolution and signal-to-noise ratio (SNR) are inherently coupled, making any given low-resolution scan merely one of m"
+ },
+ {
+  "id": "2607.06699",
+  "title": "RoboSnap: One-Shot Real-to-Sim Scene Generation for Generalizable Robot Learning and Evaluation",
+  "name": "RoboSnap",
+  "why": "title-no-gs-mention",
+  "abstract": "Recovering real-world scenes as interactive simulation environments can enable generalizable robot learning and reproducible policy evaluation. However, constructing scenes that are both physically stable and visually faithful remains slow and expensive. In this work, we present RoboSnap, a real-to-sim framework that turns a single RGB image into a simulation-ready scene. The key idea is a layered"
+ },
+ {
+  "id": "2607.05522",
+  "title": "Rendering-Aware Bayesian 3D Gaussian Splatting with Native Uncertainty and Adaptive Complexity Control",
+  "name": "Rendering-Aware",
+  "why": "not-proper-noun:Rendering-Aware",
+  "abstract": "3D Gaussian splatting (3DGS) is a strong representation for real-time novel-view synthesis, but its standard training pipeline relies on point estimates and hand-tuned heuristics, providing no native uncertainty or principled complexity control. This is most limiting under sparse views or fixed acquisition budgets, where a model must identify weakly supported geometry and select informative views."
+ },
+ {
+  "id": "2607.05243",
+  "title": "GUSH3R: Everyone Everywhere All at Once as Gaussians",
+  "name": "GUSH3R",
+  "why": "title-no-gs-mention",
+  "abstract": "Reconstructing dynamic human-scene environments from monocular videos is a challenging problem that requires jointly modeling scene geometry, camera motion, and non-rigid human dynamics while enabling photorealistic rendering. Recent feed-forward methods can efficiently predict geometry, but they are often limited to non-photorealistic representations such as point clouds and meshes, or they fail "
+ },
+ {
+  "id": "2607.04127",
+  "title": "Real-Time LiDAR Gaussian Splatting SLAM",
+  "name": "Real-Time",
+  "why": "not-proper-noun:Real-Time",
+  "abstract": "We present a real-time LiDAR-based framework for Gaussian Splatting SLAM that tightly couples fast G-ICP registration with spherical rasterization-based dense mapping for large-scale sequences. Leveraging LiDAR geometry rather than appearance, we reuse tracking-estimated local covariances to initialize Gaussians with range-aware scales and to derive surface normals for geometry-aware map optimizat"
+ },
+ {
+  "id": "2607.04144",
+  "title": "Semantic-Guided Progressive Object Removal with Gaussian Splatting",
+  "name": "Semantic-Guided",
+  "why": "not-proper-noun:Semantic-Guided",
+  "abstract": "Removing unwanted objects from reconstructed 3D scenes is an important task in computer vision, supporting applications in AR/VR, robotics, and digital content creation. Existing methods typically complete the entire masked region in a single step and without effectively utilizing semantic information from other views, leading to difficulties in handling complex geometric details and textures. In "
+ },
+ {
+  "id": "2607.03875",
+  "title": "MACRO: Training-free Multi-plane Attention for Closeup Render Optimization",
+  "name": "MACRO",
+  "why": "title-no-gs-mention",
+  "abstract": "Close-up rendering, zooming into a scene well beyond any training camera, is important for virtual production and interactive 3D content, yet remains an open challenge. 3D Gaussian splatting (3DGS) enables high-fidelity, real-time novel view synthesis, but its rendering quality degrades at close range. Recent diffusion-based methods that enhance the rendering by conditioning on reference images fr"
+ },
+ {
+  "id": "2607.03855",
+  "title": "PRISM3D: Probabilistic Refinement and Robust Initialization for Physically Consistent Scene Modeling under Extreme Motion Blur",
+  "name": "PRISM3D",
+  "why": "title-no-gs-mention",
+  "abstract": "We address the inverse problem of blind 3D scene reconstruction from extremely motion-blurred images, a scenario where traditional Structure-from-Motion (SfM) pipelines fail. Existing approaches typically circumvent this bottleneck by relying on impractical sharp-image supervision. In this work, we introduce PRISM3D, a unified framework enabling robust reconstruction directly from severely degrade"
+ },
+ {
+  "id": "2607.03771",
+  "title": "City-Level 3D Surface Reconstruction with Viewpoint Orientation Partitioning and Scene Completion",
+  "name": "City-Level",
+  "why": "title-no-gs-mention",
+  "abstract": "Multi-view 3D surface reconstruction is a longstanding challenge in computer vision. Although recent large-scale reconstruction methods based on 3D Gaussian Splatting (3DGS) achieve impressive novel-view synthesis, producing high-quality surfaces over large scenes remains difficult, due to complex geometry, long optimization, and limited memory. In this paper, we propose a novel yet simple partiti"
+ },
+ {
+  "id": "2607.03765",
+  "title": "Sparse-View Surface Reconstruction using Gaussian Splatting through High-Confidence Depth Propagation with Normal Priors",
+  "name": "Sparse-View",
+  "why": "not-proper-noun:Sparse-View",
+  "abstract": "3D reconstruction from sparse views is a challenging task in 3D computer vision. Recent studies on 3D Gaussian Splatting (3DGS) have achieved remarkable results with sparse views in novel view synthesis, yet reconstructing high-quality geometric surfaces from sparse views remains a challenge, due to the limited geometry clues and the discreteness of Gaussians. In this paper, we propose a novel 3DG"
+ },
+ {
+  "id": "2607.03209",
+  "title": "Fast 3D Foundation Model Initialized Gaussian Splatting",
+  "name": "Fast",
+  "why": "not-proper-noun:Fast",
+  "abstract": "This paper introduces a fast method for high-quality 3D Gaussian Splatting (3DGS) reconstruction without traditional Structure-from-Motion (SfM). The proposed approach leverages 3D Foundation Models (3DFMs) for camera pose and point-cloud initialization, then jointly optimizes both camera poses and Gaussian primitives using a depth-guided loss function. This enables fast convergence even from roug"
+ },
+ {
+  "id": "2607.02721",
+  "title": "Provable Pruning for Efficient 3D Gaussian Splatting via Coresets",
+  "name": "Provable",
+  "why": "not-proper-noun:Provable",
+  "abstract": "3D Gaussian Splatting (3DGS) enables high-quality real-time novel-view synthesis, but practical scenes often contain millions of Gaussians, making compression essential for deployment on limited hardware. Existing reduction methods are effective but mostly heuristic: they provide no multiplicative approximation guarantee for the rendered objective, and thus rely heavily on costly post-pruning fine"
+ },
+ {
+  "id": "2607.01753",
+  "title": "The Turning Point of 3D Plant Phenotyping: 3D Foundation Models Enable Minute-to-Second Cross-Crop Reconstruction and Beyond",
+  "name": "The",
+  "why": "title-no-gs-mention",
+  "abstract": "3D plant phenotyping is notoriously known to be procedure-complicated and of low throughput due to the extensive multi-view imaging, the fragile 3D reconstruction pipeline, and the additional cost from reconstructed geometry to phenotypic extraction. These limitations are further amplified in low-cost data acquisition, where smartphone videos or sparsely sampled multi-view images provide limited v"
+ },
+ {
+  "id": "2607.01708",
+  "title": "Consistent Scene Understanding in 3D Gaussian Splatting via Multi-Cue Mask Refinement",
+  "name": "Consistent",
+  "why": "not-proper-noun:Consistent",
+  "abstract": "Reliable instance-level scene understanding is a fundamental prerequisite for object-level interactions and high-fidelity 3D representations. While current methods often leverage 2D foundation segmentation models to obtain these priors, their 2D-centric design typically yields fragmented masks and inconsistent predictions across different views. To address these issues, we propose a novel framewor"
+ },
+ {
+  "id": "2607.01698",
+  "title": "Signal Structure-Aware Gaussian Splatting for Large-Scale Scene Reconstruction",
+  "name": "Signal",
+  "why": "not-proper-noun:Signal",
+  "abstract": "3D Gaussian Splatting has demonstrated remarkable potential in novel view synthesis. In contrast to small-scale scenes, large-scale scenes inevitably contain sparsely observed regions with excessively sparse initial points. In this case, supervising Gaussians initialized from low-frequency sparse points with high-frequency images often induces uncontrolled densification and redundant primitives, d"
+ },
+ {
+  "id": "2607.01628",
+  "title": "Online Segment 3D Gaussians via Launching Virtual Drones",
+  "name": "Online",
+  "why": "title-no-gs-mention",
+  "abstract": "Interactive segmentation of 3D Gaussians offers a compelling opportunity for real-time manipulation of 3D scenes, thanks to the real-time rendering capability of 3D Gaussian Splatting (3DGS). However, existing methods require a time-consuming per-scene setup - typically tens of seconds or even minutes - before interactive segmentation can begin on a raw 3DGS scene. This setup involves multi-view m"
+ },
+ {
+  "id": "2607.01556",
+  "title": "Mind the Gap: Standard 3DGS Evaluation Primarily Measures Near-Trajectory Interpolation",
+  "name": "Mind the Gap",
+  "why": "not-proper-noun:Mind the Gap",
+  "abstract": "Standard MipNeRF360-style 3D Gaussian Splatting (3DGS) evaluation holds out every N-th frame -- but these frames have trained neighbors on both sides, so the metric measures near-trajectory interpolation rather than spatial generalization. We introduce a fair matched-count protocol that isolates this effect: both arms train on the same number of images and differ only in whether the holdout is spr"
+ },
+ {
+  "id": "2607.00885",
+  "title": "Improving Sparse-View 3DGS Generalization via Flat Minima Optimization",
+  "name": "Improving",
+  "why": "not-proper-noun:Improving",
+  "abstract": "Recent advances in neural rendering have established 3D Gaussian Splatting (3DGS) as a highly efficient representation for novel view synthesis, enabling fast training and real-time rendering with strong fidelity. However, when supervision is limited to sparse input views, 3DGS tends to overfit to the observed images and generalize poorly to unseen viewpoints. We address this challenge from the pe"
+ },
+ {
+  "id": "2607.00673",
+  "title": "Path Planning in Physically Viable World Models",
+  "name": "Path",
+  "why": "title-no-gs-mention",
+  "abstract": "Robots deployed in unstructured outdoor environments often plan from scene reconstructions collected before deployment because operators cannot remap large or remote sites before every mission. As a result, robots must make long-horizon planning decisions using stale maps that assume the terrain remains unchanged, even though physical changes to the environment may render previously feasible route"
+ },
+ {
+  "id": "2607.00157",
+  "title": "Progressive Pose-Guided 4D Animal Reconstruction from Monocular Video",
+  "name": "Progressive",
+  "why": "title-no-gs-mention",
+  "abstract": "Reconstructing 4D animals from monocular videos is challenging due to large inter-species variation, complex articulations, and the lack of reliable templates. Existing approaches typically rely on either strict category-specific priors that restrict generalization, or unconstrained generative models that sacrifice input fidelity. To bridge this gap, we present a progressive test-time optimization"
+ },
+ {
+  "id": "2606.31679",
+  "title": "Practical High-Fidelity Novel-View Synthesis of Mounted Lepidoptera",
+  "name": "Practical",
+  "why": "title-no-gs-mention",
+  "abstract": "Mounted butterflies are among the most striking objects in natural history collections. However, their beauty is notoriously hard to digitize in 3D: they are small and fragile, with microscopic hairs and vein structures. Capturing them in sufficient detail, therefore, requires a macro lens, which has a very limited Depth of Field (DoF). Moreover, a camera body cannot be maneuvered beneath a pinned"
+ },
+ {
+  "id": "2606.31050",
+  "title": "Learning Video Dynamics with Predictive Differentiable Rendering",
+  "name": "Learning",
+  "why": "title-no-gs-mention",
+  "abstract": "How to accurately predict a high-fidelity future world? While the visual world is inherently continuous, existing deterministic video prediction models operate in discrete pixel space and are mainly optimized with pixel-wise mean squared error (MSE), which often leads to over-smoothed predictions and a lack of fine-grained visual details. To address these limitations, we propose Predictive Differe"
+ },
+ {
+  "id": "2606.31637",
+  "title": "Intrinsic decomposition and editing of 3D Gaussian splats",
+  "name": "Intrinsic",
+  "why": "not-proper-noun:Intrinsic",
+  "abstract": "Intrinsic decomposition which expresses image colors as the product of diffuse albedo and shading, possibly augmented with view-dependent residuals has a long history in image editing as it enables the modification of object colors and textures without altering lighting. We extend intrinsic decomposition to radiance fields represented with Gaussian splatting by proposing solutions to three key asp"
+ },
+ {
+  "id": "2606.30638",
+  "title": "Open-Vocabulary and Referring Segmentation for 3D Gaussians Using 2D Detectors",
+  "name": "Open-Vocabulary",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) has emerged at the forefront of 3D scene reconstruction. Extending 3DGS with language-driven, open-vocabulary understanding has gained significant attention for real-world applications such as embodied AI. Recent methods achieve this by learning an instance feature attribute and assigning semantics by distilling high-dimensional Contrastive Language-Image Pretraining ("
+ },
+ {
+  "id": "2606.30436",
+  "title": "Robust and Efficient Monocular 3D Gaussian SLAM for Kilometer-Scale Outdoor Scenes",
+  "name": "Robust",
+  "why": "title-no-gs-mention",
+  "abstract": "Scaling monocular 3D Gaussian Splatting (3DGS) SLAM to kilometer-level outdoor environments poses two tightly coupled challenges: fragile long-term pose tracking and excessive memory overhead during large-scale mapping. In this paper, we propose KiloGS-SLAM, a highly efficient and robust monocular 3DGS-SLAM system that jointly addresses both bottlenecks. Since high-fidelity scene reconstruction fu"
+ },
+ {
+  "id": "2606.30352",
+  "title": "FastPano3D: Feed-Forward Indoor Panoramic 3D Reconstruction from a Single Image",
+  "name": "FastPano3D",
+  "why": "title-no-gs-mention",
+  "abstract": "Recent advances in 3D scene reconstruction have highlighted the intricate trade-offs among rendering quality, inference efficiency, and data dependency. To address the challenge of rapidly reconstructing detailed 3D indoor scenes from minimal input, we introduce FastPano3D, an end-to-end framework that directly generates renderable 3D Gaussian representations from a single panoramic image. Unlike "
+ },
+ {
+  "id": "2606.30017",
+  "title": "Monte Carlo Energy Aggregation for Mobile 3D Gaussian Splatting",
+  "name": "Monte",
+  "why": "not-proper-noun:Monte",
+  "abstract": "Recent advances in 3D Gaussian Splatting have demonstrated unprecedented success in novel view synthesis. However, the substantial inference and storage overhead driven by high-order Spherical Harmonics (SH) are primary bottlenecks for mobile platforms. In this paper, we present Flux-GS, a real-time Gaussian Splatting method designed to achieve high-fidelity rendering with significantly reduced ov"
+ },
+ {
+  "id": "2606.30014",
+  "title": "Shell-Supervised Gaussian Splatting for Urban Real-to-Sim Reconstruction",
+  "name": "Shell-Supervised",
+  "why": "not-proper-noun:Shell-Supervised",
+  "abstract": "Real-to-sim reconstruction for embodied AI requires geometry that is useful for collision reasoning, navigation, and agent-environment interaction, not only photorealistic novel-view synthesis. However, close-range urban facades are difficult for video-to-3D reconstruction: glass, reflections, repeated windows, and weak texture can produce visually plausible renderings with unstable surface geomet"
+ },
+ {
+  "id": "2606.29976",
+  "title": "Learning Efficient 4D Gaussian Representations from Monocular Videos with Flow Splatting",
+  "name": "Learning",
+  "why": "not-proper-noun:Learning",
+  "abstract": "Reconstructing dynamic 3D scenes from monocular videos is challenging due to scene complexity and temporal dynamics. With the advancement of 3D Gaussian Splatting in novel view synthesis, existing methods extend 3D Gaussians to 4D domain with deformation fields, trajectories or spatiotemporal 4D volumes to model scene element deformation. However, these methods suffer from long training time, low "
+ },
+ {
+  "id": "2606.29783",
+  "title": "FalconTrack: Photorealistic Auto-Labeled Perception and Physics-Aware Vision-Based Aerial Tracking",
+  "name": "FalconTrack",
+  "why": "title-no-gs-mention",
+  "abstract": "Vision-based aerial tracking is critical in GPS-denied environments. Reliable perception for tracking depends on large-scale labeled data, yet most photorealistic datasets rely on heavy manual annotation and are time-consuming to produce. We present FalconTrack, a unified perception-and-tracking framework that (i) leverages a photorealistic editable simulator for automated label generation and (ii"
+ },
+ {
+  "id": "2606.29782",
+  "title": "Graph-GSReg: Leveraging 3D Scene Graphs for Gaussian Splatting Registration",
+  "name": "Graph-GSReg",
+  "why": "not-proper-noun:Graph-GSReg",
+  "abstract": "Merging multiple 3D Gaussian Splatting (3DGS) scenes into a single unified Gaussian representation is essential for large-scale 3D mapping and long-term map management. Despite its importance, this area remains underexplored, and existing solutions exhibit several limitations. Learning-based methods attempt direct correspondence between Gaussian primitives and require training on large 3DGS datase"
+ },
+ {
+  "id": "2606.30869",
+  "title": "GRay: Ray Tracing 3D Gaussians Near the Speed of Splats",
+  "name": "GRay",
+  "why": "not-proper-noun:GRay",
+  "abstract": "3D Gaussian Splatting (3DGS) is a popular representation for radiance field reconstruction, distinguished by the rendering speed of its rasterization-based renderer. While 3D Gaussians can also be ray traced, this approach has so far been slower, with 3D Gaussian Ray Tracing (3DGRT) taking nearly one order of magnitude longer to optimize. To address this, we present GRay, a fast ray tracer for 3D "
+ },
+ {
+  "id": "2606.30861",
+  "title": "Editable Physically-based Reflections in Raytraced Gaussian Radiance Fields",
+  "name": "Editable",
+  "why": "title-no-gs-mention",
+  "abstract": "Radiance fields such as 3D Gaussian Splatting allow real-time rendering of scenes captured from photos. They also reconstruct most specular reflections with high visual quality, but typically model them with \"fake\" reflected geometry, using primitives behind the reflector. Our goal is to correctly reconstruct the reflector and the reflected objects such as to make specular reflections editable. We"
+ },
+ {
+  "id": "2606.30645",
+  "title": "VLK: Learning Humanoid Loco-Manipulation from Synthetic Interactions in Reconstructed Scenes",
+  "name": "VLK",
+  "why": "title-no-gs-mention",
+  "abstract": "Perception-based humanoid loco-manipulation requires connecting egocentric observations and task instructions to whole-body motion. Learning this mapping requires synchronized egocentric images, language commands, and robot-compatible kinematic trajectories, yet no existing data source provides this complete tuple at scale. We address this bottleneck by generating vision-language-kinematics (VLK) "
+ },
+ {
+  "id": "2606.29453",
+  "title": "Resonant Brane Splatting for Arbitrary-Scale Super-Resolution",
+  "name": "Resonant",
+  "why": "title-no-gs-mention",
+  "abstract": "Arbitrary-Scale Super-Resolution (ASR) reconstructs images at continuous magnification factors. Recent methods accelerate inference by replacing computationally heavy implicit neural decoders with explicit 2D Gaussian Splatting (GS). However, since standard Gaussians are smooth low-pass primitives, modeling edges and fine textures requires multiple overlapping, well-aligned splats, which creates s"
+ },
+ {
+  "id": "2606.29400",
+  "title": "Adaptive Densification for High-Fidelity and Efficient Sparse Gaussian Splatting in Arbitrary-Scale Super-Resolution",
+  "name": "Adaptive",
+  "why": "not-proper-noun:Adaptive",
+  "abstract": "Arbitrary-Scale Super-Resolution (ASR) aims to reconstruct high-resolution images at any continuous magnification. While 2D Gaussian Splatting (GS) has recently shown great promise for ASR, current methods struggle to balance visual quality and computational cost. Approaches targeting high fidelity rely on powerful backbones and uniform, highly dense Gaussian grids, leading to prohibitive memory a"
+ },
+ {
+  "id": "2606.29303",
+  "title": "Occlusion-Robust Multi-Object Decoupling for Physics-Based Robotic Interaction",
+  "name": "Occlusion-Robust",
+  "why": "title-no-gs-mention",
+  "abstract": "We propose a mask-free method for lossless multi-object 3D reconstruction from sparse and occluded real-world views, enabling physically plausible robotic interaction via Material Point Method (MPM) simulation. Our key insight is that object coupling stems from occlusion and limited viewpoints, which we address by formulating multi-object decoupling as a sparse-view reconstruction problem. Using 3"
+ },
+ {
+  "id": "2606.29237",
+  "title": "MoPe: Motion Permanence for Robust Monocular Gaussian Mapping in Dynamic Environments",
+  "name": "MoPe",
+  "why": "title-no-gs-mention",
+  "abstract": "Robust robot autonomy depends on scene representations that remain stable enough to support localization, navigation, and downstream decision making in dynamic environments. Monocular Gaussian Splatting SLAM provides high-fidelity mapping, but current uncertainty-aware methods still treat dynamic regions largely as per-frame observations. This makes the representation effectively memoryless: when "
+ },
+ {
+  "id": "2606.28840",
+  "title": "DLGStream: Dynamic Language-embedded Guassian Splatting for Open-vocabulary Enabled Free-viewpoint Video Streaming",
+  "name": "DLGStream",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting~(3DGS) has emerged as a promising paradigm for reconstructing streamable free-viewpoint video~(FVV) from multi-view videos. However, 3DGS-based FVVs typically lack user interaction and editing capabilities, which diminishes the immersive experience. Recent research has integrated language features from CLIP into 3DGS via distillation, enabling open-vocabulary queries and supp"
+ },
+ {
+  "id": "2606.28828",
+  "title": "Ground4D: Consistency-Aware 4D Reconstruction from Monocular Video",
+  "name": "Ground4D",
+  "why": "title-no-gs-mention",
+  "abstract": "Learning a 4D scene representation from a single monocular video that supports dynamic novel-view synthesis while maintaining faithful geometry over time remains challenging. Dynamic Gaussian Splatting achieves strong rendering performance through photometric optimization, yet does not explicitly enforce multi-view geometric consistency. In contrast, 3D foundation models recover coherent scene geo"
+ },
+ {
+  "id": "2606.26754",
+  "title": "Capacity-Controlled Multi-View Stylization of 3D Gaussian Splatting",
+  "name": "Capacity-Controlled",
+  "why": "not-proper-noun:Capacity-Controlled",
+  "abstract": "While 3D Gaussian Splatting (3DGS) provides an efficient and explicit representation for novel view synthesis, enforcing stylistic coherence across viewpoints remains challenging. Existing 3D stylization methods typically apply 2D feature-matching losses independently per rendered view, which leads to unstable style allocation, many-to-one feature reuse, and limited cross-view consistency. We prop"
+ },
+ {
+  "id": "2606.26236",
+  "title": "Rendering Novel Views of MRI Using 3D Gaussian Splatting",
+  "name": "Rendering",
+  "why": "not-proper-noun:Rendering",
+  "abstract": "The objective of this paper is to improve radiological gradings measured on MRIs of spines, by resampling scans so that the new view planes are better aligned with the target anatomy than the original sparse images. To this end, we adapt 3D Gaussian Splatting to form a volumetric reconstruction starting from non-aligned MRIs to render imaging planes aligned with the anatomy relevant for clinical e"
+ },
+ {
+  "id": "2606.24874",
+  "title": "FLUX3D: High-Fidelity 3D Gaussian Generation with Diffusion-Aligned Sparse Representation",
+  "name": "FLUX3D",
+  "why": "title-no-gs-mention",
+  "abstract": "Sparse voxel representation has emerged as a scalable foundation for image-to-3D Gaussian Splatting (3DGS) generation, yet current methods struggle to preserve high-frequency visual details of input images due to two structural bottlenecks. First, they adopt discriminative 2D features optimized for semantic abstraction to construct sparse voxel latents, which suppress reconstructive cues and induc"
+ },
+ {
+  "id": "2606.24799",
+  "title": "OrbitForge: Text-to-3D Scene Generation via Reconstruction-Anchored Video Synthesis",
+  "name": "OrbitForge",
+  "why": "title-no-gs-mention",
+  "abstract": "Generic text-to-video models can be used as rich open-world scene priors. Despite the high quality of today's generated videos, they do not directly yield reliable 3D assets: camera motion is difficult to control, view coverage is partial, and frames often contain inconsistencies across time. We introduce OrbitForge, an adapter built from frozen video priors and per-prompt Gaussian Splatting recon"
+ },
+ {
+  "id": "2606.24353",
+  "title": "Open-Vocabulary BEV Segmentation with 3D-Aware Geometric Constraints",
+  "name": "Open-Vocabulary",
+  "why": "title-no-gs-mention",
+  "abstract": "Bird's-eye view (BEV) perception fuses multi-camera images into a unified top-down representation for autonomous driving. Despite recent progress, state-of-the-art methods remain confined to closed-set scenarios, making them vulnerable to unpredictable real-world environments. In this work, we introduce open-vocabulary BEV segmentation (OVBS), which leverages vision-language models (VLMs) to recog"
+ },
+ {
+  "id": "2606.24301",
+  "title": "MM-TRELLIS: Point-Cloud Guided Multi-Modal 3D Vehicle Generation in Autonomous Driving",
+  "name": "MM-TRELLIS",
+  "why": "title-no-gs-mention",
+  "abstract": "Recovering realistic 3D vehicle models from autonomous driving scenes is crucial for synthesizing training data and building simulation environment. However, most existing vehicle generation methods fail to fully exploit multimodal sensors i.e. multi-view images and LiDAR point clouds) and rely on neural rendering based reconstruction, leading to low-quality mesh. Recently, native 3D generative mo"
+ },
+ {
+  "id": "2606.24257",
+  "title": "3DCarGen: Scalable 3D Car Generation via 3D-consistent Multi-view Synthesis",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "High-quality 3D vehicle assets are essential for autonomous driving simulation. Although multi-view diffusion-based paradigms enable controllable single-image reconstruction, they typically produce limited viewpoints and exhibit cross-view geometric inconsistencies, thereby reducing reconstruction fidelity in real-world scenarios. In this work, we introduce 3DCarGen, a scalable single-view 3D car "
+ },
+ {
+  "id": "2606.24180",
+  "title": "Deep Learning Approaches for 3D Medical Scene Completion: From Geometric Modeling to Generative Paradigms",
+  "name": "Deep",
+  "why": "title-no-gs-mention",
+  "abstract": "Three-dimensional scene completion has evolved as a major problem in computer vision and robotics, and its applications are diverse, including autonomous navigation and augmented reality. In this study, a systematic review has been conducted to compile the research contributions made in the last ten years, i.e., 2016 to 2026, which has revolutionized the field from the voxel semantic completion pa"
+ },
+ {
+  "id": "2606.24144",
+  "title": "Geometry-Aware Style Transfer in 3D Gaussian Splatting",
+  "name": "Geometry-Aware",
+  "why": "not-proper-noun:Geometry-Aware",
+  "abstract": "In this paper, we present a novel geometry-aware style transfer framework for 3D Gaussian splatting (3DGS) that simultaneously transfers appearance attributes and geometric structures. Unlike prior works that primarily focus on color-based stylization and often overlook structural adaptation, our method explicitly incorporates geometry adaptation through a decoupled optimization scheme that altern"
+ },
+ {
+  "id": "2606.23688",
+  "title": "Lift4D: Harmonizing Single-View 3D Estimation for 4D Reconstruction In-the-Wild",
+  "name": "Lift4D",
+  "why": "title-no-gs-mention",
+  "abstract": "Reconstructing dynamic non-rigid objects from monocular video requires integrating visual cues from direct observations with data-driven priors over geometry and appearance. Prior approaches either learn to directly predict 4D representations from visual input or initialize a 3D representation that is subsequently deformed and refined based on video evidence. However, the former are constrained by"
+ },
+ {
+  "id": "2606.23212",
+  "title": "Temporally Aware Densification for Dynamic 3D Gaussian Splatting",
+  "name": "Temporally",
+  "why": "not-proper-noun:Temporally",
+  "abstract": "Despite modeling temporal motion, dynamic 3D Gaussian Splatting (3DGS) methods still inherit a static densification strategy that is ill-suited for dynamic scenes. This neglect of temporal behavior leads to under-reconstructed and blurry dynamic regions, as short-lived Gaussians receive sparse supervision and fail to densify effectively. We propose a Visibility-Aware Densification (VAD) framework "
+ },
+ {
+  "id": "2606.23031",
+  "title": "DrivingVoxels: Compositional Sparse Voxel Rasterization for Dynamic Driving Scene Reconstruction",
+  "name": "DrivingVoxels",
+  "why": "title-no-gs-mention",
+  "abstract": "Reconstructing dynamic urban scenes remains challenging due to the unbounded nature of driving environments and the presence of multiple dynamic objects. Currently, potentially faster sparse voxel methods are mainly designed for static scenarios. On the other hand, dynamic approaches based on 3D Gaussian Splatting, despite their high-fidelity, are often time-consuming for driving scenarios and exh"
+ },
+ {
+  "id": "2606.22481",
+  "title": "Lighting-Consistent Object Transfer Across Radiance Fields",
+  "name": "Lighting-Consistent",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) is widely used to capture and render real scenes. Compositing objects from one capture into another has applications in many domains, such as VFX, architecture and interior design, or marketing. However, extracting an object from a source scene and naively pasting it into a target scene will fail to produce realistic results due to the different lighting conditions bet"
+ },
+ {
+  "id": "2606.22525",
+  "title": "Projection-Volume Fidelity Divergence: Diagnosing and Controlling Optimization Drift in Sparse-View 3D Gaussian Tomography",
+  "name": "Projection-Volume Fidelity Divergence",
+  "why": "title-no-gs-mention",
+  "abstract": "Sparse-view computed tomography is a severely ill-posed inverse problem, where recent 3D Gaussian Splatting methods offer an efficient explicit representation for tomographic reconstruction. However, we find that projection-domain optimization can be misleading in this setting: the rendered projections may continue to improve while the reconstructed volume deteriorates. We identify this failure mo"
+ },
+ {
+  "id": "2606.21791",
+  "title": "Single-Event Upsets in 3D Gaussian Splatting Rendering: Bit-Level Criticality, Spatial Extent, and a Parallel Support Guard",
+  "name": "Single-Event",
+  "why": "not-proper-noun:Single-Event",
+  "abstract": "Three-dimensional Gaussian splatting is a standard real-time scene representation increasingly deployed on hardware exposed to transient faults, such as spaceborne processors and robotic edge devices where silent data corruption occurs. A trained model is a large array of floating-point parameters in GPU memory, where a single-event upset corresponds to a single flipped bit. This paper measures th"
+ },
+ {
+  "id": "2606.21753",
+  "title": "Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats",
+  "name": "Scene-Level",
+  "why": "not-proper-noun:Scene-Level",
+  "abstract": "3D Gaussian Splatting (3DGS) has achieved state-of-the-art photorealistic rendering, but the representation gap prevents these assets from being physically interactive. Production-grade physics engines do not understand the 3DGS representation, while prior physics-for-3DGS methods are monolithic silos. These prior works are fundamentally limited, demonstrating only object-centric physics in isolat"
+ },
+ {
+  "id": "2606.20842",
+  "title": "From Uncertainty to Stability and Fidelity: Guiding Sparse-View 3D Gaussian Splatting with Fisher Information",
+  "name": "From",
+  "why": "not-proper-noun:From",
+  "abstract": "3D Gaussian Splatting (3DGS) has emerged as a promising technique for novel view synthesis. However, 3DGS requires dense input views to achieve high-quality rendering. In sparse-view scenarios, 3DGS often prones to overfitting, resulting in noticeable artifacts and degraded rendering quality. Previous methods explore to address this issue by introducing additional priors (e.g. depth priors) or int"
+ },
+ {
+  "id": "2606.20103",
+  "title": "Geometry-Preserving in 3D Gaussian Splatting for LiDAR-Camera Extrinsic Calibration",
+  "name": "Geometry-Preserving",
+  "why": "not-proper-noun:Geometry-Preserving",
+  "abstract": "Accurate LiDAR-camera calibration is essential for robust multi-modal perception. Targetless approaches avoid manual setup but remain limited by the scarcity of discriminative cross-modal features. Recent methods address this by reconstructing the scene within a differentiable model, enabling extrinsic optimization through dense photometric supervision. Among these, 3D Gaussian Splatting (3DGS) ha"
+ },
+ {
+  "id": "2606.19874",
+  "title": "MMD-SLAM: Structure-Enhanced Multi-Meta Gaussian Distribution-Guided Visual SLAM",
+  "name": "MMD-SLAM",
+  "why": "title-no-gs-mention",
+  "abstract": "3D Gaussian Splatting (3DGS) has significantly boosted novel view synthesis and high-fidelity scene reconstruction, expanding the potential of 3DGS-based Visual Simultaneous Localization and Mapping (SLAM) methods. However, most existing systems fail to fully exploit the underlying structural information, which limits rendering quality and often leads to inconsistent maps. To address these limitat"
+ },
+ {
+  "id": "2606.19609",
+  "title": "Building Drift: Documenting On-Site Construction Adaptations Across Material Lifecycles",
+  "name": "Building Drift",
+  "why": "title-no-gs-mention",
+  "abstract": "In a circular economy for construction, reclaimed materials carry prior lives of use and go on to have post-lives in future buildings. Yet working with such materials introduces unpredictability that requires on-site improvisation, making their reuse challenging to document and scale across building lifetimes. Without documentation, the on-site adaptations that make construction with reclaimed mat"
+ },
+ {
+  "id": "2606.19019",
+  "title": "FlowObject: Flow Steering for Bridging Generative Priors and Reconstruction Fidelity",
+  "name": "FlowObject",
+  "why": "title-no-gs-mention",
+  "abstract": "Recovering complete 3D representations of objects from few casual image captures remains a significant challenge. Recent 3D generative models, particularly those based on Flow-Matching (FM), can synthesize high-quality textured assets; however, they often suffer from ''synthetic bias'' where learned priors override observational evidence, alongside a lack of alignment with the observed instance. C"
+ },
+ {
+  "id": "2606.18588",
+  "title": "Splaxel: Efficient Distributed Training of 3D Gaussian Splatting for Large-scale Scene Reconstruction via Pixel-level Communication",
+  "name": "Splaxel",
+  "why": "not-proper-noun:Splaxel",
+  "abstract": "3D Gaussian Splatting (3DGS) enables high-fidelity and real-time 3D scene reconstruction, but scaling training to large-scale scenes requires optimizing hundreds of millions of Gaussians across multiple GPUs. Existing distributed approaches either partition scenes into isolated regions, causing global inconsistency, or rely on global Gaussian-level exchanges, which lead to substantial growth in in"
+ },
+ {
+  "id": "2606.19586",
+  "title": "One Demo is Worth a Thousand Trajectories: Action-View Augmentation for Visuomotor Policies",
+  "name": "One",
+  "why": "title-no-gs-mention",
+  "abstract": "Visuomotor policies for manipulation have demonstrated remarkable potential in modeling complex robotic behaviors, yet minor alterations in the robot's initial configuration and unseen obstacles easily lead to out-of-distribution observations. Without extensive data collection effort, these result in catastrophic execution failures. In this work, we introduce an effective data augmentation framewo"
+ },
+ {
+  "id": "2606.18734",
+  "title": "Point-Cloud-Assistant Localized Statistical Channel Prediction by Tangent Gaussian Splatting",
+  "name": "Point-Cloud-Assistant",
+  "why": "not-proper-noun:Point-Cloud-Assistant",
+  "abstract": "Accurate, site-specific channel information is crucial for optimizing next-generation wireless networks. Among various approaches, localized statistical channel modeling (LSCM), which models the channel multipath angular power spectrum (APS) from the reference signal received power (RSRP) measurement, has emerged as a state-of-the-art method tailored for efficient network optimization. However, de"
+ },
+ {
+  "id": "2606.17386",
+  "title": "TerraTransfer: Learning End-to-End Driving Policies Without Expert Demonstrations",
+  "name": "TerraTransfer",
+  "why": "title-no-gs-mention",
+  "abstract": "End-to-end autonomous driving has achieved state-of-the-art performance on benchmarks and real-world deployments. Its standard training recipe, however, is expensive across all stages: collecting and labeling millions of driving frames is costly, and closed-loop RL on images is bottlenecked by the per-step cost of photorealistic rendering plus a forward pass through a large vision backbone. Self-p"
+ },
+ {
+  "id": "2606.16159",
+  "title": "Continuous Splatting meets Retinex: Continuous Gaussian Splatting and Implicit Reflectance Modeling for Low-Light Image Enhancement",
+  "name": "Continuous Splatting meets Retinex",
+  "why": "name-length-anomaly",
+  "abstract": "Low-light image enhancement aims to recover clear images from low-illumination observations and is crucial for high-level downstream vision tasks. However, existing methods frequently encounter color distortion and structural artifacts when balancing global smooth illumination adjustment and local high-frequency detail recovery. To address these issues, we propose CGS-Retinex as the first low-ligh"
+ },
+ {
+  "id": "2606.15659",
+  "title": "SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction",
+  "name": "SpatialAvatar-0",
+  "why": "title-no-gs-mention",
+  "abstract": "High-quality 4D head avatars from one or a few source portraits are central to telepresence, AR/VR, and digital-human interaction. 3D Gaussian Splatting (3DGS) has emerged as the dominant representation, with two complementary regimes (generalizable feed-forward predictors and per-subject refiners) maturing in parallel. However, existing feed-forward predictors are trained on a single dataset fami"
+ },
+ {
+  "id": "2606.13655",
+  "title": "Flex4DHuman: Flexible Multi-view Video Diffusion for 4D Human Reconstruction",
+  "name": "Flex4DHuman",
+  "why": "title-no-gs-mention",
+  "abstract": "We present Flex4DHuman, a multi-view video diffusion model that transforms a monocular or sparse multi-view video of a dynamic subject into synchronized dense multi-view videos using only relative camera-pose conditioning. Unlike prior human-centric methods that rely on skeletons, depth maps, normals, or rendered target-view geometry, Flex4DHuman requires no explicit geometry priors and instead co"
+ },
+ {
+  "id": "2606.11841",
+  "title": "Scene-Adaptive Nonlinear Tone Curves for Pseudo Ground-Truth Generation in Low-Light 3D Gaussian Splatting",
+  "name": "Scene-Adaptive",
+  "why": "not-proper-noun:Scene-Adaptive",
+  "abstract": "Low-light novel view synthesis is challenging because dark multi-view images contain noise, weak structural detail, and compressed dynamic range. Recent 3D Gaussian Splatting (3DGS) methods address these challenges by generating pseudo ground-truth (pseudo-GT) images as supervision targets when paired normal-light references are unavailable. Existing pseudo-GT methods apply a uniform linear gain t"
+ },
+ {
+  "id": "2606.11782",
+  "title": "Seeing What Matters: Perceptual Wrapper with Common Randomness for 3D Gaussian Splatting",
+  "name": "Seeing What Matters",
+  "why": "not-proper-noun:Seeing What Matters",
+  "abstract": "While 3D Gaussian Splatting (3DGS) achieves impressive real-time rendering, it frequently struggles to synthesize high-frequency textures, a limitation heavily exacerbated in memory-constrained and rate-distortion-optimized (RDO) pipelines. To address this, we propose a versatile 2D perceptual wrapper that enhances the rendered outputs of existing 3DGS representations in a content- and view-depend"
+ },
+ {
+  "id": "2606.11390",
+  "title": "A Scalable PyTorch Abstraction for Multi-GPU Gaussian Splatting",
+  "name": "A",
+  "why": "name-length-anomaly",
+  "abstract": "Gaussian splatting methods have become increasingly popular for neural reconstruction of the real world. However, they are often limited in scale and resolution due to compute and memory constraints. We present a multi-GPU Gaussian splatting approach that scales reconstruction to higher resolutions and larger scenes while abstracting away the code complexity typically associated with distributing "
+ },
+ {
+  "id": "2606.09967",
+  "title": "ABot-Earth 0.5: Generative 3D Earth Model",
+  "name": "ABot-Earth 0.5",
+  "why": "title-no-gs-mention",
+  "abstract": "We present ABot-Earth 0.5, a generative 3D framework designed to synthesize vast, seamless 3D environments from ubiquitous, geospatially referenced satellite imagery. To achieve this, we propose a novel generative model formulated directly with the 3D Gaussian Splatting (3DGS) representation. The model is trained on a diverse corpus of existing real-world urban reconstructions, learning to generat"
+ },
+ {
+  "id": "2606.09034",
+  "title": "Leveraging NeRF-Rendered Images for 3D Gaussian Splatting",
+  "name": "Leveraging",
+  "why": "not-proper-noun:Leveraging",
+  "abstract": "Neural radiance field (NeRF) and 3D Gaussian splatting (3DGS) are two mainstream approaches for novel view synthesis. They often show complementary performance, i.e., 3DGS demonstrating faster rendering speed and NeRF demonstrating higher rendering quality. Motivated by this, we propose leveraging NeRF-rendered images for 3DGS. Specifically, we target street scenes and utilize a pre-trained street"
+ },
+ {
+  "id": "2606.07118",
+  "title": "QuadVerse: An Integrated Framework Aligning Visual-Physical Reality for Quadruped Simulation",
+  "name": "QuadVerse",
+  "why": "title-no-gs-mention",
+  "abstract": "Simulation is central to robot learning, yet the sim-to-real gap remains a major bottleneck. Existing approaches often tackle visual or dynamic gaps separately, overlooking how these individual mismatches accumulate and propagate throughout the robot's state evolution. In this paper, we introduce QuadVerse, an integrated framework that uses reconstructed scenes as a calibration substrate for align"
+ },
+ {
+  "id": "2606.06685",
+  "title": "RigPAPR: Rig-Based Animation of Static Neural Point Clouds from a Fixed-Viewpoint Video",
+  "name": "RigPAPR",
+  "why": "title-no-gs-mention",
+  "abstract": "Static neural point reconstructions capture a subject at high fidelity from posed images. Given such a reconstruction, we aim to animate it to follow a monocular fixed-viewpoint driving video of the subject, whether captured or produced by image-to-video (I2V) generation, and to recover a rigged, re-posable 3D asset. Existing methods deform Gaussian splats through direct linear blend skinning (LBS"
+ },
+ {
+  "id": "2606.07670",
+  "title": "Liquid Neural Networks as a Drop-in Continuous-Time Deformation Field for Dynamic 3D Gaussian Splatting",
+  "name": "Liquid",
+  "why": "not-proper-noun:Liquid",
+  "abstract": "Deformable 3D Gaussian Splatting (D-3DGS) re-constructs dynamic scenes from monocular video by deforming a canonical set of 3D Gaussians through a positional-encoded MLP of frame time t. Although fitted to a continuous variable, the MLP couples no two values of t in its architecture and effectively predicts discrete per-frame offsets, leaving temporal smoothness to emerge only as a byproduct of op"
+ },
+ {
+  "id": "2606.05491",
+  "title": "Unpaired RGB-Thermal Gaussian-Splatting Using Visual Geometric Transformers",
+  "name": "Unpaired",
+  "why": "not-proper-noun:Unpaired",
+  "abstract": "Multi-modal novel view synthesis (NVS) combining RGB and thermal imagery enables precise 3D scene reconstruction with visual and thermal information. However, existing methods typically rely on precisely calibrated RGB-thermal image pairs or stereo setups, limiting scalability and practical deployment. To address this, we introduce a framework for unpaired RGB-thermal NVS that leverages VGGT, a 3D"
+ },
+ {
+  "id": "2606.04158",
+  "title": "Multi-Agent Next-Best-View Optimization for Risk-Averse Planning",
+  "name": "Multi-Agent",
+  "why": "title-no-gs-mention",
+  "abstract": "Multi-agent Next-Best-View (NBV) selection for safe path planning in uncertain and unknown environments requires informative, safety-aware, and efficient coordination. Centralized approaches rely on sharing raw sensor data or significant communication overhead, resulting in limited scalability. We propose a distributed, risk-aware multi-agent NBV framework in which each robot maintains a private l"
+ },
+ {
+  "id": "2606.03682",
+  "title": "GN0: Toward a Unified Paradigm for Generation, Evaluation, and Policy Learning in Visual-Language Navigation",
+  "name": "GN0",
+  "why": "title-no-gs-mention",
+  "abstract": "Embodied navigation connects intelligent agents with the physical world and is fundamental for general robotic intelligence. Limited availability and quality of navigation data have constrained Vision-and-Language Navigation (VLN) systems' generalization and long-horizon capabilities. To address this, we curate diverse 3D scenes and develop an automated pipeline for large-scale navigation data, re"
+ },
+ {
+  "id": "2606.03581",
+  "title": "UnsOcc: 3D Semantic Occupancy Prediction in Unstructured Scene via Rendering Fusion",
+  "name": "UnsOcc",
+  "why": "title-no-gs-mention",
+  "abstract": "Unstructured scenes present unique challenges for autonomous driving, as irregular obstacles and sparse scene layouts undermine the effectiveness of traditional perception methods such as 3D object detection. 3D semantic occupancy prediction has emerged as a prominent focus due to its ability to provide dense spatial representations by assigning semantic labels to individual voxels in 3D space. Ho"
+ },
+ {
+  "id": "2606.01573",
+  "title": "$textVG2$GT: Voxel-Gaussian Splatting Visual Geometry Grounded Transformer",
+  "name": "no-method-name",
+  "why": "no-self-mention",
+  "abstract": "Gaussian splatting has shown strong potential for 3D reconstruction and novel view synthesis. However, most existing methods require accurate camera parameters and per-scene optimization, while feed-forward methods with pixel-aligned Gaussian primitives often suffer from artifacts and non-uniform primitives. In this paper, we propose $\\text{VG}^2$GT, a Voxel-Gaussian Splatting Visual Geometry-Grou"
+ },
+ {
+  "id": "2606.00452",
+  "title": "Beyond Static Gaussians: An Empirical Investigation of Architectural Paradigms for Dynamic 3D Scene Reconstruction",
+  "name": "Beyond Static Gaussians",
+  "why": "not-proper-noun:Beyond Static Gaussians",
+  "abstract": "Dynamic scene reconstruction via 3D Gaussian Splatting (3DGS) has emerged as a compelling approach for representing evolving environments, yet understanding trade-offs between methodologies remains crucial. This paper presents a comprehensive analysis of dynamic 3DGS methods, categorizing them into two paradigms: structure-guided methods employing auxiliary representations (deformation fields, can"
+ },
+ {
+  "id": "2606.00450",
+  "title": "Optimizing 3D Gaussian Splatting via Point Cloud Upsampling",
+  "name": "Optimizing",
+  "why": "not-proper-noun:Optimizing",
+  "abstract": "3D Gaussian Splatting (3DGS) is a technique for creating and rendering 3D scenes, however its performance depends heavily on the quality of initial seed points. To improve 3DGS initialization, this study presents and evaluates several point cloud upsampling approaches: linear interpolation, triangular interpolation, spline-based surface reconstruction, moving least squares surface fitting, and Vor"
+ },
+ {
+  "id": "2605.30396",
+  "title": "Smaller and Faster 3DGS via Post-Training Dictionary Learning",
+  "name": "Smaller",
+  "why": "not-proper-noun:Smaller",
+  "abstract": "3D Gaussian Splatting (3DGS) is a promising neural scene representation for real-time rendering, but trained models often suffer from large memory footprints, limiting deployment on less powerful devices. Existing compression techniques often lead to architectures with several additional trainable parameters. While achieving outstanding compression ratios, they introduce noticeable drops in image "
+ },
+ {
+  "id": "2605.29549",
+  "title": "Learning Representations from 3D Gaussian Splats",
+  "name": "Learning",
+  "why": "not-proper-noun:Learning",
+  "abstract": "3D Gaussian Splatting (3DGS) is a recent approach for scene rendering. Although primarily designed for view synthesis, its potential for scene understanding tasks remains underexplored. In this work, we conduct a comparative evaluation of various geometric deep learning architectures for the classification of 3D scenes represented using Gaussian Splatting. We benchmark point-based and graph-based "
+ },
+ {
+  "id": "2605.29452",
+  "title": "Comparative evaluation of photogrammetric reconstruction methods and 3D Gaussian Splatting for road surface roughness analysis",
+  "name": "Comparative",
+  "why": "not-proper-noun:Comparative",
+  "abstract": "Image-based 3D reconstruction offers a low-cost alternative to traditional sensor-based techniques for road surface assessment. This study compares four reconstruction pipelines--COLMAP, Meshroom, Metashape, and 3D Gaussian Splatting (3DGS)--to evaluate their ability to estimate road surface roughness from smartphone imagery. All point clouds were processed in CloudCompare using a consistent workf"
+ },
+ {
+  "id": "2605.29136",
+  "title": "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+  "name": "Eulerian",
+  "why": "not-proper-noun:Eulerian",
+  "abstract": "We introduce a probabilistic splat-based radiance field framework that retains the fast rasterization and test-time efficiency of 3D Gaussian Splatting (3DGS) while replacing heuristic primitive manipulation with gradient-based optimization of a volumetric probability density. Rather than relocating, splitting, or culling Gaussians via hand-tuned densification (e.g., ADC), we treat primitive locat"
+ },
+ {
+  "id": "2605.21935",
+  "title": "Learning to Evolve: Multi-modal Interactive Fields for Robust Humanoid Navigation in Dynamic Environments",
+  "name": "Learning to Evolve",
+  "why": "title-no-gs-mention",
+  "abstract": "Safe manipulation-oriented navigation for humanoid robots requires scene memory that remains reliable under locomotion-induced perceptual distortion, environmental changes, and interaction-level geometric safety constraints. Existing semantic mapping and scene-graph systems are difficult to deploy directly in this setting because they often assume stable camera trajectories, static environments, o"
+ },
+ {
+  "id": "2605.22147",
+  "title": "Flow-based Gaussian Splatting for Continuous-Scale Remote Sensing Image Super-Resolution",
+  "name": "Flow-based",
+  "why": "not-proper-noun:Flow-based",
+  "abstract": "High-resolution remote sensing images (RSIs) are crucial for Earth observation applications, yet acquiring them is often limited by sensor constraints and costs. In recent years, generative super-resolution (SR) methods, particularly diffusion models, have made significant progress. However, they typically require slow iterative inference with 40--1000 steps and exhibit limited flexibility in cont"
+ },
+ {
+  "id": "2605.21051",
+  "title": "Transcoding a 3D Gaussian Splatting Model from a Plenoptic Point Cloud or Mesh without the Original Multi-view Images",
+  "name": "Transcoding",
+  "why": "not-proper-noun:Transcoding",
+  "abstract": "In this paper, we propose an end-to-end transcoding pipeline, to create 3D Gaussian splatting (3DGS) models from existing 3D plenoptic point cloud or mesh models, when the original multi-view images of the captured 3D object or scene are not available. We also propose a custom initialisation to guide the 3DGS model learning, with constraints to ensure that the final 3DGS model aligns closely with "
+ },
+ {
+  "id": "2605.20566",
+  "title": "Conflict-Aware Active Perception and Control in 3D Gaussian Splatting Fields via Control Barrier Functions",
+  "name": "Conflict-Aware",
+  "why": "not-proper-noun:Conflict-Aware",
+  "abstract": "Active perception in uncertain environments requires robots to navigate safely while acquiring informative observations to reduce map uncertainty. These objectives inherently conflict, as informative viewpoints often lie near uncertain regions with higher collision risk. To address this challenge, we develop a conflict-aware active perception and control framework for robotic systems operating in "
+ },
+ {
+  "id": "2605.19600",
+  "title": "FlyMirage: A Fully Automated Generation Pipeline for Diverse and Scalable UAV Flight Data via Generative World Model",
+  "name": "FlyMirage",
+  "why": "title-no-gs-mention",
+  "abstract": "In the field of Vision-Language Navigation (VLN), aerial datasets remain limited in their ability to combine scale, diversity, and realism, often relying on either costly real-world scenes or visually limited simulations. To address these challenges, we introduce FlyMirage, a highly scalable and fully automated data generation pipeline for aerial VLN. Our approach leverages large language models ("
+ },
+ {
+  "id": "2605.16158",
+  "title": "Smart target point control for Gaussian Splatting methods",
+  "name": "Smart",
+  "why": "not-proper-noun:Smart",
+  "abstract": "Standard Gaussian splatting methods rely on heuristic densification and pruning to adaptively allocate primitives during training, and the resulting Gaussian count strongly influences both reconstruction quality and runtime. This makes comparisons across methods fragile: improvements can stem from higher representational capacity rather than algorithmic design. A common and naive workaround for th"
+ },
+ {
+  "id": "2605.10485",
+  "title": "VEGA: Visual Encoder Grounding Alignment for Spatially-Aware Vision-Language-Action Models",
+  "name": "VEGA",
+  "why": "title-no-gs-mention",
+  "abstract": "Precise spatial reasoning is fundamental to robotic manipulation, yet the visual backbones of current vision-language-action (VLA) models are predominantly pretrained on 2D image data without explicit 3D geometric supervision, resulting in representations that lack accurate spatial awareness. Existing implicit spatial grounding methods partially address this by aligning VLA features with those of "
+ },
+ {
+  "id": "2605.09024",
+  "title": "Relightable Gaussian Splatting for Virtual Production Using Image-Based Illumination",
+  "name": "Relightable",
+  "why": "not-proper-noun:Relightable",
+  "abstract": "Virtual production (VP) use LED walls to provide both background imagery and image-based lighting. While this enables on-set compositing, it couples lighting to background and scene appearance, limiting flexibility for downstream editing. In addition, inverse rendering conventionally relies on physically-based rendering to estimates 3D geometry and lighting, using environment maps. However, these "
+ },
+ {
+  "id": "2605.07254",
+  "title": "High-Fidelity Surface Splatting-Based 3D Reconstruction from Multi-View Images",
+  "name": "High-Fidelity",
+  "why": "title-no-gs-mention",
+  "abstract": "Multi-view mesh reconstruction remains a core challenge in computer graphics and vision, especially for recovering high-frequency geometry from sparse observations. Recent methods such as 3D Gaussian Splatting (3DGS) and Neural Radiance Fields (NeRF) rely on post-processing for mesh extraction, thereby limiting joint optimization of geometry and appearance. Implicit Moving Least Squares (IMLS) ins"
+ },
+ {
+  "id": "2605.01232",
+  "title": "A Principled Approach for Creating High-fidelity Synthetic Demonstrations for Imitation Learning",
+  "name": "A",
+  "why": "title-no-gs-mention",
+  "abstract": "Recent advances in 3D Gaussian Splatting (3DGS) have enabled visually realistic demonstration generation from a single expert trajectory and a short multi-view scan. However, existing 3DGS-based synthesis pipelines typically generate new motions using sampling-based planners or trajectory optimization, which often deviate substantially from the expert's demonstrated path. While such deviations may"
+ },
+ {
+  "id": "2604.24316",
+  "title": "Large-Scale Photogrammetric Documentation of St. John's Co-Cathedral: A Workflow for Cultural Heritage Preservation",
+  "name": "Large-Scale",
+  "why": "title-no-gs-mention",
+  "abstract": "We present a comprehensive methodology for the large-scale photogrammetric documentation of St. John's Co-Cathedral in Valletta, Malta, a UNESCO World Heritage site renowned for its ornate Baroque architecture and Caravaggio masterpieces. Over seven nights of evening-only data collection, we captured 99,000 images using DSLR cameras, drone photography, and LIDAR scanning to create a highly detaile"
+ }
+]

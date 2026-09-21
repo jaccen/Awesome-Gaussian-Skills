@@ -8,7 +8,7 @@
 
 ## 标题（三选一）
 
-1. I built a searchable, arXiv-verified knowledge base of 678+ 3D Gaussian Splatting methods — with a free interactive explorer
+1. I built a searchable, arXiv-verified knowledge base of 859+ 3D Gaussian Splatting methods — with a free interactive explorer
 2. Stop digging through awesome-lists: every 3DGS method here is verified against its actual arXiv paper
 3. Show r/computervision: 15 AI agent skills + MCP server that cover the whole 3DGS research lifecycle
 
@@ -21,7 +21,7 @@ I kept a personal list of 3D Gaussian Splatting papers for my own research, and 
 What's inside:
 
 - **Interactive explorer** (hosted on GitHub Pages, no install): search / filter / sort every method, click any card for the abstract (EN + 中文) and direct links to paper & code
-- **678+ methods, 23 categories** — every arXiv ID was re-verified against the arXiv API (title ↔ name match checked entry by entry)
+- **859 methods, 23 categories** — every arXiv ID was re-verified against the arXiv API (title ↔ name match checked entry by entry)
 - **15 research-grade agent skills** covering the full lifecycle: paper reading, method comparison, code review, experiment planning, NeRF→3DGS migration, compression & deployment, training debugging
 - **A working MCP server** (21 tools) so Claude/other agents can drive the knowledge base directly
 - **Daily arXiv scan** (GitHub Action) that reports newly submitted 3DGS papers against the database

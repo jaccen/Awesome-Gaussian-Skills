@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 859 方法，23 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 697 方法，23 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-862-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-697-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 859 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 697 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 12 章，每个方法名均锚定本仓库真实数据（859 方法、23 类别、15 技能），零虚构：**
+**全书 12 章，每个方法名均锚定本仓库真实数据（697 方法、23 类别、15 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -84,37 +84,11 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 862 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 697 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 9 月）
-
-最新更新（9 月 21 日）：**v0.9.4 — 多渠道抓取：700 → 859 methods + 准确性全面核查** ⭐
-
-通过多渠道 arXiv 检索（近 150 天），知识库从 **700 条扩展至 859 条已验证方法**（+159，+22.7%）。
-六个检索式（`cs.CV` / `cs.GR` / `cs.RO` / 全库 / `abs:"3D Gaussian Splatting"` / `ti:"Gaussian Splatting"`）
-共召回 395 篇候选，经准确性核验后**收录 162 条**。本版本同时完成：
-
-- **核验（R1–R6）**：每个入库条目的方法名必须取自论文**自述**且在其摘要中复现；多词名称须含专有形态 token——
-  仅此一项就剔除了 67 个"把描述性短语当方法名"的条目（如 `Capacity-Controlled`、`Scene-Level`）。
-  114 条边界候选逐条精读摘要裁定，25 条纳入、其余剔除。
-- **准确性修复**：57 条参考文献的"显示 ID 与链接 ID 不一致"已修正（全部为显示正确、链接错误）；
-  **删除 13 条错挂条目**——例如 `Dynamic 3D Gaussians` 指向的 2309.13114 实为一篇磁性自旋玻璃物理论文，
-  `GS-LRM-v2` 实际指向 DOF-GS。全部条目均已过 arXiv API 实查。
-- **AIGC 痕迹清除**：29 个文本文件；21 张历史损坏 JPEG 已恢复并按安全算法重新剥离元数据。
-- **`README_CN.md` 双重编码乱码已修复**（原本所有中文串被损坏为 `鏂规硶` 之类）。
-- **全载体同步**：`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档**均为 859 条**，
-  并按"名称集合逐条比对"而非仅比对总数来核验一致性。
-
-**同日裁定波**：第二轮逐条处置所有"带派生后缀"或"与他人同名"的条目——`Scaffold-GS+`、
-`GaussianSplatting-SLAM-v2` 因 arXiv 上查无此文而删除；`Luminance-GS++` 正名为论文自述的
-`Luminance-GS`；`Spark 2.0` 描述纠正为 World Labs 开源 WebGL2 溅射渲染引擎（原误写为 NVIDIA 机器人仿真）。
-另有两篇作者完全不重叠的论文都自述为 `GeoGS-SLAM`（2607.07452 与 2607.11184）——它们是两种方法而非续作，
-现已按各自副标题消歧。计数由 862 收敛至 **859**。
-
-完整审计记录见 [changelog/2026-09-21.md](changelog/2026-09-21.md)、
-[changelog/2026-09-21-v2.md](changelog/2026-09-21-v2.md)。
 
 最新更新（9 月 20 日）：**v0.9.2 — 场景 Agent + Mapmost 工程化浪潮：5 个新方法 + 6 项技能增强**。知识库从 692 扩展至 697 条已验证方法。新增 5 篇场景生成 Agent 论文：**SceneSmith**（ICML 2026 Spotlight，MIT CSAIL — 分层 designer-critic-orchestrator VLM Agent 生成仿真就绪室内场景）、**Scenethesis**（ICLR 2026，NVIDIA — 无训练 LLM+视觉 Agent 框架）、**SceneGenAgent**（ACL 2025 — LLM 编码 Agent 精确生成工业场景）、**SceneConductor**（arXiv — 单图多 Agent 编排生成 3D 场景）、**SceneAssistant**（arXiv — 视觉反馈 Agent 开放词汇场景生成）。注入 Mapmost 生产级工程知识到 4 个技能文件：3DGS 单体化（best-practices.md）、LOD 流式加载+接缝优化+分区训练（best-practices.md）、3DGS+3DTiles 多源融合（gis-toolchain.md）、LUT 调色（tech-stack.md）、Mapmost 100km² 城市级基准（industry-landscape.md）。类别更新：Generation +4, Embodied AI & Robotics +1。
 
@@ -171,7 +145,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（859 方法，23 类别）
+## 知识库（697 方法，23 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -278,7 +252,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 862 方法的系统性空白分析生成。
+> 基于知识库 697 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -349,7 +323,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.9.0 — 数据准确性版本：全库名称↔论文逐条核验（arXiv API）；删除不可核实条目 181 条、修正错误编号 56 条、重命名 5 条、去重 1 条；总数修正为 678（2026 年 9 月 16 日）
 - [x] v0.8.4 — 每日更新：39 个新 arXiv 验证方法（arXiv 窗口 2026-09-02 ~ 09-16）；819→858 方法；15 个类别更新（Compression & Streaming +4, Large-Scale +4, Optimization +4, Robustness +4, Cross-Domain +3, Dynamic & 4D +3, Generation +3, SLAM +3, Acceleration +2, Embodied AI & Robotics +2, Feed-Forward +2, Sparse-View +2, HDR & Relighting +1, Human & Avatar +1, Surface & Rendering +1）；排除纯基准/综述；修复 validate 脚本 \\d 语法警告；全载体同步（2026 年 9 月 16 日）
 - [x] v0.9.1 — ECCV 2026 浪潮：14 个新 arXiv 验证方法（Wat3R, GeoNVS, Edit3r, SA-ResGS, GaussianLens, Deformable Triangle Splatting, Neural Harmonic Textures, CubicSplat, TetraSDF, Heat Kernel Textures, GRF-Recon, PriSplat, Per-View Distractor Filtering, GS-Underwater）；678→692 方法；6 个类别更新；所有数据载体同步（2026 年 9 月 20 日）
-- [x] v0.9.2 — 场景 Agent + Mapmost 工程化浪潮：5 个新场景生成 Agent 方法（SceneSmith ICML 2026, Scenethesis ICLR 2026, SceneGenAgent ACL 2025, SceneConductor, SceneAssistant）；692→862 方法；Generation +4, Embodied AI & Robotics +1；6 项技能文件增强：3DGS 单体化、LOD 流式加载+接缝优化、分区训练、3DGS+3DTiles 融合、LUT 调色、Mapmost 100km² 基准（2026 年 9 月 20 日）
+- [x] v0.9.2 — 场景 Agent + Mapmost 工程化浪潮：5 个新场景生成 Agent 方法（SceneSmith ICML 2026, Scenethesis ICLR 2026, SceneGenAgent ACL 2025, SceneConductor, SceneAssistant）；692→697 方法；Generation +4, Embodied AI & Robotics +1；6 项技能文件增强：3DGS 单体化、LOD 流式加载+接缝优化、分区训练、3DGS+3DTiles 融合、LUT 调色、Mapmost 100km² 基准（2026 年 9 月 20 日）
 - [ ] v1.0 — CI/CD 集成 + 多框架官方收录
 - [ ] v2.0 — Agent 间协作（多 Agent 论文讨论）
 
@@ -377,7 +351,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（859 方法，23 类别）
+├── references/                # 知识库（697 方法，23 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

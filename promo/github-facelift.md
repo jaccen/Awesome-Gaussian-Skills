@@ -21,7 +21,7 @@ knowledge-base  mcp  mcp-server  ai-agents  claude  skill-library
 **Description**（英文，短版）：
 
 ```
-Daily-updated, arXiv-verified knowledge base of 678+ 3D Gaussian Splatting methods — with 15 AI agent skills, an MCP server, and an interactive explorer.
+Daily-updated, arXiv-verified knowledge base of 859+ 3D Gaussian Splatting methods — with 15 AI agent skills, an MCP server, and an interactive explorer.
 ```
 
 **Website**：填 GitHub Pages 地址（如 `https://jaccen.github.io/Awesome-Gaussian-Skills/`）

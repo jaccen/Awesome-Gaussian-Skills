@@ -4,7 +4,7 @@
 **标题（HN 规范：不加感叹号、不堆卖点）**:
 
 ```
-Show HN: 678+ 3D Gaussian Splatting methods, verified against arXiv, with an AI toolkit
+Show HN: 859+ 3D Gaussian Splatting methods, verified against arXiv, with an AI toolkit
 ```
 
 **首发链接**: https://github.com/jaccen/Awesome-Gaussian-Skills
@@ -16,7 +16,7 @@ Show HN: 678+ 3D Gaussian Splatting methods, verified against arXiv, with an AI 
 
 Hi HN — I'm a researcher working on 3D Gaussian Splatting, and I kept losing track of how fast the field moves (dozens of new papers every week). So I built this:
 
-- **Searchable catalog of 678+ 3DGS methods** — live explorer at [链接], everything filterable by category/venue/year, with paper + code links
+- **Searchable catalog of 859+ 3DGS methods** — live explorer at [链接], everything filterable by category/venue/year, with paper + code links
 - **Verification over inflation**: an audit script checks every entry's arXiv ID against the actual paper (name must appear in title/abstract). When I first ran it, 181 entries failed — fake method names, IDs pointing to math and astronomy papers. I fixed or removed them all; the counter you see is the count that survived verification.
 - **Agent skills + MCP server**: 15 skills (paper reading, method comparison, experiment planning, training debugging...) and an MCP server with 21 tools, so local agents can query the knowledge base directly
 - **Daily arXiv tracker**: a scheduled GitHub Action scans new submissions and diffs them against the database

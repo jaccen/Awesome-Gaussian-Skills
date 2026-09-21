@@ -360,7 +360,7 @@ Generate a complete experiment plan:
 2. **Be realistic**: Don't claim "state-of-the-art" unless metrics clearly support it.
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
 4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
-5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 678+ methods across 23 categories.
+5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 859 methods across 23 categories.
 
 
 

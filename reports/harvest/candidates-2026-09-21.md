@@ -1,0 +1,399 @@
+# 3DGS 新论文抓取候选池 — 2026-09-21
+
+窗口：近 150 天（自 20260424）；已收录 586 条去重后，候选 **395** 篇。
+
+- `2609.21516` 2D GauSS-MI: Efficient Active Scene Reconstruction with Balanced Visual and Geometric Quality — 2026-09-18 · cs.CV
+- `2609.21498` VoxelTTO: Voxel-Aligned Feed-Forward 3D Gaussian Splatting with Test-Time Optimization — 2026-09-18 · cs.CV
+- `2609.21347` Cube-Splat: High-Fidelity 360° Gaussian Splatting SLAM via Cubemap Factorization and Adjoint-Consist — 2026-09-18 · cs.CV
+- `2609.21176` 4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video D — 2026-09-18 · cs.CV
+- `2609.21226` AirSplan: Risk-Aware Motion Planning for Quadrotors in Cluttered 3D Gaussian Splats — 2026-09-18 · cs.RO
+- `2609.20818` SplashSplat: Reconstructing Splashing Liquids from Real-World Multi-View Videos — 2026-09-17 · cs.CV
+- `2609.20623` PhGS: Post-Hoc Pruning and Refinement of Single-View Feed-Forward 3D Gaussian Reconstructions — 2026-09-17 · cs.CV
+- `2609.20589` RawSLAM: Online HDR Gaussian SLAM from Linear Radiance — 2026-09-17 · cs.CV
+- `2609.20586` CoRef-GS: Cooperative Referring Gaussian Splatting for Multi-Agent Scene Understanding — 2026-09-17 · cs.RO
+- `2609.20348` EliGSiR: Continual RGB-D Mapping with Gaussian Splatting under Bounded Compute — 2026-09-17 · cs.CV
+- `2609.19907` GS-PI: An Optimization-Decoupled Appearance Decomposition Approach for Generating PBR Gaussian Asset — 2026-09-17 · cs.CV
+- `2609.19782` Printing the Underdetermined: Materializing Multi-solutionness in Figurative Paintings — 2026-09-17 · cs.GR
+- `2609.19716` GAPrompt++: Multi-Granular Geometry-Aware Point Cloud Prompt for 3D Vision Model — 2026-09-17 · cs.CV
+- `2609.19628` VGGT-GS SLAM: Uncalibrated Monocular Gaussian Splatting SLAM with Feed-Forward Priors — 2026-09-17 · cs.CV
+- `2609.21112` Demonstration Synthesis from a Single Scan via Gaussian Splatting for Visuomotor Policy Learning — 2026-09-17 · cs.RO
+- `2609.19533` SLAMSqueezeBench: Comparing SLAM Systems under Resource Constraints — 2026-09-17 · cs.RO
+- `2609.19463` ParticleSplat: Self-supervised Object-centric Latent Particle Splatting — 2026-09-16 · cs.CV
+- `2609.19421` RGS: Reflection-aware Gaussian Splatting via Learning Geometry Continuity for Reflective Objects — 2026-09-16 · cs.CV
+- `2609.18737` Geometry beneath the Waves: Dense Priors for Sparse-View Underwater 3D Gaussian Splatting — 2026-09-16 · cs.CV
+- `2609.18473` CADSplat: Sparse-View 3D Gaussian Splatting Aided by CAD Models for Robust, Photorealistic Digital-T — 2026-09-16 · cs.CV
+- `2609.18624` MoQSplat: Adaptive Progressive Streaming of 3D Gaussian Splatting via MoQ — 2026-09-16 · cs.MM
+- `2609.19330` SemSafe-3DGS: Semantic Risk-Aware Active Navigation in Uncertain 3D Gaussian Splatting Maps — 2026-09-16 · cs.RO
+- `2609.18898` NormLift: From Lifted Features To Semantic Reliability In 3D Gaussian Splatting — 2026-09-16 · cs.CV
+- `2609.17810` Wind on Trees: Testing Physical Grounding in Dynamic 4D Gaussian Splatting — 2026-09-15 · cs.CV
+- `2609.17106` BRAVE-6D: Benchmark for Robotic Active Vision in 6DOF Pose Estimation — 2026-09-15 · cs.RO
+- `2609.16443` The Neverwhere Visual Parkour Benchmark Suite — 2026-09-14 · cs.RO
+- `2609.16233` SceneBench: A Hierarchical Benchmark for Vision-Language Understanding of 3D Scenes — 2026-09-14 · cs.CV
+- `2609.14899` What Makes a 3D Scene Editable? A Factorized Benchmark of Fidelity, Locality, Consistency, and Prese — 2026-09-14 · cs.CV
+- `2609.14891` Gaussian-splatting ptychography via explicit and interpretable primitives — 2026-09-14 · physics.optics
+- `2609.12395` Is Gaussian Splatting Becoming Neural Again? A Taxonomy and Controlled Study of Learned Parameteriza — 2026-09-11 · cs.AI
+- `2609.07557` Heat Kernel Textures: the Geodesic Gaussians That Do Not Splat — 2026-09-07 · cs.CV
+- `2609.07346` From Explicit References to Scene Manifolds: Distributional Fidelity and Realism for Radiance Field  — 2026-09-07 · cs.CV
+- `2609.06157` From Splats to Silicon: Rethinking Computational Efficiency of 3DGS — 2026-09-05 · cs.AR
+- `2609.05583` An overview of 3D Vision-Language Models — 2026-09-04 · cs.CV
+- `2609.04602` NavArena: Automated Construction of Goal-Oriented Navigation Benchmarks from 3D Gaussian Splatting R — 2026-09-04 · cs.RO
+- `2609.04381` Where Appearance Fails, Geometry Recognizes: A CAD-Free 3D Shape Prior That Complements Vision Found — 2026-09-03 · cs.CV
+- `2609.03657` Rethinking 3D Noise: Learning 3D-Aware Video Priors via Optimization-Free Morphological Perturbation — 2026-09-03 · cs.CV
+- `2609.03341` PointGT: Simultaneous Geometry and Texture Editing for Point-Based Representations — 2026-09-03 · cs.CV
+- `2609.03897` Reparametrizing 3D Gaussian Splatting for Real-Time Palette-based Color and Luminance Editing — 2026-09-03 · cs.GR
+- `2609.01516` DualDiff3D: Dual Structure-Appearance Diffusion Priors for Reliability-Enhanced 3D Gaussian Splattin — 2026-09-01 · cs.CV
+- `2609.00994` EvoGS: Modeling Deformation Evolution for Dynamic Gaussian Splatting — 2026-09-01 · cs.CV
+- `2609.01698` VirSqueezer: Generating Realistic Deformations and Squeezing Dynamics in VR from Fine-Grained Squeez — 2026-09-01 · cs.HC
+- `2608.30054` When 3D Gaussian Splatting Recovers Real Surfaces — 2026-08-30 · cs.LG
+- `2608.29538` As-Rigid-As-Possible Deformation of Gaussian Radiance Fields — 2026-08-30 · cs.GR
+- `2608.29346` GSPotential: Camera Potential Field for Sparse-View 3D Gaussian Splatting — 2026-08-29 · cs.CV
+- `2608.29106` Elastic Triangle Splatting — 2026-08-29 · cs.CV
+- `2608.29048` DReSG: Diffusion Residuals for Stylized Gaussian Splatting — 2026-08-29 · cs.CV
+- `2608.29003` RoSe-SLAM: Robust Semantic-Aware Gaussian Splatting SLAM from Dynamic Monocular Videos — 2026-08-29 · cs.CV
+- `2608.29184` GhostSplat: Input-Triggered Backdoors for Multi-View-Consistent 3D Content Manipulation in Feed-Forw — 2026-08-29 · cs.CR
+- `2608.28895` ReconSplat: Generalizable 3D Scene Reconstruction Beyond Observed Views — 2026-08-28 · cs.CV
+- `2608.28272` Non-Uniform Quantisation for 3DGS Compression — 2026-08-28 · cs.CV
+- `2608.28240` WilLaGS: Latent-Conditional 3D Appearance Fields for Robust Gaussian Splatting In-the-Wild — 2026-08-28 · cs.CV
+- `2608.28570` ChainSplat: A Physics-Inspired Screw-Theoretic Model for Learning Deformable Linear Object Dynamics  — 2026-08-28 · cs.RO
+- `2608.27735` ABCD: Alpha-Composited Block Coordinate Descent: Constant-VRAM Training for Large Radiance Fields — 2026-08-27 · cs.CV
+- `2608.28702` Stochastic Liquid Deformation Fields: An SDE Generalisation of Closed-Form Continuous-Time Cells for — 2026-08-27 · cs.CV
+- `2608.27301` Comparative Evaluation of 3D Reconstruction Methods for Immersive Visualization of Laboratory Object — 2026-08-27 · cs.GR
+- `2608.26948` KISS-GS: 3D Gaussian Splatting Compression Kept Simple — 2026-08-27 · cs.CV
+- `2608.26656` CoGeo-GS: Concept-Driven and Geometry-Aware Multi-Object Removal in 3D Scenes — 2026-08-27 · cs.CV
+- `2608.26868` CGS-SLAM: Collaborative Gaussian Splatting based SLAM for Multi-Agent Reconstruction — 2026-08-27 · cs.CV
+- `2608.25956` 4DGS-WAM: Bridging Past and Future with an Object-Centric World Action Model based on 4D Gaussian Sp — 2026-08-26 · cs.CV
+- `2608.25472` PAGS: Autofocusing Photoacoustic Tomography via Speed-of-Sound-Adaptive Gaussian Splatting — 2026-08-26 · cs.CV
+- `2608.25401` PIVOT: A Multi-Trajectory Dataset and Testbed for Pose, Intrinsics, and Novel Viewpoint Evaluation i — 2026-08-26 · cs.CV
+- `2608.26383` Cross-Platform Benchmark of Neural 3D Reconstruction for Autonomous Laboratory Robots — 2026-08-26 · cs.RO
+- `2608.24049` Physics-Integrated Operator Learning via Gaussian Splatting Representations — 2026-08-25 · cs.LG
+- `2608.23549` FixAnything: 3D-Consistent Rendering Refinement via Video Generative Priors — 2026-08-24 · cs.CV
+- `2608.22906` AquaFlow: A Monocular Gaussian Splatting SLAM for Underwater Streaming Reconstruction — 2026-08-24 · cs.CV
+- `2608.22888` NemoSplat: Feed-Forward 4D Gaussian Splatting for Media-Aware Underwater Reconstruction — 2026-08-24 · cs.CV
+- `2608.22773` LagrangeGS: Non-Conservative Lagrangian System on Dynamic 3D Gaussian Splatting — 2026-08-24 · cs.CV
+- `2608.22740` Seeing the Unseen: Semantic-in-Gaussian for Sparse-View 3D Generalization — 2026-08-24 · cs.CV
+- `2608.22465` M$^3$ISR: A Multi-Modal Multi-View Benchmark for 3D/4D Gaussian Splatting and Feedforward Compressio — 2026-08-23 · cs.CV
+- `2608.22344` Fast and Compact 3D Gaussian Splatting with Polarized Opacity Prior — 2026-08-23 · cs.CV
+- `2608.21849` GaussVid: Sparse-View Gaussian Splatting with 3D-Aware Video Diffusion Priors — 2026-08-22 · cs.CV
+- `2608.21828` Towards Alias-Free 4D Gaussian Representations with Motion-Aware Filtering — 2026-08-22 · cs.CV
+- `2608.22102` Learning Implicit Constitutive Laws for Dynamic 3D Gaussian Splatting from Monocular Videos — 2026-08-22 · cs.CV
+- `2608.20687` TopoSurfel: Closing the Loop between Gaussian Surfels and Meshes for Surface Reconstruction — 2026-08-21 · cs.CV
+- `2608.21685` In-Situ Reconstruction of the International Space Station Using 3D Gaussian Splatting and Astrobee — 2026-08-21 · cs.RO
+- `2608.20335` 4DAnyone: Create Anyone in 4D from a Casual Monocular Video — 2026-08-20 · cs.CV
+- `2608.20000` Point-Based 3D Reconstruction from Sparse Views under Known Illumination — 2026-08-20 · cs.CV
+- `2608.19556` Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models — 2026-08-20 · cs.CV
+- `2608.20602` Sparse Light Field Sampling Improves Casual 3D and 4D Reconstruction — 2026-08-20 · eess.IV
+- `2608.18413` CoMVS-GS: Collaborative Multi-View Stereo and 3D Gaussian Splatting for Surface Reconstruction — 2026-08-19 · cs.CV
+- `2608.19066` GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting — 2026-08-19 · cs.CV
+- `2608.18388` Depth Anything V4: Dynamic 4D Scene Reconstruction via Riemannian Flow Matching on 4D Gaussian Splat — 2026-08-18 · cs.CV
+- `2608.18285` QuARC-GS: Quantized Anchored Residual Coding for Compact Dynamic Scene Streaming with Gaussian Splat — 2026-08-18 · eess.IV
+- `2608.17988` GS-Voxel: Fitting-Free Structured Latents for Large-Scale 3DGS Generation — 2026-08-18 · cs.CV
+- `2608.17535` GroupForward: Building Referable 3D Scenes via Instance-Grouped Feed-Forward Gaussian Splatting — 2026-08-18 · cs.CV
+- `2608.17447` NGS-Marker: Robust Native Watermarking for 3D Gaussian Splatting — 2026-08-18 · cs.CV
+- `2608.17420` SPVC: Structured and Panoptic Video Fixing for Cross-Dataset Driving Scene Rendering — 2026-08-18 · cs.CV
+- `2608.17298` 3D Gaussian Accelerated Ray Tracing: Fast training through particle-based backward propagation — 2026-08-18 · cs.GR
+- `2608.21438` DesignAgent3D: Interactive 3D Scene Editing via Designer-like Multimodal Reasoning — 2026-08-18 · cs.CV
+- `2608.16324` LaGSplat: Inferring Physics-Governed Interactive Simulation from Monocular Video Using Latent Lagran — 2026-08-17 · cs.CV
+- `2608.16103` Beyond Similarity Matching: Structured Reasoning for Open-Vocabulary Referring Segmentation in 3DGS — 2026-08-17 · cs.CV
+- `2608.16042` TR-GS: High-Fidelity Sparse-View CT Volumetric Rendering via t-Distribution Gaussian Splatting and R — 2026-08-17 · cs.CV
+- `2608.15785` RoofGS: Roofline-Guided End-to-End Acceleration of 3D Gaussian Splatting — 2026-08-16 · cs.CV
+- `2608.15651` Gaussian-JEPA: Joint-Embedding Predictive Learning for 3D Gaussian Splats — 2026-08-16 · cs.CV
+- `2608.15024` MotionGS-SLAM: Event-Modulated Gaussian Splatting for Motion-Blur Robust SLAM — 2026-08-15 · cs.RO
+- `2608.14986` GaussMemory: Task-Driven 3D Gaussian Scene Memory for Long-Horizon Robotic Manipulation — 2026-08-15 · cs.RO
+- `2608.14136` HiCo-GS: Hierarchical Context Aggregation and Geometric Consistency for Octree Gaussian Splatting — 2026-08-14 · cs.CV
+- `2608.14902` Geometry-Aware Online Mapping for 3D Gaussian Splatting SLAM — 2026-08-14 · cs.RO
+- `2608.13502` GS$^{2}$CI: Robust Gaussian Splatting For Snapshot Compressive Imaging via Large Vision Model Priors — 2026-08-13 · cs.CV
+- `2608.13159` Splat-based Metal Artifact Reduction in Cone-Beam CT via Polychromatic Modeling — 2026-08-13 · cs.CV
+- `2608.13143` ProbSplat: Efficient Probabilistic Hardware for Gaussian Splatting in 3D Scene Reconstruction — 2026-08-13 · cs.ET
+- `2608.12860` HumanoidVLN: A Physics-Grounded Simulator and Benchmark for Vision-Language Navigation Across Divers — 2026-08-13 · cs.RO
+- `2608.12825` LocusGS: Spatially Grounded Tokens for Feed-Forward 3D Gaussian Splatting — 2026-08-13 · cs.CV
+- `2608.11928` Seed2GS: Camera-Free, Training-Free Object Extraction from 3D Gaussian Scenes via a Single Reference — 2026-08-12 · cs.CV
+- `2608.14713` SpotlessGS: Relightable 3D Gaussian Splatting under Dynamic Illumination for Robotic Perception — 2026-08-11 · cs.RO
+- `2608.10938` GS-CPE: Unified 6-Degree-of-Freedom Camera Pose Estimation via 3D Gaussian Splatting — 2026-08-11 · cs.CV
+- `2608.10756` Embodied Multimodal Grounding for Open-Vocabulary Mobile Manipulation via Semantic 3D Gaussian Splat — 2026-08-11 · cs.RO
+- `2608.10712` Compact Feed-Forward 3D Gaussians via Saliency-Guided Primitive Merging — 2026-08-11 · cs.CV
+- `2608.10682` Visual Geometry Foundation-Aware Gaussians for Single-Frame Surround-View Driving Reconstruction — 2026-08-11 · cs.CV
+- `2608.10602` Gaussian Sculpting: End-to-End Controllable Surface Reconstruction via Field Optimization — 2026-08-11 · cs.CV
+- `2608.11100` WildFireGS: Physics-Based Wildfire Simulation in Large-Scale Semantics-Enriched Gaussian Splatting F — 2026-08-11 · cs.GR
+- `2608.10345` CasDeblurGS: Cascaded 2D-to-3D Multi-View Consistency for 3D Gaussian Splatting from Two Blurry Imag — 2026-08-11 · cs.CV
+- `2608.08949` EndoMD-SLAM: Endoscopic Gaussian Splatting SLAM under Optical Degradation with Memory and Static-Tra — 2026-08-09 · cs.CV
+- `2608.08659` JSGS: JPEG State-Guided Supervision for 3D Gaussian Splatting from Mixed-Quality Views — 2026-08-09 · cs.CV
+- `2608.08585` EvTrajGS: Accurate and Efficient 3D Gaussian Splatting from Unposed Event Streams — 2026-08-09 · cs.CV
+- `2608.08531` ERF-GS: Reconstructing Fast Motion from Disjoint Event-RGB Viewpoints — 2026-08-09 · cs.CV
+- `2608.07937` FlexSplat: Flexible Feed-Forward 3D Gaussian Splatting without Point Cloud Correspondence — 2026-08-08 · cs.CV
+- `2608.07760` XClipGS: Exact Half-Space Clipping for Medical Volume Gaussian Splatting — 2026-08-07 · cs.CV
+- `2608.07144` InstanceSplat: Instance-Aware Feed-Forward 3D Gaussian Splatting for Scene Understanding — 2026-08-07 · cs.CV
+- `2608.06801` AdvTiles: Physical Adversarial Camouflage Clothing against Person Detectors via Learnable Tiles — 2026-08-07 · cs.CV
+- `2608.06117` Confidence matters: Leveraging Multi-view Geometric Priors for GS-based Reconstruction — 2026-08-06 · cs.CV
+- `2608.05704` G$^2$ARD-GS: Geometry-Guided Anchor-Regularized Gaussian Splatting Distillation — 2026-08-06 · cs.CV
+- `2608.05482` CDSeg: A Renderable Gaussian Carrier for Image-to-3D Label Transfer — 2026-08-06 · cs.CV
+- `2608.05896` GSBF: Gaussian Splatting for Environment-Aware Beamforming — 2026-08-06 · cs.AI
+- `2608.05145` Objects as Audio-Visual Modal Sound Fields — 2026-08-05 · cs.CV
+- `2608.04701` UniWorld-View: Large-Baseline View Synthesis via Video Diffusion Models — 2026-08-05 · cs.CV
+- `2608.04581` ACA-GS: Adaptive-Capacity Anchored Gaussian Splatting for Compact Dynamic Radiance Fields — 2026-08-05 · cs.CV
+- `2608.05218` PD-GS: Phoneme-Driven 3DGS for Audio-Driven Talking Heads — 2026-08-05 · cs.AI
+- `2608.03279` 3DGSI-Assessor: A Large-Scale Dataset and An LMM-based Method for 3D Gaussian Splatting Image Qualit — 2026-08-04 · cs.CV
+- `2608.03023` Standalone DINOv3 for Training-Free Open-Vocabulary Semantic Segmentation in Remote Sensing — 2026-08-04 · cs.CV
+- `2608.02437` InfiniSplat: Implicit Gaussian Decoding for Large-Baseline Monocular View Synthesis — 2026-08-03 · cs.CV
+- `2608.02304` TRACE: Ergodic Trajectory Optimization for Active Scene Reconstruction — 2026-08-03 · cs.RO
+- `2608.02206` CLEAR: Conflict-aware Learning via Evidence-guided Adaptive Routing for Unified Sparse-View 3D Gauss — 2026-08-03 · cs.CV
+- `2608.02191` DerainSplat: Feed-Forward Clean 3D Gaussian Splatting from Sparse Rainy Views — 2026-08-03 · cs.CV
+- `2608.02177` GSRAIN: Physically Calibrated High-/Low-Frequency Rainfall Synthesis for 3D Gaussian Driving Scenes — 2026-08-03 · cs.CV
+- `2608.02145` UniqueSplat: View-conditioned 3D Gaussian Splatting for Generalizable 3D Reconstruction — 2026-08-03 · cs.CV
+- `2608.02099` DeGS: A Scalable 3DGS Architecture via Decoupled Workload Parsing and Reorganization — 2026-08-03 · cs.AR
+- `2608.02006` ASTRA: Asynchronous Spatio-Temporal Reconstruction via Trajectory Alignment — 2026-08-03 · cs.CV
+- `2608.01958` FAST-GS: Frequency Aware Space-time Gaussian Splatting for Photorealistic Dynamic Novel View Synthes — 2026-08-03 · cs.CV
+- `2608.01761` DecoupleGS: Interactive 3D Gaussian Splatting for End-to-End Autonomous Driving Testing — 2026-08-03 · cs.CV
+- `2608.01726` G-Skin: Learning to Bind 3D Gaussians with Generative Visual Priors — 2026-08-03 · cs.CV
+- `2608.01659` StreamSplat: Streaming Feed-Forward 3D Gaussian Splatting — 2026-08-03 · cs.CV
+- `2608.06404` UAV3DCrop: Benchmarking 3D Reconstruction in Repeated Multi-Angle UAV Crop Surveys — 2026-08-03 · cs.CV
+- `2608.01588` D^2-4DGS: Dual-Depth Guided Sparse-Camera 4D Gaussian Splatting — 2026-08-03 · cs.CV
+- `2608.01969` 3D Gaussian Splatting and Mesh-Based Digital Twins: An Exploratory Study for Virtual Reality Tourism — 2026-08-03 · cs.HC
+- `2608.01186` QuerySplat: Decoupling Geometry and Appearance Representations in 3DGS Prediction — 2026-08-02 · cs.CV
+- `2608.01178` DynActiveGS: Active Gaussian Splatting for Dynamic Scene Reconstruction — 2026-08-02 · cs.CV
+- `2608.00950` Swimm3R: Splatting with Medium-aware SfM for Underwater 3D Reconstruction — 2026-08-02 · cs.CV
+- `2608.00931` Stipple: Real-Time Incremental Gaussian Splatting with Visual-Inertial Tracking — 2026-08-02 · cs.RO
+- `2608.01492` GaussianSelector: Lightweight Human-Guided Object Selection in 3D Gaussian Splatting with Graph Opti — 2026-08-02 · cs.CV
+- `2608.00463` Scene2Sound: Auditory-Grounded Soundscape Generation for 3D Gaussian Worlds — 2026-08-01 · cs.CV
+- `2608.00214` Manifold-GS: Certified Hybrid Assets via Varifold-Conservative Gaussian Splatting — 2026-07-31 · cs.CV
+- `2607.29633` OASIS: Occlusion-aware Single-image Hand Avatar Reconstruction via 3D Gaussian Splatting — 2026-07-31 · cs.CV
+- `2607.29284` FillGS: Filling Observation Gaps in 4D Gaussian Splatting via Viewpoint-Time Selection and Generativ — 2026-07-31 · cs.CV
+- `2607.28834` FocusGS: Spatial Delta Layers for Local Repair and Deterministic Editing of Trained 3D Gaussian Asse — 2026-07-30 · cs.CV
+- `2607.28164` S-Avatar: Diffusion-Guided Gaussian Head Avatars from a Single Image — 2026-07-30 · cs.CV
+- `2607.28049` TSOG: A Format For Temporally And Spatially Ordered Gaussians — 2026-07-30 · eess.IV
+- `2607.28032` Split and Drive: Dual-Axis Disentanglement for Real-Time Gaussian Head Avatars — 2026-07-30 · cs.CV
+- `2607.27634` 4DHumanDiff: Direct Text-to-4DGS Generation for Consistent 360-Degree Dynamic Humans — 2026-07-30 · cs.CV
+- `2607.26889` StructureGS: Structure-aware Gaussian Splatting for Articulated Object Reconstruction — 2026-07-29 · cs.GR
+- `2607.26595` SpatialQ: Understanding 3D Gaussian Splatting Scene Quality via Visual-based MLLM — 2026-07-29 · cs.CV
+- `2607.26578` 3DGBGS: 3D Granular Ball Gaussian Splatting for Compact Novel View Synthesis — 2026-07-29 · cs.CV
+- `2607.26525` AtlasLC: Fast Codec-Ready Compression of Object-Centric 3D Gaussian Splatting — 2026-07-29 · cs.GR
+- `2607.25569` CORF-GS: Real-Time Wireless Radiance Field Reconstruction via Coupled Optical-RF Gaussian Splatting — 2026-07-28 · eess.SP
+- `2607.25362` PanoLess: Environment Reconstruction from Partial Reflective Views — 2026-07-28 · cs.CV
+- `2607.25971` SplatStream: Fine Granular Scalable Gaussian Splatting for Adaptive 3D Scene Streaming — 2026-07-28 · eess.IV
+- `2607.25219` SONG: A Photorealistic 3D Gaussian Simulation Platform for Benchmarking Social Navigation — 2026-07-28 · cs.RO
+- `2607.24403` GenSplatCodec: Feed-Forward Gaussian Splatting Compression via One-Step Diffusion — 2026-07-27 · cs.CV
+- `2607.23861` Head Avatars with Dynamic Explicit Hair — 2026-07-26 · cs.CV
+- `2607.23189` Fashion-3DLR: A Controllable 3D Garment Generation Using Pairwise Fashion Elements for Intelligent D — 2026-07-25 · cs.CV
+- `2607.22997` Real2Sim2Real for Vision-Language-Action Manipulation: An AMD ROCm-Based Pipeline — 2026-07-25 · cs.RO
+- `2607.22890` Meshless Domain Randomization via Explicit Parameter Perturbation of 3D Gaussian Splatting — 2026-07-24 · cs.GR
+- `2607.22780` Inter-Reflective Gaussian Splatting for Robust and Efficient Inverse Rendering — 2026-07-24 · cs.GR
+- `2607.22147` Visual Relocalization from Sparse Views in Aliased and Low-Texture Environments via Novel View Synth — 2026-07-24 · cs.CV
+- `2607.22956` 3D Gaussian Splatting for Scientific Particle Data Compression and Rendering — 2026-07-24 · cs.GR
+- `2607.21099` Construction and Dynamic Update of Channel Gain Maps via 3D Gaussian Splatting — 2026-07-23 · cs.IT
+- `2607.20628` RealVDeblur: One-Step Diffusion for Generalizable Real-World Video Deblurring — 2026-07-22 · cs.CV
+- `2607.20325` MR-Compare: A Mixed-Reality Framework for Spatially Grounded Visual Comparison of 3D Gaussian Splatt — 2026-07-22 · cs.GR
+- `2607.22717` TOM-GS: Editable Video Representation via Temporal Opacity Modulation of Static 3D Gaussians — 2026-07-21 · cs.CV
+- `2607.18067` QIRF Quantum-Inspired Non-Orthogonal Function-Space Compression for 3D Gaussian Splatting — 2026-07-20 · cs.CV
+- `2607.17965` Exploration Matters for Escaping the Blur Trap in 3D Gaussian Splatting — 2026-07-20 · cs.CV
+- `2607.17916` Packet-Loss Robust 3D Gaussian Compression via Atomic Packaging and GNN-based Error Concealment — 2026-07-20 · cs.GR
+- `2607.17896` Locality-Aware Density Control for Efficient Gaussian-based Image Representation — 2026-07-20 · cs.CV
+- `2607.17773` FillGauss: Fine-Grained Filling-Aware Impact Sound Generation for 3D Gaussian Splatting — 2026-07-20 · cs.MM
+- `2607.16926` Splat-based 3D Scene Reconstruction with Extreme Motion-blur — 2026-07-18 · cs.CV
+- `2607.16838` TopoGS: Planar Reconstruction via Topology-aware 3D Gaussian Splatting — 2026-07-18 · cs.CV
+- `2607.16624` SPARE-GS: Structural Parsimony and Resource Efficiency for 3D Gaussian Splatting — 2026-07-18 · cs.CV
+- `2607.16362` OmniStyle-INR: Universal and Multimodal Style Transfer for INRs — 2026-07-17 · cs.CV
+- `2607.15806` HybridSim: A Physics-Learning Hybrid Digital Twin for mmWave Human Sensing — 2026-07-17 · cs.CV
+- `2607.14990` JADE-GS: Joint Allocation of Deblurring Evidence for Event-Assisted 3D Gaussian Splatting — 2026-07-16 · cs.CV
+- `2607.14513` Compression of 3D Gaussian Splatting Data Using GPU-friendly Graphics Texture Coding — 2026-07-16 · cs.CV
+- `2607.14481` Immediate 3D Gaussian Splat Reconstruction of Unordered Input with Global Consistency — 2026-07-16 · cs.CV
+- `2607.14470` G$^2$SR: Geometric Methods for Fast and Memory-Efficient Gaussian-based Surface Reconstruction — 2026-07-16 · cs.CV
+- `2607.14997` AeroAct: Action-Centered World-Action Models for Language-Conditioned Quadrotor Flight — 2026-07-16 · cs.RO
+- `2609.17422` Talking Head Synthesis with Facial Landmark Guidance via 3D Gaussian Splatting — 2026-07-16 · cs.AI
+- `2607.14203` Instant NuRec: Feed-Forward 3D Gaussian Reconstruction for Driving Scene Simulation — 2026-07-15 · cs.GR
+- `2607.13808` Bake It Till You Make It: Ultrafast Spatial Texture-Atlas Splatting — 2026-07-15 · cs.CV
+- `2607.13451` Learning Physics-Guided Residual Dynamics for Deformable Object Simulation — 2026-07-15 · cs.RO
+- `2607.13682` When Variance Is Not an Error Map: Calibrated Uncertainty for Radiative Gaussian Splatting in Sparse — 2026-07-15 · cs.CV
+- `2607.13524` COLMAR: Cooperative View Policy Learning for Multi-Agent Active 3D Reconstruction — 2026-07-15 · cs.RO
+- `2607.16309` SaaF: Scene-Specific Ambiguity-Aware 3D Language Fields towards Interactive Real-World Object Retrie — 2026-07-14 · cs.CV
+- `2607.12785` ExtraGS: Enhancing Endoscopic View Extrapolation via Diffusion-Guided 3D Gaussian Splatting — 2026-07-14 · cs.CV
+- `2607.12362` Implicit 4D Gaussian Splatting for Fast Motion with Large Inter-Frame Displacements — 2026-07-14 · cs.CV
+- `2607.13154` Worlds in One Demo: A Synthetic Data Engine for Learning Open-World Mobile Manipulation — 2026-07-14 · cs.RO
+- `2607.12656` SpeedyGS: Content-Aware 3D Gaussian Splatting Compression via Two-Stage Optimization — 2026-07-14 · eess.SP
+- `2607.12641` GeoFovea-GS: Geometry-Aware Cross-Layer Gaussian Splatting for Wireless Aerial VR — 2026-07-14 · cs.MM
+- `2607.10690` Incremental Online Scene Reconstruction by 3D Gaussian Triangulation — 2026-07-12 · cs.CV
+- `2607.13067` A 3DGS-Driven Dynamic Viewpoint and Vibrotactile Framework for Subsea Teleoperation Validated via fN — 2026-07-10 · cs.RO
+- `2607.08250` On the Design of Mixture-of-Experts for Dynamic Gaussian Splatting — 2026-07-09 · cs.CV
+- `2607.07168` NoDrift3R: Raymap-Guided Coupling for Drift-Robust Unposed Feed-Forward 3D Reconstruction — 2026-07-08 · cs.CV
+- `2607.07452` GeoGS-SLAM: Geometry-Only Gaussian Splatting for Dense Monocular SLAM — 2026-07-08 · cs.RO
+- `2607.07015` EscFOA: Enhancing Spatial Learning for Visually Impaired Learners via Generative Spatial Audio in 36 — 2026-07-08 · cs.SD
+- `2607.06238` PhyMRI-SR: Toward Physics-Aware MRI Image Super-Resolution — 2026-07-07 · cs.CV
+- `2607.05906` GaussFusion: Towards Multimodal 3D Gaussian Pretraining — 2026-07-07 · cs.CV
+- `2607.06699` RoboSnap: One-Shot Real-to-Sim Scene Generation for Generalizable Robot Learning and Evaluation — 2026-07-07 · cs.RO
+- `2607.05598` SSA-3DGS: Unsupervised Removal of Screen-Space Artifacts for 3D Gaussian Splatting — 2026-07-06 · cs.GR
+- `2607.05522` Rendering-Aware Bayesian 3D Gaussian Splatting with Native Uncertainty and Adaptive Complexity Contr — 2026-07-06 · cs.CV
+- `2607.05347` WildSplat: Feedforward Gaussian Splatting from Unposed In-the-Wild Images — 2026-07-06 · cs.CV
+- `2607.05243` GUSH3R: Everyone Everywhere All at Once as Gaussians — 2026-07-06 · cs.CV
+- `2607.04761` DeGenseGS: Geometrically and Semantically Decoupled Surgical Scene Understanding in 4D Gaussian Spla — 2026-07-06 · cs.CV
+- `2607.04127` Real-Time LiDAR Gaussian Splatting SLAM — 2026-07-05 · cs.CV
+- `2607.04144` Semantic-Guided Progressive Object Removal with Gaussian Splatting — 2026-07-05 · cs.RO
+- `2607.03875` MACRO: Training-free Multi-plane Attention for Closeup Render Optimization — 2026-07-04 · cs.CV
+- `2607.03872` SharpSplat: Edge-Regularized 3D Gaussian Splatting for High Fidelity Urban Building Reconstruction f — 2026-07-04 · cs.CV
+- `2607.03855` PRISM3D: Probabilistic Refinement and Robust Initialization for Physically Consistent Scene Modeling — 2026-07-04 · cs.CV
+- `2607.03771` City-Level 3D Surface Reconstruction with Viewpoint Orientation Partitioning and Scene Completion — 2026-07-04 · cs.CV
+- `2607.03765` Sparse-View Surface Reconstruction using Gaussian Splatting through High-Confidence Depth Propagatio — 2026-07-04 · cs.CV
+- `2607.03819` CGGS: Consistency-Augmented Geometric Gaussian Splatting for Ego-Centric 3D Scene Generation — 2026-07-04 · cs.GR
+- `2607.03390` TemporalGS: Training-Free Plug-and-Play Acceleration for 3D Gaussian Splatting Rendering via Tempora — 2026-07-03 · cs.CV
+- `2607.03209` Fast 3D Foundation Model Initialized Gaussian Splatting — 2026-07-03 · cs.CV
+- `2607.02721` Provable Pruning for Efficient 3D Gaussian Splatting via Coresets — 2026-07-02 · cs.CV
+- `2607.02099` X-Splat: Gaussian Splatting for 3D CBCT Generation from Single Panoramic Radiograph — 2026-07-02 · cs.CV
+- `2607.01860` DL-SLAM: Enabling High-Fidelity Gaussian Splatting SLAM in Dynamic Environments based on Dual-Level  — 2026-07-02 · cs.RO
+- `2607.01803` PixGS: Pixel-Space Diffusion for Direct 3D Gaussian Splat Generation — 2026-07-02 · cs.CV
+- `2607.01753` The Turning Point of 3D Plant Phenotyping: 3D Foundation Models Enable Minute-to-Second Cross-Crop R — 2026-07-02 · cs.CV
+- `2607.01708` Consistent Scene Understanding in 3D Gaussian Splatting via Multi-Cue Mask Refinement — 2026-07-02 · cs.CV
+- `2607.01698` Signal Structure-Aware Gaussian Splatting for Large-Scale Scene Reconstruction — 2026-07-02 · cs.CV
+- `2607.01628` Online Segment 3D Gaussians via Launching Virtual Drones — 2026-07-02 · cs.CV
+- `2607.01578` MVFusion-GS: Motion-Variance Guided Temporal Attention for High-Quality Dynamic Gaussian Splatting — 2026-07-02 · cs.CV
+- `2607.01556` Mind the Gap: Standard 3DGS Evaluation Primarily Measures Near-Trajectory Interpolation — 2026-07-02 · cs.CV
+- `2607.00959` GaussianEmoTalker: Real-Time Emotional Talking Head Synthesis with Audio-Driven and Blendshape-Based — 2026-07-01 · cs.CV
+- `2607.00885` Improving Sparse-View 3DGS Generalization via Flat Minima Optimization — 2026-07-01 · cs.CV
+- `2607.01290` AnchorSplat: Fast and Structure Consistent Detail Synthesis for Gaussian Splatting — 2026-07-01 · cs.CV
+- `2607.01200` FastBridge: Closing the Model-Based Realization Gap in Safety Filters on 3D Gaussian Splatting for F — 2026-07-01 · cs.RO
+- `2607.00673` Path Planning in Physically Viable World Models — 2026-07-01 · cs.RO
+- `2607.00157` Progressive Pose-Guided 4D Animal Reconstruction from Monocular Video — 2026-06-30 · cs.CV
+- `2606.31679` Practical High-Fidelity Novel-View Synthesis of Mounted Lepidoptera — 2026-06-30 · cs.GR
+- `2606.31556` AugSplat: Radiance Field-Informed Gaussian Splatting for Sparse-View Settings — 2026-06-30 · cs.CV
+- `2606.31050` Learning Video Dynamics with Predictive Differentiable Rendering — 2026-06-30 · cs.CV
+- `2606.31637` Intrinsic decomposition and editing of 3D Gaussian splats — 2026-06-30 · cs.GR
+- `2606.32036` PointSplat: Compact Gaussian Splatting via Human-Centric Prediction — 2026-06-30 · cs.CV
+- `2606.30809` GaussLite: Online Task-Conditioned 3D Gaussian Splatting for Real-Time Robotic Mapping — 2026-06-29 · cs.CV
+- `2606.30638` Open-Vocabulary and Referring Segmentation for 3D Gaussians Using 2D Detectors — 2026-06-29 · cs.CV
+- `2606.30545` StereoGS: Sparse-View 3D Gaussian Splatting via Stereo Priors — 2026-06-29 · cs.CV
+- `2606.30436` Robust and Efficient Monocular 3D Gaussian SLAM for Kilometer-Scale Outdoor Scenes — 2026-06-29 · cs.CV
+- `2606.30352` FastPano3D: Feed-Forward Indoor Panoramic 3D Reconstruction from a Single Image — 2026-06-29 · cs.CV
+- `2606.30024` IBRSteG: Learning a Generalizable Steganography Framework for 3D Gaussian Splatting — 2026-06-29 · cs.CV
+- `2606.30017` Monte Carlo Energy Aggregation for Mobile 3D Gaussian Splatting — 2026-06-29 · cs.CV
+- `2606.30014` Shell-Supervised Gaussian Splatting for Urban Real-to-Sim Reconstruction — 2026-06-29 · cs.CV
+- `2606.29976` Learning Efficient 4D Gaussian Representations from Monocular Videos with Flow Splatting — 2026-06-29 · cs.CV
+- `2606.29794` UniTriSplat: A Unified 3D Gaussian Splatting Framework with Uniform Spherical Rasterization for Univ — 2026-06-29 · cs.CV
+- `2606.29783` FalconTrack: Photorealistic Auto-Labeled Perception and Physics-Aware Vision-Based Aerial Tracking — 2026-06-29 · cs.RO
+- `2606.29782` Graph-GSReg: Leveraging 3D Scene Graphs for Gaussian Splatting Registration — 2026-06-29 · cs.CV
+- `2606.30869` GRay: Ray Tracing 3D Gaussians Near the Speed of Splats — 2026-06-29 · cs.GR
+- `2606.30861` Editable Physically-based Reflections in Raytraced Gaussian Radiance Fields — 2026-06-29 · cs.GR
+- `2606.30645` VLK: Learning Humanoid Loco-Manipulation from Synthetic Interactions in Reconstructed Scenes — 2026-06-29 · cs.RO
+- `2606.29738` MyGO-Splat: Multi-Objective Closed-Loop Geometric Feedback for RGB-Only Gaussian SLAM — 2026-06-29 · cs.RO
+- `2606.29453` Resonant Brane Splatting for Arbitrary-Scale Super-Resolution — 2026-06-28 · cs.CV
+- `2606.29400` Adaptive Densification for High-Fidelity and Efficient Sparse Gaussian Splatting in Arbitrary-Scale  — 2026-06-28 · cs.CV
+- `2606.29379` DR-GS: Physically-Based Deformable and Relightable 2D Gaussians — 2026-06-28 · cs.CV
+- `2606.29374` L2D2-GS: Learning to Densify for Feedforward Dynamic Gaussian Scene Reconstruction — 2026-06-28 · cs.CV
+- `2606.29329` RAGA: Real Time Ray Traced Gaussian Shadow Casting for 3DGS Avatar-Scene Interaction — 2026-06-28 · cs.CV
+- `2606.29303` Occlusion-Robust Multi-Object Decoupling for Physics-Based Robotic Interaction — 2026-06-28 · cs.CV
+- `2606.29237` MoPe: Motion Permanence for Robust Monocular Gaussian Mapping in Dynamic Environments — 2026-06-28 · cs.RO
+- `2606.28840` DLGStream: Dynamic Language-embedded Guassian Splatting for Open-vocabulary Enabled Free-viewpoint V — 2026-06-27 · cs.CV
+- `2606.28828` Ground4D: Consistency-Aware 4D Reconstruction from Monocular Video — 2026-06-27 · cs.CV
+- `2606.28826` RefGlass-GS: A UAV-Enabled Fusion Framework for Photorealistic, Semantic and Interactive Digitizatio — 2026-06-27 · cs.CV
+- `2606.28820` CoGS: Compositional Dynamic Human-Object Scenes Gaussian Splatting from Monocular Video — 2026-06-27 · cs.CV
+- `2606.28656` SemDynReg: Semantics-Guided Deformation Regularization for Dynamic 3D Gaussian Splatting — 2026-06-27 · cs.CV
+- `2606.28720` CubifyGS: Object-Centric 3D Gaussian Splatting for Lifelong Dynamic Scene Maintenance — 2026-06-27 · cs.RO
+- `2606.28635` AEGIR: Modeling Area Emitters for Indoor Inverse Rendering using Gaussian Splatting — 2026-06-26 · cs.CV
+- `2606.28581` SatSplat: Geometrically-Accurate Gaussian Splatting for Satellite Imagery — 2026-06-26 · cs.CV
+- `2606.27584` CoIn: Comprehensive 2D-3D Inpainting with Gaussian Splatting Guidance — 2026-06-25 · cs.CV
+- `2606.27509` Structured-Li-GS: Structured 3D Gaussians Splatting with LiDAR Incorporation and Spatial Constraints — 2026-06-25 · cs.CV
+- `2606.27223` SatSplatDiff: Geometry-preserving generative refinement for high-fidelity satellite Gaussian Splatti — 2026-06-25 · cs.CV
+- `2606.26754` Capacity-Controlled Multi-View Stylization of 3D Gaussian Splatting — 2026-06-25 · cs.CV
+- `2606.26985` Vis4GS: A Visual Analytic Tool for 3D Gaussian Splatting Reconstruction — 2026-06-25 · cs.GR
+- `2606.26236` Rendering Novel Views of MRI Using 3D Gaussian Splatting — 2026-06-24 · eess.IV
+- `2606.25427` Gastroendoscopy View Synthesis: A New Real Dataset and Evaluation — 2026-06-24 · cs.CV
+- `2606.24874` FLUX3D: High-Fidelity 3D Gaussian Generation with Diffusion-Aligned Sparse Representation — 2026-06-23 · cs.CV
+- `2606.24799` OrbitForge: Text-to-3D Scene Generation via Reconstruction-Anchored Video Synthesis — 2026-06-23 · cs.CV
+- `2606.24796` Pocket-SLAM: Rendering-Area-Aware Pruning for Memory-Efficient 3DGS-SLAM — 2026-06-23 · cs.CV
+- `2606.24628` ArtiTwinSplat: Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos — 2026-06-23 · cs.RO
+- `2606.24361` SignNet-1M: Large-Scale Multilingual Sign Language Video Dataset with Downstream Benchmarks — 2026-06-23 · cs.CV
+- `2606.24353` Open-Vocabulary BEV Segmentation with 3D-Aware Geometric Constraints — 2026-06-23 · cs.CV
+- `2606.24301` MM-TRELLIS: Point-Cloud Guided Multi-Modal 3D Vehicle Generation in Autonomous Driving — 2026-06-23 · cs.CV
+- `2606.24257` 3DCarGen: Scalable 3D Car Generation via 3D-consistent Multi-view Synthesis — 2026-06-23 · cs.CV
+- `2606.24180` Deep Learning Approaches for 3D Medical Scene Completion: From Geometric Modeling to Generative Para — 2026-06-23 · cs.CV
+- `2606.24144` Geometry-Aware Style Transfer in 3D Gaussian Splatting — 2026-06-23 · cs.CV
+- `2606.23688` Lift4D: Harmonizing Single-View 3D Estimation for 4D Reconstruction In-the-Wild — 2026-06-22 · cs.CV
+- `2606.23455` MeGAS: Thermomechanical Dynamic Gaussian Splatting for Thermophysical Scene Editing — 2026-06-22 · cs.CV
+- `2606.23212` Temporally Aware Densification for Dynamic 3D Gaussian Splatting — 2026-06-22 · cs.CV
+- `2606.23031` DrivingVoxels: Compositional Sparse Voxel Rasterization for Dynamic Driving Scene Reconstruction — 2026-06-22 · cs.CV
+- `2606.22481` Lighting-Consistent Object Transfer Across Radiance Fields — 2026-06-21 · cs.GR
+- `2606.22525` Projection-Volume Fidelity Divergence: Diagnosing and Controlling Optimization Drift in Sparse-View  — 2026-06-21 · cs.CV
+- `2606.21898` Mesh2GS: White-Box 3DGS Construction via Plenoptic Sampling — 2026-06-20 · cs.GR
+- `2606.22197` Multi4D: High-Fidelity Dynamic Gaussian Splatting via Multi-Level Competitive Allocation — 2026-06-20 · cs.CV
+- `2606.22091` ACEsplat: Accelerated 3D Gaussian Scene Regression via RGB and Poses Only — 2026-06-20 · cs.RO
+- `2606.21791` Single-Event Upsets in 3D Gaussian Splatting Rendering: Bit-Level Criticality, Spatial Extent, and a — 2026-06-19 · cs.GR
+- `2606.21753` Scene-Level Heterogeneous Physics Simulation with 3D Gaussian Splats — 2026-06-19 · cs.GR
+- `2606.21244` ACE-GS: Acing the Trade-off with Accurate, Compact and Efficient 3D Gaussian Splatting — 2026-06-19 · cs.CV
+- `2606.21527` LOGOS: LiDAR-Only Gaussian Elevation Splatting for Unified Tiny Obstacle Segmentation — 2026-06-19 · cs.RO
+- `2606.21258` Spectral GS-SLAM: Observability-Aware, Degeneracy-Robust Tracking for Real-Time 3D Gaussian Splattin — 2026-06-19 · cs.RO
+- `2606.20842` From Uncertainty to Stability and Fidelity: Guiding Sparse-View 3D Gaussian Splatting with Fisher In — 2026-06-18 · cs.CV
+- `2606.20103` Geometry-Preserving in 3D Gaussian Splatting for LiDAR-Camera Extrinsic Calibration — 2026-06-18 · cs.CV
+- `2606.19874` MMD-SLAM: Structure-Enhanced Multi-Meta Gaussian Distribution-Guided Visual SLAM — 2026-06-18 · cs.RO
+- `2606.20424` LIT-GS: LiDAR-Inertial-Thermal Gaussian Splatting for Illumination-Robust Mapping — 2026-06-18 · cs.RO
+- `2606.19609` Building Drift: Documenting On-Site Construction Adaptations Across Material Lifecycles — 2026-06-17 · cs.HC
+- `2606.19019` FlowObject: Flow Steering for Bridging Generative Priors and Reconstruction Fidelity — 2026-06-17 · cs.CV
+- `2606.18588` Splaxel: Efficient Distributed Training of 3D Gaussian Splatting for Large-scale Scene Reconstructio — 2026-06-17 · cs.DC
+- `2606.19586` One Demo is Worth a Thousand Trajectories: Action-View Augmentation for Visuomotor Policies — 2026-06-17 · cs.RO
+- `2606.19156` Hand-4DGS: Feed-Forward 3D Gaussian Splatting for 4D Hand Reconstruction from Egocentric Videos — 2026-06-17 · cs.CV
+- `2606.18734` Point-Cloud-Assistant Localized Statistical Channel Prediction by Tangent Gaussian Splatting — 2026-06-17 · eess.SP
+- `2606.17432` Edit3DGS: Unified Framework for Dynamic Head Editing via 2D Instruction-Guided Diffusion and 3D Gaus — 2026-06-16 · cs.GR
+- `2606.17935` MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization — 2026-06-16 · cs.CV
+- `2606.17386` TerraTransfer: Learning End-to-End Driving Policies Without Expert Demonstrations — 2026-06-16 · cs.CV
+- `2606.17998` AIGS-Net: Compact Illumination Field Modeling via 2D Gaussian Splatting for Fast Low-Light Image Enh — 2026-06-16 · cs.CV
+- `2606.17520` GASE: Gaussian Splatting-Based Automated System for Reconstructing Embodied-Simulation Environments — 2026-06-16 · cs.RO
+- `2606.16566` Local-GS: Accelerating 3D Gaussian Splatting via Tile-Local Warp Coherence — 2026-06-15 · cs.CV
+- `2606.16278` RealityBridge: Bridging Editable 3D Gaussian Splatting Driving Simulations and Real-World Videos — 2026-06-15 · cs.CV
+- `2606.16232` PolyMerge: Compressing 3D Gaussian Splats with Polytope Coverings for Provably Safe Resource-Constra — 2026-06-15 · cs.RO
+- `2606.17212` Renderable Partial Representations for Dynamic Gaussian Splatting under Incomplete Delivery — 2026-06-15 · cs.GR
+- `2606.16168` Fi-Gaussian: Frequency-Aware Implicit Gaussian Splatting for Single Image Dehazing — 2026-06-15 · cs.CV
+- `2606.16163` Dehaze-GaussianImage: Zero-Shot Dehazing via Efficient 2D Gaussian Splatting Representation — 2026-06-15 · cs.CV
+- `2606.16159` Continuous Splatting meets Retinex: Continuous Gaussian Splatting and Implicit Reflectance Modeling  — 2026-06-15 · cs.CV
+- `2606.15924` TurboGS: Accelerating 3D Gaussian Splatting via Error-Guided Sparse Pixel Sampling and Optimization — 2026-06-14 · cs.CV
+- `2606.15848` EmoZone-Talker: Regional Semantic Control of Audio-Driven 3DGS Talking Heads via Facial Action Units — 2026-06-14 · cs.CV
+- `2606.15659` SpatialAvatar-0: High-Quality 4D Head Avatar with Multi-Stage Reconstruction — 2026-06-14 · cs.CV
+- `2606.13990` SplatlessDF: Continuous Distance Field Mapping with Non-Splatting Gaussians — 2026-06-12 · cs.RO
+- `2606.13655` Flex4DHuman: Flexible Multi-view Video Diffusion for 4D Human Reconstruction — 2026-06-11 · cs.CV
+- `2606.11894` Wild3R: Feed-Forward 3D Gaussian Splatting from Unconstrained Sparse Photo Collection — 2026-06-10 · cs.CV
+- `2606.11841` Scene-Adaptive Nonlinear Tone Curves for Pseudo Ground-Truth Generation in Low-Light 3D Gaussian Spl — 2026-06-10 · cs.CV
+- `2606.11782` Seeing What Matters: Perceptual Wrapper with Common Randomness for 3D Gaussian Splatting — 2026-06-10 · cs.CV
+- `2606.11390` A Scalable PyTorch Abstraction for Multi-GPU Gaussian Splatting — 2026-06-09 · cs.CV
+- `2606.10645` ManiSplat: Manipulation Trajectory Synthesis from Monocular Video via Decoupled 3D Gaussian Splattin — 2026-06-09 · cs.CV
+- `2606.10656` Envision4D: Envisioning Visual Futures via Feed-forward 4D Gaussian Splatting for Autonomous Driving — 2026-06-09 · cs.CV
+- `2606.09018` MaterialClusterGS: Palette-Based Material Decomposition and Physically-Based Relighting with 2D Gaus — 2026-06-08 · cs.GR
+- `2606.09967` ABot-Earth 0.5: Generative 3D Earth Model — 2026-06-08 · cs.CV
+- `2606.09074` REFINE: Super-efficient 3D Gaussian Splatting Pruning via Rendering-Free Primitive Importance — 2026-06-08 · cs.CV
+- `2606.09034` Leveraging NeRF-Rendered Images for 3D Gaussian Splatting — 2026-06-08 · cs.CV
+- `2606.07932` LEGS: Laplacian-Enhanced Gaussian Splatting with a Nonlinear Weighted Loss — 2026-06-06 · cs.CV
+- `2606.07118` QuadVerse: An Integrated Framework Aligning Visual-Physical Reality for Quadruped Simulation — 2026-06-05 · cs.RO
+- `2606.06685` RigPAPR: Rig-Based Animation of Static Neural Point Clouds from a Fixed-Viewpoint Video — 2026-06-04 · cs.CV
+- `2606.05650` GS-NFS: Bandwidth-adaptive Streaming of Dynamic Gaussian Splats and Point Clouds — 2026-06-04 · cs.MM
+- `2606.06690` RPC-GS: Gaussian Splatting with native RPC Rendering for Satellite Imagery — 2026-06-04 · cs.CV
+- `2606.07670` Liquid Neural Networks as a Drop-in Continuous-Time Deformation Field for Dynamic 3D Gaussian Splatt — 2026-06-04 · cs.CV
+- `2606.05491` Unpaired RGB-Thermal Gaussian-Splatting Using Visual Geometric Transformers — 2026-06-03 · cs.CV
+- `2606.03479` PersistGS: Differentiable Physics for Object Permanence in 4D Gaussian Splatting — 2026-06-02 · cs.CV
+- `2606.04158` Multi-Agent Next-Best-View Optimization for Risk-Averse Planning — 2026-06-02 · cs.RO
+- `2606.03682` GN0: Toward a Unified Paradigm for Generation, Evaluation, and Policy Learning in Visual-Language Na — 2026-06-02 · cs.RO
+- `2606.03581` UnsOcc: 3D Semantic Occupancy Prediction in Unstructured Scene via Rendering Fusion — 2026-06-02 · cs.CV
+- `2606.03909` SparseStreet: Sparse Gaussian Splatting for Real-Time Street Scene Simulation — 2026-06-02 · cs.CV
+- `2606.03254` OF$^3$GS: On-the-Fly Feed-Forward 3D Gaussian Splatting from Unposed Images — 2026-06-02 · cs.CV
+- `2606.03120` KC-3DGS: Kurtosis-Constrained Gaussian Splatting for High-Fidelity View Synthesis — 2026-06-02 · cs.CV
+- `2606.02937` BEAST3D: Animal behavioral analysis and neural encoding from multi-view video via Gaussian splatting — 2026-06-01 · q-bio.NC
+- `2606.01573` $\text{VG}^2$GT: Voxel-Gaussian Splatting Visual Geometry Grounded Transformer — 2026-06-01 · cs.CV
+- `2606.01458` LEGS: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting  — 2026-05-31 · cs.RO
+- `2606.00452` Beyond Static Gaussians: An Empirical Investigation of Architectural Paradigms for Dynamic 3D Scene  — 2026-05-30 · cs.CV
+- `2606.00450` Optimizing 3D Gaussian Splatting via Point Cloud Upsampling — 2026-05-30 · cs.CV
+- `2605.31376` LiftNav: Path Planning via Semantic Lifting in TSDF-Guided Gaussian Splatting — 2026-05-29 · cs.RO
+- `2605.30987` Benchmarking Single-Step Inpainting Methods for Multi-Object 3D Gaussian Splatting Scenes — 2026-05-29 · cs.CV
+- `2606.00137` Advances in Neural 3D Mesh Texturing: A Survey — 2026-05-28 · cs.CV
+- `2605.30396` Smaller and Faster 3DGS via Post-Training Dictionary Learning — 2026-05-28 · cs.GR
+- `2605.29549` Learning Representations from 3D Gaussian Splats — 2026-05-28 · cs.CV
+- `2605.29452` Comparative evaluation of photogrammetric reconstruction methods and 3D Gaussian Splatting for road  — 2026-05-28 · cs.CV
+- `2605.28237` POINav: Benchmarking and Enhancing Final-Meters Arrival in Real-World Vision-Language Navigation — 2026-05-27 · cs.RO
+- `2605.29136` Eulerian Gaussian Splatting using Hashed Probability Pyramids — 2026-05-27 · cs.CV
+- `2605.26880` GScomp-QA: A Subjective Dataset for Quality Assessment of Compressed Gaussian Splatting — 2026-05-26 · eess.IV
+- `2605.25029` ParkingWorld: End-to-End Autonomous Parking Reinforcement Learning from Corrective Experience in 3DG — 2026-05-24 · cs.RO
+- `2605.24290` RxGS: Receiver-Generalizable 3D Gaussian Splatting for Radio-Frequency Data Synthesis — 2026-05-22 · cs.NI
+- `2605.21935` Learning to Evolve: Multi-modal Interactive Fields for Robust Humanoid Navigation in Dynamic Environ — 2026-05-21 · cs.RO
+- `2605.22961` OctCGS: Octree-Contextual Gaussian Splatting with Explicit Multi-Order Propagation Modeling for Chan — 2026-05-21 · eess.SP
+- `2605.22147` Flow-based Gaussian Splatting for Continuous-Scale Remote Sensing Image Super-Resolution — 2026-05-21 · cs.CV
+- `2605.21051` Transcoding a 3D Gaussian Splatting Model from a Plenoptic Point Cloud or Mesh without the Original  — 2026-05-20 · eess.IV
+- `2605.20820` AIR: Amortized Image Reconstruction Framework for Self-Supervised Feed-Forward 2D Gaussian Splatting — 2026-05-20 · cs.CV
+- `2605.20566` Conflict-Aware Active Perception and Control in 3D Gaussian Splatting Fields via Control Barrier Fun — 2026-05-19 · cs.RO
+- `2605.19600` FlyMirage: A Fully Automated Generation Pipeline for Diverse and Scalable UAV Flight Data via Genera — 2026-05-19 · cs.RO
+- `2605.16158` Smart target point control for Gaussian Splatting methods — 2026-05-15 · cs.GR
+- `2605.10485` VEGA: Visual Encoder Grounding Alignment for Spatially-Aware Vision-Language-Action Models — 2026-05-11 · cs.RO
+- `2605.09024` Relightable Gaussian Splatting for Virtual Production Using Image-Based Illumination — 2026-05-09 · cs.CV
+- `2605.08713` REAP: Reinforcement-Learning End-to-End Autonomous Parking with Gaussian Splatting Simulator for Rea — 2026-05-09 · cs.RO
+- `2605.07254` High-Fidelity Surface Splatting-Based 3D Reconstruction from Multi-View Images — 2026-05-08 · cs.CV
+- `2605.01232` A Principled Approach for Creating High-fidelity Synthetic Demonstrations for Imitation Learning — 2026-05-02 · cs.RO
+- `2604.24316` Large-Scale Photogrammetric Documentation of St. John's Co-Cathedral: A Workflow for Cultural Herita — 2026-04-27 · cs.GR
