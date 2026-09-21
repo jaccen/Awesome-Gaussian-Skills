@@ -11,7 +11,7 @@
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-697-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-859-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,13 +39,13 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 692 Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 859 Methods instantly, filter by category, sort by citations, click any method card for details.
 
-## 馃摉 Online Book: Spatial & Embodied Intelligence (New!)
+## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
 > ** NEW (Jul 2026)** —A full open-source technical book,  built around **3D Gaussian Splatting** as the spine and weaving together **spatial intelligence** and **embodied intelligence** into one closed loop: *representation → perception → planning → action*.
 
-**[馃摉 Read the Book →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
+**[📖 Read the Book →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
 
 <div align="center">
 
@@ -55,24 +55,24 @@ Search 692 Methods instantly, filter by category, sort by citations, click any m
 
 **Core formula** (echoing `Agent = LLM + Context + Tools`):
 
-> **Embodied Agent = Spatial Representation 脳 Perception 脳 Planning 脳 Action**
+> **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 12 chapters, every method name anchored to this repo's real data (692 Methods, 23 categories, 15 skills), zero fabrication:**
+**What's inside — 12 chapters, every method name anchored to this repo's real data (859 Methods, 23 categories, 15 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
-| 寮曡█ | Why this book | Why 3DGS is the key puzzle piece of Physical AI |
+| 引言 | Why this book | Why 3DGS is the key puzzle piece of Physical AI |
 | CH 01 | NeRF → 3DGS: A paradigm leap | Explicit vs implicit, the three innovations, the alpha-compositing formula |
 | CH 02 | The math & engineering core | Anisotropic Gaussians, differentiable rasterization, adaptive density control, CUDA |
 | CH 03 | From scene to world | Large-scale, dynamic/4D, GS-SLAM, compression & deployment |
 | CH 04 | Semantic Gaussians | CLIP/DINO feature distillation, open-vocabulary 3D segmentation |
-| CH 05 | Editing 路 Generation 路 Asset-ization | Feed-forward reconstruction, SDS generation, animatable assets, PBR relighting |
-| CH 06 | Embodied intelligence basics | VLA lineage (RT/蟺0/GR00T/ReconVLA), simulation, Sim2Real |
+| CH 05 | Editing · Generation · Asset-ization | Feed-forward reconstruction, SDS generation, animatable assets, PBR relighting |
+| CH 06 | Embodied intelligence basics | VLA lineage (RT/π0/GR00T/ReconVLA), simulation, Sim2Real |
 | CH 06 | 3DGS as robot spatial memory | GS-SLAM, map-as-renderer, three tiers of spatial memory |
-| CH 08 | Object-level & articulated understanding | Part-level Gaussians, URDF bridging, the CAD路Mesh路3DGS triangle |
+| CH 08 | Object-level & articulated understanding | Part-level Gaussians, URDF bridging, the CAD·Mesh·3DGS triangle |
 | CH 09 | Agent-driven digital twins | MCP rendering pipeline, gesture interaction, the perception-action loop |
-| CH 10 | World models & the future | Six schools of world models, 3DGS脳World Model, spatial foundation models, Physical AI |
-| 鍚庤 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
+| CH 10 | World models & the future | Six schools of world models, 3DGS×World Model, spatial foundation models, Physical AI |
+| 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 Each chapter ends with hands-on exercises and links back to the repo's method tables, `references/`, and skills —so reading the book and doing the engineering are one seamless flow.
 
@@ -84,7 +84,7 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 692 method names, abstracts, and 15 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 859 method names, abstracts, and 15 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
@@ -152,7 +152,7 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 | **StreamLoD-GS** | —| Streaming | LoD-based progressive streaming with view-dependent quality |
 | **CADDreamer** | CVPR 2025 Highlight | CAD | Text/sketch → CAD B-rep generation |
 | **GaussTrace** | ICML 2026 | Security | 3DGS provenance analysis via LLM reasoning for IP forensics |
-| **GADA** | ICML 2026 | Feed-Forward | Geometry-aware deformable aggregation, 2.13脳 faster FPS |
+| **GADA** | ICML 2026 | Feed-Forward | Geometry-aware deformable aggregation, 2.13× faster FPS |
 | **InvSplat** | arXiv 2026 | Feed-Forward | Inverse feed-forward splatting with intrinsic PBR materials |
 | **MGM** | arXiv 2026 | Relighting | Large material Gaussian model for relightable 3D generation |
 | **DualPhys-GS** | arXiv 2026 | Robustness | Dual physics-guided 3DGS for underwater reconstruction |
@@ -290,7 +290,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 **Problem:** Standard alpha-compositing causes color bleeding at part boundaries of articulated objects. ULF-Loc (CVPR 2026) exposed this feature bias, but no rendering-formulation-level fix exists.
 
-**Approach:** Extend alpha-compositing with part-aware opacity modulation: C(胃) = 危 T岬?路 伪岬?路 蠅_{p(i)}(胃) 路 c岬?胃), where 蠅 penalizes penetration and joint violations, making inter-part penetration regions automatically transparent.
+**Approach:** Extend alpha-compositing with part-aware opacity modulation: C(θ) = Σ Tᵢ · αᵢ · ω_{p(i)}(θ) · cᵢ(θ), where ω penalizes penetration and joint violations, making inter-part penetration regions automatically transparent.
 
 **Path:** 1) Build on gsplat rasterizer. 2) Add FK layer for articulated objects (URDF). 3) Compute penetration/joint violation via SDF. 4) Train on Articulate-100.
 
@@ -366,33 +366,33 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ```
 Awesome-Gaussian-Skills/
-鈹溾攢鈹€ data/                      # Single source of truth (methods.json, categories.json)
-鈹溾攢鈹€ skills/                    # 15 AI Agent skills (SKILL.md format)
-鈹?  鈹溾攢鈹€ _contracts/            # Inter-skill I/O schemas (paper-insight, comparison-report, experiment-plan)
-鈹?  鈹溾攢鈹€ 3dgs-paper-reader/     # Paper reading & summarization
-鈹?  鈹溾攢鈹€ 3dgs-method-compare/   # Method comparison engine (Router)
-鈹?  鈹溾攢鈹€ 3dgs-code-reviewer/    # Code review (104 bug patterns)
-鈹?  鈹溾攢鈹€ 3dgs-experiment-planner/ # Experiment design
-鈹?  鈹溾攢鈹€ nerf-to-3dgs-migrator/ # NeRF→ DGS migration
-鈹?  鈹溾攢鈹€ cad-mesh-3dgs/         # CAD/Mesh/3DGS bridge
-鈹?  鈹溾攢鈹€ cg-paper-writing/      # CG paper writing assistant (Router)
-鈹?  鈹溾攢鈹€ 3dgs-visualizer/       # Research visualization
-鈹?  鈹溾攢鈹€ 3dgs-engineering-guide/ # Engineering deployment (Router)
-鈹?  鈹溾攢鈹€ patent-software-ip/    # Patent & copyright generation
-鈹?  鈹溾攢鈹€ 3dgs-spatial-agent/    # Spatial intelligence agent
-鈹?  鈹溾攢鈹€ 3dgs-mcp-renderer/     # MCP rendering bridge
-鈹?  鈹溾攢鈹€ 3dgs-articulated-reasoner/ # Articulated reasoning & digital twin
-鈹?  鈹溾攢鈹€ 3dgs-compression-deploy/  # Compression & deployment
-鈹?  鈹斺攢鈹€ 3dgs-training-debugger/  # Training failure diagnosis
-鈹溾攢鈹€ mcp-server/                # MCP server v0.8.0 (13 core + 13 experimental tools, gsplat render loop, HTTP+WS :9842)
-鈹溾攢鈹€ bench/                     # Benchmark arena (metrics.py, run_eval.py, leaderboard.json)
-鈹溾攢鈹€ scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
-鈹溾攢鈹€ studio/                    # SplatVerse Studio (bridge + web)
-鈹溾攢鈹€ docs/                      # GitHub Pages interactive explorer
-鈹溾攢鈹€ references/                # Knowledge base (692 Methods, 23 Categories)
-鈹溾攢鈹€ Test/                      # Visualization samples
-鈹溾攢鈹€ changelog/                 # Version history
-鈹斺攢鈹€ assets/                    # Project images
+├── data/                      # Single source of truth (methods.json, categories.json)
+├── skills/                    # 15 AI Agent skills (SKILL.md format)
+│   ├── _contracts/            # Inter-skill I/O schemas (paper-insight, comparison-report, experiment-plan)
+│   ├── 3dgs-paper-reader/     # Paper reading & summarization
+│   ├── 3dgs-method-compare/   # Method comparison engine (Router)
+│   ├── 3dgs-code-reviewer/    # Code review (104 bug patterns)
+│   ├── 3dgs-experiment-planner/ # Experiment design
+│   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS migration
+│   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS bridge
+│   ├── cg-paper-writing/      # CG paper writing assistant (Router)
+│   ├── 3dgs-visualizer/       # Research visualization
+│   ├── 3dgs-engineering-guide/ # Engineering deployment (Router)
+│   ├── patent-software-ip/    # Patent & copyright generation
+│   ├── 3dgs-spatial-agent/    # Spatial intelligence agent
+│   ├── 3dgs-mcp-renderer/     # MCP rendering bridge
+│   ├── 3dgs-articulated-reasoner/ # Articulated reasoning & digital twin
+│   ├── 3dgs-compression-deploy/  # Compression & deployment
+│   └── 3dgs-training-debugger/  # Training failure diagnosis
+├── mcp-server/                # MCP server v0.8.0 (13 core + 13 experimental tools, gsplat render loop, HTTP+WS :9842)
+├── bench/                     # Benchmark arena (metrics.py, run_eval.py, leaderboard.json)
+├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
+├── studio/                    # SplatVerse Studio (bridge + web)
+├── docs/                      # GitHub Pages interactive explorer
+├── references/                # Knowledge base (859 Methods, 23 Categories)
+├── Test/                      # Visualization samples
+├── changelog/                 # Version history
+└── assets/                    # Project images
 ```
 
 Each skill follows the **SKILL.md standard**, compatible with **Claude Code** (`.claude/`), **Cursor** (`.cursor/rules/`), **Windsurf**, and other AI Agent frameworks.
@@ -568,8 +568,8 @@ This registers 3DGS as both an image model (single-frame render) and video model
 
 The Studio Web "Script → Video" page (`/pipeline`) ships a built-in MPT entry:
 
-- **Config panel**: a "馃殌 MoneyPrinterTurbo Integration" group at the bottom of the model config section —enable toggle, service URL, material source, default voice, plus a live connection status (Connected / Not connected). Saving writes the settings into `.env`.
-- **Per-task options**: a "馃殌 MoneyPrinterTurbo Fallback" block at the bottom of the input section —check "Video fallback" and "TTS fallback" to automatically degrade to MPT when any main-pipeline step (3DGS / Toonflow / TTS) fails; when MPT is enabled you can also pick an MPT voice and publish platforms (TikTok / YouTube / Instagram).
+- **Config panel**: a "📖 MoneyPrinterTurbo Integration" group at the bottom of the model config section —enable toggle, service URL, material source, default voice, plus a live connection status (Connected / Not connected). Saving writes the settings into `.env`.
+- **Per-task options**: a "📖 MoneyPrinterTurbo Fallback" block at the bottom of the input section —check "Video fallback" and "TTS fallback" to automatically degrade to MPT when any main-pipeline step (3DGS / Toonflow / TTS) fails; when MPT is enabled you can also pick an MPT voice and publish platforms (TikTok / YouTube / Instagram).
 
 > Note: the bridge auto-loads the project-root `.env` at startup (dependency-free implementation, see `studio/bridge/src/load-env.ts`), so config saved from the UI takes effect **after the bridge restarts**. Launch the bridge from the project root (`npm run dev:bridge` or `scripts/start-dev.ps1`) to ensure the root `.env` is picked up.
 
