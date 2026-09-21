@@ -1,35 +1,38 @@
-# Reddit 发布文案
+# Reddit 发布文案（以书为主角）
 
-**发帖板块**: r/computervision（首选）/ r/MachineLearning / r/3DGS（如有）
-**形式**: 文字帖 + 演示 GIF（用 methods.html 搜索/弹窗/筛选录屏，10 秒内）
-**最佳时间**: 美东周二至周四上午（对应北京时间晚间）
+**板块**: r/computervision（首选）/ r/MachineLearning / r/robotics / r/3DGS
+**形式**: 文字帖 + 电子书首页截图 / 交互式浏览器 GIF（10 秒内）
+**最佳时间**: 美东周二至周四上午（对应北京时间 21:00–23:00）
 
 ---
 
 ## 标题（三选一）
 
-1. I built a searchable, arXiv-verified knowledge base of 859+ 3D Gaussian Splatting methods — with a free interactive explorer
-2. Stop digging through awesome-lists: every 3DGS method here is verified against its actual arXiv paper
-3. Show r/computervision: 15 AI agent skills + MCP server that cover the whole 3DGS research lifecycle
+1. I wrote an open-source ebook on Spatial & Embodied Intelligence through 3D Gaussian Splatting — 859 methods, all arXiv-verified
+2. Show r/computervision: a free, offline-readable textbook connecting 3DGS to embodied AI (with a 859-method knowledge base)
+3. The "JPEG of 3D" is here (Khronos glTF 3DGS, NVIDIA NuRec). I wrote the textbook to actually understand it.
 
 ## 正文
 
-I kept a personal list of 3D Gaussian Splatting papers for my own research, and it grew into something bigger — so I open-sourced it:
+NVIDIA spent GTC/CVPR 2026 telling us Physical AI is the next trillion-dollar wave — and kept pointing at one technique: **3D Gaussian Splatting**. Omniverse NuRec turns sensor captures into robot-testable scenes with 3DGS; InstantNuRec does one-click road reconstruction; Khronos + OpenUSD just ratified 3DGS as the "JPEG of 3D."
 
-**Awesome Gaussian Skills** → https://github.com/jaccen/Awesome-Gaussian-Skills
+But when I went looking for a textbook that connects **3DGS → spatial representation → embodied intelligence → world models → safety**, there wasn't one. Plenty of awesome-lists, no through-line.
+
+So I wrote one: **《深入理解空间智能与具身智能 · 以 3D Gaussian Splatting 为核心》** (free, single-file, offline-readable HTML).
 
 What's inside:
+- A single spine: **embodied agent = spatial representation × perception × planning × action**
+- 11 chapters: NeRF→3DGS, the math/engineering core (incl. a 108+ bug-pattern debugging table), large-scale/dynamic/compression, semantic Gaussians, editing & generation, embodied foundations, 3DGS as spatial memory (GS-SLAM), object & articulated understanding, agent-driven digital twins, world models, safety & provenance
+- Formula boxes, method-comparison tables, end-of-chapter questions, and **62 arXiv-cited references**
 
-- **Interactive explorer** (hosted on GitHub Pages, no install): search / filter / sort every method, click any card for the abstract (EN + 中文) and direct links to paper & code
-- **859 methods, 23 categories** — every arXiv ID was re-verified against the arXiv API (title ↔ name match checked entry by entry)
-- **15 research-grade agent skills** covering the full lifecycle: paper reading, method comparison, code review, experiment planning, NeRF→3DGS migration, compression & deployment, training debugging
-- **A working MCP server** (21 tools) so Claude/other agents can drive the knowledge base directly
-- **Daily arXiv scan** (GitHub Action) that reports newly submitted 3DGS papers against the database
+It's backed by an open, entry-by-entry arXiv-verified knowledge base:
+- **859 3DGS methods / 23 categories**, every arXiv ID re-checked against the paper (method name must appear in title/abstract)
+- **16 AI engineering skills** (paper reading, method comparison, experiment planning, training debugging…)
+- an **MCP server with 34 tools** so agents can query the base directly
 
-The honest part: this started as a web-scraped catalog, and when I audited it properly I found a bunch of bad entries — method names that don't exist and IDs pointing to unrelated papers. I deleted or fixed 181 of them and now ship with a "verified" flag per entry instead of inflated numbers. Better 678 real ones than 858 with junk.
+Read it / star the repo / open a PR: {{EBOOK_URL}}
+(repo: https://github.com/jaccen/Awesome-Gaussian-Skills)
 
-Feedback welcome — especially on which method categories are missing. Issues and PRs open.
+The honest part: "looks correct" and "is correct" are different. Every entry is traceable to source. Feedback and missing categories welcome.
 
-**评论预案**:
-- 有人问"跟 awesome-3dgs 有什么区别" → 强调：结构化 JSON 知识库 + 逐条核验 + agent 可消费（MCP/skills），不是链接清单
-- 有人报错链 → 致谢 + 请提 issue，说明"每条都有 sources 字段标注数据来源，可追溯"
+**评论预案**: 见 hackernews-showhn.md 首评（how verified / why JSON not a DB / why not a website）。

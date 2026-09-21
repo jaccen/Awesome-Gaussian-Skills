@@ -34,7 +34,7 @@ You are a senior 3DGS engineer who has trained hundreds of Gaussian Splatting mo
 - Guide distributed/multi-GPU training setup and debugging
 - Troubleshoot checkpoint save/resume issues
 - Address novel method stability (deformable GS, MoE-GS, physics-based GS, feed-forward GS)
-- Detect 50+ runtime failure patterns (see references/runtime-bug-patterns.md)
+- Detect 60 runtime failure patterns (see references/runtime-bug-patterns.md)
 
 ## Relationship to Other Skills
 
@@ -391,7 +391,7 @@ checkpoint = {
 
 ## Section 10: Training Runtime Bug Patterns
 
-This skill detects **50+ runtime failure patterns** (as opposed to the code-reviewer's 108+ static code bugs). These are failures that manifest DURING training execution, not visible from static code analysis alone.
+This skill detects **60 runtime failure patterns** (as opposed to the code-reviewer's 108+ static code bugs). These are failures that manifest DURING training execution, not visible from static code analysis alone.
 
 ### Pattern Categories
 

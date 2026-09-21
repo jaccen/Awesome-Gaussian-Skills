@@ -1,4 +1,5 @@
 ﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -68,10 +69,11 @@ Search 859 Methods instantly, filter by category, sort by citations, click any m
 | CH 04 | Semantic Gaussians | CLIP/DINO feature distillation, open-vocabulary 3D segmentation |
 | CH 05 | Editing · Generation · Asset-ization | Feed-forward reconstruction, SDS generation, animatable assets, PBR relighting |
 | CH 06 | Embodied intelligence basics | VLA lineage (RT/π0/GR00T/ReconVLA), simulation, Sim2Real |
-| CH 06 | 3DGS as robot spatial memory | GS-SLAM, map-as-renderer, three tiers of spatial memory |
+| CH 07 | 3DGS as robot spatial memory | GS-SLAM, map-as-renderer, three tiers of spatial memory |
 | CH 08 | Object-level & articulated understanding | Part-level Gaussians, URDF bridging, the CAD·Mesh·3DGS triangle |
 | CH 09 | Agent-driven digital twins | MCP rendering pipeline, gesture interaction, the perception-action loop |
 | CH 10 | World models & the future | Six schools of world models, 3DGS×World Model, spatial foundation models, Physical AI |
+| CH 11 | Security, provenance & copyright | 3DGS watermarking, GaussTrace forensics, adversarial attacks, IP management |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 Each chapter ends with hands-on exercises and links back to the repo's method tables, `references/`, and skills —so reading the book and doing the engineering are one seamless flow.

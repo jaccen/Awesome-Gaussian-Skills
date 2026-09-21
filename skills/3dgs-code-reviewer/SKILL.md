@@ -1,6 +1,6 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 104 known bug patterns including compression, forensics, SLAM, feed-forward, and method-specific failure patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
+description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 108+ known bug patterns including compression, forensics, SLAM, feed-forward, and method-specific failure patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
 license: Apache-2.0
 user-invocable: true
 metadata:
