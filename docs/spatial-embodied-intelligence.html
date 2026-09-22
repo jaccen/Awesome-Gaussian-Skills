@@ -269,7 +269,9 @@
   .tl-item .tl-date{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--accent,var(--primary))}
   .tl-item .tl-text{font-size:14px;color:var(--text)}
   .tl-item .tl-text em{color:var(--text-2);font-style:normal}
-</style><body>
+</style>
+</head>
+<body>
 <div id="progress"></div>
 
 <header class="topbar">
@@ -296,8 +298,10 @@
     <div class="side-label">目录</div>
     <nav id="toc">
       <a href="#intro"><span class="ch-num">00</span> 引言 · 为什么写这本书</a>
-      <a href="#ch1"><span class="ch-num">01</span> 从 NeRF 到 3DGS：范式跃迁</a>
+      <a href="#ch0"><span class="ch-num">前</span> 落地前置：要不要做、能不能做</a>
+      <a href="#ch1"><span class="ch-num">01</span> 从 NeRF 到 3DGS：空间表征的范式跃迁</a>
       <a href="#ch2"><span class="ch-num">02</span> 3DGS 的数学与工程内核</a>
+      <a href="#capture"><span class="ch-num">操</span> 数据采集 SOP · 决定上限的第一步</a>
       <a href="#ch3"><span class="ch-num">03</span> 从场景到世界：大规模·动态·压缩</a>
       <a href="#ch4"><span class="ch-num">04</span> 语义高斯：让空间被理解</a>
       <a href="#ch5"><span class="ch-num">05</span> 编辑·生成·资产化</a>
@@ -307,7 +311,10 @@
       <a href="#ch9"><span class="ch-num">09</span> Agent 驱动的数字孪生与交互</a>
       <a href="#ch10"><span class="ch-num">10</span> 世界模型与未来展望</a>
       <a href="#ch11"><span class="ch-num">11</span> 安全、溯源与版权保护</a>
+      <a href="#ch12"><span class="ch-num">12</span> 从采集到交付：端到端工程链路</a>
+      <a href="#ch13"><span class="ch-num">13</span> 产业落地剧本：六个行业</a>
       <a href="#appendix"><span class="ch-num">附</span> 附录 · 数据集与评估基准</a>
+      <a href="#practice-index"><span class="ch-num">实</span> 实践资源索引：从书到工程</a>
       <a href="#references"><span class="ch-num">引</span> 引用与延伸阅读</a>
       <a href="#afterword"><span class="ch-num">后</span> 后记 · 3DGS 会被吃掉吗</a>
     </nav>
@@ -334,8 +341,8 @@
       </div>
       <div class="ribbons">
         <img alt="methods" src="https://img.shields.io/badge/Methods-872+-9cf.svg">
-        <img alt="categories" src="https://img.shields.io/badge/Categories-25-green.svg">
-        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-15-22c55e.svg">
+        <img alt="categories" src="https://img.shields.io/badge/Categories-23-green.svg">
+        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-16-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
       </div>
     </div>
@@ -345,19 +352,25 @@
       <div class="sec-title">章节速览</div>
       <div class="card-grid">
         <a class="ch-card c-intro" href="#intro"><span class="tag">引言</span><h3>为什么写这本书</h3><p>空间智能与具身智能的百年交汇，3DGS 为何是关键拼图，以及本书的核心公式与方法论。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c1" href="#ch1"><span class="tag">第 1 章</span><h3>从 NeRF 到 3DGS：范式跃迁</h3><p>显式 vs 隐式表征，体渲染与辐射场，3DGS 三大创新为何让它在一年内引爆。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card" href="#ch0" style="--accent:var(--amber,#b45309)"><span class="tag">前置</span><h3>落地前置：要不要做、能不能做</h3><p>技术选型矩阵、「不要用 3DGS 的八种情况」、三条阅读路径与三十秒选型决策器。</p><span class="go">项目负责人先读 →</span></a>
+        <a class="ch-card c1" href="#ch1"><span class="tag">第 1 章</span><h3>从 NeRF 到 3DGS：空间表征的范式跃迁</h3><p>显式 vs 隐式表征，体渲染与辐射场，3DGS 三大创新为何让它在一年内引爆。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c2" href="#ch2"><span class="tag">第 2 章</span><h3>3DGS 的数学与工程内核</h3><p>各向异性高斯、可微光栅化、自适应密度控制与 CUDA 工程的完整拆解。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c3" href="#ch3"><span class="tag">第 3 章</span><h3>从场景到世界</h3><p>大规模重建、动态/4D 高斯、SLAM 实时建图与压缩部署的工程化道路。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card" href="#capture" style="--accent:var(--amber,#b45309)"><span class="tag">实操</span><h3>数据采集 SOP：决定上限的第一步</h3><p>设备选型、轨迹设计、曝光七条硬规则、尺度基准四法，以及 12 项可勾选的现场 checklist。</p><span class="go">开工前必读 →</span></a>
+        <a class="ch-card c3" href="#ch3"><span class="tag">第 3 章</span><h3>从场景到世界：大规模·动态·压缩</h3><p>大规模重建、动态/4D 高斯、SLAM 实时建图与压缩部署的工程化道路。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c4" href="#ch4"><span class="tag">第 4 章</span><h3>语义高斯</h3><p>语言/语义高斯、开放词汇 3D 分割——空间智能的"眼睛"如何长出来。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c5" href="#ch5"><span class="tag">第 5 章</span><h3>编辑·生成·资产化</h3><p>从重建到创造：前馈重建、文本/图像到 3DGS、可动画资产与材质重照明。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c6" href="#ch6"><span class="tag">第 6 章</span><h3>具身智能基础</h3><p>VLA 谱系、仿真平台、Sim2Real 鸿沟与数据飞轮——机器人如何"长记性"。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c7" href="#ch7"><span class="tag">第 7 章</span><h3>3DGS 作为空间记忆</h3><p>GS-SLAM 把高斯地图变成"可渲染记忆"，导航决策如何在其中推理。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c7" href="#ch7"><span class="tag">第 7 章</span><h3>3DGS 作为机器人空间记忆</h3><p>GS-SLAM 把高斯地图变成"可渲染记忆"，导航决策如何在其中推理。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c8" href="#ch8"><span class="tag">第 8 章</span><h3>物体级与铰接式理解</h3><p>part-level 高斯、铰接资产与 CAD·Mesh·3DGS 桥接——操作的前置条件。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c9" href="#ch9"><span class="tag">第 9 章</span><h3>Agent 驱动的数字孪生</h3><p>MCP 渲染管线、手势交互、3DGS 作为可交互世界，串起感知与行动闭环。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c10" href="#ch10"><span class="tag">第 10 章</span><h3>世界模型与未来</h3><p>世界模型六大学派、3DGS×World Model 交叉、空间基础模型与 Physical AI。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c10" href="#ch10"><span class="tag">第 10 章</span><h3>世界模型与未来展望</h3><p>世界模型六大学派、3DGS×World Model 交叉、空间基础模型与 Physical AI。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#ch11" style="--accent:var(--red,#e8453c)"><span class="tag">第 11 章</span><h3>安全、溯源与版权保护</h3><p>3DGS 水印谱系、GaussTrace 溯源、对抗攻击面、IP 管理与工业合规。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，3DGS 与具身智能的主流评测体系全景。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card" href="#ch12" style="--accent:var(--cyan)"><span class="tag">第 12 章</span><h3>从采集到交付：端到端工程链路</h3><p>十个环节的工具选型与卡点、格式与坐标系、成本工期量级表、项目失败 Top 10。</p><span class="go">工程主线 →</span></a>
+        <a class="ch-card" href="#ch13" style="--accent:var(--pink)"><span class="tag">第 13 章</span><h3>产业落地剧本：六个行业</h3><p>文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维六个行业剧本。</p><span class="go">对号入座 →</span></a>
+        <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，交付指标换算与验收报告模板。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card" href="#practice-index" style="--accent:var(--green)"><span class="tag">索引</span><h3>实践资源索引：从书到工程</h3><p>16 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器，章节到可运行资源的对照表。</p><span class="go">动手 →</span></a>
         <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>60+ 权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card" href="#afterword" style="--accent:var(--text-3)"><span class="tag">后记</span><h3>3DGS 会被吃掉吗</h3><p>显式表征与世界模型的终局关系，以及这本书写完时仍未有答案的问题。</p><span class="go">收尾 →</span></a>
       </div>
     </div>
 
@@ -436,9 +449,144 @@
         <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 原始 3DGS 仓库 (graphdeco-inria)</a>
         <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> awesome-3D-gaussian-splatting (MrNeRF)</a>
         <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 872+ 方法浏览器</a>
-        <a href="#ch1"><span class="ico">→</span> 下一章：范式跃迁</a>
+        <a href="#ch0"><span class="ico">→</span> 下一节：落地前置——先问要不要做</a>
       </div>
     </section>
+
+    <!-- ===================== 第 0 章 · 落地前置 ===================== -->
+    <section class="chapter" id="ch0" style="--accent:var(--amber,#b45309)">
+      <div class="chapter-head"><span class="no">前置</span><h2>落地前置：要不要做、能不能做</h2></div>
+      <p class="chapter-sub">技术选型矩阵 · 不要在哪些项目上用 3DGS · 三条阅读路径 · 交互决策器</p>
+
+      <p class="lead">前面说 3DGS 让"空间"成为可微、实时、可被 Agent 调用的第一类数据结构。但这句话对项目负责人只回答了一半——他还必须先回答另外两个问题：<em>这个项目该不该用 3DGS？</em>以及<em>如果要用，代价是什么？</em>本章不谈数学，只谈决策。它是全书唯一一章可以<strong>单独读完就去做判断</strong>的内容。</p>
+
+      <h3><span class="mi">①</span> 先选一条阅读路径</h3>
+      <p>这本书现在的读者不止一类。三条路径对应三种问题，不必通读：</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:14px 0 6px">
+        <div style="border:1px solid var(--border);border-radius:var(--radius-sm,8px);padding:14px 16px;background:var(--surface-2)">
+          <div style="font-size:13px;font-weight:700;color:var(--accent,var(--primary));margin-bottom:6px">我是研究者</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin:0 0 8px">关心方法边界与可发表的缺口。</p>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.7;margin:0"><b>路径</b>：第 1–5 章（内核与表征）→ 第 10 章（世界模型）→ 每章末尾"研究前沿方向"。第 12、13 章可略读，只看其中的失败清单。</p>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:var(--radius-sm,8px);padding:14px 16px;background:var(--surface-2)">
+          <div style="font-size:13px;font-weight:700;color:var(--accent,var(--primary));margin-bottom:6px">我是工程师</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin:0 0 8px">要把它跑起来、压下去、接进系统。</p>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.7;margin:0"><b>路径</b>：第 2 章（调参表与失败模式排查表）→ 采集 SOP → 第 3 章（压缩）→ 第 12 章（端到端链路）。每章末尾"工程 Checkpoint"是验收清单。</p>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:var(--radius-sm,8px);padding:14px 16px;background:var(--surface-2)">
+          <div style="font-size:13px;font-weight:700;color:var(--accent,var(--primary));margin-bottom:6px">我是项目负责人</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin:0 0 8px">要决定接不接、报多少钱、怎么验收。</p>
+          <p style="font-size:12.5px;color:var(--text-2);line-height:1.7;margin:0"><b>路径</b>：本章（选型与红线）→ 采集 SOP（工期大头）→ 第 12 章（成本工期与失败 Top 10）→ 第 13 章（对号入座的行业剧本）→ 附录（验收指标换算）。技术章节按需查。</p>
+        </div>
+      </div>
+
+      <h3><span class="mi">②</span> 技术选型矩阵：五条路线的正面比较</h3>
+      <p>三维重建不是只有 3DGS。下面这张表按<strong>交付时会真正卡住你的维度</strong>横评五条主流路线。读法：先找到你项目里"最不能妥协"的那一行，看哪一列具备可行性。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:20%">关键维度</th><th style="width:16%">3DGS</th><th style="width:16%">摄影测量网格</th><th style="width:16%">NeRF</th><th style="width:16%">激光点云</th><th>手工建模</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">视觉保真度</td><td class="o">★★★ 照片级，含视角相关高光</td><td class="o">★★ 贴图尚可，几何决定上限</td><td class="o">★★★ 最高但慢</td><td class="o">★ 无颜色或需另配</td><td class="o">★★ 取决于美术</td></tr>
+          <tr><td class="mn">几何精度</td><td class="o">★★ 间接获得，需额外提取</td><td class="o">★★★ 密集匹配，可做测量</td><td class="o">★ 隐式，提面质量差</td><td class="o">★★★ 毫米级，最可靠</td><td class="o">★★★ 按图纸</td></tr>
+          <tr><td class="mn">端侧实时渲染</td><td class="o">★★★ 原生优势</td><td class="o">★★★ 成熟管线</td><td class="o">✗ 推理即瓶颈</td><td class="o">★★ 点渲染需处理</td><td class="o">★★★ 最轻</td></tr>
+          <tr><td class="mn">可编辑性</td><td class="o">★★ 可增删改，非拓扑编辑</td><td class="o">★★★ 标准网格工具链</td><td class="o">✗ 几乎不可编辑</td><td class="o">★ 点云编辑困难</td><td class="o">★★★ 源生可编辑</td></tr>
+          <tr><td class="mn">玻璃 / 镜面</td><td class="o">✗ 典型失效区</td><td class="o">★ 同样失效但可手工补</td><td class="o">★ 同样失效</td><td class="o">✗ 穿透或缺失</td><td class="o">★★★ 手写材质</td></tr>
+          <tr><td class="mn">大体量 / 城市级</td><td class="o">★★ 分块训练，接缝是难点</td><td class="o">★★★ 成熟瓦片体系</td><td class="o">✗ 规模受限</td><td class="o">★★★ 机载/车载成熟</td><td class="o">✗ 人力不可行</td></tr>
+          <tr><td class="mn">包体体积</td><td class="o">★★ 需压缩，压缩后可控</td><td class="o">★★★ 小</td><td class="o">★ 权重+推理开销</td><td class="o">★★ 密集点云偏大</td><td class="o">★★★ 最小</td></tr>
+          <tr><td class="mn">下游可计算</td><td class="o">★★★ 可微、可挂语义、可查询</td><td class="o">★★ 需 UV 与拓扑</td><td class="o">✗ 黑盒</td><td class="o">★★ 几何计算友好</td><td class="o">★★ 需绑定语义</td></tr>
+          <tr><td class="mn">数据获取成本</td><td class="o">★★★ 手机/无人机即可</td><td class="o">★★ 需规范航线</td><td class="o">★★★ 同 3DGS</td><td class="o">★ 设备昂贵</td><td class="o">✗ 纯人力</td></tr>
+        </tbody>
+      </table>
+      <div class="callout note">
+        <span class="ct">③ 一句话判据</span>
+        当项目的核心诉求是<strong>"高保真 + 能实时看 + 还要能被程序查询或编辑"</strong>时，3DGS 是当下综合最优解；当核心诉求是<strong>"可测量、可制造、可编辑拓扑"</strong>时，它就不是——这时候 3DGS 的正确位置是<em>作为中间产物</em>：先用它出视觉与语义，再转成网格交给下游（第 8 章的 CAD·Mesh·3DGS 桥接）。
+      </div>
+
+      <h3><span class="mi">③</span> 不要用 3DGS 的八种情况</h3>
+      <p>第 3 章⑤讨论的是<strong>算法边界</strong>（模型在什么输入上会崩），这里讨论的是<strong>项目边界</strong>（什么需求不该接）。两者不等价——有些项目算法能跑通，但做下来一定亏。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:26%">情况</th><th style="width:37%">为什么是坑</th><th>替代方案</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">场景主体是玻璃 / 镜面 / 水面</td><td class="o">光度一致性假设失效，高斯基元会弥散成雾团或碎玻璃，几何完全错误</td><td class="o">手工建模 + 材质；或引入光线追踪类方法，代价是慢一个数量级</td></tr>
+          <tr><td class="mn">要求毫米级公差的可测量交付</td><td class="o">3DGS 的几何是优化副产品，误差分布不均匀，无法出具测量级精度报告</td><td class="o">激光扫描；或摄影测量网格 + 控制点平差</td></tr>
+          <tr><td class="mn">需要物理仿真 / 碰撞 / 有限元</td><td class="o">高斯没有拓扑、没有质量、没有材质本体，不是实体</td><td class="o">3DGS 出视觉，网格出物理，两者配准后联合使用</td></tr>
+          <tr><td class="mn">需要反复改拓扑与 UV</td><td class="o">"把柜门挪 10 厘米"这类编辑在网格里是分钟级，在高斯场里要重训</td><td class="o">先转网格再编辑；或接受"重训"成本并写进合同</td></tr>
+          <tr><td class="mn">无纹理长廊 / 白墙 / 重复纹理</td><td class="o">SfM 位姿先漂，重建必然糊——问题出在输入，不在 3DGS</td><td class="o">补纹理、加参照物、引入深度/激光辅助位姿</td></tr>
+          <tr><td class="mn">人流车流无法清场</td><td class="o">运动物体产生鬼影与拉丝，后期清理成本可能超过重拍</td><td class="o">谈清场窗口（夜间/闭馆）；或做运动掩蔽，效果打折</td></tr>
+          <tr><td class="mn">端侧包体预算 &lt; 5 MB 且机型很旧</td><td class="o">压缩有断崖点（第 3 章④），越过硬阈值画质崩且低端机仍跑不动</td><td class="o">改用网格 + 烘焙贴图；或降级为预渲染视频/全景图</td></tr>
+          <tr><td class="mn">要求真实尺度但拿不到尺度基准</td><td class="o">纯视觉 SfM 恢复的是任意相似变换，尺度是浮动的，甲方量出来会说你错了</td><td class="o">RTK/GPS、已知尺寸参照物、AprilTag，或激光辅助——必须在采集阶段解决</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <span class="ct">⚠ 反过来，这五种情况最香</span>
+        ① 大体量高保真漫游（园区/展馆/景区，网格方案成本失控）；② 要实时而不只是出图；③ 下游还要挂语义、做查询、接 Agent（第 4、9 章）；④ 场景会变、需要周期性重扫（采集+重训比人工改模型便宜）；⑤ 同时要"看起来真"和"几何能提"（一份数据两种产出）。这五条里命中两条以上，基本可以放心推进。
+      </div>
+
+      <h3><span class="mi">④</span> 三十秒选型决策器</h3>
+      <p>五个问题，输出结果与建议路线。这只是<strong>初筛</strong>——真正拍板还需要看第 12 章的成本表和第 13 章的行业剧本。</p>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-sm,8px);padding:16px 18px;background:var(--surface-2);margin:12px 0 6px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+          <label style="font-size:13px;color:var(--text-2);display:block">交付目标
+            <select id="agsQ1" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+              <option value="visual">视觉漫游 / 展示</option>
+              <option value="measure">精确测量 / 出图</option>
+              <option value="asset">可编辑资产</option>
+              <option value="sim">仿真训练环境</option>
+              <option value="semantic">语义查询 / Agent 调用</option>
+            </select>
+          </label>
+          <label style="font-size:13px;color:var(--text-2);display:block">场景主体材质
+            <select id="agsQ2" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+              <option value="diffuse">漫反射为主（墙/地/家具）</option>
+              <option value="glass">大量玻璃 / 镜面 / 水面</option>
+              <option value="plain">大量无纹理白墙 / 长廊</option>
+            </select>
+          </label>
+          <label style="font-size:13px;color:var(--text-2);display:block">端侧与包体预算
+            <select id="agsQ3" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+              <option value="desktop">桌面 GPU / 大屏</option>
+              <option value="flagship">移动旗舰，几十 MB 可接受</option>
+              <option value="lowend">移动中低端，&lt;10 MB</option>
+              <option value="none">不出端侧，只要离线出图</option>
+            </select>
+          </label>
+          <label style="font-size:13px;color:var(--text-2);display:block">能否清场（无人车干扰）
+            <select id="agsQ4" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+              <option value="yes">能，有专用窗口</option>
+              <option value="partial">部分，需掩蔽处理</option>
+              <option value="no">不能，始终有人流</option>
+            </select>
+          </label>
+          <label style="font-size:13px;color:var(--text-2);display:block">几何精度要求
+            <select id="agsQ5" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+              <option value="look">看起来像就行</option>
+              <option value="cm">厘米级</option>
+              <option value="mm">毫米级，要出测量报告</option>
+            </select>
+          </label>
+        </div>
+        <button id="agsPickBtn" style="margin-top:14px;padding:8px 18px;border:1px solid var(--accent,var(--primary));background:var(--accent,var(--primary));color:#fff;border-radius:6px;font-size:13px;cursor:pointer">给我建议</button>
+        <div id="agsPickOut" style="margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent,var(--primary));background:var(--surface);font-size:13.5px;line-height:1.75;color:var(--text)">选择后点击上方按钮，这里会给出路线建议与对应章节。</div>
+      </div>
+
+      <div class="callout key">
+        <span class="ct">★ 决策之后，下一步看什么</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li><b>要继续推进</b>：直接跳到<a href="#capture">数据采集 SOP</a>——采集是项目工期与质量的最大变量，先把它定死。</li>
+          <li><b>要估成本排期</b>：<a href="#ch12">第 12 章</a>的成本工期量级表，以及同一章的项目失败 Top 10（签合同前必读）。</li>
+          <li><b>要找同类项目参照</b>：<a href="#ch13">第 13 章</a>六个行业剧本，按场景对号入座。</li>
+          <li><b>要写验收条款</b>：<a href="#appendix">附录</a>的"论文指标 ↔ 交付指标"换算表，别把 PSNR 写进合同。</li>
+          <li><b>国内项目</b>：先看<a href="#ch11">第 11 章⑦</a>的合规与资质红线，这是"能不能做"的前提，不是收尾工作。</li>
+        </ul>
+      </div>
+
+      <div class="links">
+        <a href="#capture"><span class="ico">→</span> 下一步：数据采集 SOP</a>
+        <a href="#ch12"><span class="ico">→</span> 成本工期与失败清单</a>
+        <a href="#ch13"><span class="ico">→</span> 六个行业剧本</a>
+        <a href="#ch1"><span class="ico">→</span>或直接进入技术主线：范式跃迁</a>
+      </div>
+    </section>
+
     <!-- ===================== 第 1 章 ===================== -->
     <section class="chapter" id="ch1" style="--accent:var(--blue)">
       <div class="chapter-head"><span class="no">CH 01</span><h2>从 NeRF 到 3DGS：空间表征的范式跃迁</h2></div>
@@ -460,7 +608,7 @@
 
       <div class="formula-box">
         <span class="lbl">3DGS 的离散 alpha 合成</span>
-        <span class="eq">C(𝐮) = Σ<sub>i∈N</sub> cᵢ · αᵢ · Π<sub>j<i</sub>(1 − αⱼ)</span>
+        <span class="eq">C(𝐮) = Σ<sub>i∈N</sub> cᵢ · αᵢ · Π<sub>j&lt;i</sub>(1 − αⱼ)</span>
         <span class="desc">第 i 个高斯对像素 𝐮 的颜色贡献 = 它的颜色 cᵢ × 它的不透明度 αᵢ × 前面所有高斯的透射率。这正是同一渲染方程、两种实现命运的分水岭：NeRF 逐像素采样，3DGS 逐高斯投影。</span>
       </div>
 
@@ -508,7 +656,16 @@
           <li>体渲染积分的连续形式与 3DGS 的离散 alpha 合成，在什么条件下两者会给出不同结果？</li>
         </ol>
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>已对照第 0 章的选型矩阵确认：本项目的核心诉求确实落在 3DGS 的优势区，而不是几何精度或拓扑编辑。</li>
+          <li>交付形态已明确：离线出图 / 可实时漫游 / 需挂语义供程序查询——三者对后续链路的要求完全不同。</li>
+          <li>已统计场景中玻璃、镜面、水面等失效材质的占比，评估是否需要额外方案兜底。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 2 章 ===================== -->
     <section class="chapter" id="ch2" style="--accent:var(--purple)">
@@ -649,7 +806,144 @@
       <div class="warn" style="border-left:3px solid var(--orange);padding:10px 14px;margin:14px 0;background:rgba(255,140,0,.05);border-radius:4px;font-size:13.5px">
         <strong>⚠ 实践陷阱</strong>：很多失败模式不是代码 bug，而是<em>输入数据问题</em>——COLMAP 位姿错误、图像曝光不一致、背景运动物体（行人/车辆）未掩蔽。在调参之前，先用 <code>3dgs-code-reviewer</code> 技能检查代码实现，再用 <code>3dgs-training-debugger</code> 诊断训练症状。本仓库的知识库记录了 108+ 个静态代码 bug 模式和 60 个运行时失败模式——覆盖了 3DGS 训练实践中 90% 以上的常见问题。
       </div>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>关键超参已记录并可复现：位置梯度阈值、透明度下限、致密化间隔、clone 上限、SH 阶梯切换点。</li>
+          <li>训练曲线已归档：PSNR 与高斯数量两条曲线均已趋于平稳，无持续线性增长。</li>
+          <li>第 2 章⑥的失败模式排查表已逐项对照，排除 floater、背景塌缩、视角崩坏等已知症状。</li>
+          <li>输入数据质量已先行排查：位姿正确率、曝光一致性、动态物体——避免在脏数据上调参。</li>
+        </ul>
+      </div>
+</section>
+    <!-- ===================== 数据采集 SOP ===================== -->
+    <section class="chapter" id="capture" style="--accent:var(--amber,#b45309)">
+      <div class="chapter-head"><span class="no">实操</span><h2>数据采集 SOP：决定上限的第一步</h2></div>
+      <p class="chapter-sub">设备与轨迹 · 重叠率与图像数 · 曝光与尺度基准 · 清场与脱敏 · 现场 checklist</p>
+
+      <p class="lead">第 2 章⑥结尾留下过一句话：<em>很多失败模式不是代码 bug，而是输入数据问题。</em>这一章把那句话展开成可执行的动作。在真实项目里，重建质量的天花板在按下快门的那一刻就定死了——后面所有的调参、加正则、换 backbone，都只是在这个天花板下面做优化。而项目超期的头号原因，也几乎总是<strong>采集返工</strong>。</p>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 一条最值钱的建议</span>
+        <strong>撤离现场之前，先跑一遍稀疏重建（COLMAP 空三）。</strong>如果相机位姿恢复成功率低于九成，当场补拍——成本是半小时；等回到工位发现位姿漂了再回去重拍，成本是几天到几周，而且往往拿不到同样的光照条件。把这条写进项目流程，它一个人就能省下整轮返工。
+      </div>
+
+      <h3><span class="mi">①</span> 设备选型：不是越贵越好，是越稳越好</h3>
+      <table class="mtbl">
+        <thead><tr><th style="width:18%">场景类型</th><th style="width:22%">推荐设备</th><th style="width:30%">要点</th><th>风险提示</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">小物件 / 商品</td><td class="o">微单或旗舰手机 + 定焦</td><td class="o">环绕 2–3 圈，配合转台；背景单一便于抠像</td><td class="o">反光材质需柔光箱或偏振片</td></tr>
+          <tr><td class="mn">室内房间 / 展厅</td><td class="o">广角微单或手机（等效 16–24mm）</td><td class="o">广角提高单张覆盖率，减少图像总数</td><td class="o">超广畸变过大需先做畸变标定</td></tr>
+          <tr><td class="mn">整层 / 整栋建筑</td><td class="o">广角 + 稳定手持路径，或全景相机</td><td class="o">按房间分块规划，块间留 20–30% 重叠缓冲带</td><td class="o">长走廊是位姿漂移重灾区，需补特征</td></tr>
+          <tr><td class="mn">建筑外立面 / 园区</td><td class="o">无人机自动航线</td><td class="o">网格航线 + 环绕补充，重叠率 70–80%</td><td class="o">需合规飞行审批；光照选多云或固定时段</td></tr>
+          <tr><td class="mn">城市级 / 实景三维</td><td class="o">机载倾斜摄影或车载多相机</td><td class="o">五镜头倾斜，配合 POS/GNSS</td><td class="o">涉及测绘资质与地理信息合规，见第 11 章⑦</td></tr>
+          <tr><td class="mn">需要真实尺度或精确几何</td><td class="o">激光扫描仪 / 深度相机辅助</td><td class="o">提供尺度约束与深度先验，也用作验收基线</td><td class="o">设备与人员成本显著上升，需单独报价</td></tr>
+        </tbody>
+      </table>
+      <p>设备选择的第一原则是<strong>一致性</strong>：同一个场景尽量用同一台设备、同一个镜头、同一套参数拍完。混用不同设备的图像会导致内参不一致与色差，SfM 与后续优化的负担都会陡增。第二原则是<strong>可控</strong>：旗舰手机胜在方便且能锁参数，中低端手机常常偷偷做多帧合成与 AI 增强，那正是重建的敌人。</p>
+
+      <h3><span class="mi">②</span> 轨迹设计：覆盖率比数量更重要</h3>
+      <ul>
+        <li><strong>环绕（Orbit）</strong>：适合单体对象（雕塑、商品、设备）。保持目标在画面中心，绕 2–3 圈，每圈换一个高度（低/中/高），俯仰角覆盖 −30° 到 +45°。</li>
+        <li><strong>网格（Grid / Lawnmower）</strong>：适合平面区域（展厅、车间、外立面）。按蛇形走位推进，行进方向保持镜头朝前并左右轻微摆动，避免纯直线平行推进造成的基线退化。</li>
+        <li><strong>螺旋 / 分层</strong>：适合中庭、楼梯、塔内部等有垂直连通的空间。每一层单独成环，层与层之间必须拍摄到楼梯或开口，否则上下层会裂成两个独立坐标系。</li>
+        <li><strong>补拍（Detail pass）</strong>：主体细节、暗角、玻璃边缘、屋顶与地面交接处。这一遍常被省掉，而它恰恰决定了成品"像不像"。</li>
+      </ul>
+      <div class="callout note">
+        <span class="ct">③ 重叠率的经验值</span>
+        相邻图像的<strong>共同视野应保持在 60–80%</strong>，低于 50% 容易出现位姿断裂，高于 90% 则是浪费（图像数线性增长，重建收益趋于饱和）。纹理贫乏区域（白墙、空地）要提到 80% 以上；纹理丰富区域可以放宽到 60%。同一个场景内，转弯处、明暗交界处、进出口这些位姿最容易断的地方，主动加密。
+      </div>
+
+      <h3><span class="mi">③</span> 图像数量与分辨率：按场景规模估算</h3>
+      <p>下表是<strong>量级估算</strong>，用于排期与报价，实际数量要按现场纹理密度与复杂度上下浮动 ±30%。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:24%">场景规模</th><th style="width:16%">有效图像数</th><th style="width:18%">典型采集工时</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">小物件（&lt;1 m）</td><td class="o">30–80</td><td class="o">0.5–1 小时</td><td class="o">转台 + 柔光箱效率最高</td></tr>
+          <tr><td class="mn">单件家具 / 小型展项</td><td class="o">60–150</td><td class="o">1–2 小时</td><td class="o">注意底部与背面必须覆盖</td></tr>
+          <tr><td class="mn">单房间（20–50 ㎡）</td><td class="o">150–400</td><td class="o">1.5–3 小时</td><td class="o">含清场与布光准备</td></tr>
+          <tr><td class="mn">单套（80–150 ㎡）</td><td class="o">400–900</td><td class="o">3–6 小时</td><td class="o">建议分房间拍摄再合并</td></tr>
+          <tr><td class="mn">单层 / 办公区（500 ㎡）</td><td class="o">1,500–3,000</td><td class="o">1–2 天</td><td class="o">分块训练，块间留缓冲带</td></tr>
+          <tr><td class="mn">整栋 / 场馆（3,000 ㎡+）</td><td class="o">8,000–20,000</td><td class="o">3–7 天</td><td class="o">必须分块；光照一致性是主要风险</td></tr>
+          <tr><td class="mn">园区 / 街区（室外）</td><td class="o">20,000+</td><td class="o">按航线计算</td><td class="o">无人机为主，受天气窗口约束</td></tr>
+        </tbody>
+      </table>
+      <p><strong>分辨率</strong>：原始拍摄建议 2–4K（4000×3000 左右），训练时通常下采样到长边 1080–1600 px。更高的分辨率对细节有帮助，但训练时间与显存近似按像素数线性增长，而质量收益迅速饱和。<strong>不要为了"更清楚"无脑上 8K</strong>——那是最常见的算力浪费。原始图务必归档保留，便于后续重训。</p>
+
+      <h3><span class="mi">④</span> 曝光与画质：相机设置硬规则</h3>
+      <p>3DGS 的底层假设是<strong>光度一致性</strong>：同一个物理点在不同视角下颜色应当一致。任何破坏这一点的相机"智能优化"，都会直接变成高斯场里的噪点、色块或伪影。下面这组规则应该打印出来带到现场：</p>
+      <ul>
+        <li><strong>锁定曝光</strong>：手动模式，固定快门、光圈、ISO。禁用自动曝光——自动曝光会在明暗区域来回跳，重建出"花斑"。</li>
+        <li><strong>锁定白平衡</strong>：固定色温，禁用自动白平衡。跨图像色温漂移会让墙面出现渐变的偏色。</li>
+        <li><strong>关闭一切计算摄影</strong>：HDR、夜景多帧合成、AI 超分、美颜、滤镜、数码变焦。这些在不同视角下处理结果不一致，是隐形杀手。</li>
+        <li><strong>避免运动模糊</strong>：快门足够快（手持建议 ≥1/125 s，室内可适当提高 ISO 换取快门）。宁可噪点略高，也不要糊——模糊对 SfM 的伤害远大于噪点。</li>
+        <li><strong>光照尽量一致</strong>：同一场景尽量在同一时段、同一天气下拍完。混合"晴天 + 开灯"两套光照会让重建无法自洽。室内优先关掉会闪烁的灯源。</li>
+        <li><strong>慎用闪光灯</strong>：闪光会造成强烈的视角相关高光，破坏一致性。需要补光请用常亮光源。</li>
+        <li><strong>保留 RAW</strong>（可选但推荐）：后期可统一做曝光与白平衡微调，再导出一致的 JPEG/PNG 用于训练。</li>
+      </ul>
+
+      <h3><span class="mi">⑤</span> 尺度基准：别等验收时才被发现"尺寸不对"</h3>
+      <p>纯视觉 SfM 恢复的是<strong>相似变换</strong>——形状对，但整体尺度是任意的。甲方拿尺子一量就会发现偏差。尺度必须在采集阶段就锚定，事后补救极其困难。三种常用办法：</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:20%">方法</th><th style="width:34%">怎么做</th><th>适用场景 / 精度</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">已知尺寸参照物</td><td class="o">在场景中放置 A4 纸、卷尺、标定板或棋盘格，确保多视角清晰入镜</td><td class="o">室内最实用，成本低；精度取决于参照物测量精度与在画面中的清晰度</td></tr>
+          <tr><td class="mn">AprilTag / 二维码标定板</td><td class="o">布设若干已知间距的标签，用检测结果反解尺度与位姿</td><td class="o">可自动化，适合需要重复采集或做精度核验的场景</td></tr>
+          <tr><td class="mn">RTK / GNSS</td><td class="o">无人机或车载端记录高精度 POS，直接带入绝对坐标</td><td class="o">室外必备；顺带解决地理坐标系对齐问题（第 12 章）</td></tr>
+          <tr><td class="mn">激光 / 深度辅助</td><td class="o">深度相机或扫描仪提供真实尺度与深度先验</td><td class="o">精度最高，同时充当验收基线；成本与工时显著增加</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">
+        <span class="ct">⚠ 合同层面的提醒</span>
+        如果合同写了"按 1:1 还原"或"可用于测量"，却没有在采集阶段约定尺度基准与验收方法，这是一个必然引发争议的空条款。<strong>尺度基准、控制点数量、验收测量方法</strong>这三项必须在采集之前谈清楚并写进方案，而不是交付时争论。
+      </div>
+
+      <h3><span class="mi">⑥</span> 动态物体、天空与隐私</h3>
+      <ul>
+        <li><strong>动态物体的优先级</strong>：清场 &gt; 掩蔽 &gt; 后期清理。能谈下闭馆/夜间窗口就一定要谈；谈不下来就用运动掩蔽（在训练时屏蔽这些区域）；后期手工清理高斯是效率最低的一条路，成本可能超过重拍。</li>
+        <li><strong>天空</strong>：室外无界场景要拍到天空以约束方向，但天空占比过大会浪费大量基元并引发第 3 章③提到的边缘"巨型高斯"问题。常见做法是天空掩蔽 + 环境球单独处理。</li>
+        <li><strong>人脸与车牌</strong>：采集前评估是否涉及公共区域。能避就避（改变拍摄角度或时段），避不开则必须在交付前做脱敏处理——在二维图像上做，不要在三维高斯上做，前者可控得多。相关合规要求见第 11 章⑦。</li>
+        <li><strong>屏幕与反光面</strong>：显示器、镜面会拍到采集者自己和相机，形成"幽灵"。尽量关闭屏幕或用遮挡物处理。</li>
+      </ul>
+
+      <h3><span class="mi">⑦</span> 现场 checklist</h3>
+      <p>下面这份清单可以直接打印带到现场，也可以在这里逐项勾选。全勾完再撤场。</p>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-sm,8px);padding:16px 18px;background:var(--surface-2);margin:12px 0 6px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="flex:1;height:6px;border-radius:3px;background:var(--border);overflow:hidden">
+            <div id="agsCkBar" style="width:0%;height:100%;background:var(--accent,var(--primary));transition:width .2s"></div>
+          </div>
+          <span id="agsCkTxt" style="font-size:12.5px;color:var(--text-2);font-variant-numeric:tabular-nums">0 / 12</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px 18px;font-size:13.5px;color:var(--text)">
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">设备、镜头、参数全程一致</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">已锁定曝光、白平衡，关闭 HDR/美颜/AI 增强</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">快门足够快，抽查确认无运动模糊</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">相邻图像重叠率达标（60–80%）</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">无纹理区域（白墙/空地）已加密补拍</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">顶部、底部、背面、暗角均已覆盖</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">尺度参照物 / AprilTag / RTK 已布设并清晰入镜</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">动态物体（人/车）已清场或已记录需掩蔽区域</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">人脸、车牌、屏幕内容已评估并做脱敏安排</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">光照条件全程一致（同一时段 / 同一天气）</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">已现场跑通稀疏重建，位姿恢复成功率达标</label>
+          <label style="display:flex;gap:8px;align-items:flex-start;line-height:1.6"><input type="checkbox" class="agsCk" style="margin-top:3px">原始数据已归档备份（含 RAW 与拍摄记录）</label>
+        </div>
+      </div>
+
+      <div class="callout note">
+        <span class="ct">③ 采集数据的入场验收</span>
+        采集数据进入训练流程之前，先过一遍这五项：① 图像数量与规模匹配；② 随机抽查 20 张确认无模糊与过曝；③ 用直方图确认曝光分布集中而非分裂成两簇；④ 对照轨迹图确认无覆盖死角；⑤ <strong>COLMAP 稀疏重建成功率 ≥ 90%</strong>。任何一项不过，退回补拍——此时的成本最低。
+      </div>
+
+      <div class="links">
+        <a href="#ch2"><span class="ico">←</span> 回看：训练参数与失败模式排查表</a>
+        <a href="#ch3"><span class="ico">→</span> 下一章：从场景到世界</a>
+        <a href="#ch12"><span class="ico">→</span> 采集之后的完整工程链路</a>
+      </div>
     </section>
+
     <!-- ===================== 第 3 章 ===================== -->
     <section class="chapter" id="ch3" style="--accent:var(--cyan)">
       <div class="chapter-head"><span class="no">CH 03</span><h2>从场景到世界：大规模·动态·压缩</h2></div>
@@ -847,7 +1141,17 @@
       </div>
 
       <p>结语：在 3DGS 的生态中，<strong>"知道边界比知道能力更重要"</strong>。3DGS 在 2023-2025 年间被证明是一个极具表达力的表示方法，但它的能力边界并非无限——透明材质的折射、镜面的多次反射、无界场景的混叠、稀疏视角的欠约束、内存的无序膨胀，每一道边界都对应着一个活跃的研究方向。Robustness 类别的 11 个方法正是这些边界的"守门人"，它们各自针对一个被打破的假设设计正则化或物理建模策略。作为工程实践者，你需要做的不是记住"3DGS 能做什么"，而是记住"3DGS 在什么条件下会失败"——因为失败模式决定了你的项目能否落地，而能力只决定了上限能飞多高。</p>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>分块策略已确定，块间接缝与缓冲带已目视检查，无可见错位。</li>
+          <li>压缩率是在自己场景上扫描出的断崖曲线确定，而非照搬论文数字。</li>
+          <li>目标包体大小与 LOD 层级已在真实设备上实测，不只是看文件大小。</li>
+          <li>已知局限（玻璃、镜面、无界边缘）已写进交付说明，而不是留到验收时被发现。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 4 章 ===================== -->
     <section class="chapter" id="ch4" style="--accent:var(--green)">
@@ -938,7 +1242,17 @@
           <li>语义高斯为机器人抓取提供了什么 NeRF 语义给不了的能力？</li>
         </ol>
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>语义查询清单已定义：明确下游到底要能问哪几类问题，而不是泛泛地"加语义"。</li>
+          <li>语义标签准确率已抽样人工核验，样本覆盖主要区域。</li>
+          <li>语义与几何的对齐已检查：标签边界与物体边界是否吻合。</li>
+          <li>语义数据量对包体的影响已计入交付预算。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 5 章 ===================== -->
     <section class="chapter" id="ch5" style="--accent:var(--orange)">
@@ -1104,7 +1418,17 @@
         <span class="ct">③ 未来方向：从"扩散像素"到"扩散高斯"</span>
         当前两条路线的共同局限是：扩散模型仍在 2D 像素空间运作，3DGS 只是"消费者"——要么被 SDS 梯度拉扯，要么被生成图重建。下一步的突破点在于<strong>让扩散模型直接生成高斯场</strong>：把扩散的噪声-去噪过程从像素空间搬到 3DGS 参数空间，直接生成高斯的位置/协方差/颜色/不透明度。这条路线已有早期探索（如 GaussianCube 用体素化高斯做扩散生成），但离实用还有距离。另一个方向是<strong>GS 作为扩散先验的条件</strong>：给定一个粗略 3DGS 场作为条件，扩散模型在其基础上做细节增强或风格变换——这把 3DGS 从"生成结果"变成"生成条件"，可能在可控 3D 编辑上打开新空间。两条路最终可能在"扩散生成高斯场 + GS 条件引导"的统一框架下汇合。
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>前馈重建与逐场景优化的选择已按成本与质量权衡确定，并做过小样对比。</li>
+          <li>生成结果已人工逐件确认可用性——生成类方法的指标好看不代表能交付。</li>
+          <li>导出资产的格式、单位与目标引擎已确认对接无误。</li>
+          <li>可动画资产的驱动方式（骨骼 / 变形场）已与下游约定。</li>
+        </ul>
+      </div>
+</section>
     <!-- ===================== 第 6 章 ===================== -->
     <section class="chapter" id="ch6" style="--accent:var(--pink)">
       <div class="chapter-head"><span class="no">CH 06</span><h2>具身智能基础：仿真到 Sim2Real</h2></div>
@@ -1194,7 +1518,16 @@
           <li>"可微仿真"为什么对策略学习有根本意义？传统非可微仿真的策略只能怎么学？</li>
         </ol>
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>仿真与真实的差异已量化，而不是凭感觉判断"差不多"。</li>
+          <li>数据飞轮是否闭环已评估：真实数据能否回流并改进模型。</li>
+          <li>Sim2Real 的关键失效点已列出并安排了对应的域随机化或实机验证。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 7 章 ===================== -->
     <section class="chapter" id="ch7" style="--accent:var(--teal)">
@@ -1316,7 +1649,17 @@
           <li>"经典前端 + GS 精修"的混合架构，为什么比纯 GS-SLAM 更鲁棒？这种妥协的代价是什么？</li>
         </ol>
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>目标算力平台的实时性、显存占用已实测——实验室显卡不等于机器人上的显卡。</li>
+          <li>长期运行一致性已验证：连续多个周期后地图不漂移、不无限膨胀。</li>
+          <li>真实尺度问题已解决（RTK / 参照物 / 深度辅助），而非停留在相似变换。</li>
+          <li>动态环境下的地图更新策略已定义。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 8 章 ===================== -->
     <section class="chapter" id="ch8" style="--accent:var(--blue)">
@@ -1406,7 +1749,17 @@
           <li>如果 3DGS 一份表示能同时出语义、运动学、CAD，这对降低机器人系统的数据冗余有何意义？</li>
         </ol>
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>part-level 的粒度与实际操作任务匹配：拆到什么程度是由任务决定的，不是越细越好。</li>
+          <li>铰接推理结果已可用于实际操作，而不只是可视化看着对。</li>
+          <li>CAD / Mesh / 3DGS 之间的转换精度已验证，误差在下游容差内。</li>
+          <li>资产的单位与坐标系已与整机系统对齐。</li>
+        </ul>
+      </div>
+</section>
     <!-- ===================== 第 9 章 ===================== -->
     <section class="chapter" id="ch9" style="--accent:var(--purple)">
       <div class="chapter-head"><span class="no">CH 09</span><h2>Agent 驱动的数字孪生与交互</h2></div>
@@ -1532,7 +1885,17 @@
           <tr><td class="mn">RAD</td><td><span class="vchip v-NeurIPS">NeurIPS 2025</span></td><td class="o">3DGS 数字孪生 + 闭环 RL 训练端到端驾驶，克服模仿学习因果混淆</td></tr>
         </tbody>
       </table>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>Agent 与场景的接口已明确定义：暴露哪些工具、入参出参、调用频率。</li>
+          <li>交互延迟已实测并可接受——这是数字孪生体验的分水岭。</li>
+          <li>孪生的更新机制已设计：数据来源、更新频率、谁触发。</li>
+          <li>多 Agent 协作时的场景状态一致性已处理。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 10 章 ===================== -->
     <section class="chapter" id="ch10" style="--accent:var(--primary)">
@@ -1645,7 +2008,16 @@
           <li>"3DGS 会从主角变成协议"——你认同吗？什么条件下这个判断成立，什么条件下不成立？</li>
         </ol>
       </div>
-    </section>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>区分了研究判断与交付承诺：前瞻方向不写进合同的验收条款。</li>
+          <li>所选技术路线的成熟度已评估：能用、可试、仅研究，三档要分清。</li>
+          <li>为技术迭代预留了空间：当下方案不锁死未来替换的可能。</li>
+        </ul>
+      </div>
+</section>
 
     <!-- ===================== 第 11 章 ===================== -->
     <section class="chapter" id="ch11" style="--accent:var(--red,#e8453c)">
@@ -1715,6 +2087,38 @@
       </ul>
       <p>本仓库的 <code>patent-software-ip</code> 技能已覆盖 3DGS 相关的专利撰写与软件著作权登记流程——安全技术与法律保护的结合，才是完整的 IP 护城河。</p>
 
+      <h3><span class="mi">⑦</span> 国内落地：合规与资质红线</h3>
+      <p class="lead">前面六节讨论的是<strong>技术安全</strong>——水印、溯源、抗攻击。但对国内项目而言，还有一道更早出现的门槛：<strong>法律与资质</strong>。它不是交付前的收尾工作，而是决定"这个项目能不能接"的前提条件。跳过这一步，技术上做得再漂亮也可能无法交付。</p>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 免责说明</span>
+        以下内容是<strong>工程实践层面的风险提示</strong>，不是法律意见。相关法规与主管部门要求会持续更新，具体项目请务必咨询法务与行业主管部门，并以最新有效规定为准。
+      </div>
+
+      <table class="mtbl">
+        <thead><tr><th style="width:22%">风险域</th><th style="width:39%">为什么会卡住项目</th><th>开工前要确认什么</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">测绘资质</td><td class="o">以获取地理空间信息为目的、且成果带有真实坐标的采集与加工，可能落入测绘活动范畴；无相应资质承接存在行政处罚与合同无效风险</td><td class="o">成果是否带绝对坐标、是否属测绘成果；承揽方资质类别与等级是否覆盖；地方实景三维规范是否另有要求</td></tr>
+          <tr><td class="mn">地理信息安全</td><td class="o">高精度、大范围的真实地理信息可能涉及敏感目标与要素管理；精度、覆盖范围与要素类型都可能触发监管要求</td><td class="o">是否需做敏感要素排查、脱密或降精度处理；成果存储与分发范围是否受限</td></tr>
+          <tr><td class="mn">人脸 / 车牌 / 隐私</td><td class="o">公共区域采集几乎必然拍到人脸与车牌；人脸属敏感个人信息，受个人信息保护法约束，处理需具备合法基础并遵循最小必要</td><td class="o">采集前是否需公示告知；能否通过角度与时段规避；交付前脱敏方案与责任人；原始数据留存期限</td></tr>
+          <tr><td class="mn">数据出境与云端协作</td><td class="o">使用境外云服务、境外团队参与训练或渲染，可能构成数据出境，需走合规路径</td><td class="o">训练与渲染是否必须境内完成；出境数据的类型与体量；是否需评估或申报</td></tr>
+          <tr><td class="mn">等保与交付方式</td><td class="o">政务、国企与关键行业项目通常要求系统等级保护测评、私有化部署与可审计交付</td><td class="o">等保级别要求；是否允许公有云；交付介质、访问审计与密钥管理</td></tr>
+          <tr><td class="mn">权属与授权</td><td class="o">拍摄他人私有空间、文物、艺术品或商业展陈，除版权外还涉及物权、肖像权与场馆方授权；模型资产归属容易在合同里被忽略</td><td class="o">拍摄授权链是否完整；模型与衍生资产的权属归属；二次使用与转授权范围</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout key">
+        <span class="ct">★ 开工前合规五问</span>
+        <ol style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li><b>成果是否带真实地理坐标？</b>带 → 先谈测绘资质与地理信息安全；不带（局部坐标、仅视觉展示）→ 风险显著下降，但需确认甲方后期是否会要求配准。</li>
+          <li><b>采集范围是否涉及公共区域或第三方场所？</b>是 → 明确告知义务、拍摄授权与隐私脱敏责任分工。</li>
+          <li><b>算力与人力是否全在境内？</b>涉及境外环节 → 评估数据出境路径，必要时改为境内私有化训练与渲染。</li>
+          <li><b>甲方是否要求等保或私有化部署？</b>是 → 提前规划交付形态，别把 Web 公有云方案写进标书。</li>
+          <li><b>模型资产归谁？能否二次使用？</b>在合同里写明模型、贴图、衍生数据与使用范围——这是最常被漏掉、也最容易事后起争议的一条。</li>
+        </ol>
+      </div>
+      <p>把这五问的答案写进技术方案的第一节，成本是半天；等项目做到一半被发现，成本是项目本身。对承接方而言，这也是一种自我保护——合规条款清晰的方案，本身就是专业度的证明。</p>
+
       <div class="et" style="margin-top:20px">
               <div class="callout key">
         <span class="ct">★ 研究前沿方向</span>
@@ -1755,6 +2159,257 @@
           <tr><td class="mn">4D-GSW</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">运动学感知的 4DGS 水印，时空一致性 STC 度量 + HMM-MRF</td></tr>
         </tbody>
       </table>
+    
+      <div class="callout note" style="margin-top:16px">
+        <span class="ct">本章工程 Checkpoint</span>
+        <ul style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li>第 11 章⑦的合规五问已逐条确认并留档（资质、隐私、出境、等保、权属）。</li>
+          <li>交付资产的权属、使用范围与二次授权已在合同中写明。</li>
+          <li>水印与溯源需求已按需评估：哪些资产需要、采用哪种方式、成本多少。</li>
+          <li>已知安全边界（对抗脆弱性、编辑后水印存活）已告知甲方。</li>
+        </ul>
+      </div>
+
+      <div class="links">
+        <a href="#ch10"><span class="ico">←</span> 回看：世界模型与未来展望</a>
+        <a href="#ch12"><span class="ico">→</span> 下一章：端到端工程链路</a>
+      </div>
+</section>
+
+    <!-- ===================== 第 12 章 ===================== -->
+    <section class="chapter" id="ch12" style="--accent:var(--cyan)">
+      <div class="chapter-head"><span class="no">CH 12</span><h2>从采集到交付：端到端工程链路</h2></div>
+      <p class="chapter-sub">十个环节 · 工具选型与卡点 · 格式与坐标系 · 成本工期量级 · 项目失败 Top 10</p>
+
+      <p class="lead">前面十一章把 3DGS 的各个技术环节都讲透了，但它们是<strong>按技术维度</strong>组织的。真实项目是<strong>按时间顺序</strong>推进的：一个场景从拍照到上线，要穿过十来个环节，每个环节都有自己的工具、卡点和出口标准。本章把这十条线拧成一根——它更像一份工程手册，而不是技术论述。</p>
+
+      <h3><span class="mi">①</span> 全景链路：十个环节与它们的真实耗时</h3>
+      <p>下表按项目推进顺序排列。"耗时占比"是经验区间，用于排期；注意其中两项几乎总被低估——<strong>清理编辑</strong>与<strong>集成联调</strong>。新手排期常把这两项算成零，结果是工期翻倍。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:6%">#</th><th style="width:14%">环节</th><th style="width:22%">常用工具 / 选型</th><th style="width:12%">耗时占比</th><th style="width:26%">常见卡点</th><th>出口检查点</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">1</td><td class="mn">采集</td><td class="o">相机 / 无人机 / 转台，见采集 SOP</td><td class="o">15–30%</td><td class="o">清场窗口谈不下来；光照不一致</td><td class="o">稀疏重建成功率 ≥90%</td></tr>
+          <tr><td class="mn">2</td><td class="mn">位姿解算</td><td class="o">COLMAP 等 SfM 工具；或 RTK / 深度辅助</td><td class="o">3–8%</td><td class="o">无纹理区漂移；分层场景坐标系断裂</td><td class="o">重投影误差达标；轨迹无断裂</td></tr>
+          <tr><td class="mn">3</td><td class="mn">分块与训练</td><td class="o">官方实现 / gsplat / nerfstudio</td><td class="o">10–20%</td><td class="o">块间接缝；显存 OOM；致密化失控</td><td class="o">PSNR 曲线平稳；高斯数不再线性增长</td></tr>
+          <tr><td class="mn">4</td><td class="mn">清理与编辑</td><td class="o">编辑类方法与手工清理</td><td class="o">15–25%</td><td class="o">floater、背景塌缩、鬼影；人工成本被低估</td><td class="o">指定视角抽查无漂浮物与破面</td></tr>
+          <tr><td class="mn">5</td><td class="mn">几何提取（如需）</td><td class="o">2DGS / SuGaR 类表面重建 → TSDF → 网格</td><td class="o">5–15%</td><td class="o">薄壳结构丢失；网格拓扑质量差</td><td class="o">网格可用于下游（测量/物理/UV）</td></tr>
+          <tr><td class="mn">6</td><td class="mn">压缩与 LOD</td><td class="o">剪枝 + 量化 + 蒸馏，见第 3 章④</td><td class="o">5–10%</td><td class="o">压缩断崖；LOD 切换跳变</td><td class="o">目标包体达成且画质不掉档</td></tr>
+          <tr><td class="mn">7</td><td class="mn">格式与坐标系</td><td class="o">PLY / glTF / USDZ / 3D Tiles；坐标配准</td><td class="o">5–10%</td><td class="o">单位不一致（米/厘米）；坐标原点漂移</td><td class="o">与基线数据配准误差在容差内</td></tr>
+          <tr><td class="mn">8</td><td class="mn">引擎与端侧集成</td><td class="o">Unity / Unreal / Cesium / WebGL·WebGPU</td><td class="o">15–25%</td><td class="o">低端机掉帧；着色器与管线不兼容</td><td class="o">目标机型实测帧率达标</td></tr>
+          <tr><td class="mn">9</td><td class="mn">发布与监控</td><td class="o">CDN 分块流式；埋点与性能监控</td><td class="o">3–8%</td><td class="o">首屏加载超时；弱网下白屏</td><td class="o">首屏时间达标；崩溃率可观测</td></tr>
+          <tr><td class="mn">10</td><td class="mn">增量更新</td><td class="o">局部重扫 + 块级替换</td><td class="o">持续</td><td class="o">改一处要整体重训；版本管理混乱</td><td class="o">定义了更新粒度与回滚方案</td></tr>
+        </tbody>
+      </table>
+      <div class="callout note">
+        <span class="ct">③ 排期时最该记住的两件事</span>
+        第一，<strong>训练只占工期的一小部分</strong>——真正吃掉预算的是采集、清理和联调。第二，<strong>第一轮训练几乎不可能一次通过</strong>，把"训练"这一项按 2–3 轮迭代来排，而不是按"跑一次"来排。这两条改正后，排期准确率会立刻提升。
+      </div>
+
+      <h3><span class="mi">②</span> 格式与坐标系：交付时最容易翻车的地方</h3>
+      <p>3DGS 的原生产物是 PLY 点云（每个点带协方差、不透明度与球谐系数），但你的甲方系统大概率不认这个格式。这一节解决"怎么交出去"。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:18%">目标</th><th style="width:22%">常见承载格式</th><th style="width:30%">适用与注意</th><th>典型宿主</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">引擎内实时渲染</td><td class="o">引擎插件直接读高斯数据，或转网格 + 烘焙贴图</td><td class="o">保留高斯则视觉最好但需插件；转网格兼容性最好但损失视角相关效果</td><td class="o">Unity / Unreal</td></tr>
+          <tr><td class="mn">Web 端展示</td><td class="o">压缩后的高斯格式 + 分块流式加载</td><td class="o">首屏先出粗 LOD 再渐进精细；弱网体验优先于极致画质</td><td class="o">WebGL / WebGPU  viewer</td></tr>
+          <tr><td class="mn">通用资产交换</td><td class="o">glTF / GLB</td><td class="o">生态最广；高斯通常需要转换为网格或有纹理代理</td><td class="o">各类查看器与设计工具</td></tr>
+          <tr><td class="mn">移动端与 AR</td><td class="o">USDZ 或引擎自有格式</td><td class="o">关注包体与机型覆盖；iOS 生态对 USDZ 支持较好</td><td class="o">移动端查看器 / AR 框架</td></tr>
+          <tr><td class="mn">地理空间平台</td><td class="o">3D Tiles 等瓦片化格式</td><td class="o">必须解决坐标系与投影；大体量按瓦片调度</td><td class="o">Cesium 类三维地球平台</td></tr>
+          <tr><td class="mn">归档与交换</td><td class="o">PLY + 元数据说明</td><td class="o">写明单位、坐标系、SH 阶数与生成参数，否则半年后无人能复现</td><td class="o">内部资产库</td></tr>
+        </tbody>
+      </table>
+      <p><strong>坐标系是另一个高频事故点。</strong>重建出的场景活在它自己的局部坐标系里，原点、朝向、单位都由初始化决定。要把它接进甲方的系统（BIM、GIS、点云基线、机器人地图），必须完成一次明确定义的配准：</p>
+      <ul>
+        <li><strong>单位</strong>：先确认是米还是厘米。混用单位导致的"模型放大 100 倍"是经典事故，且往往到集成阶段才暴露。</li>
+        <li><strong>原点与朝向</strong>：约定原点位置（如建筑物西南角）与轴向定义（Y 向上还是 Z 向上）。</li>
+        <li><strong>投影与大地坐标</strong>：室外项目要落到具体投影带与大地坐标系（如 CGCS2000 及相应投影），并与控制点做平差；涉及地理信息的同时要回到第 11 章⑦确认合规。</li>
+        <li><strong>配准与验收</strong>：用控制点或公共特征与基线数据（激光点云、BIM）比对，输出配准误差统计，作为交付物的一部分。</li>
+      </ul>
+      <div class="callout warn">
+        <span class="ct">⚠ 元数据必须一起交付</span>
+        一份没有元数据的高斯文件，半年后会变成无人敢动的黑盒。至少记录：采集设备与参数、图像数量、SfM 工具与版本、训练框架与关键超参、坐标系与单位定义、压缩方法与压缩率、生成日期。<strong>元数据的成本是十分钟，没有它的代价是重做一遍。</strong>
+      </div>
+
+      <h3><span class="mi">③</span> 成本与工期：量级估算</h3>
+      <p>下面两张表用于<strong>快速量级判断</strong>，不是报价单。不同城市的人力单价、不同场景的复杂度差异很大，请把它当作"数量级校准"，再用自己的历史项目去拟合。</p>
+      <p style="font-size:14px;color:var(--text-2);margin:14px 0 6px"><b>表 A · 相对工作量基准</b>（以 50 ㎡ 单房间的完整交付 = 1.0 为基准单位）</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:26%">场景规模</th><th style="width:18%">相对工作量</th><th style="width:22%">GPU 训练时间（单卡量级）</th><th>主要变量</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">小物件 / 商品</td><td class="o">0.2–0.4</td><td class="o">0.5–1.5 小时</td><td class="o">反光材质与抠像要求</td></tr>
+          <tr><td class="mn">单房间（约 50 ㎡）</td><td class="o">1.0（基准）</td><td class="o">1–3 小时</td><td class="o">纹理密度、清理量</td></tr>
+          <tr><td class="mn">单套（80–150 ㎡）</td><td class="o">2–3</td><td class="o">3–8 小时</td><td class="o">房间数量与连通性</td></tr>
+          <tr><td class="mn">单层 / 办公区（约 500 ㎡）</td><td class="o">5–8</td><td class="o">1–2 天（分块）</td><td class="o">分块策略、块间接缝</td></tr>
+          <tr><td class="mn">整栋 / 场馆（3,000 ㎡+）</td><td class="o">20–40</td><td class="o">多卡 3–10 天</td><td class="o">采集组织、光照一致性</td></tr>
+          <tr><td class="mn">园区 / 街区（室外）</td><td class="o">40–100+</td><td class="o">周级</td><td class="o">天气窗口、航线审批、合规</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px;color:var(--text-2);margin:16px 0 6px"><b>表 B · 成本结构</b>（典型项目的占比区间）</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:24%">成本项</th><th style="width:16%">占比区间</th><th>说明与省法</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">采集人力与差旅</td><td class="o">20–35%</td><td class="o">最容易被低估；清场等待与往返常常翻倍。省法：一次拍对（现场空三验证）</td></tr>
+          <tr><td class="mn">算力</td><td class="o">10–20%</td><td class="o">与图像数、分辨率、迭代轮次成正比。省法：合理下采样、控制迭代轮次、按需用卡</td></tr>
+          <tr><td class="mn">清理与美术处理</td><td class="o">15–30%</td><td class="o">与场景脏乱程度正相关。省法：采集阶段就清场，比后期清理便宜一个数量级</td></tr>
+          <tr><td class="mn">工程集成与联调</td><td class="o">15–25%</td><td class="o">取决于甲方系统复杂度。省法：尽早就定义好格式与坐标系</td></tr>
+          <tr><td class="mn">项目管理与验收</td><td class="o">10–20%</td><td class="o">验收标准越模糊，此项越高。省法：把指标写死（见附录换算表）</td></tr>
+          <tr><td class="mn">存储与分发</td><td class="o">3–8%</td><td class="o">原始图像归档常被忽略。省法：原始与成果分层存储，冷数据归档</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">④</span> 包体与画质：先算再压</h3>
+      <p>第 3 章④讲过压缩存在<strong>断崖点</strong>：10× 以内通常几乎无损，越过某个场景相关阈值后画质断崖式下跌。下面这个估算器帮你先算账、再动手，避免"压完才发现不能用"。</p>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-sm,8px);padding:16px 18px;background:var(--surface-2);margin:12px 0 6px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+          <label style="font-size:13px;color:var(--text-2);display:block">原始包体（MB，未压缩高斯场）
+            <input id="agsSizeIn" type="number" value="800" min="10" step="10" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+          </label>
+          <label style="font-size:13px;color:var(--text-2);display:block">目标压缩率：<span id="agsRatioTxt" style="color:var(--text);font-weight:600">10×</span>
+            <input id="agsRatio" type="range" min="2" max="40" value="10" step="1" style="display:block;width:100%;margin-top:10px">
+          </label>
+          <label style="font-size:13px;color:var(--text-2);display:block">场景复杂度
+            <select id="agsCplx" style="display:block;width:100%;margin-top:6px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:13px">
+              <option value="rich">纹理丰富（冗余多，能压更多）</option>
+              <option value="mid">中等</option>
+              <option value="plain">几何简单 / 大面积纯色（冗余少，早崩）</option>
+            </select>
+          </label>
+        </div>
+        <div id="agsSizeOut" style="margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent,var(--primary));background:var(--surface);font-size:13.5px;line-height:1.75;color:var(--text)">拖动上方滑块查看压缩后包体与风险提示。</div>
+      </div>
+
+      <h3><span class="mi">⑤</span> 项目失败 Top 10</h3>
+      <p>第 3 章⑤讲的是<strong>算法</strong>在哪些输入上会失败。这一节讲的是<strong>项目</strong>为什么会失败——十种最常见的形态，以及各自的早期征兆与预防动作。签合同前对照过一遍，能避掉大半。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:6%">#</th><th style="width:20%">失败形态</th><th style="width:37%">早期征兆</th><th>预防动作</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">1</td><td class="mn">采集返工</td><td class="o">现场没跑空三；覆盖率靠感觉；光照横跨多个时段</td><td class="o">撤离前跑稀疏重建，成功率不达标当场补拍</td></tr>
+          <tr><td class="mn">2</td><td class="mn">甲方预期错位</td><td class="o">需求里出现"像游戏一样""电影级"却没有预算与指标</td><td class="o">交付前先做一个小样（POC）对齐观感，再谈范围</td></tr>
+          <tr><td class="mn">3</td><td class="mn">尺度被打回</td><td class="o">合同写"1:1 还原"却没约定控制点与测量方法</td><td class="o">采集阶段锚定尺度，验收方法写进方案</td></tr>
+          <tr><td class="mn">4</td><td class="mn">包体超标上线失败</td><td class="o">临近上线才开始压缩；只在高配机测过</td><td class="o">包体预算在立项时就定死，并预留 30% 余量</td></tr>
+          <tr><td class="mn">5</td><td class="mn">端侧机型不兼容</td><td class="o">测试机全是旗舰；没定义最低机型</td><td class="o">明确最低支持机型清单，用它做验收机</td></tr>
+          <tr><td class="mn">6</td><td class="mn">光照一变就不可用</td><td class="o">展陈项目，现场灯光与采集时不一致</td><td class="o">采集时就按最终展示光照拍摄，或约定光照条件</td></tr>
+          <tr><td class="mn">7</td><td class="mn">更新成本失控</td><td class="o">场景局部改动就要整体重训；没有块级划分</td><td class="o">立项即设计分块策略与更新粒度，写进运维条款</td></tr>
+          <tr><td class="mn">8</td><td class="mn">合规卡住</td><td class="o">带坐标成果却无资质；公共区域采集未做隐私安排</td><td class="o">开工前过一遍第 11 章⑦的合规五问</td></tr>
+          <tr><td class="mn">9</td><td class="mn">团队技能断层</td><td class="o">算法很强但没有工程与美术；或反过来</td><td class="o">按第 12 章①的十个环节核对角色覆盖，缺的补人或外包</td></tr>
+          <tr><td class="mn">10</td><td class="mn">数据源方不配合</td><td class="o">清场窗口、拍摄授权、原始数据归属口头约定</td><td class="o">把场地窗口、授权链与数据归属写进合同附件</td></tr>
+        </tbody>
+      </table>
+      <div class="callout key">
+        <span class="ct">★ 一个共性规律</span>
+        这十条里有七条的根源<strong>不在技术，而在"约定"</strong>——指标没写死、尺度没锚定、包体没预算、窗口没谈妥、合规没提前问。3DGS 项目的技术风险其实是可控的（第 2、3 章的排查表覆盖了大部分），真正失控的永远是那些"以为对方知道"的空白。把约定补齐，比多调两天参数有用得多。
+      </div>
+
+      <div class="links">
+        <a href="#capture"><span class="ico">←</span> 回看：数据采集 SOP</a>
+        <a href="#ch3"><span class="ico">←</span> 回看：压缩的断崖点</a>
+        <a href="#ch13"><span class="ico">→</span> 下一章：六个行业剧本</a>
+      </div>
+    </section>
+
+    <!-- ===================== 第 13 章 ===================== -->
+    <section class="chapter" id="ch13" style="--accent:var(--pink)">
+      <div class="chapter-head"><span class="no">CH 13</span><h2>产业落地剧本：六个行业</h2></div>
+      <p class="chapter-sub">文博文旅 · 电商展示 · 工业巡检 · 自动驾驶仿真 · 具身机器人 · 实景三维</p>
+
+      <p class="lead">前十二章按技术维度组织，这一章按<strong>行业</strong>组织。每个剧本回答同一组问题：这个行业真正的痛点是什么、数据怎么来、走哪条技术路线、用什么指标验收、最容易在哪一步翻车、以及什么情况下不该用 3DGS。读法是对号入座——找到最接近你项目的那一个，再回头去查它引用的技术章节。</p>
+
+      <h3><span class="mi">①</span> 文博与文旅数字化</h3>
+      <table class="mtbl">
+        <thead><tr><th style="width:16%">要素</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">业务痛点</td><td class="o">文物不可移动、不可触碰；线下展陈受时空限制；传统建模周期长、成本高，难以覆盖大体量馆藏</td></tr>
+          <tr><td class="mn">数据方案</td><td class="o">闭馆时段拍摄；珍贵文物用转台 + 柔光箱；展厅与建筑按采集 SOP 分块；展柜玻璃是最大障碍</td></tr>
+          <tr><td class="mn">技术路线</td><td class="o">3DGS 出高保真可漫游场景 → 挂语义标签（第 4 章）支持"点一下讲一段" → Web 端分块流式发布</td></tr>
+          <tr><td class="mn">关键指标</td><td class="o">纹理细节可辨（铭文、纹饰）、Web 首屏时间、漫游流畅度、色彩还原度（与实物对照）</td></tr>
+          <tr><td class="mn">常见坑</td><td class="o"><b>展柜玻璃</b>——反光会把文物糊掉，必须偏振片或拆柜拍摄；<b>光照</b>——射灯造成强高光与阴影，需临时布光；<b>色彩</b>——文物对色准极敏感，需色卡校准</td></tr>
+          <tr><td class="mn">验收标准</td><td class="o">指定视角与实物的视觉比对；细节可辨识度由馆方确认；Web 端目标机型实测</td></tr>
+          <tr><td class="mn">不该用的情况</td><td class="o">需要精确测量器物尺寸做考古记录（改激光扫描）；需要可编辑的修复推演模型（改网格）</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">②</span> 电商与商品三维展示</h3>
+      <table class="mtbl">
+        <thead><tr><th style="width:16%">要素</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">业务痛点</td><td class="o">传统 3D 展示依赖人工建模，单件成本高、上新慢；而转化率又确实依赖可交互的三维查看</td></tr>
+          <tr><td class="mn">数据方案</td><td class="o">流水线化拍摄：转台 + 固定光位，单件 30–80 张；可批量、可外包、可标准化——这是本剧本最大的优势</td></tr>
+          <tr><td class="mn">技术路线</td><td class="o">3DGS 或前馈重建（第 5 章）→ 自动抠像 → 压缩至移动端包体 → 嵌入商品详情页</td></tr>
+          <tr><td class="mn">关键指标</td><td class="o"><b>包体大小</b>（决定跳失率）、<b>低端机可运行</b>、首屏时间、自动抠像成功率（决定人工成本）</td></tr>
+          <tr><td class="mn">常见坑</td><td class="o"><b>反光与透明</b>——金属、玻璃包装是 3DGS 的失效区，需评估 SKU 结构；<b>包体</b>——压缩过头商品质感下降，直接伤转化；<b>批量一致性</b>——拍摄标准不统一导致质量参差</td></tr>
+          <tr><td class="mn">验收标准</td><td class="o">包体上限、最低机型帧率、抠像准确率、与实物照片的主观比对</td></tr>
+          <tr><td class="mn">不该用的情况</td><td class="o">SKU 以镜面/玻璃材质为主；要求用户自由改色改材质（需网格 + 材质参数化）</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">③</span> 工业巡检与孪生工厂</h3>
+      <table class="mtbl">
+        <thead><tr><th style="width:16%">要素</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">业务痛点</td><td class="o">工厂需要"看得见的现场"用于远程巡检、安全培训与改造论证；BIM 很准但不真实，视频很真但不可交互</td></tr>
+          <tr><td class="mn">数据方案</td><td class="o">停产窗口或巡检路线拍摄；重点关注设备区、管线、通道；<b>与既有 BIM / 点云基线配准</b>是价值所在</td></tr>
+          <tr><td class="mn">技术路线</td><td class="o">3DGS 出真实场景 → 与 BIM 坐标系配准（第 12 章②）→ 挂设备位号与实时数据 → 数字孪生平台（第 9 章）</td></tr>
+          <tr><td class="mn">关键指标</td><td class="o"><b>配准误差</b>（与 BIM/点云基线）、设备可辨识度、加载性能、<b>更新成本</b>（改造后能否局部更新）</td></tr>
+          <tr><td class="mn">常见坑</td><td class="o"><b>管道与金属</b>——细管与反光金属重建质量差；<b>坐标系</b>——与 BIM 对不上等于白做；<b>更新</b>——产线一改就要重扫，若未设计分块则运维成本失控</td></tr>
+          <tr><td class="mn">验收标准</td><td class="o">配准误差统计报告；指定设备位号可查可点；更新流程与工时有明确约定</td></tr>
+          <tr><td class="mn">不该用的情况</td><td class="o">要求碰撞检测或物理仿真（用 BIM/网格）；需要精确尺寸做安装设计（用激光扫描）</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">④</span> 自动驾驶仿真闭环</h3>
+      <p>技术细节见第 9 章⑤，这里只补工程侧。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:16%">要素</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">业务痛点</td><td class="o">实车路测成本高、长尾场景难遇到；仿真需要大量高保真、可编辑、能闭环回灌的场景</td></tr>
+          <tr><td class="mn">数据方案</td><td class="o">采集车多相机 + GNSS/惯导；路口、匝道、施工区等长尾场景重点采集；需大规模、可复用</td></tr>
+          <tr><td class="mn">技术路线</td><td class="o">3DGS 重建真实路段 → 转为仿真可用表示 → 支持视角/天气/光照变化与动态物体插入 → 闭环评测</td></tr>
+          <tr><td class="mn">关键指标</td><td class="o">重建与真实的一致性（感知模型在仿真与实车上的表现差）、场景规模、单场景生成成本、可编辑性</td></tr>
+          <tr><td class="mn">常见坑</td><td class="o"><b>动态物体</b>——采集带的车流需剥离再可控插入；<b>域差</b>——仿真渲染与真实传感器特性的差异会误导评测；<b>光照</b>——需支持时段与天气变化，而 3DGS 本身不天然支持重光照</td></tr>
+          <tr><td class="mn">验收标准</td><td class="o">感知模型在仿真与实车上的指标相关性；场景库规模与覆盖度；单场景生产成本</td></tr>
+          <tr><td class="mn">不该用的情况</td><td class="o">需要严格物理级传感器仿真（光学/雷达物理建模）；要求严格可复现的确定性时序</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">⑤</span> 具身智能与机器人</h3>
+      <p>技术细节见第 6–8 章，这里补工程部署侧。</p>
+      <table class="mtbl">
+        <thead><tr><th style="width:16%">要素</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">业务痛点</td><td class="o">机器人需要能长期记忆、能更新、能被语言查询的空间地图；纯点云地图信息量不够，纯几何地图不够"像"</td></tr>
+          <tr><td class="mn">数据方案</td><td class="o">机器人自带相机边走边建（GS-SLAM），或先期人工建图再让机器人使用</td></tr>
+          <tr><td class="mn">技术路线</td><td class="o">GS-SLAM 在线建图（第 7 章）→ 语义高斯（第 4 章）→ Agent 查询与任务编排（第 9 章）</td></tr>
+          <tr><td class="mn">关键指标</td><td class="o"><b>在线建图的实时性与显存</b>（车载算力有限）、定位精度、<b>长期一致性</b>（多次巡逻后地图不漂移）、语义查询准确率</td></tr>
+          <tr><td class="mn">常见坑</td><td class="o"><b>算力</b>——车载 GPU 常远弱于实验室；<b>长期漂移</b>——增量建图误差累积；<b>动态环境</b>——货架变动、人员走动导致地图过时；<b>尺度</b>——视觉 SLAM 的真实尺度问题同样存在</td></tr>
+          <tr><td class="mn">验收标准</td><td class="o">定位误差轨迹统计；目标机型实测帧率与显存占用；连续运行若干周期的地图一致性</td></tr>
+          <tr><td class="mn">不该用的情况</td><td class="o">算力极受限的嵌入式平台；要求严格度量精度的导航（可用激光/视觉特征 SLAM 作为主定位，3DGS 做记忆与可视化）</td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="mi">⑥</span> 实景三维与智慧城市</h3>
+      <table class="mtbl">
+        <thead><tr><th style="width:16%">要素</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">业务痛点</td><td class="o">城市级三维底座需要大体量、可更新、能承载业务数据；传统 mesh 瓦片生产成本高、真实感有限</td></tr>
+          <tr><td class="mn">数据方案</td><td class="o">机载倾斜摄影 / 车载移动测量；带 POS 与绝对坐标；天气与空域窗口是排期约束</td></tr>
+          <tr><td class="mn">技术路线</td><td class="o">分块重建 → 瓦片化（3D Tiles 类）→ 坐标配准到大地坐标系 → 平台承载与业务叠加</td></tr>
+          <tr><td class="mn">关键指标</td><td class="o">覆盖范围与更新周期、瓦片调度性能、坐标精度、与既有二维/三维数据的一致性</td></tr>
+          <tr><td class="mn">常见坑</td><td class="o"><b>合规优先</b>——测绘资质与地理信息安全是前置条件（第 11 章⑦）；<b>数据量</b>——城市级是工程系统问题而非算法问题；<b>更新</b>——局部变化如何增量更新必须提前设计</td></tr>
+          <tr><td class="mn">验收标准</td><td class="o">坐标精度检测报告；瓦片加载性能；更新机制与回滚方案</td></tr>
+          <tr><td class="mn">不该用的情况</td><td class="o">不具备相应资质与合规路径；甲方实际只需要二维地图或正射影像</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout note">
+        <span class="ct">③ 六个剧本的横向对照</span>
+        按"<b>最该盯住的指标</b>"一句话概括：文博盯<b>色彩与细节</b>、电商盯<b>包体与机型</b>、工业盯<b>配准与更新</b>、自动驾驶盯<b>域差与规模</b>、机器人盯<b>实时性与长期一致性</b>、实景三维盯<b>合规与瓦片</b>。如果你手上的项目同时在两个剧本里，说明它大概率需要拆成两个阶段分别验收——强行合并是范围失控的开端。
+      </div>
+
+      <div class="links">
+        <a href="#ch12"><span class="ico">←</span> 回看：端到端工程链路</a>
+        <a href="#ch9"><span class="ico">←</span> 回看：数字孪生与 Agent 交互</a>
+        <a href="#appendix"><span class="ico">→</span> 下一节：附录 · 交付指标与验收</a>
+      </div>
     </section>
 
     <!-- ===================== 附录 ===================== -->
@@ -1843,6 +2498,57 @@
         </tbody>
       </table>
       <p><strong>注意</strong>：以上数据来自论文报告，实际训练时间受场景复杂度、图像分辨率、视角数量、致密化策略等多因素影响。建议以本仓库 <code>bench/leaderboard.json</code> 中的 [S] 实测值为准——该文件记录了本仓库服务器复现的精确数字，附 GPU 型号、迭代数与评估实现版本。</p>
+
+      <h3><span class="mi">⑥</span> 从论文指标到交付指标：换算与验收</h3>
+      <p class="lead">前面几节的指标（PSNR、SSIM、LPIPS）是<strong>论文口径</strong>，用来在公开数据集上比较方法的优劣。但把它们写进项目合同，几乎必然出问题：甲方无法复现、测法没有约定、数值与"能不能用"也没有稳定对应关系。本节做一次换算——把论文指标翻译成<strong>可测量、可复现、可签字的交付指标</strong>。</p>
+
+      <p><strong>先说结论：PSNR 不该进合同。</strong>它依赖真值图像与保留视角集的划分方式，甲方拿不到你的划分，复现不出来；而且 PSNR 涨 1 dB 未必对应任何肉眼可见的改善。它应该作为你<em>内部</em>的回归指标（每次迭代自己比），不应该作为<em>交付</em>指标。</p>
+
+      <table class="mtbl">
+        <thead><tr><th style="width:20%">交付指标（可写进合同）</th><th style="width:30%">怎么测</th><th style="width:24%">阈值怎么定</th><th>关联的技术环节</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">几何中误差</td><td class="o">与激光扫描基线做配准后统计距离（点到面 / 面到面），输出均值、中位数与分位数</td><td class="o">按区域分档：重点区域严、次要区域宽；<b>必须写明抽样点数量与位置</b></td><td class="o">采集尺度基准、几何提取</td></tr>
+          <tr><td class="mn">细节可辨识度</td><td class="o">指定观察距离下截图人工判定（如"能看清 5 cm 铭文"）</td><td class="o">由甲方指定关键细节清单，逐条确认</td><td class="o">采集分辨率、纹理密度</td></tr>
+          <tr><td class="mn">渲染帧率</td><td class="o">在<b>指定的最低支持机型</b>上，沿指定漫游路径实测</td><td class="o">写明机型、分辨率、路径与统计方式（均值/最低值）</td><td class="o">压缩、引擎集成</td></tr>
+          <tr><td class="mn">包体大小</td><td class="o">交付文件实际字节数</td><td class="o">立项即定死，并预留 30% 余量</td><td class="o">压缩与 LOD</td></tr>
+          <tr><td class="mn">首屏加载时间</td><td class="o">指定网络条件（如 4G / Wi-Fi）实测到首帧可见</td><td class="o">写明网络条件与测量起止点</td><td class="o">分块流式、CDN</td></tr>
+          <tr><td class="mn">视觉无明显瑕疵</td><td class="o">指定视角清单截图，逐张确认无 floater、破面、鬼影、色块</td><td class="o">视角清单由双方共同确定并附在合同附件</td><td class="o">清理编辑（第 12 章①环节 4）</td></tr>
+          <tr><td class="mn">可漫游范围</td><td class="o">逐区域走查确认覆盖</td><td class="o">列出覆盖区域清单与明确不覆盖的区域</td><td class="o">采集规划</td></tr>
+          <tr><td class="mn">更新周期与成本</td><td class="o">约定一次局部更新的工时与费用</td><td class="o">写明更新粒度（块级 / 整体）与响应时限</td><td class="o">分块策略（第 12 章①环节 10）</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <span class="ct">⚠ 七个常见的验收条款陷阱</span>
+        <ol style="font-size:13.5px;color:var(--text);padding-left:20px;line-height:1.85;margin:0">
+          <li><b>"高精度"却不写测法与抽样点</b>——双方必然对"高"有不同理解，争议无法裁决。</li>
+          <li><b>用 PSNR/SSIM 当验收指标</b>——甲方复现不了，你也无法自证。</li>
+          <li><b>未约定测量基线由谁提供</b>——几何精度必须对比基线数据，基线谁出、何时出、精度多少要写清。</li>
+          <li><b>未指定机型与网络条件</b>—"流畅运行"在不同设备上差十倍。</li>
+          <li><b>主观观感没有判定人和轮次</b>—"看起来不错"是最贵的条款。应指定评审人、轮次与整改边界。</li>
+          <li><b>没有返工轮次上限</b>—无限返工会把项目拖死，应约定轮次与超出后的计价方式。</li>
+          <li><b>交付物清单不完整</b>—源文件、原始数据、元数据、坐标系说明是否交付要写清楚，否则验收后仍有纠纷。</li>
+        </ol>
+      </div>
+
+      <p style="font-size:14px;color:var(--text-2);margin:16px 0 6px"><b>验收报告模板（骨架）</b></p>
+      <table class="mtbl">
+        <thead><tr><th style="width:22%">章节</th><th>应包含的内容</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">1 项目概述</td><td class="o">范围、区域清单、明确不覆盖的部分、参与方与版本</td></tr>
+          <tr><td class="mn">2 交付物清单</td><td class="o">文件格式、坐标系与单位定义、包体大小、元数据说明、源文件是否包含</td></tr>
+          <tr><td class="mn">3 采集与处理记录</td><td class="o">设备与参数、图像数量、SfM 工具与恢复率、训练框架与关键超参、压缩方法与压缩率</td></tr>
+          <tr><td class="mn">4 精度检测</td><td class="o">基线数据来源与精度、配准方法、抽样点分布图、统计结果（均值/中位数/分位数）、超差点说明</td></tr>
+          <tr><td class="mn">5 性能检测</td><td class="o">测试机型清单、分辨率、漫游路径、帧率与首屏时间、网络条件</td></tr>
+          <tr><td class="mn">6 视觉检查</td><td class="o">约定视角清单的逐张截图与结论，含瑕疵项记录</td></tr>
+          <tr><td class="mn">7 偏差与局限</td><td class="o">已知局限（如玻璃区域、未覆盖区域、光照条件假设）——<b>主动写明比被动发现好得多</b></td></tr>
+          <tr><td class="mn">8 结论与签署</td><td class="o">验收结论、遗留项与时限、双方签署与版本号</td></tr>
+        </tbody>
+      </table>
+      <div class="callout key">
+        <span class="ct">★ 第 7 节是保护你自己的</span>
+        很多团队不敢在验收报告里写局限，怕甲方据此拒收。实际相反：<strong>主动写明的局限是免责边界，被动发现的缺陷是违约证据。</strong>把"玻璃展柜区域按现状交付""模型反映采集时状态，不含后续改动"这类条款白纸黑字写进去，交付会顺利得多。
+      </div>
     </section>
 
     <!-- ===================== 引用与延伸阅读 ===================== -->
@@ -1866,6 +2572,9 @@
           <tr><td>CH09（数字孪生）</td><td><code>3dgs-mcp-renderer</code> · MCP <code>simulate_physics</code> · <code>query_4d_scene</code> · <code>resolve_voice_command</code></td><td>用自然语言驱动三维场景；物理仿真与多 Agent 编排</td></tr>
           <tr><td>CH10（世界模型）</td><td><code>3dgs-method-compare</code> · <code>3dgs-experiment-planner</code> · MCP <code>encode_scene_slatent</code> · <code>interpolate_scene_latent</code></td><td>横向对比方法；设计严谨实验；做潜空间插值生成</td></tr>
           <tr><td>CH11（安全·溯源）</td><td><code>patent-software-ip</code> · <code>3dgs-visualizer</code></td><td>3DGS 专利/软著登记；可视化取证与溯源</td></tr>
+          <tr><td>数据采集（实操）</td><td><code>3dgs-engineering-guide</code> · <code>3dgs-visualizer</code> · MCP <code>set_camera</code></td><td>按 SOP 设计轨迹与曝光；现场抽查并可视化复核采集质量</td></tr>
+          <tr><td>CH12（工程链路）</td><td><code>3dgs-compression-deploy</code> · <code>3dgs-engineering-guide</code> · MCP <code>prune_by_importance</code> · <code>export_scene_code</code></td><td>压缩到目标包体；导出可集成资产；按十个环节排期与设检查点</td></tr>
+          <tr><td>CH13（产业剧本）</td><td><code>3dgs-method-compare</code> · <code>3dgs-engineering-guide</code> · MCP <code>query_scene</code></td><td>按行业剧本横向对比候选方法；把业务指标翻成技术验收条款</td></tr>
           <tr><td>贯穿全书</td><td><code>3dgs-method-compare</code> · <code>nerf-to-3dgs-migrator</code> · <code>cad-mesh-3dgs</code> · 872+ 方法浏览器</td><td>跨方法对比、NeRF→3DGS 迁移、CAD↔网格↔3DGS 互转</td></tr>
         </tbody>
       </table>
@@ -1873,6 +2582,12 @@
       <div class="callout note" style="margin-top:16px">
         <span class="ct">如何开始</span>
         1) 打开 <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener">方法浏览器</a> 按类别筛选你关心的方向；2) 进入对应 <code>skills/&lt;名称&gt;/</code> 目录读 SKILL.md 与上述 MCP 工具名；3) 本地启动 <code>mcp-server</code> 后，用自然语言调用上表中的工具名即可上手。
+      </div>
+
+      <div class="links">
+        <a href="#appendix"><span class="ico">←</span> 回看：交付指标与验收报告模板</a>
+        <a href="#references"><span class="ico">→</span> 下一节：引用与延伸阅读</a>
+        <a href="#afterword"><span class="ico">→</span> 后记</a>
       </div>
     </section>
 
@@ -2060,8 +2775,8 @@
 
     <!-- ============ pager ============ -->
     <div class="pager">
-      <a class="prev" href="#ch10"><span class="dir">← 上一章</span><span class="ttl">第 10 章 · 世界模型与未来展望</span></a>
-      <a class="next" href="#references"><span class="dir">引用与延伸阅读 →</span><span class="ttl">60+ 权威资源</span></a>
+      <a class="prev" href="#references"><span class="dir">← 上一节</span><span class="ttl">引用与延伸阅读 · 60+ 权威资源</span></a>
+      <a class="next" href="#overview"><span class="dir">回到全书目录 →</span><span class="ttl">章节速览</span></a>
     </div>
 
   </main>
@@ -2149,9 +2864,107 @@
   /* ── Pager 动态 ── */
   // Bottom pager already static with afterword links
 })();
-</script>
-</body>
-</html>
 
+/* ── 选型决策器（第 0 章） ── */
+(function(){
+  var btn = document.getElementById('agsPickBtn');
+  var out = document.getElementById('agsPickOut');
+  if(!btn || !out) return;
+  function val(id){ var e = document.getElementById(id); return e ? e.value : ''; }
+  btn.addEventListener('click', function(){
+    var q1 = val('agsQ1'), q2 = val('agsQ2'), q3 = val('agsQ3'), q4 = val('agsQ4'), q5 = val('agsQ5');
+    var flags = [];
+    if(q5 === 'mm') flags.push('<b>毫米级测量要求</b>：3DGS 的几何是优化副产品，不适合作为测量级交付。主交付建议激光扫描或摄影测量网格，3DGS 只做视觉与语义补充。');
+    if(q2 === 'glass') flags.push('<b>玻璃 / 镜面为主</b>：这是 3DGS 的典型失效区，高斯基元会弥散成雾团。建议手工建模 + 材质，或改用支持光线追踪的方案（代价是慢一个数量级）。');
+    if(q2 === 'plain') flags.push('<b>大量无纹理区域</b>：SfM 位姿会先漂，问题出在输入而非 3DGS。需补纹理、加参照物或引入深度 / 激光辅助位姿。');
+    if(q3 === 'lowend') flags.push('<b>包体 &lt;10 MB 且机型偏低</b>：压缩有断崖点，建议先做小样扫描出断崖曲线，或改用网格 + 烘焙贴图。');
+    if(q4 === 'no') flags.push('<b>无法清场</b>：动态物体会产生鬼影与拉丝。务必先谈闭馆 / 夜间窗口；谈不下来则评估运动掩蔽，后期手工清理成本可能超过重拍。');
+    if(q1 === 'asset') flags.push('<b>需要可编辑资产</b>：3DGS 不适合直接做拓扑编辑。建议 3DGS 出视觉与材质，再转网格交给下游。');
+    if(q1 === 'measure') flags.push('<b>需要测量出图</b>：几何精度是关键交付项，需以激光或摄影测量为主，并在采集阶段锚定尺度基准。');
+
+    var main, why;
+    if(q5 === 'mm' || q1 === 'measure'){
+      main = '摄影测量网格 / 激光扫描为主，3DGS 为辅';
+      why = '几何精度是第一位，而 3DGS 的强项是视觉保真与实时性。正确用法是让它出视觉与语义，几何交给能出具精度报告的方案。';
+    } else if(q1 === 'asset'){
+      main = '网格资产为主，3DGS 负责视觉与材质参考';
+      why = '可编辑性要求把拓扑放在第一位，3DGS 作为中间产物能大幅降低建模成本。';
+    } else if(q2 === 'glass'){
+      main = '手工建模 + 材质，或光线追踪类方法';
+      why = '材质复杂度压倒了采集成本优势，此时 3DGS 的性价比不成立。';
+    } else if(q3 === 'lowend' && q1 === 'visual'){
+      main = '网格 + 烘焙贴图（3DGS 需先做小样验证）';
+      why = '端侧约束是第一位的。先在目标机型上验证压缩后画质，再决定是否走 3DGS。';
+    } else {
+      main = '3DGS 作为主路线';
+      why = '核心诉求落在 3DGS 的优势区：高保真、可实时，且下游还能挂语义与查询。';
+    }
+
+    var html = '<div style="font-size:14px;font-weight:700;margin-bottom:6px">建议路线：' + main + '</div>'
+      + '<div style="color:var(--text-2);margin-bottom:10px">' + why + '</div>';
+    if(flags.length){
+      html += '<div style="margin-bottom:6px;font-weight:600">需要注意的红线</div><ul style="margin:0;padding-left:18px;line-height:1.8">';
+      flags.forEach(function(f){ html += '<li>' + f + '</li>'; });
+      html += '</ul>';
+    } else {
+      html += '<div>未触发明显红线，可以按标准流程推进。</div>';
+    }
+    html += '<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);color:var(--text-2)">下一步：<a href="#capture">采集 SOP</a> 定死工期大头 · <a href="#ch12">成本工期与失败 Top 10</a> · <a href="#ch13">行业剧本</a> · <a href="#appendix">验收指标换算</a></div>';
+    out.innerHTML = html;
+  });
+})();
+
+/* ── 采集 checklist 进度 ── */
+(function(){
+  var boxes = document.querySelectorAll('.agsCk');
+  var bar = document.getElementById('agsCkBar');
+  var txt = document.getElementById('agsCkTxt');
+  if(!boxes.length || !bar || !txt) return;
+  function upd(){
+    var n = 0;
+    boxes.forEach(function(b){ if(b.checked) n++; });
+    var p = Math.round(n / boxes.length * 100);
+    bar.style.width = p + '%';
+    txt.textContent = n + ' / ' + boxes.length + (n === boxes.length ? ' · 可以撤场' : '');
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', upd); });
+  upd();
+})();
+
+/* ── 包体与压缩率估算（第 12 章） ── */
+(function(){
+  var inSize = document.getElementById('agsSizeIn');
+  var ratio = document.getElementById('agsRatio');
+  var cplx = document.getElementById('agsCplx');
+  var out = document.getElementById('agsSizeOut');
+  var rtxt = document.getElementById('agsRatioTxt');
+  if(!inSize || !ratio || !cplx || !out) return;
+  function upd(){
+    var s = parseFloat(inSize.value) || 0;
+    var r = parseFloat(ratio.value) || 1;
+    var f = cplx.value === 'rich' ? 1.4 : (cplx.value === 'plain' ? 0.6 : 1.0);
+    if(rtxt) rtxt.textContent = r + '×';
+    var after = s / r;
+    var lo = 10 * f, hi = 20 * f;
+    var level, tip;
+    if(r <= lo){
+      level = '无痛压缩区';
+      tip = '多数场景在这个区间内画质损失很小（PSNR 掉幅通常不到 0.5 dB）。可以直接压，但要抽视角确认。';
+    } else if(r <= hi){
+      level = '需验证区';
+      tip = '已进入需要实测的区间。建议在自己场景上按 2× 步长扫描压缩率，画出断崖曲线后再定最终值，不要照搬论文数字。';
+    } else {
+      level = '高风险区';
+      tip = '画质很可能断崖式下跌。若目标包体确实要求这么小，优先改方案：降采集分辨率、缩场景范围，或改用网格 + 烘焙贴图。';
+    }
+    out.innerHTML = '<div style="font-size:14px;font-weight:700;margin-bottom:6px">'
+      + Math.round(after) + ' MB（原始 ' + Math.round(s) + ' MB ÷ ' + r + '×）</div>'
+      + '<div style="margin-bottom:6px">当前档位：<b>' + level + '</b>（该场景参考阈值：' + Math.round(lo) + '× / ' + Math.round(hi) + '×）</div>'
+      + '<div style="color:var(--text-2)">' + tip + '</div>';
+  }
+  [inSize, ratio, cplx].forEach(function(e){ e.addEventListener('input', upd); });
+  upd();
+})();
+</script>
 </body>
 </html>
