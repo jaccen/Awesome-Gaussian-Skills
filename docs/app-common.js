@@ -7,13 +7,13 @@
       "nav.home": "首页", "nav.methods2": "方法库", "nav.studio2": "在线工作台", "nav.skills2": "技能与安装",
       "hero.version": "v0.9.4 · 现已开源",
       "hero.sub": "面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱",
-      "hero.badge.methods": "859 方法", "hero.badge.cats": "23 个分类", "hero.badge.skills": "15 项技能",
+      "hero.badge.methods": "859 方法", "hero.badge.cats": "23 个分类", "hero.badge.skills": "16 项技能",
       "hero.cta.methods": "探索方法", "hero.cta.book": "阅读电子书",
       "hero.studio": "SplatVerse Studio →", "hero.star": "在 GitHub 上 Star →",
       "hero.cta.studio": "进入工作台",
       "home.card.methods.t": "方法库", "home.card.methods.d": "859+ 个 3DGS 方法、23 个分类 — 搜索、筛选、对比，一键直达论文与代码。",
       "home.card.studio.t": "在线工作台", "home.card.studio.d": "文生 3D · 图生 3DGS · 实时查看器 — 在浏览器中完成从创意到 3D。",
-      "home.card.skills.t": "技能与安装", "home.card.skills.d": "15 项专业技能，秒级接入主流 AI Agent 平台。",
+      "home.card.skills.t": "技能与安装", "home.card.skills.d": "16 项专业技能，秒级接入主流 AI Agent 平台。",
       "home.card.trends.t": "研究热点", "home.card.trends.d": "每日追踪 arXiv、顶会与 GitHub 上的 3DGS 最新动态。",
 
       "t2w.eyebrow": "文生 3D", "t2w.sub": "用一句话描述场景，换取一个 3D 高斯世界",
@@ -79,7 +79,7 @@
       "a11y.backTop": "回到顶部",
 
 
-      "skills.eyebrow": "技能", "skills.title": "15 项专业技能", "skills.sub": "面向 3DGS 研究全流程的端到端 AI 助手。",
+      "skills.eyebrow": "技能", "skills.title": "16 项专业技能", "skills.sub": "面向 3DGS 研究全流程的端到端 AI 助手。",
       "install.eyebrow": "安装", "install.title": "快速开始", "install.sub": "秒级安装，兼容主流 AI Agent 平台",
       "trends.eyebrow": "热点", "trends.title": "3DGS 研究热点趋势", "trends.sub": "每日追踪 arXiv、会议与 GitHub",
 
@@ -101,13 +101,13 @@
       "nav.home": "Home", "nav.methods2": "Methods", "nav.studio2": "Studio", "nav.skills2": "Skills & Install",
       "hero.version": "v0.9.4 · Open Source",
       "hero.sub": "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting & Computer Graphics",
-      "hero.badge.methods": "859+ Methods", "hero.badge.cats": "23 Categories", "hero.badge.skills": "15 Skills",
+      "hero.badge.methods": "859+ Methods", "hero.badge.cats": "23 Categories", "hero.badge.skills": "16 Skills",
       "hero.cta.methods": "Explore Methods", "hero.cta.book": "Read the Book",
       "hero.studio": "SplatVerse Studio →", "hero.star": "Star on GitHub →",
       "hero.cta.studio": "Open Studio",
       "home.card.methods.t": "Method Library", "home.card.methods.d": "859+ 3DGS methods across 23 categories — search, filter, compare; one click to papers & code.",
       "home.card.studio.t": "Studio", "home.card.studio.d": "Text-to-3D · Image-to-3DGS · Live viewer — from idea to 3D, entirely in your browser.",
-      "home.card.skills.t": "Skills & Install", "home.card.skills.d": "15 specialized skills — plug into major AI agent platforms in seconds.",
+      "home.card.skills.t": "Skills & Install", "home.card.skills.d": "16 specialized skills — plug into major AI agent platforms in seconds.",
       "home.card.trends.t": "Trends", "home.card.trends.d": "Daily tracking of 3DGS activity across arXiv, conferences, and GitHub.",
 
       "t2w.eyebrow": "Text-to-3D", "t2w.sub": "Describe a scene in words — get a 3D Gaussian world in return",
