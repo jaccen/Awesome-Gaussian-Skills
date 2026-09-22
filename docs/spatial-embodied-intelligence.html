@@ -103,6 +103,26 @@
   .cover .meta a:hover{border-color:var(--primary);color:var(--primary);text-decoration:none}
   .cover .ribbons{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
   .cover .ribbons img{height:22px}
+  .cover .statbar{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .cover .statbar .st{display:inline-flex;align-items:baseline;gap:6px;padding:6px 12px;border-radius:8px;
+    background:var(--surface);border:1px solid var(--border);font-size:12px;color:var(--text-2)}
+  .cover .statbar .st b{font-size:14px;color:var(--text);font-variant-numeric:tabular-nums}
+  .cover .statbar .st.off{opacity:.5}
+  .cover .stat-note{font-size:11px;color:var(--text-3);margin-top:9px;line-height:1.6}
+  .side-prog{margin-top:18px;padding:12px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--border)}
+  .side-prog .sp-top{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;
+    font-weight:700;letter-spacing:.06em;color:var(--text-3)}
+  .side-prog .sp-top b{font-size:14px;color:var(--primary);letter-spacing:0}
+  .side-prog .sp-bar{height:5px;border-radius:3px;background:var(--border);margin:9px 0 8px;overflow:hidden}
+  .side-prog .sp-bar i{display:block;height:100%;width:0;border-radius:3px;
+    background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .25s}
+  .side-prog .sp-tip{font-size:11.5px;color:var(--text-2);line-height:1.5}
+  .side-prog .sp-btn{display:block;margin-top:9px;text-align:center;padding:6px 0;border-radius:7px;
+    border:1px solid var(--border);font-size:11.5px;color:var(--primary);font-weight:600;text-decoration:none}
+  .side-prog .sp-btn:hover{border-color:var(--primary)}
+  .side-prog .sp-reset{margin-top:6px;font-size:11px;color:var(--text-3);text-align:center;cursor:pointer;
+    text-decoration:underline;text-underline-offset:2px}
+  @media(max-width:1024px){ .side-prog{display:none} }
 
   /* ============ 章节速览 ============ */
   #overview{padding:30px 32px 10px;max-width:var(--maxw);margin:0 auto}
@@ -318,6 +338,13 @@
       <a href="#references"><span class="ch-num">引</span> 引用与延伸阅读</a>
       <a href="#afterword"><span class="ch-num">后</span> 后记 · 3DGS 会被吃掉吗</a>
     </nav>
+    <div class="side-prog" id="agsSideProg">
+      <div class="sp-top"><span>我的阅读进度</span><b id="agsReadPct">0%</b></div>
+      <div class="sp-bar"><i id="agsReadBar"></i></div>
+      <div class="sp-tip" id="agsReadTip">已读 0 / 20 节</div>
+      <a class="sp-btn" id="agsResume" href="#intro">继续阅读 →</a>
+      <div class="sp-reset" id="agsReadReset">清空本机记录</div>
+    </div>
   </aside>
 
   <!-- ============ 主内容 ============ -->
@@ -345,6 +372,14 @@
         <img alt="skills" src="https://img.shields.io/badge/AI_Skills-16-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
       </div>
+      <div class="statbar" id="agsStatBar">
+        <span class="st" data-bsz="pv"><i>阅读量</i><b id="busuanzi_value_site_pv">—</b></span>
+        <span class="st" data-bsz="uv"><i>访客数</i><b id="busuanzi_value_site_uv">—</b></span>
+        <span class="st"><i>全书字数</i><b>约 5.2 万字</b></span>
+        <span class="st"><i>读完约需</i><b>130 分钟</b></span>
+        <span class="st"><i>你已读</i><b id="agsCoverRead">0%</b></span>
+      </div>
+      <div class="stat-note">阅读量与访客数由公共计数服务统计（跨域名汇总为本书总量），网络不通时会沿用本机上次的值；「你已读」只记录在本机浏览器，不会上传。</div>
     </div>
 
     <!-- 章节速览 -->
@@ -357,12 +392,12 @@
         <a class="ch-card c2" href="#ch2"><span class="tag">第 2 章</span><h3>3DGS 的数学与工程内核</h3><p>各向异性高斯、可微光栅化、自适应密度控制与 CUDA 工程的完整拆解。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#capture" style="--accent:var(--amber,#b45309)"><span class="tag">实操</span><h3>数据采集 SOP：决定上限的第一步</h3><p>设备选型、轨迹设计、曝光七条硬规则、尺度基准四法，以及 12 项可勾选的现场 checklist。</p><span class="go">开工前必读 →</span></a>
         <a class="ch-card c3" href="#ch3"><span class="tag">第 3 章</span><h3>从场景到世界：大规模·动态·压缩</h3><p>大规模重建、动态/4D 高斯、SLAM 实时建图与压缩部署的工程化道路。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c4" href="#ch4"><span class="tag">第 4 章</span><h3>语义高斯</h3><p>语言/语义高斯、开放词汇 3D 分割——空间智能的"眼睛"如何长出来。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c4" href="#ch4"><span class="tag">第 4 章</span><h3>语义高斯：让空间被理解</h3><p>语言/语义高斯、开放词汇 3D 分割——空间智能的"眼睛"如何长出来。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c5" href="#ch5"><span class="tag">第 5 章</span><h3>编辑·生成·资产化</h3><p>从重建到创造：前馈重建、文本/图像到 3DGS、可动画资产与材质重照明。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c6" href="#ch6"><span class="tag">第 6 章</span><h3>具身智能基础</h3><p>VLA 谱系、仿真平台、Sim2Real 鸿沟与数据飞轮——机器人如何"长记性"。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c6" href="#ch6"><span class="tag">第 6 章</span><h3>具身智能基础：仿真到 Sim2Real</h3><p>VLA 谱系、仿真平台、Sim2Real 鸿沟与数据飞轮——机器人如何"长记性"。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c7" href="#ch7"><span class="tag">第 7 章</span><h3>3DGS 作为机器人空间记忆</h3><p>GS-SLAM 把高斯地图变成"可渲染记忆"，导航决策如何在其中推理。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c8" href="#ch8"><span class="tag">第 8 章</span><h3>物体级与铰接式理解</h3><p>part-level 高斯、铰接资产与 CAD·Mesh·3DGS 桥接——操作的前置条件。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card c9" href="#ch9"><span class="tag">第 9 章</span><h3>Agent 驱动的数字孪生</h3><p>MCP 渲染管线、手势交互、3DGS 作为可交互世界，串起感知与行动闭环。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c9" href="#ch9"><span class="tag">第 9 章</span><h3>Agent 驱动的数字孪生与交互</h3><p>MCP 渲染管线、手势交互、3DGS 作为可交互世界，串起感知与行动闭环。</p><span class="go">阅读 →</span></a>
         <a class="ch-card c10" href="#ch10"><span class="tag">第 10 章</span><h3>世界模型与未来展望</h3><p>世界模型六大学派、3DGS×World Model 交叉、空间基础模型与 Physical AI。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#ch11" style="--accent:var(--red,#e8453c)"><span class="tag">第 11 章</span><h3>安全、溯源与版权保护</h3><p>3DGS 水印谱系、GaussTrace 溯源、对抗攻击面、IP 管理与工业合规。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#ch12" style="--accent:var(--cyan)"><span class="tag">第 12 章</span><h3>从采集到交付：端到端工程链路</h3><p>十个环节的工具选型与卡点、格式与坐标系、成本工期量级表、项目失败 Top 10。</p><span class="go">工程主线 →</span></a>
@@ -2860,6 +2895,116 @@
       if(href) window.location.hash = href.replace('#','');
     });
   });
+
+  /* ── 阅读量统计：站点 PV/UV（第三方）+ 本机阅读进度 ── */
+  (function(){
+    var KEY = 'ags-book-read';
+    var bar = document.getElementById('agsStatBar');
+    var pvEl = document.getElementById('busuanzi_value_site_pv');
+    var uvEl = document.getElementById('busuanzi_value_site_uv');
+
+    // 1) 阅读量 / 访客数：POST 到公共计数 API（跨域开放，不校验 Referer），
+    //    带 localStorage 兜底。用固定标识 URL，换域名或本地预览都归到同一个计数器。
+    var API = 'https://events.vercount.one/api/v2/log';
+    var KEY_URL = 'https://spatial-embodied-ebook.app.workbuddy.host/spatial-embodied-intelligence.html';
+    var CACHE = 'ags-count-cache';
+
+    function fmt(n){
+      n = Number(n) || 0;
+      return n >= 10000 ? (n / 10000).toFixed(1) + ' 万' : String(n);
+    }
+    function paintCount(d){
+      if(!d || d.site_pv === undefined) return false;
+      if(pvEl) pvEl.textContent = fmt(d.site_pv);
+      if(uvEl) uvEl.textContent = fmt(d.site_uv);
+      if(bar) Array.prototype.forEach.call(bar.querySelectorAll('.st[data-bsz]'), function(el){ el.classList.remove('off'); });
+      return true;
+    }
+    function dimCount(){
+      if(!bar) return;
+      Array.prototype.forEach.call(bar.querySelectorAll('.st[data-bsz]'), function(el){ el.classList.add('off'); });
+    }
+    function cached(){
+      try { return JSON.parse(localStorage.getItem(CACHE) || 'null'); } catch(e){ return null; }
+    }
+    function keep(d){ try { localStorage.setItem(CACHE, JSON.stringify(d)); } catch(e){} }
+
+    paintCount(cached());               // 先亮出上次的值，避免首屏空白
+
+    var uvKey = 'ags_uv_seen';
+    var isNewUv = document.cookie.indexOf(uvKey + '=1') === -1;
+    if(isNewUv){ try { document.cookie = uvKey + '=1; path=/; max-age=31536000; samesite=lax'; } catch(e){} }
+
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 6000);
+    fetch(API, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({url: KEY_URL, isNewUv: isNewUv}),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(j){
+      clearTimeout(timer);
+      var d = (j && j.data) || j;
+      if(!paintCount(d)) throw new Error('bad payload');
+      keep({site_pv: d.site_pv, site_uv: d.site_uv});
+    }).catch(function(){
+      clearTimeout(timer);
+      if(!paintCount(cached())) dimCount();   // 无缓存才置灰，值保持「—」
+    });
+
+    // 2) 本机阅读进度：章节头部滚过屏幕上半部即记一次
+    var secs = Array.prototype.slice.call(document.querySelectorAll('section.chapter, .ref-section'));
+    var total = secs.length || 1;
+    var read = {};
+    try { read = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ read = {}; }
+
+    var pctEl = document.getElementById('agsReadPct');
+    var fillEl = document.getElementById('agsReadBar');
+    var tipEl = document.getElementById('agsReadTip');
+    var resEl = document.getElementById('agsResume');
+    var covEl = document.getElementById('agsCoverRead');
+    var rstEl = document.getElementById('agsReadReset');
+
+    function titleOf(s){
+      var h = s.querySelector('h2') || s.querySelector('.sec-title');
+      if(!h) return s.id;
+      var t = (h.textContent || '').trim().replace(/^(后记|附录|引言|引用)\s*[·:：]\s*/, '');
+      return t.length > 16 ? t.slice(0, 16) + '…' : t;
+    }
+    function paint(){
+      var n = 0;
+      secs.forEach(function(s){ if(s.id && read[s.id]) n++; });
+      var pct = Math.round(n / total * 100);
+      if(pctEl) pctEl.textContent = pct + '%';
+      if(covEl) covEl.textContent = pct + '%';
+      if(fillEl) fillEl.style.width = pct + '%';
+      if(tipEl) tipEl.textContent = '已读 ' + n + ' / ' + total + ' 节' + (n >= total ? ' · 读完了 🎉' : '');
+      if(resEl){
+        var nx = null;
+        for(var i = 0; i < secs.length; i++){ if(secs[i].id && !read[secs[i].id]){ nx = secs[i]; break; } }
+        if(nx){ resEl.textContent = '继续：' + titleOf(nx) + ' →'; resEl.setAttribute('href', '#' + nx.id); }
+        else { resEl.textContent = '重读一遍 ↺'; resEl.setAttribute('href', '#intro'); }
+      }
+    }
+    function save(){ try { localStorage.setItem(KEY, JSON.stringify(read)); } catch(e){} }
+    function mark(){
+      var dirty = false, vh = window.innerHeight;
+      secs.forEach(function(s){
+        if(!s.id || read[s.id]) return;
+        var r = s.getBoundingClientRect();
+        if(r.top < vh * 0.5 && r.bottom > 0){ read[s.id] = 1; dirty = true; }
+      });
+      if(dirty){ save(); paint(); }
+    }
+    window.addEventListener('scroll', mark, {passive:true});
+    if(rstEl) rstEl.addEventListener('click', function(){
+      read = {}; save(); paint();
+    });
+    paint(); mark();
+  })();
 
   /* ── Pager 动态 ── */
   // Bottom pager already static with afterword links

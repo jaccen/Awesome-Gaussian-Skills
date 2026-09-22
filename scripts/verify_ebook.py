@@ -113,9 +113,26 @@ for i in ['ch0', 'capture', 'ch12', 'ch13']:
 
 print('\n== 交互控件 id ==')
 for i in ['agsQ1', 'agsQ2', 'agsQ3', 'agsQ4', 'agsQ5', 'agsPickBtn', 'agsPickOut',
-          'agsCkBar', 'agsCkTxt', 'agsSizeIn', 'agsRatio', 'agsCplx', 'agsSizeOut', 'agsRatioTxt']:
+          'agsCkBar', 'agsCkTxt', 'agsSizeIn', 'agsRatio', 'agsCplx', 'agsSizeOut', 'agsRatioTxt',
+          # 阅读量统计
+          'agsStatBar', 'busuanzi_value_site_pv', 'busuanzi_value_site_uv', 'agsCoverRead',
+          'agsSideProg', 'agsReadPct', 'agsReadBar', 'agsReadTip', 'agsResume', 'agsReadReset']:
     print('  #%s: %s' % (i, 'OK' if i in ids else 'MISSING'))
 print('  .agsCk 复选框数量:', len(re.findall(r'class="agsCk"', s)))
+_nsec = len(re.findall(r'<section class="chapter"', s)) + len(re.findall(r'class="ref-section"', s))
+print('  章节块总数（应等于侧栏「已读 N / M 节」的 M）:', _nsec)
+
+print('\n== 内联脚本函数重名（同一 IIFE 内会互相覆盖） ==')
+_jsm = re.search(r'<script>(.*?)</script>', s, re.S)
+_js = _jsm.group(1) if _jsm else ''
+_dup_found = False
+for _i, _b in enumerate(re.split(r'\n\}\)\(\);', _js)):
+    _names = re.findall(r'function\s+([A-Za-z_$][\w$]*)\s*\(', _b)
+    _d = sorted(set(n for n in _names if _names.count(n) > 1))
+    if _d:
+        print('  ERR 块 %d 重名: %s' % (_i, _d))
+        _dup_found = True
+print('  ' + ('OK 无重名' if not _dup_found else '发现重名，后者会覆盖前者'))
 
 print('\n== 数字口径 ==')
 for pat, label in [(r'872', '方法总数 872'), (r'Categories-23', '分类 23'),
