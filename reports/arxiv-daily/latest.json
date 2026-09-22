@@ -1,5 +1,210 @@
 {
- "date": "2026-09-16",
- "count": 0,
- "papers": []
+ "date": "2026-09-22",
+ "count": 20,
+ "papers": [
+  {
+   "id": "2609.23380",
+   "title": "LiteTex-GS: Fast and Lightweight Texturing for Gaussian Splatting",
+   "abstract": "Gaussian Splatting has enabled real-time novel view synthesis, but its tightly coupled geometry and appearance representation often require a large number of primitives to reproduce high-frequency texture details, leading to substantial memory and optimization costs. Recent textured 2D Gaussian methods alleviate this limitation by attaching texture maps to Gaussian primitives. However, bridging the fundamental structural gap between discrete Gaussians and continuous 2D grids requires complex parameterizations that introduce severe computational overhead. This overhead fundamentally compromises the original efficiency of Gaussian Splatting, making the balance between detailed texturing and computational agility an unresolved challenge. To address these challenges, we propose LiteTex-GS, a fast and lightweight texturing framework for Gaussian Splatting. Our method initializes an extremely compact representation, assigning minimal local texture to each Gaussian and progressively allocates higher resolution only to primitives with significant reconstruction errors. To maintain a streamlined geometric scaffold, we introduce a contribution- and area-aware pruning strategy that eliminates low-utility Gaussians. Furthermore, to mitigate the gradient dilution caused by texture upsampling, we design a resolution-aware update rule that preserves rapid and stable convergence. Extensive experiments on standard novel view synthesis benchmarks demonstrate that our method achieves competitive or superior rendering quality while using substantially fewer parameters and less training time than existing textured Gaussian baselines.",
+   "published": "2026-09-20",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.23182",
+   "title": "GrapeSplat: Geometry-Grounded Reconstruction via Amalgamated Pose-Free Encoding for Feed-Forward 3D Gaussian Splatting",
+   "abstract": "Feed-forward 3D Gaussian Splatting now reconstructs renderable scenes from unposed, uncalibrated images. Yet, most models supervise only photometric consistency and predict Gaussians pixel by pixel, which leaves global structure fragile and ties primitive count to image resolution and view count. To this end, GrapeSplat amalgamates multi-view cues into a voxel-aligned scene representation and decodes Gaussians directly from the learned grid, requiring no per-scene optimization or post-processing. An Atlas Encoder lifts all views into pixel-wise geometry-and-appearance features anchored at predicted 3D points. PEACH-Vox compands the unbounded scene into a bounded sparse grid through a smooth per-axis map with an exact closed-form inverse. The Sparse Decoder then consolidates the grid with sparse convolutions and decodes the full scene as multiple Gaussians per occupied cell. This amalgamated representation exploits sparse voxel occupancy, where the Gaussian count follows the occupied cells and saturates as views cover the scene, while grid resolution sets its ceiling. GrapeSplat turns unposed images into a renderable Gaussian scene in a single forward pass. Trained with 2D and 3D supervision on 8-view sequences, it generalizes zero-shot from 4 to 64 views across indoor and unbounded scenes. Code and trained weights are available at https://github.com/VAISR/GrapeSplat",
+   "published": "2026-09-19",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV",
+    "cs.AI"
+   ]
+  },
+  {
+   "id": "2609.23049",
+   "title": "VDGS: Visibility-Driven Large-Scale 3D Gaussian Splatting for Aerial Scene Reconstruction",
+   "abstract": "Large-scale scene reconstruction is a critical foundational technology in robotic autonomous systems such as 3D mapping and autonomous driving. In recent years, 3D Gaussian Splatting (3DGS) has demonstrated remarkable advantages in both visual quality and computational efficiency, making it a promising representation for large-scale scene reconstruction. However, it still faces challenges in large-scale scenes, including excessive memory consumption and uneven viewpoint coverage caused by UAV acquisition, limiting its real-world applications. To address this, we propose VDGS, a novel 3DGS framework that incorporates camera distribution into scene modeling. VDGS introduces visibility-driven statistics for scene anchors to quantify supervision strength. These statistics are further leveraged for scene partitioning and for gradient compensation in under-optimized regions, thereby promoting balanced optimization across different regions. Extensive experiments on multiple large-scale aerial scene datasets demonstrate that, under imbalanced viewpoint distributions, VDGS consistently outperforms existing methods, while maintaining competitive performance in scenarios with more uniform view distributions.",
+   "published": "2026-09-19",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.23005",
+   "title": "Compressing 3D Gaussian Splatting via Cross-Representation Priors",
+   "abstract": "3D Gaussian Splatting (3DGS) enables high-quality novel view synthesis but incurs high storage and transmission costs due to dense Gaussian primitives. Recent anchor-based compression reduces per-primitive redundancy, yet redundancy across anchors remains largely unexploited. We propose CRP-GS (Cross-Representation Priors for Gaussian Splatting), a rate-distortion optimized compression framework that leverages cross-representation priors to improve anchor-level entropy modeling. First, a Correspondence-Oriented Hierarchical Structure (COHS) organizes anchors by feature correspondence rather than spatial proximity, constructing root-leaf dependencies so that selected anchors can act as informative priors to conditionally encode others, yielding more accurate likelihood prediction and lower conditional entropy. Second, Shared Feature Aggregation (SFA) extracts globally shared features from a contextual hash grid and injects them into anchor representations, factoring out scene-consistent low-frequency information that would otherwise be redundantly embedded in individual anchors. Both modules are trained under a unified rate-distortion objective to balance bitrate reduction and rendering fidelity. Experiments across multiple benchmarks show that CRP-GS achieves a favorable overall rate-distortion trade-off, yielding around 30% average bitrate reduction compared to anchor-based baselines while maintaining comparable rendering quality.",
+   "published": "2026-09-19",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.22941",
+   "title": "D3GS: Depth, DINO, and RGB Diffusion Co-Guided 3D Gaussian Splatting for Sparse-View Reconstruction",
+   "abstract": "Novel view synthesis from sparse inputs remains challenging for 3D Gaussian Splatting (3DGS) due to ambiguous geometry, cross-view inconsistency, and missing details in under-constrained regions, resulting in degraded reconstruction and unstable rendering. To tackle these issues, we propose D$^{3}$GS, a Depth-DINO-Diffusion guided sparse-view Gaussian reconstruction framework that jointly enhances geometry and appearance. D$^{3}$GS first recovers a high-resolution, metric depth map via diffusion-based completion and DPT (Dense Prediction Transformer) refinement, providing robust Gaussian initialization and geometric constraints. Then, a DINO-guided view-consistent learning is introduced to augment Gaussian attributes with structural features, improving multi-view consistency. Finally, a diffusion-based Gaussian refinement module injects generative priors into an iterative optimization strategy, enhancing high-frequency geometric and appearance details within the Gaussian representation. Experiments on DTU, LLFF, and Mip-NeRF 360 show that D$^{3}$GS achieves consistent and substantial improvements over strong baselines, with ablation studies validating the effectiveness and complementary roles of each component.",
+   "published": "2026-09-19",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.22849",
+   "title": "LINGO: Latent Initialization and Gradient Optimization for Sparse-view X-ray Novel View Synthesis and CT Reconstruction with 3D Gaussian Splatting",
+   "abstract": "In novel view synthesis and Computed Tomography (CT) reconstruction with sparse-view X-ray imaging, insufficient angular coverage leads to structural ambiguity and accumulated noise. Integrating 3D Gaussian Splatting (3DGS) with X-ray absorption physics can achieve promising results, but it suffers from noisy initialization, positional insensitivity, and weak gradients in low-density regions. In this paper, we propose a unified Latent Initialization and Gradient Optimization (LINGO) framework to address these issues. LINGO combines latent mask-space initialization with dynamic gradient optimization to improve point cloud structural completeness while accelerating training. It constructs voxel-level 3D filters from X-ray masks to robustly suppress background noise and provide reliable geometric priors. By employing an adaptive voxel scaling strategy and dynamically scaling loss, LINGO can adjust spatial resolution and explicitly amplify gradients in low-density structures. To evaluate the quality of initialization, we introduce the Initialization Point Cloud Structural Deviation (IPSD) metric. Experiments on the X3D dataset indicate that for the novel view synthesis task, LINGO improves the Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index (SSIM) by an average of 0.72 and 0.0039, respectively, over baselines under identical sparse-view settings, achieving comparable reconstruction quality within 5k steps to state-of-the-art models typically trained with 30k iterations. For the CT reconstruction task, LINGO also demonstrates consistent improvements, with average PSNR and SSIM gains of 0.36 and 0.0134. These results highlight LINGO's effectiveness in both accelerating training and enhancing reconstruction quality across different sparse-view imaging scenarios.",
+   "published": "2026-09-19",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV",
+    "cs.GR"
+   ]
+  },
+  {
+   "id": "2609.23100",
+   "title": "Splat-CBF: Safe Next-Best-View Control in 3D Gaussian-Splat Maps",
+   "abstract": "Where to look and how to move? A robot navigating an unmapped environment must do both at once, and the two goals pull against each other. The regions most worth observing are the ones the map knows least about, and those are exactly where the robot cannot trust its collision margins. We resolve this tension by introducing Splat-CBF, an active perception control barrier function that steers the camera toward the next best view while collision avoidance is enforced as a hard constraint. Safety is enforced by a risk-aware control barrier function that turns the Average Value-at-Risk of the Gaussian field into a single smooth hard constraint. Perception is enforced by a second barrier that rewards camera orientations with high expected Fisher information gain near the robot's planned path. The two meet in a quadratic program where safety is hard and perception is soft, with a slack penalty that adapts to how often perception has already been relaxed and how close the robot is to an uncertain region. We verify the method in indoor simulations, a Isaac Kinova manipulator and in experiments on an Ackermann-drive robot. Our results assert that robot navigates faster, gathers more information, and runs faster online than safety-only and perception-only baselines, giving up informative motion only when safety requires it.",
+   "published": "2026-09-19",
+   "primary": "cs.RO",
+   "categories": [
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2609.23027",
+   "title": "Quality Assessment of 3D Gaussian Splatting: Distortions, Benchmarks, and Open Challenges",
+   "abstract": "3D Gaussian Splatting (3DGS) has become a practical scene representation for real-time novel-view rendering, compression, and immersive content delivery. However, its quality assessment still largely follows rendered-view proxy protocols that sample camera poses, render images or videos, and apply inherited image and video quality metrics. While convenient, this practice does not fully capture 3DGS-native degradations that originate from Gaussian primitive distributions, splatting and visibility behavior, and trajectory-dependent artifacts. This survey reviews recent 3DGS quality assessment studies from four perspectives, covering distortion characteristics, subjective benchmarks, objective metric reliability, and emerging directions for native 3DGS evaluation. Across the literature, we find that different benchmarks construct different notions of quality, and that metric effectiveness is highly protocol dependent, varying with distortion sources, stimulus formats, and view and trajectory sampling. Finally, we summarize open challenges and outline practical guidelines for building more comparable and representative 3DGS-QA evaluations.",
+   "published": "2026-09-19",
+   "primary": "eess.IV",
+   "categories": [
+    "eess.IV"
+   ]
+  },
+  {
+   "id": "2609.22809",
+   "title": "Kinematic Interface for the Wild: Modular Bimanual Loco-Manipulation Capture from 360$^{\\circ}$ Cameras Alone",
+   "abstract": "A wrist-mounted camera for UMI-style data collection must do two jobs: record the manipulation and localize in the scene. Most handheld devices localize online from workspace-facing views crowded by hands and objects, or add dedicated tracking hardware. Room-scale bimanual capture therefore still tends to instrument the operator or the scene for accurate localization. We present KIWI (Kinematic Interface for the Wild), a capture kit whose only electronics are off-the-shelf cameras. Our core system splits the two jobs across the two lenses of a 360-degree camera. The rear lens faces the room and builds a shared metric map that registers both hands, and an optional head camera, in one frame without workspace co-visibility; the front lens records the manipulation, and offline IMU fusion bridges front-lens tracking loss. Through our quick-release plate, the camera module attaches to chopstick grippers, parallel-jaw grippers, hand-wrist mounts, or robot flanges. Across six bimanual recordings, combining the rear and front lenses failed to localize only 0.1% of query frames, whereas front-only bimanual feature alignment failed on 24.8% of frames and lost one recording entirely; against evaluation fiducials, localization error stayed within 4.5 mm. KIWI's recovered poses were sufficiently consistent for the four wrist streams alone to reconstruct the scene as a 3D Gaussian splat.",
+   "published": "2026-09-19",
+   "primary": "cs.RO",
+   "categories": [
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2609.21516",
+   "title": "2D GauSS-MI: Efficient Active Scene Reconstruction with Balanced Visual and Geometric Quality",
+   "abstract": "Active reconstruction requires efficient active view selection to achieve high-quality reconstruction within limited onboard computational resources. Existing methods face challenges in adequately balancing visual and geometric quality with the computational efficiency required for real-time operation. In this work, we present an active reconstruction framework based on 2D Gaussian Splatting (2DGS). We develop an efficient online 2DGS mapping pipeline for incremental RGB-D observations and introduce a probabilistic reliability model that characterizes the view-dependent reconstruction quality of individual 2D Gaussian splats. Building on this model, we formulate 2D Gaussian Splatting Shannon Mutual Information (2D GauSS-MI), a mutual-information-based metric that exploits the explicit surface orientation of 2DGS to evaluate the expected information gain of candidate views. The proposed metric enables active view selection to account for both visual and geometric reconstruction quality. We evaluate the proposed system against three state-of-the-art baselines on eight Replica scenes. Experimental results demonstrate that our method achieves a favorable balance between visual and geometric reconstruction quality with substantially lower computational cost and competitive model storage.",
+   "published": "2026-09-18",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV",
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2609.21176",
+   "title": "4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors",
+   "abstract": "This paper addresses the challenges of dynamic scene synthesis from sparse-view videos. Existing methods employ geometric priors, adaptive optimization, or density-control strategies to improve 4D Gaussian modeling under sparse observations. However, they cannot fundamentally resolve the ill-posed problem caused by insufficient observations and missing scene information. Moreover, sparse-view 4D Gaussian Splatting (4DGS) often suffers from poor geometric initialization: with only a few input views, COLMAP typically reconstructs sparse and incomplete point clouds, leaving large scene regions without sufficient Gaussian support and making them difficult to recover through subsequent optimization. To address these limitations, we propose a novel iterative refinement framework based on a video diffusion model to improve the completeness and consistency of dynamic 4D scenes. Specifically, we first estimate multi-view depth maps and fuse them into dense point clouds to provide more complete geometric initialization for a dynamic 4DGS representation. We then employ a pretrained video restoration model to refine sequences rendered along novel camera trajectories at different time steps. The restored sequences serve as pseudo-supervision to regularize and iteratively refine the 4DGS representation. Experiments on a widely used benchmark dataset demonstrate that our method substantially outperforms existing baselines, achieving nearly a 2 dB PSNR improvement over the previous best-performing method.",
+   "published": "2026-09-18",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.20623",
+   "title": "PhGS: Post-Hoc Pruning and Refinement of Single-View Feed-Forward 3D Gaussian Reconstructions",
+   "abstract": "Recent single-view feed-forward 3D Gaussian Splatting (3DGS) generation predicts a fixed number of Gaussians per camera ray, introducing severe spatial redundancy. Most existing compaction strategies target multi-view setups to exploit cross-view consistency and are incompatible with single-image models. Instead of retraining the base feed-forward network to directly output compact representations, our insight is to keep the base models frozen and apply post-hoc pruning and recurrent refinement to the generated Gaussians. Consequently, we propose a backbone-agnostic compaction pipeline for single-view feed-forward 3DGS that couples an importance-score-based pruning mechanism with a trainable, lightweight recurrent refinement module, which iteratively updates the surviving primitives to restore image quality. Our results demonstrate seamless integration with existing baselines while preserving novel-view rendering fidelity and achieving high memory reduction. Furthermore, our method supports flexible inference-time keep ratios for application needs.",
+   "published": "2026-09-17",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.19782",
+   "title": "Printing the Underdetermined: Materializing Multi-solutionness in Figurative Paintings",
+   "abstract": "Figurative paintings are often approached as if they depict a single recoverable 3D scene: viewers infer depth and occlusion, and reconstruction pipelines attempt to converge to one stable model. We instead foreground multi-solutionness, the non-uniqueness of 3D configurations compatible with a single painted image, and propose a workflow that keeps this non-uniqueness visible and material. Multi-solutionness arises from two sources: unobserved content, where backsides and occluded volumes admit multiple plausible completions, and observed cues, where perspective, shading, and occlusion still underconstrain geometry. When additional views are synthesized by a video generative model without explicit 3D constraints, small frame-level drifts become inevitable rather than exceptional. Our pipeline samples multiple camera-orbit multi-view video sequences from one painting, reconstructs each sequence with 3D Gaussian Splatting into a point-based Gaussian scene representation where density halos and ghosting expose unresolved degrees of freedom, and fabricates these representations as physical artifacts using DreamPrinting. By treating multiple compatible interpretations as explicit outputs rather than residual error, we provide a computational framework for spatial readings of figurative painting that can be inspected, compared, and discussed in both digital and physical form.",
+   "published": "2026-09-17",
+   "primary": "cs.GR",
+   "categories": [
+    "cs.GR",
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.19716",
+   "title": "GAPrompt++: Multi-Granular Geometry-Aware Point Cloud Prompt for 3D Vision Model",
+   "abstract": "Pre-trained 3D vision models have substantially advanced point cloud analysis, yet adapting them to downstream tasks via full fine-tuning is computationally expensive and storage-intensive. Parameter-Efficient Fine-Tuning (PEFT) offers a promising alternative by reducing both adaptation cost and storage burden. However, existing prompting-based approaches ignore the intrinsic geometric structures of point clouds, thereby limiting their adaptation capability. This limitation stems from their inability to encode both fine-grained geometric cues and coarse-grained structural semantics, as well as failing to propagate such information effectively through the model hierarchy. To address these challenges, we propose GAPrompt++, a multi-granular geometry-aware prompting method that provides richer geometric guidance for efficient 3D task adaptation. Specifically, we introduce a Point Shift Prompter that extracts multi-granular geometric features across different scales, enabling instance-specific geometric adjustments during adaptation. Next, a Keypoint Prompter adaptively generates point-level prompts to highlight local geometric saliency and fine-grained structural details. Furthermore, a Prompt Propagation mechanism injects these multi-granular geometric cues throughout the feature extraction hierarchy, strengthening the ability to capture essential geometric characteristics. Extensive experiments show that GAPrompt++ achieves state-of-the-art performance among prompting-based PEFT methods and even surpasses full fine-tuning across diverse benchmarks, while requiring less than 2\\% trainable parameters. In addition, to address the saturation of existing evaluation datasets, we construct two more challenging benchmarks derived from 3D Gaussian Splatting and Multi-View Stereo reconstruction, offering diverse and realistic point cloud scenarios to promote future research.",
+   "published": "2026-09-17",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.21112",
+   "title": "Demonstration Synthesis from a Single Scan via Gaussian Splatting for Visuomotor Policy Learning",
+   "abstract": "Training a visuomotor policy calls for abundant demonstrations that closely match the target environment, yet collecting them anew remains expensive. Existing demonstration synthesis methods reduce this cost but remain constrained by high manual effort, limited visual fidelity, or heavy reliance on physics simulators. This paper introduces GaussianFactory, a high-fidelity data engine that mass-produces demonstrations with a single video scan as its only human input and no physics engine in the generation loop. Specifically, GaussianFactory reconstructs the scene as an editable 3D Gaussian Splatting (3DGS) replica and samples from the object-combination tasks the scene affords. For each task, it plans grasps and trajectories purely kinematically on the geometric reconstruction, rendering photorealistic demonstrations that visually match the target environment. Physical dynamics enter the pipeline only where contact force interactions dictate the outcome---during grasp formation, via a learned contact model pretrained once on an interaction dataset. To evaluate the downstream utility of the synthesized demonstrations, we implement an end-to-end scan-to-deployment workflow in two setups: a simulated scene that stands in for the real world to enable reproducibility, and a real-world workspace with a physical UR10e robot. In each setup, a standard diffusion policy trained solely on the synthesized demonstrations achieves 95.1% and 84.2% success rates, respectively.",
+   "published": "2026-09-17",
+   "primary": "cs.RO",
+   "categories": [
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2609.19533",
+   "title": "SLAMSqueezeBench: Comparing SLAM Systems under Resource Constraints",
+   "abstract": "Simultaneous localization and mapping (SLAM) is one of the services running on an autonomous robot. It is typically run to assist other tasks such as planning, manipulation, etc. All these tasks are run on edge hardware and are subject to severe resource constraints. However, most SLAM systems are built and tested in isolation, and their performance is reported as if they are the only task running on a system. We observe that existing benchmarks lack a common mechanism for comparing SLAM systems under realistic resource constraints. To address this limitation, we have developed SLAMSqueezeBench, a framework that allows testing of SLAM systems under realistic workloads on edge hardware. It does so by imposing constraints on compute and memory resources available for the SLAM system during execution. It also simulates realistic camera frame acquisition with frame drops when a finite buffer is full. Using SLAMSqueezeBench, we compare nine SLAM systems spanning classical systems, learning-based systems, and approaches for Gaussian splatting. Our testing framework will be available for use by the community upon publication.",
+   "published": "2026-09-17",
+   "primary": "cs.RO",
+   "categories": [
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2609.19421",
+   "title": "RGS: Reflection-aware Gaussian Splatting via Learning Geometry Continuity for Reflective Objects",
+   "abstract": "Gaussian Splatting has significantly improved the quality of novel view synthesis with explicit Gaussian representation. However, we observed that existing 3D Gaussian Splatting methods (3DGS) often suffer from surface collapse issues on reflective regions, and thus produce inferior geometry and low-quality specular. In this work, we propose a physically-based deferred rendering framework, named Reflection-aware Gaussian Splatting (RGS), that can accurately model specular regions and improve novel view synthesis performance. Specifically, we found that a powerful 3D foundation model can provide a strong 3D geometric prior to foster correct geometric modeling. Based on this, we propose a cross-view shape consistency regularization to regularize the geometry surface with the large model prior and cross-view constraints. In this manner, our RGS can produce smoother geometric surfaces on reflective regions while reducing geometric hollows. To further improve rendering results on reflective regions, we present a reflection-aware densification strategy that is designed to capture specular variations across various views. With this strategy, our RGS is able to render novel views of objects in higher quality. Extensive experiments demonstrate our method consistently renders high-quality reflective objects, achieving state-of-the-art performance.",
+   "published": "2026-09-16",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.18737",
+   "title": "Geometry beneath the Waves: Dense Priors for Sparse-View Underwater 3D Gaussian Splatting",
+   "abstract": "Underwater 3D reconstruction supports applications ranging from marine ecosystem monitoring and subsea inspection to underwater archaeology, education, and immersive visualisation. 3D Gaussian Splatting has made real-time photorealistic novel-view rendering practical, while underwater variants incorporate physically based image-formation models to separate medium effects from scene radiance. Their reconstruction quality, however, remains fundamentally limited by the geometry used for initialisation.",
+   "published": "2026-09-16",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.19330",
+   "title": "SemSafe-3DGS: Semantic Risk-Aware Active Navigation in Uncertain 3D Gaussian Splatting Maps",
+   "abstract": "Autonomous robots operating in partially observed environments must navigate safely while acquiring observations that improve future planning. Existing safety formulations generally reason primarily about geometry. Consequently, geometrically similar scene elements may induce comparable control responses despite having different semantic consequences. We present a semantic risk aware safe-active perception framework for navigation in attributed 3D Gaussian maps. Semantic attributes modulate an Average Value-at-Risk collision clearance model through class dependent risk weights, allowing safety-critical Gaussian primitives to receive greater influence in the composite barrier. The resulting weighted clearances are aggregated into a control barrier function, while a trajectory-relevant active perception barrier promotes observations that reduce geometric map uncertainty along the robot's anticipated motion. Both objectives are integrated in a unified CBF-QP that enforces semantic risk-aware collision avoidance as a hard constraint while relaxing information acquisition when it conflicts with safety or task progress. Experiments demonstrate efficient safety constraint, improved navigation through active perception, semantic dependent trajectory adaptation, and real-robot execution under Ackermann dynamics.",
+   "published": "2026-09-16",
+   "primary": "cs.RO",
+   "categories": [
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2609.18898",
+   "title": "NormLift: From Lifted Features To Semantic Reliability In 3D Gaussian Splatting",
+   "abstract": "Training-free weighted aggregation is widely used to lift 2D semantic features onto 3D Gaussians for open-vocabulary scene understanding, yet its theoretical role remains insufficiently understood. Existing analyses typically justify this operation from the rendering side, treating Gaussian features as linearly composable Euclidean variables for reconstructing 2D feature maps. However, this view does not match downstream 3D usage, where each Gaussian is often queried independently in a cosine-based embedding space. We revisit feature lifting from the 3D side and formulate per-Gaussian assignment as a cosine alignment problem on the CLIP unit sphere. Under this objective, the L2-normalized semantic back-projected feature emerges as the closed-form solution, providing a complementary interpretation of the standard lifting rule from the perspective of per-Gaussian semantic assignment. The same formulation further yields a norm decomposition into intra-view and inter-view consistency, suggesting that feature magnitude itself can serve as a semantic reliability signal. Calibrated by effective multi-view support, this reliability score guides a mode-voting refinement that preserves CLIP feature validity by avoiding linear averaging. Experiments on open-vocabulary 3D semantic segmentation show that NormLift is an efficient, training-free framework that achieves strong performance across evaluation protocols.",
+   "published": "2026-09-16",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  }
+ ]
 }

@@ -37,7 +37,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (859 methods)
+3DGS Scene (872 methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │

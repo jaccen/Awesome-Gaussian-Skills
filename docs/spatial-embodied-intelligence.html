@@ -320,7 +320,7 @@
     <div class="cover">
       <span class="kicker">① 开源技术书 · 设计原理与工程实践</span>
       <h1>深入理解<span class="grad">空间智能与具身智能</span></h1>
-      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 859+ 方法与 16 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
+      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 872+ 方法与 16 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
       <div class="formula">
         <b>具身智能体</b><span class="x">=</span>
         空间表征<span class="x">×</span>感知<span class="x">×</span>规划<span class="x">×</span>行动
@@ -333,7 +333,7 @@
         <span>📜 License · Apache-2.0</span>
       </div>
       <div class="ribbons">
-        <img alt="methods" src="https://img.shields.io/badge/Methods-859+-9cf.svg">
+        <img alt="methods" src="https://img.shields.io/badge/Methods-872+-9cf.svg">
         <img alt="categories" src="https://img.shields.io/badge/Categories-25-green.svg">
         <img alt="skills" src="https://img.shields.io/badge/AI_Skills-15-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
@@ -366,7 +366,7 @@
       <div class="chapter-head"><span class="no">引言</span><h2>为什么写这本书</h2></div>
       <p class="chapter-sub">空间智能与具身智能的百年交汇 · 3DGS 为何是关键拼图</p>
 
-      <p>2023 年 8 月，INRIA 的 Bernhard Kerbl 及合作者在 SIGGRAPH 发表了论文"3D Gaussian Splatting for Real-Time Radiance Field Rendering"<span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span>。他们用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化（differentiable rasterization），把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。这不是渐进式改进——它是表示层面的范式转换。一年内它从一篇论文变成一个 859+ 方法、跨 23 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。</p>
+      <p>2023 年 8 月，INRIA 的 Bernhard Kerbl 及合作者在 SIGGRAPH 发表了论文"3D Gaussian Splatting for Real-Time Radiance Field Rendering"<span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span>。他们用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化（differentiable rasterization），把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。这不是渐进式改进——它是表示层面的范式转换。一年内它从一篇论文变成一个 872+ 方法、跨 23 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。</p>
 
       <p>这本书想回答的核心问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
 
@@ -398,7 +398,7 @@
       <p>点云（Point Cloud）是三维数据最直接的表示，但它没有外观、不可微渲染、无法表达视角依赖的颜色。网格（Mesh）是游戏与 CAD 的标准格式，但它难以从图像优化生成、对复杂透明/半透明场景束手无策。NeRF 用 MLP 隐式编码一切，渲染质量极高但需要逐像素光线步进（ray marching），训练和推理都慢，且表示藏在网络权重里——不可编辑、不可直接查询。3DGS 把辐射场<strong>显式化</strong>成一组可数、可微、可渲染的 3D 高斯基元：表示暴露在数据里，而不是埋在权重里。这一步直接决定了后面所有"编辑、压缩、语义、喂给机器人"的可能性。</p>
 
       <h3><span class="mi">②</span> 这本书做三件事</h3>
-      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表示→感知→规划→行动"的主线，把 859+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
+      <p>这本书不是论文清单。它做三件事：第一，沿着 3DGS 的数学与工程内核，把"为什么它能实时、能编辑、能当机器人的记忆"讲到位；第二，沿"表示→感知→规划→行动"的主线，把 872+ 方法归类到一个可推理的框架里；第三，每一章都锚定本仓库里真实存在的方法表、references 与 skills，让"读完书"和"上手工程"无缝衔接。</p>
 
       <div class="callout note">
         <span class="ct">③ 阅读建议</span>
@@ -435,7 +435,7 @@
       <div class="links">
         <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 原始 3DGS 仓库 (graphdeco-inria)</a>
         <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> awesome-3D-gaussian-splatting (MrNeRF)</a>
-        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 859+ 方法浏览器</a>
+        <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 872+ 方法浏览器</a>
         <a href="#ch1"><span class="ico">→</span> 下一章：范式跃迁</a>
       </div>
     </section>
@@ -1849,7 +1849,7 @@
     <!-- ===================== 实践资源索引 ===================== -->
     <section class="chapter" id="practice-index" style="--accent:var(--green)">
       <div class="chapter-head"><span class="no">实</span><h2>实践资源索引：从书到工程</h2></div>
-      <p class="chapter-sub">16 个工程技能 · 34 个 MCP 工具 · 859+ 方法浏览器</p>
+      <p class="chapter-sub">16 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器</p>
 
       <p>本书每一章都对应本仓库（<a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">Awesome-Gaussian-Skills</a>）里真实可运行的资源。下表把"读到的章节"接到"能动手的工具"——建议带着你自己的项目，按行挑一个先跑通。</p>
 
@@ -1866,7 +1866,7 @@
           <tr><td>CH09（数字孪生）</td><td><code>3dgs-mcp-renderer</code> · MCP <code>simulate_physics</code> · <code>query_4d_scene</code> · <code>resolve_voice_command</code></td><td>用自然语言驱动三维场景；物理仿真与多 Agent 编排</td></tr>
           <tr><td>CH10（世界模型）</td><td><code>3dgs-method-compare</code> · <code>3dgs-experiment-planner</code> · MCP <code>encode_scene_slatent</code> · <code>interpolate_scene_latent</code></td><td>横向对比方法；设计严谨实验；做潜空间插值生成</td></tr>
           <tr><td>CH11（安全·溯源）</td><td><code>patent-software-ip</code> · <code>3dgs-visualizer</code></td><td>3DGS 专利/软著登记；可视化取证与溯源</td></tr>
-          <tr><td>贯穿全书</td><td><code>3dgs-method-compare</code> · <code>nerf-to-3dgs-migrator</code> · <code>cad-mesh-3dgs</code> · 859+ 方法浏览器</td><td>跨方法对比、NeRF→3DGS 迁移、CAD↔网格↔3DGS 互转</td></tr>
+          <tr><td>贯穿全书</td><td><code>3dgs-method-compare</code> · <code>nerf-to-3dgs-migrator</code> · <code>cad-mesh-3dgs</code> · 872+ 方法浏览器</td><td>跨方法对比、NeRF→3DGS 迁移、CAD↔网格↔3DGS 互转</td></tr>
         </tbody>
       </table>
 
@@ -1999,7 +1999,7 @@
         <div class="ref-item"><span class="idx">[49]</span> nerfstudio <a href="https://github.com/nerfstudio-project/nerfstudio">GitHub</a><span class="desc">完整训练框架，集成 3DGS/NeRF，适合工程化上手</span></div>
         <div class="ref-item"><span class="idx">[50]</span> COLMAP <a href="https://github.com/colmap/colmap">GitHub</a><span class="desc">3DGS 流程前端必备：图像序列→相机位姿+稀疏点云</span></div>
         <div class="ref-item"><span class="idx">[51]</span> awesome-3D-gaussian-splatting (MrNeRF) <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">GitHub</a><span class="desc">社区维护的 3DGS 论文/资源精选清单</span></div>
-        <div class="ref-item"><span class="idx">[52]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">859+ 方法 / 23 类别 / 16 个 AI 技能 / 34 个 MCP 工具</span></div>
+        <div class="ref-item"><span class="idx">[52]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">872+ 方法 / 23 类别 / 16 个 AI 技能 / 34 个 MCP 工具</span></div>
       </div>
 
       <div class="ref-divider"></div>
@@ -2040,7 +2040,7 @@
       <ul>
         <li><strong>规模验证</strong>：方法数从本书开写时的 700 扩充到 859（+22.7%），多渠道 arXiv 收获验证了 3DGS 不是一阵风——150 天内仍有 162 篇新论文被验证纳入。</li>
         <li><strong>语义升级</strong>：DGSG-Mind、CausalSplat、GS-LLM 代表的"场景图 + 因果推理 + LLM 驱动"新路线，标志着语义高斯从"贴标签"进入"建关系"阶段。这恰好对应本书第 4 章的预判：语义高斯的下一步是结构化理解。</li>
-        <li><strong>研究空白</strong>：系统性空白分析发现，"本体驱动 3DGS"（ontology-driven 3DGS）在整个 859 方法库中尚无对应方法——最接近的是场景图和神经符号推理。这意味着在"可推理的空间知识表示"这个方向上，3DGS 还有一块未开垦的土地，值得有心人去耕。</li>
+        <li><strong>研究空白</strong>：系统性空白分析发现，"本体驱动 3DGS"（ontology-driven 3DGS）在整个 872 方法库中尚无对应方法——最接近的是场景图和神经符号推理。这意味着在"可推理的空间知识表示"这个方向上，3DGS 还有一块未开垦的土地，值得有心人去耕。</li>
       </ul>
       <p>这些新证据共同指向一个判断：3DGS 正在从"重建工具"走向"空间知识引擎"。当它不只是渲染图像，而是承载语义、关系、因果、甚至本体论知识时，它从"一份好看的地图"变成"一份可推理的空间知识库"——这才是空间智能的深层含义，也是 3DGS 短期不可替代的真正理由。</p>
 
@@ -2052,7 +2052,7 @@
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener"><span class="ico">⎇</span> 配套仓库（859+ 方法 / 15 技能）</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener"><span class="ico">⎇</span> 配套仓库（872+ 方法 / 16 技能）</a>
         <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 在线方法浏览器</a>
         <a href="#intro"><span class="ico">↑</span> 回到引言</a>
       </div>
@@ -2071,7 +2071,7 @@
   <div class="ft-title">关于本书</div>
   <ul>
     <li>本书是 <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">Awesome-Gaussian-Skills</a> 项目的一部分，以 3D Gaussian Splatting 为核心串联空间智能与具身智能。</li>
-    <li>覆盖 859+ 方法、23 个类别、16 个 AI 工程技能、34 个 MCP 工具，所有引用均经核实。</li>
+    <li>覆盖 872+ 方法、23 个类别、16 个 AI 工程技能、34 个 MCP 工具，所有引用均经核实。</li>
     <li>License: Apache-2.0 · 欢迎贡献与勘误。</li>
   </ul>
   <p class="copy">© 2024–2026 Awesome-Gaussian-Skills · 以 3DGS 为核心的空间智能开源技术书</p>

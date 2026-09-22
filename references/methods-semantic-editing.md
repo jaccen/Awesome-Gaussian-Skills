@@ -620,3 +620,38 @@
   - **Core**: Generalized referring 3DGS segmentation (GR3DGS)
   - **Key Innovation**: Zero-feature, training-free approach to 3DGS segmentation; supports 0-shot, 1-shot, and N-shot target specification; refers to arbitrary targets without category-specific training
   - **Links**: [arXiv](https://arxiv.org/abs/2607.18801)
+## Newly Added Methods (September 2026)
+
+> 13 methods added from arXiv daily scan (859 → 872). All arXiv-verified; method names self-stated in title/abstract per R9.
+
+### Compression & Streaming
+- **CRP-GS** [arXiv:2609.23005](https://arxiv.org/abs/2609.23005) (arXiv 2026) — Rate-distortion optimized 3DGS compression using cross-representation priors for anchor-level entropy modeling.
+
+### Cross-Domain
+- **LINGO** [arXiv:2609.22849](https://arxiv.org/abs/2609.22849) (arXiv 2026) — Latent initialization and gradient optimization framework for sparse-view X-ray novel-view synthesis and CT reconstruction with 3DGS.
+
+### Dynamic & 4D
+- **4DGS-Fixer** [arXiv:2609.21176](https://arxiv.org/abs/2609.21176) (arXiv 2026) — Generative sparse-view 4D Gaussian Splatting with iterative refinement guided by video diffusion priors.
+
+### Embodied AI & Robotics
+- **Splat-CBF** [arXiv:2609.23100](https://arxiv.org/abs/2609.23100) (arXiv 2026) — Risk-aware control barrier function for safe next-best-view control in 3D Gaussian-Splat maps.
+- **SemSafe-3DGS** [arXiv:2609.19330](https://arxiv.org/abs/2609.19330) (arXiv 2026) — Semantic risk-aware safe-active perception navigation framework in attributed 3D Gaussian maps.
+
+### Feed-Forward
+- **GrapeSplat** [arXiv:2609.23182](https://arxiv.org/abs/2609.23182) (arXiv 2026) — Pose-free feed-forward 3DGS that amalgamates multi-view cues into a voxel-aligned representation and decodes Gaussians without per-scene optimization.
+- **PhGS** [arXiv:2609.20623](https://arxiv.org/abs/2609.20623) (arXiv 2026) — Post-hoc pruning and recurrent refinement pipeline that compacts single-view feed-forward 3DGS without retraining the base model.
+
+### Language & Semantic
+- **NormLift** [arXiv:2609.18898](https://arxiv.org/abs/2609.18898) (arXiv 2026) — 3D-side feature lifting formulating per-Gaussian assignment as cosine alignment for semantically reliable Gaussians.
+
+### Large-Scale
+- **VDGS** [arXiv:2609.23049](https://arxiv.org/abs/2609.23049) (arXiv 2026) — Visibility-driven large-scale aerial 3DGS reconstruction framework reducing memory and uneven viewpoint coverage from UAV capture.
+
+### Sparse-View
+- **D3GS** [arXiv:2609.22941](https://arxiv.org/abs/2609.22941) (arXiv 2026) — Depth-DINO-Diffusion co-guided sparse-view 3DGS framework jointly enhancing geometry and appearance.
+
+### Surface & Rendering
+- **LiteTex-GS** [arXiv:2609.23380](https://arxiv.org/abs/2609.23380) (arXiv 2026) — Lightweight texturing for Gaussian Splatting that attaches texture maps to primitives to reduce memory and optimization cost of high-frequency details.
+- **2D GauSS-MI** [arXiv:2609.21516](https://arxiv.org/abs/2609.21516) (arXiv 2026) — Efficient active scene reconstruction on 2DGS with online mapping and a probabilistic reliability model for view selection.
+- **RGS (Reflection)** [arXiv:2609.19421](https://arxiv.org/abs/2609.19421) (arXiv 2026) — Physically-based deferred rendering for reflection-aware Gaussian Splatting, modeling specular regions on reflective objects.
+

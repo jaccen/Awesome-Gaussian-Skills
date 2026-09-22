@@ -1,7 +1,7 @@
 ---
 name: awesome-gaussian-skills
-version: "0.9.4"
-description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 859 methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering (spec-first sculpting + code-first export), articulated reasoning, compression & deployment, training debugging. SLAT unified representation framework for conversion skills."
+version: "0.9.5"
+description: "3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research. 872 methods knowledge base, 15 research-grade skills (3 Router architecture), interactive explorer. Covers 3DGS paper reading, method comparison, code review, experiment planning, CAD/Mesh bridge, visualization, NeRF migration, engineering deployment, CG paper writing, IP generation, spatial intelligence, MCP rendering (spec-first sculpting + code-first export), articulated reasoning, compression & deployment, training debugging. SLAT unified representation framework for conversion skills."
 when_to_use: "3DGS, Gaussian Splatting, NeRF, 3D reconstruction, surface reconstruction, CAD, mesh, point cloud, novel view synthesis, spatial intelligence, 3D Gaussian, splatting rendering, differentiable rendering, Gaussian world model, procedural 3D, event camera simulation, geometry opacity, reflective material, mesh generation, symmetry 3D generation, spatial control, physics simulation, articulated object, 4D reconstruction, relational language Gaussian, representation abstraction, elastic deformation, DoG pruning, proxy mesh occlusion, test-time spatial training, neuro-symbolic spatial reasoning, interactable digital twin, Bayesian density control, MoE deformation, surgical SLAM, training-free semantic compression, deformable aggregation, PBR material splatting, 3DGS provenance analysis"
 arguments: [task]
 author: jaccen
@@ -12,7 +12,7 @@ keywords: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", 
 
 # Awesome Gaussian Skills — Project Context
 
-This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 859 methods across 23 categories with 104 known bug patterns.
+This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 872 methods across 23 categories with 108+ known bug patterns.
 
 > **Anthropic Skills Standard Alignment**: This project follows the SKILL.md standard format compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`), and other AI Agent frameworks. Each skill includes YAML frontmatter (name, description, version, when_to_use, tags) and structured Markdown body with capabilities, instructions, and reference data. Target: `anthropics/skills` official repository listing.
 
@@ -22,7 +22,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 |-------|---------|-------------|
 | `3dgs-paper-reader` | `/3dgs-paper-reader [arxiv-id]` | Read and summarize any 3DGS paper |
 | `3dgs-method-compare` | `/3dgs-method-compare [method-a] [method-b]` | Compare methods across 11 dimensions (Router architecture) |
-| `3dgs-code-reviewer` | `/3dgs-code-reviewer [file]` | Review 3DGS code for 104 bug patterns (Self-Check Loop) |
+| `3dgs-code-reviewer` | `/3dgs-code-reviewer [file]` | Review 3DGS code for 108+ bug patterns (Self-Check Loop) |
 | `3dgs-experiment-planner` | `/3dgs-experiment-planner [topic]` | Design experiments for top venues |
 | `cad-mesh-3dgs` | `/cad-mesh-3dgs [query]` | Bridge CAD/Mesh and 3DGS via SLAT framework (40+ methods) |
 | `3dgs-visualizer` | `/3dgs-visualizer [chart-type]` | Generate publication-quality charts |
@@ -40,7 +40,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 
 ```
 references/
-|-- 3dgs-methods-overview.md   # 859 methods index (23 categories)
+|-- 3dgs-methods-overview.md   # 872 methods index (23 categories)
 |-- methods-core.md            # Core methods (Foundation->Dynamic)
 |-- methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 |-- methods-systems-apps.md    # Systems, Applications, Cross-Domain
@@ -65,7 +65,7 @@ references/
 - **Stage Gates**: cg-paper-writing includes SG-1/SG-2/SG-3 non-skippable gates
 - New skill (v0.4.4): 3dgs-training-debugger — Runtime training failure diagnosis (60+ runtime bug patterns, VRAM management, convergence analysis, novel method stability)
 - MCP implementation (v0.8.0): mcp-server/ — 13 core tools (all real implementations) + 13 experimental tools (schema-only, listed only when INCLUDE_EXPERIMENTAL=1 and explicitly marked NOT IMPLEMENTED); true-3DGS render loop (gsplat.js via HTTP-served PLY on :9842), server-authoritative scene_id with persistent scene index, grid-accelerated cast_ray, real PLY/SPLAT export serialization, 5 distinct prune strategies, runtime argument validation, WS origin allowlist, 21 unit tests (`npm test`), 23-pattern voice intent mapper (`resolve_voice_command` tool)
-- **Single Source of Truth** (v0.8.0): `data/methods.json` (859 methods, 23 categories) generated by `scripts/build_knowledge_base.py` from all historical carriers; CSV / explorer / abstracts.js are regenerated outputs; `scripts/validate_knowledge_base.py` enforces dedup / arXiv format / taxonomy / blacklist in CI (`.github/workflows/knowledge-ci.yml`)
+- **Single Source of Truth** (v0.8.0): `data/methods.json` (872 methods, 23 categories) generated by `scripts/build_knowledge_base.py` from all historical carriers; CSV / explorer / abstracts.js are regenerated outputs; `scripts/validate_knowledge_base.py` enforces dedup / arXiv format / taxonomy / blacklist in CI (`.github/workflows/knowledge-ci.yml`)
 - **Benchmark Arena** (v0.8.0): `bench/` — metrics.py (numpy PSNR/SSIM + optional LPIPS), run_eval.py ([S]-labeled local evaluation), leaderboard.json (source-labeled entries only, A/C/S/E convention from benchmark-data.md)
 - **Skill Orchestration Contracts** (v0.8.0): `skills/_contracts/*.schema.json` (paper-insight / comparison-report / experiment-plan) validated by `scripts/validate_skill_contract.py`; Router manifests now have a real loader `scripts/router_load.py` (axis validation + fragment existence checks)
 - **Spec-First Sculpting Pipeline** (v0.6.0, SPEC ONLY): 6-stage gate-gated sculpting (blockout -> structural -> form -> material -> surface -> lighting) defined in 3dgs-mcp-renderer SKILL.md; tools `define_scene_spec` / `sculpt_pipeline` / `export_scene_code` are specified but NOT implemented in mcp-server v0.8.0 (treat as roadmap, do not call)
@@ -83,7 +83,7 @@ references/
 
 ```
 Awesome-Gaussian-Skills/         (root, npm workspaces)
-├── data/                        Single source of truth (methods.json, 859 methods)
+├── data/                        Single source of truth (methods.json, 872 methods)
 ├── bench/                       Benchmark arena (metrics, leaderboard)
 ├── mcp-server/                  3DGS MCP Server v0.8.0 (13 core + 13 experimental tools, HTTP+WS :9842, gsplat render loop)
 ├── studio/
@@ -211,8 +211,8 @@ npm run dev:mcp       # MCP Server (stdio)
 - [x] `allowed-tools` field for pre-approved tool access
 - [x] Compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`) layouts
 - [x] Router architecture for efficient context usage (3 skills)
-- [x] Anti-hallucination guardrails (all 15 skills)
-- [x] Red Lines categorical prohibitions (all 15 skills)
+- [x] Anti-hallucination guardrails (all 16 skills)
+- [x] Red Lines categorical prohibitions (all 16 skills)
 - [x] Self-Check loops for code review & training debugging (2 skills)
 - [x] Stage Gates for paper writing (1 skill)
 - [ ] Submit PR to `anthropics/skills` official repository (materials prepared: `docs/anthropic-pr-preparation.md`)

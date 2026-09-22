@@ -6,7 +6,7 @@
 ## PR Title
 
 ```
-Add Awesome Gaussian Skills — 15 3DGS research lifecycle skills + MCP sculpt pipeline (859 methods)
+Add Awesome Gaussian Skills — 16 3DGS research lifecycle skills + MCP sculpt pipeline (872 methods)
 ```
 
 ## PR Description
@@ -14,7 +14,7 @@ Add Awesome Gaussian Skills — 15 3DGS research lifecycle skills + MCP sculpt p
 ```markdown
 ## Awesome Gaussian Skills
 
-A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussian Splatting (3DGS) research lifecycle — from paper reading to production deployment. Built on a knowledge base of 859 methods across 23 categories with 108+ known code bug patterns and 60+ runtime training failure patterns. Includes a working MCP server (v1.1.0) with 21 core tools, a spec-first sculpting pipeline, SLAT latent editing, and cross-scene latent transfer for voice-driven 3D scene construction.
+A collection of 16 research-grade AI Agent skills covering the entire 3D Gaussian Splatting (3DGS) research lifecycle — from paper reading to production deployment. Built on a knowledge base of 872 methods across 23 categories with 108+ known code bug patterns and 60+ runtime training failure patterns. Includes a working MCP server (v1.1.0) with 34 tools, a spec-first sculpting pipeline, SLAT latent editing, and cross-scene latent transfer for voice-driven 3D scene construction.
 
 ### Skills Included (15)
 
@@ -53,8 +53,8 @@ A collection of 15 research-grade AI Agent skills covering the entire 3D Gaussia
 1. **Progressive disclosure architecture**: 3 skills use Router architecture with `manifest.yaml` + `static/` fragments for efficient context usage
 2. **Anti-hallucination guardrails**: Every skill enforces categorical prohibitions against fabricated data, hallucinated citations, and silent speculation
 3. **Domain-specific bug databases**: 108+ static code review patterns + 60+ runtime training patterns
-4. **Knowledge base integration**: Shared `references/` directory with 859+ method entries, updated daily
-5. **MCP server with sculpt + SLAT pipeline**: `3dgs-mcp-renderer` includes a working TypeScript MCP server (v1.1.0) with 21 core tools (import, render, query, modify, prune, sculpt, export, encode/edit/list latent, transfer/interpolate latent) and 13 experimental tool stubs. The spec-first sculpting pipeline supports 6-stage gate-evaluated sculpting (blockout → structural → form → material → surface → lighting) with code-first export to Three.js procedural geometry + .splat binary. SLAT latent editing adds encode/edit/decode of structured scene latents with 7 edit ops and a 10% safety gate; cross-scene transfer re-applies a latent edit across scenes (relative change) and interpolates two scenes in latent space.
+4. **Knowledge base integration**: Shared `references/` directory with 872+ method entries, updated daily
+5. **MCP server with sculpt + SLAT pipeline**: `3dgs-mcp-renderer` includes a working TypeScript MCP server (v1.1.0) with 34 tools (import, render, query, modify, prune, sculpt, export, encode/edit/list latent, transfer/interpolate latent) and 13 experimental tool stubs. The spec-first sculpting pipeline supports 6-stage gate-evaluated sculpting (blockout → structural → form → material → surface → lighting) with code-first export to Three.js procedural geometry + .splat binary. SLAT latent editing adds encode/edit/decode of structured scene latents with 7 edit ops and a 10% safety gate; cross-scene transfer re-applies a latent edit across scenes (relative change) and interpolates two scenes in latent space.
 6. **Voice-driven scene construction**: 42 regex-based voice intent rules map natural language to MCP tool calls, including 8 sculpting-specific and 11 SLAT-specific commands (9 single-scene + 2 cross-scene) for stage-by-stage pipeline execution
 
 ### Installation

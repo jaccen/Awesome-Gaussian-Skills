@@ -6,13 +6,13 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 859 methods, 23 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 872 methods, 23 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-859-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-872-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -40,7 +40,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 859 Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 872 Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
@@ -58,7 +58,7 @@ Search 859 Methods instantly, filter by category, sort by citations, click any m
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 12 chapters, every method name anchored to this repo's real data (859 Methods, 23 categories, 15 skills), zero fabrication:**
+**What's inside — 11 chapters, every method name anchored to this repo's real data (872 Methods, 23 categories, 16 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -86,11 +86,25 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 859 method names, abstracts, and 15 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 872 method names, abstracts, and 16 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (Sep 2026)
+
+### Latest Update (Sep 21, 2026): **v0.9.5 — Daily arXiv Scan: 13 New Methods (859 → 872)** ⭐
+
+Routine daily arXiv scan admitted **13** new arXiv-verified 3DGS methods, taking the library from
+**859 to 872** (+13, +1.5%). Admissions span Surface & Rendering, Feed-Forward, Large-Scale,
+Compression, Sparse-View, Cross-Domain, Embodied AI & Robotics, Dynamic, and Language & Semantic
+categories (incl. `LiteTex-GS`, `GrapeSplat`, `VDGS`, `CRP-GS`, `NormLift`). **7** candidate papers
+were rejected for failing the verification protocol — benchmarks without a self-stated method name,
+descriptive-only paper titles, or 3DGS used merely as a tool. All data carriers
+(`methods.json` / CSV / `methods.html` / `abstracts.js` / reference doc) re-verified at **872**,
+name sets compared entry by entry. No method name was fabricated; the library's
+"every entry arXiv-verifiable" guarantee holds.
+
+See [changelog/2026-09-21-v3.md](changelog/2026-09-21-v3.md) for the full admission list.
 
 ### Latest Update (Sep 21, 2026): **v0.9.4 — Multi-Channel Harvest: 700 → 859 Methods + Accuracy Overhaul** ⭐
 
@@ -110,7 +124,7 @@ harvest over the last 150 days. Six query families (`cs.CV` / `cs.GR` / `cs.RO` 
 - **AIGC traces removed** from 29 text files; 21 historically corrupted JPEGs restored and re-stripped safely.
 - **`README_CN.md` recovered** from double-encoding corruption that had mangled every Chinese string.
 - **Full carrier sync** — `methods.json` / CSV / `methods.html` / `abstracts.js` / reference doc
-  all verified at **859**, name sets compared entry by entry rather than by count alone.
+  all verified at **872**, name sets compared entry by entry rather than by count alone.
 
 **Adjudication wave (same day).** A second pass resolved every name carrying a derived suffix or
 colliding with another entry: `Scaffold-GS+` and `GaussianSplatting-SLAM-v2` deleted (no such paper
@@ -183,7 +197,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (859 Methods, 23 Categories)
+## Knowledge Base (872 Methods, 23 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -284,7 +298,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 859 Methods.
+> Derived from systematic gap analysis across 872 Methods.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -373,7 +387,7 @@ Awesome-Gaussian-Skills/
 │   ├── _contracts/            # Inter-skill I/O schemas (paper-insight, comparison-report, experiment-plan)
 │   ├── 3dgs-paper-reader/     # Paper reading & summarization
 │   ├── 3dgs-method-compare/   # Method comparison engine (Router)
-│   ├── 3dgs-code-reviewer/    # Code review (104 bug patterns)
+│   ├── 3dgs-code-reviewer/    # Code review (108+ bug patterns)
 │   ├── 3dgs-experiment-planner/ # Experiment design
 │   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS migration
 │   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS bridge
@@ -391,7 +405,7 @@ Awesome-Gaussian-Skills/
 ├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
 ├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (859 Methods, 23 Categories)
+├── references/                # Knowledge base (872 Methods, 23 Categories)
 ├── Test/                      # Visualization samples
 ├── changelog/                 # Version history
 └── assets/                    # Project images

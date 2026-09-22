@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 859 方法，23 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 872 方法，23 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-859-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-872-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 859 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 872 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 12 章，每个方法名均锚定本仓库真实数据（859 方法、23 类别、15 技能），零虚构：**
+**全书 11 章，每个方法名均锚定本仓库真实数据（872 方法、23 类别、16 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -85,11 +85,22 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 859 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 872 方法名、摘要和 16 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 9 月）
+
+最新更新（9 月 21 日）：**v0.9.5 — 每日 arXiv 扫描：13 篇新论文入库（859 → 872）** ⭐
+
+例行每日 arXiv 扫描新收录 **13** 篇经 arXiv 核验的 3DGS 方法，方法库由 **859 扩充至 872**（+13，+1.5%）。
+新增覆盖表面渲染、前馈、大规模、压缩、稀疏视角、跨域、具身智能、动态、语言与语义等类别
+（含 `LiteTex-GS`、`GrapeSplat`、`VDGS`、`CRP-GS`、`NormLift`）。**7** 篇候选因未通过核验协议被排除——
+无自述方法名的基准评测、纯描述性标题、或仅将 3DGS 作为工具的论文。
+全部载体（`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档）重新核验为 **872**，
+名称集合逐条比对一致。无虚构方法名，知识库"条条可 arXiv 核实"的承诺保持不变。
+
+详见 [changelog/2026-09-21-v3.md](changelog/2026-09-21-v3.md)。
 
 最新更新（9 月 21 日）：**v0.9.4 — 多渠道抓取：700 → 859 methods + 准确性全面核查** ⭐
 
@@ -105,7 +116,7 @@
   `GS-LRM-v2` 实际指向 DOF-GS。全部条目均已过 arXiv API 实查。
 - **AIGC 痕迹清除**：29 个文本文件；21 张历史损坏 JPEG 已恢复并按安全算法重新剥离元数据。
 - **`README_CN.md` 双重编码乱码已修复**（原本所有中文串被损坏为 `鏂规硶` 之类）。
-- **全载体同步**：`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档**均为 859 条**，
+- **全载体同步**：`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档**均为 872 条**，
   并按"名称集合逐条比对"而非仅比对总数来核验一致性。
 
 **同日裁定波**：第二轮逐条处置所有"带派生后缀"或"与他人同名"的条目——`Scaffold-GS+`、
@@ -131,7 +142,7 @@
 
 前次更新（8 月 7 日）：**v0.8.0 — 平台升级（P0+P1+P2）**。单一真相源（data/methods.json，783 方法，23 类别，数据 CI）；5 条伪造条目清除 + 14 条 arXiv 验证前沿方法；真 3DGS 渲染循环（gsplat HTTP PLY）；服务端权威场景持久化；真实 PLY/SPLAT 导出；5 种剪枝策略；网格加速射线查询；21 个单元测试 + 2 个 CI 工作流；基准竞技场（bench/）；技能编排合约（skills/_contracts/）；Router manifest 加载器（scripts/router_load.py）；13 个核心 MCP 工具 + 13 个实验性。详见 [changelog/2026-08-07.md](changelog/2026-08-07.md)。
 
-前次更新（7 月 26 日）：**v0.5.1 — 全面方法盘点 & 14 个新方法**。789+ 方法（775 经核实唯一基线 + 14 新增）。跨 11 个源文件全面重新盘点。新增：GrainGS、GLAM-SLAM、SubSplat、ATSplat、3D-GIMP、LB-Edit、FlexiAvatar、ZeroSplat、CaT-GS、FF-ProCams、i3dgs、VIGS-SLAM、ECoNGS、AniGS。3 个 Router 技能，全部 15 技能含反幻觉护栏。
+前次更新（7 月 26 日）：**v0.5.1 — 全面方法盘点 & 14 个新方法**。789+ 方法（775 经核实唯一基线 + 14 新增）。跨 11 个源文件全面重新盘点。新增：GrainGS、GLAM-SLAM、SubSplat、ATSplat、3D-GIMP、LB-Edit、FlexiAvatar、ZeroSplat、CaT-GS、FF-ProCams、i3dgs、VIGS-SLAM、ECoNGS、AniGS。3 个 Router 技能，全部 16 技能含反幻觉护栏。
 
 | 方法 | 发表 venue | 类别 | 核心创新 |
 |------|-----------|------|----------|
@@ -172,7 +183,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（859 方法，23 类别）
+## 知识库（872 方法，23 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -279,7 +290,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 859 方法的系统性空白分析生成。
+> 基于知识库 872 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -337,7 +348,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 - [x] v0.2 — `3dgs-visualizer` + Text2Word 演示（2026 年 5 月）
 - [x] v0.3 — 知识库 675→783+ 方法，23 类别，101+ bug 模式，12 个技能（2026 年 6 月）
 - [x] v0.3.7 — 空间智能浪潮：680→783+ 方法，+10 新方法（FastGS, Holi-Spatial, Spatial-TTT 等），第 11 维度，Anthropic 标准对齐（2026 年 6 月 25 日）
-- [x] v0.3.7 — CVPR 2026 代表性论文：690→783+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 15 技能更新（2026 年 6 月 28 日）
+- [x] v0.3.7 — CVPR 2026 代表性论文：690→783+ 方法，+23 篇已验证新方法（Eulerian GS, Energy-GS, NG-GS, UniSHARP, RAF, PDEO, Liquid Neural Fields, MaterialClusterGS 等），全部 16 技能更新（2026 年 6 月 28 日）
 - [x] v0.4.0 — Router 架构扩展：cg-paper-writing + 3dgs-engineering-guide → Router + manifest.yaml + static/；3dgs-code-reviewer 自检循环；3 个 Router 技能（2026 年 7 月 2 日）
 - [x] v0.4.1 — ECCV & ISCA 2026 浪潮：+Flux-GS, AnchorSplat, ASSEMCAD, WildSplat, NoDrift3R（ECCV 2026）, Axis-Shared Rasterization Accelerator（ISCA 2026）, Provable Pruning via Coresets；783+ 方法（2026 年 7 月 9 日）
 - [ ] v0.4 — `3dgs-spatial-agent` 增强（知识约束 CAD, DDF-GS 射线查询）
@@ -363,7 +374,7 @@ Awesome-Gaussian-Skills/
 ├── skills/                    # 15 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
-│   ├── 3dgs-code-reviewer/    # 代码审查（104 bug 模式）
+│   ├── 3dgs-code-reviewer/    # 代码审查（108+ bug 模式）
 │   ├── 3dgs-experiment-planner/ # 实验设计
 │   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS 迁移
 │   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS 桥接
@@ -378,7 +389,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（859 方法，23 类别）
+├── references/                # 知识库（872 方法，23 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
