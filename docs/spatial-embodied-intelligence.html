@@ -428,7 +428,7 @@
         <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">Meta 发布 V-JEPA 2（LeCun 主导），在联合嵌入预测空间做世界模型，不重建像素 <span class="vchip">2025</span></div></div>
         <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">NVIDIA 开源 GR00T N1 人形机器人基础模型，System 1 快反应 + System 2 VLM 规划</div></div>
         <div class="tl-item"><span class="tl-date">2026.05</span><div class="tl-text">字节跳动发布 Pelican-Unified 1.0，首个统一具身基础模型；多伦多大学 BISON 实现双层策略 10K 物体 &lt;1min 规划</div></div>
-        <div class="tl-item"><span class="tl-date">2026.09</span><div class="tl-text">3DGS 方法生态突破 859 篇，覆盖 23 个类别；多渠道 arXiv 收获 + 裁决波将方法库从 700 扩充至 859，准确性全面核查 <span class="vchip">2026</span></div></div>
+        <div class="tl-item"><span class="tl-date">2026.09</span><div class="tl-text">3DGS 方法生态突破 872 篇，覆盖 23 个类别；多渠道 arXiv 收获 + 裁决波 + 每日扫描将方法库从 700 扩充至 872，准确性全面核查 <span class="vchip">2026</span></div></div>
       </div>
 
       <p>李飞飞在 2024 年 6 月旧金山 AI Startup School 的演讲中说："<strong>AGI 若没有空间智能，是不完整的</strong>。"她把空间智能定义为"在三维空间中感知、推理、生成和交互的深层能力"——不是二维图像识别，而是对三维物理世界的完整理解与行动能力。这与黄仁勋在 2025 CES 的 Physical AI 命名形成呼应：<strong>世界模型 + 空间智能 + 具身智能</strong>。三者都以"一份可计算、可渲染、可编辑的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。</p>
@@ -673,7 +673,7 @@
         3DGS 的"实时"依赖三点工程务实：基于瓦片的光栅化避免全局排序瓶颈；前向/反向共用同一套排序保证梯度一致；自适应密度控制用位置梯度的累积量而非重建误差做判据。迁移 NeRF 工作流时，最容易踩的坑是<strong>把"高质量渲染"误当成"高质量几何"</strong>——PSNR 高不代表法线干净，做后续 mesh/CAD 时要切换评价口径。
       </div>
 
-      <p>从 2023 年到 2026 年，3DGS 的论文数量从 1 篇爆发到 859+ 篇。南京大学在 IEEE TCSVT 2025 年 7 月发表的综述"3D Gaussian Splatting: Survey, Technologies, Challenges, and Opportunities"<span class="vchip v-arXiv">IEEE TCSVT 2025</span>是对这波浪潮最全面的梳理之一。康奈尔大学、香港科技大学联合发表的 VLA 综述则从具身智能侧切入，讨论了 VLM 如何驱动 3D 理解的产业化。</p>
+      <p>从 2023 年到 2026 年，3DGS 的论文数量从 1 篇爆发到 872+ 篇。南京大学在 IEEE TCSVT 2025 年 7 月发表的综述"3D Gaussian Splatting: Survey, Technologies, Challenges, and Opportunities"<span class="vchip v-arXiv">IEEE TCSVT 2025</span>是对这波浪潮最全面的梳理之一。康奈尔大学、香港科技大学联合发表的 VLA 综述则从具身智能侧切入，讨论了 VLM 如何驱动 3D 理解的产业化。</p>
 
       <div class="links">
         <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" rel="noopener"><span class="ico">⎇</span> 3DGS 项目主页 (INRIA)</a>
@@ -2788,7 +2788,7 @@
       <h3><span class="mi">④</span> 2026 年 9 月的新证据</h3>
       <p>本书写作到 2026 年 9 月，3DGS 生态又给出了一批新的证据，让上述判断更清晰：</p>
       <ul>
-        <li><strong>规模验证</strong>：方法数从本书开写时的 700 扩充到 859（+22.7%），多渠道 arXiv 收获验证了 3DGS 不是一阵风——150 天内仍有 162 篇新论文被验证纳入。</li>
+        <li><strong>规模验证</strong>：方法数从本书开写时的 700 扩充到 872（+24.6%），多渠道 arXiv 收获与每日扫描验证了 3DGS 不是一阵风——150 天内 175 篇新论文被验证纳入。</li>
         <li><strong>语义升级</strong>：DGSG-Mind、CausalSplat、GS-LLM 代表的"场景图 + 因果推理 + LLM 驱动"新路线，标志着语义高斯从"贴标签"进入"建关系"阶段。这恰好对应本书第 4 章的预判：语义高斯的下一步是结构化理解。</li>
         <li><strong>研究空白</strong>：系统性空白分析发现，"本体驱动 3DGS"（ontology-driven 3DGS）在整个 872 方法库中尚无对应方法——最接近的是场景图和神经符号推理。这意味着在"可推理的空间知识表示"这个方向上，3DGS 还有一块未开垦的土地，值得有心人去耕。</li>
       </ul>

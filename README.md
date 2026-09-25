@@ -1,5 +1,4 @@
 ﻿
-
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -58,13 +57,15 @@ Search 872 Methods instantly, filter by category, sort by citations, click any m
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 11 chapters, every method name anchored to this repo's real data (872 Methods, 23 categories, 16 skills), zero fabrication:**
+**What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (872 Methods, 23 categories, 16 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
 | 引言 | Why this book | Why 3DGS is the key puzzle piece of Physical AI |
+| 前 | Landing prelude: should you, can you | Tech-selection matrix, eight cases where you should NOT use 3DGS, three reading paths |
 | CH 01 | NeRF → 3DGS: A paradigm leap | Explicit vs implicit, the three innovations, the alpha-compositing formula |
 | CH 02 | The math & engineering core | Anisotropic Gaussians, differentiable rasterization, adaptive density control, CUDA |
+| 操 | Data-capture SOP | Device selection, trajectory design, seven exposure hard rules, scale calibration —the first step that decides your quality ceiling |
 | CH 03 | From scene to world | Large-scale, dynamic/4D, GS-SLAM, compression & deployment |
 | CH 04 | Semantic Gaussians | CLIP/DINO feature distillation, open-vocabulary 3D segmentation |
 | CH 05 | Editing · Generation · Asset-ization | Feed-forward reconstruction, SDS generation, animatable assets, PBR relighting |
@@ -74,6 +75,10 @@ Search 872 Methods instantly, filter by category, sort by citations, click any m
 | CH 09 | Agent-driven digital twins | MCP rendering pipeline, gesture interaction, the perception-action loop |
 | CH 10 | World models & the future | Six schools of world models, 3DGS×World Model, spatial foundation models, Physical AI |
 | CH 11 | Security, provenance & copyright | 3DGS watermarking, GaussTrace forensics, adversarial attacks, IP management |
+| CH 12 | Capture-to-delivery: the end-to-end pipeline | Ten-stage tool selection & pitfalls, formats & coordinate systems, cost/duration estimates, project failure modes |
+| CH 13 | Industry playbooks: six verticals | Museums & tourism, e-commerce, industrial inspection, AD simulation, embodied robots, surveying & mapping |
+| 附 | Appendix | Datasets, evaluation metrics, delivery-metric conversion & acceptance-report templates |
+| 实 | Practice index: from book to engineering | 16 engineering skills · 34 MCP tools · 872+ method explorer, chapter-to-runnable-resource mapping |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 Each chapter ends with hands-on exercises and links back to the repo's method tables, `references/`, and skills —so reading the book and doing the engineering are one seamless flow.
