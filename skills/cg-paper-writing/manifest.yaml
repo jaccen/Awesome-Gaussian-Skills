@@ -185,3 +185,4 @@ routing:
       - static/writing-patterns-from-top-papers.md
     on_demand:
       - static/review-integrity.md
+      - static/paper-evaluation-framework.md

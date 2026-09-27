@@ -122,6 +122,7 @@ Read these files from static/:
 
 ### Reference Load (for review/integrity work)
 - static/review-integrity.md — Multi-agent review, Devil's Advocate Protocol, citation verification, integrity gates, style calibration, writing quality check, persistence
+- static/paper-evaluation-framework.md — 论文创新性与学术/产业价值评估框架（四维创新模型+TRL产业成熟度+10维评分表+审稿视角对照），用于投稿前自评、审稿、指导学生论文、评估他人工作；第九章含开题预评估适配方案（8维评分表+竞品密度评估+可行性评估+多选题对比表）
 
 **Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load all fragments.
 
