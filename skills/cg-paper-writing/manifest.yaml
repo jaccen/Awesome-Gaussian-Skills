@@ -22,6 +22,7 @@ axes:
       - top-journal
       - chinese-journal
       - cjc
+      - jos
       - all
     default: all
 
@@ -60,6 +61,10 @@ routing:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
         - static/cjc-format.md
+      jos:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/jos-format.md
       cvpr:
         - static/venue-formats.md
       siggraph:

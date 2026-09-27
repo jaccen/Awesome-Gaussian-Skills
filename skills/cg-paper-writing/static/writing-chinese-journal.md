@@ -14,6 +14,8 @@ Applies when the user targets a Chinese core journal (中文核心期刊 / 软�
 
 > **目标为《计算机学报》时必须额外加载 `cjc-format.md`**：该文件按学报官方模板（CJC-Templet_Word2003.doc）与编辑部《修改稿要求》整理，含首页要素与字号表、正文字号体系、14 项正文硬性要求、参考文献 7 类格式、摘要四要素（How I did it 为重点）、英文背景介绍、作者简介、编辑部内容检查清单与投稿前 CheckList。以下通用条目与 cjc-format.md 冲突时，以 cjc-format.md（官方模板/修改稿要求）为准。
 
+> **目标为《软件学报》时必须额外加载 `jos-format.md`**：该文件按学报官网投稿指南与 2022 年署名规范整理，含投稿基本要求、论文结构、摘要四要素、参考文献 GB/T 7714 格式、署名不可修改新规（2022 年起）、"只引英文不引中文直接退稿"条款、审稿常见退稿原因、投稿前 CheckList，以及与《计算机学报》的关键差异对比表。以下通用条目与 jos-format.md 冲突时，以 jos-format.md（官网投稿指南/署名规定）为准。
+
 ## Format Requirements (Common Across All Three)
 
 ### Title
