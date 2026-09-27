@@ -1,7 +1,7 @@
----
+
 # Writing Patterns from Top Papers (Exemplar-Based)
 
-> Concrete, evidence-grounded writing techniques distilled from three benchmark papers. Unlike the abstract templates in other files, every pattern here is backed by direct quotes from published top-venue papers. Load this alongside any section template for calibration.
+> Concrete, evidence-grounded writing techniques distilled from three benchmark papers. Unlike the abstract templates in other files, every pattern here is backed by direct quotes from published top-venue papers. Load this alongside any section template for style calibration.
 
 ## Benchmark Papers
 
@@ -10,177 +10,132 @@
 | 3D Gaussian Splatting (3DGS) | SIGGRAPH 2023 (ACM TOG) | 20000+ citations | 2308.04079 | Foundational; paradigm-creating paper |
 | Mip-Splatting | CVPR 2024 | Best Student Paper | 2311.16493 | Diagnostic + theory-grounded improvement |
 | D4RT | CVPR 2026 | Best Paper | 2512.08924 | Paradigm-shift via architectural simplification |
+
 ---
 
 ## Cross-Cutting Patterns: The "Best Paper DNA"
 
 ### Pattern 1: Two-Sided Win Thesis
 
-Every benchmark paper claims quality AND efficiency simultaneously, where prior work forced a trade-off. The thesis is: "we break the trade-off that everyone accepted as inevitable."
+Every benchmark paper claims quality AND efficiency simultaneously, where prior work forced a trade-off. The thesis is: "we break the accepted trade-off."
 
-- **3DGS**: "Our method achieves real-time rendering of radiance fields with quality that equals the previous method with the best quality, while only requiring optimization times competitive with the fastest previous methods." (Fig. 1 caption)
-- **Mip-Splatting**: comparable to prior work at training scale, significantly exceeds all SOTA at other scales — quality without multi-scale training requirements.
-- **D4RT**: "sets a new state of the art, outperforming existing approaches in both speed and accuracy" (Abstract) — simultaneously wins on both axes.
+- 3DGS Fig. 1 caption: "Our method achieves real-time rendering of radiance fields with quality that equals the previous method with the best quality [Barron et al. 2022], while only requiring optimization times competitive with the fastest previous methods."
+- The teaser figure annotates each competitor with its fatal weakness: "InstantNGP (9.2 fps), Train: 7min, PSNR: 22.1" vs "Ours (135 fps), Train: 6 min, PSNR: 23.6" — speed of the fastest, quality of the best.
+- D4RT abstract: "a simple yet powerful feedforward model designed to efficiently solve this task" — simplicity AND power, efficiency AND capability in one phrase.
 
-**Application**: State your two-sided win explicitly in the abstract's first or second sentence. The reader's mental model should immediately register: "this paper breaks a known trade-off."
+How to apply: identify the accepted trade-off in your sub-field (quality vs speed, generality vs precision, accuracy vs memory), then frame your contribution as breaking it. One sentence must state both sides with numbers.
 
 ### Pattern 2: Diagnose Before Cure
 
-Best papers spend the opening on WHY prior methods fail at the mechanism level, not just that they fail. The reader must understand the failure mode before seeing the solution.
+Mip-Splatting devotes an entire section (Sec. 4 "Sensitivity to Sampling Rate") to mechanism-level failure analysis BEFORE presenting the method. The reader first sees WHY vanilla 3DGS fails — erosion ("Brake cable too thin") and dilation ("Spokes too thick due to screen space dilation") — then the two filters become the obvious cure.
 
-- **Mip-Splatting**: Fig. 1 is a problem diagnosis diagram, not a results comparison. It illustrates the dilation/erosion mechanism. "We find that the source for this phenomenon can be attributed to the lack of 3D frequency constraints and the usage of a 2D dilation filter." (Abstract) — root cause named explicitly.
-- **D4RT**: "Traditional 3D reconstruction asks: 'What is the geometry of everything, everywhere, all at once?' We argue this exhaustive, rigid approach is fundamentally ill-equipped for a dynamic world." (Intro) — reframes the incumbent approach's cost at the conceptual level.
-- **3DGS**: "While the continuous nature of these methods helps optimization, the stochastic sampling required for rendering is costly and can result in noise." (Intro) — names the specific cost (stochastic sampling), not just "they are slow."
-
-**Application**: Before describing your solution, write 1-2 sentences that diagnose the structural cost of the incumbent approach. Use "We find that the source for X can be attributed to Y" phrasing. Your reader should think "I always wondered why that happens."
+How to apply: before describing your method, show the failure mode at mechanism level with a diagnostic figure (faithful vs degenerate representation, side by side). A method whose motivation is a diagnosed failure reads as inevitable, not incremental.
 
 ### Pattern 3: The "Sidestep" Move
 
-Rather than incrementally improving the incumbent approach, identify its structural cost and eliminate it entirely. The contribution is the elimination, not the optimization.
+3DGS does not improve NeRF's sampling or caching — it eliminates the structural cost entirely: "contrary to widely accepted opinion – a continuous representation is not strictly necessary to allow fast and high-quality radiance field training."
 
-- **D4RT**: "a novel querying mechanism that sidesteps the heavy computation of dense, per-frame decoding and the complexity of managing multiple, task-specific decoders" (Abstract) — names two costs being bypassed.
-- **Mip-Splatting**: "In contrast to previous work that rely on the MLP's ability to interpolate multi-scale signals during training with multi-scale images, our closed-form modification to the 3D Gaussian representation results in excellent out-of-distribution generalization" — sidesteps the multi-scale training requirement.
-- **3DGS**: "In contrast to most point-based solutions that require Multi-View Stereo (MVS) data, we achieve high-quality results with only SfM points as input." — sidesteps the MVS dependency.
-
-**Application**: In your introduction, explicitly state what your method does NOT need that all prior methods required. Frame it as: "Unlike [prior work] which requires [cost], our approach [eliminates cost]."
+How to apply: when possible, frame your contribution as removing a cost the field assumed was unavoidable (not as optimizing it). Sidestep beats optimize. Sentence pattern: "Contrary to common belief / widely accepted opinion, X is not strictly necessary for Y."
 
 ### Pattern 4: Theory Import
 
-Grounding novelty in established theory converts "clever trick" to "principled solution." Import a theorem, framework, or principle from outside the immediate field.
+Mip-Splatting grounds both filters in signal processing theory (Sec. 3.1 "Sampling Theorem" — Nyquist-Shannon). The 3D smoothing filter enforces a maximum sampling rate per 3D Gaussian; the 2D Mip filter approximates the box filter of the camera imaging process. Theory converts an engineering trick into a principled contribution.
 
-- **Mip-Splatting**: imports Nyquist-Shannon Sampling Theorem from signal processing. A full Preliminaries section (Sec. 3.1) teaches Condition 1 (band-limited signal) and Condition 2 (sampling rate >= 2*max frequency) before using them.
-- **3DGS**: grounds the rendering equation in the established EWA splatting framework [Zwicker et al. 2001a], showing Eq. 2 (NeRF) and Eq. 3 (point-based) share the same image formation model — importing signal processing to unify two literatures.
-- **D4RT**: "inspired by the Scene Representation Transformer [39, 40]" — imports the encoder-decoder transformer architecture from scene representation literature.
+How to apply: search adjacent fields for an established theorem that formalizes your intuition (sampling theory, information theory, optics, robust statistics). Import it as a Preliminaries section, then design each component as the theorem's consequence.
 
-**Application**: If your method has a theoretical basis, write a Preliminaries section that teaches the theorem before using it. The reader should learn the theory from your paper, not be expected to already know it.
+### Pattern 5: "Obvious Method → Problem → Our Approach" Trust-Building Narrative
 
-### Pattern 5: Numbered Enumerations as Memory Anchors
+3DGS's introduction first presents the obvious approach (points with 2D Gaussians), then shows its problems (aliasing, blending artifacts, cascades of heuristics), then positions its contribution as the minimal set of changes that makes the obvious approach work. The reader thinks: "I would have tried the same obvious thing — and here is why it fails without their fixes."
 
-Best papers use explicit "three key elements / three desirable properties / First-Second-Third" structures. Reviewers remember numbered structures far better than prose.
+How to apply: do not hide the naive baseline. Present it, break it, then present your fix as the smallest set of changes that repairs it.
 
-- **3DGS**: "We introduce three key elements that allow us to achieve state-of-the-art visual quality... First... Second... Third..." (Abstract)
-- **D4RT**: "We draw attention to three desirable properties of this formulation: first, the indices need not coincide... second, each query is decoded independently... and third, this interface unlocks a suite of downstream applications..." (Method)
+### Pattern 6: Root-Cause Attribution
 
-**Application**: If your contribution has 2-4 components, enumerate them. Use "First... Second... Third..." or "We draw attention to N properties: first..., second..., and third..." phrasing.
+Mip-Splatting attributes each artifact to a specific mechanism: high-frequency artifacts ← degenerate (thin) 3D Gaussians ← excessive sampling rate; dilation ← screen-space maximum Gaussian extent. Every observed symptom has a named cause, and every component of the method targets exactly one cause.
 
-### Pattern 6: Protocol Creation
+How to apply: build a symptom → cause → fix table before writing. Each method component must map to exactly one root cause; each root cause must be observable in a figure.
 
-When no existing benchmark tests your claim, create the evaluation setting and run all baselines yourself. The protocol itself becomes a contribution.
+### Pattern 7: Protocol Creation
 
-- **Mip-Splatting**: "Contrary to prior work that evaluates models trained on single-scale data at the same scale, we consider an important new setting that involves training on full-resolution images and rendering at various resolutions (i.e., 1x, 1/2, 1/4, and 1/8) to mimic zoom-out effects. In the absence of a public benchmark for this setting, we trained all baseline methods ourselves." (Sec. 6.2)
-- **D4RT**: Table 3 uses "Max. Track Count @ Target FPS" (60/24/10/1 FPS) — an unusual, practitioner-relevant efficiency metric. "D4RT is 18-300x faster than others." The metric is designed to be intuitively graspable.
+Mip-Splatting creates an evaluation protocol — single-scale training, multi-scale testing — that exposes the weakness of prior work and remains the community standard. Owning the evaluation protocol means every future paper compares on your terms.
 
-**Application**: If standard metrics don't capture your advantage, design a new evaluation setting or metric. Run all baselines in your new setting. Disclose: "In the absence of a public benchmark for this setting, we trained all baseline methods ourselves."
+How to apply: if existing benchmarks hide your contribution's strength, define a new evaluation axis (new train/test split, new metric, new stress test), demonstrate prior methods fail on it, and make the protocol easy to reproduce.
 
-### Pattern 7: Radical Transparency
+### Pattern 8: Paradigm-Shift Framing
 
-Best papers over-share implementation details that other papers hide. This builds trust and enables reproducibility.
+D4RT frames its contribution as a paradigm shift, not an incremental improvement: prior work either stitches multiple task-specific models together or fails on dynamic objects — D4RT replaces the pipeline with "a unified transformer architecture" that "jointly infers depth, spatio-temporal correspondence, and full camera parameters."
 
-- **3DGS**: "All numbers in the table are from our own runs of the author's code for all previous methods, except for those of Mip-NeRF360 on their dataset, in which we copied the numbers from the original publication to avoid confusion about the current SOTA." (Sec. 7.2) — disclosure of number provenance.
-- **3DGS**: "The majority (~80%) of our training time is spent in Python code, since we built our solution in PyTorch to allow our method to be easily used by others." (Conclusion) — shares an implementation limitation.
-- **3DGS footnote**: "We trained Mip-NeRF360 on a 4-GPU A100 node for 12 hours, equivalent to 48 hours on a single GPU. Note that A100's are faster than A6000 GPUs." — hardware equivalence footnote.
-- **Mip-Splatting**: "use a community reimplementation for Zip-NeRF as the code is not available" — discloses non-official baseline.
-- **Mip-Splatting**: "totaling 0.3 for a fair comparison with 3DGS and 3DGS + EWA which replaces the dilation of 3DGS with the EWA filter" — filter variance chosen so total matches baseline's dilation, ensuring comparison fairness by design.
+How to apply: name the incumbent paradigm (multi-module pipeline, per-scene optimization, task-specific heads), then frame your work as the unified replacement. Sentence pattern: "Instead of [incumbent architecture with its structural cost], we [unified mechanism]."
 
-**Application**: Disclose: (1) where each number came from (own run vs. original paper), (2) hardware equivalence for cross-hardware comparisons, (3) any community reimplementation used, (4) deliberate fairness adjustments in hyperparameters.
+### Pattern 9: Desired-Properties Enumeration
 
-### Pattern 8: Caption-as-Takeaway
+D4RT enumerates what a solution SHOULD have before presenting its own: process monocular video efficiently, jointly output geometry + motion + camera parameters, run at interactive rates. The method is then presented as the point in design space satisfying all requirements.
 
-Figure and table captions state the conclusion, not just the content. A reader scanning only captions should understand the full argument.
+How to apply: before the method section, enumerate 3 desired properties as design requirements. Then show each component exists to satisfy one property. This converts your design choices from arbitrary to necessary.
 
-- **3DGS Fig. 1**: "Our method achieves real-time rendering of radiance fields with quality that equals the previous method with the best quality, while only requiring optimization times competitive with the fastest previous methods." — the two-sided win thesis in the caption.
-- **Mip-Splatting Table 2**: "While Mip-Splatting yields comparable results at training resolution, it significantly surpasses previous work at all other scales." — conclusion sentence as caption.
-- **D4RT Table 3**: "D4RT is 18-300x faster than others." — the headline number in the caption.
+### Pattern 10: Throughput Intuition Metric
 
-**Application**: Write each figure/table caption as: [Content description]. [Key takeaway sentence]. A reviewer who reads only captions should grasp your contribution.
+D4RT's headline table is "Max. Track Count @ Target FPS" — columns are 60 FPS / 24 FPS / 10 FPS / 1 FPS. Instead of reporting average speed, it reports capability AT real-time budgets, which maps directly to deployability (60 FPS = real-time robot, 24 FPS = video rate).
 
-### Pattern 9: Nearest-Neighbor Surgical Separation
-
-Dedicate a passage to distinguishing your work from the single closest prior work. Be surgical, not dismissive.
-
-- **Mip-Splatting**: full paragraph comparing to EWA splatting [59]: "A critical difference to [59] is that we tackle the reconstruction problem, optimizing the 3D Gaussian representation via inverse rendering while EWA splatting only considers the rendering problem." — identifies the precise axis of difference (reconstruction vs. rendering).
-- **3DGS**: "Pulsar achieves fast sphere rasterization which inspired our tile-based and sorting renderer. However, given the analysis above, we want to maintain (approximate) conventional alpha-blending on sorted splats... Our rasterization respects visibility order in contrast to their order-independent method. In addition, we back-propagate gradients on all splats in a pixel and rasterize anisotropic splats." — credits inspiration, then lists three precise differentiators.
-
-**Application**: Identify the one work most likely to be confused with yours. Write a passage that: (1) credits what it contributed, (2) states the precise axis of difference, (3) lists 2-3 specific technical differentiators.
-
-### Pattern 10: Honest Boundary Statements
-
-Best papers state what they do NOT achieve and what methods should NOT do. This paradoxically strengthens credibility.
-
-- **Mip-Splatting**: "It's important to remark that rendering at higher resolutions is a super-resolution task, and models should not hallucinate high-frequency details absent from the training data." — states what the method should NOT do.
-- **3DGS**: "We achieve comparable quality to InstantNGP and Plenoxels after 5-10m of training, but additional training time allows us to achieve SOTA quality which is not the case for the other fast methods." — admits parity at short training, claims advantage only at longer training.
-- **Mip-Splatting Limitations**: "This issue correlates with our experimental findings, where increased zooming out leads to larger errors, as evidenced in Table 2." — limitation quantified with pointer to evidence.
-
-**Application**: Write a Limitations subsection that: (1) names the specific failure mode, (2) quantifies it with a pointer to your own evidence table/figure, (3) suggests a concrete future fix. Never write "our method has limitations" without specifying them.
+How to apply: report your efficiency result at application-meaningful operating points (real-time budget, memory budget, energy budget), not as an abstract average. "X at 60 FPS" is a claim a practitioner can act on; "X averages 45 FPS" is not.
 
 ---
 
 ## Section-Specific Patterns
 
 ### Title
+- 3DGS: "3D Gaussian Splatting for Real-Time Radiance Field Rendering" — [Method Name] for [Target Capability]. The capability is the selling point (real-time), not the task (novel view synthesis).
+- Mip-Splatting: "Mip-Splatting: Alias-free 3D Gaussian Splatting" — [Name]: [Property] + [Base Method]. The property (alias-free) is a falsifiable claim.
+- D4RT: "Efficiently Reconstructing Dynamic Scenes One D4RT at a Time" — verb-first capability with the method name embedded. Memorable without being cute.
 
-| Pattern | Example | Principle |
-|--------|---------|-----------|
-| Method name + "for" + capability | "3D Gaussian Splatting **for** Real-Time Radiance Field Rendering" | Front-load representation innovation + application win |
-| Catchy name + colon + problem solved | "Mip-Splatting: **Alias-free** 3D Gaussian Splatting" | Name riffs on lineage; colon-delimited problem statement |
-| Natural-language phrase embedding method name | "Efficiently Reconstructing Dynamic Scenes **One D4RT at a Time**" | Memorable; the title itself is quotable |
+### Teaser Figure (Fig. 1)
+- 3DGS: the teaser IS the result table rendered as images — Ground Truth vs 3 competitors vs Ours, each annotated with (fps, train time, PSNR). A reviewer gets the entire contribution from Fig. 1 alone.
+- Mip-Splatting: the teaser is a diagnosis — (a) faithful vs (b) degenerate representation, with zoom-ins naming the failure (erosion/dilation) and the cause (3D Gaussian size vs focal length).
 
-### Abstract Structure
+### Abstract
+- All three follow: task importance (1 sentence) → incumbent limitation (1-2 sentences) → our approach (1-2 sentences) → results with numbers (1-2 sentences).
+- Quantified claims are mandatory: 3DGS states real-time rendering with quality equal to the best prior method; D4RT states the unified architecture and its joint outputs. No benchmark paper ships an abstract without numbers.
 
-All three follow: Problem → Gap → "We [verb]" solution → Core mechanism → Results → Impact.
+### Introduction
+- 3DGS: ends the opening paragraph with the trade-off statement, then the contribution paragraph lists exactly 3 contributions matching the 3 method components.
+- Mip-Splatting: the intro previews the diagnosis (Sec. 4) before the method (Sec. 5) — the paper's structure is itself an argument.
+- D4RT: the intro states the desired properties, then the contributions map 1:1 onto them.
 
-- **3DGS**: Problem (quality requires costly networks) → Gap (no method achieves real-time at 1080p) → "We introduce three key elements" → First/Second/Third mechanism → "We demonstrate state-of-the-art visual quality and real-time rendering"
-- **D4RT**: Problem (understanding dynamic scenes is formidable) → "This paper introduces D4RT" → Core innovation (novel querying mechanism that sidesteps two costs) → "The result is a lightweight and highly scalable method" → "sets a new state of the art"
-- **Mip-Splatting**: Context (3DGS impressive) → Gap (artifacts when sampling rate changes) → Root cause (lack of 3D frequency constraints + 2D dilation) → Two targeted fixes → "Our evaluation validates the effectiveness"
+### Method
+- 3DGS: each subsection ends with the role the component plays in the whole ("...this allows us to...").
+- Mip-Splatting: each filter is presented with the same 4-beat structure: theory → what vanilla 3DGS does wrong → our modification → what it fixes.
+- D4RT: architecture figure first, then "Training and Inference" as a separate subsection — the reader can implement from the paper.
 
-### Introduction Opening
+### Experiments
+- All three open the experiments section with a roadmap paragraph. Mip-Splatting: "We first present the implementation details of Mip-Splatting. We then assess its performance on the Blender dataset [28] and the challenging Mip-NeRF 360 dataset [2]. Finally, we discuss the limitations of our approach." D4RT: "After inspecting qualitative differences in capability in Sec. 4.1, we proceed with evaluating 4D Reconstruction and Tracking performance in Sec. 4.2... We conclude with a set of key ablations in Sec. 4.4."
+- Mip-Splatting's implementation subsection pins every hyperparameter to the baseline for fair comparison: "We build our method upon the popular open-source 3DGS code base [18]. Following [18], we train our models for 30K iterations across all scenes and use the same loss function, Gaussian density control strategy, schedule and hyper-parameters."
+- Ablations are named by the component they validate: "Effectiveness of the 3D Smoothing Filter", "Effectiveness of the 2D Mip Filter", "Single-scale Training and Multi-scale Testing".
 
-- **3DGS**: Representation taxonomy opening — "Meshes and points are the most common 3D scene representations because they are explicit... In contrast, recent NeRF methods build on continuous scene representations..." — frames two camps, positions work as synthesis.
-- **D4RT**: Rhetorical question opening — "Traditional 3D reconstruction asks: 'What is the geometry of everything, everywhere, all at once?' We argue this exhaustive, rigid approach is fundamentally ill-equipped for a dynamic world." — conceptual reframing, quotable.
-- **Mip-Splatting**: Field context → specific method (3DGS) → specific failure ("produces artifacts when camera views diverge") → mechanism analysis (zoom-out → dilation; zoom-in → erosion).
-
-### Contribution Bullets
-
-All three use 3-4 bullets where each bullet names a technical artifact, never an activity:
-
-- **3DGS**: (1) anisotropic 3D Gaussians as representation, (2) optimization with adaptive density control, (3) fast differentiable rendering approach. NOT "we conducted experiments."
-- **Mip-Splatting**: (1) 3D smoothing filter, (2) 2D Mip filter, (3) experiments on benchmarks, (4) "principled and simple, requiring only few changes to the original 3DGS code" — adoption-friendliness as contribution.
-- **D4RT**: (1) novel method for efficient querying, (2) unified approach unlocking multiple outputs, (3) SOTA experiments, (4) "an efficient algorithm to track all pixels" — application unlock as contribution.
-
-### Method Narrative: "Obvious Approach → Problem → Our Solution"
-
-- **3DGS**: "An obvious approach would be to directly optimize the covariance matrix Sigma to obtain 3D Gaussians... However, covariance matrices have physical meaning only when they are positive semi-definite. For our optimization of all our parameters, we use gradient descent that cannot be easily constrained to produce such valid matrices... As a result, we opted for a more intuitive, yet equivalently expressive representation." — shows the naive option was considered and rejected for a principled reason.
-
-### Experiments Section Opening: Roadmap Sentence
-
-All three begin the experiments section with a roadmap:
-
-- **Mip-Splatting**: "We first present the implementation details of Mip-Splatting. We then assess its performance on the Blender dataset and the challenging Mip-NeRF 360 dataset. Finally, we discuss the limitations of our approach." (Sec. 6)
-- **D4RT**: "After inspecting qualitative differences in capability in Sec. 4.1, we proceed with evaluating 4D Reconstruction and Tracking performance in Sec. 4.2... We then continue with pure reconstruction tasks in Sec. 4.3... We conclude with a set of key ablations in Sec. 4.4." (Sec. 4)
-
-### Ablation: Named Subsections with "What We Disable" Narrative
-
-- **3DGS**: Each ablation has a named subsection ("Initialization from SfM", "Densification", "Isotropic Covariance", "Spherical Harmonics") with "We disable [component] and optimize using the rest of the settings" narrative. Results in Table 3 with per-scene breakdown.
-- **Mip-Splatting**: Named ablations ("Effectiveness of the 3D Smoothing Filter", "Effectiveness of the 2D Mip Filter", "Single-scale Training and Multi-scale Testing") — each isolates one filter.
-
-### Conclusion: Challenge Conventional Wisdom
-
-- **3DGS**: "Our work demonstrates that — contrary to widely accepted opinion — a continuous representation is not strictly necessary to allow fast and high-quality radiance field training." — the memorable claim that challenges the field's assumption.
-- **D4RT**: "We propose shifting the paradigm from fragmented, frame-level decoding to efficient, on-demand querying." — the paradigm shift stated as a sentence.
+### Limitations & Conclusion
+- Mip-Splatting's limitations section quantifies its own weakness and links it to evidence: "this approximation introduces errors, particularly when the Gaussian is small in screen space. This issue correlates with our experimental findings, where increased zooming out leads to larger errors, as evidenced in Table 2." Then it names the fix direction (more efficient CUDA implementation, better data structure for precomputing the sampling rate).
+- 3DGS's conclusion challenges the field's assumption ("a continuous representation is not strictly necessary") and discloses engineering reality ("The majority (~80%) of our training time is spent in Python code, since we built our solution in PyTorch to allow our method to be easily used by others").
 
 ---
 
-## Quick Reference: Pattern-to-Section Matrix
+## How to Use This File
 
-| Pattern | Title | Abstract | Intro | Method | Experiments | Conclusion |
-|---------|-------|----------|-------|--------|------------|------------|
-| Two-sided win thesis | | Primary | Primary | | Setup framing | Restate |
-| Diagnose before cure | | Primary | Primary | | | |
-| The "sidestep" move | | Primary | Primary | Primary | | |
-| Theory import | | | | Primary | | |
-| Numbered enumerations | | Primary | Primary | Primary | | |
-| Protocol creation | | | | | Primary | |
-| Radical transparency | | | | | Primary | Primary |
-| Caption-as-takeaway | | | | | Primary | |
-| Nearest-neighbor separation | | | Primary | Primary | | |
-| Honest boundary statements | | | | | Primary | Primary |
+1. Before drafting any section, re-read the matching section-specific pattern above.
+2. When calibrating style, pick the benchmark paper closest to your paper's type:
+   - Paradigm-creating / representation paper → 3DGS
+   - Diagnostic improvement / theory-grounded fix → Mip-Splatting
+   - Unified framework / architectural simplification → D4RT
+3. Every pattern here is falsifiable against the source PDFs (arXiv 2308.04079, 2311.16493, 2512.08924). These are writing techniques for calibration, not method citations — do not cite patterns from this file in a paper.
+
+## How to Extend This Library（标杆论文深读扩展流程）
+
+当用户要求"学习高引用论文的写作模式"（下载顶刊论文 / 学习论文撰写模式 / 研读标杆论文）时，不要止步于检索投稿指南或二手解读——必须下载论文全文并深读。流程如下：
+
+1. **选纸标准**（选 3-4 篇）：
+   - 子领域的范式开创性论文（如 3DGS，20000+ 引用）
+   - 目标 venue 的最佳论文奖得主（如 Mip-Splatting CVPR 2024 Best Student Paper、D4RT CVPR 2026 Best Paper）
+   - 与用户目标 venue 和论文类型匹配的高引用论文
+2. **分析前先验证（关键坑点）**：下载 PDF 后必须打开确认首页标题与预期论文一致。曾发生 arXiv ID 一位之差（2311.16481 实为 D-SCL 论文，正确的 Mip-Splatting 是 2311.16493）导致错误论文在缓存中存放数月未被发现。验证链：arXiv ID → 标题 → 作者，三者对齐后才可提取文本。
+3. **提取与结构映射**：用 pymupdf/fitz 提取全文（对双栏 PDF 有效），先映射章节骨架（摘要 / 引言 / 相关工作 / 方法 / 实验 / 局限 / 结论）并记录行号，再逐节精读。
+4. **带证据提炼模式**：每个模式必须包含 (a) 模式名 (b) 论文原文直接引用 (c) "how to apply" 应用指引。没有原文引用的模式是推测，不是校准。
+5. **重点记录论文的自我定位手法**：teaser 图策略、trade-off 框定、贡献列表结构、limitations 诚实度——这些跨章节手法是最高价值的提取物。
+6. **更新本文件与路由**：新标杆论文加入上方 Benchmark Papers 表；保持每个模式可对照源 PDF 的 arXiv ID 证伪。

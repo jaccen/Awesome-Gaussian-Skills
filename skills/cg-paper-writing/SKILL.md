@@ -1,25 +1,25 @@
 ﻿---
 name: cg-paper-writing
-description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (17 journal-specific format specs). Multi-agent adversarial review, citation integrity gates, style calibration. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, 写论文/写paper/CG论文/计算机学报投稿/软件学报投稿/图形学学报投稿/自动化学报投稿/中文核心期刊."
-license: Apache-2.0
-user-invocable: true
-metadata:
-  version: "3.1.0"
-  author: jaccen
-  tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
-  when_to_use:
-    - "Write or revise a CG/3D vision academic paper"
-    - "Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper"
-    - "Run adversarial review or citation integrity check on a draft"
-    - "Calibrate writing style to a target venue"
-    - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
-    - "按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式"
-    - "按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述"
-    - "按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD"
-    - "自动化学报投稿 / 中国科学信息科学投稿 / 计算机研究与发展投稿 / 中文信息学报投稿"
-    - "中国图象图形学报投稿 / 模式识别与人工智能投稿 / 智能系统学报投稿 / 虚拟现实与智能硬件投稿"
-    - "计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿"
-    - "搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）"
+name_cn: CG论文写作引擎
+description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues plus Chinese core journals (计算机学报/软件学报/计算机辅助设计与图形学学报). Multi-agent adversarial review, citation integrity gates, style calibration."
+description_cn: "面向三维视觉、计算机图形学、CAD与三维理解的学术论文写作技能。覆盖NeRF、3DGS、SLAM、点云、三维形状、CAD建模。支持CVPR/ICCV/ECCV/SIGGRAPH等会议及中文核心期刊（计算机学报/软件学报/计算机辅助设计与图形学学报）。含多智能体对抗审稿、引用完整性检查、写作风格校准。"
+version: 3.0.0
+author: jaccen
+tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
+when_to_use:
+  - "Write or revise a CG/3D vision academic paper"
+  - "Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper"
+  - "Run adversarial review or citation integrity check on a draft"
+  - "Calibrate writing style to a target venue"
+  - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
+  - "按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式"
+  - "按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述"
+  - "按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD"
+  - "自动化学报投稿 / 中国科学信息科学投稿 / 计算机研究与发展投稿 / 中文信息学报投稿"
+  - "中国图象图形学报投稿 / 模式识别与人工智能投稿 / 智能系统学报投稿 / 虚拟现实与智能硬件投稿"
+  - "计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿"
+  - "搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）"
+  - "CCF国际期刊投稿 / IEEE Transactions投稿 / ACM Transactions投稿 / Springer期刊投稿 / TPAMI投稿 / TOG投稿 / TVCG投稿 / JMLR投稿"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -69,8 +69,8 @@ Analyze the user's request to determine axis values:
 | Targeting 机器人 (Robot / 机器人学报) | robot |
 | Targeting 计算机应用研究 (Application Research of Computers / AROC) | jsjyyj |
 | Targeting 工医艺的可视计算 (VCIBA / 可视计算) | vciba |
-| Unspecified or multi-venue | all |
 | Targeting CCF国际期刊 / IEEE/ACM Transactions / Springer / Elsevier 期刊投稿 | ccf-intl |
+| Unspecified or multi-venue | all |
 
 If the user does not specify, defaults are: section=all, venue=all.
 
@@ -98,13 +98,27 @@ Read these files from static/:
 | venue | Fragment to Load |
 |-------|-----------------|
 | top-journal | static/venue-formats.md + static/top-journal-strategy.md + static/ccf-international-journals.md |
-| chinese-journal | static/venue-formats.md + static/writing-chinese-journal.md |
-| cjc | static/venue-formats.md + static/writing-chinese-journal.md + static/cjc-format.md |
-| jos | static/venue-formats.md + static/writing-chinese-journal.md + static/jos-format.md |
-| jcad | static/venue-formats.md + static/writing-chinese-journal.md + static/jcad-format.md |
+| chinese-journal | static/venue-formats.md + static/writing-chinese-journal.md + static/ccf-journal-catalog.md |
+| cjc | static/venue-formats.md + static/writing-chinese-journal.md + static/cjc-format.md + static/ccf-journal-catalog.md |
+| jos | static/venue-formats.md + static/writing-chinese-journal.md + static/jos-format.md + static/ccf-journal-catalog.md |
+| jcad | static/venue-formats.md + static/writing-chinese-journal.md + static/jcad-format.md + static/ccf-journal-catalog.md |
+| aas | static/venue-formats.md + static/writing-chinese-journal.md + static/aas-format.md + static/ccf-journal-catalog.md |
+| scis | static/venue-formats.md + static/writing-chinese-journal.md + static/scis-format.md + static/ccf-journal-catalog.md |
+| crad | static/venue-formats.md + static/writing-chinese-journal.md + static/crad-format.md + static/ccf-journal-catalog.md |
+| jcis | static/venue-formats.md + static/writing-chinese-journal.md + static/jcis-format.md + static/ccf-journal-catalog.md |
+| cjig | static/venue-formats.md + static/writing-chinese-journal.md + static/cjig-format.md + static/ccf-journal-catalog.md |
+| pra | static/venue-formats.md + static/writing-chinese-journal.md + static/pra-format.md + static/ccf-journal-catalog.md |
+| caai | static/venue-formats.md + static/writing-chinese-journal.md + static/caai-format.md + static/ccf-journal-catalog.md |
+| vrih | static/venue-formats.md + static/writing-chinese-journal.md + static/vrih-format.md + static/ccf-journal-catalog.md |
+| jskx | static/venue-formats.md + static/writing-chinese-journal.md + static/jskx-format.md + static/ccf-journal-catalog.md |
+| jsjy | static/venue-formats.md + static/writing-chinese-journal.md + static/jsjy-format.md + static/ccf-journal-catalog.md |
+| txxb | static/venue-formats.md + static/writing-chinese-journal.md + static/txxb-format.md + static/ccf-journal-catalog.md |
+| robot | static/venue-formats.md + static/writing-chinese-journal.md + static/robot-format.md + static/ccf-journal-catalog.md |
+| jsjyyj | static/venue-formats.md + static/writing-chinese-journal.md + static/jsjyyj-format.md + static/ccf-journal-catalog.md |
+| vciba | static/venue-formats.md + static/writing-chinese-journal.md + static/vciba-format.md + static/ccf-journal-catalog.md |
+| ccf-intl | static/venue-formats.md + static/ccf-international-journals.md |
 | any other non-all value | static/venue-formats.md |
 | all | static/venue-formats.md |
-| ccf-intl | static/venue-formats.md + static/ccf-international-journals.md |
 
 ### Reference Load (for review/integrity work)
 - static/review-integrity.md — Multi-agent review, Devil's Advocate Protocol, citation verification, integrity gates, style calibration, writing quality check, persistence

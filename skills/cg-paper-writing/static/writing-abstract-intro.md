@@ -21,8 +21,8 @@ Example: "[Modification strategy]: achieves substantial improvement in [metric],
 Title checklist:
 1. Lead with the highlight (core improvement / effect), not generic subjects
 2. Avoid vague, generic phrasings; front-load your selling point
-3. One glance should reveal: object, method/means, improvement achieved, application value
-4. Keep concise; do not pile up jargon nouns
+3. One sentence should convey: research object + method + result + application value
+4. Do NOT pile up nouns — the title is a card, not a keyword list
 
 ## Abstract
 
@@ -52,11 +52,9 @@ An abstract is NOT a compressed restatement of the whole paper — it is an inde
 4. Show key experimental results with quantitative data
 5. Distill the academic and application value of this work
 
-Anti-pattern: opening with a long industry history or generic background, which buries the point and loses the reviewer within a few lines.
+Anti-pattern: opening with a long industry history or generic background, which buries the innovation point and causes the reviewer to lose interest within a few lines.
 
-### Transition-Word Rhythm Trick
-
-Use contrast/transition connectives (however, but, 然而, 但是, 为此, thereby, to this end) to create reading rhythm and clearly segment background → contradiction → solution → result. This lets reviewers quickly locate your innovation focus and avoids a flat, monotonous block of prose. Memorize: the abstract is the hook of the whole paper, not a content replay.
+**Transition word technique**: use "However" / "But" / "To this end" to create reading rhythm and clearly segment background → conflict → solution → result. This helps the reviewer quickly locate your innovation focus and avoids a flat, monotonous paragraph.
 
 ## Introduction
 
@@ -89,11 +87,11 @@ Paragraph 5: Contributions (bulleted, 3-4 items)
 The introduction must ultimately answer: why is this work non-negotiable? Use this progressive funnel:
 
 1. **Step 1 — Real field problem**: Raise a real domain difficulty to prove the direction itself is research-worthy and set the big background
-2. **Step 2 — Prior achievements**: Sort existing works and objectively acknowledge their progress; do NOT wholesale-dismiss predecessors
-3. **Step 3 — Precise limitation**: Pinpoint the limitation that still remains in current approaches, and dig out the gap in fine-grained sub-scenarios that has not yet been filled
-4. **Step 4 — Introduce this work**: Naturally bring in your work — it happens to target that pain point and provides the corresponding solution
+2. **Step 2 — Prior achievements**: Sort existing works and objectively acknowledge their progress — do NOT dismiss or belabor prior work
+3. **Step 3 — Precise gap**: Pinpoint the specific limitation or blank that prior work has not addressed
+4. **Step 4 — This paper**: Lead naturally into your work as the necessary response to that gap
 
-The whole introduction narrows progressively from grand domain → specific scientific problem → your research, so the reviewer genuinely accepts: the gap is real, and this work is necessary. This layers down step by step rather than staying flat.
+Critical: Step 2 must be objective and respectful. Dismissing prior work triggers reviewer defensiveness. The gap in Step 3 must be specific enough that your work in Step 4 is the obvious next step.
 
 ### Contribution Statement Template
 
