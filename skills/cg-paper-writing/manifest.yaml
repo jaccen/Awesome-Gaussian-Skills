@@ -21,6 +21,7 @@ axes:
       - thesis
       - top-journal
       - chinese-journal
+      - cjc
       - all
     default: all
 
@@ -55,6 +56,10 @@ routing:
       chinese-journal:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
+      cjc:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/cjc-format.md
       cvpr:
         - static/venue-formats.md
       siggraph:

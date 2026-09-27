@@ -12,6 +12,8 @@ Applies when the user targets a Chinese core journal (中文核心期刊 / 软�
 | 计算机学报 (Chinese Journal of Computers) | CCF + 中科院计算所 | EI, CSCD核心, 北大核心 | 基础理论与核心算法 | 8000-12000 (研究论文), 15000+ (综述) |
 | 计算机研究与发展 | 中科院计算所 | EI, CSCD核心, 北大核心 | 计算机综合 | 6000-12000 |
 
+> **目标为《计算机学报》时必须额外加载 `cjc-format.md`**：该文件按学报官方模板（CJC-Templet_Word2003.doc）与编辑部《修改稿要求》整理，含首页要素与字号表、正文字号体系、14 项正文硬性要求、参考文献 7 类格式、摘要四要素（How I did it 为重点）、英文背景介绍、作者简介、编辑部内容检查清单与投稿前 CheckList。以下通用条目与 cjc-format.md 冲突时，以 cjc-format.md（官方模板/修改稿要求）为准。
+
 ## Format Requirements (Common Across All Three)
 
 ### Title
