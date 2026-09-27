@@ -58,18 +58,22 @@ routing:
       chinese-journal:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
+        - static/ccf-journal-catalog.md
       cjc:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
         - static/cjc-format.md
+        - static/ccf-journal-catalog.md
       jos:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
         - static/jos-format.md
+        - static/ccf-journal-catalog.md
       jcad:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
         - static/jcad-format.md
+        - static/ccf-journal-catalog.md
       cvpr:
         - static/venue-formats.md
       siggraph:

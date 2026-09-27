@@ -79,10 +79,10 @@ Read these files from static/:
 | venue | Fragment to Load |
 |-------|-----------------|
 | top-journal | static/venue-formats.md + static/top-journal-strategy.md |
-| chinese-journal | static/venue-formats.md + static/writing-chinese-journal.md |
-| cjc | static/venue-formats.md + static/writing-chinese-journal.md + static/cjc-format.md |
-| jos | static/venue-formats.md + static/writing-chinese-journal.md + static/jos-format.md |
-| jcad | static/venue-formats.md + static/writing-chinese-journal.md + static/jcad-format.md |
+| chinese-journal | static/venue-formats.md + static/writing-chinese-journal.md + static/ccf-journal-catalog.md |
+| cjc | static/venue-formats.md + static/writing-chinese-journal.md + static/cjc-format.md + static/ccf-journal-catalog.md |
+| jos | static/venue-formats.md + static/writing-chinese-journal.md + static/jos-format.md + static/ccf-journal-catalog.md |
+| jcad | static/venue-formats.md + static/writing-chinese-journal.md + static/jcad-format.md + static/ccf-journal-catalog.md |
 | any other non-all value | static/venue-formats.md |
 | all | static/venue-formats.md |
 
