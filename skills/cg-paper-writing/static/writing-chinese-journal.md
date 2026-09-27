@@ -16,6 +16,8 @@ Applies when the user targets a Chinese core journal (中文核心期刊 / 软�
 
 > **目标为《软件学报》时必须额外加载 `jos-format.md`**：该文件按学报官网投稿指南与 2022 年署名规范整理，含投稿基本要求、论文结构、摘要四要素、参考文献 GB/T 7714 格式、署名不可修改新规（2022 年起）、"只引英文不引中文直接退稿"条款、审稿常见退稿原因、投稿前 CheckList，以及与《计算机学报》的关键差异对比表。以下通用条目与 jos-format.md 冲突时，以 jos-format.md（官网投稿指南/署名规定）为准。
 
+> **目标为《计算机辅助设计与图形学学报》时必须额外加载 `jcad-format.md`**：该文件按学报官网投稿指南与公开投稿须知整理，含期刊基本信息（CCF A 类/T1）、收稿范围（CAD/CG/VR/可视化）、投稿要求、摘要 250-300 字四要素、关键词 4-7 个、标题层次"一、(一)、1.、(1)"格式、参考文献 GB/T 7714、投稿前 CheckList，以及与《计算机学报》《软件学报》的三刊关键差异对比表。以下通用条目与 jcad-format.md 冲突时，以 jcad-format.md（官网投稿指南）为准。
+
 ## Format Requirements (Common Across All Three)
 
 ### Title

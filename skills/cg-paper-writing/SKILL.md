@@ -1,6 +1,6 @@
 ---
 name: cg-paper-writing
-description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (计算机学报/软件学报专项格式). Multi-agent adversarial review, citation integrity gates, style calibration. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, 写论文/写paper/论文写作/CG论文/三维视觉论文/计算机学报投稿/软件学报投稿/学报综述."
+description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (计算机学报/软件学报/计算机辅助设计与图形学学报专项格式). Multi-agent adversarial review, citation integrity gates, style calibration. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, 写论文/写paper/论文写作/CG论文/三维视觉论文/计算机学报投稿/软件学报投稿/图形学学报投稿/学报综述."
 license: Apache-2.0
 user-invocable: true
 metadata:
@@ -15,6 +15,7 @@ metadata:
     - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
     - "按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式"
     - "按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述"
+    - "按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -49,6 +50,7 @@ Analyze the user's request to determine axis values:
 | Targeting Chinese core journals (软件学报/计算机学报/计算机研究与发展/中文核心期刊) or writing in Chinese | chinese-journal |
 | Targeting 计算机学报 (Chinese Journal of Computers / CJC / 学报综述 / 学报投稿) | cjc |
 | Targeting 软件学报 (Journal of Software / JoS / 软件学报投稿) | jos |
+| Targeting 计算机辅助设计与图形学学报 (JCAD / 图形学学报投稿 / CAD与图形学) | jcad |
 | Unspecified or multi-venue | all |
 
 If the user does not specify, defaults are: section=all, venue=all.
@@ -80,6 +82,7 @@ Read these files from static/:
 | chinese-journal | static/venue-formats.md + static/writing-chinese-journal.md |
 | cjc | static/venue-formats.md + static/writing-chinese-journal.md + static/cjc-format.md |
 | jos | static/venue-formats.md + static/writing-chinese-journal.md + static/jos-format.md |
+| jcad | static/venue-formats.md + static/writing-chinese-journal.md + static/jcad-format.md |
 | any other non-all value | static/venue-formats.md |
 | all | static/venue-formats.md |
 
