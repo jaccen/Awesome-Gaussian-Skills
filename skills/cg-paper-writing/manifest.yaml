@@ -24,6 +24,21 @@ axes:
       - cjc
       - jos
       - jcad
+      - aas
+      - scis
+      - crad
+      - jcis
+      - cjig
+      - pra
+      - caai
+      - vrih
+      - jskx
+      - jsjy
+      - txxb
+      - robot
+      - jsjyyj
+      - vciba
+      - ccf-intl
       - all
     default: all
 
@@ -55,6 +70,7 @@ routing:
       top-journal:
         - static/venue-formats.md
         - static/top-journal-strategy.md
+        - static/ccf-international-journals.md
       chinese-journal:
         - static/venue-formats.md
         - static/writing-chinese-journal.md
@@ -74,18 +90,95 @@ routing:
         - static/writing-chinese-journal.md
         - static/jcad-format.md
         - static/ccf-journal-catalog.md
+      aas:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/aas-format.md
+        - static/ccf-journal-catalog.md
+      scis:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/scis-format.md
+        - static/ccf-journal-catalog.md
+      crad:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/crad-format.md
+        - static/ccf-journal-catalog.md
+      jcis:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/jcis-format.md
+        - static/ccf-journal-catalog.md
+      cjig:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/cjig-format.md
+        - static/ccf-journal-catalog.md
+      pra:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/pra-format.md
+        - static/ccf-journal-catalog.md
+      caai:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/caai-format.md
+        - static/ccf-journal-catalog.md
+      vrih:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/vrih-format.md
+        - static/ccf-journal-catalog.md
+      jskx:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/jskx-format.md
+        - static/ccf-journal-catalog.md
+      jsjy:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/jsjy-format.md
+        - static/ccf-journal-catalog.md
+      txxb:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/txxb-format.md
+        - static/ccf-journal-catalog.md
+      robot:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/robot-format.md
+        - static/ccf-journal-catalog.md
+      jsjyyj:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/jsjyyj-format.md
+        - static/ccf-journal-catalog.md
+      vciba:
+        - static/venue-formats.md
+        - static/writing-chinese-journal.md
+        - static/vciba-format.md
+        - static/ccf-journal-catalog.md
       cvpr:
         - static/venue-formats.md
+        - static/ccf-international-journals.md
       siggraph:
         - static/venue-formats.md
+        - static/ccf-international-journals.md
       neurips:
         - static/venue-formats.md
+        - static/ccf-international-journals.md
       tvcg:
         - static/venue-formats.md
+        - static/ccf-international-journals.md
       thesis:
         - static/venue-formats.md
       all:
         - static/venue-formats.md
+      ccf-intl:
+        - static/venue-formats.md
+        - static/ccf-international-journals.md
   references:
     always_load:
       - static/symbols-terminology.md
