@@ -185,4 +185,9 @@ routing:
       - static/writing-patterns-from-top-papers.md
     on_demand:
       - static/review-integrity.md
+      - static/markdown-draft-format-audit.md
       - static/paper-evaluation-framework.md
+      - static/top-paper-patterns.md
+      - static/reviewer-perspective.md
+      - static/latex-source-hygiene.md
+      - static/experiment-claim-verification.md

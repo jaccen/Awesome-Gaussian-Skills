@@ -1,8 +1,8 @@
 ﻿---
 name: cg-paper-writing
 name_cn: CG论文写作引擎
-description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues plus Chinese core journals (计算机学报/软件学报/计算机辅助设计与图形学学报). Multi-agent adversarial review, citation integrity gates, style calibration."
-description_cn: "面向三维视觉、计算机图形学、CAD与三维理解的学术论文写作技能。覆盖NeRF、3DGS、SLAM、点云、三维形状、CAD建模。支持CVPR/ICCV/ECCV/SIGGRAPH等会议及中文核心期刊（计算机学报/软件学报/计算机辅助设计与图形学学报）。含多智能体对抗审稿、引用完整性检查、写作风格校准。"
+description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues plus Chinese core journals (计算机学报/软件学报/计算机辅助设计与图形学学报). Multi-agent adversarial review, citation integrity gates, style calibration, paper novelty/industry-value evaluation."
+description_cn: "面向三维视觉、计算机图形学、CAD与三维理解的学术论文写作技能。覆盖NeRF、3DGS、SLAM、点云、三维形状、CAD建模。支持CVPR/ICCV/ECCV/SIGGRAPH等会议及中文核心期刊（计算机学报/软件学报/图形学学报）。含多智能体对抗审稿、引用完整性检查、写作风格校准与论文价值评估。"
 version: 3.0.0
 author: jaccen
 tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration"]
@@ -20,6 +20,10 @@ when_to_use:
   - "计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿"
   - "搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）"
   - "CCF国际期刊投稿 / IEEE Transactions投稿 / ACM Transactions投稿 / Springer期刊投稿 / TPAMI投稿 / TOG投稿 / TVCG投稿 / JMLR投稿"
+  - "评估论文创新性与学术/产业价值 / 论文价值评判 / 这篇论文值不值得投 / 审稿预审评分 / Evaluate paper novelty and industry value"
+  - "投稿前格式核查 / LaTeX 源码卫生检查 / 论文源码清理 / 补充材料编号对应检查 / pre-submission source hygiene check"
+  - "实验声明溯源 / 数据来源核查 / 服务器实验验证 / 实验数字真实性核查 / verify experiment claims against server artifacts"
+  - "为论文补做实验 / 服务器跑实验 / 远程训练评估 / 排查训练跑完但结果异常 / rerun experiments to back paper claims"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -116,13 +120,18 @@ Read these files from static/:
 | robot | static/venue-formats.md + static/writing-chinese-journal.md + static/robot-format.md + static/ccf-journal-catalog.md |
 | jsjyyj | static/venue-formats.md + static/writing-chinese-journal.md + static/jsjyyj-format.md + static/ccf-journal-catalog.md |
 | vciba | static/venue-formats.md + static/writing-chinese-journal.md + static/vciba-format.md + static/ccf-journal-catalog.md |
-| ccf-intl | static/venue-formats.md + static/ccf-international-journals.md |
 | any other non-all value | static/venue-formats.md |
 | all | static/venue-formats.md |
+| ccf-intl | static/venue-formats.md + static/ccf-international-journals.md |
 
 ### Reference Load (for review/integrity work)
-- static/review-integrity.md — Multi-agent review, Devil's Advocate Protocol, citation verification, integrity gates, style calibration, writing quality check, persistence
-- static/paper-evaluation-framework.md — 论文创新性与学术/产业价值评估框架（四维创新模型+TRL产业成熟度+10维评分表+审稿视角对照），用于投稿前自评、审稿、指导学生论文、评估他人工作；第九章含开题预评估适配方案（8维评分表+竞品密度评估+可行性评估+多选题对比表）
+- static/review-integrity.md — Multi-agent review, Devil's Advocate Protocol（含矛盾消融结果消解模式）, citation verification, integrity gates, style calibration, writing quality check, persistence
+- static/paper-evaluation-framework.md — 论文创新性与学术/产业价值评估框架（四维创新模型+TRL产业成熟度+10维评分表+审稿视角对照），用于投稿前自评、审稿、指导学生论文、评估他人工作
+- static/top-paper-patterns.md — 顶会论文共性模范范式（基于10篇CVPR 2026及前沿3DGS论文全文精读提炼）：贡献结构配方（3-4条四件套+first声明+外部技术嫁接）、五条选题路径、四层实验证据体系、三种摘要模板、Intro四段式+根本问题句、图表引导策略、章节配比、顶会投稿自检清单、实测写作瑕疵避坑；写作/修改论文与校准结构时加载
+- static/reviewer-perspective.md — 审稿人视角拒稿与中稿规律（基于OpenReview 33条真实审稿意见编码）：Champion效应与批评位置理论、拒稿理由Top10、录用要素Top10、可复述新颖性标准、致命伤vs可挽救伤判别与Rebuttal博弈（MoE-GS低分中稿解密）、跨venue转投策略、压缩方向八大坑、图表制作40条自查清单、投稿前防御清单D1-D15；投稿前自检、预判审稿攻击点、准备rebuttal、决定转投时加载
+- static/latex-source-hygiene.md — LaTeX 源码卫生与机械化验证（连续空行/环境与章节同行/跨文档引用写法/bib 键名一致性/S 编号对应/编译健康度/修复回归验证），配套一键脚本 scripts/check_paper_consistency.py；投稿前格式核查与源码清理任务必读
+- static/markdown-draft-format-audit.md — Markdown 工作稿投稿前格式审计与 P0 机械修复（摘要词数/引用首现顺序/孤儿图表检测/彩色批注两类处置规则/占位符两步法引用重排/摘要瘦身/主文-补充切分标注/中英双稿独立同步与终检清单/章节重构后引用顺序复检/MD→LaTeX 转换边界 bibitem 核验）；LaTeX 排版前的工作稿格式核查、批注清理与 P0/P2 修复任务必读
+- static/experiment-claim-verification.md — 实验声明溯源与服务器实验验证（声明-产物五步核查链/静默回退失效四联征/split fallthrough 陷阱与目录重命名法/h5→pkl 格式转换工作流/SSH-PowerShell-后台进程操作陷阱）；评审中遇到「服务器规模验证」类声明溯源、为论文补做远程实验、排查「训练跑完 rc=0 但结果异常」时必读
 
 **Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load all fragments.
 
@@ -161,7 +170,7 @@ The following are categorical prohibitions. Violating any of these invalidates t
 
 ## Extension Protocol — 新增中文期刊专项（Add a New Journal Venue）
 
-当用户要求「搜索某期刊投稿要求，形成（这样的）能力/能力补充」时，按以下六步扩展本技能（已验证三轮：计算机学报 cjc / 软件学报 jos / 计算机辅助设计与图形学学报 jcad）：
+当用户要求「搜索某期刊投稿要求，形成（这样的）能力/能力补充」时，按以下七步扩展本技能（已验证三轮：计算机学报 cjc / 软件学报 jos / 计算机辅助设计与图形学学报 jcad）：
 
 1. **采集官方一手来源**（按优先级，禁止凭记忆猜测格式）：
    - 官方模板 .doc/.docx → Word COM 提取全文（`New-Object -ComObject Word.Application`，取 `$doc.Content.Text`）；
@@ -172,6 +181,7 @@ The following are categorical prohibitions. Violating any of these invalidates t
 4. **登记路由**：SKILL.md 的 venue 检测表、venue 加载表、when_to_use 触发词各加一行；源仓库副本的 manifest.yaml 同步 venue values 与 on_demand 路由。
 5. **衔接通用指南**：`writing-chinese-journal.md` 加提示——目标为该刊时必须额外加载 `<venue>-format.md`，与通用条目冲突时以专项文件（官方来源）为准。
 6. **双副本同步**：本技能为双副本安装（安装目录 + 源仓库 `Awesome-Gaussian-Skills/skills/cg-paper-writing/`），内容改动须在同一会话内同步两处；两副本 frontmatter 结构不同（仓库副本无 AIGC 水印头），同步正文内容即可，勿整文件覆盖。
+7. **路由一致性校验**：批量编辑后须逐项核验 SKILL.md venue 轴、On-Demand 路由表与 manifest.yaml 的 axes.venue.values、routing.on_demand.venue 一一对应（曾因 multiedit 回退路由表丢失 14 个 venue 路由，验证时才发现）。
 
 ## Cross-Skill Routing
 
