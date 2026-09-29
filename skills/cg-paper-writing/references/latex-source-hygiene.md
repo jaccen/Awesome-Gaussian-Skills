@@ -1,4 +1,3 @@
-
 ---
 # LaTeX Source Hygiene & Mechanical Verification（投稿前源码级检查）
 

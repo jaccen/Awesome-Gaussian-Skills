@@ -1,5 +1,3 @@
-
----
 # Chinese Core Journal Writing Guide (软件学报 / 计算机学报 / 计算机研究与发展)
 
 Applies when the user targets a Chinese core journal (中文核心期刊 / 软件学报 / 计算机学报 / 计算机研究与发展 / 中文论文 / 中文期刊) or asks for Chinese-language academic writing guidance. Complements venue-formats.md (English venues) and top-journal-strategy.md (Nature/Science).
@@ -22,58 +20,33 @@ Applies when the user targets a Chinese core journal (中文核心期刊 / 软�
 
 ### Title
 - Chinese: ≤20 characters; English: corresponding English title (not transliteration)
-- Must be concise, reflect content accurately; avoid vague words like "研究" or "基于" as the sole framing
+- Must be concise and reflect content accurately; avoid vague words like "研究" or "基于" as the sole framing
 
 ### Abstract
-- Chinese: 200-300 characters, must include four elements: **目的 → 方法 → 结果 → 结论**
-- English: 200+ words (计算机学报 requires 500 words), parallel structure to Chinese
-- Write as a self-contained mini-paper; do NOT restate the table of contents
+- Chinese: 200-300 characters, must contain four elements: 目的 → 方法 → 结果 → 结论
+- English: 200+ words, parallel structure with the Chinese abstract
+- No citations, no figures, no undefined abbreviations in the abstract
 
 ### Keywords
 - 5-8 keywords, Chinese and English must correspond one-to-one
-- Use standard terminology; avoid newly coined terms unless defined in the paper
-
-### Body Structure (研究论文)
-```
-1 引言 (Introduction)
-  - 研究背景与意义
-  - 现有工作不足（不是罗列，而是指出现存空白）
-  - 本文贡献（分点列出，3条左右）
-  - 论文组织结构
-2 相关工作 (Related Work)
-  - 按主题分组，不是按论文列举
-  - 每组末尾说明与本文的区别
-3 方法 (Method)
-  - 总体框架图 → 逐模块展开
-  - 每个新符号首次出现必须定义
-  - 公式连续编号，引用格式: 式(1)、式(2)
-4 实验 (Experiments)
-  - 数据集、评价指标、基线方法
-  - 主实验对比（表格）
-  - 消融实验
-  - 效率分析 / 可视化分析
-5 结论 (Conclusion)
-```
+- Avoid overly broad keywords ("深度学习", "神经网络") unless the paper is a survey
 
 ### References
-- 一般不少于15篇，近5年文献占比建议>50%
-- 引用该刊近3年论文3-5篇（体现对期刊的了解）
-- 格式遵循 GB/T 7714-2015 标准
-- 中文文献用中文著录，英文文献用英文著录
+- ≥15 references; recent 5 years >50%
+- Format: GB/T 7714 (顺序编码制); mixed Chinese and English references are normal and expected
+- Cite recent papers from the target journal itself (editors check this)
 
-## Language Style (中文期刊 vs 英文会议的关键差异)
-
-### Tone and Register
-- 使用"本文"而非"我们"作为主语（部分期刊接受"我们"，但"本文"更正式）
-- 避免口语化表达：用"由此可得"替代"所以我们得到"；用"表明"替代"说明"
-- 避免感叹号、反问句
-- 段落首句必须是该段的核心论点（topic sentence先行）
-
-### Technical Expression
-- 术语首次出现时给出中文全称+英文全称+缩写，如"三维高斯泼溅(3D Gaussian Splatting, 3DGS)"
-- 后续使用缩写即可
-- 公式中的变量用斜体，矩阵/向量用粗斜体
+### Figures & Tables
 - 图表标题用中文，图例可用英文（但中英文摘要对应的图表说明需各自语言）
+- Tables use 三线表 (three-line table) format
+- Color figures must remain distinguishable in B&W printing (计算机学报 requirement)
+
+## Language Style (中文期刊 vs 英文会议的关键区别)
+
+- 用"本文"而非"我们"作为主语："本文提出..." "本文通过...实现..."
+- 术语首次出现需"中文全称(英文全称, 缩写)"格式：如"三维高斯泼溅(3D Gaussian Splatting, 3DGS)"
+- 公式引用用"式(1)"而非"Eq.(1)"；图表引用用"如图1所示""见表2"
+- 章节编号用"第1节""第2节"（软件学报）或"1""2"（计算机学报，按模板）
 
 ### Forbidden Patterns (中文期刊特有)
 - 不得使用英文缩写作为段落开头的主语（如不能写"3DGS具有..."，应写"三维高斯泼溅(3DGS)具有..."）
@@ -103,34 +76,19 @@ Applies when the user targets a Chinese core journal (中文核心期刊 / 软�
 2. **实验不充分**: 对比实验缺失、数据集过小、缺乏统计显著性检验
 3. **写作问题**: 逻辑不清、中英文表达不规范、参考文献格式错误
 4. **与期刊定位不符**: 偏工程应用而缺乏理论深度（计算机学报偏重基础理论）
-5. **一稿多投**: 包括会议论文扩展不足30%新内容
-6. **AIGC检测**: 2026年起多数核心期刊要求附AIGC检测报告，AI生成比例超标直接退稿
+5. **一稿多投**: 同时投递多个期刊，一经发现直接拒稿并通报
 
 ## Submission Strategy
 
-### Pre-Submission Checklist
-- [ ] 精读目标期刊近2年相关主题论文，了解写作风格和深度要求
-- [ ] 引用该刊近3年论文3-5篇
-- [ ] 中文摘要严格遵循"目的→方法→结果→结论"四要素
-- [ ] 英文摘要与中文摘要内容对应（不是逐句翻译，是信息对等）
-- [ ] 关键词中英文一一对应
-- [ ] 参考文献格式遵循 GB/T 7714-2015
-- [ ] 图表三线表格式，彩色图表黑白可辨
-- [ ] AIGC检测报告（如期刊要求）
-- [ ] 基金资助信息标注完整
+- 期刊选刊：理论算法创新 → 计算机学报；软件工程/系统方法 → 软件学报；综合方向 → 计算机研究与发展
+- Cover Letter 需说明创新点、与期刊范围的匹配度、无一稿多投声明
+- 建议引用目标期刊近3年相关论文（提升编辑好感度，但不要堆砌）
 
-### Cover Letter (投稿信)
-- 明确说明创新点和理论贡献（计算机学报偏理论）
-- 说明与已发表工作的区别（超过30%新内容，若为会议扩展）
-- 声明未一稿多投
+## AIGC 合规 (2026年起多数核心期刊要求)
 
-### Journal Selection Guide
-| If your work is... | Recommended journal | Why |
-|--------------------|--------------------|----|
-| 理论算法创新（深度学习/优化/密码学） | 计算机学报 | 偏基础理论，要求理论深度 |
-| 软件工程/系统/工具 | 软件学报 | 软件领域权威，涵盖面广 |
-| 综合性/应用基础研究 | 计算机研究与发展 | 综合性强，接受面广 |
-| AI+3D视觉+Agent | 软件学报专刊 | 近期有"具身推理与多模态世界模型"专刊 |
+- 多数核心期刊要求附AIGC检测报告，AI生成比例超标直接退稿
+- 投稿前需自查：AI味表述、模板化结构、空洞过渡句
+- 若使用了AI辅助写作，需在投稿系统中如实声明使用范围
 
 ## Exemplar Patterns from High-Impact Chinese Journal Papers
 
@@ -159,57 +117,31 @@ The introduction uses "●" bullet markers to structure four key elements, each 
          最后, 本文还探讨了...并为研究者们提供了未来可能的探索方向"
 
   ● 本文的组织结构: 逐节预告
-    例: "本文第2节介绍...第3节介绍...第4节梳理...第5节分析了...第6节展开介绍...
-         第7节讨论...并在第8节总结全文"
+    例: "本文第2节介绍...第3节介绍...第4节梳理...第5节分析了...第6节展开介绍..."
 ```
 
-**Key language patterns observed:**
-- "本文" as primary subject throughout (not "我们"): "本文通过调查...", "本文从...视角出发", "本文系统性地梳理..."
-- First-occurrence term format: "结构化查询语言(structured query language, SQL)" — 中文全称(英文全称, 缩写)
-- Figure references: "如图X所示", "图X展示了...", "图X形象化地展示了..."
-- Table references: "如表X所示"
-- Section headers use full-width space: "1 引　言" (not "1 引言")
-- Survey scope quantified: explicit paper count + year range + coverage table
+Key techniques:
+- **量化调查范围声明**: "近200篇论文"、"30多年来(1984-2022)" — 数字建立权威性
+- **逐一点评式综述对比**: 每篇已有综述用"XX等人[N]主要从...视角出发"句式，最后用"然而"收束指出共同局限
+- **贡献三段式**: "首先...其次...最后..."是中文核心期刊的标准贡献格式
 
-### Exemplar 2: 中文核心期刊 NeRF 综述结构 (计算机辅助设计与图形学学报, 2025)
+### Exemplar 2: 中文核心期刊 NeRF 综述 (计算机辅助设计与图形学学报 2025年01期)
 
-Published NeRF survey structure (陈涛, 杨启亮, 陈寅):
-- Title: 神经辐射场技术及应用综述 — "技术及应用综述" is the standard survey title suffix
-- Keywords: 神经辐射场; 神经网络三维重建; 体渲染; 新视角图像 — semicolons, not commas
-- Abstract follows 目的→方法→结果→结论 four-element structure
-- Body: NeRF原理 → 体渲染方程 → 训练方法 → 应用场景 → 未来方向
+"神经辐射场技术及应用综述" demonstrates the standard Chinese survey opening:
+- 定义先行: "神经辐射场(NeRF)是一种基于神经网络的三维重建技术,它将场景定义为位置和观察视角的五维辐射场函数,并通过隐式的神经网络来表示"
+- 关键词覆盖: 神经辐射场;神经网络三维重建;体渲染;新视角图像
 
-### Cross-Journal Common Patterns
+### 中英文写法结构差异对比表
 
-| Pattern | 软件学报 | 计算机学报 | 计算机辅助设计与图形学学报 |
-|---------|---------|-----------|----------------------|
-| 摘要结构 | 目的→方法→结果→结论 | 同左 | 同左 |
-| 主语偏好 | "本文"为主 | "本文"为主 | "本文"为主 |
-| 综述标题后缀 | "综述" | "综述" | "技术及应用综述" |
-| 图表引用 | "如图X所示" | 同左 | 同左 |
-| 关键词分隔 | 分号(;) | 分号(;) | 分号(;) |
-| 贡献列举 | "首先...其次...最后..." | 同左 | 同左 |
-| 组织结构预告 | "本文第X节介绍..." | 同左 | 同左 |
-| 术语首次出现 | 中文全称(英文全称, 缩写) | 同左 | 同左 |
-
-### Chinese vs English Writing: Structural Differences from Exemplars
-
-| Dimension | English Top Papers (CVPR/SIGGRAPH) | Chinese Core Journals (软件学报/计算机学报) |
-|-----------|-------------------------------------|---------------------------------------------|
-| Subject | "We" as primary subject | "本文" as primary subject |
-| Opening | Rhetorical question or taxonomy framing | 研究背景与意义 (background + significance) |
-| Contributions | 3-4 technical artifact bullets | "首先...其次...最后..." 3条 |
-| Survey scope | Implicit in related work | Explicit: paper count + year range + coverage table |
-| Paper organization | Optional roadmap sentence | Required: "本文第X节介绍...并在第X节总结全文" |
-| Limitations | Dedicated subsection | Folded into 结论 or 未来工作 |
-| Figure captions | Conclusion sentence as caption | "图X [描述]" format (descriptive, not conclusion) |
-| Term definition | Abbreviation on first use | 中文全称(英文全称, 缩写) on first use |
-| Tone | Assertive, quotable claims | Formal, measured ("表明"/"揭示"/"凝练") |
-
-## AIGC Compliance (2026 update)
-
-From 2026, most Chinese core journals require AIGC detection reports:
-- AI generation ratio must be below journal threshold (typically 15-25%)
-- AI-assisted writing is acceptable; AI-generated content must be disclosed
-- Use humanizer-zh skill to remove AI traces before submission
-- Do NOT use obvious AI patterns: parallelism, em-dash overuse, "三段式法则", promotional language
+| 维度 | 英文顶会 (CVPR/SIGGRAPH) | 中文核心期刊 (软件学报/计算机学报) |
+|------|--------------------------|-----------------------------------|
+| 主语 | "We propose..." | "本文提出..." |
+| 贡献列举 | Bulleted list, 3-4 items | "首先...其次...最后..." 段落式 |
+| 引言结构 | 段落递进，无标记 | "●" 标记四要素（综述类） |
+| 综述范围声明 | 可选 | 必须量化（"近200篇论文"） |
+| 术语首次出现 | "3D Gaussian Splatting (3DGS)" | "三维高斯泼溅(3D Gaussian Splatting, 3DGS)" |
+| 公式引用 | "Eq. (1)" | "式(1)" |
+| 图表引用 | "Fig. 1" / "Table 1" | "如图1所示" / "见表1" |
+| 章节编号 | "Section 3" / "3.1" | "第3节" / "3.1"（按模板） |
+| 局限性 | 独立小节（可选） | 在结论前讨论（"本文的不足之处"） |
+| AI辅助 | 无强制要求 | 需AIGC检测报告+声明 |

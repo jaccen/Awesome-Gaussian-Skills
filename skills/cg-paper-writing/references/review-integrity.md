@@ -44,6 +44,16 @@ Self-check after each review round:
 | Symbol consistency | Does the same symbol maintain strictly the same meaning throughout? | Medium |
 | Writing clarity | Is the motivation chain coherent? Can the reader reproduce without seeing figures? | Medium |
 
+### 4. High-Risk Attack Defusal: Contradictory Ablation Results（矛盾消融结果消解模式）
+
+当同一组件存在两套方向相反的消融结果时（实测场景：旧单种子「推理期置空指令」诊断 Δ=−0.681 vs 新配对「训练期移除指令」重设计无显著差异），审稿人最高概率攻击是「结果自相矛盾 = 实验不可靠」。消解模式（P1 级修复，已验证可将该攻击从「维持」降为「条件性消解」）：
+
+1. **协议差异最小表**：在消融小节插入一张对比表，逐属性列出两套实验的根本差异——种子数、样本量、组件处置方式（推理期置空 = 分布外干扰 vs 训练期移除 = 真正的组件消融）、先验是否共享、异常信号（如 MAE 暴涨 45 倍是分布偏移标志，而非必要性证据）。
+2. **机制归因**：说明方向相反的原因——推理期置空衡量「网络对输入损坏的鲁棒性」，训练期移除衡量「该组件对任务是否必要」，二者回答不同问题，结果相反并不矛盾。
+3. **结论裁决句**：明确声明以协议正确的那套结果为准，旧结果降级为诊断性观察并保留原文（不删除——如实披露两套结果本身是诚信加分项）。
+4. **局限性章节呼应**：Limitations 中保留协议差异待审计的正式披露，与消融小节裁决口径一致，避免两处表述漂移。
+
+禁止做法：静默删除旧结果（破坏诚信表述）；或让两套结果在文中各自成立而不裁决（审稿人必然发现并质疑）。
 ---
 
 ## Citation Three-Layer Verification
@@ -81,6 +91,7 @@ Must pass before submitting draft:
 - [ ] Ablation study covers all core modules
 - [ ] Symbol table consistent with main text
 - [ ] No AI-fabricated data (missing data marked as `<!-- DATA_NEEDED: <description> -->`)
+- [ ] Experiment claims traceable to real artifacts (see static/experiment-claim-verification.md): every reported number maps to a server log / eval JSON / checkpoint; claimed data scale (tasks / episodes / seeds) matches data directories and training logs
 
 ### Gate 2: Pre-Submission Gate (before final submission)
 Must pass before submitting final version:
@@ -88,7 +99,9 @@ Must pass before submitting final version:
 - [ ] Citation three-layer verification: zero failures
 - [ ] Experimental data fully consistent with main text claims
 - [ ] Format meets target venue requirements (pages/template/citation format)
+- [ ] LaTeX source hygiene passed (see static/latex-source-hygiene.md, run scripts/check_paper_consistency.py): no ≥3 consecutive blank lines, no environment-end glued to \section on one line, cross-document references resolvable ("Figure 2(c) of the main paper" style), S-prefix numbering consistent, compile log clean (0 undefined / 0 error)
 - [ ] Rebuttal预案 prepared (for anticipated reviewer challenges)
+- [ ] Experiment claim provenance audit passed (static/experiment-claim-verification.md): no unsourced "server-scale" claims remain in the paper; for any newly launched training, dataset sanity check (non-zero action / target velocity) was run before launch
 
 ---
 

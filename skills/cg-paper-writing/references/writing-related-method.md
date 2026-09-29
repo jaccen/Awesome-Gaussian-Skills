@@ -1,4 +1,3 @@
-
 ---
 # Related Work & Methodology Templates
 
@@ -60,8 +59,7 @@ English template:
 Reproducibility is necessary but NOT sufficient for a high-scoring manuscript. The methodology section has a hidden objective: **dispel the reviewer's doubts and prove the experimental design is sound and the results credible**. Many "please add method details" revision comments arise because reviewers cannot be convinced of the result from your description.
 
 - Mature/routine techniques: do not belabor; cite the literature instead
-- Your own improved/novel pipeline: give complete key parameters and operational details
-- Do not just log "what operations I did"; explain the design rationale — e.g., why this control group, what hypothesis this experiment was meant to verify
-- Build an implicit link between your innovative method and the breakthrough results you later report, so the reviewer understands: it is precisely this design that yields the paper's key conclusions
-
-Getting the logic across up front preempts latent questions and sharply reduces post-review revision workload.
+- Your own improved/novel pipeline: give complete key parameters
+- **Explain design rationale**: why this control group, what hypothesis it validates — not just "we did X"
+- **Implicitly link method to results**: when describing each module, foreshadow what it will achieve in experiments, so the reviewer sees a coherent chain from design to evidence
+- If a reviewer thinks "the method is described but I cannot trust the result", the paper is set for major revision regardless of how good the experiments look

@@ -1,4 +1,3 @@
-
 ---
 # Top-Journal Submission Strategy (Nature/Science Subjournals & Chemical Reviews)
 
@@ -11,71 +10,55 @@ Do NOT prepare a Nature/Science sub-journal submission with ordinary SCI thinkin
 | Journal Type | Core Criterion | What it does NOT require |
 |--------------|----------------|--------------------------|
 | Nature sub-journal (Nat.XXX) | Novelty + universal value, cross-domain dissemination potential | Solving one grand ultimate problem |
-| Science sub-journal (Sci.XXX) | Method innovation, disruptive technology, mechanistic breakthrough discoveries | Large workload for its own sake |
+| Science sub-journal (Sci.XXX) | Method innovation, disruptive technology, mechanistic breakthroughs | Large workload for its own sake |
 | Chemical Reviews (ACS flagship review) | No original experiments required; tests academic vision + systematic synthesis ability | Original experimental data |
 
-Sub-journal nuance: the two are NOT simply "higher IF = harder". Some niche sub-journals have lower barriers than the head sub-journals. **Journal-scene fit comes first** — do not blindly chase Nature Communications-level head sub-journals. If the project ceiling only supports incremental improvement, do solid work and pick a matching journal; reserve top-journal effort for topics with breakthrough potential.
+Key: sub-journal selection is about match, not raw IF. Some niche sub-journals have lower bars than the flagship. Match the journal to your work's ceiling; do not blindly chase head sub-journals.
 
-## Nature / Science Sub-journals: Polishing Original Research for Review
+## Nature / Science Sub-journals: Polishing Original Research
 
-### 1. Topic selection: "surprise factor" science questions, NOT incremental refinement
+### 1. Topic selection: the "surprise" principle
 
-Ordinary Q1 journals accept performance optimization on existing systems / small mechanism improvements. Sub-journals reject this. Two preferred topic types:
-- ① Observing a phenomenon/mechanism no one has found before
-- ② Developing a new technology/new platform that directly empowers a large swath of downstream research
+The work must make peers think "I didn't realize you could do it this way." Two paths:
+- **New phenomenon / new mechanism**: reveals something previously unseen
+- **New technology / new platform**: enables a wide range of downstream research
 
-Pre-selection self-check: if this work is published, can researchers from multiple different directions cite it? Will field leaders discuss it? If the contribution is locked inside a tiny sub-niche that only 2-3 peer groups can understand, even beautiful data will likely be desk-rejected by the editor in initial screening.
+If the paper only supports incremental gains, do not aim at the head sub-journals; match the journal instead. Self-test before submission: "Can this result be cited by multiple directions?"
 
 ### 2. Experiments & data: rigor > quantity, closed evidence loop is a hard threshold
 
-Sub-journal reviewers are extremely strict about experimental rigor; more figures is NOT stronger. The question is: **can you rule out all competing explanations?** Reviewers will keep proposing alternative hypotheses for your new mechanism; every control experiment, variable-controlling design, and characterization must exclude each one. Any unexplained hole → major revision or rejection.
+Reviewers will continuously propose alternative hypotheses. Every control experiment must rule out a competing explanation. The evidence chain must be closed — no gap where a reviewer can say "your result could also be explained by X."
 
-Visualization is critical. Sub-journals put heavy weight on the TOC / graphical abstract: one good graphical abstract should state the scientific finding in one image and catch the editor's eye at first glance. Many manuscripts are screened at desk review by looking at abstract + TOC figure before deciding whether to send out for review.
+- TOC / graphical abstract is critical: editors screen with abstract + figure first
+- A single decisive experiment that closes the loop beats ten supplementary tables
 
-### 3. Narrative: tell one complete scientific story, not a lab log
+### 3. Narrative: tell a complete scientific story, not a lab notebook
 
-Sub-journal narrative logic differs entirely from a normal SCI paper:
-- Opening: do NOT pile up literature; go straight to the field's core bottleneck
-- Raise your scientific hypothesis
-- Present evidence layer by layer (each layer ruling out competing explanations)
-- Conclude with the discipline-level implication
+Logic chain: **domain pain point → scientific hypothesis → experimental validation → conclusion → field impact**
 
-The logic chain must be continuous: **field pain point → scientific hypothesis → experiment verification → conclusion → field impact**. Anti-pattern: writing a running log that lists results in experimental order. Sub-journals value the scientific story, not the experiment notebook. (Cross-link: the four-step funnel in writing-abstract-intro.md narrows the intro the same way; this chain extends it through the whole manuscript.)
+Do NOT list results in chronological experiment order. Restructure into a story where each result answers a question raised by the previous one.
 
-### 4. Revision strategy: major revision is not hostility, it is the last kick before acceptance
+### 4. Revision strategy: major revision is the final sprint
 
-- Most sub-journal acceptances go through major revision. Major revision means editors/reviewers endorse your core conclusion — the defects are in evidence/argumentation, not in the idea.
-- Respond to review comments point by point; do not argue, do not evade.
-- If experiments can be added, do them properly. If an experiment cannot be done, objectively acknowledge the limitation and carefully discuss the boundary of conclusion applicability.
-- Do NOT force-inflate the significance of the work or exaggerate novelty — reviewers identify this at a glance.
+Reaching major revision means the core conclusion is accepted. Rules:
+- Respond point-by-point; do not argue, do not evade
+- If a requested experiment is feasible, do it — even if you think it is unnecessary
+- If a requested experiment is truly infeasible, acknowledge the limitation honestly and explain why
+- Do NOT inflate significance in the revision; reviewers see through it
 
-## Chemical Reviews: The Top-Level Logic of Writing a Review
+## Chemical Reviews: Top-Level Review Logic
 
-Most people's assumption — read more literature, organize it, and submit — is the biggest misconception.
+### Reality check
+Chemical Reviews is primarily invitation-based. Unsolicited submissions have extremely low acceptance rates. If invited, the editor already trusts your domain judgment.
 
-### 1. Invitation-first reality
+### Content core
+Not a literature catalog. The expectation is:
+- **Surface contradictions**: where do papers disagree?
+- **Distill debates**: what are the competing schools of thought?
+- **Predict the future**: where will this field go in 5–10 years?
 
-- The vast majority of Chemical Reviews articles are invited; free submission acceptance rate is extremely low.
-- Usually long-standing field-heavy groups receive editor invitations. A PhD student submitting independently is very unlikely to be accepted; the safe path is to work with the supervisor and wait for the invitation.
-- Free submission is not fully closed but the bar is extremely high; not recommended as a PhD student self-submission route.
-
-### 2. Content core: map contradictions, distill debates, forecast the future
-
-An ordinary review "summarizes prior work"; Chemical Reviews requires you to JUDGE the research:
-- Lay out conflicting conclusions across the field; analyze WHY different groups obtain contradictory results
-- Point out current technical bottlenecks and scientific blind spots
-- Give 5-10 year directions worth exploring
-
-One sentence: ordinary reviews summarize the past; Chemical Reviews defines how the field should develop next.
-
-### 3. Writing requirements: grand scope, clear taxonomy, depth with breadth
-
-- Volume is huge, hundreds of references. NEVER arrange references by year like a list.
-- Build a clear classification framework: categorize by scientific problem, mechanism, and technical route — not by author or chronological order.
-- Stay neutral: do not cite only your own group's papers, do not deliberately denigrate opposing groups' results; keep a professional, unbiased academic perspective.
-
-## Guardrails for the Writer
-
-- Truthfulness: sub-journal strategy does not license overclaiming; evidence must support every claim (see core-stance.md).
-- Scope honesty: do not advise an incremental project to "simply aim at Nature"; first judge the ceiling of the topic, then match the journal.
-- Review integrity: rebuttal and revision follow the point-by-point protocol above and the concession threshold protocol in review-integrity.md.
+### Writing requirements
+- Classify by scientific question / mechanism / technical route — NOT by chronological order
+- Remain objective and neutral; do not favor your own group's work
+- Cover the entire sub-field systematically; omissions of major threads are fatal
+- Each section should end with the author's judgment on where that thread stands and where it is heading

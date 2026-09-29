@@ -1,4 +1,3 @@
-
 ---
 # Venue Formats & Reviewer Preferences
 
@@ -81,13 +80,24 @@ All entries verified against arXiv API (Sep 20, 2026). Venue and arXiv ID confir
 |-------|--------|-------|-------------------|
 | SIGGRAPH 2026 | Structure-Aware Densification | 2604.28016 | Frequency-aware anisotropic splitting, replacing vanilla 3DGS uniform split strategy |
 | ICLR 2026 | FieryGS | 2605.00177 | Physics-integrated fire synthesis, fusing flame dynamics into Gaussian rendering |
-| ICML 2026 Spotlight | SplAttN | 2605.01466 | Gaussian soft splatting for point cloud completion (not "understanding") |
+| ICML 2026 Spotlight | SplAttN | 2605.01466 | Gaussian soft splatting for point cloud completion |
 | CVPR 2026 | GLMap | 2605.01736 | Multi-scale Gaussian-Language Map for zero-shot embodied navigation and reasoning |
 | CVPR 2026 Findings | Softmax-GS | 2604.27437 | Softmax competition rendering, alternative to α-compositing |
 | arXiv 2026 | LeGS | 2605.00408 | RL-based density control, replacing heuristic clone/split/prune (venue unconfirmed) |
 | Eurographics 2026 | 2D-SuGaR | 2605.00569 | Surface-aware 2DGS with depth/normal priors, improved surface extraction |
 | arXiv 2026 | GETA-3DGS | 2605.02086 | Joint pruning + quantization for 3DGS compression |
-| arXiv 2026 | GOR-IS | 2605.00498 | 3D Gaussian object removal in the intrinsic space (not "editing") |
-| CVPR 2026 | ReLaGS | 2603.17605 | Relational language Gaussian splatting for training-free 3D perception and reasoning |
+| arXiv 2026 | GOR-IS | 2605.00498 | 3D Gaussian object removal in the intrinsic space |
+| CVPR 2026 | ReLaGS | 2603.17605 | Relational language Gaussian splatting, training-free 3D perception and reasoning |
 | CVPR 2026 Best Paper | D4RT | 2512.08924 | Feedforward 4D dynamic scene reconstruction via unified transformer (not Gaussian-based) |
-| CVPR 2026 Best Student Paper | TRELLIS.2 | 2512.14692 | Structured 3D generation with O-Voxel sparse voxel latent + flow-matching (not 3DGS-based) |
+| CVPR 2026 Best Student Paper | TRELLIS.2 | 2512.14692 | O-Voxel sparse voxel latent + flow-matching for 3D generation (not 3DGS-based) |
+
+### Key Papers Verification Protocol
+
+When adding or updating entries in the Key Papers table, follow this protocol to prevent the 7 classes of errors found in the Sep 2026 audit:
+
+1. **Reachability check**: Access `https://arxiv.org/abs/{arXiv_ID}` — confirm the page loads and the title matches
+2. **Name match**: Verify the method name appears in the paper's title or abstract; if not, use the paper's self-declared method name
+3. **Venue extraction**: Extract venue from the arXiv "Comments" field or "Journal reference" — do NOT guess from the topic or submission date
+4. **Description accuracy**: Cross-check the "Core Contribution" column against the paper's actual abstract; common errors include wrong task (e.g., "understanding" vs "completion"), wrong representation (e.g., "Gaussian" vs "transformer"), or vague paraphrasing
+5. **Missing arXiv IDs**: Entries without arXiv IDs should be flagged with "(venue unconfirmed)" and verified via official conference programs before assigning a venue
+6. **Non-3DGS context entries**: If a paper is included for context (e.g., D4RT, TRELLIS.2), explicitly note it is NOT Gaussian-based to prevent misattribution
