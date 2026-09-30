@@ -391,7 +391,7 @@ checkpoint = {
 
 ## Section 10: Training Runtime Bug Patterns
 
-This skill detects **60 runtime failure patterns** (as opposed to the code-reviewer's 108+ static code bugs). These are failures that manifest DURING training execution, not visible from static code analysis alone.
+This skill detects **60 runtime failure patterns** (as opposed to the code-reviewer's 104 static code bugs). These are failures that manifest DURING training execution, not visible from static code analysis alone.
 
 ### Pattern Categories
 

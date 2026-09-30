@@ -25,3 +25,6 @@
 *.docx  binary
 *.xlsx  binary
 *.pptx  binary
+
+# 电子书 / 在线站点 HTML 不计入语言统计（避免主语言被误判为 HTML）
+docs/  linguist-documentation

@@ -12,7 +12,7 @@ keywords: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", 
 
 # Awesome Gaussian Skills — Project Context
 
-This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 872 methods across 23 categories with 108+ known bug patterns.
+This project is the most comprehensive catalog and AI Agent skill pack for 3D Gaussian Splatting (3DGS) research, covering 872 methods across 23 categories with 104 known bug patterns.
 
 > **Anthropic Skills Standard Alignment**: This project follows the SKILL.md standard format compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`), and other AI Agent frameworks. Each skill includes YAML frontmatter (name, description, version, when_to_use, tags) and structured Markdown body with capabilities, instructions, and reference data. Target: `anthropics/skills` official repository listing.
 
@@ -22,7 +22,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 |-------|---------|-------------|
 | `3dgs-paper-reader` | `/3dgs-paper-reader [arxiv-id]` | Read and summarize any 3DGS paper |
 | `3dgs-method-compare` | `/3dgs-method-compare [method-a] [method-b]` | Compare methods across 11 dimensions (Router architecture) |
-| `3dgs-code-reviewer` | `/3dgs-code-reviewer [file]` | Review 3DGS code for 108+ bug patterns (Self-Check Loop) |
+| `3dgs-code-reviewer` | `/3dgs-code-reviewer [file]` | Review 3DGS code for 104 bug patterns (Self-Check Loop) |
 | `3dgs-experiment-planner` | `/3dgs-experiment-planner [topic]` | Design experiments for top venues |
 | `cad-mesh-3dgs` | `/cad-mesh-3dgs [query]` | Bridge CAD/Mesh and 3DGS via SLAT framework (40+ methods) |
 | `3dgs-visualizer` | `/3dgs-visualizer [chart-type]` | Generate publication-quality charts |
@@ -211,8 +211,8 @@ npm run dev:mcp       # MCP Server (stdio)
 - [x] `allowed-tools` field for pre-approved tool access
 - [x] Compatible with Claude Code (`.claude/`), Cursor (`.cursor/rules/`) layouts
 - [x] Router architecture for efficient context usage (3 skills)
-- [x] Anti-hallucination guardrails (all 16 skills)
-- [x] Red Lines categorical prohibitions (all 16 skills)
+- [x] Anti-hallucination guardrails (all 15 skills)
+- [x] Red Lines categorical prohibitions (all 15 skills)
 - [x] Self-Check loops for code review & training debugging (2 skills)
 - [x] Stage Gates for paper writing (1 skill)
 - [ ] Submit PR to `anthropics/skills` official repository (materials prepared: `docs/anthropic-pr-preparation.md`)

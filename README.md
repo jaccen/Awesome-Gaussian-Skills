@@ -57,7 +57,7 @@ Search 872 Methods instantly, filter by category, sort by citations, click any m
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (872 Methods, 23 categories, 16 skills), zero fabrication:**
+**What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (872 Methods, 23 categories, 15 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -78,7 +78,7 @@ Search 872 Methods instantly, filter by category, sort by citations, click any m
 | CH 12 | Capture-to-delivery: the end-to-end pipeline | Ten-stage tool selection & pitfalls, formats & coordinate systems, cost/duration estimates, project failure modes |
 | CH 13 | Industry playbooks: six verticals | Museums & tourism, e-commerce, industrial inspection, AD simulation, embodied robots, surveying & mapping |
 | 附 | Appendix | Datasets, evaluation metrics, delivery-metric conversion & acceptance-report templates |
-| 实 | Practice index: from book to engineering | 16 engineering skills · 34 MCP tools · 872+ method explorer, chapter-to-runnable-resource mapping |
+| 实 | Practice index: from book to engineering | 15 engineering skills · 34 MCP tools · 872+ method explorer, chapter-to-runnable-resource mapping |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 Each chapter ends with hands-on exercises and links back to the repo's method tables, `references/`, and skills —so reading the book and doing the engineering are one seamless flow.
@@ -91,7 +91,7 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 872 method names, abstracts, and 16 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 872 method names, abstracts, and 15 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
@@ -110,6 +110,9 @@ name sets compared entry by entry. No method name was fabricated; the library's
 "every entry arXiv-verifiable" guarantee holds.
 
 See [changelog/2026-09-21-v3.md](changelog/2026-09-21-v3.md) for the full admission list.
+
+<details>
+<summary><strong>Earlier updates (v0.9.4 and before)</strong></summary>
 
 ### Latest Update (Sep 21, 2026): **v0.9.4 — Multi-Channel Harvest: 700 → 859 Methods + Accuracy Overhaul** ⭐
 
@@ -178,6 +181,8 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 | **MGM** | arXiv 2026 | Relighting | Large material Gaussian model for relightable 3D generation |
 | **DualPhys-GS** | arXiv 2026 | Robustness | Dual physics-guided 3DGS for underwater reconstruction |
 | **StereoGS** | 2026 | Acceleration | Energy-efficient hardware stereoscopic GS rendering processor |
+
+</details>
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
@@ -392,7 +397,7 @@ Awesome-Gaussian-Skills/
 │   ├── _contracts/            # Inter-skill I/O schemas (paper-insight, comparison-report, experiment-plan)
 │   ├── 3dgs-paper-reader/     # Paper reading & summarization
 │   ├── 3dgs-method-compare/   # Method comparison engine (Router)
-│   ├── 3dgs-code-reviewer/    # Code review (108+ bug patterns)
+│   ├── 3dgs-code-reviewer/    # Code review (104 bug patterns)
 │   ├── 3dgs-experiment-planner/ # Experiment design
 │   ├── nerf-to-3dgs-migrator/ # NeRF→3DGS migration
 │   ├── cad-mesh-3dgs/         # CAD/Mesh/3DGS bridge

@@ -354,7 +354,7 @@
     <div class="cover">
       <span class="kicker">① 开源技术书 · 设计原理与工程实践</span>
       <h1>深入理解<span class="grad">空间智能与具身智能</span></h1>
-      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 872+ 方法与 16 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
+      <p class="subtitle">以 3D Gaussian Splatting 为核心，串联 872+ 方法与 15 个工程技能，讲透从三维表征到机器人行动的完整闭环</p>
       <div class="formula">
         <b>具身智能体</b><span class="x">=</span>
         空间表征<span class="x">×</span>感知<span class="x">×</span>规划<span class="x">×</span>行动
@@ -369,7 +369,7 @@
       <div class="ribbons">
         <img alt="methods" src="https://img.shields.io/badge/Methods-872+-9cf.svg">
         <img alt="categories" src="https://img.shields.io/badge/Categories-23-green.svg">
-        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-16-22c55e.svg">
+        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-15-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
       </div>
       <div class="statbar" id="agsStatBar">
@@ -403,7 +403,7 @@
         <a class="ch-card" href="#ch12" style="--accent:var(--cyan)"><span class="tag">第 12 章</span><h3>从采集到交付：端到端工程链路</h3><p>十个环节的工具选型与卡点、格式与坐标系、成本工期量级表、项目失败 Top 10。</p><span class="go">工程主线 →</span></a>
         <a class="ch-card" href="#ch13" style="--accent:var(--pink)"><span class="tag">第 13 章</span><h3>产业落地剧本：六个行业</h3><p>文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维六个行业剧本。</p><span class="go">对号入座 →</span></a>
         <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，交付指标换算与验收报告模板。</p><span class="go">阅读 →</span></a>
-        <a class="ch-card" href="#practice-index" style="--accent:var(--green)"><span class="tag">索引</span><h3>实践资源索引：从书到工程</h3><p>16 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器，章节到可运行资源的对照表。</p><span class="go">动手 →</span></a>
+        <a class="ch-card" href="#practice-index" style="--accent:var(--green)"><span class="tag">索引</span><h3>实践资源索引：从书到工程</h3><p>15 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器，章节到可运行资源的对照表。</p><span class="go">动手 →</span></a>
         <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>60+ 权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#afterword" style="--accent:var(--text-3)"><span class="tag">后记</span><h3>3DGS 会被吃掉吗</h3><p>显式表征与世界模型的终局关系，以及这本书写完时仍未有答案的问题。</p><span class="go">收尾 →</span></a>
       </div>
@@ -769,7 +769,7 @@
 
       <div class="callout warn">
         <span class="ct">⚠ 常见误区</span>
-        "3DGS 训练快"不等于"3DGS 调参简单"。位置梯度阈值 τ_pos、致密化间隔、clone 上限、透明度下限 α_min 这四个旋钮互相耦合；新加损失时要先确认它是否真的改变了 ‖∇μL‖，否则 split 不会按你的预期工作。本仓库的 3DGS 代码审查技能沉淀了 108+ 个已知 bug 模式，覆盖的正是这类"看起来在训练、其实在空转"的陷阱。
+        "3DGS 训练快"不等于"3DGS 调参简单"。位置梯度阈值 τ_pos、致密化间隔、clone 上限、透明度下限 α_min 这四个旋钮互相耦合；新加损失时要先确认它是否真的改变了 ‖∇μL‖，否则 split 不会按你的预期工作。本仓库的 3DGS 代码审查技能沉淀了 104 个已知 bug 模式，覆盖的正是这类"看起来在训练、其实在空转"的陷阱。
       </div>
 
       <div class="callout note">
@@ -781,7 +781,7 @@
         <a href="https://github.com/graphdeco-inria/gaussian-splatting" target="_blank" rel="noopener"><span class="ico">⎇</span> 官方实现</a>
         <a href="https://github.com/nerfstudio-project/gsplat" target="_blank" rel="noopener"><span class="ico">⎇</span> gsplat (nerfstudio)</a>
         <a href="https://github.com/nerfstudio-project/nerfstudio" target="_blank" rel="noopener"><span class="ico">⎇</span> nerfstudio 框架</a>
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-code-reviewer" target="_blank" rel="noopener"><span class="ico">③</span> 108+ bug 模式审查</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-code-reviewer" target="_blank" rel="noopener"><span class="ico">③</span> 104 bug 模式审查</a>
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/skills/3dgs-training-debugger" target="_blank" rel="noopener"><span class="ico">🔧</span> 60+ 训练运行时 bug 诊断</a>
         <a href="#ch3"><span class="ico">→</span> 下一章：从场景到世界</a>
       </div>
@@ -796,7 +796,7 @@
       </div>
 
       <h3><span class="mi">⑤</span> 训练实践：损失、阶梯与密度控制</h3>
-      <p class="lead">前面的数学推导告诉你 3DGS <em>为什么</em> 能工作。这一节告诉你它<em>为什么会在你的数据上不工作</em>，以及怎么修。内容提炼自本仓库 <code>3dgs-training-debugger</code>（60+ 运行时失败模式）和 <code>3dgs-code-reviewer</code>（108+ 个已知 bug 模式）两个工程技能。</p>
+      <p class="lead">前面的数学推导告诉你 3DGS <em>为什么</em> 能工作。这一节告诉你它<em>为什么会在你的数据上不工作</em>，以及怎么修。内容提炼自本仓库 <code>3dgs-training-debugger</code>（60+ 运行时失败模式）和 <code>3dgs-code-reviewer</code>（104 个已知 bug 模式）两个工程技能。</p>
 
       <h4 style="font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--text)">损失函数设计</h4>
       <p>原始 3DGS 使用 <strong>(1−λ)·L₁ + λ·D-SSIM</strong> 组合损失，经验值 λ=0.2。L₁ 项负责像素级保真度，D-SSIM 项（结构相异性）补充结构相似性感知。这不是唯一选择——以下是决策树：</p>
@@ -839,7 +839,7 @@
         </tbody>
       </table>
       <div class="warn" style="border-left:3px solid var(--orange);padding:10px 14px;margin:14px 0;background:rgba(255,140,0,.05);border-radius:4px;font-size:13.5px">
-        <strong>⚠ 实践陷阱</strong>：很多失败模式不是代码 bug，而是<em>输入数据问题</em>——COLMAP 位姿错误、图像曝光不一致、背景运动物体（行人/车辆）未掩蔽。在调参之前，先用 <code>3dgs-code-reviewer</code> 技能检查代码实现，再用 <code>3dgs-training-debugger</code> 诊断训练症状。本仓库的知识库记录了 108+ 个静态代码 bug 模式和 60 个运行时失败模式——覆盖了 3DGS 训练实践中 90% 以上的常见问题。
+        <strong>⚠ 实践陷阱</strong>：很多失败模式不是代码 bug，而是<em>输入数据问题</em>——COLMAP 位姿错误、图像曝光不一致、背景运动物体（行人/车辆）未掩蔽。在调参之前，先用 <code>3dgs-code-reviewer</code> 技能检查代码实现，再用 <code>3dgs-training-debugger</code> 诊断训练症状。本仓库的知识库记录了 104 个静态代码 bug 模式和 60 个运行时失败模式——覆盖了 3DGS 训练实践中 90% 以上的常见问题。
       </div>
     
       <div class="callout note" style="margin-top:16px">
@@ -2590,7 +2590,7 @@
     <!-- ===================== 实践资源索引 ===================== -->
     <section class="chapter" id="practice-index" style="--accent:var(--green)">
       <div class="chapter-head"><span class="no">实</span><h2>实践资源索引：从书到工程</h2></div>
-      <p class="chapter-sub">16 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器</p>
+      <p class="chapter-sub">15 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器</p>
 
       <p>本书每一章都对应本仓库（<a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">Awesome-Gaussian-Skills</a>）里真实可运行的资源。下表把"读到的章节"接到"能动手的工具"——建议带着你自己的项目，按行挑一个先跑通。</p>
 
@@ -2749,7 +2749,7 @@
         <div class="ref-item"><span class="idx">[49]</span> nerfstudio <a href="https://github.com/nerfstudio-project/nerfstudio">GitHub</a><span class="desc">完整训练框架，集成 3DGS/NeRF，适合工程化上手</span></div>
         <div class="ref-item"><span class="idx">[50]</span> COLMAP <a href="https://github.com/colmap/colmap">GitHub</a><span class="desc">3DGS 流程前端必备：图像序列→相机位姿+稀疏点云</span></div>
         <div class="ref-item"><span class="idx">[51]</span> awesome-3D-gaussian-splatting (MrNeRF) <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">GitHub</a><span class="desc">社区维护的 3DGS 论文/资源精选清单</span></div>
-        <div class="ref-item"><span class="idx">[52]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">872+ 方法 / 23 类别 / 16 个 AI 技能 / 34 个 MCP 工具</span></div>
+        <div class="ref-item"><span class="idx">[52]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">872+ 方法 / 23 类别 / 15 个 AI 技能 / 34 个 MCP 工具</span></div>
       </div>
 
       <div class="ref-divider"></div>
@@ -2802,7 +2802,7 @@
       </div>
 
       <div class="links">
-        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener"><span class="ico">⎇</span> 配套仓库（872+ 方法 / 16 技能）</a>
+        <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener"><span class="ico">⎇</span> 配套仓库（872+ 方法 / 15 技能）</a>
         <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/" target="_blank" rel="noopener"><span class="ico">🌐</span> 在线方法浏览器</a>
         <a href="#intro"><span class="ico">↑</span> 回到引言</a>
       </div>
@@ -2821,7 +2821,7 @@
   <div class="ft-title">关于本书</div>
   <ul>
     <li>本书是 <a href="https://github.com/jaccen/Awesome-Gaussian-Skills" target="_blank" rel="noopener">Awesome-Gaussian-Skills</a> 项目的一部分，以 3D Gaussian Splatting 为核心串联空间智能与具身智能。</li>
-    <li>覆盖 872+ 方法、23 个类别、16 个 AI 工程技能、34 个 MCP 工具，所有引用均经核实。</li>
+    <li>覆盖 872+ 方法、23 个类别、15 个 AI 工程技能、34 个 MCP 工具，所有引用均经核实。</li>
     <li>License: Apache-2.0 · 欢迎贡献与勘误。</li>
   </ul>
   <p class="copy">© 2024–2026 Awesome-Gaussian-Skills · 以 3DGS 为核心的空间智能开源技术书</p>

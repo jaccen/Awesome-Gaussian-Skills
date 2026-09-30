@@ -52,3 +52,11 @@ build/
 *.ply
 *.splat
 *.binvox
+
+# Local scheduler state (runtime artifact, not for repo)
+scheduler.db
+
+# Build artifacts & caches (not for repo)
+*.genie
+Awesome-Gaussian-Skills.zip
+.tmp_zipx/
