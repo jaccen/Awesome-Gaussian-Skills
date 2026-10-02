@@ -1,7 +1,59 @@
 {
- "date": "2026-10-01",
- "count": 23,
+ "date": "2026-10-02",
+ "count": 18,
  "papers": [
+  {
+   "id": "2610.01114",
+   "title": "Affine-Aligned Atlas for Canonical Gaussian Construction in Video Representation",
+   "abstract": "Gaussian splatting has recently emerged as an efficient representation for images and videos due to its explicit structure and fast rendering capability. Existing Gaussian-based video representations often decompose a video into canonical Gaussians and temporal deformation. However, when a video contains large global motion such as camera movement, the canonical representation may become misaligned with individual frames, increasing the burden on the temporal deformation model. In this paper, we propose an affine-atlas canonical Gaussian representation, which constructs canonical Gaussians in a larger affine-aligned atlas space. Frame-wise affine transforms absorb global motion before canonical Gaussian construction, reducing the gap between the canonical representation and target frames. Since the proposed method only modifies the canonical construction stage, it can be integrated into existing canonical-Gaussian-based methods with negligible additional parameter cost. Experiments show that our method improves reconstruction quality especially for sequences with large camera motion.",
+   "published": "2026-10-01",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2610.00749",
+   "title": "What Builds the Scene? Luminance Dominates Geometry Formation in 3D Gaussian Splatting",
+   "abstract": "Standard 3D Gaussian Splatting (3DGS) learns geometry and appearance jointly from RGB supervision, making it difficult to isolate how luminance and chroma contribute to the learned representation. We study this by training models under different channel supervision, freezing their non-appearance parameters (position, scale, rotation, and opacity), and re-estimating appearance with the same solver before comparing held-out reconstruction. Across eleven benchmark scenes with four independent runs each, geometry learned from luminance alone supports held-out reconstruction 0.085 dB below RGB-trained geometry on average. If chroma is deleted from a trained model, a sufficiently expressive solver can re-fit it on the frozen geometry to the original quality or slightly better. Higher-order spherical harmonics contribute much more reconstruction quality to luminance than to chroma, improving PSNR by 1.44 dB versus 0.19 dB on average, although on mirror-like surfaces hue does still change with viewpoint. The luminance advantage is even larger when geometry is being formed. Chroma-only supervision produces geometry 3.9-5.5 dB worse than luminance-only supervision after the same appearance solve; densification explains part of this gap. Overall, geometry formation in standard 3DGS is strongly luminance-dominated but not luminance-exclusive, and much of the chromatic appearance can be recovered after spatial support has formed.",
+   "published": "2026-09-30",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV",
+    "cs.GR"
+   ]
+  },
+  {
+   "id": "2609.39960",
+   "title": "Reconstructing the Dynamic World: A Representation-Centric View of 4D Scene Reconstruction",
+   "abstract": "4D scene reconstruction aims to recover the evolving geometry, appearance, and motion of dynamic environments from visual observations. Despite substantial progress in neural scene representations, reconstructing dynamic scenes remains challenging due to non-rigid motion, occlusions, temporal inconsistencies, and the trade-offs between reconstruction fidelity and computational efficiency. Recent advances in Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS) have introduced diverse approaches to representing and reconstructing dynamic scenes, yet their relationships, underlying design choices, and evaluation protocols remain fragmented. In this paper, we present a unified perspective on 4D scene reconstruction, organizing existing methods around their scene representations, temporal modeling strategies, reconstruction pipelines, and optimization objectives. Through this framework, we examine how different design choices affect geometric fidelity, appearance consistency, motion representation, and computational efficiency. We further consolidate commonly used datasets and evaluation metrics, identify limitations in current experimental practices, and discuss open challenges in reconstructing complex, dynamic real-world environments. By connecting methodological developments with their underlying assumptions and evaluation evidence, this work provides a structured foundation for understanding existing approaches and identifying future research directions. An evolving collection of relevant papers and resources is available at https://github.com/ZiyangYan/Awesome-4D-Scene-Reconstruction.",
+   "published": "2026-09-30",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.39553",
+   "title": "EffGS: Efficient and High-Fidelity Gaussian Splatting",
+   "abstract": "3D Gaussian Splatting (3DGS) enables real-time novel view synthesis, but existing general-purpose acceleration methods suffer severe rendering quality degradation when extended to more complex, large-scale scenes. To address this issue, we propose EffGS, a more general acceleration framework that improves training and rendering efficiency while maintaining reconstruction quality comparable to or better than vanilla 3DGS across bounded and large-scale scenes. EffGS combines frequency-aware guidance, localized density control, and adaptive primitive scale modulation. First, an importance scoring mechanism combines pixel-wise reconstruction errors with a difference-of-Gaussians mask scheduled over training to provide stage-dependent spatial guidance. Second, localized densification and pruning restricts density modifications to Gaussians with valid projected footprints in the sampled views. Third, learnable per-Gaussian scale modulation adjusts effective primitive extent during optimization while retaining the Compact Box rasterization rule. Extensive experiments on bounded and large-scale scene datasets demonstrate a favorable balance between reconstruction quality, training time, and primitive count. Component ablations and matched-primitive-budget comparisons further support the effectiveness of the framework.",
+   "published": "2026-09-30",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2609.39527",
+   "title": "Lens Flare Removal and Reconstruction",
+   "abstract": "The presence of lens flares in images can significantly reduce the quality of downstream application results for tasks such as 3D scene reconstruction. This is because lens flares are a property of the camera imaging system, and not a part of the underlying scene being modeled. There are previous methods that tackle the removal of small flares focused around a light source. However, existing methods struggle with large flares, such as those that fill the entire image. In this work, we compile a novel dataset for large-flare removal, combining publicly available real-world data with a procedural generation pipeline. We fine-tune a diffusion-based model on our dataset to remove complex, large lens flares. On the other hand, lens flares remain effective artistic tools, widely used in the media. While there are ways to simulate 2D flares, representing and reconstructing lens flares consistently across multiple views has not yet been explored. To achieve this, we introduce a flare representation model that leverages the symmetry of lens flares about the camera's principal point. We propose a computational pipeline to jointly optimize this flare model and a Gaussian splatting model (3DGS). This enables the decomposition of a 3D scene into lens flares and the scene itself, using our flare-removal model. Because the reconstructed flare is explicit and re-renderable, it can be edited and transferred to novel images and new 3D scenes. We evaluate removal on an established benchmark and a new one for large reflective flares, quantify the flare/scene decomposition directly, and show that the pipeline is robust to errors in automatic light-source localization.",
+   "published": "2026-09-30",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV",
+    "cs.GR"
+   ]
+  },
   {
    "id": "2609.39089",
    "title": "UGOD: Uncertainty-Guided Opacity and Dropout for Sparse-View 3D Gaussian Splatting",
@@ -136,110 +188,6 @@
     "cs.RO",
     "cs.CV",
     "eess.SY"
-   ]
-  },
-  {
-   "id": "2609.38525",
-   "title": "Beyond Monoscopic Viewing: A Study on 3D Gaussian Splatting Quality in VR",
-   "abstract": "Stereoscopy is fundamental to virtual reality (VR), providing depth perception through binocular viewing. Recent advances in 3D Gaussian Splatting (3DGS) enable high-quality novel view synthesis, making it well suited to immersive VR. We render 3DGS reconstructions stereoscopically and evaluate them in a head-mounted display, replicating how they would actually be viewed in VR. Real-world capture provides only a limited number of views, and under this constraint 3DGS reconstruction often produces localized floaters and misplaced structures. Standard metrics miss these localized artifacts, which become salient under stereoscopic viewing, where geometry is placed at the wrong depth. We investigate whether standard image-quality evaluation reflects the perceptual quality of 3DGS reconstructions under reduced capture. We compare SfM-only baseline with a union initialization that combines SfM with a dense VGGT network. All other training components are held fixed, isolating the effect of initialization coverage. We conduct a user study comparing preferences under monoscopic and stereoscopic HMD viewing, and test whether image-quality metrics predict the observed preferences. Monoscopically, preference for the more consistent reconstruction is weak, reaching 58.4\\% overall. Stereoscopically, the same preference rises to 78.2\\% and is consistent across all participants, while image-quality metrics (PSNR, SSIM and LPIPS) and stereo-aware metrics (iSQoe and StereoQA) show only modest differences and fail to penalize them. Our results indicate that monoscopic evaluation and standard image-quality metrics substantially underestimate perceptual artifacts observed in 3DGS reconstructions for VR, making stereoscopic assessment essential for 3DGS quality evaluation in VR.",
-   "published": "2026-09-29",
-   "primary": "cs.HC",
-   "categories": [
-    "cs.HC"
-   ]
-  },
-  {
-   "id": "2609.38418",
-   "title": "PneuTac: Tactile Manipulation with Soft Pneumatic Robots via Unified MPM-Gaussian Splatting Simulation",
-   "abstract": "Soft robots and tactile sensors have demonstrated great potential in delicate manipulation tasks. Soft pneumatic robots enable safe contact through compliance, and vision-based tactile sensors offer high-resolution touch perception. However, learning tactile manipulation with compliant robots has been challenging, bottlenecked by the lack of efficient simulation. Existing simulators typically model them in isolation, and exhibit large calibration gaps that are difficult to overcome efficiently. We present PneuTac, a unified framework for tactile-feedback manipulation with soft pneumatic robots. We leverage the material point method (MPM) for modelling the dynamics of the soft robot and the deformable tactile membrane, and 3D Gaussian splatting (3DGS) for rendering. Real-to-sim modelling is done with a simple vision-based method, to then train action and perception networks for efficient simulation with surrogate models. We use the framework to drive a tactile-guided pipeline to collect demonstrations in simulation. Through experiments on a custom-designed pneumatic soft finger with a tactile sensing tip, together with additional cross-device evaluations, we show that PneuTac is capable of accurately modelling soft robots with tactile sensors, and that policies trained with simulation-augmented demonstrations outperform baselines trained on the same real data on three real-world contact-rich compliant manipulation tasks, making it a practical framework for tactile manipulation on compliant hardware.",
-   "published": "2026-09-29",
-   "primary": "cs.RO",
-   "categories": [
-    "cs.RO"
-   ]
-  },
-  {
-   "id": "2609.37916",
-   "title": "RLX: A Unified Multi-Backend Tensor Compiler and Distributed Runtime in Rust",
-   "abstract": "Production machine learning (ML) stacks often split graph compilation and kernel execution across different layers and languages, making backend behavior, deployment guarantees, and performance fallbacks hard to reason about end-to-end. RLX addresses this gap with a single Rust codebase that combines compiler and runtime roles around one primitive-level, three-level intermediate representation (IR), plus a transparent dispatch contract that resolves each operator to native, common-IR, or rewritten lowering and fails compilation when legalization is not possible. The same IR targets fourteen runtime devices (cpu, metal, mlx, ane, cuda, rocm, oneapi, tpu, hexagon, gpu, vulkan, opengl, directx, webgpu) and two specialty codegen paths (Cortex-M INT8 and FPGA), ingests safetensors, GGUF, ONNX, and rten formats, supports F16/BF16/F64/C64 and quantized INT4/INT8 flows with AMP/PTQ/QAT, and scales via tensor-/pipeline-parallel collectives over TCP and RDMA transports. Beyond neural workloads, RLX also extends to scientific/physics-style domains through sparse and dense linear algebra extensions (e.g., CSR LU/CG/matvec and LAPACK- backed factorizations) and 3D Gaussian splatting operators. We evaluate RLX against PyTorch, TensorFlow, JAX, candle, burn, tch, rten, MLX, CoreML, IREE, Glow, TensorRT, and tinygrad under identical input generation and p50 measurement methodology on one host. On all-MiniLM-L6-v2, RLX-Metal is fastest at every batch (e.g., 16.6 ms at batch 32 vs. PyTorch-MPS 26.7 ms). In the MNIST training table, RLX also has the top-throughput entry (graph-fused MLP: 946,487 img/s), above NumPy+BLAS (787,349 img/s), while retaining 100% top-1 parity on reference checks (e.g., Qwen3).",
-   "published": "2026-09-29",
-   "primary": "cs.DC",
-   "categories": [
-    "cs.DC",
-    "cs.AI"
-   ]
-  },
-  {
-   "id": "2609.35612",
-   "title": "Remote Sensing Sparse-View 3D Gaussian Splatting via Depth Image-Based Rendering",
-   "abstract": "Remote sensing novel view synthesis under sparse observations remains challenging due to insufficient geometric constraints and limited cross-view supervision. Existing Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS) methods are prone to overfitting and face challenges of depth ambiguities, missing cross-view information, and insufficient constraints in under-observed regions. To address these challenges, we propose DIBR-GS, a neural Gaussian Splatting framework that exploits Depth Image-Based Rendering (DIBR) to generate pseudo views for cross-view consistency supervision. Specifically, reliable geometric initialization is constructed by aligning monocular depth priors with sparse SfM reconstruction, and cross-view appearance priors are incorporated into neural Gaussian representations to enhance appearance modeling under sparse observations. Furthermore, we introduce a progressive DIBR-based pseudo-view supervision strategy to provide additional geometric and appearance constraints, enabling more complete reconstruction of weakly observed regions. In addition, a height-constrained anchor growth strategy is designed to suppress unreasonable Gaussian expansion. Experiments demonstrate that the proposed method achieves superior performance over existing approaches when training with only 3 input views. Compared with the previous best-performing method, it improves PSNR by 6.83 dB, with relative gains of 14\\% in SSIM and 60\\% in LPIPS, while maintaining competitive computational efficiency. Our code is available at https://github.com/kanehub/DIBR-GS",
-   "published": "2026-09-28",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.35573",
-   "title": "Less Is More: Genetic Frame Selection for Efficient Novel View Synthesis",
-   "abstract": "Feed-forward novel view synthesis reconstructs a scene from many input images in a single forward pass, yet more views do not necessarily improve performance: redundant or poorly chosen frames increase computational cost and may degrade reconstruction quality. We address the problem of selecting, from an already captured sequence, a fixed-size subset of input views that is most informative for reconstructing specified target viewpoints. We propose a render-free view selector that scores candidate frames based on three complementary criteria: target-view coverage, measured against observed frames that stand in for the targets, redundancy with previously selected views, and image sharpness. A lightweight scoring network then selects the most informative frames without rendering, reconstruction, or per-scene optimization at inference time. To train the selector, we distill an expensive offline search procedure in which a genetic algorithm identifies high-quality subsets by directly optimizing reconstruction performance on training scenes. The selector learns to reproduce these choices from geometric and image-level features alone. Across six datasets and multiple input budgets, our method consistently outperforms both geometric and reconstruction-aware view-selection baselines while incurring significantly lower selection costs than reconstruction-based alternatives. Moreover, carefully selected subsets can outperform feed-forward reconstruction from the full input sequence. The learned selector generalizes across diverse reconstruction paradigms (feed-forward, 3D Gaussian Splatting, and NeRF), to object-targeted reconstruction and to a cross-capture setting in which the target views come from a separate acquisition pass. More broadly, our results indicate that explicitly reasoning about target relevance and inter-view redundancy is a fundamental factor in efficient scene reconstruction.",
-   "published": "2026-09-28",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.34853",
-   "title": "EviSplat: Preserving Multi-View Evidence in 3D Gaussian Splatting for Open-Vocabulary Segmentation",
-   "abstract": "Open-vocabulary 3D scene understanding enables object localization and segmentation from free-form text queries without a fixed category vocabulary. Many recent methods build on 3D Gaussian Splatting and consolidate multi-view observations, such as masked crops from individual views, into language features or compact object descriptors before the query is known. However, observations of the same object vary across viewpoints and are not equally informative: some reveal cues relevant to a particular query, whereas others provide incomplete or misleading evidence. Pre-query consolidation can therefore suppress cues on which a later query depends. We introduce EviSplat, which preserves individual observation features as evidence for later text queries. EviSplat retains individual observation features within class-agnostic 3D instances that represent objects, object parts, or background regions. It also learns, for each Gaussian, a distribution describing which visual appearances its observations support. Given a text query, EviSplat scores each instance using its most relevant observations. It then computes a score for each Gaussian by combining instance-level relevance with locally supported evidence, weighted by how often and how unambiguously that Gaussian was observed. Different queries can thus draw on different visual cues from the same preserved evidence. Experiments across diverse datasets and evaluation protocols demonstrate state-of-the-art performance, supporting the benefit of preserving multi-view evidence until query time and aggregating it according to the query.",
-   "published": "2026-09-28",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV",
-    "cs.AI"
-   ]
-  },
-  {
-   "id": "2609.34579",
-   "title": "GenNVS: Geometry-enhanced Novel View Synthesis via Disentangled 3D Prior",
-   "abstract": "Single-image novel view synthesis remains challenging because the underlying 3D geometry is highly ambiguous. Recent diffusion-based approaches produce plausible results, but they often struggle to preserve the geometric structure and spatial coherence of foreground objects. We present GenNVS, a framework for geometry-enhanced novel view synthesis via a disentangled 3D prior. Specifically, GenNVS models foreground objects and the background with 3D Gaussian Splatting and aligns them through a coarse-to-fine geometric optimization process to form a unified 3D scene. This scene conditions a video diffusion model through the proposed Dual-Stream Masking mechanism, which guides synthesis by jointly exploiting rendered validity masks and geometry-aware warping. Experimental results show that GenNVS performs favorably against recent methods in both visual quality and geometric accuracy, while naturally supporting flexible scene editing.",
-   "published": "2026-09-28",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV",
-    "cs.AI"
-   ]
-  },
-  {
-   "id": "2609.34367",
-   "title": "Rate-Distortion Adaptive Primitive Selection for Omnidirectional Gaussian Splatting",
-   "abstract": "Learned image codecs (LICs) achieve high reconstruction quality, but their decoding speed is often insufficient for immersive virtual reality (VR). Gaussian splatting (GS) codecs render much faster, yet still lag in reconstruction quality and typically decide primitive allocation without considering the coding cost of each primitive. We introduce OIC-GS, an omnidirectional GS codec with a new hierarchical HEALPix primitive grid representation. Gaussian primitives are anchored at predefined spherical locations, eliminating explicit coordinate coding. Finer levels refine their coarser ancestors, naturally supporting coarse-to-fine reconstruction and layered transmission. The predefined grid also enables efficient viewport decoding by selecting only view-relevant primitives. We further introduce a lightweight entropy model for quantized primitives and optimize the codec under a spherical rate-distortion objective. Primitives with insufficient rate-distortion benefit are automatically removed when their quantized opacity becomes zero, allowing OIC-GS to adapt both primitive density and level of detail without a fixed primitive budget. A single bitstream supports full-sphere, viewport-dependent, and progressive decoding. The first viewport reaches final quality after decoding only 52% of the bitstream, and is then rendered at 1,270 FPS. On a 100-image omnidirectional benchmark, OIC-GS outperforms all evaluated GS codecs, reducing WS-PSNR BD-rate by 49.6% over GaussianImage++ and 68.6% over SGI, which uses a learned entropy model.",
-   "published": "2026-09-28",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.34176",
-   "title": "AGILE-GS: Anchor-Guided Fast Next-Best-View Selection for Active 3D Gaussian Splatting",
-   "abstract": "Radiance fields need hundreds of views, and their placement matters as much as their number. Next-best-view (NBV) selection for 3D Gaussian Splatting (3DGS) usually scores every candidate in the pool and keeps one. Searching for information and choosing a camera, however, are separable problems. We present AGILE-GS, an anchor-guided NBV method that separates the two. A virtual anchor pose is optimized on SE(3) by Riemannian gradient ascent on expected information gain. It need not be reachable or in the pool; it marks where the model is most uncertain. Candidates are scored against the anchor's viewing geometry, and a greedy ridge-leverage step distills the pool into a small, non-redundant shortlist without rendering any candidate. The shortlist can be used in two ways. AGILE-GS takes the first view on it as the next view, so no Fisher information is computed for any candidate. AGILE-GS+ computes the Fisher information gain of each shortlisted view and picks the best, so the expensive evaluation runs on a handful of views rather than the whole pool. On standard benchmarks and in closed-loop embodied acquisition, both match or exceed existing baselines while cutting selection latency by one to two orders of magnitude.",
-   "published": "2026-09-28",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV",
-    "cs.RO"
-   ]
-  },
-  {
-   "id": "2609.35619",
-   "title": "CollisionSplatting: Collision-Aware Motion Planning in 3DGS Scenes with Image-Conditioned Objectives and Adjustable Conservatism",
-   "abstract": "Incorporating dense visual information into motion planning remains challenging, as geometric planners rely on abstracted scene representations that discard visual richness, while learned visual models often lack geometric interpretability and computational efficiency. This paper introduces CollisionSplatting, a simple, modular, GPU-accelerated, probability-inspired distance metric with tunable conservatism that operates directly on standard 3D Gaussian Splatting (3DGS) scenes. When combined with learned image-conditioned reward functions, this metric enables joint geometric and visual planning by unifying collision-aware costs with image-space objectives. We integrate the metric into GPU-accelerated Model Predictive Path Integral (MPPI) and Rapidly-Exploring Random Tree (RRT) planners, and show on-par or better collision-classification performance compared to representative baselines while achieving substantially higher collision-checking throughput and significantly lower VRAM usage. Finally, we demonstrate the effectiveness of our metric in real-world vision-guided navigation and manipulation tasks, highlighting 3DGS as a practical bridge between rich perception and real-time motion planning.",
-   "published": "2026-09-28",
-   "primary": "cs.RO",
-   "categories": [
-    "cs.RO"
    ]
   }
  ]
