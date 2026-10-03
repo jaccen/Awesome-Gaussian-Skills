@@ -1,7 +1,27 @@
 {
- "date": "2026-10-02",
- "count": 18,
+ "date": "2026-10-03",
+ "count": 11,
  "papers": [
+  {
+   "id": "2610.01876",
+   "title": "EvenSplat: Coupled 2D-3D Decomposition for Gaussian Splatting under Exposure and Illumination Variation",
+   "abstract": "A surface photographed under even light presents nearly the same appearance from every angle; the same surface under uneven light does not. Exposure changes between views, illumination varies within a single image, and locally strong light sources leave one region bright and its neighbor in shadow. Multi-view reconstruction methods such as 3D Gaussian Splatting treat these lighting artifacts as if they were properties of the scene, entangling capture-specific illumination with the geometry and color they recover. We present EvenSplat, a framework that separates the two. EvenSplat couples an image-space illumination decomposition with an illumination field carried by the Gaussians, so that the same explanation of the lighting is shared between the two-dimensional and three-dimensional views of the scene; a camera-response network and a local exposure-compensation module absorb the global and residual differences that remain across training images. Through extensive experiments across multiple datasets and diverse forms of uneven illumination (cross-view exposure, spatial illumination variation, and high-contrast lighting) on both real-world captured and simulated benchmarks, EvenSplat generally outperforms state-of-the-art methods, particularly under high-contrast illumination.",
+   "published": "2026-10-01",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
+  {
+   "id": "2610.01707",
+   "title": "MEGA: Object-Level Mesh Extraction from 3D Gaussian Splatting via Spatial Visual Distillation",
+   "abstract": "Mesh extraction from 3D Gaussian Splatting (3DGS) aims to endow 3D Gaussians with accurate geometric structures, enabling explicit and precise 3D occupancy. However, existing methods primarily focus on scene-level mesh extraction, making them unable to represent object-level occupancy and often resulting in non-watertight surfaces. To overcome these limitations, we propose \\textbf{MEGA} (\\underline{M}esh \\underline{E}xtraction from \\underline{GA}ussians), a ``segment-then-mesh'' framework for extracting object-level, watertight meshes from complex 3DGS scenes. At the core of MEGA are \\textbf{Spatial Visual Distillation (SVD)} and a mask-guided neural surface reconstruction module. SVD treats the 3DGS model as a teacher, sampling diverse camera poses and rendering the corresponding views of each segmented object. These observations are then used to train a mesh reconstruction model through photometric supervision. Extensive experiments on several widely used benchmarks demonstrate that MEGA achieves state-of-the-art performance in recovering accurate object-level 3D occupancy. Moreover, MEGA enables complex physical interactions by combining high-quality object-level meshes for geometric occupancy with 3DGS representations for photorealistic rendering.",
+   "published": "2026-10-01",
+   "primary": "cs.CV",
+   "categories": [
+    "cs.CV"
+   ]
+  },
   {
    "id": "2610.01114",
    "title": "Affine-Aligned Atlas for Canonical Gaussian Construction in Video Representation",
@@ -65,129 +85,33 @@
    ]
   },
   {
-   "id": "2609.38635",
-   "title": "TSGL: Teacher-Student Graph Learning for 3DGS Compression",
-   "abstract": "3D Gaussian Splatting (3DGS) is a popular representation for novel view synthesis. However, 3DGS contains millions of Gaussian primitives, each with rich attributes, resulting in large file sizes. We propose a novel 3DGS compression method based on Teacher-Student Graph Learning (TSGL) that operates directly on a trained model, without 3DGS retraining or access to training images. Specifically, for each block of Gaussian primitives, using decoded positions and DC spherical harmonic (SH) coefficients as predictors, we learn a signal-dependent geometry graph G encoding the pairwise similarities between neighbouring Gaussians via a teacher-student model. Given G, we perform Graph Fourier Transform (GFT) on the remaining attributes, so that signal energies are predominantly projected into the low-frequency coefficients for compact representation. On three standard benchmarks, the method reaches 27x to 33x compression with less than 0.6 dB of PSNR loss, improving on recent post-training compression methods in both size and rendering quality.",
-   "published": "2026-09-29",
-   "primary": "eess.IV",
-   "categories": [
-    "eess.IV",
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.38622",
-   "title": "Eulerian Motion Reconstruction for Water Scenery",
-   "abstract": "Reconstructing and animating water scenery from nature produces compelling and immersive visual experiences. Previous work examined this task from the perspective of 2D video textures, with the goal of creating a looping video. In our work, we tackle the problem from a 3D perspective, creating a looping 4D dynamic reconstruction which can be interactively rendered from novel viewpoints from a single non-looping 2D source video. We represent motion as a 3D static \\textit{Eulerian} motion field that advects canonical Gaussian splats that are cyclically reborn at fixed time periods, supervised using rendering losses. To model non-periodic and stochastic dynamics present in real-world scenes, we add a non-periodic, time-varying residual term to capture deviations from the static Eulerian motion field. We show quantitatively and qualitatively that our framework enables photorealistic animation of water scenes better than prior art.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.38592",
-   "title": "StereoGaussians: Feed-Forward 3D Gaussian Splatting from Stereo Images",
-   "abstract": "Feed-forward 3D Gaussian Splatting (3DGS) enables reconstruction without per- scene optimisation, but practical stereo-camera applications require nearby-view extrapolation beyond the input views. Stereo depth anchors visible surfaces, yet rendering newly exposed regions also requires learned appearance and additional scene capacity. We introduce StereoGaussians, which predicts a metric 3DGS representation from a single calibrated stereo pair. It reuses intermediate repre- sentations from frozen pretrained stereo networks to predict Gaussian attributes, while calibrated disparity anchors the geometry. A second Gaussian layer and an expanded image canvas provide capacity for disoccluded and outside-field-of- view content. For training, we construct SceneSplat-Stereo from quality-filtered 3DGS teachers, pairing stereo inputs with nearby target views across 803 training scenes. Experiments on unseen real and photorealistic stereo benchmarks demon- strate improvements over strong view-synthesis baselines, while ablation studies support our main design choices.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.38488",
-   "title": "Gaussian Stippling: Efficient Sorting-Free 3D Gaussian Rendering through Hybrid Sampling and Spatiotemporal Reconstruction",
-   "abstract": "Conventional 3D Gaussian Splatting (3DGS) requires depth sorting and ordered alpha blending to correctly render overlapping Gaussian primitives. Stochastic transparency enables sorting-free rendering by replacing fractional alpha contributions with discrete stochastic visibility samples, but produces substantial spatial and temporal noise at low sample counts. We refer to this conversion from continuous Gaussian splats to discrete visibility samples as \\textit{Gaussian Stippling}. Based on this, we present an efficient order-independent rendering and reconstruction framework that operates directly on unmodified 3DGS assets. Our method adaptively integrates primitive-based and fragment-based stippling, leveraging their complementary strengths across different rendering regimes to significantly improve rendering throughput. To recover high-quality images from sparse stochastic samples, we further introduce a lightweight Gaussian-aware spatiotemporal reconstruction network. By exploiting the Gaussian attributes retained by each stipple, the network aggregates structured stochastic clues across both space and time, effectively suppressing stippling noise. Experiments show that our hybrid Gaussian stippling method, coupled with a spatiotemporal reconstruction network trained on diverse scenes, generalizes to unseen scenes and enables interactive, temporally stable, and visually plausible rendering on mobile devices without retraining or preprocessing. With scene-specific training and appropriately scaled sampling and network capacity, our method further outperforms the baselines in visual quality, offering a high-fidelity configuration for quality-prioritized applications.",
-   "published": "2026-09-29",
+   "id": "2610.00618",
+   "title": "Dirichlet Splatting: Differentiable Rendering for Wave-Based Inverse Problems",
+   "abstract": "Wave-based coherent imaging, including terahertz tomography, synthetic-aperture acoustics, and millimeter-wave radar, forms images by Fourier-processing finite-length signals, with an exact point spread function that is not Gaussian but a Dirichlet kernel: complex-valued, oscillatory, and periodic. However, transplanting 3D Gaussian splatting to coherent sensing fails by construction; Gaussian splats discard the sidelobe energy (10-20% of the total) and the phase that governs coherent interference between reflectors. Our key idea is to replace the learned Gaussian footprint with the physically exact Dirichlet kernel of the finite-window DFT, modulated by a surfel that carries area, normal, and material, so that the rendering primitive matches the measurement physics instead of approximating it. We pair this primitive with a specialized solver, Dirichlet Sliding Frank-Wolfe (DSFW), that combines variable projection, residual dual certificates, and certificate-driven hard replacement of low-utility surfels, with periodic low-resolution coupled Levenberg-Marquardt correction, navigating the rugged loss landscape that breaks generic first-order optimizers. The Dirichlet kernel admits an O(1) closed-form evaluation, so the forward model matches FFT ground truth to machine precision while remaining differentiable end-to-end. On dense terahertz reconstruction, our method recovers reflector centers to 0.018 bin RMSE, 10-50x faster than waveform-level automatic differentiation, where Gaussian splats fail.",
+   "published": "2026-09-30",
    "primary": "cs.GR",
    "categories": [
-    "cs.GR",
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.38177",
-   "title": "Imagine3D-LLM: Teaching MLLMs to Imagine 3D Scenes Before Answering",
-   "abstract": "Reasoning about the 3D world from multi-view images remains a fundamental challenge for Multimodal Large Language Models (MLLMs). While modern MLLMs handle single-image inputs effectively, they struggle to integrate evidence across viewpoints into a coherent 3D understanding. A growing body of work attempts to close this gap by injecting 3D awareness into MLLMs, either by boosting fine-grained pixel-level cross-view correspondence or by fusing features from 3D geometry foundation models, yet a substantial gap to human reasoning persists. In this work, we revisit human spatial reasoning, which suggests that rather than relying on fine-grained geometry cues, humans roughly identify common objects across views, infer the relative geometry between viewpoints, and assemble a coarse 3D layout of the scene. Inspired by this process, we introduce Imagine3D-LLM, an MLLM that learns to assemble a similar compact 3D representation of the scene and conditions its answer on this representation. Concretely, we append a small set of learnable summary tokens after the image tokens, decode them into a compact 3D Gaussian Splatting representation supervised by a photometric reconstruction loss, and train jointly with the standard next-token prediction objective. Notably, although only the summary tokens receive direct reconstruction supervision, this objective also induces stronger cross-frame correspondence within the LLM's underlying image features, suggesting that learning to reconstruct propagates 3D-aware signals throughout the model. As a result, Imagine3D-LLM consistently outperforms prior approaches across multiple spatial reasoning and 3D understanding benchmarks, suggesting that imagining the scene can be more effective than being told its pixel-wise geometry.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV",
-    "cs.CL"
-   ]
-  },
-  {
-   "id": "2609.37874",
-   "title": "EndoPrior-GS: Dynamic Endoscopic Reconstruction with a Joint Texture Prior",
-   "abstract": "Dynamic endoscopic reconstruction is fundamental to robotic surgery and computer-assisted interventions. While 3D Gaussian Splatting (3DGS) realises real-time rendering, its application to deformable intraoperative environments remains constrained by spurious geometry and varying illuminations. To address these limitations, we introduce EndoPrior-GS, a novel pipeline that explicitly couples frame-extracted vision heuristics and estimated depth maps. EndoPrior-GS derives a joint texture prior from a tool-filtered valid tissue mask, a non-specular photometric filter, and anatomical structural salience, yielding a probability map that guides primitive initialisation and subsequent density control. The prior is further extended to the temporal domain through a texture-aware term that dynamically weighs pairwise primitive contributions during training. We conduct extensive experiments on benchmark datasets EndoNeRF and SCARED, and the obtained results show that our method EndoPrior-GS reduces Flow Error by 27.7% and 25.8% over the representative approaches while preserving competitive rendering quality and real-time rendering speed. Our project website is available at https://jiaqi-huang-77.github.io/EndoPrior-GS/.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.37816",
-   "title": "WINGS: Reference-Free Gaussian Splatting Inpainting with 3D-Native Generative Priors",
-   "abstract": "Inpainting 3D Gaussian Splatting scenes, a key challenge in 3D editing, requires generating plausible content within a masked region of 3D space. Prior approaches rely on 2D diffusion models to produce one or several inpainted reference views, making them susceptible to challenges associated with multi-view inconsistency and lengthy optimization times. Departing from these approaches, we introduce a reference-free Gaussian splatting inpainting method operating natively in 3D. Our method leverages the embedding space of a large, pre-trained 3D prior, combined with a structure completion network to feed a generative prior which reconstructs the missing region's geometry and appearance. Performing content generation entirely in 3D, it avoids the need to reconcile inconsistencies of multiple inpainted reference images, and is faster than related 2D-based methods. We demonstrate the effectiveness of our method qualitatively and quantitatively, through extensive experiments and a user study. To the best of our knowledge, this work is the first Gaussian splatting inpainting method to operate in the learned representation space of a 3D-native generative prior without relying on inpainted reference views.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.37115",
-   "title": "NRF-GS: Neural Residual Fields for Expressive and Compact Gaussian Splatting",
-   "abstract": "We revisit the role of appearance modeling in 3D Gaussian Splatting (3DGS) and show that limited expressiveness in view-dependent reflectance is a key driver of representation redundancy. In standard 3DGS, low-order spherical harmonics (SH) are used, restricting the splats' ability to model high-frequency directional effects, which is typically compensated by increasing the number of splats. We propose \\emph{NRF-GS: Neural Residual Fields for Gaussian Splatting}, a hybrid representation that replaces per-splat SH-bases with a shared neural residual field. Each Gaussian encodes a compact set of appearance features and a lambertian base color, while a lightweight \\emph{global scene-level MLP} predicts view-dependent residuals conditioned on viewing direction, distance, and per-splat features. This formulation enhances directional reflectance modeling by combining diffuse per-splat reflectance representations with a shared global function for high-frequency details, enabling both higher expressiveness and parameter sharing across splats. Our key insight is that by accurately capturing high-frequency directional reflectance, especially in specular regions, the GS-representation becomes more expressive, reducing the need for geometrically redundant splats. As a result, NRF-GS achieves comparable or better rendering quality while reducing the number of Gaussians by up to 50\\%, and produces visibly improved specular and high-frequency details.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV",
     "cs.GR"
    ]
   },
   {
-   "id": "2609.36969",
-   "title": "Prior-Driven Enhancements in 3D Gaussian Splatting: Normals and Depths Regularization",
-   "abstract": "3D Gaussian Splatting (3DGS) is a state-of-the-art technique for 3D scene rendering, offering high efficiency and excellent visual quality. However, because 3DGS relies on an initial sparse point set from Structure-from-Motion (SfM) and view-dependent properties, it can suffer from geometric inaccuracies and visual artifacts, particularly in complex scenes. To address these challenges, we propose an improved 3DGS approach that regularizes the optimization process by integrating geometric priors, including surface normals and dense depth information. Surface normal regularization improves geometric consistency by aligning Gaussian covariance with local surface structures, while dense depth priors combined with an initial points from SfM enhance per-pixel depth estimation, increasing accuracy and reducing ambiguities. These enhancements enable robust handling of diverse and complex real-world scenarios, minimizing visual distortions and improving reconstruction quality across various environments. To validate our method, we evaluate it on challenging datasets, including street-view scenes and highly reflective environments, while testing it across multiple SfM pipelines. Our results demonstrate compatibility across diverse environments and highlight the robustness of our approach. Experimental findings further show that our method enhances geometric accuracy and visual quality, establishing a reliable solution for real-time 3D scene rendering in complex environments.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.36940",
-   "title": "DispFlow-GS: Displacement Flow Supervision with Motion Disentangling for Monocular Deformable 3D Gaussian Splatting",
-   "abstract": "Accurate dynamic scene reconstruction is important for robotic perception, where temporally consistent representations of dynamic environments are essential. Deformable 3D Gaussian Splatting (3DGS) models dynamic scenes through deformation fields, and recent methods incorporate motion supervision by aligning rendered Gaussian flow with optical flow. However, we find that such Gaussian-flow-based supervision provides only limited improvements in motion modeling. We identify a fundamental limitation of this supervision paradigm, namely a domain gap between rendered Gaussian flow and optical flow. To address this limitation, we propose a motion supervision framework built on Displacement Flow, which splats per-Gaussian 3D displacements onto the image plane to provide direct and stable optimization signals. We further disentangle scene motion from camera motion via intermediate-view rendering, enabling more reliable motion priors and targeted constraints on deformation and geometry. We also observe a discrepancy between motion fidelity and image-based evaluation, where improved motion awareness does not necessarily translate into better rendered image quality or higher image-based metric scores. Motivated by this mismatch, we introduce Deformation-Rendering Consistency (DRC), a motion-aware metric that measures the alignment between predicted deformation and rendering improvement. Experiments on dynamic scene benchmarks show substantial improvements in motion localization and motion--rendering consistency, reaching up to 39% and 6%, respectively, while image-based metrics change by only about 0.1%. These results confirm the observed mismatch between motion fidelity and image-based evaluation, demonstrating the significance of DRC for motion-aware evaluation.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.36693",
-   "title": "AESplat: Advancing Pose-Free Feed-Forward 3D Gaussian Splatting via Decoupled Appearance Modeling",
-   "abstract": "Pose-free feed-forward 3D Gaussian Splatting (3DGS) has demonstrated remarkable potential for generalized novel view synthesis. However, existing methods typically predict Gaussian appearance attributes represented by spherical harmonics (SH) in the same manner, overlooking the fundamental distinction between view-independent and view-dependent appearance, which results in suboptimal rendering quality. In this paper, we present AESplat, a novel and general framework for pose-free feed-forward 3DGS that introduces an effective decoupled appearance modeling strategy based on an analysis of SH, enabling higher-quality rendering. Specifically, AESplat directly derives the zeroth-order SH coefficient, which represents the base view-independent appearance component, from the input images without training. The higher-order SH coefficients are subsequently predicted by a shallow multilayer perceptron equipped with two efficient 3D-aware inductive biases to model view-dependent appearance variations. Extensive experiments across multiple datasets demonstrate that our method significantly outperforms state-of-the-art approaches, achieving a $0.8$ dB improvement in PSNR over the pose-free method NAS3R and a $1.1$ dB improvement over the pose-required method DepthSplat on the RealEstate10K dataset. Project page: https://aesplat.github.io/.",
-   "published": "2026-09-29",
-   "primary": "cs.CV",
-   "categories": [
-    "cs.CV"
-   ]
-  },
-  {
-   "id": "2609.36520",
-   "title": "Distilling Privileged Control Barrier Functions into RGB-Only Safety Filters for Dynamic Visual Navigation",
-   "abstract": "RGB-only end-to-end visual navigation policies remain vulnerable to collisions in real-world dynamic environments, motivating a dedicated safety layer. Existing visual Control Barrier Function (CBF) approaches seek to provide safety from RGB observations, but often rely on real-time rendering or explicit scene reconstruction and are primarily designed for static scenes, limiting their practicality for onboard deployment. We propose a teacher-student visual distillation framework that transfers the safety behavior of a privileged CBF teacher to an RGB-only student filter for dynamic environments. The student maps a short RGB history, robot velocity, and a nominal control action directly to a safe action, while the teacher uses ground-truth robot and obstacle states in a real-to-sim dynamic Gaussian Splatting environment. To reduce the teacher-student information gap, the teacher constructs safety constraints only from obstacles observable within the student's RGB history. It also accounts for obstacle-velocity uncertainty to improve robustness to motion variations, while action augmentation exposes the student to diverse safe and unsafe nominal actions to better capture the safety boundary. At deployment, the student requires only RGB observations and robot velocity, without explicit 3D reconstruction or online rendering. Experiments show that the proposed method outperforms visual CBF baselines and improves the safety of RGB-based navigation policies under dynamic obstacle motion. Project page: https://syeon-yoo.github.io/distill-cbf-site/.",
-   "published": "2026-09-29",
+   "id": "2610.00822",
+   "title": "TRACE: Privacy-Preserving Next-Best-View Selection over Distributed 3D Gaussian-Splat Maps",
+   "abstract": "Share the light, not the map. We study next-best-view selection for a team of robots, each of which builds its own 3D Gaussian Splatting map and keeps it private. A robot picks the view with the largest expected information gain (EIG) about the splats along its own path. This gain depends on the other maps. Their splats occlude its own and shine behind them, so the gain has to be evaluated against the pooled map. No robot has this map. We show that the coupling passes through only two ray quantities, the transmittance in front of a splat and the radiance behind it, and that both are sums over the hits of the ray. Hence, they decompose across the robots, and each robot sums them over depth bins in its own map, along the rays of a candidate view, and sends the sums with their pose derivatives. The robot planning the view turns them into its EIG and gradient on SO(3). Transmittance and Radiance Aggregates, communicated for the EIG, give the protocol its name: TRACE. No robot shares its splats, and the message size does not grow with a map. We prove that the reconstruction is exact unless a depth bin behind a splat mixes hits of two robots, and we bound the error otherwise. Over 100 next-best-view decisions in Habitat-Sim, TRACE picks a heading within 15 degrees of the centralized one in 83.3% of the cases, and its views reach 97.9% of the centralized EIG.",
+   "published": "2026-09-30",
    "primary": "cs.RO",
    "categories": [
-    "cs.RO",
-    "cs.CV",
-    "eess.SY"
+    "cs.RO"
+   ]
+  },
+  {
+   "id": "2610.00731",
+   "title": "Measuring Asset and Scene Reconstruction Effects in Real-to-Sim Robot Evaluation",
+   "abstract": "Simulated evaluation is increasingly used alongside real-world evaluation of robot policies because it is cheaper and easier to repeat; however, its value depends on how closely its outcomes track the real robot's. We test whether our reconstruction pipeline, combining metrically scaled object geometry, authored physical parameters and scene reconstruction, reduces disagreement between simulated and real robot scores relative to a default open-source recipe. We constructed two simulated versions of one bimanual robot cell: an authored reconstruction, using object geometry at estimated metric scale, projected textures, authored physics and our own scene splat; and a baseline, referred to as the default reconstruction, using the open-source recipe of a generative single-image mesh, engine-default physics and a Gaussian-splat scene. Both reconstructions use the same object photographs and scene video. Two policies ran five tasks each, giving ten task-policy pairs, which we call cells; each cell was run twenty times in each reconstruction with all other settings held fixed. Both reconstructions were scored against the same real trials, graded by a third-party evaluator. Pearson correlation between the ten simulated and real cell means is r = 0.90 for the authored reconstruction and 0.51 for the default. Mean score error is 6.97 percentage points for the authored reconstruction and 17.54 for the default, a reduction of 10.56 percentage points. These results show that improving the quality of the environment reconstruction through higher visual fidelity, authored physics and metric scale makes the simulation more faithful to the real world and narrows the sim-to-real gap. We release the harness, the per-trial scores, every reported run's configuration, and the assets and scenes of both reconstructions.",
+   "published": "2026-09-30",
+   "primary": "cs.RO",
+   "categories": [
+    "cs.RO"
    ]
   }
  ]
