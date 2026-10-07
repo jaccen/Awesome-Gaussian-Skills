@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-20T18:00:00Z",
-  "generator": "scripts/build_knowledge_base.py",
-  "count": 872,
+  "generated_at": "2026-10-07T12:23:20Z",
+  "generator": "scripts/enroll_new_papers.py + manual-2026-10",
+  "count": 881,
   "category_count": 23,
   "categories": [
     "Acceleration",
@@ -10964,6 +10964,123 @@
       "sources": [
         "arxiv-daily",
         "explorer"
+      ]
+    },
+    {
+      "name": "Speedy-Splat",
+      "arxiv_id": "2412.00578",
+      "venue": "CVPR 2025",
+      "year": 2025,
+      "category": "Acceleration",
+      "desc": "Precise tile intersection (SnugBox + AccuTile) and efficient Hessian-based pruning (Soft + Hard Pruning); 6.71x render speedup, 10.6x model compression, 1.47x training speedup across Mip-NeRF 360, Tanks & Temples, Deep Blending",
+      "code_url": "https://speedysplat.github.io/",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "AESplat",
+      "arxiv_id": "2609.36693",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Feed-Forward",
+      "desc": "Pose-free feed-forward 3DGS with decoupled SH appearance modeling; zeroth-order SH derived directly from input images without training, higher-order SH predicted by shallow MLP with 3D-aware inductive biases; +0.8 dB PSNR over NAS3R, +1.1 dB over DepthSplat on RealEstate10K",
+      "code_url": "https://aesplat.github.io/",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "AGILE-GS",
+      "arxiv_id": "2609.34176",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Acceleration",
+      "desc": "Anchor-guided next-best-view selection for active 3DGS; SE(3) virtual anchor pose optimized by Riemannian gradient ascent on expected information gain; greedy ridge-leverage shortlisting; selection latency reduced by 1-2 orders of magnitude",
+      "code_url": "",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "OC-GS",
+      "arxiv_id": "2609.31572",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Sparse-View",
+      "desc": "Object-centric Gaussian splatting for irregular turntable capture; orbit-consistent refinement jointly optimizes image-derived geometry and angles with shared camera, rotation axis, and pivot; 12/8/6 irregular views achieve 21.26/19.36/15.83 dB foreground PSNR, exceeding four pose-free baselines",
+      "code_url": "",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "ClearGS",
+      "arxiv_id": "2609.31509",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Robustness",
+      "desc": "Reliability-aware Gaussian Splatting from handheld videos; Reliability-aware View Allocation (RVA) with graded supervision weights + Render-Guided In-Video Restoration (RIVR) with no-reference restoration expert + Full-Trajectory Repair Consolidation; SOTA on GS2E and GSOTM",
+      "code_url": "",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "ChronoFuseGS",
+      "arxiv_id": "2609.31339",
+      "venue": "Pacific Graphics 2026",
+      "year": 2026,
+      "category": "Large-Scale",
+      "desc": "Multi-temporal Gaussian fusion with per-splat persistence encoding; merges separately trained 3DGS models from distinct timesteps into single combined model with incremental extension; change-aware visualization at sub-object granularity; evaluated on 7-month flood management dataset",
+      "code_url": "",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "TangoGS",
+      "arxiv_id": "2609.31248",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Optimization",
+      "desc": "Compact Gaussian Splatting across scene scales; capture-derived learning allowance from total pixels after discounting re-observing views + training-quality guided density control; matches best baseline LeGS PSNR with 48% fewer Gaussians on 13 benchmarks, SOTA on 8 large captures",
+      "code_url": "",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "RRTO-CF3DGS",
+      "arxiv_id": "2609.30865",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Sparse-View",
+      "desc": "Reliability-regulated trajectory optimization for progressive COLMAP-free 3DGS; self-supervised bidirectional cycle-consistency with forward motion propagation + retrospective trajectory correction in sliding window; outperforms unposed baselines on Tanks & Temples and CO3D-V2",
+      "code_url": "https://github.com/Zijian1026/RRTO-CF3DGS",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
+      ]
+    },
+    {
+      "name": "Observation-Gram",
+      "arxiv_id": "2609.28997",
+      "venue": "arXiv 2026",
+      "year": 2026,
+      "category": "Compression & Streaming",
+      "desc": "Per-Gaussian observation Gram matrix as distortion metric for SH compression; closed-form degree reduction, Lagrangian degree allocation, matrix-weighted Lloyd VQ; +0.49 dB PSNR over Compressed3D, 15% smaller than GSICO at equal quality on Mip-NeRF 360",
+      "code_url": "",
+      "sources": [
+        "arxiv-api",
+        "manual-2026-10"
       ]
     }
   ]

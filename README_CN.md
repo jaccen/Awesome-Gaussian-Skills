@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 872 方法，23 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 881 方法，23 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-872-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-881-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 872 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 881 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（872 方法、23 类别、15 技能），零虚构：**
+**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（881 方法、23 类别、15 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -78,7 +78,7 @@
 | CH 12 | 从采集到交付：端到端工程链路 | 十个环节的工具选型与卡点、格式与坐标系、成本工期量级、项目失败模式 |
 | CH 13 | 产业落地剧本：六个行业 | 文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维 |
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
-| 实 | 实践资源索引：从书到工程 | 15 个工程技能 · 34 个 MCP 工具 · 872+ 方法浏览器，章节到可运行资源的映射 |
+| 实 | 实践资源索引：从书到工程 | 15 个工程技能 · 34 个 MCP 工具 · 881+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
 
 每章末尾附带动手练习，并回链仓库的方法表格、`references/` 和技能 —— 读书与工程实践融为一体。
@@ -91,13 +91,24 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 872 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 881 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
-## 最新动态（2026 年 9 月）
+## 最新动态（2026 年 10 月）
 
-最新更新（9 月 21 日）：**v0.9.5 — 每日 arXiv 扫描：13 篇新论文入库（859 → 872）** ⭐
+最新更新（10 月 7 日）：**v0.9.6 — 手动入库：9 篇新方法（872 → 881）** ⭐
+
+手动入库 **9** 篇经 arXiv 核验的 3DGS 方法，方法库由 **872 扩充至 881**（+9，+1.0%）。
+入库包含 **Speedy-Splat**（CVPR 2025，精确 tile 相交 + 高效 Hessian 剪枝，6.71× 渲染加速）及 **8** 篇 2026 年 9 月最新论文：
+`AESplat`（免位姿前馈）、`AGILE-GS`（锚点引导 NBV）、`OC-GS`（不规则转台）、`ClearGS`（手持视频）、
+`ChronoFuseGS`（多时相融合，PG 2026）、`TangoGS`（跨尺度紧凑）、`RRTO-CF3DGS`（无 COLMAP 渐进）、`Observation-Gram`（SH 压缩）。
+全部载体（`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档）重新核验为 **881**，
+名称集合逐条比对一致。无虚构方法名。
+
+详见 [changelog/2026-10-07.md](changelog/2026-10-07.md)。
+
+### 更新（9 月 21 日）：**v0.9.5 — 每日 arXiv 扫描：13 篇新论文入库（859 → 872）** ⭐
 
 例行每日 arXiv 扫描新收录 **13** 篇经 arXiv 核验的 3DGS 方法，方法库由 **859 扩充至 872**（+13，+1.5%）。
 新增覆盖表面渲染、前馈、大规模、压缩、稀疏视角、跨域、具身智能、动态、语言与语义等类别
@@ -122,7 +133,7 @@
   `GS-LRM-v2` 实际指向 DOF-GS。全部条目均已过 arXiv API 实查。
 - **AIGC 痕迹清除**：29 个文本文件；21 张历史损坏 JPEG 已恢复并按安全算法重新剥离元数据。
 - **`README_CN.md` 双重编码乱码已修复**（原本所有中文串被损坏为 `鏂规硶` 之类）。
-- **全载体同步**：`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档**均为 872 条**，
+- **全载体同步**：`methods.json` / CSV / `methods.html` / `abstracts.js` / 参考文档**均为 881 条**，
   并按"名称集合逐条比对"而非仅比对总数来核验一致性。
 
 **同日裁定波**：第二轮逐条处置所有"带派生后缀"或"与他人同名"的条目——`Scaffold-GS+`、
@@ -189,7 +200,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（872 方法，23 类别）
+## 知识库（881 方法，23 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -296,7 +307,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ## 研究创新要点
 
-> 基于知识库 872 方法的系统性空白分析生成。
+> 基于知识库 881 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -395,7 +406,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（872 方法，23 类别）
+├── references/                # 知识库（881 方法，23 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
