@@ -1413,3 +1413,33 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **2D GauSS-MI** [arXiv:2609.21516](https://arxiv.org/abs/2609.21516) (arXiv 2026) — Efficient active scene reconstruction on 2DGS with online mapping and a probabilistic reliability model for view selection.
 - **RGS (Reflection)** [arXiv:2609.19421](https://arxiv.org/abs/2609.19421) (arXiv 2026) — Physically-based deferred rendering for reflection-aware Gaussian Splatting, modeling specular regions on reflective objects.
 
+
+
+## Newly Added Methods (October 7, 2026 — Manual Admission)
+
+**Date:** 2026-10-07
+**Scope:** Manual admission of 9 new arXiv-verified 3DGS methods (872 -> 881).
+Includes Speedy-Splat (CVPR 2025, precise tile intersect + efficient pruning) and 8 recent September 2026 papers.
+
+### Acceleration
+- **Speedy-Splat** [arXiv:2412.00578](https://arxiv.org/abs/2412.00578) (CVPR 2025) — Precise tile intersection (SnugBox + AccuTile) and efficient Hessian-based pruning (Soft + Hard Pruning); 6.71x render speedup, 10.6x model compression, 1.47x training speedup across Mip-NeRF 360, Tanks & Temples, Deep Blending
+- **AGILE-GS** [arXiv:2609.34176](https://arxiv.org/abs/2609.34176) (arXiv 2026) — Anchor-guided next-best-view selection for active 3DGS; SE(3) virtual anchor pose optimized by Riemannian gradient ascent on expected information gain; greedy ridge-leverage shortlisting; selection latency reduced by 1-2 orders of magnitude
+
+### Feed-Forward
+- **AESplat** [arXiv:2609.36693](https://arxiv.org/abs/2609.36693) (arXiv 2026) — Pose-free feed-forward 3DGS with decoupled SH appearance modeling; zeroth-order SH derived directly from input images without training, higher-order SH predicted by shallow MLP with 3D-aware inductive biases; +0.8 dB PSNR over NAS3R, +1.1 dB over DepthSplat on RealEstate10K
+
+### Sparse-View
+- **OC-GS** [arXiv:2609.31572](https://arxiv.org/abs/2609.31572) (arXiv 2026) — Object-centric Gaussian splatting for irregular turntable capture; orbit-consistent refinement jointly optimizes image-derived geometry and angles with shared camera, rotation axis, and pivot; 12/8/6 irregular views achieve 21.26/19.36/15.83 dB foreground PSNR, exceeding four pose-free baselines
+- **RRTO-CF3DGS** [arXiv:2609.30865](https://arxiv.org/abs/2609.30865) (arXiv 2026) — Reliability-regulated trajectory optimization for progressive COLMAP-free 3DGS; self-supervised bidirectional cycle-consistency with forward motion propagation + retrospective trajectory correction in sliding window; outperforms unposed baselines on Tanks & Temples and CO3D-V2
+
+### Robustness
+- **ClearGS** [arXiv:2609.31509](https://arxiv.org/abs/2609.31509) (arXiv 2026) — Reliability-aware Gaussian Splatting from handheld videos; Reliability-aware View Allocation (RVA) with graded supervision weights + Render-Guided In-Video Restoration (RIVR) with no-reference restoration expert + Full-Trajectory Repair Consolidation; SOTA on GS2E and GSOTM
+
+### Large-Scale
+- **ChronoFuseGS** [arXiv:2609.31339](https://arxiv.org/abs/2609.31339) (Pacific Graphics 2026) — Multi-temporal Gaussian fusion with per-splat persistence encoding; merges separately trained 3DGS models from distinct timesteps into single combined model with incremental extension; change-aware visualization at sub-object granularity; evaluated on 7-month flood management dataset
+
+### Optimization
+- **TangoGS** [arXiv:2609.31248](https://arxiv.org/abs/2609.31248) (arXiv 2026) — Compact Gaussian Splatting across scene scales; capture-derived learning allowance from total pixels after discounting re-observing views + training-quality guided density control; matches best baseline LeGS PSNR with 48% fewer Gaussians on 13 benchmarks, SOTA on 8 large captures
+
+### Compression & Streaming
+- **Observation-Gram** [arXiv:2609.28997](https://arxiv.org/abs/2609.28997) (arXiv 2026) — Per-Gaussian observation Gram matrix as distortion metric for SH compression; closed-form degree reduction, Lagrangian degree allocation, matrix-weighted Lloyd VQ; +0.49 dB PSNR over Compressed3D, 15% smaller than GSICO at equal quality on Mip-NeRF 360
