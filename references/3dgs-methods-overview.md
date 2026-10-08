@@ -5,7 +5,7 @@
 
 
 ### Autonomous Driving
-- **GaussianBeV** [arXiv:2407.14108](https://arxiv.org/abs/2407.14108) (ECCV 2024) — BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation
+- **GaussianBeV** [arXiv:2407.14108](https://arxiv.org/abs/2407.14108) (WACV 2025) — BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation
 - **SplatAD** [arXiv:2411.16816](https://arxiv.org/abs/2411.16816) (CVPR 2025) — Autonomous driving GS with dynamic object decomposition and sensor simulation
 - **GaussianSSC** [arXiv:2603.21487](https://arxiv.org/abs/2603.21487) (CVPR 2025) — GS-based 3D semantic scene completion with Gaussian-anchored feature lifting
 - **P2GS** [arXiv:2605.16925](https://arxiv.org/abs/2605.16925) (CVPR 2026) — Physical prior-guided GS for photometrically consistent urban reconstruction: joint decomposition of HDR radiance + per-view exposure scales from LDR images
@@ -33,7 +33,7 @@
 - **EAGLES** [arXiv:2312.04564](https://arxiv.org/abs/2312.04564) (ECCV 2024) — Quantized embeddings + coarse-to-fine training + pruning for 10-20x memory compression maintaining quality [Code](https://github.com/Exyro/EAGLES)
 - **RDO-Gaussian** [arXiv:2406.01597](https://arxiv.org/abs/2406.01597) (ECCV 2024) — End-to-end rate-distortion optimization: dynamic pruning + ECVQ quantization for 40x+ compression with continuous rate control
 - **CompGS** [arXiv:2311.18159](https://arxiv.org/abs/2311.18159) (CVPR 2025) — Compact GS with learned importance-aware quantization + progressive decoding
-- **HybridGS** [arXiv:2505.01938](https://arxiv.org/abs/2505.01938) (CVPR 2025) — Hybrid GS compression combining explicit pruning + implicit neural coding
+- **HybridGS** [arXiv:2505.01938](https://arxiv.org/abs/2505.01938) (ICML 2025) — Hybrid GS compression combining explicit pruning + implicit neural coding
 - **DSGS** [arXiv:2605.17002](https://arxiv.org/abs/2605.17002) (arXiv 2026) — Decoder-Side Gaussian Splatting: replaces DSDE depth estimation with feed-forward 3DGS from compressed textures; lossy compression as implicit low-pass filter stabilizing prediction; +5.79 dB BD-PSNR
 - **MMGS** [arXiv:2605.19304](https://arxiv.org/abs/2605.19304) (arXiv 2026) — 10x compressed 3DGS via multi-view ranking + Optimal Transport aggregation; global OT-based merging preserving geometry + OT-based densification operator; 10% primitives + 10x training speedup
 - **CodecSplat** [arXiv:2605.25563](https://arxiv.org/abs/2605.25563) (arXiv 2026) — Ultra-compact entropy-coded latent features for feed-forward 3DGS; 20-108 KiB per scene, ~10x smaller than post-hoc compression of raw primitives (Pengpeng Yu et al.)
@@ -52,6 +52,7 @@
 - **NanoGS** [arXiv:2603.16103](https://arxiv.org/abs/2603.16103) (arXiv 2026) -- Training-free simplification via local pairwise merging
 
 ### Cross-Domain Applications
+- **Thermal3D-GS** [arXiv:2409.08042](https://arxiv.org/abs/2409.08042) (ECCV 2024) — Thermal3D-GS: physics-induced 3D Gaussians for thermal-infrared novel-view synthesis; models atmospheric transmission and thermal conduction with a temperature-consistency constraint; introduces TI-NSD benchmark (6,664 thermal frames)
 - **TransmissiveGS** (arXiv 2026) — Residual-guided disentangled Gaussian Splatting for transmissive scene reconstruction; separates reflection and transmission components via residual-guided decomposition
 - **RT-Splatting** [arXiv:2605.18263](https://arxiv.org/abs/2605.18263) (CVPR 2026 Highlight) — Joint reflection-transmission modeling with GS; disentangles geometric occupancy from optical opacity per Gaussian; Specular-Aware Gradient Gating reduces floaters
 - **AsyncEvGS** [arXiv:2605.07192](https://arxiv.org/abs/2605.07192) (arXiv 2026) — Asynchronous event camera + RGB dual-system for motion-blurred 3DGS; high-resolution async RGB-Event cross-domain pose estimation via VGGT
@@ -192,7 +193,6 @@
 - **Normal-GS** [arXiv:2410.20593](https://arxiv.org/abs/2410.20593) (NeurIPS 2024) — Normal-involved rendering: normal constraint + differentiable normal guiding splat distribution
 - **ODGS** [arXiv:2410.20686](https://arxiv.org/abs/2410.20686) (NeurIPS 2024) — Spherical projection + panoramic camera GS rasterization adaptation for 360-degree images [Code](https://github.com/esw0116/ODGS)
 - **6DGS** [arXiv:2410.04974](https://arxiv.org/abs/2410.04974) (ECCV 2024) — 6-DoF Gaussian Splatting: explicit orientation-aware primitive with full 6D pose parameterization [Code](https://github.com/r4dl/6dgs)
-- **GES** [arXiv:2402.17427](https://arxiv.org/abs/2402.17427) (CVPR 2024) — Generalized Exponential Splatting: generalized exponential family replacing Gaussian for flexible primitive shapes
 - **UniGS** [arXiv:2510.12174](https://arxiv.org/abs/2510.12174) (CVPR 2025) — Unified Gaussian Splatting: single model supporting multiple rendering modes (RGB/depth/semantic)
 - **GaussRender** [arXiv:2502.05040](https://arxiv.org/abs/2502.05040) (CVPR 2025) — Unified rendering pipeline for GS supporting multi-modal output (RGB/D/N/S)
 - **3DSGS** [arXiv:2605.18334](https://arxiv.org/abs/2605.18334) (arXiv 2026) — General 3D Skew Gaussian primitives with re-derived CUDA rasterization for asymmetric shape modeling
@@ -255,6 +255,7 @@
 - **Ilov3Splat** [arXiv:2605.04506](https://arxiv.org/abs/2605.04506) (ICPR 2026) — Instance-level open-vocabulary 3DGS via multi-resolution hash embedding for CLIP features + SAM contrastive instance field; two-stage 3D clustering for natural language-driven 3D object retrieval (CSIRO)
 
 ### Large-Scale Methods
+- **VastGaussian** [arXiv:2402.17427](https://arxiv.org/abs/2402.17427) (CVPR 2024) — VastGaussian: high-quality large-scene 3DGS reconstruction and real-time rendering via progressive partitioning and decoupled appearance modeling
 - **DOGS** [arXiv:2405.13943](https://arxiv.org/abs/2405.13943) (NeurIPS 2024) — Distributed GS with communication-efficient Gaussian consensus for large-scale reconstruction [Code](https://github.com/AIBluefisher/DOGS)
 - **SCube** [arXiv:2410.20030](https://arxiv.org/abs/2410.20030) (NeurIPS 2024) — VoxSplats: voxelized splat with hierarchical LOD for large-scale streaming reconstruction [Code](https://github.com/nv-tlabs/SCube)
 - **TideGS** [arXiv:2605.20150](https://arxiv.org/abs/2605.20150) (arXiv 2026) — Out-of-core training for 1B+ Gaussians via SSD-CPU-GPU hierarchy on single 24GB GPU
@@ -335,7 +336,6 @@
 - **GIC** [arXiv:2406.14927](https://arxiv.org/abs/2406.14927) (NeurIPS 2024) — Gaussian-Informed Continuum for physical property identification and differentiable simulation [Code](https://github.com/Jukgei/gic)
 - **GaussNav** [arXiv:2403.11625](https://arxiv.org/abs/2403.11625) (CVPR 2024) — GS-based navigation with language-guided semantic Gaussian maps for embodied agents
 - **SplatSim** [arXiv:2409.10161](https://arxiv.org/abs/2409.10161) (CVPR 2025) — GS-based sim-to-real transfer for robotic manipulation with photorealistic rendering
-- **GS-Physics** [arXiv:2409.08042](https://arxiv.org/abs/2409.08042) (CVPR 2025) — Physics-integrated GS with differentiable simulation for rigid/soft body dynamics
 - **Splat-Nav** [arXiv:2403.02751](https://arxiv.org/abs/2403.02751) (CVPR 2025) — GS-based navigation with Gaussian-anchored topological maps
 - **FLUIDSPLAT** [arXiv:2605.18866](https://arxiv.org/abs/2605.18866) (arXiv 2026) — Physical flow field reconstruction via anisotropic GS partition-of-unity; proven O(K^{-s/d}) Sobolev approximation rate
 - **FreeMoCap** (arXiv 2024) -- Open-source markerless motion capture from webcams (AGPL-3.0, 8.3k stars); dr...

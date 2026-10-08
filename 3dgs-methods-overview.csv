@@ -281,7 +281,7 @@ GaussCtrl,2403.08733,ECCV 2024,2024,Editing,Depth-conditioned attention + progre
 GaussFusion,2607.05906,arXiv 2026,2026,Surface & Rendering,Multimodal pre-training framework for 3D Gaussian representations,
 GaussHDR,2503.10143,CVPR 2025,2025,Optimization,HDR-robust GS with exposure-aware Gaussian decomposition,
 GaussianAvatar,,arXiv,2024,Human & Avatar,Pose-driven human body Gaussian representation,
-GaussianBeV,2407.14108,ECCV 2024,2024,Autonomous Driving,BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation,
+GaussianBeV,2407.14108,WACV 2025,2024,Autonomous Driving,BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation,
 GaussianBody,2401.09720,CVPR 2025,2025,Human & Avatar,SMPL-X aligned Gaussian body with part-aware densification,
 GaussianCube,2403.19655,NeurIPS 2024,2024,Generation,Optimal Transport reorders Gaussians into voxel grid structure enabling 3D diffusion generation,https://github.com/GaussianCube/GaussianCube
 GaussianCut,2411.07555,NeurIPS 2024,2024,Editing,Graph cut algorithm for interactive 3DGS segmentation enabling instance-level editing,
@@ -333,7 +333,7 @@ GeoNVS,2603.14965,ECCV 2026,2026,Feed-Forward,Geometry-grounded video diffusion 
 GeoQuery,2605.12399,SIGGRAPH 2026,2026,Sparse-View,"3D Gaussian Splatting (3DGS) has emerged as a prominent paradigm for 3D reconstruction and novel view synthesis. However, it remains vulnerable to severe artifacts when trained under sparse-view co...",
 GeoRect4D,2604.20784,arXiv,2026,Dynamic & 4D,"Reconstructing dynamic 3D scenes from sparse multi-view videos is highly ill-posed, often leading to geometric collapse, trajectory drift, and floating artifacts. Recent attempts introduce generati...",
 GeoSAM-3D,2606.00447,arXiv 2026,2026,Language & Semantic,Open-vocabulary 3D scene segmentation on monocular video: 3DGS reconstruction + differentiable graph-geodesic propagation kernel (SAM prompt propagates along heat-kernel distance),
-GES,2402.17427,CVPR 2024,2024,Foundation,Generalized Exponential Splatting: generalized exponential family replacing Gaussian for flexible primitive shapes,
+VastGaussian,2402.17427,CVPR 2024,2024,Large-Scale,VastGaussian: high-quality large-scene 3DGS reconstruction and real-time rendering via progressive partitioning and decoupled appearance modeling,
 GETA-3DGS,2605.02086,arXiv,2026,Compression & Streaming,End-to-end automatic joint pruning + quantization,
 GFlow,2405.18426,AAAI 2025,2025,Dynamic & 4D,"Gaussian Flow for dynamic scene reconstruction; flow-based temporal motion modeling with warp refinement for continuous-time rendering; evaluated on D-NeRF (PSNR 34.27), HyperNeRF (PSNR 26.30, 12 min training), Plenoptic Video (PSNR 32.00, SSIM 0.970)",
 GGD-SLAM,2604.12837,ICRA 2026,2026,SLAM,Generalizable motion model for monocular dynamic 3DGS SLAM; FIFO sequential attention; no semantic labels/depth required,
@@ -383,7 +383,7 @@ GS-Manifold,,CVPR 2025,2025,Surface & Rendering,Manifold-constrained Gaussians f
 GS-Map-SLAM,,CVPR,2026,SLAM,Gaussian-based dense mapping for SLAM with view-dependent quality; real-time dense mapping via GS optimization,
 GSMem,2603.19137,arXiv,2026,Embodied AI & Robotics,"Effective embodied exploration requires agents to accumulate and retain spatial knowledge over time. However, existing scene representations, such as discrete scene graphs or static view-based snap...",
 GS-NFS,2606.05650,arXiv 2026,2026,Compression & Streaming,"Accelerates dynamic 3DGS compression and decompression on a GPU, to the point where it can encode and decode at full frame rate",
-GS-Physics,2409.08042,CVPR 2025,2025,Embodied AI & Robotics,Physics-integrated GS with differentiable simulation for rigid/soft body dynamics,
+Thermal3D-GS,2409.08042,ECCV 2024,2024,Cross-Domain,Thermal3D-GS: physics-induced 3D Gaussians for thermal-infrared novel-view synthesis; models atmospheric transmission and thermal conduction with a temperature-consistency constraint; introduces TI-NSD benchmark (6,664 thermal frames),
 GS-PI,2609.19907,arXiv 2026,2026,HDR & Relighting,"Multi-scale cross-view conditioning mechanism that integrates three complementary components: a global semantic prior, source-anchored photometric cues, and an absolute spatial learned view-direction conditioning signal",
 gsplat,,arXiv,2026,Cross-Domain,CUDA-accelerated 3DGS rasterization library; 4x VRAM savings; 10% training speedup; production-grade real-time rendering; part of nerfstudio project,
 GS-Playground,2604.25459,RSS 2026,2026,Embodied AI & Robotics,Batch 3DGS + parallel physics at 10^4 FPS for robot learning,https://gsplayground.github.io
@@ -423,7 +423,7 @@ HumanGaussian,2311.17061,CVPR 2024,2024,HDR & Relighting,Text-driven 3D human ge
 HumanSplatHMR,2605.02784,arXiv,2026,Human & Avatar,Joint pose refinement + Gaussian avatar optimization,
 HumanSplat-NIPS,2406.12459,NeurIPS 2024,2024,Human & Avatar,Single-image human GS with SMPL-guided Gaussian binding,
 Hybrid-Capture Two-View Training,2605.00052,arXiv,2026,Optimization,Two-view-per-step as dominant training lever,
-HybridGS,2505.01938,CVPR 2025,2025,Compression & Streaming,Hybrid GS compression combining explicit pruning + implicit neural coding,
+HybridGS,2505.01938,ICML 2025,2025,Compression & Streaming,Hybrid GS compression combining explicit pruning + implicit neural coding,
 HyperGS,2607.11500,,2026,Feed-Forward,Feedforward optimization-free Gaussian video representation; factorized spatiotemporal Transformer + learnable query-based Transformer; 10^4-10^5x speedup; +2.9-3.1 dB over prior video encoders,
 i3dgs,,SIGGRAPH 2026,2026,Large-Scale,Immediate 3DGS for large-scale unordered image collections; incremental reconstruction with on-the-fly pruning,https://github.com/graphdeco-inria/i3dgs
 IBRSteG,2606.30024,arXiv 2026,2026,Feed-Forward,Generalizable framework for 3DGS steganography that enables undetectable concealment of secret scenes within a steganographic scene,

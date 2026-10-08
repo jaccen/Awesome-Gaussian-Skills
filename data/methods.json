@@ -3563,7 +3563,7 @@
     {
       "name": "GaussianBeV",
       "arxiv_id": "2407.14108",
-      "venue": "ECCV 2024",
+      "venue": "WACV 2025",
       "year": 2024,
       "category": "Autonomous Driving",
       "desc": "BEV perception via Gaussian Splatting: lifting 2D features into 3D Gaussian BEV representation",
@@ -4211,12 +4211,12 @@
       ]
     },
     {
-      "name": "GES",
+      "name": "VastGaussian",
       "arxiv_id": "2402.17427",
       "venue": "CVPR 2024",
       "year": 2024,
-      "category": "Foundation",
-      "desc": "Generalized Exponential Splatting: generalized exponential family replacing Gaussian for flexible primitive shapes",
+      "category": "Large-Scale",
+      "desc": "VastGaussian: high-quality large-scene 3DGS reconstruction and real-time rendering via progressive partitioning and decoupled appearance modeling",
       "code_url": "",
       "sources": [
         "csv",
@@ -4846,12 +4846,12 @@
       ]
     },
     {
-      "name": "GS-Physics",
+      "name": "Thermal3D-GS",
       "arxiv_id": "2409.08042",
-      "venue": "CVPR 2025",
+      "venue": "ECCV 2024",
       "year": 2025,
-      "category": "Embodied AI & Robotics",
-      "desc": "Physics-integrated GS with differentiable simulation for rigid/soft body dynamics",
+      "category": "Cross-Domain",
+      "desc": "Thermal3D-GS: physics-induced 3D Gaussians for thermal-infrared novel-view synthesis; models atmospheric transmission and thermal conduction with a temperature-consistency constraint; introduces TI-NSD benchmark (6,664 thermal frames)",
       "code_url": "",
       "sources": [
         "csv",
@@ -5358,7 +5358,7 @@
     {
       "name": "HybridGS",
       "arxiv_id": "2505.01938",
-      "venue": "CVPR 2025",
+      "venue": "ICML 2025",
       "year": 2025,
       "category": "Compression & Streaming",
       "desc": "Hybrid GS compression combining explicit pruning + implicit neural coding",

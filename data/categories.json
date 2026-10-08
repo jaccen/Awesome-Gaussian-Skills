@@ -30,24 +30,24 @@
     "SLAM": 47,
     "Surface & Rendering": 65,
     "Security": 10,
-    "Foundation": 27,
+    "Foundation": 26,
     "Language & Semantic": 37,
     "Dynamic & 4D": 91,
     "Human & Avatar": 42,
     "Optimization": 51,
     "Robustness": 22,
     "Simulation": 11,
-    "Cross-Domain": 65,
+    "Cross-Domain": 66,
     "Acceleration": 23,
     "World Models & Spatial Intelligence": 8,
     "Feed-Forward": 86,
     "Autonomous Driving": 25,
     "HDR & Relighting": 26,
-    "Embodied AI & Robotics": 42,
+    "Embodied AI & Robotics": 41,
     "Editing": 45,
     "Generation": 41,
     "Compression & Streaming": 52,
     "Sparse-View": 25,
-    "Large-Scale": 20
+    "Large-Scale": 21
   }
 }
