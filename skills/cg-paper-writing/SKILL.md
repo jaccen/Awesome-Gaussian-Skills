@@ -32,6 +32,10 @@ metadata:
     - "Markdown 工作稿投稿前格式审计 / 批注清理 / 引用重排 / 孤儿图补引 / Markdown draft format audit"
     - "实验声明溯源 / 数据来源核查 / 服务器实验验证 / 实验数字真实性核查 / verify experiment claims against server artifacts"
     - "为论文补做实验 / 服务器跑实验 / 远程训练评估 / 排查训练跑完但结果异常 / rerun experiments to back paper claims"
+    - "核查论文引用的真实性 / 引文编号核实 / 方法名与 arXiv 号是否匹配 / 投稿前引用自查 / verify cited arXiv ids and method names"
+    - "评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication"
+    - "查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field"
+    - "选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -53,6 +57,7 @@ Analyze the user's request to determine axis values:
 | Writing or revising experiments | experiments |
 | Writing contribution statements | contribution |
 | Topic / venue selection for a 3DGS sub-field | topic |
+| Looking up verified method landscape / baselines / datasets / metrics | knowledge |
 | Full paper or unspecified section | all |
 
 ### Axis: venue
@@ -101,11 +106,12 @@ Read these files from references/:
 | title | references/writing-abstract-intro.md |
 | abstract | references/writing-abstract-intro.md |
 | intro | references/writing-abstract-intro.md |
-| related-work | references/writing-related-method.md |
+| related-work | references/writing-related-method.md + references/3dgs-paper-knowledge.md |
 | method | references/writing-related-method.md |
-| experiments | references/writing-experiments.md |
+| experiments | references/writing-experiments.md + references/3dgs-paper-knowledge.md |
 | contribution | references/writing-experiments.md |
 | topic | references/3dgs-domain-venues.md |
+| knowledge | references/3dgs-paper-knowledge.md |
 | all | All writing fragments (abstract-intro, related-method, experiments) + references/3dgs-domain-venues.md |
 
 ### On-Demand Load (by detected venue)
@@ -142,6 +148,7 @@ Read these files from references/:
 - references/latex-source-hygiene.md — LaTeX 源码卫生与机械化验证（连续空行/环境与章节同行/跨文档引用写法/bib 键名一致性/S 编号对应/编译健康度/修复回归验证），配套一键核查脚本（维护者本地工具，未随技能分发，可按本文件方法论自写）；投稿前格式核查与源码清理任务必读
 - references/markdown-draft-format-audit.md — Markdown 工作稿投稿前格式审计与 P0 机械修复（摘要词数/引用首现顺序/孤儿图表检测/彩色批注两类处置规则/占位符两步法引用重排/摘要瘦身/主文-补充切分标注/中英双稿独立同步与终检清单/章节重构后引用顺序复检/MD→LaTeX 转换边界 bibitem 核验）；LaTeX 排版前的工作稿格式核查、批注清理与 P0/P2 修复任务必读
 - references/experiment-claim-verification.md — 实验声明溯源与服务器实验验证（声明-产物五步核查链/静默回退失效四联征/split fallthrough 陷阱与目录重命名法/h5→pkl 格式转换工作流/SSH-PowerShell-后台进程操作陷阱）；评审中遇到「服务器规模验证」类声明溯源、为论文补做远程实验、排查「训练跑完 rc=0 但结果异常」时必读
+- references/3dgs-citation-audit.md — 3DGS 论文引文与声明核查（事实层）：三层校验协议（ID 可达/名称一致/名称反查+人工裁定）、五类红线错误与本项目真实罚例（编号虚构、名↔号错配、venue 错、名/venue/描述全错、伪派生后缀）、实时引文核查脚本 `scripts/audit_manuscript_citations.py` 用法与 `[RED FLAG]`/`[WARN]` 判读、写作/投稿前/评审三套清单；**写 related work 或实验时核对引用、投稿前自查引用真实性、评审他人稿件验证其引用与声称时必读**（注意：任何事实结论必须回到 `data/methods.json` 与 `.arxiv_cache.json` 实时核查，不得凭本文件记忆作答）
 
 **Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load all fragments.
 

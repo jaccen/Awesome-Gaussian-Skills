@@ -11,6 +11,7 @@ axes:
       - contribution
       - all
       - topic
+      - knowledge
     default: all
   venue:
     description: "Target publication venue"
@@ -57,14 +58,18 @@ routing:
         - references/writing-abstract-intro.md
       related-work:
         - references/writing-related-method.md
+        - references/3dgs-paper-knowledge.md
       method:
         - references/writing-related-method.md
       experiments:
         - references/writing-experiments.md
+        - references/3dgs-paper-knowledge.md
       contribution:
         - references/writing-experiments.md
       topic:
         - references/3dgs-domain-venues.md
+      knowledge:
+        - references/3dgs-paper-knowledge.md
       all:
         - references/writing-abstract-intro.md
         - references/writing-related-method.md
@@ -195,3 +200,4 @@ routing:
       - references/reviewer-perspective.md
       - references/latex-source-hygiene.md
       - references/experiment-claim-verification.md
+      - references/3dgs-citation-audit.md
