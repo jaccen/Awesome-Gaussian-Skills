@@ -38,6 +38,7 @@
 
 > `*`Acceleration 类 91% 仍为预印本，正式会议归宿未定型——投稿优先 CVPR 并同步 arXiv。
 > 中文期刊代号：CJC 计算机学报、JOS 软件学报、JCAD 计算机辅助设计与图形学学报、CJIG 中国图象图形学报、VCIBA 工医艺可视计算、VRIH 虚拟现实与智能硬件、TXB 图学学报、AAS 自动化学报、SCIS 中国科学:信息科学、CRAD 计算机研究与发展、JSKX 计算机科学、JCIS 中文信息学报。具体格式见本技能 `<venue>-format.md`。
+> **分区/IF 维度（通用 AI 期刊）**：图形/视觉专刊（TOG/TVCG/IJCV）满了或稿件偏 AI/交叉时，可用 TPAMI / Pattern Recognition / Information Fusion / Engineering Applications of AI / Medical Image Analysis 等通用 AI 刊作替代落点；其**中科院分区与 IF 速查 + 3DGS 适配标注**见项目 `references/ai-journal-landscape-2026.md`（注意该数据为二手编译，写稿前须一手核实，见该文件来源声明）。
 
 ---
 

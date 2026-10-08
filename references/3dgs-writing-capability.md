@@ -230,3 +230,31 @@
 - 本库更新节奏：建议每月（或与 v 版本 bump 同步）重跑 §1 分布统计、合并新扫描、刷新 §2/§3。
 - 统计脚本（复现 §1）：从 `data/methods.json` 按 `category` 聚合 `venue` 家族计数，逻辑见本仓库 `scripts/` 中 venue 归一化范式。
 - 待办：§2 中 `[题录]` 条目待补摘要精读；World Models / Generation / Simulation / Robustness 本期新增偏少，下月重点补扫。
+
+---
+
+## 7. 通用 AI 期刊速查（中科院 1–4 区，补充分区/IF 维度）
+
+> 当图形/视觉专刊（TOG/TVCG/IJCV）满了、或稿件偏 AI/交叉时，可用**通用 AI 期刊**作替代落点。
+> 完整 55 本主推清单 + 3DGS 适配标注 + 来源声明见 **`references/ai-journal-landscape-2026.md`**。
+> 该数据来自微信公众号「筑梦学术站」2026-10-08 编译稿（二手），**分区/IF 写作前须一手核实**，不得作为稿件权威口径。
+
+| 刊名 | 区 | IF≈ | 3DGS 适配子领域 |
+|------|:---:|:---:|------------------|
+| IEEE TPAMI | 1 | 24.7 | 全部（方法学/长文首选） |
+| Pattern Recognition | 1 | — | 感知/分类/重建 |
+| Information Fusion | 1 | 15.5 | SLAM 融合 / 多模态 GS |
+| Engineering Applications of AI | 1 | 8–9 | 工业/仿真/具身应用 |
+| Expert Systems with Applications | 1 | 7.5 | 工业/医学应用 |
+| Medical Image Analysis | 1 | — | 医学影像 GS |
+| CAAI TIT（国产） | 1 | — | 中文友好长文 |
+| MIR（国产，2026 新晋） | 1 | 10 | 中文友好长文 |
+| IEEE TNNLS | 1 | 8.9 | 前馈 GS / 学习类 |
+| IEEE TKDE | 1 | — | 场景图 / 语义 GS |
+| Knowledge-Based Systems | 1 | — | 语义 / 场景图 |
+| Neurocomputing | 2 | — | 学习类（对国人友好） |
+| Artificial Intelligence in Medicine | 2 | 7.8 | 医学 GS |
+| ACM TIST | 3 | — | 系统类 / 工程落地 |
+| AI EDAM | 3 | 2.5 | 数字孪生 GS |
+| IJPRAI | 4 | — | 模式识别与 AI |
+| JAIR（CCF A） | 4 | — | 算法 / 推理理论 |
