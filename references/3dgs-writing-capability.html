@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3DGS 写作沉淀能力库 · 快速选题仪表盘</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#ffffff; --ink:#1f2329; --muted:#6b7280; --line:#e5e7eb;
+    --accent:#2563eb; --accent2:#0f766e; --warn:#b91c1c; --soft:#eef2ff; --chip:#f1f5f9;
+    --hot:#fde68a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;font-size:14px}
+  header{padding:18px 22px;background:linear-gradient(120deg,#1e3a8a,#0f766e);color:#fff}
+  header h1{margin:0;font-size:20px}
+  header p{margin:6px 0 0;opacity:.9;font-size:12.5px}
+  nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  nav button{border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px}
+  nav button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .wrap{padding:16px 20px;max-width:1180px;margin:0 auto}
+  .tab{display:none}.tab.on{display:block}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+  input,select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;background:#fff;color:var(--ink)}
+  input[type=search]{min-width:240px}
+  .hint{color:var(--muted);font-size:12px}
+  table{border-collapse:collapse;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--soft);cursor:pointer;position:sticky;top:0;font-size:12.5px;user-select:none}
+  th:hover{color:var(--accent)}
+  tbody tr:hover{background:#fafbff}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;background:var(--chip);margin:1px 2px 1px 0;white-space:nowrap}
+  .hot{font-size:12px}
+  .lv{font-size:11px;padding:1px 6px;border-radius:6px;margin-left:4px}
+  .lv-r{background:#dcfce7;color:#166534}.lv-t{background:#fee2e2;color:#991b1b}
+  .card{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+  .card h3{margin:0 0 4px;font-size:14.5px}
+  .card .meta{color:var(--muted);font-size:12px;margin-bottom:6px}
+  .card .note{font-size:13px}
+  .tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:6px;background:var(--soft);color:var(--accent2);margin-right:5px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .red{color:var(--warn);font-weight:600}
+  .sec{font-size:15px;font-weight:700;margin:14px 0 8px;border-left:4px solid var(--accent);padding-left:8px}
+  a{color:var(--accent);text-decoration:none}
+  .num{font-variant-numeric:tabular-nums}
+  footer{padding:14px 20px;color:var(--muted);font-size:12px;text-align:center}
+  code{background:var(--chip);padding:1px 5px;border-radius:5px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>3DGS 写作沉淀能力库 · 快速选题仪表盘</h1>
+  <p>细分领域 → 核心期刊能力 · 近期新增论文精读（2026-09-28 → 10-08）· 选题 / 实验 / 写作速查 ｜ 数据源 methods.json v0.9.6 + arxiv-daily</p>
+</header>
+<nav>
+  <button data-t="matrix" class="active">① 期刊矩阵</button>
+  <button data-t="papers">② 近期论文</button>
+  <button data-t="topic">③ 快速选题</button>
+  <button data-t="exp">④ 实验速查</button>
+  <button data-t="write">⑤ 写作速查</button>
+</nav>
+<div class="wrap">
+
+<!-- TAB 1 MATRIX -->
+<div class="tab on" id="matrix">
+  <div class="toolbar">
+    <input type="search" id="mSearch" placeholder="过滤领域 / 会议 / 期刊…">
+    <span class="hint">点击表头排序 ｜ 🔥 越多=近期新增越活跃</span>
+  </div>
+  <table id="mTable">
+    <thead><tr>
+      <th data-k="cat">细分领域</th><th data-k="n" class="num">总量</th>
+      <th data-k="conf">首选会议</th><th data-k="jrn">首选期刊(英文)</th>
+      <th data-k="cn">推荐中文期刊</th><th data-k="hot" class="num">近期热度</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- TAB 2 PAPERS -->
+<div class="tab" id="papers">
+  <div class="toolbar">
+    <select id="pCat"></select>
+    <input type="search" id="pSearch" placeholder="搜方法名 / ID / 关键词…">
+    <span class="hint"><span class="lv lv-r">精读</span>已读摘要 <span class="lv lv-t">题录</span>仅题录</span>
+  </div>
+  <div id="pList"></div>
+</div>
+
+<!-- TAB 3 TOPIC -->
+<div class="tab" id="topic">
+  <div class="sec">按 gap 主题切入（由近期前沿归纳）</div>
+  <div class="grid" id="topicGrid"></div>
+</div>
+
+<!-- TAB 4 EXP -->
+<div class="tab" id="exp">
+  <div class="sec">分场景数据集 / 基线 / 指标</div>
+  <table id="expTable">
+    <thead><tr><th>子领域</th><th>常用数据集</th><th>必比基线</th><th>核心指标</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <p class="hint">指标口径：PSNR 注明含/不含背景与分辨率；压缩类给比特率；加速类标无损/有损边界与存储。详见 cg-paper-writing 的 experiment-claim-verification。</p>
+</div>
+
+<!-- TAB 5 WRITE -->
+<div class="tab" id="write">
+  <div class="sec">venue 格式入口</div>
+  <p>英文会议：<span class="pill">cvpr(CCV/ICCV/ECCV)</span><span class="pill">siggraph(SIGGRAPH/PG/EG)</span><span class="pill">neurips(NeurIPS/AAAI)</span><span class="pill">tvcg(TVCG/TOG/TPAMI)</span>。
+  中文期刊：CJC/JOS/JCAD/AAS/SCIS/CRAD/CJIG/PRAI/VRIH/JSKX/JCIS/TXB/机器人/计算机应用研究/VCIBA —— 见 <code>cg-paper-writing</code> 技能逐项加载 <code>&lt;venue&gt;-format.md</code>。</p>
+  <div class="sec">贡献声明四件套</div>
+  <p>每条贡献 = <b>根本问题句 + 方法名/机制 + 外部技术嫁接点 + 量化增益(可复述)</b>。禁止"本文首次提出"类不可证伪表述。</p>
+  <div class="sec red">红线（不可触碰）</div>
+  <ul>
+    <li><b>不虚构</b>：指标/ID/venue 须来自本库或一手来源；缺失写 <code>&lt;!-- DATA_NEEDED --&gt;</code> 或 "N/A"。</li>
+    <li><b>引文三验</b>：arXiv ID 经 API 核验标题一致；作者/venue 三要素一致。凭记忆报的 ID 先验再写（InFusion=2404.11613、CityGaussian=2404.01133、Scaffold-GS=2312.00109）。</li>
+    <li><b>不冒领</b>：方法特征/结果不得跨方法错配。</li>
+    <li><b>派生后缀</b>：<code>+/++/-v2</code> 必须对照 arXiv 标题，作者自印才保留。</li>
+    <li><b>描述性标题不是方法名</b>：论文未自述方法名的不入方法库。</li>
+  </ul>
+  <div class="sec">交叉技能</div>
+  <p><span class="pill">3dgs-method-compare 定位/related-work</span><span class="pill">3dgs-experiment-planner 实验设计</span><span class="pill">3dgs-paper-reader 精读</span><span class="pill">3dgs-visualizer 配图</span><span class="pill">3dgs-code-reviewer 实现核查</span></p>
+</div>
+
+</div>
+<footer>生成于 2026-10-08 · 配套 Markdown：references/3dgs-writing-capability.md · 数据随 methods.json / arxiv-daily 刷新</footer>
+
+<script>
+/* ---------- 数据：23 类矩阵 ---------- */
+const MATRIX=[
+ ["Dynamic & 4D",91,"CVPR / NeurIPS","TOG / TVCG","JCAD、图学学报、VRIH",3],
+ ["Feed-Forward",86,"CVPR / NeurIPS","TOG / 3DV","JCAD、CJIG",3],
+ ["Surface & Rendering",65,"CVPR / ECCV","TOG / TVCG","JCAD、图学学报、VCIBA",2],
+ ["Cross-Domain",65,"CVPR / NeurIPS","TVCG / CGF","CJIG、计算机应用",3],
+ ["Compression & Streaming",52,"NeurIPS / ECCV","TVCG / TOG","JCAD、CJIG、JSKX",3],
+ ["Optimization",51,"CVPR / SIGGRAPH","TOG / TPAMI","JCAD、CJC、JOS",2],
+ ["SLAM",47,"CVPR / ICRA","TRO / RA-L","机器人、自动化学报",2],
+ ["Editing",45,"CVPR / ECCV","TOG / TVCG","JCAD、VCIBA",2],
+ ["Human & Avatar",42,"CVPR / SIGGRAPH","TOG / TVCG","JCAD、VRIH",2],
+ ["Embodied AI & Robotics",42,"CVPR / ICRA / CoRL","RA-L / TRO","机器人、自动化学报",3],
+ ["Generation",41,"NeurIPS / CVPR","TOG / SIGGRAPH","JCAD、CJIG",2],
+ ["Language & Semantic",37,"CVPR / ECCV","IJCV / TPAMI","CJIG、中文信息学报",2],
+ ["Foundation",27,"CVPR / NeurIPS","TOG / TPAMI","CJC、JOS",2],
+ ["HDR & Relighting",26,"CVPR / SIGGRAPH","TOG / TPAMI","JCAD、CJIG",2],
+ ["Autonomous Driving",25,"CVPR","IJCV / RA-L","机器人、CJIG、自动化学报",2],
+ ["Sparse-View",25,"NeurIPS / ECCV / CVPR","IJCV / TOG","JCAD、CJIG",3],
+ ["Acceleration",23,"CVPR*","TVCG / TOG","JCAD、JSKX",3],
+ ["Robustness",22,"CVPR / ECCV","IJCV / TPAMI","CJIG、计算机应用研究",2],
+ ["CAD & Reverse Engineering",20,"CVPR / ICCV","TOG / TVCG","JCAD、图学学报",2],
+ ["Large-Scale",20,"ECCV / NeurIPS","TOG / TVCG","CJIG、JCAD",2],
+ ["Simulation",11,"SIGGRAPH","TOG","JCAD、VRIH",1],
+ ["Security",10,"NeurIPS / ICML","TPAMI / IJCV","CJC、CRAD、JOS",1],
+ ["World Models & Spatial Intelligence",8,"ECCV / NeurIPS","TPAMI / SCIS","自动化学报、SCIS",2],
+];
+/* ---------- 近期论文（已归类） ---------- */
+const PAPERS=[
+ ["Feed-Forward","DeltaSplat","2610.09853","r","Pose-free 前馈的相机误差累积；轻量迭代精修模块，渲染上下文视图预测逐高斯更新，Plucker 射线+深度作几何先验。+2.2% 参数，DL3DV 26.64dB(+1.75)。"],
+ ["Feed-Forward","DensiTok","2610.07958","r","少视角前馈内部表征缺未观测区证据；在隐空间 densify 几何 token，单次 flow-matching 补全未观测视角 latent，冻结 backbone。"],
+ ["Feed-Forward","MoonGS","2610.07110","r","首个月面前馈 3DGS，2 张图单前向预测像素对齐高斯；融合视觉基础模型深度+语义先验+熵引导重采样。LuSNAR +4.9dB。"],
+ ["Feed-Forward","AESplat","2609.36693","r","Pose-free 前馈，解耦 SH 外观；RealEstate10K +0.8dB over NAS3R、+1.1dB over DepthSplat。"],
+ ["Feed-Forward","AGILE-GS","2609.34176","r","SE(3) anchor 引导的 next-best-view 选择，延迟降 1–2 个数量级。"],
+ ["Feed-Forward","StereoGaussians","2609.38592","t","双目图前馈 3DGS。"],
+ ["Feed-Forward","GenNVS","2609.34579","t","几何增强新视角合成（解耦 3D 先验）。"],
+ ["Dynamic & 4D","Mobile-4DGS","2610.05289","r","统一静态-动态实时移动端高斯泼溅。"],
+ ["Dynamic & 4D","SteadySplats","2610.05576","r","低方差高斯重采样，高保真随机渲染。"],
+ ["Dynamic & 4D","Reconstructing the Dynamic World","2609.39960","t","表示中心视角的 4D 场景重建综述性 framing。"],
+ ["Dynamic & 4D","Eulerian Motion Reconstruction","2609.38622","t","水体欧拉运动重建。"],
+ ["Dynamic & 4D","DispFlow-GS","2609.36940","t","单目可形变 3DGS 的位移流监督+运动解耦。"],
+ ["Dynamic & 4D","Affine-Aligned Atlas","2610.01114","t","视频表征的规范高斯构建（仿射对齐 atlas）。"],
+ ["Compression & Streaming","GSCV","2610.07795","r","用标准视频编解码压 GS 序列：Inter-PLAS 拉近 I/P 帧相关性；超 MPEG 视频与点云锚点。代码开源。"],
+ ["Compression & Streaming","Observation-Gram","2609.28997","r","逐高斯观测 Gram 矩阵做 SH 压缩，+0.49dB over Compressed3D。"],
+ ["Compression & Streaming","TSGL","2609.38635","t","师生图学习做 3DGS 压缩。"],
+ ["Compression & Streaming","NRF-GS","2609.37115","t","神经残差场做紧凑且富有表现力的 GS。"],
+ ["Compression & Streaming","Rate-Distortion Adaptive","2609.34367","t","全向 GS 的率失真自适应图元选择。"],
+ ["Acceleration","TileSkipper","2610.09343","r","区域自适应 tile 剪枝：冻结 checkpoint 选静态逐高斯 cutoff，1 字节/高斯、无训练；13 场景 1.088×/1.238×。"],
+ ["Acceleration","Speedy-Splat","2412.00578","r","CVPR2025：SnugBox+AccuTile+Soft/Hard Pruning；10.6× 压缩、6.71× 提速，Mip360 27.55→26.94dB。"],
+ ["Acceleration","EffGS","2609.39553","t","高效高保真 GS。"],
+ ["Acceleration","Gaussian Stippling","2609.38488","t","免排序混合采样渲染。"],
+ ["Cross-Domain","SURGE","2610.07472","r","水下 ROV：相机+声纳因子图联合估计轨迹与目标定位，再做声纳 GS；比 RGB GS 更紧凑且原生度量。"],
+ ["Cross-Domain","EndoPrior-GS","2609.37874","t","动态内窥镜重建+联合纹理先验（医学）。"],
+ ["Cross-Domain","Dirichlet Splatting","2610.00618","t","波基逆问题的可微渲染（物理逆问题）。"],
+ ["Cross-Domain","Remote Sensing Sparse-View","2609.35612","t","遥感稀疏视角（深度图像渲染）。"],
+ ["Cross-Domain","Beyond Monoscopic VR","2609.38525","t","VR 中 3DGS 质量研究。"],
+ ["Large-Scale","ChronoFuseGS","2609.31339","r","多时相高斯融合，逐 splat 持久性；PG 2026。"],
+ ["SLAM","RRTO-CF3DGS","2609.30865","r","可靠性调节轨迹优化做 COLMAP-free 3DGS；T&T、CO3D-V2 SOTA。"],
+ ["Editing","MaRO-GS","2610.06472","r","object-centric GS 对不一致 mask 鲁棒；mask 可靠性过滤+物体支撑密度控制；LERF-Mask +2.05dB。"],
+ ["Editing","GS-Pool","2610.06688","r","两次独立重建 GS 场做物体级变化检测；PASLCD mIoU 0.751 vs GS-Diff 0.644。"],
+ ["Editing","WINGS","2609.37816","t","免参考 GS inpainting，3D-native 生成先验。"],
+ ["Editing","Lens Flare Removal","2609.39527","t","镜头光晕去除与重建。"],
+ ["HDR & Relighting","Casual Flash Lighting","2610.06035","r","日常室内闪光开/关双光照做逆渲染；GS 锚定漫反射场；重光照 PSNR +4.17dB。"],
+ ["HDR & Relighting","EvenSplat","2610.01876","t","曝光/光照变化下 2D-3D 耦合分解。"],
+ ["Embodied AI & Robotics","OpenSplatGraph","2610.07569","r","从在线高斯开放词汇语义图直接建持久 3D 场景图；语言引导定位+关系推理。"],
+ ["Embodied AI & Robotics","ControlPed","2610.06171","r","轨迹冲突合成+运动扩散+可动画 3DGS 行人化身做驾驶安全评估；HDScore 88.8→47.4。"],
+ ["Embodied AI & Robotics","Measuring Asset/Scene","2610.00731","t","real-to-sim 机器人评估。"],
+ ["Embodied AI & Robotics","Distilling CBF","2609.36520","t","RGB-only 安全滤波（控制障碍函数蒸馏）。"],
+ ["Embodied AI & Robotics","PneuTac","2609.38418","t","软体气动机器人 MPM-GS 统一仿真。"],
+ ["Embodied AI & Robotics","CollisionSplatting","2609.35619","t","3DGS 场景碰撞感知运动规划。"],
+ ["Language & Semantic","Post-Training Semantic Lifting","2610.08756","r","训练后语义提升，逐类组合多视角证据；分离检测器/提升/迁移三类误差；ScanNet++ 0.80 mIoU。"],
+ ["Language & Semantic","Imagine3D-LLM","2609.38177","t","教 MLLM 先想象 3D 场景再回答。"],
+ ["Language & Semantic","EviSplat","2609.34853","t","开放词汇分割中保留多视角证据。"],
+ ["Optimization","TangoGS","2609.31248","r","捕获派生学习余量+训练质量引导密度控制；高斯数 -48%。"],
+ ["Optimization","Prior-Driven Enhancements","2609.36969","t","法线+深度正则的先验驱动增强。"],
+ ["Optimization","Less Is More","2609.35573","t","遗传帧选择做高效新视角合成。"],
+ ["CAD & Reverse Engineering","MEGA","2610.01707","r","空间视觉蒸馏从 3DGS 做物体级网格提取。"],
+ ["Sparse-View","OC-GS","2609.31572","r","物体中心 GS 用于不规则转台；12/8/6 视图→21.26/19.36/15.83dB。"],
+ ["Sparse-View","UGOD","2609.39089","r","不确定性引导 opacity 与 dropout 做稀疏视角 GS。"],
+ ["Sparse-View","ClearGS","2609.31509","r","可靠性感知视图分配+渲染引导视频内修复；GS2E/GSOTM SOTA。"],
+ ["Autonomous Driving","ControlPed","2610.06171","r","见 Embodied；自动驾驶安全评测范式。"],
+ ["Foundation","SPLATIFY","2610.09116","r","多智能体把 3DGS 论文转可训练 gsplat 实现；SPLATIFY-Bench(30 篇)，开发周→分钟，组合发现 +2.4dB。"],
+ ["Foundation","What Builds the Scene?","2610.00749","t","亮度主导 3DGS 几何形成的分析性工作。"],
+ ["Security","TRACE","2610.00822","r","分布式 3DGS 地图的隐私保护 next-best-view 选择。"],
+];
+/* ---------- 选题主题 ---------- */
+const TOPICS=[
+ ["Pose-free/少视角前馈误差修正","Feed-Forward / Sparse-View","CVPR / NeurIPS","DepthSplat、NAS3R、MVSplat","DeltaSplat、DensiTok、AESplat 三线并行，缺统一框架"],
+ ["无训练/单字节推理加速 plugin","Acceleration","CVPR / TVCG","Speedy-Splat、LightGaussian","渲染器级无损加速仍有空间"],
+ ["GS 序列用现成视频 codec","Compression & Streaming","NeurIPS / ECCV / TVCG","Compressed3D、PLAS","GSCV 工程化 PLAS+视频编解码"],
+ ["训练后语义提升+误差可分离","Language & Semantic","CVPR / ECCV","LEGaussians、Feature-3DGS","Post-Training Semantic Lifting 框架"],
+ ["dense semantic map→场景图(机器人)","Embodied AI & Robotics","ICRA / CoRL / RA-L","ConceptGraphs、Hierarchical 3DGS","OpenSplatGraph"],
+ ["GS 可控风险场景(自动驾驶安全)","Autonomous Driving / Human","CVPR / 机器人","端到端模型(HDScore)","ControlPed"],
+ ["casual 主动光照降歧义逆渲染","HDR & Relighting","SIGGRAPH / TOG","InvRender、GS-IR","Casual Flash Lighting"],
+ ["多模态因子图(声学+视觉)→GS","Cross-Domain / SLAM","ICRA / RA-L","各水下重建","SURGE"],
+ ["物体级变化检测/场景审计","Editing / Cross-Domain","CVPR / ECCV","GS-Diff、O-SCD","GS-Pool"],
+ ["鲁棒 mask/不确定性监督","Editing / Sparse-View","CVPR","SAM-guided object GS","MaRO-GS、UGOD"],
+ ["密度控制/帧选择等 optimization 微创新","Optimization","CVPR / SIGGRAPH","3DGS 原始 densification","TangoGS、Less Is More"],
+ ["论文→代码自动化基础设施","Foundation","系统/AI 会议","—","SPLATIFY（可复现性社区）"],
+ ["联邦/分布式 GS 隐私","Security","NeurIPS / ICML","分布式 NBV","TRACE"],
+];
+/* ---------- 实验表 ---------- */
+const EXP=[
+ ["Feed-Forward(通用)","DL3DV、RealEstate10K、CO3D-V2、ACID","MVSplat、DepthSplat、pixelSplat、NAS3R","PSNR/SSIM/LPIPS"],
+ ["Feed-Forward(科学弱纹理)","LuSNAR、MoonBlender(合成)","前馈 NeRF/3DGS 基线","PSNR/SSIM/LPIPS、推理时延"],
+ ["Dynamic & 4D","D-NeRF、HyperNeRF、MeetRoom、Neu3D","4D-GS、Deformed-GS","PSNR/SSIM/LPIPS、FPS"],
+ ["Acceleration","Mip-NeRF 360、Tanks&Temples、Deep Blending","LightGaussian、Speedy-Splat、Scaffold-GS","PSNR、FPS、存储(MB)、参数量"],
+ ["Compression","上述 + 自采序列","Compressed3D、PLAS、LightGaussian","比特率/PSNR、BD-rate、解码时延"],
+ ["Sparse-View","LLFF、DTU、CO3D-V2、RealEstate10K","FSGS、DNGaussian、对应前馈模型","PSNR/SSIM/LPIPS"],
+ ["SLAM","TUM-RGBD、Replica、ScanNet、T&T","SplaTAM、MonoGS、Gaussian-SLAM","ATE(RMSE)、渲染 PSNR"],
+ ["Language & Semantic","ScanNet++、Replica、LERF、3D-OVS","LEGaussians、Feature-3DGS、LangSplat、GAGS","mIoU、语义 PSNR"],
+ ["HDR & Relighting","合成室内 + 真实室内(自建)","InvRender、GS-IR、Relightable 3DGS","PSNR(重光照)、albedo/roughness 误差"],
+ ["Editing","标准场景 + 分割/修复基准","对应 inpainting/编辑 SOTA","PSNR/SSIM/LPIPS、FID"],
+ ["Embodied/Robotics","ScanNet++、真实机器人、ConceptGraphs 基准","ConceptGraphs、Hierarchical 3DGS","定位 mAP、关系推理准确率"],
+ ["Autonomous Driving","交通视频派生、nuScenes","端到端驾驶模型(HDScore)","HDScore、碰撞率"],
+ ["CAD/Reverse","DTU、自定义物体、ShapeNet","SuGaR、2DGS、Gauss-to-Mesh","Chamfer、F-score、法向误差"],
+];
+
+/* ---------- 渲染 ---------- */
+const $=s=>document.querySelector(s);
+function heat(n){return "🔥".repeat(n)+"·".repeat(3-n);}
+/* matrix */
+const tb=$("#mTable tbody");
+MATRIX.map(r=>({cat:r[0],n:r[1],conf:r[2],jrn:r[3],cn:r[4],hot:r[5]})).forEach(o=>{
+  const tr=document.createElement("tr");
+  tr.innerHTML=`<td><b>${o.cat}</b></td><td class="num">${o.n}</td><td>${o.conf}</td><td>${o.jrn}</td><td>${o.cn}</td><td class="hot num">${heat(o.hot)}</td>`;
+  tb.appendChild(tr);
+});
+let mSort={k:"n",asc:false};
+$("#mTable th").onclick=function(){
+  const k=this.dataset.k; mSort.asc = mSort.k===k? !mSort.asc : false; mSort.k=k;
+  const rows=[...tb.children].sort((a,b)=>{
+    const va=a.children[[ "cat","n","conf","jrn","cn","hot" ].indexOf(k)].textContent.trim();
+    const vb=b.children[[ "cat","n","conf","jrn","cn","hot" ].indexOf(k)].textContent.trim();
+    const na=parseInt(va)||0, nb=parseInt(vb)||0;
+    if(k==="n"||k==="hot") return mSort.asc? na-nb : nb-na;
+    return mSort.asc? va.localeCompare(vb,"zh") : vb.localeCompare(va,"zh");
+  });
+  rows.forEach(r=>tb.appendChild(r));
+};
+$("#mSearch").oninput=function(){
+  const q=this.value.toLowerCase();
+  [...tb.children].forEach(r=>{
+    const t=r.textContent.toLowerCase();
+    r.style.display = t.includes(q)?"":"none";
+  });
+};
+/* papers */
+const cats=[...new Set(PAPERS.map(p=>p[0]))].sort();
+const sel=$("#pCat"); sel.innerHTML='<option value="">全部子领域</option>'+cats.map(c=>`<option>${c}</option>`).join("");
+function renderPapers(){
+  const c=sel.value, q=$("#pSearch").value.toLowerCase();
+  const list=PAPERS.filter(p=>(!c||p[0]===c)&&(p[1]+p[2]+p[3]+p[4]).toLowerCase().includes(q));
+  $("#pList").innerHTML=list.map(p=>{
+    const lv=p[3]==="r"?'<span class="lv lv-r">精读</span>':'<span class="lv lv-t">题录</span>';
+    return `<div class="card"><h3>${p[1]} <span class="meta">${p[2]}</span>${lv}</h3>
+      <div class="meta"><span class="tag">${p[0]}</span></div>
+      <div class="note">${p[4]}</div></div>`;
+  }).join("") || '<p class="hint">无匹配</p>';
+}
+sel.onchange=renderPapers; $("#pSearch").oninput=renderPapers; renderPapers();
+/* topic */
+$("#topicGrid").innerHTML=TOPICS.map((t,i)=>`<div class="card">
+  <h3>${i+1}. ${t[0]}</h3>
+  <div class="meta"><span class="tag">子领域 ${t[1]}</span><span class="tag">venue ${t[2]}</span></div>
+  <div class="note"><b>基线：</b>${t[3]}<br><b>切口：</b>${t[4]}</div></div>`).join("");
+/* exp */
+$("#expTable tbody").innerHTML=EXP.map(e=>`<tr><td><b>${e[0]}</b></td><td>${e[1]}</td><td>${e[2]}</td><td>${e[3]}</td></tr>`).join("");
+/* tabs */
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+  b.classList.add("active"); $("#"+b.dataset.t).classList.add("on");
+});
+</script>
+</body>
+</html>

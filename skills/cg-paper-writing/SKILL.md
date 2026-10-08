@@ -52,6 +52,7 @@ Analyze the user's request to determine axis values:
 | Writing or revising methodology | method |
 | Writing or revising experiments | experiments |
 | Writing contribution statements | contribution |
+| Topic / venue selection for a 3DGS sub-field | topic |
 | Full paper or unspecified section | all |
 
 ### Axis: venue
@@ -104,7 +105,8 @@ Read these files from references/:
 | method | references/writing-related-method.md |
 | experiments | references/writing-experiments.md |
 | contribution | references/writing-experiments.md |
-| all | All writing fragments (abstract-intro, related-method, experiments) |
+| topic | references/3dgs-domain-venues.md |
+| all | All writing fragments (abstract-intro, related-method, experiments) + references/3dgs-domain-venues.md |
 
 ### On-Demand Load (by detected venue)
 | venue | Fragment to Load |

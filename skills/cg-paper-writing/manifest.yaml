@@ -10,6 +10,7 @@ axes:
       - experiments
       - contribution
       - all
+      - topic
     default: all
   venue:
     description: "Target publication venue"
@@ -62,10 +63,13 @@ routing:
         - references/writing-experiments.md
       contribution:
         - references/writing-experiments.md
+      topic:
+        - references/3dgs-domain-venues.md
       all:
         - references/writing-abstract-intro.md
         - references/writing-related-method.md
         - references/writing-experiments.md
+        - references/3dgs-domain-venues.md
     venue:
       top-journal:
         - references/venue-formats.md
