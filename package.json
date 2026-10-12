@@ -4,11 +4,40 @@
   "private": true,
   "description": "3D Spatial Intelligence Open-Source Toolbox — 896 methods, 15 skills, MCP Server, SplatVerse Studio",
   "license": "Apache-2.0",
+  "homepage": "https://jaccen.github.io/Awesome-Gaussian-Skills/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaccen/Awesome-Gaussian-Skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaccen/Awesome-Gaussian-Skills/issues"
+  },
+  "keywords": [
+    "3d-gaussian-splatting",
+    "3dgs",
+    "nerf",
+    "neural-rendering",
+    "computer-graphics",
+    "ai-skills",
+    "mcp-server",
+    "claude-code",
+    "openclaw",
+    "dsh-plugin",
+    "dsh",
+    "deepseek-harness",
+    "research-tools",
+    "arxiv"
+  ],
   "workspaces": [
     "mcp-server",
     "studio/bridge",
     "studio/web"
   ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
   "scripts": {
     "dev": "powershell -File scripts/start-dev.ps1",
     "dev:bridge": "npm run dev --workspace=studio/bridge",

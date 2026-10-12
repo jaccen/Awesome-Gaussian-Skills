@@ -1,0 +1,71 @@
+{
+  "$schema": "https://mcp.so/schema/mcp-server.json",
+  "name": "3dgs-mcp-renderer-server",
+  "displayName": "3DGS MCP Renderer",
+  "full_name": "jaccen/Awesome-Gaussian-Skills — 3DGS MCP Renderer",
+  "description": "Agent-controlled 3D Gaussian Splatting rendering pipeline as an MCP server. Lets an LLM import .ply/.splat scenes, set cameras, modify Gaussians (position/opacity/scale/rotation/SH), render frames, ray-cast, prune by importance, sculpt scenes, encode/edit/transfer scene latents (SLAT), and export scene code — all through 21 MCP tools over stdio. Bundled with a three.js/WebGPU renderer served on localhost.",
+  "short_description": "MCP server for agent-driven 3D Gaussian Splatting rendering — 21 tools over stdio.",
+  "url": "https://github.com/jaccen/Awesome-Gaussian-Skills",
+  "homepage": "https://jaccen.github.io/Awesome-Gaussian-Skills/",
+  "author": {
+    "name": "jaccen",
+    "url": "https://github.com/jaccen"
+  },
+  "license": "Apache-2.0",
+  "language": "TypeScript",
+  "runtime": "node",
+  "category": "3D / Graphics / Research",
+  "tags": [
+    "3d-gaussian-splatting", "3dgs", "gaussian-splatting", "nerf",
+    "neural-rendering", "three.js", "webgpu", "rendering", "mcp",
+    "research-tools", "computer-graphics", "spatial-intelligence"
+  ],
+  "installations": {
+    "npm": {
+      "type": "npm",
+      "command": "npx",
+      "args": ["-y", "3dgs-mcp-server@latest"],
+      "note": "Publish mcp-server/ to npm as 3dgs-mcp-server for one-line install. Until then, clone and run from source (see stdio below)."
+    },
+    "stdio_source": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["--import", "tsx", "/path/to/Awesome-Gaussian-Skills/mcp-server/src/index.ts"],
+      "env": {},
+      "note": "Run from a clone. Build with `npm run build -w mcp-server` and use args [\"/path/to/mcp-server/dist/index.js\"] for the compiled version (no tsx needed)."
+    },
+    "stdio_compiled": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/path/to/Awesome-Gaussian-Skills/mcp-server/dist/index.js"],
+      "env": {}
+    }
+  },
+  "tools": [
+    { "name": "import_scene", "description": "Import a .ply or .splat scene file from a whitelisted scene root into the live scene state." },
+    { "name": "set_camera", "description": "Set the active camera (position, target/lookAt, fov, near, far)." },
+    { "name": "modify_gaussians", "description": "Modify Gaussian attributes (position, scale, rotation, opacity, SH color) by selector." },
+    { "name": "render_frame", "description": "Render the current scene to a frame and return the rendered image/preview." },
+    { "name": "query_scene", "description": "Query current scene state (Gaussian count, bounds, camera, density)." },
+    { "name": "cast_ray", "description": "Cast a ray into the scene and return the hit Gaussian / point." },
+    { "name": "export_result", "description": "Export the current scene to .ply or .splat." },
+    { "name": "prune_by_importance", "description": "Prune Gaussians below an importance threshold." },
+    { "name": "set_gaussian_density", "description": "Adjust Gaussian density / splat scale." },
+    { "name": "adjust_opacity", "description": "Adjust Gaussian opacity by selector." },
+    { "name": "set_rotation", "description": "Set rotation of selected Gaussians." },
+    { "name": "query_spatial_context", "description": "Query spatial context around a point or region." },
+    { "name": "resolve_voice_command", "description": "Map a natural-language/voice command to a scene operation." },
+    { "name": "define_scene_spec", "description": "Define a declarative scene specification (SceneSpec)." },
+    { "name": "sculpt_pipeline", "description": "Run the sculpt pipeline over a SceneSpec to build a scene." },
+    { "name": "export_scene_code", "description": "Export the scene as runnable scene-construction code." },
+    { "name": "encode_scene_slatent", "description": "Encode a scene into a SLAT (scene latent) representation." },
+    { "name": "edit_scene_latent", "description": "Apply a latent edit op to a SLAT and decode back to scene." },
+    { "name": "list_slatents", "description": "List stored scene latents (SLATs)." },
+    { "name": "transfer_scene_edit", "description": "Transfer an edit from one scene's SLAT to another." },
+    { "name": "interpolate_scene_latent", "description": "Interpolate between two scene latents." }
+  ],
+  "screenshots": [
+    "https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/assets/hero.png",
+    "https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/dashboard-en.png"
+  ]
+}

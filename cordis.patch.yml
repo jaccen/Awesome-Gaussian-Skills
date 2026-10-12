@@ -1,0 +1,48 @@
+# Cordis patch — registers Awesome-Gaussian-Skills as a DSH plugin.
+#
+# Two contributions over the base profile:
+#   1. A bundled filesystem skill provider that loads the 15 skills under
+#      `skills/` (each `skills/<name>/SKILL.md` follows the DSH skill
+#      frontmatter contract: YAML `name` + `description`, Markdown body).
+#      `bundledSkillDir` resolves relative to this plugin package.
+#   2. An MCP client bridge to the bundled `mcp-server` (stdio transport),
+#      so the 3DGS rendering MCP server's tools appear as
+#      `mcp__3dgs-renderer__<tool>` inside DSH.
+#
+# `bundledSkillDir` and the MCP `args` path are resolved relative to the
+# installed plugin package root, so they work regardless of where DSH_HOME
+# lives. `includeDefaultRoots: false` keeps this provider to *only* the
+# bundled skills — the user's own ~/.dsh/skills are still served by the
+# host's default provider and are not duplicated here.
+#
+# Requires DSH (dsh-base / @deepseek-ai/cordis) >= 0.1.5-rc.2 so that the
+# `dsh-skill-filesystem` and `dsh-mcp-client` peer plugins are available.
+
+- insert:
+    # --- 1. Bundled skills -------------------------------------------------
+    - id: gaussian-skills-provider
+      name: "@deepseek-ai/dsh-skill-filesystem"
+      config:
+        providerName: gaussian-skills
+        includeDefaultRoots: false
+        bundledSkillDir: ./skills
+        watch: false
+
+    # --- 2. MCP server bridge (stdio) -------------------------------------
+    # The server ships as TypeScript sources; run it through tsx so no build
+    # step is required at install time. If you prefer the compiled bundle,
+    # run `npm run build -w mcp-server` once and switch `args` to
+    # `["./mcp-server/dist/index.js"]`.
+    - id: gaussian-mcp-renderer
+      name: "@deepseek-ai/dsh-mcp-client"
+      config:
+        transport: stdio
+        serverName: 3dgs-renderer
+        command: node
+        args:
+          - "--import"
+          - "tsx"
+          - "./mcp-server/src/index.ts"
+        env: {}
+        cwd: ""
+        failOnStartupError: false
