@@ -1,12 +1,27 @@
 {
-  "name": "3dgs-mcp-renderer-server",
+  "name": "3dgs-mcp-server",
   "version": "1.1.0",
-  "description": "MCP server for Agent-controlled 3D Gaussian Splatting rendering pipeline",
+  "description": "MCP server for Agent-controlled 3D Gaussian Splatting rendering pipeline — 21 tools over stdio (import scene, set camera, modify gaussians, render frame, sculpt pipeline, SLAT latent editing).",
   "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "3dgs-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "renderer",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaccen/Awesome-Gaussian-Skills.git",
+    "directory": "mcp-server"
+  },
+  "homepage": "https://github.com/jaccen/Awesome-Gaussian-Skills/tree/main/mcp-server#readme",
+  "bugs": {
+    "url": "https://github.com/jaccen/Awesome-Gaussian-Skills/issues"
   },
   "scripts": {
     "dev": "tsx src/index.ts",
@@ -15,7 +30,8 @@
     "renderer": "npx http-server renderer -p 8080 -c-1",
     "demo": "tsx examples/voice-demo.ts",
     "test": "node --test test/",
-    "test:build": "tsc && node --test test/"
+    "test:build": "tsc && node --test test/",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
@@ -32,11 +48,14 @@
   },
   "keywords": [
     "mcp",
+    "mcp-server",
     "3dgs",
     "gaussian-splatting",
     "three.js",
     "webgpu",
     "agent",
-    "rendering"
+    "rendering",
+    "nerf",
+    "neural-rendering"
   ]
 }
