@@ -1,4 +1,4 @@
-﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
@@ -40,6 +40,19 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
 Search 896 Methods instantly, filter by category, sort by citations, click any method card for details.
+
+## Integrations
+
+This repo ships as both **AI agent skills** and an **MCP server**, so it works across agent runtimes and MCP clients:
+
+| Client | How to use |
+|---|---|
+| **DSH (DeepSeek Harness)** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — the 15 skills + MCP renderer auto-mount via `cordis.patch.yml` |
+| **Claude Code / OpenClaw** | skills load directly from `skills/` (see `CLAUDE.md`); MCP server via the config below |
+| **Claude Desktop / Cursor / Cline** | copy the MCP stdio config from [`.marketplace/mcp-servers/client-configs.md`](.marketplace/mcp-servers/client-configs.md) |
+| **Any MCP client** | `command: node`, `args: [/path/to/mcp-server/dist/index.js]`, transport: stdio (21 core tools) |
+
+The MCP server exposes 21 tools (`import_scene`, `set_camera`, `modify_gaussians`, `render_frame`, `sculpt_pipeline`, SLAT latent editing, …) — see [`mcp-server/README.md`](mcp-server/README.md) and [`.marketplace/mcp-servers/mcp-metadata.json`](.marketplace/mcp-servers/mcp-metadata.json).
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
