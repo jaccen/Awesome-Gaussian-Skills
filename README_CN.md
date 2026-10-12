@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 896 方法，23 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 900 方法，23 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-896-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-900-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 896 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 900 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（896 方法、23 类别、15 技能），零虚构：**
+**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（900 方法、23 类别、15 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -78,7 +78,7 @@
 | CH 12 | 从采集到交付：端到端工程链路 | 十个环节的工具选型与卡点、格式与坐标系、成本工期量级、项目失败模式 |
 | CH 13 | 产业落地剧本：六个行业 | 文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维 |
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
-| 实 | 实践资源索引：从书到工程 | 15 个工程技能 · 34 个 MCP 工具 · 896+ 方法浏览器，章节到可运行资源的映射 |
+| 实 | 实践资源索引：从书到工程 | 15 个工程技能 · 34 个 MCP 工具 · 900+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
 
 每章末尾附带动手练习，并回链仓库的方法表格、`references/` 和技能 —— 读书与工程实践融为一体。
@@ -91,13 +91,22 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 896 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 900 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 10 月）
 
-最新更新（10 月 12 日）：**v0.9.7 — 手动入库：15 篇新方法（881 → 896）** ⭐
+最新更新（10 月 20 日）：**v0.9.8 — World Models 类别定向补强（896 → 900）** ⭐
+
+针对最薄弱类别定向补强。新增 **4** 篇经 arXiv 核验的 3DGS 世界模型 / 空间智能方法，
+方法库由 **896 扩充至 900**。World Models & Spatial Intelligence 类别由 8 → 12 篇：
+`HY-World 2.0`、`F3DGS`（联邦多智能体世界建模）、`4DGS-WAM`（以对象为中心的世界动作模型）、
+`Cloth-Splatting`（3DGS 布料状态估计）。补回 2 个缺失的 arXiv ID（`Holi-Spatial` → 2603.07660、
+`Spatial-TTT` → 2603.12255）；2 篇条目标记 `unverified` 待核实（`APEIRIA`、`S²AM3D`）。
+`GSMem` 已在 Embodied AI & Robotics 类别，未重复添加。详见 [更新日志](changelog/2026-10-20.md)。
+
+### 上一次更新（10 月 12 日）：**v0.9.7 — 手动入库：15 篇新方法（881 → 896）**
 
 手动入库 **15** 篇经 arXiv 核验的 3DGS 方法，方法库由 **881 扩充至 896**（+15，+1.7%）。
 收录覆盖 9 个类别：Acceleration（`H2-Ray`、`TileSkipper`、`SplatQ`）、Feed-Forward（`CompactSplat`、
@@ -213,7 +222,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（896 方法，23 类别）
+## 知识库（900 方法，23 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -419,7 +428,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（896 方法，23 类别）
+├── references/                # 知识库（900 方法，23 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片

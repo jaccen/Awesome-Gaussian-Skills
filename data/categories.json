@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12",
+  "generated_at": "2026-10-20",
   "canonical": [
     "Acceleration",
     "Autonomous Driving",
@@ -48,6 +48,6 @@
     "Simulation": 11,
     "Sparse-View": 25,
     "Surface & Rendering": 66,
-    "World Models & Spatial Intelligence": 8
+    "World Models & Spatial Intelligence": 12
   }
 }
