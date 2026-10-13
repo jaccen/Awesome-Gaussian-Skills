@@ -7,7 +7,7 @@
 Show HN: An open-source ebook on Spatial & Embodied Intelligence via 3D Gaussian Splatting
 ```
 
-**首发链接**: {{EBOOK_URL}}
+**首发链接**: https://spatial-embodied-ebook.app.workbuddy.host/
 （若发布为应用前先用仓库地址：https://github.com/jaccen/Awesome-Gaussian-Skills ，并在首评贴电子书路径）
 
 ---
@@ -19,10 +19,10 @@ Hi HN — I'm a researcher who kept losing track of how fast 3DGS moves (dozens 
 So I wrote a free, single-file, offline-readable ebook: **《深入理解空间智能与具身智能 · 以 3D Gaussian Splatting 为核心》**.
 
 - **One spine**: embodied agent = spatial representation × perception × planning × action
-- **11 chapters** from NeRF→3DGS through the engineering core (incl. a 108+ bug-pattern debugging table), semantic Gaussians, embodied foundations, 3DGS-as-spatial-memory (GS-SLAM), agent-driven digital twins, world models, and safety/provenance
+- **13 chapters** from NeRF→3DGS through the engineering core (incl. a 104 bug-pattern debugging table), semantic Gaussians, embodied foundations, 3DGS-as-spatial-memory (GS-SLAM), agent-driven digital twins, world models, and safety/provenance
 - **62 arXiv-cited references**, formula boxes, comparison tables, end-of-chapter questions
 
-It's backed by an open knowledge base where **every one of 859 methods / 23 categories** is re-verified against its arXiv paper (name must appear in title/abstract) — no inflated counts, no fabricated method names. Plus 16 agent skills and an MCP server (34 tools) so local agents can query it.
+It's backed by an open knowledge base where **every one of 900 methods / 23 categories** is re-verified against its arXiv paper (name must appear in title/abstract) — no inflated counts, no fabricated method names. Plus 15 agent skills and an MCP server (34 tools) so local agents can query it.
 
 Stack: single static HTML (no build step), JSON source of truth, CI enforces cross-carrier consistency.
 

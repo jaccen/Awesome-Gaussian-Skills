@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f6f9ff"/>
+      <stop offset="1" stop-color="#eef3fc"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#7c4dff"/>
+    </marker>
+  </defs>
+  <rect width="680" height="300" rx="18" fill="url(#bg3)"/>
+  <text x="40" y="48" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#1f2a44">3DGS 正在成为 Physical AI 的空间底座</text>
+  <text x="40" y="74" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="12.5" fill="#5b6b8c">NVIDIA 管线：扫描真实世界 → 生成可训练场景，正在变成一条生产线</text>
+
+  <g font-family="system-ui,Segoe UI,Arial,sans-serif" text-anchor="middle">
+    <!-- nodes -->
+    <rect x="34" y="120" width="120" height="72" rx="12" fill="#ffffff" stroke="#3b6fe0"/>
+    <text x="94" y="150" font-size="15" font-weight="700" fill="#23408f">NuRec</text>
+    <text x="94" y="172" font-size="11.5" fill="#5b6b8c">3DGS 重建</text>
+
+    <rect x="178" y="120" width="120" height="72" rx="12" fill="#ffffff" stroke="#3b6fe0"/>
+    <text x="238" y="150" font-size="15" font-weight="700" fill="#23408f">Warp</text>
+    <text x="238" y="172" font-size="11.5" fill="#5b6b8c">物理仿真</text>
+
+    <rect x="322" y="120" width="120" height="72" rx="12" fill="#ffffff" stroke="#3b6fe0"/>
+    <text x="382" y="150" font-size="15" font-weight="700" fill="#23408f">Cosmos</text>
+    <text x="382" y="172" font-size="11.5" fill="#5b6b8c">世界生成</text>
+
+    <rect x="466" y="120" width="120" height="72" rx="12" fill="#ffffff" stroke="#3b6fe0"/>
+    <text x="526" y="150" font-size="15" font-weight="700" fill="#23408f">Marble</text>
+    <text x="526" y="172" font-size="11.5" fill="#5b6b8c">环境编排</text>
+
+    <rect x="610" y="116" width="44" height="80" rx="12" fill="#7c4dff"/>
+    <text x="632" y="150" font-size="13" font-weight="700" fill="#fff">Physical</text>
+    <text x="632" y="168" font-size="13" font-weight="700" fill="#fff">AI</text>
+
+    <!-- arrows -->
+    <line x1="154" y1="156" x2="176" y2="156" stroke="#7c4dff" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="298" y1="156" x2="320" y2="156" stroke="#7c4dff" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="442" y1="156" x2="464" y2="156" stroke="#7c4dff" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="586" y1="156" x2="608" y2="156" stroke="#7c4dff" stroke-width="2" marker-end="url(#arr)"/>
+
+    <!-- bottom glue -->
+    <rect x="34" y="222" width="580" height="44" rx="10" fill="#fff4ea" stroke="#f6d3b0"/>
+    <text x="324" y="249" font-size="13" font-weight="700" fill="#b5650a">3DGS = 贯穿全链路的「空间表示」胶水：可重建、可编辑、可训练、可溯源</text>
+  </g>
+</svg>

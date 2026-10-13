@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7faff"/>
+      <stop offset="1" stop-color="#eef3fc"/>
+    </linearGradient>
+  </defs>
+  <rect width="680" height="430" rx="18" fill="url(#bg2)"/>
+  <text x="40" y="50" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#1f2a44">全书 11 章 · 四层主线结构</text>
+  <text x="40" y="76" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="13" fill="#5b6b8c">从「表示」到「具身」到「世界模型」再到「安全治理」，一条主线贯穿</text>
+
+  <!-- 4 layer cards -->
+  <g font-family="system-ui,Segoe UI,Arial,sans-serif">
+    <!-- L1 表示层 -->
+    <rect x="34" y="100" width="612" height="68" rx="12" fill="#eaf1ff" stroke="#bcd0f7"/>
+    <rect x="34" y="100" width="8" height="68" rx="4" fill="#3b6fe0"/>
+    <text x="58" y="130" font-size="16" font-weight="700" fill="#23408f">表示层 · 空间智能</text>
+    <text x="58" y="154" font-size="12.5" fill="#3a4a6b">CH01–05　NeRF→3DGS 范式跃迁 · 数学与工程内核(108+ bug 模式/排错表) · 大规模·动态·压缩 · 语义高斯 · 编辑生成资产化</text>
+
+    <!-- L2 具身层 -->
+    <rect x="34" y="180" width="612" height="68" rx="12" fill="#eafaf3" stroke="#bde9d4"/>
+    <rect x="34" y="180" width="8" height="68" rx="4" fill="#1faa6b"/>
+    <text x="58" y="210" font-size="16" font-weight="700" fill="#157a4d">具身层 · 空间被「用」起来</text>
+    <text x="58" y="234" font-size="12.5" fill="#3a4a6b">CH06–09　具身基础(VLA/仿真/Sim2Real) · 3DGS 作为空间记忆(GS-SLAM) · 物体级与铰接式理解 · Agent 驱动的数字孪生</text>
+
+    <!-- L3 前瞻层 -->
+    <rect x="34" y="260" width="612" height="52" rx="12" fill="#fff4ea" stroke="#f6d3b0"/>
+    <rect x="34" y="260" width="8" height="52" rx="4" fill="#e8870a"/>
+    <text x="58" y="286" font-size="16" font-weight="700" fill="#b5650a">前瞻层 · 世界模型</text>
+    <text x="58" y="306" font-size="12.5" fill="#3a4a6b">CH10　世界模型与未来 · 列未解难题与可证伪指标</text>
+
+    <!-- L4 治理层 -->
+    <rect x="34" y="324" width="612" height="52" rx="12" fill="#fdeef3" stroke="#f3c2d4"/>
+    <rect x="34" y="324" width="8" height="52" rx="4" fill="#d6336c"/>
+    <text x="58" y="350" font-size="16" font-weight="700" fill="#a3244f">治理层 · 安全溯源</text>
+    <text x="58" y="370" font-size="12.5" fill="#3a4a6b">CH11　安全溯源与版权(GaussTrace / 3DEditSafe) · 附录：数据集与评估基准 · 62 条可溯源引用(全带 arXiv 编号)</text>
+  </g>
+</svg>

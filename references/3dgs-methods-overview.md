@@ -549,6 +549,10 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **GS-World** (arXiv 2025) — World model generative simulation + Engine-driven Sim2Real VLA unified paradigm: 3DGS as differentiable, physically consistent simulation engine for robot skill learning
 - **Visionary** [arXiv:2512.08478](https://arxiv.org/abs/2512.08478) (2025) — WebGPU + 3DGS world model carrier: first Web-native platform supporting 4DGS, neural avatars, and generative post-processing in real-time via WebGPU + ONNX Runtime
 - **X-World** (2026) — Controllable multi-view generative world model (video diffusion + 3DGS simulation) for autonomous driving (XPeng)
+- **HY-World 2.0** [arXiv:2604.14268](https://arxiv.org/abs/2604.14268) (arXiv 2026) — Multi-modal world model: text/single-view/multi-view/video → navigable 3DGS world via panorama generation (HY-Pano 2.0) + trajectory planning (WorldNav) + world expansion (WorldStereo 2.0) (Team HY-World)
+- **F3DGS** [arXiv:2604.01605](https://arxiv.org/abs/2604.01605) (arXiv 2026) — Federated 3DGS for decentralized multi-agent world modeling; shared geometric scaffold from registered LiDAR point clouds; distributed reconstruction without centralized data aggregation (Morui Zhu et al.)
+- **4DGS-WAM** [arXiv:2608.25956](https://arxiv.org/abs/2608.25956) (arXiv 2026) — Object-centric World Action Model on 4DGS; separately models dynamic objects (policy-predicted future actor states) and static background; bridges past 4DGS reconstruction and future action prediction (Yueen Ma, Zenglin Xu, Irwin King)
+- **Cloth-Splatting** [arXiv:2501.01715](https://arxiv.org/abs/2501.01715) (arXiv 2025) — 3D cloth state estimation via prediction-update framework; action-conditioned dynamics model predicts future states + 3DGS updates them; couples mesh representation with Gaussian Splatting for differentiable state-to-image map (Alberta Longhini et al.)
 
 ### New Papers Added June 2, 2026
 
@@ -751,9 +755,9 @@ _3DGS as world model primitive, differentiable simulation engine, or spatial int
 - **ArtiTwinSplat** (arXiv 2026) — Interactable Digital Twin Reconstruction via Gaussian Splatting from RGB-D videos; enables interaction with reconstructed digital twins; agent-system integration for articulated object manipulation (Pranjal Mishra, René Zurbrügg, Max Wilder-Smith)
 
 ### Spatial Intelligence / World Model
-- **Holi-Spatial** (ICML 2026 Oral) — Evolving Video Streams into Holistic 3D Spatial Intelligence; fully automated spatial data construction framework from raw video; 4M+ spatial multimodal samples; covers 3D reconstruction, depth, 2D mask, 3D bbox, instance description, 3D grounding, spatial QA (Shanghai AI Lab, NWPU, SJTU)
-- **Spatial-TTT** (ECCV 2026) — Test-time training for streaming spatial intelligence; 2B-parameter model surpasses GPT-5 and Gemini-3-pro on spatial benchmarks; continuous spatial memory update from long-form video streams; 40%+ savings in VRAM and compute (Fangfu Liu et al., Tsinghua University)
-- **APEIRIA** (ICML 2026) — Neuro-symbolic 3D spatial reasoning framework combining 3D MLLM open-vocabulary understanding with programmatic verification; bridges black-box neural reasoning and interpretable symbolic spatial reasoning (Wentao Mo, Yang Liu, Peking University)
+- **Holi-Spatial** [arXiv:2603.07660](https://arxiv.org/abs/2603.07660) (ICML 2026 Oral) — Evolving Video Streams into Holistic 3D Spatial Intelligence; fully automated spatial data construction framework from raw video; 4M+ spatial multimodal samples; covers 3D reconstruction, depth, 2D mask, 3D bbox, instance description, 3D grounding, spatial QA (Shanghai AI Lab, NWPU, SJTU)
+- **Spatial-TTT** [arXiv:2603.12255](https://arxiv.org/abs/2603.12255) (ECCV 2026) — Test-time training for streaming spatial intelligence; 2B-parameter model surpasses GPT-5 and Gemini-3-pro on spatial benchmarks; continuous spatial memory update from long-form video streams; 40%+ savings in VRAM and compute (Fangfu Liu et al., Tsinghua University)
+- **APEIRIA** (ICML 2026) — Neuro-symbolic 3D spatial reasoning framework combining 3D MLLM open-vocabulary understanding with programmatic verification; bridges black-box neural reasoning and interpretable symbolic spatial reasoning (Wentao Mo, Yang Liu, Peking University) ⚠️ _arXiv ID pending verification — not found in arXiv API as of 2026-10-20_
 
 ### Spatial Data / 3D Vision Infrastructure
 - **OpenSpatial** [arXiv:2604.07296](https://arxiv.org/abs/2604.07296) (arXiv 2026) — Principled open-source data engine for spatial intelligence; 3M-sample dataset; 5 foundational task hierarchy (Spatial Measurement, Spatial Relationship, Camera Perception, Multi-view Consistency, Scene-Aware Reasoning); 19% relative improvement on spatial benchmarks (Jianhui Liu et al., HKU / Xiaomi)
@@ -1443,3 +1447,69 @@ Includes Speedy-Splat (CVPR 2025, precise tile intersect + efficient pruning) an
 
 ### Compression & Streaming
 - **Observation-Gram** [arXiv:2609.28997](https://arxiv.org/abs/2609.28997) (arXiv 2026) — Per-Gaussian observation Gram matrix as distortion metric for SH compression; closed-form degree reduction, Lagrangian degree allocation, matrix-weighted Lloyd VQ; +0.49 dB PSNR over Compressed3D, 15% smaller than GSICO at equal quality on Mip-NeRF 360
+
+## Newly Added Methods (October 12, 2026 — Manual Admission)
+
+**Date:** 2026-10-12
+**Scope:** Manual admission of 15 new arXiv-verified 3DGS methods (881 -> 896), spanning 9 categories.
+All method names self-stated in the paper title/abstract (R9 protocol); 12 candidate papers were rejected
+(no self-stated method name, benchmark-only, NeRF-not-3DGS, or 3DGS used merely as a tool).
+
+### Acceleration
+- **H2-Ray** [arXiv:2610.13498](https://arxiv.org/abs/2610.13498) (arXiv 2026) — Hybrid and hierarchical ray tracing architecture for efficient 3DGS rendering: Load-Balanced Spatial BVH converts imbalanced global workloads into balanced local traversal units, Ray-Cluster Path Reuse amortizes redundant traversal, and a Unified Intersection Engine shares 40% of floating-point units across Gaussian/triangle primitives; 3.77x geomean speedup (9.26x max) over RaySplats on RTX A5000
+- **TileSkipper** [arXiv:2610.09343](https://arxiv.org/abs/2610.09343) (arXiv 2026) — Region-adaptive tile pruning that selects a static per-Gaussian contribution cutoff for a frozen checkpoint via calibration renders and an isolated-removal distortion proxy; one byte per Gaussian, no parameter updates; 1.088x (standard) and 1.238x (3840px) dataset-macro speedups at -0.007/-0.023 dB
+- **SplatQ** [arXiv:2610.13503](https://arxiv.org/abs/2610.13503) (arXiv 2026) — Interaction-aware pruning that coordinates regional budget allocation and joint Gaussian selection via a QUBO objective capturing joint deletion effects, solved with simulated annealing or a coherent Ising machine; improves aggregate quality, spatial balance, and rendering speed over SOTA pruning
+
+### Compression & Streaming
+- **GSCV** [arXiv:2610.07795](https://arxiv.org/abs/2610.07795) (arXiv 2026) — Gaussian Splatting sequence compression with standard video codecs: an Inter-PLAS variant produces correlated I/P-frame images and a high-bit-depth pipeline achieves high compressibility with a higher quality upper bound over MPEG video and point-cloud anchors
+
+### Dynamic & 4D
+- **OuroWorld** [arXiv:2610.12461](https://arxiv.org/abs/2610.12461) (arXiv 2026) — Mask-free framework turning any static 3DGS scene into a 3D cinemagraph: Inconsistency-Robust Periodic 4DGS (Fourier-series deformation field) guarantees looping, a Grounded Drift Field absorbs cross-view inconsistency, and a VLM guides motion inference; outperforms baselines on 39 scenes (70.8%-99.0% user-study wins)
+
+### Embodied AI & Robotics
+- **Splat2Act** [arXiv:2610.13945](https://arxiv.org/abs/2610.13945) (arXiv 2026) — Automated real-to-sim-to-real pipeline that personalizes a pretrained VLA policy to a specific scene and object set using a handheld phone scan and object images; builds a photorealistic 3DGS digital twin with collision geometry, discovers receptacles, and generates pickup demonstrations; 62.5% aggregate pickup success, 63.9% on a real Stretch 3
+- **2DGS-Planner** [arXiv:2610.11752](https://arxiv.org/abs/2610.11752) (arXiv 2026) — Rasterization-based path planner for ground robots reading planning-relevant geometry from a 2DGS map: multi-view attribution converts rendered normal dispersion into structural scores, with path-aligned orthographic queries and cylindrical clearance queries; improved roadmap connectivity and planning success
+- **NovaSplat** [arXiv:2610.13309](https://arxiv.org/abs/2610.13309) (arXiv 2026) — Model-free 6D object pose estimation: trains a 3DGS model from a short onboarding video serving as both template source for detection/coarse pose and differentiable refinement backbone; introduces faster NovaSplat-Lite; surpasses model-based methods on a household benchmark and all model-free competitors on a textureless industrial benchmark
+
+### Feed-Forward
+- **CompactSplat** [arXiv:2610.13177](https://arxiv.org/abs/2610.13177) (arXiv 2026) — Feedforward framework enabling content-aware allocation of 3D Gaussians via texture-guided spatial partitioning and hierarchical sampling; concentrates primitives in complex regions while tiling flat areas; supports dynamic sparsity control at inference without retraining
+- **DeltaSplat** [arXiv:2610.09853](https://arxiv.org/abs/2610.09853) (arXiv 2026) — Lightweight Gaussian refinement module for pose-free feed-forward 3DGS that iteratively renders current Gaussians and predicts per-Gaussian updates from residuals conditioned on per-pixel Plücker rays and rendered depth; adds only ~2.2% parameters, +1.75 dB on DL3DV (26.64 dB), surpassing ground-truth-camera baselines
+- **DensiTok** [arXiv:2610.07958](https://arxiv.org/abs/2610.07958) (arXiv 2026) — Plug-in module that densifies the internal geometry tokens of pretrained feed-forward 3DGS models, making a frozen backbone behave as though it observed more views; single flow-matching step completes unobserved-viewpoint latents in a compact latent space
+
+### HDR & Relighting
+- **PAM-ToD** [arXiv:2610.11572](https://arxiv.org/abs/2610.11572) (arXiv 2026) — Plug-and-play appearance model for cross-time-of-day 3DGS that learns per-Gaussian color corrections (scale + additive brightness) while keeping pre-trained parameters fixed; eliminates albedo estimation under a simplified image formation model; introduces the CARLA-ToD benchmark
+
+### Language & Semantic
+- **OpenSplatGraph** [arXiv:2610.07569](https://arxiv.org/abs/2610.07569) (arXiv 2026) — Unified framework constructing persistent 3D scene graphs directly from an online Gaussian-based open-vocabulary semantic map; augments the dense map with a reliability-aware semantic field and associates extracted instances with persistent graph nodes for language-guided grounding and relational reasoning
+
+### Security
+- **FlyMark** [arXiv:2610.11364](https://arxiv.org/abs/2610.11364) (arXiv 2026) — Training-free invisible watermarking that writes a keyed message into 3DGS parameters using carrier directions derived from a published fruit-fly connectome; extraction needs only cone queries, rounding, and majority voting while preserving geometry and higher-order appearance bit-identically
+
+### Surface & Rendering
+- **PCAsplat** [arXiv:2610.11011](https://arxiv.org/abs/2610.11011) (arXiv 2026) — Geometry-aware regularization for Gaussian splatting via differentiable local PCA: regularizes eigenvalues toward isotropic tangent-plane coverage and aligns Gaussian normals with neighborhood normals, updating occluded Gaussians and substantially reducing floaters; enables Poisson reconstruction and point-cloud segmentation
+
+## Newly Added Methods (October 20, 2026 — World Models Category Reinforcement)
+
+**Date:** 2026-10-20
+**Scope:** Targeted reinforcement of the thinnest category. 4 new arXiv-verified 3DGS-based World Model / Spatial Intelligence methods admitted (896 -> 900); 2 missing arXiv IDs backfilled; 2 entries flagged unverified. GSMem (arXiv:2603.19137) was found already in the library under "Embodied AI & Robotics" and was NOT duplicated — its existing classification remains.
+
+### World Models & Spatial Intelligence (+4)
+- **HY-World 2.0** [arXiv:2604.14268](https://arxiv.org/abs/2604.14268) (arXiv 2026) — Multi-modal world model: text/single-view/multi-view/video inputs → navigable 3DGS world via four-stage pipeline (panorama generation + trajectory planning + world expansion); advances HY-World 1.0 (Team HY-World, Chenjie Cao et al.)
+- **F3DGS** [arXiv:2604.01605](https://arxiv.org/abs/2604.01605) (arXiv 2026) — Federated 3D Gaussian Splatting for decentralized multi-agent world modeling; shared geometric scaffold from registered LiDAR point clouds enables distributed reconstruction without centralized data aggregation (Morui Zhu et al.)
+- **4DGS-WAM** [arXiv:2608.25956](https://arxiv.org/abs/2608.25956) (arXiv 2026) — Object-centric World Action Model based on 4D Gaussian Splatting; separately models dynamic objects (policy-predicted future actor states) and static background; bridges past 4DGS reconstruction and future action prediction (Yueen Ma, Zenglin Xu, Irwin King)
+- **Cloth-Splatting** [arXiv:2501.01715](https://arxiv.org/abs/2501.01715) (arXiv 2025) — 3D cloth state estimation via prediction-update framework; action-conditioned dynamics model predicts future states + 3DGS updates predicted states; couples mesh-based representation with Gaussian Splatting for differentiable state-to-image map (Alberta Longhini et al.)
+
+### Backfilled arXiv IDs (+2)
+- **Holi-Spatial** — ID filled: arXiv:2603.07660 (confirmed via arXiv API; title "Holi-Spatial: Evolving Video Streams into Holistic 3D Spatial Intelligence")
+- **Spatial-TTT** — ID filled: arXiv:2603.12255 (confirmed via arXiv API; title "Spatial-TTT: Streaming Visual-based Spatial Intelligence with Test-Time Training")
+
+### Flagged Unverified (2)
+- **APEIRIA** — arXiv ID not found in arXiv API (title search "ti:APEIRIA" returned no results); venue field marked `unverified`; pending manual source check
+- **S²AM3D** — arXiv ID not found in arXiv API; description suggests point-cloud segmentation (possibly mis-categorized); pending manual source check
+
+## Categories Count (October 20, 2026)
+
+| Category | Count |
+|----------|-------|
+| World Models & Spatial Intelligence | 12 (was 8, +4 new +0 reclassified) |
+| **Total** | **900** |
