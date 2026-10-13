@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-13",
+ "generated_at": "2026-10-14",
  "canonical": [
   "Foundation",
   "Optimization",
@@ -25,7 +25,8 @@
   "Robustness",
   "Security",
   "Ontology & Knowledge Representation",
-  "Super Agents & Agentic AI"
+  "Super Agents & Agentic AI",
+  "AIGC Content Creation"
  ],
  "counts": {
   "Foundation": 26,
@@ -37,7 +38,7 @@
   "Feed-Forward": 90,
   "Language & Semantic": 38,
   "Generation": 41,
-  "Autonomous Driving": 25,
+  "Autonomous Driving": 24,
   "Dynamic & 4D": 93,
   "HDR & Relighting": 27,
   "SLAM": 47,
@@ -52,6 +53,7 @@
   "Robustness": 22,
   "Security": 11,
   "Ontology & Knowledge Representation": 12,
-  "Super Agents & Agentic AI": 20
+  "Super Agents & Agentic AI": 20,
+  "AIGC Content Creation": 22
  }
 }

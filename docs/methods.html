@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>方法库 · Awesome Gaussian Skills</title>
-<meta name="description" content="Awesome Gaussian Skills —— 面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱：934 方法、17 项技能、一站式 Text2Word / Img2GS 生成。" />
+<meta name="description" content="Awesome Gaussian Skills —— 面向 3D Gaussian Splatting 与计算机图形学的空间智能开源工具箱：955 方法、18 项技能、一站式 Text2Word / Img2GS 生成。" />
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- model-viewer loaded dynamically -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -448,7 +448,7 @@ if ('IntersectionObserver' in window) {
     <div class="mb-10">
       <span class="eyebrow" data-i18n="methods.eyebrow">方法库</span>
       <h2 class="mt-3 text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="methods.title">方法探索器</h2>
-      <p class="mt-2 text-slate-600 text-sm" data-i18n="methods.sub">浏览 934 个方法、横跨 25 个分类 — 搜索、筛选、排序，点击任意卡片查看详情。</p>
+      <p class="mt-2 text-slate-600 text-sm" data-i18n="methods.sub">浏览 955 个方法、横跨 26 个分类 — 搜索、筛选、排序，点击任意卡片查看详情。</p>
     </div>
 
     <div class="explorer-toolbar">
@@ -944,7 +944,6 @@ const METHODS = [
   { name: "MVGamba", short: "MVGamba", cat: "Generation", venue: "NeurIPS", year: 2024, desc: "State Space Model (Mamba) replacing Transformer for 3D generation via sequence modeling", arxiv: "2406.06367" , citations: 0 },
   { name: "Tetrahedron Splatting", short: "Tetrahedron Splatting", cat: "Generation", venue: "NeurIPS", year: 2024, desc: "Novel tetrahedron primitive replacing Gaussian ellipsoid for 3D generation tasks", arxiv: "2406.01579" , citations: 0 },
   { name: "Asset Harvester", short: "Asset Harvester", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "AV log → simulation-ready 3D assets via SparseViewDiT", arxiv: "2604.18468" , citations: 0 },
-  { name: "CGGS", short: "CGGS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Consistency-Augmented Geometric GS for ego-centric 3D scene generation; consistency-augmented loss + mutual information depth loss (MID) for hierarchical geometry-visual optimization", arxiv: "" , citations: 0 },
   { name: "ConFixGS", short: "ConFixGS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Feedforward 3D Gaussian Splatting (3DGS) often struggles in trajectory-based sparse-view driving scenes. Existing Gaussian repair methods mainly target optimization-based 3DGS, while diffusion-base...", arxiv: "2605.09688" , citations: 0 },
   { name: "DecoupleGS", short: "DecoupleGS", cat: "Autonomous Driving", venue: "arXiv", year: 2026, desc: "Extensive experiments demonstrate that DecoupleGS achieves a balanced fidelity-efficiency trade-off, improves metric and photometric consistency", arxiv: "2608.01761" , citations: 0 },
   { name: "DeGO", short: "DeGO", cat: "Autonomous Driving", venue: "CVPR", year: 2026, desc: "Deformable Gaussian occupancy decoupling rigid and non-rigid motion with factorized 4D VGGT distillation", arxiv: "2605.28587" , citations: 0 },
@@ -1465,6 +1464,28 @@ const METHODS = [
   { name: "WorldBench", short: "WorldBench", cat: "Super Agents & Agentic AI", venue: "arXiv", year: 2026, desc: "Benchmark and judge for open-ended LLM-generated Three.js voxel worlds, resolving vision-vs-code judge disagreement on required scene items.", arxiv: "2610.10622" , citations: 0 },
   { name: "GRAND-SLAM", short: "GRAND-SLAM", cat: "Super Agents & Agentic AI", venue: "arXiv", year: 2025, desc: "Collaborative large-scale multi-agent Gaussian SLAM with implicit local-optimization tracking for globally consistent outdoor mapping and rapid exploration.", arxiv: "2506.18885" , citations: 0 },
   { name: "Octopus v2", short: "Octopus v2", cat: "Super Agents & Agentic AI", venue: "arXiv", year: 2024, desc: "On-device 2B-parameter language model for super-agent function calling that surpasses GPT-4 in accuracy and latency, enabling efficient context-aware execution on edge devices.", arxiv: "2404.01744" , citations: 0 },
+  { name: "CGGS", short: "CGGS", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Consistency-Augmented Geometric GS for ego-centric 3D scene generation; consistency-augmented loss + mutual information depth loss (MID) for hierarchical geometry-visual optimization", arxiv: "2607.03819" , citations: 0 },
+  { name: "Flex4DHuman", short: "Flex4DHuman", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Multi-view video diffusion transforming monocular or sparse multi-view video into synchronized dense multi-view sequences via relative camera-pose conditioning for 4D human reconstruction.", arxiv: "2606.13655" , citations: 0 },
+  { name: "LightHarmony3D", short: "LightHarmony3D", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Harmonizes illumination and shadows when inserting external mesh objects into reconstructed 3DGS scenes for interactive editing and content augmentation.", arxiv: "2603.29209" , citations: 0 },
+  { name: "OmniStyle-INR", short: "OmniStyle-INR", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Universal multimodal style transfer across implicit neural representations including Gaussian Splatting, conditioned by reference images and textual descriptions.", arxiv: "2607.16362" , citations: 0 },
+  { name: "PSGS", short: "PSGS", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Text-driven panorama sliding scene generation via Gaussian Splatting for immersive VR/AR/gaming content, overcoming limited 3D-text data and inconsistent multi-view stitching.", arxiv: "2602.00463" , citations: 0 },
+  { name: "UniWorld-View", short: "UniWorld-View", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Large-baseline novel view synthesis from casually captured monocular media via video diffusion models for immersive content creation.", arxiv: "2608.04701" , citations: 0 },
+  { name: "VirSqueezer", short: "VirSqueezer", cat: "AIGC Content Creation", venue: "arXiv", year: 2026, desc: "Generates realistic localized deformations and squeezing dynamics in VR content creation from fine-grained per-finger squeezing controls.", arxiv: "2609.01698" , citations: 0 },
+  { name: "CSD", short: "CSD", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Coupled Score Distillation couples multi-view joint distribution priors from diffusion models to ensure geometry-coherent text-to-3D generation with stable direct 3DGS optimization.", arxiv: "2505.04262" , citations: 0 },
+  { name: "DD3G", short: "DD3G", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Distills a multi-view diffusion model into a 3D generator using Gaussian splatting, compressing visual and spatial knowledge via ODE simulation.", arxiv: "2504.00457" , citations: 0 },
+  { name: "DiffSplat", short: "DiffSplat", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Repurposes pretrained image diffusion models for scalable 3D Gaussian splat generation from text or a single image, natively generating 3D Gaussians with 2D diffusion priors.", arxiv: "2501.16764" , citations: 0 },
+  { name: "DirectGaussian", short: "DirectGaussian", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Text-to-3D method directly generating object surfaces as 2D Gaussian splatting surfels, combining conditional text generation with surface representation.", arxiv: "2510.06967" , citations: 0 },
+  { name: "Drag4D", short: "Drag4D", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Interactive framework integrating object motion control via user-defined 3D trajectories into text-driven 3D scene generation.", arxiv: "2509.21888" , citations: 0 },
+  { name: "Dragen3D", short: "Dragen3D", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Multiview geometry-consistent 3D Gaussian generation with drag-based control for single-image 3D content creation.", arxiv: "2502.16475" , citations: 0 },
+  { name: "DreamArt", short: "DreamArt", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Generates interactable articulated objects with part decomposition and joint articulation from a single image for Embodied AI and AR/VR.", arxiv: "2507.05763" , citations: 0 },
+  { name: "GaussianMotion", short: "GaussianMotion", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "End-to-end learning of animatable Gaussian avatars with pose guidance from text, generating fully animatable scenes aligned with textual descriptions.", arxiv: "2502.11642" , citations: 0 },
+  { name: "GaussVideoDreamer", short: "GaussVideoDreamer", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Single-image 3D scene generation combining video diffusion with inconsistency-aware Gaussian Splatting.", arxiv: "2504.10001" , citations: 0 },
+  { name: "GS-RGBN", short: "GS-RGBN", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "RGBN-volume Gaussian reconstruction model fixing geometric ambiguity and structural inconsistency in single-view 3D generation from multi-view diffusion images.", arxiv: "2504.01512" , citations: 0 },
+  { name: "GSV3D", short: "GSV3D", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Gaussian Splatting-based geometric distillation with Stable Video Diffusion for single-image 3D object generation.", arxiv: "2503.06136" , citations: 0 },
+  { name: "InStyle", short: "InStyle", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Instant appearance stylization of 3D shapes supporting fast, high-fidelity text-driven manipulation for game, VR and digital-arts asset pipelines.", arxiv: "2512.03683" , citations: 0 },
+  { name: "Lyra", short: "Lyra", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Generative 3D scene reconstruction via video diffusion model self-distillation, producing virtual environments without captured references.", arxiv: "2509.19296" , citations: 0 },
+  { name: "SplatFont3D", short: "SplatFont3D", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Structure-aware text-to-3D artistic font generation with part-level style control, extending artistic font design from flat 2D to personalized 3D.", arxiv: "2512.00413" , citations: 0 },
+  { name: "T2Bs", short: "T2Bs", cat: "AIGC Content Creation", venue: "arXiv", year: 2025, desc: "Text-to-character blendshapes framework combining static text-to-3D generation with video diffusion for animatable head morphable models.", arxiv: "2509.10678" , citations: 0 },
 ];
 
 const METHOD_DETAILS = {
@@ -2030,19 +2051,20 @@ claw skills install jaccen-3dgs-compression-deploy
 claw skills install jaccen-3dgs-articulated-reasoner
 claw skills install jaccen-3dgs-training-debugger
 claw skills install jaccen-ontology
-claw skills install jaccen-super-agent` },
+claw skills install jaccen-super-agent
+claw skills install jaccen-research-expert-team` },
   { label: "Claude Code / Cursor", lang: "bash", code: `# Clone and symlink into your agent's skills directory
 git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
 ln -s Awesome-Gaussian-Skills/skills/* ~/.claude/skills/
 # Or copy directly:
 cp -r Awesome-Gaussian-Skills/skills/* .claude/skills/` },
   { label: "One-click Script (Bash)", lang: "bash", code: `#!/bin/bash
-# Install all 17 skills in one go
+# Install all 18 skills in one go
 REPO="jaccen/Awesome-Gaussian-Skills"
 SKILLS=(3dgs-paper-reader 3dgs-method-compare 3dgs-code-reviewer \\
         3dgs-experiment-planner nerf-to-3dgs-migrator \\
         cad-mesh-3dgs cg-paper-writing 3dgs-visualizer \\
-        3dgs-engineering-guide patent-software-ip 3dgs-spatial-agent 3dgs-mcp-renderer 3dgs-compression-deploy 3dgs-articulated-reasoner 3dgs-training-debugger ontology super-agent)
+        3dgs-engineering-guide patent-software-ip 3dgs-spatial-agent 3dgs-mcp-renderer 3dgs-compression-deploy 3dgs-articulated-reasoner 3dgs-training-debugger ontology super-agent research-expert-team)
 DEST="\${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 mkdir -p "\$DEST" && cd "\$DEST"
 for s in "\${SKILLS[@]}"; do

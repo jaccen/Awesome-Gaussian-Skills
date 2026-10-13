@@ -4,8 +4,8 @@ This directory holds everything needed to get **Awesome Gaussian Skills**
 indexed by four marketplaces: the DSH plugin market, MCP server directories,
 MCP client configs (Cursor/Cline/Claude Desktop), and academic awesome lists.
 
-The repo already ships the *content* (17 AI skills under `skills/`, a stdio
-MCP server under `mcp-server/`, a 934-method catalog). What was missing was
+The repo already ships the *content* (18 AI skills under `skills/`, a stdio
+MCP server under `mcp-server/`, a 955-method catalog). What was missing was
 each market's *entry credential* — the manifest, patch, or listing file that
 a market requires before it will index you. Those are added here and in the
 repo root.
@@ -61,7 +61,7 @@ the repo has the referenced `cordis.patch.yml`. ✅ done.
    (`设置 → 插件市场`), searchable by name.
 
 > The entry uses `category: skill`. Valid categories are listed in the
-> market's `contributing.md`; `skill` fits best (17 skills are the primary
+> market's `contributing.md`; `skill` fits best (18 skills are the primary
 > asset). A maintainer may move it to `tools` if they judge the MCP server
 > to be the stronger draw — both are fine.
 
@@ -117,7 +117,7 @@ users arriving from any of these markets find the others:
 
 | Client | How |
 |---|---|
-| **DSH (DeepSeek Harness)** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — 17 skills + MCP renderer auto-mounted |
+| **DSH (DeepSeek Harness)** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — 18 skills + MCP renderer auto-mounted |
 | **Claude Desktop / Cursor / Cline** | copy the MCP config from [client-configs](.marketplace/mcp-servers/client-configs.md) |
 | **Claude Code / OpenClaw** | skills load directly from `skills/` (see `CLAUDE.md`) |
 ```

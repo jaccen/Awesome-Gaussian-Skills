@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-10-13",
+ "generated_at": "2026-10-14",
  "generator": "scripts/build_knowledge_base.py",
- "count": 934,
- "category_count": 25,
+ "count": 955,
+ "category_count": 26,
  "categories": {
   "Foundation": 26,
   "Optimization": 51,
@@ -13,7 +13,7 @@
   "Feed-Forward": 90,
   "Language & Semantic": 38,
   "Generation": 41,
-  "Autonomous Driving": 25,
+  "Autonomous Driving": 24,
   "Dynamic & 4D": 93,
   "HDR & Relighting": 27,
   "SLAM": 47,
@@ -28,7 +28,8 @@
   "Robustness": 22,
   "Security": 11,
   "Ontology & Knowledge Representation": 12,
-  "Super Agents & Agentic AI": 20
+  "Super Agents & Agentic AI": 20,
+  "AIGC Content Creation": 22
  },
  "methods": [
   {
@@ -5401,19 +5402,6 @@
    ]
   },
   {
-   "name": "CGGS",
-   "arxiv_id": "",
-   "venue": "arXiv",
-   "year": 2026,
-   "category": "Autonomous Driving",
-   "desc": "Consistency-Augmented Geometric GS for ego-centric 3D scene generation; consistency-augmented loss + mutual information depth loss (MID) for hierarchical geometry-visual optimization",
-   "code_url": "",
-   "sources": [
-    "csv",
-    "explorer"
-   ]
-  },
-  {
    "name": "ConFixGS",
    "arxiv_id": "2605.09688",
    "venue": "arXiv",
@@ -7775,7 +7763,8 @@
    "desc": "Compact voxel-based 3DGS for dense visual SLAM",
    "code_url": "",
    "sources": [
-    "csv"
+    "csv",
+    "explorer"
    ]
   },
   {
@@ -12166,6 +12155,292 @@
    "year": 2024,
    "category": "Super Agents & Agentic AI",
    "desc": "On-device 2B-parameter language model for super-agent function calling that surpasses GPT-4 in accuracy and latency, enabling efficient context-aware execution on edge devices.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "CGGS",
+   "arxiv_id": "2607.03819",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Consistency-Augmented Geometric GS for ego-centric 3D scene generation; consistency-augmented loss + mutual information depth loss (MID) for hierarchical geometry-visual optimization",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "Flex4DHuman",
+   "arxiv_id": "2606.13655",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Multi-view video diffusion transforming monocular or sparse multi-view video into synchronized dense multi-view sequences via relative camera-pose conditioning for 4D human reconstruction.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "LightHarmony3D",
+   "arxiv_id": "2603.29209",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Harmonizes illumination and shadows when inserting external mesh objects into reconstructed 3DGS scenes for interactive editing and content augmentation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "OmniStyle-INR",
+   "arxiv_id": "2607.16362",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Universal multimodal style transfer across implicit neural representations including Gaussian Splatting, conditioned by reference images and textual descriptions.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "PSGS",
+   "arxiv_id": "2602.00463",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Text-driven panorama sliding scene generation via Gaussian Splatting for immersive VR/AR/gaming content, overcoming limited 3D-text data and inconsistent multi-view stitching.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "UniWorld-View",
+   "arxiv_id": "2608.04701",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Large-baseline novel view synthesis from casually captured monocular media via video diffusion models for immersive content creation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "VirSqueezer",
+   "arxiv_id": "2609.01698",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "AIGC Content Creation",
+   "desc": "Generates realistic localized deformations and squeezing dynamics in VR content creation from fine-grained per-finger squeezing controls.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "CSD",
+   "arxiv_id": "2505.04262",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Coupled Score Distillation couples multi-view joint distribution priors from diffusion models to ensure geometry-coherent text-to-3D generation with stable direct 3DGS optimization.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "DD3G",
+   "arxiv_id": "2504.00457",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Distills a multi-view diffusion model into a 3D generator using Gaussian splatting, compressing visual and spatial knowledge via ODE simulation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "DiffSplat",
+   "arxiv_id": "2501.16764",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Repurposes pretrained image diffusion models for scalable 3D Gaussian splat generation from text or a single image, natively generating 3D Gaussians with 2D diffusion priors.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "DirectGaussian",
+   "arxiv_id": "2510.06967",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Text-to-3D method directly generating object surfaces as 2D Gaussian splatting surfels, combining conditional text generation with surface representation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "Drag4D",
+   "arxiv_id": "2509.21888",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Interactive framework integrating object motion control via user-defined 3D trajectories into text-driven 3D scene generation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "Dragen3D",
+   "arxiv_id": "2502.16475",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Multiview geometry-consistent 3D Gaussian generation with drag-based control for single-image 3D content creation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "DreamArt",
+   "arxiv_id": "2507.05763",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Generates interactable articulated objects with part decomposition and joint articulation from a single image for Embodied AI and AR/VR.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "GaussianMotion",
+   "arxiv_id": "2502.11642",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "End-to-end learning of animatable Gaussian avatars with pose guidance from text, generating fully animatable scenes aligned with textual descriptions.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "GaussVideoDreamer",
+   "arxiv_id": "2504.10001",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Single-image 3D scene generation combining video diffusion with inconsistency-aware Gaussian Splatting.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "GS-RGBN",
+   "arxiv_id": "2504.01512",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "RGBN-volume Gaussian reconstruction model fixing geometric ambiguity and structural inconsistency in single-view 3D generation from multi-view diffusion images.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "GSV3D",
+   "arxiv_id": "2503.06136",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Gaussian Splatting-based geometric distillation with Stable Video Diffusion for single-image 3D object generation.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "InStyle",
+   "arxiv_id": "2512.03683",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Instant appearance stylization of 3D shapes supporting fast, high-fidelity text-driven manipulation for game, VR and digital-arts asset pipelines.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "Lyra",
+   "arxiv_id": "2509.19296",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Generative 3D scene reconstruction via video diffusion model self-distillation, producing virtual environments without captured references.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "SplatFont3D",
+   "arxiv_id": "2512.00413",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Structure-aware text-to-3D artistic font generation with part-level style control, extending artistic font design from flat 2D to personalized 3D.",
+   "code_url": "",
+   "sources": [
+    "csv",
+    "explorer"
+   ]
+  },
+  {
+   "name": "T2Bs",
+   "arxiv_id": "2509.10678",
+   "venue": "arXiv 2025",
+   "year": 2025,
+   "category": "AIGC Content Creation",
+   "desc": "Text-to-character blendshapes framework combining static text-to-3D generation with video diffusion for animatable head morphable models.",
    "code_url": "",
    "sources": [
     "csv",

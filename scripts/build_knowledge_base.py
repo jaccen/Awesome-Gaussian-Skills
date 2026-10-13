@@ -77,6 +77,7 @@ CANONICAL_CATEGORIES = [
     "Human & Avatar", "Editing", "CAD & Reverse Engineering", "Cross-Domain",
     "Simulation", "Embodied AI & Robotics", "Robustness", "Security", "Event Camera",
     "Ontology & Knowledge Representation", "Super Agents & Agentic AI",
+    "AIGC Content Creation",
 ]
 
 CATEGORY_MAP = {
@@ -197,6 +198,11 @@ CATEGORY_MAP = {
     "agentic": "Super Agents & Agentic AI",
     "multi-agent": "Super Agents & Agentic AI",
     "llm agent": "Super Agents & Agentic AI",
+    # --- AIGC Content Creation (2026-10 new category)
+    "aigc content creation": "AIGC Content Creation",
+    "aigc": "AIGC Content Creation",
+    "content creation": "AIGC Content Creation",
+    "ai-generated content": "AIGC Content Creation",
     # --- 其他历史标签兜底
     "survey": "Foundation", "benchmark": "Foundation", "dataset": "Foundation",
     "applications": "Cross-Domain", "applications/mr": "Cross-Domain",

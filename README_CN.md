@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 934 方法，25 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 955 方法，26 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-934-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-955-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 934 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 955 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（934 方法、25 类别、17 技能），零虚构：**
+**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（955 方法、26 类别、18 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -78,7 +78,7 @@
 | CH 12 | 从采集到交付：端到端工程链路 | 十个环节的工具选型与卡点、格式与坐标系、成本工期量级、项目失败模式 |
 | CH 13 | 产业落地剧本：六个行业 | 文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维 |
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
-| 实 | 实践资源索引：从书到工程 | 17 个工程技能 · 34 个 MCP 工具 · 934+ 方法浏览器，章节到可运行资源的映射 |
+| 实 | 实践资源索引：从书到工程 | 18 个工程技能 · 34 个 MCP 工具 · 955+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
 
 每章末尾附带动手练习，并回链仓库的方法表格、`references/` 和技能 —— 读书与工程实践融为一体。
@@ -91,13 +91,25 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 934 方法名、摘要和 17 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 955 方法名、摘要和 18 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 10 月）
 
-最新更新（10 月 13 日）：**v0.9.9 — 知识库扩容：900 → 934，新增 2 个技能** ⭐
+最新更新（10 月 13 日）：**v0.9.10 — AIGC Content Creation 分类 + 科研专家团技能** ⭐
+
+新增分类 **AIGC Content Creation**（22 篇；分类 25 → 26）：3DGS 之上的 AI 生成内容创作层 ——
+文生/图生 3DGS 场景与资产、生成式场景重建、风格化、3D 艺术字体、化身生成。锚点方法
+`DiffSplat`、`Dragen3D`、`PSGS`、`Lyra`、`CSD`、`SplatFont3D`，另有 6 篇 2026 最新
+（`VirSqueezer`、`CGGS`、`UniWorld-View`、`OmniStyle-INR`、`Flex4DHuman`、`LightHarmony3D`）；
+库中原有 `CGGS` 条目补全 arXiv ID（2607.03819）并重分类。新增技能
+**`research-expert-team`**（17 → 18）：九角色科研全流程专家团 —— idea 评价、创新点挖掘、
+模拟审稿、学术润色、AIGC 痕迹治理（出版卫生）、投稿框架与 venue 合规、严格按格式撰写、
+实验设计与实验分析 —— 内置三个前沿方向（本体 / 超级智能体 / AIGC 内容创作）的方法选型表。
+方法库 **934 → 955**；全部载体重新核验为 955，名称集合逐条一致。详见 [更新日志](changelog/2026-10-13-v3.md)。
+
+上一次更新（10 月 13 日）：**v0.9.9 — 知识库扩容：900 → 934，新增 2 个技能** ⭐
 
 新增 **34** 篇经 arXiv 核验的 3DGS 方法，方法库由 **900 扩充至 934**，分类由 **23 类增至 25 类**：
 新增两个横切类别 —— *Ontology & Knowledge Representation*（12 篇）与 *Super Agents & Agentic AI*（20 篇）。
@@ -230,7 +242,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（934 方法，25 类别）
+## 知识库（955 方法，26 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -243,7 +255,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 > 下载完整数据库：[CSV](3dgs-methods-overview.csv) | 完整分析：[references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
 
 <details>
-<summary><strong>完整类别表（25 类别）</strong></summary>
+<summary><strong>完整类别表（26 类别）</strong></summary>
 
 **核心表示**
 
@@ -270,17 +282,19 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 |------|------|------|
 | 语言/语义 | 开放词汇 3D 理解与语言场 | LangSplat, Feature 3DGS, Semantic Foam, ReferSplat, Gaga |
 | 生成/文生3D | 文本/条件驱动的 3D 生成 | DreamGaussian, SceneGen-LLMRL, PanoWorld, MORPHOS |
+| AIGC 内容创作 | AI 生成内容创作层：文生/图生 3DGS 场景与资产、风格化、艺术字体 | DiffSplat, Dragen3D, PSGS |
 | 自动驾驶 | 驾驶场景重建与仿真 | Real2Sim, ConFixGS, P2GS, GEM, StreetNVS |
 
 **动态与空间**
 
 | 类别 | 说明 | 方法 |
 |------|------|------|
-| 动态与 4D (97) | 4D 高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, WebSpline, LoopGaussian, 3DGStream |
+| 动态与 4D (93) | 4D 高斯、时序变形与传播 | ParticleGS, 3DGS³, Velox, WebSpline, LoopGaussian, 3DGStream |
 | HDR/动态 | HDR 采集与时变光照 | HDR-NSFF, FreeTimeGS++ |
 | SLAM | 同步定位与建图 | GaussianSplatting-SLAM-v2, GS-Map-SLAM, 2DGS-SLAM, MAGS-SLAM, ULF-Loc, GGD-SLAM |
 | 稀疏视角 | 少视角与稀疏视角重建 | FrameTwin, GeoQuery, VidSplat, PanoPlane |
 | 空间智能与世界模型 | 3D 空间推理、世界建模、神经符号 | Holi-Spatial, Spatial-TTT, OpenSpatial, APEIRIA, S2AM3D |
+| 本体与知识表示 | 场景图、空间本体、神经符号空间推理 | DynamicGSG, SATURN, OntoPlan |
 
 **应用与跨领域**
 
@@ -294,6 +308,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 仿真 | 物理仿真与代理模型 | GS-Playground, GS-Surrogate, FieryGS |
 | 具身智能/机器人 | 抓取、操作、导航与 Sim2Real | GaussianGrasper, GraspSplats, LEGS, RoboSplat |
 | 铰接/数字孪生 | 铰接物体交互与数字孪生 | ArtiTwinSplat |
+| 超级智能体与 Agentic AI | 多智能体 LLM 系统、3D/空间智能体集成、智能体基准 | Octopus v2, SPLATIFY, COLMAR |
 | 鲁棒性 | 野外与退化鲁棒重建 | NRGS, DualSplat, HarmoGS |
 | 安全 | 水印嵌入、版权保护与伪造检测 | RDSplat, GuardMarkGS, 3DEditSafe |
 | 世界模型 | 3DGS 世界模型与场景预测 | MRO-GWM |
@@ -301,7 +316,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 </details>
 
-## 17 AI 驱动技能
+## 18 AI 驱动技能
 
 | # | 技能 | 功能 | 示例 |
 |---|------|------|------|
@@ -322,6 +337,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 15 | [3dgs-training-debugger](skills/3dgs-training-debugger/) | 训练故障诊断：OOM、NaN、发散、伪影（60+ 运行时模式） | "训练OOM了怎么办？" |
 | 16 | [`ontology`](skills/ontology/) | 本体与知识表示：3D 场景图、空间本体、神经符号推理 | "把 3DGS 场景接入知识图谱" |
 | 17 | [`super-agent`](skills/super-agent/) | 超级智能体与多智能体系统设计、编排与诊断 | "设计一个多智能体 3D 重建流水线" |
+| 18 | [`research-expert-team`](skills/research-expert-team/) | 九角色科研专家团：idea 评价、创新点挖掘、模拟审稿、润色、AIGC 痕迹治理、投稿框架与格式合规、实验设计与分析 | "评审这个 idea 并设计消融实验" |
 
 兼容 **Claude Code**、**Cursor**、**Windsurf** 及其他 AI Agent 框架。
 
@@ -420,7 +436,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ```
 Awesome-Gaussian-Skills/
-├── skills/                    # 17 个 AI Agent 技能（SKILL.md 格式）
+├── skills/                    # 18 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
 │   ├── 3dgs-code-reviewer/    # 代码审查（104 bug 模式）
@@ -438,7 +454,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（934 方法，25 类别）
+├── references/                # 知识库（955 方法，26 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
@@ -703,7 +719,7 @@ curl -s http://localhost:10590/api/pipeline/tasks \
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {934 arXiv-verified methods across 25 categories, 17 AI agent skills, and an MCP server with 34 tools}
+  note = {955 arXiv-verified methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -717,7 +733,7 @@ curl -s http://localhost:10590/api/pipeline/tasks \
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — 全面论文合集
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
 
-> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 934 已核验方法、17 个技能、34 个 MCP 工具。
+> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 955 已核验方法、18 个技能、34 个 MCP 工具。
 
 ## 许可证
 

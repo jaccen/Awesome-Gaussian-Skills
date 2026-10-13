@@ -1562,6 +1562,31 @@ All method names self-stated in the paper title/abstract (R9 protocol); 12 candi
 - **LatentSplat** [arXiv:2403.16292](https://arxiv.org/abs/2403.16292) (ECCV 2024) — Restored: was present in the 2026-08 frontier batch but lost in a later rebuild; compressed latent-space variational Gaussian prediction
 - **PhysGaussian** [arXiv:2311.12198](https://arxiv.org/abs/2311.12198) (CVPR 2024) — Restored: MPM physics integrated into 3D Gaussian particles, network-free dynamic simulation
 
+### AIGC Content Creation (22)
+
+- **VirSqueezer** [arXiv:2609.01698](https://arxiv.org/abs/2609.01698) (arXiv 2026) — Realistic localized deformations and squeezing dynamics for VR content creation from fine-grained per-finger controls
+- **CGGS** [arXiv:2607.03819](https://arxiv.org/abs/2607.03819) (arXiv 2026) — Consistency-augmented geometric Gaussian Splatting for ego-centric 3D scene generation (arXiv ID backfilled onto the pre-existing entry)
+- **UniWorld-View** [arXiv:2608.04701](https://arxiv.org/abs/2608.04701) (arXiv 2026) — Large-baseline view synthesis from casually captured monocular media via video diffusion for immersive content creation
+- **OmniStyle-INR** [arXiv:2607.16362](https://arxiv.org/abs/2607.16362) (arXiv 2026) — Universal multimodal style transfer across INRs including Gaussian Splatting
+- **Flex4DHuman** [arXiv:2606.13655](https://arxiv.org/abs/2606.13655) (arXiv 2026) — Multi-view video diffusion for 4D human reconstruction via relative camera-pose conditioning
+- **LightHarmony3D** [arXiv:2603.29209](https://arxiv.org/abs/2603.29209) (arXiv 2026) — Illumination and shadow harmonization for object insertion into reconstructed 3DGS scenes
+- **PSGS** [arXiv:2602.00463](https://arxiv.org/abs/2602.00463) (arXiv 2026) — Text-driven panorama sliding scene generation via Gaussian Splatting
+- **SplatFont3D** [arXiv:2512.00413](https://arxiv.org/abs/2512.00413) (arXiv 2025) — Structure-aware text-to-3D artistic font generation with part-level style control
+- **InStyle** [arXiv:2512.03683](https://arxiv.org/abs/2512.03683) (arXiv 2025) — Instant appearance stylization of 3D shapes for game/VR/digital-arts pipelines
+- **DirectGaussian** [arXiv:2510.06967](https://arxiv.org/abs/2510.06967) (arXiv 2025) — Text-to-3D surfaces directly as 2D Gaussian splatting surfels
+- **Drag4D** [arXiv:2509.21888](https://arxiv.org/abs/2509.21888) (arXiv 2025) — Object motion control via user-defined 3D trajectories inside text-driven 3D scene generation
+- **Lyra** [arXiv:2509.19296](https://arxiv.org/abs/2509.19296) (arXiv 2025) — Generative 3D scene reconstruction via video diffusion model self-distillation
+- **T2Bs** [arXiv:2509.10678](https://arxiv.org/abs/2509.10678) (arXiv 2025) — Text-to-character blendshapes combining text-to-3D generation with video diffusion
+- **DreamArt** [arXiv:2507.05763](https://arxiv.org/abs/2507.05763) (arXiv 2025) — Interactable articulated objects from a single image
+- **CSD** [arXiv:2505.04262](https://arxiv.org/abs/2505.04262) (arXiv 2025) — Coupled Score Distillation: multi-view joint distribution priors for geometry-coherent text-to-3D
+- **GaussVideoDreamer** [arXiv:2504.10001](https://arxiv.org/abs/2504.10001) (arXiv 2025) — Single-image 3D scene generation with video diffusion and inconsistency-aware Gaussian Splatting
+- **GS-RGBN** [arXiv:2504.01512](https://arxiv.org/abs/2504.01512) (arXiv 2025) — RGBN-volume Gaussian reconstruction for single-view 3D generation
+- **DD3G** [arXiv:2504.00457](https://arxiv.org/abs/2504.00457) (arXiv 2025) — Distilling a multi-view diffusion model into a 3D generator using Gaussian splatting
+- **GSV3D** [arXiv:2503.06136](https://arxiv.org/abs/2503.06136) (arXiv 2025) — Gaussian Splatting-based geometric distillation with Stable Video Diffusion for single-image 3D object generation
+- **Dragen3D** [arXiv:2502.16475](https://arxiv.org/abs/2502.16475) (arXiv 2025) — Multiview geometry-consistent 3D Gaussian generation with drag-based control
+- **GaussianMotion** [arXiv:2502.11642](https://arxiv.org/abs/2502.11642) (arXiv 2025) — Animatable Gaussian avatars with pose guidance from text
+- **DiffSplat** [arXiv:2501.16764](https://arxiv.org/abs/2501.16764) (arXiv 2025) — Repurposes image diffusion models for scalable Gaussian splat generation
+
 ### Admissions Note
 
 One candidate (collaborative RGB-inertial multi-agent GS SLAM, arXiv:2608.26868) shares its self-stated name "CGS-SLAM" with the existing IROS 2025 entry (a different paper, compact voxel dense visual SLAM). Per the single-source deduplication guarantee, the existing entry was preserved unchanged and the new admission was dropped.
@@ -1570,6 +1595,7 @@ One candidate (collaborative RGB-inertial multi-agent GS SLAM, arXiv:2608.26868)
 
 | Category | Count |
 |----------|-------|
+| AIGC Content Creation | 22 (new) |
 | Super Agents & Agentic AI | 20 (new) |
 | Ontology & Knowledge Representation | 12 (new) |
-| **Total** | **934** |
+| **Total** | **955** |

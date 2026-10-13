@@ -4,20 +4,21 @@
     "name": "jaccen"
   },
   "metadata": {
-    "description": "17 research-grade AI agent skills for 3D Gaussian Splatting, backed by a 934-method arXiv-verified knowledge base",
-    "version": "0.9.9"
+    "description": "18 research-grade AI agent skills for 3D Gaussian Splatting, backed by a 955-method arXiv-verified knowledge base",
+    "version": "0.9.10"
   },
   "plugins": [
     {
       "name": "gaussian-research",
-      "description": "Research cycle: read 3DGS papers, compare methods across 11 dimensions, plan CVPR/ICCV/SIGGRAPH experiments, write and review papers with the 934-method knowledge base",
+      "description": "Research cycle: read 3DGS papers, compare methods across 11 dimensions, plan CVPR/ICCV/SIGGRAPH experiments, write and review papers with the 955-method knowledge base, and run the nine-role research expert team (idea evaluation, innovation mining, simulated review, polishing, AIGC-trace hygiene, venue compliance, experiment design & analysis)",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/3dgs-paper-reader",
         "./skills/3dgs-method-compare",
         "./skills/3dgs-experiment-planner",
-        "./skills/cg-paper-writing"
+        "./skills/cg-paper-writing",
+        "./skills/research-expert-team"
       ]
     },
     {
