@@ -1,7 +1,7 @@
 # Cordis patch — registers Awesome-Gaussian-Skills as a DSH plugin.
 #
 # Two contributions over the base profile:
-#   1. A bundled filesystem skill provider that loads the 15 skills under
+#   1. A bundled filesystem skill provider that loads the 17 skills under
 #      `skills/` (each `skills/<name>/SKILL.md` follows the DSH skill
 #      frontmatter contract: YAML `name` + `description`, Markdown body).
 #      `bundledSkillDir` resolves relative to this plugin package.

@@ -22,7 +22,7 @@ So I wrote a free, single-file, offline-readable ebook: **《深入理解空间�
 - **13 chapters** from NeRF→3DGS through the engineering core (incl. a 104 bug-pattern debugging table), semantic Gaussians, embodied foundations, 3DGS-as-spatial-memory (GS-SLAM), agent-driven digital twins, world models, and safety/provenance
 - **62 arXiv-cited references**, formula boxes, comparison tables, end-of-chapter questions
 
-It's backed by an open knowledge base where **every one of 900 methods / 23 categories** is re-verified against its arXiv paper (name must appear in title/abstract) — no inflated counts, no fabricated method names. Plus 15 agent skills and an MCP server (34 tools) so local agents can query it.
+It's backed by an open knowledge base where **every one of 934 methods / 25 categories** is re-verified against its arXiv paper (name must appear in title/abstract) — no inflated counts, no fabricated method names. Plus 17 agent skills and an MCP server (34 tools) so local agents can query it.
 
 Stack: single static HTML (no build step), JSON source of truth, CI enforces cross-carrier consistency.
 

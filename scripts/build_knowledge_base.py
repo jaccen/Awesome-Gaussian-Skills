@@ -76,6 +76,7 @@ CANONICAL_CATEGORIES = [
     "HDR & Relighting", "SLAM", "Sparse-View", "World Models & Spatial Intelligence",
     "Human & Avatar", "Editing", "CAD & Reverse Engineering", "Cross-Domain",
     "Simulation", "Embodied AI & Robotics", "Robustness", "Security", "Event Camera",
+    "Ontology & Knowledge Representation", "Super Agents & Agentic AI",
 ]
 
 CATEGORY_MAP = {
@@ -184,6 +185,18 @@ CATEGORY_MAP = {
     "copyright": "Security",
     # --- Event Camera
     "event camera": "Event Camera", "event": "Event Camera", "neuromorphic": "Event Camera",
+    # --- Ontology & Knowledge Representation (2026-10 new categories)
+    "ontology & knowledge representation": "Ontology & Knowledge Representation",
+    "ontology": "Ontology & Knowledge Representation",
+    "knowledge graph": "Ontology & Knowledge Representation",
+    "neuro-symbolic": "Ontology & Knowledge Representation",
+    "scene graph": "Ontology & Knowledge Representation",
+    # --- Super Agents & Agentic AI (2026-10 new category)
+    "super agents & agentic ai": "Super Agents & Agentic AI",
+    "super agents": "Super Agents & Agentic AI",
+    "agentic": "Super Agents & Agentic AI",
+    "multi-agent": "Super Agents & Agentic AI",
+    "llm agent": "Super Agents & Agentic AI",
     # --- 其他历史标签兜底
     "survey": "Foundation", "benchmark": "Foundation", "dataset": "Foundation",
     "applications": "Cross-Domain", "applications/mr": "Cross-Domain",

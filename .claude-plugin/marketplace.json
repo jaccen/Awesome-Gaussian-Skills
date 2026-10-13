@@ -4,13 +4,13 @@
     "name": "jaccen"
   },
   "metadata": {
-    "description": "15 research-grade AI agent skills for 3D Gaussian Splatting, backed by a 900-method arXiv-verified knowledge base",
-    "version": "0.9.8"
+    "description": "17 research-grade AI agent skills for 3D Gaussian Splatting, backed by a 934-method arXiv-verified knowledge base",
+    "version": "0.9.9"
   },
   "plugins": [
     {
       "name": "gaussian-research",
-      "description": "Research cycle: read 3DGS papers, compare methods across 11 dimensions, plan CVPR/ICCV/SIGGRAPH experiments, write and review papers with the 900-method knowledge base",
+      "description": "Research cycle: read 3DGS papers, compare methods across 11 dimensions, plan CVPR/ICCV/SIGGRAPH experiments, write and review papers with the 934-method knowledge base",
       "source": "./",
       "strict": false,
       "skills": [
@@ -35,7 +35,7 @@
     },
     {
       "name": "gaussian-domain",
-      "description": "Cross-domain bridges: CAD/Mesh-3DGS conversion, spatial intelligence agent, articulated object reasoning, NeRF-to-3DGS migration, patent/IP documentation, MCP-driven 3DGS rendering and sculpting",
+      "description": "Cross-domain bridges: CAD/Mesh-3DGS conversion, spatial intelligence agent, articulated object reasoning, NeRF-to-3DGS migration, patent/IP documentation, MCP-driven 3DGS rendering and sculpting, ontology-grounded scene representation, super-agent & multi-agent orchestration",
       "source": "./",
       "strict": false,
       "skills": [
@@ -44,7 +44,9 @@
         "./skills/3dgs-articulated-reasoner",
         "./skills/nerf-to-3dgs-migrator",
         "./skills/patent-software-ip",
-        "./skills/3dgs-mcp-renderer"
+        "./skills/3dgs-mcp-renderer",
+        "./skills/ontology",
+        "./skills/super-agent"
       ]
     }
   ]

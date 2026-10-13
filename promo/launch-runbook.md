@@ -1,7 +1,7 @@
 # 全渠道协同首发 Runbook（以电子书为主角）
 
 目标：让《深入理解空间智能与具身智能 · 以 3D Gaussian Splatting 为核心》广泛传阅、快速建立行业影响力。
-核心资产：电子书 `docs/spatial-embodied-intelligence.html`（3116 行自包含 HTML）+ 仓库知识库（900/23/15/34，全部 arXiv 逐条核验）。
+核心资产：电子书 `docs/spatial-embodied-intelligence.html`（3116 行自包含 HTML）+ 仓库知识库（934/25/17/34，全部 arXiv 逐条核验）。
 
 ---
 
@@ -17,7 +17,7 @@
 执行 `promo/github-facelift.md`：
 1. 上传 `promo/social-preview.png` 作 Social preview；
 2. 加 Topics（3d-gaussian-splatting / physical-ai / embodied-ai / mcp / knowledge-base …）；
-3. About 的 **Website 指向 `https://spatial-embodied-ebook.app.workbuddy.host/`**，Description 写"900 arXiv-verified 3DGS methods + an open ebook on Spatial & Embodied Intelligence"；
+3. About 的 **Website 指向 `https://spatial-embodied-ebook.app.workbuddy.host/`**，Description 写"934 arXiv-verified 3DGS methods + an open ebook on Spatial & Embodied Intelligence"；
 4. 仓库 Pinned、发 Release **v0.9.x「随书发布」**、开 Discussions 并置顶"Submit your paper / 方法提名"帖；
 5. README 首屏追加 Star History 卡片。
 
@@ -54,4 +54,4 @@
 
 ## 一致性红线
 
-所有对外文案数字必须与 `data/methods.json` 一致：**900 方法 / 23 分类 / 15 技能 / 34 MCP 工具**，且"可核实"口径不得弱化。
+所有对外文案数字必须与 `data/methods.json` 一致：**934 方法 / 25 分类 / 17 技能 / 34 MCP 工具**，且"可核实"口径不得弱化。

@@ -1513,3 +1513,63 @@ All method names self-stated in the paper title/abstract (R9 protocol); 12 candi
 |----------|-------|
 | World Models & Spatial Intelligence | 12 (was 8, +4 new +0 reclassified) |
 | **Total** | **900** |
+
+## Newly Added Categories (October 13, 2026 — Super Agents & Agentic AI / Ontology & Knowledge Representation)
+
+**Date:** 2026-10-13
+**Scope:** Two new categories admitted, expanding the taxonomy from 23 to 25 and the library from 900 to 934. 34 new arXiv-verified methods (32 new admissions + 2 historically lost frontier entries restored: LatentSplat, PhysGaussian). One admission candidate (collaborative RGB-inertial GS SLAM, arXiv:2608.26868) was **dropped** due to a name collision with the existing IROS 2025 CGS-SLAM entry. Two new skills added (`super-agent`, `ontology`).
+
+### Super Agents & Agentic AI (20)
+
+- **Octopus v2** [arXiv:2404.01744](https://arxiv.org/abs/2404.01744) (arXiv 2024) — On-device 2B language model for super-agent function calling surpassing GPT-4 in accuracy and latency
+- **Artisan** [arXiv:2610.13947](https://arxiv.org/abs/2610.13947) (arXiv 2026) — Multi-agent pipeline with physical simulation feedback for physically grounded articulated 3D assets
+- **SwarmWorld** [arXiv:2608.26081](https://arxiv.org/abs/2608.26081) (arXiv 2026) — Decentralized LLM-agent societies self-organizing via stigmergy into evolving technological societies
+- **E-Ledger** [arXiv:2610.11552](https://arxiv.org/abs/2610.11552) (arXiv 2026) — Multi-agent harness for safe, persistent execution in partially observable worlds (code approval + world ledger)
+- **SkillScriptBench** [arXiv:2610.04008](https://arxiv.org/abs/2610.04008) (arXiv 2026) — 350-task benchmark for executable agent skill package self-evolution (doc repair / script repair / behavior preservation)
+- **MeMoREval** [arXiv:2610.12561](https://arxiv.org/abs/2610.12561) (arXiv 2026) — Controlled experience-request benchmark on which memory modalities embodied agents should retain
+- **WorldBench** [arXiv:2610.10622](https://arxiv.org/abs/2610.10622) (arXiv 2026) — Benchmark and judge for open-ended LLM-generated Three.js voxel worlds
+- **SearchWorld** [arXiv:2610.09335](https://arxiv.org/abs/2610.09335) (arXiv 2026) — Spatial value-grounded imagination via world models for UAV object search
+- **GATOR** [arXiv:2610.11215](https://arxiv.org/abs/2610.11215) (arXiv 2026) — Generative and agentic 3D object reconstruction from casual images with occlusion inference
+- **SPLATIFY** [arXiv:2610.09116](https://arxiv.org/abs/2610.09116) (arXiv 2026) — Multi-agent conversion of 3DGS papers into trainable gsplat implementations via a context-free grammar
+- **CADFather** [arXiv:2610.09127](https://arxiv.org/abs/2610.09127) (arXiv 2026) — Autonomous agentic CAD reconstruction through coordinated tool use
+- **CityPlanner** [arXiv:2609.09578](https://arxiv.org/abs/2609.09578) (arXiv 2026) — Sandbox agent for executable urban planning with inspect → plan → evaluate → revise loops
+- **GISAgentBench** [arXiv:2608.01645](https://arxiv.org/abs/2608.01645) (arXiv 2026) — Practitioner-sourced benchmark for LLM agents on realistic multi-step GIS workflows
+- **DesignAgent3D** [arXiv:2608.21438](https://arxiv.org/abs/2608.21438) (arXiv 2026) — Interactive 3D scene editing agent with designer-like multimodal reasoning
+- **PhotoAgent** [arXiv:2603.22796](https://arxiv.org/abs/2603.22796) (arXiv 2026) — Robotic photographer integrating LMM reasoning with geometric solvers in an internal world model
+- **COLMAR** [arXiv:2607.13524](https://arxiv.org/abs/2607.13524) (arXiv 2026) — Cooperative view policy learning for multi-agent active 3D reconstruction
+- **GN0** [arXiv:2606.03682](https://arxiv.org/abs/2606.03682) (arXiv 2026) — Unified generation-evaluation-policy paradigm for VLN on a 3DGS simulation engine
+- **GASE** [arXiv:2606.17520](https://arxiv.org/abs/2606.17520) (arXiv 2026) — Automated GS reconstruction of embodied-simulation environments with minimal sim-to-real gap
+- **E3VS-Bench** [arXiv:2604.17969](https://arxiv.org/abs/2604.17969) (arXiv 2026) — Viewpoint-dependent active perception benchmark in 3DGS scenes under 5-DoF control
+- **GRAND-SLAM** [arXiv:2506.18885](https://arxiv.org/abs/2506.18885) (arXiv 2025) — Large-scale multi-agent Gaussian SLAM with local-optimization tracking for global consistency
+
+### Ontology & Knowledge Representation (12)
+
+- **OntoPlan** [arXiv:2610.07649](https://arxiv.org/abs/2610.07649) (arXiv 2026) — Ontology-grounded scene representation and agentic framework for scalable long-horizon robot task planning
+- **GraphWrit3R** [arXiv:2609.31595](https://arxiv.org/abs/2609.31595) (arXiv 2026) — End-to-end 3D scene graph writing without multi-stage pipelines or proprietary models
+- **HiWE** [arXiv:2609.39323](https://arxiv.org/abs/2609.39323) (arXiv 2026) — Hierarchical world knowledge model with visual keypoint enhancement for zero-shot 3D path planning
+- **SATURN** [arXiv:2606.22694](https://arxiv.org/abs/2606.22694) (arXiv 2026) — Neuro-symbolic perspective-aware compositional spatial reasoning with a training-free symbolic executor
+- **NEUROSYMLAND** [arXiv:2607.02277](https://arxiv.org/abs/2607.02277) (arXiv 2026) — Neuro-symbolic UAV landing-site assessment via probabilistic semantic scene graphs + symbolic safety constraints
+- **GRASP** [arXiv:2606.12910](https://arxiv.org/abs/2606.12910) (arXiv 2026) — Grounded reasoning and symbolic planning: VLM translates natural language into PDDL goals for open-vocabulary manipulation
+- **Vision-TL-Action** [arXiv:2607.26770](https://arxiv.org/abs/2607.26770) (arXiv 2026) — Neuro-symbolic trajectory generation from visual observations and coordinate-free temporal logic
+- **Prior-SG** [arXiv:2608.06170](https://arxiv.org/abs/2608.06170) (arXiv 2026) — Task/prior-driven scene graph generation as probabilistic alignment for arbitrarily-structured environments
+- **KLDrive** [arXiv:2603.21029](https://arxiv.org/abs/2603.21029) (arXiv 2026) — Knowledge-graph-augmented LLM reasoning for fine-grained 3D scene QA in autonomous driving
+- **EmbodiedVSR** [arXiv:2503.11089](https://arxiv.org/abs/2503.11089) (arXiv 2025) — Dynamic scene graph-guided chain-of-thought reasoning for visual spatial tasks
+- **DynamicGSG** [arXiv:2502.15309](https://arxiv.org/abs/2502.15309) (arXiv 2025) — Dynamic, open-vocabulary 3D Gaussian scene graphs for environment adaptation
+- **Graph-GSReg** [arXiv:2606.29782](https://arxiv.org/abs/2606.29782) (arXiv 2026) — 3D scene graph based registration merging multiple 3DGS scenes into one unified representation
+
+### Frontier Restoration (2)
+
+- **LatentSplat** [arXiv:2403.16292](https://arxiv.org/abs/2403.16292) (ECCV 2024) — Restored: was present in the 2026-08 frontier batch but lost in a later rebuild; compressed latent-space variational Gaussian prediction
+- **PhysGaussian** [arXiv:2311.12198](https://arxiv.org/abs/2311.12198) (CVPR 2024) — Restored: MPM physics integrated into 3D Gaussian particles, network-free dynamic simulation
+
+### Admissions Note
+
+One candidate (collaborative RGB-inertial multi-agent GS SLAM, arXiv:2608.26868) shares its self-stated name "CGS-SLAM" with the existing IROS 2025 entry (a different paper, compact voxel dense visual SLAM). Per the single-source deduplication guarantee, the existing entry was preserved unchanged and the new admission was dropped.
+
+## Categories Count (October 13, 2026)
+
+| Category | Count |
+|----------|-------|
+| Super Agents & Agentic AI | 20 (new) |
+| Ontology & Knowledge Representation | 12 (new) |
+| **Total** | **934** |

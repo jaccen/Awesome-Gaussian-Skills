@@ -5,14 +5,14 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 900 methods, 23 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 934 methods, 25 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-900-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI_Skills-15-green.svg)](skills/)
+[![Methods](https://img.shields.io/badge/Methods-934-9cf.svg)](references/3dgs-methods-overview.md)
+[![Skills](https://img.shields.io/badge/AI_Skills-17-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -39,7 +39,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 900 Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 934 Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## Integrations
 
@@ -47,8 +47,8 @@ This repo ships as both **AI agent skills** and an **MCP server**, so it works a
 
 | Client | How to use |
 |---|---|
-| **Claude Code / OpenClaw** | `/plugin marketplace add jaccen/Awesome-Gaussian-Skills` → install `gaussian-research`, `gaussian-engineering`, or `gaussian-domain` (15 skills in 3 plugins); or load `skills/` directly (see `CLAUDE.md`); MCP server via the config below |
-| **DSH (DeepSeek Harness)** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — the 15 skills + MCP renderer auto-mount via `cordis.patch.yml` |
+| **Claude Code / OpenClaw** | `/plugin marketplace add jaccen/Awesome-Gaussian-Skills` → install `gaussian-research`, `gaussian-engineering`, or `gaussian-domain` (17 skills in 3 plugins); or load `skills/` directly (see `CLAUDE.md`); MCP server via the config below |
+| **DSH (DeepSeek Harness)** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — the 17 skills + MCP renderer auto-mount via `cordis.patch.yml` |
 | **Claude Desktop / Cursor / Cline** | copy the MCP stdio config from [`.marketplace/mcp-servers/client-configs.md`](.marketplace/mcp-servers/client-configs.md) |
 | **Any MCP client** | `command: node`, `args: [/path/to/mcp-server/dist/index.js]`, transport: stdio — 34 tools (21 core + 13 experimental) |
 
@@ -70,7 +70,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
-**What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (900 Methods, 23 categories, 15 skills), zero fabrication:**
+**What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (934 Methods, 25 categories, 17 skills), zero fabrication:**
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -91,7 +91,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 | CH 12 | Capture-to-delivery: the end-to-end pipeline | Ten-stage tool selection & pitfalls, formats & coordinate systems, cost/duration estimates, project failure modes |
 | CH 13 | Industry playbooks: six verticals | Museums & tourism, e-commerce, industrial inspection, AD simulation, embodied robots, surveying & mapping |
 | 附 | Appendix | Datasets, evaluation metrics, delivery-metric conversion & acceptance-report templates |
-| 实 | Practice index: from book to engineering | 15 engineering skills · 34 MCP tools · 900+ method explorer, chapter-to-runnable-resource mapping |
+| 实 | Practice index: from book to engineering | 17 engineering skills · 34 MCP tools · 934+ method explorer, chapter-to-runnable-resource mapping |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 Each chapter ends with hands-on exercises and links back to the repo's method tables, `references/`, and skills —so reading the book and doing the engineering are one seamless flow.
@@ -104,13 +104,24 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 900 method names, abstracts, and 15 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 934 method names, abstracts, and 17 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (Oct 2026)
 
-### Latest Update (Oct 20, 2026): **v0.9.8 — World Models Category Reinforcement (896 → 900)** ⭐
+### Latest Update (Oct 13, 2026): **v0.9.9 — Knowledge-Base Expansion: 900 → 934, Two New Skills** ⭐
+
+**34** new arXiv-verified methods admitted, taking the library from **900 to 934**, with the
+taxonomy growing **23 → 25 categories**: two new cross-cutting categories — *Ontology & Knowledge
+Representation* (12 methods) and *Super Agents & Agentic AI* (20 methods). Two new skills
+shipped — `ontology` (3D scene graphs, spatial ontologies, neuro-symbolic reasoning) and
+`super-agent` (multi-agent LLM system design, 3D/spatial agent integration) — skill count
+**15 → 17**. CGS-SLAM name-collision remediated (colliding newcomer dropped; original
+IROS 2025 entry restored). All data carriers re-verified at **934**, name sets compared entry
+by entry; site-wide caliber unified to 934 / 25 / 17. See [changelog](changelog/2026-10-13-v2.md).
+
+### Previous Update (Oct 20, 2026): **v0.9.8 — World Models Category Reinforcement (896 → 900)** ⭐
 
 Targeted reinforcement of the thinnest category. **4** new arXiv-verified 3DGS-based World
 Model / Spatial Intelligence methods admitted, taking the library from **896 to 900**. The
@@ -259,7 +270,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
-## Knowledge Base (900 Methods, 23 Categories)
+## Knowledge Base (934 Methods, 25 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -272,7 +283,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 > Download full database: [CSV](3dgs-methods-overview.csv) | Full analysis: [references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
 
 <details>
-<summary><strong>Full Category Table (23 categories)</strong></summary>
+<summary><strong>Full Category Table (25 categories)</strong></summary>
 
 **Core Representations**
 
@@ -324,7 +335,7 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 
 </details>
 
-## 15 AI-Powered Skills
+## 17 AI-Powered Skills
 
 | # | Skill | What It Does | Example |
 |---|-------|-------------|---------|
@@ -343,6 +354,8 @@ Then ask your Agent: *"Compare 3DGS and 2DGS rendering formulations"*
 | 13 | [3dgs-articulated-reasoner](skills/3dgs-articulated-reasoner/) | Articulated object reasoning and digital twin | "打开抽屉" |
 | 14 | [3dgs-compression-deploy](skills/3dgs-compression-deploy/) | Compress & deploy 3DGS (quantize, prune, VQ, stream, Web/Mobile) | "3DGS 模型怎么压缩到 10MB？" |
 | 15 | [3dgs-training-debugger](skills/3dgs-training-debugger/) | Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns) | "训练 OOM 了怎么办？" |
+| 16 | [`ontology`](skills/ontology/) | Build & reason over 3D scene graphs, spatial ontologies, neuro-symbolic representations | "把 3DGS 场景接入知识图谱" |
+| 17 | [`super-agent`](skills/super-agent/) | Design, orchestrate & debug multi-agent LLM systems and 3D/spatial agents | "设计一个多智能体 3D 重建流水线" |
 
 Works with **Claude Code**, **Cursor**, **Windsurf**, and other AI Agent frameworks.
 
@@ -360,7 +373,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across 900 Methods.
+> Derived from systematic gap analysis across the 934-method knowledge base.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -445,7 +458,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 ```
 Awesome-Gaussian-Skills/
 ├── data/                      # Single source of truth (methods.json, categories.json)
-├── skills/                    # 15 AI Agent skills (SKILL.md format)
+├── skills/                    # 17 AI Agent skills (SKILL.md format)
 │   ├── _contracts/            # Inter-skill I/O schemas (paper-insight, comparison-report, experiment-plan)
 │   ├── 3dgs-paper-reader/     # Paper reading & summarization
 │   ├── 3dgs-method-compare/   # Method comparison engine (Router)
@@ -467,7 +480,7 @@ Awesome-Gaussian-Skills/
 ├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
 ├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (900 Methods, 23 Categories)
+├── references/                # Knowledge base (934 Methods, 25 Categories)
 ├── Test/                      # Visualization samples
 ├── changelog/                 # Version history
 └── assets/                    # Project images
@@ -740,7 +753,7 @@ Contributions welcome! See [Contributing Guide](CONTRIBUTING.md).
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {900 arXiv-verified methods across 23 categories, 15 AI agent skills, and an MCP server with 34 tools}
+  note = {934 arXiv-verified methods across 25 categories, 17 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -754,7 +767,7 @@ Complementary projects — we recommend all of them:
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — comprehensive paper collection
 - All 3DGS researchers whose papers form our knowledge base
 
-> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 900 verified methods, 15 skills, 34 MCP tools.
+> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 934 verified methods, 17 skills, 34 MCP tools.
 
 ## License
 

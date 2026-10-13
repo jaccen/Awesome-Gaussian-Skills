@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 900 方法，23 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 934 方法，25 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-900-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-934-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -39,7 +39,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 900 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 934 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 📖 在线书籍：空间与具身智能（全新！）
 
@@ -57,7 +57,7 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（900 方法、23 类别、15 技能），零虚构：**
+**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（934 方法、25 类别、17 技能），零虚构：**
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -78,7 +78,7 @@
 | CH 12 | 从采集到交付：端到端工程链路 | 十个环节的工具选型与卡点、格式与坐标系、成本工期量级、项目失败模式 |
 | CH 13 | 产业落地剧本：六个行业 | 文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维 |
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
-| 实 | 实践资源索引：从书到工程 | 15 个工程技能 · 34 个 MCP 工具 · 900+ 方法浏览器，章节到可运行资源的映射 |
+| 实 | 实践资源索引：从书到工程 | 17 个工程技能 · 34 个 MCP 工具 · 934+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
 
 每章末尾附带动手练习，并回链仓库的方法表格、`references/` 和技能 —— 读书与工程实践融为一体。
@@ -91,13 +91,21 @@
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 900 方法名、摘要和 15 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 934 方法名、摘要和 17 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 10 月）
 
-最新更新（10 月 20 日）：**v0.9.8 — World Models 类别定向补强（896 → 900）** ⭐
+最新更新（10 月 13 日）：**v0.9.9 — 知识库扩容：900 → 934，新增 2 个技能** ⭐
+
+新增 **34** 篇经 arXiv 核验的 3DGS 方法，方法库由 **900 扩充至 934**，分类由 **23 类增至 25 类**：
+新增两个横切类别 —— *Ontology & Knowledge Representation*（12 篇）与 *Super Agents & Agentic AI*（20 篇）。
+新增两个技能 —— `ontology`（3D 场景图 / 空间本体 / 神经符号推理）与 `super-agent`（多智能体 LLM 系统设计 / 3D 空间智能体集成），
+技能数 **15 → 17**。修复 CGS-SLAM 撞名污染（剔除撞名新论文，恢复 IROS 2025 原条目）。
+全部载体重新核验为 **934**，名称集合逐条一致；全站口径统一为 934 / 25 / 17。详见 [更新日志](changelog/2026-10-13-v2.md)。
+
+上一次更新（10 月 20 日）：**v0.9.8 — World Models 类别定向补强（896 → 900）** ⭐
 
 针对最薄弱类别定向补强。新增 **4** 篇经 arXiv 核验的 3DGS 世界模型 / 空间智能方法，
 方法库由 **896 扩充至 900**。World Models & Spatial Intelligence 类别由 8 → 12 篇：
@@ -171,7 +179,7 @@
 
 前次更新（9 月 20 日）：**v0.9.1 — ECCV 2026 浪潮：14 个新方法**。知识库从 678 扩展至 692 条已验证方法。全部 14 条新条目经 arXiv 验证或 ECCV 官方确认：**Wat3R**（水下 3D 几何零标注学习）、**GeoNVS**（几何接地视频扩散 + GS-Adapter）、**Edit3r**（无位姿稀疏图即时 3D 编辑）、**SA-ResGS**（首个 3DGS 残差学习用于下一最佳视角）、**GaussianLens**（按需局部高清重建）、**Deformable Triangle Splatting**（非凸可变形三角形基元）、**Neural Harmonic Textures**（谐波纹理基元解码）、**CubicSplat**（误差有界可微矢量图）、**TetraSDF**（精确解析等值面提取）、**Heat Kernel Textures**（ECCV 2026 最佳论文 — 测地高斯）、**GRF-Recon**（长序列前馈重建无漂移）、**PriSplat**（干扰物传播修复 3DGS）、**Per-View Distractor Filtering**（免训练前馈瞬态过滤）、**GS-Underwater**（水下受控横评基准）。类别更新：Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1。所有数据载体同步。详见 [changelog/2026-09-20.md](changelog/2026-09-20.md)。
 
-前次更新（9 月 16 日）：**v0.9.0 — 数据准确性版本**。对全库每一条目做 arXiv API 审计：逐条核验 arXiv 编号可达**且**与方法名对应（方法名须出现在论文标题/摘要中）。**删除无法通过核验的条目 181 条，重新挂接正确论文 56 条，按论文自述方法名重命名 5 条**，另去重 1 条。计数从此诚实而非注水：**678 个方法、23 个分类、含 arXiv 568 (83%)，含代码链接 130 (19%)**。逐条证据见 [docs/data-accuracy-audit-2026-09-16.md](docs/data-accuracy-audit-2026-09-16.md)，详见 [changelog/2026-09-16-v5.md](changelog/2026-09-16-v5.md)。
+前次更新（9 月 16 日）：**v0.9.0 — 数据准确性版本**。对全库每一条目做 arXiv API 审计：逐条核验 arXiv 编号可达**且**与方法名对应（方法名须出现在论文标题/摘要中）。**删除无法通过核验的条目 181 条，重新挂接正确论文 56 条，按论文自述方法名重命名 5 条**，另去重 1 条。计数从此诚实而非注水：**678 个方法、25 个分类、含 arXiv 568 (83%)，含代码链接 130 (19%)**。逐条证据见 [docs/data-accuracy-audit-2026-09-16.md](docs/data-accuracy-audit-2026-09-16.md)，详见 [changelog/2026-09-16-v5.md](changelog/2026-09-16-v5.md)。
 
 前次更新（9 月 4 日）：**v0.8.3 — 动态场景综述集成：23 个新方法**。知识库从 801 扩展至 819 条已验证方法。基于动态场景重建综述论文（连振晗等，计算机辅助设计与图形学学报，2026 年 1 月），新增 23 个经 arXiv 验证的动态场景重建方法，覆盖 3 个子方向：变形场（LoopGaussian, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, ReconDreamer++），稀疏控制变形（SP-GS, Video-3DGS, SplineGS），四维高斯体（Real-time 4DGS, PVG, 4D-rotor GS），逐帧传递（3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo）。动态与 4D 类别：75→97。新增 `references/dynamic-datasets.md`（11 个动态数据集）及 `benchmark-data.md` 扩展（MS-SSIM/VMAF/FID 指标 + 4 张性能对比表）。实验设计技能更新动态场景实验指南。详见 [changelog/2026-09-04.md](changelog/2026-09-04.md)。
 
@@ -222,7 +230,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
-## 知识库（900 方法，23 类别）
+## 知识库（934 方法，25 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -235,7 +243,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 > 下载完整数据库：[CSV](3dgs-methods-overview.csv) | 完整分析：[references/3dgs-methods-overview.md](references/3dgs-methods-overview.md)
 
 <details>
-<summary><strong>完整类别表（23 类别）</strong></summary>
+<summary><strong>完整类别表（25 类别）</strong></summary>
 
 **核心表示**
 
@@ -293,7 +301,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 </details>
 
-## 15 AI 驱动技能
+## 17 AI 驱动技能
 
 | # | 技能 | 功能 | 示例 |
 |---|------|------|------|
@@ -312,6 +320,8 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 | 13 | [3dgs-articulated-reasoner](skills/3dgs-articulated-reasoner/) | 铰接物体推理与数字孪生 | "打开抽屉" |
 | 14 | [3dgs-compression-deploy](skills/3dgs-compression-deploy/) | 压缩与部署 3DGS（量化、剪枝、VQ、流式、Web/移动端） | "3DGS模型怎么压缩到10MB？" |
 | 15 | [3dgs-training-debugger](skills/3dgs-training-debugger/) | 训练故障诊断：OOM、NaN、发散、伪影（60+ 运行时模式） | "训练OOM了怎么办？" |
+| 16 | [`ontology`](skills/ontology/) | 本体与知识表示：3D 场景图、空间本体、神经符号推理 | "把 3DGS 场景接入知识图谱" |
+| 17 | [`super-agent`](skills/super-agent/) | 超级智能体与多智能体系统设计、编排与诊断 | "设计一个多智能体 3D 重建流水线" |
 
 兼容 **Claude Code**、**Cursor**、**Windsurf** 及其他 AI Agent 框架。
 
@@ -410,7 +420,7 @@ curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/
 
 ```
 Awesome-Gaussian-Skills/
-├── skills/                    # 15 个 AI Agent 技能（SKILL.md 格式）
+├── skills/                    # 17 个 AI Agent 技能（SKILL.md 格式）
 │   ├── 3dgs-paper-reader/     # 论文阅读与总结
 │   ├── 3dgs-method-compare/   # 方法对比引擎
 │   ├── 3dgs-code-reviewer/    # 代码审查（104 bug 模式）
@@ -428,7 +438,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（900 方法，23 类别）
+├── references/                # 知识库（934 方法，25 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
@@ -693,7 +703,7 @@ curl -s http://localhost:10590/api/pipeline/tasks \
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {900 arXiv-verified methods across 23 categories, 15 AI agent skills, and an MCP server with 34 tools}
+  note = {934 arXiv-verified methods across 25 categories, 17 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -707,7 +717,7 @@ curl -s http://localhost:10590/api/pipeline/tasks \
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — 全面论文合集
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
 
-> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 900 已核验方法、15 个技能、34 个 MCP 工具。
+> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 934 已核验方法、17 个技能、34 个 MCP 工具。
 
 ## 许可证
 

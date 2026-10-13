@@ -16,7 +16,7 @@
 
 5/ 13 chapters: NeRF→3DGS, engineering core (104 bug-pattern table), compression, semantic Gaussians, embodied foundations, 3DGS-as-memory (GS-SLAM), articulated understanding, agent-driven twins, world models, safety.
 
-6/ Backed by an open knowledge base: 900 methods / 23 categories, every arXiv ID re-verified (name must appear in title/abstract). No inflated counts. Plus 15 agent skills + an MCP server (34 tools).
+6/ Backed by an open knowledge base: 934 methods / 25 categories, every arXiv ID re-verified (name must appear in title/abstract). No inflated counts. Plus 17 agent skills + an MCP server (34 tools).
 
 7/ Every reference (62) carries an arXiv ID. Every data point is traceable. "Looks correct" ≠ "is correct" — we made verifiability the baseline.
 

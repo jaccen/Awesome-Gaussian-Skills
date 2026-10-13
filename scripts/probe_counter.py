@@ -43,7 +43,7 @@ global.document = {
   cookie: '',
   body: { appendChild: function(){} }
 };
-global.window = { AbortController: AbortController, addEventListener: function(){}, innerHeight: 900 };
+global.window = { AbortController: AbortController, addEventListener: function(){}, innerHeight: 934 };
 global.localStorage = { _d:{}, getItem:function(k){return this._d[k]||null;},
   setItem:function(k,v){this._d[k]=String(v);} };
 
