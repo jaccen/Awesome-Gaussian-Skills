@@ -3,7 +3,7 @@
 # 去重、格式校验，批量调 arXiv API 核验可达性、标题、作者、年份、分类，并产出核查报告。
 import json, re, os, time, urllib.request, urllib.parse
 
-ROOT = "C:/Users/Lenovo/Desktop/Project/Awesome-Gaussian-Skills"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARXIV = "https://export.arxiv.org/api/query?"
 CACHE = os.path.join(ROOT, ".arxiv_cache.json")
 REPORT = os.path.join(ROOT, "references", "verification-report.md")

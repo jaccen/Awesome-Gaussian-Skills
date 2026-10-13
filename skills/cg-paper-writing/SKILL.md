@@ -6,7 +6,7 @@ description: "Academic paper writing for 3D vision, computer graphics, CAD, and 
 description_zh: "面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等 17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改 CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。"
 description_en: "An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments), multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification."
 category: writing
-version: "3.2.0"
+version: "3.3.0"
 author: jaccen
 license: Apache-2.0
 user-invocable: true
@@ -147,7 +147,7 @@ Read these files from references/:
 - references/reviewer-perspective.md — 审稿人视角拒稿与中稿规律（基于OpenReview 33条真实审稿意见编码）：Champion效应与批评位置理论、拒稿理由Top10、录用要素Top10、可复述新颖性标准、致命伤vs可挽救伤判别与Rebuttal博弈（MoE-GS低分中稿解密）、跨venue转投策略、压缩方向八大坑、图表制作40条自查清单、投稿前防御清单D1-D15；投稿前自检、预判审稿攻击点、准备rebuttal、决定转投时加载
 - references/latex-source-hygiene.md — LaTeX 源码卫生与机械化验证（连续空行/环境与章节同行/跨文档引用写法/bib 键名一致性/S 编号对应/编译健康度/修复回归验证），配套一键核查脚本（维护者本地工具，未随技能分发，可按本文件方法论自写）；投稿前格式核查与源码清理任务必读
 - references/markdown-draft-format-audit.md — Markdown 工作稿投稿前格式审计与 P0 机械修复（摘要词数/引用首现顺序/孤儿图表检测/彩色批注两类处置规则/占位符两步法引用重排/摘要瘦身/主文-补充切分标注/中英双稿独立同步与终检清单/章节重构后引用顺序复检/MD→LaTeX 转换边界 bibitem 核验）；LaTeX 排版前的工作稿格式核查、批注清理与 P0/P2 修复任务必读
-- references/experiment-claim-verification.md — 实验声明溯源与服务器实验验证（声明-产物五步核查链/静默回退失效四联征/split fallthrough 陷阱与目录重命名法/h5→pkl 格式转换工作流/SSH-PowerShell-后台进程操作陷阱）；评审中遇到「服务器规模验证」类声明溯源、为论文补做远程实验、排查「训练跑完 rc=0 但结果异常」时必读
+- references/experiment-claim-verification.md — 实验声明溯源与服务器实验验证（声明-产物六步核查链/对比数字同维度核查与基线重跑/静默回退失效四联征/split fallthrough 陷阱与目录重命名法/h5→pkl 格式转换工作流/SSH-PowerShell-后台进程操作陷阱）；评审中遇到「服务器规模验证」类声明溯源、撰写或核查对比实验表、为论文补做远程实验、排查「训练跑完 rc=0 但结果异常」时必读
 - references/3dgs-citation-audit.md — 3DGS 论文引文与声明核查（事实层）：三层校验协议（ID 可达/名称一致/名称反查+人工裁定）、五类红线错误与本项目真实罚例（编号虚构、名↔号错配、venue 错、名/venue/描述全错、伪派生后缀）、实时引文核查脚本 `scripts/audit_manuscript_citations.py` 用法与 `[RED FLAG]`/`[WARN]` 判读、写作/投稿前/评审三套清单；**写 related work 或实验时核对引用、投稿前自查引用真实性、评审他人稿件验证其引用与声称时必读**（注意：任何事实结论必须回到 `data/methods.json` 与 `.arxiv_cache.json` 实时核查，不得凭本文件记忆作答）
 
 **Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load all fragments.
@@ -174,6 +174,7 @@ After loading the required fragments:
 8. **Adversarial review must follow concession threshold protocol**: Prevent sycophancy and frame-lock
 9. **Claim-citation alignment**: Each claim must be traceable to supporting citation, and citation must actually support the claim
 10. **Writing context persistence**: Maintain symbol, citation, review state consistency across sessions
+11. **Comparison dimension consistency**: In comparison experiments, all compared methods (including baselines) must be evaluated on the same dataset — same version, resolution, and split — under the same evaluation protocol. When a baseline number's caliber cannot be verified, rerun the comparison under unified settings; never reuse, silently convert, or approximate a mismatched number, and never mix numbers from different dimensions in one table
 
 ## Red Lines
 
@@ -184,6 +185,7 @@ The following are categorical prohibitions. Violating any of these invalidates t
 - **No silent speculation**: If you are uncertain about a technical detail, explicitly flag it with "[UNCERTAIN]" rather than presenting it as fact.
 - **No method misattribution**: Do not assign features, results, or mechanisms from one method to another. Each method's data is specific to that method.
 - **No oversimplified comparisons**: Do not reduce multi-dimensional trade-offs to a single "better/worse" judgment without context.
+- **No cross-dimension comparisons**: Numbers evaluated on different datasets, resolutions, splits, or evaluation protocols must never share one comparison table. When calibers mismatch, rerun under unified settings (writing-experiments.md → Comparison Fairness Protocol; experiment-claim-verification.md §6) — copying, silently converting, or approximating a mismatched number is a violation.
 
 ## Extension Protocol — 新增中文期刊专项（Add a New Journal Venue）
 

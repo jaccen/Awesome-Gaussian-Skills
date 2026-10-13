@@ -2,7 +2,7 @@
 # 生成 9 个主题簇的研读任务文件，供子代理并行深度研读。
 # 经典=2023-2024 奠基性论文(深度全覆盖)；2025=已确立(简表)；近期焦点=2026 扫描(详写)。
 import json, os
-ROOT = "C:/Users/Lenovo/Desktop/Project/Awesome-Gaussian-Skills"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 m = json.load(open(os.path.join(ROOT, "data", "methods.json"), encoding="utf-8"))
 methods = m["methods"]
 

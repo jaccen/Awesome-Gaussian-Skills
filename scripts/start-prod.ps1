@@ -101,7 +101,7 @@ foreach ($port in @(9842, 10590)) {
 # -------------------------------------------------------
 if ($Toonflow) {
     $toonflowDir = $env:TOONFLOW_APP_DIR
-    if (-not $toonflowDir) { $toonflowDir = "C:\Users\Lenovo\Desktop\AI应用\Toonflow-app" }
+    if (-not $toonflowDir) { $toonflowDir = Join-Path $env:USERPROFILE "Desktop\AI应用\Toonflow-app" }
     if (Test-Path "$toonflowDir\data\serve\app.js") {
         Write-Host ""
         Write-Host "[1/3] Starting Toonflow (port 10588)..." -ForegroundColor Cyan

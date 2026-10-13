@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # 将 9 份分簇研读笔记整合为统一知识库 references/paper-reading-knowledge-base.md
 import os, json
-ROOT = "C:/Users/Lenovo/Desktop/Project/Awesome-Gaussian-Skills"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REF = os.path.join(ROOT, "references")
 CLUSTERS = [
     ("A_Found_Render_Opt_Acc", "簇一 · 基础表示 / 表面渲染 / 优化 / 加速"),

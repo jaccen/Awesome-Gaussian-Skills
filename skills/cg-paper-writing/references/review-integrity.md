@@ -91,7 +91,8 @@ Must pass before submitting draft:
 - [ ] Ablation study covers all core modules
 - [ ] Symbol table consistent with main text
 - [ ] No AI-fabricated data (missing data marked as `<!-- DATA_NEEDED: <description> -->`)
-- [ ] Experiment claims traceable to real artifacts (see static/experiment-claim-verification.md): every reported number maps to a server log / eval JSON / checkpoint; claimed data scale (tasks / episodes / seeds) matches data directories and training logs
+- [ ] Experiment claims traceable to real artifacts (see references/experiment-claim-verification.md): every reported number maps to a server log / eval JSON / checkpoint; claimed data scale (tasks / episodes / seeds) matches data directories and training logs
+- [ ] Comparison dimension-consistency check passed (see references/experiment-claim-verification.md §6): every number in the main comparison tables is on the same dimension as ours — same dataset (incl. resolution), same split, same evaluation protocol; mismatched-caliber baseline numbers were rerun under unified settings or excluded, never mixed into one table
 
 ### Gate 2: Pre-Submission Gate (before final submission)
 Must pass before submitting final version:
@@ -99,9 +100,10 @@ Must pass before submitting final version:
 - [ ] Citation three-layer verification: zero failures
 - [ ] Experimental data fully consistent with main text claims
 - [ ] Format meets target venue requirements (pages/template/citation format)
-- [ ] LaTeX source hygiene passed (see static/latex-source-hygiene.md, run scripts/check_paper_consistency.py): no ≥3 consecutive blank lines, no environment-end glued to \section on one line, cross-document references resolvable ("Figure 2(c) of the main paper" style), S-prefix numbering consistent, compile log clean (0 undefined / 0 error)
+- [ ] LaTeX source hygiene passed (see references/latex-source-hygiene.md, run scripts/check_paper_consistency.py): no ≥3 consecutive blank lines, no environment-end glued to \section on one line, cross-document references resolvable ("Figure 2(c) of the main paper" style), S-prefix numbering consistent, compile log clean (0 undefined / 0 error)
 - [ ] Rebuttal预案 prepared (for anticipated reviewer challenges)
-- [ ] Experiment claim provenance audit passed (static/experiment-claim-verification.md): no unsourced "server-scale" claims remain in the paper; for any newly launched training, dataset sanity check (non-zero action / target velocity) was run before launch
+- [ ] Experiment claim provenance audit passed (references/experiment-claim-verification.md): no unsourced "server-scale" claims remain in the paper; for any newly launched training, dataset sanity check (non-zero action / target velocity) was run before launch
+- [ ] Baseline number provenance verified (references/experiment-claim-verification.md §6): every cited-from-paper baseline number passed the item-by-item caliber check (dataset / resolution / split / metric implementation) and is marked with its source; every rerun baseline number is traceable to rerun artifacts
 
 ---
 

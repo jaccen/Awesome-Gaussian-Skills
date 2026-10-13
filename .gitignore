@@ -60,3 +60,25 @@ scheduler.db
 *.genie
 Awesome-Gaussian-Skills.zip
 .tmp_zipx/
+
+# Agent runtime state & local data (never for repo)
+.workbuddy/
+.temp_*.html
+.temp_*.js
+privacy-keywords.json
+
+# Personal research materials & docs (not for public repo)
+# 通配规则防再次放入同类个人材料（具体文件名不外泄）
+*顶会*报告*.html
+*审稿人*.html
+*知识产权*.md
+*产权登记*.md
+*来源证明*.md
+references/cvpr-idea-*
+references/idea-*
+references/_expert_*.md
+references/_critic_*.md
+references/_cvpr_*.md
+references/_novelty_*.md
+references/_theory_*.md
+references/_crossdiscipline_*.json

@@ -40,7 +40,7 @@ This project is the most comprehensive catalog and AI Agent skill pack for 3D Ga
 
 ```
 references/
-|-- 3dgs-methods-overview.md   # 881 methods index (23 categories)
+|-- 3dgs-methods-overview.md   # 900 methods index (23 categories)
 |-- methods-core.md            # Core methods (Foundation->Dynamic)
 |-- methods-semantic-editing.md # Semantic, Editing, Material, Avatar
 |-- methods-systems-apps.md    # Systems, Applications, Cross-Domain

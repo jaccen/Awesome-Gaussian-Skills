@@ -1,18 +1,32 @@
 # -*- coding: utf-8 -*-
-"""收尾(零删除版): 覆盖式同步安装副本 + 重建 zip + 校验 + 隐私扫描。不做任何删除。"""
-import os, re, sys, io, zipfile, subprocess, shutil
+"""收尾(零删除版): 覆盖式同步安装副本 + 重建 zip + 校验 + 隐私扫描。不做任何删除。
+
+路径均从脚本位置与用户目录动态推导，不含任何本机硬编码；
+隐私关键词从本机私有文件 ~/.workbuddy/privacy-keywords.json 读取（该文件不入任何仓库），
+因此本脚本可安全公开。
+"""
+import os, re, sys, io, json, zipfile, subprocess, shutil
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-ROOT = r'C:\Users\Lenovo\Desktop\Project\Awesome-Gaussian-Skills\skills\cg-paper-writing'
-INST = r'C:\Users\Lenovo\.workbuddy\skills\cg-paper-writing'
-DIST = r'C:\Users\Lenovo\Desktop\Project\Awesome-Gaussian-Skills\dist\cg-paper-writing.zip'
-PKG = (r'C:\Users\Lenovo\AppData\Local\Programs\WorkBuddy\resources\app.asar.unpacked'
-       r'\resources\plugins\workbuddy-builtin\skills\skill-creator\scripts')
-PY = r'C:\Users\Lenovo\.workbuddy\binaries\python\versions\3.13.12\python.exe'
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.join(PROJECT_ROOT, 'skills', 'cg-paper-writing')
+INST = os.path.join(os.path.expanduser('~'), '.workbuddy', 'skills', 'cg-paper-writing')
+DIST = os.path.join(PROJECT_ROOT, 'dist', 'cg-paper-writing.zip')
+PKG = os.path.join(os.path.expanduser('~'), 'AppData', 'Local', 'Programs', 'WorkBuddy',
+                   'resources', 'app.asar.unpacked', 'resources', 'plugins',
+                   'workbuddy-builtin', 'skills', 'skill-creator', 'scripts')
+PY = os.path.join(os.path.expanduser('~'), '.workbuddy', 'binaries', 'python',
+                  'versions', '3.13.12', 'python.exe')
 
-LEAK = ['physloop', 'physmani', 'sceneagent', 'md2cvpr', '0.318', '0.31x',
-        '0.9755', 'checkpoints_ddp', 'contentproducer', 'mad55u9', 'propagateid',
-        'signedgs', '符号高斯', '高频感知', 'mypaper', '综述稿']
+# 隐私关键词外置：~/.workbuddy/privacy-keywords.json => {"leak": ["kw1", ...]}
+KEYWORDS_FILE = os.path.join(os.path.expanduser('~'), '.workbuddy', 'privacy-keywords.json')
+if os.path.exists(KEYWORDS_FILE):
+    with open(KEYWORDS_FILE, encoding='utf-8') as _fh:
+        LEAK = json.load(_fh).get('leak', [])
+else:
+    print(f'[!] 未找到隐私关键词文件: {KEYWORDS_FILE}')
+    print('    请在本机维护 {"leak": [...]}；关键词属敏感指纹，不入任何仓库。本次以空关键词集运行。')
+    LEAK = []
 
 def scan_text(name, text):
     low = text.lower()

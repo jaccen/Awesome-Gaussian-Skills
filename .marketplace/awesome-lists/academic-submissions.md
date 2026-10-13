@@ -15,7 +15,7 @@ Add under the **Toolboxes / Utils** (or "Resources") section, near other
 tooling:
 
 ```markdown
-- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) - AI agent skills + MCP server for 3DGS research: 896-method catalog, 15 skills (paper reader, method compare, experiment planner, code reviewer, training debugger, visualizer), and a stdio MCP server for agent-driven 3DGS rendering.
+- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) - AI agent skills + MCP server for 3DGS research: 900-method catalog, 15 skills (paper reader, method compare, experiment planner, code reviewer, training debugger, visualizer), and a stdio MCP server for agent-driven 3DGS rendering.
 ```
 
 PR title suggestion: `Add Awesome Gaussian Skills — AI skills & MCP server for 3DGS research`
@@ -31,7 +31,7 @@ Repo: https://github.com/yenchenlin/awesome-NeRF (the canonical NeRF list)
 Add under a **Tools / Resources** section:
 
 ```markdown
-- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) - AI skills + MCP server for NeRF→3DGS research, including a dedicated NeRF-to-3DGS migration skill and an 896-method 3DGS catalog.
+- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) - AI skills + MCP server for NeRF→3DGS research, including a dedicated NeRF-to-3DGS migration skill and a 900-method 3DGS catalog.
 ```
 
 ---
@@ -41,7 +41,7 @@ If you target lists like `awesome-computer-graphics` or spatial-AI awesome
 lists, use the general form:
 
 ```markdown
-- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) - 3D Gaussian Splatting research toolbox: 896-method catalog, 15 AI agent skills, and an MCP server for agent-driven 3DGS rendering. Apache-2.0.
+- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) - 3D Gaussian Splatting research toolbox: 900-method catalog, 15 AI agent skills, and an MCP server for agent-driven 3DGS rendering. Apache-2.0.
 ```
 
 ---
@@ -49,7 +49,7 @@ lists, use the general form:
 ## Tips
 
 - Most awesome lists require the linked repo to be **non-trivial and
-  maintained** — this repo (161★, last push 2026-10, 896 methods) qualifies.
+  maintained** — this repo (161★, last push 2026-10, 900 methods) qualifies.
 - Keep one entry per list; don't double-list across sections.
 - Some lists want a star threshold or a minimum age; check each list's
   `CONTRIBUTING.md` before opening the PR.

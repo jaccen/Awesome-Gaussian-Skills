@@ -5,7 +5,7 @@ indexed by four marketplaces: the DSH plugin market, MCP server directories,
 MCP client configs (Cursor/Cline/Claude Desktop), and academic awesome lists.
 
 The repo already ships the *content* (15 AI skills under `skills/`, a stdio
-MCP server under `mcp-server/`, a 896-method catalog). What was missing was
+MCP server under `mcp-server/`, a 900-method catalog). What was missing was
 each market's *entry credential* — the manifest, patch, or listing file that
 a market requires before it will index you. Those are added here and in the
 repo root.

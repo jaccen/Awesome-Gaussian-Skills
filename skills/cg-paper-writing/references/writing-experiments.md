@@ -6,7 +6,7 @@
 Required components:
 1. **Datasets**: List all datasets, explain train/test split
 2. **Evaluation metrics**: Choose by direction (see table below)
-3. **Baseline comparison**: At minimum include current SOTA
+3. **Baseline comparison**: At minimum include current SOTA — every compared number must pass the Comparison Fairness Protocol (below): same dataset incl. resolution, same evaluation protocol, traceable provenance
 4. **Ablation study**: Verify contribution of each core module
 
 ### Direction-Specific Metrics
@@ -25,6 +25,17 @@ Optional bonus items:
 - Visual comparison (qualitative analysis figures)
 - Different scene difficulty (indoor/outdoor, simple/complex)
 - Robustness analysis (noise, occlusion, sparse views)
+
+### Comparison Fairness Protocol — 同维度对比铁律 (Non-Negotiable)
+
+Every number in a comparison table must sit on the same dimension as the numbers beside it. A table mixing different dimensions is invalid no matter how favorable the numbers look. Before writing ANY comparison table (main results, efficiency, downstream tasks), enforce all six clauses:
+
+1. **Same dataset**: identical dataset version, identical scene/image list, identical train/test split for every compared method. Resolution is part of the dataset — full-resolution and downsampled evaluations are different dimensions and must never share a column. State the resolution explicitly in the setup paragraph or table caption.
+2. **Same evaluation protocol**: identical metric definitions and implementations — PSNR on the same mask convention, SSIM/LPIPS from the same library and same backbone (LPIPS-VGG and LPIPS-Alex are NOT interchangeable), same image loading and tonemapping pipeline. Any protocol deviation must be marked per cell, or the number must be re-measured.
+3. **Same training conditions, or full disclosure**: iteration count, densification/schedule, and hardware aligned to the baseline when feasible (Mip-Splatting: "Following [18], we train our models for 30K iterations across all scenes and use the same loss function, Gaussian density control strategy, schedule and hyper-parameters"); when not feasible, mark the cell (e.g., †) and explain in the caption.
+4. **Number provenance priority**: (a) best — rerun the baseline in our own environment (same data, same resolution, same protocol; full retraining, or re-evaluating the official checkpoint under our protocol); (b) acceptable — copy numbers from the original paper, only after an item-by-item caliber check (dataset version / resolution / split / metric implementation) and with the source marked; (c) forbidden — a number whose caliber does not match ours. If the calibers do not match, rerun the experiment instead of copying the number.
+5. **Rerun for verification**: when a baseline number cannot be traced to a same-dimension source, rerun the comparison experiment rather than dropping the baseline or reusing a mismatched number. Rerunning under unified settings is also the strongest rebuttal response to "unfair comparison" challenges (workflow and discipline: experiment-claim-verification.md §6).
+6. **One table, one dimension**: never mix resolutions, dataset versions, protocols, or "cited-from-paper" vs "reproduced-by-us" numbers in the same column without explicit per-cell markers and a caption note. When dimensions differ, split into separate tables (e.g., a full-resolution table and a downsampled table).
 
 ### Experiment Design: Beyond the Basics (Lessons from High-Impact Papers)
 
