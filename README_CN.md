@@ -1,4 +1,4 @@
-
+﻿
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
@@ -21,6 +21,31 @@
 
 </div>
 
+<details>
+<summary><b>目录</b></summary>
+
+- [为什么选这个仓库？](#为什么选这个仓库)
+- [在线体验](#在线体验)
+- [快速开始](#快速开始)
+- [集成方式](#集成方式)
+- [在线书籍](#-在线书籍空间与具身智能)
+- [最新动态（2026 年 10 月）](#最新动态2026-年-10-月)
+- [知识库](#知识库955-方法26-类别)
+- [18 AI 驱动技能](#18-ai-驱动技能)
+- [可视化示例](#可视化示例)
+- [研究创新要点](#研究创新要点)
+- [路线图](#路线图)
+- [项目结构](#项目结构)
+- [SplatVerse Studio](#splatverse-studio短视频创作)
+- [贡献指南](#贡献指南)
+- [引用](#引用)
+- [生态与致谢](#生态与致谢)
+- [许可证](#许可证)
+- [打赏 & 加入社群](#打赏--加入社群)
+- [Star 历史](#star-历史)
+
+</details>
+
 ## 为什么选这个仓库？
 
 其他列表只给论文标题。**我们给你论文标题 + 让你更快的AI工具箱。**
@@ -41,9 +66,43 @@
 
 秒搜 955 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
-## 📖 在线书籍：空间与具身智能（全新！）
+## 快速开始
 
-> **全新（2026 年 7 月）** — 一本完整的开源技术书籍，以 **3D Gaussian Splatting** 为主线，将**空间智能**与**具身智能**串联为一个闭环：*表示 → 感知 → 规划 → 行动*。
+每个技能是一个独立的 SKILL.md 文件 — 复制到你的 Agent 技能目录即可使用。
+
+**3 条命令开启 AI 驱动的 3DGS 工作流：**
+
+```bash
+git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
+
+# Option 1: Claude Code
+cp -r Awesome-Gaussian-Skills/skills/* .claude/
+
+# Option 2: Cursor
+cp -r Awesome-Gaussian-Skills/skills/* .cursor/rules/
+
+# Option 3: One-Click Install
+curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/scripts/setup.sh | bash
+```
+
+然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
+
+## 集成方式
+
+本仓库同时提供 **AI 智能体技能** 与 **MCP 服务器**，既能服务于人，也能被你的 AI 智能体直接消费：
+
+| 客户端 | 使用方法 |
+|---|---|
+| **Claude Code / OpenClaw** | `/plugin marketplace add jaccen/Awesome-Gaussian-Skills` → 安装 `gaussian-research`、`gaussian-engineering` 或 `gaussian-domain`（3 个插件共 18 个技能）；或直接加载 `skills/`（见 `CLAUDE.md`）；MCP 服务器配置见下方 |
+| **DSH（DeepSeek Harness）** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — 18 个技能 + MCP 渲染器通过 `cordis.patch.yml` 自动挂载 |
+| **Claude Desktop / Cursor / Cline** | 从 [`.marketplace/mcp-servers/client-configs.md`](.marketplace/mcp-servers/client-configs.md) 复制 MCP stdio 配置 |
+| **任意 MCP 客户端** | `command: node`, `args: [/path/to/mcp-server/dist/index.js]`, transport: stdio — 34 个工具（21 核心 + 13 实验） |
+
+MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set_camera`、`modify_gaussians`、`render_frame`、`sculpt_pipeline`、SLAT 潜空间编辑等）+ 13 个实验性存根 —— 详见 [`mcp-server/README.md`](mcp-server/README.md) 与 [`.marketplace/mcp-servers/mcp-metadata.json`](.marketplace/mcp-servers/mcp-metadata.json)。
+
+## 📖 在线书籍：空间与具身智能
+
+> 一本完整的开源技术书籍，以 **3D Gaussian Splatting** 为主线，将**空间智能**与**具身智能**串联为一个闭环：*表示 → 感知 → 规划 → 行动*。
 
 **[📖 在线阅读 →](https://jaccen.github.io/Awesome-Gaussian-Skills/spatial-embodied-intelligence.html)**
 
@@ -57,7 +116,8 @@
 
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
-**全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（955 方法、26 类别、18 技能），零虚构：**
+<details>
+<summary><b>全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（955 方法、26 类别、18 技能），零虚构</b></summary>
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -80,6 +140,8 @@
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
 | 实 | 实践资源索引：从书到工程 | 18 个工程技能 · 34 个 MCP 工具 · 955+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
+
+</details>
 
 每章末尾附带动手练习，并回链仓库的方法表格、`references/` 和技能 —— 读书与工程实践融为一体。
 
@@ -116,6 +178,9 @@
 新增两个技能 —— `ontology`（3D 场景图 / 空间本体 / 神经符号推理）与 `super-agent`（多智能体 LLM 系统设计 / 3D 空间智能体集成），
 技能数 **15 → 17**。修复 CGS-SLAM 撞名污染（剔除撞名新论文，恢复 IROS 2025 原条目）。
 全部载体重新核验为 **934**，名称集合逐条一致；全站口径统一为 934 / 25 / 17。详见 [更新日志](changelog/2026-10-13-v2.md)。
+
+<details>
+<summary><b>更早更新（v0.9.8 及以前）</b></summary>
 
 上一次更新（10 月 20 日）：**v0.9.8 — World Models 类别定向补强（896 → 900）** ⭐
 
@@ -219,28 +284,9 @@
 | **StreamLoD-GS** | — | 流式 | LoD 渐进式流式传输，视点相关质量 |
 | **CADDreamer** | CVPR 2025 Highlight | CAD | 文本/草图 → CAD B-rep 生成 |
 
+</details>
+
 <sup>完整变更记录：[`changelog/`](changelog/)</sup>
-
-## 快速开始
-
-每个技能是一个独立的 SKILL.md 文件 — 复制到你的 Agent 技能目录即可使用。
-
-**3 条命令开启 AI 驱动的 3DGS 工作流：**
-
-```bash
-git clone https://github.com/jaccen/Awesome-Gaussian-Skills.git
-
-# Option 1: Claude Code
-cp -r Awesome-Gaussian-Skills/skills/* .claude/
-
-# Option 2: Cursor
-cp -r Awesome-Gaussian-Skills/skills/* .cursor/rules/
-
-# Option 3: One-Click Install
-curl -sSL https://raw.githubusercontent.com/jaccen/Awesome-Gaussian-Skills/main/scripts/setup.sh | bash
-```
-
-然后问你的 Agent：*"对比 3DGS 和 2DGS 的渲染公式差异"*
 
 ## 知识库（955 方法，26 类别）
 
@@ -464,246 +510,13 @@ Awesome-Gaussian-Skills/
 
 ## SplatVerse Studio：短视频创作
 
-SplatVerse Studio 将 **3D 高斯泼溅（3DGS）** 与 **Toonflow** 短剧引擎集成，从文本脚本到 3DGS 渲染视频场景一步到位。
+SplatVerse Studio 将 **3D 高斯泼溅（3DGS）** 与 **Toonflow** 短剧引擎结合，实现从文本脚本到 3DGS 渲染视频场景的完整链路（7 步流水线：脚本改编 → 分镜 → Toonflow 同步 → TTS → 视频生成 → FFmpeg 合成 → 发布）。
 
-### 架构
-
-```
-Toonflow 引擎 (:10588)             SplatVerse Studio
-┌──────────────────────┐          ┌───────────────────────────┐
-│  脚本 → 资产 →        │  REST    │  Bridge 桥接 (:10590)      │
-│  分镜 → 视频          │◄───────►│  ├─ 项目浏览器              │
-│                       │          │  ├─ 渲染工作室              │
-│  供应商: 3dgs-renderer│          │  ├─ MCP 工具（25 个）      │
-└──────────────────────┘          │  │  MCP 渲染器 (:9842)     │
-                                   │  ├─ 管线（7 步）            │
- MoneyPrinterTurbo (:8081)        │  │  ├─ 剧本改编              │
-┌──────────────────────┐          │  │  ├─ 智能分镜              │
-│  在线素材 →           │  REST    │  │  ├─ Toonflow 集成        │
-│  TTS → FFmpeg → 视频  │◄───────►│  │  ├─ TTS 配音              │
-│  跨平台发布            │          │  │  ├─ 视频驱动              │
-└──────────────────────┘          │  │  ├─ FFmpeg 合成           │
-                                   │  │  └─ 跨平台发布 (MPT)      │
-                                   │  Studio Web (:5173)        │
-                                   └───────────────────────────┘
-```
-
-### 快速启动
-
-**前提条件：** [Node.js ≥ 18](https://nodejs.org/)（Toonflow 与 MoneyPrinterTurbo 为可选项）。
-
-一键启动脚本会在首次运行时自动完成全部准备工作：检测 Node.js、缺失 `.env` 时从 `.env.example` 复制、缺失依赖时自动 `npm install`、缺失构建产物时自动编译 MCP 服务器 / Bridge，然后依次启动
-**Toonflow Studio (:10588)**（若检测到）、**MCP 3D 渲染器 (:9842)**、**Bridge 服务器 (:10590)** 与 **Studio Web (:5173)**，对每个服务做健康检查，并自动打开浏览器。
-
-#### 方式一 — Windows 双击（最推荐）
-
-下载项目后，直接双击项目根目录下的 **`start-all.bat`** 即可。所有服务自动启动，浏览器自动打开 `http://localhost:5173`。
-
-#### 方式二 — npm（任何系统）
+📖 **完整文档与集成指南（含 MoneyPrinterTurbo）：** [`studio/README.md`](studio/README.md)
 
 ```bash
-npm run start:all
+npm run start:all   # 或双击 start-all.bat
 ```
-
-#### 方式三 — PowerShell（Windows）
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-all.ps1
-```
-
-> **仅生成视频时才需要手动配置一步：** 在生成的 `.env` 中设置 `LLM_API_KEY`（用于脚本/分镜生成）。
->
-> Toonflow（可选项，用于完整视频管线）会自动探测 `../AI应用/Toonflow-app`、`../Toonflow-app`、`./Toonflow-app` 或 `TOONFLOW_APP_DIR` 环境变量。
-> MoneyPrinterTurbo（可选项，需 Docker）仅在 `.env` 中设置 `MPT_ENABLED=true` 时启动。
-
-常用参数：`-NoToonflow` 跳过 Toonflow，`-NoMpt` 跳过 MPT，`-NoBrowser` 不自动打开浏览器，`-SkipInstall` 跳过 `npm install`。
-
-#### 仅 3DGS 渲染（不含 Toonflow）
-
-如果只需要 3DGS 渲染工具，不需要 Toonflow：
-
-```bash
-npm run dev    # MCP + Bridge + Web，不含 Toonflow
-```
-
-### 创作短视频：分步指南
-
-#### 第一步 — 在 Toonflow 中编写脚本
-
-打开 Toonflow Web 应用（通常在 `http://localhost:10588`）。创建项目、编写脚本、生成分镜。每个分镜包含：
-
-- **提示词（Prompt）** — 用于图像/视频生成的文本描述
-- **时长（Duration）** — 场景秒数
-- **轨道（Track）** — 场景分组标签
-
-Toonflow 数据流：`文本 → 脚本 → 资产（角色/场景/道具）→ 分镜 → 视频`
-
-#### 第二步 — 在 Studio Web 中浏览项目
-
-打开 `http://localhost:5173`，进入**项目**页面。可以看到所有 Toonflow 项目。点击项目卡片查看分镜列表。
-
-<details>
-<summary>示例：通过 API 创建测试项目</summary>
-
-```bash
-# 登录 Toonflow
-TOKEN=$(curl -s http://localhost:10588/api/login/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"admin123"}' | jq -r '.data.token')
-
-# 创建脚本
-curl -s http://localhost:10588/api/script/addScript \
-  -H "Authorization: $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"森林奇遇","content":"# 森林奇遇\n## 第一幕...","projectId":1}'
-
-# 添加分镜
-curl -s http://localhost:10588/api/production/storyboard/batchAddStoryboardInfo \
-  -H "Authorization: $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "scriptId": 1,
-    "projectId": 1,
-    "data": [
-      {
-        "prompt": "A misty forest at dawn, sunlight through trees",
-        "videoDesc": "清晨薄雾笼罩古老森林",
-        "duration": 5,
-        "track": "Scene 1",
-        "state": "pending",
-        "src": "",
-        "shouldGenerateImage": 1,
-        "associateAssetsIds": []
-      }
-    ]
-  }'
-```
-
-</details>
-
-#### 第三步 — 将分镜渲染为 3DGS 场景
-
-在**渲染工作室**（`/render`）中有两种渲染模式：
-
-| 模式 | 功能 | 适用场景 |
-|------|------|----------|
-| **直接 3DGS 渲染** | 从文本描述或 `.ply` 文件渲染单个场景 | 不依赖 Toonflow 的快速预览 |
-| **从 Toonflow 批量渲染** | 将多个 Toonflow 分镜渲染为 3DGS 场景 | 完整短视频生产 |
-
-批量渲染时，输入 Toonflow 的**项目 ID** 和**分镜 ID**（逗号分隔），点击**批量渲染**。Bridge 会从 Toonflow 获取分镜数据，通过 MCP 服务器构建 3DGS 场景，逐帧渲染每个分镜。
-
-#### 第四步 — 监控渲染进度
-
-渲染进度通过 SSE（Server-Sent Events）实时推送。右上角会弹出 Toast 通知。仪表盘页面显示最近渲染任务的进度条。
-
-#### 第五步 — 在 Toonflow 中使用 3DGS 供应商（可选）
-
-要在 Toonflow 的图像/视频生成中直接使用 3DGS 渲染：
-
-```bash
-# 将供应商适配器复制到 Toonflow
-cp studio/bridge/vendor/3dgs-renderer.ts ../AI应用/Toonflow-app/data/vendor/
-```
-
-这会在 Toonflow 的供应商系统中注册 3DGS，同时作为图像模型（单帧渲染）和视频模型（多帧动画）。
-
-### 端口说明
-
-| 服务 | 端口 | 说明 |
-|------|------|------|
-| Toonflow 引擎 | 10588 | 短剧创作引擎（外部应用） |
-| MCP 渲染器 | 9842 | WebSocket 3DGS 渲染器 |
-| Bridge 服务器 | 10590 | REST API + SSE，Toonflow 代理 |
-| Studio Web | 5173 | Vue 3 单页应用前端 |
-| MPT API (Sidecar) | 8081 | MoneyPrinterTurbo FastAPI（可选，宿主 8080 被占时用 8081） |
-| MPT Web UI | 8501 | MoneyPrinterTurbo Streamlit 管理界面（可选） |
-
-### 常见问题
-
-- **"Toonflow 引擎未运行"** — 启动 Toonflow：`npm run start:all`，或在 Toonflow 目录下手动执行 `node data/serve/app.js`
-- **项目页看不到分镜** — 先在 Toonflow 中创建脚本，分镜从属于脚本
-- **Toonflow 中没有 3DGS 供应商** — 将 `studio/bridge/vendor/3dgs-renderer.ts` 复制到 Toonflow 的 `data/vendor/` 目录
-
-### MoneyPrinterTurbo (MPT) 集成
-
-[MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) 以**可选 HTTP API Sidecar** 方式集成，为 SplatVerse Studio 扩展在线素材视频生成、额外 TTS 音色和跨平台发布能力。**零侵入** —— `MPT_ENABLED=false` 或 `MPT_API_URL` 未设置时，管线行为与集成前完全一致。
-
-#### MPT 扩展能力
-
-| 能力 | 管线步骤 | 作用 |
-|------|----------|------|
-| **扩展 TTS** | 第 4 步（TTS 配音） | CosyVoice2 → Edge → SAPI 全部失败后降级；新增 Azure / SiliconFlow / ElevenLabs / Gemini 音色 |
-| **全量视频生成** | 第 6 步（FFmpeg 合成） | 3DGS / Toonflow / 视频驱动均无产出时的最终降级 —— 使用 Pexels / Pixabay / Coverr 在线素材生成完整视频 |
-| **跨平台发布** | 第 7 步（发布，新增） | 一键发布到 TikTok / Instagram / YouTube Shorts |
-
-#### 前端入口
-
-Studio Web 的「文稿 → 视频」页面（`/pipeline`）已内置 MPT 入口：
-
-- **配置面板**：模型配置区底部新增「🚀 MoneyPrinterTurbo 集成」分组——启用开关、服务地址、素材来源、默认音色，并实时显示连接状态（已连接 / 未连接）。保存配置即写入 `.env`。
-- **任务级选项**：输入区底部新增「🚀 MoneyPrinterTurbo 兜底」区块——勾选「视频兜底」与「配音兜底」后，主管线（3DGS / Toonflow / TTS）任一步骤失败时自动降级到 MPT；MPT 启用时还可选择 MPT 音色与发布平台（TikTok / YouTube / Instagram）。
-
-> 说明：bridge 启动时会自动加载项目根目录 `.env`（零依赖实现，见 `studio/bridge/src/load-env.ts`），因此 UI 保存的配置**重启 bridge 后生效**。建议从项目根目录启动 bridge（`npm run dev:bridge` 或 `scripts/start-dev.ps1`），以保证读取到根目录 `.env`。
-
-#### 部署步骤
-
-```bash
-# 1. 配置 MPT（至少填入一个素材 API Key）
-cp mpt-config.example.toml mpt-config.toml
-#    编辑 mpt-config.toml —— 必填：pexels.api_key 或 pixabay.api_key（均免费申请）
-
-# 2. 启动 MPT 容器
-docker compose -f docker-compose.mpt.yml up -d
-
-# 3. 验证 MPT 服务
-curl http://localhost:8081/api/v1/tasks?page=1&page_size=1
-
-# 4. 在 Studio .env 中启用 MPT
-#    MPT_ENABLED=true
-#    MPT_API_URL=http://localhost:8081
-```
-
-#### 配置项说明
-
-| 环境变量 | 默认值 | 说明 |
-|----------|--------|------|
-| `MPT_ENABLED` | `false` | 是否启用 MPT 集成 |
-| `MPT_API_URL` | （空） | MPT FastAPI 服务地址 |
-| `MPT_MATERIAL_SOURCE` | `pexels` | 素材来源：`pexels` / `pixabay` / `coverr` / `local` |
-| `MPT_DEFAULT_VOICE` | `zh-CN-XiaoxiaoNeural` | 默认 TTS 音色名称 |
-
-MPT 侧配置（Pexels/Pixabay API Key、TTS 服务商、LLM）在 `mpt-config.toml` 中设置，不在此处 `.env`。完整模板见 `mpt-config.example.toml`。
-
-#### API 端点
-
-| 端点 | 方法 | 说明 |
-|------|------|------|
-| `/api/pipeline/mpt/health` | GET | 检查 MPT 服务可用性 |
-| `/api/pipeline/mpt/bgm` | GET | 获取 MPT BGM 曲库 |
-| `/api/pipeline/tasks/:id/publish` | POST | 发布视频到平台（`{ platforms: [{ name, title, tags }] }`） |
-
-#### 创建带 MPT 降级的任务
-
-```bash
-curl -s http://localhost:10590/api/pipeline/tasks \
-  -H "Content-Type: application/json" \
-  -d '{
-    "text": "在一个宁静的小镇上，一只名叫花花的小猫和蝴蝶聊天...",
-    "title": "花花的冒险",
-    "style": "水彩",
-    "videoRatio": "16:9",
-    "enableTTS": true,
-    "enableVideoGen": false,
-    "enableMptFallback": true,
-    "enableMptTTS": true,
-    "mptVoiceName": "zh-CN-XiaoxiaoNeural",
-    "publishPlatforms": [
-      { "name": "tiktok", "title": "花花的冒险", "tags": ["动画", "猫咪"] }
-    ]
-  }'
-```
-
-7 步管线：**剧本改编 → 智能分镜 → Toonflow 集成 → TTS 配音（MPT 降级）→ 视频驱动 → FFmpeg 合成（MPT 降级）→ 跨平台发布（MPT）**
 
 ## 贡献指南
 
