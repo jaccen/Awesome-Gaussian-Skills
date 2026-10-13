@@ -1,0 +1,51 @@
+{
+  "name": "awesome-gaussian-skills",
+  "owner": {
+    "name": "jaccen"
+  },
+  "metadata": {
+    "description": "15 research-grade AI agent skills for 3D Gaussian Splatting, backed by a 900-method arXiv-verified knowledge base",
+    "version": "0.9.8"
+  },
+  "plugins": [
+    {
+      "name": "gaussian-research",
+      "description": "Research cycle: read 3DGS papers, compare methods across 11 dimensions, plan CVPR/ICCV/SIGGRAPH experiments, write and review papers with the 900-method knowledge base",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/3dgs-paper-reader",
+        "./skills/3dgs-method-compare",
+        "./skills/3dgs-experiment-planner",
+        "./skills/cg-paper-writing"
+      ]
+    },
+    {
+      "name": "gaussian-engineering",
+      "description": "Engineering cycle: 104-pattern code review, 60+ runtime training failure debugging (OOM/NaN/divergence), compression & streaming deployment, publication-quality charts, research-to-production guide",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/3dgs-code-reviewer",
+        "./skills/3dgs-training-debugger",
+        "./skills/3dgs-visualizer",
+        "./skills/3dgs-engineering-guide",
+        "./skills/3dgs-compression-deploy"
+      ]
+    },
+    {
+      "name": "gaussian-domain",
+      "description": "Cross-domain bridges: CAD/Mesh-3DGS conversion, spatial intelligence agent, articulated object reasoning, NeRF-to-3DGS migration, patent/IP documentation, MCP-driven 3DGS rendering and sculpting",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/cad-mesh-3dgs",
+        "./skills/3dgs-spatial-agent",
+        "./skills/3dgs-articulated-reasoner",
+        "./skills/nerf-to-3dgs-migrator",
+        "./skills/patent-software-ip",
+        "./skills/3dgs-mcp-renderer"
+      ]
+    }
+  ]
+}

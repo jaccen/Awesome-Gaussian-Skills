@@ -23,7 +23,7 @@
 
 ## Why This Repo?
 
-Other awesome lists give you paper titles. **We give you paper titles + an AI toolkit that makes you faster.**
+Other awesome lists give you paper titles. **We give you paper titles + an AI toolkit that makes you faster.** The canonical lists catalog the ecosystem for humans; this repo makes it consumable by AI agents — **let your AI read the papers for you**.
 
 | What You Need | Other Lists | This Repo |
 |---------------|-------------|-----------|
@@ -43,16 +43,16 @@ Search 900 Methods instantly, filter by category, sort by citations, click any m
 
 ## Integrations
 
-This repo ships as both **AI agent skills** and an **MCP server**, so it works across agent runtimes and MCP clients:
+This repo ships as both **AI agent skills** and an **MCP server**, so it works across agent runtimes and MCP clients — the knowledge base is consumable by your AI agent, not just by you:
 
 | Client | How to use |
 |---|---|
+| **Claude Code / OpenClaw** | `/plugin marketplace add jaccen/Awesome-Gaussian-Skills` → install `gaussian-research`, `gaussian-engineering`, or `gaussian-domain` (15 skills in 3 plugins); or load `skills/` directly (see `CLAUDE.md`); MCP server via the config below |
 | **DSH (DeepSeek Harness)** | `dsh plugin --profile web add jaccen/Awesome-Gaussian-Skills` — the 15 skills + MCP renderer auto-mount via `cordis.patch.yml` |
-| **Claude Code / OpenClaw** | skills load directly from `skills/` (see `CLAUDE.md`); MCP server via the config below |
 | **Claude Desktop / Cursor / Cline** | copy the MCP stdio config from [`.marketplace/mcp-servers/client-configs.md`](.marketplace/mcp-servers/client-configs.md) |
-| **Any MCP client** | `command: node`, `args: [/path/to/mcp-server/dist/index.js]`, transport: stdio (21 core tools) |
+| **Any MCP client** | `command: node`, `args: [/path/to/mcp-server/dist/index.js]`, transport: stdio — 34 tools (21 core + 13 experimental) |
 
-The MCP server exposes 21 tools (`import_scene`, `set_camera`, `modify_gaussians`, `render_frame`, `sculpt_pipeline`, SLAT latent editing, …) — see [`mcp-server/README.md`](mcp-server/README.md) and [`.marketplace/mcp-servers/mcp-metadata.json`](.marketplace/mcp-servers/mcp-metadata.json).
+The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `modify_gaussians`, `render_frame`, `sculpt_pipeline`, SLAT latent editing, …) + 13 experimental stubs — see [`mcp-server/README.md`](mcp-server/README.md) and [`.marketplace/mcp-servers/mcp-metadata.json`](.marketplace/mcp-servers/mcp-metadata.json).
 
 ## 📖 Online Book: Spatial & Embodied Intelligence (New!)
 
@@ -739,16 +739,22 @@ Contributions welcome! See [Contributing Guide](CONTRIBUTING.md).
   author = {jaccen},
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
-  url = {https://github.com/jaccen/Awesome-Gaussian-Skills}
+  url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
+  note = {900 arXiv-verified methods across 23 categories, 15 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
-## Acknowledgments
+## Ecosystem & Acknowledgments
 
-- [3D Gaussian Splatting](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/) —The foundational work
-- [awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) —The awesome list that inspired this project
-- [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) —Comprehensive paper collection
+Complementary projects — we recommend all of them:
+
+- [graphdeco-inria/gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) — official reference implementation of the original 3DGS paper
+- [MrNeRF/awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) — the canonical paper list & ecosystem hub, and the awesome list that inspired this project
+- [nerfstudio-project/gsplat](https://github.com/nerfstudio-project/gsplat) — production-grade 3DGS training framework
+- [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — comprehensive paper collection
 - All 3DGS researchers whose papers form our knowledge base
+
+> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 900 verified methods, 15 skills, 34 MCP tools.
 
 ## License
 

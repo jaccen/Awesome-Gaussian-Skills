@@ -692,16 +692,22 @@ curl -s http://localhost:10590/api/pipeline/tasks \
   author = {jaccen},
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
-  url = {https://github.com/jaccen/Awesome-Gaussian-Skills}
+  url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
+  note = {900 arXiv-verified methods across 23 categories, 15 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
-## 致谢
+## 生态与致谢
 
-- [3D Gaussian Splatting](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/) — 奠基性工作
-- [awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) — 启发本项目的 awesome 列表
+互补项目 —— 我们全都推荐：
+
+- [graphdeco-inria/gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) — 原始 3DGS 论文的官方参考实现
+- [MrNeRF/awesome-3D-gaussian-splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) — 权威论文清单与生态枢纽，也是启发本项目的 awesome 列表
+- [nerfstudio-project/gsplat](https://github.com/nerfstudio-project/gsplat) — 生产级 3DGS 训练框架
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — 全面论文合集
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
+
+> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 900 已核验方法、15 个技能、34 个 MCP 工具。
 
 ## 许可证
 

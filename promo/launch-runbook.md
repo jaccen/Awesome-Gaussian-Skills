@@ -1,29 +1,29 @@
 # 全渠道协同首发 Runbook（以电子书为主角）
 
 目标：让《深入理解空间智能与具身智能 · 以 3D Gaussian Splatting 为核心》广泛传阅、快速建立行业影响力。
-核心资产：电子书 `docs/spatial-embodied-intelligence.html`（2157 行自包含 HTML）+ 仓库知识库（859/23/16/34，全部 arXiv 逐条核验）。
+核心资产：电子书 `docs/spatial-embodied-intelligence.html`（3116 行自包含 HTML）+ 仓库知识库（900/23/15/34，全部 arXiv 逐条核验）。
 
 ---
 
 ## Step 0 — 拿到可分享 URL（门禁，必须先做）
 
 当前仓库无 GitHub Pages / CNAME / 静态托管，电子书没有干净 URL。先发布：
-- 用「发布为应用」skill 部署 `docs/spatial-embodied-intelligence.html`（单文件、零依赖）→ 得到 `{{EBOOK_URL}}`。
+- 用「发布为应用」skill 部署 `docs/spatial-embodied-intelligence.html`（单文件、零依赖）→ 得到 `https://spatial-embodied-ebook.app.workbuddy.host/`。
 - 若改用 GitHub Pages：在仓库 Settings → Pages 指向 `docs/`，URL 即 `https://jaccen.github.io/Awesome-Gaussian-Skills/docs/spatial-embodied-intelligence.html`。
-- 拿到后，**全局替换**本 runbook 与 `reddit-post.md / hackernews-showhn.md / wechat-launch.md / zhihu-post.md / x-thread.md` 中的 `{{EBOOK_URL}}`。
+- 拿到后，**全局替换**本 runbook 与 `reddit-post.md / hackernews-showhn.md / wechat-launch.md / zhihu-post.md / x-thread.md` 中的 `https://spatial-embodied-ebook.app.workbuddy.host/`。
 
 ## Step 1 — T-0（发布前半天）：仓库门面
 
 执行 `promo/github-facelift.md`：
 1. 上传 `promo/social-preview.png` 作 Social preview；
 2. 加 Topics（3d-gaussian-splatting / physical-ai / embodied-ai / mcp / knowledge-base …）；
-3. About 的 **Website 指向 `{{EBOOK_URL}}`**，Description 写"859 arXiv-verified 3DGS methods + an open ebook on Spatial & Embodied Intelligence"；
+3. About 的 **Website 指向 `https://spatial-embodied-ebook.app.workbuddy.host/`**，Description 写"900 arXiv-verified 3DGS methods + an open ebook on Spatial & Embodied Intelligence"；
 4. 仓库 Pinned、发 Release **v0.9.x「随书发布」**、开 Discussions 并置顶"Submit your paper / 方法提名"帖；
 5. README 首屏追加 Star History 卡片。
 
 ## Step 2 — T-1 窗口（周二~周四 21:00–23:00 北京时间 = 美东上午）
 
-**1 小时内集中发布**，每条都链 `{{EBOOK_URL}}`，并互相 @/引用形成回流：
+**1 小时内集中发布**，每条都链 `https://spatial-embodied-ebook.app.workbuddy.host/`，并互相 @/引用形成回流：
 
 1. GitHub Release 已发 → Discussions 置顶"方法提名"；
 2. **Show HN**（`hackernews-showhn.md`，首评立刻跟）；
@@ -54,4 +54,4 @@
 
 ## 一致性红线
 
-所有对外文案数字必须与 `data/methods.json` 一致：**859 方法 / 23 分类 / 16 技能 / 34 MCP 工具**，且"可核实"口径不得弱化。
+所有对外文案数字必须与 `data/methods.json` 一致：**900 方法 / 23 分类 / 15 技能 / 34 MCP 工具**，且"可核实"口径不得弱化。
