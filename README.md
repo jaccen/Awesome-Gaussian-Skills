@@ -12,7 +12,7 @@
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Methods](https://img.shields.io/badge/Methods-955-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI_Skills-17-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/AI_Skills-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -159,7 +159,30 @@ This book is the *narrative layer* over the repo's *data layer*. The repo gives 
 
 ## What's New (Oct 2026)
 
-### Latest Update (Oct 13, 2026): **v0.9.10 — AIGC Content Creation Category + Research Expert Team Skill** ⭐
+### Latest Update (Oct 15, 2026): **v0.9.11 — Research Expert Team Deep Expansion: Methodology Core + 15 Master-Paper Studies** ⭐
+
+Pure skill-content release — **no carrier changes** (955 methods / 26 categories / 18 skills stay).
+`research-expert-team` grew from a nine-role router into a **two-layer methodology asset**:
+
+- **Methodology core (program layer)** — executable procedures distilled from 15 top-cited
+  exemplars: topic-selection engine (M1-M4 + five opening-sentence variants), argumentation
+  skeletons (T1-T3 + representation-paper techniques B.5), 16 experiment patterns (C1-C16),
+  eight reviewer must-ask questions with preempts (D1-D8), nine value amplifiers.
+- **Master-paper evidence base (5 directions, 15 papers)** — full-text dissections of Kimera,
+  ConceptGraphs, ReAct, MetaGPT, Toolformer, Generative Agents, Voyager, DreamFusion,
+  DreamGaussian, 3DGS, 4DGS, SuGaR, NeRF, Instant-NGP, DUSt3R (citations verified via
+  Semantic Scholar).
+- **3DGS paper-drafting blueprint** — three writing rules (motivation upgrade / symbol
+  unification / painpoint→resource-metric mapping), five-section placement table, and a
+  pre-submission checklist, fused with `cg-paper-writing` templates.
+- **Expert-review audited** — all 10 re-fetched papers' numeric claims line-verified; 2025-2026
+  latest-paper landscape notes added per direction.
+
+Also fixed a pre-existing badge caliber bug (skills count 17 → 18; CN README was stale at 15).
+See the work log in [changelog/2026-10-15.md](changelog/2026-10-15.md) and the release record
+[changelog/2026-10-15-v2.md](changelog/2026-10-15-v2.md).
+
+### Previous Update (Oct 13, 2026): **v0.9.10 — AIGC Content Creation Category + Research Expert Team Skill** ⭐
 
 New category **AIGC Content Creation** (22 methods; taxonomy 25 → 26): the AI-generated-content
 creation layer over 3DGS — text/image → 3DGS scenes and assets, generative scene reconstruction,
@@ -401,7 +424,7 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 | 15 | [3dgs-training-debugger](skills/3dgs-training-debugger/) | Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns) | "训练 OOM 了怎么办？" |
 | 16 | [`ontology`](skills/ontology/) | Build & reason over 3D scene graphs, spatial ontologies, neuro-symbolic representations | "把 3DGS 场景接入知识图谱" |
 | 17 | [`super-agent`](skills/super-agent/) | Design, orchestrate & debug multi-agent LLM systems and 3D/spatial agents | "设计一个多智能体 3D 重建流水线" |
-| 18 | [`research-expert-team`](skills/research-expert-team/) | Nine-role research expert team: idea evaluation, innovation mining, simulated review, polishing, AIGC-trace hygiene, venue compliance & format, experiment design & analysis | "评审这个 idea 并设计消融实验" |
+| 18 | [`research-expert-team`](skills/research-expert-team/) | Nine-role research expert team: idea evaluation, innovation mining, simulated review, polishing, AIGC-trace hygiene, venue compliance & format, experiment design & analysis — with a two-layer methodology core (M/T/C/D/E programs from 15 top-cited exemplars across 5 directions) + a 3DGS paper-drafting blueprint | "评审这个 idea 并设计消融实验" |
 
 Works with **Claude Code**, **Cursor**, **Windsurf**, and other AI Agent frameworks.
 

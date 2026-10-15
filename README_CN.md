@@ -12,7 +12,7 @@
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Methods](https://img.shields.io/badge/方法-955-9cf.svg)](references/3dgs-methods-overview.md)
-[![Skills](https://img.shields.io/badge/AI技能-15-green.svg)](skills/)
+[![Skills](https://img.shields.io/badge/AI技能-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -159,7 +159,28 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 
 ## 最新动态（2026 年 10 月）
 
-最新更新（10 月 13 日）：**v0.9.10 — AIGC Content Creation 分类 + 科研专家团技能** ⭐
+最新更新（10 月 15 日）：**v0.9.11 — 科研专家团深度扩容：方法论内核 + 15 篇标杆深读** ⭐
+
+纯技能内容版本 —— **载体口径不变**（955 方法 / 26 分类 / 18 技能）。
+`research-expert-team` 从九角色路由器升级为**双层方法论资产**：
+
+- **方法论内核（程序层）** —— 从 15 篇顶引标杆提炼的可执行程序：选题引擎
+  （M1-M4 + 五种开题句式变体）、论述骨架（T1-T3 + 表示论文技法 B.5）、
+  16 种实验模式（C1-C16）、八大审稿人必问题与应对（D1-D8）、九条价值放大器。
+- **标杆案例库（5 方向 15 篇）** —— Kimera、ConceptGraphs、ReAct、MetaGPT、
+  Toolformer、Generative Agents、Voyager、DreamFusion、DreamGaussian、3DGS、
+  4DGS、SuGaR、NeRF、Instant-NGP、DUSt3R 全文解剖（引用数经 Semantic
+  Scholar 核实）。
+- **3DGS 论文撰写蓝图** —— 写作三铁律（动机升维 / 符号统一 / 痛点→资源维度
+  评测映射）、五章节落位表、投稿前检查清单，与 `cg-paper-writing` 模板自洽融合。
+- **专家审稿校验** —— 10 篇重拉论文全部数值声明逐行核验；各方向补充
+  2025-2026 最新格局注记。
+
+同时修复了一处遗留 badge 口径 bug（技能数英文版 17 → 18，中文版此前停留在 15）。
+工作日志见 [changelog/2026-10-15.md](changelog/2026-10-15.md)，版本记录见
+[changelog/2026-10-15-v2.md](changelog/2026-10-15-v2.md)。
+
+上一次更新（10 月 13 日）：**v0.9.10 — AIGC Content Creation 分类 + 科研专家团技能** ⭐
 
 新增分类 **AIGC Content Creation**（22 篇；分类 25 → 26）：3DGS 之上的 AI 生成内容创作层 ——
 文生/图生 3DGS 场景与资产、生成式场景重建、风格化、3D 艺术字体、化身生成。锚点方法
@@ -383,7 +404,7 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 | 15 | [3dgs-training-debugger](skills/3dgs-training-debugger/) | 训练故障诊断：OOM、NaN、发散、伪影（60+ 运行时模式） | "训练OOM了怎么办？" |
 | 16 | [`ontology`](skills/ontology/) | 本体与知识表示：3D 场景图、空间本体、神经符号推理 | "把 3DGS 场景接入知识图谱" |
 | 17 | [`super-agent`](skills/super-agent/) | 超级智能体与多智能体系统设计、编排与诊断 | "设计一个多智能体 3D 重建流水线" |
-| 18 | [`research-expert-team`](skills/research-expert-team/) | 九角色科研专家团：idea 评价、创新点挖掘、模拟审稿、润色、AIGC 痕迹治理、投稿框架与格式合规、实验设计与分析 | "评审这个 idea 并设计消融实验" |
+| 18 | [`research-expert-team`](skills/research-expert-team/) | 九角色科研专家团：idea 评价、创新点挖掘、模拟审稿、润色、AIGC 痕迹治理、投稿框架与格式合规、实验设计与分析 —— 新增双层方法论内核（M/T/C/D/E 程序体系，5 方向 15 篇顶引标杆提炼）与 3DGS 论文撰写蓝图 | "评审这个 idea 并设计消融实验" |
 
 兼容 **Claude Code**、**Cursor**、**Windsurf** 及其他 AI Agent 框架。
 

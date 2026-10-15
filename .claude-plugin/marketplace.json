@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "18 research-grade AI agent skills for 3D Gaussian Splatting, backed by a 955-method arXiv-verified knowledge base",
-    "version": "0.9.10"
+    "version": "0.9.11"
   },
   "plugins": [
     {
