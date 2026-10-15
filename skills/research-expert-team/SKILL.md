@@ -1,11 +1,11 @@
 ---
 name: research-expert-team
-description: "Full-cycle research expert team for 3DGS/spatial-intelligence papers: idea evaluation, innovation mining, simulated peer review, academic polishing, AIGC-trace hygiene (publication hygiene), framework & venue compliance, strict venue-format writing, experiment design, and experiment analysis. Ships with method-selection tables for three frontier directions — Ontology & Knowledge Representation, Super Agents & Agentic AI, AIGC Content Creation. Use when: evaluating a research idea, finding novelty/创新点, simulating reviewers 审稿, polishing 润色, removing AI-generated traces 消除AI生成痕迹 (metadata/style hygiene), checking paper-framework logic against venue expectations, formatting strictly to a journal/conference template, designing or analyzing experiments, 科研专家团."
+description: "Full-cycle research expert team for 3DGS/spatial-intelligence papers: idea evaluation, innovation mining, simulated peer review, academic polishing, AIGC-trace hygiene (publication hygiene), framework & venue compliance, strict venue-format writing, experiment design, and experiment analysis. Ships with method-selection tables for the Ontology & Knowledge Representation, Super Agents & Agentic AI, and AIGC Content Creation KB categories, master-paper studies for five directions (adding 3D Gaussian Splatting and Spatial Intelligence), plus a 3DGS paper-drafting blueprint (five-section skeleton, motivation-upgrade rewriting, painpoint→resource-metric evaluation mapping). Use when: evaluating a research idea, finding novelty/创新点, simulating reviewers 审稿, polishing 润色, drafting or structuring a 3DGS paper / 3DGS论文撰写, removing AI-generated traces 消除AI生成痕迹 (metadata/style hygiene), checking paper-framework logic against venue expectations, formatting strictly to a journal/conference template, designing or analyzing experiments, 科研专家团."
 ---
 
 # Research Expert Team — 科研全流程专家团
 
-> Scope: the full research cycle for a 3DGS / spatial-intelligence paper — from idea evaluation to rebuttal — orchestrated as nine specialist roles, with knowledge-backed method-selection tables for three frontier directions.
+> Scope: the full research cycle for a 3DGS / spatial-intelligence paper — from idea evaluation to rebuttal — orchestrated as nine specialist roles, with knowledge-backed method-selection tables and five-direction master-paper studies (§2.4).
 > Knowledge base: 955 arXiv-verified methods in `data/methods.json` (single source of truth — always re-query, never answer from memory), including the 12-method **Ontology & Knowledge Representation**, 20-method **Super Agents & Agentic AI**, and 22-method **AIGC Content Creation** categories.
 
 ## 1. The Nine Roles (assign by stage)
@@ -24,9 +24,9 @@ description: "Full-cycle research expert team for 3DGS/spatial-intelligence pape
 
 **Pipeline**: R1 → R2 → R8 → (write) → R6 → R7 → R4 → R5 → R3 → (revise) → R9 → (rebuttal). Any role can be invoked standalone.
 
-## 2. Three Frontier Directions — Method-Selection Tables
+## 2. Method-Selection Tables — KB Categories & Direction Coverage
 
-When the paper sits in (or borrows from) one of these directions, pick baselines, comparisons, and citations from the table — then re-query `data/methods.json` for the full category before locking the experiment plan.
+The tables below cover the three KB categories built for these directions; the other two covered directions (3D Gaussian Splatting, Spatial Intelligence) pick baselines by re-querying the KB's Reconstruction / Surface / Dynamic / Generation categories — all five directions have master-paper evidence in §2.4. When the paper sits in (or borrows from) one of these directions, pick baselines, comparisons, and citations from the table — then re-query `data/methods.json` for the full category before locking the experiment plan.
 
 ### 2.1 Ontology & Knowledge Representation (12 methods)
 
@@ -69,7 +69,8 @@ Two-layer asset: **`methodology-core.md` is the program** — the fifteen highes
 | Need | Section | What you get |
 |---|---|---|
 | Topic selection / innovation (R1/R2) | [§A](references/methodology-core.md) | four topic-selection modes M1-M4 + five opening-sentence variants A.1 (clash/paradox/agenda-revival/pipeline-dissection/legacy-gap) · red-flag checklist · delta typology (5 power levels) |
-| Argumentation framework (R6) | §B | three venue-validated skeleton templates T1-T3 · contribution–evidence bijection procedure · related-work organization · limitations-section style · §B.5 representation-paper techniques (math anchor / bounded first-claim / ideal-case loss / counter-intuitive preempt) |
+| Argumentation framework (R6) | §B | three venue-validated skeleton templates T1-T3 · contribution–evidence bijection procedure · related-work organization · limitations-section style · §B.5 representation-paper techniques (incl. motivation-upgrade rewriting + symbol-system unification) |
+| 3DGS paper drafting (domain extension) | [`references/3dgs-paper-blueprint.md`](references/3dgs-paper-blueprint.md) | 3DGS-specific skeleton program: three writing rules (motivation upgrade / symbol unification / painpoint→resource-metric mapping) · five-section placement table (intro 4-paragraph arc · related-work 3-way moat · method total-then-split with 3DGS math preliminaries · experiment 4-table spec) · painpoint library · limitations library · pre-submission checklist |
 | Experiment design / analysis (R8/R9) | §C | sixteen experiment patterns C1-C16 · domain iron rule (same diffusion prior / resolution / prompt set / evaluation protocol) |
 | Simulated review (R3) | §D | eight reviewer must-ask questions D1-D8 with preempt actions |
 | Polishing / value packaging | §E | nine value amplifiers (naming rights, citation trio, dataset-as-asset, future-work interfaces, …) |
@@ -92,7 +93,7 @@ Citation counts: Semantic Scholar, verified 2026-10. Division of labor (enforced
 - **R2 innovation mining**: load methodology-core **§A.3** delta typology — rank claims by power (representation-level > mechanism-level > combination-level > protocol-level > system-level), make each pass the one-sentence delta test (which named baseline, which measurable delta), and prefer combination/transfer/protocol deltas over "we scale it up". Tag every verdict with its mode number (M1-M4) and delta level (1-5) for R6/R8 traceability.
 - **R3 simulated review**: beyond domain-standard scrutiny, walk methodology-core **§D** D1-D8 (representation arbitrariness · own-prior-work overlap · baseline parity · metric blind spots · efficiency caliber · cost disadvantage · mechanism patchwork · hidden negatives); every question the draft cannot answer becomes an objection **with a fix**. The review report must state per-item D1-D8 coverage.
 - **R8 experiment design + R9 analysis**: compose the plan from methodology-core **§C** patterns C1-C16 (state which pattern each experiment table uses) and enforce the Comparison Fairness Protocol from `cg-paper-writing` v3.3.0 — same dataset version/resolution/split, same metric implementation, rerun-before-cite for mismatched calibers, one table one dimension; for 3DGS/generative work the domain iron rule (same diffusion prior / prompt set) is non-negotiable. R9 interprets failures through the failure-mode taxonomy (C5), not anecdotes.
-- **R6 framework compliance**: load methodology-core **§B** — pick the skeleton template matching the paper type (T1 journal system-arc / T2 conference capability-matrix / T3 paradigm-creating minimal-method), run the contribution–evidence bijection (every contribution ↔ unique evidence section; orphan experiments deleted or demoted to appendix), organize related work per B.3 (per-paper verdicts or grouped-gap prose), and write the limitations section per B.4 until Reviewer-2 has nothing left to add.
+- **R6 framework compliance**: load methodology-core **§B** — pick the skeleton template matching the paper type (T1 journal system-arc / T2 conference capability-matrix / T3 paradigm-creating minimal-method), run the contribution–evidence bijection (every contribution ↔ unique evidence section; orphan experiments deleted or demoted to appendix), organize related work per B.3 (per-paper verdicts or grouped-gap prose), and write the limitations section per B.4 until Reviewer-2 has nothing left to add. For 3DGS-direction papers, additionally load the §2.4 domain blueprint (`3dgs-paper-blueprint.md`) and walk its five-section placement table + pre-submission checklist.
 - **R7 format**: pull the venue's actual template and checklist (see `cg-paper-writing/references/` venue files) — never format from memory; citation style, anonymization, and figure rules are checked item by item.
 
 ## 4. AIGC-Trace Hygiene — Position and Red Lines
@@ -114,9 +115,9 @@ Positioned as **publication hygiene**, not detection-evasion:
 ## 6. Related Skills
 
 - **cg-paper-writing** — writing templates, claim-verification chain, Gate 1/2 integrity checks, comparison-fairness protocol, venue format references (the deep assets this team orchestrates)
-- **references/ (this skill, two layers)** — [`methodology-core.md`](references/methodology-core.md): the executable methodology program distilled from the 15 exemplars (A 选题引擎+开题变体 / B 论述架构+表示论文技法 / C 实验模式库 C1-C16 / D 审稿人预期库 / E 价值放大器 / F 团队约定); `mp-*.md` (5 files, 5 directions, 15 exemplar papers): per-direction full-text evidence base tracing every program step to its source paper
+- **references/ (this skill, two layers + domain extension)** — [`methodology-core.md`](references/methodology-core.md): the executable methodology program distilled from the 15 exemplars (A 选题引擎+开题变体 / B 论述架构+表示论文技法+骨架路由 / C 实验模式库 C1-C16 / D 审稿人预期库 / E 价值放大器 / F 团队约定); [`3dgs-paper-blueprint.md`](references/3dgs-paper-blueprint.md): 3DGS-specific drafting skeleton (three writing rules, five-section placement, painpoint/limitation libraries, cross-referenced with cg-paper-writing templates); `mp-*.md` (5 files, 5 directions, 15 exemplar papers): per-direction full-text evidence base tracing every program step to its source paper
 - **3dgs-experiment-planner** — detailed experiment design for CVPR/SIGGRAPH/TVCG
 - **3dgs-method-compare** — 10+ dimension method comparison tables
 - **3dgs-paper-reader** — structured reading of the anchor papers above
-- **ontology** / **super-agent** — deep-dives into two of the three frontier directions
+- **ontology** / **super-agent** — deep-dives into two of the five covered directions (Ontology, Super Agents)
 - **3dgs-visualizer** — publication charts for R9 analysis output

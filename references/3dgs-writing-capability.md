@@ -1,6 +1,7 @@
 # 3DGS 写作沉淀能力库 · Writing Capability Base
 
-> 版本：**2026-10-08** ｜ 数据源：`data/methods.json`（881 方法 / 23 类，v0.9.6）+ `reports/arxiv-daily/`（2026-09-28→10-08 每日扫描）+ `changelog/2026-10-07.md`（v0.9.6 人工收录 9 篇）
+> 版本：**2026-10-15**（§1 矩阵与口径行更新至 2026-10-14 快照）｜ 数据源：`data/methods.json`（**955 方法 / 848 条带 arXiv ID / 26 类**）+ `reports/arxiv-daily/`（2026-09-28→10-08 每日扫描）+ `changelog/2026-10-07.md`（v0.9.6 人工收录 9 篇）+ `changelog/2026-10-13-v2/v3.md`（新增「本体与知识表示」「超级智能体」「AIGC 内容生成」三类）。
+> 口径演进：本库初版基于 v0.9.6 的 881 方法 / 23 类；2026-10-14 基线为 955 方法 / 26 类，**§1 矩阵已同步重排并补齐三个新类**。§2 及之后的论文精读仍为 2026-09-28→10-08 窗口的产物，未随基线扩展，引用时按原始窗口理解。
 > 用途：把"近期新增论文的阅读"沉淀为**细分领域 → 核心期刊**的可检索能力，支撑**快速选题、写作定位、实验设计**三件事。
 > 配套技能：`cg-paper-writing`（写作/投稿/中文期刊格式）、`3dgs-experiment-planner`（实验设计）、`3dgs-method-compare`（related-work 定位）、`3dgs-paper-reader`（精读）。
 
@@ -17,36 +18,41 @@
 
 ---
 
-## 1. 细分领域 → 核心期刊能力矩阵（23 类）
+## 1. 细分领域 → 核心期刊能力矩阵（26 类，2026-10-14 快照）
 
-分布来自 `methods.json` 全量 881 条（`arXiv(preprint)` 占比高属领域常态，投稿时以非预印本 venue 为首选）。
+分布来自 `methods.json` 全量 955 条（其中 848 条带 arXiv ID；`arXiv(preprint)` 占比高属领域常态，投稿时以非预印本 venue 为首选）。
 "近期热度"= 2026-09-28→10-08 扫描+收录中落入该类的**新论文数**（反映当前 active 程度）。
 
 | # | 细分领域 | 总量 | 首选会议 | 首选期刊(英文长文) | 推荐中文期刊 | 近期热度 |
 |---|----------|-----|----------|-------------------|-------------|:---:|
-| 1 | Dynamic & 4D | 91 | CVPR / NeurIPS | TOG / TVCG | JCAD、图学学报、VRIH | 🔥🔥🔥 |
-| 2 | Feed-Forward | 86 | CVPR / NeurIPS | TOG / 3DV | JCAD、CJIG | 🔥🔥🔥 |
-| 3 | Surface & Rendering | 65 | CVPR / ECCV | TOG / TVCG | JCAD、图学学报、VCIBA | 🔥🔥 |
-| 4 | Cross-Domain | 65 | CVPR / NeurIPS | TVCG / CGF | CJIG、计算机应用 | 🔥🔥🔥 |
-| 5 | Compression & Streaming | 52 | NeurIPS / ECCV | TVCG / TOG | JCAD、CJIG、JSKX | 🔥🔥🔥 |
+| 1 | Dynamic & 4D | 93 | CVPR / NeurIPS | TOG / TVCG | JCAD、图学学报、VRIH | 🔥🔥🔥 |
+| 2 | Feed-Forward | 90 | CVPR / NeurIPS | TOG / 3DV | JCAD、CJIG | 🔥🔥🔥 |
+| 3 | Surface & Rendering | 66 | CVPR / ECCV | TOG / TVCG | JCAD、图学学报、VCIBA | 🔥🔥 |
+| 4 | Cross-Domain | 66 | CVPR / NeurIPS | TVCG / CGF | CJIG、计算机应用 | 🔥🔥🔥 |
+| 5 | Compression & Streaming | 53 | NeurIPS / ECCV | TVCG / TOG | JCAD、CJIG、JSKX | 🔥🔥🔥 |
 | 6 | Optimization | 51 | CVPR / SIGGRAPH | TOG / TPAMI | JCAD、CJC、JOS | 🔥🔥 |
 | 7 | SLAM | 47 | CVPR / ICRA | TRO / RA-L | 机器人、自动化学报 | 🔥🔥 |
 | 8 | Editing | 45 | CVPR / ECCV | TOG / TVCG | JCAD、VCIBA | 🔥🔥 |
-| 9 | Human & Avatar | 42 | CVPR / SIGGRAPH | TOG / TVCG | JCAD、VRIH | 🔥🔥 |
-| 10 | Embodied AI & Robotics | 42 | CVPR / ICRA / CoRL | RA-L / TRO | 机器人、自动化学报 | 🔥🔥🔥 |
+| 9 | Embodied AI & Robotics | 44 | CVPR / ICRA / CoRL | RA-L / TRO | 机器人、自动化学报 | 🔥🔥🔥 |
+| 10 | Human & Avatar | 42 | CVPR / SIGGRAPH | TOG / TVCG | JCAD、VRIH | 🔥🔥 |
 | 11 | Generation | 41 | NeurIPS / CVPR | TOG / SIGGRAPH | JCAD、CJIG | 🔥🔥 |
-| 12 | Language & Semantic | 37 | CVPR / ECCV | IJCV / TPAMI | CJIG、中文信息学报 | 🔥🔥 |
-| 13 | Foundation | 27 | CVPR / NeurIPS | TOG / TPAMI | CJC、JOS | 🔥🔥 |
-| 14 | HDR & Relighting | 26 | CVPR / SIGGRAPH | TOG / TPAMI | JCAD、CJIG | 🔥🔥 |
-| 15 | Autonomous Driving | 25 | CVPR | IJCV / RA-L | 机器人、CJIG、自动化学报 | 🔥🔥 |
+| 12 | Language & Semantic | 38 | CVPR / ECCV | IJCV / TPAMI | CJIG、中文信息学报 | 🔥🔥 |
+| 13 | HDR & Relighting | 27 | CVPR / SIGGRAPH | TOG / TPAMI | JCAD、CJIG | 🔥🔥 |
+| 14 | Foundation | 26 | CVPR / NeurIPS | TOG / TPAMI | CJC、JOS | 🔥🔥 |
+| 15 | Acceleration | 26 | CVPR* | TVCG / TOG | JCAD、JSKX | 🔥🔥🔥 |
 | 16 | Sparse-View | 25 | NeurIPS / ECCV / CVPR | IJCV / TOG | JCAD、CJIG | 🔥🔥🔥 |
-| 17 | Acceleration | 23 | CVPR* | TVCG / TOG | JCAD、JSKX | 🔥🔥🔥 |
+| 17 | Autonomous Driving | 24 | CVPR | IJCV / RA-L | 机器人、CJIG、自动化学报 | 🔥🔥 |
 | 18 | Robustness | 22 | CVPR / ECCV | IJCV / TPAMI | CJIG、计算机应用研究 | 🔥🔥 |
-| 19 | CAD & Reverse Engineering | 20 | CVPR / ICCV | TOG / TVCG | JCAD、图学学报 | 🔥🔥 |
-| 20 | Large-Scale | 20 | ECCV / NeurIPS | TOG / TVCG | CJIG、JCAD | 🔥🔥 |
-| 21 | Simulation | 11 | SIGGRAPH | TOG | JCAD、VRIH | 🔥 |
-| 22 | Security | 10 | NeurIPS / ICML | TPAMI / IJCV | CJC、CRAD、JOS | 🔥 |
-| 23 | World Models & Spatial Intelligence | 8 | ECCV / NeurIPS | TPAMI / SCIS | 自动化学报、SCIS | 🔥🔥 |
+| 19 | **AIGC Content Creation**（新增类） | 22 | CVPR / NeurIPS | TOG / TVCG | JCAD、CJIG | 🔥🔥🔥 |
+| 20 | Large-Scale | 21 | ECCV / NeurIPS | TOG / TVCG | CJIG、JCAD | 🔥🔥 |
+| 21 | CAD & Reverse Engineering | 20 | CVPR / ICCV | TOG / TVCG | JCAD、图学学报 | 🔥🔥 |
+| 22 | **Super Agents & Agentic AI**（新增类） | 20 | NeurIPS / ICML / ACL | TPAMI / TMLR | CJC、自动化学报、中文信息学报 | 🔥🔥🔥 |
+| 23 | World Models & Spatial Intelligence | 12 | ECCV / NeurIPS | TPAMI / SCIS | 自动化学报、SCIS | 🔥🔥 |
+| 24 | **Ontology & Knowledge Representation**（新增类） | 12 | NeurIPS / IJCAI / ACL | KBS / ESWA | CJC、中文信息学报 | 🔥🔥 |
+| 25 | Simulation | 11 | SIGGRAPH | TOG | JCAD、VRIH | 🔥 |
+| 26 | Security | 11 | NeurIPS / ICML | TPAMI / IJCV | CJC、CRAD、JOS | 🔥 |
+
+> 三个标注「新增类」的行（AIGC Content Creation 22 / Super Agents & Agentic AI 20 / Ontology & Knowledge Representation 12）为 2026-10-13 新设类目，其 venue 列为**类目性质推断**，非逐篇统计；写稿前请对该类具体方法单独核实 venue。
 
 > 注：`*`Acceleration 类中 91% 仍为预印本，正式会议占比低，说明该子领域正快速洗牌、尚未形成稳定顶会归宿——投稿时可优先投 CVPR 并同步 arXiv。
 > 中文期刊代号：CJC 计算机学报、JOS 软件学报、JCAD 计算机辅助设计与图形学学报、CJIG 中国图象图形学报、VCIBA 工医艺可视计算、VRIH 虚拟现实与智能硬件、TXB 图学学报、AAS 自动化学报、SCIS 中国科学:信息科学、CRAD 计算机研究与发展、JSKX 计算机科学、JCIS 中文信息学报。

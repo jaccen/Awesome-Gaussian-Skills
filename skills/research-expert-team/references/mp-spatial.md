@@ -5,7 +5,7 @@
 
 | 论文 | 载体 | arXiv | 引用 | 角色定位 |
 |---|---|---|---|---|
-| NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis (Mildenhall et al.) | **ECCV 2020（oral, best paper honorable mention）** | 2003.08934 | 5,900 | 神经场景表示的开山之作（连续函数+可微体渲染范式） |
+| NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis (Mildenhall et al.) | **ECCV 2020（oral）** | 2003.08934 | 5,900 | 神经场景表示的开山之作（连续函数+可微体渲染范式） |
 | Instant Neural Graphics Primitives with a Multiresolution Hash Encoding (Müller et al.) | **TOG/SIGGRAPH 2022（best paper）** | 2201.05989 | 6,456 | 效率机制论文的天花板（一个编码撬动三个数量级加速） |
 | DUSt3R: Geometric 3D Vision Made Easy (Wang et al.) | **CVPR 2024** | 2312.14132 | 2,022 | 几何基础模型范式（管线替代+零微调多任务） |
 
@@ -16,7 +16,7 @@
 ### 1.1 选题解剖
 
 - **双路线夹击 + 表示论辩**：现有方法两族各判刑——mesh 基（可微光栅化"梯度优化困难、易陷局部最小、需要固定拓扑模板"）、离散体素基（"存储随分辨率爆炸、无法扩展到高分辨率"）。然后给出第三条路的**表示论**：用连续 5D 函数（位置+方向→密度+辐射）把"复杂几何与外观"装进一个 MLP——既继承体积表示的"复杂真实几何+梯度优化友好"，又无离散采样的存储灾难。
-- **首创声明显式化**："As far as we know, this paper presents **the first** continuous neural scene representation that renders photorealistic novel views from RGB images in natural settings"——首创性声明要具体到限定词（continuous / photorealistic / natural settings），范围收窄反而更可信。
+- **首创声明显式化**："As far as we know, this paper presents **the first** continuous neural scene representation that is able to render high-resolution photorealistic novel views of real objects and scenes from RGB images captured in natural settings"——首创性声明要具体到限定词（continuous / high-resolution / photorealistic / real scenes / natural settings），范围收窄反而更可信。
 - **时机**：SRN/NV/LLFF 刚证明神经场景表示可行但质量不足，位置编码（Transformer）与谱偏差研究（Rahaman et al.）恰好成熟——三个组件（表示/采样/编码）的成熟度同时到位。
 
 ### 1.2 论述解剖
@@ -24,7 +24,7 @@
 **三贡献（对应三个技术难点，每个难点先证"naive 版不行"）**：
 1. 5D 神经辐射场表示——"basic implementation 不能收敛到足够高分辨率"→ 这句话是引出后两条贡献的钩子；
 2. 可微体渲染 + 分层采样（coarse 网络的重采样权重→fine 网络加权采样——"重要性采样的非独立同分布变体"的机制解释）；
-3. 位置编码 γ(p)=(sin 2^L πp, cos 2^L πp,…)——**把谱偏差文献（Rahaman）的结果转化为表示工具**，"与 Transformer 的同名编码用途不同"的辨析主动澄清（D1 preempt）。
+3. 位置编码 γ(p)=(sin 2⁰πp, cos 2⁰πp, …, sin 2^(L−1)πp, cos 2^(L−1)πp)——**把谱偏差文献（Rahaman）的结果转化为表示工具**，"与 Transformer 的同名编码用途不同"的辨析主动澄清（D1 preempt）。
 
 **写作技法**：
 - 摘要末句 "View synthesis results are best viewed as videos, so we urge readers to view our supplementary video"——诚实引导读者到证据最强的媒介；
@@ -108,7 +108,7 @@
 | **四任务同架构验证** | Gigapixel/SDF/NRC/NeRF 只换 T | "任务无关/通用性"主张的最强证明=拿四个任务跑同一实现 |
 | **Pareto 曲线代替单点** | Fig.4: T 扫描的"误差-时间"曲线；Fig.5: L/F 扫描的 Pareto 最优 (F=2,L=16) 并推荐为默认 | 给实践者"怎么调"的操作指南，而不是只报自己的工作点 |
 | **跨范式头条对比** | ACORN 36.9h vs 我们 2.5 分钟（同 PSNR 38.59dB），Tokyo 千兆像素 | 找到最慢的代表性方法做数量级对比；同时诚实拆分加速来源（~10× CUDA、10-100× MLP 缩小） |
-| **不利战场承认** | SDF 上 NGLOD 视觉质量更高（IoU 我们 0.9911 vs 0.9812 但"表面粗糙感"归因哈希冲突） | 定量赢+定性输的情况：赢的照报、输的机制归因不辩解 |
+| **不利战场承认** | SDF 上 NGLOD 视觉质量最高；IoU 两景各胜一局（0.9777 vs 0.9812 / 0.9911 vs 0.9872），论文自述"numeric quality 相当"；我们的表面粗糙感归因哈希冲突，且无 octree 约束、可全域求值 | 定量接近时转向性质差异（可全域求值 vs 需紧贴 octree）；定性劣势机制归因不辩解 |
 | 性能悬崖分析 | T>2^19 后 L2 cache 过订阅、F=1 慢因半精度原子累积只对 2D 向量高效 | 系统论文把"何时变慢"也做成实验结果 |
 | 工程细节即贡献 | 跳过零梯度 Adam 步省 10%、ε=10^-15 加速稀疏梯度、初始化 U(-10⁻⁴,10⁻⁴) 实验对比 | 微观工程决策都带数字——效率论文的消融颗粒度 |
 

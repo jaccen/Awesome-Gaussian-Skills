@@ -81,6 +81,12 @@
 5. **表示丰富性用"能免费提取什么"清单化证明**（DUSt3R §3.3：点匹配/内参/位姿/深度逐条公式）。
 6. **Preempt 标准句式**："It may appear counter-intuitive that…"——主动说出审稿人最深疑虑再拆解（INGP 的哈希冲突论证）。
 7. **跨社区双向铺路**：Preliminary 节为邻域读者回顾公式（4DGS）；措辞让图形学与视觉两个社区都能引用。
+8. **动机升维程序**（避开"调参感"）：任何超参/阈值/工程修改必须升维为机制级策略，四步转写——①写出实际做的工程修改 →②反问它在什么场景下修复了什么失败模式 →③为修复原则命名（曲率引导/表面感知/时空连续…）→④套模板："传统的[机制]在[场景]下导致[失败模式]；为此我们引入基于[原则]的[策略名]，从根本上优化[目标量]"。只报"改了阈值效果更好"= 审稿人把论文当工程报告的第一信号（D1/D7 preempt；标杆：3DGS 原版 clone/split 的直觉解释、SuGaR 表面对齐正则）。
+9. **符号系统前置统一**：论文前半部分集中定义核心符号并全文（含图表/附录）绝对统一——3DGS：μ∈ℝ³、Σ=RSSᵀRᵀ、S、R、α、SH 系数；执行直接用 cg-paper-writing `references/symbols-terminology.md` 符号表，**不另立标准**；初稿完成后做一次全文符号扫描。
+
+### B.6 领域专属骨架路由
+
+3DGS 方向论文的**整体骨架程序**（Introduction 四段式 / Related Work 三分类护城河 / Method 总-分结构 / 实验四表规范 / 痛点→资源评测映射 / 限制库）已独立成 [`3dgs-paper-blueprint.md`](3dgs-paper-blueprint.md)——写或改 3DGS 论文初稿时加载该蓝图，与本文 §A-F 配合使用：选题判定/审稿预期/实验模式编号归本文，骨架落位与 3DGS 写作铁律归蓝图。
 
 ---
 
@@ -93,7 +99,7 @@
 | C1 | **同轨迹删减消融** | 从完整方法轨迹/管线中删减组件构造各基线，保证完美对等 | ReAct：Standard/CoT/Act 均由 ReAct 轨迹删减；4DGS：warm-up/去组件同管线 |
 | C2 | **自建更强 baseline** | 不满足于现有最强，自己组装更强版本再击败 | ConceptGraphs：ConceptFusion+SAM |
 | C3 | **防作弊指标 + oracle 上界** | 设计一个能识破作弊解的指标（如 textureless 渲染评几何）+ 真实数据上界参照 | DreamFusion：textureless R-Precision + COCO GT 锚 |
-| C4 | **速度-质量-成本配对表** | 效率声明必须速度/质量/存储/训练时间同表呈现；带分辨率与硬件口径；分阶段单列消融行 | DreamGaussian：2min/0.738 表；3DGS：SSIM/PSNR/LPIPS+时间+FPS+内存五列三数据集；4DGS：+存储 18MB 列 |
+| C4 | **速度-质量-资源配对表** | 效率声明必须五资源口径同表：PSNR/SSIM/LPIPS + FPS + VRAM + Storage(MB) + Training time；带分辨率与硬件口径；分阶段单列消融行；仅报三个质量指标=必被 D5 打回 | DreamGaussian：2min/0.738 表；3DGS：SSIM/PSNR/LPIPS+时间+FPS+Mem 六列（3 质量+3 资源）三数据集；4DGS：+存储 18MB 列 |
 | C5 | **失败模式分类学** | 人工标注 ≥100 条失败/成功案例，分类占比 + 机制解释 + 修复路径；限制节写具体案例 | ReAct：CoT 幻觉 56% vs 0%；Generative Agents：检索失败/embellishment/继承语气三类；Voyager：不存在的铜剑、错误燃料 |
 | C6 | **多维评价矩阵** | 准确性之外加：成本（时间/token/钱）、生产率、人工修正次数、可执行性分级 | MetaGPT：五维统计表 |
 | C7 | **模块级评测 + 部署口径** | 系统论文逐模块独立证据；报嵌入式/真实硬件实时性，桌面 GPU 数字不算数 | Kimera：TX2 实时 + uHumans2 |
@@ -126,7 +132,7 @@
 | D5 | 效率声明的口径？ | 硬件型号+显存+分辨率+阶段耗时全部透明；性能何时变慢也做成实验（cache 过订阅阈值） | DreamGaussian / INGP |
 | D6 | 成本劣势？ | 多口径诚实呈现（总成本↑但单位成本↓）；加速来源拆账 | MetaGPT token/行；INGP 系统vs表示拆账 |
 | D7 | 机制是拼凑？ | 每个机制独立消融 + 绝对数字收益 + 百分比结论 | MetaGPT +4.2%；Voyager：-93%/-73%/5.7× |
-| D8 | 负结果藏哪了？ | 主动报告并机制归因，或换口径/转化为组合贡献/写作 future work 接口 | ReAct 略输 CoT→组合策略；4DGS Neu3D 换 FPS/存储口径；Toolformer 归因"不能交互" |
+| D8 | 负结果藏哪了？ | 主动报告并机制归因，或换口径/转化为组合贡献/写作 future work 接口 | ReAct 略输 CoT→组合策略；4DGS Neu3D 换 FPS/多相机前提口径；Toolformer 归因"不能交互" |
 
 ---
 
