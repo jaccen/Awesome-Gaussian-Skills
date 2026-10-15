@@ -145,7 +145,7 @@
 
 ## 3. 方向综述：本体/场景图方向投稿打法清单
 
-**选题**：用"表示三要求"框架找交点缺口；对标 Kimera（系统级）或 ConceptGraphs（配方级）两条路线之一，不要走中间。
+**选题**：用"表示三要求"框架找交点缺口；对标 Kimera（系统级）或 ConceptGraphs（配方级）两条路线之一，不要走中间。2026-10 方向演进（检索印证）：开放词汇 3D 场景图已从会议配方成熟至 TPAMI 期刊层（Hyperbolic 层级 3D 表示，TPAMI 2026），活跃轴为**层级化/动态环境（LOST-3DSG）/单目前馈（LEXI-SG）/功能场景图（Open-Vocabulary Functional 3D Scene Graphs）**——OntoGS 类投稿的差异化应避开已成熟轴，押这些新轴或其组合。
 **论述**：新本体/场景图表示必须 (a) 声明是哪张旧图的泛化 (b) 给出设计理由小节 (c) 定义节点/边/层的形式化。OntoGS 类论文的加分项：把"本体词汇表"的可组合性与 DSG 的 Remark 2 对齐。
 **实验**：Replica/AI2Thor/HM3D + 真机（哪怕一个）；模块级指标 + 下游任务收益闭环；人工评测协议 + 查询分类法；AMT 三人投票式设计。
 **基线**：库内必比 DynamicGSG、GraphWrit3R、Graph-GSReg、Prior-SG（场景图侧）+ SATURN/KLDrive（神经符号侧）——见 SKILL.md §2.1 选型表；主动加固最强 baseline。
@@ -154,4 +154,4 @@
 
 ---
 
-*深读来源：ar5iv 全文（2026-10 检索）。引用数：Semantic Scholar batch API 2026-10-14 核实。本文档由 research-expert-team 维护；补充新标杆论文时保持五维解剖结构。*
+*深读来源：ar5iv 全文（2026-10 检索）。引用数：Semantic Scholar batch API 2026-10-15 核实。方向综述 2026-10 方向演进注记于同日复检写入。本文档由 research-expert-team 维护；补充新标杆论文时保持五维解剖结构。*

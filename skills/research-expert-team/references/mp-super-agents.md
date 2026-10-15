@@ -254,7 +254,7 @@
 
 ## 6. 方向综述：超级智能体方向投稿打法清单
 
-**选题**：五条已验证路线——(a) ReAct：两个各自成熟的能力对，组合空白（当下候选：记忆检索×多智能体、世界模型×agent 规划、技能库自演化）；(b) MetaGPT：从人类成熟实践移植（SRT 组织学、合同/审计/仲裁机制、DevOps 流程），先引用具体病灶再给药；(c) Toolformer：悖论开题+数据自举（采样→执行→损失差过滤→自训练）；(d) Generative Agents：老议程重开（40 年 believable agents 史）+记忆架构机制化；(e) Voyager：对新范式点名判刑到零件级（缺哪个库/验证器/课程）+终身学习主张。
+**选题**：五条已验证路线——(a) ReAct：两个各自成熟的能力对，组合空白（当下候选：记忆检索×多智能体、世界模型×agent 规划、技能库自演化）；(b) MetaGPT：从人类成熟实践移植（SRT 组织学、合同/审计/仲裁机制、DevOps 流程），先引用具体病灶再给药；(c) Toolformer：悖论开题+数据自举（采样→执行→损失差过滤→自训练）；(d) Generative Agents：老议程重开（40 年 believable agents 史）+记忆架构机制化；(e) Voyager：对新范式点名判刑到零件级（缺哪个库/验证器/课程）+终身学习主张。2026-10 主战场（检索印证）：**Deep Research Agent 与长视野（long-horizon）系统**成为研究重心——榜单高分与真实专业场景的鸿沟（ACL 2026 最佳资源论文）与交互能力评测（IDRBench、BrowseComp-Plus）是评测侧空位，与 M1 组合缺口判定题直接对口。
 **论述**：范式论文→一句话方法+好名字+反常识头条数字；框架论文→三段式机制叙事+贯穿隐喻+理论谱系；机制论文→每个因子给完整实现（含 prompt）；明确声明与 ReAct/Reflexion 的继承关系。
 **实验**：主张协同就在协同两侧各自取证；同一轨迹删减式完美受控消融；失败模式分类表（人工标注+百分比）；公开基准硬数字 + 自建任务级基准；成本-质量-生产率多维矩阵；能力对照表；无 GT 任务自建 interview 协议；工具使用归因逐任务报告；组件交给竞争方法验证 plug-and-play 价值；"不 apple-to-apple"的对比主动声明并换系统级表。
 **基线**：库内可对标 Octopus v2（端侧）、E-Ledger（安全 harness）、SwarmWorld（去中心化）、SPLATIFY（代码合成）、COLMAR/GRAND-SLAM（3D 空间智能体）——见 SKILL.md §2.2；评测基准从 GISAgentBench/WorldBench/MeMoREval/SkillScriptBench 中选与主张匹配者（super-agent SKILL.md §3 的匹配原则：不要用单智能体指标评多智能体系统）。
@@ -263,4 +263,4 @@
 
 ---
 
-*深读来源：ar5iv 全文（2026-10 检索）。引用数：Semantic Scholar batch API 2026-10-14/15 核实（Toolformer/Generative Agents/Voyager 为 2026-10-15 核实值）。本文档由 research-expert-team 维护；补充新标杆论文时保持六维解剖结构（Toolformer/GA/Voyager 为精简五维：选题/论述/实验/打法，价值并入打法）。*
+*深读来源：ar5iv 全文（2026-10 检索）。引用数：Semantic Scholar batch API 2026-10-15 核实。方向综述 2026-10 主战场注记于同日复检写入。本文档由 research-expert-team 维护；补充新标杆论文时保持六维解剖结构（Toolformer/GA/Voyager 为精简五维：选题/论述/实验/打法，价值并入打法）。*

@@ -146,7 +146,7 @@
 6. **头条数字**：摘要末句放一个反常识对比（1-2 shot 胜 10⁵ 训练样本；2 分钟 vs 20 分钟；6.7B+工具胜 175B）。
 7. **自建数据集成为社区标准**：评测缺口自己补——数据集比论文长寿（NeRF-synthetic 的 Lego/Ship 至今在跑；uHumans2、SoftwareDev 同理），是复利最高的资产。
 8. **future work 写成可执行选题接口**：NeRF 结论节列的"效率、可解释性"各自孵化了一个方向（INGP 与后续 probing 工作）；开山论文的 future work 是选题金矿。
-9. **命名链可延展性**：好名字要给后续工作留词根（NeRF→Mip-NeRF→INGP→3DGS；DUSt3R→MASt3R→VGGT；ReAct→…）——被引的是名字本身，可扩展的名字引出整条谱系。
+9. **命名链可延展性**：好名字要给后续工作留词根（NeRF→Mip-NeRF→INGP→3DGS；DUSt3R→MASt3R→VGGT→DGGT；ReAct→…）——被引的是名字本身，可扩展的名字引出整条谱系。
 
 ---
 

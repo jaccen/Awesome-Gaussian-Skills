@@ -54,7 +54,7 @@
 
 ### 1.5 价值解剖（领域奠基级引用的构成）
 
-- "NeRF"一词成为整个 sub-field 的名字（后续 +500 论文以它为词根命名：Mip-NeRF/Instant-NGP/D-NeRF/…）——**命名权的终极形态：被引的是名字本身**；
+- "NeRF"一词成为整个 sub-field 的名字（数以千计的衍生工作以它为词根命名：Mip-NeRF/Instant-NGP/D-NeRF/乃至 2026 年仍在出现的量子 NeRF、外科场景 NeRF 等）——**命名权的终极形态：被引的是名字本身**；
 - 表示+渲染+采样三件套公式成为教科书素材；
 - 自建数据集 + 补充视频 + 代码（bmild/nerf）三资产；
 - 结论节的两个 future work（效率、可解释性）各自孵化了一个研究方向（INGP、 probing）——**开山论文的 future work 是选题金矿**。
@@ -168,7 +168,7 @@
 
 ### 3.5 价值解剖（2,022 引且快速增长的构成）
 
-- pointmap 成为几何基础模型的标准中间表示（MASt3R 加对齐、VGGT 推到 100+ 视角 feedforward——CVPR 2025 best paper 即此谱系）；
+- pointmap 成为几何基础模型的标准中间表示（MASt3R 加对齐、VGGT 推到数百视角（原文 hundreds of views）feedforward——CVPR 2025 best paper 即此谱系，2026 年谱系延续至动态无姿态重建 DGGT，CVPR 2026）；
 - "免标定"重写了 3D 视觉的输入假设——下游（含 3DGS 管线）不再默认 COLMAP 可用；
 - 开源 demo（dust3r.europe.naverlabs.com）+ 训练配方全公开，产业引用快；
 - 命名链效应：DUSt3R→MASt3R→VGGT 被引时顺带追溯。
