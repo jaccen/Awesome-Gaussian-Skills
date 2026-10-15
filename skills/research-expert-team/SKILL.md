@@ -60,12 +60,37 @@ When the paper sits in (or borrows from) one of these directions, pick baselines
 
 **Boundary note for classification**: generic 3D generative models → `Generation`; editing pipelines → `Editing`; watermark/copyright protection → `Security`. AIGC Content Creation = the creation-side application layer (text/image → 3DGS content, stylization, generative assets).
 
+### 2.4 Methodology Core + Master-Paper Evidence Base（双层加载）
+
+Two-layer asset: **`methodology-core.md` is the program** — the six highest-cited exemplars distilled into executable operating procedures, domain-tuned to 3DGS/spatial-intelligence (not bound to those six papers); **`mp-*.md` are the evidence** — per-direction full-text dissections tracing each procedure to its source paper. Load the program layer by need, the evidence layer to trace a provenance:
+
+**Layer 1 — Program (methodology-core.md, load by role)**:
+
+| Need | Section | What you get |
+|---|---|---|
+| Topic selection / innovation (R1/R2) | [§A](references/methodology-core.md) | four topic-selection modes M1-M4 with per-mode yes/no questions · red-flag checklist · delta typology (5 power levels) |
+| Argumentation framework (R6) | §B | three venue-validated skeleton templates T1-T3 · contribution–evidence bijection procedure · related-work organization · limitations-section style |
+| Experiment design / analysis (R8/R9) | §C | nine experiment patterns C1-C9 · 3DGS domain iron rule (same diffusion prior / resolution / prompt set / evaluation protocol) |
+| Simulated review (R3) | §D | eight reviewer must-ask questions D1-D8 with preempt actions |
+| Polishing / value packaging | §E | six value amplifiers (naming rights, citation trio, teaser-as-ad, …) |
+
+**Layer 2 — Evidence (mp-*.md, load by direction)**:
+
+| Direction | File | Exemplars (venue, citations) | What you learn |
+|---|---|---|---|
+| Ontology & Knowledge Representation | [`references/mp-ontology.md`](references/mp-ontology.md) | Kimera (IJRR 2021, 407) · ConceptGraphs (ICRA 2024, 671) | journal-arc system papers · FM-era bridge papers |
+| Super Agents & Agentic AI | [`references/mp-super-agents.md`](references/mp-super-agents.md) | ReAct (ICLR 2023, 12,540) · MetaGPT (ICLR 2024 Oral, 2,626) | minimal-paradigm papers · human-practice-transfer papers |
+| AIGC Content Creation | [`references/mp-aigc.md`](references/mp-aigc.md) | DreamFusion (ICLR 2023, 3,929) · DreamGaussian (ICLR 2024, 1,098) | paradigm-creating papers · representation-swap efficiency papers |
+
+Citation counts: Semantic Scholar, verified 2026-10. Division of labor (enforced): new lessons go into methodology-core as generalizable procedures; mp-*.md only ever grows by adding case evidence — never duplicate methodology there.
+
 ## 3. Role Playbooks (condensed)
 
-- **R1 idea evaluation**: ground every "already done" verdict in a named library method with arXiv ID; an idea with zero prior art in a 955-method KB is more likely a search failure than a gap — re-query with 2–3 paraphrases before claiming novelty.
-- **R2 innovation mining**: prefer **combination / transfer / protocol** deltas (e.g., neuro-symbolic × AIGC evaluation; super-agent orchestration × scene-graph memory) over "we scale it up" deltas; each innovation claim must name the baseline it moves against.
-- **R8 experiment design + R9 analysis**: enforce the Comparison Fairness Protocol (same dataset version/resolution/split, same metric implementation, rerun-before-cite for mismatched calibers) from `cg-paper-writing` v3.3.0 — one table, one dimension.
-- **R6 framework compliance**: journal papers need a sustained argument thread + related-work that positions; conference papers need a front-loaded contribution punch in the first 1.5 pages; verify contribution-list ↔ evidence-section bijection.
+- **R1 idea evaluation**: ground every "already done" verdict in a named library method with arXiv ID; an idea with zero prior art in a 955-method KB is more likely a search failure than a gap — re-query with 2–3 paraphrases before claiming novelty. Load methodology-core **§A** (§2.4): classify the idea into M1-M4 (combination gap / obstacle-bypass / ecosystem-bridge / pain-point-with-mechanism) via the per-mode yes/no questions, then run the red-flag checklist — any hit → rework the topic, not the writing.
+- **R2 innovation mining**: load methodology-core **§A.3** delta typology — rank claims by power (representation-level > mechanism-level > combination-level > protocol-level > system-level), make each pass the one-sentence delta test (which named baseline, which measurable delta), and prefer combination/transfer/protocol deltas over "we scale it up". Tag every verdict with its mode number (M1-M4) and delta level (1-5) for R6/R8 traceability.
+- **R3 simulated review**: beyond domain-standard scrutiny, walk methodology-core **§D** D1-D8 (representation arbitrariness · own-prior-work overlap · baseline parity · metric blind spots · efficiency caliber · cost disadvantage · mechanism patchwork · hidden negatives); every question the draft cannot answer becomes an objection **with a fix**. The review report must state per-item D1-D8 coverage.
+- **R8 experiment design + R9 analysis**: compose the plan from methodology-core **§C** patterns C1-C9 (state which pattern each experiment table uses) and enforce the Comparison Fairness Protocol from `cg-paper-writing` v3.3.0 — same dataset version/resolution/split, same metric implementation, rerun-before-cite for mismatched calibers, one table one dimension; for 3DGS/generative work the domain iron rule (same diffusion prior / prompt set) is non-negotiable. R9 interprets failures through the failure-mode taxonomy (C5), not anecdotes.
+- **R6 framework compliance**: load methodology-core **§B** — pick the skeleton template matching the paper type (T1 journal system-arc / T2 conference capability-matrix / T3 paradigm-creating minimal-method), run the contribution–evidence bijection (every contribution ↔ unique evidence section; orphan experiments deleted or demoted to appendix), organize related work per B.3 (per-paper verdicts or grouped-gap prose), and write the limitations section per B.4 until Reviewer-2 has nothing left to add.
 - **R7 format**: pull the venue's actual template and checklist (see `cg-paper-writing/references/` venue files) — never format from memory; citation style, anonymization, and figure rules are checked item by item.
 
 ## 4. AIGC-Trace Hygiene — Position and Red Lines
@@ -87,6 +112,7 @@ Positioned as **publication hygiene**, not detection-evasion:
 ## 6. Related Skills
 
 - **cg-paper-writing** — writing templates, claim-verification chain, Gate 1/2 integrity checks, comparison-fairness protocol, venue format references (the deep assets this team orchestrates)
+- **references/ (this skill, two layers)** — [`methodology-core.md`](references/methodology-core.md): the executable methodology program distilled from the six exemplars (A 选题引擎 / B 论述架构 / C 实验模式库 / D 审稿人预期库 / E 价值放大器); `mp-*.md`: per-direction full-text evidence base tracing every program step to its source paper
 - **3dgs-experiment-planner** — detailed experiment design for CVPR/SIGGRAPH/TVCG
 - **3dgs-method-compare** — 10+ dimension method comparison tables
 - **3dgs-paper-reader** — structured reading of the anchor papers above

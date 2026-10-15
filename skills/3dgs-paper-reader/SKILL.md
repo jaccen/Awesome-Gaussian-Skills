@@ -11,7 +11,7 @@ metadata:
     - "Read or analyze a 3DGS/NeRF research paper"
     - "Extract method architecture or innovations from arXiv PDF"
     - "Summarize 3D reconstruction research with structured output"
-    - "Compare a new paper against 678+ known 3DGS methods"
+    - "Compare a new paper against 955 known 3DGS methods"
     - "Generate publication-quality paper summaries with tables"
     - "读论文 / 3DGS论文分析 / 文献总结 / 方法提取"
 
