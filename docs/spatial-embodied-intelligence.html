@@ -186,6 +186,30 @@
   .formula-box .eq{display:block}
   .formula-box .desc{font-family:var(--font-sans);font-size:12.5px;color:var(--text-2);margin-top:8px}
 
+  /* ============ 学术插图 ============ */
+  figure{margin:22px 0 18px;text-align:center;page-break-inside:avoid;break-inside:avoid}
+  figure .fig-svg{width:100%;max-width:680px;margin:0 auto;display:block;background:var(--surface);
+    border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 10px;box-shadow:var(--shadow-sm)}
+  figure .fig-svg svg{width:100%;height:auto;display:block;font-family:var(--font-sans);overflow:visible}
+  figure .fig-svg svg .lbl{fill:var(--text);font-size:12px;font-weight:600}
+  figure .fig-svg svg .lbl-sm{fill:var(--text-2);font-size:10.5px}
+  figure .fig-svg svg .lbl-tiny{fill:var(--text-3);font-size:9.5px}
+  figure .fig-svg svg .flow{fill:none;stroke:var(--text-3);stroke-width:1.2}
+  figure .fig-svg svg .flow-strong{fill:none;stroke:var(--primary);stroke-width:1.8}
+  figure .fig-svg svg .box-fill{fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1}
+  figure .fig-svg svg .box-accent{fill:var(--primary-soft);stroke:var(--primary);stroke-width:1.2}
+  figure .fig-svg svg .box-warn{fill:#fdf0dd;stroke:var(--orange);stroke-width:1.2}
+  figure .fig-svg svg .box-err{fill:#fdeae9;stroke:var(--sig);stroke-width:1.2}
+  figure .fig-svg svg .arrow{fill:var(--text-3);stroke:none}
+  figure .fig-svg svg .arrow-strong{fill:var(--primary);stroke:none}
+  figure .fig-svg svg .dashed{stroke-dasharray:4 3}
+  figure figcaption{margin:10px auto 0;max-width:680px;font-size:12.5px;color:var(--text-2);
+    line-height:1.6;text-align:justify}
+  figure figcaption .fno{font-weight:700;color:var(--accent,var(--primary));font-family:var(--font-mono);
+    font-size:11.5px;letter-spacing:.04em;margin-right:6px}
+  figure figcaption em{color:var(--text-3);font-style:normal;font-size:11.5px}
+  @media(max-width:640px){ figure .fig-svg{padding:8px 6px} }
+
   /* 方法表 */
   .mtbl{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0;font-size:13px;
     border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
@@ -368,8 +392,8 @@
       </div>
       <div class="ribbons">
         <img alt="methods" src="https://img.shields.io/badge/Methods-976+-9cf.svg">
-        <img alt="categories" src="https://img.shields.io/badge/Categories-23-green.svg">
-        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-15-22c55e.svg">
+        <img alt="categories" src="https://img.shields.io/badge/Categories-26-green.svg">
+        <img alt="skills" src="https://img.shields.io/badge/AI_Skills-18-22c55e.svg">
         <img alt="embodied" src="https://img.shields.io/badge/Theme-空间智能%20·%20具身智能-8b5cf6.svg">
       </div>
       <div class="statbar" id="agsStatBar">
@@ -404,7 +428,7 @@
         <a class="ch-card" href="#ch13" style="--accent:var(--pink)"><span class="tag">第 13 章</span><h3>产业落地剧本：六个行业</h3><p>文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维六个行业剧本。</p><span class="go">对号入座 →</span></a>
         <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，交付指标换算与验收报告模板。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#practice-index" style="--accent:var(--green)"><span class="tag">索引</span><h3>实践资源索引：从书到工程</h3><p>18 个工程技能 · 34 个 MCP 工具 · 976+ 方法浏览器，章节到可运行资源的对照表。</p><span class="go">动手 →</span></a>
-        <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>60+ 权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>66 条权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#afterword" style="--accent:var(--text-3)"><span class="tag">后记</span><h3>3DGS 会被吃掉吗</h3><p>显式表征与世界模型的终局关系，以及这本书写完时仍未有答案的问题。</p><span class="go">收尾 →</span></a>
       </div>
     </div>
@@ -414,7 +438,7 @@
       <div class="chapter-head"><span class="no">引言</span><h2>为什么写这本书</h2></div>
       <p class="chapter-sub">空间智能与具身智能的百年交汇 · 3DGS 为何是关键拼图</p>
 
-      <p>2023 年 8 月，INRIA 的 Bernhard Kerbl 及合作者在 SIGGRAPH 发表了论文"3D Gaussian Splatting for Real-Time Radiance Field Rendering"<span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span>。他们用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化（differentiable rasterization），把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。这不是渐进式改进——它是表示层面的范式转换。一年内它从一篇论文变成一个 976+ 方法、跨 26 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。</p>
+      <p>2023 年 8 月，INRIA 的 Bernhard Kerbl 及合作者发表论文"3D Gaussian Splatting for Real-Time Radiance Field Rendering"（SIGGRAPH 2023 录用，刊于 ACM Transactions on Graphics）<span class="vchip v-SIGGRAPH">SIGGRAPH 2023</span>。他们用一组各向异性 3D 高斯直接充当辐射场表示，配合可微光栅化（differentiable rasterization），把新视角合成的训练时间从数小时压到数十分钟，渲染超过 100 FPS。这不是渐进式改进——它是表示层面的范式转换。一年内它从一篇论文变成一个 976+ 方法、跨 26 个类别的庞大生态，并被迅速推向自动驾驶、机器人建图、数字孪生与内容生成。</p>
 
       <p>这本书想回答的核心问题是：<strong>为什么偏偏是 3DGS，成了空间智能与具身智能之间最顺手的桥梁？</strong></p>
 
@@ -428,7 +452,7 @@
         <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">Meta 发布 V-JEPA 2（LeCun 主导），在联合嵌入预测空间做世界模型，不重建像素 <span class="vchip">2025</span></div></div>
         <div class="tl-item"><span class="tl-date">2025.06</span><div class="tl-text">NVIDIA 开源 GR00T N1 人形机器人基础模型，System 1 快反应 + System 2 VLM 规划</div></div>
         <div class="tl-item"><span class="tl-date">2026.05</span><div class="tl-text">字节跳动发布 Pelican-Unified 1.0，首个统一具身基础模型；多伦多大学 BISON 实现双层策略 10K 物体 &lt;1min 规划</div></div>
-        <div class="tl-item"><span class="tl-date">2026.09</span><div class="tl-text">3DGS 方法生态突破 872 篇，覆盖 23 个类别；多渠道 arXiv 收获 + 裁决波 + 每日扫描将方法库从 700 扩充至 872，准确性全面核查 <span class="vchip">2026</span></div></div>
+        <div class="tl-item"><span class="tl-date">2026.09</span><div class="tl-text">3DGS 方法生态突破 976 篇，覆盖 26 个类别；多渠道 arXiv 收获 + 裁决波 + 每日扫描将方法库持续扩充，准确性全面核查 <span class="vchip">2026</span></div></div>
       </div>
 
       <p>李飞飞在 2024 年 6 月旧金山 AI Startup School 的演讲中说："<strong>AGI 若没有空间智能，是不完整的</strong>。"她把空间智能定义为"在三维空间中感知、推理、生成和交互的深层能力"——不是二维图像识别，而是对三维物理世界的完整理解与行动能力。这与黄仁勋在 2025 CES 的 Physical AI 命名形成呼应：<strong>世界模型 + 空间智能 + 具身智能</strong>。三者都以"一份可计算、可渲染、可编辑的三维空间表示"为地基——而 3DGS 是当下最被验证的地基。</p>
@@ -442,6 +466,79 @@
         </div>
       </div>
 
+      <figure>
+        <div class="fig-svg">
+          <svg viewBox="0 0 680 320" role="img" aria-label="具身智能体四因子与感知-行动闭环">
+            <!-- 物理世界底座 -->
+            <rect x="40" y="238" width="600" height="56" rx="10" class="box-fill" opacity=".6"/>
+            <text x="340" y="272" text-anchor="middle" class="lbl">物理世界（Physical World）</text>
+            <text x="340" y="288" text-anchor="middle" class="lbl-tiny">可计算的三维空间表示是其地基</text>
+
+            <!-- 四因子横排 -->
+            <!-- 因子1：空间表征 -->
+            <rect x="40" y="92" width="150" height="116" rx="12" class="box-accent"/>
+            <text x="115" y="118" text-anchor="middle" class="lbl" fill="var(--primary)">空间表征</text>
+            <text x="115" y="138" text-anchor="middle" class="lbl-sm">Spatial Representation</text>
+            <line x1="60" y1="148" x2="170" y2="148" stroke="var(--primary)" stroke-opacity=".25"/>
+            <text x="115" y="166" text-anchor="middle" class="lbl-sm">3DGS · NeRF</text>
+            <text x="115" y="182" text-anchor="middle" class="lbl-sm">点云 · Mesh</text>
+            <text x="115" y="200" text-anchor="middle" class="lbl-tiny">★ 本书主线</text>
+
+            <!-- 乘号 -->
+            <text x="215" y="158" text-anchor="middle" class="lbl" fill="var(--text-3)" font-size="18">×</text>
+
+            <!-- 因子2：感知 -->
+            <rect x="232" y="92" width="118" height="116" rx="12" class="box-fill"/>
+            <text x="291" y="118" text-anchor="middle" class="lbl">感知</text>
+            <text x="291" y="138" text-anchor="middle" class="lbl-sm">Perception</text>
+            <line x1="248" y1="148" x2="334" y2="148" stroke="var(--border-strong)" stroke-opacity=".3"/>
+            <text x="291" y="166" text-anchor="middle" class="lbl-sm">语义高斯</text>
+            <text x="291" y="182" text-anchor="middle" class="lbl-sm">VLM · 分割</text>
+
+            <!-- 乘号 -->
+            <text x="375" y="158" text-anchor="middle" class="lbl" fill="var(--text-3)" font-size="18">×</text>
+
+            <!-- 因子3：规划 -->
+            <rect x="392" y="92" width="118" height="116" rx="12" class="box-fill"/>
+            <text x="451" y="118" text-anchor="middle" class="lbl">规划</text>
+            <text x="451" y="138" text-anchor="middle" class="lbl-sm">Planning</text>
+            <line x1="408" y1="148" x2="494" y2="148" stroke="var(--border-strong)" stroke-opacity=".3"/>
+            <text x="451" y="166" text-anchor="middle" class="lbl-sm">VLA · 世界模型</text>
+            <text x="451" y="182" text-anchor="middle" class="lbl-sm">SLAM 导航</text>
+
+            <!-- 乘号 -->
+            <text x="535" y="158" text-anchor="middle" class="lbl" fill="var(--text-3)" font-size="18">×</text>
+
+            <!-- 因子4：行动 -->
+            <rect x="552" y="92" width="100" height="116" rx="12" class="box-fill"/>
+            <text x="602" y="118" text-anchor="middle" class="lbl">行动</text>
+            <text x="602" y="138" text-anchor="middle" class="lbl-sm">Action</text>
+            <line x1="566" y1="148" x2="638" y2="148" stroke="var(--border-strong)" stroke-opacity=".3"/>
+            <text x="602" y="166" text-anchor="middle" class="lbl-sm">关节控制</text>
+            <text x="602" y="182" text-anchor="middle" class="lbl-sm">夹爪 · 底盘</text>
+
+            <!-- 感知-行动闭环弧线 -->
+            <path d="M 291 208 Q 291 228 115 238" class="flow-strong" marker-end="url(#m1)"/>
+            <path d="M 602 208 Q 602 228 451 238" class="flow-strong" marker-end="url(#m1)"/>
+            <text x="203" y="232" text-anchor="middle" class="lbl-tiny">观测</text>
+            <text x="526" y="232" text-anchor="middle" class="lbl-tiny">执行</text>
+
+            <!-- 箭头标记定义 -->
+            <defs>
+              <marker id="m1" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" class="arrow-strong"/>
+              </marker>
+            </defs>
+
+            <!-- 顶部标题 -->
+            <text x="340" y="48" text-anchor="middle" class="lbl" font-size="13">具身智能体（Embodied Agent）</text>
+            <text x="340" y="66" text-anchor="middle" class="lbl-tiny">四个因子相乘，任一为零则智能体无法在物理世界落地</text>
+            <text x="340" y="80" text-anchor="middle" class="lbl-tiny" fill="var(--primary)">3DGS 在「空间表征」因子上提供当前最强的显式解</text>
+          </svg>
+        </div>
+        <figcaption><span class="fno">图 0-1</span>具身智能体的四因子结构与感知-行动闭环。空间表征是地基（底部物理世界→空间表征因子），感知与行动构成与物理世界的交互闭环（左右两条弧线），规划居中调度。3DGS 的价值在于把"空间表征"从隐式、不可编辑的权重，变成显式、可微、可被 Agent 直接查询的第一类数据结构——这是它成为空间智能与具身智能之间桥梁的根本原因。<em>本图对应全书结构：第 1–5 章讲空间表征，第 6–9 章讲感知-规划-行动闭环，第 10 章讲世界模型。</em></figcaption>
+      </figure>
+
       <h3><span class="mi">①</span> 为什么不是点云、不是网格、不是 NeRF？</h3>
       <p>点云（Point Cloud）是三维数据最直接的表示，但它没有外观、不可微渲染、无法表达视角依赖的颜色。网格（Mesh）是游戏与 CAD 的标准格式，但它难以从图像优化生成、对复杂透明/半透明场景束手无策。NeRF 用 MLP 隐式编码一切，渲染质量极高但需要逐像素光线步进（ray marching），训练和推理都慢，且表示藏在网络权重里——不可编辑、不可直接查询。3DGS 把辐射场<strong>显式化</strong>成一组可数、可微、可渲染的 3D 高斯基元：表示暴露在数据里，而不是埋在权重里。这一步直接决定了后面所有"编辑、压缩、语义、喂给机器人"的可能性。</p>
 
@@ -450,7 +547,7 @@
 
       <div class="callout note">
         <span class="ct">③ 阅读建议</span>
-        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。附录提供了数据集与评估基准的全景，引用与延伸阅读列出了 60+ 权威资源。每章末尾有思考题，建议带着自己的项目回答。
+        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。附录提供了数据集与评估基准的全景，引用与延伸阅读列出了 66 条权威资源。每章末尾有思考题，建议带着自己的项目回答。
       </div>
 
       <div class="callout bio">
@@ -523,7 +620,7 @@
           <tr><td class="mn">视觉保真度</td><td class="o">★★★ 照片级，含视角相关高光</td><td class="o">★★ 贴图尚可，几何决定上限</td><td class="o">★★★ 最高但慢</td><td class="o">★ 无颜色或需另配</td><td class="o">★★ 取决于美术</td></tr>
           <tr><td class="mn">几何精度</td><td class="o">★★ 间接获得，需额外提取</td><td class="o">★★★ 密集匹配，可做测量</td><td class="o">★ 隐式，提面质量差</td><td class="o">★★★ 毫米级，最可靠</td><td class="o">★★★ 按图纸</td></tr>
           <tr><td class="mn">端侧实时渲染</td><td class="o">★★★ 原生优势</td><td class="o">★★★ 成熟管线</td><td class="o">✗ 推理即瓶颈</td><td class="o">★★ 点渲染需处理</td><td class="o">★★★ 最轻</td></tr>
-          <tr><td class="mn">可编辑性</td><td class="o">★★ 可增删改，非拓扑编辑</td><td class="o">★★★ 标准网格工具链</td><td class="o">✗ 几乎不可编辑</td><td class="o">★ 点云编辑困难</td><td class="o">★★★ 源生可编辑</td></tr>
+          <tr><td class="mn">可编辑性</td><td class="o">★★ 可增删改，非拓扑编辑</td><td class="o">★★★ 标准网格工具链</td><td class="o">✗ 几乎不可编辑</td><td class="o">★ 点云编辑困难</td><td class="o">★★★ 原生可编辑</td></tr>
           <tr><td class="mn">玻璃 / 镜面</td><td class="o">✗ 典型失效区</td><td class="o">★ 同样失效但可手工补</td><td class="o">★ 同样失效</td><td class="o">✗ 穿透或缺失</td><td class="o">★★★ 手写材质</td></tr>
           <tr><td class="mn">大体量 / 城市级</td><td class="o">★★ 分块训练，接缝是难点</td><td class="o">★★★ 成熟瓦片体系</td><td class="o">✗ 规模受限</td><td class="o">★★★ 机载/车载成熟</td><td class="o">✗ 人力不可行</td></tr>
           <tr><td class="mn">包体体积</td><td class="o">★★ 需压缩，压缩后可控</td><td class="o">★★★ 小</td><td class="o">★ 权重+推理开销</td><td class="o">★★ 密集点云偏大</td><td class="o">★★★ 最小</td></tr>
@@ -647,6 +744,103 @@
         <span class="desc">第 i 个高斯对像素 𝐮 的颜色贡献 = 它的颜色 cᵢ × 它的不透明度 αᵢ × 前面所有高斯的透射率。这正是同一渲染方程、两种实现命运的分水岭：NeRF 逐像素采样，3DGS 逐高斯投影。</span>
       </div>
 
+      <figure>
+        <div class="fig-svg">
+          <svg viewBox="0 0 680 340" role="img" aria-label="NeRF 与 3DGS 渲染范式对比">
+            <defs>
+              <marker id="m2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" class="arrow"/>
+              </marker>
+              <marker id="m2b" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" class="arrow-strong"/>
+              </marker>
+            </defs>
+
+            <!-- 顶部统一体渲染积分 -->
+            <rect x="180" y="16" width="320" height="44" rx="8" class="box-accent"/>
+            <text x="340" y="36" text-anchor="middle" class="lbl" fill="var(--primary)">体渲染积分 C(𝐮) = ∫ T(t)·σ·c dt</text>
+            <text x="340" y="52" text-anchor="middle" class="lbl-tiny">同一渲染方程，两种实现命运的分水岭</text>
+
+            <!-- 左半：NeRF -->
+            <text x="160" y="88" text-anchor="middle" class="lbl" fill="var(--text-2)">NeRF（隐式 · 逐像素光线步进）</text>
+            <!-- 像素 -->
+            <rect x="40" y="100" width="50" height="24" rx="5" class="box-fill"/>
+            <text x="65" y="116" text-anchor="middle" class="lbl-sm">像素 𝐮</text>
+            <!-- 光线 -->
+            <line x1="90" y1="112" x2="135" y2="112" class="flow" marker-end="url(#m2)"/>
+            <text x="112" y="104" text-anchor="middle" class="lbl-tiny">光线</text>
+            <!-- 采样点 -->
+            <g>
+              <circle cx="150" cy="112" r="3" fill="var(--cyan)"/>
+              <circle cx="168" cy="112" r="3" fill="var(--cyan)"/>
+              <circle cx="186" cy="112" r="3" fill="var(--cyan)"/>
+              <circle cx="204" cy="112" r="3" fill="var(--cyan)"/>
+              <circle cx="222" cy="112" r="3" fill="var(--cyan)"/>
+              <text x="186" y="132" text-anchor="middle" class="lbl-tiny">数十~数百采样点</text>
+            </g>
+            <!-- MLP -->
+            <line x1="232" y1="112" x2="252" y2="112" class="flow" marker-end="url(#m2)"/>
+            <rect x="252" y="96" width="80" height="32" rx="6" class="box-fill"/>
+            <text x="292" y="116" text-anchor="middle" class="lbl-sm">MLP 查询</text>
+            <text x="292" y="142" text-anchor="middle" class="lbl-tiny">×N 次/像素</text>
+            <!-- 积分 -->
+            <line x1="332" y1="112" x2="352" y2="112" class="flow" marker-end="url(#m2)"/>
+            <rect x="352" y="96" width="60" height="32" rx="6" class="box-fill"/>
+            <text x="382" y="116" text-anchor="middle" class="lbl-sm">数值积分</text>
+            <!-- 颜色 -->
+            <line x1="412" y1="112" x2="432" y2="112" class="flow" marker-end="url(#m2)"/>
+            <rect x="432" y="100" width="56" height="24" rx="5" class="box-fill"/>
+            <text x="460" y="116" text-anchor="middle" class="lbl-sm">颜色</text>
+
+            <!-- 中间分隔 -->
+            <line x1="340" y1="160" x2="340" y2="300" stroke="var(--border)" stroke-dasharray="3 4"/>
+            <text x="340" y="315" text-anchor="middle" class="lbl-tiny" fill="var(--text-3)">同一渲染方程</text>
+
+            <!-- 右半：3DGS -->
+            <text x="520" y="88" text-anchor="middle" class="lbl" fill="var(--primary)">3DGS（显式 · 逐高斯投影合成）</text>
+            <!-- 高斯基元群 -->
+            <g>
+              <ellipse cx="430" cy="112" rx="7" ry="4" fill="var(--purple)" opacity=".7"/>
+              <ellipse cx="448" cy="108" rx="6" ry="4" fill="var(--blue)" opacity=".7"/>
+              <ellipse cx="462" cy="116" rx="8" ry="5" fill="var(--cyan)" opacity=".7"/>
+              <ellipse cx="480" cy="110" rx="5" ry="3.5" fill="var(--green)" opacity=".7"/>
+              <ellipse cx="494" cy="114" rx="7" ry="4.5" fill="var(--orange)" opacity=".7"/>
+              <text x="462" y="134" text-anchor="middle" class="lbl-tiny">可数高斯基元</text>
+            </g>
+            <!-- EWA投影 -->
+            <line x1="506" y1="112" x2="526" y2="112" class="flow-strong" marker-end="url(#m2b)"/>
+            <text x="516" y="104" text-anchor="middle" class="lbl-tiny">EWA</text>
+            <rect x="526" y="96" width="56" height="32" rx="6" class="box-accent"/>
+            <text x="554" y="116" text-anchor="middle" class="lbl-sm">投影排序</text>
+            <!-- 瓦片合成 -->
+            <line x1="582" y1="112" x2="602" y2="112" class="flow-strong" marker-end="url(#m2b)"/>
+            <rect x="602" y="96" width="58" height="32" rx="6" class="box-accent"/>
+            <text x="631" y="113" text-anchor="middle" class="lbl-sm">瓦片 α 合成</text>
+            <text x="631" y="126" text-anchor="middle" class="lbl-tiny">闭式</text>
+            <!-- 像素 -->
+            <line x1="660" y1="112" x2="672" y2="112" class="flow-strong" marker-end="url(#m2b)"/>
+            <rect x="672" y="100" width="50" height="24" rx="5" class="box-accent"/>
+            <text x="697" y="116" text-anchor="middle" class="lbl-sm">像素</text>
+
+            <!-- 底部对比指标 -->
+            <rect x="40" y="190" width="300" height="100" rx="10" class="box-fill" opacity=".7"/>
+            <text x="190" y="212" text-anchor="middle" class="lbl">NeRF 代价</text>
+            <line x1="60" y1="220" x2="320" y2="220" stroke="var(--border)"/>
+            <text x="60" y="238" class="lbl-sm">· 每像素数十~数百次 MLP 查询</text>
+            <text x="60" y="256" class="lbl-sm">· 训练数小时 · 渲染 &lt; 1 FPS</text>
+            <text x="60" y="274" class="lbl-sm">· 表示藏在权重里，不可编辑</text>
+
+            <rect x="360" y="190" width="300" height="100" rx="10" class="box-accent" opacity=".6"/>
+            <text x="510" y="212" text-anchor="middle" class="lbl" fill="var(--primary)">3DGS 代价</text>
+            <line x1="380" y1="220" x2="640" y2="220" stroke="var(--primary)" stroke-opacity=".3"/>
+            <text x="380" y="238" class="lbl-sm">· 每高斯一次投影 + 排序</text>
+            <text x="380" y="256" class="lbl-sm">· 训练数十分钟 · 渲染 100+ FPS</text>
+            <text x="380" y="274" class="lbl-sm">· 表示暴露在数据里，可编辑可查询</text>
+          </svg>
+        </div>
+        <figcaption><span class="fno">图 1-1</span>NeRF 与 3DGS 渲染范式对比。两者底层都是同一体渲染积分（顶部），但实现路径截然不同：NeRF 从像素出发，沿光线逐点采样，每个采样点查询一次 MLP 得到密度与颜色，再做数值积分——慢在"逐像素 × 数十次查询"的双重循环；3DGS 从高斯基元出发，一次 EWA 投影 + 深度排序后做瓦片化 alpha 合成，闭式求解——快在"逐高斯投影"替代了"逐像素采样"。这一差异不只是速度，更决定了表示是否暴露在数据里、是否可编辑、是否可被 Agent 直接查询。<em>对应正文"体渲染方程：两条路线的分水岭"一节。</em></figcaption>
+      </figure>
+
       <h3><span class="mi">②</span> 3DGS 三大创新</h3>
       <ul>
         <li><strong>各向异性 3D 高斯作直接表示</strong>：每个基元用均值 μ（位置）、协方差 Σ（形状/朝向，工程上分解为缩放向量 s 与四元数 q，保证半正定与可微）、不透明度 α、球谐系数 SH（视角颜色）刻画，不再需要任何 MLP 查询。初始高斯由 COLMAP 的稀疏点云生成。</li>
@@ -718,6 +912,11 @@
         <li><strong>球谐系数 SH</strong>：用低阶球面谐波（通常 3 阶，48 维）编码视角依赖的颜色。阶数越高，颜色随视角变化越精细，但参数量线性增长。</li>
       </ul>
 
+      <div class="callout bio">
+        <span class="ct">③ 学理依据：为什么是球谐函数</span>
+        球谐函数（Spherical Harmonics, SH）是 Laplace 方程在球面上的本征函数解，构成球面平方可积函数空间的完备正交基——任何定义在球面上的平方可积函数都可展开为 SH 级数。在计算机图形学中，<strong>远场环境光</strong>沿球面方向分布，正是球面函数，故用 SH 编码视角依赖的颜色有严格的物理对应：0 阶 SH（常数项）表达漫反射的环境光照；1 阶（3 个基函数）捕捉线性方向光；2 阶（5 个基函数）开始表达低频环境光与柔和阴影；3 阶（7 个基函数）足以刻画金属反射、彩虹色等中高频视角变化。3DGS 默认用 3 阶共 16 个系数（RGB 三通道合 48 维），是"表达力 vs 参数量"的工程平衡点。Ramamoorthi 与 Hanrahan 在 2001 年 SIGGRAPH 的经典工作"Irradiance Volumes"首次证明：对漫反射表面，仅用 0–2 阶 SH（9 个系数）即可无误差重建辐照度——这是 SH 在图形学中被广泛采纳的理论基石，也是 3DGS 选择低阶 SH 的学理渊源。
+      </div>
+
       <div class="formula-box">
         <span class="lbl">3D 高斯密度与屏幕投影</span>
         <span class="eq">G(x) = exp(−½ (x−μ)ᵀ Σ⁻¹ (x−μ))</span>
@@ -735,6 +934,90 @@
         <li><strong>瓦片内 alpha 合成</strong>：每个瓦片由一个 CUDA block 处理，线程并行遍历该瓦片内的高斯，按深度顺序做 alpha 合成。</li>
       </ol>
       <p>反向传播需要对<strong>每个像素→每个高斯</strong>的贡献传回梯度：屏幕空间梯度要乘回视图-屏幕雅可比，才能更新到 3D 协方差。这一套"前向闭式、反向解析"的设计，是实时训练的根本来源。gsplat<span class="vchip v-CVPR">CVPR 2024</span> 是当前最活跃的开源 3DGS CUDA 光栅化引擎，由 nerfstudio 团队维护。</p>
+
+      <figure>
+        <div class="fig-svg">
+          <svg viewBox="0 0 680 300" role="img" aria-label="3DGS 可微光栅化管线与梯度回传">
+            <defs>
+              <marker id="m3f" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" class="arrow-strong"/>
+              </marker>
+              <marker id="m3b" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" class="arrow"/>
+              </marker>
+            </defs>
+
+            <!-- 前向管线：5 个阶段横排 -->
+            <text x="340" y="24" text-anchor="middle" class="lbl" fill="var(--primary)">前向渲染（Forward）</text>
+
+            <!-- 1. 高斯参数 -->
+            <rect x="20" y="40" width="110" height="70" rx="10" class="box-accent"/>
+            <text x="75" y="62" text-anchor="middle" class="lbl" fill="var(--primary)">① 高斯基元</text>
+            <text x="75" y="80" text-anchor="middle" class="lbl-sm">μ, Σ=R·diag(s)·Rᵀ</text>
+            <text x="75" y="96" text-anchor="middle" class="lbl-sm">α, SH</text>
+
+            <line x1="130" y1="75" x2="148" y2="75" class="flow-strong" marker-end="url(#m3f)"/>
+
+            <!-- 2. EWA 投影 -->
+            <rect x="150" y="40" width="100" height="70" rx="10" class="box-fill"/>
+            <text x="200" y="62" text-anchor="middle" class="lbl">② EWA 投影</text>
+            <text x="200" y="80" text-anchor="middle" class="lbl-sm">Σ'=JWΣWᵀJᵀ</text>
+            <text x="200" y="96" text-anchor="middle" class="lbl-tiny">3D椭球→2D椭圆</text>
+
+            <line x1="250" y1="75" x2="268" y2="75" class="flow-strong" marker-end="url(#m3f)"/>
+
+            <!-- 3. 深度排序 -->
+            <rect x="270" y="40" width="100" height="70" rx="10" class="box-fill"/>
+            <text x="320" y="62" text-anchor="middle" class="lbl">③ 深度排序</text>
+            <text x="320" y="80" text-anchor="middle" class="lbl-sm">radix sort</text>
+            <text x="320" y="96" text-anchor="middle" class="lbl-tiny">单帧最大非并行</text>
+
+            <line x1="370" y1="75" x2="388" y2="75" class="flow-strong" marker-end="url(#m3f)"/>
+
+            <!-- 4. 瓦片分配 -->
+            <rect x="390" y="40" width="100" height="70" rx="10" class="box-fill"/>
+            <text x="440" y="62" text-anchor="middle" class="lbl">④ 瓦片分配</text>
+            <text x="440" y="80" text-anchor="middle" class="lbl-sm">16×16 tile</text>
+            <text x="440" y="96" text-anchor="middle" class="lbl-tiny">每瓦片 1 CUDA block</text>
+
+            <line x1="490" y1="75" x2="508" y2="75" class="flow-strong" marker-end="url(#m3f)"/>
+
+            <!-- 5. alpha 合成 -->
+            <rect x="510" y="40" width="110" height="70" rx="10" class="box-accent"/>
+            <text x="565" y="62" text-anchor="middle" class="lbl" fill="var(--primary)">⑤ α 合成</text>
+            <text x="565" y="80" text-anchor="middle" class="lbl-sm">C=Σ cᵢαᵢΠ(1-αⱼ)</text>
+            <text x="565" y="96" text-anchor="middle" class="lbl-tiny">闭式 → 像素颜色</text>
+
+            <!-- 输出像素 -->
+            <rect x="630" y="48" width="40" height="54" rx="6" class="box-fill" opacity=".7"/>
+            <text x="650" y="80" text-anchor="middle" class="lbl-sm">像素</text>
+            <line x1="620" y1="75" x2="628" y2="75" class="flow-strong" marker-end="url(#m3f)"/>
+
+            <!-- 损失 -->
+            <rect x="630" y="130" width="40" height="40" rx="6" class="box-err"/>
+            <text x="650" y="155" text-anchor="middle" class="lbl-sm" fill="var(--sig)">L</text>
+            <line x1="650" y1="102" x2="650" y2="128" class="flow" marker-end="url(#m3b)"/>
+            <text x="660" y="120" class="lbl-tiny">损失</text>
+
+            <!-- 反向管线 -->
+            <text x="340" y="180" text-anchor="middle" class="lbl" fill="var(--text-2)">反向传播（Backward）</text>
+            <text x="340" y="196" text-anchor="middle" class="lbl-tiny">梯度从 L 出发，逆序经每个阶段回传到每个基元参数——"前向闭式、反向解析"</text>
+
+            <!-- 反向箭头（长弧线，从右到左） -->
+            <path d="M 630 150 Q 340 230 75 115" class="flow" stroke-width="1.5" marker-end="url(#m3b)"/>
+            <text x="350" y="245" text-anchor="middle" class="lbl-tiny">∂L/∂C → ∂L/∂αᵢ → ∂L/∂Σ' → ∂L/∂Σ → ∂L/∂(μ,s,q,α,SH)</text>
+
+            <!-- 三个工程要点 -->
+            <rect x="20" y="258" width="210" height="34" rx="8" class="box-warn" opacity=".5"/>
+            <text x="125" y="280" text-anchor="middle" class="lbl-sm" fill="var(--orange)">排序瓶颈：radix sort 加速方向</text>
+            <rect x="240" y="258" width="200" height="34" rx="8" class="box-warn" opacity=".5"/>
+            <text x="340" y="280" text-anchor="middle" class="lbl-sm" fill="var(--orange)">显存：每高斯 ~59 floats</text>
+            <rect x="450" y="258" width="220" height="34" rx="8" class="box-warn" opacity=".5"/>
+            <text x="560" y="280" text-anchor="middle" class="lbl-sm" fill="var(--orange)">致密化判据：位置梯度累积量</text>
+          </svg>
+        </div>
+        <figcaption><span class="fno">图 2-1</span>3DGS 可微光栅化管线与梯度回传。前向渲染分五阶段：高斯参数 → EWA 投影 → 深度排序 → 16×16 瓦片分配 → 瓦片内 alpha 合成，每一步都可微。反向传播从损失 L 出发，逆序把屏幕空间梯度乘回视图-屏幕雅可比，最终更新到每个基元的 μ、s、q、α、SH。"前向闭式、反向解析"是实时训练的根本来源；底部三个橙框标注了工程上最常见的三类瓶颈——排序非并行、显存线性增长、致密化判据间接性——后续方法大多在这三处开刀。<em>对应正文"可微光栅化：前向与反向"一节与"自适应密度控制"一节。</em></figcaption>
+      </figure>
 
       <h3><span class="mi">③</span> 自适应密度控制：3DGS 的"生长"机制</h3>
       <p>自适应密度控制是 3DGS 区别于"固定表示"方法的核心——高斯数量在训练中动态变化。</p>
@@ -1110,7 +1393,7 @@
       </div>
 
       <h3><span class="mi">⑤</span> 3DGS 的局限性与失败模式</h3>
-      <p>前面四节讲了 3DGS 如何扩展到大规模、动态、SLAM 和压缩场景——每一节都在展示"3DGS 能做什么"。但一个同样重要的问题是：<strong>3DGS 在哪些场景下不工作？</strong>本节从 Awesome-3D-Gaussian-Splatting 仓库中 Robustness（鲁棒性）类别的 11 个方法中系统提炼，讨论 3DGS 的六类典型失败模式、根因分析和代表性改进方案。理解边界不是为了否定方法，而是为了在工程实践中知道何时该用 3DGS、何时该换路线、何时需要引入额外正则化。</p>
+      <p>前面四节讲了 3DGS 如何扩展到大规模、动态、SLAM 和压缩场景——每一节都在展示"3DGS 能做什么"。但一个同样重要的问题是：<strong>3DGS 在哪些场景下不工作？</strong>本节从 Awesome-3D-Gaussian-Splatting 仓库中 Robustness（鲁棒性）类别的 23 个方法中系统提炼，讨论 3DGS 的六类典型失败模式、根因分析和代表性改进方案。理解边界不是为了否定方法，而是为了在工程实践中知道何时该用 3DGS、何时该换路线、何时需要引入额外正则化。</p>
 
       <p><strong>① 透明与半透明材质</strong>。3DGS 用 3 阶球谐函数（SH）表示视角依赖的颜色，但 SH 是低阶基函数，本质上是颜色的低通近似——它无法表达折射（refraction）这一需要追踪光线在介质内部弯折路径的物理现象。当训练数据中存在玻璃杯、水面、透明塑料等物体时，优化器会"投机取巧"：既然 SH 无法拟合折射产生的复杂视角色变，它就通过增大高斯的尺度（scale）和透明度（alpha）来用密度弥散地覆盖这片区域，结果是从不同视角看，高斯团的密度分布勉强"平均"出了正确颜色，但底层的几何形状完全错误——玻璃杯的壁可能变成一团半透明的云雾，而非薄壳曲面。<strong>SpecTRe-GS</strong>（CVPR 2025）提出了光线追踪（ray tracing）方案来应对这一问题：它不再依赖 SH 的颜色近似，而是为每条视线追踪多次折射/反射路径，让高斯参与物理意义明确的光线传播计算，从而在透明材质上同时恢复正确的外观与几何。这类方法的代价是渲染时需要额外的光线追踪 pass，速度比 vanilla 3DGS 慢一个数量级。</p>
 
@@ -1120,7 +1403,7 @@
 
       <p><strong>④ 稀疏视角退化</strong>。3DGS 依赖 COLMAP 的 SfM 点云作为初始化，并需要足够密集的多视角图像来约束每个高斯的位置和颜色。当输入只有少量视角（如 3-9 张）时，未观测区域的梯度趋近于零，高斯在这些区域自由漂移、膨胀，产生大量"floater"浮空伪影，几何与外观双双退化。<strong>DNGaussian</strong>[arXiv:2403.06912] 提出了全局-局部深度归一化（global-local depth normalization）策略：利用预训练的深度估计网络（如 MiDaS）为每个视角提供深度伪标签，然后在全局尺度上对齐预测深度与渲染深度，在局部尺度上逐像素施加深度平滑约束，两层级联约束有效抑制了稀疏视角下高斯的随意膨胀。<strong>CoR-GS</strong>[arXiv:2405.12110] 则采用协同正则（collaborative regularization）思路：在训练过程中动态地进行高斯的增密（densify）和剪枝（prune），并通过一致性损失确保不同视角下同一区域的高斯分布稳定，减少因视角缺失导致的"幽灵"基元。两种方法都显著提升了稀疏视角下的重建质量，但前者依赖外部深度先验的精度，后者引入了额外的训练开销。</p>
 
-      <p><strong>⑤ 内存与显存爆炸</strong>。vanilla 3DGS 的自适应密度控制（adaptive density control）在训练中不断分裂和克隆高斯，却缺少有效的全局数量上限。在纹理丰富的场景中，高斯数量可轻松膨胀到数百万甚至上千万，每个高斯需要存储位置（3）、旋转（4）、缩放（3）、不透明度（1）和 SH 系数（48，3 阶×3 通道+DC），总内存占用可达 GB 级别，使得移动端部署和实时渲染变得不现实。<strong>Compact-3DGS</strong> 通过对 SH 系数做低秩矩阵分解、对几何属性做矢量量化（vector quantization），在不损失渲染质量的前提下将存储压缩到原始的 5%-10%。<strong>LightGS</strong> 则从另一个角度切入：在训练后阶段对高斯做重要性评分（基于对渲染像素的贡献量），剪枝低贡献高斯并对剩余高斯的 SH 做精度量化，实现"轻量化部署"。两类方法各有取舍——Compact-3DGS 的压缩率更高但训练时仍需完整内存，LightGS 的后处理剪枝适合已有模型的部署压缩但不降低训练成本。</p>
+      <p><strong>⑤ 内存与显存爆炸</strong>。vanilla 3DGS 的自适应密度控制（adaptive density control）在训练中不断分裂和克隆高斯，却缺少有效的全局数量上限。在纹理丰富的场景中，高斯数量可轻松膨胀到数百万甚至上千万，每个高斯需要存储位置（3）、旋转四元数（4）、缩放（3）、不透明度（1）和球谐 SH 系数（48 = 0–3 阶共 16 个基函数系数/通道 × RGB 3 通道，其中 DC 项即 0 阶常数项，已含在 16 系数内），总内存占用可达 GB 级别，使得移动端部署和实时渲染变得不现实。<strong>Compact-3DGS</strong> 通过对 SH 系数做低秩矩阵分解、对几何属性做矢量量化（vector quantization），在不损失渲染质量的前提下将存储压缩到原始的 5%-10%。<strong>LightGS</strong> 则从另一个角度切入：在训练后阶段对高斯做重要性评分（基于对渲染像素的贡献量），剪枝低贡献高斯并对剩余高斯的 SH 做精度量化，实现"轻量化部署"。两类方法各有取舍——Compact-3DGS 的压缩率更高但训练时仍需完整内存，LightGS 的后处理剪枝适合已有模型的部署压缩但不降低训练成本。</p>
 
       <table style="border-collapse:collapse;font-size:13.5px;width:100%;margin:18px 0">
         <thead>
@@ -1495,6 +1778,12 @@
 
       <p>注意两条主线在 2025–2026 年的汇合趋势：GR00T N1 把 System 1（快反应策略）和 System 2（VLM 慢规划）分层组合，本质是"分层派"吸收"端到端派"的优势；Pelican-Unified 1.0 则反其道，用单一 VLM 同时做理解、推理、想象、行动，证明端到端在足够数据下也能统一。这场"端到端 vs 分层"的争论，正随着模型规模和数据增长逐步收敛——答案很可能不是非此即彼，而是"端到端打底 + 必要处分层结构化"。</p>
 
+      <div class="callout key">
+        <span class="ct">★ VLA 的数据缩放律与认知科学映射</span>
+        这场收敛背后有一个正在被验证的假设：VLA 遵循类似 LLM 的<strong>神经缩放律（Neural Scaling Law）</strong>——策略性能随训练轨迹数呈幂律提升，且尚未见饱和。Physical Intelligence 的 π0 系列在 1 万→10 万条轨迹区间仍保持对数线性增长，是这一假设最强的工程证据。但机器人数据与文本数据有本质差异：文本可从互联网无限抓取，机器人轨迹必须物理执行或仿真生成，<strong>数据获取成本是 VLA 缩放的真瓶颈</strong>。这催生了两条解法：① 真机数据高效利用（ALOHA 2 遥操作 + 扩散策略让单条轨迹信息量最大化）；② 仿真数据规模化（Isaac Sim / Genie Sim 的 GPU 并行仿真让单卡同时跑数千环境）。
+        <p style="margin-top:10px">从认知科学看，"System 1 快反应 + System 2 慢规划"的分层架构并非工程权宜，而是对 Kahneman 双系统理论的直接映射：System 1 对应直觉式、低延迟、数据驱动的低层策略（类似人类的脊髓反射与肌肉记忆）；System 2 对应 deliberative、高延迟、符号推理的高层规划（类似人类的慎思决策）。GR00T N1 的分层组合，本质是用工程架构逼近生物智能的认知分工——这与 LeCun 的 JEPA"分层预测"思想、以及本书第 7 章的"三层空间记忆模型"形成跨章呼应：<strong>智能的层级化不是某一派的偏好，而是复杂行为涌现的通用结构</strong>。</p>
+      </div>
+
       <h3><span class="mi">②</span> 仿真平台：机器人的"健身房"</h3>
       <p>VLA 要数据，真实机器人采集成本极高（每条轨迹要人遥操作或真机运行），且易损易耗。仿真平台是解决方案：在虚拟世界里批量生成训练数据，再把策略迁回真机。这是 Sim2Real 的"Sim"端。主流仿真平台各有侧重：</p>
 
@@ -1523,6 +1812,72 @@
 
       <p>这正是 3DGS 对具身智能的深层价值：它不只是"给机器人一张地图"，而是把<strong>仿真与真实的边界变模糊</strong>——因为 3DGS 重建出来的就是真实场景的可微副本，策略可以在这个副本上安全试错、廉价试错、梯度式试错。这是空间智能赋能具身智能的关键通路，也是第 7–9 章展开的地基。</p>
 
+      <figure>
+        <div class="fig-svg">
+          <svg viewBox="0 0 680 320" role="img" aria-label="Sim2Real 数据飞轮与 3DGS 的双重角色">
+            <defs>
+              <marker id="m6" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" class="arrow-strong"/>
+              </marker>
+            </defs>
+
+            <!-- 中心 3DGS 双角色 -->
+            <circle cx="340" cy="160" r="62" class="box-accent" stroke-width="2"/>
+            <text x="340" y="146" text-anchor="middle" class="lbl" fill="var(--primary)">3DGS</text>
+            <text x="340" y="164" text-anchor="middle" class="lbl-sm">双重角色</text>
+            <text x="340" y="180" text-anchor="middle" class="lbl-tiny">场景真实化</text>
+            <text x="340" y="194" text-anchor="middle" class="lbl-tiny">可微仿真</text>
+
+            <!-- 四节点闭环（顺时针：仿真→真机→回流→优化） -->
+            <!-- 上：仿真生成 -->
+            <rect x="270" y="30" width="140" height="56" rx="10" class="box-fill"/>
+            <text x="340" y="52" text-anchor="middle" class="lbl">① 仿真生成</text>
+            <text x="340" y="70" text-anchor="middle" class="lbl-sm">批量训练轨迹</text>
+            <text x="340" y="84" text-anchor="middle" class="lbl-tiny">Isaac / Habitat / RoboCasa</text>
+
+            <!-- 右：真机部署 -->
+            <rect x="530" y="130" width="130" height="60" rx="10" class="box-fill"/>
+            <text x="595" y="154" text-anchor="middle" class="lbl">② 真机部署</text>
+            <text x="595" y="172" text-anchor="middle" class="lbl-sm">策略迁移</text>
+            <text x="595" y="186" text-anchor="middle" class="lbl-tiny">Reality Gap</text>
+
+            <!-- 下：数据回流 -->
+            <rect x="270" y="234" width="140" height="56" rx="10" class="box-fill"/>
+            <text x="340" y="256" text-anchor="middle" class="lbl">③ 数据回流</text>
+            <text x="340" y="274" text-anchor="middle" class="lbl-sm">真机轨迹→仿真</text>
+            <text x="340" y="288" text-anchor="middle" class="lbl-tiny">分布对齐</text>
+
+            <!-- 左：仿真优化 -->
+            <rect x="20" y="130" width="130" height="60" rx="10" class="box-fill"/>
+            <text x="85" y="154" text-anchor="middle" class="lbl">④ 仿真优化</text>
+            <text x="85" y="172" text-anchor="middle" class="lbl-sm">梯度式试错</text>
+            <text x="85" y="186" text-anchor="middle" class="lbl-tiny">可微渲染反传</text>
+
+            <!-- 闭环箭头（弧线，顺时针） -->
+            <!-- ① → ② -->
+            <path d="M 410 72 Q 530 90 580 130" class="flow-strong" marker-end="url(#m6)"/>
+            <text x="500" y="88" text-anchor="middle" class="lbl-tiny">策略迁移</text>
+            <!-- ② → ③ -->
+            <path d="M 580 190 Q 530 230 410 252" class="flow-strong" marker-end="url(#m6)"/>
+            <text x="520" y="236" text-anchor="middle" class="lbl-tiny">真机数据</text>
+            <!-- ③ → ④ -->
+            <path d="M 270 252 Q 150 230 100 190" class="flow-strong" marker-end="url(#m6)"/>
+            <text x="180" y="236" text-anchor="middle" class="lbl-tiny">分布对齐</text>
+            <!-- ④ → ① -->
+            <path d="M 100 130 Q 150 90 270 72" class="flow-strong" marker-end="url(#m6)"/>
+            <text x="180" y="88" text-anchor="middle" class="lbl-tiny">优化后场景</text>
+
+            <!-- 3DGS 连接到仿真端的两条作用线 -->
+            <path d="M 340 98 L 340 86" class="flow" stroke-dasharray="3 3"/>
+            <path d="M 278 160 L 150 160" class="flow" stroke-dasharray="3 3"/>
+
+            <!-- 底部说明 -->
+            <text x="340" y="308" text-anchor="middle" class="lbl-tiny" fill="var(--primary)">3DGS 重建的真实场景 = 仿真的可微副本，让"仿真不够真"和"策略不够鲁棒"两条鸿沟同时被缩小</text>
+          </svg>
+        </div>
+        <figcaption><span class="fno">图 6-1</span>Sim2Real 数据飞轮与 3DGS 的双重角色。闭环四阶段顺时针流转：仿真生成策略 → 真机部署暴露 Reality Gap → 真机数据回流仿真 → 仿真优化策略。3DGS 居中，以两种身份同时缩小鸿沟——"场景真实化"把真实厨房/车间/仓库重建后导入仿真，缩小渲染偏差；"可微仿真"让仿真里的渲染误差可梯度反传，让策略在安全的可微副本上梯度式试错。GS-World 把这个闭环从"离线生成"升级为"在线可微优化"，ManiGaussian 进一步让机器人在"想象的高斯未来"里预演动作后果。<em>对应正文"Sim2Real 鸿沟与数据飞轮"一节。</em></figcaption>
+      </figure>
+
       <div class="links">
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/embodied-spatial-intelligence-papers.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 具身智能论文清单</a>
         <a href="https://github.com/jaccen/Awesome-Gaussian-Skills/blob/main/references/world-models-spatial-intelligence.md" target="_blank" rel="noopener"><span class="ico">⎇</span> 世界模型研究全景</a>
@@ -1541,6 +1896,10 @@
           <tr><td class="mn">RoboCasa</td><td>2024</td><td class="o">大规模家务仿真环境，10 万+ 遥操作轨迹（UT Austin）</td></tr>
           <tr><td class="mn">LIBERO</td><td><span class="vchip v-ICLR">ICLR 2024</span></td><td class="o">机器人操作终身学习基准，评估跨任务知识迁移</td></tr>
           <tr><td class="mn">WorldArena 2.0</td><td><span class="vchip v-arXiv">arXiv 2026.05</span></td><td class="o">具身世界模型评测：视觉→触觉、策略评测→交互 RL、仿真→真机全链路升级</td></tr>
+          <tr><td class="mn">SplatCtrl</td><td><span class="vchip v-ICRA">ICRA 2026</span></td><td class="o">3DGS + 反应式机器人控制的感知-行动耦合：各向同性高斯→连续 SDF→控制屏障函数，实现无碰撞操作</td></tr>
+          <tr><td class="mn">GS-Playground</td><td><span class="vchip v-RSS">RSS 2026</span></td><td class="o">批量 3DGS + 并行物理，10⁴ FPS 级仿真供机器人学习</td></tr>
+          <tr><td class="mn">SceneSmith</td><td><span class="vchip v-ICML">ICML 2026 Spotlight</span></td><td class="o">分层智能体框架：自然语言→仿真就绪室内场景（designer-critic-orchestrator VLM 智能体 + 文本转3D + 物理属性估计），物体数 3–6× 于前法、碰撞率 &lt;2%、96% 物理稳定</td></tr>
+          <tr><td class="mn">SA-ResGS</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td class="o">自增强残差 3DGS 用于下一最佳视角选择：SA-Points 三角化估计覆盖率，首次为 3DGS 引入残差学习改善稀疏区域梯度流</td></tr>
         </tbody>
       </table>
 
@@ -1942,6 +2301,13 @@
       <h3><span class="mi">①</span> 世界模型的六大学派</h3>
       <p>"世界模型"在 2024–2026 年成为最热的术语，但它背后是几条独立演进的研究脉络在交汇。学界共识是：视频生成 ≠ 世界模型——"能画出视频"不等于"理解世界"。物理一致性、因果推理、行动可控性是世界模型区别于纯视频生成的根本。当前可归纳为六大学派：</p>
 
+      <div class="callout note">
+        <span class="ct">③ 认识论分歧：在像素空间预测，还是在抽象空间预测</span>
+        "视频生成 ≠ 世界模型"这句共识背后，藏着一条更深的认识论分歧：<strong>智能体预测未来时，应该在什么表示空间里预测</strong>？这条分歧把六派分成两大阵营。<p style="margin:8px 0 4px"><b>像素/观测空间预测派</b>（视频生成、自动驾驶、3DGS 原生）认为：世界模型应直接预测智能体将"看到"的下一帧——表示与观测同构，预测结果可直接验证、可直接用于渲染。优势是直观、可评估、与感知闭环天然对接；代价是预测空间维度极高，容易陷入"画得像但不懂因果"的陷阱。</p>
+        <p style="margin:4px 0"><b>抽象/潜空间预测派</b>（JEPA、RL 派）认为：在像素空间预测既低效又危险——低效是因为大部分像素变化与行动无关（风吹树叶、光照渐变），危险是因为强迫模型预测无关细节会引入不可控噪声。LeCun 在 2022 年提出 JEPA（Joint-Embedding Predictive Architecture）的核心论点正是：<strong>智能体应在抽象表示空间做预测，只预测与行动相关的信息，丢弃不可控的细节</strong>。这让预测目标更紧凑、样本效率更高，但代价是抽象表示本身需要学习、预测结果不可直接渲染、评估困难。</p>
+        <p style="margin:4px 0">3DGS 原生派在这条分歧上占据一个独特的中间位置：它预测的是<strong>高斯基元的运动</strong>——比像素抽象（不预测每个像素颜色），比纯潜向量具体（高斯可渲染、可查询几何）。这是一种"结构化的中间表示预测"，既避开了像素派的高维噪声，又保留了 JEPA 派缺失的可验证性与物理一致性。这恰是本书把它视为主线候选的认识论理由。</p>
+      </div>
+
       <table class="mtbl">
         <thead><tr><th>学派</th><th>核心主张</th><th>代表</th><th>对 3DGS 的关系</th></tr></thead>
         <tbody>
@@ -1956,6 +2322,95 @@
 
       <p>这六派并非互斥，而是在"预测什么、在哪预测、为何预测"三个维度上各有侧重。视频生成派预测像素但缺物理；RL 派预测状态用于策略但表示抽象；JEPA 派避开像素在潜空间预测更高效但难解释；空间智能派强调 3D 结构理解；自动驾驶派追求物理一致的仿真；3DGS 原生派则直接把动态高斯场当作世界模型——它预测的不是视频或抽象向量，而是"高斯怎么动"。这最后一派最贴近本书主线，也最有工程落地性。</p>
 
+      <figure>
+        <div class="fig-svg">
+          <svg viewBox="0 0 680 380" role="img" aria-label="世界模型六派定位与 Physical AI 技术三角">
+            <defs>
+              <marker id="m10" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+                <path d="M0,0 L7,3.5 L0,7 Z" class="arrow-strong"/>
+              </marker>
+            </defs>
+
+            <!-- 上方：Physical AI 技术三角 -->
+            <text x="340" y="22" text-anchor="middle" class="lbl" fill="var(--primary)">Physical AI 技术三角（黄仁勋 CES 2025）</text>
+
+            <!-- 三角形三个顶点 -->
+            <!-- 左：空间智能 -->
+            <rect x="70" y="58" width="130" height="50" rx="10" class="box-accent"/>
+            <text x="135" y="80" text-anchor="middle" class="lbl" fill="var(--primary)">空间智能</text>
+            <text x="135" y="98" text-anchor="middle" class="lbl-tiny">3DGS · Marble · Cosmos</text>
+
+            <!-- 右上：具身智能 -->
+            <rect x="480" y="58" width="130" height="50" rx="10" class="box-fill"/>
+            <text x="545" y="80" text-anchor="middle" class="lbl">具身智能</text>
+            <text x="545" y="98" text-anchor="middle" class="lbl-tiny">VLA · GR00T · π0</text>
+
+            <!-- 下中：世界模型 -->
+            <rect x="275" y="150" width="130" height="50" rx="10" class="box-fill"/>
+            <text x="340" y="172" text-anchor="middle" class="lbl">世界模型</text>
+            <text x="340" y="190" text-anchor="middle" class="lbl-tiny">DreamerV3 · V-JEPA 2 · Sora</text>
+
+            <!-- 三角边线 -->
+            <line x1="200" y1="83" x2="480" y2="83" class="flow-strong" opacity=".4"/>
+            <line x1="160" y1="108" x2="310" y2="150" class="flow-strong" opacity=".4"/>
+            <line x1="520" y1="108" x2="370" y2="150" class="flow-strong" opacity=".4"/>
+            <!-- 三角中心标注 -->
+            <text x="340" y="125" text-anchor="middle" class="lbl-tiny" fill="var(--text-3)">三者都以"可计算的三维空间表示"为地基</text>
+
+            <!-- 分隔线 -->
+            <line x1="40" y1="218" x2="640" y2="218" stroke="var(--border)" stroke-dasharray="4 4"/>
+            <text x="340" y="234" text-anchor="middle" class="lbl" fill="var(--primary)">世界模型六派定位象限</text>
+            <text x="340" y="248" text-anchor="middle" class="lbl-tiny">横轴：预测的表示形式（像素 ←→ 抽象） · 纵轴：物理一致性（低 ←→ 高）</text>
+
+            <!-- 象限坐标系 -->
+            <!-- 纵轴 -->
+            <line x1="80" y1="262" x2="80" y2="368" class="flow"/>
+            <polygon points="80,368 76,360 84,360" class="arrow"/>
+            <text x="74" y="266" text-anchor="end" class="lbl-tiny">高</text>
+            <text x="74" y="370" text-anchor="end" class="lbl-tiny">低</text>
+            <text x="40" y="318" text-anchor="middle" class="lbl-tiny" transform="rotate(-90 40 318)">物理一致性</text>
+            <!-- 横轴 -->
+            <line x1="80" y1="368" x2="640" y2="368" class="flow"/>
+            <polygon points="640,368 632,364 632,372" class="arrow"/>
+            <text x="84" y="382" class="lbl-tiny">像素</text>
+            <text x="630" y="382" text-anchor="end" class="lbl-tiny">抽象</text>
+
+            <!-- 六派散点 -->
+            <!-- 视频生成派：像素高、物理低 -->
+            <circle cx="130" cy="350" r="16" fill="var(--pink)" opacity=".75"/>
+            <text x="130" y="354" text-anchor="middle" class="lbl-sm" fill="#fff" font-size="9">视频生成</text>
+            <text x="130" y="332" text-anchor="middle" class="lbl-tiny">Sora · Genie 3</text>
+
+            <!-- 3DGS 原生派：中间偏像素、物理高 -->
+            <circle cx="230" cy="282" r="18" fill="var(--primary)" opacity=".85"/>
+            <text x="230" y="286" text-anchor="middle" class="lbl-sm" fill="#fff" font-size="9">3DGS 原生</text>
+            <text x="230" y="264" text-anchor="middle" class="lbl-tiny">GS-World · ManiGaussian</text>
+            <text x="230" y="312" text-anchor="middle" class="lbl-tiny" fill="var(--primary)">★ 本书主线</text>
+
+            <!-- 空间智能派：偏结构、物理较高 -->
+            <circle cx="340" cy="292" r="16" fill="var(--blue)" opacity=".75"/>
+            <text x="340" y="296" text-anchor="middle" class="lbl-sm" fill="#fff" font-size="9">空间智能</text>
+            <text x="340" y="274" text-anchor="middle" class="lbl-tiny">Marble</text>
+
+            <!-- 自动驾驶派：偏像素、物理中高 -->
+            <circle cx="200" cy="322" r="15" fill="var(--cyan)" opacity=".75"/>
+            <text x="200" y="326" text-anchor="middle" class="lbl-sm" fill="#fff" font-size="8">自动驾驶</text>
+            <text x="200" y="308" text-anchor="middle" class="lbl-tiny">GAIA</text>
+
+            <!-- RL 派：抽象、物理中 -->
+            <circle cx="500" cy="320" r="16" fill="var(--green)" opacity=".75"/>
+            <text x="500" y="324" text-anchor="middle" class="lbl-sm" fill="#fff" font-size="9">RL 派</text>
+            <text x="500" y="302" text-anchor="middle" class="lbl-tiny">DreamerV3</text>
+
+            <!-- JEPA 派：最抽象、物理中高 -->
+            <circle cx="590" cy="290" r="16" fill="var(--orange)" opacity=".75"/>
+            <text x="590" y="294" text-anchor="middle" class="lbl-sm" fill="#fff" font-size="9">JEPA</text>
+            <text x="590" y="272" text-anchor="middle" class="lbl-tiny">V-JEPA 2</text>
+          </svg>
+        </div>
+        <figcaption><span class="fno">图 10-1</span>世界模型六派定位与 Physical AI 技术三角。上方三角展示黄仁勋提出的"世界模型 + 空间智能 + 具身智能"三者关系——它们共享同一个地基：可计算的三维空间表示。下方象限以"预测的表示形式"（横轴：像素↔抽象）与"物理一致性"（纵轴：低↔高）定位六派：视频生成派在像素侧但物理一致性低；3DGS 原生派居中偏像素且物理一致性高（预测"高斯怎么动"，天然带几何结构）；空间智能派与 3DGS 派相邻；JEPA 派在抽象端最右。3DGS 原生派的独特位置——既可渲染（接近像素侧）又带结构化物理一致性——是它被本书视为主线候选的根本理由。<em>对应正文"世界模型的六大学派"与"Physical AI 的技术三角"两节。</em></figcaption>
+      </figure>
+
       <h3><span class="mi">②</span> 关键里程碑：从 Ha&Schmidhuber 到 V-JEPA 2</h3>
 
       <div class="timeline" style="--accent:var(--primary)">
@@ -1968,6 +2423,8 @@
         <div class="tl-item"><span class="tl-date">2025.10</span><div class="tl-text">GS-World（港中深）：3DGS 作为可微仿真引擎，生成式仿真 + Engine-driven Sim2Real VLA 统一</div></div>
         <div class="tl-item"><span class="tl-date">2025</span><div class="tl-text">DreamerV3 登上 <em>Nature</em>——基于模型的 RL 跨越多样化领域，MBRL 获主流学界盖章</div></div>
         <div class="tl-item"><span class="tl-date">2026</span><div class="tl-text">World Labs 推出 Marble：单张图像→可交互 3D 空间，空间智能派走向商业化</div></div>
+        <div class="tl-item"><span class="tl-date">2026</span><div class="tl-text">Holi-Spatial（ICML 2026 Oral）与 Spatial-TTT（ECCV 2026）：空间智能进入"数据工厂 + 测试时学习"阶段——前者从原始视频全自动构建 400 万+ 空间多模态样本，后者以 20 亿参数模型在空间基准上超越 GPT-5 与 Gemini-3-pro</div></div>
+        <div class="tl-item"><span class="tl-date">2026</span><div class="tl-text">4DGS-WAM、HY-World 2.0：3DGS 世界模型走向"动作条件化"与"多模态输入→可导航 3D 世界"，动态物体与静态背景被分开建模</div></div>
       </div>
 
       <p>注意 DreamerV3 登上 Nature（2025）的标志性意义——这是基于模型的强化学习（MBRL）第一次在顶级综合期刊获得主流学界认可。Hafner 离开 DeepMind 创业商业化 Dreamer，与 LeCun 离开 Meta 押注 JEPA（成立 AMI Labs，2026 年种子轮 10.3 亿美元、估值 35 亿美元），标志着世界模型从学术研究走向产业赛道。两条技术路线（RL 派 vs JEPA 派）的代表人物同时下海，说明世界模型已被视为下一个ten-billion 级机会。</p>
@@ -1982,6 +2439,8 @@
       </div>
 
       <p>GS-World（港中深，2025.10）更进一步——它把 3DGS 直接当作可微仿真引擎，让 Sim2Real 本身可微：策略在 3DGS 仿真里试错，渲染误差反传优化策略，再把优化后的策略迁回真机。这把第 6 章的"数据飞轮"从"离线生成"升级为"在线可微优化"，是 3DGS 对世界模型方法论的根本贡献。</p>
+
+      <p>2026 年这条线沿两个方向继续推进。<strong>一是动作条件化</strong>：4DGS-WAM 把"世界模型预测"与"策略预测动作"显式分离——静态背景由 4DGS 建模，动态物体由策略预测的未来状态驱动，预测目标不再是"整帧下一画面"，而是"哪些物体会动、怎么动"。这直接回应了此前"多数 3DGS 世界模型缺乏真正 action-conditioned 动力学"的批评。<strong>二是输入侧统一</strong>：HY-World 2.0 把文本/单视角/多视角/视频统一转成可导航 3DGS 世界（全景生成 HY-Pano 2.0 + 轨迹规划 WorldNav + 世界扩展 WorldStereo 2.0），意味着"生成一个世界模型"正在从"逐场景优化"走向"一次前向生成"。而在数据侧，Holi-Spatial（ICML 2026 Oral）用全自动框架从原始视频演化出 400 万+ 空间多模态样本，Spatial-TTT（ECCV 2026）则证明测试时训练可以让空间模型在长视频流上持续更新记忆、显存与算力节省 40%+——这两篇共同说明：<strong>3DGS 世界模型的瓶颈正从"表示能力"转向"数据规模与持续学习"</strong>。</p>
 
       <h3><span class="mi">④</span> 空间基础模型与 Physical AI</h3>
       <p>把视野再拉高一层。2025–2026 年的大趋势是"空间基础模型"（Spatial Foundation Model）——把 3D 理解、生成、交互统一进一个大模型。World Labs 的 Marble（单图→可交互 3D 空间）、NVIDIA 的 Cosmos（World Foundation Model，3D 通才，从"生成画面"升级为"生成可行动的 3D 世界"）都是这条线。3DGS 在这里的角色是<strong>基础模型与物理世界之间的胶水</strong>——基础模型生成/理解的是抽象 3D，3DGS 把它落地成可渲染可交互的具体场景。</p>
@@ -2020,6 +2479,10 @@
           <tr><td class="mn">Cosmos</td><td>NVIDIA</td><td class="o">世界基础模型平台，从"生成画面"升级为"生成可行动的 3D 世界"</td></tr>
           <tr><td class="mn">Newton</td><td>CES 2026</td><td class="o">实时物理世界模型，响应时间 &lt;0.01 秒，Physical AI 技术三角落地</td></tr>
           <tr><td class="mn">ESI-Bench</td><td><span class="vchip v-arXiv">arXiv 2026.05</span></td><td class="o">首个具身空间智能基准：强制感知-行动回路闭合，"具身智能的 ImageNet"</td></tr>
+          <tr><td class="mn">Holi-Spatial</td><td><span class="vchip v-ICML">ICML 2026 Oral</span></td><td class="o">上海AI实验室等：全自动空间数据构建框架，从原始视频演化出 400 万+ 空间多模态样本（3D 重建/深度/2D 掩码/3D 包围盒/3D 定位/空间问答）</td></tr>
+          <tr><td class="mn">Spatial-TTT</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td class="o">测试时训练（TTT）流式空间智能：20 亿参数模型在空间基准上超越 GPT-5 与 Gemini-3-pro，长视频流上连续更新空间记忆，显存与算力节省 40%+</td></tr>
+          <tr><td class="mn">HY-World 2.0</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">多模态世界模型框架：文本/单视角/多视角/视频输入 → 可导航 3DGS 世界（全景生成 HY-Pano 2.0 + 轨迹规划 WorldNav + 世界扩展 WorldStereo 2.0）</td></tr>
+          <tr><td class="mn">4DGS-WAM</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">物体中心的世界动作模型：基于 4DGS 分别建模动态物体（策略预测的未来状态）与静态背景，把 4DGS 重建与未来动作预测桥接</td></tr>
         </tbody>
       </table>
 
@@ -2059,7 +2522,7 @@
       <div class="chapter-head"><span class="no">CH 11</span><h2>安全、溯源与版权保护</h2></div>
       <p class="chapter-sub">水印 · 溯源 · 篡改检测 · 对抗攻击 · IP 管理</p>
 
-      <p class="lead">当 3DGS 模型从研究产物变成工业资产——自动驾驶仿真场景、数字孪生城市、可交互 3DGS 电商展示——<strong>谁创建了它、谁拥有它、它是否被篡改过</strong>就不再是可有可无的问题。本章从本仓库知识库 Security 类别的 14 个方法中提炼，系统梳理 3DGS 的安全攻击面与防护技术谱系。</p>
+      <p class="lead">当 3DGS 模型从研究产物变成工业资产——自动驾驶仿真场景、数字孪生城市、可交互 3DGS 电商展示——<strong>谁创建了它、谁拥有它、它是否被篡改过</strong>就不再是可有可无的问题。本章从本仓库知识库 Security 类别的 11 个方法中提炼，系统梳理 3DGS 的安全攻击面与防护技术谱系。</p>
 
       <h3><span class="mi">①</span> 为什么 3DGS 需要独立的安全研究</h3>
       <p>3DGS 的安全挑战与 2D 图像/视频不同，根植于其表征结构：</p>
@@ -2460,7 +2923,7 @@
           <li><b>研究前沿方向</b>：见 CH03 / CH07 / CH10 / CH11 章末「★ 研究前沿方向」开放问题。</li>
           <li><b>实践资源索引</b>：见「实践资源索引：从书到工程」（章节→技能/MCP 工具映射）。</li>
           <li><b>数据集与评估基准</b>：本章下方「① 主流评测 / ② 指标三件套 / ③ 具身数据集」。</li>
-          <li><b>引用与延伸阅读</b>：62 条权威资源，均带 arXiv 编号与代码链接。</li>
+          <li><b>引用与延伸阅读</b>：66 条权威资源，均带 arXiv 编号与代码链接。</li>
         </ul>
       </div>
 
@@ -2731,36 +3194,51 @@
         <div class="ref-item"><span class="idx">[43]</span> Genie 3, Google DeepMind, 2025.08<span class="desc">首个支持实时交互的世界模型，20–24fps@720p</span></div>
         <div class="ref-item"><span class="idx">[44]</span> GS-World, CUHK-Shenzhen, 2025.10 <span class="desc">3DGS 作可微仿真引擎，生成式仿真 + Engine-driven Sim2Real VLA 统一</span></div>
         <div class="ref-item"><span class="idx">[45]</span> Marble, World Labs (李飞飞), 2026<span class="desc">单张图像→可交互 3D 空间，空间智能商业化</span></div>
+        <div class="ref-item"><span class="idx">[46]</span> Holi-Spatial, <span class="venue" style="background:var(--icml);color:#fff">ICML 2026 Oral</span> <a href="https://arxiv.org/abs/2603.07660">arXiv:2603.07660</a><span class="desc">全自动空间数据构建框架：原始视频→400 万+ 空间多模态样本（上海AI实验室/NWPU/SJTU）</span></div>
+        <div class="ref-item"><span class="idx">[47]</span> Spatial-TTT, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2026</span> <a href="https://arxiv.org/abs/2603.12255">arXiv:2603.12255</a><span class="desc">测试时训练流式空间智能：20 亿参数模型超越 GPT-5 与 Gemini-3-pro，长视频流连续更新空间记忆</span></div>
+        <div class="ref-item"><span class="idx">[48]</span> 4DGS-WAM, <span class="venue" style="background:var(--arxiv);color:#fff">arXiv 2026</span> <a href="https://arxiv.org/abs/2608.25956">arXiv:2608.25956</a><span class="desc">物体中心世界动作模型：4DGS 分建模动态物体（策略预测）与静态背景，桥接 4DGS 重建与动作预测</span></div>
+        <div class="ref-item"><span class="idx">[49]</span> HY-World 2.0, <span class="venue" style="background:var(--arxiv);color:#fff">arXiv 2026</span> <a href="https://arxiv.org/abs/2604.14268">arXiv:2604.14268</a><span class="desc">多模态输入→可导航 3DGS 世界（HY-Pano 2.0 + WorldNav + WorldStereo 2.0）</span></div>
       </div>
 
       <div class="ref-divider"></div>
 
       <div class="ref-group">
         <h3>⑪ CAD·Mesh 桥接 <span class="num">CAD &amp; Mesh Bridge</span></h3>
-        <div class="ref-item"><span class="idx">[46]</span> BrepGaussian, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span> <a href="https://arxiv.org/abs/2602.21105">arXiv:2602.21105</a><span class="desc">3DGS + B-rep CAD 重建，输出参数化 STEP 模型</span></div>
-        <div class="ref-item"><span class="idx">[47]</span> CADDreamer, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2025 Highlight</span><span class="desc">文本/草图→CAD B-rep 生成，扩散参数化 CAD 程序合成</span></div>
+        <div class="ref-item"><span class="idx">[50]</span> BrepGaussian, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span> <a href="https://arxiv.org/abs/2602.21105">arXiv:2602.21105</a><span class="desc">3DGS + B-rep CAD 重建，输出参数化 STEP 模型</span></div>
+        <div class="ref-item"><span class="idx">[51]</span> CADDreamer, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2025 Highlight</span><span class="desc">文本/草图→CAD B-rep 生成，扩散参数化 CAD 程序合成</span></div>
       </div>
 
       <div class="ref-divider"></div>
 
       <div class="ref-group">
-        <h3>⑫ 开源实现与资源 <span class="num">Open Source</span></h3>
-        <div class="ref-item"><span class="idx">[48]</span> gsplat — nerfstudio 团队, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://github.com/nerfstudio-project/gsplat">GitHub</a><span class="desc">当前最活跃的 3DGS CUDA 光栅化引擎</span></div>
-        <div class="ref-item"><span class="idx">[49]</span> nerfstudio <a href="https://github.com/nerfstudio-project/nerfstudio">GitHub</a><span class="desc">完整训练框架，集成 3DGS/NeRF，适合工程化上手</span></div>
-        <div class="ref-item"><span class="idx">[50]</span> COLMAP <a href="https://github.com/colmap/colmap">GitHub</a><span class="desc">3DGS 流程前端必备：图像序列→相机位姿+稀疏点云</span></div>
-        <div class="ref-item"><span class="idx">[51]</span> awesome-3D-gaussian-splatting (MrNeRF) <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">GitHub</a><span class="desc">社区维护的 3DGS 论文/资源精选清单</span></div>
-        <div class="ref-item"><span class="idx">[52]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">976+ 方法 / 26 类别 / 18 个 AI 技能 / 34 个 MCP 工具</span></div>
+        <h3>⑫ 具身与机器人新进展 <span class="num">Embodied Robotics</span></h3>
+        <div class="ref-item"><span class="idx">[52]</span> SplatCtrl, <span class="venue" style="background:var(--icra);color:#fff">ICRA 2026</span> <a href="https://arxiv.org/abs/2607.08948">arXiv:2607.08948</a><span class="desc">3DGS + 反应式控制的感知-行动耦合：各向同性高斯→连续 SDF→控制屏障函数，无碰撞操作</span></div>
+        <div class="ref-item"><span class="idx">[53]</span> GS-Playground, <span class="venue" style="background:var(--rss);color:#fff">RSS 2026</span> <a href="https://gsplayground.github.io">项目页</a><span class="desc">批量 3DGS + 并行物理，10⁴ FPS 级仿真供机器人学习</span></div>
+        <div class="ref-item"><span class="idx">[54]</span> SceneSmith, <span class="venue" style="background:var(--icml);color:#fff">ICML 2026 Spotlight</span> <a href="https://arxiv.org/abs/2602.09153">arXiv:2602.09153</a><span class="desc">分层智能体框架：自然语言→仿真就绪室内场景，物体数 3–6× 于前法、碰撞率 &lt;2%</span></div>
+        <div class="ref-item"><span class="idx">[55]</span> SA-ResGS, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2026</span> <a href="https://arxiv.org/abs/2601.03024">arXiv:2601.03024</a><span class="desc">自增强残差 3DGS 用于下一最佳视角选择，首次为 3DGS 引入残差学习</span></div>
+        <div class="ref-item"><span class="idx">[56]</span> ManiGaussian, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2024</span> <a href="https://arxiv.org/abs/2403.08321">arXiv:2403.08321</a><span class="desc">动态高斯世界模型驱动多任务机器人操作（3DGS 原生派代表作）</span></div>
       </div>
 
       <div class="ref-divider"></div>
 
       <div class="ref-group">
-        <h3>⑬ 仿真平台 <span class="num">Simulators</span></h3>
-        <div class="ref-item"><span class="idx">[53]</span> NVIDIA Isaac Sim <a href="https://developer.nvidia.com/isaac-sim">官网</a><span class="desc">GPU 加速物理仿真，工业级精度，physically-based 渲染</span></div>
-        <div class="ref-item"><span class="idx">[54]</span> Habitat, FAIR <a href="https://github.com/facebookresearch/habitat-sim">GitHub</a><span class="desc">大规模室内导航，HM3D/Gibson 数据集</span></div>
-        <div class="ref-item"><span class="idx">[55]</span> RoboCasa, UT Austin<span class="desc">大规模家务机器人仿真，10 万+ 轨迹</span></div>
-        <div class="ref-item"><span class="idx">[56]</span> LIBERO, Stanford <span class="venue" style="background:var(--iclr);color:#fff">ICLR 2024</span><span class="desc">机器人操作终身学习基准</span></div>
-        <div class="ref-item"><span class="idx">[57]</span> AGIBOT WORLD / Genie Sim, 智元 <span class="venue" style="background:#555;color:#fff">ICRA 2026</span><span class="desc">可交互/可训练/可评测物理仿真，百万轨迹 217 任务</span></div>
+        <h3>⑬ 开源实现与资源 <span class="num">Open Source</span></h3>
+        <div class="ref-item"><span class="idx">[57]</span> gsplat — nerfstudio 团队, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2024</span> <a href="https://github.com/nerfstudio-project/gsplat">GitHub</a><span class="desc">当前最活跃的 3DGS CUDA 光栅化引擎</span></div>
+        <div class="ref-item"><span class="idx">[58]</span> nerfstudio <a href="https://github.com/nerfstudio-project/nerfstudio">GitHub</a><span class="desc">完整训练框架，集成 3DGS/NeRF，适合工程化上手</span></div>
+        <div class="ref-item"><span class="idx">[59]</span> COLMAP <a href="https://github.com/colmap/colmap">GitHub</a><span class="desc">3DGS 流程前端必备：图像序列→相机位姿+稀疏点云</span></div>
+        <div class="ref-item"><span class="idx">[60]</span> awesome-3D-gaussian-splatting (MrNeRF) <a href="https://github.com/MrNeRF/awesome-3D-gaussian-splatting">GitHub</a><span class="desc">社区维护的 3DGS 论文/资源精选清单</span></div>
+        <div class="ref-item"><span class="idx">[61]</span> Awesome-Gaussian-Skills（本书配套仓库）<a href="https://github.com/jaccen/Awesome-Gaussian-Skills">GitHub</a> | <a href="https://jaccen.github.io/Awesome-Gaussian-Skills/">方法浏览器</a><span class="desc">976+ 方法 / 26 类别 / 18 个 AI 技能 / 34 个 MCP 工具</span></div>
+      </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑭ 仿真平台 <span class="num">Simulators</span></h3>
+        <div class="ref-item"><span class="idx">[62]</span> NVIDIA Isaac Sim <a href="https://developer.nvidia.com/isaac-sim">官网</a><span class="desc">GPU 加速物理仿真，工业级精度，physically-based 渲染</span></div>
+        <div class="ref-item"><span class="idx">[63]</span> Habitat, FAIR <a href="https://github.com/facebookresearch/habitat-sim">GitHub</a><span class="desc">大规模室内导航，HM3D/Gibson 数据集</span></div>
+        <div class="ref-item"><span class="idx">[64]</span> RoboCasa, UT Austin<span class="desc">大规模家务机器人仿真，10 万+ 轨迹</span></div>
+        <div class="ref-item"><span class="idx">[65]</span> LIBERO, Stanford <span class="venue" style="background:var(--iclr);color:#fff">ICLR 2024</span><span class="desc">机器人操作终身学习基准</span></div>
+        <div class="ref-item"><span class="idx">[66]</span> AGIBOT WORLD / Genie Sim, 智元 <span class="venue" style="background:#555;color:#fff">ICRA 2026</span><span class="desc">可交互/可训练/可评测物理仿真，百万轨迹 217 任务</span></div>
       </div>
     </div>
 
@@ -2785,12 +3263,12 @@
         <li>更深一层：3DGS 的核心贡献不是"高斯"这个具体表示，而是<strong>它证明了显式可微表示可以实时、可编辑、可部署</strong>。这个洞见会迁移到任何后续表示上——即便未来出现比高斯更好的基元，本书讲的密度控制、可微光栅化、语义蒸馏、可微仿真等机制仍然适用。理解 3DGS，就是理解空间智能的工程范式。</li>
       </ul>
 
-      <h3><span class="mi">④</span> 2026 年 9 月的新证据</h3>
-      <p>本书写作到 2026 年 9 月，3DGS 生态又给出了一批新的证据，让上述判断更清晰：</p>
+      <h3><span class="mi">④</span> 2026 年的新证据</h3>
+      <p>本书写作期间跨越 2026 年 9 月至 10 月，3DGS 生态又给出了一批新的证据，让上述判断更清晰：</p>
       <ul>
-        <li><strong>规模验证</strong>：方法数从本书开写时的 700 扩充到 872（+24.6%），多渠道 arXiv 收获与每日扫描验证了 3DGS 不是一阵风——150 天内 175 篇新论文被验证纳入。</li>
+        <li><strong>规模验证</strong>：方法数从本书开写时的 700 扩充到 976（+39.4%），多渠道 arXiv 收获与每日扫描验证了 3DGS 不是一阵风——持续有新论文被验证纳入，方法库从 872 到 976 的增量仍在更新。</li>
         <li><strong>语义升级</strong>：DGSG-Mind、CausalSplat、GS-LLM 代表的"场景图 + 因果推理 + LLM 驱动"新路线，标志着语义高斯从"贴标签"进入"建关系"阶段。这恰好对应本书第 4 章的预判：语义高斯的下一步是结构化理解。</li>
-        <li><strong>研究空白</strong>：系统性空白分析发现，"本体驱动 3DGS"（ontology-driven 3DGS）在整个 976 方法库中尚无对应方法——最接近的是场景图和神经符号推理。这意味着在"可推理的空间知识表示"这个方向上，3DGS 还有一块未开垦的土地，值得有心人去耕。</li>
+        <li><strong>研究空白</strong>：系统性空白分析发现，"本体驱动 3DGS"（ontology-driven 3DGS）在方法库中尚无直接对应方法——最接近的是场景图和神经符号推理，以及 2026 年新增的 Ontology & Knowledge Representation 类别（12 个方法）。这意味着在"可推理的空间知识表示"这个方向上，3DGS 与本体论的深度融合仍是一块未开垦的土地，值得有心人去耕。</li>
       </ul>
       <p>这些新证据共同指向一个判断：3DGS 正在从"重建工具"走向"空间知识引擎"。当它不只是渲染图像，而是承载语义、关系、因果、甚至本体论知识时，它从"一份好看的地图"变成"一份可推理的空间知识库"——这才是空间智能的深层含义，也是 3DGS 短期不可替代的真正理由。</p>
 
@@ -2810,7 +3288,7 @@
 
     <!-- ============ pager ============ -->
     <div class="pager">
-      <a class="prev" href="#references"><span class="dir">← 上一节</span><span class="ttl">引用与延伸阅读 · 60+ 权威资源</span></a>
+      <a class="prev" href="#references"><span class="dir">← 上一节</span><span class="ttl">引用与延伸阅读 · 66 条权威资源</span></a>
       <a class="next" href="#overview"><span class="dir">回到全书目录 →</span><span class="ttl">章节速览</span></a>
     </div>
 
