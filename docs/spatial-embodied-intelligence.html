@@ -399,7 +399,7 @@
       <div class="statbar" id="agsStatBar">
         <span class="st" data-bsz="pv"><i>阅读量</i><b id="busuanzi_value_site_pv">—</b></span>
         <span class="st" data-bsz="uv"><i>访客数</i><b id="busuanzi_value_site_uv">—</b></span>
-        <span class="st"><i>全书字数</i><b>约 5.2 万字</b></span>
+        <span class="st"><i>全书字数</i><b>约 5.6 万字</b></span>
         <span class="st"><i>读完约需</i><b>130 分钟</b></span>
         <span class="st"><i>你已读</i><b id="agsCoverRead">0%</b></span>
       </div>
@@ -428,7 +428,7 @@
         <a class="ch-card" href="#ch13" style="--accent:var(--pink)"><span class="tag">第 13 章</span><h3>产业落地剧本：六个行业</h3><p>文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维六个行业剧本。</p><span class="go">对号入座 →</span></a>
         <a class="ch-card c-outro" href="#appendix"><span class="tag">附录</span><h3>数据集与评估基准</h3><p>从 Mip-NeRF360 到 ScanNet++，交付指标换算与验收报告模板。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#practice-index" style="--accent:var(--green)"><span class="tag">索引</span><h3>实践资源索引：从书到工程</h3><p>18 个工程技能 · 34 个 MCP 工具 · 976+ 方法浏览器，章节到可运行资源的对照表。</p><span class="go">动手 →</span></a>
-        <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>66 条权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
+        <a class="ch-card c-outro" href="#references"><span class="tag">引用</span><h3>引用与延伸阅读</h3><p>85 条权威论文、开源仓库、数据集与教程资源，按类别整理的完整参考目录。</p><span class="go">阅读 →</span></a>
         <a class="ch-card" href="#afterword" style="--accent:var(--text-3)"><span class="tag">后记</span><h3>3DGS 会被吃掉吗</h3><p>显式表征与世界模型的终局关系，以及这本书写完时仍未有答案的问题。</p><span class="go">收尾 →</span></a>
       </div>
     </div>
@@ -547,7 +547,7 @@
 
       <div class="callout note">
         <span class="ct">③ 阅读建议</span>
-        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。附录提供了数据集与评估基准的全景，引用与延伸阅读列出了 66 条权威资源。每章末尾有思考题，建议带着自己的项目回答。
+        如果你做重建/内容生成，重点读第 1–5 章；如果你做机器人，重点读第 6–9 章；第 10 章把视野拉到世界模型与空间基础模型。附录提供了数据集与评估基准的全景，引用与延伸阅读列出了 85 条权威资源。每章末尾有思考题，建议带着自己的项目回答。
       </div>
 
       <div class="callout bio">
@@ -858,9 +858,17 @@
           <tr><td class="mn">SuGaR</td><td><span class="vchip v-CVPR">CVPR 2024</span></td><td class="o">正则化高斯对齐表面，高质量提取网格，TSDF + Marching Cubes</td></tr>
           <tr><td class="mn">Vol3DGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">重写合成方程为体一致，修复溅射-体不一致导致的透明/光照错误</td></tr>
           <tr><td class="mn">NegGS</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">引入负颜色高斯，精确表示环/月牙等非凸结构，不再依赖过度剪枝</td></tr>
-          <tr><td class="mn">Neural Gabor Splatting</td><td><span class="vchip v-arXiv">arXiv</span></td><td class="o">给基元挂可学习 Gabor 特征，建模锐边/细纹理/薄结构</td></tr>
+          <tr><td class="mn">Neural Gabor Splatting</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td class="o">给基元挂可学习 Gabor 特征，建模锐边/细纹理/薄结构</td></tr>
+          <tr><td class="mn">Heat Kernel Textures</td><td><span class="vchip v-ECCV">ECCV 2026 Best Paper</span></td><td class="o"><b>基元层理论创新</b>：测地高斯"不泼溅"——用非欧流形上的各向异性热核替代欧氏高斯表达表面纹理，打破"高斯=欧氏距离衰减"的隐含假设</td></tr>
+          <tr><td class="mn">AmbiSuR</td><td><span class="vchip v-ICML">ICML 2026</span></td><td class="o">光度歧义消解：解耦法向/反照率/光照歧义，显著提升表面重建精度</td></tr>
+          <tr><td class="mn">2D-SuGaR</td><td><span class="vchip">Eurographics 2026</span></td><td class="o">2DGS 增强版：引入单目深度/法线先验，几何与表面质量进一步提升</td></tr>
         </tbody>
       </table>
+
+      <div class="callout note">
+        <span class="ct">③ 基元层的新思潮：高斯之后是什么</span>
+        ECCV 2026 最佳论文 <strong>Heat Kernel Textures</strong> 提出了一个值得注意的转向：它让表面纹理表示<strong>完全放弃"泼溅"（splatting）范式</strong>——不再把基元投影到屏幕做 alpha 合成，而是直接用定义在曲面上的各向异性热核对纹理做扩散式表达。这挑战了 3DGS 最核心的工程信条（"泼溅=快"），其论据是：欧氏高斯隐含假设"距离衰减只取决于欧氏距离"，这在弯曲表面、细长结构、各向异性纹理上本身就是错误先验；热核天然适配非欧流形。同期 <strong>Neural Gabor Splatting</strong>（CVPR 2026）从另一角度补同一块短板——给基元挂可学习 Gabor 特征而非固定颜色。两条路线共同说明：<strong>2026 年的创新焦点正从"如何用高斯更快渲染"转向"什么基元更适合表达几何"</strong>——这也是本书第 8 章 CAD·Mesh 桥接与第 1 章"显式表示"命题的最新延伸。
+      </div>
 
       <div class="callout bio">
         <span class="ct">③ 工程要点</span>
@@ -1317,6 +1325,8 @@
 
       <p>两条路线在 2024 年同时爆发，并迅速衍生出针对具体问题的变体：SpacetimeGS 把时空统一进单一基元，DN-4DGS 用去噪网络抑制变形场的时序抖动，4DGS-Wild 处理无人值守视频（光照变、有人走动）的不确定性。注意一个工程事实：<strong>动态场景的评测比静态难得多</strong>——PSNR 在单帧上可能很高，但连续播放时人眼对时序不一致（flicker、抖动）极其敏感，所以 4DGS 方法普遍引入时序平滑正则和光流监督。</p>
 
+      <p>2026 年这条线的主旋律是"从重建走向统一理解与流式传输"：<strong>D4RT</strong>（CVPR 2026 Best Paper）用单一查询机制把 4D 重建与点追踪统一到一个网络，200+ FPS——这是 4D 领域首次在顶级会议拿到 Best Paper；<strong>ClipGStream</strong>（CVPR 2026）把动态重建推向"任意长度、任意运动"的多视角流式场景；<strong>ATGS</strong>（SIGGRAPH 2026）用时序锚点稳定长体积视频中的高斯轨迹，解决长序列漂移。</p>
+
       <table class="mtbl">
         <thead><tr><th>方法</th><th>会议</th><th>路线</th><th>一句话创新</th></tr></thead>
         <tbody>
@@ -1325,6 +1335,9 @@
           <tr><td class="mn">SpacetimeGS</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>时空统一</td><td class="o">单一基元统一空间与时间维度</td></tr>
           <tr><td class="mn">DN-4DGS</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>变形场</td><td class="o">去噪变形网络 + 时空聚合，抑制时序抖动</td></tr>
           <tr><td class="mn">4DGS-Wild</td><td><span class="vchip v-NeurIPS">NeurIPS 2024</span></td><td>变形场</td><td class="o">不确定性正则，处理无人值守视频的光照/运动扰动</td></tr>
+          <tr><td class="mn">D4RT</td><td><span class="vchip v-CVPR">CVPR 2026 Best Paper</span></td><td>统一查询</td><td class="o"><b>4D 首个 CVPR Best Paper</b>：单一查询机制统一 4D 重建与点追踪，200+ FPS</td></tr>
+          <tr><td class="mn">ClipGStream</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td>流式</td><td class="o">clip 流式处理任意长度、任意运动的多视角动态场景重建</td></tr>
+          <tr><td class="mn">ATGS</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2026</span></td><td>时序锚点</td><td class="o">锚定时序高斯：用锚点稳定长体积视频中的高斯轨迹，抑制长序列漂移</td></tr>
         </tbody>
       </table>
 
@@ -1355,6 +1368,9 @@
           <tr><td class="mn">CompactGS</td><td><span class="vchip v-ECCV">ECCV 2024</span></td><td>向量量化</td><td class="o">VQ + 学习码本，紧凑高斯属性存储</td></tr>
           <tr><td class="mn">Compact3D</td><td><span class="vchip v-arXiv">arXiv</span></td><td>向量量化+剪枝</td><td class="o">VQ + 剪枝，约 10–15× 压缩</td></tr>
           <tr><td class="mn">SOG-GS</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td>分组量化</td><td class="o">结构化全向分组量化，保留高斯间相关性</td></tr>
+          <tr><td class="mn">CC-4DGS</td><td><span class="vchip v-TRO">IEEE TVCG 2026</span></td><td>动态压缩</td><td class="o">计算变形 + 点云压缩：CDF 替代哈希表（1–3 MB）、SH 压缩 3–5×，动态 4DGS 总量 20–30 MB</td></tr>
+          <tr><td class="mn">CAGS</td><td><span class="vchip v-SIGGRAPH">SIGGRAPH 2026</span></td><td>流式传输</td><td class="o">体积视频（VV）流式化：支持遥在、生态监测、机器人遥操作的远程实时访问</td></tr>
+          <tr><td class="mn">ECoNGS</td><td><span class="vchip">IEEE VIS 2026</span></td><td>神经化</td><td class="o">轻量神经网络从锚点预测 splat，模型体积缩减 6.1×、训练加速 5.9×</td></tr>
         </tbody>
       </table>
 
@@ -1516,7 +1532,7 @@
           <tr><td class="mn">VCAR</td><td><span class="vchip v-arXiv">ACM MM 2026</span></td><td>训练免</td><td class="o">训练免 3DGS 分割，无需额外训练即可做开放词汇场景分解</td></tr>
           <tr><td class="mn">LEGS</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td>分层</td><td class="o">分层语言高斯，LLM 空间推理驱动多级语义聚合</td></tr>
           <tr><td class="mn">DGSG-Mind</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td>场景图</td><td class="o">3DGS 场景图：从高斯直接构建物体级关系图，支持关系查询</td></tr>
-          <tr><td class="mn">CausalSplat</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td>因果</td><td class="o">层级因果推理：从语义高斯推断物体间因果关系（支撑/接触/遮挡）</td></tr>
+          <tr><td class="mn">CausalSplat</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td>因果</td><td class="o">层级因果推理：LLM + 3D 场景图解耦显式感知与隐式推理，提出 Causal-LERF / Causal-ScanNet 推理基准</td></tr>
         </tbody>
       </table>
 
@@ -1711,6 +1727,29 @@
         从需要 COLMAP 预处理到端到端前馈，不只是"少了一步"——它改变了 3DGS 的应用边界。需要位姿意味着前馈 GS 只能在"已标定"场景使用（实验室、专业采集）；去掉位姿后，任意手机拍的照片、网络爬取的图片、机器人实时视频流都能直接输入，3DGS 才真正具备"基础模型"所需的输入泛化性。DUSt3R 系族和 NoPoSplat/VGGT 从两个方向逼近同一目标：前者用点图回归绕过显式位姿估计，后者在网络内部隐式消化位姿。两条路在 CVPR 2025 汇合，标志着前馈 GS 从"学术 demo"走向"可用基础模型"的临界点。后续若结合大规模多模态预训练，空间基础模型的轮廓将逐渐清晰。
       </div>
 
+      <h4 style="font-size:15px;font-weight:650;margin:22px 0 8px;color:var(--text)">2026 年爆发：前馈 GS 进入"效率与泛化"竞赛</h4>
+      <p>CVPR 2026 是前馈 GS 的丰收年，创新焦点从"能不能前馈"转向三个更尖锐的工程问题：<strong>密度冗余、几何先验、野外泛化</strong>。</p>
+
+      <table class="mtbl">
+        <thead><tr><th>方法</th><th>会议</th><th>解决的问题</th><th>一句话创新</th></tr></thead>
+        <tbody>
+          <tr><td class="mn">SparseSplat</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td>密度冗余</td><td class="o"><b>首个自适应分配高斯密度的前馈方法</b>：用 Shannon 熵做概率采样生成稀疏锚点 + KNN 预测头，仅 22% 高斯（150k vs 688k）达到 DepthSplat 同级画质，单模型可在 10k–150k 间无级调节稀疏度</td></tr>
+          <tr><td class="mn">AnchorSplat</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td>密度冗余</td><td class="o">3D 几何先验引导的 anchor 对齐表示，高斯分布与图像分辨率/视图数解耦，大幅减少所需高斯数</td></tr>
+          <tr><td class="mn">GIFSplat</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td>质量上限</td><td class="o">纯前馈的迭代精炼框架：少量前向残差更新持续打磨场景，并把冻结扩散先验蒸馏为高斯级线索（无反传、不扩视图集），DL3DV/RE10K/DTU 上 PSNR +2.1 dB 且保持秒级推理</td></tr>
+          <tr><td class="mn">BA-GS</td><td><span class="vchip v-CVPR">CVPR 2026</span></td><td>免 SfM</td><td class="o">贝叶斯自适应高斯泼溅，免 SfM 的三维重建</td></tr>
+          <tr><td class="mn">WildSplat</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td>野外泛化</td><td class="o">首个面向无位姿 in-the-wild 图像的<strong>外观条件</strong>前馈 3DGS：双分支显式解耦几何与外观，联合预测相机位姿，单次前向完成外观编辑</td></tr>
+          <tr><td class="mn">GaussianLens</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td>分辨率</td><td class="o">按需致密化实现局部高分辨率重建，前馈致密化 + 像素引导机制，输入可扩至 1024×1024</td></tr>
+          <tr><td class="mn">GADA</td><td><span class="vchip v-ICML">ICML 2026</span></td><td>推理速度</td><td class="o">几何感知可变形聚合：可变形偏移 + 隐式置信度加权，FPS 提升 2.13×</td></tr>
+          <tr><td class="mn">GeoNVS</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td>生成×重建</td><td class="o">几何扎根的视频扩散做新视角合成：GS-Adapter 把扩散特征提升为 3DGS 表示，实现几何约束渲染</td></tr>
+          <tr><td class="mn">LangFlash</td><td><span class="vchip v-CVPR">CVPR 2026 Findings</span></td><td>语义前馈</td><td class="o">稀疏语义编码：从无位姿图像前馈 3D 语言高斯——语义与几何在同一前馈过程中产出</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout bio">
+        <span class="ct">③ 一条值得注意的技术暗线：从"像素对齐"到"结构自适应"</span>
+        2026 年前馈 GS 最具共识的演进，是<strong>集体放弃"一个像素一个高斯"的像素对齐范式</strong>。像素对齐（pixelSplat/MVSplat 一系）把高斯死绑在输入像素上，导致天空、白墙等低纹理区域也塞满高斯，单场景常需 688k 基元——对车载、无人机、AR 眼镜等端侧场景完全不可接受。SparseSplat 用信息熵决定"哪里该有高斯"，AnchorSplat 用 3D 先验决定"高斯该放哪"，两者共同指向同一个判断：<strong>前馈 GS 的下一阶段竞争不在渲染质量，而在"每一份算力换来多少有效高斯"</strong>。这与第 2 章"自适应密度控制"是同一种思想在前馈时代的复现——优化式 3DGS 靠梯度致密化，前馈式靠学习先验分配，目标一致：内容自适应的非均匀分布。
+      </div>
+
       <h3><span class="mi">⑥</span> GS × 扩散模型：两条路线的交叉</h3>
       <p>3DGS 与扩散模型的结合是 2024 年 3D 生成领域最活跃的交叉地带。两条技术路线从不同方向逼近同一目标——用 2D 扩散先验生成 3D 资产——但在工程哲学上几乎对立。</p>
 
@@ -1812,6 +1851,8 @@
 
       <p>这正是 3DGS 对具身智能的深层价值：它不只是"给机器人一张地图"，而是把<strong>仿真与真实的边界变模糊</strong>——因为 3DGS 重建出来的就是真实场景的可微副本，策略可以在这个副本上安全试错、廉价试错、梯度式试错。这是空间智能赋能具身智能的关键通路，也是第 7–9 章展开的地基。</p>
 
+      <p>2026 年 8 月发表的 <strong>GSP-3D</strong>（Frontiers in Neurorobotics）把这条通路走成了完整闭环，值得作为范式案例细读。它由三个组件构成：① <strong>Generalizable Gaussian Regressor（GGR）</strong>——从<em>单帧 RGB-D</em> 实时回归高斯基元，彻底摆脱逐场景优化；② <strong>3DGS 条件扩散策略</strong>——把高斯聚合成紧凑潜向量，替代点云作为视觉条件（补上了"稀疏点云结构不完整"的短板）；③ <strong>GS-WM 高斯世界模型</strong>——Transformer 在<strong>高斯状态空间</strong>直接预测未来高斯集合，其预测误差作为辅助损失，约束策略生成时序一致的动作。在 RoboTwin 2.0 的八项双臂任务上，它全面超过 DP3、π0、ACT、RDT 等基线（如按闹钟 84% vs 75%、递积木 78% vs 70%），而参数量仅增约 3%、推理时间仅增约 9%。三点工程启示：<strong>其一</strong>，世界模型的预测误差只在训练期用作正则、部署期不参与推理——这把"预测未来"的算力成本转成了训练期的一次性投入；<strong>其二</strong>，作者明确说明 GS-WM 不是物理仿真器，它从专家演示中学习经验转移模式（物体连续运动、遮挡平滑演化），靠惩罚高斯参数的突变来隐式编码物理约束；<strong>其三</strong>，其局限也具代表性——遮挡与动态任务仍会失败、对世界模型损失权重敏感、极端光照/反光表面下退化、高斯数量呈二次复杂度、未验证 Sim2Real。这三个启示共同说明：<strong>3DGS 在具身智能里的角色正在从"被表示的静态场景"变成"被预测的动态状态空间"</strong>——这正是第 10 章 3DGS 原生世界模型派在操作侧的落地证据。</p>
+
       <figure>
         <div class="fig-svg">
           <svg viewBox="0 0 680 320" role="img" aria-label="Sim2Real 数据飞轮与 3DGS 的双重角色">
@@ -1900,6 +1941,7 @@
           <tr><td class="mn">GS-Playground</td><td><span class="vchip v-RSS">RSS 2026</span></td><td class="o">批量 3DGS + 并行物理，10⁴ FPS 级仿真供机器人学习</td></tr>
           <tr><td class="mn">SceneSmith</td><td><span class="vchip v-ICML">ICML 2026 Spotlight</span></td><td class="o">分层智能体框架：自然语言→仿真就绪室内场景（designer-critic-orchestrator VLM 智能体 + 文本转3D + 物理属性估计），物体数 3–6× 于前法、碰撞率 &lt;2%、96% 物理稳定</td></tr>
           <tr><td class="mn">SA-ResGS</td><td><span class="vchip v-ECCV">ECCV 2026</span></td><td class="o">自增强残差 3DGS 用于下一最佳视角选择：SA-Points 三角化估计覆盖率，首次为 3DGS 引入残差学习改善稀疏区域梯度流</td></tr>
+          <tr><td class="mn">GSP-3D</td><td><span class="vchip">Frontiers in Neurorobotics 2026</span></td><td class="o"><b>3DGS×扩散策略×世界模型三合一</b>：单帧 RGB-D 实时回归高斯基元（GGR）+ 3DGS 条件扩散策略 + GS-WM 高斯世界模型；RoboTwin 2.0 双臂任务成功率超 DP3/π0/ACT，参数与延迟仅增约 3%</td></tr>
         </tbody>
       </table>
 
@@ -2021,6 +2063,8 @@
           <tr><td class="mn">GaussNav-2</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">分层语义高斯地图导航，语言引导具身探索增强</td></tr>
           <tr><td class="mn">GaussRover</td><td><span class="vchip v-CVPR">CVPR 2025</span></td><td class="o">地形感知高斯表示，星表漫游器导航</td></tr>
           <tr><td class="mn">GSMem</td><td><span class="vchip v-arXiv">arXiv 2026</span></td><td class="o">3DGS 作为持久空间记忆，零样本具身探索与再定位</td></tr>
+          <tr><td class="mn">2DGS-SLAM</td><td><span class="vchip v-TRO">T-RO 2026</span></td><td class="o">2DGS 全局一致 RGB-D SLAM：回环检测 + 全局优化，机器人领域顶刊背书</td></tr>
+          <tr><td class="mn">GLAM-SLAM</td><td><span class="vchip">IROS 2026</span></td><td class="o">大规模室外解耦 GS-SLAM：特征跟踪前端 + 稀疏锚点网格，KITTI/Oxford 上提升 15%</td></tr>
         </tbody>
       </table>
 
@@ -2441,6 +2485,13 @@
       <p>GS-World（港中深，2025.10）更进一步——它把 3DGS 直接当作可微仿真引擎，让 Sim2Real 本身可微：策略在 3DGS 仿真里试错，渲染误差反传优化策略，再把优化后的策略迁回真机。这把第 6 章的"数据飞轮"从"离线生成"升级为"在线可微优化"，是 3DGS 对世界模型方法论的根本贡献。</p>
 
       <p>2026 年这条线沿两个方向继续推进。<strong>一是动作条件化</strong>：4DGS-WAM 把"世界模型预测"与"策略预测动作"显式分离——静态背景由 4DGS 建模，动态物体由策略预测的未来状态驱动，预测目标不再是"整帧下一画面"，而是"哪些物体会动、怎么动"。这直接回应了此前"多数 3DGS 世界模型缺乏真正 action-conditioned 动力学"的批评。<strong>二是输入侧统一</strong>：HY-World 2.0 把文本/单视角/多视角/视频统一转成可导航 3DGS 世界（全景生成 HY-Pano 2.0 + 轨迹规划 WorldNav + 世界扩展 WorldStereo 2.0），意味着"生成一个世界模型"正在从"逐场景优化"走向"一次前向生成"。而在数据侧，Holi-Spatial（ICML 2026 Oral）用全自动框架从原始视频演化出 400 万+ 空间多模态样本，Spatial-TTT（ECCV 2026）则证明测试时训练可以让空间模型在长视频流上持续更新记忆、显存与算力节省 40%+——这两篇共同说明：<strong>3DGS 世界模型的瓶颈正从"表示能力"转向"数据规模与持续学习"</strong>。</p>
+
+      <div class="callout key">
+        <span class="ct">★ 2026 年的两个新共识：显式基元 + Grounded Dynamics；焦耳预算</span>
+        <p style="margin:4px 0 8px"><b>共识一：Spatial AI = 显式基元场 × Grounded Dynamics。</b>Charlot Lab 2026 年的技术报告给出了一个正在被引用的判据：一个可用的空间智能系统必须同时具备"一份显式的基元场"与"被锚定的动力学（grounded dynamics）"——前者提供可检查、可编辑、可查询的空间，后者提供"场景会如何演化"的预测。只有其中一份，要么是"精美的静态模型"（无法行动），要么是"无锚的预测"（无法验证）。这个判据解释了为什么 3DGS 路线在具身智能里越来越主流：它天然同时提供这两半，且两半可以分别优化。</p>
+        <p style="margin:4px 0 8px"><b>共识二：端侧部署的约束是"焦耳"，不是"参数"。</b>Institute for Physical AI 的报告把边缘 Spatial AI 的约束从"模型多大"改写为"每焦耳能做多少有用功"——具身设备的功率预算以瓦特计，而非数据中心的无约束算力。这一约束直接改写技术选型：表示必须<strong>可检查（inspectable）且可编辑</strong>，同时<strong>在本地硬件上实时</strong>。这与本书第 3 章压缩谱系、第 7 章边缘 GS-SLAM 的工程讨论完全同向——2026 年的前沿不再是"更大模型"，而是"同等能力下更低的每次推理能耗"。</p>
+        <p style="margin:4px 0 0">与之呼应，具身空间记忆的范式也在 2026 年发生转向：GaussExplorer（自主探索）、3DGSNav（3DGS 作持久记忆支撑 VLM 推理）、GaussMemory（从被动记录转向<strong>任务驱动的主动学习</strong>）、MS-SLAM（优化召回的高斯点与空间重叠帧以在导航中维持模型质量）——这一批工作共同把 3DGS 空间记忆从"事后重建的产物"变成"长时程操作任务中主动维护的记忆结构"。</p>
+      </div>
 
       <h3><span class="mi">④</span> 空间基础模型与 Physical AI</h3>
       <p>把视野再拉高一层。2025–2026 年的大趋势是"空间基础模型"（Spatial Foundation Model）——把 3D 理解、生成、交互统一进一个大模型。World Labs 的 Marble（单图→可交互 3D 空间）、NVIDIA 的 Cosmos（World Foundation Model，3D 通才，从"生成画面"升级为"生成可行动的 3D 世界"）都是这条线。3DGS 在这里的角色是<strong>基础模型与物理世界之间的胶水</strong>——基础模型生成/理解的是抽象 3D，3DGS 把它落地成可渲染可交互的具体场景。</p>
@@ -2898,6 +2949,11 @@
         </tbody>
       </table>
 
+      <div class="callout key">
+        <span class="ct">★ 2026 产业信号：城市世界模型进入"分钟级"时代</span>
+        2026 年 6 月，高德发布 <strong>ABot-Earth 0.5</strong>——据公开报道为全球首个 3D 原生城市世界模型。它的技术参数值得做城市级项目的人记住：以卫星遥感影像与地理空间资产为输入，输出可渲染、可漫游、可分块扩展的 3DGS 场景，并进一步与地图 POI、路网、AOI、行政区划等资产结合，形成面向真实坐标的三维地球底座；覆盖 190 多个国家和地区，支持图像/文本多模态输入，<strong>单张图像或一段文字即可在消费级单卡 GPU 上 10 分钟内生成 1 平方公里的高保真 3D 城市场景</strong>。这个数字对传统"机载倾斜摄影 + 逐块重建"路线是数量级的效率冲击，也预示了三条产业趋势：① 城市三维底座的生产方式正从"测绘驱动"转向"生成驱动"；② 3DGS 成为城市级三维事实上的标准输出格式之一；③ 具身智能的开放环境训练数据空白正在被这类底座填补。对本章剧本的直接影响：评估实景三维项目时，"能否接受生成式路线"应成为与"测绘资质合规"并列的前置问题——两者不是互斥，但需要提前界定各自适用的交付物与验收标准。
+      </div>
+
       <div class="callout note">
         <span class="ct">③ 六个剧本的横向对照</span>
         按"<b>最该盯住的指标</b>"一句话概括：文博盯<b>色彩与细节</b>、电商盯<b>包体与机型</b>、工业盯<b>配准与更新</b>、自动驾驶盯<b>域差与规模</b>、机器人盯<b>实时性与长期一致性</b>、实景三维盯<b>合规与瓦片</b>。如果你手上的项目同时在两个剧本里，说明它大概率需要拆成两个阶段分别验收——强行合并是范围失控的开端。
@@ -2923,7 +2979,7 @@
           <li><b>研究前沿方向</b>：见 CH03 / CH07 / CH10 / CH11 章末「★ 研究前沿方向」开放问题。</li>
           <li><b>实践资源索引</b>：见「实践资源索引：从书到工程」（章节→技能/MCP 工具映射）。</li>
           <li><b>数据集与评估基准</b>：本章下方「① 主流评测 / ② 指标三件套 / ③ 具身数据集」。</li>
-          <li><b>引用与延伸阅读</b>：66 条权威资源，均带 arXiv 编号与代码链接。</li>
+          <li><b>引用与延伸阅读</b>：85 条权威资源，均带 arXiv 编号与代码链接。</li>
         </ul>
       </div>
 
@@ -3240,6 +3296,31 @@
         <div class="ref-item"><span class="idx">[65]</span> LIBERO, Stanford <span class="venue" style="background:var(--iclr);color:#fff">ICLR 2024</span><span class="desc">机器人操作终身学习基准</span></div>
         <div class="ref-item"><span class="idx">[66]</span> AGIBOT WORLD / Genie Sim, 智元 <span class="venue" style="background:#555;color:#fff">ICRA 2026</span><span class="desc">可交互/可训练/可评测物理仿真，百万轨迹 217 任务</span></div>
       </div>
+
+      <div class="ref-divider"></div>
+
+      <div class="ref-group">
+        <h3>⑮ 2026 年重要新论文 <span class="num">Highlights 2026</span></h3>
+        <div class="ref-item"><span class="idx">[67]</span> Heat Kernel Textures, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2026 Best Paper</span><span class="desc">基元层理论创新：非欧流形各向异性热核替代欧氏高斯表达表面纹理，放弃"泼溅"范式</span></div>
+        <div class="ref-item"><span class="idx">[68]</span> D4RT, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026 Best Paper</span> <a href="https://arxiv.org/abs/2512.08924">arXiv:2512.08924</a><span class="desc">单一查询机制统一 4D 重建与点追踪，200+ FPS——4D 领域首个 CVPR Best Paper</span></div>
+        <div class="ref-item"><span class="idx">[69]</span> ATGS, <span class="venue" style="background:var(--sig);color:#fff">SIGGRAPH 2026</span> <a href="https://arxiv.org/abs/2608.30184">arXiv:2608.30184</a><span class="desc">锚定时序高斯：时序锚点稳定长体积视频中的高斯轨迹</span></div>
+        <div class="ref-item"><span class="idx">[70]</span> ClipGStream, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span> <a href="https://arxiv.org/abs/2604.13746">arXiv:2604.13746</a><span class="desc">clip 流式任意长度任意运动的多视角动态场景重建</span></div>
+        <div class="ref-item"><span class="idx">[71]</span> CC-4DGS, <span class="venue" style="background:var(--tro);color:#fff">IEEE TVCG 2026</span> <a href="https://arxiv.org/abs/2609.02184">arXiv:2609.02184</a><span class="desc">动态 4DGS 存储高效化：CDF 替代哈希表 + SH 压缩 3–5×，总量 20–30 MB</span></div>
+        <div class="ref-item"><span class="idx">[72]</span> CAGS, <span class="venue" style="background:var(--sig);color:#fff">SIGGRAPH 2026</span> <a href="https://arxiv.org/abs/2605.09279">arXiv:2605.09279</a><span class="desc">体积视频流式化：遥在/生态监测/机器人遥操作的远程实时访问</span></div>
+        <div class="ref-item"><span class="idx">[73]</span> SparseSplat, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span><span class="desc">熵采样自适应密度前馈 3DGS：22% 高斯达到同级画质，单模型 10k–150k 无级稀疏调节</span></div>
+        <div class="ref-item"><span class="idx">[74]</span> GIFSplat, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span><span class="desc">生成先验引导的迭代前馈 3DGS：稀疏无位姿视图 PSNR +2.1 dB，保持秒级推理</span></div>
+        <div class="ref-item"><span class="idx">[75]</span> WildSplat, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2026</span> <a href="https://arxiv.org/abs/2607.05347">arXiv:2607.05347</a><span class="desc">首个外观条件无位姿 in-the-wild 前馈 3DGS：双分支解耦几何与外观</span></div>
+        <div class="ref-item"><span class="idx">[76]</span> BA-GS, <span class="venue" style="background:var(--cvpr);color:#fff">CVPR 2026</span><span class="desc">贝叶斯自适应高斯泼溅，免 SfM 三维重建</span></div>
+        <div class="ref-item"><span class="idx">[77]</span> GADA, <span class="venue" style="background:var(--icml);color:#fff">ICML 2026</span> <a href="https://arxiv.org/abs/2607.00595">arXiv:2607.00595</a><span class="desc">几何感知可变形聚合：FPS 提升 2.13×</span></div>
+        <div class="ref-item"><span class="idx">[78]</span> GaussianLens, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2026</span> <a href="https://arxiv.org/abs/2509.25603">arXiv:2509.25603</a><span class="desc">按需致密化局部高分辨率重建，输入扩至 1024×1024</span></div>
+        <div class="ref-item"><span class="idx">[79]</span> GSP-3D, <span class="venue" style="background:#555;color:#fff">Frontiers in Neurorobotics 2026</span><span class="desc">可泛化 3DGS + 扩散策略 + 高斯世界模型（GS-WM），RoboTwin 2.0 双臂任务超 DP3/π0/ACT</span></div>
+        <div class="ref-item"><span class="idx">[80]</span> 2DGS-SLAM, <span class="venue" style="background:var(--tro);color:#fff">T-RO 2026</span><span class="desc">2DGS 全局一致 RGB-D SLAM：回环 + 全局优化</span></div>
+        <div class="ref-item"><span class="idx">[81]</span> GLAM-SLAM, <span class="venue" style="background:#555;color:#fff">IROS 2026</span> <a href="https://arxiv.org/abs/2607.21416">arXiv:2607.21416</a><span class="desc">大规模室外解耦 GS-SLAM，KITTI/Oxford 上提升 15%</span></div>
+        <div class="ref-item"><span class="idx">[82]</span> AmbiSuR, <span class="venue" style="background:var(--icml);color:#fff">ICML 2026</span> <a href="https://arxiv.org/abs/2605.12494">arXiv:2605.12494</a><span class="desc">光度歧义消解，提升高斯表面重建精度</span></div>
+        <div class="ref-item"><span class="idx">[83]</span> Holi-Spatial, <span class="venue" style="background:var(--icml);color:#fff">ICML 2026 Oral</span> <a href="https://arxiv.org/abs/2603.07660">arXiv:2603.07660</a><span class="desc">全自动空间数据构建：原始视频→400 万+ 空间多模态样本</span></div>
+        <div class="ref-item"><span class="idx">[84]</span> CausalSplat, <span class="venue" style="background:var(--eccv);color:#fff">ECCV 2026</span> <a href="https://arxiv.org/abs/2608.11150">arXiv:2608.11150</a><span class="desc">3DGS 分层推理：LLM+3D 场景图解耦显式感知与隐式推理，Causal-LERF/Causal-ScanNet 基准</span></div>
+        <div class="ref-item"><span class="idx">[85]</span> ABot-Earth 0.5, 高德, 2026.06<span class="desc">3D 原生城市世界模型：卫星遥感输入，单卡 10 分钟生成 1 km² 高保真 3DGS，覆盖 190+ 国家</span></div>
+      </div>
     </div>
 
     <!-- ===================== 后记 ===================== -->
@@ -3288,7 +3369,7 @@
 
     <!-- ============ pager ============ -->
     <div class="pager">
-      <a class="prev" href="#references"><span class="dir">← 上一节</span><span class="ttl">引用与延伸阅读 · 66 条权威资源</span></a>
+      <a class="prev" href="#references"><span class="dir">← 上一节</span><span class="ttl">引用与延伸阅读 · 85 条权威资源</span></a>
       <a class="next" href="#overview"><span class="dir">回到全书目录 →</span><span class="ttl">章节速览</span></a>
     </div>
 
