@@ -1,3 +1,4 @@
+
 # X / Twitter 发布线程（英文 · 海外作者与社区）
 
 **形式**: 9 条线程，发布后 @ 相关论文作者与 NVIDIA 社区账号（@NVIDIA、@DrJimFan 等，谨慎 @ 避免 spam）
@@ -16,7 +17,7 @@
 
 5/ 13 chapters: NeRF→3DGS, engineering core (104 bug-pattern table), compression, semantic Gaussians, embodied foundations, 3DGS-as-memory (GS-SLAM), articulated understanding, agent-driven twins, world models, safety.
 
-6/ Backed by an open knowledge base: 955 methods / 26 categories, every arXiv ID re-verified (name must appear in title/abstract). No inflated counts. Plus 18 agent skills + an MCP server (34 tools).
+6/ Backed by an open knowledge base: 976 methods / 26 categories, every arXiv ID re-verified (name must appear in title/abstract). No inflated counts. Plus 18 agent skills + an MCP server (34 tools).
 
 7/ Every reference (62) carries an arXiv ID. Every data point is traceable. "Looks correct" ≠ "is correct" — we made verifiability the baseline.
 

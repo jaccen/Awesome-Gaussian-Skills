@@ -5,13 +5,13 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 955 methods, 26 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 976 methods, 26 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-955-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-976-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -30,7 +30,7 @@
 - [Integrations](#integrations)
 - [Online Book](#-online-book-spatial--embodied-intelligence)
 - [What's New (Oct 2026)](#whats-new-oct-2026)
-- [Knowledge Base](#knowledge-base-955-methods-26-categories)
+- [Knowledge Base](#knowledge-base-976-methods-26-categories)
 - [18 AI-Powered Skills](#18-ai-powered-skills)
 - [Visualization Samples](#visualization-samples)
 - [Research Innovation Highlights](#research-innovation-highlights)
@@ -64,7 +64,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 955 Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 976 Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## Quick Start
 
@@ -117,7 +117,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
 <details>
-<summary><b>What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (955 Methods, 26 categories, 18 skills), zero fabrication</b></summary>
+<summary><b>What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (976 Methods, 26 categories, 18 skills), zero fabrication</b></summary>
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -138,7 +138,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 | CH 12 | Capture-to-delivery: the end-to-end pipeline | Ten-stage tool selection & pitfalls, formats & coordinate systems, cost/duration estimates, project failure modes |
 | CH 13 | Industry playbooks: six verticals | Museums & tourism, e-commerce, industrial inspection, AD simulation, embodied robots, surveying & mapping |
 | 附 | Appendix | Datasets, evaluation metrics, delivery-metric conversion & acceptance-report templates |
-| 实 | Practice index: from book to engineering | 18 engineering skills · 34 MCP tools · 955+ method explorer, chapter-to-runnable-resource mapping |
+| 实 | Practice index: from book to engineering | 18 engineering skills · 34 MCP tools · 976+ method explorer, chapter-to-runnable-resource mapping |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 </details>
@@ -153,13 +153,30 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 955 method names, abstracts, and 18 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 976 method names, abstracts, and 18 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (Oct 2026)
 
-### Latest Update (Oct 15, 2026): **v0.9.11 — Research Expert Team Deep Expansion: Methodology Core + 15 Master-Paper Studies** ⭐
+### Latest Update (Oct 19, 2026): **v0.9.12 — Full-Library Audit + arXiv Scan: 21 New Methods (955 → 976)** ⭐
+
+Full-library audit plus a fresh arXiv scan admitted **21** new arXiv-verified 3DGS methods, taking the
+library from **955 to 976** (+21, +2.2%) across 8 categories — led by Compression & Streaming (+5),
+Cross-Domain (+3), Autonomous Driving (+2), World Models & Spatial Intelligence (+2), SLAM (+2).
+Every admitted method name is self-stated in its own paper's title/abstract (R9 protocol) and
+arXiv-verified; **13** candidates were rejected (no self-stated method name, survey, NeRF, or 3DGS
+used merely as a tool); one name collision (**X-Splat**) kept the existing entry and dropped the
+newcomer.
+
+Audit fixes: one mis-attached description (**STC-GS** — corrected to its real contribution, a
+spatio-temporal coherent GS for weather-radar sequence prediction) and **16** blank descriptions
+backfilled. Full arXiv-ID re-verification across **1,462** unique IDs (1,461 reachable; the single
+unresolved ID was a historical note rather than a live record). All data carriers
+(`methods.json` / CSV / `methods.html` / `abstracts.js` / reference docs) re-verified at **976**,
+name sets identical. See [changelog](changelog/2026-10-19.md).
+
+### Previous Update (Oct 15, 2026): **v0.9.11 — Research Expert Team Deep Expansion: Methodology Core + 15 Master-Paper Studies** ⭐
 
 Pure skill-content release — **no carrier changes** (955 methods / 26 categories / 18 skills stay).
 `research-expert-team` grew from a nine-role router into a **two-layer methodology asset**:
@@ -335,7 +352,7 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
-## Knowledge Base (955 Methods, 26 Categories)
+## Knowledge Base (976 Methods, 26 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -442,7 +459,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across the 955-method knowledge base.
+> Derived from systematic gap analysis across the 976-method knowledge base.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -549,7 +566,7 @@ Awesome-Gaussian-Skills/
 ├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
 ├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (955 Methods, 26 Categories)
+├── references/                # Knowledge base (976 Methods, 26 Categories)
 ├── Test/                      # Visualization samples
 ├── changelog/                 # Version history
 └── assets/                    # Project images
@@ -581,7 +598,7 @@ Contributions welcome! See [Contributing Guide](CONTRIBUTING.md).
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {955 arXiv-verified methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
+  note = {976 arXiv-verified methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -595,7 +612,7 @@ Complementary projects — we recommend all of them:
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — comprehensive paper collection
 - All 3DGS researchers whose papers form our knowledge base
 
-> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 955 verified methods, 18 skills, 34 MCP tools.
+> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 976 verified methods, 18 skills, 34 MCP tools.
 
 ## License
 

@@ -1,10 +1,9 @@
 ﻿
-
 # 3DGS MCP Renderer Server
 
 > v0.5.0 — Agent-controlled 3DGS rendering pipeline via MCP (Model Context Protocol)
 
-Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) — 955 3DGS methods, 18 skills, 104 bug patterns.
+Part of [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) — 976 3DGS methods, 18 skills, 104 bug patterns.
 
 ## Overview
 

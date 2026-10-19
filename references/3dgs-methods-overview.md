@@ -1599,3 +1599,103 @@ One candidate (collaborative RGB-inertial multi-agent GS SLAM, arXiv:2608.26868)
 | Super Agents & Agentic AI | 20 (new) |
 | Ontology & Knowledge Representation | 12 (new) |
 | **Total** | **955** |
+
+## Newly Added Methods (October 19, 2026 — Full-Library Audit & arXiv Scan)
+
+**Date:** 2026-10-19
+**Scope:** Routine arXiv scan (10-day window, 34 candidates) admitted **21** new arXiv-verified 3DGS
+methods, taking the library from **955 to 976** (+21, +2.2%). In the same release, a full-library audit
+fixed one mis-linked description and filled 16 empty descriptions (see *Audit Fixes* below). Taxonomy
+stays at **26 categories**. All four data carriers (`methods.json` / CSV / `methods.html` /
+`abstracts.js`) re-verified at **976**, name sets compared entry by entry.
+
+### Compression & Streaming (4)
+- **MFGS** [arXiv:2610.20590](https://arxiv.org/abs/2610.20590) (arXiv 2026) — End-to-end feed-forward multi-view feature coding; encodes features instead of explicit Gaussians (99.76–99.86% BD-rate savings), importance-guided budget adaptation
+- **RDCompGS** [arXiv:2610.19538](https://arxiv.org/abs/2610.19538) (arXiv 2026) — Rate-distortion optimized compression with image codecs, treating quality-heterogeneous representations differently
+- **PLEDGE** [arXiv:2610.17605](https://arxiv.org/abs/2610.17605) (arXiv 2026) — Training-free progressive lossy error-bounded codec; four user tolerances → per-primitive quantization bounds
+- **TETRIS-4DGS** [arXiv:2610.14663](https://arxiv.org/abs/2610.14663) (arXiv 2026) — Efficient post-training compression of 4D Gaussian Splatting, generalizable without per-scene optimization
+- **ResStreamGS** [arXiv:2610.21121](https://arxiv.org/abs/2610.21121) (arXiv 2026) — Residual-sensitive dual-stream GS for mobile volumetric video streaming
+
+### World Models & Spatial Intelligence (2)
+- **Holi-Spatial 360** [arXiv:2610.19502](https://arxiv.org/abs/2610.19502) (arXiv 2026) — Generative reconstruction from sparse real-estate panoramas for spatial rendering and intelligence (multi-room scale)
+- **Demiurge** [arXiv:2610.14685](https://arxiv.org/abs/2610.14685) (arXiv 2026) — Autoregressive video rerendering forging navigable 4D worlds with cross-trajectory consistency
+
+### Cross-Domain (3)
+- **DoReMe** [arXiv:2610.19120](https://arxiv.org/abs/2610.19120) (arXiv 2026) — Dual optimization of reconstruction and motion estimation for self-navigated free-breathing abdominal MRI
+- **AD-GS** [arXiv:2610.14963](https://arxiv.org/abs/2610.14963) (arXiv 2026) — Anatomical density-guided 3DGS for sparse-view dental CBCT reconstruction
+- **AEC-SplatTwin** [arXiv:2610.13143](https://arxiv.org/abs/2610.13143) (arXiv 2026) — Measurable semantic 3DGS for interactive building inspection; region/depth supervision + semantic field + MLLM-assisted measurement
+
+### SLAM (2)
+- **KFS4LAM** [arXiv:2610.22505](https://arxiv.org/abs/2610.22505) (arXiv 2026) — Adaptive keyframe selection with structure-aware mapping for endoscopic GS SLAM
+- **HyperLoop** [arXiv:2610.19742](https://arxiv.org/abs/2610.19742) (arXiv 2026) — Hyperspectral-assisted loop closure detection in 3DGS SLAM for planetary exploration
+
+### Autonomous Driving (2)
+- **DriveWorld3D** [arXiv:2610.22450](https://arxiv.org/abs/2610.22450) (arXiv 2026) — Evidence-constrained 3D world modeling and generative simulation for real-world autonomous driving
+- **SimVTA** [arXiv:2610.13781](https://arxiv.org/abs/2610.13781) (arXiv 2026) — Simulation-grounded video-trajectory alignment for driving world action models
+
+### Feed-Forward (1)
+- **Anchor3DGS** [arXiv:2610.21634](https://arxiv.org/abs/2610.21634) (arXiv 2026) — Compact anchor-based feed-forward 3DGS decoupling Gaussian count from input resolution
+
+### Language & Semantic (1)
+- **DIGS** [arXiv:2610.16177](https://arxiv.org/abs/2610.16177) (arXiv 2026) — Distribution-informed GS for training-free open-vocabulary 3D segmentation (boundary Gaussians carry feature distributions)
+
+### HDR & Relighting (1)
+- **VisibilitySplat** [arXiv:2610.19847](https://arxiv.org/abs/2610.19847) (arXiv 2026) — Ray-traced occlusion oracle for relighting; sparse visibility sampling enables material/light decomposition
+
+### Large-Scale (1)
+- **SG-GS** [arXiv:2610.16292](https://arxiv.org/abs/2610.16292) (arXiv 2026) — Semantic-guided 3DGS for fine-grained urban scene reconstruction via semantic density control and loss design
+
+### Embodied AI & Robotics (1)
+- **GS-PRM** [arXiv:2610.19541](https://arxiv.org/abs/2610.19541) (arXiv 2026) — Gaussian visual roadmap for image-goal navigation with renderable milestones
+
+### Robustness (1)
+- **PUGS** [arXiv:2610.17936](https://arxiv.org/abs/2610.17936) (arXiv 2026) — Physics-guided uncertainty modeling for underwater dynamic 3DGS
+
+### AIGC Content Creation (1)
+- **Edit4D** [arXiv:2610.21668](https://arxiv.org/abs/2610.21668) (arXiv 2026) — Editable text-to-4D scene generation with separate background and dynamic-character representations
+
+### Audit Fixes (same release)
+- **STC-GS** description corrected: arXiv:2502.14895 is the *SpatioTemporal Coherent Gaussian Splatting*
+  paper for 3D radar sequence representation in weather nowcasting (per-frame 3D Gaussian groups with
+  cross-frame tracking; paired with the GauMamba forecaster). The previous field description
+  ("temporal consistency loss with Gaussian re-projection for artifact-free dynamic rendering") did not
+  match the paper and was replaced with the paper's actual contribution.
+- **16 empty descriptions filled** from arXiv abstracts (all Feed-Forward / Dynamic & 4D classics):
+  `CUT3R`, `Flash3D`, `MonST3R`, `NoPoSplat`, `Spann3R`, `VGGT`, `CAT3D`, `LatentSplat`, `ReconFusion`,
+  `Splatt3R`, `Comp4D`, `Shape of Motion`, `PhysGaussian`, `TC4D`, `4DGen`, `DreamGaussian4D`.
+- **13 candidates rejected** under the R9 protocol: no self-stated method name (descriptive-only titles),
+  survey papers, or 3DGS used merely as a tool. `X-Splat` (2610.23237) was **excluded for name
+  collision** — the library already holds a different `X-Splat` (2607.02099, single-panoramic-radiograph
+  CBCT generation); per the single-source deduplication guarantee the existing entry is preserved.
+
+## Categories Count (October 19, 2026)
+
+| Category | Count |
+|----------|-------|
+| Foundation | 26 |
+| Optimization | 51 |
+| Surface & Rendering | 66 |
+| Compression & Streaming | 58 |
+| Acceleration | 26 |
+| Large-Scale | 22 |
+| Feed-Forward | 91 |
+| Language & Semantic | 39 |
+| Generation | 41 |
+| Autonomous Driving | 26 |
+| Dynamic & 4D | 93 |
+| HDR & Relighting | 28 |
+| SLAM | 49 |
+| Sparse-View | 25 |
+| World Models & Spatial Intelligence | 14 |
+| Human & Avatar | 42 |
+| Editing | 45 |
+| CAD & Reverse Engineering | 20 |
+| Cross-Domain | 69 |
+| Simulation | 11 |
+| Embodied AI & Robotics | 45 |
+| Robustness | 23 |
+| Security | 11 |
+| Ontology & Knowledge Representation | 12 |
+| Super Agents & Agentic AI | 20 |
+| AIGC Content Creation | 23 |
+| **Total** | **976** |

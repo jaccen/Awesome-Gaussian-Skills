@@ -6,7 +6,7 @@ description: "Full-cycle research expert team for 3DGS/spatial-intelligence pape
 # Research Expert Team — 科研全流程专家团
 
 > Scope: the full research cycle for a 3DGS / spatial-intelligence paper — from idea evaluation to rebuttal — orchestrated as nine specialist roles, with knowledge-backed method-selection tables and five-direction master-paper studies (§2.4).
-> Knowledge base: 955 arXiv-verified methods in `data/methods.json` (single source of truth — always re-query, never answer from memory), including the 12-method **Ontology & Knowledge Representation**, 20-method **Super Agents & Agentic AI**, and 22-method **AIGC Content Creation** categories.
+> Knowledge base: 976 arXiv-verified methods in `data/methods.json` (single source of truth — always re-query, never answer from memory), including the 12-method **Ontology & Knowledge Representation**, 20-method **Super Agents & Agentic AI**, and 23-method **AIGC Content Creation** categories.
 
 ## 1. The Nine Roles (assign by stage)
 
@@ -46,7 +46,7 @@ The tables below cover the three KB categories built for these directions; the o
 | Paper-to-code / physical-feedback pipelines | SPLATIFY, Artisan | grammar-constrained synthesis; simulation gates |
 | Benchmarks & evaluation | GISAgentBench, WorldBench, E3VS-Bench, MeMoREval, SkillScriptBench | match the benchmark to the claim |
 
-### 2.3 AIGC Content Creation (22 methods)
+### 2.3 AIGC Content Creation (23 methods)
 
 | Paper task | Anchor methods | Mechanism to cite/compare |
 |-----------|----------------|---------------------------|
@@ -89,7 +89,7 @@ Citation counts: Semantic Scholar, verified 2026-10. Division of labor (enforced
 
 ## 3. Role Playbooks (condensed)
 
-- **R1 idea evaluation**: ground every "already done" verdict in a named library method with arXiv ID; an idea with zero prior art in a 955-method KB is more likely a search failure than a gap — re-query with 2–3 paraphrases before claiming novelty. Load methodology-core **§A** (§2.4): classify the idea into M1-M4 (combination gap / obstacle-bypass / ecosystem-bridge / pain-point-with-mechanism) via the per-mode yes/no questions, then run the red-flag checklist — any hit → rework the topic, not the writing.
+- **R1 idea evaluation**: ground every "already done" verdict in a named library method with arXiv ID; an idea with zero prior art in a 976-method KB is more likely a search failure than a gap — re-query with 2–3 paraphrases before claiming novelty. Load methodology-core **§A** (§2.4): classify the idea into M1-M4 (combination gap / obstacle-bypass / ecosystem-bridge / pain-point-with-mechanism) via the per-mode yes/no questions, then run the red-flag checklist — any hit → rework the topic, not the writing.
 - **R2 innovation mining**: load methodology-core **§A.3** delta typology — rank claims by power (representation-level > mechanism-level > combination-level > protocol-level > system-level), make each pass the one-sentence delta test (which named baseline, which measurable delta), and prefer combination/transfer/protocol deltas over "we scale it up". Tag every verdict with its mode number (M1-M4) and delta level (1-5) for R6/R8 traceability.
 - **R3 simulated review**: beyond domain-standard scrutiny, walk methodology-core **§D** D1-D8 (representation arbitrariness · own-prior-work overlap · baseline parity · metric blind spots · efficiency caliber · cost disadvantage · mechanism patchwork · hidden negatives); every question the draft cannot answer becomes an objection **with a fix**. The review report must state per-item D1-D8 coverage.
 - **R8 experiment design + R9 analysis**: compose the plan from methodology-core **§C** patterns C1-C16 (state which pattern each experiment table uses) and enforce the Comparison Fairness Protocol from `cg-paper-writing` v3.3.0 — same dataset version/resolution/split, same metric implementation, rerun-before-cite for mismatched calibers, one table one dimension; for 3DGS/generative work the domain iron rule (same diffusion prior / prompt set) is non-negotiable. R9 interprets failures through the failure-mode taxonomy (C5), not anecdotes.

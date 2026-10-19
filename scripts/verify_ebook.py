@@ -135,7 +135,7 @@ for _i, _b in enumerate(re.split(r'\n\}\)\(\);', _js)):
 print('  ' + ('OK 无重名' if not _dup_found else '发现重名，后者会覆盖前者'))
 
 print('\n== 数字口径 ==')
-for pat, label in [(r'955', '方法总数 955'), (r'Categories-23', '分类 23'),
+for pat, label in [(r'976', '方法总数 976'), (r'955', '陈旧 955(应为0)'), (r'Categories-23', '分类 23'),
                    (r'AI_Skills-15', '技能 15'), (r'34 个 MCP', 'MCP 工具 34'),
                    (r'Categories-25', '陈旧分类 25(应为0)'), (r'AI_Skills-16', '陈旧技能 16(应为0)')]:
     print('  %-22s %d' % (label, len(re.findall(pat, s))))

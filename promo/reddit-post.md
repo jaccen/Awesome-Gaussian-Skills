@@ -1,3 +1,4 @@
+
 # Reddit 发布文案（以书为主角）
 
 **板块**: r/computervision（首选）/ r/MachineLearning / r/robotics / r/3DGS
@@ -8,8 +9,8 @@
 
 ## 标题（三选一）
 
-1. I wrote an open-source ebook on Spatial & Embodied Intelligence through 3D Gaussian Splatting — 955 methods, all arXiv-verified
-2. Show r/computervision: a free, offline-readable textbook connecting 3DGS to embodied AI (with a 955-method knowledge base)
+1. I wrote an open-source ebook on Spatial & Embodied Intelligence through 3D Gaussian Splatting — 976 methods, all arXiv-verified
+2. Show r/computervision: a free, offline-readable textbook connecting 3DGS to embodied AI (with a 976-method knowledge base)
 3. The "JPEG of 3D" is here (Khronos glTF 3DGS, NVIDIA NuRec). I wrote the textbook to actually understand it.
 
 ## 正文
@@ -26,7 +27,7 @@ What's inside:
 - Formula boxes, method-comparison tables, end-of-chapter questions, and **62 arXiv-cited references**
 
 It's backed by an open, entry-by-entry arXiv-verified knowledge base:
-- **955 3DGS methods / 26 categories**, every arXiv ID re-checked against the paper (method name must appear in title/abstract)
+- **976 3DGS methods / 26 categories**, every arXiv ID re-checked against the paper (method name must appear in title/abstract)
 - **18 AI engineering skills** (paper reading, method comparison, experiment planning, training debugging…)
 - an **MCP server with 34 tools** so agents can query the base directly
 

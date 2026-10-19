@@ -3,9 +3,9 @@ name: awesome-gaussian-skills
 version: 1.1.0
 display_name: 高斯泼溅科研总路由
 display_name_en: Awesome Gaussian Skills Router
-description: "Umbrella router for the Awesome-Gaussian-Skills toolkit (github.com/jaccen/Awesome-Gaussian-Skills): 955 arXiv-verified 3D Gaussian Splatting methods (848 with an arXiv ID) across 26 categories, 18 specialist sub-skills, a nine-role research expert team (科研专家团), and a spatial-intelligence / world-model / embodied-AI knowledge base. Routes idea evaluation, novelty mining, simulated peer review, polishing, AIGC-trace hygiene, venue formatting, experiment design and analysis to the right role; also handles method survey, citation verification and benchmark lookup. Use when any 3DGS / Gaussian Splatting / NeRF / spatial intelligence / world model / embodied AI / ontology / super-agent research or engineering task arises and it is unclear which sub-skill or knowledge base file to load. 3DGS科研/空间智能/世界模型/高斯泼溅/具身智能/专家团."
-description_zh: "Awesome-Gaussian-Skills 工具包总路由：955 个经 arXiv 核验的 3D 高斯泼溅方法（848 条带 arXiv ID，26 个类别）、18 个专业子技能、九角色科研专家团（选题评估→创新点挖掘→模拟审稿→润色→AIGC 痕迹消除→投稿格式→实验设计与分析），以及空间智能/世界模型/具身智能知识库。适用于任何 3DGS/NeRF/空间智能/世界模型/具身智能/本体/超级智能体的科研与工程任务，负责判断意图并调度到正确的子技能、专家角色或知识库文件；支持方法检索、引用验证、基准与数据集查询。"
-description_en: "Umbrella router for the Awesome-Gaussian-Skills toolkit: 955 arXiv-verified 3D Gaussian Splatting methods (848 with an arXiv ID) across 26 categories, 18 specialist sub-skills, a nine-role research expert team, and a spatial-intelligence / world-model / embodied-AI knowledge base. Routes any 3DGS / NeRF / spatial intelligence / world model / embodied AI / ontology / agentic-AI research or engineering task to the right sub-skill, expert role, or knowledge base file; supports method surveying, citation verification, and benchmark or dataset lookup."
+description: "Umbrella router for the Awesome-Gaussian-Skills toolkit (github.com/jaccen/Awesome-Gaussian-Skills): 976 arXiv-verified 3D Gaussian Splatting methods (869 with an arXiv ID) across 26 categories, 18 specialist sub-skills, a nine-role research expert team (科研专家团), and a spatial-intelligence / world-model / embodied-AI knowledge base. Routes idea evaluation, novelty mining, simulated peer review, polishing, AIGC-trace hygiene, venue formatting, experiment design and analysis to the right role; also handles method survey, citation verification and benchmark lookup. Use when any 3DGS / Gaussian Splatting / NeRF / spatial intelligence / world model / embodied AI / ontology / super-agent research or engineering task arises and it is unclear which sub-skill or knowledge base file to load. 3DGS科研/空间智能/世界模型/高斯泼溅/具身智能/专家团."
+description_zh: "Awesome-Gaussian-Skills 工具包总路由：976 个经 arXiv 核验的 3D 高斯泼溅方法（869 条带 arXiv ID，26 个类别）、18 个专业子技能、九角色科研专家团（选题评估→创新点挖掘→模拟审稿→润色→AIGC 痕迹消除→投稿格式→实验设计与分析），以及空间智能/世界模型/具身智能知识库。适用于任何 3DGS/NeRF/空间智能/世界模型/具身智能/本体/超级智能体的科研与工程任务，负责判断意图并调度到正确的子技能、专家角色或知识库文件；支持方法检索、引用验证、基准与数据集查询。"
+description_en: "Umbrella router for the Awesome-Gaussian-Skills toolkit: 976 arXiv-verified 3D Gaussian Splatting methods (869 with an arXiv ID) across 26 categories, 18 specialist sub-skills, a nine-role research expert team, and a spatial-intelligence / world-model / embodied-AI knowledge base. Routes any 3DGS / NeRF / spatial intelligence / world model / embodied AI / ontology / agentic-AI research or engineering task to the right sub-skill, expert role, or knowledge base file; supports method surveying, citation verification, and benchmark or dataset lookup."
 agent_created: true
 ---
 
@@ -13,9 +13,9 @@ agent_created: true
 
 ## 概述
 
-本技能是 [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) 工具包的总入口与调度器。当前基线（**2026-10-14 快照**）：
+本技能是 [Awesome-Gaussian-Skills](https://github.com/jaccen/Awesome-Gaussian-Skills) 工具包的总入口与调度器。当前基线（**2026-10-19 快照**）：
 
-- **方法知识库**：`data/methods.json` **955 条方法**，其中 **848 条带 arXiv ID**，覆盖 **26 个类目**；每条含 arXiv ID、venue、年份、类目、核心创新点、代码链接
+- **方法知识库**：`data/methods.json` **976 条方法**，其中 **869 条带 arXiv ID**，覆盖 **26 个类目**；每条含 arXiv ID、venue、年份、类目、核心创新点、代码链接
 - **18 个子技能**：覆盖 3DGS 科研与工程全流程（读论文 → 方法对比 → 实验设计 → 代码审查 → 训练调试 → 可视化 → 论文写作 → 专利 → 本体 → 超级智能体 → MCP 渲染）
 - **科研专家团**（`research-expert-team`）：九个角色覆盖选题评估到 rebuttal，并自带「本体与知识表示 / 超级智能体 / AIGC 内容生成」三个前沿方向的方法选型表
 - **知识库快照**：本技能包内含 30 个参考文件（方法全库、九簇深度笔记、写作能力库、验证引用、世界模型、具身智能、期刊分区、基准与数据集等）
@@ -140,7 +140,7 @@ agent_created: true
 
 知识库中标注 `[UNVERIFIED]` 或"venue 待核实"的条目，引用前必须完成验证，否则显式告知用户该条目未验证。
 
-**计数口径纪律**：对外报数量时必须写明快照日期与口径——`955 方法 / 848 条带 arXiv ID / 26 类（2026-10-14 快照，data/methods.json）`。历史曾虚报至 973（去重缺陷）与 800+（未审计），均以审计后口径为准。
+**计数口径纪律**：对外报数量时必须写明快照日期与口径——`976 方法 / 869 条带 arXiv ID / 26 类（2026-10-19 快照，data/methods.json）`。历史曾虚报至 973（去重缺陷）与 800+（未审计），均以审计后口径为准。
 
 ## 知识库更新
 

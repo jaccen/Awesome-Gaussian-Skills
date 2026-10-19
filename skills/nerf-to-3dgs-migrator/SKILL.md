@@ -312,7 +312,7 @@ Key changes to the training loop:
 
 ## Knowledge Base
 
-This skill references a knowledge base of 955 methods across 26 categories (updated for v0.8.4 cycle).
+This skill references a knowledge base of 976 methods across 26 categories (updated for v0.9.12 cycle).
 
 ## Rules
 
