@@ -1,3 +1,5 @@
+> Verification scope (2026-10-21): historical venue worksheet, not a verified current call for papers. Before applying page limits, fees, templates or policies, fetch the current official instructions and record their URL/date.
+
 # 《模式识别与人工智能》专项投稿撰写与格式指南
 
 > 来源：CCF计算领域高质量科技期刊分级目录（2025年版）+ 学报官网投稿指南。本文件为投稿/修改稿撰写时的参考规范，具体格式以官网最新模板为准。

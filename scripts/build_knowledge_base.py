@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_knowledge_base.py — Awesome-Gaussian-Skills 单一数据源构建器 (P0)
+build_knowledge_base.py — 默认从 data/methods.json 单向导出；旧载体导入须显式 --bootstrap-legacy。
 
 功能：
   1. 合并四套历史数据载体（CSV / docs/index.html METHODS / docs/abstracts.js）为单一数据源
@@ -509,5 +509,21 @@ def build(report_only=False):
     print(f"\n[write] methods.json / CSV / abstracts.js / index.html 已全部再生成：{len(clean)} 条")
 
 
+def main():
+    if "--bootstrap-legacy" in sys.argv:
+        print("[MIGRATION] Importing legacy carriers; review the resulting registry diff.")
+        build(report_only="--report" in sys.argv)
+        return 0
+    from catalog_export import export
+    if "--report" in sys.argv:
+        data = json.loads(METHODS_JSON.read_text(encoding="utf-8-sig"))
+        print(json.dumps({key: value for key, value in data.items() if key != "methods"}, ensure_ascii=False, indent=2))
+        return 0
+    check = "--check" in sys.argv
+    changes = export(check=check)
+    print(json.dumps({"authoritative_source": "data/methods.json", "different": changes}, ensure_ascii=False))
+    return 1 if check and changes else 0
+
+
 if __name__ == "__main__":
-    build(report_only="--report" in sys.argv)
+    raise SystemExit(main())

@@ -1,3 +1,5 @@
+> Verification scope (2026-10-21): historical venue worksheet, not a verified current call for papers. Before applying page limits, fees, templates or policies, fetch the current official instructions and record their URL/date.
+
 # 《软件学报》专项投稿撰写与格式指南
 
 > 来源：学报官网投稿指南（http://www.jos.org.cn/jos/site/menu/20210909102616001）、《关于进一步规范〈软件学报〉论文署名/单位/基金等的相关规定》（2022-02-23）、官网"下载区"模板与样例、以及已发表论文格式特征。本文件为投稿/修改稿撰写时的**硬性规范**，写作与自检时逐条核对。

@@ -111,29 +111,11 @@ def fetch(batch, retries=4):
 
 
 def classify(name, title):
-    """返回 MATCH / WEAK / MISMATCH。"""
+    from audit_manuscript_citations import name_title_match
     if not name:
-        return "MATCH"  # 无预期名，只做可达性检查
-    nt = norm_key(title)
-    toks = tokenize(name)
-    if not toks:
         return "WEAK"
-    # 首词命中（处理 3DGS→3D Gaussian、π0→π_0 这类缩写/符号）
-    first = norm_key(toks[0])
-    if first and first in nt:
-        return "MATCH"
-    if first and len(first) >= 3:
-        for t in tokenize(title):
-            tk = norm_key(t)
-            if tk.startswith(first[:3]) or first.startswith(tk[:3]):
-                return "MATCH"
-    hits = sum(1 for t in toks if norm_key(t) and norm_key(t) in nt)
-    ratio = hits / len(toks)
-    if ratio >= 0.5:
-        return "MATCH"
-    if hits > 0:
-        return "WEAK"
-    return "MISMATCH"
+    matched, _ = name_title_match(name, title)
+    return "MATCH" if matched else "WEAK"
 
 
 def months_between(pub_ym, today):
@@ -144,7 +126,7 @@ def months_between(pub_ym, today):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="+")
-    ap.add_argument("--months", type=int, default=18, help="超过多少月标记 STALE（默认 18）")
+    ap.add_argument("--months", type=int, default=18, help="超过多少月提示人工复查（年龄不等于过时）（默认 18）")
     ap.add_argument("--delay", type=float, default=6.0, help="批次间隔秒数（默认 6；被限流时调大）")
     args = ap.parse_args()
 
@@ -175,7 +157,7 @@ def main():
             failed.update(batch)
             continue
         for e in root.findall("a:entry", NS):
-            eid = e.find("a:id", NS).text.rsplit("/abs/", 1)[-1]
+            eid = (e.findtext("a:id", "", NS) or "").rsplit("/abs/", 1)[-1]
             base = eid.rsplit("v", 1)[0] if eid.rsplit("v", 1)[-1].isdigit() else eid
             meta[base] = {
                 "title": " ".join(e.find("a:title", NS).text.split()),
@@ -230,7 +212,9 @@ def main():
         print("\n[INCONCLUSIVE] %d 个 ID 因 API 请求失败未能核验（非 ID 错误）。"
               "请增大 --delay 或稍后重跑，不要据此认定引用有问题。" % len(failed))
         return 2
-    print("\n[OK] 无 P0 问题。STALE 条目请评估是否已被超越。")
+    print("\n[METADATA ONLY] Lexical matches do not verify technical claims or venue. Age flags prompt review, not rejection of foundational work.")
+    if any(row[0] in ("WEAK", "WEAK+STALE") for row in rows):
+        return 2
     return 0
 
 

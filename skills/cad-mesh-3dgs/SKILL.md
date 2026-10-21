@@ -1,21 +1,38 @@
 ---
 name: cad-mesh-3dgs
-description: "Bridge CAD, Mesh, and 3DGS representations via the SLAT unified encode-decode framework. Covers mesh↔3DGS conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly, TetSphere physics bridge, PBR material generation. Analyzes 40+ methods. Use when: converting mesh to/from 3DGS, extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction, TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建."
+description: 'Bridge CAD, Mesh, and 3DGS representations via the SLAT unified encode-decode framework. Covers mesh↔3DGS
+  conversion, surface extraction, CAD reverse engineering, B-rep/parametric reconstruction, NL-driven assembly,
+  TetSphere physics bridge, PBR material generation. Analyzes 40+ methods. Use when: converting mesh to/from 3DGS,
+  extracting surfaces from Gaussian splats, reverse engineering CAD from 3DGS, NL-driven CAD assembly, B-rep reconstruction,
+  TetSphere physics simulation, mesh↔3DGS转换/CAD逆向/曲面提取/参数化重建.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "1.7.0"
+  version: 1.7.0
   author: jaccen
-  tags: ["cad", "mesh", "3dgs", "gaussian-splatting", "reverse-engineering", "surface-reconstruction", "geometry-processing", "tetsphere", "physics-simulation"]
+  tags:
+  - cad
+  - mesh
+  - 3dgs
+  - gaussian-splatting
+  - reverse-engineering
+  - surface-reconstruction
+  - geometry-processing
+  - tetsphere
+  - physics-simulation
   when_to_use:
-    - "Convert mesh to/from 3DGS representations"
-    - "Extract surfaces from Gaussian splats"
-    - "Reverse engineer CAD models from 3DGS"
-    - "NL-driven CAD assembly from 3DGS scenes"
-    - "B-rep or parametric reconstruction from images via 3DGS"
-    - "TetSphere physics simulation bridging with 3DGS"
-    - "mesh↔3DGS转换 / CAD逆向 / 曲面提取 / 参数化重建"
+  - Convert mesh to/from 3DGS representations
+  - Extract surfaces from Gaussian splats
+  - Reverse engineer CAD models from 3DGS
+  - NL-driven CAD assembly from 3DGS scenes
+  - B-rep or parametric reconstruction from images via 3DGS
+  - TetSphere physics simulation bridging with 3DGS
+  - mesh↔3DGS转换 / CAD逆向 / 曲面提取 / 参数化重建
+  platform-fields:
+    user-invocable: true
 ---
+
+> Representation boundary: read `../../references/slat-unified-representation.md` before claiming learned encoding or conversion capabilities. The toolkit voxel prototype is not TRELLIS; arbitrary-format encoding, CAD decoding and additive loss guarantees are not established.
+
 
 # CAD & Mesh × 3DGS Bridge
 

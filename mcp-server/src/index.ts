@@ -3,7 +3,7 @@
 /**
  * 3DGS MCP Renderer Server — Entry Point (v0.8)
  *
- * MCP server exposing 13 core tools (+13 experimental behind
+ * MCP server exposing 21 core tools (+13 experimental behind
  * INCLUDE_EXPERIMENTAL=1) for Agent-controlled 3DGS rendering.
  * Uses stdio transport for communication with MCP clients.
  *

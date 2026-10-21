@@ -1,4 +1,4 @@
-﻿# World Models & Spatial Intelligence: Research Landscape, Commercial Deployment & Research Directions
+# World Models & Spatial Intelligence: Research Landscape, Commercial Deployment & Research Directions
 
 > Survey date: 2026-05-18 | Updated with two-round deep research
 

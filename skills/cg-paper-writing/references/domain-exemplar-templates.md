@@ -1,3 +1,5 @@
+> Scope: optional editorial examples; no claim of acceptance probability or universal experiment quotas. Verify paper facts and current venue rules at primary sources. `methodology-core.md` and `experiment-scale-thresholds.md` govern evidence standards.
+
 # 四方向范文拆解 + 顶会模板（Domain Exemplar Templates）
 
 > **用途**：写或修改 3DGS / 具身智能 / 空间智能 / Agent 四个方向的论文时，按本文件对照该方向的顶会范文拆解来组织结构、贡献声明、实验证据与避坑。与 `top-paper-patterns.md`（3DGS 通用共性范式）和 `writing-patterns-from-top-papers.md`（3 篇基准逐句拆解）互补——前者是"所有 3DGS 顶会的共性"，本文件是"四个方向各自的差异化和代表作"。
@@ -122,7 +124,7 @@
 - **demo 形容词**：删掉 "impressive/remarkable/highly robust"——视频要么展示了要么没有
 - **缺 Limitations 节**：CoRL 2026 强制要求，且要具体、与视频一致、限定 claim 边界
 - **setup 细节推给附录**：CoRL 要求 setup 节带协议细节，不许全部 defer 到附录
-- **seeds/episodes 不标**：每个表格 caption 必须含 "k seeds × n episodes"，让表格独立可读
+- **seeds/episodes 不标**：涉及重复实验时说明独立训练次数与评估样本数，位置以可理解为准，让表格独立可读
 - **双读者错位**：CoRL 有两类审稿人（ML 派查算法、机器人派查物理 claim），只服务一类就丢另一类的分
 
 ---
@@ -249,7 +251,7 @@ Agent 论文贡献常含"新范式命名 + 基准提升 + 开源"：
 ### 4.4 避坑清单
 - **抽象开篇**：删掉 "LLMs have achieved remarkable success..."——直接从你的具体贡献开始
 - **引言超 1.5 页**：背景塞太多，Methods 起步太晚；把背景挪到 Related Work
-- **实验无 claim 映射**：每个实验必须明确"测试哪个 claim"，无关实验砍掉
+- **实验无 claim 映射**：每个实验必须明确"测试哪个 claim"，检查实验相关性；保留有科学意义的负结果和稳健性证据
 - **缺统计显著性**：error bars、运行次数、统计检验、置信区间缺一不可
 - **缺 Limitations**：NeurIPS/ICML/ICLR 都强制，不写直接扣分
 - **缺 paper checklist**：三大会都要求，不完整会被 desk reject

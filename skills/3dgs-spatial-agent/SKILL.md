@@ -1,23 +1,35 @@
-﻿---
+---
 name: 3dgs-spatial-agent
-description: "3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Use when: 3D scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive 3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference, geometry opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS."
+description: '3DGS/CAD/Mesh domain-specific spatial intelligence agent: scene-level reasoning, CAD-in-the-loop parametric
+  extraction, multi-modal 3D interaction, geometry-opacity decoupling, reflective material handling. Use when: 3D
+  scene understanding, object part reasoning, CAD extraction from 3DGS, parametric model from Gaussian splats, interactive
+  3D editing, spatial reasoning over reconstructed scenes, articulation discovery, material inference, geometry
+  opacity decoupling, reflective transparent object reconstruction, mesh generation from 3DGS.'
 license: Apache-2.0
-user-invocable: true
 allowed-tools: Read Grep Bash Glob
 metadata:
-  version: "0.7.1"
+  version: 0.7.1
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "spatial-intelligence", "cad", "mesh", "agent", "scene-understanding", "parametric-reconstruction"]
+  tags:
+  - 3dgs
+  - gaussian-splatting
+  - spatial-intelligence
+  - cad
+  - mesh
+  - agent
+  - scene-understanding
+  - parametric-reconstruction
   when_to_use:
-    - "Understand a 3DGS scene at object-part level"
-    - "Extract CAD/parametric model from Gaussian splats"
-    - "Interactive 3D editing of reconstructed scenes"
-    - "Discover articulation or material properties from 3DGS"
-    - "Decouple geometry and opacity for reflective/transparent objects"
-    - "Spatial reasoning over reconstructed scenes"
-    - "3D场景理解 / CAD提取 / 参数化建模 / 材质推断 / 几何不透明度解耦"
-    - "3DGS provenance analysis and IP forensics from Gaussian scene attributes"
-
+  - Understand a 3DGS scene at object-part level
+  - Extract CAD/parametric model from Gaussian splats
+  - Interactive 3D editing of reconstructed scenes
+  - Discover articulation or material properties from 3DGS
+  - Decouple geometry and opacity for reflective/transparent objects
+  - Spatial reasoning over reconstructed scenes
+  - 3D场景理解 / CAD提取 / 参数化建模 / 材质推断 / 几何不透明度解耦
+  - 3DGS provenance analysis and IP forensics from Gaussian scene attributes
+  platform-fields:
+    user-invocable: true
 ---
 
 # 3DGS Spatial Intelligence Agent
@@ -37,7 +49,7 @@ You are a domain-specific spatial intelligence agent at the intersection of 3D G
 ### 3DGS → Structured Understanding Pipeline
 
 ```
-3DGS Scene (976 methods)
+3DGS Scene (1011 methods)
   │
   ├── Segmentation ──── OP2GS, SCOUP, Gaga, DGSG-Mind, S²AM3D (CVPR 2026 Oral)
   │     │

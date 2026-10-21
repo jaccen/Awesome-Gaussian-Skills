@@ -1,46 +1,74 @@
 ---
 name: cg-paper-writing
-display_name: CG论文写作引擎
-display_name_en: CG Paper Writing Engine
-description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (17 journal-specific format specs). Multi-agent adversarial review, citation integrity gates, style calibration, paper novelty/industry-value evaluation, pre-submission format audit, experiment claim verification. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, evaluating paper value, 写论文/写paper/CG论文/计算机学报投稿/软件学报投稿/图形学学报投稿/自动化学报投稿/中文核心期刊."
-description_zh: "面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等 17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改 CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。"
-description_en: "An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments), multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification."
-category: writing
-version: "3.3.0"
-author: jaccen
+description: 'Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS,
+  SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (17
+  journal-specific format specs). Multi-agent adversarial review, citation integrity gates, style calibration, paper
+  novelty/industry-value evaluation, pre-submission format audit, experiment claim verification. Use when: writing
+  or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation
+  integrity check, calibrating writing style to a venue, evaluating paper value, 写论文/写paper/CG论文/计算机学报投稿/软件学报投稿/图形学学报投稿/自动化学报投稿/中文核心期刊.'
 license: Apache-2.0
-user-invocable: true
-agent_created: true
 metadata:
-  tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration", "paper-evaluation", "pre-submission-check"]
+  tags:
+  - paper-writing
+  - academic
+  - computer-graphics
+  - 3dgs
+  - nerf
+  - computer-vision
+  - cvpr
+  - siggraph
+  - adversarial-review
+  - citation-integrity
+  - style-calibration
+  - paper-evaluation
+  - pre-submission-check
   when_to_use:
-    - "Write or revise a CG/3D vision academic paper"
-    - "Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper"
-    - "Run adversarial review or citation integrity check on a draft"
-    - "Calibrate writing style to a target venue"
-    - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
-    - "按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式"
-    - "按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述"
-    - "按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD"
-    - "自动化学报投稿 / 中国科学信息科学投稿 / 计算机研究与发展投稿 / 中文信息学报投稿"
-    - "中国图象图形学报投稿 / 模式识别与人工智能投稿 / 智能系统学报投稿 / 虚拟现实与智能硬件投稿"
-    - "计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿"
-    - "搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）"
-    - "CCF国际期刊投稿 / IEEE Transactions投稿 / ACM Transactions投稿 / Springer期刊投稿 / TPAMI投稿 / TOG投稿 / TVCG投稿 / JMLR投稿"
-    - "评估论文创新性与学术/产业价值 / 论文价值评判 / 这篇论文值不值得投 / 审稿预审评分 / Evaluate paper novelty and industry value"
-    - "投稿前格式核查 / LaTeX 源码卫生检查 / 论文源码清理 / 补充材料编号对应检查 / pre-submission source hygiene check"
-    - "Markdown 工作稿投稿前格式审计 / 批注清理 / 引用重排 / 孤儿图补引 / Markdown draft format audit"
-    - "实验声明溯源 / 数据来源核查 / 服务器实验验证 / 实验数字真实性核查 / verify experiment claims against server artifacts"
-    - "为论文补做实验 / 服务器跑实验 / 远程训练评估 / 排查训练跑完但结果异常 / rerun experiments to back paper claims"
-    - "核查论文引用的真实性 / 引文编号核实 / 方法名与 arXiv 号是否匹配 / 投稿前引用自查 / verify cited arXiv ids and method names"
-    - "评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication"
-    - "查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field"
-    - "选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison"
-    - "写具身智能论文 / 写VLA论文 / 写机器人论文 / 写embodied AI paper / 写空间智能论文 / 写世界模型论文 / 写3D-LLM论文 / 写LLM Agent论文 / 写ReAct类论文 / 某方向顶会论文范文 / 某方向论文写作模板 / direction-specific exemplar / embodied AI paper template / spatial intelligence paper template / agent paper template"
-    - "拆解范文 / 拆一篇论文 / 学这篇论文怎么写 / 仿写顶会论文 / 提炼句式 / 范文拆解SOP / exemplar deconstruction / deconstruct a paper"
-    - "实验够不够 / 需要几个数据集 / 需要几个基线 / 需要几个seed / episode多少次 / 实验规模 / 实验量够吗 / 审稿人说实验不足 / experiment scale / how many baselines / how many seeds"
-    - "这篇中文投哪个刊 / 中文期刊选择 / 投计算机学报还是软件学报 / 具身智能投什么中文期刊 / Agent投什么刊 / 3DGS投哪个中文期刊 / chinese journal for my paper / 中文期刊落点"
-    - "这份文件过时了吗 / 怎么更新范文清单 / 多久刷新一次 / 参考文献时效 / 检查引用是否过期 / 刷新venue矩阵 / reference freshness / update stale references"
+  - Write or revise a CG/3D vision academic paper
+  - Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper
+  - Run adversarial review or citation integrity check on a draft
+  - Calibrate writing style to a target venue
+  - 写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文
+  - 按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式
+  - 按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述
+  - 按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD
+  - 自动化学报投稿 / 中国科学信息科学投稿 / 计算机研究与发展投稿 / 中文信息学报投稿
+  - 中国图象图形学报投稿 / 模式识别与人工智能投稿 / 智能系统学报投稿 / 虚拟现实与智能硬件投稿
+  - 计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿
+  - 搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）
+  - CCF国际期刊投稿 / IEEE Transactions投稿 / ACM Transactions投稿 / Springer期刊投稿 / TPAMI投稿 / TOG投稿 / TVCG投稿 / JMLR投稿
+  - 评估论文创新性与学术/产业价值 / 论文价值评判 / 这篇论文值不值得投 / 审稿预审评分 / Evaluate paper novelty and industry value
+  - 投稿前格式核查 / LaTeX 源码卫生检查 / 论文源码清理 / 补充材料编号对应检查 / pre-submission source hygiene check
+  - Markdown 工作稿投稿前格式审计 / 批注清理 / 引用重排 / 孤儿图补引 / Markdown draft format audit
+  - 实验声明溯源 / 数据来源核查 / 服务器实验验证 / 实验数字真实性核查 / verify experiment claims against server artifacts
+  - 为论文补做实验 / 服务器跑实验 / 远程训练评估 / 排查训练跑完但结果异常 / rerun experiments to back paper claims
+  - 核查论文引用的真实性 / 引文编号核实 / 方法名与 arXiv 号是否匹配 / 投稿前引用自查 / verify cited arXiv ids and method names
+  - 评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication
+  - 查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field
+  - 选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison
+  - 写具身智能论文 / 写VLA论文 / 写机器人论文 / 写embodied AI paper / 写空间智能论文 / 写世界模型论文 / 写3D-LLM论文 / 写LLM Agent论文 / 写ReAct类论文 /
+    某方向顶会论文范文 / 某方向论文写作模板 / direction-specific exemplar / embodied AI paper template / spatial intelligence paper
+    template / agent paper template
+  - 拆解范文 / 拆一篇论文 / 学这篇论文怎么写 / 仿写顶会论文 / 提炼句式 / 范文拆解SOP / exemplar deconstruction / deconstruct a paper
+  - 实验够不够 / 需要几个数据集 / 需要几个基线 / 需要几个seed / episode多少次 / 实验规模 / 实验量够吗 / 审稿人说实验不足 / experiment scale / how many baselines
+    / how many seeds
+  - 这篇中文投哪个刊 / 中文期刊选择 / 投计算机学报还是软件学报 / 具身智能投什么中文期刊 / Agent投什么刊 / 3DGS投哪个中文期刊 / chinese journal for my paper / 中文期刊落点
+  - 这份文件过时了吗 / 怎么更新范文清单 / 多久刷新一次 / 参考文献时效 / 检查引用是否过期 / 刷新venue矩阵 / reference freshness / update stale references
+  platform-fields:
+    display_name: CG论文写作引擎
+    display_name_en: CG Paper Writing Engine
+    description_zh: 面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等
+      17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改
+      CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。
+    description_en: 'An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point
+      clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal
+      format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments),
+      multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper
+      novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification.'
+    category: writing
+    version: 3.3.0
+    author: jaccen
+    user-invocable: true
+    agent_created: true
 ---
 
 # CG Paper Writing Engine (Router)

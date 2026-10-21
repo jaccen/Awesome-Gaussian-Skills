@@ -1,21 +1,33 @@
-﻿---
-name: nerf-to-3dgs-migrator
-description: "Migrate NeRF-based methods to 3DGS via the SLAT unified encode-decode framework. Analyzes component compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry. Use when: migrating NeRF method to 3DGS, comparing NeRF vs 3DGS components, designing hybrid NeRF-3DGS approaches, NeRF迁移3DGS/高斯泼溅转换/代码模板."
-license: Apache-2.0
-user-invocable: true
-metadata:
-  version: "1.6.0"
-  author: jaccen
-  tags: ["nerf", "3dgs", "gaussian-splatting", "migration", "code-template", "research"]
-  when_to_use:
-    - "Migrate a NeRF-based method to 3DGS"
-    - "Compare NeRF vs 3DGS component compatibility"
-    - "Design hybrid NeRF-3DGS approaches"
-    - "Get step-by-step migration code templates"
-    - "Identify issues when converting from volume rendering to splatting"
-    - "NeRF迁移3DGS / 高斯泼溅转换 / 代码模板 / 组件兼容性分析"
-
 ---
+name: nerf-to-3dgs-migrator
+description: 'Migrate NeRF-based methods to 3DGS via the SLAT unified encode-decode framework. Analyzes component
+  compatibility, provides code templates, identifies issues. Covers encoding, deformation, appearance, geometry.
+  Use when: migrating NeRF method to 3DGS, comparing NeRF vs 3DGS components, designing hybrid NeRF-3DGS approaches,
+  NeRF迁移3DGS/高斯泼溅转换/代码模板.'
+license: Apache-2.0
+metadata:
+  version: 1.6.0
+  author: jaccen
+  tags:
+  - nerf
+  - 3dgs
+  - gaussian-splatting
+  - migration
+  - code-template
+  - research
+  when_to_use:
+  - Migrate a NeRF-based method to 3DGS
+  - Compare NeRF vs 3DGS component compatibility
+  - Design hybrid NeRF-3DGS approaches
+  - Get step-by-step migration code templates
+  - Identify issues when converting from volume rendering to splatting
+  - NeRF迁移3DGS / 高斯泼溅转换 / 代码模板 / 组件兼容性分析
+  platform-fields:
+    user-invocable: true
+---
+
+> Representation boundary: read `../../references/slat-unified-representation.md` before claiming learned encoding or conversion capabilities. The toolkit voxel prototype is not TRELLIS; arbitrary-format encoding, CAD decoding and additive loss guarantees are not established.
+
 
 # NeRF-to-3DGS Migration Guide
 
@@ -312,7 +324,7 @@ Key changes to the training loop:
 
 ## Knowledge Base
 
-This skill references a knowledge base of 976 methods across 26 categories (updated for v0.9.12 cycle).
+This skill references a knowledge base of 1011 methods across 26 categories (updated for v0.9.12 cycle).
 
 ## Rules
 

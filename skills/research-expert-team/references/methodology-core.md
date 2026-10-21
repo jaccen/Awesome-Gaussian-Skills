@@ -1,162 +1,111 @@
-# Methodology Core — 科研方法论内核（从六大标杆提炼的可执行程序）
+# Research procedures — evidence before presentation
 
-> **定位**：本文件是 research-expert-team 的**能力本体**——把 15 篇标杆（Kimera / ConceptGraphs / ReAct / MetaGPT / DreamFusion / DreamGaussian / 3DGS / 4DGS / SuGaR / NeRF / Instant-NGP / DUSt3R / Toolformer / Generative Agents / Voyager）的写法提炼成**对任何论文都可执行的操作程序**，并领域化到 3DGS / 空间智能。案例证据见 `mp-*.md`（按方向加载）；本文件是程序，案例是证据。
-> **使用规则**：R1/R2 用 §A，R3 用 §D，R6 用 §B，R8/R9 用 §C，写作打磨期用 §E。每条程序都标注了提炼来源（标杆论文），可回查 `mp-*.md` 验证。
+Reviewed 2026-10-21. These are planning aids, not laws inferred from successful
+papers. The case indexes link to primary papers; any numerical or structural claim
+about a specific paper still needs its exact source location.
 
----
+## A. Question and contribution
 
-## A. 选题引擎（R1 idea 评价 / R2 创新点挖掘）
+Use whichever entry point fits the problem:
 
-把任何 idea 放进**四种已验证选题模式**判定归类；归不进任何模式且过不了红旗清单的，判"选题薄弱"。
+- A measured failure or unmet need with a defined user, task and consequence.
+- A competing explanation that can be distinguished experimentally.
+- A limitation of an existing representation, method or protocol.
+- A combination or transfer whose benefit has a plausible mechanism and a real test.
+- A missing dataset, evaluation, replication or negative result that would resolve
+  uncertainty rather than merely add another leaderboard entry.
 
-### A.1 四种选题模式（每种配判定问题）
+Record the nearest work, search queries/date/coverage, what changes, what remains
+the same, and an observation that would make the contribution unconvincing. A
+catalog miss is a search limitation, not proof of a gap.
 
-| 模式 | 核心动作 | 判定问题（全答"是"才成立） | 提炼来源 |
-|---|---|---|---|
-| **M1 组合缺口** | 两个各自成熟的能力，组合从未被探索 | ①两侧文献各自成熟（各有 ≥2 篇高引代表作）？②组合确实空白（多组关键词复查 KB）？③组合收益可论证（1+1>2 的机制）而非拼凑？ | ReAct：CoT 推理 × 环境行动，两侧各自成熟、组合空白 |
-| **M2 障碍绕行** | "做 X 需要 A 和 B，均不存在"→绕行方案 | ①障碍真实且公认？②绕行保留核心收益？③绕行方案有原理血统（可推导/可解释）？ | DreamFusion：3D 数据与 3D 去噪器双缺→2D 扩散先验 + SDS |
-| **M3 生态桥接** | 两个上升生态的交点，或人类成熟实践的移植 | ①两侧生态都在上升期？②交点处接口可实现（标准化组件可得）？③移植的实践在该领域确属空白？ | ConceptGraphs（FM×3D 建图）、MetaGPT（软件工程 SOP×多智能体） |
-| **M4 痛点+机制** | 公认痛点（慢/贵/不一致/不可信）+ 为什么新方案机制上契合 | ①痛点可量化（有公认数字口径）？②机制论证存在（为什么新表示/方法契合该监督/任务）？③承诺可验证（10×/2min 类）？ | DreamGaussian：NeRF 剪枝在 SDS 下失效→GS 致密化契合生成进度 |
+Contributions can concern representations, mechanisms, learning, measurement,
+datasets, evaluation, reliability or systems. Do not order these categories by
+presumed scientific value. Evaluate importance, evidence, generality and cost in
+the context of the actual question.
 
-**3DGS/空间智能领域当前的交点候选**（M3 素材池，随 KB 更新）：视频扩散 × 3DGS 场景一致性 · GS 资产 × 版权水印 · 本体词汇 × 生成式评测 · 流式生成 × 端侧部署 · 多智能体 × 场景图记忆 · 世界模型 × GS 记忆。
+## B. Argument and structure
 
-### A.1 开题句式变体（可与任意模式配用）
+Choose an organization that makes the question, method, evidence and limits easy
+to assess. Five-section, system-paper and capability-matrix outlines are optional
+starting points. Follow the target venue's actual template where one exists.
 
-- **双缺口对撞**（3DGS）：把领域劈成两派各判刑（质量派慢、速度派差），再用一个可验证的空位句（"对 X，没有方法能 Y"）锁定两派都做不到的位置——M4 的对撞式开法。
-- **悖论开题**（Toolformer）：两个同为真的能力事实（"规模化解决新任务"+"基础功能反不如小模型"）并列成悖论——比缺口句更锋利。
-- **老议程重开**（Generative Agents）：写一节史前史（believable agents 40 年史），引"够用论"逐句驳斥，把自己定位为接力棒而非发明者——适合把 LLM/新生态嫁接回被搁置的经典议程。
-- **管线病理解剖**（DUSt3R）：把现有管线解剖到病理（每步不完美向下游传噪/步骤间零通信/上游质量即上限）后宣布 "take an opposite stance" 绕开整条管线——M2 的管线级版本。
-- **革命遗留问题**（SuGaR）：找开山作的盲区（渲染好但几何差/不可编辑），"no method has been proposed so far"式开题——风险最低的增量位。
+Build a many-to-many claim–evidence map. A result may inform more than one claim;
+several experiments may jointly test one claim. Keep scientifically relevant
+negative results even if they complicate the narrative. Do not delete experiments
+solely to force a one-to-one story.
 
-### A.2 选题红旗清单（命中任意一条 → R1 判"重做选题"）
+Explain a proposed mechanism as a hypothesis until evidence supports it. An
+engineering adjustment should be described at its actual scope; giving it a new
+name does not establish a mechanism or create novelty. Write mathematical
+equivalence only under stated assumptions; similar rendering/compositing
+formulations are not an unconditional equivalence proof.
 
-- 纯增量刷点（"we scale it up"无机制洞察）
-- benchmark-only（无方法贡献）或纯应用无新知识
-- 组合是拼凑（两个组件没有化学反应用的机制解释）
-- 效率工程无机制论证（只报"我们更快"）
-- 窗口已关（交点两侧生态有一侧已停滞，或交点已被 ≥2 篇高引工作占据）
+Maintain a symbol table and define approximations, objective terms, units and
+boundary cases. Put definitions where the reader needs them, not in a fixed
+section dictated by an exemplar.
 
-### A.3 创新点 delta 类型学（R2 用）
+## C. Experiment planning patterns
 
-按说服力降序，贡献声明必须能归入其一并通过"一句话 delta 测试"（能用一句话说清 vs 哪个具名 baseline 的哪个可度量差异）：
+Choose patterns that answer the claims; these are not a mandatory experiment quota.
 
-1. **范式/表示级**：换掉一个表示或定义一个新损失（DreamFusion 换 CLIP→SDS；注意必须回答"为什么新表示契合该监督/任务"）
-2. **机制级**：解释并修复一个已知失败模式（CSD 修 SDS 几何漂移）
-3. **组合级**：两个成熟能力的协同（ReAct；须证明协同而非并列）
-4. **协议级**：新评测协议/分类法/基准（ConceptGraphs 查询三分类；须配人工评测协议）
-5. **系统级**：首个端到端全自动（Kimera；须逐模块独立证据）
+| Pattern | Purpose | Essential control or limitation |
+|---|---|---|
+| C1 Component ablation | Estimate a component's contribution | State retraining versus test-time removal; the two answer different questions |
+| C2 Parameter sensitivity | Understand robustness to a parameter | Prespecify a useful range and distinguish tuning from held-out evaluation |
+| C3 Matched baseline | Test a specific improvement | Match relevant data, metric and budget or disclose the mismatch |
+| C4 Quality–resource trade-off | Test efficiency claims | Measure relevant time, memory, storage or energy with quality and settings |
+| C5 Failure analysis | Characterize when a method fails | Define selection and denominators; no arbitrary minimum case count |
+| C6 Generalization | Test transfer beyond training conditions | Prevent leakage and describe the shift and sampling frame |
+| C7 Scaling | Assess behavior as resources change | Isolate the resource changed; account for repeated tuning |
+| C8 Replication | Check whether a reported effect persists | Record deviations from the reference implementation and protocol |
+| C9 Human evaluation | Assess a claim requiring human judgment | Define consent, sampling, blinding, task, rubric and uncertainty as applicable |
+| C10 Robustness | Test meaningful perturbations | Preserve an appropriate reference; avoid only favorable corruptions |
+| C11 System comparison | Compare complete user-facing pipelines | Disclose all changed components, priors, data and compute |
+| C12 Mechanism test | Distinguish explanatory hypotheses | Include rival explanations and a disconfirming observation |
+| C13 Geometry evaluation | Test geometric accuracy | Match alignment, scale, visibility and ground-truth assumptions |
+| C14 Dynamic evaluation | Test motion and temporal behavior | Account for temporal dependence and leakage across frames |
+| C15 Compression evaluation | Measure rate–quality behavior | Define stored content, decoder, bitrate/storage units and decoding costs |
+| C16 Reproducibility | Enable an independent rerun | Versions, seeds, configs, preprocessing, scripts and artifact identifiers |
 
----
+For a component comparison, fix confounders relevant to that component. If the
+claim is improvement from a different prior or training source, that change is an
+experimental factor to report and test, not a forbidden difference. Multiple
+metrics can appear in one table if the protocol for each is clear.
 
-## B. 论述架构（R6 框架合规）
+Decide the independent unit before estimating uncertainty. Multiple views of one
+scene or episodes from a shared trained policy are not automatically independent
+training replicates. Choose repeats and precision goals with a design-appropriate
+power/sensitivity analysis where practical. Do not impose 3/5 seeds or 100 cases
+as universal publication requirements.
 
-### B.1 三种经 venue 验证的骨架模板（按论文类型套用，详见 mp-*.md 骨架表）
+## D. Critical review
 
-- **T1 期刊系统弧线**（Kimera/IJRR）：三要素框架立评价标准 → 逐篇点名缺口 → 表示(声明泛化对象)+引擎+评测(含新数据集)+应用四联装 → "Novelty vs 前作"独立小节 → 超长 Related Work 独立成节。
-- **T2 会议能力矩阵**（ConceptGraphs/ICRA）：三要求框架 → 三组递进相关工作各留缺口句 → 方法符号化模块接口 → **实验子节=能力矩阵**（每个子节一个能力声明）→ 并发工作礼貌区分 → 附录放全部 prompt。
-- **T3 范式开创/最小方法**（ReAct/DreamFusion/ICLR）：障碍清单或分立现状开题 → 一句话方法/问题重构 → 图 1 承担主要说服力 → 双域互证 → 失败模式分类表 → 诚实限制节（每条缺陷带机制解释）。
+Ask only applicable questions, and record not-applicable reasons:
 
-### B.2 贡献-证据双射操作程序
+1. Are the claimed distinctions supported relative to the closest work?
+2. Are assumptions and overlaps with prior work disclosed?
+3. Is the comparison appropriate to the specific claim?
+4. Could measurement choices hide relevant failures or trade-offs?
+5. Are efficiency and resource claims measured under stated conditions?
+6. Are benefits supported beyond favorable examples?
+7. Do ablations distinguish mechanism from confounding or implementation changes?
+8. Are negative results, uncertainty and limitations represented fairly?
 
-1. 列出贡献清单（≤4 条）；
-2. 对每条贡献，指定**唯一**证据章节/表格/图；
-3. 反向：对每个实验，标注它支撑哪条贡献——没有归属的实验删掉或降级附录；
-4. 摘要逐句 = 贡献逐条的压缩版（审稿人先读摘要再找证据，双射断裂即拒稿理由）。
+An unanswered question is a review prompt, not automatically a paper defect.
+Locate the evidence before assigning severity. Revise an objection when rebuttal
+evidence warrants it. Concession frequency is not a scientific quality metric.
 
-### B.3 相关工作组织法（二选一）
+## E. Communication and reuse
 
-- **逐篇点名式**（系统/表示论文）：最近邻逐篇给"机制层面死刑判决书"（Armeni 式："assumes annotated mesh given, not actionable"），禁止形容词级批评（"limited""insufficient"）。
-- **三组递进式**（桥接/范式论文）：相关工作分 2-3 组，每组结尾留一句缺口，最后合并成自己的定位。
+Make claims easy to inspect, choose informative figures and include reproducible
+assets when possible. Explain the audience and practical trade-offs. Do not infer
+that naming, citation volume, a particular venue, or releasing a dataset caused a
+paper's impact. Avoid promises of acceptance, citations or community adoption.
 
-### B.4 限制节写法
+## F. Lightweight handoff
 
-每条限制 = 现象 + 机制解释 +（可选）指向修复路径的引文。共享病灶（Janus 多脸、过饱和、幻觉）挂领域引文，自家可改进项留作 future work 的具体接口。**限制节写到审稿人无话可说，是最便宜的加分项。**
-
-### B.5 表示论文专项技法（新表示/新管线论文必查）
-
-1. **数学锚点前置**：新表示必须挂到已信任的旧数学上——等价性论证（3DGS：点云 α-blending 与 NeRF 体渲染图像形成模型相同）、复杂度显式对比（O(t·N) vs O(N+F)）、"放宽了哪个旧约束"的显式形式化（DUSt3R：同坐标系成对回归放宽投影模型）。放 Related Work 而非引言。
-2. **首创声明带限定词**："the first continuous / photorealistic / in natural settings"——范围收窄反而更可信。
-3. **从理想情形反推损失**：先问"如果表示已理想，密度/函数该长什么样"，再最小化实际与理想的差（SuGaR 的 SDF 推导）——设计即机制论证。
-4. **对领域默认工具给机制级否决 + 失败图**（SuGaR vs Marching Cubes）：为自己的方法腾贡献空间。
-5. **表示丰富性用"能免费提取什么"清单化证明**（DUSt3R §3.3：点匹配/内参/位姿/深度逐条公式）。
-6. **Preempt 标准句式**："It may appear counter-intuitive that…"——主动说出审稿人最深疑虑再拆解（INGP 的哈希冲突论证）。
-7. **跨社区双向铺路**：Preliminary 节为邻域读者回顾公式（4DGS）；措辞让图形学与视觉两个社区都能引用。
-8. **动机升维程序**（避开"调参感"）：任何超参/阈值/工程修改必须升维为机制级策略，四步转写——①写出实际做的工程修改 →②反问它在什么场景下修复了什么失败模式 →③为修复原则命名（曲率引导/表面感知/时空连续…）→④套模板："传统的[机制]在[场景]下导致[失败模式]；为此我们引入基于[原则]的[策略名]，从根本上优化[目标量]"。只报"改了阈值效果更好"= 审稿人把论文当工程报告的第一信号（D1/D7 preempt；标杆：3DGS 原版 clone/split 的直觉解释、SuGaR 表面对齐正则）。
-9. **符号系统前置统一**：论文前半部分集中定义核心符号并全文（含图表/附录）绝对统一——3DGS：μ∈ℝ³、Σ=RSSᵀRᵀ、S、R、α、SH 系数；执行直接用 cg-paper-writing `references/symbols-terminology.md` 符号表，**不另立标准**；初稿完成后做一次全文符号扫描。
-
-### B.6 领域专属骨架路由
-
-3DGS 方向论文的**整体骨架程序**（Introduction 四段式 / Related Work 三分类护城河 / Method 总-分结构 / 实验四表规范 / 痛点→资源评测映射 / 限制库）已独立成 [`3dgs-paper-blueprint.md`](3dgs-paper-blueprint.md)——写或改 3DGS 论文初稿时加载该蓝图，与本文 §A-F 配合使用：选题判定/审稿预期/实验模式编号归本文，骨架落位与 3DGS 写作铁律归蓝图。
-
----
-
-## C. 实验设计模式库（R8 实验设计 / R9 实验分析）
-
-按论文类型组合以下模式（全部经标杆验证）：
-
-| # | 模式 | 操作 | 来源 |
-|---|---|---|---|
-| C1 | **同轨迹删减消融** | 从完整方法轨迹/管线中删减组件构造各基线，保证完美对等 | ReAct：Standard/CoT/Act 均由 ReAct 轨迹删减；4DGS：warm-up/去组件同管线 |
-| C2 | **自建更强 baseline** | 不满足于现有最强，自己组装更强版本再击败 | ConceptGraphs：ConceptFusion+SAM |
-| C3 | **防作弊指标 + oracle 上界** | 设计一个能识破作弊解的指标（如 textureless 渲染评几何）+ 真实数据上界参照 | DreamFusion：textureless R-Precision + COCO GT 锚 |
-| C4 | **速度-质量-资源配对表** | 效率声明必须五资源口径同表：PSNR/SSIM/LPIPS + FPS + VRAM + Storage(MB) + Training time；带分辨率与硬件口径；分阶段单列消融行；仅报三个质量指标=必被 D5 打回 | DreamGaussian：2min/0.738 表；3DGS：SSIM/PSNR/LPIPS+时间+FPS+Mem 六列（3 质量+3 资源）三数据集；4DGS：+存储 18MB 列 |
-| C5 | **失败模式分类学** | 人工标注 ≥100 条失败/成功案例，分类占比 + 机制解释 + 修复路径；限制节写具体案例 | ReAct：CoT 幻觉 56% vs 0%；Generative Agents：检索失败/embellishment/继承语气三类；Voyager：不存在的铜剑、错误燃料 |
-| C6 | **多维评价矩阵** | 准确性之外加：成本（时间/token/钱）、生产率、人工修正次数、可执行性分级 | MetaGPT：五维统计表 |
-| C7 | **模块级评测 + 部署口径** | 系统论文逐模块独立证据；报嵌入式/真实硬件实时性，桌面 GPU 数字不算数 | Kimera：TX2 实时 + uHumans2 |
-| C8 | **无 GT 人工评测协议** | 新任务无 ground truth → 可量化人工评测：能力拆维+人类评分+任务分类法；协议全公开 | ConceptGraphs：AMT 三人投票 + 查询三分类；Generative Agents：interview 五能力协议 |
-| C9 | **用户研究补指标盲区** | 自动指标感知不到的维度（几何质量、一致性）用 1-5 分制用户研究补位 | DreamGaussian：4.31/3.92 |
-| C10 | **双工作点呈现** | 效率-质量 trade-off 不替用户选：给两/三档（Ours-7K/30K、R-SuGaR-2K/7K/15K）让审稿人自取 | 3DGS / SuGaR |
-| C11 | **机制分层消融** | 消融不止证明"有用"，还给"哪组件主导、哪边际"的分层结论（崩的 vs 边际的） | 4DGS：w/o HexPlane 27.05 崩、w/o φr 33.08 边际 |
-| C12 | **disabled 档基线** | 加一个"同权重但禁用新能力"的档位，把混淆变量变成发现 | Toolformer(disabled)：API 数据本身也提升数学 |
-| C13 | **Pareto 扫描 + 默认值推荐** | 关键超参做成"误差-时间"Pareto 曲线并推荐默认配置；加速来源诚实拆分（多少来自系统/多少来自表示） | INGP：(F=2,L=16) 推荐；~10× CUDA + 10-100× MLP 拆账 |
-| C14 | **单模型零微调多任务榜** | 表示/预训练论文：一个权重零微调打多任务榜，每任务注明提取路径 + 泛化边界声明（"从未为该任务训练"） | DUSt3R：定位/位姿/单目/多目深度四榜 |
-| C15 | **评测卫生条款组** | 完全继承上游协议（可比性=说服力）+ 客观限制注明（licensing）+ 公平性条款显式写（防漏题禁用对应工具）+ "不 apple-to-apple"主动声明并换系统级对比表 + 工具使用归因逐任务报告 | SuGaR / Toolformer / Voyager |
-| C16 | **跨方法组件证据** | 把自己的组件交给竞争方法也能提升——plug-and-play 价值的独立证据 | Voyager：skill library 借给 AutoGPT 也提升 |
-
-**泛化性/能力主张的配套**：通用性主张用"多任务同实现"证明（INGP 四任务）；能力涌现补规模阈值实验（Toolformer：~775M 才会用工具）；负指标认数字、论证移到该指标盲区并配定性证据（NeRF：LPIPS 输 LLFF→视频证据）。
-
-**领域铁律（3DGS/生成方向强制）**：方法对比必须同扩散先验、同分辨率、同提示词集、同评估协议（cg-paper-writing Comparison Fairness Protocol）——CLIP 相似度对分辨率极度敏感，跨口径对比是生成论文最常见的拒稿理由。
-
----
-
-## D. 审稿人预期库（R3 模拟审稿的必问题清单）
-
-模拟审稿时，除领域通用审查外，**逐项核对以下 8 类"标杆论文证明必被问"的问题**；每条在论文里找不到 preempt 动作的，生成一条带修复方案的审稿意见：
-
-| # | 审稿人必问 | preempt 动作（写入论文） | 来源 |
-|---|---|---|---|
-| D1 | 表示/设计选择的任意性？ | 设计理由小节（"why this set of nodes/edges"）+ 可组合性论证；反直觉性质用 "It may appear counter-intuitive" 句式主动拆解 | Kimera Remark 1/2；INGP 哈希冲突论证 |
-| D2 | 与作者自己前作重复？ | "Novelty vs own prior work"独立小节，逐条列增量 | Kimera IJRR 版 |
-| D3 | 基线不对等/过弱？ | C1 同轨迹删减、C2 自建更强 baseline 或 C12 disabled 档 | ReAct / ConceptGraphs / Toolformer |
-| D4 | 指标盲区（CLIP 感知不到几何）？ | C3 防作弊指标或 C9 用户研究；或认数字后把论证移到该指标盲区+定性证据 | DreamFusion / DreamGaussian / NeRF |
-| D5 | 效率声明的口径？ | 硬件型号+显存+分辨率+阶段耗时全部透明；性能何时变慢也做成实验（cache 过订阅阈值） | DreamGaussian / INGP |
-| D6 | 成本劣势？ | 多口径诚实呈现（总成本↑但单位成本↓）；加速来源拆账 | MetaGPT token/行；INGP 系统vs表示拆账 |
-| D7 | 机制是拼凑？ | 每个机制独立消融 + 绝对数字收益 + 百分比结论 | MetaGPT +4.2%；Voyager：-93%/-73%/5.7× |
-| D8 | 负结果藏哪了？ | 主动报告并机制归因，或换口径/转化为组合贡献/写作 future work 接口 | ReAct 略输 CoT→组合策略；4DGS Neu3D 换 FPS/多相机前提口径；Toolformer 归因"不能交互" |
-
----
-
-## E. 价值放大器（写作打磨期）
-
-1. **命名权**：给核心循环/表示/损失起一个好念好拼的名字（ReAct/SDS/DSG）——被引的是词汇本身；
-2. **引用三件套**：开源代码 + 数据集/基准 + prompt/配置全公开——每种资产都是一条引用路径；
-3. **teaser 即广告**：首图覆盖广度（21 提示词）或承诺数字（2 分钟/10×）；
-4. **负结果图当设计动机**：展示"没有我们的设计会怎样"的病理照片，比"我们提出 X"有力；
-5. **下游可用性即证据**：Blender 可绑定、真机部署、查询加速比——把"能用"写成实验；
-6. **头条数字**：摘要末句放一个反常识对比（1-2 shot 胜 10⁵ 训练样本；2 分钟 vs 20 分钟；6.7B+工具胜 175B）。
-7. **自建数据集成为社区标准**：评测缺口自己补——数据集比论文长寿（NeRF-synthetic 的 Lego/Ship 至今在跑；uHumans2、SoftwareDev 同理），是复利最高的资产。
-8. **future work 写成可执行选题接口**：NeRF 结论节列的"效率、可解释性"各自孵化了一个方向（INGP 与后续 probing 工作）；开山论文的 future work 是选题金矿。
-9. **命名链可延展性**：好名字要给后续工作留词根（NeRF→Mip-NeRF→INGP→3DGS；DUSt3R→MASt3R→VGGT→DGGT；ReAct→…）——被引的是名字本身，可扩展的名字引出整条谱系。
-
----
-
-## F. 团队内部操作约定
-
-- R1/R2 产出选题判定与 delta 声明时，必须标注所用模式编号（M1-M4）与 delta 等级（1-5）——供 R6/R8 追溯；开题句式可标注 A.1 变体（对撞/悖论/议程重开/管线解剖/遗留问题）；
-- R3 模拟审稿报告必须逐项覆盖 D1-D8；
-- R8 实验计划必须列出所用模式编号（C1-C16）与领域铁律核查结果；表示/新管线论文加查 B.5 七项；
-- mp-*.md 案例库每补充一篇新标杆论文时，检查其打法是否已被本文件吸收——**方法论归本文件，案例归 mp-*.md，不重复**。
-- **投稿行政闸门（R7/R5 协同，非方法论，是硬性 desk-reject 红线）**——以下三项与 §B/R7 的 venue 格式合规、§4 的 AIGC 披露合规**互补而不重叠**，投稿前逐项过一遍：
-  1. **查重/相似度**：多数核心刊要求总相似度 ≤15%（部分 ≤10%）；超阈值先改后投，别赌审稿人宽容。R7 拉模板时一并确认目标刊的相似度口径与检测工具（Turnitin / 知网 / iThenticate），自查用同一工具跑。
-  2. **材料合规**：伦理审查批件号（涉及人类/动物实验）、基金资助编号、数据/代码可用性声明——缺任一项可能直接打回，不进同行评审。R6 框架合规时逐项核对，R7 camera-ready 阶段二次确认。
-  3. **返修回复格式**：逐条回复审稿意见，"改了什么 + 为什么改"写清楚；不认同的意见也要礼貌有据地解释，不沉默不对抗。这是 R9 rebuttal 阶段的交付格式约束，不是内容约束——内容质量由 D1-D8 与 §C 把关。
+For a focused question, answer it directly with evidence and one concrete next
+step. For a full project, maintain a concise ledger of question, claims, sources,
+checks, experimental decisions and unresolved items. Persist it only when useful
+or requested. Role labels and pattern IDs are optional navigation aids.

@@ -1,4 +1,4 @@
-﻿
+
 ## Newly Added (May 2026 Expansion)
 
 
@@ -451,7 +451,7 @@
 - **Core Innovation**: Diffusion + GS dual-driven 3D human avatar reconstruction
 - **Code**: [https://github.com/YuxuanSnow/Human3Diffusion/](https://github.com/YuxuanSnow/Human3Diffusion/)
 
-### HumanSplat-NIPS
+### HumanSplat
 - **arXiv**: [2406.12459](https://arxiv.org/abs/2406.12459)
 - **Venue**: NeurIPS 2024
 - **Year**: 2024

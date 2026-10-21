@@ -1,19 +1,30 @@
 ---
 name: 3dgs-code-reviewer
-description: "Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 104 known bug patterns including compression, forensics, SLAM, feed-forward, and method-specific failure patterns. Use when: reviewing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, 代码审查/3DGS调试/性能优化."
+description: 'Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA
+  kernels, rendering pipeline, training loop, loss functions. Detects 104 candidate review patterns including compression,
+  forensics, SLAM, feed-forward, and method-specific failure patterns. Use when: reviewing 3DGS/Gaussian Splatting
+  CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations,
+  代码审查/3DGS调试/性能优化.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "2.0.0"
+  version: 2.0.0
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "code-review", "cuda", "debugging", "performance"]
+  tags:
+  - 3dgs
+  - gaussian-splatting
+  - code-review
+  - cuda
+  - debugging
+  - performance
   when_to_use:
-    - "Review 3DGS/Gaussian Splatting CUDA code for correctness"
-    - "Debug rendering artifacts by analyzing code"
-    - "Optimize 3DGS training pipeline performance"
-    - "Check loss function implementations"
-    - "Detect known 3DGS bug patterns (104 patterns)"
-    - "代码审查 / 3DGS调试 / 性能优化 / CUDA内核审查"
+  - Review 3DGS/Gaussian Splatting CUDA code for correctness
+  - Debug rendering artifacts by analyzing code
+  - Optimize 3DGS training pipeline performance
+  - Check loss function implementations
+  - Detect known 3DGS bug patterns (104 patterns)
+  - 代码审查 / 3DGS调试 / 性能优化 / CUDA内核审查
+  platform-fields:
+    user-invocable: true
 ---
 
 # 3DGS Code Reviewer
@@ -23,7 +34,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (104 known bug patterns)
+- Identify common 3DGS implementation pitfalls (104 candidate review patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
@@ -35,8 +46,8 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 
 #### Alpha Compositing
 - [ ] **Front-to-back order**: Verify sorting is correct (depth, not distance)
-- [ ] **Alpha accumulation**: Check that `T_i = T_{i-1} * (1 - α_i)` and `C = Σ c_i * α_i * T_i` are correctly implemented
-- [ ] **Early termination**: Verify `T < ε` cutoff is applied (usually ε = 1/255)
+- [ ] **Alpha accumulation**: Check that `T_i = Π_{j<i}(1 - α_j)` (transmittance BEFORE splat i) and `C = Σ c_i * α_i * T_i` are correctly implemented
+- [ ] **Early termination**: Verify `T < ε` cutoff is applied (reference transmittance cutoff 1e-4; alpha contribution cutoff 1/255 is a different condition)
 - [ ] **Background color**: Check that background is correctly added as `C + T_final * background`
 
 #### Tile-Based Rasterization
@@ -74,7 +85,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 - [ ] **Clone threshold**: Verify gradient-based clone decision (grad threshold)
 - [ ] **Split threshold**: Verify position-based split decision (scale threshold)
 - [ ] **Prune**: Check opacity pruning threshold (typically α < 0.005)
-- [ ] **Reset opacity**: After clone/split, new Gaussians should have low initial opacity
+- [ ] **Reset opacity**: Distinguish periodic opacity reset from clone/split initialization; check the target implementation instead of assuming every child resets to low opacity
 - [ ] **Interval**: ADC should run every N iterations (typically 100)
 
 #### Loss Function
@@ -88,11 +99,11 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 - [ ] **Learning rate**: Official 3DGS defaults (INRIA reference implementation): 0.00016 position, 0.0025 SH features, 0.05 opacity, 0.005 scaling, 0.001 rotation
 - [ ] **Learning rate decay**: Exponential decay at 0.01 rate is standard
 - [ ] **Warm-up**: Some methods use warm-up for scale/rotation to avoid collapse
-- [ ] **SH degree schedule**: Start with degree 0, increase at 1/3 and 2/3 of training
+- [ ] **SH degree schedule**: In the reference train.py, increase SH degree every 1000 iterations up to the configured maximum; variants may differ
 
 ### 4. Known Bug Patterns
 
-> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 104 known bug patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, deformable aggregation, PBR materials, etc.). The following summary lists pattern categories:
+> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 104 candidate review patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, deformable aggregation, PBR materials, etc.). The following summary lists pattern categories:
 
 | Category | Count | Key Patterns |
 |----------|-------|-------------|
@@ -111,7 +122,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | Advanced Domain | 16 | Geometry opacity decoupling, reflective materials, physics sim, eigenmode, Bayesian pose, mesh generation proxies |
 | MoE Dynamic & Bayesian Control | 4 | MoE expert routing collapse, DP prior concentration, asynchronous decoupling, CoSAG semantic drift |
 | Geometry-Aware Deformable & PBR / Physics | 3 | Deformable offset over-displacement, albedo-illumination entanglement, underwater attenuation mismatch |
-| Total | **79+ categories** | **104 patterns** with specific detection and fix guidance |
+| Total | **Selected category summaries** | **104 patterns** with specific detection and fix guidance |
 
 ## Output Format
 
@@ -197,3 +208,7 @@ Do NOT try to apply the logic, method data, bug patterns, or technical details d
 If you cannot find a method, pattern, or data point in the loaded files, say so explicitly. Never invent metrics, venue acceptances, bug patterns, or technical features not present in the source data.
 
 > If you like it, please star this repo https://github.com/jaccen/Awesome-Gaussian-Skills
+
+## Reference implementation checks
+
+Checked 2026-10-21 against [train.py](https://github.com/graphdeco-inria/gaussian-splatting/blob/main/train.py) and [forward.cu](https://github.com/graphdeco-inria/diff-gaussian-rasterization/blob/main/cuda_rasterizer/forward.cu). Defaults and candidate bug patterns are version-dependent; an optimization claim needs a representative benchmark.

@@ -1,12 +1,16 @@
 ---
 name: super-agent
-description: "Design, orchestrate, and debug super agents & multi-agent LLM systems: architecture patterns (router, harness, memory, orchestration), agent-topology selection, 3D/spatial agent integration (reconstruction, SLAM, navigation, editing, CAD), and failure diagnosis. Backed by a 20-method 'Super Agents & Agentic AI' knowledge base. Use when: building multi-agent LLM pipelines, orchestrating agent teams, designing 3D-spatial agents, diagnosing multi-agent coordination failures, 超级智能体/多智能体系统/智能体编排."
+description: 'Design, orchestrate, and debug super agents & multi-agent LLM systems: architecture patterns (router,
+  harness, memory, orchestration), agent-topology selection, 3D/spatial agent integration (reconstruction, SLAM,
+  navigation, editing, CAD), and failure diagnosis. Backed by a 20-method ''Super Agents & Agentic AI'' knowledge
+  base. Use when: building multi-agent LLM pipelines, orchestrating agent teams, designing 3D-spatial agents, diagnosing
+  multi-agent coordination failures, 超级智能体/多智能体系统/智能体编排.'
 ---
 
 # Super Agent & Multi-Agent System Design
 
 > Scope: LLM-agent architecture, multi-agent orchestration, and the 3D/spatial agent cross-section.
-> Knowledge base: 20 arXiv-verified methods in the **Super Agents & Agentic AI** category (`data/methods.json`, single source of truth — always re-query, never answer from memory).
+> Knowledge base: 20 indexed methods in the **Super Agents & Agentic AI** category (`data/methods.json`, single source of truth — always re-query, never answer from memory).
 
 ## 1. Architecture Pattern Selection
 

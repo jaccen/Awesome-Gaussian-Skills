@@ -1,151 +1,35 @@
-# Master Paper Studies — AIGC Content Creation 方向
+# Primary-source case index — Generative 3D methods
 
-> **定位**：本文件是**案例证据库**——两篇标杆论文的全文深读解剖，为 `methodology-core.md` 中的可执行程序提供出处与佐证。方法论本体（选题引擎/论述骨架/实验模式/审稿预期）见 `methodology-core.md`，不在此重复；写 AIGC/文生 3D/3DGS 生成方向的论文前，按需查阅本文追根溯源。
-> **事实口径**：引用数为 Semantic Scholar 2026-10 检索值；方法事实取自 arXiv 全文（ar5iv 深读），每条均可回查。
+Metadata refreshed 2026-10-21 from the arXiv API. These are examples for
+methodological discussion, not a systematic sample of successful papers.
+Citation counts and unsupported acceptance forecasts have been removed.
 
-| 论文 | 载体 | arXiv | 引用 | 角色定位 |
-|---|---|---|---|---|
-| DreamFusion: Text-to-3D using 2D Diffusion | **ICLR 2023** | 2209.14988 | **3,929** | 范式开创论文的选题教科书（SDS） |
-| DreamGaussian: Generative Gaussian Splatting for Efficient 3D Content Creation | **ICLR 2024** | 2309.16653 | 1,098 | 3DGS 原生改写 + 效率价值主张的经典包装 |
+Technical summaries below paraphrase the primary abstract. Before reusing a
+numerical result, structural detail or scientific comparison, locate its exact
+page/section/table in the full paper and record its conditions.
 
----
+## DreamFusion: Text-to-3D using 2D Diffusion
 
-## 1. DreamFusion（ICLR 2023）——范式开创论文的选题教科书
+Primary record: [2209.14988](https://arxiv.org/abs/2209.14988); published 2022-09-29; metadata retrieved 2026-10-21T15:22:30.525330+00:00.
 
-### 1.1 选题解剖
+Abstract-level description: Recent breakthroughs in text-to-image synthesis have been driven by diffusion models trained on billions of image-text pairs. Adapting this approach to 3D synthesis would require large-scale datasets of labeled 3D data and efficient architectures for denoising 3D data, neither of which currently exist.
 
-- **障碍清单开题法**：摘要第一句就摆出两条硬障碍——"3D 合成需要大规模标注 3D 数据集 + 高效 3D 去噪架构，**两者当前都不存在**"。然后一句"we circumvent these limitations"给出绕行方案。范式论文的标准起手式：先把不可能说清楚，绕行才有戏剧性。
-- **遗产继承式定位**：不假装从零开始——明确承认站在 Dream Fields（CLIP 引导 NeRF）肩上，"We adopt a similar approach to Dream Fields, but replace CLIP with a loss derived from distillation of a 2D diffusion model"。**换掉一个关键组件 = 干净的 delta 叙事**：CLIP 判别性弱（产出缺真实感）→ 扩散模型的密度更强。
-- **问题重构**（全文最精彩的一步）：把"文生 3D"重构为"**如何在参数空间而非像素空间采样**"——一旦这样提问，答案自然变成"可微图像参数化（DIP）+ 一个以优化为采样的损失"。§2.1 的标题本身就是这个问题句。**把应用问题重构成数学问题，是范式论文的炼金术**。
-- **时机**：Imagen/SD 文生图刚爆发，"2D 先验已就绪但没人会抬升到 3D"是精确的 6-12 个月窗口。
+Discussion prompts (editorial interpretation, not claims made by the paper):
 
-### 1.2 论述解剖
+- What precise problem and assumptions are stated, and which evidence tests them?
+- Which design decision could be compared against a meaningful alternative?
+- Which evaluation settings and limitations constrain reuse in the current project?
+- What can be learned without copying its structure, claims or experimental scale?
 
-- **"ad hoc → 原理化"的自辩结构**：SDS 的梯度（去掉 U-Net Jacobian 项）表面看是拍脑袋的，论文专门写一句"may appear ad hoc, in Appendix we show it is the gradient of a weighted probability density distillation loss (KL)"——**先承认直觉来源，再补数学血统**（reverse KL → mode-seeking 特性顺带解释了 oversmoothing 缺陷，理论自洽到连缺点都有出处）。
-- **三件套组合叙事**：预训练 2D 扩散（冻结）+ NeRF 作为 DIP + SDS 损失 = DeepDream 式优化。每个组件单独都不新，**组合出一个新采样定理**才是贡献。Figure 2 用"对称图像约束"的小例子先在 2D 内证明 SDS 采样有效，再上 3D——先易后难的论证阶梯。
-- **设计细节即方法**：视角增强（大范围随机相机）、view-dependent 文本（俯视/正面/侧面追加提示词）、随机光照 shading、textureless 渲染防"平面画松鼠"退化解、opacity/orientation 正则——每条都对应一个具体失败模式，**消融表证明每条都必要**（几何质量 +12.5%）。
-- **诚实限制节**（讨论节典范）：oversaturation/oversmooth（reverse KL 的 mode-seeking）、缺多样性（不同种子产出雷同）、64×64 分辨率细节不足、病态逆问题的本质困难——每条缺陷都有机制解释，其中"本质困难"（2D→3D 提升的多解性）反而为后续工作留足了空间。
+## DreamGaussian: Generative Gaussian Splatting for Efficient 3D Content Creation
 
-### 1.3 论文骨架（ICLR 范式开创论文结构模板）
+Primary record: [2309.16653](https://arxiv.org/abs/2309.16653); published 2023-09-28; metadata retrieved 2026-10-21T15:22:30.525330+00:00.
 
-| 章节 | 功能 | 写作要点 |
-|---|---|---|
-| Abstract | 障碍（数据+架构双缺）→绕行→SDS→无 3D 数据声明 | "circumvent" 是关键词 |
-| §1 Introduction | 2D 突破→3D 障碍→NeRF 背景→Dream Fields 差距→本文 | 21 提示词 teaser 直接跟在引言后 |
-| §2 Diffusion & SDS | 扩散形式化→“参数空间采样”问题重构→梯度推导→KL 血统 | §2.1 标题即问题句 |
-| §3 The DreamFusion Algorithm | 3.1 NeRF 渲染+shading / 3.2 生成循环四步（相机/渲染/损失/优化） | 设计细节逐条绑定失败模式 |
-| §4 Experiments | R-Precision+防作弊指标+消融四连+定性画廊 | oracle 上界锚 |
-| §5 Discussion | 四条限制逐条给机制解释 | 限制节=下篇论文的选题菜单 |
-| Ethics / Reproducibility | 偏差继承+就业影响 / 伪代码+超参 | 顶会标配 |
+Abstract-level description: Recent advances in 3D content creation mostly leverage optimization-based 3D generation via score distillation sampling (SDS). Though promising results have been exhibited, these methods often suffer from slow per-sample optimization, limiting their practical usage.
 
-### 1.4 实验设计解剖
+Discussion prompts (editorial interpretation, not claims made by the paper):
 
-| 设计决策 | 具体做法 | 可迁移经验 |
-|---|---|---|
-| **无 GT 任务的评测重构** | 零样本文生 3D 没有 ground truth → 沿用 Dream Fields 的 CLIP R-Precision（渲染图在干扰项中检索回正确 caption 的准确率） | 新范式没有现成指标→沿用前任指标保可比性 |
-| **指标创新** | 同时报告 textureless 渲染的 R-Precision——揭穿"纹理画在平面上"的假几何（Dream Fields 复现在 Geo 上接近随机 0.8%） | 一个能识别作弊解的指标 = 实验部分的护城河 |
-| **oracle 上界锚** | 用真实 COCO 图像的 R-Precision（77.1）做上界参照 | 报告"离真实图像还有多远"比孤立数字更有信息量 |
-| 公平性主动声明 | 标注 Dream Fields/CLIP-Mesh 训练时用了 CLIP、评测也是 CLIP（不公平优势）；括号内数字标注"可能过拟合" | 主动指出对手的评测优势，防止被反向质疑 |
-| **可视化消融** | 斗牛犬案例四步递进（多脸狗→非平滑→偏暗→细节被刻进几何），每个组件去掉都会复现一种病灶 | 消融配"病理照片"比配数字更让审稿人记住 |
-| 21 个 teaser 提示词 | 覆盖动物/器物/建筑/雕塑风格 | 范围广度 = 泛化性证据 |
-| 复现声明 | Imagen 不公开→给出伪代码、超参、推导；说明"其他条件扩散模型应能复现类似结果" | 闭源组件的复现性补偿动作 |
-
-### 1.5 价值解剖（3,929 引的构成）
-
-- **损失函数命名权**：SDS 成为整个 text-to-3D 领域的标准损失（我们库里 CSD、DD3G、DreamGaussian、DiffSplat 等几十篇全是它的后裔）；
-- "2D 先验抬升 3D"配方开启一个子领域——**开创者的引用是税，所有后继者都要交**；
-- teaser 图的病毒传播性（浣熊宇航员等）本身是营销资产。
-
-### 1.6 可迁移打法
-
-1. 障碍清单开题（"X 需要 A 和 B，两者都不存在"→绕行方案）；
-2. 问题重构为数学问题（"如何采样"而非"如何生成"）；
-3. delta 叙事要能一句话说清换掉了哪个组件（CLIP→扩散损失）；
-4. 表面 ad hoc 的设计要补原理血统（KL 蒸馏推导进附录）；
-5. 每个设计细节绑定一个具体失败模式 + 消融证明；
-6. 为新范式设计"防作弊指标"（textureless R-Precision）+ oracle 上界；
-7. 诚实限制节写到每条缺陷都有机制解释；
-8. teaser 覆盖广度 = 泛化证据。
-
----
-
-## 2. DreamGaussian（ICLR 2024）——3DGS 原生改写与效率价值主张的包装术
-
-### 2.1 选题解剖
-
-- **痛点选效率**：SDS 路线的公认痛点不是质量而是"慢"（per-sample 数小时优化）——摘要直接给数字承诺："2 分钟出高质量带纹理网格，**约 10 倍加速**"。效率痛点的好处：可量化、可验证、工业界在乎。
-- **机制洞察而非蛮力**：加速的合法性来自一个分析性论断——"NeRF 的 occupancy pruning 在 SDS 的模糊监督下失效（重建设定才有效），而 **3DGS 的渐进致密化天然契合生成优化的进度**"。**换表示要给出"为什么这个表示更适合这个监督信号"的机制论证**，不是"我们试了 GS 更快"。
-- **领域谱系精准**：相关工作按"3D 表示 / 文生 3D / 图生 3D"三组组织，把自己定位为"首次将 3DGS 适配进生成设定"——first-to-adapt 声明 + 对 One-2-3-45（快但质量差）与 Zero-1-to-3（好但慢）的夹缝定位："efficiency and quality simultaneously"。
-
-### 2.2 论述解剖
-
-**三贡献（表示替换论文模板）**：
-1. 将 3DGS 适配进生成设定，显著缩短优化类方法生成时间；
-2. **新算法**：从 3D Gaussians 提取网格（局部密度查询 + 颜色反投影）+ UV 空间纹理精修阶段；
-3. 图生/文生双任务上效率-保真平衡。
-
-**两阶段叙事 = 每个 bug 一个补丁**：
-- 阶段一（生成 GS）产出的 Gaussians "blurry and lack details even with longer training"（SDS 模糊性的机制解释：每步监督不一致→致密化/剪枝判断失准）→ 因此需要阶段二；
-- 阶段二（UV 精修）的方案选择也是被负结果逼出来的：Figure 3 直接展示"UV 空间直接上 SDS 会产生过饱和色块"（mipmap 采样 + 模糊梯度所致）→ 所以改用 SDEdit 式去噪 + 多步 MSE。**负结果图作为设计动机**，比"我们提出 X"的写法有力得多。
-
-**写作技法**：
-- Figure 1 teaser 承诺"数分钟出纹理网格"（配秒表数字）；
-- 图生/文生共用一个框架图（Figure 2），只换扩散先验（Zero-1-to-3 XL / SD）——模块化叙事；
-- mesh 导出质量独立成节（均匀三角化、平滑法线、可进 Blender 绑定动画）——**把"下游可用性"写成证据**；
-- 限制节引用并发的修复工作（score debiasing、MVDream 等）——把领域共享病灶（Janus 多脸、过饱和、烘焙光照）逐条挂上引文。
-
-### 2.3 论文骨架（ICLR 表示替换论文结构模板）
-
-| 章节 | 功能 | 写作要点 |
-|---|---|---|
-| Abstract | 慢痛点→2 分钟/10× 承诺→两阶段→双任务 | 效率数字进摘要 |
-| §1 Introduction | 两路线（3D 原生 vs 2D lifting）→NeRF 剪枝失效机制→三贡献 | 机制论证先行 |
-| §2 Related Work | 3D 表示 / 文生 3D / 图生 3D 三组 | 夹缝定位（快但差 vs 好但慢） |
-| §3 Our Approach | 3.1 生成式 GS / 3.2 网格提取（局部密度查询+颜色反投影）/ 3.3 UV 精修 | 负结果图（SDS-on-UV 失败）作设计动机 |
-| §4 Experiments | 定量（速度-质量同表）/ 定性 / 用户研究 / 消融 | mesh 导出质量独立成节 |
-| §5 Limitations and Conclusion | 共享病灶挂引文+自家可改进项 | 限制外包给并发工作 |
-| Ethics / Acknowledgments | 偏差+职业影响 / 基金致谢 | 标配 |
-
-### 2.4 实验设计解剖
-
-| 设计决策 | 具体做法 | 可迁移经验 |
-|---|---|---|
-| **速度-质量双指标配对** | CLIP-similarity 与 generation time 同表：One-2-3-45（45s/0.594）、Shap-E（27s/0.591）、Zero-1-to-3（20min/0.647）、Ours（**2min/0.738**） | 效率论文的表格必须两列一起看：单独任何一列都会输 |
-| 分层消融暴露取舍 | "Ours (Stage 1 only)" 也单列一行（1min/0.678）——诚实展示精修阶段贡献了 0.06 的 CLIP 相似度 | 报告每个阶段的独立贡献，防止"两阶段缝合"质疑 |
-| **用户研究补 CLIP 盲区** | 视角一致性 4.31、整体质量 3.92（1-5 分制），四个基线同表 | CLIP 相似度无法感知几何质量→人工研究补位，两证据链并行 |
-| 消融三连 | 周期性致密化 / 线性退火 t / 参考视角损失，逐一去除 | 设计空间中的每个选择都要有"去掉会坏"的证据 |
-| 工程细节透明 | 5000 初始粒子每 100 步致密化、V100 16GB 显存 <8GB、每阶段耗时分钟级 | 可复现的工程数字就是部署价值的证明 |
-| 限制节共享化 | Janus/过饱和/背面模糊逐条 + 引用并发修复 | 承认共享病灶但把修复责任外包给引文，同时点名自家背面模糊的可改进性 |
-
-### 2.5 价值解剖（1,098 引的构成）
-
-- **3DGS 原生生成**配方的先发优势：把 DreamFusion 的 NeRF 仓底换成 GS，正好骑上 3DGS 爆发曲线（Kerbl 2023 同年）——**两个上升曲线的交点**；
-- 输出物是"工业可用资产"（纹理网格可绑定动画），工程界引用动力强；
-- "分钟级"的用户心智占位（对比"小时级"）让它在 demo 文化里传播。
-
-### 2.6 可迁移打法
-
-1. 效率痛点选题：给量化承诺（10×/2min）进摘要；
-2. 换表示必须有机制论证（为什么该表示更契合该监督信号）；
-3. 负结果图作为设计动机（SDS-on-UV 失败展示）；
-4. 速度-质量同表配对 + 分阶段消融行；
-5. CLIP 指标盲区用用户研究补位；
-6. 把下游可用性（Blender 可绑定）写成证据而非附录；
-7. 限制节把领域共享病灶挂引文、自家可改进项留改进方向；
-8. 骑两条上升曲线的交点（新表示 × 新任务设定）。
-
----
-
-## 3. 方向综述：AIGC 内容创作方向投稿打法清单
-
-**选题**：三条已验证套路——(a) DreamFusion 套路：障碍清单（"A 和 B 都不存在"）→ 绕行方案 → 命名一个新损失/新采样机制；(b) DreamGaussian 套路：找公认痛点（慢/贵/不一致）→ 机制论证为什么新表示（GS）契合 → 量化承诺；(c) 交点套路：骑两条上升曲线（当下的候选交点：视频扩散 × 3DGS 场景一致性、GS 资产 × 版权水印、流式生成 × 端侧部署）。2026-10 格局注记（检索印证）：**大型 3D 生成模型路线已确立**——TRELLIS（微软，SLAT 结构化潜在 + 辐射场/3D Gaussians/mesh 多格式输出）与 Hunyuan3D-2（腾讯开源）把"分钟级逐样本 SDS 优化"范式接棒为"大模型前馈生成"，牛津 SynCity 3000（2026-07）推向城市级世界生成——两篇标杆的打法仍有效，但对比格局需对标大模型路线的新基线。
-**论述**：问题重构为数学问题（"如何采样"式）；delta 一句话说清（换掉了哪个组件）；ad hoc 设计补原理血统；每个设计选择绑定一个失败模式；负结果图当设计动机用。
-**实验**：无 GT 范式→沿用前任指标 + 防作弊指标（textureless/几何单独评）+ oracle 上界；效率论文→速度-质量同表 + 分阶段消融 + 用户研究补 CLIP 盲区；消融配"病理照片"；工程数字透明（显存/耗时/粒子数）。
-**基线**：库内必比 DiffSplat（CVPR 2025，扩散×GS 前馈）、Dragen3D（拖拽控制）、PSGS（文生全景）、Lyra（视频扩散自蒸馏）、CSD（SDS 改进）、UniWorld-View（大基线视图）——见 SKILL.md §2.3 选型表；3DGS 原生生成基线再加 DreamGaussian/GaussianDreamer（Generation 类）。
-**对比铁律**：SDS 系与蒸馏系与原生扩散系的方法对比必须同扩散先验、同分辨率、同提示词集（cg-paper-writing 的 Comparison Fairness Protocol 在生成领域尤其易被违反——CLIP 相似度对分辨率极度敏感）。
-**价值**：冲"配方权"（首个把 X 适配进 Y 设定）或"损失命名权"（下一个 SDS/CSD）；开源代码 + 分钟级 demo 视频 + Blender 可用导出是传播引擎。
-**红线**：不要只报 CLIP 相似度（几何质量盲区必被审稿人点）；Janus/过饱和等共享病要么解决要么在限制节诚实挂引文；效率声明必须给硬件与分辨率口径。
-
----
-
-*深读来源：ar5iv 全文（2026-10 检索）。引用数：Semantic Scholar batch API 2026-10-15 核实。方向综述 2026-10 格局注记于同日复检写入。本文档由 research-expert-team 维护；补充新标杆论文时保持五维解剖结构。*
+- What precise problem and assumptions are stated, and which evidence tests them?
+- Which design decision could be compared against a meaningful alternative?
+- Which evaluation settings and limitations constrain reuse in the current project?
+- What can be learned without copying its structure, claims or experimental scale?

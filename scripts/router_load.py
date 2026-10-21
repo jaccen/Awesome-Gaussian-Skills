@@ -20,51 +20,11 @@ from pathlib import Path
 
 
 def parse_simple_yaml(text: str) -> dict:
-    """Minimal YAML subset parser for manifest.yaml (nested maps + lists of scalars)."""
-    root: dict = {}
-    stack = [(0, root)]
-    key_stack = []
-
-    lines = [l.rstrip() for l in text.split("\n") if l.strip() and not l.strip().startswith("#")]
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        indent = len(line) - len(line.lstrip())
-        stripped = line.strip()
-
-        while stack and indent < stack[-1][0]:
-            stack.pop()
-        parent = stack[-1][1]
-
-        if stripped.startswith("- "):
-            # list item: attach to last declared key (tracked via key_stack)
-            if key_stack:
-                target = key_stack[-1]
-                if not isinstance(target.get("__list__"), list):
-                    target["__list__"] = []
-                target["__list__"].append(_scalar(stripped[2:]))
-            i += 1
-            continue
-
-        m = re.match(r"([\w\-]+):\s*(.*)$", stripped)
-        if not m:
-            i += 1
-            continue
-        key, val = m.group(1), m.group(2).strip()
-        # pop key_stack entries deeper than current indent
-        while key_stack and key_stack[-1].get("__indent__", 0) > indent:
-            key_stack.pop()
-
-        if val == "":
-            child: dict = {"__indent__": indent}
-            parent[key] = child
-            stack.append((indent + 2, child))
-            key_stack.append(child)
-        else:
-            parent[key] = _scalar(val)
-        i += 1
-
-    return _clean(root)
+    import yaml
+    value = yaml.safe_load(text)
+    if not isinstance(value, dict):
+        raise ValueError("Router manifest must be a YAML mapping")
+    return value
 
 
 def _scalar(v: str):
@@ -122,10 +82,7 @@ def resolve(manifest: dict, axis_values: dict, skill_dir: Path) -> list:
             frags = [frags]
         fragments.extend(frags)
 
-    # references section (cg-paper-writing style)
-    refs = routing.get("references", {})
-    for f in refs.get("on_demand", []) or []:
-        fragments.append(f)
+    # Optional reference inventories are selected by actual routing rules, not all loaded.
 
     # validate existence, dedupe, keep order
     seen = set()
@@ -167,10 +124,24 @@ def main():
 
     axes = manifest.get("axes", {})
     axis_values = {}
-    for a in axis_args:
-        if a.startswith("--") and "=" in a:
-            k, v = a[2:].split("=", 1)
-            axis_values[k] = v
+    index = 0
+    while index < len(axis_args):
+        argument = axis_args[index]
+        if not argument.startswith("--"):
+            ap.error("unexpected argument: " + argument)
+        if "=" in argument:
+            key, value = argument[2:].split("=", 1)
+        else:
+            key = argument[2:]
+            index += 1
+            if index >= len(axis_args) or axis_args[index].startswith("--"):
+                ap.error("missing value for --" + key)
+            value = axis_args[index]
+        if key not in axes:
+            print("ERROR: unknown axis: " + key, file=sys.stderr)
+            return 3
+        axis_values[key] = value
+        index += 1
     # defaults + validation for provided axes
     for name, spec in axes.items():
         if not isinstance(spec, dict):
@@ -196,4 +167,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main() or 0)

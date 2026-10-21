@@ -1,14 +1,34 @@
 ---
 name: 3dgs-mcp-renderer
-description: "MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering, voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering, agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting, interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering."
+description: 'MCP protocol integration with 3DGS rendering pipeline: Agent-controlled Three.js/WebGPU rendering,
+  voice-driven scene reconstruction, real-time parameter manipulation, light tracing backend. Use when: MCP rendering,
+  agent-controlled 3DGS, voice-driven reconstruction, real-time 3DGS editing, Three.js 3DGS, WebGPU Gaussian splatting,
+  interactive rendering control, speech-to-3D, light tracing, HiGS accelerated rendering.'
 license: Apache-2.0
 metadata:
-  version: "1.1.0"
+  version: 1.1.0
   author: jaccen
-  tags: ["mcp", "3dgs", "gaussian-splatting", "rendering", "three.js", "webgpu", "voice", "agent", "interactive", "spec-first", "sculpting", "code-first", "slat", "latent-editing"]
+  tags:
+  - mcp
+  - 3dgs
+  - gaussian-splatting
+  - rendering
+  - three.js
+  - webgpu
+  - voice
+  - agent
+  - interactive
+  - spec-first
+  - sculpting
+  - code-first
+  - slat
+  - latent-editing
   disable-model-invocation: true
   user-invocable: true
 ---
+
+> Representation boundary: read `../../references/slat-unified-representation.md` before claiming learned encoding or conversion capabilities. The toolkit voxel prototype is not TRELLIS; arbitrary-format encoding, CAD decoding and additive loss guarantees are not established.
+
 
 # 3DGS MCP Renderer — Agent-3DGS Interaction via MCP Protocol
 
@@ -136,7 +156,7 @@ The code-first approach connects to SLAT (see `../../references/slat-unified-rep
 
 ## SLAT Latent Editing (v1.0.0)
 
-> **Theoretical basis**: SLAT (Structured Latent Aggregation Transform) — see `../../references/slat-unified-representation.md`. A scene is encoded into a compact structured latent (a voxel grid over the scene, each voxel aggregating local Gaussian features), edited in latent space, then re-decoded back to a Gaussian set. This lets the agent manipulate entire semantic regions with a single operation, independent of per-Gaussian IDs.
+> **Theoretical basis**: SLAT (project voxel-aggregation prototype (not the trained TRELLIS SLAT model)) — see `../../references/slat-unified-representation.md`. A scene is encoded into a compact structured latent (a voxel grid over the scene, each voxel aggregating local Gaussian features), edited in latent space, then re-decoded back to a Gaussian set. This lets the agent manipulate entire semantic regions with a single operation, independent of per-Gaussian IDs.
 
 ### Encoding: Scene → Structured Latent
 

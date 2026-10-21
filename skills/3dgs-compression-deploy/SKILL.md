@@ -1,19 +1,38 @@
 ---
 name: 3dgs-compression-deploy
-description: "3DGS compression-to-deployment pipeline: quantization (scalar/VQ/mixed-precision), pruning (coreset/adaptive/variational/merge/Bayesian), progressive streaming & LoD, Web/WebGPU/mobile deployment, hardware acceleration (Tensor Core/GEMM/FPGA/ASIC), training-free semantic compression. Covers 53+ methods across 6 compression categories. Use when: compressing 3DGS models, deploying 3DGS to web/mobile/edge, selecting quantization bit-width, designing streaming pipelines, 3DGS压缩/量化/剪枝/部署/流式传输/移动端/硬件加速."
+description: '3DGS compression-to-deployment pipeline: quantization (scalar/VQ/mixed-precision), pruning (coreset/adaptive/variational/merge/Bayesian),
+  progressive streaming & LoD, Web/WebGPU/mobile deployment, hardware acceleration (Tensor Core/GEMM/FPGA/ASIC),
+  training-free semantic compression. Covers 53+ methods across 6 compression categories. Use when: compressing
+  3DGS models, deploying 3DGS to web/mobile/edge, selecting quantization bit-width, designing streaming pipelines,
+  3DGS压缩/量化/剪枝/部署/流式传输/移动端/硬件加速.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "1.1.1"
+  version: 1.1.1
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "compression", "quantization", "pruning", "vector-quantization", "streaming", "deployment", "mobile", "webgpu", "tensor-core", "hardware-acceleration", "bayesian", "semantic-compression"]
+  tags:
+  - 3dgs
+  - gaussian-splatting
+  - compression
+  - quantization
+  - pruning
+  - vector-quantization
+  - streaming
+  - deployment
+  - mobile
+  - webgpu
+  - tensor-core
+  - hardware-acceleration
+  - bayesian
+  - semantic-compression
   when_to_use:
-    - "Compress a 3DGS model for storage or transmission"
-    - "Deploy 3DGS to web browser, mobile device, or edge hardware"
-    - "Select quantization scheme, bit-width, or pruning strategy"
-    - "Design progressive streaming or Level-of-Detail pipeline"
-    - "Evaluate hardware acceleration options (Tensor Core, GEMM, FPGA, ASIC)"
-    - "3DGS压缩 / 量化 / 剪枝 / 部署 / 流式传输 / 移动端 / 硬件加速"
+  - Compress a 3DGS model for storage or transmission
+  - Deploy 3DGS to web browser, mobile device, or edge hardware
+  - Select quantization scheme, bit-width, or pruning strategy
+  - Design progressive streaming or Level-of-Detail pipeline
+  - Evaluate hardware acceleration options (Tensor Core, GEMM, FPGA, ASIC)
+  - 3DGS压缩 / 量化 / 剪枝 / 部署 / 流式传输 / 移动端 / 硬件加速
+  platform-fields:
+    user-invocable: true
 ---
 
 # 3DGS Compression & Deployment

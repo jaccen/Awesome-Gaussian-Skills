@@ -1,22 +1,30 @@
 ---
 name: 3dgs-experiment-planner
-description: "Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG. Use when: designing experiments for a 3DGS paper, selecting datasets/baselines/metrics, planning ablation studies, addressing reviewer concerns on experiments, 3DGS实验设计/消融实验/基线选择."
+description: 'Design rigorous experiments for 3DGS research papers. Recommends datasets, baselines, metrics, ablation
+  matrices. Targets CVPR/ICCV/ECCV/SIGGRAPH/TVCG. Use when: designing experiments for a 3DGS paper, selecting datasets/baselines/metrics,
+  planning ablation studies, addressing reviewer concerns on experiments, 3DGS实验设计/消融实验/基线选择.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "1.7.0"
-  name_cn: "3DGS实验设计规划器"
-  description_cn: "为3DGS研究论文设计严谨的实验方案。推荐数据集、基线方法、评估指标和消融实验矩阵。目标期刊CVPR/ICCV/ECCV/SIGGRAPH/TVCG。适用场景：3DGS论文实验设计、数据集/基线/指标选择、消融实验规划、回应审稿人实验问题。"
+  version: 1.7.0
+  name_cn: 3DGS实验设计规划器
+  description_cn: 为3DGS研究论文设计严谨的实验方案。推荐数据集、基线方法、评估指标和消融实验矩阵。目标期刊CVPR/ICCV/ECCV/SIGGRAPH/TVCG。适用场景：3DGS论文实验设计、数据集/基线/指标选择、消融实验规划、回应审稿人实验问题。
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "experiment-design", "research", "ablation", "paper-writing"]
+  tags:
+  - 3dgs
+  - gaussian-splatting
+  - experiment-design
+  - research
+  - ablation
+  - paper-writing
   when_to_use:
-    - "Design experiments for a 3DGS research paper"
-    - "Select datasets, baselines, or evaluation metrics"
-    - "Plan ablation study matrices"
-    - "Address reviewer concerns on experiment design"
-    - "Choose appropriate benchmarks for a 3DGS method"
-    - "3DGS实验设计 / 消融实验 / 基线选择 / 数据集推荐 / 指标选取"
-
+  - Design experiments for a 3DGS research paper
+  - Select datasets, baselines, or evaluation metrics
+  - Plan ablation study matrices
+  - Address reviewer concerns on experiment design
+  - Choose appropriate benchmarks for a 3DGS method
+  - 3DGS实验设计 / 消融实验 / 基线选择 / 数据集推荐 / 指标选取
+  platform-fields:
+    user-invocable: true
 ---
 
 # 3DGS Experiment Planner
@@ -360,7 +368,7 @@ Generate a complete experiment plan:
 2. **Be realistic**: Don't claim "state-of-the-art" unless metrics clearly support it.
 3. **Be thorough**: It's better to over-prepare than to receive "insufficient experiments" reviews.
 4. **Venue-aware**: CVPR allows 8 pages + references. Budget your figures and tables accordingly. ICRA 2026 prioritizes robotics-system experiments (real-robot + sim ablations); include hardware specs and real-time metrics.
-5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 976 methods across 26 categories.
+5. **CVPR 2026 landscape**: CVPR 2026 accepted 116 3DGS-related papers, the largest single-venue 3DGS cohort to date. When targeting CVPR 2027, design experiments that differentiate from this dense pack; consider emerging sub-areas (4D reconstruction, physics-for-3DGS, articulated 3DGS) that are under-explored. Knowledge base covers 1011 methods across 26 categories.
 
 
 

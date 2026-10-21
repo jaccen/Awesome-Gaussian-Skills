@@ -1,17 +1,17 @@
-﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting 方法总览">
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 976 方法，26 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 1011 方法，26 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-976-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-1011-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -64,7 +64,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 976 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 1011 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 快速开始
 
@@ -117,7 +117,7 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
 <details>
-<summary><b>全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（976 方法、26 类别、18 技能），零虚构</b></summary>
+<summary><b>全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（1011 方法、26 类别、18 技能），零虚构</b></summary>
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -138,7 +138,7 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 | CH 12 | 从采集到交付：端到端工程链路 | 十个环节的工具选型与卡点、格式与坐标系、成本工期量级、项目失败模式 |
 | CH 13 | 产业落地剧本：六个行业 | 文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维 |
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
-| 实 | 实践资源索引：从书到工程 | 18 个工程技能 · 34 个 MCP 工具 · 976+ 方法浏览器，章节到可运行资源的映射 |
+| 实 | 实践资源索引：从书到工程 | 18 个工程技能 · 34 个 MCP 工具 · 1011+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
 
 </details>
@@ -153,16 +153,16 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 976 方法名、摘要和 18 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 1011 方法名、摘要和 18 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 10 月）
 
-最新更新（10 月 19 日）：**v0.9.12 — 全库审核 + arXiv 扫描：新增 21 篇方法（955 → 976）** ⭐
+最新更新（10 月 19 日）：**v0.9.12 — 全库审核 + arXiv 扫描：新增 21 篇方法（955 → 1011）** ⭐
 
-本轮完成全库审核，并通过新一轮 arXiv 扫描入库 **21** 篇经 arXiv 核验的 3DGS 方法，方法库由
-**955 扩充至 976**（+21，+2.2%），覆盖 8 个类别 —— 其中 Compression & Streaming（+5）、
+本轮完成全库审核，并通过新一轮 arXiv 扫描入库 **21** 篇已收录的 3DGS 方法，方法库由
+**955 扩充至 1011**（+21，+2.2%），覆盖 8 个类别 —— 其中 Compression & Streaming（+5）、
 Cross-Domain（+3）、Autonomous Driving（+2）、World Models & Spatial Intelligence（+2）、
 SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘要（R9 协议）并经 arXiv 核验；
 **13** 篇候选被拒（无自述方法名、综述、NeRF、或仅将 3DGS 作为工具）；1 处撞名（**X-Splat**）
@@ -171,7 +171,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 审核修复：1 条错挂描述（**STC-GS** —— 已按其真实贡献改写，实为面向气象雷达序列预测的时空相干
 高斯泼溅）与 **16** 条空描述补齐。全库 **1,462** 个唯一 arXiv ID 重新核验（1,461 可达，唯一未解析
 的 ID 属历史说明文字而非现存记录）。全部载体（`methods.json` / CSV / `methods.html` / `abstracts.js`
-/ 参考文档）重新核验为 **976**，名称集合逐条一致。详见 [更新日志](changelog/2026-10-19.md)。
+/ 参考文档）重新核验为 **1011**，名称集合逐条一致。详见 [更新日志](changelog/2026-10-19.md)。
 
 上一次更新（10 月 15 日）：**v0.9.11 — 科研专家团深度扩容：方法论内核 + 15 篇标杆深读** ⭐
 
@@ -208,7 +208,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 上一次更新（10 月 13 日）：**v0.9.9 — 知识库扩容：900 → 934，新增 2 个技能** ⭐
 
-新增 **34** 篇经 arXiv 核验的 3DGS 方法，方法库由 **900 扩充至 934**，分类由 **23 类增至 25 类**：
+新增 **34** 篇已收录的 3DGS 方法，方法库由 **900 扩充至 934**，分类由 **23 类增至 25 类**：
 新增两个横切类别 —— *Ontology & Knowledge Representation*（12 篇）与 *Super Agents & Agentic AI*（20 篇）。
 新增两个技能 —— `ontology`（3D 场景图 / 空间本体 / 神经符号推理）与 `super-agent`（多智能体 LLM 系统设计 / 3D 空间智能体集成），
 技能数 **15 → 17**。修复 CGS-SLAM 撞名污染（剔除撞名新论文，恢复 IROS 2025 原条目）。
@@ -219,7 +219,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 上一次更新（10 月 20 日）：**v0.9.8 — World Models 类别定向补强（896 → 900）** ⭐
 
-针对最薄弱类别定向补强。新增 **4** 篇经 arXiv 核验的 3DGS 世界模型 / 空间智能方法，
+针对最薄弱类别定向补强。新增 **4** 篇已收录的 3DGS 世界模型 / 空间智能方法，
 方法库由 **896 扩充至 900**。World Models & Spatial Intelligence 类别由 8 → 12 篇：
 `HY-World 2.0`、`F3DGS`（联邦多智能体世界建模）、`4DGS-WAM`（以对象为中心的世界动作模型）、
 `Cloth-Splatting`（3DGS 布料状态估计）。补回 2 个缺失的 arXiv ID（`Holi-Spatial` → 2603.07660、
@@ -228,7 +228,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 ### 上一次更新（10 月 12 日）：**v0.9.7 — 手动入库：15 篇新方法（881 → 896）**
 
-手动入库 **15** 篇经 arXiv 核验的 3DGS 方法，方法库由 **881 扩充至 896**（+15，+1.7%）。
+手动入库 **15** 篇已收录的 3DGS 方法，方法库由 **881 扩充至 896**（+15，+1.7%）。
 收录覆盖 9 个类别：Acceleration（`H2-Ray`、`TileSkipper`、`SplatQ`）、Feed-Forward（`CompactSplat`、
 `DeltaSplat`、`DensiTok`）、Embodied AI & Robotics（`Splat2Act`、`2DGS-Planner`、`NovaSplat`），
 另有 `OuroWorld`（Dynamic & 4D）、`PAM-ToD`（HDR & Relighting）、`FlyMark`（Security）、
@@ -241,7 +241,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 ### 更新（10 月 7 日）：**v0.9.6 — 手动入库：9 篇新方法（872 → 881）** ⭐
 
-手动入库 **9** 篇经 arXiv 核验的 3DGS 方法，方法库由 **872 扩充至 881**（+9，+1.0%）。
+手动入库 **9** 篇已收录的 3DGS 方法，方法库由 **872 扩充至 881**（+9，+1.0%）。
 入库包含 **Speedy-Splat**（CVPR 2025，精确 tile 相交 + 高效 Hessian 剪枝，6.71× 渲染加速）及 **8** 篇 2026 年 9 月最新论文：
 `AESplat`（免位姿前馈）、`AGILE-GS`（锚点引导 NBV）、`OC-GS`（不规则转台）、`ClearGS`（手持视频）、
 `ChronoFuseGS`（多时相融合，PG 2026）、`TangoGS`（跨尺度紧凑）、`RRTO-CF3DGS`（无 COLMAP 渐进）、`Observation-Gram`（SH 压缩）。
@@ -252,7 +252,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 ### 更新（9 月 21 日）：**v0.9.5 — 每日 arXiv 扫描：13 篇新论文入库（859 → 872）** ⭐
 
-例行每日 arXiv 扫描新收录 **13** 篇经 arXiv 核验的 3DGS 方法，方法库由 **859 扩充至 872**（+13，+1.5%）。
+例行每日 arXiv 扫描新收录 **13** 篇已收录的 3DGS 方法，方法库由 **859 扩充至 872**（+13，+1.5%）。
 新增覆盖表面渲染、前馈、大规模、压缩、稀疏视角、跨域、具身智能、动态、语言与语义等类别
 （含 `LiteTex-GS`、`GrapeSplat`、`VDGS`、`CRP-GS`、`NormLift`）。**7** 篇候选因未通过核验协议被排除——
 无自述方法名的基准评测、纯描述性标题、或仅将 3DGS 作为工具的论文。
@@ -323,7 +323,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 <sup>完整变更记录：[`changelog/`](changelog/)</sup>
 
-## 知识库（976 方法，26 类别）
+## 知识库（1011 方法，26 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -436,7 +436,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 ## 研究创新要点
 
-> 基于知识库 976 方法的系统性空白分析生成。
+> 基于知识库 1011 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -535,7 +535,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（976 方法，26 类别）
+├── references/                # 知识库（1011 方法，26 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
@@ -567,7 +567,7 @@ npm run start:all   # 或双击 start-all.bat
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {976 arXiv-verified methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
+  note = {1011 indexed methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -581,7 +581,7 @@ npm run start:all   # 或双击 start-all.bat
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — 全面论文合集
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
 
-> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 976 已核验方法、18 个技能、34 个 MCP 工具。
+> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 1011 已核验方法、18 个技能、34 个 MCP 工具。
 
 ## 许可证
 
@@ -613,3 +613,40 @@ Apache-2.0。详见 [LICENSE](LICENSE)。
 <div align="center">
 
 **如果这个项目帮你节省了时间，请给一个 Star！**</div>
+
+
+<!-- research-reliability:start -->
+## Evidence and reliable use
+
+The 2026-10-21 registry snapshot contains **1011 research records** in **26 categories**.
+**904** have freshly checked arXiv metadata; **107** still require a primary-source review.
+These counts are not a claim that all venues, technical descriptions or results have
+been independently verified. See [evidence coverage](data/evidence-audit.json).
+
+Choose the workflow needed for the task:
+
+| Need | Start with |
+|---|---|
+| Evaluate an idea or review the evidence | `research-expert-team` |
+| Read or compare primary papers | `3dgs-paper-reader` / `3dgs-method-compare` |
+| Plan experiments or interpret measurements | `3dgs-experiment-planner` / expert roles R8–R9 |
+| Draft and check a paper | `cg-paper-writing`; current official venue rules govern |
+
+Short questions should receive focused answers. Role names do not imply independent
+human experts, a guaranteed publication outcome, or access to external tools.
+
+Run the reproducible checks after changing data or skills:
+
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/build_knowledge_base.py
+python scripts/validate_repository.py
+python -m unittest discover -s tests -v
+npm run test:build --workspace=mcp-server
+```
+
+The default exporter reads **only** `data/methods.json`. CSV, explorer, abstracts,
+Markdown indexes and router snapshots are derived outputs; editing an export does
+not silently replace a corrected registry field. Daily discovery paginates and
+records search boundaries; failed searches are not reported as successful zeroes.
+<!-- research-reliability:end -->

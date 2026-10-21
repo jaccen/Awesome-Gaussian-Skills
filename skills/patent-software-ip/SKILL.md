@@ -1,21 +1,36 @@
-﻿---
+---
 name: patent-software-ip
-description: "Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization, prior-art search, and self-check. Use when: drafting CN patents from AI code/docs, generating software copyright materials, prior-art search for AI inventions, 专利撰写/软件著作权/AI知识产权/脱敏处理."
+description: 'Generate CN patent docs (claims, specification, abstract) and software copyright materials from AI/big-data
+  project code or docs. Covers 7 AI domains + big data, 11 claim templates, auto domain detection, desensitization,
+  prior-art search, and self-check. Use when: drafting CN patents from AI code/docs, generating software copyright
+  materials, prior-art search for AI inventions, 专利撰写/软件著作权/AI知识产权/脱敏处理.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "1.4.1"
+  version: 1.4.1
   author: jaccen
-  tags: ["patent", "software-copyright", "ip", "ai", "big-data", "3d-vision", "generative-ai", "embodied-ai", "nlp", "rag", "ai-engineering", "ai-safety"]
+  tags:
+  - patent
+  - software-copyright
+  - ip
+  - ai
+  - big-data
+  - 3d-vision
+  - generative-ai
+  - embodied-ai
+  - nlp
+  - rag
+  - ai-engineering
+  - ai-safety
   when_to_use:
-    - "Draft CN invention patents from AI code or docs"
-    - "Generate software copyright materials"
-    - "Perform prior-art search for AI inventions"
-    - "Desensitize project code for IP submission"
-    - "Auto-detect AI domain and select claim template"
-    - "Self-check patent specification completeness"
-    - "专利撰写 / 软件著作权 / AI知识产权 / 脱敏处理 / 现有技术检索"
-
+  - Draft CN invention patents from AI code or docs
+  - Generate software copyright materials
+  - Perform prior-art search for AI inventions
+  - Desensitize project code for IP submission
+  - Auto-detect AI domain and select claim template
+  - Self-check patent specification completeness
+  - 专利撰写 / 软件著作权 / AI知识产权 / 脱敏处理 / 现有技术检索
+  platform-fields:
+    user-invocable: true
 ---
 
 # Patent & Software Copyright Generation (AI + Big Data)
@@ -252,7 +267,7 @@ CVPR 2026 accepted 116 3DGS-related papers, creating a surge of patentable innov
 3. Articulated 3DGS methods generate IP around interaction primitives and joint representations
 4. File early -- the dense publication cohort means similar innovations may appear concurrently
 
-Knowledge base: 976 methods across 26 categories (updated for v0.9.12 cycle).
+Knowledge base: 1011 methods across 26 categories (updated for v0.9.12 cycle).
 
 ## Phase D: Iterative Correction
 

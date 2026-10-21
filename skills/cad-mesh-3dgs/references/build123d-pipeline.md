@@ -1,4 +1,4 @@
-﻿
+
 # Parametric CAD → 3DGS Pipeline (build123d Integration)
 
 ### 6.1 Why Parametric CAD as 3DGS Source?

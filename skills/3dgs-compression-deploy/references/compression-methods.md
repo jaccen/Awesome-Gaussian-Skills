@@ -1,8 +1,8 @@
-﻿
+
 # 3DGS Compression & Deployment Methods Database
 
 > Comprehensive database of 3DGS compression, pruning, quantization, streaming, deployment, and hardware acceleration methods.
-> Companion: [../SKILL.md](../SKILL.md) | Project: [../../references/3dgs-methods-overview.md](../../references/3dgs-methods-overview.md)
+> Companion: [../SKILL.md](../SKILL.md) | Project: [../../../references/3dgs-methods-overview.md](../../../references/3dgs-methods-overview.md)
 
 ---
 

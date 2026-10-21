@@ -1,23 +1,36 @@
 ---
 name: 3dgs-training-debugger
-description: "Diagnose and fix 3DGS training-time failures: NaN losses, OOM crashes, divergent optimization, floater artifacts, densification failures, hyperparameter sensitivity. Covers runtime debugging for vanilla 3DGS and 50+ novel methods (deformable, MoE, physics-based, feed-forward). Detects 60 runtime failure patterns. Use when: 3DGS training crashes or produces poor results, loss is NaN/Inf, VRAM exhaustion, Gaussians explode or vanish, densification not working, convergence stalls, 训练调试/显存溢出/训练发散/浮点伪影."
+description: 'Diagnose and fix 3DGS training-time failures: NaN losses, OOM crashes, divergent optimization, floater
+  artifacts, densification failures, hyperparameter sensitivity. Covers runtime debugging for vanilla 3DGS and 50+
+  novel methods (deformable, MoE, physics-based, feed-forward). Detects 60 runtime failure patterns. Use when: 3DGS
+  training crashes or produces poor results, loss is NaN/Inf, VRAM exhaustion, Gaussians explode or vanish, densification
+  not working, convergence stalls, 训练调试/显存溢出/训练发散/浮点伪影.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "1.0.0"
+  version: 1.0.0
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "training", "debugging", "oom", "convergence", "hyperparameters", "distributed"]
+  tags:
+  - 3dgs
+  - gaussian-splatting
+  - training
+  - debugging
+  - oom
+  - convergence
+  - hyperparameters
+  - distributed
   when_to_use:
-    - "3DGS training crashes with OOM or CUDA error"
-    - "Training loss becomes NaN or Inf"
-    - "Gaussian count explodes or vanishes during training"
-    - "Densification is not triggering or over-triggering"
-    - "Training converges slowly or plateaus prematurely"
-    - "Visual artifacts appear (floaters, blur, ghosting) after training"
-    - "Checkpoint resume produces different results"
-    - "Distributed training has inconsistent gradients or dead workers"
-    - "Novel method (deformable/MoE/physics) diverges"
-    - "训练调试 / 显存溢出 / 训练发散 / 浮点伪影 / 密度控制异常"
+  - 3DGS training crashes with OOM or CUDA error
+  - Training loss becomes NaN or Inf
+  - Gaussian count explodes or vanishes during training
+  - Densification is not triggering or over-triggering
+  - Training converges slowly or plateaus prematurely
+  - Visual artifacts appear (floaters, blur, ghosting) after training
+  - Checkpoint resume produces different results
+  - Distributed training has inconsistent gradients or dead workers
+  - Novel method (deformable/MoE/physics) diverges
+  - 训练调试 / 显存溢出 / 训练发散 / 浮点伪影 / 密度控制异常
+  platform-fields:
+    user-invocable: true
 ---
 
 # 3DGS Training Debugger

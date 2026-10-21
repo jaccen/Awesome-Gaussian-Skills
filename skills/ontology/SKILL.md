@@ -1,12 +1,16 @@
 ---
 name: ontology
-description: "Build and reason over ontologies & structured knowledge representations for 3D/spatial domains: ontology-grounded scene representation, 3D scene graph construction, knowledge-graph-augmented reasoning, neuro-symbolic spatial reasoning, and robot-ontology population. Backed by a 12-method 'Ontology & Knowledge Representation' knowledge base. Use when: designing scene graphs or spatial ontologies, connecting 3DGS scenes to knowledge graphs, neuro-symbolic spatial reasoning, LLM-assisted ontology construction, 本体工程/知识图谱/场景图/神经符号推理."
+description: 'Build and reason over ontologies & structured knowledge representations for 3D/spatial domains: ontology-grounded
+  scene representation, 3D scene graph construction, knowledge-graph-augmented reasoning, neuro-symbolic spatial
+  reasoning, and robot-ontology population. Backed by a 12-method ''Ontology & Knowledge Representation'' knowledge
+  base. Use when: designing scene graphs or spatial ontologies, connecting 3DGS scenes to knowledge graphs, neuro-symbolic
+  spatial reasoning, LLM-assisted ontology construction, 本体工程/知识图谱/场景图/神经符号推理.'
 ---
 
 # Ontology & Knowledge Representation for 3D Domains
 
 > Scope: ontology engineering and structured knowledge representations applied to 3D scenes, robots, and spatial reasoning.
-> Knowledge base: 12 arXiv-verified methods in the **Ontology & Knowledge Representation** category (`data/methods.json`, single source of truth — always re-query, never answer from memory).
+> Knowledge base: 12 indexed methods in the **Ontology & Knowledge Representation** category (`data/methods.json`, single source of truth — always re-query, never answer from memory).
 
 ## 1. Representation Selection
 

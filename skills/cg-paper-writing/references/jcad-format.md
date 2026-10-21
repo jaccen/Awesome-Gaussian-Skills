@@ -1,3 +1,5 @@
+> Verification scope (2026-10-21): historical venue worksheet, not a verified current call for papers. Before applying page limits, fees, templates or policies, fetch the current official instructions and record their URL/date.
+
 # 《计算机辅助设计与图形学学报》专项投稿撰写与格式指南
 
 > 来源：学报官网 https://www.jcad.cn 投稿指南页面（2026-09-27 通过浏览器一手抓取）、官网"下载区"投稿模板与征稿简则、中科院计算所期刊介绍页。本文件为投稿/修改稿撰写时的**硬性规范**，写作与自检时逐条核对。

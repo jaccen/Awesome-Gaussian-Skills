@@ -1,4 +1,4 @@
-﻿---
+---
 # Reference Papers by Domain
 
 | Domain | Methods |

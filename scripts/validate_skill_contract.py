@@ -74,6 +74,13 @@ def validate(value, schema, path="$"):
 
 def example(contract: str) -> dict:
     today = date.today().isoformat()
+    if contract == "research-review":
+        return {"question": "Illustration of a review record, not a scientific verdict", "evidence_date": today,
+            "findings": [{"observation": "No study artifacts supplied in this synthetic example",
+                "status": "unresolved", "evidence": [{"source": "synthetic example input",
+                    "location": "example()", "scope": "illustration only"}],
+                "recommendation": "Supply the actual paper and measurement artifacts"}],
+            "limitations": ["Schema validation cannot establish the truth of a finding."]}
     if contract == "paper-insight":
         return {
             "arxiv_id": "2308.04079",
@@ -81,8 +88,8 @@ def example(contract: str) -> dict:
             "venue": "SIGGRAPH 2023", "year": 2023, "category": "Foundation",
             "core_innovation": "Anisotropic 3D Gaussians with tile-based differentiable rasterization",
             "representation": {"primitive": "anisotropic Gaussian", "param_count_per_primitive": 59},
-            "results": [{"dataset": "Mip-NeRF 360", "metric": "PSNR", "value": 27.21, "iterations": 30000, "table_ref": "Table 1"}],
-            "code_url": "https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/",
+            "results": [],
+            "code_url": "https://github.com/graphdeco-inria/gaussian-splatting",
             "limitations": ["No explicit surface", "View-dependent effects limited by SH degree"],
             "provenance": {"extracted_by": "3dgs-paper-reader", "extraction_date": today},
         }
@@ -93,7 +100,7 @@ def example(contract: str) -> dict:
                 {"name": "primitive", "values": ["3D ellipsoid", "2D disk"]},
                 {"name": "surface_quality", "values": ["moderate", "high"]},
             ],
-            "recommendation": {"pick": "2DGS", "rationale": "better geometry", "tradeoffs": ["slightly slower"]},
+            "recommendation": {"pick": "2DGS", "rationale": "illustrative choice only; not an evidence-backed recommendation", "tradeoffs": ["not measured in this schema example"]},
             "generated_at": today,
         }
     if contract == "experiment-plan":
@@ -113,7 +120,7 @@ def main():
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
-    contract = sys.argv[1]
+    contract = next((argument for argument in sys.argv[1:] if not argument.startswith("--")), "")
     schema_path = CONTRACTS / f"{contract}.schema.json"
     if not schema_path.exists():
         print(f"ERROR: contract not found: {schema_path}", file=sys.stderr)

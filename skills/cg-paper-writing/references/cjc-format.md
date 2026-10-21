@@ -1,3 +1,5 @@
+> Verification scope (2026-10-21): historical venue worksheet, not a verified current call for papers. Before applying page limits, fees, templates or policies, fetch the current official instructions and record their URL/date.
+
 # 《计算机学报》专项投稿撰写与格式指南
 
 > 来源：学报官方稿件模板（CJC-Templet_Word2003.doc，学报网站 http://cjc.ict.ac.cn/ 下载）与学报编辑部《修改稿要求》。本文件为投稿/修改稿撰写时的**硬性规范**，写作与自检时逐条核对，不要凭记忆猜测。

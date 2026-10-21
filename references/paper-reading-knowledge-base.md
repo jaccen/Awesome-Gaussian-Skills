@@ -1295,7 +1295,7 @@
 - **写作可嫁接点**: 单图人体化身生成代表；与 HumanSplat、GAGAvatar 对比。
 - **核查**: arxiv 标题=Human-3Diffusion: Realistic Avatar Creation via Explicit 3D Consistent Diffusion Models（一致）。
 
-### HumanSplat-NIPS (`2406.12459`, NeurIPS 2024)
+### HumanSplat (`2406.12459`, NeurIPS 2024)
 - **摘要**: HumanSplat：可泛化单图人体高斯泼溅，2D 多视角扩散 + 带人体结构先验的隐重建 Transformer。
 - **创新点**: ① 可泛化单图预测任意人体 3DGS 属性；② 多视角扩散 + 人体结构先验潜重建 Transformer 统一几何/语义；③ 层级损失（含人体语义）约束多视角。
 - **核心方法**: 2D 多视角扩散 + 结构先验隐重建 Transformer + 含人体语义的层级损失。

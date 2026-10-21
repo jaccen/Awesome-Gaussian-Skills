@@ -1,20 +1,28 @@
-﻿---
+---
 name: 3dgs-visualizer
-description: "Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method timelines. Static (PDF/PNG) and interactive (HTML) output. Use when: creating comparison charts for 3DGS papers, visualizing method capabilities, generating method timelines or radar plots, 3DGS可视化/论文配图/方法对比图表."
+description: 'Generate publication-quality visualizations for 3DGS research: radar charts, comparison tables, method
+  timelines. Static (PDF/PNG) and interactive (HTML) output. Use when: creating comparison charts for 3DGS papers,
+  visualizing method capabilities, generating method timelines or radar plots, 3DGS可视化/论文配图/方法对比图表.'
 license: Apache-2.0
-user-invocable: true
 metadata:
-  version: "1.5.0"
+  version: 1.5.0
   author: jaccen
-  tags: ["3dgs", "gaussian-splatting", "visualization", "radar-chart", "timeline", "research"]
+  tags:
+  - 3dgs
+  - gaussian-splatting
+  - visualization
+  - radar-chart
+  - timeline
+  - research
   when_to_use:
-    - "Create comparison charts for 3DGS papers"
-    - "Visualize method capabilities with radar plots"
-    - "Generate method timelines or chronological evolution charts"
-    - "Produce publication-quality figures (PDF/PNG/HTML)"
-    - "Build interactive comparison tables for 3DGS methods"
-    - "3DGS可视化 / 论文配图 / 方法对比图表 / 雷达图 / 时间线"
-
+  - Create comparison charts for 3DGS papers
+  - Visualize method capabilities with radar plots
+  - Generate method timelines or chronological evolution charts
+  - Produce publication-quality figures (PDF/PNG/HTML)
+  - Build interactive comparison tables for 3DGS methods
+  - 3DGS可视化 / 论文配图 / 方法对比图表 / 雷达图 / 时间线
+  platform-fields:
+    user-invocable: true
 ---
 
 # 3DGS Visualizer — Publication-Quality Research Visualizations
@@ -201,7 +209,7 @@ When generating timelines that include 2026 methods, highlight these as landmark
 | TRELLIS.2 | CVPR 2026 Best Student Paper | Structured 3D generation | Best Student Paper marker |
 | SAM 3D | CVPR 2026 | 3D segmentation foundation | Highlighted method |
 
-Knowledge base: 976 methods across 26 categories (updated for v0.9.12 cycle).
+Knowledge base: 1011 methods across 26 categories (updated for v0.9.12 cycle).
 
 ### API — Static Timeline
 

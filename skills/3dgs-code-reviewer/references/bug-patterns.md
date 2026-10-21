@@ -1,4 +1,6 @@
-﻿# 3DGS Bug Patterns Catalog
+# 3DGS review-pattern catalog
+
+These are candidate checks, not 104 independently verified defects or guaranteed performance diagnoses. Confirm applicability and evidence in the actual implementation. Unmeasured speed estimates are not benchmark results.
 
 ### 4. Known Bug Patterns
 
@@ -17,8 +19,8 @@
 
 | # | Pattern | Impact | Fix |
 |---|---------|--------|-----|
-| 7 | No tile culling | 5-10x slower | Implement tile overlap test |
-| 8 | CPU sorting every iteration | 2-3x overhead | Sort every 100 iterations |
+| 7 | No tile culling | Workload-dependent; measure | Implement tile overlap test |
+| 8 | CPU sorting every iteration | Workload-dependent; measure | Use appropriate GPU sorting and profile; stale view-depth order can change rendering correctness |
 | 9 | Excessive SH degree | 2x memory | Use degree 3 only if needed |
 | 10 | No gradient checkpointing | OOM on large scenes | Checkpoint memory-intensive ops |
 
@@ -27,8 +29,8 @@
 | # | Pattern | Edge Case | Fix |
 |---|---------|-----------|-----|
 | 11 | No near-plane clipping | Camera-close Gaussians | Clip at z = near_plane |
-| 12 | Spherical harmonics for background | Black background | Skip SH for α < ε |
-| 13 | Float precision in accumulation | Banding artifacts | Use float64 for T accumulation |
+| 12 | Spherical harmonics for background | Black background | Separate background compositing from per-Gaussian SH; skipping contributions needs an explicit approximation threshold |
+| 13 | Float precision in accumulation | Banding artifacts | Check accumulation order, precision and stability; benchmark before changing precision |
 | 14 | Incorrect Jacobian | Wide-angle distortion | Use full projective Jacobian |
 | 15 | UV mapping collision | Quality drop in UVGS | Use OT-UVGS or collision-aware assignment |
 | 16 | Deterministic spherical projection | Uneven UV utilization | OT-inspired global assignment (O(N log N)) |

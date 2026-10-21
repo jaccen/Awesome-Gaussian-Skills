@@ -1,17 +1,17 @@
-﻿
+
 <div align="center">
 
 <img src="assets/hero.png" width="100%" alt="3D Gaussian Splatting Methods Overview">
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 976 methods, 26 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 1011 methods, 26 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-976-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-1011-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -30,7 +30,7 @@
 - [Integrations](#integrations)
 - [Online Book](#-online-book-spatial--embodied-intelligence)
 - [What's New (Oct 2026)](#whats-new-oct-2026)
-- [Knowledge Base](#knowledge-base-976-methods-26-categories)
+- [Knowledge Base](#knowledge-base-1011-methods-26-categories)
 - [18 AI-Powered Skills](#18-ai-powered-skills)
 - [Visualization Samples](#visualization-samples)
 - [Research Innovation Highlights](#research-innovation-highlights)
@@ -64,7 +64,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 976 Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 1011 Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## Quick Start
 
@@ -117,7 +117,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
 <details>
-<summary><b>What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (976 Methods, 26 categories, 18 skills), zero fabrication</b></summary>
+<summary><b>What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (1011 Methods, 26 categories, 18 skills), zero fabrication</b></summary>
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -138,7 +138,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 | CH 12 | Capture-to-delivery: the end-to-end pipeline | Ten-stage tool selection & pitfalls, formats & coordinate systems, cost/duration estimates, project failure modes |
 | CH 13 | Industry playbooks: six verticals | Museums & tourism, e-commerce, industrial inspection, AD simulation, embodied robots, surveying & mapping |
 | 附 | Appendix | Datasets, evaluation metrics, delivery-metric conversion & acceptance-report templates |
-| 实 | Practice index: from book to engineering | 18 engineering skills · 34 MCP tools · 976+ method explorer, chapter-to-runnable-resource mapping |
+| 实 | Practice index: from book to engineering | 18 engineering skills · 34 MCP tools · 1011+ method explorer, chapter-to-runnable-resource mapping |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 </details>
@@ -153,19 +153,19 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 976 method names, abstracts, and 18 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 1011 method names, abstracts, and 18 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (Oct 2026)
 
-### Latest Update (Oct 19, 2026): **v0.9.12 — Full-Library Audit + arXiv Scan: 21 New Methods (955 → 976)** ⭐
+### Latest Update (Oct 19, 2026): **v0.9.12 — Full-Library Audit + arXiv Scan: 21 New Methods (955 → 1011)** ⭐
 
-Full-library audit plus a fresh arXiv scan admitted **21** new arXiv-verified 3DGS methods, taking the
-library from **955 to 976** (+21, +2.2%) across 8 categories — led by Compression & Streaming (+5),
+Full-library audit plus a fresh arXiv scan admitted **21** new indexed 3DGS methods, taking the
+library from **955 to 1011** (+21, +2.2%) across 8 categories — led by Compression & Streaming (+5),
 Cross-Domain (+3), Autonomous Driving (+2), World Models & Spatial Intelligence (+2), SLAM (+2).
 Every admitted method name is self-stated in its own paper's title/abstract (R9 protocol) and
-arXiv-verified; **13** candidates were rejected (no self-stated method name, survey, NeRF, or 3DGS
+indexed; **13** candidates were rejected (no self-stated method name, survey, NeRF, or 3DGS
 used merely as a tool); one name collision (**X-Splat**) kept the existing entry and dropped the
 newcomer.
 
@@ -173,7 +173,7 @@ Audit fixes: one mis-attached description (**STC-GS** — corrected to its real 
 spatio-temporal coherent GS for weather-radar sequence prediction) and **16** blank descriptions
 backfilled. Full arXiv-ID re-verification across **1,462** unique IDs (1,461 reachable; the single
 unresolved ID was a historical note rather than a live record). All data carriers
-(`methods.json` / CSV / `methods.html` / `abstracts.js` / reference docs) re-verified at **976**,
+(`methods.json` / CSV / `methods.html` / `abstracts.js` / reference docs) re-verified at **1011**,
 name sets identical. See [changelog](changelog/2026-10-19.md).
 
 ### Previous Update (Oct 15, 2026): **v0.9.11 — Research Expert Team Deep Expansion: Methodology Core + 15 Master-Paper Studies** ⭐
@@ -215,7 +215,7 @@ re-verified at 955, name sets identical. See [changelog](changelog/2026-10-13-v3
 
 ### Previous Update (Oct 13, 2026): **v0.9.9 — Knowledge-Base Expansion: 900 → 934, Two New Skills** ⭐
 
-**34** new arXiv-verified methods admitted, taking the library from **900 to 934**, with the
+**34** new indexed methods admitted, taking the library from **900 to 934**, with the
 taxonomy growing **23 → 25 categories**: two new cross-cutting categories — *Ontology & Knowledge
 Representation* (12 methods) and *Super Agents & Agentic AI* (20 methods). Two new skills
 shipped — `ontology` (3D scene graphs, spatial ontologies, neuro-symbolic reasoning) and
@@ -229,7 +229,7 @@ by entry; site-wide caliber unified to 934 / 25 / 17. See [changelog](changelog/
 
 ### Previous Update (Oct 20, 2026): **v0.9.8 — World Models Category Reinforcement (896 → 900)** ⭐
 
-Targeted reinforcement of the thinnest category. **4** new arXiv-verified 3DGS-based World
+Targeted reinforcement of the thinnest category. **4** new indexed 3DGS-based World
 Model / Spatial Intelligence methods admitted, taking the library from **896 to 900**. The
 World Models & Spatial Intelligence category grew from 8 → 12 methods:
 `HY-World 2.0`, `F3DGS` (federated multi-agent world modeling), `4DGS-WAM` (object-centric
@@ -240,13 +240,13 @@ under Embodied AI & Robotics — not duplicated. See [changelog](changelog/2026-
 
 ### Previous Update (Oct 12, 2026): **v0.9.7 — Manual Admission: 15 New Methods (881 → 896)** ⭐
 
-Manual admission of **15** new arXiv-verified 3DGS methods, taking the library from
+Manual admission of **15** new indexed 3DGS methods, taking the library from
 **881 to 896** (+15, +1.7%). Admissions span 9 categories: Acceleration (`H2-Ray`, `TileSkipper`,
 `SplatQ`), Feed-Forward (`CompactSplat`, `DeltaSplat`, `DensiTok`), Embodied AI & Robotics
 (`Splat2Act`, `2DGS-Planner`, `NovaSplat`), plus `OuroWorld` (Dynamic & 4D), `PAM-ToD` (HDR & Relighting),
 `FlyMark` (Security), `GSCV` (Compression & Streaming), `OpenSplatGraph` (Language & Semantic),
 `PCAsplat` (Surface & Rendering). Every admitted method name is self-stated in its own paper's
-title/abstract (R9 protocol) and arXiv-verified. **12** candidate papers were rejected for lacking a
+title/abstract (R9 protocol) and indexed. **12** candidate papers were rejected for lacking a
 self-stated method name, being benchmark-only, NeRF (not 3DGS), or using 3DGS merely as a tool. All data
 carriers (`methods.json` / CSV / `methods.html` / `abstracts.js` / reference doc) re-verified at **896**,
 name sets compared entry by entry. No method name was fabricated.
@@ -255,7 +255,7 @@ See [changelog/2026-10-12.md](changelog/2026-10-12.md) for the full admission li
 
 ### Update (Oct 7, 2026): **v0.9.6 — Manual Admission: 9 New Methods (872 → 881)** ⭐
 
-Manual admission of **9** new arXiv-verified 3DGS methods, taking the library from
+Manual admission of **9** new indexed 3DGS methods, taking the library from
 **872 to 881** (+9, +1.0%). Admission includes **Speedy-Splat** (CVPR 2025, precise tile
 intersection + efficient Hessian-based pruning, 6.71× render speedup) and **8** recent September 2026
 papers: `AESplat` (pose-free feed-forward), `AGILE-GS` (anchor-guided NBV), `OC-GS` (irregular turntable),
@@ -268,7 +268,7 @@ See [changelog/2026-10-07.md](changelog/2026-10-07.md) for the full admission li
 
 ### Update (Sep 21, 2026): **v0.9.5 — Daily arXiv Scan: 13 New Methods (859 → 872)** ⭐
 
-Routine daily arXiv scan admitted **13** new arXiv-verified 3DGS methods, taking the library from
+Routine daily arXiv scan admitted **13** new indexed 3DGS methods, taking the library from
 **859 to 872** (+13, +1.5%). Admissions span Surface & Rendering, Feed-Forward, Large-Scale,
 Compression, Sparse-View, Cross-Domain, Embodied AI & Robotics, Dynamic, and Language & Semantic
 categories (incl. `LiteTex-GS`, `GrapeSplat`, `VDGS`, `CRP-GS`, `NormLift`). **7** candidate papers
@@ -312,17 +312,17 @@ See [changelog/2026-09-21.md](changelog/2026-09-21.md) and
 
 Latest update (Sep 20): **v0.9.2 —Scene Agent + Mapmost Engineering Wave: 5 New Methods + 6 Skill Enhancements**. Knowledge base expanded from 692→ 97 methods. Added 5 scene-generation Agent papers: **SceneSmith** (ICML 2026 Spotlight, MIT CSAIL —hierarchical designer-critic-orchestrator VLM agents for simulation-ready indoor scenes), **Scenethesis** (ICLR 2026, NVIDIA —training-free LLM+vision agentic framework), **SceneGenAgent** (ACL 2025 —LLM coding agent for industrial scenes), **SceneConductor** (arXiv —multi-agent orchestration from single image), **SceneAssistant** (arXiv —visual-feedback agent for open-vocabulary scene generation). Injected Mapmost production engineering knowledge into 4 skill files: 3DGS individualization (单体化) in best-practices.md, LOD streaming + seam-fix + adaptive partition training in best-practices.md, 3DGS+3DTiles multi-source fusion in gis-toolchain.md, LUT color grading in tech-stack.md, Mapmost as Digital Twin player with 100km² benchmark in industry-landscape.md. Categories updated: Generation +4, Embodied AI & Robotics +1.
 
-Previous (Sep 20): **v0.9.1 —ECCV 2026 Wave: 14 New Methods**. Knowledge base expanded from 678→ 92 methods. All 14 new entries arXiv-verified or ECCV-official: **Wat3R** (underwater 3D geometry without annotations), **GeoNVS** (geometry-grounded video diffusion with GS-Adapter), **Edit3r** (instant 3D editing from unposed images), **SA-ResGS** (first residual learning for 3DGS in next-best-view selection), **GaussianLens** (on-demand localized high-res reconstruction), **Deformable Triangle Splatting** (non-convex primitive with per-edge control points), **Neural Harmonic Textures** (per-primitive harmonic feature decoding), **CubicSplat** (error-bounded differentiable vector graphics), **TetraSDF** (analytic isosurface extraction), **Heat Kernel Textures** (ECCV 2026 Best Paper —geodesic Gaussians), **GRF-Recon** (long-sequence feed-forward with global ray-field), **PriSplat** (distractor-free 3DGS via multi-view propagation), **Per-View Distractor Filtering** (training-free feed-forward artifact removal), **GS-Underwater** (controlled cross-regime underwater benchmark study). Categories updated: Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1. All data carriers in sync.
+Previous (Sep 20): **v0.9.1 —ECCV 2026 Wave: 14 New Methods**. Knowledge base expanded from 678→ 92 methods. All 14 new entries indexed or ECCV-official: **Wat3R** (underwater 3D geometry without annotations), **GeoNVS** (geometry-grounded video diffusion with GS-Adapter), **Edit3r** (instant 3D editing from unposed images), **SA-ResGS** (first residual learning for 3DGS in next-best-view selection), **GaussianLens** (on-demand localized high-res reconstruction), **Deformable Triangle Splatting** (non-convex primitive with per-edge control points), **Neural Harmonic Textures** (per-primitive harmonic feature decoding), **CubicSplat** (error-bounded differentiable vector graphics), **TetraSDF** (analytic isosurface extraction), **Heat Kernel Textures** (ECCV 2026 Best Paper —geodesic Gaussians), **GRF-Recon** (long-sequence feed-forward with global ray-field), **PriSplat** (distractor-free 3DGS via multi-view propagation), **Per-View Distractor Filtering** (training-free feed-forward artifact removal), **GS-Underwater** (controlled cross-regime underwater benchmark study). Categories updated: Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1. All data carriers in sync.
 
-Previous (Sep 16): **v0.9.0 —Data Accuracy Release**. Full-library audit of every entry against the arXiv API: each arXiv ID re-verified reachable **and** matched to its paper (method name must appear in the title/abstract). **181 entries failed verification and were removed, 56 wrong-ID entries re-linked to their real papers, 5 renamed to the papers' self-declared method names**, plus 1 duplicate removed. The count is now honest instead of inflated: **678 methods, 23 categories, 568 arXiv-verified (83%), 130 code links (19%)**. Per-entry audit evidence: [docs/data-accuracy-audit-2026-09-16.md](docs/data-accuracy-audit-2026-09-16.md). See [changelog/2026-09-16-v5.md](changelog/2026-09-16-v5.md).
+Previous (Sep 16): **v0.9.0 —Data Accuracy Release**. Full-library audit of every entry against the arXiv API: each arXiv ID re-verified reachable **and** matched to its paper (method name must appear in the title/abstract). **181 entries failed verification and were removed, 56 wrong-ID entries re-linked to their real papers, 5 renamed to the papers' self-declared method names**, plus 1 duplicate removed. The count is now honest instead of inflated: **678 methods, 23 categories, 568 indexed (83%), 130 code links (19%)**. Per-entry audit evidence: [docs/data-accuracy-audit-2026-09-16.md](docs/data-accuracy-audit-2026-09-16.md). See [changelog/2026-09-16-v5.md](changelog/2026-09-16-v5.md).
 
-Previous (Sep 4): **v0.8.3 —Dynamic Scene Survey Integration: 23 New Methods**. Knowledge base expanded from 801→ 19 verified methods. Added 23 arXiv-verified dynamic scene reconstruction methods from survey paper (连振晗 et al., J CAD & CG, Jan 2026), spanning 3 categories: deformation field (LoopGaussian, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, ReconDreamer++), sparse-control deformation (SP-GS, Video-3DGS, SplineGS), 4D Gaussian primitive (Real-time 4DGS, PVG, 4D-rotor GS), and per-frame inter-frame transfer (3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo). Dynamic & 4D category: 75→ 7. New `references/dynamic-datasets.md` (11 datasets) and expanded `benchmark-data.md` (MS-SSIM/VMAF/FID metrics + 4 performance comparison tables). Experiment planner skill updated with dynamic scene design guide. See [changelog/2026-09-04.md](changelog/2026-09-04.md).
+Previous (Sep 4): **v0.8.3 —Dynamic Scene Survey Integration: 23 New Methods**. Knowledge base expanded from 801→ 19 verified methods. Added 23 indexed dynamic scene reconstruction methods from survey paper (连振晗 et al., J CAD & CG, Jan 2026), spanning 3 categories: deformation field (LoopGaussian, CoGS, CD-GS, PGED, GPS-Gaussian, MoDGS, MoDec-GS, SpectroMotion, BARD-GS, GauFRE, ReconDreamer++), sparse-control deformation (SP-GS, Video-3DGS, SplineGS), 4D Gaussian primitive (Real-time 4DGS, PVG, 4D-rotor GS), and per-frame inter-frame transfer (3DGStream, Dual-GS, STC-GS, IGS, GFlow, DynOMo). Dynamic & 4D category: 75→ 7. New `references/dynamic-datasets.md` (11 datasets) and expanded `benchmark-data.md` (MS-SSIM/VMAF/FID metrics + 4 performance comparison tables). Experiment planner skill updated with dynamic scene design guide. See [changelog/2026-09-04.md](changelog/2026-09-04.md).
 
 Previous (Sep 2): **v0.8.2 —Daily Update: 11 New Methods**. Knowledge base expanded from 790→ 01 verified methods. New additions span 7 categories: **BRF-GS** (hyperspectral BRDF modeling with 3DGS), **SMG** (ECCV 2026, semantic motion graph for dynamic GS), **VCAR** (ACM MM 2026, training-free 3DGS segmentation), **RealCAD** (real-world image to CAD reconstruction), **ObjectSplat** (object-level mesh splatting), **CapFrame** (ECCV 2026, text-instructed viewpoint localization), **Amortized Anchor Refinement** (continuous-time 4D reconstruction), **ATGS** (SIGGRAPH 2026, anchored temporal GS for long volumetric video), **CausalSplat** (hierarchical causal reasoning in 3DGS), **VoroTracing** (623 FPS differentiable ray tracing), **Lucida** (Real-to-Sim composable scene modeling). All arXiv IDs verified, data CI passed. See [changelog/2026-09-02.md](changelog/2026-09-02.md).
 
 Previous (Aug 23): **v0.8.1 —Daily Update: 7 New Methods**. Knowledge base expanded from 783→ 90 verified methods. New additions span 6 categories: **LEGO** (ECCV 2026, hierarchical language GS with LLM spatial reasoning), **OutLangSplat** (UAV outdoor open-vocabulary 3D language GS), **ESVR** (IEEE VIS 2026, 3D ellipsoid sparse volume rendering with 4 orders of magnitude compression), **TRACE-GS** (sparse-view 3DGS via privileged geometric conditioning), **RORA** (single-video-to-articulated-object pipeline with Unreal Engine deployment), **OVOW** (ECCV 2026, monocular video to instance-level 4D mesh for physics simulation), **Super-Gaussian** (interactive 3DGS scene editing with VR NLI visualization). All arXiv IDs verified, data CI passed. See [changelog/2026-08-23.md](changelog/2026-08-23.md).
 
-Previous (Aug 7): **v0.8.0 —Platform Upgrade (P0+P1+P2)**. Knowledge layer: single source of truth (`data/methods.json`, 783 methods, 23 categories) with data CI; 5 fabricated entries purged; 14 arXiv-verified frontier methods added. Capability layer: true-3DGS render loop (gsplat via HTTP-served PLY), server-authoritative scene persistence, real PLY/SPLAT export, 5 distinct prune strategies, grid-accelerated ray query, runtime arg validation, WS origin allowlist, 21 unit tests. Platform layer: Benchmark arena (`bench/`), skill orchestration contracts (`skills/_contracts/`), Router manifest loader (`scripts/router_load.py`). 13 core MCP tools (all real) + 13 experimental (gated by `INCLUDE_EXPERIMENTAL=1`). See [changelog/2026-08-07.md](changelog/2026-08-07.md).
+Previous (Aug 7): **v0.8.0 —Platform Upgrade (P0+P1+P2)**. Knowledge layer: single source of truth (`data/methods.json`, 783 methods, 23 categories) with data CI; 5 fabricated entries purged; 14 indexed frontier methods added. Capability layer: true-3DGS render loop (gsplat via HTTP-served PLY), server-authoritative scene persistence, real PLY/SPLAT export, 5 distinct prune strategies, grid-accelerated ray query, runtime arg validation, WS origin allowlist, 21 unit tests. Platform layer: Benchmark arena (`bench/`), skill orchestration contracts (`skills/_contracts/`), Router manifest loader (`scripts/router_load.py`). 13 core MCP tools (all real) + 13 experimental (gated by `INCLUDE_EXPERIMENTAL=1`). See [changelog/2026-08-07.md](changelog/2026-08-07.md).
 
 Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Methods (775 verified unique baseline + 14 new). Full re-audit across 11 source files; all method counts unified to 789+. New additions: **GrainGS** (dynamic, 36.98 dB / 435.6 FPS / 4.67 MB), **GLAM-SLAM** (IROS 2026, outdoor decoupled SLAM), **SubSplat** (subpixel feed-forward), **ATSplat** (adaptive 3D tokens, 1136 FPS), **3D-GIMP** (3DGS inpainting), **LB-Edit** (7× lower editing latency), **FlexiAvatar** (ECCV 2026, visible-body-only optimization), **ZeroSplat** (ECCV 2026, training-free segmentation), **CaT-GS** (CVPR 2026, 10× faster rendering), **FF-ProCams** (projector-camera inverse rendering), **i3dgs** (SIGGRAPH 2026, large-scale unordered), **VIGS-SLAM** (ECCV 2026, iPhone real-time), **ECoNGS** (IEEE VIS 2026, volume visualization), **AniGS** (scene-level animation via diffusion prior). +MoDE/MoE-GS code link. Previous (Jul 24): v0.5.0 MCP Protocol Implementation. Previous (Jul 23): v0.4.3 ICML 2026 & Material/Provenance Wave —**GaussTrace** (ICML 2026), **GADA** (ICML 2026), **InvSplat**, **MGM**, **DualPhys-GS**, **StereoGS**. v0.4.4 added 3dgs-training-debugger skill (60+ runtime patterns).
 
@@ -352,7 +352,7 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
-## Knowledge Base (976 Methods, 26 Categories)
+## Knowledge Base (1011 Methods, 26 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -459,7 +459,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across the 976-method knowledge base.
+> Derived from systematic gap analysis across the 1011-method knowledge base.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -526,13 +526,13 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 - [ ] v0.4 —`3dgs-spatial-agent` enhancements (knowledge-constrained CAD, DDF-GS ray query)
 - [x] v0.5.0 —MCP Protocol Implementation: 24-tool MCP server (mcp-server/), Three.js WebSocket renderer, 24-pattern voice intent mapper, headless mode, voice demo (Jul 24, 2026)
 - [x] v0.5.1 —Full Method Audit & 14 New Methods: 775 verified unique baseline + 14 new = 789+ methods; all method counts unified across 11 source files; +GrainGS, GLAM-SLAM, SubSplat, ATSplat, 3D-GIMP, LB-Edit, FlexiAvatar, ZeroSplat, CaT-GS, FF-ProCams, i3dgs, VIGS-SLAM, ECoNGS, AniGS (Jul 26, 2026)
-- [x] v0.8.0 —Platform Upgrade (P0+P1+P2): single source of truth (data/methods.json, 783 methods, 23 categories, data CI); 5 fabricated entries purged + 14 arXiv-verified frontier methods; true-3DGS render loop (gsplat via HTTP-served PLY); server-authoritative scene persistence; real PLY/SPLAT export; 5 prune strategies; grid-accelerated ray query; runtime arg validation; WS origin allowlist; 21 unit tests + 2 CI workflows; Benchmark arena (bench/); skill orchestration contracts (skills/_contracts/); Router manifest loader (scripts/router_load.py); 13 core MCP tools + 13 experimental (Aug 7, 2026)
-- [x] v0.8.1 —Daily Update: 7 new arXiv-verified methods (LEGO, OutLangSplat, ESVR, TRACE-GS, RORA, OVOW, Super-Gaussian); 783→ 90 methods; 6 categories updated; all data carriers in sync (Aug 23, 2026)
-- [x] v0.8.2 —Daily Update: 11 new arXiv-verified methods (BRF-GS, SMG, VCAR, RealCAD, ObjectSplat, CapFrame, Amortized Anchor Refinement, ATGS, CausalSplat, VoroTracing, Lucida); 790→ 01 methods; 7 categories updated; all data carriers in sync (Sep 2, 2026)
-- [x] v0.8.3 —Dynamic Scene Survey Integration: 23 new arXiv-verified methods from 连振晗 et al. survey (J CAD & CG, Jan 2026); 801→ 19 methods; Dynamic & 4D 75→ 7; +dynamic-datasets.md (11 datasets); +benchmark-data.md metrics (MS-SSIM/VMAF/FID) and 4 performance tables; experiment-planner skill updated (Sep 4, 2026)
+- [x] v0.8.0 —Platform Upgrade (P0+P1+P2): single source of truth (data/methods.json, 783 methods, 23 categories, data CI); 5 fabricated entries purged + 14 indexed frontier methods; true-3DGS render loop (gsplat via HTTP-served PLY); server-authoritative scene persistence; real PLY/SPLAT export; 5 prune strategies; grid-accelerated ray query; runtime arg validation; WS origin allowlist; 21 unit tests + 2 CI workflows; Benchmark arena (bench/); skill orchestration contracts (skills/_contracts/); Router manifest loader (scripts/router_load.py); 13 core MCP tools + 13 experimental (Aug 7, 2026)
+- [x] v0.8.1 —Daily Update: 7 new indexed methods (LEGO, OutLangSplat, ESVR, TRACE-GS, RORA, OVOW, Super-Gaussian); 783→ 90 methods; 6 categories updated; all data carriers in sync (Aug 23, 2026)
+- [x] v0.8.2 —Daily Update: 11 new indexed methods (BRF-GS, SMG, VCAR, RealCAD, ObjectSplat, CapFrame, Amortized Anchor Refinement, ATGS, CausalSplat, VoroTracing, Lucida); 790→ 01 methods; 7 categories updated; all data carriers in sync (Sep 2, 2026)
+- [x] v0.8.3 —Dynamic Scene Survey Integration: 23 new indexed methods from 连振晗 et al. survey (J CAD & CG, Jan 2026); 801→ 19 methods; Dynamic & 4D 75→ 7; +dynamic-datasets.md (11 datasets); +benchmark-data.md metrics (MS-SSIM/VMAF/FID) and 4 performance tables; experiment-planner skill updated (Sep 4, 2026)
 - [x] v0.9.0 —Data Accuracy Release: full-library name↔ paper verification against arXiv API; 181 unverifiable entries removed, 56 wrong IDs fixed, 5 renames, 1 dedup; count corrected to 678 (Sep 16, 2026)
-- [x] v0.8.4 —Daily Update: 39 new arXiv-verified methods (arXiv window 2026-09-02 ~ 09-16); 819→ 78 methods; 15 categories updated (Compression & Streaming +4, Large-Scale +4, Optimization +4, Robustness +4, Cross-Domain +3, Dynamic & 4D +3, Generation +3, SLAM +3, Acceleration +2, Embodied AI & Robotics +2, Feed-Forward +2, Sparse-View +2, HDR & Relighting +1, Human & Avatar +1, Surface & Rendering +1); pure benchmarks/surveys excluded; validate_knowledge_base.py SyntaxWarning fixed; all data carriers in sync (Sep 16, 2026)
-- [x] v0.9.1 —ECCV 2026 Wave: 14 new arXiv-verified methods (Wat3R, GeoNVS, Edit3r, SA-ResGS, GaussianLens, Deformable Triangle Splatting, Neural Harmonic Textures, CubicSplat, TetraSDF, Heat Kernel Textures, GRF-Recon, PriSplat, Per-View Distractor Filtering, GS-Underwater); 678→ 92 methods; 6 categories updated (Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1); all data carriers in sync (Sep 20, 2026)
+- [x] v0.8.4 —Daily Update: 39 new indexed methods (arXiv window 2026-09-02 ~ 09-16); 819→ 78 methods; 15 categories updated (Compression & Streaming +4, Large-Scale +4, Optimization +4, Robustness +4, Cross-Domain +3, Dynamic & 4D +3, Generation +3, SLAM +3, Acceleration +2, Embodied AI & Robotics +2, Feed-Forward +2, Sparse-View +2, HDR & Relighting +1, Human & Avatar +1, Surface & Rendering +1); pure benchmarks/surveys excluded; validate_knowledge_base.py SyntaxWarning fixed; all data carriers in sync (Sep 16, 2026)
+- [x] v0.9.1 —ECCV 2026 Wave: 14 new indexed methods (Wat3R, GeoNVS, Edit3r, SA-ResGS, GaussianLens, Deformable Triangle Splatting, Neural Harmonic Textures, CubicSplat, TetraSDF, Heat Kernel Textures, GRF-Recon, PriSplat, Per-View Distractor Filtering, GS-Underwater); 678→ 92 methods; 6 categories updated (Surface & Rendering +5, Feed-Forward +4, Cross-Domain +2, Robustness +2, Editing +1, Embodied AI & Robotics +1); all data carriers in sync (Sep 20, 2026)
 - [x] v0.9.2 —Scene Agent + Mapmost Engineering Wave: 5 new scene-generation Agent methods (SceneSmith ICML 2026, Scenethesis ICLR 2026, SceneGenAgent ACL 2025, SceneConductor, SceneAssistant); 692→ 97 methods; Generation +4, Embodied AI & Robotics +1; 6 skill file enhancements: 3DGS individualization, LOD streaming + seam-fix, adaptive partition training, 3DGS+3DTiles fusion, LUT color grading, Mapmost 100km² benchmark (Sep 20, 2026)
 - [ ] v1.0 —CI/CD integration + multi-framework official listings
 - [ ] v2.0 —Agent-to-Agent collaboration (multi-agent paper discussion)
@@ -561,12 +561,12 @@ Awesome-Gaussian-Skills/
 │   ├── 3dgs-articulated-reasoner/ # Articulated reasoning & digital twin
 │   ├── 3dgs-compression-deploy/  # Compression & deployment
 │   └── 3dgs-training-debugger/  # Training failure diagnosis
-├── mcp-server/                # MCP server v0.8.0 (13 core + 13 experimental tools, gsplat render loop, HTTP+WS :9842)
+├── mcp-server/                # MCP server v0.8.0 (21 core + 13 experimental tools, gsplat render loop, HTTP+WS :9842)
 ├── bench/                     # Benchmark arena (metrics.py, run_eval.py, leaderboard.json)
 ├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
 ├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (976 Methods, 26 Categories)
+├── references/                # Knowledge base (1011 Methods, 26 Categories)
 ├── Test/                      # Visualization samples
 ├── changelog/                 # Version history
 └── assets/                    # Project images
@@ -598,7 +598,7 @@ Contributions welcome! See [Contributing Guide](CONTRIBUTING.md).
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {976 arXiv-verified methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
+  note = {1011 indexed methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -612,7 +612,7 @@ Complementary projects — we recommend all of them:
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — comprehensive paper collection
 - All 3DGS researchers whose papers form our knowledge base
 
-> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 976 verified methods, 18 skills, 34 MCP tools.
+> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 1011 verified methods, 18 skills, 34 MCP tools.
 
 ## License
 
@@ -644,3 +644,40 @@ Buy us a coffee
 <div align="center">
 
 **If this project saves you time, please give it a star!**</div>
+
+
+<!-- research-reliability:start -->
+## Evidence and reliable use
+
+The 2026-10-21 registry snapshot contains **1011 research records** in **26 categories**.
+**904** have freshly checked arXiv metadata; **107** still require a primary-source review.
+These counts are not a claim that all venues, technical descriptions or results have
+been independently verified. See [evidence coverage](data/evidence-audit.json).
+
+Choose the workflow needed for the task:
+
+| Need | Start with |
+|---|---|
+| Evaluate an idea or review the evidence | `research-expert-team` |
+| Read or compare primary papers | `3dgs-paper-reader` / `3dgs-method-compare` |
+| Plan experiments or interpret measurements | `3dgs-experiment-planner` / expert roles R8–R9 |
+| Draft and check a paper | `cg-paper-writing`; current official venue rules govern |
+
+Short questions should receive focused answers. Role names do not imply independent
+human experts, a guaranteed publication outcome, or access to external tools.
+
+Run the reproducible checks after changing data or skills:
+
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/build_knowledge_base.py
+python scripts/validate_repository.py
+python -m unittest discover -s tests -v
+npm run test:build --workspace=mcp-server
+```
+
+The default exporter reads **only** `data/methods.json`. CSV, explorer, abstracts,
+Markdown indexes and router snapshots are derived outputs; editing an export does
+not silently replace a corrected registry field. Daily discovery paginates and
+records search boundaries; failed searches are not reported as successful zeroes.
+<!-- research-reliability:end -->

@@ -1,134 +1,114 @@
 #!/usr/bin/env python3
-r"""
-validate_knowledge_base.py — 知识库数据 CI 校验器（P0）
+"""Validate authoritative records and every field of their generated carriers.
 
-校验项（任一失败即非零退出）：
-  1. data/methods.json 存在且可解析，count 与 methods 数组长度一致
-  2. 无重复方法名（大小写不敏感）、无重复非空 arXiv ID
-  3. arXiv ID 格式合法（^\d{4}\.\d{4,5}(v\d+)?$ — raw 正则见 ARXIV_RE）
-  4. category 全部属于 data/categories.json 规范集
-  5. 伪造黑名单条目不存在于任何数据载体
-  6. CSV / docs/index.html METHODS / docs/abstracts.js 三载体计数与 methods.json 一致
-  7. （可选 --check-arxiv）抽样在线核验 arXiv ID 可达性
-
-用法：
-  python3 scripts/validate_knowledge_base.py            # 离线全量校验
-  python3 scripts/validate_knowledge_base.py --check-arxiv 20   # 额外抽样20条在线核验
+Offline consistency is not verification of scientific claims. Optional online
+checks report network failures as inconclusive, never as fabricated papers.
 """
+import argparse
 import csv
 import json
 import re
-import sys
 import urllib.request
+from collections import Counter
 from pathlib import Path
+from catalog_export import expected_html, export, html_records, load_abstracts
 
-ROOT = Path(__file__).resolve().parent.parent
-ARXIV_RE = re.compile(r"^\d{4}\.\d{4,5}(v\d+)?$")
-
-FABRICATED_BLACKLIST = {
-    "gs-lrm-v2", "gs-lrm-full", "mvsplat-v2", "gpsgaussian-stereo", "gaussiancross",
-}
-
-errors = []
-warnings = []
+ROOT = Path(__file__).resolve().parents[1]
+ARXIV_RE = re.compile(r'^\d{2}(?:0[1-9]|1[0-2])\.\d{4,5}(?:v[1-9]\d*)?$')
+FABRICATED_BLACKLIST = {'gs-lrm-v2', 'gs-lrm-full', 'mvsplat-v2', 'gpsgaussian-stereo', 'gaussiancross'}
 
 
-def check(cond, msg):
-    if not cond:
-        errors.append(msg)
+def validate(root=ROOT):
+    errors = []
+    try:
+        data = json.loads((root / 'data/methods.json').read_text(encoding='utf-8-sig'))
+        methods = data['methods']
+        if not isinstance(methods, list) or not methods:
+            return ['methods must be a non-empty array']
+        for index, row in enumerate(methods):
+            for key in ('name', 'arxiv_id', 'venue', 'category', 'desc', 'code_url'):
+                if not isinstance(row.get(key), str):
+                    errors.append(f'methods[{index}].{key} must be a string')
+            if not isinstance(row.get('year'), int) or isinstance(row.get('year'), bool):
+                errors.append(f'methods[{index}].year must be an integer')
+        if errors:
+            return errors
+        names = [re.sub(r'\s+', '', row['name']).casefold() for row in methods]
+        ids = [re.sub(r'v\d+$', '', row['arxiv_id']) for row in methods if row['arxiv_id']]
+        for label, values in [('name', names), ('arxiv_id', ids)]:
+            errors.extend(f'duplicate {label}: {key}' for key, count in Counter(values).items() if count > 1)
+        for row in methods:
+            if not row['name'].strip():
+                errors.append('Empty method name')
+            if row['arxiv_id'] and not ARXIV_RE.fullmatch(row['arxiv_id']):
+                errors.append(f"Invalid arXiv ID: {row['name']} {row['arxiv_id']}")
+            if re.sub(r'\s+', '', row['name']).casefold() in FABRICATED_BLACKLIST:
+                errors.append('Previously adjudicated false alias: ' + row['name'])
+        counts = dict(Counter(row['category'] for row in methods))
+        if data.get('count') != len(methods) or data.get('categories') != counts or data.get('category_count') != len(counts):
+            errors.append('Registry aggregate counts disagree with actual records')
+        if any("evidence" in row for row in methods):
+            audit = json.loads((root / "data/evidence-audit.json").read_text(encoding="utf-8-sig"))
+            checked = [row for row in methods if row.get("evidence", {}).get("metadata") == "checked"]
+            pending = [row["name"] for row in methods if row.get("evidence", {}).get("metadata") != "checked"]
+            if audit.get("registry_records") != len(methods) or audit.get("metadata_checked") != len(checked) or set(audit.get("primary_source_needed", [])) != set(pending):
+                errors.append("Evidence report coverage disagrees with records")
+            cache = json.loads((root / ".arxiv_cache.json").read_text(encoding="utf-8-sig"))
+            for row in checked:
+                metadata = cache.get(row["arxiv_id"], {})
+                if row.get("title") != metadata.get("title") or not row["evidence"].get("checked_at"):
+                    errors.append("Fresh metadata identity/date missing: " + row["name"])
+        cats = json.loads((root / 'data/categories.json').read_text(encoding='utf-8-sig'))
+        if set(cats.get('canonical', [])) != set(counts) or cats.get('counts') != counts:
+            errors.append('Taxonomy names/counts disagree with registry')
+        with (root / '3dgs-methods-overview.csv').open(encoding='utf-8-sig', newline='') as stream:
+            csv_rows = list(csv.DictReader(stream))
+        expected_csv = [{'method': row['name'], 'arxiv_id': row['arxiv_id'], 'venue': row['venue'],
+            'year': str(row['year']) if row['year'] else '', 'category': row['category'],
+            'core_innovation': row['desc'], 'code_url': row['code_url']} for row in methods]
+        if csv_rows != expected_csv:
+            errors.append('CSV fields/order disagree with registry (not just record count)')
+        actual_html = html_records((root / 'docs/methods.html').read_text(encoding='utf-8-sig'))
+        if actual_html != [expected_html(row) for row in methods]:
+            errors.append('Explorer fields/order disagree with registry')
+        abstracts = load_abstracts(root / 'docs/abstracts.js')
+        if set(abstracts) != {row['name'] for row in methods}:
+            errors.append('Abstract keys disagree with registry')
+        errors.extend('Generated carrier/snapshot is stale: ' + path for path in export(root, check=True))
+    except (OSError, ValueError, KeyError, TypeError, IndexError) as exc:
+        errors.append(f'Invalid/missing carrier: {type(exc).__name__}: {exc}')
+    return errors
 
 
 def main():
-    methods_json = ROOT / "data" / "methods.json"
-    check(methods_json.exists(), "data/methods.json 不存在（请先运行 scripts/build_knowledge_base.py）")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check-arxiv', type=int, default=0)
+    args = parser.parse_args()
+    errors = validate()
+    for error in errors:
+        print('[FAIL]', error)
     if errors:
-        finish()
-
-    data = json.loads(methods_json.read_text(encoding="utf-8"))
-    methods = data["methods"]
-
-    # 1. count 一致
-    check(data.get("count") == len(methods),
-          f"methods.json count 字段 ({data.get('count')}) 与数组长度 ({len(methods)}) 不一致")
-
-    # 2. 去重
-    names = [m["name"].casefold() for m in methods]
-    dup_names = {n for n in names if names.count(n) > 1}
-    check(not dup_names, f"重复方法名: {sorted(dup_names)}")
-    ids = [m["arxiv_id"] for m in methods if m.get("arxiv_id")]
-    dup_ids = {i for i in ids if ids.count(i) > 1}
-    check(not dup_ids, f"重复 arXiv ID: {sorted(dup_ids)}")
-
-    # 3. arXiv 格式
-    bad_ids = [f"{m['name']}:{m['arxiv_id']}" for m in methods
-               if m.get("arxiv_id") and not ARXIV_RE.match(m["arxiv_id"])]
-    check(not bad_ids, f"arXiv ID 格式非法: {bad_ids[:10]}")
-
-    # 4. 类别规范集
-    cats = json.loads((ROOT / "data" / "categories.json").read_text(encoding="utf-8"))
-    canonical = set(cats["canonical"])
-    bad_cats = sorted({m["category"] for m in methods} - canonical)
-    check(not bad_cats, f"类别超出规范 taxonomy: {bad_cats}")
-
-    # 5. 黑名单
-    for m in methods:
-        check(re.sub(r"\s+", "", m["name"]).casefold() not in FABRICATED_BLACKLIST,
-              f"已证伪伪造条目仍存在: {m['name']}")
-
-    # 6. 三载体计数一致
-    n = len(methods)
-    with open(ROOT / "3dgs-methods-overview.csv", encoding="utf-8") as f:
-        csv_n = sum(1 for _ in csv.DictReader(f))
-    check(csv_n == n, f"CSV 行数 {csv_n} != methods.json {n}（请重新运行构建脚本）")
-
-    text = (ROOT / "docs" / "methods.html").read_text(encoding="utf-8")
-    block = text.split("const METHODS = [", 1)[1].split("\n];", 1)[0]
-    html_n = len(re.findall(r"\{ name: ", block))
-    check(html_n == n, f"methods.html METHODS {html_n} != methods.json {n}")
-
-    ab_text = (ROOT / "docs" / "abstracts.js").read_text(encoding="utf-8")
-    ab_n = len(re.findall(r'^  ".+": \{ abstractEn:', ab_text, flags=re.M))
-    check(ab_n == n, f"abstracts.js 键数 {ab_n} != methods.json {n}")
-
-    # 覆盖率统计（仅提示）
-    with_id = sum(1 for m in methods if m.get("arxiv_id"))
-    with_code = sum(1 for m in methods if m.get("code_url"))
-    print(f"[info] 总数 {n} | 含 arXiv {with_id} ({with_id*100//n}%) | 含代码链接 {with_code} ({with_code*100//n}%)")
-
-    # 7. 可选在线抽样核验
-    if "--check-arxiv" in sys.argv:
-        try:
-            k = int(sys.argv[sys.argv.index("--check-arxiv") + 1])
-        except (IndexError, ValueError):
-            k = 10
+        return 1
+    data = json.loads((ROOT / 'data/methods.json').read_text(encoding='utf-8-sig'))
+    print(f"[PASS] {len(data['methods'])} records: schema, IDs, aggregates, CSV/HTML fields, abstracts, Markdown and router snapshots")
+    if args.check_arxiv:
         import random
-        random.seed(42)
-        sample = random.sample([m for m in methods if m.get("arxiv_id")], min(k, len(ids)))
-        for m in sample:
-            url = f"https://arxiv.org/abs/{m['arxiv_id']}"
+        import time
+        eligible = [row for row in data['methods'] if row['arxiv_id']]
+        sample = random.Random(42).sample(eligible, min(args.check_arxiv, len(eligible)))
+        for row in sample:
             try:
-                req = urllib.request.Request(url, headers={"User-Agent": "knowledge-ci/1.0"})
-                with urllib.request.urlopen(req, timeout=15) as r:
-                    ok = r.status == 200
-            except Exception as e:
-                ok = False
-                warnings.append(f"arXiv 不可达 {m['name']} {url}: {e}")
-            check(ok, f"arXiv 不可达 {m['name']} {url}")
-            print(f"  [arxiv] {m['name']} {m['arxiv_id']} -> {'OK' if ok else 'FAIL'}")
-
-    finish()
-
-
-def finish():
-    for w in warnings:
-        print(f"[warn] {w}")
-    if errors:
-        for e in errors:
-            print(f"[FAIL] {e}")
-        sys.exit(1)
-    print("[PASS] 知识库校验全部通过")
-    sys.exit(0)
+                request = urllib.request.Request('https://arxiv.org/abs/' + row['arxiv_id'], headers={'User-Agent': 'catalog-ci/1.0'})
+                with urllib.request.urlopen(request, timeout=20) as response:
+                    if response.status != 200:
+                        raise OSError('non-200 response')
+            except Exception as exc:
+                print('[INCONCLUSIVE] Online check unavailable:', type(exc).__name__)
+                return 2
+            time.sleep(3.6)
+        print('[INFO] Online reachability does not verify method identity, venue, or result claims.')
+    return 0
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    raise SystemExit(main())
