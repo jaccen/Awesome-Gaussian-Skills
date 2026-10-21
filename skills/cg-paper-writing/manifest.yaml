@@ -12,6 +12,9 @@ axes:
       - all
       - topic
       - knowledge
+      - domain-template
+      - exemplar
+      - maintenance
     default: all
   venue:
     description: "Target publication venue"
@@ -64,17 +67,29 @@ routing:
       experiments:
         - references/writing-experiments.md
         - references/3dgs-paper-knowledge.md
+        - references/experiment-scale-thresholds.md
       contribution:
         - references/writing-experiments.md
       topic:
         - references/3dgs-domain-venues.md
+        - references/chinese-venue-routing-by-domain.md
       knowledge:
         - references/3dgs-paper-knowledge.md
+      domain-template:
+        - references/domain-exemplar-templates.md
+      exemplar:
+        - references/domain-exemplar-templates.md
+        - references/exemplar-deconstruction-sop.md
+      maintenance:
+        - references/reference-freshness-policy.md
       all:
         - references/writing-abstract-intro.md
         - references/writing-related-method.md
         - references/writing-experiments.md
         - references/3dgs-domain-venues.md
+        - references/chinese-venue-routing-by-domain.md
+        - references/exemplar-deconstruction-sop.md
+        - references/experiment-scale-thresholds.md
     venue:
       top-journal:
         - references/venue-formats.md
@@ -197,6 +212,11 @@ routing:
       - references/markdown-draft-format-audit.md
       - references/paper-evaluation-framework.md
       - references/top-paper-patterns.md
+      - references/domain-exemplar-templates.md
+      - references/exemplar-deconstruction-sop.md
+      - references/experiment-scale-thresholds.md
+      - references/chinese-venue-routing-by-domain.md
+      - references/reference-freshness-policy.md
       - references/reviewer-perspective.md
       - references/latex-source-hygiene.md
       - references/experiment-claim-verification.md

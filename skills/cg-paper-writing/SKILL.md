@@ -36,6 +36,11 @@ metadata:
     - "评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication"
     - "查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field"
     - "选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison"
+    - "写具身智能论文 / 写VLA论文 / 写机器人论文 / 写embodied AI paper / 写空间智能论文 / 写世界模型论文 / 写3D-LLM论文 / 写LLM Agent论文 / 写ReAct类论文 / 某方向顶会论文范文 / 某方向论文写作模板 / direction-specific exemplar / embodied AI paper template / spatial intelligence paper template / agent paper template"
+    - "拆解范文 / 拆一篇论文 / 学这篇论文怎么写 / 仿写顶会论文 / 提炼句式 / 范文拆解SOP / exemplar deconstruction / deconstruct a paper"
+    - "实验够不够 / 需要几个数据集 / 需要几个基线 / 需要几个seed / episode多少次 / 实验规模 / 实验量够吗 / 审稿人说实验不足 / experiment scale / how many baselines / how many seeds"
+    - "这篇中文投哪个刊 / 中文期刊选择 / 投计算机学报还是软件学报 / 具身智能投什么中文期刊 / Agent投什么刊 / 3DGS投哪个中文期刊 / chinese journal for my paper / 中文期刊落点"
+    - "这份文件过时了吗 / 怎么更新范文清单 / 多久刷新一次 / 参考文献时效 / 检查引用是否过期 / 刷新venue矩阵 / reference freshness / update stale references"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -58,6 +63,9 @@ Analyze the user's request to determine axis values:
 | Writing contribution statements | contribution |
 | Topic / venue selection for a 3DGS sub-field | topic |
 | Looking up verified method landscape / baselines / datasets / metrics | knowledge |
+| Writing a paper in a specific direction (3DGS / embodied AI / spatial intelligence / LLM Agent) and needing direction-specific exemplar breakdowns + venue templates | domain-template |
+| Deconstructing/learning from an exemplar paper (拆解范文/仿写/学这篇论文怎么写/提炼句式) | exemplar |
+| Checking/refreshing reference freshness, updating stale venue or exemplar lists (文件过期/刷新/更新范文清单/check freshness) | maintenance |
 | Full paper or unspecified section | all |
 
 ### Axis: venue
@@ -108,11 +116,14 @@ Read these files from references/:
 | intro | references/writing-abstract-intro.md |
 | related-work | references/writing-related-method.md + references/3dgs-paper-knowledge.md |
 | method | references/writing-related-method.md |
-| experiments | references/writing-experiments.md + references/3dgs-paper-knowledge.md |
+| experiments | references/writing-experiments.md + references/3dgs-paper-knowledge.md + references/experiment-scale-thresholds.md |
 | contribution | references/writing-experiments.md |
-| topic | references/3dgs-domain-venues.md |
+| topic | references/3dgs-domain-venues.md + references/chinese-venue-routing-by-domain.md |
 | knowledge | references/3dgs-paper-knowledge.md |
-| all | All writing fragments (abstract-intro, related-method, experiments) + references/3dgs-domain-venues.md |
+| domain-template | references/domain-exemplar-templates.md |
+| exemplar | references/domain-exemplar-templates.md + references/exemplar-deconstruction-sop.md |
+| maintenance | references/reference-freshness-policy.md |
+| all | All writing fragments (abstract-intro, related-method, experiments) + references/3dgs-domain-venues.md + references/chinese-venue-routing-by-domain.md + references/exemplar-deconstruction-sop.md + references/experiment-scale-thresholds.md |
 
 ### On-Demand Load (by detected venue)
 | venue | Fragment to Load |
@@ -144,6 +155,11 @@ Read these files from references/:
 - references/review-integrity.md — Multi-agent review, Devil's Advocate Protocol（含矛盾消融结果消解模式）, citation verification, integrity gates, style calibration, writing quality check, persistence
 - references/paper-evaluation-framework.md — 论文创新性与学术/产业价值评估框架（四维创新模型+TRL产业成熟度+10维评分表+审稿视角对照），用于投稿前自评、审稿、指导学生论文、评估他人工作
 - references/top-paper-patterns.md — 顶会论文共性模范范式（基于10篇CVPR 2026及前沿3DGS论文全文精读提炼）：贡献结构配方（3-4条四件套+first声明+外部技术嫁接）、五条选题路径、四层实验证据体系、三种摘要模板、Intro四段式+根本问题句、图表引导策略、章节配比、顶会投稿自检清单、实测写作瑕疵避坑；写作/修改论文与校准结构时加载
+- references/domain-exemplar-templates.md — 四方向（3DGS / 具身智能 / 空间智能 / LLM Agent）范文拆解+顶会模板细化清单：每方向含顶会代表作清单（venue/arXiv/为何是范文）、写作结构模板（摘要公式/引言弧线/方法组织/实验证据体系）、贡献声明配方、避坑清单、范文一手链接、arXiv ID 核验记录；用户要写某具体方向论文、需要该方向差异化范文参照时加载（与 top-paper-patterns.md 互补：前者是3DGS共性，本文件是四方向各自的差异化）
+- references/exemplar-deconstruction-sop.md — 范文拆解 SOP（六步法）：值不值得拆的筛选标准 + 三类范文拆法差异（范式创造/诊断改进/系统集成）+ 切段标功能→抽取承重句→反推论证链→图表考古→句式入库（带槽位）→差异对照归档 + 可直接复制的拆解记录模板 + 常见误区 + 与写作流程衔接；用户要求"拆解某篇范文/学习某论文怎么写/提炼可复用句式"时加载
+- references/experiment-scale-thresholds.md — 实验规模门槛表（四方向）：3DGS/具身智能/空间智能/Agent 各自的数据集数、基线数、消融、seeds、episodes、效率与成本指标、统计报告的经验下限与常见做法 + 交叉方向叠加规则 + 「实验够不够」八问自检 + 被质疑"实验不足"的三种应对 + 投稿前用目标 venue 近两年 accepted papers 校准的方法；**写实验节、自查实验充足性、准备 rebuttal 防守时加载**（注意：表中数字是社区惯例经验区间，非官方要求，必须按 §5 校准）
+- references/chinese-venue-routing-by-domain.md — 四方向→中文期刊落点映射：3DGS/具身智能/空间智能/Agent 各自的首选/次选/交叉落点/应用向/不建议 五档期刊 + 契合理由 + 注意事项 + 交叉方向主贡献归属规则 + 四步选择决策树 + 英文会议与中文期刊双向发表的合规提醒 + 中文期刊评审现实差异；**英文顶会未中改投中文刊、或想先在国内发表时加载**（只回答"投哪本"，具体格式见 `<venue>-format.md`）
+- references/reference-freshness-policy.md — 参考文献时效与刷新机制：文件新鲜度元数据模板、三类失效（换届型/超越型/链接型）、刷新触发条件、会议周期参考表、逐文件刷新清单、六步刷新 SOP（含脚本命令与同步纪律）、P0/P1/P2 失效等级与响应时限、已知长期空缺；配套工程脚本 `scripts/check_reference_freshness.py`；**用户问"这份文件过时了吗/怎么更新/多久刷一次"，或每届 CVPR/NeurIPS 后维护 references 时加载**
 - references/reviewer-perspective.md — 审稿人视角拒稿与中稿规律（基于OpenReview 33条真实审稿意见编码）：Champion效应与批评位置理论、拒稿理由Top10、录用要素Top10、可复述新颖性标准、致命伤vs可挽救伤判别与Rebuttal博弈（MoE-GS低分中稿解密）、跨venue转投策略、压缩方向八大坑、图表制作40条自查清单、投稿前防御清单D1-D15；投稿前自检、预判审稿攻击点、准备rebuttal、决定转投时加载
 - references/latex-source-hygiene.md — LaTeX 源码卫生与机械化验证（连续空行/环境与章节同行/跨文档引用写法/bib 键名一致性/S 编号对应/编译健康度/修复回归验证），配套一键核查脚本（维护者本地工具，未随技能分发，可按本文件方法论自写）；投稿前格式核查与源码清理任务必读
 - references/markdown-draft-format-audit.md — Markdown 工作稿投稿前格式审计与 P0 机械修复（摘要词数/引用首现顺序/孤儿图表检测/彩色批注两类处置规则/占位符两步法引用重排/摘要瘦身/主文-补充切分标注/中英双稿独立同步与终检清单/章节重构后引用顺序复检/MD→LaTeX 转换边界 bibitem 核验）；LaTeX 排版前的工作稿格式核查、批注清理与 P0/P2 修复任务必读
