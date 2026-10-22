@@ -2,7 +2,7 @@
 # 路由表与工作流配方（详细版）
 
 > 本文件是 `SKILL.md` 路由表的扩展：科研全流程的编排配方、专家团分派、方法检索策略、空间智能专题地图。
-> 数据口径：**976 方法 / 869 条带 arXiv ID / 26 类**（2026-10-19 快照，`data/methods.json`）；子技能 18 个 + 专家团 1 个。
+> 数据口径：**1011 方法 / 904 条带 arXiv ID / 26 类**（2026-10-21 快照，`data/methods.json` 的 `generated_at`）；子技能 18 个 + 专家团 1 个（v2.0.0）。
 
 ## 零、26 个类目（canonical，取自 `data/categories.json`）
 
@@ -60,33 +60,41 @@ Foundation · Optimization · Surface & Rendering · Compression & Streaming · 
 3. 对比表重绘 → `3dgs-visualizer`
 4. 需要完整的三审稿视角 + meta-review → 走配方 F 的 R3 角色
 
-### 配方 F：专家团全流程（2026-10 新增）
-**触发**："帮我评估这个 idea"、"这个创新点够不够"、"帮我模拟审稿"、"润色"、"消除 AI 痕迹"、"按期刊格式改"、"分析实验结果"
+### 配方 F：专家团按需协作（v2.0，2026-10-21 评审）
+**触发**："帮我评估这个 idea"、"这个创新点够不够"、"帮我模拟审稿"、"润色"、"检查投稿要求"、"分析实验结果"
 
-路由到 `research-expert-team`，按下列九角色与流水线编排：
+路由到 `research-expert-team`（**v2.0.0**）。它**不再强制九阶段流水线**——角色名只用于组织检查项，
+"短问题不需要九阶段报告或一堆生成文件"。按任务取所需角色：
 
-| 角色 | 触发语 | 产出 |
+| 角色（v2.0 名称） | 回答的问题 | 期望产出 |
 |------|--------|------|
-| R1 Idea Evaluator | "这个 idea 值得做吗" | 四维判定：新颖性 / 可行性 / 影响力 / 成本，每维以 ≥3 个库内方法作 prior art |
-| R2 Innovation Miner | "创新点在哪" | 2–4 条排序的贡献声明，各自映射到可度量 delta 与具名基线 |
-| R3 Simulated Reviewer | "帮我审稿" | Reviewer-1/2/3 + meta-review，每条质疑配一个修法 |
-| R4 Academic Polisher | "润色" | 语言、术语一致性、段落节奏、claim-evidence 对齐（可追踪，不静默改写技术论断） |
-| R5 AIGC-Trace Hygiene | "消除 AI 痕迹" | 元数据清理、AI 套话与模板节奏中和、文风自然化 |
-| R6 Framework & Venue Compliance | "结构合规吗" | 故事线、贡献-证据映射、会议/期刊结构惯例 |
-| R7 Format & Typesetting | "按格式改" | 严格模板合规：引用样式、图表规则、页数、匿名化 |
-| R8 Experiment Designer | "实验怎么设计" | 基线集、消融矩阵、指标、数据集（须回查知识库取基线） |
-| R9 Experiment Analyst | "结果怎么解读" | 结果解释、显著性、失败案例分析、"数字支持什么、不支持什么" |
+| R1 Idea evaluator | 这能教会我们什么？什么会导致它失败？ | 最近竞品、明确的检索边界、假设、可行性与未决风险 |
+| R2 Contribution analyst | 相对最近方法究竟改变了什么？ | 有界的差异声明 + 可被证伪的检验；**不做普适新颖性排名** |
+| R3 Critical reviewer | 草稿支持哪些结论？ | 定位到处的观察、推论、不确定性与可行补救；证据变了就改质疑 |
+| R4 Academic editor | 读者能看懂这个论证吗？ | 更清晰的表述，实质改动可追踪；**不静默强化论断** |
+| R5 Publication integrity editor | 署名/披露/来源是否准确？ | 引用一致、匿名化、合规清理；保留必要的 AI 使用声明 |
+| R6 Argumentation reviewer | 论断与证据是否构成连贯论证？ | claim–evidence 映射；结构为本文而定，不套用成功范例 |
+| R7 Venue checker | 当前官方要求有哪些？ | 官方 URL + 检索日期 + 要求-草稿对照矩阵；未确认规则须标注 |
+| R8 Experiment planner | 哪个实验能区分这些解释？ | 对照、独立实验单元、指标、划分、重复、预算、失败判据、分析计划 |
+| R9 Result analyst | 测量支持什么、还有什么未决？ | 可追溯的运行产物、效应量、不确定性、替代解释、局限 |
 
-**流水线**：R1 → R2 → R8 → (写作) → R6 → R7 → R4 → R5 → R3 → (修改) → R9 → (rebuttal)。任意角色可单独调用。
+**建议顺序（仅适用时）**：范围 → 相关工作核查 → 贡献与检验设计 → 测量 → 解读 → 起草 → 评审 → 修改。
+纯写作任务可从 R4 起；已有结果可从 R9 起。
 
-**三个前沿方向的方法选型表**（在 `research-expert-team/references/` 下，涉及这些方向时先查表再回查知识库）：
+**两条硬纪律（v2.0 新增）**：
+- **证据台账**：每条关键论断记录「论断与类型 / 一手来源 / 位置 / 核查范围 / 条件 / 评估 / 时间与未查边界」。
+  arXiv 标题匹配**只验证元数据**，不验证录用、性能论断或可复现。
+- **不设配额**：不为每条论断硬凑引用数，不设固定攻击分或预设 accept/reject；模拟审稿是准备，不是预测。
 
-| 方向 | 库内方法数 | 选型表文件 |
+**三个前沿方向的一手案例索引**（在 `research-expert-team/references/` 下）：
+它们已改为 **primary-source case index**，不再声称"库内 N 个方法"；涉及这些方向时先查表、再回查 `data/methods.json`。
+
+| 方向 | 库内方法数（2026-10-21 实测） | 索引文件 |
 |------|-----------|-----------|
-| Ontology & Knowledge Representation | 12 | `mp-ontology.md` |
+| Ontology & Knowledge Representation | 13 | `mp-ontology.md` |
 | Super Agents & Agentic AI | 20 | `mp-super-agents.md` |
-| AIGC Content Creation | 22 | `mp-aigc.md` |
-| Spatial Intelligence（世界模型/具身） | 12（另有 SLAM 47、自动驾驶 24、具身 44 相关） | `mp-spatial.md` |
+| AIGC Content Creation | 23 | `mp-aigc.md` |
+| Spatial Intelligence（世界模型/具身） | 15（另有 SLAM 51、自动驾驶 27、具身 46 相关） | `mp-spatial.md` |
 
 ## 二、空间智能专题地图
 
@@ -109,16 +117,16 @@ Foundation · Optimization · Surface & Rendering · Compression & Streaming · 
 1. **先窄后宽**：先用精确方法名/机制词 Grep，命中不足再放宽到类目段落。
 2. **主清单优先，簇文件补充**：`3dgs-methods-overview.md` 是唯一全量清单；`methods-core.md`、`methods-semantic-editing.md`、`methods-systems-apps.md`、`papers-collection.md` 与九个 `_kb_*.md` 均已在本技能包内，overview 命中不足时直接查它们，**无需再去仓库读**（仓库版本更新更全，需要最新时才用仓库路径）。
 3. **每日增量**：仓库 `changelog/YYYY-MM-DD*.md` 记录每日新增方法；查"最近一周新方法"时按日期 Grep changelog。
-4. **计数口径**：`976 方法 / 869 条带 arXiv ID / 26 类`，2026-10-19 快照。
+4. **计数口径**：`1011 方法 / 904 条带 arXiv ID / 26 类`，2026-10-21 快照（`data/methods.json` 的 `generated_at`）。
    引用统计数字时必须注明口径与快照日期，防止"计量口径不自洽"。
-   口径演进：678（v0.9.0 审计后）→ 700 → 862 → 859（质量治理回退）→ 872 → 881 → 900 → 955 → **976**。
+   口径演进：678（v0.9.0 审计后）→ 700 → 862 → 859（质量治理回退）→ 872 → 881 → 900 → 955 → 976 → **1011**。
    历史叙述中的旧数字属 changelog 原文，不改写、也不得当作当前值引用。
 
 ## 四、子技能快速索引（18 + 专家团）
 
 | 技能 | 一句话能力 |
 |------|-----------|
-| **research-expert-team** | 九角色科研专家团：选题→创新点→审稿→润色→去 AI 痕迹→格式→实验设计/分析 |
+| **research-expert-team** | 科研专家团 v2.0：R1–R9 检查角色**按需取用**（选题→贡献→批判审稿→编辑→发表诚信→论证→venue→实验→结果），带证据台账纪律，不强制九阶段 |
 | 3dgs-paper-reader | 读论文：架构、创新点、实验结果结构化提取 |
 | 3dgs-method-compare | 11 维度方法对比 + 轴驱动分片加载 |
 | 3dgs-experiment-planner | 数据集/基线/指标/消融矩阵，对标 CVPR/ICCV/ECCV/SIGGRAPH/TVCG |

@@ -26,6 +26,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "references"
 # 总路由技能的两个自有文件，以工程 agent-router/ 为单一事实源（不占 skills/ 的 18 技能计数）
 ROUTER = ROOT / "agent-router"
+# agent-router/references/ 是 references/ 的版本化镜像（随 git 提交，供技能包比对）
+MIRROR = ROUTER / "references"
 DST_BASE = Path.home() / ".workbuddy" / "skills" / "awesome-gaussian-skills"
 DST = DST_BASE / "references"
 BACKUP_ROOT = ROOT / ".workbuddy" / "backups"
@@ -73,14 +75,30 @@ def main() -> int:
         else:
             sames.append(p.name)
 
+    # 版本化镜像 agent-router/references/ 与源是否同步（它随 git 提交，供技能包比对）
+    mirror_upd: list[Path] = []
+    if MIRROR.exists():
+        for p in sorted(SRC.iterdir()):
+            if not p.is_file():
+                continue
+            if p.suffix.lower() in EXCLUDE_SUFFIX or p.name in EXCLUDE_NAME:
+                continue
+            mp = MIRROR / p.name
+            if not mp.exists() or md5(mp) != md5(p):
+                mirror_upd.append(p)
+
     print("=" * 76)
     print(f"同步模式：{'APPLY' if apply else 'DRY-RUN'}　工程 references/ → 总路由技能包")
     print(f"新增 {len(adds)}｜更新 {len(upds)}｜一致 {len(sames)}｜跳过(非 md/中间产物) {len(skipped)}")
+    print(f"镜像 agent-router/references/ 落后：{len(mirror_upd)}")
     print("=" * 76)
     for p in adds:
         print(f"  + {p.name}  ({p.stat().st_size/1024:.0f} KB)")
     for p in upds:
         print(f"  ~ {p.name}  ({p.stat().st_size/1024:.0f} KB)")
+    for p in mirror_upd:
+        if p not in upds:
+            print(f"  ^ 镜像待刷 {p.name}")
     if skipped:
         print(f"  跳过：{', '.join(skipped)}")
 
@@ -113,6 +131,7 @@ def main() -> int:
             print(f"    {n} -> {m}")
 
     todo = [(p, DST / p.name) for p in adds + upds]
+    todo += [(p, MIRROR / p.name) for p in mirror_upd if (MIRROR / p.name) != (DST / p.name)]
     todo += [(s, d) for s, d, st in router_jobs if st in ("add", "update")]
 
     if not apply:
@@ -125,7 +144,8 @@ def main() -> int:
         bak.mkdir(parents=True, exist_ok=True)
         for _, dst in todo:
             if dst.exists():
-                shutil.copy2(dst, bak / dst.name)
+                # 技能包与镜像可能同名，用父目录名区分备份
+                shutil.copy2(dst, bak / f"{dst.parent.name}__{dst.name}")
         print(f"\n备份目录：{bak}")
 
     ok, fail = 0, []

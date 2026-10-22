@@ -4,7 +4,7 @@
 
 > **用途**：写或修改 3DGS / 具身智能 / 空间智能 / Agent 四个方向的论文时，按本文件对照该方向的顶会范文拆解来组织结构、贡献声明、实验证据与避坑。与 `top-paper-patterns.md`（3DGS 通用共性范式）和 `writing-patterns-from-top-papers.md`（3 篇基准逐句拆解）互补——前者是"所有 3DGS 顶会的共性"，本文件是"四个方向各自的差异化和代表作"。
 > **整理日期**：2026-10-21
-> **检索口径**：全网检索（WebSearch）+ 项目 `data/methods.json`（976 方法/26 类快照）+ CVF/OpenAccess/PMLR 一手论文页。所有 arXiv ID 与 venue 均来自检索返回，写作时如要写入稿件请按 `3dgs-citation-audit.md` 三层校验协议复核。
+> **检索口径**：全网检索（WebSearch）+ 项目 `data/methods.json`（1011 方法/26 类，2026-10-21 快照）+ CVF/OpenAccess/PMLR 一手论文页。所有 arXiv ID 与 venue 均来自检索返回，写作时如要写入稿件请按 `3dgs-citation-audit.md` 三层校验协议复核。
 
 ---
 
@@ -309,7 +309,7 @@ Agent 论文贡献常含"新范式命名 + 基准提升 + 开源"：
 
 本文件范文清单基于以下 2026-10-21 检索来源编译：
 - WebSearch: "embodied AI paper writing CVPR CoRL RSS ICRA VLA" / "spatial intelligence world model JEPA" / "LLM agent paper ReAct Reflexion" / "3DGS SLAM compression CVPR 2026"
-- 项目 `data/methods.json` 2026-10-19 快照（976 方法/26 类）
+- 项目 `data/methods.json` 2026-10-21 快照（1011 方法/26 类）
 - CVF Open Access / PMLR / arXiv 一手论文页
 - CoRL Writing Style（SkillMD，brycewang-stanford/Awesome-Journal-Skills）
 - Embodied-AI Paper Writer（LobeHub，OpenGHz，蒸馏自 63 篇 CoRL/RSS/ICRA/IROS/Science Robotics 2022-2026）
