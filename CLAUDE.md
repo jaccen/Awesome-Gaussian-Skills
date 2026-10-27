@@ -36,6 +36,9 @@ This project is the curated catalog and AI Agent skill pack for 3D Gaussian Spla
 | `3dgs-articulated-reasoner` | `/3dgs-articulated-reasoner [task]` | Articulated object reasoning & digital twin |
 | `3dgs-compression-deploy` | `/3dgs-compression-deploy [target]` | Compress & deploy 3DGS models (quantize, prune, VQ, stream, Web/Mobile) |
 | `3dgs-training-debugger` | `/3dgs-training-debugger [symptom]` | Diagnose training failures: OOM, NaN, divergence, artifacts (60+ runtime patterns) |
+| `ontology` | `/ontology [query]` | Build & reason over 3D scene graphs, spatial ontologies, neuro-symbolic representations |
+| `super-agent` | `/super-agent [task]` | Design, orchestrate & debug multi-agent LLM systems and 3D/spatial agents |
+| `research-expert-team` | `/research-expert-team [task]` | Nine-role research expert team: idea evaluation, innovation mining, simulated review, polishing, AIGC-trace hygiene, venue compliance, experiment design & analysis |
 
 ## Knowledge Base Structure
 

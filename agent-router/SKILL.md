@@ -80,65 +80,65 @@ metadata:
 2. 任务横跨多阶段（如"为我的新方法写论文"）→ 交给 `research-expert-team`，由它**按任务取用所需角色**（建议顺序：范围 → 相关工作核查 → 贡献与检验设计 → 测量 → 解读 → 起草 → 评审 → 修改），并分派到各子技能；**不要默认跑九阶段全套**。
 3. 意图模糊时，先查下方知识库定位方法背景，再确认路由。
 
-## 知识库使用（references/ 目录）
+## 知识库使用（../references/ 目录）
 
-本技能包内含 30 个知识库快照，按需加载，**不要一次全读**：
+本技能引用仓库根 `references/` 下 30 个知识库文件（路径前缀 `../references/`），按需加载，**不要一次全读**：
 
 ### A. 方法检索（最先查）
 
 | 文件 | 内容 | 加载时机 |
 |------|------|----------|
-| `3dgs-methods-overview.md`（约 209 KB，最大） | 全部方法按 26 个类目列表，含 changelog 追加记录 | 需要检索方法、找相关工作时，**必须用 Grep 按关键词/类目检索**，禁止整读 |
-| `methods-core.md`（102 KB） | 基础 / 表示 / 前馈 / 压缩 / 动态的核心方法详解 | overview 命中不足时补充 |
-| `methods-semantic-editing.md`（27 KB） | 语义与编辑方向方法 | 语义、编辑类任务 |
-| `methods-systems-apps.md`（45 KB） | 系统与应用方向方法（含鲁棒性） | 部署、应用类任务 |
-| `papers-collection.md`（36 KB） | 按研究方向组织的补充论文清单 | 需要更广的论文池 |
+| `../references/3dgs-methods-overview.md`（约 209 KB，最大） | 全部方法按 26 个类目列表，含 changelog 追加记录 | 需要检索方法、找相关工作时，**必须用 Grep 按关键词/类目检索**，禁止整读 |
+| `../references/methods-core.md`（102 KB） | 基础 / 表示 / 前馈 / 压缩 / 动态的核心方法详解 | overview 命中不足时补充 |
+| `../references/methods-semantic-editing.md`（27 KB） | 语义与编辑方向方法 | 语义、编辑类任务 |
+| `../references/methods-systems-apps.md`（45 KB） | 系统与应用方向方法（含鲁棒性） | 部署、应用类任务 |
+| `../references/papers-collection.md`（36 KB） | 按研究方向组织的补充论文清单 | 需要更广的论文池 |
 
 ### B. 深度研读笔记（九簇，`_kb_*.md`）
 
 | 文件 | 簇主题 |
 |------|--------|
-| `_kb_A_Found_Render_Opt_Acc.md` | 基础、渲染、优化、加速 |
-| `_kb_B_Compression.md` | 压缩与流式 |
-| `_kb_C_Dynamic4D.md` | 动态与 4D |
-| `_kb_D_FeedForward.md` | 前馈重建 |
-| `_kb_E_Sparse_SLAM.md` | 稀疏视角与 SLAM |
-| `_kb_F_Embodied_Driving.md` | 具身与自动驾驶 |
-| `_kb_G_Editing_Human_Gen.md` | 编辑、人体与生成 |
-| `_kb_H_Semantic_Cross_HDR.md` | 语义、跨域、HDR |
-| `_kb_I_CAD_Large_Sim_Sec_World.md` | CAD、大规模、仿真、安全、世界模型 |
+| `../references/_kb_A_Found_Render_Opt_Acc.md` | 基础、渲染、优化、加速 |
+| `../references/_kb_B_Compression.md` | 压缩与流式 |
+| `../references/_kb_C_Dynamic4D.md` | 动态与 4D |
+| `../references/_kb_D_FeedForward.md` | 前馈重建 |
+| `../references/_kb_E_Sparse_SLAM.md` | 稀疏视角与 SLAM |
+| `../references/_kb_F_Embodied_Driving.md` | 具身与自动驾驶 |
+| `../references/_kb_G_Editing_Human_Gen.md` | 编辑、人体与生成 |
+| `../references/_kb_H_Semantic_Cross_HDR.md` | 语义、跨域、HDR |
+| `../references/_kb_I_CAD_Large_Sim_Sec_World.md` | CAD、大规模、仿真、安全、世界模型 |
 
-九簇笔记的逐篇 ID 已逐一核验可达；`paper-reading-knowledge-base.md`（198 KB）是它们的汇总深读版。
+九簇笔记的逐篇 ID 已逐一核验可达；`../references/paper-reading-knowledge-base.md`（198 KB）是它们的汇总深读版。
 
 ### C. 写作 / 投稿 / 实验
 
 | 文件 | 内容 | 加载时机 |
 |------|------|----------|
-| `3dgs-writing-capability.md` | 26 类 → 期刊矩阵 + 近期论文精读 + 选题切口 | 定位投稿 venue、找选题 |
-| `ai-journal-landscape-2026.md` | 通用 AI 期刊分区与 3DGS 适配标注（**二手编译，须一手核实**） | 期刊替代落点 |
-| `venues.md` | 目标会议/期刊信息 | 投稿规划 |
-| `baselines.md` | 常用基线方法速查 | 实验设计 |
-| `benchmark-data.md` | 基准数据、MS-SSIM/VMAF/FID 指标、性能对比表 | 实验对标、报告数据 |
-| `dynamic-datasets.md` | 动态场景数据集 | 动态场景实验 |
-| `experiments.md` | 标准实验设计与数据集配置 | 实验设计 |
-| `terminology.md` | 三维重建/新视角合成术语与符号规范 | 写作一致性 |
+| `../references/3dgs-writing-capability.md` | 26 类 → 期刊矩阵 + 近期论文精读 + 选题切口 | 定位投稿 venue、找选题 |
+| `../references/ai-journal-landscape-2026.md` | 通用 AI 期刊分区与 3DGS 适配标注（**二手编译，须一手核实**） | 期刊替代落点 |
+| `../references/venues.md` | 目标会议/期刊信息 | 投稿规划 |
+| `../references/baselines.md` | 常用基线方法速查 | 实验设计 |
+| `../references/benchmark-data.md` | 基准数据、MS-SSIM/VMAF/FID 指标、性能对比表 | 实验对标、报告数据 |
+| `../references/dynamic-datasets.md` | 动态场景数据集 | 动态场景实验 |
+| `../references/experiments.md` | 标准实验设计与数据集配置 | 实验设计 |
+| `../references/terminology.md` | 三维重建/新视角合成术语与符号规范 | 写作一致性 |
 
 ### D. 空间智能 / 世界模型 / 具身
 
 | 文件 | 内容 |
 |------|------|
-| `world-models-spatial-intelligence.md` | 世界模型五流派、空间智能定义、Physical AI、商业化与研究方向 |
-| `embodied-spatial-intelligence-papers.md` | 具身智能论文集（VLA 谱系、Sim2Real 等） |
-| `slat-unified-representation.md` | SLAT 统一编码-解码框架 |
-| `cad-3d.md` | CAD/3D 方向术语、基线与数据集 |
-| `3dgs-spatial-intelligence-verified-references.md` | 逐条验证过的权威参考，[VERIFIED]/[CROSS-REF]/[UNVERIFIED] 三级标注 |
-| `verification-report.md` | 全项目论文 arXiv ID 核查报告（快照） |
+| `../references/world-models-spatial-intelligence.md` | 世界模型五流派、空间智能定义、Physical AI、商业化与研究方向 |
+| `../references/embodied-spatial-intelligence-papers.md` | 具身智能论文集（VLA 谱系、Sim2Real 等） |
+| `../references/slat-unified-representation.md` | SLAT 统一编码-解码框架 |
+| `../references/cad-3d.md` | CAD/3D 方向术语、基线与数据集 |
+| `../references/3dgs-spatial-intelligence-verified-references.md` | 逐条验证过的权威参考，[VERIFIED]/[CROSS-REF]/[UNVERIFIED] 三级标注 |
+| `../references/verification-report.md` | 全项目论文 arXiv ID 核查报告（快照） |
 
 ### E. 路由配方
 
-`router-map.md`：六套工作流配方（文献调研 / 立项 / 写作投稿 / 工程落地 / 审稿答辩 / 专家团按需协作）+ 空间智能专题地图 + 检索策略细则 + 子技能索引。
+`router-map.md`（本技能自有，位于 `agent-router/references/router-map.md`）：六套工作流配方（文献调研 / 立项 / 写作投稿 / 工程落地 / 审稿答辩 / 专家团按需协作）+ 空间智能专题地图 + 检索策略细则 + 子技能索引。
 
-**检索模式示例**（对 `3dgs-methods-overview.md`）：
+**检索模式示例**（对 `../references/3dgs-methods-overview.md`）：
 - 按类目找方法：`Grep pattern="### Compression & Streaming" -A 30`
 - 按方法名查详情：`Grep pattern="Mip-Splatting"`
 - 按 venue 找新作：`Grep pattern="ECCV 2026"`
@@ -163,4 +163,4 @@ metadata:
 - 直接 Grep 本地仓库 `<repository-root>\references\` 下的同名文件（该仓库的当前本地快照，需检查来源与日期）
 - 查看 `changelog/` 目录获取每日新增方法
 - 方法总量以 `data/methods.json` 的 `count` 字段为准（以 data/methods.json 为准），不要以本文件或 README 的旧表述为准
-- 快照刷新：`python scripts/sync_umbrella_refs.py --apply`（工程 references/ → 本技能包，单向，不删技能包自有文件）
+- 本技能已改为直接引用仓库根 `references/`，不再维护 `agent-router/references/` 镜像副本（2026-10-28 精简）
