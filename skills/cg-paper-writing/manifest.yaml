@@ -12,9 +12,8 @@ axes:
       - all
       - topic
       - knowledge
-      - domain-template
-      - exemplar
-      - maintenance
+      - figure
+      - rebuttal
     default: all
   venue:
     description: "Target publication venue"
@@ -46,6 +45,18 @@ axes:
       - ccf-intl
       - all
     default: all
+  task:
+    description: "Lifecycle task spanning multiple sections (idea-eval/skeleton/literature/figure/experiment/polish/rebuttal). Fuses 7 external skills into cg-paper-writing for full-pipeline coverage."
+    values:
+      - idea-eval
+      - skeleton
+      - literature
+      - figure
+      - experiment
+      - polish
+      - rebuttal
+      - none
+    default: none
 
 routing:
   always_load:
@@ -67,29 +78,21 @@ routing:
       experiments:
         - references/writing-experiments.md
         - references/3dgs-paper-knowledge.md
-        - references/experiment-scale-thresholds.md
       contribution:
         - references/writing-experiments.md
       topic:
         - references/3dgs-domain-venues.md
-        - references/chinese-venue-routing-by-domain.md
       knowledge:
         - references/3dgs-paper-knowledge.md
-      domain-template:
-        - references/domain-exemplar-templates.md
-      exemplar:
-        - references/domain-exemplar-templates.md
-        - references/exemplar-deconstruction-sop.md
-      maintenance:
-        - references/reference-freshness-policy.md
+      figure:
+        - references/figure-design-protocol.md
+      rebuttal:
+        - references/rebuttal-protocol.md
       all:
         - references/writing-abstract-intro.md
         - references/writing-related-method.md
         - references/writing-experiments.md
         - references/3dgs-domain-venues.md
-        - references/chinese-venue-routing-by-domain.md
-        - references/exemplar-deconstruction-sop.md
-        - references/experiment-scale-thresholds.md
     venue:
       top-journal:
         - references/venue-formats.md
@@ -212,12 +215,30 @@ routing:
       - references/markdown-draft-format-audit.md
       - references/paper-evaluation-framework.md
       - references/top-paper-patterns.md
-      - references/domain-exemplar-templates.md
-      - references/exemplar-deconstruction-sop.md
-      - references/experiment-scale-thresholds.md
-      - references/chinese-venue-routing-by-domain.md
-      - references/reference-freshness-policy.md
       - references/reviewer-perspective.md
       - references/latex-source-hygiene.md
       - references/experiment-claim-verification.md
       - references/3dgs-citation-audit.md
+      - references/idea-evaluation.md
+      - references/paper-skeleton-protocol.md
+      - references/literature-search-protocol.md
+      - references/figure-design-protocol.md
+      - references/experiment-design-protocol.md
+      - references/polishing-protocol.md
+      - references/rebuttal-protocol.md
+    task:
+      idea-eval:
+        - references/idea-evaluation.md
+      skeleton:
+        - references/paper-skeleton-protocol.md
+      literature:
+        - references/literature-search-protocol.md
+      figure:
+        - references/figure-design-protocol.md
+      experiment:
+        - references/experiment-design-protocol.md
+      polish:
+        - references/polishing-protocol.md
+      rebuttal:
+        - references/rebuttal-protocol.md
+      none: []

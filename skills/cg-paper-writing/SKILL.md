@@ -1,74 +1,41 @@
 ---
 name: cg-paper-writing
-description: 'Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS,
-  SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (17
-  journal-specific format specs). Multi-agent adversarial review, citation integrity gates, style calibration, paper
-  novelty/industry-value evaluation, pre-submission format audit, experiment claim verification. Use when: writing
-  or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation
-  integrity check, calibrating writing style to a venue, evaluating paper value, 写论文/写paper/CG论文/计算机学报投稿/软件学报投稿/图形学学报投稿/自动化学报投稿/中文核心期刊.'
+display_name: CG论文写作引擎
+display_name_en: CG Paper Writing Engine
+description: "Academic paper writing for 3D vision, computer graphics, CAD, and 3D understanding. Covers NeRF, 3DGS, SLAM, point cloud, 3D shape, CAD modeling. Supports CVPR/ICCV/ECCV/SIGGRAPH venues and Chinese core journals (17 journal-specific format specs). Multi-agent adversarial review, citation integrity gates, style calibration, paper novelty/industry-value evaluation, pre-submission format audit, experiment claim verification. Use when: writing or revising a CG/3D vision paper, drafting abstract/intro/method/experiments, running adversarial review or citation integrity check, calibrating writing style to a venue, evaluating paper value, 写论文/写paper/CG论文/计算机学报投稿/软件学报投稿/图形学学报投稿/自动化学报投稿/中文核心期刊."
+description_zh: "面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等 17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改 CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。"
+description_en: "An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments), multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification."
+category: writing
+version: "3.3.0"
+author: jaccen
 license: Apache-2.0
+user-invocable: true
+agent_created: true
 metadata:
-  tags:
-  - paper-writing
-  - academic
-  - computer-graphics
-  - 3dgs
-  - nerf
-  - computer-vision
-  - cvpr
-  - siggraph
-  - adversarial-review
-  - citation-integrity
-  - style-calibration
-  - paper-evaluation
-  - pre-submission-check
+  tags: ["paper-writing", "academic", "computer-graphics", "3dgs", "nerf", "computer-vision", "cvpr", "siggraph", "adversarial-review", "citation-integrity", "style-calibration", "paper-evaluation", "pre-submission-check"]
   when_to_use:
-  - Write or revise a CG/3D vision academic paper
-  - Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper
-  - Run adversarial review or citation integrity check on a draft
-  - Calibrate writing style to a target venue
-  - 写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文
-  - 按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式
-  - 按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述
-  - 按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD
-  - 自动化学报投稿 / 中国科学信息科学投稿 / 计算机研究与发展投稿 / 中文信息学报投稿
-  - 中国图象图形学报投稿 / 模式识别与人工智能投稿 / 智能系统学报投稿 / 虚拟现实与智能硬件投稿
-  - 计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿
-  - 搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）
-  - CCF国际期刊投稿 / IEEE Transactions投稿 / ACM Transactions投稿 / Springer期刊投稿 / TPAMI投稿 / TOG投稿 / TVCG投稿 / JMLR投稿
-  - 评估论文创新性与学术/产业价值 / 论文价值评判 / 这篇论文值不值得投 / 审稿预审评分 / Evaluate paper novelty and industry value
-  - 投稿前格式核查 / LaTeX 源码卫生检查 / 论文源码清理 / 补充材料编号对应检查 / pre-submission source hygiene check
-  - Markdown 工作稿投稿前格式审计 / 批注清理 / 引用重排 / 孤儿图补引 / Markdown draft format audit
-  - 实验声明溯源 / 数据来源核查 / 服务器实验验证 / 实验数字真实性核查 / verify experiment claims against server artifacts
-  - 为论文补做实验 / 服务器跑实验 / 远程训练评估 / 排查训练跑完但结果异常 / rerun experiments to back paper claims
-  - 核查论文引用的真实性 / 引文编号核实 / 方法名与 arXiv 号是否匹配 / 投稿前引用自查 / verify cited arXiv ids and method names
-  - 评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication
-  - 查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field
-  - 选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison
-  - 写具身智能论文 / 写VLA论文 / 写机器人论文 / 写embodied AI paper / 写空间智能论文 / 写世界模型论文 / 写3D-LLM论文 / 写LLM Agent论文 / 写ReAct类论文 /
-    某方向顶会论文范文 / 某方向论文写作模板 / direction-specific exemplar / embodied AI paper template / spatial intelligence paper
-    template / agent paper template
-  - 拆解范文 / 拆一篇论文 / 学这篇论文怎么写 / 仿写顶会论文 / 提炼句式 / 范文拆解SOP / exemplar deconstruction / deconstruct a paper
-  - 实验够不够 / 需要几个数据集 / 需要几个基线 / 需要几个seed / episode多少次 / 实验规模 / 实验量够吗 / 审稿人说实验不足 / experiment scale / how many baselines
-    / how many seeds
-  - 这篇中文投哪个刊 / 中文期刊选择 / 投计算机学报还是软件学报 / 具身智能投什么中文期刊 / Agent投什么刊 / 3DGS投哪个中文期刊 / chinese journal for my paper / 中文期刊落点
-  - 这份文件过时了吗 / 怎么更新范文清单 / 多久刷新一次 / 参考文献时效 / 检查引用是否过期 / 刷新venue矩阵 / reference freshness / update stale references
-  platform-fields:
-    display_name: CG论文写作引擎
-    display_name_en: CG Paper Writing Engine
-    description_zh: 面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等
-      17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改
-      CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。
-    description_en: 'An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point
-      clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal
-      format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments),
-      multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper
-      novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification.'
-    category: writing
-    version: 3.3.0
-    author: jaccen
-    user-invocable: true
-    agent_created: true
+    - "Write or revise a CG/3D vision academic paper"
+    - "Draft abstract, introduction, related work, method, or experiments for a 3DGS/NeRF/CAD paper"
+    - "Run adversarial review or citation integrity check on a draft"
+    - "Calibrate writing style to a target venue"
+    - "写论文 / 写paper / 论文写作 / CG论文 / 三维视觉论文"
+    - "按《计算机学报》格式撰写/修改 / 计算机学报投稿 / CJC 综述 / 中文核心期刊格式"
+    - "按《软件学报》格式撰写/修改 / 软件学报投稿 / JoS 综述"
+    - "按《计算机辅助设计与图形学学报》格式撰写/修改 / 图形学学报投稿 / JCAD"
+    - "自动化学报投稿 / 中国科学信息科学投稿 / 计算机研究与发展投稿 / 中文信息学报投稿"
+    - "中国图象图形学报投稿 / 模式识别与人工智能投稿 / 智能系统学报投稿 / 虚拟现实与智能硬件投稿"
+    - "计算机科学投稿 / 计算机应用投稿 / 图学学报投稿 / 机器人投稿 / 计算机应用研究投稿 / 可视计算投稿"
+    - "搜索某中文期刊投稿要求并形成专项能力 / 新增期刊格式规范（按 Extension Protocol 扩展）"
+    - "CCF国际期刊投稿 / IEEE Transactions投稿 / ACM Transactions投稿 / Springer期刊投稿 / TPAMI投稿 / TOG投稿 / TVCG投稿 / JMLR投稿"
+    - "评估论文创新性与学术/产业价值 / 论文价值评判 / 这篇论文值不值得投 / 审稿预审评分 / Evaluate paper novelty and industry value"
+    - "投稿前格式核查 / LaTeX 源码卫生检查 / 论文源码清理 / 补充材料编号对应检查 / pre-submission source hygiene check"
+    - "Markdown 工作稿投稿前格式审计 / 批注清理 / 引用重排 / 孤儿图补引 / Markdown draft format audit"
+    - "实验声明溯源 / 数据来源核查 / 服务器实验验证 / 实验数字真实性核查 / verify experiment claims against server artifacts"
+    - "为论文补做实验 / 服务器跑实验 / 远程训练评估 / 排查训练跑完但结果异常 / rerun experiments to back paper claims"
+    - "核查论文引用的真实性 / 引文编号核实 / 方法名与 arXiv 号是否匹配 / 投稿前引用自查 / verify cited arXiv ids and method names"
+    - "评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication"
+    - "查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field"
+    - "选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -91,10 +58,23 @@ Analyze the user's request to determine axis values:
 | Writing contribution statements | contribution |
 | Topic / venue selection for a 3DGS sub-field | topic |
 | Looking up verified method landscape / baselines / datasets / metrics | knowledge |
-| Writing a paper in a specific direction (3DGS / embodied AI / spatial intelligence / LLM Agent) and needing direction-specific exemplar breakdowns + venue templates | domain-template |
-| Deconstructing/learning from an exemplar paper (拆解范文/仿写/学这篇论文怎么写/提炼句式) | exemplar |
-| Checking/refreshing reference freshness, updating stale venue or exemplar lists (文件过期/刷新/更新范文清单/check freshness) | maintenance |
+| Designing or drawing paper figures (architecture/data/comparison) | figure |
+| Responding to reviewer comments / rebuttal / revision letter | rebuttal |
 | Full paper or unspecified section | all |
+
+### Axis: task (lifecycle fusion, 2026-10-27)
+| User Intent | task value | Fused from |
+|-------------|-----------|------------|
+| Evaluate whether a research idea is worth pursuing / novelty check / score this idea | idea-eval | idea-evaluator |
+| Plan paper skeleton / logic chain / thinking template / structure planning | skeleton | tech-paper-template |
+| Search SCI journals/conferences for literature / build literature library / download PDFs / generate BibTeX | literature | sci-journal-literature + literature-manager |
+| Design figures / draw architecture diagrams / plot experiment data / figure quality audit | figure | figure-designer + academic-plotting + drawio-academic |
+| Design experiments / select datasets/baselines/metrics / plan ablation / debug training crashes (NaN/OOM/floaters) | experiment | 3dgs-experiment-planner + 3dgs-training-debugger |
+| Polish existing prose / remove AI tone / Chinese-to-English translation / calibrate claim strength | polish | paper-polish + nature-polishing |
+| Respond to reviewer comments / write rebuttal letter / cover letter / marked manuscript | rebuttal | rebuttal-guidance + nature-response |
+| No lifecycle task (pure section drafting) | none | — |
+
+**Task axis takes precedence over section axis when both are detected.** For example, "评估这个 idea" → task=idea-eval (ignore section); "画架构图" → task=figure (also sets section=figure); "回复审稿人" → task=rebuttal (also sets section=rebuttal). When task=none, fall back to section-driven routing.
 
 ### Axis: venue
 | User Intent | venue value |
@@ -144,14 +124,27 @@ Read these files from references/:
 | intro | references/writing-abstract-intro.md |
 | related-work | references/writing-related-method.md + references/3dgs-paper-knowledge.md |
 | method | references/writing-related-method.md |
-| experiments | references/writing-experiments.md + references/3dgs-paper-knowledge.md + references/experiment-scale-thresholds.md |
+| experiments | references/writing-experiments.md + references/3dgs-paper-knowledge.md |
 | contribution | references/writing-experiments.md |
-| topic | references/3dgs-domain-venues.md + references/chinese-venue-routing-by-domain.md |
+| topic | references/3dgs-domain-venues.md |
 | knowledge | references/3dgs-paper-knowledge.md |
-| domain-template | references/domain-exemplar-templates.md |
-| exemplar | references/domain-exemplar-templates.md + references/exemplar-deconstruction-sop.md |
-| maintenance | references/reference-freshness-policy.md |
-| all | All writing fragments (abstract-intro, related-method, experiments) + references/3dgs-domain-venues.md + references/chinese-venue-routing-by-domain.md + references/exemplar-deconstruction-sop.md + references/experiment-scale-thresholds.md |
+| figure | references/figure-design-protocol.md |
+| rebuttal | references/rebuttal-protocol.md |
+| all | All writing fragments (abstract-intro, related-method, experiments) + references/3dgs-domain-venues.md |
+
+### On-Demand Load (by detected task — lifecycle fusion)
+> When task axis is non-`none`, load the corresponding fragment FIRST, then supplement with section/venue fragments if the task also involves writing. Task fragments fuse 7 external skills into this skill for full-pipeline coverage (2026-10-27).
+
+| task | Fragment(s) to Load | Covers lifecycle stage |
+|------|---------------------|----------------------|
+| idea-eval | references/idea-evaluation.md | Stage 1: 选题评估（五维+致命伤审计+范式转移探针） |
+| skeleton | references/paper-skeleton-protocol.md | Stage 1: 论文骨架（思维模板+四点自洽） |
+| literature | references/literature-search-protocol.md | Stage 2: 文献检索（SCI/顶会，排除预印本）+ 下载 + BibTeX |
+| figure | references/figure-design-protocol.md | Stage 4: 绘图（三核心图设计+matplotlib+drawio+QC） |
+| experiment | references/experiment-design-protocol.md | Stage 5: 实验设计（数据集/基线/指标/消融）+ 训练调试（60种失败模式） |
+| polish | references/polishing-protocol.md | Stage 6: 润色（投稿级+中译英+AI味去除+claim校准） |
+| rebuttal | references/rebuttal-protocol.md | Stage 8: 返修（条件说服P(Z|X,Y)+逐条指导+cover letter+marked manuscript） |
+| none | (fall back to section-driven routing) | — |
 
 ### On-Demand Load (by detected venue)
 | venue | Fragment to Load |
@@ -183,11 +176,6 @@ Read these files from references/:
 - references/review-integrity.md — Multi-agent review, Devil's Advocate Protocol（含矛盾消融结果消解模式）, citation verification, integrity gates, style calibration, writing quality check, persistence
 - references/paper-evaluation-framework.md — 论文创新性与学术/产业价值评估框架（四维创新模型+TRL产业成熟度+10维评分表+审稿视角对照），用于投稿前自评、审稿、指导学生论文、评估他人工作
 - references/top-paper-patterns.md — 顶会论文共性模范范式（基于10篇CVPR 2026及前沿3DGS论文全文精读提炼）：贡献结构配方（3-4条四件套+first声明+外部技术嫁接）、五条选题路径、四层实验证据体系、三种摘要模板、Intro四段式+根本问题句、图表引导策略、章节配比、顶会投稿自检清单、实测写作瑕疵避坑；写作/修改论文与校准结构时加载
-- references/domain-exemplar-templates.md — 四方向（3DGS / 具身智能 / 空间智能 / LLM Agent）范文拆解+顶会模板细化清单：每方向含顶会代表作清单（venue/arXiv/为何是范文）、写作结构模板（摘要公式/引言弧线/方法组织/实验证据体系）、贡献声明配方、避坑清单、范文一手链接、arXiv ID 核验记录；用户要写某具体方向论文、需要该方向差异化范文参照时加载（与 top-paper-patterns.md 互补：前者是3DGS共性，本文件是四方向各自的差异化）
-- references/exemplar-deconstruction-sop.md — 范文拆解 SOP（六步法）：值不值得拆的筛选标准 + 三类范文拆法差异（范式创造/诊断改进/系统集成）+ 切段标功能→抽取承重句→反推论证链→图表考古→句式入库（带槽位）→差异对照归档 + 可直接复制的拆解记录模板 + 常见误区 + 与写作流程衔接；用户要求"拆解某篇范文/学习某论文怎么写/提炼可复用句式"时加载
-- references/experiment-scale-thresholds.md — 实验规模门槛表（四方向）：3DGS/具身智能/空间智能/Agent 各自的数据集数、基线数、消融、seeds、episodes、效率与成本指标、统计报告的经验下限与常见做法 + 交叉方向叠加规则 + 「实验够不够」八问自检 + 被质疑"实验不足"的三种应对 + 投稿前用目标 venue 近两年 accepted papers 校准的方法；**写实验节、自查实验充足性、准备 rebuttal 防守时加载**（注意：表中数字是社区惯例经验区间，非官方要求，必须按 §5 校准）
-- references/chinese-venue-routing-by-domain.md — 四方向→中文期刊落点映射：3DGS/具身智能/空间智能/Agent 各自的首选/次选/交叉落点/应用向/不建议 五档期刊 + 契合理由 + 注意事项 + 交叉方向主贡献归属规则 + 四步选择决策树 + 英文会议与中文期刊双向发表的合规提醒 + 中文期刊评审现实差异；**英文顶会未中改投中文刊、或想先在国内发表时加载**（只回答"投哪本"，具体格式见 `<venue>-format.md`）
-- references/reference-freshness-policy.md — 参考文献时效与刷新机制：文件新鲜度元数据模板、三类失效（换届型/超越型/链接型）、刷新触发条件、会议周期参考表、逐文件刷新清单、六步刷新 SOP（含脚本命令与同步纪律）、P0/P1/P2 失效等级与响应时限、已知长期空缺；配套工程脚本 `scripts/check_reference_freshness.py`；**用户问"这份文件过时了吗/怎么更新/多久刷一次"，或每届 CVPR/NeurIPS 后维护 references 时加载**
 - references/reviewer-perspective.md — 审稿人视角拒稿与中稿规律（基于OpenReview 33条真实审稿意见编码）：Champion效应与批评位置理论、拒稿理由Top10、录用要素Top10、可复述新颖性标准、致命伤vs可挽救伤判别与Rebuttal博弈（MoE-GS低分中稿解密）、跨venue转投策略、压缩方向八大坑、图表制作40条自查清单、投稿前防御清单D1-D15；投稿前自检、预判审稿攻击点、准备rebuttal、决定转投时加载
 - references/latex-source-hygiene.md — LaTeX 源码卫生与机械化验证（连续空行/环境与章节同行/跨文档引用写法/bib 键名一致性/S 编号对应/编译健康度/修复回归验证），配套一键核查脚本（维护者本地工具，未随技能分发，可按本文件方法论自写）；投稿前格式核查与源码清理任务必读
 - references/markdown-draft-format-audit.md — Markdown 工作稿投稿前格式审计与 P0 机械修复（摘要词数/引用首现顺序/孤儿图表检测/彩色批注两类处置规则/占位符两步法引用重排/摘要瘦身/主文-补充切分标注/中英双稿独立同步与终检清单/章节重构后引用顺序复检/MD→LaTeX 转换边界 bibitem 核验）；LaTeX 排版前的工作稿格式核查、批注清理与 P0/P2 修复任务必读
@@ -248,20 +236,34 @@ The following are categorical prohibitions. Violating any of these invalidates t
 
 ## Cross-Skill Routing
 
-This skill focuses on paper writing. For related workflows:
-- **Method comparison** → 3dgs-method-compare (for positioning and related work tables)
-- **Paper reading/analysis** → 3dgs-paper-reader (for understanding related work in depth)
-- **Experiment design** → 3dgs-experiment-planner (for experiment sections)
-- **Visualization/figures** → 3dgs-visualizer (for paper-quality figures)
-- **Code review** → 3dgs-code-reviewer (for implementation verification)
+This skill covers the full paper lifecycle (8 stages) via the fused `task` axis (2026-10-27). Most lifecycle capabilities are now in-skill; the following remain external:
+
+**Already fused into this skill (task axis, no longer need external skill):**
+- ~~idea-evaluator~~ → task=idea-eval (references/idea-evaluation.md)
+- ~~tech-paper-template~~ → task=skeleton (references/paper-skeleton-protocol.md)
+- ~~sci-journal-literature + literature-manager~~ → task=literature (references/literature-search-protocol.md)
+- ~~figure-designer + academic-plotting + drawio-academic~~ → task=figure (references/figure-design-protocol.md)
+- ~~3dgs-experiment-planner + 3dgs-training-debugger~~ → task=experiment (references/experiment-design-protocol.md)
+- ~~paper-polish + nature-polishing~~ → task=polish (references/polishing-protocol.md)
+- ~~rebuttal-guidance + nature-response~~ → task=rebuttal (references/rebuttal-protocol.md)
+
+**Still external (not fused, route out when needed):**
+- **Method comparison** → 3dgs-method-compare (for positioning and related work tables,挂接方法库)
+- **Paper reading/analysis** → 3dgs-paper-reader / 3dgs-visualizer (for deep reading and method-library visualizations)
+- **Code review** → 3dgs-code-reviewer (for pre-training static code analysis, 104 bug patterns)
+- **Autonomous experiment orchestration** → autoresearch (for two-loop "sleep research" — runtime capability, not a knowledge fragment)
+- **Full-pipeline orchestration** → academic-pipeline (for 10-stage hands-off orchestration — runtime orchestrator, not a knowledge fragment)
+- **Bilingual delivery** → bilingual-paper-sync (for Word 4-piece EN/CN docx+md — format conversion, not writing knowledge)
 
 ## Related Skills
 
 - **3dgs-paper-reader** — Deep reading and analysis of 3DGS papers (use for understanding related work)
 - **3dgs-method-compare** — Method comparison (use for positioning and related work tables)
-- **3dgs-experiment-planner** — Experiment design (use for experiment sections)
-- **3dgs-visualizer** — Visualization (use for paper-quality figures)
-- **3dgs-code-reviewer** — Code review (use for implementation verification)
+- **3dgs-code-reviewer** — Code review (use for pre-training implementation verification)
+- **3dgs-visualizer** — Method-library visualization (radar/timeline/comparison, for paper figures with method-db)
+- **autoresearch** — Autonomous experiment orchestration (two-loop, for hands-off experiment runs)
+- **academic-pipeline** — Full-pipeline orchestrator (10-stage, for hands-off write→review→revise)
+- **bilingual-paper-sync** — Bilingual Word delivery (EN/CN docx+md 4-piece)
 
 ## Guardrail: Do Not Apply From Memory
 
