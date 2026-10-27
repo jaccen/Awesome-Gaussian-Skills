@@ -31,6 +31,7 @@
 - [在线书籍](#-在线书籍空间与具身智能)
 - [最新动态（2026 年 10 月）](#最新动态2026-年-10-月)
 - [知识库](#知识库976-方法26-类别)
+- [⭐ 主推技能：cg-paper-writing](#-主推技能cg-paper-writing--全生命周期论文写作引擎)
 - [18 AI 驱动技能](#18-ai-驱动技能)
 - [可视化示例](#可视化示例)
 - [研究创新要点](#研究创新要点)
@@ -59,6 +60,7 @@
 | NeRF → 3DGS | 试错式移植 | 逐步迁移指南 |
 | CAD ↔ 3DGS | 无覆盖 | 40+ 方法转换管线 |
 | 专利申请 | 从零手写 | 自动生成权利要求与说明书 |
+| **写 3DGS 论文** | 试错式写作 | **全生命周期引擎：idea → 骨架 → 起草 → 配图 → 实验 → 润色 → 评审 → 返修** |
 
 ## 在线体验
 
@@ -397,6 +399,27 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 </details>
 
+## ⭐ 主推技能：`cg-paper-writing` — 全生命周期论文写作引擎
+
+本仓库最强大的技能。一份 `SKILL.md` 融合了 **7 个外部技能**的知识层，覆盖 CG / 三维视觉 / 3DGS 研究的**完整 8 阶段论文生命周期**——从 idea 到返修不切换技能。
+
+**支持 venue：** CVPR / ICCV / ECCV / SIGGRAPH / NeurIPS / TVCG / TPAMI / TOG / IJCV，另含**17 本中文核心期刊**（计算机学报、软件学报、JCAD、自动化学报、中国科学信息科学、计算机研究与发展、中文信息学报、图象图形学报、模式识别与人工智能、智能系统学报、VRIH、计算机科学、计算机应用、图学学报、机器人、计算机应用研究、VCIBA）逐刊格式规范。
+
+| 阶段 | 能力 | 示例 |
+|---|---|---|
+| 1 · 选题评估 | 五维评分 + 致伤审计 + 范式转移探针 | “评审这个 idea 值不值得做” |
+| 2 · 骨架设计 | 思维模板七格 + 四点自洽 | “帮我搭论文骨架” |
+| 3 · 文献检索 | SCI 检索（排除预印本）+ PDF 下载 + BibTeX | “找 3DGS 压缩方向 SCI 文献” |
+| 4 · 起草正文 | 章节模板 + 按 venue 校准文风 + 去 AI 味 | “帮我写论文引言” |
+| 5 · 配图 | 三核心图 + matplotlib 代码 + draw.io 矢量规范 + QC | “画一张架构图” |
+| 6 · 实验 | 数据集/基线/指标/消融 + 60 种训练失败调试模式 | “设计消融实验” |
+| 7 · 润色 | 投稿级润色 + 中译英 + AI 味去除 + claim 强度校准 | “润色这段，去 AI 味” |
+| 8 · 返修 | 条件说服 P(Z\|X,Y) + 逐条指导 + cover letter | “回复审稿人 R1.W2” |
+
+**内置完整性门控：** 多智能体对抗评审（含 Devil's Advocate）、三层引用校验、LaTeX 源码卫生、Markdown 工作稿审计、实验声明溯源、论文价值评估框架——以真实审稿人的方式检阅你的论文。
+
+→ [`skills/cg-paper-writing/`](skills/cg-paper-writing/) · v3.3.0 · 17 本中文期刊格式规范 · 50+ 参考碎片
+
 ## 18 AI 驱动技能
 
 | # | 技能 | 功能 | 示例 |
@@ -407,7 +430,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 | 4 | [`3dgs-experiment-planner`](skills/3dgs-experiment-planner/) | 为 CVPR/SIGGRAPH/TVCG 设计实验 | "帮我设计消融实验" |
 | 5 | [`nerf-to-3dgs-migrator`](skills/nerf-to-3dgs-migrator/) | 逐步将 NeRF 方法迁移到 3DGS | "hash encoding 怎么迁移到 3DGS？" |
 | 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | 桥接 CAD/Mesh/3DGS — 40+ 转换方法 | "3DGS模型怎么提取高质量mesh？" |
-| 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | 为 CVPR/SIGGRAPH/TVCG 写论文，含对抗审稿 | "帮我写论文引言" |
+| ⭐ 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | **全生命周期 CG/三维视觉论文引擎 — 8 阶段、17 本中文期刊、对抗审稿** | "帮我写论文引言" |
 | 8 | [`3dgs-visualizer`](skills/3dgs-visualizer/) | 出版级雷达图、时间线、热力图 | "画一个3DGS方法对比雷达图" |
 | 9 | [`3dgs-engineering-guide`](skills/3dgs-engineering-guide/) | 从研究到生产部署 3DGS（10 条行业赛道） | "怎么部署3DGS做自动驾驶仿真？" |
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | 生成专利申请文件与软著登记材料 | "生成专利申请文件" |

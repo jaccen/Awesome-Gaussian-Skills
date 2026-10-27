@@ -31,6 +31,7 @@
 - [Online Book](#-online-book-spatial--embodied-intelligence)
 - [What's New (Oct 2026)](#whats-new-oct-2026)
 - [Knowledge Base](#knowledge-base-1011-methods-26-categories)
+- [⭐ Featured Skill: cg-paper-writing](#-featured-skill-cg-paper-writing--full-lifecycle-paper-writing-engine)
 - [18 AI-Powered Skills](#18-ai-powered-skills)
 - [Visualization Samples](#visualization-samples)
 - [Research Innovation Highlights](#research-innovation-highlights)
@@ -59,6 +60,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 | NeRF → 3DGS | Trial-and-error porting | Step-by-step migration guide |
 | CAD → 3DGS | No coverage | 40+ method conversion pipeline |
 | Patent filing | Manual from scratch | Auto-generated claims & specs |
+| **Write a 3DGS paper** | Trial-and-error writing | **Full-lifecycle engine: idea → skeleton → draft → figures → experiments → polish → review → rebuttal** |
 
 ## Live Demo
 
@@ -420,6 +422,27 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 
 </details>
 
+## ⭐ Featured Skill: `cg-paper-writing` — Full-Lifecycle Paper Writing Engine
+
+The most powerful skill in this repo. A single `SKILL.md` that fuses the knowledge layers of **7 external skills** and covers the **entire 8-stage paper lifecycle** for CG / 3D vision / 3DGS research — write a paper from idea to rebuttal **without switching skills**.
+
+**Supported venues:** CVPR / ICCV / ECCV / SIGGRAPH / NeurIPS / TVCG / TPAMI / TOG / IJCV, plus **17 Chinese core journals** (CJC, JoS, JCAD, AAS, SCIS, CRAD, JCIS, JIG, PRAI, CAAI, VRIH, JSKX, JCA, TXB, Robot, AROC, VCIBA) with per-venue format specs.
+
+| Stage | What It Does | Example |
+|---|---|---|
+| 1 · Idea evaluation | 5-dim scoring + fatal-flaw audit + paradigm-shift probe | "评审这个 idea 值不值得做" |
+| 2 · Skeleton | Thinking-template 7-grid + 4-point self-consistency | "帮我搭论文骨架" |
+| 3 · Literature | SCI search (excludes preprints) + PDF download + BibTeX | "找 3DGS 压缩方向 SCI 文献" |
+| 4 · Drafting | Section templates + venue-style calibration + de-AI rules | "帮我写论文引言" |
+| 5 · Figures | 3 core figures + matplotlib code + draw.io vector specs + QC | "画一张架构图" |
+| 6 · Experiments | Datasets/baselines/metrics/ablation + 60 training-failure debug patterns | "设计消融实验" |
+| 7 · Polish | Submission-grade polish + CN→EN + AI-tone removal + claim calibration | "润色这段，去 AI 味" |
+| 8 · Rebuttal | Conditional persuasion P(Z\|X,Y) + per-point guidance + cover letter | "回复审稿人 R1.W2" |
+
+**Built-in integrity gates:** multi-agent adversarial review (with Devil's Advocate), three-layer citation verification, LaTeX source hygiene, Markdown draft audit, experiment-claim tracing, paper-value evaluation framework — your paper is checked the way real reviewers check it.
+
+→ [`skills/cg-paper-writing/`](skills/cg-paper-writing/) · v3.3.0 · 17 CN-journal format specs · 50+ reference fragments
+
 ## 18 AI-Powered Skills
 
 | # | Skill | What It Does | Example |
@@ -430,7 +453,7 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 | 4 | [`3dgs-experiment-planner`](skills/3dgs-experiment-planner/) | Design experiments for CVPR/SIGGRAPH/TVCG | "帮我设计消融实验" |
 | 5 | [`nerf-to-3dgs-migrator`](skills/nerf-to-3dgs-migrator/) | Migrate NeRF methods to 3DGS step-by-step | "hash encoding 怎么迁移到 3DGS？" |
 | 6 | [`cad-mesh-3dgs`](skills/cad-mesh-3dgs/) | Bridge CAD/Mesh/3DGS — 40+ conversion methods | "3DGS 模型怎么提取高质量 mesh？" |
-| 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | Write papers for CVPR/SIGGRAPH/TVCG with adversarial review | "帮我写论文引言" |
+| ⭐ 7 | [`cg-paper-writing`](skills/cg-paper-writing/) | **Full-lifecycle CG/3D-vision paper engine — 8 stages, 17 CN journals, adversarial review** | "帮我写论文引言" |
 | 8 | [`3dgs-visualizer`](skills/3dgs-visualizer/) | Publication-quality radar charts, timelines, heatmaps | "画一张 3DGS 方法对比雷达图" |
 | 9 | [`3dgs-engineering-guide`](skills/3dgs-engineering-guide/) | Deploy 3DGS from research to production (10 industry tracks) | "怎么部署 3DGS 做自动驾驶仿真？" |
 | 10 | [`patent-software-ip`](skills/patent-software-ip/) | Generate patent applications & software copyrights | "生成专利申请文件" |
