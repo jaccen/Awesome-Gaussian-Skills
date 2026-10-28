@@ -9,6 +9,19 @@
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
+---
+
+<table align="center"><tr><td align="center">
+<b>🏆 知识库获数据知识产权登记</b><br>
+<i>上海市知识产权局颁发 · 登记号 SZ2026510010837.2</i><br><br>
+<a href="assets/data-ip-certificate.png" target="_blank">
+<img src="assets/data-ip-certificate.png" width="280" alt="数据(产品)知识产权登记证书（已脱敏）" style="border:1px solid #ccc;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12)">
+</a><br>
+<sub>「三维高斯泼溅技术方法知识库」经实质审查获 <b>数据(产品)知识产权登记</b>（敏感信息已脱敏，点击查看大图）</sub>
+</td></tr></table>
+
+---
+
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Methods](https://img.shields.io/badge/方法-1011-9cf.svg)](references/3dgs-methods-overview.md)

@@ -9,6 +9,19 @@
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
+---
+
+<table align="center"><tr><td align="center">
+<b>🏆 Knowledge Base Registered as Data IP</b><br>
+<i>Issued by Shanghai Intellectual Property Administration · Reg. No. SZ2026510010837.2</i><br><br>
+<a href="assets/data-ip-certificate.png" target="_blank">
+<img src="assets/data-ip-certificate.png" width="280" alt="Data Product IP Registration Certificate (redacted)" style="border:1px solid #ccc;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12)">
+</a><br>
+<sub>The "3DGS Method Knowledge Base" passed substantive examination and obtained <b>Data Product IP Registration</b> (sensitive info redacted, click for full view)</sub>
+</td></tr></table>
+
+---
+
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
 [![Methods](https://img.shields.io/badge/Methods-1011-9cf.svg)](references/3dgs-methods-overview.md)
