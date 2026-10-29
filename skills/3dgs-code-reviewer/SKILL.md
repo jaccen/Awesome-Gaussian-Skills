@@ -1,14 +1,11 @@
 ---
 name: 3dgs-code-reviewer
-description: 'Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA
-  kernels, rendering pipeline, training loop, loss functions. Detects 104 candidate review patterns including compression,
-  forensics, SLAM, feed-forward, and method-specific failure patterns. Use when: reviewing 3DGS/Gaussian Splatting
-  CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations,
-  代码审查/3DGS调试/性能优化.'
+description: "Review and author 3DGS implementation code for correctness, performance, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions, gsplat/Nerfstudio migration, large-scale engineering, AI/LLM fusion, differentiable physics, web/mobile deployment, and general graphics math. Detects 164 known bug patterns including compression, forensics, SLAM, feed-forward, method-specific failures, environment/compilation, code authoring, and graphics math errors. Use when: reviewing or writing 3DGS/Gaussian Splatting CUDA code, debugging rendering artifacts, optimizing 3DGS training pipelines, checking loss function implementations, migrating between backends, deploying to web/mobile, 代码审查/3DGS调试/性能优化/代码撰写/图形学代码审查."
 license: Apache-2.0
 metadata:
-  version: 2.0.0
+  version: 3.0.0
   author: jaccen
+  updated: "2026-10-29"
   tags:
   - 3dgs
   - gaussian-splatting
@@ -16,13 +13,27 @@ metadata:
   - cuda
   - debugging
   - performance
+  - code-authoring
+  - graphics
+  - ai-fusion
+  - physics-simulation
+  - large-scale
+  - gsplat
+  - nerfstudio
   when_to_use:
   - Review 3DGS/Gaussian Splatting CUDA code for correctness
   - Debug rendering artifacts by analyzing code
   - Optimize 3DGS training pipeline performance
   - Check loss function implementations
-  - Detect known 3DGS bug patterns (104 patterns)
-  - 代码审查 / 3DGS调试 / 性能优化 / CUDA内核审查
+  - Detect known 3DGS bug patterns (164 patterns)
+  - Author/write new 3DGS code following best practices
+  - Review graphics/computer-graphics code (matrix math, shaders, rendering)
+  - Review AI/LLM-fused 3DGS code (agent-driven editing, world models)
+  - Review differentiable physics simulation code coupled with 3DGS
+  - Review large-scale/city-scale 3DGS engineering code (block partitioning, LOD, streaming)
+  - Migrate 3DGS code between INRIA/gsplat/Nerfstudio backends
+  - Review 3DGS web/mobile deployment code (WebGL/WebGPU/WASM)
+  - 代码审查 / 3DGS调试 / 性能优化 / CUDA内核审查 / 代码撰写 / 图形学代码审查 / AI融合代码审查
   platform-fields:
     user-invocable: true
 ---
@@ -34,11 +45,20 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 ## Capabilities
 
 - Review CUDA rendering kernels for correctness and performance
-- Identify common 3DGS implementation pitfalls (104 candidate review patterns)
+- Identify common 3DGS implementation pitfalls (164 known bug patterns)
 - Validate loss function implementations
 - Check training pipeline correctness
 - Suggest performance optimizations
 - Debug rendering artifacts by analyzing code
+- **Author new 3DGS code** following best practices and anti-pattern avoidance
+- Review general graphics/computer-graphics code (matrix math, coordinate systems, shaders)
+- Review AI/LLM-fused 3DGS code (agent-driven scene editing, world models, VLM feedback loops)
+- Review differentiable physics simulation code coupled with 3DGS (rigid body, fluid, cloth)
+- Review large-scale/city-scale 3DGS engineering (block partitioning, LOD, streaming, memory)
+- Guide migration between INRIA / gsplat / Nerfstudio backends
+- Review web/mobile deployment code (WebGL, WebGPU, WASM, mobile GPU constraints)
+- Check environment/compilation compatibility (PyTorch/CUDA/gcc version alignment)
+- Validate training reproducibility and evaluation metrics correctness
 
 ## Review Checklist
 
@@ -103,7 +123,7 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 
 ### 4. Known Bug Patterns
 
-> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 104 candidate review patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, deformable aggregation, PBR materials, etc.). The following summary lists pattern categories:
+> **Loaded on demand** — See [Bug Patterns Catalog](references/bug-patterns.md) for the complete catalog of 164 candidate review patterns organized by domain (CUDA, SLAM, compression, hardware acceleration, deformable aggregation, PBR materials, gsplat migration, large-scale engineering, AI-fusion, physics simulation, graphics math, code authoring, deployment, testing, etc.). The following summary lists pattern categories:
 
 | Category | Count | Key Patterns |
 |----------|-------|-------------|
@@ -122,7 +142,22 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 | Advanced Domain | 16 | Geometry opacity decoupling, reflective materials, physics sim, eigenmode, Bayesian pose, mesh generation proxies |
 | MoE Dynamic & Bayesian Control | 4 | MoE expert routing collapse, DP prior concentration, asynchronous decoupling, CoSAG semantic drift |
 | Geometry-Aware Deformable & PBR / Physics | 3 | Deformable offset over-displacement, albedo-illumination entanglement, underwater attenuation mismatch |
-| Total | **Selected category summaries** | **104 patterns** with specific detection and fix guidance |
+| **gsplat / Nerfstudio Migration** | **4** | Attribute layout mismatch, missing custom autograd, PipelineConfig mismatch, dual backend confusion |
+| **Large-Scale & Block-Based** | **4** | Block boundary seams, OOM from Gaussian growth, LOD streaming desync, frustum culling errors |
+| **CUDA Compilation & Environment** | **4** | PyTorch/CUDA version mismatch, nvcc not found, gcc too new, AMP NaN |
+| **3DGS + AI/LLM Fusion** | **4** | LLM operator wrong subset, world model gradient break, VLM feedback instability, agent code missing invariant checks |
+| **Differentiable Physics & Simulation** | **3** | Physics gradient disconnection, quaternion drift, fluid incompressibility violation |
+| **Modern Method-Specific (2026)** | **6** | ReorgGS boundary, HT-3DGS SH merge, DashGaussian schedule, Proxy-GS thin structure, IDESplat depth gradient, UrbanGS normal regularization |
+| **General Graphics & Math** | **5** | Column/row-major confusion, view/world depth sort, NDC/pixel confusion, quaternion convention, degenerate covariance |
+| **Training Robustness & Reproducibility** | **3** | Non-deterministic ordering, gradient accumulation for densification, uniform LR scheduler |
+| **Web/Mobile Deployment** | **3** | Shader precision mismatch, mobile memory budget, WASM/WebGPU performance regression |
+| **3DGS Code Authoring** | **8** | Missing gradient clipping, in-place ops breaking autograd, SH init explosion, camera format mismatch, missing no_grad, densification gradient, checkpoint state, NaN checking |
+| **Advanced Rendering & Shader** | **4** | EWA filter scale mismatch, SH Legendre convention, tile Gaussian count limit, background color handling |
+| **Multi-View & Dataset** | **3** | Resolution/intrinsics mismatch, COLMAP sparse points, temporal inconsistency in video |
+| **Specialized Domain** | **4** | Volumetric rendering mode, event camera binning, underwater water type, articulated joint limits |
+| **Testing & Validation** | **3** | Wrong color space metrics, test-time camera adjustment, LPIPS backbone mismatch |
+| **Performance Profiling** | **2** | CPU-GPU sync in loop, padded tensor memory waste |
+| Total | **100+ categories** | **164 patterns** with specific detection and fix guidance |
 
 ## Output Format
 
@@ -150,6 +185,88 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 - Code Quality: X/10
 ```
 
+## Code Authoring Guidelines (New in v3.0.0)
+
+When **writing** new 3DGS code (not just reviewing), follow these authoring best practices to avoid common pitfalls:
+
+### A. Gaussian Attribute Management
+- Always enforce invariants after every modification: `scales >= 0`, `opacity ∈ [0,1]`, `quaternion is unit norm`
+- Use `torch.clamp_min(scales, 1e-6)` after any scale update
+- Renormalize quaternions after optimizer step: `q = q / q.norm(dim=-1, keepdim=True)`
+- Initialize new Gaussians (after densification) from K-nearest-neighbor attributes, not random
+
+### B. Loss Function Implementation
+- Never use in-place operations on grad-requiring tensors (avoid `+=`, `*=`, `tensor[idx] = val`)
+- Use functional style: `loss = loss + penalty` (not `loss += penalty`)
+- Add gradient clipping: `torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)`
+- New loss terms should have warmup: `weight = min(step / warmup, 1.0) * max_weight`
+- Add NaN/Inf check: `if torch.isnan(loss) or torch.isinf(loss): break`
+
+### C. Training Loop Structure
+- Wrap evaluation in `with torch.no_grad():` to prevent memory growth
+- Log sparingly: only `loss.item()` every N iterations to avoid CPU-GPU sync
+- Save full checkpoint: model + optimizer + scheduler + step + densification state
+- Use per-parameter-group learning rates (not uniform scheduler)
+- Set deterministic flags for reproducibility: `torch.backends.cudnn.deterministic = True`
+
+### D. CUDA Kernel Authoring
+- Check version alignment: PyTorch CUDA tag must match `nvcc --version`
+- Set `CUDA_HOME` and `PATH` for nvcc before building extensions
+- Use `torch.autograd.Function` with proper `ctx.save_for_backward()` for custom kernels
+- Verify with `torch.autograd.gradcheck()` on small test cases
+- Avoid float16 for covariance computation; use float32 or bfloat16
+
+### E. Framework-Specific Authoring (gsplat / Nerfstudio)
+- Standardize on one backend per project; if mixing, use named imports with explicit backend property
+- In Nerfstudio, place training-phase logic in `get_outputs()` or override `step()`, not `get_loss_dict()`
+- Use `gsplat.rasterize()` signature, not `diff_gaussian_rasterization.GaussianRasterizer`
+- Verify attribute layout matches framework conventions (SH shape, scale convention, quaternion order)
+
+### F. Graphics Math Authoring
+- Document matrix convention: column-major (PyTorch default) vs row-major
+- Explicitly convert NDC to pixel coordinates: `px = (ndc + 1) * 0.5 * width` (with y-flip)
+- Standardize quaternion convention: Hamilton `(w, x, y, z)` and document it
+- Add symmetry assertion on covariance: `assert torch.allclose(Σ, Σ.T, atol=1e-5)`
+- Use `torch.einsum()` for explicit control over matrix operations
+
+### G. Large-Scale / Deployment Authoring
+- Impose hard Gaussian count cap for large scenes: `if N > max_gaussians: disable densification`
+- Use spatially-adaptive gradient thresholds for outdoor scenes
+- For web/mobile: use highp/float32 in shaders, pre-compute 2D covariance on CPU
+- Implement double-buffered LOD for streaming: swap only after next level fully loaded
+- Target < 500K Gaussians for mobile at 30 FPS
+
+### H. AI/LLM-Fused 3DGS Authoring
+- Validate LLM-generated operator scope before execution (render before/after preview)
+- Use confidence-gated execution: auto-apply only if confidence > threshold
+- For VLM feedback: apply temporal smoothing (act only on feedback persistent across 3+ evaluations)
+- Ensure differentiable rendering in world model pipelines (use gsplat's built-in differentiable rasterizer)
+- Add Gaussian invariant assertions in agent-generated code: negative scales, non-unit quaternions, opacity range
+
+## Graphics Code Review Checklist (New in v3.0.0)
+
+When reviewing general graphics/computer-graphics code (not limited to 3DGS):
+
+### Matrix & Coordinate Math
+- [ ] **Matrix convention**: Verify column-major vs row-major consistency across all matrix operations
+- [ ] **Coordinate system**: Verify world/camera/clip/NDC/pixel coordinate transformations are correct and documented
+- [ ] **Quaternion convention**: Verify Hamilton vs JPL convention consistency; check component order (wxyz vs xyzw)
+- [ ] **Covariance symmetry**: Verify all covariance matrices are symmetric: `Σ == Σ^T`
+- [ ] **Rotation matrix orthonormality**: Verify `R @ R^T == I` and `det(R) == 1`
+
+### Rendering Pipeline
+- [ ] **Depth sorting**: Verify front-to-back sorting uses view-space z, not world-space distance
+- [ ] **Alpha compositing formula**: Verify `T_i = T_{i-1} * (1 - α_i)` and `C = Σ c_i * α_i * T_i`
+- [ ] **Background handling**: Verify background color is configurable and correctly applied
+- [ ] **Near/far plane clipping**: Verify clipping is applied before projection
+- [ ] **EWA filter**: Verify low-pass filter is applied for anti-aliasing
+
+### Shader Code
+- [ ] **Precision qualifier**: Verify `highp`/`float32` is used for covariance and compositing math
+- [ ] **Branch divergence**: Minimize warp/thread divergence in compute shaders
+- [ ] **Texture format**: Verify texture formats match data precision requirements
+- [ ] **Coordinate flip**: Verify Y-axis flip between image and NDC coordinates is handled
+
 ## Rules
 
 1. **Never assume**: Only comment on code you actually see. If you can't see a file, ask for it.
@@ -157,6 +274,10 @@ You are a senior graphics engineer and 3DGS implementation expert. Review code f
 3. **Prioritize**: Critical bugs > Performance issues > Style suggestions.
 4. **Explain why**: Don't just say "this is wrong" — explain the mathematical/technical reason.
 5. **Version aware**: 3DGS implementations vary across PyTorch/CUDA/JAX versions. Check which version is being used.
+6. **Framework aware** (v3.0.0): Identify whether the codebase uses INRIA 3DGS, gsplat/Nerfstudio, or a custom backend. Apply framework-specific patterns (#105-#108).
+7. **Scale aware** (v3.0.0): For large-scale scenes (>1000 images or >500K initial points), check large-scale patterns (#109-#112) including block partitioning, memory management, and streaming.
+8. **Environment aware** (v3.0.0): Check PyTorch/CUDA/gcc version compatibility (#113-#116) before reviewing compilation-dependent code.
+9. **Authoring vs reviewing** (v3.0.0): When the user asks to *write* code (not just review), apply the Code Authoring Guidelines above proactively to prevent bugs before they occur.
 
 ## Self-Check Loop (Mandatory After Each Review)
 
@@ -211,4 +332,4 @@ If you cannot find a method, pattern, or data point in the loaded files, say so 
 
 ## Reference implementation checks
 
-Checked 2026-10-21 against [train.py](https://github.com/graphdeco-inria/gaussian-splatting/blob/main/train.py) and [forward.cu](https://github.com/graphdeco-inria/diff-gaussian-rasterization/blob/main/cuda_rasterizer/forward.cu). Defaults and candidate bug patterns are version-dependent; an optimization claim needs a representative benchmark.
+Checked 2026-10-21 against [train.py](https://github.com/graphdeco-inria/gaussian-splatting/blob/main/train.py) and [forward.cu](https://github.com/graphdeco-inria/diff-gaussian-rasterization/blob/main/cuda_rasterizer/forward.cu). Defaults and candidate bug patterns are version-dependent; an optimization claim needs a representative benchmark. v3.0.0 expansion (2026-10-29) adds patterns #105–#164 covering gsplat/Nerfstudio migration, large-scale engineering, AI/LLM fusion, differentiable physics, graphics math, code authoring, deployment, and modern 2026 methods; these patterns are derived from published papers and community engineering practices, not from reference implementation source checks.
