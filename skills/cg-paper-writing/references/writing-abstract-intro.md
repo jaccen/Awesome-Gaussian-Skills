@@ -5,7 +5,7 @@
 
 The title is the paper's first impression and largely determines whether editors/reviewers read further. Do NOT just state "what you did" (object + operation). Lead with research value.
 
-Core logic: **innovation core + achieved breakthrough + field value**. Tell the reader what change your work brings.
+Core logic: **research question + supported contribution + bounded significance**. Tell the reader what change your work brings.
 
 Bad examples (too flat, no value):
 - "Preparation and Performance Study of [Material]"
@@ -13,7 +13,7 @@ Bad examples (too flat, no value):
 
 Good pattern:
 ```
-[Strategy]: achieving [large performance gain], providing new insights for [application scenario]
+[Strategy]: report [verified result or explicitly pending evaluation], explaining its scope for [application scenario]
 ```
 Example: "[Modification strategy]: achieves substantial improvement in [metric], offering a new avenue for [application]"
 
@@ -83,7 +83,7 @@ Paragraph 5: Contributions (bulleted, 3-4 items)
 
 ### Four-Step Funneling Logic ("Why this work must be done")
 
-The introduction must ultimately answer: why is this work non-negotiable? Use this progressive funnel:
+The introduction must ultimately answer: what specific unresolved question motivates this work? Use this progressive funnel:
 
 1. **Step 1 — Real field problem**: Raise a real domain difficulty to prove the direction itself is research-worthy and set the big background
 2. **Step 2 — Prior achievements**: Sort existing works and objectively acknowledge their progress — do NOT dismiss or belabor prior work

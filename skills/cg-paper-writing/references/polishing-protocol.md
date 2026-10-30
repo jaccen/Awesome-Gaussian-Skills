@@ -2,6 +2,10 @@
 
 > 融合自 paper-polish + nature-polishing。用于阶段6润色语言，在用户要求"润色/改措辞/去 AI 味/中译英/降调过度声称"时加载。
 
+## 请求范围优先
+
+句子级编辑只修改所给句子，不要求全文类型、实验或审稿流程。技术含义不确定时保留原文并解释建议；无需增加科研主张。
+
 ## 适用场景
 
 - 已有草稿段落或全文，要求语言层改进
@@ -52,7 +56,7 @@
 | 模糊归因 | "It is widely known that..." | 引用具体来源或删除 |
 | 破折号过度 | "—especially when—" | 改用逗号或拆句 |
 | 三段式法则 | "faster, better, cheaper" 硬凑三联 | 用真实数据，不凑数 |
-| AI 词汇 | "delve into / leverage / utilize / robust" | "study / use / use / stable" |
+| 冗余措辞 | 按语境简化 delve into / leverage / utilize | 不凭词表判断作者身份；保留 robust/robustness 等技术术语 |
 | 否定式排比 | "not only X but also Y; neither A nor B" | 直述肯定句 |
 | 连接短语过度 | "In addition / Furthermore / Moreover" 密集 | 用句意衔接 |
 | 公式化结尾 | "In conclusion, our method achieves..." | 具体总结贡献，不套模板 |
@@ -91,7 +95,7 @@
 |---------|-----------------|
 | 单场景单种子 | "preliminary results suggest" / "on scene X, our method achieves Y dB" |
 | 多场景单种子 | "on N scenes, our method achieves..." |
-| 多场景多种子 + 统计检验 | "our method significantly outperforms X by Y dB (p<0.05)" |
+| 多场景多种子 + 统计检验 | 仅在设计、独立单位和检验支持时使用统计显著措辞；报告实际效应/区间，p 值不得填模板值 |
 | 跨数据集泛化 | "our method generalizes to..." |
 | 仅机制论证无数据 | "the mechanism is expected to... pending validation" |
 

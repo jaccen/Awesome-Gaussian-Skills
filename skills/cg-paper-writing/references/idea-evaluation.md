@@ -1,122 +1,33 @@
-# Idea Evaluation Protocol — 选题五维评估与致命伤审计
+# CG / 3DGS idea evaluation
 
-> 融合自 idea-evaluator。用于阶段1选题评估，在 topic section 或用户要求"评估这个想法/这个 idea 值不值得做"时加载。
+Use for early research questions, novelty checks and feasibility decisions. Evaluate scientific potential; do not simulate an acceptance decision or predict venue outcomes. Unknown evidence stays unknown rather than receiving a neutral numerical score.
 
-## 适用场景
+## Define the question
 
-- 用户有一个初步研究想法，问"值不值得做""novelty 够不够""feasibility 如何"
-- 用户在 2-3 个候选 idea 间做选择，需要结构化权衡
-- 投稿前自评论文创新性与学术/产业价值（与 paper-evaluation-framework.md 互补，本协议偏 idea 阶段，彼偏成稿阶段）
+Extract the task, inputs/outputs, closest problem setting, proposed mechanism and intended contribution (method, analysis, system, dataset or benchmark). Offer a provisional one-sentence formulation if unclear; ask only for information needed to resolve a consequential ambiguity. A new architecture is not required for every legitimate contribution.
 
-## 核心流程
+## Establish evidence and alternatives
 
-### Step 1: 第一印象与论文类型定位
+Use a compact table: proposed claim; supporting evidence and exact location; closest alternative explanation/work; unresolved question; discriminating test. Distinguish user-reported observations from verified artifacts and mechanism hypotheses.
 
-用一段话判断 idea 读起来是 Novel Problem、Novel Method 还是 New Setting。能否一句话讲清故事？讲不清则 idea 尚未成熟，要求用户重述。
+Search primary sources when novelty needs verification, recording search date and coverage. Read relevant method and experimental sections before asserting overlap. Title resemblance does not establish equivalence; a failed search does not prove novelty. When browsing is unavailable, mark novelty unverified and continue planning a useful pilot.
 
-按方法分类研究范式（不按院系名）：实验/基准/消融/模型架构 = STEM（继续五维评估）；文本分析/档案/概念论证 = 人文；问卷/访谈/统计/田野 = 实证社科；回归/IV/DID/RDD/面板 = 金融经济；法条/判例/学说 = 法律。非 STEM 范式用替代五维框架（见下文）。
+A baseline matching a proposed module can challenge its claimed benefit but does not automatically invalidate the entire idea. Check whether the intervention actually disabled the module, retraining was appropriate, settings were comparable and uncertainty permits the claimed distinction. Preserve negative evidence and identify which claim it changes. Lack of evidence for a hypothesis is not itself falsification.
 
-### Step 2: 致命伤审计（早期门控）
+## Design the smallest informative study
 
-在评分前先跑致命伤审计。识别至多 2 个致命伤，每个标注：缺陷、检测规则、防御策略。
+Load domain-evidence-review.md and experiment-design-protocol.md for actual experiment planning. Match metrics to claims: rendering is not geometry, benchmark gain is not mechanism identification, and faster timing needs comparable settings. Prefer a controlled test of the central uncertainty over a large benchmark run with no discriminating power.
 
-**十条标准致命伤**：
+Identify independent units and relevant confounders, define an outcome that would support or weaken the hypothesis, and keep development/validation separate from final testing. Report effect and uncertainty; do not mandate a t-test or select successful scenes/seeds after viewing results.
 
-| 编号 | 致命伤 | 检测规则 | 防御策略 |
-|------|--------|---------|---------|
-| F1 | 新颖性缺失（与已有工作重叠） | 提取 2-3 组关键词（核心方法+领域；机制+任务；技术+基准）检索，列出 3-5 篇最近似已发表工作，逐个说明在哪条轴上确有差异（作用对象/机制/输入粒度/问题设定）。仅标题相似不等于重复，必须找不到任何一条差异轴才算重复 | 检索结果仅支持元数据级判断（谁做了什么），不得引用检索摘要中的数字或方法细节。"未检索到"不证明新颖，报告为"这些关键词下未检索到直接重叠工作"。无检索能力时标注"未验证，需文献核查" |
-| F2 | 数据反驳核心机制 | 用户自带数据或附件已显示核心机制被基线或简单对照追平或超越 → 锁定 verdict 为 Reject and Pivot，不写防御、不编乐观阈值 | 区分"被数据反驳"与"尚未验证"的边界：前者有数字证据，后者只是没跑 |
-| F3 | 核心假设无依据 | idea 的成立依赖一个未经任何文献或数据支撑的假设 | 要求用户提供假设来源，或设计一个最小验证实验 |
-| F4 | 评估指标与 claim 错位 | claim 是"更快"但只测了质量；claim 是"更鲁棒"但只测了标准场景 | 指标必须与 claim 同轴，见 writing-experiments.md Comparison Fairness Protocol |
-| F5 | 基线不公平或过时 | 只比自己提出的旧版本，或只比已过时的基线 | 至少含 Tier-1 基线（见 experiment-design-protocol.md） |
-| F6 | 范围漂移 | idea 从一个聚焦问题膨胀成多个不相关问题 | 砍掉与核心机制无关的分支，回到一句话故事 |
-| F7 | 不可复现 | 关键超参/数据/代码无法获取或无法在声明算力上运行 | 标注复现风险与所需资源 |
-| F8 | 过度声称 | "显著优于"但无统计检验，或"通用"但只测了单一场景 | 降级措辞或补多种子统计+配对 t 检验（对齐老板偏好） |
-| F9 | 创新点不可区分 | 三个贡献实为一个贡献的三种说法，或贡献与挑战无一一对应 | 用 tech-paper-template 四点自洽检查（见本 fragment Step 4） |
-| F10 | 与作者能力/周期错配 | idea 需要 6 个月但作者每周有效投入 <10 小时 | 标注 lifecycle 错配，建议缩减范围 |
+## Feasibility and decision
 
-**短路规则**：任一致命伤标为 CRITICAL（单独导致拒稿且 lifecycle 内不可修复）→ 直接输出 verdict: Reject and Pivot，只输出第 1/2/7 节，不跑五维评分。
+Assess data access/license, compute, skills, dependencies and time against user-supplied resources. Missing resources remain unresolved; offer conditional cost/effort estimates with assumptions rather than inventing a budget.
 
-### Step 3: 生命周期与能力匹配
+Discuss applicable dimensions (quality, speed, robustness, data cost, transfer, scientific insight). Use supported / unresolved / challenged with reasons. Scores are optional only when requested and explicitly defined as decision aids; missing evidence remains unscored. Do not impose dimension counts, paradigm-shift quizzes or thresholds as scientific or publication verdicts.
 
-将 idea 映射到六类（应用型/基础理论/交叉/前沿探索/数据密集/技术创新），对照用户声明的有效周投入时长、技能深度、理论 vs 应用倾向。lifecycle 短于用户现实执行窗口 → 标错配 flag。
+Recommend one of: run a pilot; refine the question or claim; pursue an alternative; or obtain missing evidence first. Explain the decisive evidence and one or two next actions. Only recommend abandoning a mechanism when reliable evidence challenges its central premise; consider narrower useful contributions and resource constraints separately. These recommendations are revisable research decisions, not Strong Accept/Reject peer-review predictions.
 
-### Step 4: 五维评分
+## Proportional output
 
-每个维度从 5 分起，必须有依据才移动分数。两种上移依据都算：用户报告的实测结果（引用数字）或成立的机制论证（标注"机制推断，未经数据确认"）。既无数据也无机制的维度保持 5 分并标"未给依据"。当一项亮眼增益可能来自外围因素（路由/后处理/更强基座/有利样本）时，封顶该维度直到消融隔离核心机制。
-
-| 维度 | 含义 | 评分锚点 |
-|------|------|---------|
-| Higher | 有效性/精度提升 | 5=持平基线；7=有机制论证的明确增益；8-9=实测增益且经消融确认；10=领域范式级跃迁 |
-| Faster | 效率/成本降低 | 同上锚点，看训练/推理/内存 |
-| Stronger | 鲁棒性/泛化/噪声容忍 | 看跨场景/跨数据集/对抗鲁棒 |
-| Cheaper | 数据/标注/求解成本降低 | 看少标注/少样本/弱监督 |
-| Broader | 跨域迁移或统一 | 看能否迁移到非原始领域 |
-
-找出得分最高的 2-3 个维度，建议论文重点强调。
-
-### Step 5: 范式转移探针
-
-四个问题，≥2 个 yes 则有颠覆潜力：
-
-1. 是否挑战了领域默认的一个隐含假设？
-2. 是否触及一个大家看得到但没人愿碰的大象问题？
-3. 是否乘上了技术周期更迭（如 LLM 让此前不可行的方案变可行）？
-4. 若此问题自解，领域是否会显著改变？（Hamming 法则）
-
-### Step 6: 可行性核查
-
-对照用户声明资源（算力/数据/团队/工程能力/时间线）评估四类风险：算力风险、数据风险、工程风险、时间线风险。任一高风险 → 显式标注并给缓解建议。
-
-### Step 7: 完整性门控
-
-输出前检查：每个维度分数都引用了用户陈述的具体依据（非"感觉"）；可行性引用用户声明的资源（非通用假设）；新颖性要么引用具体先验工作要么标注"未验证"；致命伤具体可操作（"可能不行"不算）；verdict 与评分一致（Strong Accept 需 ≥2 维度 8+ 且零 CRITICAL）。
-
-### Step 8: 最终裁决
-
-- **Strong Accept**：≥2 维度 8+、零致命伤、能力匹配绿、lifecycle 适配 → 立即执行
-- **Accept with Revisions**：部分维度弱、致命伤可修、lifecycle 错配可缩 → 按建议调整范围后再启动
-- **Reject and Pivot**：被已有基准/方法压制、能力错配不可修、>1 致命伤 → 不追求此版本
-
-高分基于机制而非数据时，裁决加注"值得推进，待验证实验"，并在前三行动作里点名该验证实验。
-
-## 输出格式
-
-```
-### 1. 第一印象
-- 论文类型：<Novel Problem / Novel Method / New Setting>
-- 一句话故事：<...>
-
-### 2. 致命伤审计
-| # | 缺陷 | 严重度 | 防御 |
-|---|------|--------|------|
-| 1 | ... | CRITICAL/MAJOR | ... |
-*有 CRITICAL 则跳过 3-6，直接到 7。*
-
-### 3. 生命周期与能力匹配
-| 维度 | 用户输入 | 评估 |
-|------|---------|------|
-| idea 类别 / lifecycle / 周有效时长 / 适配 | ... | 绿/黄/红 |
-
-### 4. 五维雷达
-| 维度 | 分数 1-10 | 依据 | 提升建议 |
-|------|----------|------|---------|
-
-### 5. 范式转移探针
-| 探针 | 是/否 | 理由 |
-颠覆潜力：<无/可能/强>
-
-### 6. 可行性
-| 风险 | 等级 | 缓解 |
-
-### 7. 裁决
-**<Strong Accept / Accept with Revisions / Reject and Pivot>**
-前三行动作：1... 2... 3...
-```
-
-## 与本技能其他 fragment 的衔接
-
-- 评估通过后 → 用 `3dgs-domain-venues.md` 选 venue + 用 writing-abstract-intro.md 起草
-- 致命伤 F1 新颖性核查 → 配合 `3dgs-citation-audit.md` 做引文校验
-- 致命伤 F4 指标错位 → 配合 `writing-experiments.md` Comparison Fairness Protocol
-- 成稿后自评 → 加载 `paper-evaluation-framework.md`（四维创新模型+TRL+10维评分，偏成稿）
+For a brief request, provide a short assessment and next test. For an extensive assessment, provide the evidence table, alternatives, prioritized risks, pilot and conditional recommendation. Never require the user to complete an arbitrary full scoring template before useful assistance.

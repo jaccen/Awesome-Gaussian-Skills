@@ -61,6 +61,8 @@ axes:
 routing:
   always_load:
     - references/core-stance.md
+    - references/review-integrity.md
+    - references/symbols-terminology.md
     - references/writing-patterns-from-top-papers.md
   on_demand:
     section:
@@ -210,6 +212,22 @@ routing:
       ccf-intl:
         - references/venue-formats.md
         - references/ccf-international-journals.md
+    task:
+      idea-eval:
+        - references/idea-evaluation.md
+      skeleton:
+        - references/paper-skeleton-protocol.md
+      literature:
+        - references/literature-search-protocol.md
+      figure:
+        - references/figure-design-protocol.md
+      experiment:
+        - references/experiment-design-protocol.md
+      polish:
+        - references/polishing-protocol.md
+      rebuttal:
+        - references/rebuttal-protocol.md
+      none: []
   references:
     always_load:
       - references/symbols-terminology.md
@@ -231,19 +249,3 @@ routing:
       - references/experiment-design-protocol.md
       - references/polishing-protocol.md
       - references/rebuttal-protocol.md
-    task:
-      idea-eval:
-        - references/idea-evaluation.md
-      skeleton:
-        - references/paper-skeleton-protocol.md
-      literature:
-        - references/literature-search-protocol.md
-      figure:
-        - references/figure-design-protocol.md
-      experiment:
-        - references/experiment-design-protocol.md
-      polish:
-        - references/polishing-protocol.md
-      rebuttal:
-        - references/rebuttal-protocol.md
-      none: []

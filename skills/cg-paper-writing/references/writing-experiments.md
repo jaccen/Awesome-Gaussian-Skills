@@ -35,7 +35,7 @@ Every number in a comparison table must sit on the same dimension as the numbers
 3. **Same training conditions, or full disclosure**: iteration count, densification/schedule, and hardware aligned to the baseline when feasible (Mip-Splatting: "Following [18], we train our models for 30K iterations across all scenes and use the same loss function, Gaussian density control strategy, schedule and hyper-parameters"); when not feasible, mark the cell (e.g., †) and explain in the caption.
 4. **Number provenance priority**: (a) best — rerun the baseline in our own environment (same data, same resolution, same protocol; full retraining, or re-evaluating the official checkpoint under our protocol); (b) acceptable — copy numbers from the original paper, only after an item-by-item caliber check (dataset version / resolution / split / metric implementation) and with the source marked; (c) forbidden — a number whose caliber does not match ours. If the calibers do not match, rerun the experiment instead of copying the number.
 5. **Rerun for verification**: when a baseline number cannot be traced to a same-dimension source, rerun the comparison experiment rather than dropping the baseline or reusing a mismatched number. Rerunning under unified settings is also the strongest rebuttal response to "unfair comparison" challenges (workflow and discipline: experiment-claim-verification.md §6).
-6. **One table, one dimension**: never mix resolutions, dataset versions, protocols, or "cited-from-paper" vs "reproduced-by-us" numbers in the same column without explicit per-cell markers and a caption note. When dimensions differ, split into separate tables (e.g., a full-resolution table and a downsampled table).
+6. **Descriptive context versus direct comparison**: Explicitly labeled heterogeneous settings may be shown for context, but markers do not make them comparable: never rank those cells or calculate speedup ratios across mismatched settings. **One comparison, one protocol**: never mix resolutions, dataset versions, protocols, or "cited-from-paper" vs "reproduced-by-us" numbers in the same column without explicit per-cell markers and a caption note. When dimensions differ, split into separate tables (e.g., a full-resolution table and a downsampled table).
 
 ### Experiment Design: Beyond the Basics (Lessons from High-Impact Papers)
 
@@ -69,7 +69,7 @@ English template:
 
 Good contribution statements are:
 1. **Specific**: Point to technical mechanism, not "proposed a new method"
-2. **Measurable**: Include expected metric improvement
+2. **Measurable**: Include verified effect, or explicitly labeled untested hypothesis
 3. **Differentiated**: Clearly distinguish from prior work
 4. **Honest**: No exaggeration
 
