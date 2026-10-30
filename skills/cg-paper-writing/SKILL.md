@@ -6,7 +6,7 @@ description: "Academic paper writing for 3D vision, computer graphics, CAD, and 
 description_zh: "面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等 17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改 CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。"
 description_en: "An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments), multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification."
 category: writing
-version: "3.3.0"
+version: "3.3.1"
 author: jaccen
 license: Apache-2.0
 user-invocable: true
@@ -39,6 +39,16 @@ metadata:
 ---
 
 # CG Paper Writing Engine (Router)
+
+## Evidence-first operating contract
+
+Use this skill to improve research clarity, auditability and writing efficiency. Do not promise acceptance, predict acceptance probabilities from self-scores, or imply that simulated roles are actual journal reviewers. For conflicts among fragments, this contract and `references/review-integrity.md` take precedence over historical templates and scoring heuristics.
+
+Start from the supplied artifacts: manuscript/version, research question, contribution type, target venue/year/track, available results and requested deliverable. Proceed with a bounded draft when inputs are incomplete; label missing evidence rather than inventing it. A focused edit does not require a full submission audit. Only certify submission readiness for checks actually completed.
+
+For methods, experiments, novelty assessment and full-paper review, load [domain-evidence-review.md](references/domain-evidence-review.md). For Nature-family targeting, also load [top-journal-strategy.md](references/top-journal-strategy.md); resolve the exact journal and article type before applying its requirements.
+
+Templates are optional rhetorical examples, not evidence or mandatory contribution counts. Public-paper critique and author-owned mock review differ from confidential assigned peer review: verify the venue's current AI/confidentiality rules before accepting review materials; do not process prohibited confidential submissions or generate prohibited official review content.
 
 > **Architecture**: Axis-driven static/dynamic router. Do NOT try to apply the writing logic from memory or from this router alone. Always load fragments from disk as described below.
 
@@ -182,7 +192,7 @@ Read these files from references/:
 - references/experiment-claim-verification.md — 实验声明溯源与服务器实验验证（声明-产物六步核查链/对比数字同维度核查与基线重跑/静默回退失效四联征/split fallthrough 陷阱与目录重命名法/h5→pkl 格式转换工作流/SSH-PowerShell-后台进程操作陷阱）；评审中遇到「服务器规模验证」类声明溯源、撰写或核查对比实验表、为论文补做远程实验、排查「训练跑完 rc=0 但结果异常」时必读
 - references/3dgs-citation-audit.md — 3DGS 论文引文与声明核查（事实层）：三层校验协议（ID 可达/名称一致/名称反查+人工裁定）、五类红线错误与本项目真实罚例（编号虚构、名↔号错配、venue 错、名/venue/描述全错、伪派生后缀）、实时引文核查脚本 `scripts/audit_manuscript_citations.py` 用法与 `[RED FLAG]`/`[WARN]` 判读、写作/投稿前/评审三套清单；**写 related work 或实验时核对引用、投稿前自查引用真实性、评审他人稿件验证其引用与声称时必读**（注意：任何事实结论必须回到 `data/methods.json` 与 `.arxiv_cache.json` 实时核查，不得凭本文件记忆作答）
 
-**Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load all fragments.
+**Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load relevant writing and domain fragments; do not load unrelated venue specifications.
 
 ## Step 3 — Execute Writing Task
 
@@ -202,8 +212,8 @@ After loading the required fragments:
 4. **Match the venue's tone**: CVPR more concise; SIGGRAPH more narrative; if style sample provided, strictly calibrate
 5. **Chinese academic writing**: Follow Chinese academic conventions (本文/我们/由此/表明)
 6. **Never fabricate data**: Mark missing data as `<!-- DATA_NEEDED: <description> -->`
-7. **Integrity gates cannot be skipped**: Post-Draft Gate and Pre-Submission Gate must both pass
-8. **Adversarial review must follow concession threshold protocol**: Prevent sycophancy and frame-lock
+7. **Integrity status**: Complete applicable checks before calling an artifact submission-ready; drafts may retain explicit unresolved items.
+8. **Evidence-led review**: Revise or withdraw findings when better evidence appears. Do not enforce concession quotas or fixed debate rounds.
 9. **Claim-citation alignment**: Each claim must be traceable to supporting citation, and citation must actually support the claim
 10. **Writing context persistence**: Maintain symbol, citation, review state consistency across sessions
 11. **Comparison dimension consistency**: In comparison experiments, all compared methods (including baselines) must be evaluated on the same dataset — same version, resolution, and split — under the same evaluation protocol. When a baseline number's caliber cannot be verified, rerun the comparison under unified settings; never reuse, silently convert, or approximate a mismatched number, and never mix numbers from different dimensions in one table

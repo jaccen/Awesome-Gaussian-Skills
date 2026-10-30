@@ -1,64 +1,33 @@
----
-# Top-Journal Submission Strategy (Nature/Science Subjournals & Chemical Reviews)
+# Journal fit and lessons from Nature-family writing
 
-Strategic-level guidance for targeting elite journals. Complements venue-formats.md (which holds format details for CV/Graphics venues). Applies when the user targets Nature/Science subjournals (Nat.XXX / Sci.XXX), Chemical Reviews, or similar top-tier journals, or asks for submission strategy / 投稿策略 / 顶刊 / 子刊 / 综述.
+## Scope before style
 
-## Core Positioning: Three Journal Types, Three Different Acceptance Logics
+Resolve the exact journal, article type and current author instructions. Nature, Nature Communications, Nature Methods and review journals have different scopes; do not infer standards from impact factor or shared publisher. A strong CG contribution may fit TOG/TVCG better. Explain fit through contribution and readership without acceptance forecasts.
 
-Do NOT prepare a Nature/Science sub-journal submission with ordinary SCI thinking, and do NOT mistake a Reviews journal for simple literature piling. Acceptance logic differs completely.
+Transfer precise scientific questions, evidence-supported advances, readable explanations, alternative hypotheses and explicit limitations. Do not inflate benchmark improvements into universal breakthroughs. Not every graphics contribution is a mechanism-discovery study.
 
-| Journal Type | Core Criterion | What it does NOT require |
-|--------------|----------------|--------------------------|
-| Nature sub-journal (Nat.XXX) | Novelty + universal value, cross-domain dissemination potential | Solving one grand ultimate problem |
-| Science sub-journal (Sci.XXX) | Method innovation, disruptive technology, mechanistic breakthroughs | Large workload for its own sake |
-| Chemical Reviews (ACS flagship review) | No original experiments required; tests academic vision + systematic synthesis ability | Original experimental data |
+## Evidence before narrative
 
-Key: sub-journal selection is about match, not raw IF. Some niche sub-journals have lower bars than the flagship. Match the journal to your work's ceiling; do not blindly chase head sub-journals.
+Outline claim–evidence links before polishing prose. Each key result should answer a research question. Include contradictory and negative findings; distinguish interpretation from measurement. A clean story must not hide exploratory selection or uncertainty.
 
-## Nature / Science Sub-journals: Polishing Original Research
+Check computational reproducibility, data/code availability, access restrictions, versions and dependencies against the exact journal's instructions. Availability requirements do not certify that artifacts have actually been verified.
 
-### 1. Topic selection: the "surprise" principle
+Figures explain methods and observations. Graphical abstracts are journal/article-specific, with no universal AI-generated figure requirement. Never use generated images as measured reconstructions, ground truth or experimental evidence. Trace result plots to source data and scripts.
 
-The work must make peers think "I didn't realize you could do it this way." Two paths:
-- **New phenomenon / new mechanism**: reveals something previously unseen
-- **New technology / new platform**: enables a wide range of downstream research
+## Revision and reviews
 
-If the paper only supports incremental gains, do not aim at the head sub-journals; match the journal instead. Self-test before submission: "Can this result be cited by multiple directions?"
+Major revision requests further assessment; it does not establish acceptance of the core conclusion or guarantee publication. Respond point by point using evidence and located changes. Explain scientifically unjustified or infeasible requests respectfully, offer alternatives and narrow unsupported claims. Do not perform every requested experiment solely because requested.
 
-### 2. Experiments & data: rigor > quantity, closed evidence loop is a hard threshold
+For reviews, define scope, search strategy and coverage limits; synthesize disagreements and evidence quality. Distinguish narrative and systematic reviews. Verify invitation/proposal rules by article type. Chemical Reviews is relevant only when the subject fits chemistry; prestige does not make it a CG venue.
 
-Reviewers will continuously propose alternative hypotheses. Every control experiment must rule out a competing explanation. The evidence chain must be closed — no gap where a reviewer can say "your result could also be explained by X."
+## Sources and transfer boundary
 
-- TOC / graphical abstract is critical: editors screen with abstract + figure first
-- A single decisive experiment that closes the loop beats ten supplementary tables
+Checked 2026-10-30; recheck for the submission year. Nature sources were accessible through search excerpts, but direct retrieval encountered authentication redirects; this is not a complete policy audit.
 
-### 3. Narrative: tell a complete scientific story, not a lab notebook
+- [Nature reporting standards](https://www.nature.com/nature/editorial-policies/reporting-standards): transparent reporting and research material availability.
+- [Nature initial submission](https://www.nature.com/nature/for-authors/initial-submission): availability of custom code central to conclusions.
+- [Nature formatting guide](https://www.nature.com/nature/for-authors/formatting-guide): journal-specific organization, not a universal template.
+- [CVPR 2026 reviewer training](https://cvpr.thecvf.com/Conferences/2026/ReviewerTrainingMaterial): soundness, meaningful contributions and evidence; strict restrictions on LLM processing of confidential submissions and composing reviews.
+- [SIGGRAPH 2026 reviewer instructions](https://s2026.siggraph.org/technical-papers-reviewer-instructions-ethics/): systems, datasets, experiments and analysis are legitimate contributions; journal/conference completeness expectations differ.
 
-Logic chain: **domain pain point → scientific hypothesis → experimental validation → conclusion → field impact**
-
-Do NOT list results in chronological experiment order. Restructure into a story where each result answers a question raised by the previous one.
-
-### 4. Revision strategy: major revision is the final sprint
-
-Reaching major revision means the core conclusion is accepted. Rules:
-- Respond point-by-point; do not argue, do not evade
-- If a requested experiment is feasible, do it — even if you think it is unnecessary
-- If a requested experiment is truly infeasible, acknowledge the limitation honestly and explain why
-- Do NOT inflate significance in the revision; reviewers see through it
-
-## Chemical Reviews: Top-Level Review Logic
-
-### Reality check
-Chemical Reviews is primarily invitation-based. Unsolicited submissions have extremely low acceptance rates. If invited, the editor already trusts your domain judgment.
-
-### Content core
-Not a literature catalog. The expectation is:
-- **Surface contradictions**: where do papers disagree?
-- **Distill debates**: what are the competing schools of thought?
-- **Predict the future**: where will this field go in 5–10 years?
-
-### Writing requirements
-- Classify by scientific question / mechanism / technical route — NOT by chronological order
-- Remain objective and neutral; do not favor your own group's work
-- Cover the entire sub-field systematically; omissions of major threads are fatal
-- Each section should end with the author's judgment on where that thread stands and where it is heading
+Local learning sources inspected: scientific-writing/SKILL.md and peer-review/SKILL.md from the available catalog. Adopt outline-to-prose drafting and constructive methodology review. Reject universal graphical-abstract/AI-figure quotas and irrelevant biomedical checklists. Historical nature-polishing/nature-response fusion labels do not establish that standalone skills are installed or independently validated.

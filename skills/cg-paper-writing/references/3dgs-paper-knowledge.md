@@ -9,7 +9,7 @@
 >
 > **深读笔记**：更细的逐篇笔记（含创新点拆解与实验分析）在工程 `references/paper-reading-knowledge-base.md`（9 簇/1678 行），本文件是其 20% 高密度提炼版。
 
-> **红线**：本知识库只含 arXiv 已核验条目；任何表中未出现的方法/编号，如需引用必须先过 `3dgs-citation-audit.md` 的三层校验，不得凭记忆补写。
+> **核验范围**：登记库与 arXiv 元数据匹配只提供身份线索，不保证技术描述、实验主张或 venue 正确。表内外方法均须分别核查身份、主张支持与发表状态；查不到时标 unresolved，不推断虚构。
 >
 > **重要（引用前必读）**：表中「发表场所」取自 `methods.json` 的**登记值**，其中部分 venue 属待核/有误状态——历史核查已证实过实例：HybridGS 曾误标 CVPR 2025（实为 ICML 2025）、GaussianBeV 曾误标 ECCV 2024（实为 WACV 2025）、GS-Physics 实为 Thermal3D-GS 且应属 ECCV 2024（当时还误标为 CVPR 2025）。**正式引用前务必用 `3dgs-citation-audit.md` 的方法复核「方法名 ↔ arXiv 编号 ↔ venue」三者一致性**，切勿把本表 venue 直接当作已核事实写进文献列表。
 

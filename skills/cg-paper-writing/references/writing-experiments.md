@@ -40,13 +40,13 @@ Every number in a comparison table must sit on the same dimension as the numbers
 ### Experiment Design: Beyond the Basics (Lessons from High-Impact Papers)
 
 #### 1. Setup: Make every choice a deliberate decision
-Do not just list datasets — explain WHY each dataset was chosen (what challenge it tests). Pin every hyperparameter to the baseline for fair comparison (Mip-Splatting: "Following [18], we train our models for 30K iterations across all scenes and use the same loss function, Gaussian density control strategy, schedule and hyper-parameters"). Open the experiments section with a roadmap paragraph ("We first present... We then assess... Finally, we discuss...").
+Do not just list datasets — explain WHY each dataset was chosen (what challenge it tests). For controlled attribution, align relevant settings; for full-system comparisons disclose differing budgets and tune each method fairly rather than forcing unsuitable hyperparameters (Mip-Splatting: "Following [18], we train our models for 30K iterations across all scenes and use the same loss function, Gaussian density control strategy, schedule and hyper-parameters"). Open the experiments section with a roadmap paragraph ("We first present... We then assess... Finally, we discuss...").
 
 #### 2. Main Results: Lead with the headline, then explain the "why"
-After each table, write 2-3 sentences explaining WHY the method wins — not just "ours is best". Attribute the gain to the specific mechanism (e.g., "the improvement concentrates on scenes with X, confirming component Y addresses Z"). Report results at application-meaningful operating points when possible (D4RT: "Max. Track Count @ Target FPS" with 60/24/10/1 FPS columns).
+After each table, explain the observed differences and their scope. Attribute gains to a mechanism only with controlled evidence; a concentration of gains in selected scenes is a hypothesis, not mechanism confirmation. Report results at application-meaningful operating points when possible (D4RT: "Max. Track Count @ Target FPS" with 60/24/10/1 FPS columns).
 
 #### 3. Ablation: Each component must earn its place
-Change ONE component at a time; ablate on both quality and speed dimensions; include hyperparameter sensitivity analysis. Name ablation subsections by the component they validate (Mip-Splatting: "Effectiveness of the 3D Smoothing Filter", "Effectiveness of the 2D Mip Filter"). If a component cannot show a measurable contribution in ablation, cut it from the paper.
+Change ONE component at a time; ablate on both quality and speed dimensions; include hyperparameter sensitivity analysis. Name ablation subsections by the component they validate (Mip-Splatting: "Effectiveness of the 3D Smoothing Filter", "Effectiveness of the 2D Mip Filter"). Report null or negative ablations and revise the claimed role. Removing a component from the deployed design may be justified, but do not remove inconvenient findings.
 
 #### 4. Qualitative Analysis: Figures that tell a story
 Use zoom-in detail boxes for direct comparison; add error maps (difference images) to make improvements visible; write self-contained captions — a reviewer skimming only figures must understand the claim. Diagnose failure modes honestly (Mip-Splatting's Fig. 1: faithful vs degenerate representation with named causes).
@@ -55,7 +55,7 @@ Use zoom-in detail boxes for direct comparison; add error maps (difference image
 Report FPS at a specified resolution + GPU model; report peak VRAM for training AND inference; report end-to-end wall-clock time. Disclose engineering reality (3DGS: "~80% of our training time is spent in Python code"). Throughput claims without hardware context are meaningless.
 
 #### 6. Statistical Rigor (increasingly required by top venues)
-Run 3-5 random seeds and report mean ± std; marginal improvements (< 0.5 dB or < 2%) need a significance test (t-test or Wilcoxon); prefer confidence intervals over point estimates. State the number of runs explicitly in the setup.
+For small gains, report effect sizes and uncertainty using independent sampling units and an analysis justified by the design. No fixed dB/percentage threshold determines whether statistical analysis is needed.
 
 English template:
 ```

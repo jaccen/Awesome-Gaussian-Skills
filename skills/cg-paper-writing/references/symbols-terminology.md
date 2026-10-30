@@ -5,15 +5,16 @@
 
 | Symbol | Meaning | Standard Usage |
 |--------|---------|---------------|
-| G | A 3D Gaussian primitive | G_i = (μ_i, Σ_i, c_i, α_i) |
+| G | A 3D Gaussian primitive | G_i = (μ_i, Σ_i, c_i, o_i) |
 | μ | Mean / center position | μ ∈ R³ |
 | Σ | Covariance matrix | Σ = R S Sᵀ Rᵀ, Σ ∈ R³ˣ³ |
 | R | Rotation matrix | R ∈ SO(3) |
 | S | Scaling matrix | S = diag(s₁, s₂, s₃) |
-| α | Opacity | α ∈ [0,1] (standard) |
+| o_i | Primitive opacity | Activated scalar in [0,1] |
+| α_i(x) | Pixel-dependent alpha weight | o_i times projected Gaussian footprint; implementation may clamp |
 | c | Color | c = f(SH, direction) |
-| SH | Spherical harmonics | Degree 0-3 |
-| T | Transmittance | T_i = ∏ⱼ₌₁ⁱ⁻¹ (1 - αⱼ) |
+| SH | Spherical harmonics | State actual degree; original implementations commonly use up to 3 |
+| T | Transmittance | T_i(x) = ∏ⱼ₌₁ⁱ⁻¹ (1 - αⱼ(x)), front-to-back ordered |
 
 ## General CG Symbols
 
@@ -68,7 +69,7 @@
 
 | Chinese | English | Notes |
 |---------|---------|-------|
-| 文本到3D | Text-to-3D | LLM-driven |
+| 文本到3D | Text-to-3D | Text-conditioned generation; may use diffusion or other priors |
 | 图像到3D | Image-to-3D | Single/multi-view |
 | 3D生成模型 | 3D generative model | GAN/Diffusion/Flow |
 | 形状编辑 | Shape editing | Deformation/style transfer/local editing |

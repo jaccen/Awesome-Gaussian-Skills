@@ -71,11 +71,14 @@ routing:
       intro:
         - references/writing-abstract-intro.md
       related-work:
+        - references/domain-evidence-review.md
         - references/writing-related-method.md
         - references/3dgs-paper-knowledge.md
       method:
+        - references/domain-evidence-review.md
         - references/writing-related-method.md
       experiments:
+        - references/domain-evidence-review.md
         - references/writing-experiments.md
         - references/3dgs-paper-knowledge.md
       contribution:
@@ -89,6 +92,7 @@ routing:
       rebuttal:
         - references/rebuttal-protocol.md
       all:
+        - references/domain-evidence-review.md
         - references/writing-abstract-intro.md
         - references/writing-related-method.md
         - references/writing-experiments.md
@@ -211,6 +215,7 @@ routing:
       - references/symbols-terminology.md
       - references/writing-patterns-from-top-papers.md
     on_demand:
+      - references/domain-evidence-review.md
       - references/review-integrity.md
       - references/markdown-draft-format-audit.md
       - references/paper-evaluation-framework.md
