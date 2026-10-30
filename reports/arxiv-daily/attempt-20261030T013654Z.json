@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-30",
+  "retrieved_at": "2026-10-30T01:36:54.994203+00:00",
+  "status": "incomplete",
+  "window_days": 3,
+  "known_arxiv_ids": 904,
+  "count": 0,
+  "queries": [
+    {
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202610270136 TO 202610300136]",
+      "status": "failed",
+      "pages": 0,
+      "fetched": 0,
+      "error": "TimeoutError: The read operation timed out"
+    },
+    {
+      "query": "all:3dgs AND submittedDate:[202610270136 TO 202610300136]",
+      "status": "failed",
+      "pages": 0,
+      "fetched": 0,
+      "error": "HTTPError: HTTP Error 429: Unknown Error"
+    }
+  ],
+  "papers": [],
+  "note": "Discovery candidates, not admitted or fully verified methods."
+}
