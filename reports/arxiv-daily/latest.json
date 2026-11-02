@@ -1,75 +1,24 @@
 {
-  "date": "2026-11-01",
-  "retrieved_at": "2026-11-01T00:44:38.476465+00:00",
+  "date": "2026-11-02",
+  "retrieved_at": "2026-11-02T10:23:23.370030+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 904,
-  "count": 5,
+  "count": 0,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202610290044 TO 202611010044]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202610301023 TO 202611021023]",
       "status": "complete",
       "pages": 1,
-      "fetched": 3
+      "fetched": 0
     },
     {
-      "query": "all:3dgs AND submittedDate:[202610290044 TO 202611010044]",
+      "query": "all:3dgs AND submittedDate:[202610301023 TO 202611021023]",
       "status": "complete",
       "pages": 1,
-      "fetched": 5
+      "fetched": 0
     }
   ],
-  "papers": [
-    {
-      "id": "2610.40495",
-      "title": "LucidLyra: Feed-Forward Generative 3D Scene Reconstruction and Joint Understanding via Multi-Task Distillation",
-      "abstract": "We present LucidLyra, a framework that makes generatively reconstructed 3D scenes directly queryable for semantics and instances in a feed-forward manner from video latents. While generative 3D reconstruction can synthesize virtual environments from a single image, downstream applications in robotics and physical AI require not only visual realism but also access to scene semantics and object identities. Existing 3D understanding approaches, however, require captured multi-view scenes, have limited generalization capabilities, or rely on expensive per-scene processing and optimization. To bridge this gap, our method distills complementary knowledge from a camera-controlled video diffusion model and frozen 2D vision foundation models into a unified model to jointly infer 3D Gaussians encoding geometry, appearance, open-vocabulary semantics, and class-agnostic instance cues. The resulting scenes support novel-view rendering, open-vocabulary segmentation, and object grouping without per-scene optimization, while training requires neither manual 3D annotations nor captured multi-view data. Our method outperforms baselines combining state-of-the-art 3DGS segmentation approaches with generative 3D scene reconstruction on curated synthetic and real-image-conditioned benchmarks, while preserving reconstruction quality. Furthermore, our latent formulation naturally extends to monocular video, reconstructing structured dynamic 3D scenes across time. By turning renderable but unstructured outputs into queryable 3D worlds, LucidLyra enables downstream applications including 3D scene editing, 3D asset mining, and robotic simulation.",
-      "published": "2026-10-29",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2610.39936",
-      "title": "MLLM-GS: Multimodal Large Language Model Prior-Guided Fast Novel View Synthesis in Extreme Environments",
-      "abstract": "Novel view synthesis (NVS) in degraded scenes aims to reconstruct 3D scenes from multi-view observations affected by various degradations, and to generate clear and photorealistic images at unseen viewpoints. Despite recent advances, existing methods often rely on degradation-specific models, limiting their generalization across diverse extreme environments. Generative models provide rich visual priors, but their outputs often suffer from pixel misalignment and color deviations, which can propagate into the reconstructed 3D scene and compromise reconstruction quality. Furthermore, the high computational and memory costs of 3D reconstruction hinder the practical application of NVS in extreme environments. To this end, we propose MLLM-GS, a multimodal large language model (MLLM) prior-guided framework for fast NVS in extreme environments. MLLM-GS consists of two branches: MLLM prior-guided view enhancement and fast 3D scene reconstruction. The former leverages the rich visual priors of a frozen MLLM to enhance views under different severe degradations and introduces a lightweight correction network to reduce pixel shifts and color distortions in MLLM outputs. With supervision from only a few paired clean views, this branch produces reliable enhanced views for all degraded observations, providing pseudo-GT views for subsequent 3D reconstruction. The latter improves 3DGS efficiency by optimizing rasterization, Gaussian memory layout, and parameter updates, reducing redundant computation, memory-access overhead, and optimization costs. Extensive experiments on multiple degraded scenes demonstrate that MLLM-GS effectively handles various severe degradations and achieves high-quality NVS with significantly lower reconstruction time and memory consumption. Project Page: https://wzlwlm13.github.io/MLLM-GS",
-      "published": "2026-10-29",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2610.39399",
-      "title": "ACD-GS: Asymmetric Curvature-aware Densification for 3D Gaussian Splatting",
-      "abstract": "3D Gaussian Splatting (3DGS) has emerged as a powerful paradigm for real-time photorealistic novel view synthesis. However, its training-time densification remains largely heuristic, often resulting in redundant Gaussian proliferation and inaccurate geometric reconstruction. Existing methods predominantly rely on first-order screen-space gradients to trigger cloning and splitting, which fail to distinguish true geometric discontinuities from high-frequency textures or noisy residuals. To address this limitation, we propose ACD-GS, an Asymmetric Curvature-aware Densification framework for compact and geometry-aware 3D Gaussian optimization. Our key insight is that second-order depth responses provide a more reliable structural prior for density control, enabling asymmetric regulation of cloning and splitting to better capture geometric discontinuities. Building on this, we introduce a multi-view photometric consistency constraint to suppress transient single-view errors, together with a capacity-aware adaptive regulation strategy that balances densification and pruning during training. Unlike post-hoc compression or quantization-based approaches, ACD-GS directly prevents redundant Gaussian generation during training, yielding inherently compact representations. Extensive experiments demonstrate that our method reduces nearly 60% of Gaussian count and storage while maintaining competitive rendering fidelity, consistently outperforming existing methods across multiple datasets. Our code is available in https://waveviewer.github.io/ACD-GS/.",
-      "published": "2026-10-29",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2610.39359",
-      "title": "P^2-Gaussian: Prior-Driven and Projection-Guided Gaussian Splatting for Sparse-View Cone-Beam CT Reconstruction",
-      "abstract": "Sparse-view cone-beam computed tomography (CBCT) reconstruction reduces imaging dose and scan time, but severe angular undersampling makes the inverse problem highly ill-posed. Existing 3D Gaussian Splatting (3DGS) methods initialize Gaussian primitives from Feldkamp-Davis-Kress (FDK) reconstructions that are contaminated by streak artifacts. The limited angular coverage also leaves the Gaussian parameters underconstrained, producing needle-like artifacts. We propose P2-Gaussian, a prior-driven and projection-guided 3DGS framework. In this framework, a latent rectified flow model, Sparse2Prior, first restores the artifact-corrupted FDK volume into an anatomical prior in approximately 5 s. Gaussian primitives are then initialized from this prior in a tissue-adaptive manner, which yields a compact representation with 62%-65% fewer optimized primitives than random sampling. During optimization, virtual projections synthesized at intermediate angles between the measured projections are activated in rotation, while measured projections remain dominant in the objective function. Experiments on 5, 10 and 20 measured views showed that the proposed P2-Gaussian achieved the highest PSNR and SSIM among all methods. Compared with the optimization-based Gaussian baseline, our method increases PSNR by 5.98, 4.25 and 2.49 dB and accelerates reconstruction by 2.6-3.0 times. These results indicate that coupling a learned anatomical prior with measurement-constrained Gaussian optimization is effective for sparse-view CBCT reconstruction. Code is publicly available at: https://github.com/Ballbo5354/P-2-Gaussian.",
-      "published": "2026-10-29",
-      "categories": [
-        "physics.med-ph"
-      ],
-      "primary": "physics.med-ph"
-    },
-    {
-      "id": "2610.39201",
-      "title": "COGS: A Diagnostic Benchmark for Attribute-Aware Object-Level 3D Gaussian Splatting Perception",
-      "abstract": "3D Gaussian Splatting (3DGS) is increasingly explored as an input representation for 3D perception. Yet it remains unclear how current 3D architectures exploit heterogeneous Gaussian attributes. This ambiguity makes accuracy hard to interpret and limits principled architecture design for 3DGS perception. However, existing object-level 3DGS datasets lack the appearance variation or artifact control needed for systematic attribute-level analysis. We introduce COGS, a large-scale 3DGS dataset with 15,675 artifact-filtered and appearance-rich objects across 40 categories. Built on COGS, we establish COGS-Bench for object classification and attribute-usage diagnosis, complemented by external validation. Our benchmark shows that Gaussian attributes are not uniformly beneficial: selected subsets can outperform the full attribute set, and the effects of appearance, opacity, and covariance-related attribute combinations vary substantially across architectures. We further study this finding with HALO, a reference model that preserves attribute-specific evidence before hierarchical aggregation. Experiments on COGS-Bench and external 3DGS datasets demonstrate that COGS supports systematic diagnosis of 3DGS attribute usage, while HALO highlights the value of role-preserving attribute organization. Our dataset is available at https://huggingface.co/datasets/XiaoZhengCV/COGS.",
-      "published": "2026-10-29",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    }
-  ],
+  "papers": [],
   "note": "Discovery candidates, not admitted or fully verified methods."
 }
