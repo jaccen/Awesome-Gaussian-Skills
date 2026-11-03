@@ -1,24 +1,58 @@
 {
-  "date": "2026-11-02",
-  "retrieved_at": "2026-11-02T10:23:23.370030+00:00",
+  "date": "2026-11-03",
+  "retrieved_at": "2026-11-03T03:19:38.519971+00:00",
   "status": "complete",
   "window_days": 3,
-  "known_arxiv_ids": 904,
-  "count": 0,
+  "known_arxiv_ids": 943,
+  "count": 3,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202610301023 TO 202611021023]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202610310319 TO 202611030319]",
       "status": "complete",
       "pages": 1,
-      "fetched": 0
+      "fetched": 3
     },
     {
-      "query": "all:3dgs AND submittedDate:[202610301023 TO 202611021023]",
+      "query": "all:3dgs AND submittedDate:[202610310319 TO 202611030319]",
       "status": "complete",
       "pages": 1,
-      "fetched": 0
+      "fetched": 2
     }
   ],
-  "papers": [],
+  "papers": [
+    {
+      "id": "2611.01162",
+      "title": "SHield: Watermarking 4D Gaussian Splatting via Spherical Harmonic Coefficient Perturbation",
+      "abstract": "4D Gaussian Splatting (4DGS) models are computationally expensive to train but distributed as easily copied parameter files. Existing watermarks protect these assets by fine-tuning the scene against a neural decoder to extract bit strings from rendered video, a heavy process vulnerable to the temporal dynamics of dynamic scenes. However, if the threat model targets the redistributed file itself, verification can be vastly simplified. Because the canonical Spherical-Harmonic (SH) coefficients of 4DGS are time- and view-invariant, parameter-space perturbations can be recovered via deterministic arithmetic. We propose **SHield**, the first non-blind, decoder-free watermarking approach that natively embeds full-resolution RGB images into 4DGS files. SHield tiles a zero-mean payload across the SH coefficients of a key-selected Gaussian subset, applying a brief anchored optimization to preserve visual fidelity. To verify ownership, it geometrically re-associates the key using canonical Gaussian centres to survive file tampering and recovers the payload in closed form. Across 30 scenes (D-NeRF, HyperNeRF, DyNeRF), SHield guarantees near-perfect payload recovery (Pearson $r \\geq 0.991$) on all 150 tested models with a mean rendering penalty of $\\leq 0.13$~dB. Held-out evaluation yields perfect detection on 400 true trials and zero false positives across $1{,}600$ wrong-subset null trials. We also strictly bound the method's robustness: SHield survives INT8 quantization and $30\\%$ opacity pruning for the image payload, and on aggressive SH-degree-1 truncation bit payloads are still decodable.",
+      "published": "2026-10-31",
+      "categories": [
+        "cs.CV",
+        "cs.CR",
+        "cs.GR",
+        "cs.MM"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.01122",
+      "title": "3D Gaussian Splatting: A New Paradigm for Wireless Environment Representation",
+      "abstract": "Wireless channels are shaped by the surrounding propagation environment, making explicit environment representation an effective approach for characterizing channels. By combining explicit environment modeling with learnable radio frequency characteristics, 3D Gaussian splatting (3DGS) emerges as a new paradigm for wireless environment representation. This article establishes a systematic perspective on 3DGS-enabled wireless communications in terms of environment representation. We first clarify the rationale for extending 3DGS from visual scene modeling to wireless communications and formulate a unified framework for wireless environment representation. Building on this framework, we further investigate the applicability of 3DGS-based representations to a broad range of communication and sensing tasks, and characterize key considerations for practical deployment. Finally, emerging directions are highlighted, including cross-scene generalization, near-field channel modeling, real-world data collection, and lifecycle management.",
+      "published": "2026-10-31",
+      "categories": [
+        "eess.SP"
+      ],
+      "primary": "eess.SP"
+    },
+    {
+      "id": "2611.00870",
+      "title": "A Reproducible Reconstruction and Evaluation Framework for Photorealistic Lunar Analog Scene Reconstruction Toward Digital Twins",
+      "abstract": "In this paper, we present a reconstruction pipeline that empirically quantifies the photorealistic scene reconstruction accuracy from both human-controlled and rover mast camera monocular feeds against physical ground truth as a function of Lunar traversal effects (e.g., motion blur, haze due to lofted regolith, trajectory bias, and sparse views). First, we benchmark six variants of 3D Gaussian Splatting (3DGS) across three Lunar analog scenes on held-out test sets using standard photometric metrics. We then establish how under traversal effects, this test-set-specific Novel View Synthesis (NVS) performance does not proportionally scale to the same photometric metrics in the reconstructed DTs. Our results quantify that splat training metrics alone are insufficient predictors of Cross-Reconstruction Photorealistic NVS Fidelity (CRPNVS), and that factors such as rover trajectory bias and geometric scene coverage play a critical role in determining the photorealistic quality of the reconstructed scenes targeting Lunar analog Digital Twins. Additionally, we pilot study Coverage Score ($S_c$), a geometry-based diagnostic derived from COLMAP poses and point cloud structure that provides a meaningful heuristic about the highest achievable CRPNVS structural fidelity, independently of splat training performance in the absence of a human-controlled reference. These findings establish a standardized, human control-referenced evaluation pipeline for photorealistic scene reconstruction for Lunar-analog Digital Twin development and future planetary exploration. Code and project page: https://rose-lab-admin.github.io/rose-lunar-dt-rec",
+      "published": "2026-10-31",
+      "categories": [
+        "cs.RO"
+      ],
+      "primary": "cs.RO"
+    }
+  ],
   "note": "Discovery candidates, not admitted or fully verified methods."
 }
