@@ -8,7 +8,7 @@ metadata:
   description_zh: "面向计算机图形学与三维视觉的学术论文写作引擎。覆盖 NeRF、3DGS、SLAM、点云、三维形状与 CAD 建模方向，支持 CVPR/SIGGRAPH/NeurIPS/TVCG 等国际会议期刊，以及《计算机学报》《软件学报》等 17 本中文核心期刊的投稿格式规范。提供章节级写作模板（标题、摘要、引言、相关工作、方法、实验）、多智能体对抗评审、引用三重真实性校验、按目标期刊校准文风、论文创新性与学术/产业价值评估、投稿前格式审计与实验声明溯源核查。适用于撰写或修改 CG 与三维视觉论文、按目标期刊格式调整稿件、论文对抗评审与引用完整性检查，以及按扩展协议新增期刊格式规范。"
   description_en: "An academic paper writing engine for computer graphics and 3D vision: NeRF, 3DGS, SLAM, point clouds, 3D shape and CAD modeling. Supports CVPR/SIGGRAPH/NeurIPS/TVCG venues plus 17 Chinese core journal format specs. Provides section-level writing templates (title, abstract, intro, related work, method, experiments), multi-agent adversarial review, three-layer citation verification, venue-specific style calibration, paper novelty/industry-value evaluation, pre-submission format audit, and experiment claim verification."
   category: writing
-  version: "3.3.2"
+  version: "3.4.1"
   author: jaccen
   user-invocable: true
   agent_created: true
@@ -36,6 +36,7 @@ metadata:
     - "评审他人论文 / 审稿时验证其引用是否虚构 / review a paper's citations for fabrication"
     - "查某个 3DGS 子领域的常用数据集 / 基线方法 / 评测指标 / baselines datasets metrics for a 3DGS sub-field"
     - "选基线 / 找对照方法 / related work 里该和谁比 / pick baselines for comparison"
+    - "按领域通用论文架构模式写作 / 提炼 idea-题目-摘要-骨架-引言-方法-实验-结论 写作范式 / field-general paper architecture pattern"
 ---
 
 # CG Paper Writing Engine (Router)
@@ -126,6 +127,7 @@ Read these files from references/:
 - references/core-stance.md — Role, writing process, de-AI rules, citation fact-check, guardrails
 - references/symbols-terminology.md — Mathematical symbols, CG/CAD/3D terminology reference
 - references/writing-patterns-from-top-papers.md — Exemplar patterns from 3DGS/Mip-Splatting/D4RT (concrete writing techniques with direct quotes); load for style calibration on any section
+- references/core-paper-writing-paradigm.md — 领域通用论文架构模式（多源证据：10 篇 CVPR 2026 共性 + 3DGS/Mip-Splatting/D4RT 逐句拆解 + 四方向模板；两篇新增样本仅入证据附录）：给“论证链六环 + 五类论文 + 八环节变体矩阵”的不变量与中英双轨模板；任何环节写作、结构规划、中文核心投稿、按范文校准文风时加载
 
 ### On-Demand Load (by detected section)
 | section | Fragment(s) to Load |
@@ -187,13 +189,14 @@ Read these files from references/:
 - references/review-integrity.md — Multi-agent review, Devil's Advocate Protocol（含矛盾消融结果消解模式）, citation verification, integrity gates, style calibration, writing quality check, persistence
 - references/paper-evaluation-framework.md — 论文创新性与学术/产业价值评估框架（四维创新模型+TRL产业成熟度+10维评分表+审稿视角对照），用于投稿前自评、审稿、指导学生论文、评估他人工作
 - references/top-paper-patterns.md — 顶会论文共性模范范式（基于10篇CVPR 2026及前沿3DGS论文全文精读提炼）：贡献结构配方（3-4条四件套+first声明+外部技术嫁接）、五条选题路径、四层实验证据体系、三种摘要模板、Intro四段式+根本问题句、图表引导策略、章节配比、顶会投稿自检清单、实测写作瑕疵避坑；写作/修改论文与校准结构时加载
+- references/core-paper-writing-paradigm.md — 领域通用论文架构模式（多源证据，2026-11-04）：以“论证链六环（问题→缺口→洞察→机制→证据→边界）”为不变量，配五类论文（范式/诊断/系统/基准/分析/综述）与八环节（idea/题目/摘要/骨架/引言/方法/实验/结论）的变体矩阵，给中英双轨带槽位模板、通用检查清单与实例到规则的抽象方法；两篇新增样本 SeeLe 与 JIG 综述只入证据附录；写任何章节、规划结构、投中文核心、按范文校准文风时必读
 - references/reviewer-perspective.md — 审稿人视角拒稿与中稿规律（基于OpenReview 33条真实审稿意见编码）：Champion效应与批评位置理论、拒稿理由Top10、录用要素Top10、可复述新颖性标准、致命伤vs可挽救伤判别与Rebuttal博弈（MoE-GS低分中稿解密）、跨venue转投策略、压缩方向八大坑、图表制作40条自查清单、投稿前防御清单D1-D15；投稿前自检、预判审稿攻击点、准备rebuttal、决定转投时加载
 - references/latex-source-hygiene.md — LaTeX 源码卫生与机械化验证（连续空行/环境与章节同行/跨文档引用写法/bib 键名一致性/S 编号对应/编译健康度/修复回归验证），配套一键核查脚本（维护者本地工具，未随技能分发，可按本文件方法论自写）；投稿前格式核查与源码清理任务必读
 - references/markdown-draft-format-audit.md — Markdown 工作稿投稿前格式审计与 P0 机械修复（摘要词数/引用首现顺序/孤儿图表检测/彩色批注两类处置规则/占位符两步法引用重排/摘要瘦身/主文-补充切分标注/中英双稿独立同步与终检清单/章节重构后引用顺序复检/MD→LaTeX 转换边界 bibitem 核验）；LaTeX 排版前的工作稿格式核查、批注清理与 P0/P2 修复任务必读
 - references/experiment-claim-verification.md — 实验声明溯源与服务器实验验证（声明-产物六步核查链/对比数字同维度核查与基线重跑/静默回退失效四联征/split fallthrough 陷阱与目录重命名法/h5→pkl 格式转换工作流/SSH-PowerShell-后台进程操作陷阱）；评审中遇到「服务器规模验证」类声明溯源、撰写或核查对比实验表、为论文补做远程实验、排查「训练跑完 rc=0 但结果异常」时必读
 - references/3dgs-citation-audit.md — 3DGS 论文引文与声明核查（事实层）：三层校验协议（ID 可达/名称一致/名称反查+人工裁定）、五类红线错误与本项目真实罚例（编号虚构、名↔号错配、venue 错、名/venue/描述全错、伪派生后缀）、实时引文核查脚本 `scripts/audit_manuscript_citations.py` 用法与 `[RED FLAG]`/`[WARN]` 判读、写作/投稿前/评审三套清单；**写 related work 或实验时核对引用、投稿前自查引用真实性、评审他人稿件验证其引用与声称时必读**（注意：任何事实结论必须回到 `data/methods.json` 与 `.arxiv_cache.json` 实时核查，不得凭本文件记忆作答）
 
-**Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + venue-formats (if venue specified). For full paper work, load relevant writing and domain fragments; do not load unrelated venue specifications.
+**Optimization**: For a focused task (e.g., "write abstract"), load only core-stance + symbols-terminology + writing-abstract-intro + writing-patterns-from-top-papers + core-paper-writing-paradigm + venue-formats (if venue specified). For full paper work, load relevant writing and domain fragments; do not load unrelated venue specifications.
 
 ## Step 3 — Execute Writing Task
 

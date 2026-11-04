@@ -119,6 +119,10 @@ Use `3dgs-paper-reader`, `3dgs-method-compare`, `3dgs-experiment-planner`,
 `cg-paper-writing` and `3dgs-visualizer` where their work is needed. Availability of
 external tools and compute must be checked rather than assumed.
 
+For section-by-section writing paradigms distilled from paired exemplars (a CVPR 2026
+method paper and a Chinese-core-journal survey), see
+`cg-paper-writing/references/core-paper-writing-paradigm.md`.
+
 `references/mp-3dgs.md`, `mp-spatial.md`, `mp-ontology.md`, `mp-aigc.md` and
 `mp-super-agents.md` are primary-source case indexes with explicitly labeled
 methodological interpretations. They are not universal writing rules or evidence

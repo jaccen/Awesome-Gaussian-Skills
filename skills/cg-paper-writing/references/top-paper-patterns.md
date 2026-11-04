@@ -1,6 +1,7 @@
 # 顶会论文共性模范范式（Top-Paper Patterns）
 
 > 用途：撰写或修改 3DGS/CG 论文时，按本范本校准论文的创新结构、选题定位、实验设计与写作范式。基于 10 篇 CVPR 2026 顶会及前沿 3DGS 论文全文精读（含附录）提炼。
+> 配套：领域通用论文架构模式（论证链六环 + 五类论文 + 八环节变体矩阵，多源证据）见 `core-paper-writing-paradigm.md`；本文件提供共性统计，该文件提供跨类型不变量与双轨模板。
 > 整理日期：2026-09-28
 > 精读对象：Proxy-GS（CVPR 2026 最佳论文候选）、PhysGM、E-RayZer、NERFIFY（CVPR 2026）、CoRef-GS、GS-VLA、RoboTidy（3DGS+智能体融合）、TemporalGS、GradRig、FillGauss
 

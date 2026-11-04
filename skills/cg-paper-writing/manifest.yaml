@@ -64,6 +64,7 @@ routing:
     - references/review-integrity.md
     - references/symbols-terminology.md
     - references/writing-patterns-from-top-papers.md
+    - references/core-paper-writing-paradigm.md
   on_demand:
     section:
       title:
@@ -238,6 +239,7 @@ routing:
       - references/markdown-draft-format-audit.md
       - references/paper-evaluation-framework.md
       - references/top-paper-patterns.md
+      - references/core-paper-writing-paradigm.md
       - references/reviewer-perspective.md
       - references/latex-source-hygiene.md
       - references/experiment-claim-verification.md
