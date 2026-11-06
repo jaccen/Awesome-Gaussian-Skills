@@ -235,6 +235,16 @@ When given an editing command (text or structured):
    - Object insertion: Sample new Gaussians from prior
 4. **Validate**: Check rendering consistency across views
 
+### Task 4: Validate Navigation with 3DGS Observations
+
+Use a resettable scene and a language goal such as reaching a specified room. Treat the 3DGS asset as a source of viewpoint-conditioned observations. Use a registered navigation mesh or simulator for legal motion, collision and goal checks. If using 3DGS-derived geometry for these checks, validate it independently and record its version, coordinate transform and units. An articulated task also needs explicit joint constraints and a state update mechanism.
+
+1. Fix the goal, initial pose, map, planner and action budget. Log each observation pose, requested action, executed transition and goal check. Save replayable failures with the scene and camera configuration.
+2. Compare a fixed initial 3DGS view with updated 3DGS views after movement to isolate the value of closed-loop observation. For a representation comparison, use matched camera poses and an equivalent observation interface for the alternative renderer. Report sensor or input differences that remain.
+3. Report goal success, path length or SPL when a shortest feasible path is available, collision and invalid-action rates, and recovery after failure. Test held-out layouts and separate appearance perturbations from geometry or dynamics changes. Record real-world results separately when claiming sim-to-real transfer.
+
+This is a 3DGS-specific application of the survey's navigation and sim-to-real discussions. [Agent AI survey, §6.2.2 and §7.4](https://arxiv.org/html/2401.03568v2)
+
 ## Decision Flow
 
 When processing a 3DGS scene, select the appropriate pathway based on scenario:
