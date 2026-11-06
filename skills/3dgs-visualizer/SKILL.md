@@ -209,7 +209,7 @@ When generating timelines that include 2026 methods, highlight these as landmark
 | TRELLIS.2 | CVPR 2026 Best Student Paper | Structured 3D generation | Best Student Paper marker |
 | SAM 3D | CVPR 2026 | 3D segmentation foundation | Highlighted method |
 
-Knowledge base: 1050 methods across 26 categories (updated for v0.9.13 cycle).
+Knowledge base: 1066 methods across 26 categories (updated for v0.9.14 cycle).
 
 ### API — Static Timeline
 

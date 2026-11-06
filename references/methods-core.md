@@ -1146,7 +1146,7 @@
 - **Core Innovation**: Generalizable pixel-aligned stereo GS for real-time novel view synthesis from stereo pairs
 
 ### EpiSplat
-- **arXiv**: [2403.09434](https://arxiv.org/abs/2403.09434)
+- **arXiv**: [2403.09594](https://arxiv.org/abs/2403.09594)
 - **Venue**: ECCV 2024
 - **Year**: 2024
 - **Category**: Feed-Forward Methods
@@ -1331,7 +1331,7 @@
 - **Core Innovation**: Compact GS with learned importance-aware quantization + progressive decoding
 
 ### SpreG
-- **arXiv**: [2411.10504](https://arxiv.org/abs/2411.10504)
+- **arXiv**: [2411.10664](https://arxiv.org/abs/2411.10664)
 - **Venue**: CVPR 2025
 - **Year**: 2025
 - **Category**: Compression Methods

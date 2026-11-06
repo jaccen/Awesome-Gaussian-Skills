@@ -639,7 +639,7 @@
 
 ### ProcFunc
 - **Paper**: ProcFunc: Function-Oriented Abstractions for Procedural 3D Generation
-- **ArXiv**: 2604.26943
+- **ArXiv**: 2604.26959
 - **Core**: Blender-based procedural 3D generation Python library
 - **Key Innovation**: Semantic component composition; VLM-assisted code editing for large-scale training data
 - **Source**: arXiv

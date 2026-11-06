@@ -5,7 +5,7 @@
 
 # Awesome Gaussian Skills
 
-### The Most Comprehensive 3D Gaussian Splatting Catalog — 1050 methods, 26 Categories, Interactive Explorer
+### The Most Comprehensive 3D Gaussian Splatting Catalog — 1066 methods, 26 Categories, Interactive Explorer
 
 **You shouldn't search 20 repos for 3DGS papers. This is the only one you need.**
 
@@ -24,7 +24,7 @@
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD600)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/Interactive_Explorer-Online-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/Methods-1050-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/Methods-1066-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI_Skills-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug_Patterns-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -43,7 +43,7 @@
 - [Integrations](#integrations)
 - [Online Book](#-online-book-spatial--embodied-intelligence)
 - [What's New (Oct 2026)](#whats-new-oct-2026)
-- [Knowledge Base](#knowledge-base-1050-methods-26-categories)
+- [Knowledge Base](#knowledge-base-1066-methods-26-categories)
 - [⭐ Featured Skill: cg-paper-writing](#-featured-skill-cg-paper-writing--full-lifecycle-paper-writing-engine)
 - [18 AI-Powered Skills](#18-ai-powered-skills)
 - [Visualization Samples](#visualization-samples)
@@ -79,7 +79,7 @@ Other awesome lists give you paper titles. **We give you paper titles + an AI to
 
 **[Try the Interactive Method Explorer →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-Search 1050 Methods instantly, filter by category, sort by citations, click any method card for details.
+Search 1066 Methods instantly, filter by category, sort by citations, click any method card for details.
 
 ## Quick Start
 
@@ -132,7 +132,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 > **Embodied Agent = Spatial Representation × Perception × Planning × Action**
 
 <details>
-<summary><b>What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (1050 Methods, 26 categories, 18 skills), zero fabrication</b></summary>
+<summary><b>What's inside — 13 chapters + hands-on prelude & capture SOP, every method name anchored to this repo's real data (1066 Methods, 26 categories, 18 skills), zero fabrication</b></summary>
 
 | # | Chapter | Focus |
 |---|---------|-------|
@@ -153,7 +153,7 @@ The MCP server exposes **34 tools** — 21 core (`import_scene`, `set_camera`, `
 | CH 12 | Capture-to-delivery: the end-to-end pipeline | Ten-stage tool selection & pitfalls, formats & coordinate systems, cost/duration estimates, project failure modes |
 | CH 13 | Industry playbooks: six verticals | Museums & tourism, e-commerce, industrial inspection, AD simulation, embodied robots, surveying & mapping |
 | 附 | Appendix | Datasets, evaluation metrics, delivery-metric conversion & acceptance-report templates |
-| 实 | Practice index: from book to engineering | 18 engineering skills · 34 MCP tools · 1050+ method explorer, chapter-to-runnable-resource mapping |
+| 实 | Practice index: from book to engineering | 18 engineering skills · 34 MCP tools · 1066+ method explorer, chapter-to-runnable-resource mapping |
 | 后记 | Will 3DGS be eaten? | Why explicit representations will be compressed, not consumed |
 
 </details>
@@ -168,13 +168,35 @@ Each chapter ends with hands-on exercises and links back to the repo's method ta
 <details>
 <summary><strong>Why we wrote it (and how it relates to this repo)</strong></summary>
 
-This book is the *narrative layer* over the repo's *data layer*. The repo gives you 1050 method names, abstracts, and 18 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
+This book is the *narrative layer* over the repo's *data layer*. The repo gives you 1066 method names, abstracts, and 18 engineering skills —but not the through-line that connects them. The book supplies that through-line: it argues *why* 3DGS became the bridge between spatial intelligence and embodied intelligence, and walks every chapter back to concrete methods and skills you can use today. Read the book to understand the map; use the repo to ship the territory.
 
 </details>
 
 ## What's New (Nov 2026)
 
-### Latest Update (Nov 2, 2026): **v0.9.13 — Weekly arXiv Ingest: 39 New Methods (1011 → 1050)** ⭐
+### Latest Update (Nov 6, 2026): **v0.9.14 — Weekly arXiv Ingest + Full-Library Audit: 16 New Methods (1050 → 1066)** ⭐
+
+Weekly pipeline run (official arXiv API harvest → R1–R5 accuracy rules → per-paper
+adjudication → evidence marking → carrier rebuild): **16** new indexed 3DGS methods
+admitted, taking the library from **1050 to 1066** (+1.5%) across all 26 categories — led
+by Feed-Forward (+4) and Acceleration (+3); Dynamic & 4D, Autonomous Driving, SLAM,
+Simulation, Foundation, Security, Language & Semantic, World Models & Spatial Intelligence
+and Surface & Rendering each +1. Every admitted name is self-stated in its paper's
+title/abstract and re-verified against the official arXiv API (titles matched
+entry-by-entry). **8** candidates were adjudicated out: `GaussFlaw` / `3DGS-VBench+` as
+diagnostic benchmarks, two unnamed-technique papers, a wireless position survey, a Lunar
+evaluation framework, `Physical Diffusion Policy` (3DGS only a component, no self-stated
+proper noun), and `GSCV++` dropped as a same-family derivation of the existing `GSCV`
+entry. arXiv-metadata-checked records: 943 → **959**. Highlights: **GSExplorer**
+(persistent 3DGS world state for interactive world generation), **SHield** (first
+non-blind decoder-free 4DGS watermarking), **EndoS3** (endoscopic semantic splatting
+SLAM), **IGSW** (multi-weather urban scene), **GaussianRenderFormer** (rasterizer-free
+transformer rendering), **AbacusGS** (per-splat sorting-free rendering). A full-library
+arXiv re-check re-verified all unique IDs (the single unresolved ID was a historical
+typo-note, not a live record); the 92 name↔title heuristic candidates were adjudicated as
+non-errors. All data carriers re-verified at **1066**. See [changelog](changelog/2026-11-06.md).
+
+### Previous Update (Nov 2, 2026): **v0.9.13 — Weekly arXiv Ingest: 39 New Methods (1011 → 1050)** ⭐
 
 Weekly pipeline run (official arXiv API harvest → R1–R5 accuracy rules → per-paper
 adjudication → evidence marking): **39** new indexed 3DGS methods admitted, taking the library
@@ -387,7 +409,7 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 
 <sup>Full changelog: [`changelog/`](changelog/)</sup>
 
-## Knowledge Base (1050 Methods, 26 Categories)
+## Knowledge Base (1066 Methods, 26 Categories)
 
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
@@ -406,52 +428,52 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Foundation (26) | Core 3DGS representations and basic variants | 3D Representation Survey, 3DGEER, 3DSGS |
-| Optimization (51) | Training objectives, density control, convergence | AdaGScale, AdpSplit, ArtifactWorld |
-| Surface & Rendering (66) | Surface extraction and rendering-formulation innovation | 2D-SuGaR, 3DSS, AmbiSuR |
+| Foundation (27) | Core 3DGS representations and basic variants | 3D Representation Survey, 3DGEER, 3DSGS |
+| Optimization (54) | Training objectives, density control, convergence | AdaGScale, AdpSplit, ArtifactWorld |
+| Surface & Rendering (71) | Surface extraction and rendering-formulation innovation | 2D-SuGaR, 3DSS, AmbiSuR |
 
 **Efficiency & Scale**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Compression & Streaming (53) | Lightweight, mobile, and progressive streaming | CAGS, Clustered Codebook VQ, CodecSplat |
-| Acceleration (26) | Training and inference speedup | 3DGS\u00B3, Axis-Shared Rasterization Accelerator, DDF-GS |
-| Large-Scale (21) | City-scale and distributed scene management | BlitzGS, CaT-GS, City-Level 3D Surface |
-| Feed-Forward (90) | Generalizable single-pass reconstruction (incl. foundation models) | AdaptSplat, AnchorSplat, AnyCity |
+| Compression & Streaming (63) | Lightweight, mobile, and progressive streaming | CAGS, Clustered Codebook VQ, CodecSplat |
+| Acceleration (32) | Training and inference speedup | 3DGS\u00B3, Axis-Shared Rasterization Accelerator, DDF-GS |
+| Large-Scale (22) | City-scale and distributed scene management | BlitzGS, CaT-GS, City-Level 3D Surface |
+| Feed-Forward (101) | Generalizable single-pass reconstruction (incl. foundation models) | AdaptSplat, AnchorSplat, AnyCity |
 
 **Understanding & Semantics**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Language & Semantic (38) | Open-vocabulary 3D understanding and language fields | 3D-GIMP, Consistent Scene Understanding in 3DGS, DGSG-Mind |
-| Generation (41) | Text/condition-driven 3D/4D generation | AniGen, AnySurf, AssetGen |
-| AIGC Content Creation (22) | AI-generated content creation: text/image → 3DGS scenes, assets, stylization, artistic fonts | DiffSplat, Dragen3D, PSGS |
-| Autonomous Driving (24) | Driving scene reconstruction and simulation | 3DGS Safety Evaluation for AD, Asset Harvester, CGGS |
+| Language & Semantic (50) | Open-vocabulary 3D understanding and language fields | 3D-GIMP, Consistent Scene Understanding in 3DGS, DGSG-Mind |
+| Generation (44) | Text/condition-driven 3D/4D generation | AniGen, AnySurf, AssetGen |
+| AIGC Content Creation (23) | AI-generated content creation: text/image → 3DGS scenes, assets, stylization, artistic fonts | DiffSplat, Dragen3D, PSGS |
+| Autonomous Driving (29) | Driving scene reconstruction and simulation | 3DGS Safety Evaluation for AD, Asset Harvester, CGGS |
 
 **Dynamic & Spatial**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Dynamic & 4D (93) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS³, AniGS, ClipGStream |
-| HDR & Relighting (27) | HDR capture, relightable and material-aware Gaussians | AlbedoEdit, Ambient-Robust IR, DiffAdapt4DSI |
-| SLAM (47) | Simultaneous localization and mapping | 2DGS-SLAM, Anchor3R, Anythingreality |
-| Sparse-View (25) | Few-shot and sparse-view reconstruction | DropAnSH-GS, FrameTwin, GeoQuery |
-| World Models & Spatial Intelligence (12) | 3D spatial reasoning, world modeling | ABot-3DWorld 0, APEIRIA, FlashWorld |
-| Ontology & Knowledge Representation (12) | Scene graphs, spatial ontologies, neuro-symbolic spatial reasoning | DynamicGSG, SATURN, OntoPlan |
+| Dynamic & 4D (98) | 4D Gaussians, temporal deformation, physics-integrated dynamics | 3DGS³, AniGS, ClipGStream |
+| HDR & Relighting (30) | HDR capture, relightable and material-aware Gaussians | AlbedoEdit, Ambient-Robust IR, DiffAdapt4DSI |
+| SLAM (54) | Simultaneous localization and mapping | 2DGS-SLAM, Anchor3R, Anythingreality |
+| Sparse-View (26) | Few-shot and sparse-view reconstruction | DropAnSH-GS, FrameTwin, GeoQuery |
+| World Models & Spatial Intelligence (16) | 3D spatial reasoning, world modeling | ABot-3DWorld 0, APEIRIA, FlashWorld |
+| Ontology & Knowledge Representation (13) | Scene graphs, spatial ontologies, neuro-symbolic spatial reasoning | DynamicGSG, SATURN, OntoPlan |
 
 **Applications & Cross-Domain**
 
 | Category | Description | Methods |
 |----------|-------------|---------|
-| Human & Avatar (42) | Animatable human and avatar reconstruction | ArtMesh, CapTalk, COSY |
-| Editing (45) | Interactive and text-guided scene editing | BEA-GS, Capacity-Controlled Stylization, DeSplat |
+| Human & Avatar (46) | Animatable human and avatar reconstruction | ArtMesh, CapTalk, COSY |
+| Editing (50) | Interactive and text-guided scene editing | BEA-GS, Capacity-Controlled Stylization, DeSplat |
 | CAD & Reverse Engineering (20) | CAD fitting, B-rep reconstruction, reverse engineering | 3DCodeBench, ASSEMCAD, BRepCLIP |
-| Cross-Domain (66) | Medical, underwater, remote sensing and other domains | 3DTV, Aes3D, AsyncEvGS |
-| Simulation (11) | Physics simulation and surrogate models | 3DThinkVLA, AGILE, ArtiTwinSplat |
-| Embodied AI & Robotics (44) | Grasping, manipulation, navigation, digital twins | 3DGS Demo Synthesis (IL), ArtGS, Forecast-GS |
-| Robustness (22) | In-the-wild and degradation-robust reconstruction | 3DReflecNet, DelowlightSplat, DualPhys-GS |
-| Security (11) | Watermarking, copyright, forgery detection | 3DEditSafe, 4D-GSW, BitC-3DGS |
-| Super Agents & Agentic AI (20) | Multi-agent LLM systems, 3D/spatial agent integration, agent benchmarks | Octopus v2, SPLATIFY, COLMAR |
+| Cross-Domain (77) | Medical, underwater, remote sensing and other domains | 3DTV, Aes3D, AsyncEvGS |
+| Simulation (13) | Physics simulation and surrogate models | 3DThinkVLA, AGILE, ArtiTwinSplat |
+| Embodied AI & Robotics (49) | Grasping, manipulation, navigation, digital twins | 3DGS Demo Synthesis (IL), ArtGS, Forecast-GS |
+| Robustness (24) | In-the-wild and degradation-robust reconstruction | 3DReflecNet, DelowlightSplat, DualPhys-GS |
+| Security (13) | Watermarking, copyright, forgery detection | 3DEditSafe, 4D-GSW, BitC-3DGS |
+| Super Agents & Agentic AI (21) | Multi-agent LLM systems, 3D/spatial agent integration, agent benchmarks | Octopus v2, SPLATIFY, COLMAR |
 
 </details>
 
@@ -515,7 +537,7 @@ Generated by `3dgs-visualizer` —see [`Test/`](Test/) for full-resolution files
 
 ## Research Innovation Highlights
 
-> Derived from systematic gap analysis across the 1050-method knowledge base.
+> Derived from systematic gap analysis across the 1066-method knowledge base.
 > Target venues: TVCG / CGF / CAD / T-RO / IJCV / ACM TOG.
 
 <details>
@@ -622,7 +644,7 @@ Awesome-Gaussian-Skills/
 ├── scripts/                   # build_knowledge_base.py, validate_knowledge_base.py, router_load.py, validate_skill_contract.py
 ├── studio/                    # SplatVerse Studio (bridge + web)
 ├── docs/                      # GitHub Pages interactive explorer
-├── references/                # Knowledge base (1050 Methods, 26 Categories)
+├── references/                # Knowledge base (1066 Methods, 26 Categories)
 ├── Test/                      # Visualization samples
 ├── changelog/                 # Version history
 └── assets/                    # Project images
@@ -654,7 +676,7 @@ Contributions welcome! See [Contributing Guide](CONTRIBUTING.md).
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {1050 indexed methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
+  note = {1066 indexed methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -668,7 +690,7 @@ Complementary projects — we recommend all of them:
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — comprehensive paper collection
 - All 3DGS researchers whose papers form our knowledge base
 
-> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 1050 verified methods, 18 skills, 34 MCP tools.
+> They catalog the ecosystem for humans; this repo makes it consumable by AI agents — 1066 verified methods, 18 skills, 34 MCP tools.
 
 ## License
 
@@ -705,7 +727,7 @@ Buy us a coffee
 <!-- research-reliability:start -->
 ## Evidence and reliable use
 
-The 2026-11-02 registry snapshot contains **1050 research records** in **26 categories**.
+The 2026-11-06 registry snapshot contains **1066 research records** in **26 categories**.
 **904** have freshly checked arXiv metadata; **107** still require a primary-source review.
 These counts are not a claim that all venues, technical descriptions or results have
 been independently verified. See [evidence coverage](data/evidence-audit.json).

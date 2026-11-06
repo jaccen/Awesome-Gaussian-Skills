@@ -25,6 +25,7 @@ method,arxiv_id,venue,year,category,core_innovation,code_url
 4DGS-WAM,2608.25956,arXiv 2026,2026,World Models & Spatial Intelligence,Object-centric World Action Model based on 4D Gaussian Splatting; separately models dynamic objects (policy-predicted future actor states) and static background; bridges past 4DGS reconstruction and future action prediction,
 4D-rotor GS,2402.03307,SIGGRAPH 2024,2024,Dynamic & 4D,"4D rotor-based Gaussian Splatting; geometric algebra rotors for compact 4D motion representation suitable for articulated and non-rigid dynamics; evaluated on D-NeRF (PSNR 34.26) and Plenoptic Video (277.5 FPS, highest frame rate)",
 6DGS,2410.04974,ECCV 2024,2024,Foundation,6-DoF Gaussian Splatting: explicit orientation-aware primitive with full 6D pose parameterization,https://github.com/r4dl/6dgs
+AbacusGS,2611.01534,arXiv 2026,2026,Acceleration,Stores the blending order of a 3DGS scene in the scene layout,
 ABCD,2608.27735,arXiv 2026,2026,Acceleration,"ABCD (Alpha-Composited Block Coordinate Descent), an out-of-core training framework for alpha-composited radiance fields, instantiated here for 3D Gaussian Splatting",
 ABot-3DWorld 0,2607.11673,arXiv,2026,World Models & Spatial Intelligence,Universal world model → 3DGS; Spatial Generative Primitive (SGP) + panoramic video reconstruction; multimodal input → explorable 3DGS world; SOTA among open-source methods,
 ACA-GS,2608.04581,arXiv 2026,2026,Dynamic & 4D,"Recent advances in 4D Gaussian Splatting (4DGS) enable high-fidelity, real-time spatiotemporal rendering, but expose a fundamental trade-off between motion expressiveness and storage efficiency",
@@ -101,6 +102,7 @@ BRepCLIP,2606.05515,arXiv 2026,2026,CAD & Reverse Engineering,Contrastive multi-
 BrepGaussian,2602.21105,CVPR 2026,2026,CAD & Reverse Engineering,3DGS + B-rep CAD reconstruction to parametric STEP models,
 BrepGiff,,arXiv 2026,2025,CAD & Reverse Engineering,Lightweight generation of complex B-rep with 3D GAT Diffusion; graph attention network diffusion for B-rep topology+geometry (IEEE Xplore),
 BRF-GS,2608.31159,arXiv,2026,HDR & Relighting,Hyperspectral bidirectional reflectance factor modeling with 3DGS; joint hyperspectral image generation and BRDF reconstruction from multi-view hyperspectral imagery,
+BudgetSplat,2611.06593,arXiv 2026,2026,Feed-Forward,Budget-controllable feed-forward framework that adapts the final Gaussian representation to a user-specified preservation ratio,
 BudSplat,2610.38278,arXiv 2026,2026,Feed-Forward,Compact feed-forward 3DGS framework that learns to keep the most valuable Gaussians under a limited primitive count,
 CAdam,2605.20872,SIGGRAPH 2026,2026,Optimization,Context-Adaptive Moment Estimation for 3DGS densification in generative distillation; first moment interference principle; 85-97% Gaussian reduction,
 CADDreamer,,CVPR 2025 Highlight,2026,CAD & Reverse Engineering,CAD object generation from single-view images; parametric primitive sequence generation from 2D input,
@@ -162,6 +164,7 @@ CoSAG,2607.10237,arXiv,2026,Compression & Streaming,Compact Semantic Anchor Gaus
 COSY,2605.24114,arXiv,2026,Human & Avatar,Compositional GAN generates hair/skin/glasses/torso independently for disentangled head editing,
 "Counting Contributions, Not Views",2610.27108,arXiv preprint,2026,Optimization,"Abstract context: 3D Gaussian Splatting grows a dense scene from a sparse initialization through adaptive density control (ADC), driven by per-Gaussian statistics gathered during rendering.",
 CrossFit-GS,2610.28190,arXiv preprint,2026,Optimization,Abstract context: Pose-free 3D Gaussian Splatting (3DGS) aims to bypass cumbersome Structure-from-Motion (SfM) by directly reconstructing scenes from unposed image sequences.,
+CrossPressor,2611.06258,arXiv 2026,2026,Feed-Forward,"Training-free scalable cross-view fusion for feed-forward 3DGS; coverage-cycled evidence routing retains spatial evidence across support views and fusion layers while keeping all support views represented, and routing before K/V projection with joint context packing cuts support-side fusion cost, reaching up to 26.12x faster cross-view fusion and 1.43x end-to-end acceleration",
 Cross-View Splatter,2605.19656,arXiv 2026,2026,Feed-Forward,Ground+satellite cross-view feature fusion for outdoor 3DGS reconstruction with unified GPS coordinate,
 CRP-GS,2609.23005,arXiv 2026,2026,Compression & Streaming,Rate-distortion optimized 3DGS compression using cross-representation priors for anchor-level entropy modeling.,
 CSD,2505.04262,arXiv 2025,2025,AIGC Content Creation,Coupled Score Distillation couples multi-view joint distribution priors from diffusion models to ensure geometry-coherent text-to-3D generation with stable direct 3DGS optimization.,
@@ -272,6 +275,7 @@ EmoZone-Talker,2606.15848,arXiv 2026,2026,Human & Avatar,Novel framework that re
 EndoGS,2401.11535,CVPR 2025,2025,Cross-Domain,Endoscopic scene reconstruction with GS for surgical navigation,
 EndoGSim,2605.16022,MICCAI 2026,2026,Cross-Domain,MLLM-guided 4DGS + differentiable MPM for physics-aware endoscopic scene reconstruction and simulation,
 EndoMD-SLAM,2608.08949,arXiv 2026,2026,Cross-Domain,"To address this limitation, we propose EndoMD-SLAM, a framework designed to maintain stability under optical degradation through specialized tracking and mapping mechanisms",
+EndoS3,2611.04358,arXiv 2026,2026,SLAM,"Gaussian Splatting-based semantic SLAM for endoscopy; instance-level motion decomposition separates static and dynamic instances, an instance-aware warp field gives each dynamic instance its own control nodes and deformation network, and semantic node allocation redistributes a fixed node budget across instances",
 EnerGS,2604.26238,Under review,2026,Optimization,Energy-based soft geometric guidance from LiDAR/depth priors,
 Energy-GS,,CVPR,2026,Optimization,RGB-only pose-free 3DGS joint optimization; no depth/geometry priors required; energy-based formulation,
 EpipolarFree-GS,2410.22817,NeurIPS 2024,2024,Feed-Forward,"Removing epipolar constraint for generalizable NVS, stronger cross-domain generalization",
@@ -368,6 +372,7 @@ GaussianMotion,2502.11642,arXiv 2025,2025,AIGC Content Creation,"End-to-end lear
 GaussianObject,2402.10259,CVPR 2024,2024,Sparse-View,Object-centric GS from sparse views with depth-regularized Gaussian initialization,https://github.com/Chenyu-Yang-GOAT/GaussianObject
 GaussianPile,2603.20611,CVPR 2026,2026,Cross-Domain,Slice-based volumetric reconstruction via sparse 3DGS + imaging system-aware focus model; 11x faster than NeRF; 16x compression,
 GaussianPretrain,2411.12452,CVPR 2024,2024,Optimization,Self-supervised pre-training for Gaussian initialization from multi-view features,
+GaussianRenderFormer,2611.05593,arXiv 2026,2026,Surface & Rendering,Transformer that takes a set of Gaussians and a camera and outputs the image directly,
 Gaussian Sculpting,2608.10602,arXiv 2026,2026,Surface & Rendering,"To address these issues, we propose Gaussian Sculpting, a fully differentiable end-to-end framework for high-quality surface reconstruction",
 GaussianShader,2311.17977,arXiv,2023,HDR & Relighting,Shading functions for reflective/refractive surfaces,
 Gaussians on a Diet,2604.20046,arXiv,2026,Compression & Streaming,"Memory-bounded training, 80% lower peak memory",
@@ -455,6 +460,7 @@ GSDF,2403.16964,NeurIPS 2024,2024,Surface & Rendering,"Dual representation: GS g
 GS-DIFF,2605.07203,arXiv 2026,2026,Editing,"Scene change detection directly on 3D Gaussian primitives, mapping pixel-level differences to primitive-level updates",
 GS-DOT,2604.23675,arXiv,2026,Cross-Domain,Diffuse optical tomography via Gaussian Splatting,
 GSDrive,2604.28111,arXiv,2026,Embodied AI & Robotics,Reinforcing driving policies with 3DGS environment for high-fidelity RL training,
+GSExplorer,2611.01543,arXiv 2026,2026,World Models & Spatial Intelligence,"TextbfGSExplorer, a generation--reconstruction framework built around a persistent 3D Gaussian world state",
 GSGAN,2406.02968,NeurIPS 2024,2024,Generation,Hierarchical GAN for direct 3D Gaussian generation,https://github.com/hse1032/GSGAN
 GS-Hider,2405.15118,NeurIPS 2024,2024,Security,"Steganography embedding into Gaussian parameters for 3D message hiding, visually lossless",
 GS-ID,,ICCV 2025,2025,Embodied AI & Robotics,GS-based illumination decomposition: real-scene light field factorization for embodied intelligence and autonomous driving,
@@ -467,6 +473,7 @@ GS-Map-SLAM,,CVPR,2026,SLAM,Gaussian-based dense mapping for SLAM with view-depe
 GSMem,2603.19137,arXiv,2026,Embodied AI & Robotics,"Effective embodied exploration requires agents to accumulate and retain spatial knowledge over time. However, existing scene representations, such as discrete scene graphs or static view-based snap...",
 GS-NFS,2606.05650,arXiv 2026,2026,Compression & Streaming,"Accelerates dynamic 3DGS compression and decompression on a GPU, to the point where it can encode and decode at full frame rate",
 GS-PI,2609.19907,arXiv 2026,2026,HDR & Relighting,"Multi-scale cross-view conditioning mechanism that integrates three complementary components: a global semantic prior, source-anchored photometric cues, and an absolute spatial learned view-direction conditioning signal",
+GSPIM,2611.04804,arXiv 2026,2026,Acceleration,"Temporal-locality-aware 4D Gaussian Splatting accelerator for PIM-enabled edge devices; polymorphic PIM filters and compacts valid data into contiguous inputs before GPU access, multi-frame rendering dataflow reuses active attributes and stable depth within a temporal window, and hybrid scheduling overlaps near-memory preparation with GPU rendering (4.15x speedup, 4.99x energy-efficiency)",
 gsplat,,arXiv,2026,Cross-Domain,CUDA-accelerated 3DGS rasterization library; 4x VRAM savings; 10% training speedup; production-grade real-time rendering; part of nerfstudio project,
 GS-Playground,2604.25459,RSS 2026,2026,Embodied AI & Robotics,Batch 3DGS + parallel physics at 10^4 FPS for robot learning,https://gsplayground.github.io
 GS-PRM,2610.19541,arXiv 2026,2026,Embodied AI & Robotics,Gaussian visual roadmap for image-goal navigation; 3DGS-rendered milestones and local connections form a probabilistic roadmap a local policy can follow,
@@ -523,6 +530,7 @@ i3dgs,,SIGGRAPH 2026,2026,Large-Scale,Immediate 3DGS for large-scale unordered i
 IBRSteG,2606.30024,arXiv 2026,2026,Feed-Forward,Generalizable framework for 3DGS steganography that enables undetectable concealment of secret scenes within a steganographic scene,
 IDESplat,2601.03824,CVPR 2026,2026,Feed-Forward,Iterative depth probability with epipolar attention,https://github.com/CVL-UESTC/IDESplat
 IGS,2503.16979,CVPR 2025,2025,Dynamic & 4D,Incremental Gaussian Splatting; incremental reconstruction pipeline with per-frame Gaussian management for streaming dynamic scenes; incremental Gaussian management for streaming dynamic scenes,
+IGSW,2611.04374,arXiv 2026,2026,Autonomous Driving,"Two-stage multi-weather urban scene reconstruction with intrinsic-decoupled 4D Gaussian modeling; background appearance is decomposed into weather-shared albedo/normals and weather-specific irradiance/residuals, with a structure-preservation gate suppressing unreliable teacher regions across weather conditions",
 Ilov3Splat,2605.04506,ICPR 2026,2026,Language & Semantic,Instance-level open-vocabulary 3DGS via multi-resolution hash embedding for CLIP features + SAM contrastive instance field; two-stage 3D clustering for natural language-driven 3D object retrieval (CSIRO),
 ImprovedVBGS,2607.15542,arXiv 2026,2026,SLAM,Real-time continual Variational Bayes GS; improved CAVI with per-frame subset updates instead of full-observation iterations; enables on-the-fly SLAM without replay buffers,
 InceptionGS,2609.02747,arXiv 2026,2026,Large-Scale,Generative bootstrapping for large-scale 3DGS under unstructured view sampling; balances reconstruction and generation,
@@ -605,6 +613,7 @@ MeshFlow,2606.04621,CVPR,2026,Generation,Efficient artistic mesh generation via 
 MeshWeaver,2606.04688,CVPR,2026,Surface & Rendering,Autoregressive next-vertex prediction guided by multi-level sparse-voxel encoder; 18% compression ratio,
 MesonGS++,2604.26799,Under review,2026,Compression & Streaming,Post-training codec with 34x compression + ILP hyperparameter search,https://github.com/mmlab-sigs/mesongs_plus
 MetaPoint,2606.05031,arXiv,2026,Foundation,Precise spatial control in agentic visual generation; represents continuous 2D coordinate as special token,
+METRIC-GS,2611.06020,arXiv 2026,2026,Foundation,"Selective scale estimator for real indoor photographs: it reads the scale off the reconstruction's own semantic content and, just as importantly, refuses when the evidence is thin",
 MFGS,2610.20590,arXiv 2026,2026,Compression & Streaming,"End-to-end feed-forward multi-view feature coding for 3DGS: encodes multi-view features instead of explicit Gaussians, 99.8% BD-rate savings with importance-guided budget adaptation",
 MGS,2603.19234,arXiv,2026,Compression & Streaming,"The ability to render scenes at adjustable fidelity from a single model, known as level of detail (LoD), is crucial for practical deployment of 3D Gaussian Splatting (3DGS). Existing discrete LoD m...",
 MidSurfNet,2606.01891,arXiv 2026,2026,CAD & Reverse Engineering,Learning-augmented mid-surface abstraction: neural face pairing module + interference implicit field (SDF intersection) for arbitrary offset control; 87.32% pairing accuracy,
@@ -661,11 +670,13 @@ OASIS,2607.29633,arXiv 2026,2026,Human & Avatar,Tailored 3D Gaussian Splatting f
 ObjectMorpher,2603.28152,CVPR 2026,2026,Editing,Deformable 3DGS for 3D-aware interactive image editing,
 ObjectSplat,2608.30423,arXiv,2026,Surface & Rendering,Object-level mesh splatting for enhanced mesh fidelity and interactivity; bridges 3DGS and mesh-based representations at object granularity,
 Observation-Gram,2609.28997,arXiv 2026,2026,Compression & Streaming,"Per-Gaussian observation Gram matrix as distortion metric for SH compression; closed-form degree reduction, Lagrangian degree allocation, matrix-weighted Lloyd VQ; +0.49 dB PSNR over Compressed3D, 15% smaller than GSICO at equal quality on Mip-NeRF 360",
+OccSplat,2611.06273,arXiv 2026,2026,Feed-Forward,"Feed-forward driving-scene reconstruction whose core contribution is Occlusion-Aware Gaussian Densification; predicts new Gaussian primitives for unsupported regions via Gaussian occlusion mapping and completion, completing missing scene geometry directly in the 3D representation without per-scene optimization",
 OC-GS,2609.31572,arXiv 2026,2026,Sparse-View,"Object-centric Gaussian splatting for irregular turntable capture; orbit-consistent refinement jointly optimizes image-derived geometry and angles with shared camera, rotation axis, and pivot; 12/8/6 irregular views achieve 21.26/19.36/15.83 dB foreground PSNR, exceeding four pose-free baselines",
 OCH3R,2605.13018,arXiv,2026,Cross-Domain,Object-centric scene understanding is a fundamental challenge in computer vision. Existing approaches often rely on multi-stage pipelines that first apply pre-trained segmentors to extract individu...,
 OctCGS,2605.22961,arXiv 2026,2026,Cross-Domain,Octree-contextual Gaussian splatting framework that explicitly models the order of bounce jointly over Tx/Rx positions and carrier frequencies,
 Octopus v2,2404.01744,arXiv 2024,2024,Super Agents & Agentic AI,"On-device 2B-parameter language model for super-agent function calling that surpasses GPT-4 in accuracy and latency, enabling efficient context-aware execution on edge devices.",
 Octree-GS,,arXiv,2024,Large-Scale,Octree spatial partitioning + LOD management,
+OctreeSplat,2611.02658,arXiv 2026,2026,Feed-Forward,Hierarchical octree-guided feed-forward Gaussian splatting,
 ODGS,2410.20686,NeurIPS 2024,2024,Foundation,Spherical projection + panoramic camera GS rasterization adaptation for 360-degree images,https://github.com/esw0116/ODGS
 OF3GS,2606.03254,arXiv 2026,2026,Feed-Forward,Two mechanisms for causal geometric stability: a Decoupled Intrinsic Recovery Head that mitigates cumulative camera-intrinsic bias and scene-scale jitter,
 OmniSplat,2412.16604,CVPR 2025,2025,Feed-Forward,Taming feed-forward 3D Gaussian Splatting for omni-view novel view synthesis with cross-view feature matching,
@@ -713,6 +724,7 @@ Per-View Distractor Filtering,2608.26951,arXiv 2026,2026,Robustness,Training-fre
 PG-3DGS,2605.11266,arXiv,2026,Cross-Domain,"Recent advances in Gaussian Splatting have enabled fast, high-fidelity 3D scene generation, yet these methods remain purely visual and lack an understanding of how shapes behave in the physical wor...",
 PG-Pose,2609.07231,arXiv 2026,2026,Embodied AI & Robotics,PG-Pose: geometry-aware framework combining Planar-based Gaussian Splatting (PGS) reconstruction with geometry-driven pose optimization; generalizable 6D pose of textureless objects without CAD priors,
 PGSR,2406.06521,TVCG 2024,2024,Surface & Rendering,Planar-based regularizer for high-fidelity surface reconstruction,
+Phase-DGS,2611.04666,arXiv 2026,2026,Dynamic & 4D,"Dynamic Gaussian Splatting from unsynchronized multi-view video; replaces conventional timestamps with a semantic phase representing each frame's state within the underlying motion cycle, naturally establishing spatiotemporal correspondence across unsynchronized cameras (up to +8.5 dB PSNR)",
 PhGS,2609.20623,arXiv 2026,2026,Feed-Forward,Post-hoc pruning and recurrent refinement pipeline that compacts single-view feed-forward 3DGS without retraining the base model.,
 PhotoAgent,2603.22796,arXiv 2026,2026,Super Agents & Agentic AI,"Robotic photographer agent integrating LMM chain-of-thought reasoning with geometric solvers, refined by visual reflection inside a photorealistic internal world model.",
 Photo-SLAM,2311.16728,CVPR 2024,2024,SLAM,Hyper primitives map with explicit geometric features for localization + implicit photometric features; Gaussian-Pyramid training; runs on Jetson AGX Orin,https://github.com/hjr37/Photo-SLAM
@@ -823,6 +835,7 @@ SatSurfGS,2605.07181,arXiv 2026,2026,Surface & Rendering,Generalizable 2DGS for 
 SATURN,2606.22694,arXiv 2026,2026,Ontology & Knowledge Representation,Neuro-symbolic framework for perspective-aware compositional spatial reasoning: reconstructs approximate 3D scenes and composes soft spatial predicates via a training-free Pythonic symbolic executor.,
 S-Avatar,2607.28164,arXiv 2026,2026,Human & Avatar,Novel method for generating photorealistic 3D head avatars from a single image using a diffusion-guided 3D model generation module and strategies for animating 3D Gaussian Splatting (3DGS),
 Scaffold-GS,2312.00109,ICCV 2023,2023,Large-Scale,Anchor-based structure for efficient large-scale representation,
+SCARF,2611.02365,arXiv 2026,2026,Acceleration,Dataflow-co-designed accelerator that aligns each bottleneck with a corresponding scene-level regularity,
 Scene2Sound,2608.00463,arXiv 2026,2026,Cross-Domain,"Task of generating a spatially consistent soundscape for a given 3DGS world through auditory grounding, identifying which objects in the world should emit sound and anchoring each to a persistent 3D position",
 SceneAgent,2610.34745,arXiv 2026,2026,Simulation,"Agentic pipeline converting 3D/4D captures (3DGS, photogrammetry, LiDAR, 4D video) into interactive simulation environments through simulator-based visual inspection and repair, with object segmentation, physical parameter estimation, part decomposition, and deformable simulation",
 SceneAssistant,2603.12238,arXiv 2026,2026,Generation,Visual-feedback-driven agent for open-vocabulary 3D scene generation; VLM + 3D object generation with atomic operations (Scale/Rotate/FocusOn); iterative visual feedback loop for spatial coherence; supports natural-language scene editing,https://github.com/ROUJINN/SceneAssistant
@@ -851,6 +864,7 @@ SG-Splat,2610.35361,arXiv 2026,2026,Feed-Forward,"Pose-free feed-forward 3DGS ro
 Shape-guided X-ray GS,2609.10376,arXiv 2026,2026,Cross-Domain,Shape-guided 3DGS for sparse-view X-ray 3D reconstruction; reduces radiation exposure via shape priors,
 Shape of Motion,2407.13764,ICCV 2025,2025,Dynamic & 4D,Monocular dynamic reconstruction via 2D motion + depth priors into a compact SE(3) motion basis deforming a scene of 3D Gaussians; world-frame consistent long-range trajectories,https://github.com/vye16/shape-of-motion
 SharpSplat,,arXiv,2026,Robustness,SAM3-based building edge extraction + rendered gradient-edge alignment; sharp building boundary reconstruction in UAV 3DGS scenes,
+SHield,2611.01162,arXiv 2026,2026,Security,"**SHield**, the first non-blind, decoder-free watermarking approach that natively embeds full-resolution RGB images into 4DGS files",
 SIC3D,2604.08760,arXiv,2026,Generation,Style image conditioned text-to-3D Gaussian Splatting generation,
 SimuScene,2606.03994,arXiv,2026,Simulation,Physics-in-the-loop compositional 3D scene reconstruction from single image; physics engine as diagnostic,
 SimVTA,2610.13781,arXiv 2026,2026,Autonomous Driving,Simulation-grounded video-trajectory alignment for driving world action models; RL post-training with simulated visual supervision for explored trajectories,
@@ -978,6 +992,7 @@ TruncGradGS,2609.03534,Pacific Graphics 2026,2026,Optimization,Improved 3DGS via
 TSOG,2607.28049,arXiv 2026,2026,Compression & Streaming,"Temporally and Spatially Ordered Gaussians (TSOG), a format for efficient representation of 4D Gaussian Splatting (4DGS) content",
 TurboGS,2606.15924,arXiv 2026,2026,Acceleration,Error-guided training framework that accelerates 3DGS by concentrating optimization on perceptually informative pixels,
 TV-SGS,2609.07734,arXiv 2026,2026,Sparse-View,Gaussian splatting with geometric information propagation via tensor voting under sparse views,
+TwinBridge,2611.06442,arXiv 2026,2026,Simulation,Digital twin-driven framework that supplies policy initialization and dense visual rewards for real-world online learning,
 TWINGS,2605.22069,CVPR,2026,Optimization,Thin Plate Splines warp-aligned initialization for sparse-view 3DGS,
 TwinPose,,SIGGRAPH 2026 TOG,2026,Cross-Domain,Multi-view 3D pose estimation via person-specific subspaces,https://github.com/zgspose
 ULF-Loc,2605.04730,CVPR 2026 Highlight,2026,SLAM,Unbiased landmark feature for robust visual localization with 3DGS; geometry-weighted aggregation replaces alpha-compositing features,
@@ -1015,6 +1030,7 @@ Visionary,2512.08478,arXiv 2025,2026,Cross-Domain,WebGPU + 3DGS world model carr
 Vision-TL-Action,2607.26770,arXiv 2026,2026,Ontology & Knowledge Representation,"Neuro-symbolic trajectory generation from multi-view images and coordinate-free temporal-logic syntax graphs, binding perception to symbols through bidirectional cross-attention.",
 VkSplat,2605.00219,Eurographics 2026 Short Papers,2026,Optimization,"Vulkan-based 3DGS training, 3.3x faster, 33% less VRAM",https://github.com/harry7557558/vksplat
 VLRC,,arXiv,2026,Language & Semantic,Vision-Language Reprojection Consistency as scalable signal for better feed-forward 3D pretraining,
+VLSplat,2611.01939,arXiv 2026,2026,Language & Semantic,Vision-language guided approach for object-centric semantic lifting in 3D Gaussian Splatting,
 Vol3DGS,,CVPR 2025,2025,CAD & Reverse Engineering,Physically accurate volume-consistent rendering resolving splatting/volume inconsistency via volume rendering integral for 3DGS,
 VolSplat,2509.19297,arXiv 2025,2025,Feed-Forward,Voxel-aligned Gaussian prediction replacing pixel-aligned splats for multi-view consistency,https://github.com/ziplab/VolSplat
 VoroTracing,2608.17682,arXiv,2026,Acceleration,Differentiable ray tracing at 623 FPS (RTX 5090); Voronoi-based traversal with 3.2x throughput over fastest RT methods and 2.8x over 3DGS rasterization,

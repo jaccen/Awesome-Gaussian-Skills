@@ -1,8 +1,8 @@
 
 # 3DGS 写作沉淀能力库 · Writing Capability Base
 
-> 版本：**2026-11-02**（§1 矩阵与口径行更新至 2026-11-02 快照）｜ 数据源：`data/methods.json`（**1050 方法 / 943 条带 arXiv ID / 26 类**，`generated_at` = 2026-11-02）+ `reports/arxiv-daily/`（每日扫描）+ `changelog/2026-10-13-v2/v3.md`（新增「本体与知识表示」「超级智能体」「AIGC 内容生成」三类）+ `changelog/2026-10-19.md` + `changelog/2026-10-20.md`。
-> 口径演进：本库初版基于 v0.9.6 的 881 方法 / 23 类；2026-10-14 基线 955 方法；2026-10-19 基线 976 方法；2026-10-21 基线 1011 方法；**2026-11-02 基线 1050 方法 / 26 类**，§1 矩阵已按新计数重排。§2 及之后的论文精读仍为 2026-09-28→10-08 窗口的产物，未随基线扩展，引用时按原始窗口理解。
+> 版本：**2026-11-02**（§1 矩阵与口径行更新至 2026-11-02 快照）｜ 数据源：`data/methods.json`（**1066 方法 / 959 条带 arXiv ID / 26 类**，`generated_at` = 2026-11-02）+ `reports/arxiv-daily/`（每日扫描）+ `changelog/2026-10-13-v2/v3.md`（新增「本体与知识表示」「超级智能体」「AIGC 内容生成」三类）+ `changelog/2026-10-19.md` + `changelog/2026-10-20.md`。
+> 口径演进：本库初版基于 v0.9.6 的 881 方法 / 23 类；2026-10-14 基线 955 方法；2026-10-19 基线 976 方法；2026-10-21 基线 1011 方法；**2026-11-02 基线 1066 方法 / 26 类**，§1 矩阵已按新计数重排。§2 及之后的论文精读仍为 2026-09-28→10-08 窗口的产物，未随基线扩展，引用时按原始窗口理解。
 > 用途：把"近期新增论文的阅读"沉淀为**细分领域 → 核心期刊**的可检索能力，支撑**快速选题、写作定位、实验设计**三件事。
 > 配套技能：`cg-paper-writing`（写作/投稿/中文期刊格式）、`3dgs-experiment-planner`（实验设计）、`3dgs-method-compare`（related-work 定位）、`3dgs-paper-reader`（精读）。
 
@@ -21,7 +21,7 @@
 
 ## 1. 细分领域 → 核心期刊能力矩阵（26 类，2026-11-02 快照）
 
-分布来自 `methods.json` 全量 1050 条（其中 943 条带 arXiv ID；`arXiv(preprint)` 占比高属领域常态，投稿时以非预印本 venue 为首选）。
+分布来自 `methods.json` 全量 1066 条（其中 959 条带 arXiv ID；`arXiv(preprint)` 占比高属领域常态，投稿时以非预印本 venue 为首选）。
 "近期热度"= 2026-09-28→10-08 扫描+收录中落入该类的**新论文数**（反映当前 active 程度）。
 
 | # | 细分领域 | 总量 | 首选会议 | 首选期刊(英文长文) | 推荐中文期刊 | 近期热度 |
@@ -54,7 +54,7 @@
 | 26 | Security | 12 | NeurIPS / ICML | TPAMI / IJCV | CJC、CRAD、JOS | 🔥 |
 
 > 三个标注「新增类」的行（AIGC Content Creation 23 / Super Agents & Agentic AI 20 / Ontology & Knowledge Representation 13）为 2026-10-13 新设类目，其 venue 列为**类目性质推断**，非逐篇统计；写稿前请对该类具体方法单独核实 venue。
-> 本表总和 = 1050（与 `data/methods.json` 的 `count` 一致）；每次改库后须重算本表，脚本参考 `scripts/crosscheck_carriers.py` 的类目统计段。
+> 本表总和 = 1066（与 `data/methods.json` 的 `count` 一致）；每次改库后须重算本表，脚本参考 `scripts/crosscheck_carriers.py` 的类目统计段。
 
 > 注：`*`Acceleration 类中 91% 仍为预印本，正式会议占比低，说明该子领域正快速洗牌、尚未形成稳定顶会归宿——投稿时可优先投 CVPR 并同步 arXiv。
 > 中文期刊代号：CJC 计算机学报、JOS 软件学报、JCAD 计算机辅助设计与图形学学报、CJIG 中国图象图形学报、VCIBA 工医艺可视计算、VRIH 虚拟现实与智能硬件、TXB 图学学报、AAS 自动化学报、SCIS 中国科学:信息科学、CRAD 计算机研究与发展、JSKX 计算机科学、JCIS 中文信息学报。

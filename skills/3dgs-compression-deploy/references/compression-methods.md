@@ -22,7 +22,7 @@ Methods that reduce Gaussian attribute bit-width (position, SH, opacity, scale, 
 | ZipGS | Pruning + quant + entropy | CVPR | 2025 | [2411.16785](https://arxiv.org/abs/2411.16785) | Variable | — | Volumetric entropy coding | — |
 | EAGLES | Quantized embeddings | ECCV | 2024 | [2312.04564](https://arxiv.org/abs/2312.04564) | 8–16 | 10–20x | Coarse-to-fine training + pruning | [GitHub](https://github.com/Exyro/EAGLES) |
 | TC-GS | Tri-plane representation | IEEE TVCG | 2026 | — | Implicit via tri-plane | — | Replaces per-Gaussian SH with shared tri-plane features | — |
-| SpreG | Separable covariance | CVPR | 2025 | [2411.10504](https://arxiv.org/abs/2411.10504) | Factorized | — | Separable representation factorizing covariance | — |
+| SpreG | Separable covariance | CVPR | 2025 | [2411.10664](https://arxiv.org/abs/2411.10664) | Factorized | — | Separable representation factorizing covariance | — |
 
 ---
 

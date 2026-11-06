@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-11-02",
+ "generated_at": "2026-11-06",
  "generator": "scripts/catalog_export.py",
- "count": 1050,
+ "count": 1066,
  "category_count": 26,
  "categories": {
-  "Surface & Rendering": 70,
+  "Surface & Rendering": 71,
   "CAD & Reverse Engineering": 20,
   "Embodied AI & Robotics": 49,
-  "SLAM": 53,
-  "Security": 12,
-  "Foundation": 26,
-  "Language & Semantic": 49,
-  "Dynamic & 4D": 97,
+  "SLAM": 54,
+  "Security": 13,
+  "Foundation": 27,
+  "Language & Semantic": 50,
+  "Dynamic & 4D": 98,
   "Human & Avatar": 46,
   "Optimization": 54,
   "Robustness": 24,
-  "Simulation": 12,
+  "Simulation": 13,
   "Cross-Domain": 77,
-  "World Models & Spatial Intelligence": 15,
-  "Acceleration": 29,
-  "Feed-Forward": 97,
-  "Autonomous Driving": 28,
+  "World Models & Spatial Intelligence": 16,
+  "Acceleration": 32,
+  "Feed-Forward": 101,
+  "Autonomous Driving": 29,
   "HDR & Relighting": 30,
   "Editing": 50,
   "Generation": 44,
@@ -601,6 +601,24 @@
     "numerical_results": "not-audited"
    },
    "title": "6DGS: Enhanced Direction-Aware Gaussian Splatting for Volumetric Rendering"
+  },
+  {
+   "name": "AbacusGS",
+   "arxiv_id": "2611.01534",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Stores the blending order of a 3DGS scene in the scene layout",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "AbacusGS: Gaussian Splatting without Per-Splat Sorting",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.01534"
+   }
   },
   {
    "name": "ABCD",
@@ -2260,6 +2278,24 @@
    "title": "BRF-GS: Hyperspectral Bidirectional Reflectance Factor Modeling and Image Generation Based on 3D Gaussian Splatting"
   },
   {
+   "name": "BudgetSplat",
+   "arxiv_id": "2611.06593",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Feed-Forward",
+   "desc": "Budget-controllable feed-forward framework that adapts the final Gaussian representation to a user-specified preservation ratio",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "BudgetSplat: Budget-Controllable Generalizable Gaussian Splatting",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.06593"
+   }
+  },
+  {
    "name": "BudSplat",
    "arxiv_id": "2610.38278",
    "venue": "arXiv 2026",
@@ -3583,6 +3619,24 @@
     "venue": "not-independently-checked",
     "technical_claims": "requires-located-primary-evidence",
     "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "CrossPressor",
+   "arxiv_id": "2611.06258",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Feed-Forward",
+   "desc": "Training-free scalable cross-view fusion for feed-forward 3DGS; coverage-cycled evidence routing retains spatial evidence across support views and fusion layers while keeping all support views represented, and routing before K/V projection with joint context packing cuts support-side fusion cost, reaching up to 26.12x faster cross-view fusion and 1.43x end-to-end acceleration",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "CrossPressor: Scalable Cross-View Fusion for Feed-Forward 3D Gaussian Splatting",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.06258"
    }
   },
   {
@@ -5991,6 +6045,24 @@
    "title": "EndoMD-SLAM: Endoscopic Gaussian Splatting SLAM under Optical Degradation with Memory and Static-Transient Decomposition"
   },
   {
+   "name": "EndoS3",
+   "arxiv_id": "2611.04358",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "SLAM",
+   "desc": "Gaussian Splatting-based semantic SLAM for endoscopy; instance-level motion decomposition separates static and dynamic instances, an instance-aware warp field gives each dynamic instance its own control nodes and deformation network, and semantic node allocation redistributes a fixed node budget across instances",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "EndoS3:Endoscopic Semantic Splatting SLAM",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.04358"
+   }
+  },
+  {
    "name": "EnerGS",
    "arxiv_id": "2604.26238",
    "venue": "Under review",
@@ -8088,6 +8160,24 @@
    "title": "GaussianPretrain: A Simple Unified 3D Gaussian Representation for Visual Pre-training in Autonomous Driving"
   },
   {
+   "name": "GaussianRenderFormer",
+   "arxiv_id": "2611.05593",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Transformer that takes a set of Gaussians and a camera and outputs the image directly",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "GaussianRenderFormer: Transformer-based Rendering of 3D Gaussian Splats",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.05593"
+   }
+  },
+  {
    "name": "Gaussian Sculpting",
    "arxiv_id": "2608.10602",
    "venue": "arXiv 2026",
@@ -9991,6 +10081,24 @@
    "title": "GSDrive: Reinforcing Driving Policies by Multi-mode Future Trajectory Probing with 3D Gaussian Splatting Environment"
   },
   {
+   "name": "GSExplorer",
+   "arxiv_id": "2611.01543",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "World Models & Spatial Intelligence",
+   "desc": "TextbfGSExplorer, a generation--reconstruction framework built around a persistent 3D Gaussian world state",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "GSExplorer: Interactive World Generation with a Persistent 3D Gaussian World State",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.01543"
+   }
+  },
+  {
    "name": "GSGAN",
    "arxiv_id": "2406.02968",
    "venue": "NeurIPS 2024",
@@ -10249,6 +10357,24 @@
     "numerical_results": "not-audited"
    },
    "title": "GS-PI: An Optimization-Decoupled Appearance Decomposition Approach for Generating PBR Gaussian Assets"
+  },
+  {
+   "name": "GSPIM",
+   "arxiv_id": "2611.04804",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Temporal-locality-aware 4D Gaussian Splatting accelerator for PIM-enabled edge devices; polymorphic PIM filters and compacts valid data into contiguous inputs before GPU access, multi-frame rendering dataflow reuses active attributes and stable depth within a temporal window, and hybrid scheduling overlaps near-memory preparation with GPU rendering (4.15x speedup, 4.99x energy-efficiency)",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "GSPIM: A Temporal-Locality-Aware 4D Gaussian Splatting Accelerator with Polymorphic PIM and Multi-Frame Rendering Dataflow",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.04804"
+   }
   },
   {
    "name": "gsplat",
@@ -11474,6 +11600,24 @@
     "numerical_results": "not-audited"
    },
    "title": "Instant Gaussian Stream: Fast and Generalizable Streaming of Dynamic Scene Reconstruction via Gaussian Splatting"
+  },
+  {
+   "name": "IGSW",
+   "arxiv_id": "2611.04374",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Autonomous Driving",
+   "desc": "Two-stage multi-weather urban scene reconstruction with intrinsic-decoupled 4D Gaussian modeling; background appearance is decomposed into weather-shared albedo/normals and weather-specific irradiance/residuals, with a structure-preservation gate suppressing unreliable teacher regions across weather conditions",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "IGSW: Multi-Weather Urban Scene Reconstruction with Intrinsic-Decoupled Gaussian Splatting",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.04374"
+   }
   },
   {
    "name": "Ilov3Splat",
@@ -13268,6 +13412,24 @@
    "title": "MetaPoint: Unlocking Precise Spatial Control in Agentic Visual Generation"
   },
   {
+   "name": "METRIC-GS",
+   "arxiv_id": "2611.06020",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Foundation",
+   "desc": "Selective scale estimator for real indoor photographs: it reads the scale off the reconstruction's own semantic content and, just as importantly, refuses when the evidence is thin",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "METRIC-GS: Selective Metric-Scale Estimation for 3D Gaussian Splatting",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.06020"
+   }
+  },
+  {
    "name": "MFGS",
    "arxiv_id": "2610.20590",
    "venue": "arXiv 2026",
@@ -14493,6 +14655,24 @@
    "title": "Only What Was Seen: Observation-Gram Compaction of View-Dependent Appearance in 3D Gaussian Splatting"
   },
   {
+   "name": "OccSplat",
+   "arxiv_id": "2611.06273",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Feed-Forward",
+   "desc": "Feed-forward driving-scene reconstruction whose core contribution is Occlusion-Aware Gaussian Densification; predicts new Gaussian primitives for unsupported regions via Gaussian occlusion mapping and completion, completing missing scene geometry directly in the 3D representation without per-scene optimization",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "Quo Vadis, Driving Scene Reconstruction? Occlusion-Aware Gaussian Densification",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.06273"
+   }
+  },
+  {
    "name": "OC-GS",
    "arxiv_id": "2609.31572",
    "venue": "arXiv 2026",
@@ -14599,6 +14779,24 @@
     "venue": "not-independently-checked",
     "technical_claims": "requires-located-primary-evidence",
     "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "OctreeSplat",
+   "arxiv_id": "2611.02658",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Feed-Forward",
+   "desc": "Hierarchical octree-guided feed-forward Gaussian splatting",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "OctreeSplat: Hierarchical Octree-Guided Feed-Forward Gaussian Splatting",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.02658"
    }
   },
   {
@@ -15626,6 +15824,24 @@
     "numerical_results": "not-audited"
    },
    "title": "PGSR: Planar-based Gaussian Splatting for Efficient and High-Fidelity Surface Reconstruction"
+  },
+  {
+   "name": "Phase-DGS",
+   "arxiv_id": "2611.04666",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Dynamic Gaussian Splatting from unsynchronized multi-view video; replaces conventional timestamps with a semantic phase representing each frame's state within the underlying motion cycle, naturally establishing spatiotemporal correspondence across unsynchronized cameras (up to +8.5 dB PSNR)",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "Phase-DGS: Phase-guided Dynamic Gaussian Splatting from Unsynchronized Multi-view Video",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.04666"
+   }
   },
   {
    "name": "PhGS",
@@ -18025,6 +18241,24 @@
    "title": "Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering"
   },
   {
+   "name": "SCARF",
+   "arxiv_id": "2611.02365",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Dataflow-co-designed accelerator that aligns each bottleneck with a corresponding scene-level regularity",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "SCARF: A Scene-Adaptive Depth-Guided G-3DGS Encoder Accelerator with Semantic Reuse and Fused Dataflow",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.02365"
+   }
+  },
+  {
    "name": "Scene2Sound",
    "arxiv_id": "2608.00463",
    "venue": "arXiv 2026",
@@ -18630,6 +18864,24 @@
     "venue": "not-independently-checked",
     "technical_claims": "requires-located-primary-evidence",
     "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "SHield",
+   "arxiv_id": "2611.01162",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Security",
+   "desc": "**SHield**, the first non-blind, decoder-free watermarking approach that natively embeds full-resolution RGB images into 4DGS files",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "SHield: Watermarking 4D Gaussian Splatting via Spherical Harmonic Coefficient Perturbation",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.01162"
    }
   },
   {
@@ -21412,6 +21664,24 @@
    "title": "TV-SGS: Gaussian Splatting with Geometric Information Propagation via Tensor Voting under sparse views"
   },
   {
+   "name": "TwinBridge",
+   "arxiv_id": "2611.06442",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Simulation",
+   "desc": "Digital twin-driven framework that supplies policy initialization and dense visual rewards for real-world online learning",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "TwinBridge: Digital Twin-Driven Policy and Reward Transfer for Real-World Reinforcement Learning in Laboratory Robotics",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.06442"
+   }
+  },
+  {
    "name": "TWINGS",
    "arxiv_id": "2605.22069",
    "venue": "CVPR",
@@ -22217,6 +22487,24 @@
     "venue": "not-independently-checked",
     "technical_claims": "requires-located-primary-evidence",
     "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "VLSplat",
+   "arxiv_id": "2611.01939",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Vision-language guided approach for object-centric semantic lifting in 3D Gaussian Splatting",
+   "code_url": "",
+   "sources": [
+    "arxiv-harvest"
+   ],
+   "title": "VLSplat: Vision-Language Guided Object-Centric 3D Gaussian Splatting via Scene Graph",
+   "evidence": {
+    "metadata": "checked",
+    "checked_at": "2026-11-06T03:43:18.540137+00:00",
+    "source_url": "https://arxiv.org/abs/2611.01939"
    }
   },
   {

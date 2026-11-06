@@ -1,6 +1,6 @@
 ---
 name: 3dgs-method-compare
-description: 'Compare 3D Gaussian Splatting variants across 11 dimensions. Built-in knowledge of 1050 methods across
+description: 'Compare 3D Gaussian Splatting variants across 11 dimensions. Built-in knowledge of 1066 methods across
   26 categories. Supports axis-driven fragment loading for efficient context usage. Use when: comparing 3DGS methods
   or variants, analyzing trade-offs between Gaussian Splatting approaches, generating comparison tables for 3DGS
   papers, finding the best 3DGS method for a scenario, 检索3DGS方法对比/3D高斯泼溅方法比较.'

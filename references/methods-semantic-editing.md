@@ -124,7 +124,7 @@
 
 ### Large-Scale Methods
 ### DOGS
-- **arXiv**: [2405.13943](https://arxiv.org/abs/2405.13943)
+- **arXiv**: [2405.13959](https://arxiv.org/abs/2405.13959)
 - **Venue**: NeurIPS 2024
 - **Year**: 2024
 - **Category**: Large-Scale Methods
@@ -285,7 +285,7 @@
 - **Core Innovation**: Inpainting-guided Gaussian Splatting for 3D content insertion and scene completion
 
 ### ColoredGaussian
-- **arXiv**: [2405.10508](https://arxiv.org/abs/2405.10508)
+- **arXiv**: [2405.10668](https://arxiv.org/abs/2405.10668)
 - **Venue**: CVPR 2024
 - **Year**: 2024
 - **Category**: Editing Methods

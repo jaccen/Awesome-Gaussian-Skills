@@ -31,7 +31,7 @@
 - **写作可嫁接点**: 大规模 3DGS 代表性工作，与 DOGS（分布式训练）、SCube（前馈大模型）、Street Gaussians（动态城市）并列引用；讨论训练效率/渲染扩展性时作基线。
 - **核查**: arxiv 标题=CityGaussian: Real-time High-quality Large-Scale Scene Rendering with Gaussians（一致）
 
-### DOGS (`2405.13943`, NeurIPS 2024)
+### DOGS (`2405.13959`, NeurIPS 2024)
 - **摘要**: 关注大规模场景 3DGS 的训练效率短板，提出 DoGaussian（DOGS），将场景分解为 K 块并用 ADMM 把 3DGS 训练分布式化，在保持渲染质量的同时大幅加速训练。
 - **创新点**: ① 将 ADMM（交替方向乘子法）引入 3DGS 训练，主控全局模型、从控 K 个局部模型；② 通过对共享高斯的 consensus 保证收敛与稳定；③ 训练后丢弃局部模型，仅查询全局模型，消息尺寸不随地图增长。
 - **核心方法**: 场景分解 + 分布式 ADMM 优化；master 节点持全局 3DGS，slave 节点持局部 3DGS；consensus 约束共享高斯；推理只用全局模型。

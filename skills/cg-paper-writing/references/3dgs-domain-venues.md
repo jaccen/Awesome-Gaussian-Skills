@@ -2,8 +2,8 @@
 # 3DGS 细分领域 → 核心期刊能力（领域知识参考）
 
 > **用途**：写 3DGS 论文时，按子领域定位首选会议/期刊、判断近期活跃方向、给出选题切口与实验基线。本文件是 `cg-paper-writing` 的领域知识扩展，**不与写作模板/venue 格式冲突**，只回答"写什么、投哪、比什么"。
-> **数据口径**：`data/methods.json`(2026-11-02 快照，**1050 方法 / 943 条带 arXiv ID / 26 类**) + `reports/arxiv-daily/`(每日扫描) + `changelog/2026-10-13-v2/v3.md`(新增「本体与知识表示」「超级智能体」「AIGC 内容生成」三类) + `changelog/2026-10-19.md` + `changelog/2026-10-20.md`。
-> 较本表上一版（v0.9.6，881 方法 / 23 类）的变化：总量 881→1050，类目 23→26，Dynamic/Feed-Forward/Cross-Domain/Compression 等类计数同步上调。所有论文 ID 均经 arXiv API / 扫描 / R9 协议核验。
+> **数据口径**：`data/methods.json`(2026-11-02 快照，**1066 方法 / 959 条带 arXiv ID / 26 类**) + `reports/arxiv-daily/`(每日扫描) + `changelog/2026-10-13-v2/v3.md`(新增「本体与知识表示」「超级智能体」「AIGC 内容生成」三类) + `changelog/2026-10-19.md` + `changelog/2026-10-20.md`。
+> 较本表上一版（v0.9.6，881 方法 / 23 类）的变化：总量 881→1066，类目 23→26，Dynamic/Feed-Forward/Cross-Domain/Compression 等类计数同步上调。所有论文 ID 均经 arXiv API / 扫描 / R9 协议核验。
 > **完整性标记**：`[精读]`=已读摘要可给具体增益；`[题录]`=仅题录，子领域与切口为推断，不写指标。
 
 ---
@@ -42,7 +42,7 @@
 | Security | 12 | NeurIPS / ICML | TPAMI / IJCV | CJC、CRAD、JOS | 🔥 |
 
 > 三个标注「新增类」的行（AIGC Content Creation 23 / Super Agents & Agentic AI 20 / Ontology & Knowledge Representation 13）为 2026-10-13 新设类目，其 venue 列为**类目性质推断**，非逐篇统计；写稿前请对该类具体方法单独核实 venue。
-> 本表总和 = 1050（与 `data/methods.json` 的 `count` 一致）；每次改库后须重算本表。
+> 本表总和 = 1066（与 `data/methods.json` 的 `count` 一致）；每次改库后须重算本表。
 
 > `*`Acceleration 类 91% 仍为预印本，正式会议归宿未定型——投稿优先 CVPR 并同步 arXiv。
 > 中文期刊代号：CJC 计算机学报、JOS 软件学报、JCAD 计算机辅助设计与图形学学报、CJIG 中国图象图形学报、VCIBA 工医艺可视计算、VRIH 虚拟现实与智能硬件、TXB 图学学报、AAS 自动化学报、SCIS 中国科学:信息科学、CRAD 计算机研究与发展、JSKX 计算机科学、JCIS 中文信息学报。具体格式见本技能 `<venue>-format.md`。
