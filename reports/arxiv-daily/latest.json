@@ -1,22 +1,22 @@
 {
-  "date": "2026-11-07",
-  "retrieved_at": "2026-11-07T01:39:42.544871+00:00",
+  "date": "2026-11-08",
+  "retrieved_at": "2026-11-08T01:07:50.202200+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 959,
-  "count": 9,
+  "count": 8,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611040139 TO 202611070139]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611050107 TO 202611080107]",
       "status": "complete",
       "pages": 1,
-      "fetched": 13
+      "fetched": 7
     },
     {
-      "query": "all:3dgs AND submittedDate:[202611040139 TO 202611070139]",
+      "query": "all:3dgs AND submittedDate:[202611050107 TO 202611080107]",
       "status": "complete",
       "pages": 1,
-      "fetched": 5
+      "fetched": 3
     }
   ],
   "papers": [
@@ -103,16 +103,6 @@
       "title": "AffineGS: Unlocking Accurate Geometry in 3DGS via Spatially Varying Affine Rectification",
       "abstract": "3D Gaussian Splatting (3DGS) has become the leading approach for photorealistic novel view synthesis, yet its geometric accuracy lags behind its visual quality. Existing depth-guided methods attempt to resolve this by regularizing the optimization with monocular depth priors, typically using a single global scale-and-shift alignment. Crucially, we discover a fundamental flaw in this assumption: modern monocular depth networks systematically exhibit region-dependent, piecewise-linear distortions. This discovery invalidates standard global alignment strategies, which warp scene geometry by enforcing a single transform. To address this, we introduce a spatially varying affine rectification model that corrects monocular disparity into consistent metric depth using regionally smooth, edge-aware fields. We further derive a normal-aware regularizer that uses spatial gradients to couple the rectified disparity with 3DGS depth and normals. Across diverse experimental settings, our sensor-free method shows strong photometric quality of Gaussian Splatting while substantially improving geometric accuracy and outperforming state-of-the art geometry-focused methods.",
       "published": "2026-11-05",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.07081",
-      "title": "Wide View Synthesis from Overlapping Perspective Cameras in Autonomous Driving",
-      "abstract": "Multi-perspective-camera systems are widely adopted since they provide broad visual coverage for autonomous driving, motivating the synthesis of a unified wide view from spatially separated observations. In this work, we formulate wide view synthesis (WVS), which aims to synthesize a geometrically consistent wide view at a specified virtual viewpoint from multiple perspective cameras. Unlike conventional image stitching, WVS requires reasoning about 3D geometry and visibility to handle depth-dependent parallax and occlusions arising from spatially separated camera centers. While vanilla 3D Gaussian Splatting (3DGS) enables high-fidelity view synthesis, its reliance on per-scene optimization limits its applicability to driving scenes. Furthermore, WVS introduces additional challenges, *e.g.*, peripheral stretching under perspective projection and photometric inconsistencies across cameras. To address these challenges, we propose **Wide-View Gaussian Splatting (WV-GS)**, a feed-forward Gaussian-splatting framework that synthesizes wide views without per-scene optimization. Specifically, we introduce Piecewise Perspective Rendering (PPR) to mitigate peripheral stretching through local perspective projections sharing a common camera center, and Spatial Affine Photometric Modeling (SAPM) to account for camera-dependent photometric variations during training. We further introduce **WideDrive**, a synthetic benchmark providing dense ground-truth wide views and adapt a LiDAR-projected sparse-reference protocol to real-world datasets. Extensive experiments on multiple datasets demonstrate the effectiveness of WV-GS for WVS. Dataset and code will be publicly released.",
-      "published": "2026-11-04",
       "categories": [
         "cs.CV"
       ],
