@@ -1,22 +1,22 @@
 {
-  "date": "2026-11-12",
-  "retrieved_at": "2026-11-12T02:43:23.445449+00:00",
+  "date": "2026-11-13",
+  "retrieved_at": "2026-11-13T02:26:17.478334+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 959,
-  "count": 12,
+  "count": 6,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611090243 TO 202611120243]",
-      "status": "complete",
-      "pages": 1,
-      "fetched": 12
-    },
-    {
-      "query": "all:3dgs AND submittedDate:[202611090243 TO 202611120243]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611100226 TO 202611130226]",
       "status": "complete",
       "pages": 1,
       "fetched": 6
+    },
+    {
+      "query": "all:3dgs AND submittedDate:[202611100226 TO 202611130226]",
+      "status": "complete",
+      "pages": 1,
+      "fetched": 3
     }
   ],
   "papers": [
@@ -80,72 +80,6 @@
         "cs.CV"
       ],
       "primary": "cs.RO"
-    },
-    {
-      "id": "2611.13280",
-      "title": "RetinexGS: Retinex-Inspired Gaussian Splatting for Low-Light RAW Reconstruction",
-      "abstract": "Standard 3D Gaussian Splatting (3DGS) pipelines struggle with severely underexposed images, producing unstable colors, floating artifacts, and incomplete reconstructions in dark regions. To better account for noise in these low-light observations, RAW images offer a natural basis for noise-aware reconstruction by preserving linear sensor measurements and providing access to noise metadata. We present RetinexGS, a RAW-domain 3DGS framework that combines Retinex-inspired appearance modeling with sensor-informed optimization for low-light novel-view synthesis. We factorize each Gaussian's color into a view-independent base color and a shared, position- and view-dependent modulation field, regularizing the two components separately to constrain appearance learning from noisy observations. We use DNG noise metadata to weight the reconstruction loss for signal-dependent noise, while distortion-aware rendering avoids spatially resampling RAW targets. To address sparse geometry in dark regions, we introduce depth-guided initialization. We evaluate RetinexGS on three public RawNeRF scenes and two custom-captured low-light RAW scenes. With all methods trained on the same RAW inputs for each scene, RetinexGS outperforms LE3D and RawNeRF in mean sRGB PSNR by 2.18 dB and 2.71 dB respectively, across the five scenes, while supporting real-time novel-view rendering.",
-      "published": "2026-11-09",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.12739",
-      "title": "Plant Orbiter: 3D Plant Reconstruction and Generation with Video Diffusion Orbit Cameras and 3D Gaussian Splatting",
-      "abstract": "Modern digital phenotyping pipelines require the precise measurement of a range of 3D morphological plant traits. The accurate, high throughput acquisition of these traits helps breeders and researchers accelerate the development of new varieties, techniques and products. Recent advances in 3D technologies have enabled a rapid transition from 2D to 3D pipelines, but high throughput acquisition of digital 3D twins of plants remains a significant challenge due to complex morphology, thin structures and occlusions. In this paper we present Plant Orbiter, a new approach to generating 3D plants that leverages recent advances in video diffusion to produce high quality 3D Gaussian Splats of plants from a single image. We show that our method more accurately recreates plant morphology than other state-of-the-art methods, achieving the highest 3D F-score against all baselines, while being more practical for high throughput pipelines due to easier alignment and reduced cost of camera placement. Combined with a 2D diffusion model, we show that our method also achieves state-of-the-art results in the generation of 3D plant models from a text prompt.",
-      "published": "2026-11-09",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.12716",
-      "title": "Spaghetti Splatting: Differentiating Curvilinear Dirac Masses via Convolution",
-      "abstract": "In production systems, 3D geometry is represented by primitives such as points, lines, and triangles, as rendering hardware is optimized to generate images from them very efficiently. Learning such primitives from images by volume rendering is challenging, as they are Dirac masses defined at infinitesimal locations in space. EWA splatting, Poisson reconstruction, and 3D Gaussian Splatting overcome this by convolving Dirac masses with a low-frequency kernel, a recipe that generalizes along two axes: the kernel and the primitive. As points and triangles have already received significant attention, we investigate this recipe for curvilinear primitives, and introduce Spaghetti Splatting. We approximate curves by polylines whose convolution converges to that of the continuous curve, and volume render each segment so that connected segments composite without overcounting at their joints. For fast training and inference, we linearize the camera projection per segment, which also accommodates kernels beyond Gaussians, such as Beta kernels. As a point is a curve of zero length, our representation is a strict superset of 3D Gaussian Splatting. It remains competitive with the state-of-the-art on general scenes, outperforms methods specialized to line-like geometry, natively supports anti-aliasing, and produces long connected strands that are directly amenable to physics simulation.",
-      "published": "2026-11-09",
-      "categories": [
-        "cs.CV",
-        "cs.GR"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.12319",
-      "title": "Mitigating SM-Level Load Imbalance in 3D Gaussian Splatting on GPUs",
-      "abstract": "3D Gaussian Splatting (3DGS) enables photorealistic, real-time rendering on commodity GPUs and is increasingly adopted in generative world models and autonomous driving simulators. However, existing optimizations rely on algorithmic changes that often require retraining, or on specialized accelerators that lack flexibility across evolving 3DGS variants. In this paper, we identify a fundamental inefficiency in GPU-based 3DGS rendering: severe SM-level load imbalance caused by uneven workloads across screen tiles. This imbalance creates a long execution tail, leaving most SMs idle while a few process computationally intensive tiles, particularly in large-scale urban scenes. To address this, we present a software-defined GPU scheduling approach that mitigates the execution tail. Our approach uses a persistent kernel to schedule heavy tiles first and selectively chunks outlier tiles across multiple CTAs. A lightweight per-frame policy determines when and how much to chunk using tile statistics already available in the rendering pipeline. Our approach requires neither retraining nor specialized hardware and can be applied orthogonally to existing optimizations across diverse 3DGS variants. Averaged per scene, it accelerates alpha blending by up to 2.93x on a large-scale urban scene, and by up to 5.6x on its most imbalanced frames, while retaining the original alpha blending formulation.",
-      "published": "2026-11-09",
-      "categories": [
-        "cs.DC",
-        "cs.CV",
-        "cs.GR",
-        "cs.LG"
-      ],
-      "primary": "cs.DC"
-    },
-    {
-      "id": "2611.12038",
-      "title": "DPGS-SLAM: Diffusion-Prior and Provenance-Aware Monocular Gaussian Splatting SLAM for Dynamic Visual Sensing",
-      "abstract": "This paper presents DPGS-SLAM (Diffusion-Prior and Provenance-Aware Monocular Gaussian Splatting SLAM) for dense mapping in environments containing dynamic objects. Dynamic observations can contaminate camera tracking and scene reconstruction in visual SLAM (simultaneous localization and mapping). Although 3DGS (3D Gaussian splatting) enables efficient dense mapping, existing 3DGS-SLAM systems may exhibit instability when dynamic objects violate their underlying static-scene assumption. Excluding dynamic observations can reduce their influence on tracking and mapping, but may leave occluded static backgrounds missing or weakly constrained. Our proposed DPGS-SLAM is a monocular RGB SLAM framework that supports provisional representations of insufficiently observed static backgrounds through asynchronous diffusion-based background completion and provenance-aware Gaussian mapping. Dynamic regions are identified through optical-flow-based motion discovery and temporally consistent mask propagation by SAM2 (segment anything model 2). For selected keyframes, a fine-tuned diffusion inpainting model generates plausible background appearance in occluded regions, while Metric3D v2 predicts metric depth from the completed images to initialize provisional Gaussian primitives. Provenance labels distinguish generated primitives from observation-supported primitives, excluding generated content from camera-pose estimation and observed-map optimization. When previously occluded backgrounds become visible, eligible generated primitives are removed, and observation-supported primitives are independently initialized from real RGB observations and predicted depth. Experimental results demonstrated competitive camera tracking, with average ATE RMSE values of 1.2 cm on TUM RGB-D and 2.7 cm on BONN RGB-D. On StaDy4D, DPGS-SLAM improved average PSNR by 4.60 dB over WildGS-SLAM using only monocular RGB input.",
-      "published": "2026-11-09",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "primary": "cs.RO"
-    },
-    {
-      "id": "2611.11951",
-      "title": "UltraVoxelGS: Voxel-First Feed-Forward Gaussian Splatting for 3D Ultrasound Reconstruction",
-      "abstract": "We present UltraVoxelGS, a 3D ultrasound reconstruction method that achieves both fast reconstruction and physically faithful rendering for the first time, bringing live spatial feedback during 2D ultrasound scanning within reach. This is made possible by a feed-forward design that predicts a complete Gaussian scene representation from posed ultrasound images directly, entirely bypassing the per-scene optimization bottleneck that has confined prior methods to offline use. Realising such feed-forward prediction in this setting is non-trivial: unlike natural images, ultrasound slices share at most one-dimensional intersections and exhibit view-dependent appearance due to acoustic propagation and attenuation, violating the dense overlap and photometric consistency assumed by existing feed-forward Gaussian methods. Hence, to achieve fast reconstruction, we introduce a feed-forward voxel-to-Gaussian pass that decouples representation size from input count by lifting all posed slices into a fixed-size voxel support and predicting Gaussian parameters directly. For faithful rendering, we propose ultrasound-aware appearance rendering strategy factorize reflection from cumulative attenuation during training and exploit appearance continuity among spatially adjacent slices for efficient Render-time Appearance Adaptation. On both real-world and simulated datasets, UltraVoxelGS achieves best PSNR/SSIM compared with per-scene optimization baselines while reducing inference from 10-20 minutes to approximately 10 seconds (over 35 times faster) and scales to sequences exceeding 1,000 frames. Code is available at https://github.com/YuebyYue/UltraVoxelGS-camera-ready.",
-      "published": "2026-11-09",
-      "categories": [
-        "cs.CV",
-        "eess.SP"
-      ],
-      "primary": "cs.CV"
     }
   ],
   "note": "Discovery candidates, not admitted or fully verified methods."
