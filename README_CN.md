@@ -5,7 +5,7 @@
 
 # Awesome Gaussian Skills
 
-### 最全的 3D Gaussian Splatting 目录 — 1066 方法，26 类别，交互式浏览器
+### 最全的 3D Gaussian Splatting 目录 — 1085 方法，26 类别，交互式浏览器
 
 **你不需要翻 20 个仓库找 3DGS 论文。这是你唯一需要的那个。**
 
@@ -24,7 +24,7 @@
 
 [![Stars](https://img.shields.io/github/stars/jaccen/Awesome-Gaussian-Skills?style=for-the-badge&logo=github&color=FFD700)](https://github.com/jaccen/Awesome-Gaussian-Skills/stargazers)
 [![Live Demo](https://img.shields.io/badge/交互式浏览器-在线体验-4caf50.svg)](https://jaccen.github.io/Awesome-Gaussian-Skills/)
-[![Methods](https://img.shields.io/badge/方法-1066-9cf.svg)](references/3dgs-methods-overview.md)
+[![Methods](https://img.shields.io/badge/方法-1085-9cf.svg)](references/3dgs-methods-overview.md)
 [![Skills](https://img.shields.io/badge/AI技能-18-green.svg)](skills/)
 [![Bug Patterns](https://img.shields.io/badge/Bug模式-104-red.svg)](skills/3dgs-code-reviewer/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
@@ -43,7 +43,7 @@
 - [集成方式](#集成方式)
 - [在线书籍](#-在线书籍空间与具身智能)
 - [最新动态（2026 年 10 月）](#最新动态2026-年-10-月)
-- [知识库](#知识库1066-方法26-类别)
+- [知识库](#知识库1085-方法26-类别)
 - [⭐ 主推技能：cg-paper-writing](#-主推技能cg-paper-writing--全生命周期论文写作引擎)
 - [18 AI 驱动技能](#18-ai-驱动技能)
 - [可视化示例](#可视化示例)
@@ -79,7 +79,7 @@
 
 **[试用交互式方法浏览器 →](https://jaccen.github.io/Awesome-Gaussian-Skills/)**
 
-秒搜 1066 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
+秒搜 1085 方法，按类别筛选，按引用排序，点击任意方法卡片查看详情。
 
 ## 快速开始
 
@@ -132,7 +132,7 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 > **具身智能体 = 空间表示 × 感知 × 规划 × 行动**
 
 <details>
-<summary><b>全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（1066 方法、26 类别、18 技能），零虚构</b></summary>
+<summary><b>全书 13 章 + 前置选型与采集实操，每个方法名均锚定本仓库真实数据（1085 方法、26 类别、18 技能），零虚构</b></summary>
 
 | # | 章节 | 核心议题 |
 |---|------|----------|
@@ -153,7 +153,7 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 | CH 12 | 从采集到交付：端到端工程链路 | 十个环节的工具选型与卡点、格式与坐标系、成本工期量级、项目失败模式 |
 | CH 13 | 产业落地剧本：六个行业 | 文博文旅、电商展示、工业巡检、自动驾驶仿真、具身机器人、实景三维 |
 | 附 | 附录 | 数据集、评估指标、交付指标换算与验收报告模板 |
-| 实 | 实践资源索引：从书到工程 | 18 个工程技能 · 34 个 MCP 工具 · 1066+ 方法浏览器，章节到可运行资源的映射 |
+| 实 | 实践资源索引：从书到工程 | 18 个工程技能 · 34 个 MCP 工具 · 1085+ 方法浏览器，章节到可运行资源的映射 |
 | 后记 | 3DGS 会被"吃掉"吗？ | 为什么显式表示会被压缩，而非被吞噬 |
 
 </details>
@@ -168,13 +168,29 @@ MCP 服务器提供 **34 个工具** —— 21 个核心（`import_scene`、`set
 <details>
 <summary><strong>为什么要写这本书（以及它和本仓库的关系）</strong></summary>
 
-这本书是本仓库*数据层*之上的*叙事层*。仓库给你 1066 方法名、摘要和 18 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
+这本书是本仓库*数据层*之上的*叙事层*。仓库给你 1085 方法名、摘要和 18 个工程技能 —— 但没有把它们串起来的主线。这本书补上了这条主线：它论证*为什么* 3DGS 成为了空间智能与具身智能之间的桥梁，并在每章末尾回扣到今天就能用的具体方法和技能。读这本书理解地图，用这个仓库耕耘疆土。
 
 </details>
 
 ## 最新动态（2026 年 11 月）
 
-最新更新（11 月 6 日）：**v0.9.14 — 每周 arXiv 收录 + 全库核查：新增 16 篇方法（1050 → 1066）** ⭐
+最新更新（11 月 15 日）：**v0.9.15 — 每周 arXiv 收录 + 全库核查：新增 19 篇方法（1066 → 1085）** ⭐
+
+本周例行流水线（arXiv 官方 API 抓取 → R1–R5 准确性规则 → 逐篇裁决 → 证据标记 → 全档案重建）：新增收录
+**19** 篇 3DGS 方法，知识库从 **1066 扩充至 1085**（+1.8%），横跨 11 个类别 —— 表面与渲染（+4）与
+压缩与流式（+3）领涨；人体与虚拟形象、跨域、SLAM 各 +2；Feed-Forward、具身 AI 与机器人、动态与 4D、
+加速、鲁棒性、HDR 与重光照各 +1。每篇方法名均在论文标题/摘要自述并经官方 arXiv API 逐条比对。**6** 篇
+候选被排除：`Martine` 为多视图表面重建基准、`Where do we Jam`（XR 音乐研究，3DGS 非主体），以及四篇无
+自述专有名的方法的纯描述性标题论文（`Hierarchical Incremental Beta Splatting`、`Perception Over Geometry`、
+`Wide View Synthesis in AD`、`Mitigating SM-Level Load Imbalance`）。arXiv 元数据核验记录 959 → **978**。
+亮点：**MOMASPLAT**（移动操纵的动态新视角演示增强）、**InstantHand**（单图可驱动手部虚拟人）、**Spaghetti
+Splatting**（曲线 Dirac 质量卷积）、**FastWild-GS**（分钟级野外外观适配）、**RetinexGS**（低光 RAW 重建）、
+**DepthGS**（深度引导表面重建）、**GEMOR-GS**（外参精化 LiDAR-惯性-视觉 GS SLAM）、**CP-GS**（容量-精度
+耦合的 2D 高斯图像表示）。全库 arXiv 复核：1596 个唯一 ID，1611 可达（唯一未解析项 `2312.21535` 为历史
+笔误说明，非现存记录）；93 个名称↔标题启发式候选经裁定全部非错误（LaTeX 记法名/摘要自述名/缩写）。全部
+数据载体于 **1085** 重新核验。详见[更新日志](changelog/2026-11-15.md)。
+
+上一版更新（11 月 6 日）：**v0.9.14 — 每周 arXiv 收录 + 全库核查：新增 16 篇方法（1050 → 1066）** ⭐
 
 本周例行流水线（arXiv 官方 API 抓取 → R1–R5 准确性规则 → 逐篇裁决 → 证据标记 → 全档案重建）：新增收录
 **16** 篇 3DGS 方法，知识库从 **1050 扩充至 1066**（+1.5%），全部 26 个类别得到补充 —— Feed-Forward（+4）
@@ -368,7 +384,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 <sup>完整变更记录：[`changelog/`](changelog/)</sup>
 
-## 知识库（1066 方法，26 类别）
+## 知识库（1085 方法，26 类别）
 
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
@@ -502,7 +518,7 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 ## 研究创新要点
 
-> 基于知识库 1066 方法的系统性空白分析生成。
+> 基于知识库 1085 方法的系统性空白分析生成。
 > 目标刊物：TVCG / CGF / CAD / T-RO / IJCV / ACM TOG。
 
 <details>
@@ -601,7 +617,7 @@ Awesome-Gaussian-Skills/
 │   └── 3dgs-training-debugger/  # 训练故障诊断（OOM、NaN、发散、伪影）
 ├── mcp-server/                # MCP 服务器 v0.8.0（13 核心 + 13 实验性工具，gsplat 渲染循环，HTTP+WS :9842）
 ├── docs/                      # GitHub Pages 交互式浏览器
-├── references/                # 知识库（1066 方法，26 类别）
+├── references/                # 知识库（1085 方法，26 类别）
 ├── scripts/                   # 安装脚本与管线
 ├── Test/                      # 可视化示例
 └── assets/                    # 项目图片
@@ -633,7 +649,7 @@ npm run start:all   # 或双击 start-all.bat
   title = {Awesome Gaussian Skills: 3D Spatial Intelligence Open-Source Toolbox for 3D Gaussian Splatting Research},
   year = {2026},
   url = {https://github.com/jaccen/Awesome-Gaussian-Skills},
-  note = {1066 indexed methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
+  note = {1085 indexed methods across 26 categories, 18 AI agent skills, and an MCP server with 34 tools}
 }
 ```
 
@@ -647,7 +663,7 @@ npm run start:all   # 或双击 start-all.bat
 - [Awesome3DGS/3D-Gaussian-Splatting-Papers](https://github.com/Awesome3DGS/3D-Gaussian-Splatting-Papers) — 全面论文合集
 - 所有 3DGS 研究者，你们的论文构成了我们的知识库
 
-> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 1066 已核验方法、18 个技能、34 个 MCP 工具。
+> 它们面向人类梳理生态；本项目让生态可被 AI agent 消费 —— 1085 已核验方法、18 个技能、34 个 MCP 工具。
 
 ## 许可证
 
@@ -684,7 +700,7 @@ Apache-2.0。详见 [LICENSE](LICENSE)。
 <!-- research-reliability:start -->
 ## Evidence and reliable use
 
-The 2026-11-06 registry snapshot contains **1066 research records** in **26 categories**.
+The 2026-11-15 registry snapshot contains **1085 research records** in **26 categories**.
 **904** have freshly checked arXiv metadata; **107** still require a primary-source review.
 These counts are not a claim that all venues, technical descriptions or results have
 been independently verified. See [evidence coverage](data/evidence-audit.json).
