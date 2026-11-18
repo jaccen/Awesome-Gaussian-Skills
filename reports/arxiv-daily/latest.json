@@ -1,25 +1,131 @@
 {
-  "date": "2026-11-17",
-  "retrieved_at": "2026-11-17T04:20:24.776868+00:00",
+  "date": "2026-11-18",
+  "retrieved_at": "2026-11-18T03:20:44.536790+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 978,
-  "count": 3,
+  "count": 12,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611140420 TO 202611170420]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611150320 TO 202611180320]",
       "status": "complete",
       "pages": 1,
-      "fetched": 3
+      "fetched": 11
     },
     {
-      "query": "all:3dgs AND submittedDate:[202611140420 TO 202611170420]",
+      "query": "all:3dgs AND submittedDate:[202611150320 TO 202611180320]",
       "status": "complete",
       "pages": 1,
-      "fetched": 1
+      "fetched": 6
     }
   ],
   "papers": [
+    {
+      "id": "2611.22240",
+      "title": "Cross3DGS: Unified Vulkan-Based 3D Gaussian Splatting Training from Workstations to Mobile Devices",
+      "abstract": "Scenes captured with handheld and wearable cameras are still shipped to a CUDA workstation for 3D Gaussian Splatting (3DGS) training. Training on the device that captured them, or on its companion phone or laptop, requires more than translating kernels: GPUs and drivers differ in parallel features, memory limits, and command submission, and these differences decide whether a training schedule executes and returns the correct update. We present Cross3DGS, a cross-vendor, cross-platform Vulkan trainer that keeps one optimizer and chooses its execution schedule per device in two steps: rules on device limits, workload size, and observed driver failures exclude the schedules known not to run correctly, and a fixed preference order selects one of the remaining feasible schedules. The same core completes standard-quality training (30k updates, one million Gaussians) on every configuration we measured, spanning NVIDIA, Intel, Arm, Qualcomm, AMD, and Apple GPUs and including Android devices and an iPhone, whereas the existing portable trainers VkSplat and Brush do not run on some of the mobile GPUs. Averaged over 11 scenes on a workstation, Cross3DGS has higher quality than VkSplat with no significant difference in training time, and Brush reports about three times the training time at comparable quality. The final quality of Cross3DGS is nearly identical across devices. A mobile application turns a handheld capture into a viewable model entirely on the device.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.22235",
+      "title": "CoSphere-SLAM: Multi-Agent Panoramic Gaussian Splatting SLAM with Spherical Loop Closure",
+      "abstract": "Dense collaborative mapping is essential for search and rescue, building inspection, and warehouse automation, where panoramic cameras capture the entire surroundings in a single frame. Unlike pinhole agents that share views only at similar headings, panoramic agents observe overlapping scenes at any 3D orientation, yet searching full rotations also produces mutually consistent false loop closures across distinct symmetric rooms. Moreover, continuous monocular scale drift splits rigidly merged maps at revisited surfaces, while depth noise at short baselines distorts loop translation directions. To address these challenges, we propose CoSphere-SLAM, the first multi-agent Gaussian splatting SLAM framework for panoramic cameras, whose spherical loop closure aligns spherical features over $\\mathrm{SO}(3)$ via fast Fourier correlation across arbitrary orientations and rejects symmetric false closures through global $\\mathrm{Sim}(3)$ consensus. Building on these closures, directional global optimization solves a per-keyframe $\\mathrm{Sim}(3)$ pose graph with log-scale regularization to correct scale drift while separating optical-flow translation directions from depth-based magnitudes. Finally, omnidirectional Gaussian fusion transforms each Gaussian with its keyframe similarity and renders Gaussians at their maximum ray response to jointly refine poses and maps. Experiments on indoor and cross-session multi-agent panoramic benchmarks demonstrate that CoSphere-SLAM achieves state-of-the-art trajectory accuracy and rendering quality among single-agent and multi-agent methods. Project website: https://cosphere-slam.github.io.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.22095",
+      "title": "CueSplat: Learning to Schedule Sparse Deformation for Dynamic Gaussian Splatting on Edge Devices",
+      "abstract": "Deformation-based 4D Gaussian splatting (4DGS) enables dynamic scene rendering. However, evaluating deformation networks for all Gaussians at every frame is compute-intensive on edge devices. We find that Gaussian trajectories are often locally predictable, yet prediction reliability varies across Gaussians and time. Thus, we propose CueSplat, a post-training framework that exploits local temporal regularity while keeping the pretrained backbone frozen and retaining its Gaussian set. Specifically, CueSplat predicts Gaussian attributes from recent history and uses a lightweight learned router to select exact deformation updates within a scene-specific budget calibrated offline. Selection accounts for prediction reliability and rendering contribution. Selected indices are reused across nearby frames to reduce routing overhead, while selected Gaussians still receive exact updates each frame. To control accumulated prediction error, we use drift signals to schedule three consecutive full-deformation frames that rebuild the prediction history. Evaluated across four mainstream 4DGS algorithms, CueSplat achieves up to $6.74\\times$ and $8.15\\times$ speedups on Jetson AGX Orin and Orin NX, respectively, with a negligible quality drop (at most $0.16$ dB in dataset-average PSNR).",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.22059",
+      "title": "Accelerating 3D Gaussian Splatting Training through Selective Freezing and Computation Caching",
+      "abstract": "3D Gaussian Splatting (3DGS) becomes a key primitive for immersive 3D experiences. However, its applicability is limited by its long training overhead. Although prior work has shown that gradient accumulation is the dominant bottleneck in training, existing works either have limited speedup or degrade reconstruction quality. To address this issue, we present ElsaGS, an algorithm-hardware co-designed framework that accelerates 3DGS training with negligible accuracy degradation. Our key observation is that most Gaussians converge early, while later iterations only refine a small subset of Gaussians. Thus, we propose a technique, progressive Gaussian freezing, which dynamically freezes well-converged Gaussians and caches their cumulative contributions, thereby reducing computations in both forward rasterization and backward gradient accumulation. To make caching efficient, we further propose an architecture, ElsaGS core, which integrates a pixel-parallel rasterization array with a set-associative frozen Gaussian cache, FGcache. Across three 3DGS datasets, ElsaGS freezes up to 90% of Gaussians with negligible quality loss and achieves up to 20.6x end-to-end speedup and 99.4% energy reduction over GPUs.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.AR"
+      ],
+      "primary": "cs.AR"
+    },
+    {
+      "id": "2611.21798",
+      "title": "Spectro-Spatial Survey Fusion",
+      "abstract": "Imaging and spectroscopy constrain complementary information about the same sky but are usually processed separately. We introduce Spectro-Spatial Survey Fusion, a framework that unifies these measurements by fitting a continuous spectral surface-brightness field jointly through each instrument's response. Adapting from Gaussian splatting in computer vision, we represent the field as a sum of adaptive spatial Gaussians, each carrying a spectrum built from a shared, learned dictionary of templates. We demonstrate this on 400 Sloan Digital Sky Survey (SDSS) $ugriz$ exposures and 800 fiber spectra across an $84^{\\prime}\\times84^{\\prime}$ region of COSMOS. The joint fit closely reproduces the spatial structure and broad spectral diversity of galaxies, stars, and quasars. For fitted SDSS observations, the summed predicted flux in source-selected pixels agrees with the data to within 2 percent in every band, and 96 percent of fitted spectra agree to within 10 percent in integrated flux. Sparse fiber spectra constrain a dictionary shared by every Gaussian component, so a model spectrum can be queried anywhere in the imaged area, including where no spectrum was fitted. Without refitting, the field predicts withheld SDSS images and spectra, and selected Hyper Suprime-Cam (HSC) images and Dark Energy Spectroscopic Instrument (DESI) spectra, which never enter the fit. The field predicts broad spiral-arm patterns in HSC images of two selected galaxies and DESI continuum shapes for galaxies without a fitted fiber. This framework provides a route to combining surveys so that spatial and spectral information from different observations and instruments can constrain a common representation of the sky.",
+      "published": "2026-11-16",
+      "categories": [
+        "astro-ph.CO",
+        "astro-ph.IM"
+      ],
+      "primary": "astro-ph.CO"
+    },
+    {
+      "id": "2611.21383",
+      "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
+      "abstract": "3D Gaussian Splatting enables object-level operations on Gaussian primitives, yet existing segmentation methods are largely trained and evaluated through rendered views. This mismatch can produce accurate rendered masks from incomplete 3D selections since alpha-blended feature supervision concentrates learning on dominant contributors while leaving occluded or low-contribution Gaussians weakly supervised. We propose VODA, a plug-and-play supervision objective that exploits local depth structure to group per-pixel contributors and directly supervises all Gaussians in selected depth clusters, bypassing contribution-weighted gradient delivery. To evaluate volumetric completeness, we introduce Removal-3D, a synthetic object-removal benchmark, and the Removal Depth Error (RDE), a metric comparing predicted and ground-truth depth changes. Across four rendering-based baselines, VODA consistently improves volumetric segmentation on Removal-3D while maintaining or improving performance on LERF and ScanNet. Further analysis shows that VODA recovers lower-contribution Gaussians, while simple gradient reweighting and spatial propagation fail to reproduce comparable gains.",
+      "published": "2026-11-16",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.21253",
+      "title": "QuantileGS: Quantile-Based Conformal Bounds on RGB Rendering Errors for Novel View Synthesis with 3D Gaussian Splatting",
+      "abstract": "Uncertainty quantification for novel view synthesis with 3D Gaussian Splatting (3DGS) assesses rendering reliability at unseen viewpoints. This reliability depends on the discrepancy between rendered and true colors, which cannot be measured without ground-truth images. We therefore quantify uncertainty in this unknown discrepancy through upper bounds on per-pixel RGB mean absolute error. However, learned bounds may underestimate these errors and overstate rendering reliability, motivating calibration to a prescribed coverage level. In this paper, we propose QuantileGS, a post-hoc framework that combines learned rendering-error quantiles with scale-normalized conformal calibration to produce spatially adaptive error bounds. The framework comprises three phases. Phase 1, Rendering-Error Computation, measures RGB mean absolute error between observed images and predictions from a frozen 3DGS model. Phase 2, Ordered Gaussian Quantile Fields, learns two scalar attributes per Gaussian to predict lower and upper rendering-error quantiles. Phase 3, Scale-Normalized Conformal Calibration, calibrates the upper prediction on held-out images, using the quantile gap to scale the correction. Under the stated assumptions, the resulting bounds provide finite-sample marginal coverage. At a nominal coverage level of 90%, calibration raises mean empirical test coverage from 69.6% to 89.6% on LLFF and from 80.1% to 92.1% on Mip-NeRF 360. On LF, coverage remains conservative at 96.3% before and 96.4% after calibration. Applications to active view selection, Gaussian pruning, and RGB-D simultaneous localization and mapping illustrate how these bounds inform downstream decisions.",
+      "published": "2026-11-16",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.20546",
+      "title": "A Gaussian Primitive Data Management Framework for Efficient 3DGS Trajectory Rendering",
+      "abstract": "Trajectory rendering, which renders novel views of a reconstructed 3D scene along a camera path, is a core operation in digital twins and autonomous inspection. Structured 3D Gaussian Splatting (3DGS) renders a single view in real time by decoding sparse anchors into Gaussians on demand, but it renders a trajectory view by view: every view projects all anchors to select them, re-decodes anchors already requested by neighboring views, and runs all steps on the GPU while the CPU idles. We treat this as a spatial data management problem, where anchors are spatial objects, views are range queries, and decoded Gaussians are shared derived data, and propose GDM-GS, which removes redundancy at three levels. Within a view, an anchor index and an occluder index answer each view as a holed-frustum range query, so out-of-view and provably hidden anchors are never decoded. Across views, shared materialization decodes each requested anchor once per group of consecutive views while preserving each view's selection. Across processors, a hybrid pipeline balances selections between the CPU and the GPU before grouped decoding under bounded memory. Experiments on large-scale public scenes show that GDM-GS substantially reduces trajectory rendering latency while preserving image quality.",
+      "published": "2026-11-16",
+      "categories": [
+        "cs.DB",
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.DB"
+    },
+    {
+      "id": "2611.20433",
+      "title": "ReScene: Incremental Scene Chronology from Sparse Revisits",
+      "abstract": "Scene chronology aims to reconstruct a scene across visits separated by hours or days, during which objects may change in position, presence or shape. Such reconstruction must retain every earlier state, yet each revisit often provides only a few images. Storing a complete model for each visit duplicates the unchanged scene, whereas updating a single shared model alters earlier states. We present ReScene, which stores each visit as an immutable compact update, so that any earlier visit can be recovered exactly by applying the stored updates in order, without retaining past images. To localise each update, ReScene attributes the disagreement between the preceding reconstruction and the new images to individual Gaussians through their compositing weights. This attribution guides the suppression of outdated Gaussians and the refinement of persistent ones, while newly visible surfaces are initialised from learned multi-view depth. We also introduce Multi-State, a benchmark of non-rigid deformation and partial material removal, including synthetic scenes with ground-truth geometry. ReScene achieves quality higher than sequential 3DGS checkpointing with 2.5--4.8$\\times$ less uncompressed history storage. At comparable PSNR, it also reduces foreground depth error by 3.2$\\times$ relative to sequential ChronoGS, showing that accurate rendering does not necessarily imply accurate geometry. Code and benchmark are available at https://waychin-weiqin.github.io/ReScene/.",
+      "published": "2026-11-16",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.20283",
+      "title": "CiGS: Conduction in Gaussian Splats for Interior Temperature Field from Thermal Images",
+      "abstract": "We present a method for inferring the interior temperature distribution of a solid object from registered multi-view visible-spectrum and thermal images, even when the thermal views cover only part of its surface. We formulate steady-state heat conduction as a Laplace boundary value problem and solve it with a direct boundary integral equation discretized over a point cloud: a Gaussian reconstruction of the visible-spectrum images supplies the boundary geometry, and the thermal images supply the boundary data. We do not build surface or volume meshes at any stage in our method. Instead, we sample collocation points from rendered depth without the pixels at depth discontinuities, and use a density subtraction that keeps the interior evaluation accurate up to the surface. The whole chain is differentiable, and we use it to recover the pose and depth of heating pipes, insulation defects, and the shape of cracks from thermal images. We validate our method through experiments on boundary value problems with Dirichlet-only and mixed Dirichlet and Robin boundaries, using synthetic and real captured data on scenes with challenging topology. These experiments show that our method matches analytical solutions and has better accuracy than FEM solvers.",
+      "published": "2026-11-15",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
     {
       "id": "2611.20089",
       "title": "See the Lives of Stars in a Handful of Light",
@@ -37,18 +143,6 @@
       "published": "2026-11-15",
       "categories": [
         "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.19429",
-      "title": "Prepare Lighter and Faster for Open-Vocabulary Queries: A Query-Wise 3D Segmenter for Gaussian Splatting",
-      "abstract": "Open-vocabulary 3D understanding aims to localize and segment arbitrary objects beyond predefined categories. However, existing approaches based on Gaussian Splatting often rely on expensive preprocessing and lengthy training, limiting their applicability when fast and lightweight solutions are desired. We propose a lightweight, training-free framework for query-driven 3D instance segmentation on Gaussian Splatting. Instead of conventional mask-wise CLIP embeddings, we use dense pixel-level CLIP features to preserve fine-grained semantic information and enable flexible text-driven localization without relying on predefined instance proposals. Given a text query, we identify a high-quality target region in a carefully selected pivot view and propagate it across views using a video segmentor, providing consistent and comprehensive coverage of the target instance. We then lift the resulting 2D tracklets to 3D Gaussians through a novel visibility voting strategy, yielding accurate 3D segmentation masks with clean object boundaries. Extensive experiments demonstrate state-of-the-art performance on LERF-OVS, ScanNet, and ScanNet++, competitive results on 3D-OVS, and significant speedups over existing open-vocabulary 3D segmentation methods. These results highlight the effectiveness of our framework for efficient open-vocabulary 3D understanding without per-scene training.",
-      "published": "2026-11-14",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.GR"
       ],
       "primary": "cs.CV"
     }
