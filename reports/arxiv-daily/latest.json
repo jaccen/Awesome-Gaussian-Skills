@@ -1,25 +1,99 @@
 {
-  "date": "2026-11-18",
-  "retrieved_at": "2026-11-18T03:20:44.536790+00:00",
+  "date": "2026-11-19",
+  "retrieved_at": "2026-11-19T02:56:44.821886+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 978,
-  "count": 12,
+  "count": 15,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611150320 TO 202611180320]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611160256 TO 202611190256]",
       "status": "complete",
       "pages": 1,
-      "fetched": 11
+      "fetched": 15
     },
     {
-      "query": "all:3dgs AND submittedDate:[202611150320 TO 202611180320]",
+      "query": "all:3dgs AND submittedDate:[202611160256 TO 202611190256]",
       "status": "complete",
       "pages": 1,
       "fetched": 6
     }
   ],
   "papers": [
+    {
+      "id": "2611.23719",
+      "title": "Improving While Deployed: Learning Proactive End-to-End Driving from Imperfect Human Takeover Data",
+      "abstract": "Once deployed on vehicles, end-to-end driving models continuously encounter challenging scenarios, generating valuable human takeover data that capture both model outputs and human behaviors. However, human interventions are often imperfect, as drivers may intervene too late or unnecessarily. Consequently, direct imitation can reinforce late responses or discourage otherwise appropriate maneuvers. To address this challenge, we propose an offline post-training framework that transforms imperfect takeover data into proactive supervision. We first construct diverse trajectory candidates by augmenting the plans of the deployed model and shifting recorded human corrective maneuvers earlier in time. We then train a scene-conditioned trajectory scorer to rank these candidates using expert demonstrations and unpaired preference signals from takeover logs. Using this scorer, we selectively replace pre-takeover training targets with higher-scoring candidates while retaining the original targets in normal driving scenarios. Finally, we distill the resulting targets into the driving model without changing its inference architecture. In closed-loop evaluations using real-world scenarios reconstructed with 4D Gaussian splatting, our method achieves the highest overall success rate, outperforming the deployed model, direct imitation learning and trajectory post-optimization. These results highlight a practical path toward efficient updates of deployed driving models using existing fleet logs.",
+      "published": "2026-11-18",
+      "categories": [
+        "cs.RO"
+      ],
+      "primary": "cs.RO"
+    },
+    {
+      "id": "2611.23450",
+      "title": "NIRJALA: Draining the Sea out of Gaussian Splatting with Three-Path Optics and Reversible Physics",
+      "abstract": "Water does not just tint an underwater photograph; it rewrites it. Each pixel mixes attenuated scene radiance, backscattered light, and scene light scattered forward on its way to the camera, and many combinations of scene and water explain the same pixels. Most Gaussian-splatting methods for underwater scenes model only the first two effects and remove the water by dividing by a transmission that decays exponentially with range, so their inversion gain grows without bound. We present NIRJALA (Sanskrit for \"without water\"), a 3D Gaussian Splatting framework that recovers water-free appearance and geometry together. TRIVENI, a three-path image formation model, adds a range-saturating forward-scattering term to direct transmission and backscatter; we prove that this keeps the inversion gain bounded at every range and bound how errors in the estimated backscatter and attenuation propagate into the recovered colours. PRATIBIMBA, a reversible physics anchor, ties a flexible neural water model to a ten-parameter physical model in both directions, so scene content cannot hide inside the water. SAMARASA collects the physics-informed objectives, including a range-binned colour prior. To score water removal against ground truth, we built SAJALA (\"with water\"), a 30-scene suite path-traced in Blender Cycles with water-free images, depth, and normals under controlled water colour and turbidity. On SAJALA, NIRJALA raises PSNR from 24.34 to 24.76 dB and lowers depth AbsRel from 0.109 to 0.091 against the strongest baseline; on real SeaThru-NeRF scenes it lowers LPIPS from 0.194 to 0.175 while rendering at 44 FPS. We also discuss where appearance metrics and geometry disagree underwater, and the limits of our evaluation.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.23444",
+      "title": "Gaussian Splatoms: Direct Atomic Structure Identification in Electron Tomography",
+      "abstract": "Atomic electron tomography (AET) computationally reconstructs the 3D atomic structure of materials from a series of 2D projection measurements acquired at different tilt angles. Inspired by Gaussian splatting techniques from computer vision, we introduce an atom-centric parameterization for modeling AET samples. Instead of a conventional volumetric representation with a grid of voxels, we model the sample as a list of atoms, where each atom is a 3D Gaussian characterized by learned location, scale, and amplitude. The Gaussian model is a natural fit for atoms that allows us to easily incorporate prior information grounded in physics; we impose isotropy of atoms, a minimum interatomic distance, and realistic atomic radii. We show in simulation that our method is more robust than volumetric baselines to real-world imaging challenges, including a limited number of measurements and low electron dose. We further show that our method yields a more physically plausible reconstruction of an experimental 23,000 atom iron-platinum nanoparticle than a previously published volumetric reconstruction. Beyond tomography, our representation is a promising tool for any atomic resolution imaging modality (e.g. multislice electron ptychography).",
+      "published": "2026-11-17",
+      "categories": [
+        "eess.IV",
+        "cs.CV"
+      ],
+      "primary": "eess.IV"
+    },
+    {
+      "id": "2611.23416",
+      "title": "OCLDA-GS: Object-Centric Local Deformation-Aware Gaussian Streaming",
+      "abstract": "Streaming 3D Gaussian Splatting (3DGS) allows for online reconstruction of dynamic scenes from multi-view videos for Free Viewpoint Video (FVV). Current time and storage efficient methods rely on selecting a subset of anchor Gaussians and neighborhood interpolation for fast streamable 3DGS. However, these methods can overlook object-specific motion and introduce inconsistencies near object boundaries. We propose OCLDA-GS, an object-centric streaming framework that dynamically reallocates object and motion-aware Gaussian anchors to allocate anchor Gaussian support for objects undergoing large motion while at the same time, restricting the gaussian neighborhood within object groups for more precise object boundaries. Furthermore, it estimates object-wise rigid transformations (e.g. a hand moving) and leverages these estimates to learn per-anchor local deformation correction for small deformations (e.g. wrinkles on a shirt). Then, we conduct experiments on three dynamic multi-view video datasets and demonstrate improvements over the previous baselines alongside improved quality between refinement timesteps. Under matched refinement budgets, our method improves PSNR over Instant Gaussian Stream (IGS) by 0.169 dB on N3DV, 0.202 dB on Meeting Room and +0.199 on Google Immersive, while reducing the mean PSNR drop between refinement timesteps by 9.2% and 13.8% in N3DV and Meeting Room, respectively.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.23054",
+      "title": "ReTouchGS: Ultralight Render-free Aesthetic Color Enhancement and Transfer for 3D Gaussian Splatting",
+      "abstract": "3D Gaussian Splatting (3DGS) enables photorealistic scene reconstruction. Existing 3DGS color transfer and interactive editing methods are guided by reference images and user-specified color adjustments. However, in many applications, users simply want aesthetically guided color enhancement that automatically makes the scene more visually appealing while maintaining consistent colors and tones across viewpoints. We present ReTouchGS, to our knowledge the first framework for reference-free aesthetic color enhancement of pretrained 3DGS models. It predicts a scene-level color lookup table (LUT) from the model and its associated camera parameters. ReTouchGS also supports reference-guided color transfer by fitting a scene-level LUT using one edited view of the same scene and its corresponding original render. A shared blend-aware color refinement network with only 44.7K parameters refines an analytic color update to realize either color mapping without rendering. It preserves geometry and delivers standard 3DGS assets in seconds. We also design the ReTouch3D benchmark to support the evaluation of aesthetic color enhancement and reference-guided color transfer across viewpoints. Experiments demonstrate high color accuracy and strong generalization to unseen scenes in both aesthetic color enhancement and reference-guided color transfer.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.22898",
+      "title": "You Only Encode Once: Sub-Pixel-Shifted Frames for Arbitrary-Scale Remote Sensing Super-Resolution with 2D Gaussian Splatting",
+      "abstract": "Arbitrary-scale super-resolution (ASSR) of remote sensing images remains challenging due to the limited high-frequency information in a single low-resolution (LR) observation. While multi-frame SR can exploit complementary sub-pixel information, existing approaches often require real multi-frame training sequences and repeated feature encoding, increasing data acquisition demands and computational costs. To address these limitations, we propose SPS-GS (Sub-Pixel-Shifted Gaussian Splatting), an encode-once framework that learns from multi-phase LR observations synthesized from individual high-resolution images, without requiring real multi-frame training sequences. Specifically, Phase-Coherent Aliasing Demodulation (PCAD) exploits shift-dependent aliasing through Fourier-based alignment, phase-aware residual fusion, and least-squares aliasing estimation, enabling multi-frame information to be integrated before a single deep encoding pass. Gaussian Projection Alignment (GPA) then iteratively refines Gaussian centers and colors using multi-observation back-projection to promote observation consistency. The refined Gaussians support continuous rendering at arbitrary scales. Extensive experiments on five remote sensing datasets demonstrate strong reconstruction performance against single-image and multi-frame SR baselines, while maintaining competitive inference efficiency at common scales. The code will be publicly released.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.22805",
+      "title": "DOOM-GS: Dynamic Out-of-core Optimization for Massive Gaussian Splatting",
+      "abstract": "Traditional Gaussian Splatting (GS) methods use in-core training, i.e. assuming that GPU memory is large enough to accommodate all the primitives. This assumption breaks down when the primitives exceed the capacity of GPU memory, e.g. GS on large environments. Recent out-of-core training research starts to address this issue, but is limited to static scenes. Unlike static GS, dynamic GS primitives move in space and time, breaking common assumptions held in existing out-of-core research and impose new challenges in memory management and training. To this end, we propose Dynamic Out-of-core Optimization for Massive Gaussian Splatting (DOOM-GS), the first out-of-core optimization method designed specifically for massive-scale dynamic GS. DOOM-GS is equipped with novel memory management strategies that optimize caching for spatio-temporal primitives, and a fast learning method for large numbers of primitives. Due to the lack of suitable datasets for large-scale dynamic GS, we also contribute a new dataset for evaluation. Since there are no directly comparable methods, we adapt several closely related methods for comparison. Through extensive evaluation, we demonstrate the effectiveness of DOOM-GS which now makes it possible to reconstruct city-scale dynamic scenes with high quality on moderate hardware, serving as a foundational tool for diverse future research and applications.",
+      "published": "2026-11-17",
+      "categories": [
+        "cs.GR"
+      ],
+      "primary": "cs.GR"
+    },
     {
       "id": "2611.22240",
       "title": "Cross3DGS: Unified Vulkan-Based 3D Gaussian Splatting Training from Workstations to Mobile Devices",
@@ -104,47 +178,6 @@
         "cs.GR"
       ],
       "primary": "cs.DB"
-    },
-    {
-      "id": "2611.20433",
-      "title": "ReScene: Incremental Scene Chronology from Sparse Revisits",
-      "abstract": "Scene chronology aims to reconstruct a scene across visits separated by hours or days, during which objects may change in position, presence or shape. Such reconstruction must retain every earlier state, yet each revisit often provides only a few images. Storing a complete model for each visit duplicates the unchanged scene, whereas updating a single shared model alters earlier states. We present ReScene, which stores each visit as an immutable compact update, so that any earlier visit can be recovered exactly by applying the stored updates in order, without retaining past images. To localise each update, ReScene attributes the disagreement between the preceding reconstruction and the new images to individual Gaussians through their compositing weights. This attribution guides the suppression of outdated Gaussians and the refinement of persistent ones, while newly visible surfaces are initialised from learned multi-view depth. We also introduce Multi-State, a benchmark of non-rigid deformation and partial material removal, including synthetic scenes with ground-truth geometry. ReScene achieves quality higher than sequential 3DGS checkpointing with 2.5--4.8$\\times$ less uncompressed history storage. At comparable PSNR, it also reduces foreground depth error by 3.2$\\times$ relative to sequential ChronoGS, showing that accurate rendering does not necessarily imply accurate geometry. Code and benchmark are available at https://waychin-weiqin.github.io/ReScene/.",
-      "published": "2026-11-16",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.20283",
-      "title": "CiGS: Conduction in Gaussian Splats for Interior Temperature Field from Thermal Images",
-      "abstract": "We present a method for inferring the interior temperature distribution of a solid object from registered multi-view visible-spectrum and thermal images, even when the thermal views cover only part of its surface. We formulate steady-state heat conduction as a Laplace boundary value problem and solve it with a direct boundary integral equation discretized over a point cloud: a Gaussian reconstruction of the visible-spectrum images supplies the boundary geometry, and the thermal images supply the boundary data. We do not build surface or volume meshes at any stage in our method. Instead, we sample collocation points from rendered depth without the pixels at depth discontinuities, and use a density subtraction that keeps the interior evaluation accurate up to the surface. The whole chain is differentiable, and we use it to recover the pose and depth of heating pipes, insulation defects, and the shape of cracks from thermal images. We validate our method through experiments on boundary value problems with Dirichlet-only and mixed Dirichlet and Robin boundaries, using synthetic and real captured data on scenes with challenging topology. These experiments show that our method matches analytical solutions and has better accuracy than FEM solvers.",
-      "published": "2026-11-15",
-      "categories": [
-        "cs.CV",
-        "cs.GR"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.20089",
-      "title": "See the Lives of Stars in a Handful of Light",
-      "abstract": "Galaxies evolve over hundreds of millions of years, and no telescope has ever watched one move. Cosmological simulations make this evolution visible as a sequence of multi-view images, inviting the question of whether a galaxy can be recovered in four dimensions from its images. This setting defeats existing dynamic scene methods, since millions of stars span only a few pixels each, faint populations blend into diffuse light, and free deformations reproduce the images without obeying gravity. We present Cosmos4D, which rests on two components. Gravitational 4D Gaussian Splatting represents each star as a self-luminous Gaussian whose motion is integrated through a gravitational potential and a low-dimensional force field shared by all stars. Luminosity-stratified dynamics give bright stars individual orbits supervised across image scales and carry faint populations with a velocity field estimated from optical flow. We further build a 4D dataset of eight galaxies from four cosmological simulations, on which Cosmos4D outperforms dynamic Gaussian baselines in both photometric quality and physical accuracy. With these advancements, we glimpse eight hundred million years of a galaxy's life in ninety-six frames.",
-      "published": "2026-11-15",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.19773",
-      "title": "SemLite-GS: Semantic-Selective Parallel Gaussian Splatting for Lightweight Building Reconstruction from UAV Oblique Imagery",
-      "abstract": "Lightweight 3D building models support urban spatial analysis, but their production often requires dense scene reconstruction, building extraction, and mesh simplification. Although 3D Gaussian Splatting (3DGS) is more efficient than conventional multi-view stereo, existing large-scale methods lack semantic selection and parallel instance-level training. We present SemLite-GS, a building-centric framework that reconstructs lightweight building meshes from large-scale UAV oblique imagery. First, an orthographic reference map establishes globally consistent building identities, which are propagated to oblique views to form camera-instance pairs and regions of interest. Second, semantic-selective parallel PGSR training jointly processes multiple pairs within relevant image regions while updating only target Gaussians; contextual Gaussians remain fixed to preserve visibility. Third, architectural planes extracted from rendered depth, opacity, and normal maps guide signed distance field optimization, producing meshes with adaptive polygon allocation and well-defined structural boundaries. Experiments on multiple large-scale UAV datasets demonstrate that our SemLite-GS substantially reduces building reconstruction time compared with representative full-scene 3DGS methods. With comparable polygon budgets, SemLite-GS achieves superior preservation of dominant planar structures and sharp architectural transitions compared with conventional dense reconstruction followed by mesh decimation. The source code is available at https://github.com/IRIS-LAB-whu/SemLite-GS.",
-      "published": "2026-11-15",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
     }
   ],
   "note": "Discovery candidates, not admitted or fully verified methods."
