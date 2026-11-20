@@ -1,5 +1,7 @@
 # 3DGS 论文研读知识库 · Paper Reading Knowledge Base
 
+> **历史快照**：以下笔记证据粒度不一。技术主张与数字请通过 `python scripts/paper_evidence.py lookup "<论文名或 arXiv ID>"` 获取逐篇定位记录，或回到原文。下列核查数字属于当时的快照。
+
 > **用途**：把项目相关论文（近期 + 经典）的研读沉淀为结构化笔记，作为**撰写 3DGS 论文的基础**——覆盖 related-work 定位、方法对比、实验数据集/基线/指标速查。
 
 > **生成方式**：由 9 个并行子代理分簇 WebFetch arXiv 原文核验 + 深度研读，聚合而成。

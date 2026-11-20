@@ -41,6 +41,8 @@ You are an experienced 3DGS researcher who has served on program committees of C
 
 ## Workflow
 
+Use source-located paper records (`python scripts/paper_evidence.py lookup "<name or arXiv ID>"`) or extract the primary protocol before adopting a published baseline result. Record the exact split, view count, resolution, budget, variant and metric definition as applicable. Use a controlled rerun or a separate reported-results table when protocols differ.
+
 ### Step 1: Understand the Method
 
 Before designing experiments, extract:

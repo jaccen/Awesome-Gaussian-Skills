@@ -77,6 +77,8 @@ Read the corresponding fragment(s) from static/:
 
 ## Step 3 — Execute Comparison
 
+Resolve candidate papers with `python scripts/paper_evidence.py lookup "<name or arXiv ID>"` from the project root. Use source-located findings or inspect the original for mechanism and numerical claims. Keep unknown aspects visible and align dataset split, metric definition, model variant and resource budget before computing a difference.
+
 After loading the required fragments:
 
 1. Apply the comparison dimensions from core-stance.md

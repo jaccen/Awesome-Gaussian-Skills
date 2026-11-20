@@ -48,6 +48,8 @@ Writing-only tasks can start at R4; existing results can start at R9.
 
 ## Evidence ledger
 
+Use the 3dgs-paper-reader evidence workflow for mechanism, experimental and novelty claims. From the project root, `python scripts/paper_evidence.py lookup "<name or arXiv ID>"` returns reusable findings by edition. Carry the version, locator and experimental conditions into this ledger. For a central gap or novelty claim, read the closest prior papers' methods and experiments and state what observation could disprove the distinction.
+
 For each consequential claim, record:
 
 | Field | Content |
@@ -127,3 +129,7 @@ method paper and a Chinese-core-journal survey), see
 `mp-super-agents.md` are primary-source case indexes with explicitly labeled
 methodological interpretations. They are not universal writing rules or evidence
 that copying a successful paper's structure improves acceptance odds.
+
+## 检索扩展与目标期刊适配
+
+需要扩大相关论文覆盖、批量补全文、优化实验与投稿匹配时，读取 [references/retrieval-and-venue.md](references/retrieval-and-venue.md)。按此流程区分发现、获取、解析和主张核验；工具未实测不报可用，未做对照不报数量增益或录用概率。实验数量、统计检验与写作范式按研究问题选择，不将固定种子数、基线数或摘要句式当作期刊通用要求。

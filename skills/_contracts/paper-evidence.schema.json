@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Source-located paper evidence",
+  "type": "object",
+  "required": [
+    "arxiv_id",
+    "identity",
+    "sources",
+    "sections",
+    "results"
+  ],
+  "properties": {
+    "arxiv_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "title",
+        "authors",
+        "edition",
+        "source",
+        "venue",
+        "year"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "edition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "venue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "year": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1900,
+          "maximum": 2200
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/definitions/source"
+      }
+    },
+    "sections": {
+      "type": "object",
+      "required": [
+        "problem",
+        "contributions",
+        "mechanism",
+        "evaluation",
+        "ablations",
+        "limitations",
+        "prior_work",
+        "reproducibility"
+      ],
+      "properties": {
+        "problem": {
+          "$ref": "#/definitions/section"
+        },
+        "contributions": {
+          "$ref": "#/definitions/section"
+        },
+        "mechanism": {
+          "$ref": "#/definitions/section"
+        },
+        "evaluation": {
+          "$ref": "#/definitions/section"
+        },
+        "ablations": {
+          "$ref": "#/definitions/section"
+        },
+        "limitations": {
+          "$ref": "#/definitions/section"
+        },
+        "prior_work": {
+          "$ref": "#/definitions/section"
+        },
+        "reproducibility": {
+          "$ref": "#/definitions/section"
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "dataset",
+          "protocol",
+          "metric",
+          "unit",
+          "method",
+          "value",
+          "evidence"
+        ],
+        "properties": {
+          "dataset": {
+            "type": "string",
+            "minLength": 1
+          },
+          "protocol": {
+            "type": "string",
+            "minLength": 1
+          },
+          "metric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "number"
+          },
+          "evidence": {
+            "$ref": "#/definitions/location"
+          }
+        }
+      },
+      "minItems": 0
+    }
+  },
+  "definitions": {
+    "source": {
+      "type": "object",
+      "required": [
+        "kind",
+        "uri",
+        "version"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "pdf",
+            "html",
+            "metadata"
+          ]
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "page_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": [
+        "source",
+        "anchor"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "anchor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "required": [
+        "findings",
+        "gap"
+      ],
+      "properties": {
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "statement",
+              "basis",
+              "evidence"
+            ],
+            "properties": {
+              "statement": {
+                "type": "string",
+                "minLength": 1
+              },
+              "basis": {
+                "type": "string",
+                "enum": [
+                  "authors",
+                  "reader_inference"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/location"
+                },
+                "minItems": 1
+              }
+            }
+          },
+          "minItems": 0
+        },
+        "gap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

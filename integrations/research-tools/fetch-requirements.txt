@@ -1,0 +1,9 @@
+certifi==2026.10.23
+charset-normalizer==3.5.2
+defusedxml==0.7.1
+html2text==2025.4.15
+idna==3.20
+requests==2.34.2
+urllib3==2.8.0
+youtube-transcript-api==1.2.5
+yt-dlp==2026.10.26

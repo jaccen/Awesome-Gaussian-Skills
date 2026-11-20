@@ -20,6 +20,10 @@ Preserve technical meaning, qualifiers, citations and author voice. Prefer concr
 
 ## Citation fact checks
 
+For literature-backed technical claims, resolve the paper with `python scripts/paper_evidence.py lookup "<name or arXiv ID>"` when working in the project. Use the returned edition and located findings, or open the original via the 3dgs-paper-reader workflow. Catalog descriptions and abstract briefs are discovery material. Carry the source locator and protocol into the claim ledger before drafting.
+
+For related work and novelty, compare the closest prior work on the specific mechanism, input assumptions and evaluation regime. Pair each proposed difference with a test that can distinguish it from that prior work. For empirical comparisons, use matched protocols and keep author-reported and locally reproduced values distinct. In the manuscript abstract, anchor claims about the user's work in the user's own artifacts and verified measurements.
+
 Verify identities, venues, technical claims and retraction status separately against current primary sources. Historical error lists are leads for rechecking, not current facts.
 
 ## Evidence and stage status

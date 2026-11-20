@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "research-scholar": {
+      "command": "python",
+      "args": [
+        "<repo-root>/scripts/research_tools.py",
+        "serve-scholar"
+      ]
+    }
+  }
+}

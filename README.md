@@ -436,6 +436,16 @@ Previous (Jul 26): **v0.5.1 —Full Method Audit & 14 New Methods**. Now 789+ Me
 
 ## Knowledge Base (1085 Methods, 26 Categories)
 
+Use the catalog to find candidate papers. For technical or quantitative claims, query the source-located reading records and follow their edition, section or table, and experimental protocol.
+
+```bash
+python scripts/paper_evidence.py lookup "2DGS"
+python scripts/paper_evidence.py coverage --pending
+python scripts/paper_evidence.py validate
+```
+
+See the [paper reading and evidence workflow](skills/3dgs-paper-reader/references/evidence-workflow.md) for extraction and contributions.
+
 | Group | Categories | Key Topics |
 |-------|-----------|------------|
 | **Core Representations** | Foundation, Antialiasing, Optimization, Surface/Rendering, Image Rep. | 3DGS, 2DGS, Scaffold-GS, Mip-Splatting, GaussianImage |
@@ -784,3 +794,7 @@ Markdown indexes and router snapshots are derived outputs; editing an export doe
 not silently replace a corrected registry field. Daily discovery paginates and
 records search boundaries; failed searches are not reported as successful zeroes.
 <!-- research-reliability:end -->
+
+## Research retrieval tools / 科研检索工具
+
+Pinned integrations for scholar-mcp (discovery and citation tools), scihub-cli (batch full-text downloads), and research-fetch-skill (web/video/PDF materials) are available through `python scripts/research_tools.py`. See [setup, usage and validation](integrations/research-tools/README.md). Installation and live coverage are reported separately; retrieved candidates require review before knowledge-base admission.

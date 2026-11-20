@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-18",
+  "tools": {
+    "scholar-mcp": {
+      "url": "https://github.com/gustavokch/scholar-mcp.git",
+      "commit": "0dab94fa6dfad3b37984e65f00c5129f1d9f5977",
+      "runtime": "uv"
+    },
+    "scihub-cli": {
+      "url": "https://github.com/Oxidane-bot/scihub-cli.git",
+      "commit": "dc1cfa4c8f4e6dc9d4c5f8fb07fdbce7efd7e44c",
+      "runtime": "uv"
+    },
+    "research-fetch-skill": {
+      "url": "https://github.com/Adamkadaban/research-fetch-skill.git",
+      "commit": "f5c3190225ed234590fb95d5a9d83dfb9f056bc4",
+      "runtime": "bash-python"
+    }
+  }
+}

@@ -3,11 +3,12 @@
 > v0.8 新增：把 15 个技能从"各自独立"升级为"可组合流水线"。
 > 技能间交接必须通过机器可验证的 JSON 契约，而不是自由文本。
 
-## 三份契约
+## 契约
 
 | 契约 | 生产者 | 消费者 | 校验 |
 |------|--------|--------|------|
-| `paper-insight.schema.json` | 3dgs-paper-reader | method-compare / experiment-planner / cg-paper-writing | arXiv ID 格式、结果数字必须带 dataset+metric、provenance 必填 |
+| `paper-insight.schema.json` | 3dgs-paper-reader | 旧版流程 | 支持历史简报与可空字段 |
+| `paper-evidence.schema.json` | 3dgs-paper-reader | method-compare / experiment-planner / cg-paper-writing | 版本、证据位置、方法及实验范围、结果协议和缺口 |
 | `comparison-report.schema.json` | 3dgs-method-compare | cg-paper-writing（Related Work）/ experiment-planner（基线选择） | ≥2 方法、≥1 维度、维度值数组长度与方法数一致（语义约定） |
 | `experiment-plan.schema.json` | 3dgs-experiment-planner | 研究者 / benchmark arena | baselines 必须真实存在、ablations 必须带假设 |
 
@@ -21,6 +22,9 @@ python3 scripts/validate_skill_contract.py experiment-plan --example > /dev/null
 
 # 校验真实产出
 python3 scripts/validate_skill_contract.py paper-insight my-paper-reading.json
+python3 scripts/paper_evidence.py validate my-paper-evidence.json
+python3 scripts/paper_evidence.py validate
+python3 scripts/paper_evidence.py coverage --pending
 ```
 
 ## 标准流水线
@@ -29,7 +33,7 @@ python3 scripts/validate_skill_contract.py paper-insight my-paper-reading.json
 用户给 arXiv ID
    │
    ▼
-3dgs-paper-reader ──(paper-insight)──▶ validate_skill_contract.py ✓
+3dgs-paper-reader ──(paper-evidence)──▶ paper_evidence.py validate
    │                                        │
    ▼                                        ▼
 3dgs-method-compare ◀── 同类方法检索 ── data/methods.json（单一数据源）

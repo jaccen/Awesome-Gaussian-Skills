@@ -1,0 +1,172 @@
+{
+  "arxiv_id": "2611.26045v1",
+  "identity": {
+    "title": "PaveSplat: Resolution-Robust Feed-Forward Gaussian Splatting with Residually Corrected Surface-Aligned Covariances",
+    "authors": [
+      "Janghun Kim",
+      "Hyun-Cheol Kim",
+      "Eunbin An",
+      "Myeonghun Oh",
+      "Hyon-Gon Choo"
+    ],
+    "edition": "arXiv v1",
+    "source": "main",
+    "venue": null,
+    "year": 2026
+  },
+  "sources": {
+    "main": {
+      "kind": "html",
+      "uri": "https://arxiv.org/html/2611.26045v1",
+      "version": "v1"
+    }
+  },
+  "sections": {
+    "problem": {
+      "findings": [
+        {
+          "statement": "Feed-forward splats trained at a conventional resolution can expose holes when rerendered at finer sampling rates; surface alignment alone leaves an orientation degree of freedom.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§1; §3.1"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    },
+    "contributions": {
+      "findings": [
+        {
+          "statement": "Initialize covariance in a surface-aligned tangent frame, then learn a bounded architectural correction through a residual rotation rather than freely regressing the entire orientation.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§3.2–3.3"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    },
+    "mechanism": {
+      "findings": [
+        {
+          "statement": "Build the frame in camera space from estimated geometry, use it for analytic scales and axes, and predict a residual reorientation on the feed-forward backbone.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§3.2–3.3"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    },
+    "evaluation": {
+      "findings": [
+        {
+          "statement": "Compare native rendering, the High-Resolution Re-Rendering Check on RealEstate10K, and transfer to ScanNet. Train and compare under the common index for the high-resolution condition.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§4.1–4.4; Table 1"
+            }
+          ]
+        }
+      ],
+      "gap": "Selected experiments transcribed. Other tables and code-level reproduction are outside this record."
+    },
+    "ablations": {
+      "findings": [
+        {
+          "statement": "Under an identical RealEstate10K recipe, isolate tangent-frame alignment from prediction of the residual orientation; both improve high-resolution PSNR in this ablation.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§4.5–4.6; Table 2"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    },
+    "limitations": {
+      "findings": [
+        {
+          "statement": "The residual only adjusts orientation. The design-path ablation covers one backbone and dataset, and unseen-domain transfer remains sensitive to depth quality.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§5"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    },
+    "prior_work": {
+      "findings": [
+        {
+          "statement": "Positions the method between analytic surface alignment and fully learned covariance, using learned residuals to retain geometric structure while adjusting orientation.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§2.1–2.3"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    },
+    "reproducibility": {
+      "findings": [
+        {
+          "statement": "Document dataset, common test index, controlled comparisons and statistical conventions.",
+          "basis": "authors",
+          "evidence": [
+            {
+              "source": "main",
+              "anchor": "§4.1"
+            }
+          ]
+        }
+      ],
+      "gap": null
+    }
+  },
+  "results": [
+    {
+      "dataset": "RealEstate10K",
+      "protocol": "Same-recipe design-path ablation, 8× re-rendering",
+      "metric": "PSNR",
+      "unit": "dB",
+      "method": "PaveSplat with residual",
+      "value": 24.266,
+      "evidence": {
+        "source": "main",
+        "anchor": "Table 2, residual row"
+      }
+    },
+    {
+      "dataset": "RealEstate10K",
+      "protocol": "Same-recipe design-path ablation, 8× re-rendering",
+      "metric": "PSNR",
+      "unit": "dB",
+      "method": "Tangent frame without residual",
+      "value": 23.85,
+      "evidence": {
+        "source": "main",
+        "anchor": "Table 2, tangent-frame row"
+      }
+    }
+  ]
+}

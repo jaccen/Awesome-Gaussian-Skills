@@ -386,6 +386,16 @@ SLAM（+2）增量最大。每条入库方法名均取自论文自身标题/摘�
 
 ## 知识库（1085 方法，26 类别）
 
+论文目录用于发现候选。写作需要引用机制、结果或消融时，用逐篇原文证据记录定位版本、章节、表格和实验协议。当前样例覆盖 3DGS、2DGS 和 Mip-Splatting。
+
+```bash
+python scripts/paper_evidence.py lookup "2DGS"
+python scripts/paper_evidence.py coverage --pending
+python scripts/paper_evidence.py validate
+```
+
+新增记录的阅读和提取步骤见 [论文证据流程](skills/3dgs-paper-reader/references/evidence-workflow.md)。
+
 | 分组 | 类别 | 关键方向 |
 |------|------|----------|
 | **核心表示** | 基础、抗锯齿、优化、表面/渲染、图像表示 | 3DGS, 2DGS, Scaffold-GS, Mip-Splatting, GaussianImage |
@@ -732,3 +742,7 @@ Markdown indexes and router snapshots are derived outputs; editing an export doe
 not silently replace a corrected registry field. Daily discovery paginates and
 records search boundaries; failed searches are not reported as successful zeroes.
 <!-- research-reliability:end -->
+
+## Research retrieval tools / 科研检索工具
+
+Pinned integrations for scholar-mcp (discovery and citation tools), scihub-cli (batch full-text downloads), and research-fetch-skill (web/video/PDF materials) are available through `python scripts/research_tools.py`. See [setup, usage and validation](integrations/research-tools/README.md). Installation and live coverage are reported separately; retrieved candidates require review before knowledge-base admission.

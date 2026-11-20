@@ -1,33 +1,33 @@
 {
- "generated_at": "2026-11-15",
+ "generated_at": "2026-11-20",
  "generator": "scripts/catalog_export.py",
- "count": 1085,
+ "count": 1135,
  "category_count": 26,
  "categories": {
-  "Surface & Rendering": 75,
-  "CAD & Reverse Engineering": 20,
-  "Embodied AI & Robotics": 50,
-  "SLAM": 56,
+  "Surface & Rendering": 80,
+  "CAD & Reverse Engineering": 22,
+  "Embodied AI & Robotics": 52,
+  "SLAM": 58,
   "Security": 13,
   "Foundation": 27,
-  "Language & Semantic": 50,
-  "Dynamic & 4D": 99,
-  "Human & Avatar": 48,
-  "Optimization": 54,
-  "Robustness": 25,
-  "Simulation": 13,
-  "Cross-Domain": 79,
+  "Language & Semantic": 53,
+  "Dynamic & 4D": 102,
+  "Human & Avatar": 49,
+  "Optimization": 55,
+  "Robustness": 28,
+  "Simulation": 14,
+  "Cross-Domain": 89,
   "World Models & Spatial Intelligence": 16,
-  "Acceleration": 33,
-  "Feed-Forward": 102,
-  "Autonomous Driving": 29,
-  "HDR & Relighting": 31,
-  "Editing": 50,
-  "Generation": 44,
+  "Acceleration": 39,
+  "Feed-Forward": 103,
+  "Autonomous Driving": 31,
+  "HDR & Relighting": 32,
+  "Editing": 52,
+  "Generation": 45,
   "Super Agents & Agentic AI": 21,
-  "Compression & Streaming": 66,
-  "Sparse-View": 26,
-  "Large-Scale": 22,
+  "Compression & Streaming": 68,
+  "Sparse-View": 27,
+  "Large-Scale": 23,
   "AIGC Content Creation": 23,
   "Ontology & Knowledge Representation": 13
  },
@@ -2070,7 +2070,7 @@
    "venue": "SIGGRAPH 2024",
    "year": 2024,
    "category": "CAD & Reverse Engineering",
-   "desc": "2D disks on surfaces enabling direct mesh extraction via Poisson reconstruction",
+   "desc": "Perspective-correct 2D Gaussian disks with geometry regularization and median-depth TSDF mesh extraction",
    "code_url": "",
    "sources": [
     "csv",
@@ -5234,7 +5234,7 @@
    "year": 2023,
    "category": "Foundation",
    "desc": "Anisotropic 3D Gaussians with tile-based differentiable rasterization",
-   "code_url": "https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/",
+   "code_url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
    "sources": [
     "csv",
     "explorer"
@@ -23595,6 +23595,1006 @@
     "numerical_results": "not-audited"
    },
    "title": "EmbodiedVSR: Dynamic Scene Graph-Guided Chain-of-Thought Reasoning for Visual Spatial Tasks"
+  },
+  {
+   "name": "CryoGaussian",
+   "arxiv_id": "2611.26128",
+   "title": "CryoGaussian: Heterogeneous Cryo-EM Reconstruction Made Explicit with Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Fits explicit Gaussian densities to cryo-EM images using differentiable orthographic projection and the imaging contrast transfer function.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.26128v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "PaveSplat",
+   "arxiv_id": "2611.26045",
+   "title": "PaveSplat: Resolution-Robust Feed-Forward Gaussian Splatting with Residually Corrected Surface-Aligned Covariances",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Feed-Forward",
+   "desc": "Learns a residual correction to analytic surface-aligned covariance for feed-forward reconstruction that remains stable as rendering resolution changes.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.26045v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "GS-VTON-MVT",
+   "arxiv_id": "2611.25979",
+   "title": "Multi-View Transformer with Geometry-Guided Multi-Modal ControlNet for 3D Virtual Try-On",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Human & Avatar",
+   "desc": "Combines multiview generation and explicit 3D Gaussian rendering for consistent virtual garment try-on.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.25979v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "AGSR",
+   "arxiv_id": "2611.25934",
+   "title": "AGSR: Aperture-Guided Super-Resolution for Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Fuses multiple aperture-conditioned renders using uncertainty, transmittance and depth cues at inference time to improve resolution.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.25934v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "MergeableRF",
+   "arxiv_id": "2611.25523",
+   "title": "Multi-View Relighting with Mergeable Radiance Fields",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "HDR & Relighting",
+   "desc": "Uses shared geometry and merge-aware training to combine basis-light appearance parameters into a single relit radiance field, including a 3DGS implementation.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.25523v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "VideoRNG",
+   "arxiv_id": "2611.25338",
+   "title": "VideoRNG: Relightable Neural Gaussians from Generative Video Models",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Generation",
+   "desc": "Generates relightable Gaussian assets from a text prompt or image using video priors and depth-anchored appearance training.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.25338v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "GalaxyGS",
+   "arxiv_id": "2611.24723",
+   "title": "Multi-Band Galaxy Novel-View Synthesis with Radiative Gaussian Fields",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Represents multi-band galaxy appearance with Gaussian primitives that model emission and light propagation.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.24723v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "RAPID",
+   "arxiv_id": "2611.24404",
+   "title": "RAPID: Reconstruction Accelerated by Polarization-Informed Depth for 2D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Uses multiview polarization to estimate surface priors for geometry-first 2D Gaussian Splatting reconstruction.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.24404v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Facet-SLAM",
+   "arxiv_id": "2611.23935",
+   "title": "Facet-SLAM: Real-Time Triangle Splatting SLAM",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "SLAM",
+   "desc": "Builds an RGB-D SLAM system around real-time triangle splatting.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.23935v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "VLN-AR",
+   "arxiv_id": "2611.23930",
+   "title": "A Hierarchical Onboard Vision-Language-Navigation Framework for Aerial Robots in Complex Environments",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Embodied AI & Robotics",
+   "desc": "Uses a 3DGS-based synthetic data pipeline to support hierarchical aerial vision-language navigation.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.23930v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "NIRJALA",
+   "arxiv_id": "2611.23450",
+   "title": "NIRJALA: Draining the Sea out of Gaussian Splatting with Three-Path Optics and Reversible Physics",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Models underwater optics to jointly recover water-free scene appearance and geometry with 3DGS.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.23450v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Gaussian Splatoms",
+   "arxiv_id": "2611.23444",
+   "title": "Gaussian Splatoms: Direct Atomic Structure Identification in Electron Tomography",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Uses an atom-centric Gaussian parameterization to recover atomic structure from electron tomography projections.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.23444v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "OCLDA-GS",
+   "arxiv_id": "2611.23416",
+   "title": "OCLDA-GS: Object-Centric Local Deformation-Aware Gaussian Streaming",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Compression & Streaming",
+   "desc": "Reallocates Gaussian streaming anchors by object and motion and restricts neighborhoods to object groups.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.23416v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "ReTouchGS",
+   "arxiv_id": "2611.23054",
+   "title": "ReTouchGS: Ultralight Render-free Aesthetic Color Enhancement and Transfer for 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Editing",
+   "desc": "Enhances or transfers color in pretrained 3DGS assets without render-and-refit optimization.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.23054v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "SPS-GS",
+   "arxiv_id": "2611.22898",
+   "title": "You Only Encode Once: Sub-Pixel-Shifted Frames for Arbitrary-Scale Remote Sensing Super-Resolution with 2D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Uses subpixel-shifted observations and 2D Gaussian splatting for arbitrary-scale remote-sensing super-resolution.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.22898v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "DOOM-GS",
+   "arxiv_id": "2611.22805",
+   "title": "DOOM-GS: Dynamic Out-of-core Optimization for Massive Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Large-Scale",
+   "desc": "Performs out-of-core optimization for dynamic Gaussian scenes that exceed resident memory.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.22805v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Cross3DGS",
+   "arxiv_id": "2611.22240",
+   "title": "Cross3DGS: Unified Vulkan-Based 3D Gaussian Splatting Training from Workstations to Mobile Devices",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Selects device-compatible Vulkan execution schedules while keeping a shared 3DGS training optimizer.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.22240v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "CoSphere-SLAM",
+   "arxiv_id": "2611.22235",
+   "title": "CoSphere-SLAM: Multi-Agent Panoramic Gaussian Splatting SLAM with Spherical Loop Closure",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "SLAM",
+   "desc": "Uses spherical loop closure, similarity pose graph optimization and omnidirectional Gaussian fusion for multi-agent panoramic SLAM.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.22235v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "CueSplat",
+   "arxiv_id": "2611.22095",
+   "title": "CueSplat: Learning to Schedule Sparse Deformation for Dynamic Gaussian Splatting on Edge Devices",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Predicts Gaussian attributes between frames and routes selected splats through exact deformation under an edge-device budget.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.22095v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "ElsaGS",
+   "arxiv_id": "2611.22059",
+   "title": "Accelerating 3D Gaussian Splatting Training through Selective Freezing and Computation Caching",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Freezes converged Gaussians and caches their contributions to accelerate forward and backward computation.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.22059v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Spectro-Spatial Survey Fusion",
+   "arxiv_id": "2611.21798",
+   "title": "Spectro-Spatial Survey Fusion",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Jointly fits images and spectra with adaptive spatial Gaussians carrying spectra from a shared learned dictionary.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.21798v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "VODA",
+   "arxiv_id": "2611.21383",
+   "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Supervises Gaussian depth clusters directly to improve the volumetric completeness of object segmentation.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.21383v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "QuantileGS",
+   "arxiv_id": "2611.21253",
+   "title": "QuantileGS: Quantile-Based Conformal Bounds on RGB Rendering Errors for Novel View Synthesis with 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Robustness",
+   "desc": "Combines ordered Gaussian RGB-error quantile fields with scale-normalized conformal calibration on held-out images.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.21253v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "GDM-GS",
+   "arxiv_id": "2611.20546",
+   "title": "A Gaussian Primitive Data Management Framework for Efficient 3DGS Trajectory Rendering",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Uses spatial indexing, shared Gaussian decoding and hybrid CPU–GPU scheduling to reduce camera-trajectory rendering redundancy.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.20546v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "ReScene",
+   "arxiv_id": "2611.20433",
+   "title": "ReScene: Incremental Scene Chronology from Sparse Revisits",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Represents revisited scenes as immutable compact Gaussian updates so earlier scene states remain recoverable.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.20433v2",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "CiGS",
+   "arxiv_id": "2611.20283",
+   "title": "CiGS: Conduction in Gaussian Splats for Interior Temperature Field from Thermal Images",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Uses Gaussian-reconstructed boundary geometry and thermal observations to infer interior temperature via mesh-free heat conduction.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.20283v2",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Cosmos4D",
+   "arxiv_id": "2611.20089",
+   "title": "See the Lives of Stars in a Handful of Light",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Constrains self-luminous Gaussian trajectories with a shared gravitational field and uses luminosity-dependent motion representations.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.20089v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "SemLite-GS",
+   "arxiv_id": "2611.19773",
+   "title": "SemLite-GS: Semantic-Selective Parallel Gaussian Splatting for Lightweight Building Reconstruction from UAV Oblique Imagery",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "CAD & Reverse Engineering",
+   "desc": "Uses semantic-selective parallel Gaussian reconstruction and depth, opacity and normal cues to recover lightweight building meshes from UAV imagery.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.19773v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Query-Wise 3D Segmenter",
+   "arxiv_id": "2611.19429",
+   "title": "Prepare Lighter and Faster for Open-Vocabulary Queries: A Query-Wise 3D Segmenter for Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Uses dense CLIP features, query-selected pivot views, mask propagation and visibility voting to segment pretrained Gaussians without per-scene training.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.19429v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "MacroGS",
+   "arxiv_id": "2611.17957",
+   "title": "MacroGS: Macro-Pixel Shared Gaussian Primitives for Arbitrary-Scale Light Field Super-Resolutio",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Shares a feed-forward Gaussian set per macro pixel across light-field views for arbitrary-scale super-resolution.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.17957v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Stage-wise Lineage-aware Dropout",
+   "arxiv_id": "2611.17752",
+   "title": "Stage-wise Lineage-aware Dropout for Sparse-View 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Sparse-View",
+   "desc": "Applies lineage-family dropout during structural regularization and individual-splat dropout during later refinement.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.17752v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "ReCan-GS",
+   "arxiv_id": "2611.16259",
+   "title": "Reconstruct What You Can: Distractor-free 4D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Separates temporally coherent content from inconsistent observations for distractor-robust dynamic reconstruction.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.16259v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Topo-4DGS",
+   "arxiv_id": "2611.16012",
+   "title": "Topology-Aware 4D Gaussian Splatting for Egocentric Videos",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Dynamic & 4D",
+   "desc": "Models topological changes such as splitting, merging, opening and closing in egocentric dynamic scenes.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.16012v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "ThermalSplat",
+   "arxiv_id": "2611.15435",
+   "title": "ThermalSplat: Generalizable Pose-Free Gaussian Splatting for Sparse-View Thermal 3D Reconstruction",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Cross-Domain",
+   "desc": "Predicts a Gaussian scene feed-forward from sparse thermal views without known poses, RGB guidance or per-scene optimization.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.15435v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "MatrixSplat",
+   "arxiv_id": "2611.15153",
+   "title": "MatrixSplat: Matrix-Parallel and Feature-Scalable 3D Gaussian Splatting Rendering on GPUs",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Uses matrix-parallel GPU rendering to scale the feature dimensions of Gaussian splatting.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.15153v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "SM-Level Load Balancing for 3DGS",
+   "arxiv_id": "2611.12319",
+   "title": "Mitigating SM-Level Load Imbalance in 3D Gaussian Splatting on GPUs",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Acceleration",
+   "desc": "Uses software-defined GPU scheduling to mitigate the execution tail caused by uneven load across streaming multiprocessors.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.12319v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "RefineSplat",
+   "arxiv_id": "2611.10379",
+   "title": "RefineSplat: Reconstruction-Guided Object-Centric Gaussian Splatting for Open-Vocabulary Querying",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Language & Semantic",
+   "desc": "Tracks objects in images and reconstructs dedicated Gaussian sets to support open-vocabulary segmentation and retrieval.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.10379v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "ClearForm",
+   "arxiv_id": "2611.10370",
+   "title": "ClearForm: Shared-Surface Gaussian Splatting for Transparent and Opaque Scenes",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Uses shared planar Gaussians and separate opacity roles to jointly reconstruct transparent interfaces and the appearance behind them.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.10370v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "TopSDF",
+   "arxiv_id": "2611.18708",
+   "title": "TopSDF: Topological Signed Distance Field for High-Quality Triangle Mesh Extraction from 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "CAD & Reverse Engineering",
+   "desc": "Models signed distances as a Gaussian random field to improve topology and triangle meshes extracted from reconstructed splats.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.18708v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "URL-Sim",
+   "arxiv_id": "2611.12932",
+   "title": "URL-Sim: Unified and Regulated LiDAR Simulation for High-Fidelity Reconstruction of Dynamic Driving Scenes",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Autonomous Driving",
+   "desc": "Uses a heterogeneous dynamic Gaussian scene graph and bounded, importance-ranked densification for LiDAR simulation.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.12932v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "RigidGS",
+   "arxiv_id": "2611.10199",
+   "title": "RigidGS: Geometry-Aware Object Decoupling for Rigid-Body Interaction in 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Simulation",
+   "desc": "Separates learned scene geometry from object identities to support rigid-body interaction.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.10199v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "HIBS",
+   "arxiv_id": "2611.08288",
+   "title": "Hierarchical Incremental Beta Splatting for Online Reconstruction",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Uses hierarchical Beta splatting for incremental online reconstruction.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.08288v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "P-MGS",
+   "arxiv_id": "2611.07979",
+   "title": "Perception Over Geometry: Rethinking Gaussian Allocation in Mesh-based Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Editing",
+   "desc": "Separates mesh-based geometric control from Gaussian appearance allocation for editable and compact rendering.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.07979v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "WV-GS",
+   "arxiv_id": "2611.07081",
+   "title": "Wide View Synthesis from Overlapping Perspective Cameras in Autonomous Driving",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Autonomous Driving",
+   "desc": "Uses local perspective rendering and spatial affine photometric modeling for feed-forward wide-view synthesis from overlapping cameras.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.07081v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "GSCV++",
+   "arxiv_id": "2611.05359",
+   "title": "GSCV++: Lightweight 3D Gaussian Splatting Sequence Compression via Standard Video Codecs",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Compression & Streaming",
+   "desc": "Maps Gaussian sequences to video-compatible 2D representations and jointly optimizes preprocessing and standard video coding.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.05359v2",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "3DGSV-Assessor",
+   "arxiv_id": "2611.04498",
+   "title": "3DGS-VBench+ and 3DGSV-Assessor: A Multi-Dimensional Subjective Benchmark and a Reference-Flexible Objective Model for 3D Gaussian Splatting Video Quality Assessment",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Robustness",
+   "desc": "Predicts multiple perceptual quality dimensions for 3DGS videos with reference-flexible multimodal assessment.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.04498v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Physical Diffusion Policy",
+   "arxiv_id": "2611.04493",
+   "title": "Physical Diffusion Policy via MPM-Guided 3D Gaussian Simulation",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Embodied AI & Robotics",
+   "desc": "Estimates physical material properties through 3DGS and differentiable MPM and conditions a mixture-of-experts manipulation policy on them.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.04493v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Self-Learned View-Dependent Color Fields",
+   "arxiv_id": "2611.03114",
+   "title": "3D Gaussian Splatting within Self-Learned Neural View-Dependent Color Fields",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Surface & Rendering",
+   "desc": "Learns a continuous view-dependent neural color field for 3D Gaussian splats.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.03114v2",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "GeoCritic",
+   "arxiv_id": "2611.02767",
+   "title": "GaussFlaw: Fine-Grained Perceptual Diagnosis for 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Robustness",
+   "desc": "Combines rendered RGB and geometry cues to localize and classify perceptual artifacts in Gaussian scenes.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.02767v1",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
+  },
+  {
+   "name": "Unified Loss-Aware Density Control",
+   "arxiv_id": "2611.02044",
+   "title": "Unified Loss-Aware Density Control for 3D Gaussian Splatting",
+   "venue": "arXiv 2026",
+   "year": 2026,
+   "category": "Optimization",
+   "desc": "Uses estimated loss effects to guide Gaussian split, clone and opacity decisions.",
+   "code_url": "",
+   "sources": [
+    "arxiv-daily-reviewed"
+   ],
+   "evidence": {
+    "metadata": "checked",
+    "source_url": "https://arxiv.org/abs/2611.02044v2",
+    "checked_at": "2026-11-20T04:55:20.967124+00:00",
+    "technical_claims": "requires-located-primary-evidence",
+    "numerical_results": "not-audited"
+   }
   }
  ]
 }

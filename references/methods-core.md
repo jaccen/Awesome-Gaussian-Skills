@@ -18,7 +18,7 @@
 - **Training**: Adaptive Density Control (clone + split + prune), 7k-30k iterations
 - **Baseline Performance**: Mip-NeRF 360 → PSNR 27.21 dB, SSIM 0.795, LPIPS 0.252（30K iterations, 原论文 Table 1 均值）
 - **Speed**: 100+ FPS at 1080p on RTX 3090
-- **Links**: [中英摘要](https://arxiv.org/abs/2308.04079) | [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) | [Code](https://repo-sam.informatik.uni-halle.de/jkortner/gaussian-splatting/)
+- **Links**: [arXiv:2308.04079](https://arxiv.org/abs/2308.04079) | [Official project and code](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/)
 
 ### Mip-Splatting
 - **Paper**: Mip-Splatting: Alias-free 3D Gaussian Splatting
