@@ -1,30 +1,50 @@
 {
-  "date": "2026-11-20",
-  "retrieved_at": "2026-11-20T02:51:46.708692+00:00",
+  "date": "2026-11-24",
+  "retrieved_at": "2026-11-24T05:45:19.898876+00:00",
   "status": "complete",
   "window_days": 3,
-  "known_arxiv_ids": 978,
-  "count": 14,
+  "known_arxiv_ids": 1028,
+  "count": 9,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611170251 TO 202611200251]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611210545 TO 202611240545]",
       "status": "complete",
       "pages": 1,
-      "fetched": 14
+      "fetched": 9
     },
     {
-      "query": "all:3dgs AND submittedDate:[202611170251 TO 202611200251]",
+      "query": "all:3dgs AND submittedDate:[202611210545 TO 202611240545]",
       "status": "complete",
       "pages": 1,
-      "fetched": 4
+      "fetched": 2
     }
   ],
   "papers": [
     {
-      "id": "2611.25338",
-      "title": "VideoRNG: Relightable Neural Gaussians from Generative Video Models",
-      "abstract": "Generating realistic 3D assets remains constrained by classical representations: surface meshes and compact physically based materials struggle to express objects whose appearance arises from fine geometry or complex light transport, while existing Gaussian-splatting generators typically bake fixed illumination into appearance. We introduce VideoRNG, a two-stage method that generates complete, relightable 3D assets from a text prompt or a single image without prescribing a mesh or analytic material model. A video generator fine-tuned from a pretrained video diffusion backbone first produces a structured RGBA turntable sequence under a known pose, camera, and illumination. A feed-forward large reconstruction model initialized from a pretrained video diffusion backbone then maps the video-VAE latent frames of selected turntable frames directly to millions of anisotropic Gaussians with learned neural appearance features. A shared directional decoder and stochastic Gaussian ray tracer turn this representation, which we call ray-traced Relightable Neural Gaussians (rtRNG), into radiance under novel viewpoints and illumination. To preserve high-frequency appearance while learning geometry, we introduce depth-anchored appearance training, and we make million-Gaussian reconstruction practical through foreground token selection and cost-aware distributed sampling. VideoRNG generates complex assets such as fur, feathers, and spider webs that can be interactively rendered, relit, and integrated into scenes.",
-      "published": "2026-11-19",
+      "id": "2611.30351",
+      "title": "NNS-GS: Non-Local Neural Scattering for Relightable Gaussian Splatting",
+      "abstract": "Creating relightable 3D assets of translucent objects is challenging because changing the illumination at one surface location can affect the appearance elsewhere through subsurface scattering. Existing Gaussian-based scattering models typically predict scattering from local features, making this dependence difficult to capture. We present Non-Local Neural Scattering for Gaussian Splatting (NNS-GS), which learns non-local scattering together with geometry-guided local reflection. The scattering module learns how illumination from light-visible surface regions in light space contributes to the shading point in view space, conditioned on regional diffuse responses and spatial relationships. The reflection module supplies these diffuse responses and uses additional geometric guidance to better capture specular highlights and sharp shadow boundaries. To reduce component mixing and support controllable scattering appearance, anchor-based progressive training establishes the diffuse-scattering base before introducing specular reflection and supervises the components separately. Under calibrated point lighting, NNS-GS improves mean PSNR over existing methods by 2.47 dB and 0.81 dB on the synthetic and real translucent scenes, respectively. Additional synthetic comparisons further show that NNS-GS better matches the reference when adjusting scattering attenuation.",
+      "published": "2026-11-23",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.30283",
+      "title": "AdvMTO: Multimodal and Temporal Adversarial Object Attacks via 2D Gaussian Splatting for BEV-Based 3D Object Detection",
+      "abstract": "Adversarial object attacks pose a threat to BEV-based 3D object detectors in autonomous driving. Existing attacks typically target a single modality, coordinate camera and LiDAR observations at the current timestamp, or model temporal persistence mainly in camera streams. Without a unified construction of current and historical observations, attacks can leave part of the detector's accumulated evidence unsuppressed, limiting their effectiveness. In this paper, we propose AdvMTO, a 2D Gaussian Splatting (2DGS) framework for suppressing detection of persistent adversarial objects. Its oriented surfels encode appearance, geometry, and opacity in one object state, from which camera images and scanline LiDAR returns are generated. AdvMTO then constructs current and historical inputs through detector-native processing, regenerating LiDAR returns in each native source sweep for fusion detectors. We optimize bounded appearance perturbations for each detector, propagating gradients through historical BEV memory for temporal camera detectors. For fusion detectors, bounded geometry refinement along local normals further perturbs both sensing modalities. Experiments on nuScenes demonstrate effective suppression of traffic-cone detection across three BEV detectors. Temporal ablations further highlight the importance of detector-native history modeling for both attack construction and optimization.",
+      "published": "2026-11-23",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.30102",
+      "title": "LMnOP: Pruning 3D Gaussian Splatting via Leave-Many-Out Importance",
+      "abstract": "3D Gaussian Splatting renders photorealistic views in real time. However, a single scene often needs millions of Gaussians, so these models are costly to store and render. Pruning reduces this cost by keeping a subset of the Gaussians. A common score is the leave-one-out importance, which is the loss increase when a Gaussian alone is removed. At high pruning ratios, many Gaussians are removed together, so Gaussians that are redundant alone but essential together are lost. We present LMnOP (Leave-Many-Out Pruning), which estimates the importance of each Gaussian under the removal of the other Gaussians. This leave-many-out importance is the average loss increase when a Gaussian is removed while the others are also removed at random. We compute the exact mean and variance of each pixel's color under random removal in closed form, and approximate the importance from them without sampling removal patterns. We refine each Gaussian's probability of remaining with its importance and prune once at the end. Without fine-tuning, LMnOP achieves the best results in 16 of 18 metrics on three datasets at 90% and 99% removal. It improves SSIM and LPIPS over GaussianPOP in all 13 scenes.",
+      "published": "2026-11-23",
       "categories": [
         "cs.CV",
         "cs.GR"
@@ -32,41 +52,10 @@
       "primary": "cs.CV"
     },
     {
-      "id": "2611.24723",
-      "title": "Multi-Band Galaxy Novel-View Synthesis with Radiative Gaussian Fields",
-      "abstract": "We propose a novel view synthesis tool for galaxies based on Gaussian Splatting (GS). Unlike RGB data, where GS has achieved success, galaxy observations consist of multi-band signals from a massive number of bodies, contain complex patterns of cross-band interactions, and capture light propagation in highly heterogeneous media. As a result, the underlying physical process poses great challenges in model representation and optimization, which have not been investigated in existing research. To this end, we propose a physically inspired Gaussian Splatting method, GalaxyGS, which is equipped with physically meaningful components that capture both the energy emission mechanism of different astronomical bodies and the light propagation between them. In the absence of directly comparable baseline methods, we adopt a wide range of possible alternative approaches. Comparisons conclusively demonstrate that GalaxyGS is better in accuracy and physical fidelity across datasets and metrics.",
-      "published": "2026-11-18",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.24404",
-      "title": "RAPID: Reconstruction Accelerated by Polarization-Informed Depth for 2D Gaussian Splatting",
-      "abstract": "Efficient and accurate 3D surface reconstruction from multi-view images remains a fundamental challenge in Gaussian splatting. Many existing methods rely on sparse geometric initialization and iterative densification, resulting in substantial optimization overhead and difficulties in balancing rendering quality and geometric accuracy, particularly in reflective and weakly textured regions. To address these limitations, we propose RAPID, a geometry-first framework that uses multiview polarization cues to recover dense surface priors. We integrate surface normals into depth maps using sparse geometric anchors. These depth maps are then fused across views. Curvature-adaptive sampling and oriented Gaussian initialization then support efficient optimization. Experiments on the PISR dataset demonstrate an approximately \\(5\\times\\) speedup over PhyGaP, which is a state-of-the-art Gaussian-based reconstruction method. RAPID reduces the average optimization time from approximately 21 minutes (PhyGaP) to 4 minutes while maintaining competitive novel-view synthesis quality and mesh reconstruction accuracy. These results demonstrate the effectiveness of RAPID in accelerating Gaussian optimization from polarimetric multi-view inputs.",
-      "published": "2026-11-18",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.23935",
-      "title": "Facet-SLAM: Real-Time Triangle Splatting SLAM",
-      "abstract": "Dense SLAM systems based on 3D Gaussian splatting build maps that render photorealistically, but their surface geometry is poor, and obtaining a mesh requires extraction or fusion stages. Triangle splatting avoids this with surface primitives whose vertices can be triangulated directly into a connected mesh, yet SLAM with this representation has so far relied on photometric tracking, which is too slow for localization at sensor rate. We present Facet-SLAM, the first real-time triangle splatting SLAM system for RGB-D cameras. Fast geometric registration is the natural alternative, but it is not sufficient alone, since the mapper's optimization displaces triangles from the observed surface and makes them unreliable registration targets. We therefore separate the two roles: the tracker sets each triangle's centroid from fused depth and registers frames to these centroids by GICP, while the mapper is restricted to non-translating updates via a change of variables. Our system achieves competitive tracking accuracy at around 100 FPS on a desktop GPU and runs at sensor rate on a Jetson AGX Orin. Compared with the photometric approach, it is over 20 times faster, matches rendering quality, and improves surface accuracy, reducing the chamfer distance of the Delaunay mesh on Replica from 1.55 to 0.86 cm. We will release the implementation at https://github.com/edward62740/Facet-SLAM.",
-      "published": "2026-11-18",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "primary": "cs.RO"
-    },
-    {
-      "id": "2611.23930",
-      "title": "A Hierarchical Onboard Vision-Language-Navigation Framework for Aerial Robots in Complex Environments",
-      "abstract": "Unmanned Aerial Vehicles (UAVs) are expected to achieve semantic reasoning, intelligent decision-making, and long-horizon navigation under strict onboard constraints. While recent foundation-model-driven approaches have shown promising progress toward this goal, existing methods remain limited by challenges in 3D data availability, trajectory feasibility, long-horizon reasoning, and computational efficiency in complex environments. To bridge these gaps, we propose VLN-AR, a hierarchical vision-language-navigation (VLN) framework for aerial robots. VLN-AR decouples multimodal reasoning and low-level control, enabling structured prediction of 3D pose commands and navigation intentions that are translated into dynamically feasible actions. To mitigate data scarcity and domain gaps, we introduce a fully automated 3D Gaussian Splatting (3DGS)-based pipeline to generate scalable photorealistic UAV navigation data. A progressive three-stage training strategy further enhances grounding, scene reasoning, and complex navigation. In addition, a lightweight cognitive agent improves long-horizon reasoning via memory-aware task decomposition. Finally, we design onboard optimization techniques, including token sparsification and model lightweighting, achieving 7.1x-9.4x speedup while maintaining high navigation performance on resource-limited UAV platforms. Experiments show great improvements over existing methods in both simulation and real-world UAV navigation. Project website: https://wyz000.github.io/VLN-AR/",
-      "published": "2026-11-18",
+      "id": "2611.29609",
+      "title": "JEPA-Shield: Safe Diffusion Planning with Latent World Models via Conformal Shielding",
+      "abstract": "Latent world models enable planning from images, but their predictions do not directly establish whether a robot will satisfy physical constraints. We present JEPA-Shield, which connects a frozen action-conditioned Joint-Embedding Predictive Architecture (JEPA) world model to task-space safety enforcement. Two downstream models predict relative motion from imagined latent rollouts and decode unsafe geometry from the current image. Split conformal prediction turns end-to-end motion-prediction errors into multi-horizon uncertainty tubes. A backup-based shield checks these tubes against physical constraints and screens both candidate trajectories and final proposals in diffusion-inspired sampling-based model predictive control. Under the stated exchangeability and initial-backup assumptions, we establish probabilistic constraint satisfaction at action-block boundaries for a returned plan executed without replanning. We also introduce VParkBench, with geometric car and tractor-trailer parking tasks and a editable photorealistic Gaussian-splatting environment. In closed-loop evaluation, JEPA-Shield achieves success rates of 84.4%, 82.3%, and 99.0%, respectively, with no observed constraint violations. Ablations show complementary benefits from shielding and uncertainty calibration. The results demonstrate the importance of grounding latent world-model predictions in task-space quantities and explicitly accounting for prediction uncertainty in safety-critical planning.",
+      "published": "2026-11-22",
       "categories": [
         "cs.RO",
         "cs.AI"
@@ -74,97 +63,55 @@
       "primary": "cs.RO"
     },
     {
-      "id": "2611.23719",
-      "title": "Improving While Deployed: Learning Proactive End-to-End Driving from Imperfect Human Takeover Data",
-      "abstract": "Once deployed on vehicles, end-to-end driving models continuously encounter challenging scenarios, generating valuable human takeover data that capture both model outputs and human behaviors. However, human interventions are often imperfect, as drivers may intervene too late or unnecessarily. Consequently, direct imitation can reinforce late responses or discourage otherwise appropriate maneuvers. To address this challenge, we propose an offline post-training framework that transforms imperfect takeover data into proactive supervision. We first construct diverse trajectory candidates by augmenting the plans of the deployed model and shifting recorded human corrective maneuvers earlier in time. We then train a scene-conditioned trajectory scorer to rank these candidates using expert demonstrations and unpaired preference signals from takeover logs. Using this scorer, we selectively replace pre-takeover training targets with higher-scoring candidates while retaining the original targets in normal driving scenarios. Finally, we distill the resulting targets into the driving model without changing its inference architecture. In closed-loop evaluations using real-world scenarios reconstructed with 4D Gaussian splatting, our method achieves the highest overall success rate, outperforming the deployed model, direct imitation learning and trajectory post-optimization. These results highlight a practical path toward efficient updates of deployed driving models using existing fleet logs.",
-      "published": "2026-11-18",
+      "id": "2611.29388",
+      "title": "SpectralGS: Spectral Gaussian Splatting for Unsupervised Spectral Super-Resolution",
+      "abstract": "Unsupervised spectral super-resolution aims to recover spectral information from RGB images without paired hyperspectral data. However, the limited spectral information in RGB observations makes learning an effective spatial-spectral representation challenging, requiring the incorporation of structured spectral modeling with sensor imaging. In this paper, we propose SpectralGS, a spectral Gaussian splatting framework comprising two components: Shared Spectral Gaussian Representation and Spectral Response Projection Rendering. The representation module constructs a continuous spatial-spectral representation via shared spectral and local spatial Gaussian primitives, exploiting the low-rank spectral structure of hyperspectral images. The rendering module utilizes the spectral response function (SRF) to apply integral projection to the continuous representation, blending it to generate an RGB image. Consistency between the rendered and observed RGB images provides training supervision. Our main contribution is a Gaussian splatting framework that integrates structured continuous spatial-spectral representation with imaging response-based rendering, enabling unsupervised spectral reconstruction. Extensive experiments demonstrate that our method outperforms current state-of-the-art methods.",
+      "published": "2026-11-22",
       "categories": [
-        "cs.RO"
+        "cs.CV"
       ],
-      "primary": "cs.RO"
+      "primary": "cs.CV"
     },
     {
-      "id": "2611.23450",
-      "title": "NIRJALA: Draining the Sea out of Gaussian Splatting with Three-Path Optics and Reversible Physics",
-      "abstract": "Water does not just tint an underwater photograph; it rewrites it. Each pixel mixes attenuated scene radiance, backscattered light, and scene light scattered forward on its way to the camera, and many combinations of scene and water explain the same pixels. Most Gaussian-splatting methods for underwater scenes model only the first two effects and remove the water by dividing by a transmission that decays exponentially with range, so their inversion gain grows without bound. We present NIRJALA (Sanskrit for \"without water\"), a 3D Gaussian Splatting framework that recovers water-free appearance and geometry together. TRIVENI, a three-path image formation model, adds a range-saturating forward-scattering term to direct transmission and backscatter; we prove that this keeps the inversion gain bounded at every range and bound how errors in the estimated backscatter and attenuation propagate into the recovered colours. PRATIBIMBA, a reversible physics anchor, ties a flexible neural water model to a ten-parameter physical model in both directions, so scene content cannot hide inside the water. SAMARASA collects the physics-informed objectives, including a range-binned colour prior. To score water removal against ground truth, we built SAJALA (\"with water\"), a 30-scene suite path-traced in Blender Cycles with water-free images, depth, and normals under controlled water colour and turbidity. On SAJALA, NIRJALA raises PSNR from 24.34 to 24.76 dB and lowers depth AbsRel from 0.109 to 0.091 against the strongest baseline; on real SeaThru-NeRF scenes it lowers LPIPS from 0.194 to 0.175 while rendering at 44 FPS. We also discuss where appearance metrics and geometry disagree underwater, and the limits of our evaluation.",
-      "published": "2026-11-17",
+      "id": "2611.29236",
+      "title": "Complementary Geometry in Gaussian Splatting",
+      "abstract": "Gaussian Splatting has achieved high visual quality in novel view synthesis, but the accuracy of its rendered geometry remains a challenge. In particular, the rendered depth is computed as an opacity-weighted average along each ray, which may not correspond to the actual scene surface. In this paper, we observe that depth predictions from different views of the same frozen Gaussian representation exhibit complementary errors, allowing us to improve novel-view geometry using information from other views without modifying the original representation. Based on this observation, we propose REVEAL, a general framework that selectively refines novel-view depth using complementary geometric information. Specifically, we first reproject depth predictions from source views to the target view and combine them using robust multi-view consensus. We then introduce a learned selection mechanism to determine whether the candidate depth is more accurate than the original prediction, based on the expected reduction in depth error. In addition, we introduce RIG, a real-world benchmark captured with synchronized RGB-D cameras, which provides ground-truth depth for evaluating both static and dynamic reconstruction models. Experiments on 6 Gaussian Splatting backbones across 3 benchmarks show that REVEAL consistently improves depth accuracy while maintaining comparable rendering quality.",
+      "published": "2026-11-22",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.28802",
+      "title": "Not All Directions Are Flat: Decomposed-Gradient Flatness for Sparse-View 3D Gaussian Splatting",
+      "abstract": "Many applications of novel view synthesis, such as augmented reality and robotics, can afford only a few input views, since dense capture is costly. With such sparse views, however, 3D Gaussian Splatting (3DGS) overfits the training views and degrades at unseen viewpoints. Among the approaches to this problem, flat-minima optimization treats the Gaussians as trainable parameters and steers training toward flat minima, which generalize better, by perturbing the Gaussians with random noise or along the training gradient. However, these perturbations ignore their direction relative to the other training views. Interestingly, we find that the direction of the perturbation determines whether it improves generalization. Specifically, we decompose the gradient of each training view into a component parallel to the average gradient of all views, on which the views agree, and an orthogonal component, on which they disagree. Perturbing along the orthogonal component improves generalization, whereas perturbing along the parallel component does not. We further find that the flatness correction often opposes the reconstruction gradient, shrinking or even reversing the reconstruction step. Based on these findings, we propose DecoFlat, which perturbs each Gaussian along the orthogonal component together with random noise. Furthermore, we introduce a conflict-aware correction, which removes the part of the flatness correction that opposes the reconstruction gradient, and a rescheduling of the spherical-harmonics color, which suppresses the overfitting of view-dependent appearance. Extensive experiments demonstrate that DecoFlat, as a plug-in optimizer, consistently improves vanilla 3DGS and a wide range of sparse-view 3DGS methods.",
+      "published": "2026-11-21",
       "categories": [
         "cs.CV",
-        "cs.GR"
+        "cs.AI"
       ],
       "primary": "cs.CV"
     },
     {
-      "id": "2611.23444",
-      "title": "Gaussian Splatoms: Direct Atomic Structure Identification in Electron Tomography",
-      "abstract": "Atomic electron tomography (AET) computationally reconstructs the 3D atomic structure of materials from a series of 2D projection measurements acquired at different tilt angles. Inspired by Gaussian splatting techniques from computer vision, we introduce an atom-centric parameterization for modeling AET samples. Instead of a conventional volumetric representation with a grid of voxels, we model the sample as a list of atoms, where each atom is a 3D Gaussian characterized by learned location, scale, and amplitude. The Gaussian model is a natural fit for atoms that allows us to easily incorporate prior information grounded in physics; we impose isotropy of atoms, a minimum interatomic distance, and realistic atomic radii. We show in simulation that our method is more robust than volumetric baselines to real-world imaging challenges, including a limited number of measurements and low electron dose. We further show that our method yields a more physically plausible reconstruction of an experimental 23,000 atom iron-platinum nanoparticle than a previously published volumetric reconstruction. Beyond tomography, our representation is a promising tool for any atomic resolution imaging modality (e.g. multislice electron ptychography).",
-      "published": "2026-11-17",
-      "categories": [
-        "eess.IV",
-        "cs.CV"
-      ],
-      "primary": "eess.IV"
-    },
-    {
-      "id": "2611.23416",
-      "title": "OCLDA-GS: Object-Centric Local Deformation-Aware Gaussian Streaming",
-      "abstract": "Streaming 3D Gaussian Splatting (3DGS) allows for online reconstruction of dynamic scenes from multi-view videos for Free Viewpoint Video (FVV). Current time and storage efficient methods rely on selecting a subset of anchor Gaussians and neighborhood interpolation for fast streamable 3DGS. However, these methods can overlook object-specific motion and introduce inconsistencies near object boundaries. We propose OCLDA-GS, an object-centric streaming framework that dynamically reallocates object and motion-aware Gaussian anchors to allocate anchor Gaussian support for objects undergoing large motion while at the same time, restricting the gaussian neighborhood within object groups for more precise object boundaries. Furthermore, it estimates object-wise rigid transformations (e.g. a hand moving) and leverages these estimates to learn per-anchor local deformation correction for small deformations (e.g. wrinkles on a shirt). Then, we conduct experiments on three dynamic multi-view video datasets and demonstrate improvements over the previous baselines alongside improved quality between refinement timesteps. Under matched refinement budgets, our method improves PSNR over Instant Gaussian Stream (IGS) by 0.169 dB on N3DV, 0.202 dB on Meeting Room and +0.199 on Google Immersive, while reducing the mean PSNR drop between refinement timesteps by 9.2% and 13.8% in N3DV and Meeting Room, respectively.",
-      "published": "2026-11-17",
+      "id": "2611.28792",
+      "title": "ArgsWorld: Unifying 3DGS Scene Reconstruction, Generation and Extrapolation with Autoregressive Diffusion Transformer",
+      "abstract": "Autoregressive diffusion world models deliver strong video generation performance, yet they typically output only RGB frames rather than explicit 3D Gaussian Splatting (3DGS) scene representations, creating a gap between learned visual world dynamics and usable 3D assets for downstream robotics, simulation and rendering. To bridge this gap, we introduce ArgsWorld, an autoregressive diffusion model that also produces an explicit 3DGS scene. For each generation chunk, the diffusion transformer jointly processes clean historical image latents and noisy latents for new views. It keeps the historical image latents fixed and refreshes the scene features so that the Gaussian representation can be revised as new regions come into view. Our 3D Self-Forcing Distillation trains the model on its own generated histories using a mixture of single-view and multi-view data. Distribution matching supervises direct image latents and latents of Gaussian renderings at both generation and additional cameras. ArgsWorld unifies 3D scene reconstruction from posed images, scene generation from image or text prompts, and scene extrapolation across camera segments with disconnected endpoints. Experimental results demonstrate that ArgsWorld achieves state-of-the-art performance across multiple 3D scene modeling tasks. Project page: https://m4a1tastegood.github.io/ArgsWorld/",
+      "published": "2026-11-21",
       "categories": [
         "cs.CV"
       ],
       "primary": "cs.CV"
     },
     {
-      "id": "2611.23054",
-      "title": "ReTouchGS: Ultralight Render-free Aesthetic Color Enhancement and Transfer for 3D Gaussian Splatting",
-      "abstract": "3D Gaussian Splatting (3DGS) enables photorealistic scene reconstruction. Existing 3DGS color transfer and interactive editing methods are guided by reference images and user-specified color adjustments. However, in many applications, users simply want aesthetically guided color enhancement that automatically makes the scene more visually appealing while maintaining consistent colors and tones across viewpoints. We present ReTouchGS, to our knowledge the first framework for reference-free aesthetic color enhancement of pretrained 3DGS models. It predicts a scene-level color lookup table (LUT) from the model and its associated camera parameters. ReTouchGS also supports reference-guided color transfer by fitting a scene-level LUT using one edited view of the same scene and its corresponding original render. A shared blend-aware color refinement network with only 44.7K parameters refines an analytic color update to realize either color mapping without rendering. It preserves geometry and delivers standard 3DGS assets in seconds. We also design the ReTouch3D benchmark to support the evaluation of aesthetic color enhancement and reference-guided color transfer across viewpoints. Experiments demonstrate high color accuracy and strong generalization to unseen scenes in both aesthetic color enhancement and reference-guided color transfer.",
-      "published": "2026-11-17",
+      "id": "2611.28636",
+      "title": "SemGuard: Semantics-Decoupled Watermarking for Gaussian Splatting",
+      "abstract": "Gaussian Splatting provides an efficient representation for high-fidelity rendering of static and dynamic 3D scenes, motivating the copyright protection of Gaussian assets. In CLIP-guided Gaussian watermarking, a universal message decoder pretrained on textual watermark representations is subsequently applied to visual features containing both watermark information and scene-dependent semantics. However, text-only pretraining does not explicitly account for the semantic interference encountered during watermark extraction. To address this challenge, we propose SemGuard, a simple yet effective semantics-decoupled watermarking framework that learns to suppress scene-dependent semantic interference during universal message decoder pretraining. Specifically, SemGuard combines message-related CLIP text features with message-independent visual features extracted from unwatermarked scene images, constructing training representations with controllable semantic interference relevant to the target Gaussian assets. A progressive semantic interference curriculum gradually increases the contribution of visual features, allowing the decoder to first learn reliable message representations and then adapt to increasingly strong scene-dependent semantic interference. After pretraining for a given message length and semantic image pool, the decoder is frozen and reused across multiple Gaussian assets whose visual semantics are covered by the pretraining data. Experiments on static and dynamic Gaussian Splatting assets demonstrate improved rendering fidelity alongside reliable watermark extraction, while evaluations on static assets further show enhanced robustness against image-space distortions.",
+      "published": "2026-11-21",
       "categories": [
         "cs.CV",
-        "cs.AI",
-        "cs.GR"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.22898",
-      "title": "You Only Encode Once: Sub-Pixel-Shifted Frames for Arbitrary-Scale Remote Sensing Super-Resolution with 2D Gaussian Splatting",
-      "abstract": "Arbitrary-scale super-resolution (ASSR) of remote sensing images remains challenging due to the limited high-frequency information in a single low-resolution (LR) observation. While multi-frame SR can exploit complementary sub-pixel information, existing approaches often require real multi-frame training sequences and repeated feature encoding, increasing data acquisition demands and computational costs. To address these limitations, we propose SPS-GS (Sub-Pixel-Shifted Gaussian Splatting), an encode-once framework that learns from multi-phase LR observations synthesized from individual high-resolution images, without requiring real multi-frame training sequences. Specifically, Phase-Coherent Aliasing Demodulation (PCAD) exploits shift-dependent aliasing through Fourier-based alignment, phase-aware residual fusion, and least-squares aliasing estimation, enabling multi-frame information to be integrated before a single deep encoding pass. Gaussian Projection Alignment (GPA) then iteratively refines Gaussian centers and colors using multi-observation back-projection to promote observation consistency. The refined Gaussians support continuous rendering at arbitrary scales. Extensive experiments on five remote sensing datasets demonstrate strong reconstruction performance against single-image and multi-frame SR baselines, while maintaining competitive inference efficiency at common scales. The code will be publicly released.",
-      "published": "2026-11-17",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.22805",
-      "title": "DOOM-GS: Dynamic Out-of-core Optimization for Massive Gaussian Splatting",
-      "abstract": "Traditional Gaussian Splatting (GS) methods use in-core training, i.e. assuming that GPU memory is large enough to accommodate all the primitives. This assumption breaks down when the primitives exceed the capacity of GPU memory, e.g. GS on large environments. Recent out-of-core training research starts to address this issue, but is limited to static scenes. Unlike static GS, dynamic GS primitives move in space and time, breaking common assumptions held in existing out-of-core research and impose new challenges in memory management and training. To this end, we propose Dynamic Out-of-core Optimization for Massive Gaussian Splatting (DOOM-GS), the first out-of-core optimization method designed specifically for massive-scale dynamic GS. DOOM-GS is equipped with novel memory management strategies that optimize caching for spatio-temporal primitives, and a fast learning method for large numbers of primitives. Due to the lack of suitable datasets for large-scale dynamic GS, we also contribute a new dataset for evaluation. Since there are no directly comparable methods, we adapt several closely related methods for comparison. Through extensive evaluation, we demonstrate the effectiveness of DOOM-GS which now makes it possible to reconstruct city-scale dynamic scenes with high quality on moderate hardware, serving as a foundational tool for diverse future research and applications.",
-      "published": "2026-11-17",
-      "categories": [
-        "cs.GR"
-      ],
-      "primary": "cs.GR"
-    },
-    {
-      "id": "2611.22240",
-      "title": "Cross3DGS: Unified Vulkan-Based 3D Gaussian Splatting Training from Workstations to Mobile Devices",
-      "abstract": "Scenes captured with handheld and wearable cameras are still shipped to a CUDA workstation for 3D Gaussian Splatting (3DGS) training. Training on the device that captured them, or on its companion phone or laptop, requires more than translating kernels: GPUs and drivers differ in parallel features, memory limits, and command submission, and these differences decide whether a training schedule executes and returns the correct update. We present Cross3DGS, a cross-vendor, cross-platform Vulkan trainer that keeps one optimizer and chooses its execution schedule per device in two steps: rules on device limits, workload size, and observed driver failures exclude the schedules known not to run correctly, and a fixed preference order selects one of the remaining feasible schedules. The same core completes standard-quality training (30k updates, one million Gaussians) on every configuration we measured, spanning NVIDIA, Intel, Arm, Qualcomm, AMD, and Apple GPUs and including Android devices and an iPhone, whereas the existing portable trainers VkSplat and Brush do not run on some of the mobile GPUs. Averaged over 11 scenes on a workstation, Cross3DGS has higher quality than VkSplat with no significant difference in training time, and Brush reports about three times the training time at comparable quality. The final quality of Cross3DGS is nearly identical across devices. A mobile application turns a handheld capture into a viewable model entirely on the device.",
-      "published": "2026-11-17",
-      "categories": [
-        "cs.CV",
-        "cs.GR"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.22235",
-      "title": "CoSphere-SLAM: Multi-Agent Panoramic Gaussian Splatting SLAM with Spherical Loop Closure",
-      "abstract": "Dense collaborative mapping is essential for search and rescue, building inspection, and warehouse automation, where panoramic cameras capture the entire surroundings in a single frame. Unlike pinhole agents that share views only at similar headings, panoramic agents observe overlapping scenes at any 3D orientation, yet searching full rotations also produces mutually consistent false loop closures across distinct symmetric rooms. Moreover, continuous monocular scale drift splits rigidly merged maps at revisited surfaces, while depth noise at short baselines distorts loop translation directions. To address these challenges, we propose CoSphere-SLAM, the first multi-agent Gaussian splatting SLAM framework for panoramic cameras, whose spherical loop closure aligns spherical features over $\\mathrm{SO}(3)$ via fast Fourier correlation across arbitrary orientations and rejects symmetric false closures through global $\\mathrm{Sim}(3)$ consensus. Building on these closures, directional global optimization solves a per-keyframe $\\mathrm{Sim}(3)$ pose graph with log-scale regularization to correct scale drift while separating optical-flow translation directions from depth-based magnitudes. Finally, omnidirectional Gaussian fusion transforms each Gaussian with its keyframe similarity and renders Gaussians at their maximum ray response to jointly refine poses and maps. Experiments on indoor and cross-session multi-agent panoramic benchmarks demonstrate that CoSphere-SLAM achieves state-of-the-art trajectory accuracy and rendering quality among single-agent and multi-agent methods. Project website: https://cosphere-slam.github.io.",
-      "published": "2026-11-17",
-      "categories": [
-        "cs.CV"
+        "cs.MM",
+        "eess.IV"
       ],
       "primary": "cs.CV"
     }
