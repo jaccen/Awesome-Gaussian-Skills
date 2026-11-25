@@ -1,25 +1,174 @@
 {
-  "date": "2026-11-24",
-  "retrieved_at": "2026-11-24T05:45:19.898876+00:00",
+  "date": "2026-11-25",
+  "retrieved_at": "2026-11-25T04:47:28.905042+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 1028,
-  "count": 9,
+  "count": 20,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611210545 TO 202611240545]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611220447 TO 202611250447]",
       "status": "complete",
       "pages": 1,
-      "fetched": 9
+      "fetched": 18
     },
     {
-      "query": "all:3dgs AND submittedDate:[202611210545 TO 202611240545]",
+      "query": "all:3dgs AND submittedDate:[202611220447 TO 202611250447]",
       "status": "complete",
       "pages": 1,
-      "fetched": 2
+      "fetched": 7
     }
   ],
   "papers": [
+    {
+      "id": "2611.32735",
+      "title": "AnyPrune: Optimization-Free Pruning for Any Feedforward 3D Gaussian Splatting Pipeline",
+      "abstract": "Feedforward 3D Gaussian Splatting (3DGS) pipelines reconstruct a scene from images in a single forward pass, representing it as real-time-renderable 3D Gaussians. However, the resulting representations contain far more Gaussians than are needed to render the scene faithfully, especially when there are many input views. This drastically increases memory and storage requirements. Existing pruning methods either require costly re-optimization, which defeats the purpose of a single forward pass, or rely on simple strategies that do not exploit all the available information. We present AnyPrune, a transformer-based, optimization-free pruning module designed to work on top of any feedforward 3DGS pipeline. To remove unnecessary Gaussians, AnyPrune learns and exploits pipeline-specific redundancy patterns through a short single-GPU training on the frozen target feedforward pipeline. AnyPrune achieves better rendering quality than existing optimization-free pruning methods in most settings and generalizes to unseen datasets, as shown through extensive experiments across multiple feedforward pipelines, datasets, and input view counts. It prunes a 1.6M-Gaussian field in about $5\\,\\mathrm{s}$ on a consumer GPU, faster than every method that merges Gaussians or re-optimizes the field. It can also be combined with the pruning built into feedforward pipelines, pruning further at moderate ratios while preserving or improving rendering quality. Finally, it can even suggest a scene-specific pruning ratio that retains most of the quality.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.32718",
+      "title": "Seeing to Drive on a Single Board: Attention-Free Depth for Onboard Robot Navigation",
+      "abstract": "A small ground robot can carry one camera and a few watts of compute, but the depth foundation models that could turn that camera into a range sensor are vision transformers sized for GPUs. We bring one to a Raspberry Pi 5 with the Hailo-8L, an accelerator that runs every layer in integer arithmetic, attention included. Quantised for it, Depth Anything V2 loses large parts of the scene, and we measure why: at 449 tokens, 91% of softmax weights fall below one int8 step while carrying 17-33% of the attention mass. Our answer is to distil, not quantise. An attention-free ResNet-34 U-Net student of Depth Anything V2-Large (24.5M parameters) runs at 27.1 FPS on the chip, its int8 output matches its float twin (Pearson 0.99993), and on held-out scenes of its simulated yard it is the most accurate depth network on the chip (AbsRel 0.269 against 0.354-0.530). On 1,000 stereo-verified points of a real outdoor drive it is not resolvably different from the vendor's Depth Anything V2-Small build, while running faster (27.1 vs 21.6 FPS). Ranging obstacles by where they meet the floor needs only the camera height, so mapping, hybrid-A* planning and SLAM run on the Pi's own CPU. In real-time hardware-in-the-loop tests in a Gaussian-splat reconstruction of a real yard, the stack reaches the goal without contact in 7.9$\\pm$1.1 of 10 scenes, against 9.2$\\pm$0.4 with exact obstacles, and in 7.7$\\pm$0.7 on its own pose with simulated wheel odometry (ten seeds each; 8.2$\\pm$0.4 with the real Pi and Hailo-8L in the loop, five seeds). The source code, pre-trained models and data are available at https://github.com/itaim18/DANIEL.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "primary": "cs.RO"
+    },
+    {
+      "id": "2611.32628",
+      "title": "Completion-Aware Compression for Progressive 3D Gaussian Splatting",
+      "abstract": "3D Gaussian Splatting (3DGS) enables high-quality novel-view rendering, but its large scene representations are costly to transmit. Pruning and compression reduce file sizes, yet progressive delivery also requires usable reconstructions before the full scene arrives. Existing progressive representations provide partial scenes, but level-based updates are limited by predefined coding boundaries. This paper presents a progressive 3DGS codec that balances attribute fidelity with the image benefit of making Gaussians available earlier. Its single compact stream supports partial 3D reconstruction and adds newly decoded Gaussians as more bytes arrive. The stream supports fine-grained updates at arbitrary received-byte budgets, without separate encodings or later attribute refinement. At matched complete-file sizes and received bytes, completion-aware allocation improves 1/8 PSNR over attribute-only allocation by 0.48-1.43 dB. The proposed codec compresses original 3DGS representations by 62-88 times while retaining near-reference Full PSNR. Under the evaluated 50-Mbps delivery model, partial reconstruction becomes available in approximately 0.2 s.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.32431",
+      "title": "NRG-Twins: Pixel-Level Ground Truth for Rigidity Violations in Generated Videos",
+      "abstract": "Video generators now produce realistic clips of scenes and objects, which makes generated video an attractive source of 3D content. Yet generated video is not 3D consistent: static content slowly deforms or slides, 3D reconstruction degrades, and the errors are too subtle to label by hand. To make generators 3D consistent, or to build rewards and guidance that push them there, we need data that say where and by how much a generated video breaks rigidity, and these data must come from generated video itself. We obtain per-pixel ground-truth labels from real-generated twins: a real clip paired with its re-creation by a keyframe-conditioned video generator. After inserting real keyframes so that the twin camera roughly follows the real one, we measure per pixel, in degrees, how far the twin departs from a rigid scene seen along its own camera path. We release Non-Rigidly Generated Twins (NRG-Twins), 871 twins, the code that builds them for new generators, and a benchmark with an official test split. A detector trained on these data, the Non-Rigidly Generated Pixel Detector (NRG-PD), predicts the per-pixel angle from RGB alone. It separates inconsistent from consistent pixels with AUROC 0.85, against 0.40-0.74 for seven existing consistency and motion-segmentation methods, and its predictions improve 3DGS of video that contains generated content.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.32335",
+      "title": "GOLD-SLAM: Gaussian-splatting Omnidirectional LiDAR-Depth SLAM",
+      "abstract": "Panoramic cameras capture nearly the entire spherical field of view in a single frame. However, the mismatch between this panoramic coverage and the field of view of LiDAR poses a substantial challenge for panoramic Gaussian splatting SLAM that relies on LiDAR depth priors. We introduce GOLD-SLAM, a Gaussian-splatting Omnidirectional LiDAR-Depth SLAM system that combines high-quality rendering with accurate geometric reconstruction. It performs tracking and mapping in the spherical domain and uses tracked visual features in regions without LiDAR coverage to improve pose estimation. To address insufficient coverage of newly observed surfaces and floating artifacts during incremental mapping, we introduce Depth-Aware Map Extension and Pruning (DAEP). To enable broader evaluation, we collect a new dataset, WHOLE, using a UAV platform across Weak-geometry, High-dynamic, Omnidirectional, Low-light, and Easy scenarios. Extensive experiments on public benchmarks and WHOLE demonstrate competitive rendering quality and improved geometric accuracy relative to perspective systems. Compared with existing panoramic baselines, GOLD-SLAM improves mean PSNR by 5.56-9.10 dB and reduces mean Depth-L1 by 71.9-83.9%. To assess deployment feasibility on resource-constrained platforms such as UAVs, we evaluate an embedded configuration of GOLD-SLAM on a Jetson Orin NX (16 GB), demonstrating online operation at the cost of reconstruction quality.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.32231",
+      "title": "ST-SfM: Spatio-Temporal Structure-from-Motion for Initialising 4D Gaussian Splatting",
+      "abstract": "Dynamic Gaussian splatting is usually initialised either with random points or with a structure-from-motion (SfM) cloud of the first frame. Neither says anything about what moves, where and when. We introduce ST-SfM, a sparse spatio-temporal SfM for synchronised, calibrated multi-camera video that splits the scene into two branches. Static structure is detected once per camera on a temporal-median image, gated for temporal stability and matched along epi-polar lines. Motion is detected as space-time interest points (STIPs) in the video volume, described with HOG3D and matched only between candidates that agree both epipolarly and in time. Union-find tracks that refuse inconsistent merges are triangulated with RANSAC over all view pairs, giving static 3D points and dynamic 4D points (x, y, z, t) with sub-frame times. We use ST-SfM derived sparse 4D cloud to initialise 4D Gaussian splatting. In comparison with random initialisation on N3DV scenes we get improvements in PSNR, SSIM and LPIPS.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.32202",
+      "title": "SplatTok: Data-Driven Compression of 3D Gaussian Splats with Scene-Level Tokens",
+      "abstract": "3D Gaussian splats enable real-time rendering but require substantial storage. Existing compression methods either encode the primitives of a given splat or optimize a compact representation independently for each scene. Yet a Gaussian splat is only one realization of a scene: different arrangements of primitives can produce nearly identical rendered views. We exploit this freedom on the decoding side with SplatTok, a learned scene-resynthesis codec. Trained across thousands of real-world scenes, a transformer encodes an existing splat into compact, spatially anchored latent tokens, and a shared decoder synthesizes a new set of standard Gaussian primitives without preserving correspondence to the input. The representation is learned through rendering supervision rather than primitive reconstruction. At compression time, a quantization-aware latent search refines only the scene code, keeping the networks frozen, and closes most of the encoder's remaining error. On standard benchmarks, using only renders of the input splat for the latent search, without the original training images, SplatTok matches the PSNR of the feed-forward codec FCGS with 4 to 6.5 times smaller files, compressing input splats about 75 to 110 times. With the training images, it exceeds the PSNR of the per-scene method HAC++ with 13 to 41% smaller files. A single model trained on DL3DV generalizes to unseen scenes with millions of Gaussians and supports multiple target rates without retraining.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.32025",
+      "title": "View Management with Gaussian Placement and Opacity Regularization for Online 3DGS",
+      "abstract": "The realistic rendering of 3D Gaussian Splatting (3DGS) has drawn interest from real-time applications that require maps to be built online. This led to coupling 3DGS with SLAM, providing camera poses and initial Gaussians for the map. However, the map is still optimized with designs inherited from conventional SLAM, which train only on keyframes selected for localization and regularize geometry with uncertain frontend depth. These designs overlook the model complexity of a 3DGS map: with millions of parameters but few views of each region, the map overfits to sparse inputs. Resolving this is challenging, as every view and Gaussian added to the map competes for the same real-time budget. We close this gap from both sides. To add views while keyframes preserve the structure of the map, we progressively admit non-keyframe images as mapping updates complete and allocate the limited updates across different groups of frames according to the supervision each group provides. To control the model complexity of the map, edge-guided initialization places new Gaussians where image detail requires them. To complement the uncertain frontend depth, Self-Referenced Opacity Regularization (SOR) uses accumulated rendering evidence, at no extra rendering cost, to suppress the opacity of Gaussians that persistently contribute in front of a map-derived surface reference. Together, these designs improve both the appearance and the geometry of online maps within the real-time budget.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.31918",
+      "title": "HiGS: A Hierarchical Architecture for Fast Differentiable 3D Gaussian Splatting",
+      "abstract": "3D Gaussian Splatting (3DGS) makes one screen tile the cell of partitioning, the cell of rasterization, and the unit of parallel work. Partitioning favors large tiles and rasterization small ones, and with one unit per tile the densest tiles set the frame time. We present Hierarchically Tiled Gaussian Splatting (HiGS), a unified architecture for rendering and reconstruction that gives each role its own granularity: Gaussians are partitioned over coarse macro-tiles, rasterized over the fine render tiles within them, and processed in bounded depth-sorted batches. A dense region issues more batches instead of one longer unit, so frame time follows the work in a view rather than its densest tile. The same batches carry reconstruction: compositing supplies the transmittance and color needed to differentiate each one independently, leaving optimizer memory traffic as the dominant training cost. We fuse the optimizer into the backward pass, halve the parameters and moments it stores and updates directly, and defer appearance updates outside the view. HiGS renders scenes faster than every published method we evaluate, by the widest margin on views with uneven load, and reconstructs them faster and in less memory, at equal image quality and with exact front-to-back alpha compositing.",
+      "published": "2026-11-24",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.31482",
+      "title": "InterGS+: Inter-Frame Gaussian Splatting Compression with Geometry-Aware Transformer Prediction and Adaptive Residual Coding",
+      "abstract": "Dynamic 3D Gaussian Splatting (3DGS) provides real-time photorealistic rendering, but representing each frame as irregular Gaussian primitives with high-dimensional attributes creates substantial storage and transmission cost. Exploiting temporal redundancy is challenging because Gaussian primitives do not preserve fixed identities across frames. We propose InterGS+, a lightweight post-hoc inter-frame codec that jointly improves temporal prediction and residual representation. Current-frame geometry is coded with G-PCC and reconstructed before prediction, enabling consistent temporal neighborhoods at encoder and decoder. Attributes are predicted using lightweight KNN and bilateral predictors together with a geometry-aware transformer for spherical-harmonic (SH) appearance, with per-Gaussian mode selection. Residual coding is adapted to each attribute: SH innovations are coded in a shared PCA domain using vector quantization with refinement, opacity and scale in activated gamma-companded domains, and rotation as canonicalized quaternion innovations using vector quantization and refinement. On MPEG dynamic sequences, InterGS+ achieves average BD-rate reductions of 45.48% over G-PCC Amd. 1 and 7.78% over InterGS-Lite, with corresponding BD-PSNR gains of 9.98 dB and 1.10 dB. Average decoding complexity is 0.049 ms/Gaussian, demonstrating efficient streamable dynamic 3DGS compression.",
+      "published": "2026-11-23",
+      "categories": [
+        "eess.IV",
+        "eess.SP"
+      ],
+      "primary": "eess.IV"
+    },
+    {
+      "id": "2611.31435",
+      "title": "Tornado4D: Physics-Guided 4D Gaussian Reconstruction of a Laboratory Tornado from Sparse One-Sided Videos",
+      "abstract": "Characterizing how tornadoes evolve over space and time is critically important for understanding and preparing for these highly destructive weather events. Towards this end, we develop algorithms capable of forming time-resolved 3D reconstructions of laboratory smoke tornadoes from sparse one-sided videos. Even in a controlled environment, reconstruction is severely underconstrained: appearance is view dependent, motion is non-rigid, and the unobserved volume admits many geometries. We present Tornado4D, a physics-guided 4D Gaussian framework capable of reconstructing laboratory tornadoes from sparse, one-sided videos. Tornado4D uses knowledge of the enclosure geometry to introduce rotational airflow field priors that constrain how the 3D structure evolves over time. These rotational priors allow us to reconstruct otherwise unobserved structure. We evaluate reconstruction accuracy by computing novel-view synthesis accuracy on a held out camera view: Tornado4D outperforms frame-by-frame 3DGS and video-based 4DGS by a considerable margin.",
+      "published": "2026-11-23",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.31428",
+      "title": "Enhancing Sparse-View Gaussian Splatting with Feed-Forward Priors via Spectral Fusion and Distillation",
+      "abstract": "Gaussian splatting from sparse training views renders high-quality images near training views, but reconstruction quality degrades at distant regions, which are undersampled by the training set. Feed-forward novel view synthesis (NVS) models use strong learned priors to resample the scene from substantially different viewpoints, but they take more than ten times as long to render and produce high-frequency artifacts on out-of-domain scenes. We propose a plug-and-play method that enhances an existing sparse-view Gaussian model with a pretrained feed-forward NVS model. We observe that the two are complementary in the frequency domain: the prior is more accurate at low frequencies, and the Gaussians at high frequencies. The reliability of the prior relative to the Gaussians is inversely proportional to the image frequency, so the optimal fusion weight is a first-order low-pass filter with one parameter that can be fitted. Our key idea is then to intelligently fuse the reliable part of each of the two methods. To remove the slow feed-forward model at render time, we use these fused images as teachers and distill them back into Gaussians, balanced with supervision from input views. Our method improves the quality of various sparse-view Gaussian methods without sacrificing rendering speed, and our analysis works on different prior models. Project page: https://linwk20.github.io/spectral-fusion-gs/",
+      "published": "2026-11-23",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.31023",
+      "title": "WildAnySplat: Feed-Forward 3D Gaussian Splatting in the Wild",
+      "abstract": "We present WildAnySplat, a feed-forward 3D Gaussian Splatting framework that enables robust novel-view synthesis from in-the-wild multi-view images. Unlike controlled captures, real-world images often contain multi-view inconsistencies caused by transient occluders, illumination changes, and camera ISP, which degrade the quality of existing feed-forward reconstruction methods. To address this challenge, we introduce a student-teacher framework that learns transient-robust and appearance-consistent 3D representations. A teacher network operates on clean images, while a student processes the corresponding in-the-wild inputs. The teacher provides clean supervision to guide the student toward a consistent canonical representation. Since paired clean and in-the-wild data are scarce, we use a hybrid data strategy, combining real paired captures, synthetic augmentations, and pseudo-clean labels generated from optimization-based reconstructions, bridging the domain gap between synthetic and real-world data. We adopt a transformer architecture with dedicated DPT heads for camera pose, depth, and Gaussian prediction. We additionally predict per-view transient masks to reweight photometric supervision and suppress unreliable Gaussians. To account for cross-view appearance variation, we incorporate a bilateral grid module that models per-image color transformations and enables recovery of a canonical radiance representation. Experiments on challenging in-the-wild benchmarks show that WildAnySplat improves robustness to transient occlusions and appearance variation while retaining the fast inference of feed-forward Gaussian Splatting.",
+      "published": "2026-11-23",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.30602",
+      "title": "GSDet: Gaussian Splatting for Oriented Object Detection",
+      "abstract": "Oriented object detection has advanced with the development of convolutional neural networks (CNNs) and transformers. However, modern detectors still rely on predefined object candidates, such as anchors in CNN-based methods or queries in transformer-based methods, which struggle to capture spatial information effectively. To address the limitations, we propose GSDet, a novel framework that formulates oriented object detection as Gaussian splatting. Specifically, our approach performs detection within a 3D feature space constructed from image features, where 3D Gaussians are employed to represent oriented objects. These 3D Gaussians are projected onto the image plane to form 2D Gaussians, which are then transformed into oriented boxes. Furthermore, we optimize the mean, anisotropic covariance, and confidence scores of these randomly initialized 3D Gaussians, using a decoder that incorporates 3D Gaussian sampling. Moreover, our method exhibits flexibility, enabling adaptive control and a dynamic number of Gaussians during inference. Experiments on 3 datasets indicate that GSDet achieves AP$_{50}$ gains of 0.7\\% on DIOR-R, 0.3\\% on DOTA-v1.0, and 0.55\\% on DOTA-v1.5 when evaluated with adaptive control and outperforms mainstream detectors.",
+      "published": "2026-11-23",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
     {
       "id": "2611.30351",
       "title": "NNS-GS: Non-Local Neural Scattering for Relightable Gaussian Splatting",
@@ -79,39 +228,6 @@
       "published": "2026-11-22",
       "categories": [
         "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.28802",
-      "title": "Not All Directions Are Flat: Decomposed-Gradient Flatness for Sparse-View 3D Gaussian Splatting",
-      "abstract": "Many applications of novel view synthesis, such as augmented reality and robotics, can afford only a few input views, since dense capture is costly. With such sparse views, however, 3D Gaussian Splatting (3DGS) overfits the training views and degrades at unseen viewpoints. Among the approaches to this problem, flat-minima optimization treats the Gaussians as trainable parameters and steers training toward flat minima, which generalize better, by perturbing the Gaussians with random noise or along the training gradient. However, these perturbations ignore their direction relative to the other training views. Interestingly, we find that the direction of the perturbation determines whether it improves generalization. Specifically, we decompose the gradient of each training view into a component parallel to the average gradient of all views, on which the views agree, and an orthogonal component, on which they disagree. Perturbing along the orthogonal component improves generalization, whereas perturbing along the parallel component does not. We further find that the flatness correction often opposes the reconstruction gradient, shrinking or even reversing the reconstruction step. Based on these findings, we propose DecoFlat, which perturbs each Gaussian along the orthogonal component together with random noise. Furthermore, we introduce a conflict-aware correction, which removes the part of the flatness correction that opposes the reconstruction gradient, and a rescheduling of the spherical-harmonics color, which suppresses the overfitting of view-dependent appearance. Extensive experiments demonstrate that DecoFlat, as a plug-in optimizer, consistently improves vanilla 3DGS and a wide range of sparse-view 3DGS methods.",
-      "published": "2026-11-21",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.28792",
-      "title": "ArgsWorld: Unifying 3DGS Scene Reconstruction, Generation and Extrapolation with Autoregressive Diffusion Transformer",
-      "abstract": "Autoregressive diffusion world models deliver strong video generation performance, yet they typically output only RGB frames rather than explicit 3D Gaussian Splatting (3DGS) scene representations, creating a gap between learned visual world dynamics and usable 3D assets for downstream robotics, simulation and rendering. To bridge this gap, we introduce ArgsWorld, an autoregressive diffusion model that also produces an explicit 3DGS scene. For each generation chunk, the diffusion transformer jointly processes clean historical image latents and noisy latents for new views. It keeps the historical image latents fixed and refreshes the scene features so that the Gaussian representation can be revised as new regions come into view. Our 3D Self-Forcing Distillation trains the model on its own generated histories using a mixture of single-view and multi-view data. Distribution matching supervises direct image latents and latents of Gaussian renderings at both generation and additional cameras. ArgsWorld unifies 3D scene reconstruction from posed images, scene generation from image or text prompts, and scene extrapolation across camera segments with disconnected endpoints. Experimental results demonstrate that ArgsWorld achieves state-of-the-art performance across multiple 3D scene modeling tasks. Project page: https://m4a1tastegood.github.io/ArgsWorld/",
-      "published": "2026-11-21",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.28636",
-      "title": "SemGuard: Semantics-Decoupled Watermarking for Gaussian Splatting",
-      "abstract": "Gaussian Splatting provides an efficient representation for high-fidelity rendering of static and dynamic 3D scenes, motivating the copyright protection of Gaussian assets. In CLIP-guided Gaussian watermarking, a universal message decoder pretrained on textual watermark representations is subsequently applied to visual features containing both watermark information and scene-dependent semantics. However, text-only pretraining does not explicitly account for the semantic interference encountered during watermark extraction. To address this challenge, we propose SemGuard, a simple yet effective semantics-decoupled watermarking framework that learns to suppress scene-dependent semantic interference during universal message decoder pretraining. Specifically, SemGuard combines message-related CLIP text features with message-independent visual features extracted from unwatermarked scene images, constructing training representations with controllable semantic interference relevant to the target Gaussian assets. A progressive semantic interference curriculum gradually increases the contribution of visual features, allowing the decoder to first learn reliable message representations and then adapt to increasingly strong scene-dependent semantic interference. After pretraining for a given message length and semantic image pool, the decoder is frozen and reused across multiple Gaussian assets whose visual semantics are covered by the pretraining data. Experiments on static and dynamic Gaussian Splatting assets demonstrate improved rendering fidelity alongside reliable watermark extraction, while evaluations on static assets further show enhanced robustness against image-space distortions.",
-      "published": "2026-11-21",
-      "categories": [
-        "cs.CV",
-        "cs.MM",
-        "eess.IV"
       ],
       "primary": "cs.CV"
     }
