@@ -1,25 +1,66 @@
 {
-  "date": "2026-11-26",
-  "retrieved_at": "2026-11-26T03:58:13.432208+00:00",
+  "date": "2026-11-27",
+  "retrieved_at": "2026-11-27T03:56:44.226752+00:00",
   "status": "complete",
   "window_days": 3,
   "known_arxiv_ids": 1028,
-  "count": 28,
+  "count": 24,
   "queries": [
     {
-      "query": "all:\"gaussian splatting\" AND submittedDate:[202611230358 TO 202611260358]",
+      "query": "all:\"gaussian splatting\" AND submittedDate:[202611240356 TO 202611270356]",
       "status": "complete",
       "pages": 1,
-      "fetched": 26
+      "fetched": 23
     },
     {
-      "query": "all:3dgs AND submittedDate:[202611230358 TO 202611260358]",
+      "query": "all:3dgs AND submittedDate:[202611240356 TO 202611270356]",
       "status": "complete",
       "pages": 1,
-      "fetched": 12
+      "fetched": 10
     }
   ],
   "papers": [
+    {
+      "id": "2611.34939",
+      "title": "A Mesh for Every Moment",
+      "abstract": "We present MEMO (a Mesh for Every MOment), a method that reconstructs the geometry of complete dynamic scenes, captured by multiple synchronized cameras, and extracts a mesh at every frame. Existing dynamic Gaussian splatting methods either model appearance alone or target isolated objects segmented by foreground masks, and all of them recover meshes by TSDF fusion or Poisson reconstruction, whose fixed grids limit the detail they can capture. At the core of MEMO is a per-Gaussian motion model inspired by Gaussian processes, which represents each Gaussian's position and rotation over time as a combination of temporal Gaussian kernels. The model keeps every Gaussian a valid surface element throughout the sequence and carries an implicit representation of the dynamic geometry, so a mesh can be derived at any time from a field defined by the Gaussians. Although common in real captures, large and fast motion poses a challenge that dynamic Gaussian splatting methods usually overlook. To account for it, we design a track-based initialization scheme that fits each Gaussian's initial trajectory to point tracks in closed form. We evaluate MEMO on Blender-Moments, a new benchmark of nine animated scenes with ground-truth meshes at every frame, and on two real-world datasets. MEMO reconstructs the most accurate geometry among state-of-the-art methods, and remains competitive in novel-view synthesis and training time. Project page: https://memo-4d.github.io",
+      "published": "2026-11-25",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.34932",
+      "title": "MERLoc: Robust Robot Localization in Dynamic Environments with Pose-Based Retrieval over 3D Gaussian Splatting References",
+      "abstract": "Robots operating in previously mapped spaces must localize accurately despite moving people and rearranged objects. Most localization pipelines match the query against a sparse set of captured reference images retrieved by appearance, which is brittle under scene change and repeating structures. We present MERLoc, which turns a single metric 3D Gaussian Splatting scan into a dense Functional Reference Memory. Reference views are sampled over the navigable space for the robot's morphology and sensors at a target density and rendered offline. Pre-encoding them for the chosen off-the-shelf localizer removes the reference encoder from inference. A pose-based retrieval strategy then selects references by spatial proximity and viewing direction rather than appearance, sidestepping visual ambiguities whenever a prior exists. Across one classical and four learned localizers in simulated and real dynamic scenes, pose-based retrieval matches or outperforms appearance retrieval in most cases, even when the latter is gated by the same prior. On real data, it lowers position RMSE by 15-60 % in nine of ten backend/split combinations, and the rendered memory outperforms real-image caches posed by Structure-from-Motion. The system runs onboard a Jetson Orin NX at 5 Hz, enabling a navigation policy to successfully traverse a hallway with people roaming and rearranging objects.",
+      "published": "2026-11-25",
+      "categories": [
+        "cs.RO"
+      ],
+      "primary": "cs.RO"
+    },
+    {
+      "id": "2611.34810",
+      "title": "WorldExpand: Building Coherent 3D Worlds via Sparse Joint Panoramic Expansion",
+      "abstract": "Constructing complete 3D worlds from a single panorama is challenging because large portions of the scene remain unobserved. Existing panoramic-video methods expand spatial coverage through dense sequential generation, but neighboring frames contain substantial redundancy, long trajectories accumulate errors, and independently generated directions may be inconsistent. We present WorldExpand, which formulates single-panorama world expansion as the generation of sparse, complementary, and high-resolution panoramic observations. This representation concentrates the generation budget on informative scene regions and preserves the fine-grained details required for 3D construction. WorldExpand addresses two key challenges: where to observe and how to synthesize. Our Coverage-Guided View Selection identifies informative target locations using scene-adaptive quadrants and warp-based coverage scores, while our Joint Panoramic Diffusion uses Gaussian-splatting-based geometric warps to jointly synthesize four pose-grounded and cross-view-consistent panoramas. A diagnostic-guided global--local attention schedule retains global attention only in sensitive layers, reducing the training and inference costs of high-resolution joint generation. The resulting posed panoramas can be directly fed into an existing reconstruction pipeline to build an explicit 3D representation. Experiments show that WorldExpand recovers content behind occluders and around distant corners, improves both novel-view synthesis and downstream 3D reconstruction metrics across various datasets, and generalizes robustly to diverse in-the-wild scenes. WorldExpand runs significantly faster than the state-of-the-art panoramic-video method while producing higher-resolution observations with stronger cross-view consistency.",
+      "published": "2026-11-25",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
+    {
+      "id": "2611.34478",
+      "title": "Feed-Forward Adaptive Gaussian Splatting for Interactive Medical Volume Rendering",
+      "abstract": "Path-traced rendering shows CT and MR volumes with realistic lighting, but it restarts after every change of view, clipping plane or transfer function (TF), the map from voxel intensity to colour and opacity, which limits the frame rate. Feed-forward Gaussian splatting models such as RenderFM predict the Gaussians directly from the volume instead of fitting them to each scan, and are fast. RenderFM, however, handles only CT, runs its network again after every TF edit, has no clipping operator, and places its Gaussians on a uniform 3-mm grid that blurs organ boundaries and cut faces. We present RenderFM-Next, a feed-forward model that addresses these limits. One network handles both CT and MR. Its Gaussians are predicted once per volume: a new TF needs no pass of this network, and a clipping plane cuts them exactly, using operators from prior work. The model predicts coarse 3-mm Gaussians for the whole volume and refines them to 1.5 mm only where refinement improves the image. A small score head ranks the coarse Gaussians by how much refining them would reduce the rendering error; at render time the user chooses how many are refined, and those next to a clipping plane are always refined, which sharpens cut faces. We build a benchmark of about 2,000 CT and MR scans with path-traced references under clinical presets, TF edits and clipping. Our RenderFM-Next improves over RenderFM retrained on this benchmark by 2.8 dB on CT and 2.4 dB on MR and renders a 1600x1600 view in 4-6 ms. Refinement adds 0.30 / 0.69 dB over the same model trained without it (0.51 / 1.17 dB on cut faces), and refining a learned 10% of the coarse Gaussians matches a random 50% with 2.4x fewer Gaussians. Project page: https://gaozhongpai.github.io/renderfmnext/",
+      "published": "2026-11-25",
+      "categories": [
+        "cs.CV"
+      ],
+      "primary": "cs.CV"
+    },
     {
       "id": "2611.34223",
       "title": "AnyCam4D: Ray-Based 4D Gaussian Rendering for Arbitrary Camera Models",
@@ -223,89 +264,6 @@
       "title": "HiGS: A Hierarchical Architecture for Fast Differentiable 3D Gaussian Splatting",
       "abstract": "3D Gaussian Splatting (3DGS) makes one screen tile the cell of partitioning, the cell of rasterization, and the unit of parallel work. Partitioning favors large tiles and rasterization small ones, and with one unit per tile the densest tiles set the frame time. We present Hierarchically Tiled Gaussian Splatting (HiGS), a unified architecture for rendering and reconstruction that gives each role its own granularity: Gaussians are partitioned over coarse macro-tiles, rasterized over the fine render tiles within them, and processed in bounded depth-sorted batches. A dense region issues more batches instead of one longer unit, so frame time follows the work in a view rather than its densest tile. The same batches carry reconstruction: compositing supplies the transmittance and color needed to differentiate each one independently, leaving optimizer memory traffic as the dominant training cost. We fuse the optimizer into the backward pass, halve the parameters and moments it stores and updates directly, and defer appearance updates outside the view. HiGS renders scenes faster than every published method we evaluate, by the widest margin on views with uneven load, and reconstructs them faster and in less memory, at equal image quality and with exact front-to-back alpha compositing.",
       "published": "2026-11-24",
-      "categories": [
-        "cs.CV",
-        "cs.GR"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.31482",
-      "title": "InterGS+: Inter-Frame Gaussian Splatting Compression with Geometry-Aware Transformer Prediction and Adaptive Residual Coding",
-      "abstract": "Dynamic 3D Gaussian Splatting (3DGS) provides real-time photorealistic rendering, but representing each frame as irregular Gaussian primitives with high-dimensional attributes creates substantial storage and transmission cost. Exploiting temporal redundancy is challenging because Gaussian primitives do not preserve fixed identities across frames. We propose InterGS+, a lightweight post-hoc inter-frame codec that jointly improves temporal prediction and residual representation. Current-frame geometry is coded with G-PCC and reconstructed before prediction, enabling consistent temporal neighborhoods at encoder and decoder. Attributes are predicted using lightweight KNN and bilateral predictors together with a geometry-aware transformer for spherical-harmonic (SH) appearance, with per-Gaussian mode selection. Residual coding is adapted to each attribute: SH innovations are coded in a shared PCA domain using vector quantization with refinement, opacity and scale in activated gamma-companded domains, and rotation as canonicalized quaternion innovations using vector quantization and refinement. On MPEG dynamic sequences, InterGS+ achieves average BD-rate reductions of 45.48% over G-PCC Amd. 1 and 7.78% over InterGS-Lite, with corresponding BD-PSNR gains of 9.98 dB and 1.10 dB. Average decoding complexity is 0.049 ms/Gaussian, demonstrating efficient streamable dynamic 3DGS compression.",
-      "published": "2026-11-23",
-      "categories": [
-        "eess.IV",
-        "eess.SP"
-      ],
-      "primary": "eess.IV"
-    },
-    {
-      "id": "2611.31435",
-      "title": "Tornado4D: Physics-Guided 4D Gaussian Reconstruction of a Laboratory Tornado from Sparse One-Sided Videos",
-      "abstract": "Characterizing how tornadoes evolve over space and time is critically important for understanding and preparing for these highly destructive weather events. Towards this end, we develop algorithms capable of forming time-resolved 3D reconstructions of laboratory smoke tornadoes from sparse one-sided videos. Even in a controlled environment, reconstruction is severely underconstrained: appearance is view dependent, motion is non-rigid, and the unobserved volume admits many geometries. We present Tornado4D, a physics-guided 4D Gaussian framework capable of reconstructing laboratory tornadoes from sparse, one-sided videos. Tornado4D uses knowledge of the enclosure geometry to introduce rotational airflow field priors that constrain how the 3D structure evolves over time. These rotational priors allow us to reconstruct otherwise unobserved structure. We evaluate reconstruction accuracy by computing novel-view synthesis accuracy on a held out camera view: Tornado4D outperforms frame-by-frame 3DGS and video-based 4DGS by a considerable margin.",
-      "published": "2026-11-23",
-      "categories": [
-        "cs.CV",
-        "cs.GR"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.31428",
-      "title": "Enhancing Sparse-View Gaussian Splatting with Feed-Forward Priors via Spectral Fusion and Distillation",
-      "abstract": "Gaussian splatting from sparse training views renders high-quality images near training views, but reconstruction quality degrades at distant regions, which are undersampled by the training set. Feed-forward novel view synthesis (NVS) models use strong learned priors to resample the scene from substantially different viewpoints, but they take more than ten times as long to render and produce high-frequency artifacts on out-of-domain scenes. We propose a plug-and-play method that enhances an existing sparse-view Gaussian model with a pretrained feed-forward NVS model. We observe that the two are complementary in the frequency domain: the prior is more accurate at low frequencies, and the Gaussians at high frequencies. The reliability of the prior relative to the Gaussians is inversely proportional to the image frequency, so the optimal fusion weight is a first-order low-pass filter with one parameter that can be fitted. Our key idea is then to intelligently fuse the reliable part of each of the two methods. To remove the slow feed-forward model at render time, we use these fused images as teachers and distill them back into Gaussians, balanced with supervision from input views. Our method improves the quality of various sparse-view Gaussian methods without sacrificing rendering speed, and our analysis works on different prior models. Project page: https://linwk20.github.io/spectral-fusion-gs/",
-      "published": "2026-11-23",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.31023",
-      "title": "WildAnySplat: Feed-Forward 3D Gaussian Splatting in the Wild",
-      "abstract": "We present WildAnySplat, a feed-forward 3D Gaussian Splatting framework that enables robust novel-view synthesis from in-the-wild multi-view images. Unlike controlled captures, real-world images often contain multi-view inconsistencies caused by transient occluders, illumination changes, and camera ISP, which degrade the quality of existing feed-forward reconstruction methods. To address this challenge, we introduce a student-teacher framework that learns transient-robust and appearance-consistent 3D representations. A teacher network operates on clean images, while a student processes the corresponding in-the-wild inputs. The teacher provides clean supervision to guide the student toward a consistent canonical representation. Since paired clean and in-the-wild data are scarce, we use a hybrid data strategy, combining real paired captures, synthetic augmentations, and pseudo-clean labels generated from optimization-based reconstructions, bridging the domain gap between synthetic and real-world data. We adopt a transformer architecture with dedicated DPT heads for camera pose, depth, and Gaussian prediction. We additionally predict per-view transient masks to reweight photometric supervision and suppress unreliable Gaussians. To account for cross-view appearance variation, we incorporate a bilateral grid module that models per-image color transformations and enables recovery of a canonical radiance representation. Experiments on challenging in-the-wild benchmarks show that WildAnySplat improves robustness to transient occlusions and appearance variation while retaining the fast inference of feed-forward Gaussian Splatting.",
-      "published": "2026-11-23",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.30602",
-      "title": "GSDet: Gaussian Splatting for Oriented Object Detection",
-      "abstract": "Oriented object detection has advanced with the development of convolutional neural networks (CNNs) and transformers. However, modern detectors still rely on predefined object candidates, such as anchors in CNN-based methods or queries in transformer-based methods, which struggle to capture spatial information effectively. To address the limitations, we propose GSDet, a novel framework that formulates oriented object detection as Gaussian splatting. Specifically, our approach performs detection within a 3D feature space constructed from image features, where 3D Gaussians are employed to represent oriented objects. These 3D Gaussians are projected onto the image plane to form 2D Gaussians, which are then transformed into oriented boxes. Furthermore, we optimize the mean, anisotropic covariance, and confidence scores of these randomly initialized 3D Gaussians, using a decoder that incorporates 3D Gaussian sampling. Moreover, our method exhibits flexibility, enabling adaptive control and a dynamic number of Gaussians during inference. Experiments on 3 datasets indicate that GSDet achieves AP$_{50}$ gains of 0.7\\% on DIOR-R, 0.3\\% on DOTA-v1.0, and 0.55\\% on DOTA-v1.5 when evaluated with adaptive control and outperforms mainstream detectors.",
-      "published": "2026-11-23",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.30351",
-      "title": "NNS-GS: Non-Local Neural Scattering for Relightable Gaussian Splatting",
-      "abstract": "Creating relightable 3D assets of translucent objects is challenging because changing the illumination at one surface location can affect the appearance elsewhere through subsurface scattering. Existing Gaussian-based scattering models typically predict scattering from local features, making this dependence difficult to capture. We present Non-Local Neural Scattering for Gaussian Splatting (NNS-GS), which learns non-local scattering together with geometry-guided local reflection. The scattering module learns how illumination from light-visible surface regions in light space contributes to the shading point in view space, conditioned on regional diffuse responses and spatial relationships. The reflection module supplies these diffuse responses and uses additional geometric guidance to better capture specular highlights and sharp shadow boundaries. To reduce component mixing and support controllable scattering appearance, anchor-based progressive training establishes the diffuse-scattering base before introducing specular reflection and supervises the components separately. Under calibrated point lighting, NNS-GS improves mean PSNR over existing methods by 2.47 dB and 0.81 dB on the synthetic and real translucent scenes, respectively. Additional synthetic comparisons further show that NNS-GS better matches the reference when adjusting scattering attenuation.",
-      "published": "2026-11-23",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.30283",
-      "title": "AdvMTO: Multimodal and Temporal Adversarial Object Attacks via 2D Gaussian Splatting for BEV-Based 3D Object Detection",
-      "abstract": "Adversarial object attacks pose a threat to BEV-based 3D object detectors in autonomous driving. Existing attacks typically target a single modality, coordinate camera and LiDAR observations at the current timestamp, or model temporal persistence mainly in camera streams. Without a unified construction of current and historical observations, attacks can leave part of the detector's accumulated evidence unsuppressed, limiting their effectiveness. In this paper, we propose AdvMTO, a 2D Gaussian Splatting (2DGS) framework for suppressing detection of persistent adversarial objects. Its oriented surfels encode appearance, geometry, and opacity in one object state, from which camera images and scanline LiDAR returns are generated. AdvMTO then constructs current and historical inputs through detector-native processing, regenerating LiDAR returns in each native source sweep for fusion detectors. We optimize bounded appearance perturbations for each detector, propagating gradients through historical BEV memory for temporal camera detectors. For fusion detectors, bounded geometry refinement along local normals further perturbs both sensing modalities. Experiments on nuScenes demonstrate effective suppression of traffic-cone detection across three BEV detectors. Temporal ablations further highlight the importance of detector-native history modeling for both attack construction and optimization.",
-      "published": "2026-11-23",
-      "categories": [
-        "cs.CV"
-      ],
-      "primary": "cs.CV"
-    },
-    {
-      "id": "2611.30102",
-      "title": "LMnOP: Pruning 3D Gaussian Splatting via Leave-Many-Out Importance",
-      "abstract": "3D Gaussian Splatting renders photorealistic views in real time. However, a single scene often needs millions of Gaussians, so these models are costly to store and render. Pruning reduces this cost by keeping a subset of the Gaussians. A common score is the leave-one-out importance, which is the loss increase when a Gaussian alone is removed. At high pruning ratios, many Gaussians are removed together, so Gaussians that are redundant alone but essential together are lost. We present LMnOP (Leave-Many-Out Pruning), which estimates the importance of each Gaussian under the removal of the other Gaussians. This leave-many-out importance is the average loss increase when a Gaussian is removed while the others are also removed at random. We compute the exact mean and variance of each pixel's color under random removal in closed form, and approximate the importance from them without sampling removal patterns. We refine each Gaussian's probability of remaining with its importance and prune once at the end. Without fine-tuning, LMnOP achieves the best results in 16 of 18 metrics on three datasets at 90% and 99% removal. It improves SSIM and LPIPS over GaussianPOP in all 13 scenes.",
-      "published": "2026-11-23",
       "categories": [
         "cs.CV",
         "cs.GR"
